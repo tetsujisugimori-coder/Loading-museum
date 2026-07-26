@@ -1,5 +1,3 @@
-@import "tailwindcss";
-
 :root {
   --ink: #050807;
   --panel: #0a100e;
@@ -479,10 +477,12 @@ h2 {
 
 .progressLabel {
   display: flex;
+  gap: 16px;
   justify-content: space-between;
   margin-bottom: 9px;
   color: var(--muted);
   font-size: 9px;
+  letter-spacing: 0.08em;
 }
 
 .progressTrack {
