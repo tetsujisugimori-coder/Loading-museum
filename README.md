@@ -25,9 +25,21 @@ npm install
 npm run dev
 ```
 
-ビルドとテスト:
+ブラウザで `http://localhost:3000` を開きます。
+
+静的ビルドと確認:
 
 ```bash
 npm run build
+npm run lint
+npm run typecheck
 npm test
 ```
+
+静的ファイルは `out/` に出力されます。
+
+## GitHub Pages
+
+`main`へのpush後、GitHub Actionsが静的サイトを自動公開します。
+
+公開URL: https://tetsujisugimori-coder.github.io/Loading-museum/

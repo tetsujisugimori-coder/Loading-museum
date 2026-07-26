@@ -1,34 +1,13 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
-async function render() {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
+const projectRoot = new URL("../", import.meta.url);
+const outputRoot = new URL("../out/", import.meta.url);
 
-  return worker.fetch(
-    new Request("http://localhost/", {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
-  );
-}
+test("GitHub Pages用の静的HTMLへ9種類の展示を書き出す", async () => {
+  const html = await readFile(new URL("index.html", outputRoot), "utf8");
 
-test("9種類のローディング展示をサーバー描画する", async () => {
-  const response = await render();
-  assert.equal(response.status, 200);
-  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
-
-  const html = await response.text();
   assert.match(html, /<html lang="ja">/);
   assert.match(html, /<title>世界のローディング画面博物館<\/title>/);
   assert.match(html, /CUIの回転文字/);
@@ -41,11 +20,35 @@ test("9種類のローディング展示をサーバー描画する", async () =
   assert.match(html, /プログレスバー/);
   assert.match(html, /スケルトンスクリーン/);
   assert.equal((html.match(/<article/g) ?? []).length, 9);
-  assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
+  assert.equal((html.match(/role="img"/g) ?? []).length, 9);
+  assert.doesNotMatch(html, /72%/);
 });
 
-test("レスポンシブ表示と動きを抑える設定を持つ", async () => {
-  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+test("CSSとJavaScriptをLoading-museumサブパスから参照する", async () => {
+  const html = await readFile(new URL("index.html", outputRoot), "utf8");
+  const assetPaths = [
+    ...html.matchAll(/(?:href|src)="(\/Loading-museum\/_next\/[^"]+)"/g),
+  ].map((match) => match[1]);
+
+  assert.ok(assetPaths.some((path) => path.endsWith(".css")));
+  assert.ok(assetPaths.some((path) => path.endsWith(".js")));
+
+  for (const assetPath of new Set(assetPaths)) {
+    const outputPath = assetPath.replace(/^\/Loading-museum\//, "");
+    await access(new URL(outputPath, outputRoot));
+  }
+});
+
+test("静的export設定と既存レスポンシブ・reduced-motion対応を維持する", async () => {
+  const [config, css] = await Promise.all([
+    readFile(new URL("next.config.ts", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+
+  assert.match(config, /output:\s*"export"/);
+  assert.match(config, /basePath:\s*pagesBasePath/);
+  assert.match(config, /assetPrefix:\s*pagesBasePath/);
+  assert.match(config, /repositoryName = "Loading-museum"/);
   assert.match(css, /@media \(max-width: 1000px\)/);
   assert.match(css, /@media \(max-width: 650px\)/);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
