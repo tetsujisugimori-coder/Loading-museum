@@ -565,6 +565,312 @@ h2 {
   to { transform: translateX(120%); }
 }
 
+.roomCollection {
+  margin-top: 54px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line-bright);
+}
+
+.roomCollectionHeader {
+  display: flex;
+  gap: 24px;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.roomCollectionHeader h2 {
+  margin: 0;
+  color: var(--paper);
+  font-size: clamp(20px, 2.3vw, 31px);
+  letter-spacing: 0.08em;
+}
+
+.roomList {
+  display: grid;
+  gap: 14px;
+}
+
+.roomCard {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #31404c;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 4px, rgb(255 255 255 / 1.8%) 4px 5px),
+    #070b10;
+  box-shadow: inset 0 1px rgb(255 255 255 / 3%), 0 18px 48px rgb(0 0 0 / 24%);
+}
+
+.roomToggle {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 24px;
+  width: 100%;
+  padding: 22px 64px 22px 24px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.roomToggle:hover {
+  background: rgb(255 255 255 / 2.5%);
+}
+
+.roomToggle:focus-visible,
+.roomCloseButton:focus-visible,
+.codeDisclosure summary:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: -3px;
+}
+
+.roomIndex {
+  grid-column: 1 / -1;
+  color: #81909e;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+}
+
+.roomTitle {
+  color: #f2f4f6;
+  font-size: clamp(17px, 2vw, 24px);
+  font-weight: 600;
+  letter-spacing: 0.045em;
+}
+
+.roomDescription {
+  align-self: center;
+  color: #9aa5ae;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-align: right;
+}
+
+.roomMeta {
+  display: flex;
+  grid-column: 1 / -1;
+  gap: 18px;
+  color: #727f8a;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+.roomArrow {
+  position: absolute;
+  top: 50%;
+  right: 24px;
+  color: #dce3e8;
+  font-size: 20px;
+  transform: translateY(-50%);
+  transition: transform 180ms ease;
+}
+
+.roomToggle[aria-expanded="true"] .roomArrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.roomPanel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    grid-template-rows 180ms ease,
+    opacity 150ms ease,
+    visibility 0s linear 180ms;
+}
+
+.roomPanel[data-open="true"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    grid-template-rows 180ms ease,
+    opacity 150ms ease;
+}
+
+.roomPanelInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.dosExhibitGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0 18px 18px;
+}
+
+.dosExhibit {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid #28343e;
+  background: rgb(11 15 20 / 94%);
+}
+
+.dosExhibitTopline {
+  display: flex;
+  justify-content: space-between;
+  color: #71808c;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+}
+
+.dosExhibit h3 {
+  margin: 10px 0 14px;
+  color: #f1f3f4;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.055em;
+}
+
+.dosScreen {
+  display: flex;
+  gap: 10px;
+  min-height: 104px;
+  align-items: center;
+  padding: 17px;
+  overflow: hidden;
+  border: 1px solid #49535d;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 3px, rgb(255 255 255 / 2%) 3px 4px),
+    #020304;
+  color: #f3f3ef;
+  font-size: clamp(11px, 1.3vw, 14px);
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.dosPrompt {
+  align-self: flex-start;
+  color: #9ca5ab;
+}
+
+.dosLog {
+  display: flex;
+  min-width: 0;
+  min-height: 67px;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.dosLogLine {
+  display: block;
+}
+
+.dosBlink[data-active="true"] {
+  animation: dos-blink 1.1s steps(2, end) infinite;
+}
+
+@keyframes dos-blink {
+  50% { opacity: 0.35; }
+}
+
+.dosFacts {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 0;
+}
+
+.dosFacts div {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.dosFacts dt {
+  color: #75838d;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+
+.dosFacts dd {
+  margin: 0;
+  color: #c1c8cd;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.classificationLabel {
+  display: inline-block;
+  padding: 3px 6px;
+  border: 1px solid #46525c;
+  color: #e3e7e9;
+}
+
+.dosExplanation,
+.implementationNote {
+  margin: 13px 0 0;
+  color: #929da5;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+.implementationNote {
+  padding: 11px 12px;
+  border-left: 2px solid #7d8991;
+  background: rgb(255 255 255 / 2.5%);
+}
+
+.implementationNote strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #d8dde0;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+}
+
+.codeDisclosure {
+  margin-top: 12px;
+  border-top: 1px dotted #35414a;
+}
+
+.codeDisclosure summary {
+  padding: 11px 2px 2px;
+  color: #b8c1c7;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.codeDisclosure pre {
+  max-width: 100%;
+  margin: 10px 0 0;
+  padding: 12px;
+  overflow-x: auto;
+  border: 1px solid #26323b;
+  background: #020304;
+  color: #dfe4e7;
+  font: 10px/1.65 var(--mono);
+  white-space: pre;
+}
+
+.roomCloseRow {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 18px 20px;
+}
+
+.roomCloseButton {
+  padding: 10px 14px;
+  border: 1px solid #65727c;
+  background: #0c1116;
+  color: #eef1f2;
+  font: 10px var(--mono);
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.roomCloseButton:hover {
+  border-color: #aeb8bf;
+  background: #141b22;
+}
+
 footer {
   display: flex;
   align-items: center;
@@ -628,6 +934,58 @@ footer {
 
   .timeline {
     grid-template-columns: 1fr;
+  }
+
+  .roomCollection {
+    margin-top: 36px;
+  }
+
+  .roomCollectionHeader {
+    display: block;
+  }
+
+  .roomCollectionHeader h2 {
+    margin-top: 12px;
+  }
+
+  .roomToggle {
+    grid-template-columns: 1fr;
+    padding: 20px 50px 20px 18px;
+  }
+
+  .roomDescription {
+    text-align: left;
+  }
+
+  .roomMeta {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .roomArrow {
+    right: 18px;
+  }
+
+  .dosExhibitGrid {
+    grid-template-columns: 1fr;
+    padding: 0 10px 10px;
+  }
+
+  .dosExhibit {
+    padding: 15px;
+  }
+
+  .dosScreen {
+    font-size: 10px;
+  }
+
+  .dosFacts div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .roomCloseRow {
+    padding: 4px 10px 16px;
   }
 
   .exhibit {
