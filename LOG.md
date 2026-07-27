@@ -53,3 +53,23 @@
 - 今回のログ表示は時代の雰囲気を説明する再現であり、特定のソフトウェアやコマンドの画面を忠実に複製したものではない。
 - 展示室はMS-DOS・PCコマンドラインのみ実装している。Windows、macOS、Unix/Linux、Web、AI思考中などは今後データを追加して拡張する。
 - コード表示は理解しやすい要点に絞った抜粋であり、コンポーネント全体のソースコードは表示しない。
+
+## 2026-07-27 — PR #4 reduced motionレビュー対応
+
+- 作業ブランチ: `agent/ms-dos-exhibit-room`
+- レビューで、CSSアニメーションだけでなく`setInterval`による文字アニメーションにも`prefers-reduced-motion: reduce`を反映する必要があると指摘された。
+- `window.matchMedia("(prefers-reduced-motion: reduce)")`を使う`usePrefersReducedMotion`を追加し、初期設定と実行中の変更をJavaScriptで検出するようにした。
+- `animationsActive`を「展示室が開いている」「タブが表示中」「reduced motionが無効」のすべてを満たす場合だけ有効になる条件へ変更した。
+- reduced motionが有効になると、回転スピナー、ドット、文字プログレスバー、ファイルコピー、圧縮ファイル展開、コンパイル、ディスク確認の各タイマーが既存のeffect cleanupで停止する。
+- 設定を無効へ戻すと同じeffectから各タイマーが1本だけ再開する。展示室の開閉、タブの表示状態、設定変更が重なってもcleanupが先に実行されるため、タイマーの重複と停止漏れを防ぐ。
+- `MediaQueryList`の`change`イベントはコンポーネント破棄時に解除する。
+- 通常のモーション設定では従来の間隔と表示内容を変更していない。
+- テストへmedia query文字列、`matchMedia`、変更イベントの登録・解除、新しい`animationsActive`条件の検証を追加した。
+
+### 確認結果
+
+- `npm run lint`: 成功
+- `npm run typecheck`: 成功
+- `npm test`: 5件すべて成功
+- `npm run build`: 成功（`npm test`内で実行）
+- 未解決事項: なし

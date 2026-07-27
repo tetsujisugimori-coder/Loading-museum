@@ -11,6 +11,7 @@ const SPINNER_FRAMES = ["-", "\\", "|", "/"] as const;
 const DOT_FRAMES = ["Loading", "Loading.", "Loading..", "Loading..."] as const;
 const PROGRESS_VALUES = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
 const LOG_STEPS = [1, 2, 3] as const;
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
 const LOG_LINES: Record<
   Extract<
@@ -61,6 +62,26 @@ function useSequencedValue<T>(
   }, [delay, enabled, values.length]);
 
   return values[index % values.length];
+}
+
+function usePrefersReducedMotion() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(REDUCED_MOTION_QUERY);
+    const updatePreference = () => {
+      setPrefersReducedMotion(mediaQuery.matches);
+    };
+
+    updatePreference();
+    mediaQuery.addEventListener("change", updatePreference);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updatePreference);
+    };
+  }, []);
+
+  return prefersReducedMotion;
 }
 
 function renderTextProgress(progress: number) {
@@ -189,10 +210,12 @@ function RoomExhibitCard({
 export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isPageVisible, setIsPageVisible] = useState(true);
+  const prefersReducedMotion = usePrefersReducedMotion();
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelId = `${room.roomId}-panel`;
   const toggleId = `${room.roomId}-toggle`;
-  const animationsActive = isOpen && isPageVisible;
+  const animationsActive =
+    isOpen && isPageVisible && !prefersReducedMotion;
 
   useEffect(() => {
     const updatePageVisibility = () => {

@@ -75,7 +75,23 @@ test("展示室のデータ定義とタイマー停止・フォーカス復帰�
   assert.match(accordion, /window\.setInterval/);
   assert.match(accordion, /window\.clearInterval/);
   assert.match(accordion, /visibilitychange/);
-  assert.match(accordion, /const animationsActive = isOpen && isPageVisible/);
+  assert.match(
+    accordion,
+    /REDUCED_MOTION_QUERY = "\(prefers-reduced-motion: reduce\)"/,
+  );
+  assert.match(accordion, /window\.matchMedia\(REDUCED_MOTION_QUERY\)/);
+  assert.match(
+    accordion,
+    /mediaQuery\.addEventListener\("change", updatePreference\)/,
+  );
+  assert.match(
+    accordion,
+    /mediaQuery\.removeEventListener\("change", updatePreference\)/,
+  );
+  assert.match(
+    accordion,
+    /const animationsActive =\s+isOpen && isPageVisible && !prefersReducedMotion/,
+  );
   assert.match(accordion, /aria-expanded=\{isOpen\}/);
   assert.match(accordion, /aria-controls=\{panelId\}/);
   assert.match(accordion, /inert=\{!isOpen\}/);
