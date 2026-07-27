@@ -1,3 +1,6 @@
+import { ExhibitRoomAccordion } from "./components/ExhibitRoomAccordion";
+import { exhibitRooms } from "./data/exhibitRooms";
+
 const spokes = Array.from({ length: 8 }, (_, index) => index);
 
 function ExhibitHeader({
@@ -149,6 +152,18 @@ export default function Home() {
           </div>
           <p className="caption">空白ではなく「これから現れる構造」を先に見せる。</p>
         </article>
+      </section>
+
+      <section className="roomCollection" aria-labelledby="room-collection-title">
+        <div className="roomCollectionHeader">
+          <p className="eyebrow">Period rooms / expandable collection</p>
+          <h2 id="room-collection-title">時代別展示室</h2>
+        </div>
+        <div className="roomList">
+          {exhibitRooms.map((room) => (
+            <ExhibitRoomAccordion key={room.roomId} room={room} />
+          ))}
+        </div>
       </section>
 
       <footer>
