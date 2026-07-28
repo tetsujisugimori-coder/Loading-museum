@@ -13,25 +13,52 @@ export type AnimationType =
   | "compile-log"
   | "disk-check-log";
 
+export type TerminalAnimationType =
+  | "unix-login"
+  | "linux-boot"
+  | "sysvinit"
+  | "apt-progress";
+
 export type CodeLanguage = "JavaScript" | "CSS";
 
-export type RoomExhibit = {
+type RoomExhibitBase = {
   exhibitId: string;
   title: string;
-  animationType: AnimationType;
-  usage: string;
-  classification: ExhibitClassification;
   explanation: string;
   implementationNote: string;
   codeLanguage: CodeLanguage;
   codeExample: string;
 };
 
+export type DosRoomExhibit = RoomExhibitBase & {
+  kind: "dos";
+  animationType: AnimationType;
+  usage: string;
+  classification: ExhibitClassification;
+};
+
+export type TerminalDemoFrame = {
+  lines: string[];
+};
+
+export type TerminalRoomExhibit = RoomExhibitBase & {
+  kind: "terminal";
+  animationType: TerminalAnimationType;
+  period: string;
+  environment: string;
+  frames: TerminalDemoFrame[];
+  authenticDelay: number;
+  viewingDelay: number;
+};
+
+export type RoomExhibit = DosRoomExhibit | TerminalRoomExhibit;
+
 export type ExhibitRoom = {
   roomId: string;
   roomTitle: string;
   period: string;
   description: string;
+  theme: "dos" | "unix";
   exhibits: RoomExhibit[];
 };
 
@@ -41,8 +68,10 @@ export const exhibitRooms: ExhibitRoom[] = [
     roomTitle: "MS-DOS・PCコマンドライン展示室",
     period: "1980年代〜1990年代",
     description: "文字だけで待機や進捗を表現した時代",
+    theme: "dos",
     exhibits: [
       {
+        kind: "dos",
         exhibitId: "rotating-spinner",
         title: "回転スピナー",
         animationType: "spinner",
@@ -57,6 +86,7 @@ export const exhibitRooms: ExhibitRoom[] = [
 const frame = useSequencedValue(SPINNER_FRAMES, 180, active);`,
       },
       {
+        kind: "dos",
         exhibitId: "growing-dots",
         title: "ドット増加",
         animationType: "dots",
@@ -71,6 +101,7 @@ const frame = useSequencedValue(SPINNER_FRAMES, 180, active);`,
 const text = useSequencedValue(DOT_FRAMES, 420, active);`,
       },
       {
+        kind: "dos",
         exhibitId: "blinking-wait",
         title: "点滅する待機表示",
         animationType: "blink",
@@ -86,6 +117,7 @@ const text = useSequencedValue(DOT_FRAMES, 420, active);`,
 }`,
       },
       {
+        kind: "dos",
         exhibitId: "text-progress",
         title: "文字プログレスバー",
         animationType: "text-progress",
@@ -100,6 +132,7 @@ const text = useSequencedValue(DOT_FRAMES, 420, active);`,
 const text = renderTextProgress(progress);`,
       },
       {
+        kind: "dos",
         exhibitId: "file-copy",
         title: "ファイルコピー表示",
         animationType: "copy-log",
@@ -114,6 +147,7 @@ const text = renderTextProgress(progress);`,
 const visibleLines = lines.slice(0, visibleCount);`,
       },
       {
+        kind: "dos",
         exhibitId: "archive-extract",
         title: "圧縮ファイル展開表示",
         animationType: "extract-log",
@@ -128,6 +162,7 @@ const visibleLines = lines.slice(0, visibleCount);`,
 const visibleLines = lines.slice(0, visibleCount);`,
       },
       {
+        kind: "dos",
         exhibitId: "compile-build",
         title: "コンパイル進行表示",
         animationType: "compile-log",
@@ -142,6 +177,7 @@ const visibleLines = lines.slice(0, visibleCount);`,
 const visibleLines = lines.slice(0, visibleCount);`,
       },
       {
+        kind: "dos",
         exhibitId: "disk-check",
         title: "ディスク確認風表示",
         animationType: "disk-check-log",
@@ -154,6 +190,204 @@ const visibleLines = lines.slice(0, visibleCount);`,
         codeLanguage: "JavaScript",
         codeExample: `const visibleCount = useSequencedValue(LOG_STEPS, 900, active);
 const visibleLines = lines.slice(0, visibleCount);`,
+      },
+    ],
+  },
+  {
+    roomId: "linux-unix",
+    roomTitle: "Linux / UNIX 展示室",
+    period: "1970年代〜現在",
+    description: "端末ログ、起動、サービス管理、パッケージ操作の多様な系譜",
+    theme: "unix",
+    exhibits: [
+      {
+        kind: "terminal",
+        exhibitId: "unix-login",
+        title: "UNIX風ログイン",
+        animationType: "unix-login",
+        period: "1970年代以降",
+        environment: "UNIX系端末／シェル",
+        explanation:
+          "端末で資格情報を入力し、前回ログインの案内を経てシェルへ入る流れを短く再構成しています。パスワードの内容は表示しません。",
+        implementationNote:
+          "JavaScriptでログインの各段階を順番に表示する観賞用デモです。実際の認証や入力処理は行いません。",
+        codeLanguage: "JavaScript",
+        codeExample: `const demo = useTerminalDemo(exhibit.frames, delay, active, prefersReducedMotion);
+demo.run();`,
+        authenticDelay: 420,
+        viewingDelay: 850,
+        frames: [
+          { lines: ["login:"] },
+          { lines: ["login: guest", "Password:"] },
+          {
+            lines: [
+              "login: guest",
+              "Password:",
+              "Last login: Mon Jul 28 09:12:00 on tty1",
+            ],
+          },
+          {
+            lines: [
+              "login: guest",
+              "Password:",
+              "Last login: Mon Jul 28 09:12:00 on tty1",
+              "guest@archive:~$",
+            ],
+          },
+        ],
+      },
+      {
+        kind: "terminal",
+        exhibitId: "linux-kernel-boot",
+        title: "Linuxカーネル起動ログ",
+        animationType: "linux-boot",
+        period: "1990年代以降",
+        environment: "Linuxカーネル／架空の汎用環境",
+        explanation:
+          "CPU、メモリ、仮想ストレージ、デバイス認識を示す短い架空ログです。Linux環境ごとに起動表示が異なることを前提にしています。",
+        implementationNote:
+          "JavaScriptで架空の起動ログを高速に追加する視覚的なデモです。実在する端末名、利用者、通信先は使用していません。",
+        codeLanguage: "JavaScript",
+        codeExample: `const demo = useTerminalDemo(exhibit.frames, delay, active, prefersReducedMotion);
+demo.run();`,
+        authenticDelay: 120,
+        viewingDelay: 360,
+        frames: [
+          { lines: ["Booting fictional Linux environment..."] },
+          {
+            lines: [
+              "Booting fictional Linux environment...",
+              "CPU0: Generic 64-bit processor detected",
+            ],
+          },
+          {
+            lines: [
+              "Booting fictional Linux environment...",
+              "CPU0: Generic 64-bit processor detected",
+              "Memory: 4096 MB available",
+            ],
+          },
+          {
+            lines: [
+              "Booting fictional Linux environment...",
+              "CPU0: Generic 64-bit processor detected",
+              "Memory: 4096 MB available",
+              "Storage: /dev/vda 64 GiB (virtual)",
+            ],
+          },
+          {
+            lines: [
+              "Booting fictional Linux environment...",
+              "CPU0: Generic 64-bit processor detected",
+              "Memory: 4096 MB available",
+              "Storage: /dev/vda 64 GiB (virtual)",
+              "Device: virtual console ready",
+            ],
+          },
+          {
+            lines: [
+              "Booting fictional Linux environment...",
+              "CPU0: Generic 64-bit processor detected",
+              "Memory: 4096 MB available",
+              "Storage: /dev/vda 64 GiB (virtual)",
+              "Device: virtual console ready",
+              "archive-linux login:",
+            ],
+          },
+        ],
+      },
+      {
+        kind: "terminal",
+        exhibitId: "sysvinit-startup",
+        title: "SysVinit風の起動表示",
+        animationType: "sysvinit",
+        period: "1990年代〜2000年代",
+        environment: "Red Hat系など／SysVinit風",
+        explanation:
+          "サービス名と状態を縦に並べた、Red Hat系などで見られたSysVinit風の再現です。Linux共通の標準表示ではありません。",
+        implementationNote:
+          "JavaScriptで処理中の行を成功状態へ置き換える観賞用デモです。サービス操作は行いません。",
+        codeLanguage: "JavaScript",
+        codeExample: `const demo = useTerminalDemo(exhibit.frames, delay, active, prefersReducedMotion);
+demo.run();`,
+        authenticDelay: 300,
+        viewingDelay: 650,
+        frames: [
+          { lines: ["Starting system logger:       [ .... ]"] },
+          {
+            lines: [
+              "Starting system logger:       [  OK  ]",
+              "Starting device manager:      [ .... ]",
+            ],
+          },
+          {
+            lines: [
+              "Starting system logger:       [  OK  ]",
+              "Starting device manager:      [  OK  ]",
+              "Starting local services:      [ .... ]",
+            ],
+          },
+          {
+            lines: [
+              "Starting system logger:       [  OK  ]",
+              "Starting device manager:      [  OK  ]",
+              "Starting local services:      [  OK  ]",
+              "System ready.",
+            ],
+          },
+        ],
+      },
+      {
+        kind: "terminal",
+        exhibitId: "apt-progress",
+        title: "Debian系APT風の進捗表示",
+        animationType: "apt-progress",
+        period: "1990年代後半以降",
+        environment: "Debian系／APT風",
+        explanation:
+          "一覧取得、ダウンロード、展開、設定という流れを短くまとめたAPT風の再現です。実際の通信やパッケージ操作は行いません。",
+        implementationNote:
+          "JavaScriptでパーセント、文字バー、回転カーソルを含む架空の進捗表示を切り替える視覚的なデモです。",
+        codeLanguage: "JavaScript",
+        codeExample: `const demo = useTerminalDemo(exhibit.frames, delay, active, prefersReducedMotion);
+demo.run();`,
+        authenticDelay: 220,
+        viewingDelay: 520,
+        frames: [
+          { lines: ["Reading package lists... 0%  |"] },
+          { lines: ["Reading package lists... 45% /"] },
+          { lines: ["Reading package lists... Done", "Downloading demo archive..."] },
+          {
+            lines: [
+              "Reading package lists... Done",
+              "Downloading [#####-----] 50%  -",
+            ],
+          },
+          {
+            lines: [
+              "Reading package lists... Done",
+              "Downloading [##########] 100%",
+              "Unpacking museum-demo...",
+            ],
+          },
+          {
+            lines: [
+              "Reading package lists... Done",
+              "Downloading [##########] 100%",
+              "Unpacking museum-demo...",
+              "Setting up museum-demo...",
+            ],
+          },
+          {
+            lines: [
+              "Reading package lists... Done",
+              "Downloading [##########] 100%",
+              "Unpacking museum-demo...",
+              "Setting up museum-demo...",
+              "Done.",
+            ],
+          },
+        ],
       },
     ],
   },
