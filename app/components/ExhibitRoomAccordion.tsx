@@ -7,7 +7,9 @@ import type {
   ExhibitRoom,
   TerminalRoomExhibit,
 } from "../data/exhibitRooms";
+import type { VanishedOsExhibit } from "../data/vanishedOperatingSystems";
 import { TerminalDemoPlayer } from "./TerminalDemoPlayer";
+import { VanishedOsPlayer } from "./VanishedOsPlayer";
 
 const SPINNER_FRAMES = ["-", "\\", "|", "/"] as const;
 const DOT_FRAMES = ["Loading", "Loading.", "Loading..", "Loading..."] as const;
@@ -256,6 +258,57 @@ function TerminalExhibitCard({
   );
 }
 
+function VanishedOsExhibitCard({
+  exhibit,
+  active,
+  prefersReducedMotion,
+}: {
+  exhibit: VanishedOsExhibit;
+  active: boolean;
+  prefersReducedMotion: boolean;
+}) {
+  return (
+    <article className="vanishedOsExhibit">
+      <div className="vanishedOsTopline">
+        <span>RETIRED SYSTEM / RECONSTRUCTED</span>
+        <span>{exhibit.introduced}</span>
+      </div>
+      <h3>{exhibit.title}</h3>
+      <dl className="vanishedOsFacts">
+        <div>
+          <dt>登場時期</dt>
+          <dd>{exhibit.introduced}</dd>
+        </div>
+        <div>
+          <dt>主な対象端末・ハードウェア</dt>
+          <dd>{exhibit.hardware}</dd>
+        </div>
+        <div>
+          <dt>起動画面・待機画面の特徴</dt>
+          <dd>{exhibit.bootCharacteristics}</dd>
+        </div>
+        <div>
+          <dt>待ち時間の見せ方</dt>
+          <dd>{exhibit.waitingStyle}</dd>
+        </div>
+        <div>
+          <dt>その後どうなったか</dt>
+          <dd>{exhibit.aftermath}</dd>
+        </div>
+        <div>
+          <dt>後世に残した思想・技術</dt>
+          <dd>{exhibit.legacy}</dd>
+        </div>
+      </dl>
+      <VanishedOsPlayer
+        exhibit={exhibit}
+        active={active}
+        prefersReducedMotion={prefersReducedMotion}
+      />
+    </article>
+  );
+}
+
 export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isPageVisible, setIsPageVisible] = useState(true);
@@ -264,9 +317,17 @@ export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
   const panelId = `${room.roomId}-panel`;
   const toggleId = `${room.roomId}-toggle`;
   const roomClassName =
-    room.theme === "unix" ? "roomCard roomCardUnix" : "roomCard";
+    room.theme === "unix"
+      ? "roomCard roomCardUnix"
+      : room.theme === "vanished"
+        ? "roomCard roomCardVanished"
+        : "roomCard";
   const gridClassName =
-    room.theme === "unix" ? "unixExhibitGrid" : "dosExhibitGrid";
+    room.theme === "unix"
+      ? "unixExhibitGrid"
+      : room.theme === "vanished"
+        ? "vanishedOsGrid"
+        : "dosExhibitGrid";
   const runtimeActive = isOpen && isPageVisible;
   const animationsActive =
     runtimeActive && !prefersReducedMotion;
@@ -323,9 +384,16 @@ export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
       >
         <div className="roomPanelInner">
           <div className={gridClassName}>
-            {room.exhibits.map((exhibit) => (
+            {room.exhibits.map((exhibit) =>
               exhibit.kind === "terminal" ? (
                 <TerminalExhibitCard
+                  key={exhibit.exhibitId}
+                  exhibit={exhibit}
+                  active={runtimeActive}
+                  prefersReducedMotion={prefersReducedMotion}
+                />
+              ) : exhibit.kind === "vanished-os" ? (
+                <VanishedOsExhibitCard
                   key={exhibit.exhibitId}
                   exhibit={exhibit}
                   active={runtimeActive}
@@ -338,7 +406,7 @@ export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
                   active={animationsActive}
                 />
               )
-            ))}
+            )}
           </div>
           <div className="roomCloseRow">
             <button className="roomCloseButton" type="button" onClick={closeRoom}>

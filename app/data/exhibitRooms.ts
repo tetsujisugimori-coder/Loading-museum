@@ -1,3 +1,8 @@
+import {
+  vanishedOperatingSystems,
+  type VanishedOsExhibit,
+} from "./vanishedOperatingSystems";
+
 export type ExhibitClassification =
   | "実在ソフトを参考にした再現"
   | "当時広く使われた表現"
@@ -47,14 +52,17 @@ export type TerminalRoomExhibit = RoomExhibitBase & {
   viewingDelay: number;
 };
 
-export type RoomExhibit = DosRoomExhibit | TerminalRoomExhibit;
+export type RoomExhibit =
+  | DosRoomExhibit
+  | TerminalRoomExhibit
+  | VanishedOsExhibit;
 
 export type ExhibitRoom = {
   roomId: string;
   roomTitle: string;
   period: string;
   description: string;
-  theme: "dos" | "unix";
+  theme: "dos" | "unix" | "vanished";
   exhibits: RoomExhibit[];
 };
 
@@ -282,5 +290,13 @@ const demo = useTerminalSequence(steps, baseDelay, active, prefersReducedMotion)
         viewingDelay: 480,
       },
     ],
+  },
+  {
+    roomId: "vanished-operating-systems",
+    roomTitle: "消えたOS展示室",
+    period: "1984年〜2010年代",
+    description: "主流から退いたOSが残した起動演出と設計思想",
+    theme: "vanished",
+    exhibits: vanishedOperatingSystems,
   },
 ];
