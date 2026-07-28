@@ -657,6 +657,7 @@ h2 {
 .speedControl select:focus-visible,
 .bootOsButton:focus-visible,
 .stopOsButton:focus-visible,
+.vanishedOsContext summary:focus-visible,
 .codeDisclosure summary:focus-visible {
   outline: 2px solid var(--cyan);
   outline-offset: -3px;
@@ -748,7 +749,7 @@ h2 {
 
 .vanishedOsGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 12px;
   padding: 0 18px 18px;
 }
@@ -1625,6 +1626,1226 @@ h2 {
   letter-spacing: 0.07em;
 }
 
+.vanishedOsExhibit {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1450px;
+}
+
+.vanishedOsHeading {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.vanishedOsHeading span {
+  color: #9f8da2;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+
+.vanishedOsLead {
+  max-width: 920px;
+  margin: -4px 0 14px;
+  color: #c4b9c6;
+  font-size: 11px;
+  line-height: 1.75;
+}
+
+.vanishedOsContext {
+  margin-bottom: 18px;
+  border-block: 1px dotted #403743;
+}
+
+.vanishedOsContext summary {
+  padding: 10px 2px;
+  color: #baa7bd;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.vanishedOsContext[open] summary {
+  border-bottom: 1px dotted #403743;
+}
+
+.vanishedOsContext .vanishedOsFacts {
+  margin: 12px 0;
+}
+
+.vanishedLoadingGroups {
+  display: grid;
+  gap: 22px;
+}
+
+.vanishedLoadingGroup {
+  min-width: 0;
+}
+
+.vanishedLoadingGroup h4 {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  margin: 0 0 10px;
+  color: #d4c7d6;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+}
+
+.vanishedLoadingGroup h4::before {
+  width: 24px;
+  height: 1px;
+  background: #8c718f;
+  content: "";
+}
+
+.vanishedLoadingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.vanishedLoadingExhibit {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 13px;
+  border: 1px solid #3e3541;
+  background:
+    linear-gradient(145deg, rgb(255 255 255 / 2.2%), transparent 35%),
+    #0c0a0e;
+}
+
+.vanishedLoadingTopline {
+  display: flex;
+  min-height: 24px;
+  gap: 8px;
+  justify-content: space-between;
+  color: #8f7e92;
+  font-size: 7px;
+  letter-spacing: 0.09em;
+}
+
+.vanishedLoadingTopline span:last-child {
+  text-align: right;
+}
+
+.vanishedLoadingExhibit h5 {
+  min-height: 2.8em;
+  margin: 7px 0 11px;
+  color: #f1eaf2;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.035em;
+  line-height: 1.4;
+}
+
+.vanishedLoadingFacts {
+  display: grid;
+  min-height: 116px;
+  gap: 7px;
+  margin: 0 0 12px;
+}
+
+.vanishedLoadingFacts div {
+  display: grid;
+  gap: 3px;
+}
+
+.vanishedLoadingFacts dt {
+  color: #948097;
+  font-size: 8px;
+  letter-spacing: 0.06em;
+}
+
+.vanishedLoadingFacts dd {
+  margin: 0;
+  color: #bdb3bf;
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+.vanishedLoadingExhibit .vanishedOsScreen {
+  height: 246px;
+  padding: 10px;
+}
+
+.vanishedEvidence {
+  display: grid;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.vanishedEvidence p {
+  margin: 0;
+  color: #9e929f;
+  font-size: 8px;
+  line-height: 1.62;
+}
+
+.vanishedEvidence strong {
+  display: block;
+  margin-bottom: 2px;
+  color: #c9baca;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.vanishedLoadingExhibit .reconstructionLabel {
+  margin-top: 12px;
+  border-color: #55465a;
+  color: #bcaabe;
+  font-size: 7px;
+  line-height: 1.55;
+  letter-spacing: 0.035em;
+}
+
+.historicalProgressBlocks {
+  display: flex;
+  gap: 2px;
+}
+
+.historicalProgressBlocks i {
+  display: block;
+  width: 13px;
+  height: 7px;
+  border: 1px solid currentcolor;
+}
+
+.historicalProgressBlocks i[data-lit="true"] {
+  background: currentcolor;
+}
+
+.vanishedOsScreen[data-demo^="classic-"] {
+  background:
+    repeating-linear-gradient(0deg, transparent 0 2px, rgb(0 0 0 / 2%) 2px 3px),
+    #dfddd5;
+  color: #111;
+  image-rendering: pixelated;
+}
+
+.classicExtensionScreen {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-rows: 1fr auto auto;
+  gap: 8px;
+  place-items: center;
+  padding: 14px 8px 8px;
+  border: 2px solid #111;
+  background: #f1efe8;
+  box-shadow: 5px 5px 0 #87857e;
+}
+
+.classicStartupSymbol {
+  display: grid;
+  width: 50px;
+  height: 58px;
+  place-items: center;
+  border: 3px solid #111;
+  border-radius: 4px;
+  background: #eceae2;
+}
+
+.classicScreenFace {
+  display: grid;
+  width: 32px;
+  height: 24px;
+  place-items: center;
+  border: 2px solid #111;
+  font-size: 12px;
+}
+
+.classicWelcome {
+  font-size: 8px;
+}
+
+.classicExtensionRow {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 3px;
+}
+
+.classicExtensionRow span {
+  display: grid;
+  gap: 2px;
+  justify-items: center;
+  font-size: 5px;
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+.classicExtensionRow span[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.classicExtensionRow i {
+  display: block;
+  width: 20px;
+  height: 17px;
+  border: 2px solid #111;
+  background:
+    linear-gradient(90deg, transparent 45%, #111 46% 54%, transparent 55%),
+    linear-gradient(transparent 45%, #111 46% 54%, transparent 55%);
+}
+
+.classicWatchPanel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #111;
+  background: #f3f1e9;
+}
+
+.classicFileWindow {
+  position: absolute;
+  inset: 24px 21px 27px;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 13px;
+  align-items: center;
+  padding: 29px 12px 12px;
+  border: 2px solid #111;
+  box-shadow: 5px 5px 0 #8b8982;
+  font-size: 8px;
+}
+
+.classicTitleBars {
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  left: 4px;
+  height: 15px;
+  border-block: 2px solid #111;
+  background: repeating-linear-gradient(0deg, #111 0 1px, transparent 1px 3px);
+}
+
+.classicFileIcon {
+  width: 38px;
+  height: 45px;
+  border: 2px solid #111;
+  background:
+    linear-gradient(135deg, transparent 0 11px, #111 12px 13px, transparent 14px)
+    top right / 15px 15px no-repeat;
+}
+
+.classicWatchCursor {
+  position: absolute;
+  right: 29px;
+  bottom: 37px;
+  width: 26px;
+  height: 26px;
+  border: 3px solid #111;
+  border-radius: 50%;
+  background: #f3f1e9;
+}
+
+.classicWatchCursor::before,
+.classicWatchCursor::after {
+  position: absolute;
+  left: 7px;
+  width: 6px;
+  height: 4px;
+  border: 2px solid #111;
+  content: "";
+}
+
+.classicWatchCursor::before {
+  top: -7px;
+}
+
+.classicWatchCursor::after {
+  bottom: -7px;
+}
+
+.classicWatchCursor i {
+  position: absolute;
+  top: 4px;
+  left: 10px;
+  width: 2px;
+  height: 8px;
+  background: #111;
+  transform: rotate(calc(var(--watch-step) * 42deg));
+  transform-origin: 50% 8px;
+}
+
+.classicWatchCursor[data-running="true"] i {
+  animation: classic-watch-tick 900ms steps(8, end) infinite;
+}
+
+@keyframes classic-watch-tick {
+  to { transform: rotate(360deg); }
+}
+
+.classicDiskDialog {
+  display: grid;
+  width: min(250px, 94%);
+  gap: 10px;
+  place-items: center;
+  padding: 10px 14px 13px;
+  border: 2px solid #111;
+  background: #f4f2ea;
+  box-shadow: 6px 6px 0 #77756f;
+  font-size: 8px;
+}
+
+.classicDialogTitle {
+  width: 100%;
+  padding-bottom: 5px;
+  border-bottom: 4px double #111;
+  text-align: center;
+}
+
+.classicDiskGlyph {
+  position: relative;
+  display: block;
+  width: 42px;
+  height: 48px;
+  border: 3px solid #111;
+}
+
+.classicDiskGlyph::before {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  width: 20px;
+  height: 12px;
+  border: 2px solid #111;
+  content: "";
+}
+
+.classicDiskGlyph i {
+  position: absolute;
+  right: 7px;
+  bottom: 5px;
+  left: 7px;
+  height: 12px;
+  border: 2px solid #111;
+}
+
+.vanishedOsScreen[data-demo^="beos-"] {
+  background:
+    radial-gradient(circle at 50% 36%, rgb(66 83 103 / 28%), transparent 45%),
+    #05070b;
+  color: #eef2e8;
+}
+
+.beHistoricalBoot {
+  display: grid;
+  width: 100%;
+  gap: 24px;
+  text-align: center;
+}
+
+.beBootCaption {
+  color: #8994a1;
+  font-size: 8px;
+  letter-spacing: 0.16em;
+}
+
+.beHistoricalSymbols {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.beHistoricalSymbols span {
+  display: grid;
+  gap: 5px;
+  justify-items: center;
+  color: #4e5863;
+}
+
+.beHistoricalSymbols i {
+  display: block;
+  width: 27px;
+  height: 27px;
+  border: 1px solid currentcolor;
+  border-radius: 50% 15% 40% 20%;
+  background:
+    linear-gradient(45deg, transparent 44%, currentcolor 45% 55%, transparent 56%);
+  transform: translateY(4px);
+}
+
+.beHistoricalSymbols small {
+  font-size: 5px;
+}
+
+.beHistoricalSymbols span[data-lit="true"] {
+  color: #ffe77a;
+}
+
+.beHistoricalSymbols span[data-lit="true"] i {
+  border-color: #ffcd55;
+  background-color: #d56439;
+  box-shadow: 0 0 12px rgb(224 118 60 / 34%);
+  transform: translateY(0);
+}
+
+.beTrackerScreen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #5a6c7a;
+  background: #3b6d83;
+}
+
+.beMiniDeskbar {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  display: flex;
+  width: 92px;
+  gap: 5px;
+  align-items: center;
+  padding: 6px;
+  background: #d6c85e;
+  color: #1b252d;
+  font-size: 6px;
+}
+
+.beMiniDeskbar i {
+  width: 10px;
+  height: 8px;
+  border: 1px solid #1b252d;
+}
+
+.beTrackerWindow {
+  position: absolute;
+  inset: 41px 29px 22px 18px;
+  padding: 27px 9px 10px;
+  border: 2px solid #273038;
+  background: #e4e1d3;
+  box-shadow: 6px 6px 0 rgb(0 0 0 / 25%);
+  color: #182027;
+}
+
+.beTrackerWindow > strong {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 5px 8px;
+  border-bottom: 1px solid #38434b;
+  background: #c8b850;
+  font-size: 7px;
+}
+
+.beTrackerPath {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 6px;
+}
+
+.beTrackerFiles {
+  display: flex;
+  gap: 7px;
+}
+
+.beTrackerFiles i {
+  display: grid;
+  width: 42px;
+  height: 39px;
+  place-items: center;
+  border: 1px solid #37434c;
+  font-size: 5px;
+  font-style: normal;
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.beTrackerFiles i[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.beTrackerLoad {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: #b2412d;
+}
+
+.beFilePanel {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #27313a;
+  background: #dcd9ca;
+  box-shadow: 6px 6px 0 rgb(0 0 0 / 24%);
+  color: #192229;
+}
+
+.beFileHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 7px;
+  background: #d2c04e;
+  font-size: 7px;
+}
+
+.beFileRows {
+  display: grid;
+  gap: 6px;
+  padding: 11px 3px;
+}
+
+.beFileRows span {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  font-size: 6px;
+}
+
+.beFileRows i {
+  width: 15px;
+  height: 12px;
+  border: 1px solid #29333a;
+}
+
+.beFileRows span[data-done="true"] i {
+  background:
+    linear-gradient(135deg, transparent 43%, #29333a 44% 55%, transparent 56%);
+}
+
+.beDiskActivity {
+  display: grid;
+  gap: 4px;
+}
+
+.beDiskActivity small {
+  font-size: 5px;
+}
+
+.beDiskActivity span {
+  display: block;
+  height: 7px;
+  background: #b2412d;
+}
+
+.vanishedOsScreen[data-demo^="nextstep-"] {
+  background:
+    linear-gradient(145deg, rgb(255 255 255 / 4%), transparent 32%),
+    #030303;
+  color: #ededed;
+}
+
+.nextBootConsole {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-rows: auto 1fr auto;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid #7d7d7d;
+  background: #050505;
+  font-size: 7px;
+}
+
+.nextConsoleHeader {
+  padding-bottom: 6px;
+  border-bottom: 1px solid #666;
+  color: #999;
+  letter-spacing: 0.1em;
+}
+
+.nextBootConsole > div {
+  display: grid;
+  align-content: end;
+  gap: 4px;
+}
+
+.nextBootConsole > div span {
+  color: #aaa;
+}
+
+.nextBootConsole > div span[data-current="true"] {
+  color: #fff;
+}
+
+.nextBootConsole > div span::before {
+  color: #666;
+  content: "> ";
+}
+
+.nextBootConsole strong {
+  font-size: 7px;
+  font-weight: 500;
+}
+
+.nextServicePanel,
+.nextLaunchPanel {
+  border: 2px outset #c6c6c6;
+  background: #bdbdbd;
+  color: #111;
+}
+
+.nextServicePanel {
+  width: min(280px, 96%);
+  padding: 8px;
+}
+
+.nextPanelTitle {
+  padding: 4px 6px;
+  border: 1px solid #555;
+  background: #363636;
+  color: #fff;
+  font-size: 6px;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.nextServiceRows {
+  display: grid;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.nextServiceRows span {
+  display: grid;
+  grid-template-columns: 11px 1fr auto;
+  gap: 6px;
+  align-items: center;
+  padding: 5px;
+  border: 1px inset #e5e5e5;
+  font-size: 6px;
+}
+
+.nextServiceRows i {
+  width: 8px;
+  height: 8px;
+  border: 1px solid #333;
+}
+
+.nextServiceRows span[data-ready="true"] i {
+  background: #222;
+}
+
+.nextServiceRows small {
+  color: #555;
+  font-size: 5px;
+}
+
+.nextWorkspaceLaunch {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 22px 13px 13px 58px;
+  border: 1px solid #888;
+  background: #4a4a4a;
+}
+
+.nextLaunchDock {
+  position: absolute;
+  top: 13px;
+  bottom: 13px;
+  left: 11px;
+  display: grid;
+  align-content: start;
+  gap: 6px;
+}
+
+.nextLaunchDock span {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 2px outset #999;
+  background: linear-gradient(135deg, #858585, #242424);
+  font-size: 8px;
+}
+
+.nextLaunchDock span[data-selected="true"] {
+  outline: 1px solid #fff;
+}
+
+.nextLaunchPanel {
+  display: grid;
+  min-height: 145px;
+  gap: 13px;
+  align-content: center;
+  justify-items: center;
+  padding: 12px;
+  font-size: 7px;
+}
+
+.nextLaunchPanel > span {
+  color: #555;
+  font-size: 6px;
+}
+
+.vanishedOsScreen[data-demo^="palm-"] {
+  background:
+    repeating-linear-gradient(0deg, transparent 0 2px, rgb(33 49 29 / 4%) 2px 3px),
+    #a7a99e;
+  color: #23301f;
+}
+
+.palmHistoricalDevice {
+  width: 150px;
+  padding: 10px 9px 9px;
+  border: 3px solid #555950;
+  border-radius: 11px 11px 21px 21px;
+  background: #777b72;
+  box-shadow: inset 3px 3px 0 rgb(255 255 255 / 14%);
+}
+
+.palmHistoricalScreen {
+  display: grid;
+  height: 170px;
+  place-items: center;
+  overflow: hidden;
+  border: 3px inset #52564d;
+  background: #afbf9e;
+  color: #263222;
+}
+
+.palmHistoricalKeys {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.palmHistoricalKeys i {
+  width: 18px;
+  height: 7px;
+  border: 1px solid #383b35;
+  border-radius: 50%;
+  background: #969a90;
+}
+
+.palmSyncScreen,
+.palmDatabaseScreen {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  align-content: start;
+  padding: 8px;
+  font-size: 6px;
+}
+
+.palmSyncScreen > strong,
+.palmDatabaseScreen > strong {
+  padding-bottom: 5px;
+  border-bottom: 2px solid currentcolor;
+  text-align: center;
+  font-size: 7px;
+}
+
+.palmConnection {
+  margin: 6px 0;
+  text-align: center;
+}
+
+.palmSyncScreen > div {
+  display: grid;
+  gap: 3px;
+}
+
+.palmSyncScreen > div span {
+  padding: 2px 4px;
+}
+
+.palmSyncScreen > div span[data-current="true"] {
+  background: #263222;
+  color: #afbf9e;
+}
+
+.palmSyncScreen > div span[data-done="true"]::after {
+  float: right;
+  content: "OK";
+}
+
+.palmSyncScreen > small {
+  margin-top: auto;
+  text-align: right;
+}
+
+.palmDatabaseScreen {
+  gap: 7px;
+  align-content: center;
+}
+
+.palmDatabaseScreen > span {
+  display: grid;
+  grid-template-columns: 9px 1fr auto;
+  gap: 5px;
+}
+
+.palmDatabaseScreen > span i {
+  border: 1px solid currentcolor;
+}
+
+.palmDatabaseScreen > span[data-loaded="true"] i {
+  background: currentcolor;
+}
+
+.palmDatabaseScreen small {
+  font-size: 5px;
+}
+
+.palmBeamScene {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 9px;
+  align-items: center;
+  text-align: center;
+}
+
+.palmBeamUnit {
+  display: grid;
+  width: 50px;
+  height: 72px;
+  place-items: center;
+  border: 3px double currentcolor;
+  border-radius: 5px 5px 10px 10px;
+  font-size: 6px;
+}
+
+.palmBeamSignal {
+  letter-spacing: 0.25em;
+}
+
+.palmBeamSignal[data-running="true"] {
+  animation: palm-beam 760ms steps(3, end) infinite;
+}
+
+@keyframes palm-beam {
+  50% { transform: translateX(5px); }
+}
+
+.palmBeamScene strong,
+.palmBeamScene .historicalProgressBlocks {
+  grid-column: 1 / -1;
+  justify-self: center;
+  font-size: 7px;
+}
+
+.vanishedOsScreen[data-demo^="webos-"] {
+  background:
+    radial-gradient(circle at 50% 43%, rgb(70 158 177 / 18%), transparent 38%),
+    #080b11;
+  color: #d6e5ea;
+}
+
+.webosHistoricalPhone {
+  width: 142px;
+  padding: 8px;
+  border: 2px solid #515d68;
+  border-radius: 22px;
+  background: #151a20;
+  box-shadow: 0 10px 24px rgb(0 0 0 / 40%);
+}
+
+.webosHistoricalScreen {
+  height: 205px;
+  overflow: hidden;
+  border-radius: 13px;
+  background: linear-gradient(165deg, #263d4d, #10151a 70%);
+}
+
+.webosPulseBoot {
+  display: grid;
+  height: 100%;
+  gap: 21px;
+  place-items: center;
+  align-content: center;
+}
+
+.webosHistoricalPulse {
+  width: 44px;
+  height: 44px;
+  border: 2px solid #87c9d1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #d0f7f5 0 8%, #4aa9b7 12% 29%, transparent 32%);
+  box-shadow: 0 0 24px rgb(87 190 201 / 42%);
+}
+
+.webosHistoricalPulse[data-running="true"] {
+  animation: webos-historical-pulse 1.15s ease-in-out infinite;
+}
+
+@keyframes webos-historical-pulse {
+  50% {
+    opacity: 0.55;
+    transform: scale(0.86);
+  }
+}
+
+.webosPulseBoot small {
+  font-size: 6px;
+  letter-spacing: 0.12em;
+}
+
+.webosCardLoading {
+  position: relative;
+  height: 100%;
+}
+
+.webosCardWait {
+  position: absolute;
+  top: 18px;
+  right: 0;
+  left: 0;
+  font-size: 8px;
+  text-align: center;
+}
+
+.webosCardWait[data-visible="false"] {
+  opacity: 0;
+}
+
+.webosLoadingCard {
+  position: absolute;
+  right: 12px;
+  bottom: -120px;
+  left: 12px;
+  display: grid;
+  height: 162px;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid rgb(255 255 255 / 28%);
+  border-radius: 7px;
+  background: linear-gradient(160deg, #d8ecef, #6e9ca5);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 42%);
+  color: #142329;
+  transform: scale(0.82);
+}
+
+.webosLoadingCard[data-raised="true"] {
+  bottom: 12px;
+  transform: scale(1);
+}
+
+.webosLoadingCard strong {
+  font-size: 7px;
+}
+
+.webosLoadingCard i {
+  height: 10px;
+  background: rgb(20 35 41 / 18%);
+  opacity: 0;
+}
+
+.webosLoadingCard i[data-visible="true"] {
+  opacity: 1;
+}
+
+.webosUpdatePanel {
+  display: grid;
+  height: 100%;
+  gap: 10px;
+  place-items: center;
+  align-content: center;
+  padding: 14px;
+}
+
+.webosUpdatePanel > strong {
+  font-size: 7px;
+  letter-spacing: 0.08em;
+}
+
+.webosPackageGlyph {
+  width: 42px;
+  height: 34px;
+  border: 1px solid #b5d3d8;
+  background:
+    linear-gradient(30deg, transparent 48%, #b5d3d8 49% 51%, transparent 52%),
+    linear-gradient(-30deg, transparent 48%, #b5d3d8 49% 51%, transparent 52%);
+}
+
+.webosUpdatePanel b {
+  font-size: 6px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+
+.webosUpdateTrack {
+  width: 100%;
+  height: 7px;
+  border: 1px solid #7b9ca4;
+}
+
+.webosUpdateTrack span {
+  display: block;
+  height: 100%;
+  background: #82d0d6;
+}
+
+.webosUpdatePanel small {
+  font-size: 6px;
+}
+
+.vanishedOsScreen[data-demo^="windows-phone-"] {
+  background: #030303;
+  color: #f4f4f4;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.windowsHistoricalPhone {
+  width: 142px;
+  padding: 8px;
+  border: 2px solid #444;
+  border-radius: 14px;
+  background: #111;
+  box-shadow: 0 10px 24px rgb(0 0 0 / 45%);
+}
+
+.windowsHistoricalScreen {
+  height: 205px;
+  overflow: hidden;
+  background: #050505;
+}
+
+.windowsDotBoot {
+  display: grid;
+  height: 100%;
+  gap: 30px;
+  place-items: center;
+  align-content: center;
+}
+
+.windowsMovingDots {
+  display: flex;
+  width: 92px;
+  height: 30px;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+}
+
+.windowsMovingDots i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #eee;
+  opacity: 0.15;
+  transform: translateY(7px);
+}
+
+.windowsMovingDots i[data-active="true"] {
+  opacity: 1;
+  transform: translateY(-5px);
+}
+
+.windowsMovingDots[data-running="true"] i {
+  animation: windows-dot-wave 1.4s ease-in-out infinite;
+}
+
+.windowsMovingDots[data-running="true"] i:nth-child(2) { animation-delay: 100ms; }
+.windowsMovingDots[data-running="true"] i:nth-child(3) { animation-delay: 200ms; }
+.windowsMovingDots[data-running="true"] i:nth-child(4) { animation-delay: 300ms; }
+.windowsMovingDots[data-running="true"] i:nth-child(5) { animation-delay: 400ms; }
+
+@keyframes windows-dot-wave {
+  50% {
+    opacity: 1;
+    transform: translateY(-7px);
+  }
+}
+
+.windowsDotBoot strong {
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+}
+
+.windowsResumeScreen {
+  display: grid;
+  height: 100%;
+  gap: 26px;
+  place-items: start;
+  align-content: center;
+  padding: 18px;
+}
+
+.windowsResumeScreen > strong {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.windowsResumeDots {
+  display: flex;
+  gap: 7px;
+}
+
+.windowsResumeDots i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.windowsResumeDots[data-running="true"] {
+  animation: windows-resume-slide 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes windows-resume-slide {
+  to { transform: translateX(48px); }
+}
+
+.windowsResumeTile {
+  display: grid;
+  width: 70px;
+  height: 70px;
+  place-items: end start;
+  padding: 7px;
+  background: #157ca3;
+  font-size: 7px;
+}
+
+.windowsStorePanel {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 53px 1fr;
+  gap: 10px;
+  align-content: center;
+  padding: 13px;
+}
+
+.windowsStoreTile {
+  display: grid;
+  width: 53px;
+  height: 53px;
+  place-items: end start;
+  padding: 6px;
+  background: #8e2f78;
+  font-size: 6px;
+}
+
+.windowsStorePanel > div {
+  display: grid;
+  min-width: 0;
+  gap: 6px;
+}
+
+.windowsStorePanel strong {
+  font-size: 8px;
+  font-weight: 400;
+}
+
+.windowsStorePanel b,
+.windowsStorePanel small {
+  font-size: 6px;
+  font-weight: 300;
+}
+
+.windowsStoreTrack {
+  height: 4px;
+  background: #333;
+}
+
+.windowsStoreTrack i {
+  display: block;
+  height: 100%;
+  background: #e5e5e5;
+}
+
 .demoControls {
   display: flex;
   gap: 10px;
@@ -1790,6 +3011,10 @@ footer {
   .timeline::before {
     display: none;
   }
+
+  .vanishedLoadingGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 650px) {
@@ -1866,6 +3091,24 @@ footer {
 
   .vanishedOsExhibit {
     padding: 15px;
+  }
+
+  .vanishedOsHeading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .vanishedLoadingGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .vanishedLoadingFacts {
+    min-height: 0;
+  }
+
+  .vanishedLoadingExhibit h5 {
+    min-height: 0;
   }
 
   .dosScreen {
