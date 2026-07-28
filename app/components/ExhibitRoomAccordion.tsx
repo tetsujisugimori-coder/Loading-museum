@@ -5,17 +5,15 @@ import type {
   AnimationType,
   DosRoomExhibit,
   ExhibitRoom,
-  TerminalDemoFrame,
   TerminalRoomExhibit,
 } from "../data/exhibitRooms";
+import { TerminalDemoPlayer } from "./TerminalDemoPlayer";
 
 const SPINNER_FRAMES = ["-", "\\", "|", "/"] as const;
 const DOT_FRAMES = ["Loading", "Loading.", "Loading..", "Loading..."] as const;
 const PROGRESS_VALUES = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
 const LOG_STEPS = [1, 2, 3] as const;
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
-
-type DemoSpeed = "authentic" | "viewing";
 
 const LOG_LINES: Record<
   Extract<
@@ -86,59 +84,6 @@ function usePrefersReducedMotion() {
   }, []);
 
   return prefersReducedMotion;
-}
-
-function useTerminalDemo(
-  frames: readonly TerminalDemoFrame[],
-  delay: number,
-  active: boolean,
-  prefersReducedMotion: boolean,
-) {
-  const [frameIndex, setFrameIndex] = useState(0);
-  const [hasRun, setHasRun] = useState(false);
-  const [runRevision, setRunRevision] = useState(0);
-  const finalFrameIndex = Math.max(frames.length - 1, 0);
-  const displayedFrameIndex = prefersReducedMotion
-    ? finalFrameIndex
-    : frameIndex;
-
-  useEffect(() => {
-    if (
-      !active ||
-      !hasRun ||
-      prefersReducedMotion ||
-      frameIndex >= finalFrameIndex
-    ) {
-      return;
-    }
-
-    const timerId = window.setTimeout(() => {
-      setFrameIndex((current) => Math.min(current + 1, finalFrameIndex));
-    }, delay);
-
-    return () => window.clearTimeout(timerId);
-  }, [
-    active,
-    delay,
-    finalFrameIndex,
-    frameIndex,
-    hasRun,
-    prefersReducedMotion,
-    runRevision,
-  ]);
-
-  const run = () => {
-    setFrameIndex(0);
-    setHasRun(true);
-    setRunRevision((current) => current + 1);
-  };
-
-  return {
-    hasRun,
-    isComplete: prefersReducedMotion || frameIndex >= finalFrameIndex,
-    lines: frames[displayedFrameIndex]?.lines ?? [],
-    run,
-  };
 }
 
 function renderTextProgress(progress: number) {
@@ -273,17 +218,6 @@ function TerminalExhibitCard({
   active: boolean;
   prefersReducedMotion: boolean;
 }) {
-  const [speed, setSpeed] = useState<DemoSpeed>("viewing");
-  const delay =
-    speed === "authentic" ? exhibit.authenticDelay : exhibit.viewingDelay;
-  const demo = useTerminalDemo(
-    exhibit.frames,
-    delay,
-    active,
-    prefersReducedMotion,
-  );
-  const runLabel = demo.hasRun ? "再実行" : "実行";
-
   return (
     <article className="unixExhibit">
       <div className="unixExhibitTopline">
@@ -302,53 +236,11 @@ function TerminalExhibitCard({
         </div>
       </dl>
       <p className="unixExplanation">{exhibit.explanation}</p>
-      <div
-        className="unixScreen"
-        role="log"
-        aria-live="polite"
-        aria-atomic="true"
-        aria-label={`${exhibit.title}のJavaScript再構成デモ`}
-      >
-        <pre>
-          <code>
-            {demo.lines.map((line, index) => (
-              <span className="unixLogLine" key={`${index}-${line}`}>
-                {line}
-              </span>
-            ))}
-          </code>
-        </pre>
-      </div>
-      <div className="demoControls">
-        <button
-          className="runDemoButton"
-          type="button"
-          onClick={demo.run}
-          aria-label={`${exhibit.title}を${runLabel}`}
-        >
-          {runLabel}
-        </button>
-        <label className="speedControl">
-          <span>速度</span>
-          <select
-            value={speed}
-            onChange={(event) => setSpeed(event.target.value as DemoSpeed)}
-            aria-label={`${exhibit.title}の再生速度`}
-          >
-            <option value="authentic">実機風</option>
-            <option value="viewing">観賞用</option>
-          </select>
-        </label>
-        <span className="demoState" aria-live="polite">
-          {prefersReducedMotion
-            ? "動きを減らす設定: 最終状態"
-            : demo.isComplete
-              ? "完了"
-              : demo.hasRun
-                ? "実行中"
-                : "待機中"}
-        </span>
-      </div>
+      <TerminalDemoPlayer
+        exhibit={exhibit}
+        active={active}
+        prefersReducedMotion={prefersReducedMotion}
+      />
       <p className="reconstructionLabel">JavaScriptで再構成したデモ</p>
       <p className="implementationNote">
         <strong>実装コメント</strong>

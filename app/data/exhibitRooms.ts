@@ -17,7 +17,8 @@ export type TerminalAnimationType =
   | "unix-login"
   | "linux-boot"
   | "sysvinit"
-  | "apt-progress";
+  | "apt-progress"
+  | "configure-make";
 
 export type CodeLanguage = "JavaScript" | "CSS";
 
@@ -37,16 +38,11 @@ export type DosRoomExhibit = RoomExhibitBase & {
   classification: ExhibitClassification;
 };
 
-export type TerminalDemoFrame = {
-  lines: string[];
-};
-
 export type TerminalRoomExhibit = RoomExhibitBase & {
   kind: "terminal";
   animationType: TerminalAnimationType;
   period: string;
   environment: string;
-  frames: TerminalDemoFrame[];
   authenticDelay: number;
   viewingDelay: number;
 };
@@ -210,31 +206,12 @@ const visibleLines = lines.slice(0, visibleCount);`,
         explanation:
           "端末で資格情報を入力し、前回ログインの案内を経てシェルへ入る流れを短く再構成しています。パスワードの内容は表示しません。",
         implementationNote:
-          "JavaScriptでログインの各段階を順番に表示する観賞用デモです。実際の認証や入力処理は行いません。",
+          "JavaScriptでユーザー名を一文字ずつ表示し、パスワード待機とブロックカーソルを組み合わせています。実際の認証や入力処理は行いません。",
         codeLanguage: "JavaScript",
-        codeExample: `const demo = useTerminalDemo(exhibit.frames, delay, active, prefersReducedMotion);
-demo.run();`,
+        codeExample: `const steps = makeLoginSteps();
+const demo = useTerminalSequence(steps, baseDelay, active, prefersReducedMotion);`,
         authenticDelay: 420,
         viewingDelay: 850,
-        frames: [
-          { lines: ["login:"] },
-          { lines: ["login: guest", "Password:"] },
-          {
-            lines: [
-              "login: guest",
-              "Password:",
-              "Last login: Mon Jul 28 09:12:00 on tty1",
-            ],
-          },
-          {
-            lines: [
-              "login: guest",
-              "Password:",
-              "Last login: Mon Jul 28 09:12:00 on tty1",
-              "guest@archive:~$",
-            ],
-          },
-        ],
       },
       {
         kind: "terminal",
@@ -246,55 +223,12 @@ demo.run();`,
         explanation:
           "CPU、メモリ、仮想ストレージ、デバイス認識を示す短い架空ログです。Linux環境ごとに起動表示が異なることを前提にしています。",
         implementationNote:
-          "JavaScriptで架空の起動ログを高速に追加する視覚的なデモです。実在する端末名、利用者、通信先は使用していません。",
+          "JavaScriptで待ち時間に強弱を付けながら架空ログを追加し、最新行へ自動スクロールします。実在する端末名、利用者、通信先は使用していません。",
         codeLanguage: "JavaScript",
-        codeExample: `const demo = useTerminalDemo(exhibit.frames, delay, active, prefersReducedMotion);
-demo.run();`,
+        codeExample: `const steps = makeBootSteps();
+screen.scrollTop = stepIndex === 0 ? 0 : screen.scrollHeight;`,
         authenticDelay: 120,
         viewingDelay: 360,
-        frames: [
-          { lines: ["Booting fictional Linux environment..."] },
-          {
-            lines: [
-              "Booting fictional Linux environment...",
-              "CPU0: Generic 64-bit processor detected",
-            ],
-          },
-          {
-            lines: [
-              "Booting fictional Linux environment...",
-              "CPU0: Generic 64-bit processor detected",
-              "Memory: 4096 MB available",
-            ],
-          },
-          {
-            lines: [
-              "Booting fictional Linux environment...",
-              "CPU0: Generic 64-bit processor detected",
-              "Memory: 4096 MB available",
-              "Storage: /dev/vda 64 GiB (virtual)",
-            ],
-          },
-          {
-            lines: [
-              "Booting fictional Linux environment...",
-              "CPU0: Generic 64-bit processor detected",
-              "Memory: 4096 MB available",
-              "Storage: /dev/vda 64 GiB (virtual)",
-              "Device: virtual console ready",
-            ],
-          },
-          {
-            lines: [
-              "Booting fictional Linux environment...",
-              "CPU0: Generic 64-bit processor detected",
-              "Memory: 4096 MB available",
-              "Storage: /dev/vda 64 GiB (virtual)",
-              "Device: virtual console ready",
-              "archive-linux login:",
-            ],
-          },
-        ],
       },
       {
         kind: "terminal",
@@ -306,36 +240,12 @@ demo.run();`,
         explanation:
           "サービス名と状態を縦に並べた、Red Hat系などで見られたSysVinit風の再現です。Linux共通の標準表示ではありません。",
         implementationNote:
-          "JavaScriptで処理中の行を成功状態へ置き換える観賞用デモです。サービス操作は行いません。",
+          "JavaScriptで点の増減とサービスごとに異なる待ち時間を再現し、完了時だけ右端へ状態を表示します。サービス操作は行いません。",
         codeLanguage: "JavaScript",
-        codeExample: `const demo = useTerminalDemo(exhibit.frames, delay, active, prefersReducedMotion);
-demo.run();`,
+        codeExample: `const steps = makeSysvSteps();
+const delay = baseDelay * steps[stepIndex].delayFactor;`,
         authenticDelay: 300,
         viewingDelay: 650,
-        frames: [
-          { lines: ["Starting system logger:       [ .... ]"] },
-          {
-            lines: [
-              "Starting system logger:       [  OK  ]",
-              "Starting device manager:      [ .... ]",
-            ],
-          },
-          {
-            lines: [
-              "Starting system logger:       [  OK  ]",
-              "Starting device manager:      [  OK  ]",
-              "Starting local services:      [ .... ]",
-            ],
-          },
-          {
-            lines: [
-              "Starting system logger:       [  OK  ]",
-              "Starting device manager:      [  OK  ]",
-              "Starting local services:      [  OK  ]",
-              "System ready.",
-            ],
-          },
-        ],
       },
       {
         kind: "terminal",
@@ -347,47 +257,29 @@ demo.run();`,
         explanation:
           "一覧取得、ダウンロード、展開、設定という流れを短くまとめたAPT風の再現です。実際の通信やパッケージ操作は行いません。",
         implementationNote:
-          "JavaScriptでパーセント、文字バー、回転カーソルを含む架空の進捗表示を切り替える視覚的なデモです。",
+          "JavaScriptで取得、展開、設定の段階を切り替え、回転カーソル、文字バー、速度、残り時間を変化させます。",
         codeLanguage: "JavaScript",
-        codeExample: `const demo = useTerminalDemo(exhibit.frames, delay, active, prefersReducedMotion);
-demo.run();`,
+        codeExample: `const steps = makeAptSteps();
+const delay = baseDelay * steps[stepIndex].delayFactor;`,
         authenticDelay: 220,
         viewingDelay: 520,
-        frames: [
-          { lines: ["Reading package lists... 0%  |"] },
-          { lines: ["Reading package lists... 45% /"] },
-          { lines: ["Reading package lists... Done", "Downloading demo archive..."] },
-          {
-            lines: [
-              "Reading package lists... Done",
-              "Downloading [#####-----] 50%  -",
-            ],
-          },
-          {
-            lines: [
-              "Reading package lists... Done",
-              "Downloading [##########] 100%",
-              "Unpacking museum-demo...",
-            ],
-          },
-          {
-            lines: [
-              "Reading package lists... Done",
-              "Downloading [##########] 100%",
-              "Unpacking museum-demo...",
-              "Setting up museum-demo...",
-            ],
-          },
-          {
-            lines: [
-              "Reading package lists... Done",
-              "Downloading [##########] 100%",
-              "Unpacking museum-demo...",
-              "Setting up museum-demo...",
-              "Done.",
-            ],
-          },
-        ],
+      },
+      {
+        kind: "terminal",
+        exhibitId: "configure-make-build",
+        title: "configure・make風コンパイル",
+        animationType: "configure-make",
+        period: "1970年代〜現在",
+        environment: "UNIX/Linux開発環境",
+        explanation:
+          "環境確認、複数ソースのコンパイル、リンク、完了という開発作業の流れを、架空のファイル名で短く再構成しています。",
+        implementationNote:
+          "JavaScriptでchecking、compiling、linkingの段階、ファイル名、文字バーを切り替えるデモです。実際のコマンド実行やコンパイルは行いません。",
+        codeLanguage: "JavaScript",
+        codeExample: `const steps = makeCompileSteps();
+const demo = useTerminalSequence(steps, baseDelay, active, prefersReducedMotion);`,
+        authenticDelay: 180,
+        viewingDelay: 480,
       },
     ],
   },
