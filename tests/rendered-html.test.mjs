@@ -95,6 +95,82 @@ test("MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモ�
   assert.doesNotMatch(html, /\b(?:\d{1,3}\.){3}\d{1,3}\b/);
 });
 
+test("独立した消えたOS展示室へ6 OS・18種類のLoading再構成を書き出す", async () => {
+  const html = await readFile(new URL("index.html", outputRoot), "utf8");
+
+  assert.match(html, /消えたOS展示室/);
+  assert.match(html, /主流から退いたOSが残した起動演出と設計思想/);
+  assert.match(html, /6(?:<!-- -->)? EXHIBITS/);
+  assert.match(
+    html,
+    /aria-controls="vanished-operating-systems-panel"/,
+  );
+  assert.match(html, /id="vanished-operating-systems-panel"/);
+  assert.equal((html.match(/class="vanishedOsExhibit"/g) ?? []).length, 6);
+  assert.equal((html.match(/class="vanishedLoadingExhibit"/g) ?? []).length, 18);
+  assert.equal((html.match(/>再生<\/button>/g) ?? []).length, 18);
+  assert.equal((html.match(/>停止<\/button>/g) ?? []).length, 18);
+  assert.equal(
+    (html.match(/JavaScriptとCSSによる教育・研究目的の歴史的表現の再構成（非公式）/g) ?? []).length,
+    18,
+  );
+  assert.equal((html.match(/>史実として確認</g) ?? []).length, 18);
+  assert.equal((html.match(/>演出上の補完</g) ?? []).length, 18);
+
+  for (const osName of [
+    "Classic Mac OS",
+    "BeOS",
+    "NeXTSTEP",
+    "Palm OS",
+    "webOS",
+    "Windows Phone",
+  ]) {
+    assert.match(html, new RegExp(osName));
+  }
+
+  for (const category of [
+    "OS起動",
+    "アプリ・ファイル",
+    "同期・通信",
+    "更新・インストール",
+  ]) {
+    assert.match(html, new RegExp(category));
+  }
+
+  for (const loadingTitle of [
+    "起動シンボルと拡張機能列",
+    "腕時計カーソル",
+    "ディスク／アプリケーション読込",
+    "段階点灯する起動アイコン列",
+    "Tracker起動待機",
+    "ファイル処理とディスクアクセス",
+    "システム起動メッセージ",
+    "ディスクとサービスの読込",
+    "Workspace Managerのアプリ読込",
+    "HotSyncの進行表示",
+    "データベース／アプリ読込",
+    "ビーム送信の通信待機",
+    "パルス型の起動待機",
+    "カード型アプリの読込",
+    "App Catalogの更新・インストール",
+    "移動する点の起動待機",
+    "アプリの「再開中」",
+    "Storeの取得・更新進捗",
+  ]) {
+    assert.match(html, new RegExp(loadingTitle));
+  }
+
+  for (const heading of [
+    "登場時期",
+    "主な対象端末・ハードウェア",
+    "起動・待機画面の特徴",
+    "その後どうなったか",
+    "後世に残した思想・技術",
+  ]) {
+    assert.equal((html.match(new RegExp(heading, "g")) ?? []).length, 6);
+  }
+});
+
 test("展示室のデータ定義とタイマー停止・フォーカス復帰を実装する", async () => {
   const [roomData, accordion] = await Promise.all([
     readFile(new URL("app/data/exhibitRooms.ts", projectRoot), "utf8"),
@@ -112,6 +188,8 @@ test("展示室のデータ定義とタイマー停止・フォーカス復帰�
   );
   assert.match(roomData, /roomId: "ms-dos-pc-command-line"/);
   assert.match(roomData, /roomId: "linux-unix"/);
+  assert.match(roomData, /roomId: "vanished-operating-systems"/);
+  assert.match(roomData, /theme: "vanished"/);
   assert.match(roomData, /classification: "当時広く使われた表現"/);
   assert.match(roomData, /classification: "時代風の再現"/);
   assert.match(accordion, /window\.setInterval/);
@@ -138,6 +216,82 @@ test("展示室のデータ定義とタイマー停止・フォーカス復帰�
   assert.match(accordion, /aria-controls=\{panelId\}/);
   assert.match(accordion, /inert=\{!isOpen\}/);
   assert.match(accordion, /toggleRef\.current\?\.focus\(\)/);
+});
+
+test("消えたOS展示のデータ・起動・停止・reduced motionを実装する", async () => {
+  const [osData, player, accordion] = await Promise.all([
+    readFile(
+      new URL("app/data/vanishedOperatingSystems.ts", projectRoot),
+      "utf8",
+    ),
+    readFile(
+      new URL("app/components/VanishedOsPlayer.tsx", projectRoot),
+      "utf8",
+    ),
+    readFile(
+      new URL("app/components/ExhibitRoomAccordion.tsx", projectRoot),
+      "utf8",
+    ),
+  ]);
+
+  assert.equal((osData.match(/^    kind: "vanished-os"/gm) ?? []).length, 6);
+  assert.equal((osData.match(/^    exhibitId: "/gm) ?? []).length, 6);
+  assert.equal((osData.match(/^        demoId: "/gm) ?? []).length, 18);
+  assert.equal((osData.match(/^        historicalBasis:/gm) ?? []).length, 18);
+  assert.equal((osData.match(/^        reconstructionNote:/gm) ?? []).length, 18);
+  assert.match(osData, /visualType: "classic-extension-parade"/);
+  assert.match(osData, /visualType: "classic-watch-cursor"/);
+  assert.match(osData, /visualType: "beos-boot-icons"/);
+  assert.match(osData, /visualType: "nextstep-app-launch"/);
+  assert.match(osData, /visualType: "palm-hotsync"/);
+  assert.match(osData, /visualType: "palm-beam-transfer"/);
+  assert.match(osData, /visualType: "webos-update-install"/);
+  assert.match(osData, /visualType: "windows-phone-dots"/);
+  assert.match(osData, /visualType: "windows-phone-store-update"/);
+  assert.match(osData, /VANISHED_LOADING_CATEGORIES/);
+  assert.match(osData, /"OS起動"/);
+  assert.match(osData, /"同期・通信"/);
+  assert.match(osData, /"更新・インストール"/);
+  assert.match(osData, /Mac OS Xへの移行/);
+  assert.match(osData, /Haiku/);
+  assert.match(osData, /macOSやiOS/);
+  assert.match(osData, /後継のwebOS/);
+  assert.match(osData, /カード型マルチタスク/);
+  assert.match(osData, /2019年にサポートを終え/);
+
+  assert.match(player, /function useLoadingSimulation\(/);
+  assert.match(player, /window\.setTimeout/);
+  assert.match(player, /window\.clearTimeout/);
+  assert.match(
+    player,
+    /simplified = prefersReducedMotion && phase === "running"[\s\S]*phase: simplified \? "complete" : phase[\s\S]*step: simplified \? totalSteps : step/,
+  );
+  assert.match(player, /setRunRevision\(\(current\) => current \+ 1\)/);
+  assert.match(player, /setStep\(prefersReducedMotion \? totalSteps : 0\)/);
+  assert.match(player, /setPhase\(prefersReducedMotion \? "complete" : "running"\)/);
+  assert.match(player, /if \(phase === "running"\)/);
+  assert.match(player, /disabled=\{simulation\.phase === "running"\}/);
+  assert.match(player, /disabled=\{simulation\.phase !== "running"\}/);
+  assert.match(player, /aria-label=\{`\$\{osTitle\}の「\$\{demo\.title\}」を\$\{runLabel\}`\}/);
+  assert.match(player, /aria-live="polite"/);
+  assert.match(player, /role="img"/);
+  assert.match(player, /ClassicExtensionParade/);
+  assert.match(player, /BeBootIcons/);
+  assert.match(player, /NextBootMessages/);
+  assert.match(player, /PalmHotSync/);
+  assert.match(player, /WebOsUpdateInstall/);
+  assert.match(player, /WindowsPhoneStoreUpdate/);
+  assert.doesNotMatch(player, /new Audio|<img|https?:\/\//);
+
+  assert.match(accordion, /exhibit\.kind === "vanished-os"/);
+  assert.match(accordion, /active=\{runtimeActive\}/);
+  assert.match(accordion, /VANISHED_LOADING_CATEGORIES/);
+  assert.match(accordion, /exhibit\.loadingExhibits\.filter/);
+  assert.match(accordion, /demo=\{demo\}/);
+  assert.match(accordion, /史実として確認/);
+  assert.match(accordion, /演出上の補完/);
+  assert.match(accordion, /roomCard roomCardVanished/);
+  assert.match(accordion, /vanishedOsGrid/);
 });
 
 test("Linux / UNIXデモの再実行・速度切替・安全な停止を実装する", async () => {
@@ -235,4 +389,29 @@ test("静的export設定と既存レスポンシブ・reduced-motion対応を維
   assert.match(css, /\.sysvLine\s*\{[\s\S]*grid-template-columns:/);
   assert.match(css, /\.aptTransfer\s*\{/);
   assert.match(css, /\.terminalProgress\s*\{/);
+  assert.match(
+    css,
+    /\.vanishedOsGrid\s*\{[\s\S]*grid-template-columns: minmax\(0, 1fr\)/,
+  );
+  assert.match(
+    css,
+    /@media \(max-width: 650px\)[\s\S]*\.vanishedOsGrid\s*\{[\s\S]*grid-template-columns: 1fr/,
+  );
+  assert.match(
+    css,
+    /\.vanishedLoadingGrid\s*\{[\s\S]*grid-template-columns: repeat\(3,/,
+  );
+  assert.match(
+    css,
+    /@media \(max-width: 1000px\)[\s\S]*\.vanishedLoadingGrid\s*\{[\s\S]*grid-template-columns: repeat\(2,/,
+  );
+  assert.match(
+    css,
+    /@media \(max-width: 650px\)[\s\S]*\.vanishedLoadingGrid\s*\{[\s\S]*grid-template-columns: 1fr/,
+  );
+  assert.match(css, /\.vanishedOsScreen\s*\{/);
+  assert.match(css, /\.classicWatchCursor\[data-running="true"\]/);
+  assert.match(css, /\.webosHistoricalPulse\[data-running="true"\]/);
+  assert.match(css, /\.windowsMovingDots\[data-running="true"\]/);
+  assert.match(css, /content-visibility: auto/);
 });

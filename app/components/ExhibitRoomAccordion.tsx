@@ -7,7 +7,12 @@ import type {
   ExhibitRoom,
   TerminalRoomExhibit,
 } from "../data/exhibitRooms";
+import {
+  VANISHED_LOADING_CATEGORIES,
+  type VanishedOsExhibit,
+} from "../data/vanishedOperatingSystems";
 import { TerminalDemoPlayer } from "./TerminalDemoPlayer";
+import { VanishedOsPlayer } from "./VanishedOsPlayer";
 
 const SPINNER_FRAMES = ["-", "\\", "|", "/"] as const;
 const DOT_FRAMES = ["Loading", "Loading.", "Loading..", "Loading..."] as const;
@@ -256,6 +261,115 @@ function TerminalExhibitCard({
   );
 }
 
+function VanishedOsExhibitCard({
+  exhibit,
+  active,
+  prefersReducedMotion,
+}: {
+  exhibit: VanishedOsExhibit;
+  active: boolean;
+  prefersReducedMotion: boolean;
+}) {
+  const groupedLoadingExhibits = VANISHED_LOADING_CATEGORIES.map(
+    (category) => ({
+      category,
+      demos: exhibit.loadingExhibits.filter(
+        (demo) => demo.category === category,
+      ),
+    }),
+  ).filter(({ demos }) => demos.length > 0);
+
+  return (
+    <article className="vanishedOsExhibit">
+      <div className="vanishedOsTopline">
+        <span>RETIRED SYSTEM / RECONSTRUCTED</span>
+        <span>{exhibit.introduced}</span>
+      </div>
+      <div className="vanishedOsHeading">
+        <h3>{exhibit.title}</h3>
+        <span>{exhibit.loadingExhibits.length} LOADING STUDIES</span>
+      </div>
+      <p className="vanishedOsLead">{exhibit.waitingStyle}</p>
+      <details className="vanishedOsContext">
+        <summary>OSの背景を見る</summary>
+        <dl className="vanishedOsFacts">
+          <div>
+            <dt>登場時期</dt>
+            <dd>{exhibit.introduced}</dd>
+          </div>
+          <div>
+            <dt>主な対象端末・ハードウェア</dt>
+            <dd>{exhibit.hardware}</dd>
+          </div>
+          <div>
+            <dt>起動・待機画面の特徴</dt>
+            <dd>{exhibit.bootCharacteristics}</dd>
+          </div>
+          <div>
+            <dt>その後どうなったか</dt>
+            <dd>{exhibit.aftermath}</dd>
+          </div>
+          <div>
+            <dt>後世に残した思想・技術</dt>
+            <dd>{exhibit.legacy}</dd>
+          </div>
+        </dl>
+      </details>
+      <div className="vanishedLoadingGroups">
+        {groupedLoadingExhibits.map(({ category, demos }) => (
+          <section
+            className="vanishedLoadingGroup"
+            aria-labelledby={`${exhibit.exhibitId}-${category}`}
+            key={category}
+          >
+            <h4 id={`${exhibit.exhibitId}-${category}`}>{category}</h4>
+            <div className="vanishedLoadingGrid">
+              {demos.map((demo) => (
+                <article className="vanishedLoadingExhibit" key={demo.demoId}>
+                  <div className="vanishedLoadingTopline">
+                    <span>{exhibit.title}</span>
+                    <span>{demo.era}</span>
+                  </div>
+                  <h5>{demo.title}</h5>
+                  <dl className="vanishedLoadingFacts">
+                    <div>
+                      <dt>使われた場面</dt>
+                      <dd>{demo.context}</dd>
+                    </div>
+                    <div>
+                      <dt>動きの特徴</dt>
+                      <dd>{demo.motion}</dd>
+                    </div>
+                  </dl>
+                  <VanishedOsPlayer
+                    demo={demo}
+                    osTitle={exhibit.title}
+                    active={active}
+                    prefersReducedMotion={prefersReducedMotion}
+                  />
+                  <div className="vanishedEvidence">
+                    <p>
+                      <strong>史実として確認</strong>
+                      {demo.historicalBasis}
+                    </p>
+                    <p>
+                      <strong>演出上の補完</strong>
+                      {demo.reconstructionNote}
+                    </p>
+                  </div>
+                  <p className="reconstructionLabel">
+                    JavaScriptとCSSによる教育・研究目的の歴史的表現の再構成（非公式）
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </article>
+  );
+}
+
 export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isPageVisible, setIsPageVisible] = useState(true);
@@ -264,9 +378,17 @@ export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
   const panelId = `${room.roomId}-panel`;
   const toggleId = `${room.roomId}-toggle`;
   const roomClassName =
-    room.theme === "unix" ? "roomCard roomCardUnix" : "roomCard";
+    room.theme === "unix"
+      ? "roomCard roomCardUnix"
+      : room.theme === "vanished"
+        ? "roomCard roomCardVanished"
+        : "roomCard";
   const gridClassName =
-    room.theme === "unix" ? "unixExhibitGrid" : "dosExhibitGrid";
+    room.theme === "unix"
+      ? "unixExhibitGrid"
+      : room.theme === "vanished"
+        ? "vanishedOsGrid"
+        : "dosExhibitGrid";
   const runtimeActive = isOpen && isPageVisible;
   const animationsActive =
     runtimeActive && !prefersReducedMotion;
@@ -323,9 +445,16 @@ export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
       >
         <div className="roomPanelInner">
           <div className={gridClassName}>
-            {room.exhibits.map((exhibit) => (
+            {room.exhibits.map((exhibit) =>
               exhibit.kind === "terminal" ? (
                 <TerminalExhibitCard
+                  key={exhibit.exhibitId}
+                  exhibit={exhibit}
+                  active={runtimeActive}
+                  prefersReducedMotion={prefersReducedMotion}
+                />
+              ) : exhibit.kind === "vanished-os" ? (
+                <VanishedOsExhibitCard
                   key={exhibit.exhibitId}
                   exhibit={exhibit}
                   active={runtimeActive}
@@ -338,7 +467,7 @@ export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
                   active={animationsActive}
                 />
               )
-            ))}
+            )}
           </div>
           <div className="roomCloseRow">
             <button className="roomCloseButton" type="button" onClick={closeRoom}>
