@@ -917,6 +917,78 @@ h2 {
   min-height: 1.65em;
 }
 
+.terminalCursor {
+  display: inline-block;
+  width: 0.68ch;
+  height: 1.05em;
+  margin-left: 0.2ch;
+  vertical-align: -0.16em;
+  background: currentcolor;
+  opacity: 0.86;
+}
+
+.terminalCursor[data-active="true"] {
+  animation: terminal-cursor-blink 820ms steps(2, end) infinite;
+}
+
+@keyframes terminal-cursor-blink {
+  50% { opacity: 0; }
+}
+
+.unixScreen[data-demo="linux-boot"] {
+  scroll-behavior: auto;
+}
+
+.bootLogLine {
+  color: #d8e5e8;
+}
+
+.bootLogLine:last-child {
+  color: #f1fafb;
+}
+
+.sysvLine {
+  display: grid;
+  min-height: 1.65em;
+  grid-template-columns: minmax(0, 1fr) 8ch;
+  gap: 12px;
+}
+
+.sysvStatus {
+  color: #dcefe5;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.terminalProgress {
+  display: inline-block;
+  max-width: 100%;
+  color: #e6eff1;
+  white-space: pre;
+}
+
+.aptPhase {
+  color: #f0f7f8;
+}
+
+.aptTransfer {
+  display: flex;
+  min-height: 1.65em;
+  gap: 18px;
+  color: #9fb5bb;
+}
+
+.compilePhase {
+  display: inline-block;
+  margin-bottom: 0.45em;
+  padding: 2px 5px;
+  border: 1px solid #38545d;
+  color: #bcd6dc;
+  font-size: 0.82em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .demoControls {
   display: flex;
   gap: 10px;
@@ -1174,6 +1246,21 @@ footer {
     font-size: 9px;
   }
 
+  .sysvLine {
+    grid-template-columns: minmax(0, 1fr) 7ch;
+    gap: 6px;
+  }
+
+  .aptTransfer {
+    gap: 8px;
+    flex-direction: column;
+    line-height: 1.35;
+  }
+
+  .terminalProgress {
+    font-size: 8px;
+  }
+
   .demoControls {
     align-items: stretch;
   }
@@ -1214,5 +1301,9 @@ footer {
     animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 1ms !important;
+  }
+
+  .terminalCursor {
+    opacity: 0.86;
   }
 }
