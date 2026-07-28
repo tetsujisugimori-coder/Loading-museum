@@ -39,8 +39,8 @@ test("既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き
   );
   assert.match(html, /id="ms-dos-pc-command-line-panel"/);
   assert.equal((html.match(/class="dosExhibit"/g) ?? []).length, 8);
-  assert.equal((html.match(/再現方法を見る/g) ?? []).length, 8);
-  assert.equal((html.match(/実装コメント/g) ?? []).length, 8);
+  assert.equal((html.match(/再現方法を見る/g) ?? []).length, 12);
+  assert.equal((html.match(/実装コメント/g) ?? []).length, 12);
 
   for (const title of [
     "回転スピナー",
@@ -59,6 +59,40 @@ test("既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き
   assert.match(html, /時代風の再現/);
 });
 
+test("MS-DOS展示室の下へ閉じたLinux / UNIX展示室と4種類のデモを書き出す", async () => {
+  const html = await readFile(new URL("index.html", outputRoot), "utf8");
+
+  assert.match(html, /Linux \/ UNIX 展示室/);
+  assert.match(html, /1970年代〜現在/);
+  assert.match(
+    html,
+    /端末ログ、起動、サービス管理、パッケージ操作の多様な系譜/,
+  );
+  assert.match(html, /4(?:<!-- -->)? EXHIBITS/);
+  assert.match(html, /aria-controls="linux-unix-panel"/);
+  assert.match(html, /id="linux-unix-panel"/);
+  assert.equal((html.match(/class="unixExhibit"/g) ?? []).length, 4);
+  assert.equal((html.match(/JavaScriptで再構成したデモ/g) ?? []).length, 4);
+  assert.equal((html.match(/>実行<\/button>/g) ?? []).length, 4);
+  assert.equal((html.match(/>実機風<\/option>/g) ?? []).length, 4);
+  assert.equal((html.match(/>観賞用<\/option>/g) ?? []).length, 4);
+
+  for (const title of [
+    "UNIX風ログイン",
+    "Linuxカーネル起動ログ",
+    "SysVinit風の起動表示",
+    "Debian系APT風の進捗表示",
+  ]) {
+    assert.match(html, new RegExp(title));
+  }
+
+  assert.match(html, /Password:/);
+  assert.match(html, /Red Hat系などで見られたSysVinit風の再現/);
+  assert.match(html, /Linux共通の標準表示ではありません/);
+  assert.match(html, /実際の通信やパッケージ操作は行いません/);
+  assert.doesNotMatch(html, /\b(?:\d{1,3}\.){3}\d{1,3}\b/);
+});
+
 test("展示室のデータ定義とタイマー停止・フォーカス復帰を実装する", async () => {
   const [roomData, accordion] = await Promise.all([
     readFile(new URL("app/data/exhibitRooms.ts", projectRoot), "utf8"),
@@ -68,8 +102,14 @@ test("展示室のデータ定義とタイマー停止・フォーカス復帰�
     ),
   ]);
 
-  assert.equal((roomData.match(/exhibitId: "/g) ?? []).length, 8);
+  assert.equal((roomData.match(/exhibitId: "/g) ?? []).length, 12);
+  assert.equal((roomData.match(/\r?\n        kind: "dos"/g) ?? []).length, 8);
+  assert.equal(
+    (roomData.match(/\r?\n        kind: "terminal"/g) ?? []).length,
+    4,
+  );
   assert.match(roomData, /roomId: "ms-dos-pc-command-line"/);
+  assert.match(roomData, /roomId: "linux-unix"/);
   assert.match(roomData, /classification: "当時広く使われた表現"/);
   assert.match(roomData, /classification: "時代風の再現"/);
   assert.match(accordion, /window\.setInterval/);
@@ -90,12 +130,35 @@ test("展示室のデータ定義とタイマー停止・フォーカス復帰�
   );
   assert.match(
     accordion,
-    /const animationsActive =\s+isOpen && isPageVisible && !prefersReducedMotion/,
+    /const animationsActive =\s+runtimeActive && !prefersReducedMotion/,
   );
   assert.match(accordion, /aria-expanded=\{isOpen\}/);
   assert.match(accordion, /aria-controls=\{panelId\}/);
   assert.match(accordion, /inert=\{!isOpen\}/);
   assert.match(accordion, /toggleRef\.current\?\.focus\(\)/);
+});
+
+test("Linux / UNIXデモの再実行・速度切替・安全な停止を実装する", async () => {
+  const accordion = await readFile(
+    new URL("app/components/ExhibitRoomAccordion.tsx", projectRoot),
+    "utf8",
+  );
+
+  assert.match(accordion, /function useTerminalDemo\(/);
+  assert.match(accordion, /window\.setTimeout/);
+  assert.match(accordion, /window\.clearTimeout/);
+  assert.match(accordion, /setRunRevision\(\(current\) => current \+ 1\)/);
+  assert.match(accordion, /speed === "authentic"/);
+  assert.match(accordion, /value="authentic"/);
+  assert.match(accordion, /value="viewing"/);
+  assert.match(accordion, /const runLabel = demo\.hasRun \? "再実行" : "実行"/);
+  assert.match(accordion, /const runtimeActive = isOpen && isPageVisible/);
+  assert.match(
+    accordion,
+    /displayedFrameIndex = prefersReducedMotion\s+\? finalFrameIndex/,
+  );
+  assert.match(accordion, /role="log"/);
+  assert.match(accordion, /aria-live="polite"/);
 });
 
 test("CSSとJavaScriptをLoading-museumサブパスから参照する", async () => {
@@ -136,4 +199,13 @@ test("静的export設定と既存レスポンシブ・reduced-motion対応を維
     css,
     /@media \(max-width: 650px\)[\s\S]*\.dosExhibitGrid\s*\{[\s\S]*grid-template-columns: 1fr/,
   );
+  assert.match(
+    css,
+    /\.unixExhibitGrid\s*\{[\s\S]*grid-template-columns: repeat\(2,/,
+  );
+  assert.match(
+    css,
+    /@media \(max-width: 650px\)[\s\S]*\.unixExhibitGrid\s*\{[\s\S]*grid-template-columns: 1fr/,
+  );
+  assert.match(css, /\.unixScreen\s*\{[\s\S]*overflow: auto/);
 });

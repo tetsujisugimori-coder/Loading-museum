@@ -601,6 +601,21 @@ h2 {
   box-shadow: inset 0 1px rgb(255 255 255 / 3%), 0 18px 48px rgb(0 0 0 / 24%);
 }
 
+.roomCardUnix {
+  border-color: #284754;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 4px, rgb(151 220 232 / 1.5%) 4px 5px),
+    #060c10;
+}
+
+.roomCardUnix .roomIndex {
+  color: #78a9b6;
+}
+
+.roomCardUnix .roomArrow {
+  color: var(--cyan);
+}
+
 .roomToggle {
   position: relative;
   display: grid;
@@ -622,6 +637,8 @@ h2 {
 
 .roomToggle:focus-visible,
 .roomCloseButton:focus-visible,
+.runDemoButton:focus-visible,
+.speedControl select:focus-visible,
 .codeDisclosure summary:focus-visible {
   outline: 2px solid var(--cyan);
   outline-offset: -3px;
@@ -704,11 +721,25 @@ h2 {
   padding: 0 18px 18px;
 }
 
+.unixExhibitGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0 18px 18px;
+}
+
 .dosExhibit {
   min-width: 0;
   padding: 18px;
   border: 1px solid #28343e;
   background: rgb(11 15 20 / 94%);
+}
+
+.unixExhibit {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid #2c4650;
+  background: rgb(8 15 19 / 96%);
 }
 
 .dosExhibitTopline {
@@ -719,9 +750,26 @@ h2 {
   letter-spacing: 0.14em;
 }
 
+.unixExhibitTopline {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  color: #7194a0;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+}
+
 .dosExhibit h3 {
   margin: 10px 0 14px;
   color: #f1f3f4;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.055em;
+}
+
+.unixExhibit h3 {
+  margin: 10px 0 14px;
+  color: #f1f5f6;
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.055em;
@@ -795,6 +843,31 @@ h2 {
   line-height: 1.55;
 }
 
+.unixFacts {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 13px;
+}
+
+.unixFacts div {
+  display: grid;
+  grid-template-columns: 126px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.unixFacts dt {
+  color: #75909a;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+
+.unixFacts dd {
+  margin: 0;
+  color: #c7d1d5;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
 .classificationLabel {
   display: inline-block;
   padding: 3px 6px;
@@ -808,6 +881,100 @@ h2 {
   color: #929da5;
   font-size: 10px;
   line-height: 1.7;
+}
+
+.unixExplanation {
+  min-height: 52px;
+  margin: 0 0 13px;
+  color: #929fa5;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+.unixScreen {
+  height: 190px;
+  max-width: 100%;
+  padding: 14px 16px;
+  overflow: auto;
+  border: 1px solid #3b5660;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 3px, rgb(255 255 255 / 1.6%) 3px 4px),
+    #010405;
+  color: #e5eef0;
+  scrollbar-color: #4c6973 #071014;
+}
+
+.unixScreen pre {
+  min-width: 0;
+  margin: 0;
+  font: 11px/1.65 var(--mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.unixLogLine {
+  display: block;
+  min-height: 1.65em;
+}
+
+.demoControls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.runDemoButton,
+.speedControl select {
+  min-height: 34px;
+  border: 1px solid #587680;
+  background: #0a1519;
+  color: #edf5f6;
+  font: 10px var(--mono);
+}
+
+.runDemoButton {
+  padding: 8px 14px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.runDemoButton:hover {
+  border-color: var(--cyan);
+  background: #102126;
+}
+
+.speedControl {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  color: #84979e;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+
+.speedControl select {
+  max-width: 100%;
+  padding: 6px 28px 6px 9px;
+  cursor: pointer;
+}
+
+.demoState {
+  margin-left: auto;
+  color: #7f9299;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+}
+
+.reconstructionLabel {
+  display: inline-block;
+  margin: 12px 0 0;
+  padding: 4px 7px;
+  border: 1px solid #3c5963;
+  color: #c9d9dd;
+  font-size: 9px;
+  letter-spacing: 0.07em;
 }
 
 .implementationNote {
@@ -971,7 +1138,16 @@ footer {
     padding: 0 10px 10px;
   }
 
+  .unixExhibitGrid {
+    grid-template-columns: 1fr;
+    padding: 0 10px 10px;
+  }
+
   .dosExhibit {
+    padding: 15px;
+  }
+
+  .unixExhibit {
     padding: 15px;
   }
 
@@ -982,6 +1158,29 @@ footer {
   .dosFacts div {
     grid-template-columns: 1fr;
     gap: 4px;
+  }
+
+  .unixFacts div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .unixScreen {
+    height: 210px;
+    padding: 12px;
+  }
+
+  .unixScreen pre {
+    font-size: 9px;
+  }
+
+  .demoControls {
+    align-items: stretch;
+  }
+
+  .demoState {
+    width: 100%;
+    margin-left: 0;
   }
 
   .roomCloseRow {

@@ -3,8 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import type {
   AnimationType,
+  DosRoomExhibit,
   ExhibitRoom,
-  RoomExhibit,
+  TerminalDemoFrame,
+  TerminalRoomExhibit,
 } from "../data/exhibitRooms";
 
 const SPINNER_FRAMES = ["-", "\\", "|", "/"] as const;
@@ -12,6 +14,8 @@ const DOT_FRAMES = ["Loading", "Loading.", "Loading..", "Loading..."] as const;
 const PROGRESS_VALUES = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
 const LOG_STEPS = [1, 2, 3] as const;
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+
+type DemoSpeed = "authentic" | "viewing";
 
 const LOG_LINES: Record<
   Extract<
@@ -82,6 +86,59 @@ function usePrefersReducedMotion() {
   }, []);
 
   return prefersReducedMotion;
+}
+
+function useTerminalDemo(
+  frames: readonly TerminalDemoFrame[],
+  delay: number,
+  active: boolean,
+  prefersReducedMotion: boolean,
+) {
+  const [frameIndex, setFrameIndex] = useState(0);
+  const [hasRun, setHasRun] = useState(false);
+  const [runRevision, setRunRevision] = useState(0);
+  const finalFrameIndex = Math.max(frames.length - 1, 0);
+  const displayedFrameIndex = prefersReducedMotion
+    ? finalFrameIndex
+    : frameIndex;
+
+  useEffect(() => {
+    if (
+      !active ||
+      !hasRun ||
+      prefersReducedMotion ||
+      frameIndex >= finalFrameIndex
+    ) {
+      return;
+    }
+
+    const timerId = window.setTimeout(() => {
+      setFrameIndex((current) => Math.min(current + 1, finalFrameIndex));
+    }, delay);
+
+    return () => window.clearTimeout(timerId);
+  }, [
+    active,
+    delay,
+    finalFrameIndex,
+    frameIndex,
+    hasRun,
+    prefersReducedMotion,
+    runRevision,
+  ]);
+
+  const run = () => {
+    setFrameIndex(0);
+    setHasRun(true);
+    setRunRevision((current) => current + 1);
+  };
+
+  return {
+    hasRun,
+    isComplete: prefersReducedMotion || frameIndex >= finalFrameIndex,
+    lines: frames[displayedFrameIndex]?.lines ?? [],
+    run,
+  };
 }
 
 function renderTextProgress(progress: number) {
@@ -156,11 +213,11 @@ function DosAnimation({
   return <DosLogAnimation lines={LOG_LINES[animationType]} active={active} />;
 }
 
-function RoomExhibitCard({
+function DosExhibitCard({
   exhibit,
   active,
 }: {
-  exhibit: RoomExhibit;
+  exhibit: DosRoomExhibit;
   active: boolean;
 }) {
   return (
@@ -207,6 +264,106 @@ function RoomExhibitCard({
   );
 }
 
+function TerminalExhibitCard({
+  exhibit,
+  active,
+  prefersReducedMotion,
+}: {
+  exhibit: TerminalRoomExhibit;
+  active: boolean;
+  prefersReducedMotion: boolean;
+}) {
+  const [speed, setSpeed] = useState<DemoSpeed>("viewing");
+  const delay =
+    speed === "authentic" ? exhibit.authenticDelay : exhibit.viewingDelay;
+  const demo = useTerminalDemo(
+    exhibit.frames,
+    delay,
+    active,
+    prefersReducedMotion,
+  );
+  const runLabel = demo.hasRun ? "再実行" : "実行";
+
+  return (
+    <article className="unixExhibit">
+      <div className="unixExhibitTopline">
+        <span>TERMINAL DEMO</span>
+        <span>{exhibit.animationType.toUpperCase()}</span>
+      </div>
+      <h3>{exhibit.title}</h3>
+      <dl className="unixFacts">
+        <div>
+          <dt>主な年代</dt>
+          <dd>{exhibit.period}</dd>
+        </div>
+        <div>
+          <dt>系統・代表的な環境</dt>
+          <dd>{exhibit.environment}</dd>
+        </div>
+      </dl>
+      <p className="unixExplanation">{exhibit.explanation}</p>
+      <div
+        className="unixScreen"
+        role="log"
+        aria-live="polite"
+        aria-atomic="true"
+        aria-label={`${exhibit.title}のJavaScript再構成デモ`}
+      >
+        <pre>
+          <code>
+            {demo.lines.map((line, index) => (
+              <span className="unixLogLine" key={`${index}-${line}`}>
+                {line}
+              </span>
+            ))}
+          </code>
+        </pre>
+      </div>
+      <div className="demoControls">
+        <button
+          className="runDemoButton"
+          type="button"
+          onClick={demo.run}
+          aria-label={`${exhibit.title}を${runLabel}`}
+        >
+          {runLabel}
+        </button>
+        <label className="speedControl">
+          <span>速度</span>
+          <select
+            value={speed}
+            onChange={(event) => setSpeed(event.target.value as DemoSpeed)}
+            aria-label={`${exhibit.title}の再生速度`}
+          >
+            <option value="authentic">実機風</option>
+            <option value="viewing">観賞用</option>
+          </select>
+        </label>
+        <span className="demoState" aria-live="polite">
+          {prefersReducedMotion
+            ? "動きを減らす設定: 最終状態"
+            : demo.isComplete
+              ? "完了"
+              : demo.hasRun
+                ? "実行中"
+                : "待機中"}
+        </span>
+      </div>
+      <p className="reconstructionLabel">JavaScriptで再構成したデモ</p>
+      <p className="implementationNote">
+        <strong>実装コメント</strong>
+        {exhibit.implementationNote}
+      </p>
+      <details className="codeDisclosure">
+        <summary>再現方法を見る</summary>
+        <pre>
+          <code>{exhibit.codeExample}</code>
+        </pre>
+      </details>
+    </article>
+  );
+}
+
 export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isPageVisible, setIsPageVisible] = useState(true);
@@ -214,8 +371,13 @@ export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelId = `${room.roomId}-panel`;
   const toggleId = `${room.roomId}-toggle`;
+  const roomClassName =
+    room.theme === "unix" ? "roomCard roomCardUnix" : "roomCard";
+  const gridClassName =
+    room.theme === "unix" ? "unixExhibitGrid" : "dosExhibitGrid";
+  const runtimeActive = isOpen && isPageVisible;
   const animationsActive =
-    isOpen && isPageVisible && !prefersReducedMotion;
+    runtimeActive && !prefersReducedMotion;
 
   useEffect(() => {
     const updatePageVisibility = () => {
@@ -236,7 +398,7 @@ export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
   };
 
   return (
-    <article className="roomCard">
+    <article className={roomClassName}>
       <button
         ref={toggleRef}
         id={toggleId}
@@ -268,13 +430,22 @@ export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
         inert={!isOpen}
       >
         <div className="roomPanelInner">
-          <div className="dosExhibitGrid">
+          <div className={gridClassName}>
             {room.exhibits.map((exhibit) => (
-              <RoomExhibitCard
-                key={exhibit.exhibitId}
-                exhibit={exhibit}
-                active={animationsActive}
-              />
+              exhibit.kind === "terminal" ? (
+                <TerminalExhibitCard
+                  key={exhibit.exhibitId}
+                  exhibit={exhibit}
+                  active={runtimeActive}
+                  prefersReducedMotion={prefersReducedMotion}
+                />
+              ) : (
+                <DosExhibitCard
+                  key={exhibit.exhibitId}
+                  exhibit={exhibit}
+                  active={animationsActive}
+                />
+              )
             ))}
           </div>
           <div className="roomCloseRow">
