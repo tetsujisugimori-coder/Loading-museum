@@ -74,6 +74,12 @@ test("カーソル展示室と8種類の体験展示を書き出す", async () =
   assert.match(html, /CSS \/ JavaScript \/ Pointer Events で再構成した体験展示/);
   assert.match(html, /ローディング展示室を見る/);
   assert.match(html, /スクロール展示室 \/ 通知・警告展示室 — 準備中/);
+  assert.equal((html.match(/class="arrowSelectionTarget"/g) ?? []).length, 3);
+  assert.equal((html.match(/aria-pressed="false"/g) ?? []).length, 3);
+  assert.match(html, /FILE/);
+  assert.match(html, /WINDOW/);
+  assert.match(html, /FOLDER/);
+  assert.match(html, /NO SELECTION/);
 
   for (const title of [
     "標準矢印カーソル",
@@ -106,6 +112,11 @@ test("カーソル展示のデータ、Pointer Events、性能とアクセシビ
   assert.match(component, /window\.requestAnimationFrame/);
   assert.match(component, /window\.cancelAnimationFrame/);
   assert.match(component, /TRAIL_COUNT = 5/);
+  assert.match(component, /function ArrowSelectionDemo\(\)/);
+  assert.match(component, /<button[\s\S]*className="arrowSelectionTarget"[\s\S]*aria-pressed=\{selected\}/);
+  assert.match(component, /selected \? "SELECTED" : "SELECT"/);
+  assert.match(component, /onClick=\{\(\) => setSelectedTarget\(target\)\}/);
+  assert.match(component, /key=\{roomOpen \? "room-open" : "room-closed"\}/);
   assert.match(component, /aria-hidden="true"/);
   assert.match(component, /inert=\{!isOpen\}/);
   assert.match(component, /const activatePointer =/);
@@ -121,6 +132,14 @@ test("カーソル展示のデータ、Pointer Events、性能とアクセシビ
     /onPointerLeave=\{\(event\) => \{\s*event\.currentTarget\.dataset\.pointerActive = "false"/,
   );
   assert.match(css, /@media \(hover: none\), \(pointer: coarse\)/);
+  assert.match(css, /\.cursorPlayground\s*\{[\s\S]*touch-action: manipulation/);
+  assert.match(css, /\.cursorPlayground\[data-demo="drag"\]\s*\{\s*touch-action: none/);
+  assert.match(css, /\.arrowSelectionTarget:hover,[\s\S]*\.arrowSelectionTarget:focus-visible/);
+  assert.match(css, /\.arrowSelectionTarget\[aria-pressed="true"\]/);
+  assert.match(
+    css,
+    /@media \(max-width: 650px\)[\s\S]*\.arrowSelectionTargets\s*\{[\s\S]*grid-template-columns: 1fr/,
+  );
   assert.match(
     css,
     /@media \(hover: none\), \(pointer: coarse\)[\s\S]*\.cursorPlayground\s*\{\s*touch-action: manipulation/,
@@ -141,6 +160,8 @@ test("カーソル展示のデータ、Pointer Events、性能とアクセシビ
     css,
     /@media \(hover: hover\) and \(pointer: fine\)\s*\{\s*\.cursorPlayground,\s*\.cursorPlayground \*/,
   );
+  assert.match(data, /ポインターを動かして選択対象へ合わせ/);
+  assert.match(data, /Reactのローカルstateで3対象の選択状態と結果表示を切り替えています/);
 });
 
 test("最新mainとカーソル展示を合わせた展示室・展示件数を表示する", async () => {

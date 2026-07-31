@@ -7,6 +7,7 @@ type Point = { x: number; y: number };
 type Ripple = Point & { id: number };
 
 const TRAIL_COUNT = 5;
+const ARROW_SELECTION_TARGETS = ["FILE", "WINDOW", "FOLDER"] as const;
 
 function CursorShape({ kindRef }: { kindRef: React.RefObject<HTMLSpanElement | null> }) {
   return (
@@ -17,11 +18,46 @@ function CursorShape({ kindRef }: { kindRef: React.RefObject<HTMLSpanElement | n
   );
 }
 
+function ArrowSelectionDemo() {
+  const [selectedTarget, setSelectedTarget] = useState<string | null>(null);
+
+  return (
+    <div className="arrowSelectionDemo">
+      <span className="arrowSelectionInstruction">POINT / CHOOSE</span>
+      <div className="arrowSelectionTargets" role="group" aria-label="標準矢印で選択できる対象">
+        {ARROW_SELECTION_TARGETS.map((target) => {
+          const selected = selectedTarget === target;
+
+          return (
+            <button
+              key={target}
+              className="arrowSelectionTarget"
+              type="button"
+              aria-pressed={selected}
+              onClick={() => setSelectedTarget(target)}
+            >
+              <span>{target}</span>
+              <span className="arrowSelectionTargetState">{selected ? "SELECTED" : "SELECT"}</span>
+            </button>
+          );
+        })}
+      </div>
+      <span className="arrowSelectionResult" aria-live="polite">
+        {selectedTarget ? `SELECTED / ${selectedTarget}` : "NO SELECTION"}
+      </span>
+    </div>
+  );
+}
+
 function DemoTarget({ type, setKind, dragRef }: {
   type: CursorExhibitType;
   setKind: (kind: CursorExhibitType | "grab") => void;
   dragRef: React.RefObject<HTMLButtonElement | null>;
 }) {
+  if (type === "arrow") {
+    return <ArrowSelectionDemo />;
+  }
+
   if (type === "link") {
     return (
       <button
@@ -228,7 +264,7 @@ function CursorPlayground({ exhibit, roomOpen }: { exhibit: CursorExhibit; roomO
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
     >
-      <DemoTarget type={exhibit.type} setKind={setKind} dragRef={dragRef} />
+      <DemoTarget key={roomOpen ? "room-open" : "room-closed"} type={exhibit.type} setKind={setKind} dragRef={dragRef} />
       {exhibit.type === "trail" && Array.from({ length: TRAIL_COUNT }, (_, index) => (
         <span key={index} ref={(node) => { trailRefs.current[index] = node; }} className="cursorTrailDot" style={{ opacity: (TRAIL_COUNT - index) / (TRAIL_COUNT + 2) }} aria-hidden="true" />
       ))}
