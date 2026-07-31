@@ -9,7 +9,7 @@ test("GitHub Pages用の静的HTMLへ9種類の展示を書き出す", async () 
   const html = await readFile(new URL("index.html", outputRoot), "utf8");
 
   assert.match(html, /<html lang="ja">/);
-  assert.match(html, /<title>世界のローディング画面博物館<\/title>/);
+  assert.match(html, /<title>デジタルアニメーションミュージアム \| Digital Animation Museum<\/title>/);
   assert.match(html, /CUIの回転文字/);
   assert.match(html, /点が増える表示/);
   assert.match(html, /Windows風の砂時計/);
@@ -40,7 +40,7 @@ test("既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き
   assert.match(html, /id="ms-dos-pc-command-line-panel"/);
   assert.equal((html.match(/class="dosExhibit"/g) ?? []).length, 8);
   assert.equal((html.match(/再現方法を見る/g) ?? []).length, 13);
-  assert.equal((html.match(/実装コメント/g) ?? []).length, 13);
+  assert.equal((html.match(/実装コメント/g) ?? []).length, 21);
 
   for (const title of [
     "回転スピナー",
@@ -57,6 +57,58 @@ test("既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き
 
   assert.match(html, /当時広く使われた表現/);
   assert.match(html, /時代風の再現/);
+});
+
+test("カーソル展示室と8種類の体験展示を書き出す", async () => {
+  const html = await readFile(new URL("index.html", outputRoot), "utf8");
+
+  assert.match(html, /カーソル展示室/);
+  assert.match(html, /aria-controls="cursor-room-panel"/);
+  assert.match(html, /id="cursor-room-panel"/);
+  assert.match(html, /8(?:<!-- -->)? EXHIBITS/);
+  assert.equal((html.match(/class="cursorExhibit"/g) ?? []).length, 8);
+  assert.match(html, /CSS \/ JavaScript \/ Pointer Events で再構成した体験展示/);
+  assert.match(html, /ローディング展示室を見る/);
+  assert.match(html, /スクロール展示室 \/ 通知・警告展示室 — 準備中/);
+
+  for (const title of [
+    "標準矢印カーソル",
+    "リンク用の手カーソル",
+    "Iビームカーソル",
+    "待機カーソル",
+    "禁止カーソル",
+    "ドラッグ中カーソル",
+    "クリックエフェクト",
+    "カーソルの残像",
+  ]) {
+    assert.match(html, new RegExp(title));
+  }
+});
+
+test("カーソル展示のデータ、Pointer Events、性能とアクセシビリティ対応を実装する", async () => {
+  const [data, component, css] = await Promise.all([
+    readFile(new URL("app/data/cursorExhibits.ts", projectRoot), "utf8"),
+    readFile(new URL("app/components/CursorExhibitRoom.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+
+  assert.equal((data.match(/\n    id: "/g) ?? []).length, 8);
+  for (const field of ["name", "category", "period", "purpose", "description", "interaction", "technologies", "relatedExhibits"]) {
+    assert.match(data, new RegExp(`${field}:`));
+  }
+  assert.match(component, /onPointerMove/);
+  assert.match(component, /onPointerDown/);
+  assert.match(component, /setPointerCapture/);
+  assert.match(component, /window\.requestAnimationFrame/);
+  assert.match(component, /window\.cancelAnimationFrame/);
+  assert.match(component, /TRAIL_COUNT = 5/);
+  assert.match(component, /aria-hidden="true"/);
+  assert.match(component, /inert=\{!isOpen\}/);
+  assert.match(css, /@media \(hover: none\), \(pointer: coarse\)/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.cursorTrailDot/);
+  assert.match(css, /\.cursorPlayground\s*\{[\s\S]*overflow: hidden/);
+  assert.match(css, /\.cursorExhibitGrid\s*\{[\s\S]*grid-template-columns: repeat\(2,/);
+  assert.match(css, /@media \(max-width: 650px\)[\s\S]*\.cursorExhibitGrid\s*\{[\s\S]*grid-template-columns: 1fr/);
 });
 
 test("MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモを書き出す", async () => {

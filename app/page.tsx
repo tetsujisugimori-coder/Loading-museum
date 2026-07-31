@@ -1,4 +1,5 @@
 import { ExhibitRoomAccordion } from "./components/ExhibitRoomAccordion";
+import { CursorExhibitRoom } from "./components/CursorExhibitRoom";
 import { exhibitRooms } from "./data/exhibitRooms";
 
 const spokes = Array.from({ length: 8 }, (_, index) => index);
@@ -32,12 +33,12 @@ export default function Home() {
     <main className="museumShell">
       <header className="museumHeader">
         <div>
-          <p className="eyebrow">Digital waiting archive / permanent collection</p>
+          <p className="eyebrow">Digital Animation Museum / permanent collection</p>
           <h1>
-            世界の<span>ローディング画面</span>博物館
+            デジタル<span>アニメーション</span>ミュージアム
           </h1>
           <p className="subtitle">
-            待つための記号は、コンピュータと人間の距離をどう描いてきたか。
+            Digital Animation Museum — 画面上の動きが伝えてきた、状態と操作の記憶。
           </p>
         </div>
         <p className="archiveMeta">
@@ -45,11 +46,11 @@ export default function Home() {
           <br />
           COLLECTION 1980—NOW
           <br />
-          9 OBJECTS / LIVE
+          3 ROOMS / 30 OBJECTS
         </p>
       </header>
 
-      <section className="timeline" aria-label="ローディング画面の展示一覧">
+      <section id="loading-gallery" className="timeline" aria-label="ローディング展示室の展示一覧">
         <article className="exhibit">
           <ExhibitHeader number="01" category="CLI" era="1980s—" title="CUIの回転文字" />
           <div className="stage" role="img" aria-label="縦棒、スラッシュ、横棒、バックスラッシュが順番に切り替わる表示">
@@ -163,13 +164,14 @@ export default function Home() {
           {exhibitRooms.map((room) => (
             <ExhibitRoomAccordion key={room.roomId} room={room} />
           ))}
+          <CursorExhibitRoom />
         </div>
       </section>
 
       <footer>
         <span className="liveStatus">ALL EXHIBITS RUNNING</span>
         <span>WAITING INTERFACES / CHRONOLOGICAL INDEX</span>
-        <span>© LOADING MUSEUM</span>
+        <span>© DIGITAL ANIMATION MUSEUM</span>
       </footer>
     </main>
   );
