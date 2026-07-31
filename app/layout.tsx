@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "世界のローディング画面博物館",
+  title: "デジタルアニメーションミュージアム | Digital Animation Museum",
   description:
-    "9種類のローディング表現と、時代別展示室で待機画面の歴史をたどるデジタル博物館。",
+    "ローディング画面やカーソルなど、画面上のデジタルアニメーションの歴史と操作感をブラウザで体験するミュージアム。",
 };
 
 export const viewport: Viewport = {
