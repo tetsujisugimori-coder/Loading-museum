@@ -1,8 +1,21 @@
 import { ExhibitRoomAccordion } from "./components/ExhibitRoomAccordion";
 import { CursorExhibitRoom } from "./components/CursorExhibitRoom";
+import { cursorExhibits } from "./data/cursorExhibits";
 import { exhibitRooms } from "./data/exhibitRooms";
 
 const spokes = Array.from({ length: 8 }, (_, index) => index);
+const permanentExhibitCount = 9;
+const periodRoomCount = exhibitRooms.length + 1;
+const periodExhibitCount = exhibitRooms.reduce(
+  (roomTotal, room) => roomTotal + room.exhibits.reduce(
+    (exhibitTotal, exhibit) => exhibitTotal + (
+      exhibit.kind === "vanished-os" ? exhibit.loadingExhibits.length : 1
+    ),
+    0,
+  ),
+  cursorExhibits.length,
+);
+const totalExhibitCount = permanentExhibitCount + periodExhibitCount;
 
 function ExhibitHeader({
   number,
@@ -46,7 +59,7 @@ export default function Home() {
           <br />
           COLLECTION 1980—NOW
           <br />
-          3 ROOMS / 30 OBJECTS
+          {periodRoomCount} ROOMS / {totalExhibitCount} OBJECTS
         </p>
       </header>
 

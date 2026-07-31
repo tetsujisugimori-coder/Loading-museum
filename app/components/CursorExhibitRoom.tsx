@@ -85,7 +85,7 @@ function DemoTarget({ type, setKind, dragRef }: {
   return <span className="cursorStageInstruction">MOVE POINTER IN THIS FIELD</span>;
 }
 
-function CursorPlayground({ exhibit }: { exhibit: CursorExhibit }) {
+function CursorPlayground({ exhibit, roomOpen }: { exhibit: CursorExhibit; roomOpen: boolean }) {
   const stageRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLSpanElement>(null);
   const dragRef = useRef<HTMLButtonElement>(null);
@@ -103,6 +103,19 @@ function CursorPlayground({ exhibit }: { exhibit: CursorExhibit }) {
     if (frameRef.current !== null) window.cancelAnimationFrame(frameRef.current);
     rippleTimers.current.forEach((timer) => window.clearTimeout(timer));
   }, []);
+
+  useEffect(() => {
+    if (roomOpen) return;
+
+    const stage = stageRef.current;
+    if (stage) stage.dataset.pointerActive = "false";
+    if (frameRef.current !== null) {
+      window.cancelAnimationFrame(frameRef.current);
+      frameRef.current = null;
+    }
+    dragState.current = null;
+    if (dragRef.current) dragRef.current.dataset.dragging = "false";
+  }, [roomOpen]);
 
   const setKind = (kind: CursorExhibitType | "grab") => {
     if (cursorRef.current) cursorRef.current.dataset.kind = kind;
@@ -184,21 +197,28 @@ function CursorPlayground({ exhibit }: { exhibit: CursorExhibit }) {
 
   const initialKind = exhibit.type === "waiting" ? "waiting" : exhibit.type === "drag" ? "drag" : "arrow";
 
+  const activatePointer = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "touch") return;
+
+    const cursor = cursorRef.current;
+    if (!cursor) return;
+
+    const point = localPoint(event);
+    latestPoint.current = point;
+    cursor.style.transform = `translate3d(${point.x}px, ${point.y}px, 0)`;
+    setKind(initialKind);
+    event.currentTarget.dataset.pointerActive = "true";
+  };
+
   return (
     <div
       ref={stageRef}
       className="cursorPlayground"
       data-demo={exhibit.type}
       aria-label={`${exhibit.name}の体験領域。${exhibit.interaction}`}
-      onPointerEnter={(event) => {
-        if (event.pointerType !== "touch") {
-          event.currentTarget.dataset.pointerActive = "true";
-          setKind(initialKind);
-          positionCursor(localPoint(event));
-        }
-      }}
+      onPointerEnter={activatePointer}
       onPointerLeave={(event) => {
-        if (!dragState.current) event.currentTarget.dataset.pointerActive = "false";
+        event.currentTarget.dataset.pointerActive = "false";
       }}
       onPointerMove={(event) => {
         positionCursor(localPoint(event));
@@ -221,13 +241,13 @@ function CursorPlayground({ exhibit }: { exhibit: CursorExhibit }) {
   );
 }
 
-function CursorExhibitCard({ exhibit }: { exhibit: CursorExhibit }) {
+function CursorExhibitCard({ exhibit, roomOpen }: { exhibit: CursorExhibit; roomOpen: boolean }) {
   return (
     <article className="cursorExhibit">
       <div className="cursorExhibitTopline"><span>{exhibit.category}</span><span>{exhibit.period}</span></div>
       <h3>{exhibit.name}</h3>
       <p className="cursorExplanation">{exhibit.description}</p>
-      <CursorPlayground exhibit={exhibit} />
+      <CursorPlayground exhibit={exhibit} roomOpen={roomOpen} />
       <dl className="cursorFacts">
         <div><dt>目的</dt><dd>{exhibit.purpose}</dd></div>
         <div><dt>操作</dt><dd>{exhibit.interaction}</dd></div>
@@ -262,7 +282,7 @@ export function CursorExhibitRoom() {
             <p>マウスポインターは位置だけでなく、操作できる場所、待機、入力、禁止などの状態を伝えてきました。ここでは代表的な形と動きを、特定OSや製品の画像を使わずブラウザ上で抽象化して再現します。</p>
             <p className="reconstructionLabel">CSS / JavaScript / Pointer Events で再構成した体験展示</p>
           </div>
-          <div className="cursorExhibitGrid">{cursorExhibits.map((exhibit) => <CursorExhibitCard key={exhibit.id} exhibit={exhibit} />)}</div>
+          <div className="cursorExhibitGrid">{cursorExhibits.map((exhibit) => <CursorExhibitCard key={exhibit.id} exhibit={exhibit} roomOpen={isOpen} />)}</div>
           <nav className="relatedRooms" aria-label="カーソル展示室の関連展示">
             <span>RELATED ROOMS</span>
             <a href="#loading-gallery">ローディング展示室を見る</a>
