@@ -1,5 +1,77 @@
 # Loading Museum 作業ログ
 
+## 2026-08-02 — PR #14 代表9展示・現代Web継承比較の再設計
+
+- 作業ブランチ: `agent/flash-animation-special-exhibit`
+- 目的: 前回修正で操作可能になった展示のうち、名称に対して技法の本質が弱かった9展示を、説明を読まなくても動きから理解できる専用表現へ作り直した。18カテゴリ・54展示と独立入口は維持した。
+
+### 修正した9展示
+
+1. フレーム・バイ・フレーム: 4つの簡略姿勢から、頭、胴、腕、脚の角度と位置が異なる8姿勢へ変更。跳躍・振り向き・着地の流れ、現在番号、前後ボタン、手動選択、自動再生を追加した。
+2. ロゴの分解・集合: letter-spacing中心の表現を廃止。架空ロゴ`ORBITAL`を7文字のDOMへ分割し、別方向、回転、奥行き、scale、delayから集合して輪郭が確定するようにした。「集合」「分解」を明示した。
+3. ビート同期フラッシュ: 連続音の光量表示から、AudioContext時刻で短いアタック／減衰音を先行スケジュールし、AnalyserNodeのピーク時だけ反応する展示へ変更。72／108／144 BPM、強度meter、ピーク数を追加した。
+4. 点滅CTAと価格の飛び込み: 単一文字の拡縮から、商品、コピー、価格、限定ラベル、CTAの5段階タイムラインへ変更。資料用広告を明示し、CTAは外部遷移せず`DEMO CLICKED`を表示する。
+5. スプライト走行: 単一要素の上下動から、8走行姿勢、固定した走者、別速度の遠景・前景スクロールへ変更。現在フレームと3段階の速度切替を追加した。
+6. コンボとダメージ数字: 初期の`120 / 0 COMBO`を廃止。HITごとに一意IDを持つ数字を配列stateへ追加し、位置、角度、サイズ、上昇・消滅を変える。ゲージ、5・10コンボ表示、1.7秒後のリセット、全タイマーcleanupを追加した。
+7. ジェネラティブ線画: CSS背景から、seedで点を配置し距離条件で実際のSVG lineを生成する実装へ変更。点数range、線数表示、再生成、viewBoxを追加した。
+8. インタラクティブ詩: 同じ語のhover表示から、8つの異なるbuttonへ変更。選択語、相手語、文型、配置と関係線を更新し、同じ語を再選択しても別の一文が生まれる。
+9. オニオンスキン: 固定した3つの単純図形から、8姿勢の現在・前・次を共有データで描く制作補助へ変更。現在フレーム、ON／OFF、前のみ／前後／次のみを選択できる。
+
+### 比較カテゴリの新しい目的
+
+- 名称を「現代Web技術との比較」から「Flash表現は現代Webへどう引き継がれたか」へ変更した。
+- 中心メッセージを「Flashで一つの制作環境に統合されていたアニメーション、入力、音、描画が、現代Webでは複数の標準技術へ分かれて継承された」とした。
+- モーショントゥイーンは左右で同じ移動を再生し、制作単位、実行環境、コード、再利用性、外部連携、アクセシビリティ、プラグイン依存を短い日本語で比較する。
+- マウス追従は一つのポインター入力へ、左のActionScript／enterFrameと右のPointer Events／requestAnimationFrameが同時に反応する。
+- 音と描画はSoundMixer／BitmapDataの統合性と、Web Audio／Canvas／SVG／DOMを組み合わせる標準性を並べる。Flashを劣った技術として扱わず、統合制作環境としての強みも明記した。
+
+### 追加・変更したコンポーネント
+
+- `app/components/FlashRefinedVisuals.tsx`を追加し、`FrameByFrameVisual`、`LogoAssemblyVisual`、`BeatSyncVisual`、`BannerCtaVisual`、`SpriteRunVisual`、`ComboDamageVisual`、`GenerativeLinesVisual`、`InteractivePoemVisual`、`OnionSkinVisual`、`MotionTweenComparisonVisual`、`PointerComparisonVisual`、`MediaComparisonVisual`へ分割した。
+- 8つの`characterPoses`をフレーム・バイ・フレーム、スプライト走行、オニオンスキンで共有し、展示目的に応じて再生・制作比較へ使い分ける。
+- `FlashVisuals.tsx`は専用マップを先に解決し、既存の汎用展示と前回追加した専用展示を維持する。
+
+### 停止・cleanupとアクセシビリティ
+
+- 既存の`active`により、個別停止、全体停止、画面外、カテゴリ変更、展示室終了、タブ非表示、reduced motionを新コンポーネントへ伝播する。
+- フレーム／スプライトのinterval、コンボの削除・リセットtimer、ビートのscheduler／RAF／Oscillator／AudioContextをeffect cleanupで停止する。
+- 音停止直後に閉じたAudioContextへ`suspend()`が競合する実機エラーを検出し、`context.state`確認とPromiseエラー処理を追加した。
+- 操作はbutton、select、rangeを使用。`aria-current`、`aria-pressed`、`output`、`aria-live`、meter、左右見出し、SVG説明ラベルを追加した。
+- reduced motionでは広告を完成状態にし、ビートscale、ダメージ上昇、詩の移動、背景スクロールなどを止める。
+
+### テスト内容と結果
+
+- 8姿勢と手動前後操作、7文字ロゴ、集合／分解、ビートのAudioContext時刻・包絡線・ピーク検出・BPM、広告5要素、8姿勢スプライト、ダメージ配列とコンボtimer、seed付きSVG線、8語buttonと文章生成、オニオンのフレーム・範囲、3つの左右比較、cleanup、reduced motionを検査するNodeテストを追加した。
+- `npm run lint`: 成功。
+- `npm run typecheck`: 成功。
+- `npm test`: GitHub Pages向け静的buildとNodeテスト15件がすべて成功。
+- `npm run check`: 成功。
+- `npm run build`: 成功。
+
+### 実機確認
+
+- Edgeデスクトップ: 9展示の状態変化、ビートの`PEAK 1`、音停止後`data-running=false`、比較3展示、全体停止を確認した。音停止の競合修正後はエラー表示0件。
+- 1000px前後: 展示カード2列、比較の左右2列、横スクロールなし。
+- 390×844: 展示カード1列、比較の左右を上下1列、横スクロールなし、表示中buttonの重なり0件。
+- reduced motionのOS設定実切替は未実施。Reactの`reduced`分岐、CSSメディア規則、静止代替をテストとコードレビューで確認した。
+
+### スクリーンショット
+
+- `docs/screenshots/flash-frame-by-frame-fixed.png`
+- `docs/screenshots/flash-logo-assembly-fixed.png`
+- `docs/screenshots/flash-beat-sync-fixed.png`
+- `docs/screenshots/flash-sprite-run-fixed.png`
+- `docs/screenshots/flash-generative-lines-fixed.png`
+- `docs/screenshots/flash-interactive-poem-fixed.png`
+- `docs/screenshots/flash-modern-inheritance-fixed.png`
+
+### 未実装事項・今後
+
+- Flash IDE、ActionScript、Flash Playerの完全なエミュレーションではなく、教育用の抽象化である。
+- ビートは権利物を使わない合成キック音で、任意音源ファイルやマイク入力には対応しない。
+- 連打の5・10コンボはソースと自動テストで確認したが、ブラウザ操作基盤の1クリックに時間がかかるため実時間内の手動連打は未確認。
+- 今後は、フレーム姿勢のSVG輪郭化、広告タイムラインのスクラブ、詩の複数関係線、生成線画の対称性・接続距離操作、比較デモのコード表示切替を追加できる。
+
 ## 2026-08-01 — PR #14 レビュー対応
 
 - 既存PR #14の18カテゴリ・54展示と独立入口を維持し、共通テンプレートに偏っていた代表展示を専用コンポーネントへ置き換えた。

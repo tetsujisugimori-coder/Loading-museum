@@ -8,6 +8,7 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import type { FlashExhibit, FlashVisualType } from "../data/flashExhibits";
+import { refinedVisuals } from "./FlashRefinedVisuals";
 
 type VisualProps = {
   exhibit: FlashExhibit;
@@ -16,19 +17,6 @@ type VisualProps = {
 };
 
 const particleIndexes = Array.from({ length: 18 }, (_, index) => index);
-
-function FrameByFrameVisual({ active, reduced }: VisualProps) {
-  return (
-    <div className="flashVisual flashVisual-frames" data-running={active && !reduced} role="group" aria-label="4枚の異なる姿勢を切り替えるフレーム・バイ・フレーム再現">
-      <div className="frameCharacter" aria-hidden="true">
-        {["CROUCH", "RISE", "LEAP", "LAND"].map((label, index) => (
-          <span key={label} className={`framePose framePose-${index}`}><i /><b /><em>{label}</em></span>
-        ))}
-      </div>
-      <span className="visualStateLabel">4 KEY POSES / {active && !reduced ? "PLAYING" : "PAUSED"}</span>
-    </div>
-  );
-}
 
 function PartsVisual({ active, reduced }: VisualProps) {
   return (
@@ -300,17 +288,6 @@ function TimelineVisual({ active, reduced }: VisualProps) {
   );
 }
 
-function OnionSkinVisual() {
-  const [onionSkinEnabled, setOnionSkinEnabled] = useState(true);
-  return (
-    <div className="flashVisual onionSkinVisual" data-enabled={onionSkinEnabled} role="group" aria-label="前、現在、次の姿勢を比較するオニオンスキン">
-      <div className="onionPoses" aria-hidden="true"><span className="onionPrevious"><i /><b /></span><span className="onionCurrent"><i /><b /></span><span className="onionNext"><i /><b /></span></div>
-      <div className="onionLegend"><span>PREV</span><strong>CURRENT</strong><span>NEXT</span></div>
-      <button type="button" className="visualCornerButton" aria-pressed={onionSkinEnabled} onClick={() => setOnionSkinEnabled((value) => !value)}>オニオンスキン {onionSkinEnabled ? "OFF" : "ON"}</button>
-    </div>
-  );
-}
-
 const weatherNames = ["雨", "雪", "炎"];
 function WeatherVisual({ active, reduced }: VisualProps) {
   const [selectedWeather, setSelectedWeather] = useState(0);
@@ -424,12 +401,6 @@ function CarouselVisual() {
   return <div className="flashVisual carouselVisual" role="group" aria-label="前へ・次へで回転する3Dカルーセル"><div className="carouselCards" data-slide={currentSlide} aria-hidden="true">{[0, 1, 2, 3, 4].map((index) => <i key={index} className={`carouselCard carouselCard-${index}`}>{index + 1}</i>)}</div><output>SELECTED CARD {currentSlide + 1}</output><div className="carouselButtons"><button type="button" onClick={() => setCurrentSlide((slide) => (slide + 4) % 5)} aria-label="前のカード">←</button><button type="button" onClick={() => setCurrentSlide((slide) => (slide + 1) % 5)} aria-label="次のカード">→</button></div></div>;
 }
 
-function ComparisonVisual({ exhibit }: VisualProps) {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const labels = exhibit.modernTechnique;
-  return <div className="flashVisual comparisonVisual" role="group" aria-label={`${exhibit.title}の技術比較`}><div className="comparisonPair"><span>FLASH<br /><b>{exhibit.flashTechnique}</b></span><em>→</em><strong>{labels[currentSlide]}</strong></div><output>{currentSlide % 2 ? "DOM・標準APIと連携しやすい" : "プラグイン不要で端末を横断"}</output><div className="comparisonTabs">{labels.map((label, index) => <button key={label} type="button" aria-pressed={currentSlide === index} onClick={() => setCurrentSlide(index)}>{label}</button>)}</div></div>;
-}
-
 function ParticleVisual() {
   const [burst, setBurst] = useState(false);
   return <div className="flashVisual dedicatedParticleVisual" data-burst={burst} role="group" aria-label="中心から光粒子を噴出する展示"><div aria-hidden="true">{particleIndexes.map((index) => <i key={index} style={{ "--i": index } as CSSProperties} />)}</div><button type="button" className="visualCornerButton" onClick={() => setBurst((value) => !value)}>粒子を{burst ? "集める" : "噴出"}</button></div>;
@@ -445,11 +416,6 @@ function SafeCloseVisual() {
   const [closed, setClosed] = useState(false);
   if (closed) return <div className="flashVisual safeCloseVisual safeCloseComplete" role="status"><strong>ADVERTISEMENT CLOSED</strong><button type="button" onClick={() => { setClosed(false); setPosition(0); }}>再表示</button></div>;
   return <div className="flashVisual safeCloseVisual" data-position={position} role="group" aria-label="逃げる閉じるボタンの安全な再現"><span>DEMO ADVERTISEMENT</span><button type="button" className="escapingClose" onPointerEnter={() => setPosition((value) => (value + 1) % 4)} onFocus={() => setPosition((value) => (value + 1) % 4)} onClick={() => setClosed(true)} aria-label="動く閉じるボタン">×</button><button type="button" className="fixedSafeExit" onClick={() => setClosed(true)}>即時終了</button></div>;
-}
-
-function ScoreVisual() {
-  const [score, setScore] = useState(0);
-  return <div className="flashVisual scoreVisual" data-score-step={score % 4} role="group" aria-label="ヒットごとにコンボとダメージ数字が増える展示"><output aria-live="polite"><b>{score * 120 || 120}</b><span>{score} COMBO</span></output><button type="button" onClick={() => setScore((value) => value + 1)}>HIT</button><button type="button" onClick={() => setScore(0)}>リセット</button></div>;
 }
 
 function GenericVisual({ exhibit, active, reduced }: VisualProps) {
@@ -470,20 +436,17 @@ function GenericVisual({ exhibit, active, reduced }: VisualProps) {
 }
 
 const dedicated: Partial<Record<FlashVisualType, (props: VisualProps) => React.ReactNode>> = {
-  frames: FrameByFrameVisual,
   parts: PartsVisual,
   spring: SpringVisual,
   shooter: ShooterVisual,
   fps: FpsComparisonVisual,
   "audio-bars": AudioVisual,
   waveform: AudioVisual,
-  beat: AudioVisual,
   intro: IntroVisual,
   portfolio: PortfolioVisual,
   room: RoomNavigationVisual,
   "radial-menu": RadialMenuVisual,
   timeline: TimelineVisual,
-  onion: OnionSkinVisual,
   weather: WeatherVisual,
   follow: PointerFollowVisual,
   eyes: EyesVisual,
@@ -491,14 +454,12 @@ const dedicated: Partial<Record<FlashVisualType, (props: VisualProps) => React.R
   paint: PaintVisual,
   cube: CubeVisual,
   carousel: CarouselVisual,
-  comparison: ComparisonVisual,
   particles: ParticleVisual,
   slot: SlotVisual,
   "safe-close": SafeCloseVisual,
-  score: ScoreVisual,
 };
 
 export function FlashVisual(props: VisualProps) {
-  const Dedicated = dedicated[props.exhibit.visualType];
+  const Dedicated = refinedVisuals[props.exhibit.visualType] ?? dedicated[props.exhibit.visualType];
   return Dedicated ? <Dedicated {...props} /> : <GenericVisual {...props} />;
 }
