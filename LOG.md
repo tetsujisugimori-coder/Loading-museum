@@ -1,5 +1,39 @@
 # Loading Museum 作業ログ
 
+## 2026-08-01 — PR #14 レビュー対応
+
+- 既存PR #14の18カテゴリ・54展示と独立入口を維持し、共通テンプレートに偏っていた代表展示を専用コンポーネントへ置き換えた。
+- CSSで無効だった剰余演算を`data-variant`と`nth-child`のルールへ変更した。アニメーションは`data-running`を停止の単一経路とし、展示別停止、全体停止、画面外、タブ非表示、reduced motion、展示室を閉じる操作、カテゴリ変更のすべてから停止・破棄されるようにした。
+- フレーム・バイ・フレームは4姿勢、パーツアニメーションは頭・胴・手足の独立要素、バネは速度と減衰を持つドラッグ物理、シューターは標的命中判定、FPS比較は4行同時表示として再構成した。
+- イントロ、ポートフォリオ、部屋ナビゲーション、放射メニュー、タイムライン、オニオンスキン、雨・雪・炎にも固有の状態とUIを追加した。追従はRAFによる慣性列、視線は`atan2`と半径制限、パララックスは前景から遠景まで異なる移動量を使う。
+- 音連動は利用者操作で生成する小音量OscillatorをAnalyserNodeへ接続し、周波数・時間領域データでDOMバーを更新する。停止、非表示、カテゴリ変更、展示室終了時にRAF・Oscillator・AudioContextを解放または休止する。
+- CanvasはResizeObserverとdevicePixelRatioに対応し、Pointer Captureを使用する。操作対象をbuttonまたはフォーカス可能なgroupへ整理し、閉じたメニューの項目をTab順から除外した。
+
+### 変更したファイル
+
+- `app/components/FlashVisuals.tsx`（追加）
+- `app/components/FlashSpecialExhibitRoom.tsx`
+- `app/data/flashExhibits.ts`
+- `app/globals.css`
+- `tests/rendered-html.test.mjs`
+- `README.md`
+- `LOG.md`
+
+### 検証
+
+- 追加テスト: 無効なCSS剰余式がないこと、雨・雪・炎の状態、4種類のFPS行、シューターの命中加点とリセット、イントロのSTART / SKIP / ENTER、全体・個別停止、reduced motion、AnalyserNodeと音停止、RAF・Audio・Observerのcleanup、キーボード操作用のARIA構造、Canvasの高DPI対応を検査するテストを追加した。
+- `npm run check`: ESLint、TypeScript、GitHub Pages向け静的ビルド、Nodeテスト14件がすべて成功。
+- `npm run build`: 単独実行でも成功し、`/`と`/_not-found`を静的生成した。
+- Edge（デスクトップ）: 入口と18カテゴリ、イントロのSTART / SKIP / COMPLETE、シューターの命中・100点加算・標的消去、制作技法の4種類のFPS行を確認した。全体停止で`data-playing=false`かつ実行中カード0件となり、再開後の音連動は開始で`data-running=true`、停止で`false`となった。
+- Edge（1000px前後）: 展示カード2列、横スクロールなしを確認した。390×844では展示カード1列、カテゴリ目次2列、横スクロールなしを確認した。デスクトップを含め、エラー表示はなかった。
+- スクリーンショット: `docs/screenshots/flash-intro-fixed.png`、`docs/screenshots/flash-shooter-fixed.png`。
+- OSのreduced motion実切替、Canvasの実機DPI比較、展示室終了後のブラウザプロセス計測、ブラウザ操作基盤でタイムアウトしたFPS内部ボタンの手動押下は未実施。`matchMedia`とCSS規則、DPR・ResizeObserver、各cleanup、React state・`data-running`を自動テストとコードレビューで確認した。
+
+### 既知の制限・今後
+
+- 音声展示は権利物を使わない合成音の解析であり、任意音声ファイルの読み込みには対応しない。
+- 物理、描画、音声解析は学習用の軽量な再構成で、Flash PlayerやActionScriptランタイムの完全なエミュレーションではない。
+
 ## 2026-08-01 — Flashアニメーション特別展示室
 
 - 作業ブランチ: `agent/flash-animation-special-exhibit`

@@ -1,19 +1,13 @@
 "use client";
 
-import {
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  type CSSProperties,
-  type PointerEvent as ReactPointerEvent,
-} from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   flashCategories,
   flashExhibitCount,
   flashExhibits,
   type FlashExhibit,
 } from "../data/flashExhibits";
+import { FlashVisual } from "./FlashVisuals";
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const EXHIBIT_COUNTS = new Map(
@@ -22,6 +16,7 @@ const EXHIBIT_COUNTS = new Map(
     flashExhibits.filter((exhibit) => exhibit.categoryId === category.id).length,
   ]),
 );
+const CONTINUOUS_INTERACTIVE_VISUALS = new Set(["spring", "weather", "follow", "fps", "intro"]);
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -33,6 +28,17 @@ function useReducedMotion() {
     return () => query.removeEventListener("change", update);
   }, []);
   return reduced;
+}
+
+function usePageVisible() {
+  const [visible, setVisible] = useState(true);
+  useEffect(() => {
+    const update = () => setVisible(document.visibilityState === "visible");
+    update();
+    document.addEventListener("visibilitychange", update);
+    return () => document.removeEventListener("visibilitychange", update);
+  }, []);
+  return visible;
 }
 
 function useInView<T extends HTMLElement>() {
@@ -51,148 +57,33 @@ function useInView<T extends HTMLElement>() {
   return { ref, visible };
 }
 
-function Visual({
-  exhibit,
-  active,
-  reduced,
-  audioActive,
-  onAudioToggle,
-}: {
-  exhibit: FlashExhibit;
-  active: boolean;
-  reduced: boolean;
-  audioActive: boolean;
-  onAudioToggle: () => void;
-}) {
-  const [variation, setVariation] = useState(0);
-  const [dragging, setDragging] = useState(false);
-  const stageRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const pointerStyle = (event: ReactPointerEvent<HTMLElement>) => {
-    const bounds = event.currentTarget.getBoundingClientRect();
-    event.currentTarget.style.setProperty("--mx", `${event.clientX - bounds.left}px`);
-    event.currentTarget.style.setProperty("--my", `${event.clientY - bounds.top}px`);
-    event.currentTarget.style.setProperty("--rx", `${((event.clientY - bounds.top) / bounds.height - 0.5) * -28}deg`);
-    event.currentTarget.style.setProperty("--ry", `${((event.clientX - bounds.left) / bounds.width - 0.5) * 38}deg`);
-  };
-  const draw = (event: ReactPointerEvent<HTMLCanvasElement>) => {
-    if (!dragging || !canvasRef.current) return;
-    const canvas = canvasRef.current;
-    const rect = canvas.getBoundingClientRect();
-    const context = canvas.getContext("2d");
-    if (!context) return;
-    context.fillStyle = `hsl(${(event.clientX + event.clientY) % 360} 90% 65%)`;
-    context.beginPath();
-    context.arc((event.clientX - rect.left) * (canvas.width / rect.width), (event.clientY - rect.top) * (canvas.height / rect.height), 8, 0, Math.PI * 2);
-    context.fill();
-  };
-  const resetCanvas = () => canvasRef.current?.getContext("2d")?.clearRect(0, 0, 520, 260);
-  const isAudio = exhibit.interactionType === "audio";
-  const isComparison = exhibit.visualType === "comparison";
-  const labels = exhibit.modernTechnique.slice(0, 3);
-  const className = `flashVisual flashVisual-${exhibit.visualType}`;
-  const click = () => setVariation((value) => value + 1);
-  const style = { "--variant": variation } as CSSProperties;
-
-  return (
-    <div
-      ref={stageRef}
-      className={className}
-      data-running={active && !reduced}
-      data-variant={variation % 4}
-      data-dragging={dragging}
-      style={style}
-      onPointerMove={pointerStyle}
-      onClick={exhibit.interactionType === "click" ? click : undefined}
-      role="img"
-      aria-label={`${exhibit.title}の現代Web技術による再現。${exhibit.instruction}`}
-    >
-      {exhibit.visualType === "paint" ? (
-        <canvas
-          ref={canvasRef}
-          width="520"
-          height="260"
-          onPointerDown={(event) => { setDragging(true); event.currentTarget.setPointerCapture(event.pointerId); }}
-          onPointerMove={draw}
-          onPointerUp={() => setDragging(false)}
-          onPointerCancel={() => setDragging(false)}
-          aria-label="ドラッグで描ける抽象画キャンバス"
-        />
-      ) : isComparison ? (
-        <div className="flashComparisonVisual">
-          <span>FLASH</span><b>→</b><strong>{labels[variation % labels.length]}</strong>
-          <small>{variation % 2 ? "標準API・DOMと連携" : "プラグイン不要・端末を横断"}</small>
-        </div>
-      ) : exhibit.visualType === "timeline" || exhibit.visualType === "fps" ? (
-        <div className="flashTimelineVisual">
-          <span className="flashPlayhead" />
-          {[0, 1, 2].map((row) => <i key={row}>{Array.from({ length: 12 }, (_, frame) => <b key={frame} data-key={frame % (4 - row) === 0} />)}</i>)}
-          <em>{exhibit.visualType === "fps" ? ["12 FPS", "24 FPS", "30 FPS", "60 FPS"][variation % 4] : `FRAME ${String((variation % 12) + 1).padStart(2, "0")}`}</em>
-        </div>
-      ) : (
-        <div className="flashScene" aria-hidden="true">
-          {Array.from({ length: exhibit.visualType === "particles" || exhibit.visualType === "starfield" ? 18 : 9 }, (_, index) => <i key={index} style={{ "--i": index } as CSSProperties} />)}
-          <b>FLASH</b><strong>PLAY</strong><em>{exhibit.title}</em>
-        </div>
-      )}
-
-      {isAudio ? (
-        <button className="flashStageAction" type="button" onClick={(event) => { event.stopPropagation(); onAudioToggle(); }} aria-pressed={audioActive}>
-          {audioActive ? "音を停止" : "音を開始"}
-        </button>
-      ) : null}
-      {exhibit.visualType === "paint" ? <button className="flashStageAction" type="button" onClick={resetCanvas}>描画をリセット</button> : null}
-      {exhibit.visualType === "carousel" ? (
-        <div className="flashStageControls">
-          <button type="button" onClick={(event) => { event.stopPropagation(); setVariation((v) => v - 1); }} aria-label="前のカード">←</button>
-          <button type="button" onClick={(event) => { event.stopPropagation(); setVariation((v) => v + 1); }} aria-label="次のカード">→</button>
-        </div>
-      ) : null}
-      {exhibit.visualType === "safe-close" ? <button className="flashSafeExit" type="button" onClick={() => setVariation(3)}>即時終了</button> : null}
-      {exhibit.visualType === "cube" || exhibit.visualType === "spring" ? (
-        <button
-          className="flashDragHandle"
-          type="button"
-          onPointerDown={(event) => { setDragging(true); event.currentTarget.setPointerCapture(event.pointerId); }}
-          onPointerMove={(event) => { if (dragging) pointerStyle(event); }}
-          onPointerUp={() => setDragging(false)}
-          onPointerCancel={() => setDragging(false)}
-          aria-label={`${exhibit.title}をドラッグ`}
-        />
-      ) : null}
-    </div>
-  );
-}
-
 function FlashExhibitCard({
   exhibit,
   categoryActive,
   globalPlaying,
   reduced,
-  audioActive,
-  onAudioToggle,
 }: {
   exhibit: FlashExhibit;
   categoryActive: boolean;
   globalPlaying: boolean;
   reduced: boolean;
-  audioActive: boolean;
-  onAudioToggle: () => void;
 }) {
   const { ref, visible } = useInView<HTMLElement>();
   const [localPlaying, setLocalPlaying] = useState(true);
   const [resetKey, setResetKey] = useState(0);
-  const automatic = exhibit.interactionType === "automatic";
-  const active = categoryActive && visible && globalPlaying && localPlaying;
+  const hasAutomaticMotion = exhibit.interactionType === "automatic"
+    || exhibit.interactionType === "audio"
+    || CONTINUOUS_INTERACTIVE_VISUALS.has(exhibit.visualType);
+  const active = categoryActive && visible && globalPlaying && localPlaying && !reduced;
   return (
-    <article ref={ref} className="flashExhibitCard" data-visible={visible}>
+    <article ref={ref} className="flashExhibitCard" data-visible={visible} data-active={active}>
       <div className="flashCardTopline">
         <span>{exhibit.flashTechnique}</span>
         <span>{exhibit.interactionType.toUpperCase()}</span>
       </div>
       <h4>{exhibit.title}</h4>
       <p>{exhibit.description}</p>
-      <Visual key={resetKey} exhibit={exhibit} active={active} reduced={reduced} audioActive={audioActive} onAudioToggle={onAudioToggle} />
+      <FlashVisual key={resetKey} exhibit={exhibit} active={active} reduced={reduced} />
       <p className="flashInstruction"><strong>操作</strong> {exhibit.instruction}</p>
       <div className="flashTechTags" aria-label="使用技術">
         {exhibit.modernTechnique.map((technology) => <span key={technology}>{technology}</span>)}
@@ -207,7 +98,7 @@ function FlashExhibitCard({
         <p>Flash Player内のタイムラインではなく、ブラウザ標準の描画と入力イベントを使います。{exhibit.accessibilityNote} {exhibit.reducedMotionFallback}</p>
       </details>
       <div className="flashCardControls">
-        {automatic ? <button type="button" onClick={() => setLocalPlaying((value) => !value)} aria-pressed={!localPlaying}>{localPlaying ? "一時停止" : "再生"}</button> : null}
+        {hasAutomaticMotion ? <button type="button" onClick={() => setLocalPlaying((value) => !value)} aria-pressed={!localPlaying}>{localPlaying ? "一時停止" : "再生"}</button> : null}
         <button type="button" onClick={() => setResetKey((value) => value + 1)}>リセット</button>
       </div>
     </article>
@@ -219,54 +110,25 @@ export function FlashSpecialExhibitRoom() {
   const [activeCategory, setActiveCategory] = useState(flashCategories[0].id);
   const [playing, setPlaying] = useState(true);
   const [speed, setSpeed] = useState("normal");
-  const [audioActive, setAudioActive] = useState(false);
-  const audioRef = useRef<{ context: AudioContext; oscillator: OscillatorNode; gain: GainNode } | null>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const reduced = useReducedMotion();
+  const pageVisible = usePageVisible();
   const categoryExhibits = useMemo(
     () => flashExhibits.filter((exhibit) => exhibit.categoryId === activeCategory),
     [activeCategory],
   );
-  const stopAudio = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    audio.gain.gain.setTargetAtTime(0, audio.context.currentTime, 0.02);
-    audio.oscillator.stop(audio.context.currentTime + 0.08);
-    void audio.context.close();
-    audioRef.current = null;
-    setAudioActive(false);
-  };
-  const toggleAudio = () => {
-    if (audioRef.current) { stopAudio(); return; }
-    const AudioContextClass = window.AudioContext;
-    const context = new AudioContextClass();
-    const oscillator = context.createOscillator();
-    const gain = context.createGain();
-    oscillator.type = "sine";
-    oscillator.frequency.value = 164.81;
-    gain.gain.value = 0.035;
-    oscillator.connect(gain).connect(context.destination);
-    oscillator.start();
-    audioRef.current = { context, oscillator, gain };
-    setAudioActive(true);
-  };
-  useEffect(() => () => {
-    const audio = audioRef.current;
-    if (audio) { audio.oscillator.stop(); void audio.context.close(); }
-  }, []);
   const category = flashCategories.find((item) => item.id === activeCategory) ?? flashCategories[0];
+  const runtimeActive = open && pageVisible && playing && !reduced;
+
   return (
-    <article id="flash-special-exhibit" className="flashRoom" data-open={open} data-playing={playing && !reduced} data-speed={speed}>
+    <article id="flash-special-exhibit" className="flashRoom" data-open={open} data-playing={runtimeActive} data-speed={speed}>
       <button
         ref={toggleRef}
         className="flashRoomEntrance"
         type="button"
         aria-expanded={open}
         aria-controls="flash-special-exhibit-panel"
-        onClick={() => {
-          if (open) stopAudio();
-          setOpen((value) => !value);
-        }}
+        onClick={() => setOpen((value) => !value)}
       >
         <span className="flashEntranceBadge">SPECIAL EXHIBITION / FLASH</span>
         <span className="flashEntranceTitle">Flash特別展示室</span>
@@ -287,7 +149,7 @@ export function FlashSpecialExhibitRoom() {
                 <option value="slow">0.6×</option><option value="normal">1×</option><option value="fast">1.6×</option>
               </select>
             </label>
-            <span>{reduced ? "動きを減らす設定：自動再生停止" : "画面内の展示だけ再生"}</span>
+            <span>{reduced ? "動きを減らす設定：自動再生停止" : pageVisible ? "画面内の展示だけ再生" : "タブ非表示：一時停止"}</span>
           </div>
         </div>
 
@@ -307,13 +169,13 @@ export function FlashSpecialExhibitRoom() {
           </header>
           <div className="flashExhibitGrid">
             {categoryExhibits.map((exhibit) => (
-              <FlashExhibitCard key={exhibit.id} exhibit={exhibit} categoryActive={open} globalPlaying={playing} reduced={reduced} audioActive={audioActive} onAudioToggle={toggleAudio} />
+              <FlashExhibitCard key={exhibit.id} exhibit={exhibit} categoryActive={open && pageVisible} globalPlaying={playing} reduced={reduced} />
             ))}
           </div>
         </section>
 
         <div className="flashRoomCloseRow">
-          <button type="button" onClick={() => { stopAudio(); setOpen(false); toggleRef.current?.focus(); }}>Flash特別展示室を閉じる</button>
+          <button type="button" onClick={() => { setOpen(false); toggleRef.current?.focus(); }}>Flash特別展示室を閉じる</button>
         </div>
       </div>
     </article>

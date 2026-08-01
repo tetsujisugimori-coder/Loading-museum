@@ -190,10 +190,11 @@ test("Flash特別展示室を加えた展示室・展示件数を表示する", 
 });
 
 test("Flash特別展示室へ18カテゴリ・54展示と優先デモを実装する", async () => {
-  const [html, data, component, css] = await Promise.all([
+  const [html, data, component, visuals, css] = await Promise.all([
     readFile(new URL("index.html", outputRoot), "utf8"),
     readFile(new URL("app/data/flashExhibits.ts", projectRoot), "utf8"),
     readFile(new URL("app/components/FlashSpecialExhibitRoom.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/FlashVisuals.tsx", projectRoot), "utf8"),
     readFile(new URL("app/globals.css", projectRoot), "utf8"),
   ]);
 
@@ -226,19 +227,80 @@ test("Flash特別展示室へ18カテゴリ・54展示と優先デモを実装�
   assert.match(component, /observer\.disconnect\(\)/);
   assert.match(component, /window\.matchMedia\(REDUCED_MOTION_QUERY\)/);
   assert.match(component, /removeEventListener\("change", update\)/);
-  assert.match(component, /new AudioContextClass\(\)/);
-  assert.match(component, /oscillator\.start\(\)/);
-  assert.doesNotMatch(component, /new Audio\(|autoplay/);
-  assert.match(component, /oscillator\.stop/);
-  assert.match(component, /context\.close/);
-  assert.match(component, /setPointerCapture/);
-  assert.match(component, /<canvas/);
+  assert.match(visuals, /new AudioContext\(\)/);
+  assert.match(visuals, /createAnalyser\(\)/);
+  assert.match(visuals, /getByteFrequencyData/);
+  assert.match(visuals, /getByteTimeDomainData/);
+  assert.match(visuals, /oscillator\.start\(\)/);
+  assert.doesNotMatch(visuals, /new Audio\(|autoplay/);
+  assert.match(visuals, /oscillator\.stop/);
+  assert.match(visuals, /context\.close/);
+  assert.match(visuals, /cancelAnimationFrame/);
+  assert.match(visuals, /setPointerCapture/);
+  assert.match(visuals, /<canvas/);
   assert.match(component, /すべて一時停止/);
   assert.match(component, /JavaScript・CSS・SVG・Canvasなど現代のWeb技術で再現/);
   assert.match(css, /\.flashExhibitGrid\s*\{[^}]*grid-template-columns: repeat\(3,/);
   assert.match(css, /@media \(max-width: 650px\)[\s\S]*\.flashExhibitGrid\s*\{[^}]*grid-template-columns: 1fr/);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.flashVisual/);
   assert.match(css, /content-visibility: auto/);
+});
+
+test("Flash専用展示の状態遷移、停止制御、操作可能なARIA構造を実装する", async () => {
+  const [component, visuals, css] = await Promise.all([
+    readFile(new URL("app/components/FlashSpecialExhibitRoom.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/FlashVisuals.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+
+  assert.doesNotMatch(css, /var\(--variant\)[^;\n]*\s%\s[234]/);
+  assert.doesNotMatch(css, /var\(--i\)[^;\n]*\s%\s[234]/);
+  assert.match(css, /\.flashVisual-logo\[data-variant="1"\]/);
+  assert.match(css, /\.flashVisual-mask\[data-variant="1"\]/);
+  assert.match(css, /\.flashVisual-burst\[data-variant="1"\]/);
+
+  assert.match(component, /const runtimeActive = open && pageVisible && playing && !reduced/);
+  assert.match(component, /const active = categoryActive && visible && globalPlaying && localPlaying && !reduced/);
+  assert.match(component, /CONTINUOUS_INTERACTIVE_VISUALS/);
+  assert.match(component, /visibilitychange/);
+  assert.match(component, /aria-pressed=\{!localPlaying\}/);
+  assert.match(css, /\.flashVisual-sprite\[data-running="true"\]/);
+  assert.match(css, /\.weatherVisual\[data-running="true"\]/);
+  assert.match(css, /\.introVisual\[data-running="false"\]/);
+
+  assert.match(visuals, /const \[selectedWeather, setSelectedWeather\]/);
+  assert.match(visuals, /const weatherNames = \["雨", "雪", "炎"\]/);
+  assert.match(visuals, /\(weather \+ 1\) % weatherNames\.length/);
+  assert.match(visuals, /\[12, 24, 30, 60\]\.map/);
+  assert.match(visuals, /const \[fpsPlaying, setFpsPlaying\]/);
+  assert.match(css, /steps\(12,end\)/);
+  assert.match(css, /steps\(24,end\)/);
+  assert.match(css, /steps\(30,end\)/);
+  assert.match(css, /steps\(60,end\)/);
+
+  assert.match(visuals, /function ShooterVisual/);
+  assert.match(visuals, /className=\{`shooterTarget/);
+  assert.match(visuals, /setScore\(\(current\) => current \+ 100\)/);
+  assert.match(visuals, /const reset = \(\) => \{ setTargets\(initialTargets\); setScore\(0\); \}/);
+  assert.doesNotMatch(visuals, /shooterVisual[^\n]*onClick/);
+
+  for (const control of [">START<", ">SKIP<", ">ENTER<", "左の部屋へ移動", "右の部屋へ移動", "SELECTED FRAME", "オニオンスキン"]) {
+    assert.match(visuals, new RegExp(control));
+  }
+  assert.match(visuals, /event\.key === "Escape"/);
+  assert.match(visuals, /aria-current=\{currentSlide === index/);
+  assert.match(visuals, /aria-expanded=\{menuOpen\}/);
+  assert.match(visuals, /tabIndex=\{menuOpen \? 0 : -1\}/);
+  assert.match(visuals, /getBoundingClientRect/);
+  assert.match(visuals, /Math\.atan2/);
+  assert.match(visuals, /Math\.cos\(angle\) \* 13/);
+
+  assert.doesNotMatch(visuals, /role="img"/);
+  assert.match(visuals, /role="group"/);
+  assert.match(visuals, /ResizeObserver/);
+  assert.match(visuals, /devicePixelRatio/);
+  assert.match(visuals, /requestAnimationFrame/);
+  assert.match(visuals, /cancelAnimationFrame/);
 });
 
 test("MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモを書き出す", async () => {
