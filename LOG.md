@@ -1,5 +1,36 @@
 # Loading Museum 作業ログ
 
+## 2026-08-02 — PR #14 FlashバナーCTAの安全な発光強調
+
+- 対象は「点滅CTAと価格の飛び込み」展示だけとし、18カテゴリ・54展示、他の専用コンポーネント、レイアウトは変更しなかった。
+
+### 問題と修正
+
+- 旧`ad-cta`はCTAが下から登場するものの、唯一の影が透明で、展示名にある「点滅」が実質的に視認できなかった。
+- 7秒タイムラインのCTA登場後、`70%`と`78%`で2回だけ安全に強調するよう変更した。表示中のopacityは1のまま保ち、`scale(1.06)`、`brightness(1.35)`、白と黄色の実色`box-shadow`で発光させる。
+- `74%`、`82%`で通常状態へ戻し、`92%`まで完成状態を維持する。高速なopacity反転、常時点滅、3回以上の反復は使用しない。
+- 価格は従来の奥から飛び込む動きを維持し、`40%`で`scale(1.08)`、`brightness(1.28)`、弱いtext-shadowを1回だけ加え、`45%`で通常状態へ戻す。CTAより回数と光量を抑えた。
+- `.adCta:focus-visible`へ白い3px outlineを追加し、box-shadowが変化している最中もキーボードフォーカスを識別できるようにした。CTAはHTML buttonのままで、外部遷移しない。
+- 展示説明を、最後にCTAが短く2回だけ発光する内容へ更新した。アクセシビリティ説明にも、高速・常時点滅を使わず、reduced motionでは完成状態を静止表示することを明記した。
+
+### reduced motion・停止制御
+
+- `prefers-reduced-motion: reduce`では価格とCTAのanimationを`none !important`とし、opacity 1、transform／filter／box-shadowなしの完成状態を明示した。商品、コピー、限定ラベルも既存規則により完成状態で表示され、CTAは操作可能なまま残る。
+- 通常アニメーションは既存の`data-running="true"`セレクタだけに適用する。個別停止の実機確認では`data-running="false"`となり、価格とCTAがopacity 1、transform／filter／box-shadowなしの完成状態へ戻った。全体停止、画面外、カテゴリ変更、閉室、タブ非表示は同じ既存`active`経路を利用する。
+
+### テストと実機確認
+
+- 波括弧を追跡する`readCssBlock`をテストへ追加し、`ad-cta`と`ad-price`のキーフレーム本体を構造的に検査した。
+- CTAの強調点が70%／78%の2回だけであること、表示区間でopacity 0へ戻らないこと、scale／brightness／実色box-shadow、短い強調区間、価格の1回だけの弱い強調、focus-visible、button維持、data-running限定、reduced motion完成状態を検査した。
+- 実行コマンド: `node --test tests/rendered-html.test.mjs`、`npm run lint`、`npx tsc --noEmit`、`npm run check`、`npm run build`。
+- `npm run check`: ESLint、TypeScript、静的build、Nodeテスト16件がすべて成功。
+- `npm run build`: 成功。`/`と`/_not-found`を静的生成した。
+- ブラウザの7秒時系列採取では、商品→コピー→価格→限定ラベル→CTAの順を確認した。CTAのbrightnessは2つの局所ピークと間の低下、価格は1つのピークだけを計測し、CTAの実色外周光も確認した。
+- デスクトップ: 発光時も`VIEW DEMO`が読め、クリック後に`DEMO CLICKED — 外部遷移はありません`を表示した。個別停止後もクリック結果と完成状態を維持し、エラーoverlayはなかった。
+- 1000px: 検証用同一オリジンiframeで2列表示を確認した。390×844: 1列表示、価格・限定ラベル・CTAの非重複、CTAクリック、停止完成状態を確認した。表示範囲内に横方向の欠けはなかった。
+- `docs/screenshots/flash-banner-desktop.png`をCTA発光時のデスクトップ画像として追加した。
+- OS設定を切り替えたreduced motion実機確認は未実施。メディアクエリの完成状態をCSS構造テストと通常停止時の計算済みスタイルで確認した。
+
 ## 2026-08-02 — PR #14 最終レビュー対応
 
 - 対象はレビューに残った3点だけとし、18カテゴリ・54展示、既存デザイン、前回追加した専用展示を維持した。

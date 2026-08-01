@@ -5,6 +5,19 @@ import test from "node:test";
 const projectRoot = new URL("../", import.meta.url);
 const outputRoot = new URL("../out/", import.meta.url);
 
+function readCssBlock(css, marker) {
+  const markerIndex = css.indexOf(marker);
+  assert.notEqual(markerIndex, -1, `${marker} が見つかりません`);
+  const openIndex = css.indexOf("{", markerIndex);
+  let depth = 0;
+  for (let index = openIndex; index < css.length; index += 1) {
+    if (css[index] === "{") depth += 1;
+    if (css[index] === "}") depth -= 1;
+    if (depth === 0) return css.slice(openIndex + 1, index);
+  }
+  assert.fail(`${marker} の閉じ括弧が見つかりません`);
+}
+
 test("GitHub Pages用の静的HTMLへ9種類の展示を書き出す", async () => {
   const html = await readFile(new URL("index.html", outputRoot), "utf8");
 
@@ -378,6 +391,38 @@ test("再検討した9展示と現代Web継承比較を専用実装にする", a
   assert.match(refined, /context\.suspend/);
   assert.match(refined, /context\.close/);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.bannerCtaVisual/);
+});
+
+test("FlashバナーのCTAを安全に2回強調し、価格とreduced motionを調整する", async () => {
+  const [data, refined, css] = await Promise.all([
+    readFile(new URL("app/data/flashExhibits.ts", projectRoot), "utf8"),
+    readFile(new URL("app/components/FlashRefinedVisuals.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+  const ctaFrames = readCssBlock(css, "@keyframes ad-cta");
+  const priceFrames = readCssBlock(css, "@keyframes ad-price");
+
+  assert.match(data, /title: "点滅CTAと価格の飛び込み"/);
+  assert.match(data, /CTAが短く2回だけ発光/);
+  assert.match(data, /高速な点滅や常時点滅は使わず/);
+  assert.match(refined, /<button type="button" className="adCta"/);
+  assert.match(css, /\.adCta:focus-visible\s*\{[^}]*outline:/);
+  assert.match(css, /\.bannerCtaVisual\[data-running="true"\] \.adCta\s*\{\s*animation: ad-cta 7s/);
+  assert.match(css, /\.bannerCtaVisual\[data-running="true"\] \.adPrice\s*\{\s*animation: ad-price 7s/);
+
+  assert.match(ctaFrames, /70%,78%\s*\{[^}]*opacity: 1;[^}]*scale\(1\.06\)[^}]*brightness\(1\.35\)[^}]*box-shadow: 0 0 0 5px rgb\(255 255 255 \/ 50%\),0 0 18px rgb\(255 216 78 \/ 70%\)/);
+  assert.match(ctaFrames, /74%,82%,92%\s*\{[^}]*opacity: 1;[^}]*scale\(1\)[^}]*brightness\(1\)/);
+  assert.doesNotMatch(ctaFrames, /(?:70%|74%|78%|82%|92%)[^{]*\{[^}]*opacity: 0/);
+  const ctaPulseSelector = ctaFrames.match(/(70%,78%)\s*\{/)?.[1] ?? "";
+  const ctaPulsePoints = ctaPulseSelector.split(",").filter(Boolean).map((value) => Number(value.replace("%", "")));
+  assert.deepEqual(ctaPulsePoints, [70, 78]);
+  assert.ok(Math.max(...ctaPulsePoints) - Math.min(...ctaPulsePoints) <= 10);
+
+  assert.match(priceFrames, /40%\s*\{[^}]*scale\(1\.08\)[^}]*brightness\(1\.28\)[^}]*text-shadow:[^}]*48%/);
+  assert.match(priceFrames, /45%,92%\s*\{[^}]*transform: none;[^}]*brightness\(1\)/);
+  assert.equal((priceFrames.match(/brightness\(1\.28\)/g) ?? []).length, 1);
+
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.bannerCtaVisual \.adPrice,\.bannerCtaVisual \.adCta\s*\{[^}]*animation: none !important;[^}]*opacity: 1;[^}]*transform: none;[^}]*filter: none;[^}]*box-shadow: none;/);
 });
 
 test("Flash専用展示の状態遷移、停止制御、操作可能なARIA構造を実装する", async () => {
