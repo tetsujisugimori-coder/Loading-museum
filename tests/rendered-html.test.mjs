@@ -264,7 +264,15 @@ test("再検討した9展示と現代Web継承比較を専用実装にする", a
   }
   assert.match(visuals, /const Dedicated = refinedVisuals/);
 
-  assert.equal((refined.match(/\{ label: "[A-Z]+", headX:/g) ?? []).length, 8);
+  const characterPoseBlock = refined.match(/export const characterPoses: Pose\[\] = \[([\s\S]*?)\n\];/)?.[1] ?? "";
+  const runPoseBlock = refined.match(/export const runPoses: Pose\[\] = \[([\s\S]*?)\n\];/)?.[1] ?? "";
+  const readPoseNumbers = (block) => [...block.matchAll(/\{ label: "([^"]+)", headX: (-?\d+), headY: (-?\d+), body: (-?\d+), frontArm: (-?\d+), backArm: (-?\d+), frontLeg: (-?\d+), backLeg: (-?\d+), lift: (-?\d+), turn: (-?\d+) \}/g)].map((match) => ({
+    label: match[1], headX: Number(match[2]), headY: Number(match[3]), body: Number(match[4]), frontArm: Number(match[5]), backArm: Number(match[6]), frontLeg: Number(match[7]), backLeg: Number(match[8]), lift: Number(match[9]), turn: Number(match[10]),
+  }));
+  const characterPoseData = readPoseNumbers(characterPoseBlock);
+  const runPoseData = readPoseNumbers(runPoseBlock);
+  assert.equal(characterPoseData.length, 8);
+  assert.equal(runPoseData.length, 8);
   assert.match(refined, /FRAME \{currentFrame \+ 1\} \/ 8/);
   assert.match(refined, /前のフレーム/);
   assert.match(refined, /次のフレーム/);
@@ -294,16 +302,46 @@ test("再検討した9展示と現代Web継承比較を専用実装にする", a
   assert.match(css, /\.bannerCtaVisual\[data-running="true"\]/);
 
   assert.match(refined, /function SpriteRunVisual/);
+  assert.match(refined, /export const runPoses: Pose\[\]/);
+  assert.doesNotMatch(runPoseBlock, /TURN|FALL|LOOK/);
+  assert.match(refined, /PoseFigure pose=\{runPoses\[currentFrame\]\}/);
+  assert.match(refined, /\(frame \+ 1\) % runPoses\.length/);
+  assert.equal(new Set(runPoseData.map((pose) => pose.frontArm)).size, 8);
+  assert.equal(new Set(runPoseData.map((pose) => pose.backArm)).size, 8);
+  assert.equal(new Set(runPoseData.map((pose) => pose.frontLeg)).size, 8);
+  assert.equal(new Set(runPoseData.map((pose) => pose.backLeg)).size, 8);
+  assert.equal(runPoseData[0].label, "CONTACT LEFT");
+  assert.equal(runPoseData.at(-1).label, "UP RIGHT");
+  assert.ok(Math.abs(runPoseData[0].frontArm - runPoseData.at(-1).frontArm) <= 20);
+  assert.ok(Math.abs(runPoseData[0].frontLeg - runPoseData.at(-1).frontLeg) <= 10);
   assert.match(refined, /spriteFar/);
   assert.match(refined, /spriteFront/);
   assert.match(refined, /走行速度/);
   assert.match(refined, /spriteSpeeds\[speed\]/);
+  assert.match(css, /\.spriteRunVisual\[data-running="false"\] \.spriteFar,[\s\S]*animation-play-state: paused/);
+
+  assert.match(refined, /<span className="refinedFrameOutput" aria-hidden="true">FRAME/);
+  assert.doesNotMatch(refined, /className="refinedFrameOutput"[^>]*aria-live/);
+  assert.match(refined, /フレーム\$\{selected \+ 1\}.*を選択しました/);
+  assert.match(refined, /自動再生を開始しました/);
+  assert.match(refined, /自動再生を停止しました/);
+  assert.match(refined, /<span className="spriteFrameOutput" aria-hidden="true">RUN FRAME/);
+  assert.doesNotMatch(refined, /className="spriteFrameOutput"[^>]*aria-live/);
+  assert.match(refined, /走行速度を\$\{/);
+  assert.ok((refined.match(/className="refinedInteractionStatus" role="status" aria-live="polite"/g) ?? []).length >= 2);
 
   assert.match(refined, /type Damage = \{ id: number/);
   assert.match(refined, /setDamages\(\(items\) => \[\.\.\.items, damage\]\)/);
-  assert.match(refined, /resetTimer\.current = window\.setTimeout\([\s\S]*setCombo\(0\); \}, 1700\)/);
+  assert.match(refined, /resetTimer\.current = window\.setTimeout\([\s\S]*setCombo\(0\); resetTimer\.current = null; \}, 1700\)/);
   assert.match(refined, /ULTRA 10 COMBO/);
   assert.match(refined, /POWER 5 COMBO/);
+  assert.match(refined, /function ComboDamageVisual\(\{ active, reduced \}/);
+  assert.match(refined, /const clearAllTimers = useCallback/);
+  assert.match(refined, /comboRef\.current = 0;[\s\S]*setCombo\(0\);[\s\S]*setDamages\(\[\]\);/);
+  assert.match(refined, /removalTimers\.current\.forEach\(\(timer\) => window\.clearTimeout\(timer\)\)/);
+  assert.match(refined, /useEffect\(\(\) => \(\) => clearAllTimers\(\), \[clearAllTimers\]\)/);
+  assert.match(refined, /if \(!active\) return <ComboDamageStage active=\{false\} reduced=\{reduced\} combo=\{0\} damages=\{\[\]\}/);
+  assert.match(refined, /onClick=\{onHit\} disabled=\{!active\}/);
   assert.doesNotMatch(refined, /score \* 120 \|\| 120/);
 
   assert.match(refined, /function seededRandom/);

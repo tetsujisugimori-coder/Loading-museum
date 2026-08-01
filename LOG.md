@@ -1,5 +1,46 @@
 # Loading Museum 作業ログ
 
+## 2026-08-02 — PR #14 最終レビュー対応
+
+- 対象はレビューに残った3点だけとし、18カテゴリ・54展示、既存デザイン、前回追加した専用展示を維持した。
+
+### スプライト走行
+
+- フレーム・バイ・フレーム用の`characterPoses`から走行展示を分離し、走行専用の`runPoses`を8フレーム追加した。
+- `CONTACT LEFT → DOWN LEFT → PASS LEFT → UP LEFT → CONTACT RIGHT → DOWN RIGHT → PASS RIGHT → UP RIGHT`の循環とし、左右の腕・脚、接地側を交互にした。頭・胴の傾きと上下動は小さく保ち、TURN、FALL、LOOKなど非走行姿勢は含めない。
+- 走者を中央付近へ固定する既存構成、遠景・前景の速度差、低速・標準・高速切替を維持した。
+- 実機確認で、CSSの`animation` shorthandが初期の`animation-play-state: paused`を上書きすることを発見した。`data-running="false"`の明示規則を追加し、個別停止時に走行フレーム、遠景、前景がすべて停止するようにした。
+
+### aria-live
+
+- 約150msで更新されるフレーム・バイ・フレーム表示と、90〜230msで更新される走行フレーム表示を、`aria-hidden="true"`の視覚専用`span`へ変更した。`output`の暗黙statusも避け、連続フレームをライブ通知しない。
+- フレーム選択、前後移動、自動再生開始・停止は、別の`role="status" aria-live="polite"`領域へ操作時だけ通知する。
+- スプライト走行は低速・標準・高速の選択時だけ、同じ専用statusへ変更結果を通知する。頻繁に変化するフレーム番号とstatusを分離した。
+
+### コンボ停止とタイマーcleanup
+
+- `ComboDamageVisual`が`active`を使用し、非アクティブ時は稼働中の子コンポーネントをアンマウントして、コンボ0、ダメージ配列空、ゲージ0の停止表示へ切り替える。
+- コンボリセットtimeoutと全ダメージ削除timeoutを`clearAllTimers`へ集約し、リセット操作とアンマウントcleanupから共通利用する。
+- 全体停止、画面外、カテゴリ変更、展示室終了、タブ非表示、reduced motionで`active=false`になるとcleanupが走り、再開時は初期状態から始まる。停止中のHITとリセットbuttonはdisabledになる。
+
+### テストと実機確認
+
+- テストを更新し、`runPoses`が8フレームであること、非走行ラベルを含まないこと、四肢角度の変化、末尾から先頭へ接続可能な角度差、SpriteRunVisualでの専用データ利用を検査した。
+- 視覚フレーム表示の`aria-hidden`、専用status、手動選択・再生・速度変更の通知、自動表示に`aria-live`がないことを検査した。
+- コンボの`active`分岐、停止時の初期値、HIT無効化、共通タイマー破棄、アンマウントcleanupを検査した。
+- 実行コマンド: `node --test tests/rendered-html.test.mjs`、`npm run lint`、`npx tsc --noEmit`、`npm run check`、`npm run build`。
+- `npm run check`: ESLint、TypeScript、静的build、Nodeテスト15件がすべて成功。
+- `npm run build`: 成功。`/`と`/_not-found`を静的生成した。
+- ブラウザ（1487pxデスクトップ）: 8段階走行、四肢角度、低速／高速切替、速度status、個別停止中のフレーム固定と背景`paused`を確認した。
+- フレーム展示: 視覚番号を維持しながらライブ属性がなく、手動選択後だけ「フレームNを選択しました」とstatusへ入ることを確認した。
+- コンボ展示: HITで数字とゲージが出現し、全体停止直後にダメージ0、ゲージ0、HIT disabledとなることを確認した。カテゴリ変更後と閉室1.8秒後も初期状態で、エラーoverlayはなかった。
+- 1000pxと390×844は前回確認済みのグリッド規則を維持し、今回追加したstatusは視覚的にクリップされ、disabledスタイルもカード内に収まることをCSSとビルドで再確認した。このブラウザセッションではviewport変更APIが利用できなかったため、実幅の再操作は未実施。
+
+### 未実装事項
+
+- OS設定そのものを切り替えたreduced motionの再確認は未実施。既存の`active`伝播、メディアクエリ、Nodeテストで停止経路を確認した。
+- スクリーンリーダー実機での音声読み上げは未実施。ブラウザのアクセシビリティ構造とDOM属性で、連続表示がライブ領域にならないことを確認した。
+
 ## 2026-08-02 — PR #14 代表9展示・現代Web継承比較の再設計
 
 - 作業ブランチ: `agent/flash-animation-special-exhibit`

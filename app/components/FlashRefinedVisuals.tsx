@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -40,6 +41,17 @@ export const characterPoses: Pose[] = [
   { label: "LOOK", headX: 12, headY: 0, body: 0, frontArm: -20, backArm: 24, frontLeg: 8, backLeg: -10, lift: 0, turn: 0 },
 ];
 
+export const runPoses: Pose[] = [
+  { label: "CONTACT LEFT", headX: 0, headY: 0, body: 2, frontArm: -42, backArm: 40, frontLeg: 40, backLeg: -48, lift: 0, turn: 0 },
+  { label: "DOWN LEFT", headX: 1, headY: 2, body: 3, frontArm: -28, backArm: 26, frontLeg: 22, backLeg: -34, lift: 2, turn: 0 },
+  { label: "PASS LEFT", headX: 0, headY: 1, body: 1, frontArm: -5, backArm: 8, frontLeg: -8, backLeg: 12, lift: 0, turn: 0 },
+  { label: "UP LEFT", headX: -1, headY: -1, body: -1, frontArm: 25, backArm: -28, frontLeg: -36, backLeg: 32, lift: -2, turn: 0 },
+  { label: "CONTACT RIGHT", headX: 0, headY: 0, body: 2, frontArm: 42, backArm: -40, frontLeg: -48, backLeg: 40, lift: 0, turn: 0 },
+  { label: "DOWN RIGHT", headX: 1, headY: 2, body: 3, frontArm: 28, backArm: -26, frontLeg: -34, backLeg: 22, lift: 2, turn: 0 },
+  { label: "PASS RIGHT", headX: 0, headY: 1, body: 1, frontArm: 5, backArm: -8, frontLeg: 12, backLeg: -8, lift: 0, turn: 0 },
+  { label: "UP RIGHT", headX: -1, headY: -1, body: -1, frontArm: -25, backArm: 28, frontLeg: 32, backLeg: -36, lift: -2, turn: 0 },
+];
+
 function poseStyle(pose: Pose): CSSProperties {
   return {
     "--pose-head-x": `${pose.headX}px`,
@@ -70,23 +82,37 @@ function PoseFigure({ pose, className = "" }: { pose: Pose; className?: string }
 export function FrameByFrameVisual({ active, reduced }: RefinedVisualProps) {
   const [currentFrame, setCurrentFrame] = useState(0);
   const [playing, setPlaying] = useState(true);
+  const [announcement, setAnnouncement] = useState("");
   const running = active && playing && !reduced;
   useEffect(() => {
     if (!running) return;
     const timer = window.setInterval(() => setCurrentFrame((frame) => (frame + 1) % characterPoses.length), 150);
     return () => window.clearInterval(timer);
   }, [running]);
-  const selectFrame = (frame: number) => { setPlaying(false); setCurrentFrame((frame + characterPoses.length) % characterPoses.length); };
+  const selectFrame = (frame: number) => {
+    const selected = (frame + characterPoses.length) % characterPoses.length;
+    setPlaying(false);
+    setCurrentFrame(selected);
+    setAnnouncement(`フレーム${selected + 1}「${characterPoses[selected].label}」を選択しました`);
+  };
+  const togglePlaying = () => {
+    setPlaying((value) => {
+      const next = !value;
+      setAnnouncement(next ? "自動再生を開始しました" : "自動再生を停止しました");
+      return next;
+    });
+  };
   return (
     <div className="flashVisual refinedFrameVisual" data-running={running} data-reduced={reduced} role="group" aria-label="8枚の異なる姿勢で跳躍と振り向きを描くフレーム・バイ・フレーム展示">
       <div className="refinedFrameStage"><PoseFigure pose={characterPoses[currentFrame]} /><span className="poseGround" /></div>
-      <output className="refinedFrameOutput" aria-live="polite">FRAME {currentFrame + 1} / 8 — {characterPoses[currentFrame].label}</output>
+      <span className="refinedFrameOutput" aria-hidden="true">FRAME {currentFrame + 1} / 8 — {characterPoses[currentFrame].label}</span>
+      <p className="refinedInteractionStatus" role="status" aria-live="polite">{announcement}</p>
       <div className="refinedFramePicker" aria-label="手動フレーム選択">
         {characterPoses.map((pose, index) => <button key={pose.label} type="button" aria-current={currentFrame === index ? "true" : undefined} disabled={running} onClick={() => selectFrame(index)}>{index + 1}</button>)}
       </div>
       <div className="refinedFrameControls">
         <button type="button" onClick={() => selectFrame(currentFrame - 1)} aria-label="前のフレーム">← 前</button>
-        <button type="button" aria-pressed={!playing} onClick={() => setPlaying((value) => !value)}>{playing ? "手動で停止" : "自動再生"}</button>
+        <button type="button" aria-pressed={!playing} onClick={togglePlaying}>{playing ? "手動で停止" : "自動再生"}</button>
         <button type="button" onClick={() => selectFrame(currentFrame + 1)} aria-label="次のフレーム">次 →</button>
       </div>
     </div>
@@ -250,32 +276,68 @@ const spriteSpeeds = { slow: 230, normal: 145, fast: 90 } as const;
 export function SpriteRunVisual({ active, reduced }: RefinedVisualProps) {
   const [currentFrame, setCurrentFrame] = useState(0);
   const [speed, setSpeed] = useState<keyof typeof spriteSpeeds>("normal");
+  const [announcement, setAnnouncement] = useState("");
   const running = active && !reduced;
   useEffect(() => {
     if (!running) return;
-    const timer = window.setInterval(() => setCurrentFrame((frame) => (frame + 1) % characterPoses.length), spriteSpeeds[speed]);
+    const timer = window.setInterval(() => setCurrentFrame((frame) => (frame + 1) % runPoses.length), spriteSpeeds[speed]);
     return () => window.clearInterval(timer);
   }, [running, speed]);
   return (
     <div className="flashVisual spriteRunVisual" data-running={running} data-speed={speed} role="group" aria-label="8姿勢の走者を固定し遠景と前景を逆向きへ流すスプライト走行">
       <div className="spriteSky" aria-hidden="true" /><div className="spriteFar" aria-hidden="true" /><div className="spriteFront" aria-hidden="true" />
-      <PoseFigure pose={characterPoses[currentFrame]} className="spriteRunner" />
-      <output aria-live="polite">RUN FRAME {currentFrame + 1} / 8 — {characterPoses[currentFrame].label}</output>
-      <label>走行速度<select value={speed} onChange={(event) => setSpeed(event.target.value as keyof typeof spriteSpeeds)}><option value="slow">低速</option><option value="normal">標準</option><option value="fast">高速</option></select></label>
+      <PoseFigure pose={runPoses[currentFrame]} className="spriteRunner" />
+      <span className="spriteFrameOutput" aria-hidden="true">RUN FRAME {currentFrame + 1} / {runPoses.length} — {runPoses[currentFrame].label}</span>
+      <p className="refinedInteractionStatus" role="status" aria-live="polite">{announcement}</p>
+      <label>走行速度<select value={speed} onChange={(event) => { const next = event.target.value as keyof typeof spriteSpeeds; setSpeed(next); setAnnouncement(`走行速度を${{ slow: "低速", normal: "標準", fast: "高速" }[next]}へ変更しました`); }}><option value="slow">低速</option><option value="normal">標準</option><option value="fast">高速</option></select></label>
     </div>
   );
 }
 
 type Damage = { id: number; value: number; x: number; y: number; angle: number; size: number };
-export function ComboDamageVisual({ reduced }: RefinedVisualProps) {
+type ComboDamageStageProps = {
+  active: boolean;
+  reduced: boolean;
+  combo: number;
+  damages: Damage[];
+  onHit?: () => void;
+  onReset?: () => void;
+};
+
+function ComboDamageStage({ active, reduced, combo, damages, onHit, onReset }: ComboDamageStageProps) {
+  const milestone = combo >= 10 ? "ULTRA 10 COMBO" : combo >= 5 ? "POWER 5 COMBO" : "";
+  return (
+    <div className="flashVisual comboDamageVisual" data-active={active} data-reduced={reduced} data-combo-tier={combo >= 10 ? 3 : combo >= 5 ? 2 : combo > 0 ? 1 : 0} role="group" aria-label="HITごとに一意のダメージ数字を生成するコンボ展示">
+      <div className="damageField" aria-hidden="true">{damages.map((damage) => <i key={damage.id} style={{ left: `${damage.x}%`, top: `${damage.y}%`, fontSize: `${damage.size}px`, transform: `rotate(${damage.angle}deg)` }}>{damage.value}</i>)}</div>
+      <div className="comboGauge" aria-hidden="true"><i style={{ width: `${Math.min(100, combo * 10)}%` }} /></div>
+      {combo > 0 ? <output aria-live="polite"><b>{combo} COMBO</b>{milestone ? <strong>{milestone}</strong> : null}</output> : <span className="comboIdle">{active ? "PRESS HIT TO START" : "PAUSED"}</span>}
+      <div className="comboControls"><button type="button" onClick={onHit} disabled={!active}>HIT</button><button type="button" onClick={onReset} disabled={!active}>リセット</button></div>
+    </div>
+  );
+}
+
+function ActiveComboDamageVisual({ reduced }: Pick<RefinedVisualProps, "reduced">) {
   const [combo, setCombo] = useState(0);
   const [damages, setDamages] = useState<Damage[]>([]);
   const nextId = useRef(1);
   const comboRef = useRef(0);
   const resetTimer = useRef<number | null>(null);
   const removalTimers = useRef(new Set<number>());
-  const reset = () => { comboRef.current = 0; setCombo(0); setDamages([]); if (resetTimer.current !== null) window.clearTimeout(resetTimer.current); removalTimers.current.forEach(window.clearTimeout); removalTimers.current.clear(); };
-  useEffect(() => () => { if (resetTimer.current !== null) window.clearTimeout(resetTimer.current); removalTimers.current.forEach(window.clearTimeout); }, []);
+  const clearAllTimers = useCallback(() => {
+    if (resetTimer.current !== null) {
+      window.clearTimeout(resetTimer.current);
+      resetTimer.current = null;
+    }
+    removalTimers.current.forEach((timer) => window.clearTimeout(timer));
+    removalTimers.current.clear();
+  }, []);
+  const reset = useCallback(() => {
+    clearAllTimers();
+    comboRef.current = 0;
+    setCombo(0);
+    setDamages([]);
+  }, [clearAllTimers]);
+  useEffect(() => () => clearAllTimers(), [clearAllTimers]);
   const hit = () => {
     const id = nextId.current++;
     const nextCombo = comboRef.current + 1;
@@ -286,17 +348,14 @@ export function ComboDamageVisual({ reduced }: RefinedVisualProps) {
     const removal = window.setTimeout(() => { setDamages((items) => items.filter((item) => item.id !== id)); removalTimers.current.delete(removal); }, 1050);
     removalTimers.current.add(removal);
     if (resetTimer.current !== null) window.clearTimeout(resetTimer.current);
-    resetTimer.current = window.setTimeout(() => { comboRef.current = 0; setCombo(0); }, 1700);
+    resetTimer.current = window.setTimeout(() => { comboRef.current = 0; setCombo(0); resetTimer.current = null; }, 1700);
   };
-  const milestone = combo >= 10 ? "ULTRA 10 COMBO" : combo >= 5 ? "POWER 5 COMBO" : "";
-  return (
-    <div className="flashVisual comboDamageVisual" data-reduced={reduced} data-combo-tier={combo >= 10 ? 3 : combo >= 5 ? 2 : combo > 0 ? 1 : 0} role="group" aria-label="HITごとに一意のダメージ数字を生成するコンボ展示">
-      <div className="damageField" aria-hidden="true">{damages.map((damage) => <i key={damage.id} style={{ left: `${damage.x}%`, top: `${damage.y}%`, fontSize: `${damage.size}px`, transform: `rotate(${damage.angle}deg)` }}>{damage.value}</i>)}</div>
-      <div className="comboGauge" aria-hidden="true"><i style={{ width: `${Math.min(100, combo * 10)}%` }} /></div>
-      {combo > 0 ? <output aria-live="polite"><b>{combo} COMBO</b>{milestone ? <strong>{milestone}</strong> : null}</output> : <span className="comboIdle">PRESS HIT TO START</span>}
-      <div className="comboControls"><button type="button" onClick={hit}>HIT</button><button type="button" onClick={reset}>リセット</button></div>
-    </div>
-  );
+  return <ComboDamageStage active reduced={reduced} combo={combo} damages={damages} onHit={hit} onReset={reset} />;
+}
+
+export function ComboDamageVisual({ active, reduced }: RefinedVisualProps) {
+  if (!active) return <ComboDamageStage active={false} reduced={reduced} combo={0} damages={[]} />;
+  return <ActiveComboDamageVisual reduced={reduced} />;
 }
 
 function seededRandom(seed: number) {
