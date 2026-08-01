@@ -75,7 +75,7 @@ test("カーソル展示室と8種類の体験展示を書き出す", async () =
   assert.match(html, /ローディング展示室を見る/);
   assert.match(html, /スクロール展示室 \/ 通知・警告展示室 — 準備中/);
   assert.equal((html.match(/class="arrowSelectionTarget"/g) ?? []).length, 3);
-  assert.equal((html.match(/aria-pressed="false"/g) ?? []).length, 3);
+  assert.equal((html.match(/class="arrowSelectionTarget"[^>]*aria-pressed="false"/g) ?? []).length, 3);
   assert.match(html, /FILE/);
   assert.match(html, /WINDOW/);
   assert.match(html, /FOLDER/);
@@ -164,17 +164,17 @@ test("カーソル展示のデータ、Pointer Events、性能とアクセシビ
   assert.match(data, /Reactのローカルstateで3対象の選択状態と結果表示を切り替えています/);
 });
 
-test("最新mainとカーソル展示を合わせた展示室・展示件数を表示する", async () => {
+test("Flash特別展示室を加えた展示室・展示件数を表示する", async () => {
   const [html, page] = await Promise.all([
     readFile(new URL("index.html", outputRoot), "utf8"),
     readFile(new URL("app/page.tsx", projectRoot), "utf8"),
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /4 ROOMS \/ 48 OBJECTS/);
+  assert.match(normalizedHtml, /5 ROOMS \/ 102 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
   assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 4);
-  assert.equal((html.match(/aria-expanded="false"/g) ?? []).length, 4);
+  assert.equal((html.match(/aria-expanded="false"/g) ?? []).length, 5);
   assert.equal(
     (html.match(/class="exhibit"/g) ?? []).length
       + (html.match(/class="dosExhibit"/g) ?? []).length
@@ -183,9 +183,62 @@ test("最新mainとカーソル展示を合わせた展示室・展示件数を�
       + (html.match(/class="cursorExhibit"/g) ?? []).length,
     48,
   );
-  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 1/);
+  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 2/);
+  assert.match(page, /periodExhibitCount \+ flashExhibitCount/);
   assert.match(page, /exhibit\.kind === "vanished-os" \? exhibit\.loadingExhibits\.length : 1/);
   assert.doesNotMatch(page, /3 ROOMS \/ 30 OBJECTS/);
+});
+
+test("Flash特別展示室へ18カテゴリ・54展示と優先デモを実装する", async () => {
+  const [html, data, component, css] = await Promise.all([
+    readFile(new URL("index.html", outputRoot), "utf8"),
+    readFile(new URL("app/data/flashExhibits.ts", projectRoot), "utf8"),
+    readFile(new URL("app/components/FlashSpecialExhibitRoom.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+
+  assert.match(html, /Flash特別展示室/);
+  assert.match(html, /Flashは何を、どのように動かしたのか/);
+  assert.match(html.replaceAll("<!-- -->", ""), /18 CATEGORIES \/ 54 EXHIBITS/);
+  assert.match(html, /aria-controls="flash-special-exhibit-panel"/);
+  assert.match(html, /id="flash-special-exhibit-panel"[^>]*aria-hidden="true"[^>]*inert=""/);
+  assert.equal((data.match(/^  \{ \.\.\.common, id:/gm) ?? []).length, 54);
+  assert.equal((data.match(/^  \{ id: /gm) ?? []).length, 18);
+
+  for (const category of [
+    "基本アニメーション", "文字・ロゴ", "ベクター・図形変形", "マスク・画面転換",
+    "ボタン・UI", "マウス連動", "キャラクター", "擬似物理", "パーティクル",
+    "背景・空間表現", "擬似3D", "音連動", "Flashサイト演出", "バナー広告",
+    "ゲーム演出", "芸術・実験表現", "制作技法", "現代Web技術との比較",
+  ]) assert.match(data, new RegExp(category));
+
+  for (const title of [
+    "シェイプトゥイーン", "モーショントゥイーン", "慣性カーソル追従", "ロゴの分解・集合",
+    "円形マスク転換", "光粒子の噴出", "3Dカルーセル", "音楽ビジュアライザー",
+    "スキップ可能なフルスクリーンイントロ", "点滅CTAと価格の飛び込み",
+    "クリック・シューター", "12 / 24 / 30 / 60fps比較", "トゥイーン技法の比較",
+  ]) assert.match(data, new RegExp(title.replaceAll("/", "\\/")));
+
+  for (const field of ["flashTechnique", "modernTechnique", "interactionType", "reducedMotionFallback", "accessibilityNote"]) {
+    assert.match(data, new RegExp(`${field}:`));
+  }
+  assert.match(component, /IntersectionObserver/);
+  assert.match(component, /observer\.disconnect\(\)/);
+  assert.match(component, /window\.matchMedia\(REDUCED_MOTION_QUERY\)/);
+  assert.match(component, /removeEventListener\("change", update\)/);
+  assert.match(component, /new AudioContextClass\(\)/);
+  assert.match(component, /oscillator\.start\(\)/);
+  assert.doesNotMatch(component, /new Audio\(|autoplay/);
+  assert.match(component, /oscillator\.stop/);
+  assert.match(component, /context\.close/);
+  assert.match(component, /setPointerCapture/);
+  assert.match(component, /<canvas/);
+  assert.match(component, /すべて一時停止/);
+  assert.match(component, /JavaScript・CSS・SVG・Canvasなど現代のWeb技術で再現/);
+  assert.match(css, /\.flashExhibitGrid\s*\{[^}]*grid-template-columns: repeat\(3,/);
+  assert.match(css, /@media \(max-width: 650px\)[\s\S]*\.flashExhibitGrid\s*\{[^}]*grid-template-columns: 1fr/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.flashVisual/);
+  assert.match(css, /content-visibility: auto/);
 });
 
 test("MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモを書き出す", async () => {

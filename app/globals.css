@@ -3854,3 +3854,448 @@ footer {
     touch-action: none;
   }
 }
+
+/* Flash special exhibition ------------------------------------------------ */
+.flashRoom {
+  --flash-pink: #ff3ca6;
+  --flash-violet: #8e5cff;
+  --flash-yellow: #ffe45c;
+  --flash-blue: #41d9ff;
+  overflow: hidden;
+  border: 1px solid #51365f;
+  background: #080712;
+  box-shadow: inset 0 0 70px rgb(142 92 255 / 6%);
+}
+
+.flashRoomEntrance {
+  position: relative;
+  display: grid;
+  width: 100%;
+  min-height: 180px;
+  padding: 28px 32px;
+  overflow: hidden;
+  border: 0;
+  background:
+    radial-gradient(circle at 83% 48%, rgb(255 60 166 / 22%), transparent 23%),
+    linear-gradient(120deg, rgb(142 92 255 / 15%), transparent 46%),
+    repeating-linear-gradient(90deg, transparent 0 38px, rgb(65 217 255 / 3%) 39px 40px),
+    #090714;
+  color: #fff;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.flashRoomEntrance::before,
+.flashRoomEntrance::after {
+  position: absolute;
+  border: 1px solid rgb(65 217 255 / 35%);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.flashRoomEntrance::before {
+  top: -75px;
+  right: 70px;
+  width: 250px;
+  height: 250px;
+  box-shadow: 0 0 0 22px rgb(255 60 166 / 5%), 0 0 0 48px rgb(142 92 255 / 4%);
+  animation: flash-orbit 14s linear infinite;
+}
+
+.flashRoomEntrance::after {
+  top: 54px;
+  right: 167px;
+  width: 44px;
+  height: 44px;
+  border-color: var(--flash-yellow);
+  box-shadow: 0 0 24px var(--flash-pink);
+}
+
+.flashRoomEntrance:hover,
+.flashRoomEntrance:focus-visible {
+  background-color: #100a20;
+  outline: 2px solid var(--flash-blue);
+  outline-offset: -4px;
+}
+
+.flashEntranceBadge,
+.flashEntranceMeta {
+  color: var(--flash-blue);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.flashEntranceTitle {
+  z-index: 1;
+  margin: 15px 0 6px;
+  font-size: clamp(28px, 4vw, 58px);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  text-shadow: 3px 3px 0 var(--flash-violet), 0 0 24px rgb(255 60 166 / 40%);
+}
+
+.flashEntrancePurpose {
+  color: #ccbfe0;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.flashEntranceMeta {
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  margin-top: 22px;
+  padding-top: 12px;
+  border-top: 1px solid #51365f;
+}
+
+.flashEntranceMeta b { color: var(--flash-yellow); }
+
+.flashRoomPanel {
+  display: none;
+}
+
+.flashRoom[data-open="true"] .flashRoomPanel {
+  display: block;
+}
+
+.flashRoomPanel > * { min-height: 0; }
+
+.flashRoomIntro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.5fr);
+  gap: 28px;
+  padding: 30px;
+  border-top: 1px solid #51365f;
+  border-bottom: 1px solid #2b2438;
+  background: linear-gradient(90deg, #0c0a18, #100b1a);
+}
+
+.flashRoomIntro h3,
+.flashCategorySection h3 {
+  margin: 12px 0;
+  color: #fff;
+  font-size: clamp(21px, 2.5vw, 36px);
+  letter-spacing: 0.04em;
+}
+
+.flashRoomIntro p,
+.flashCategorySection header p {
+  max-width: 76ch;
+  margin: 0;
+  color: #978aa9;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.flashMasterControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-content: center;
+}
+
+.flashMasterControls button,
+.flashMasterControls label,
+.flashCardControls button,
+.flashStageAction,
+.flashSafeExit,
+.flashStageControls button,
+.flashRoomCloseRow button {
+  min-height: 36px;
+  border: 1px solid #634675;
+  background: #171023;
+  color: #e8ddf2;
+  font: inherit;
+  font-size: 9px;
+  letter-spacing: 0.09em;
+  cursor: pointer;
+}
+
+.flashMasterControls button,
+.flashCardControls button,
+.flashStageAction,
+.flashSafeExit,
+.flashRoomCloseRow button { padding: 8px 12px; }
+.flashMasterControls button:hover,
+.flashCardControls button:hover,
+.flashRoomCloseRow button:hover { border-color: var(--flash-pink); color: #fff; }
+.flashMasterControls label { display: flex; align-items: center; gap: 8px; padding-left: 10px; }
+.flashMasterControls select { border: 0; background: #251635; color: #fff; font: inherit; }
+.flashMasterControls > span { width: 100%; color: #756982; font-size: 8px; }
+
+.flashCategoryNav {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1px;
+  padding: 1px;
+  background: #34273f;
+}
+
+.flashCategoryNav button {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: center;
+  min-height: 52px;
+  padding: 8px 10px;
+  border: 0;
+  background: #0e0b17;
+  color: #91849d;
+  font: inherit;
+  font-size: 9px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.flashCategoryNav button:hover,
+.flashCategoryNav button:focus-visible { background: #181022; color: #fff; outline: 1px solid var(--flash-blue); outline-offset: -2px; }
+.flashCategoryNav button[aria-pressed="true"] { background: linear-gradient(135deg, #271236, #121020); color: #fff; box-shadow: inset 3px 0 var(--flash-pink); }
+.flashCategoryNav button > span { color: var(--flash-blue); font-size: 8px; }
+.flashCategoryNav button > small { display: grid; width: 20px; height: 20px; place-items: center; border: 1px solid #4e385b; border-radius: 50%; color: var(--flash-yellow); }
+
+.flashCategorySection {
+  min-height: 670px;
+  padding: 30px;
+  background:
+    linear-gradient(rgb(142 92 255 / 3%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(142 92 255 / 3%) 1px, transparent 1px),
+    #080711;
+  background-size: 24px 24px;
+}
+
+.flashCategorySection > header { margin-bottom: 20px; }
+.flashCategorySection > header > span { color: var(--flash-pink); font-size: 9px; letter-spacing: 0.18em; }
+.flashExhibitGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+
+.flashExhibitCard {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #352740;
+  background: linear-gradient(150deg, rgb(23 16 35 / 97%), rgb(9 8 17 / 98%));
+  box-shadow: 0 14px 38px rgb(0 0 0 / 22%);
+  content-visibility: auto;
+  contain-intrinsic-size: 540px;
+}
+
+.flashCardTopline { display: flex; gap: 8px; justify-content: space-between; color: var(--flash-blue); font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; }
+.flashExhibitCard h4 { min-height: 2.5em; margin: 10px 0 7px; color: #fff; font-size: 16px; line-height: 1.25; }
+.flashExhibitCard > p { min-height: 3.7em; margin: 0 0 12px; color: #94889e; font-size: 9px; line-height: 1.55; }
+
+.flashVisual {
+  --mx: 50%;
+  --my: 50%;
+  --rx: -12deg;
+  --ry: 20deg;
+  position: relative;
+  height: 190px;
+  overflow: hidden;
+  border: 1px solid #42304e;
+  background: radial-gradient(circle at 50% 40%, #23113a, #080711 70%);
+  cursor: crosshair;
+  isolation: isolate;
+}
+
+.flashScene { position: absolute; inset: 0; display: grid; place-items: center; perspective: 500px; }
+.flashScene > b { color: white; font-size: 25px; letter-spacing: 0.15em; text-shadow: 0 0 16px var(--flash-pink); }
+.flashScene > strong { position: absolute; bottom: 23px; color: var(--flash-yellow); font-size: 8px; letter-spacing: 0.25em; }
+.flashScene > em { position: absolute; top: 9px; left: 10px; color: rgb(255 255 255 / 35%); font-size: 7px; font-style: normal; }
+.flashScene > i { position: absolute; display: block; }
+
+.flashVisual-motion .flashScene > b { width: 30px; height: 30px; border-radius: 50%; overflow: hidden; color: transparent; background: linear-gradient(135deg, var(--flash-yellow), var(--flash-pink)); box-shadow: 0 0 20px var(--flash-pink); }
+.flashVisual-motion[data-running="true"] .flashScene > b { animation: flash-motion 2s cubic-bezier(.2,.8,.2,1) infinite alternate; }
+.flashVisual-shape .flashScene > b,
+.flashVisual-morph .flashScene > b { width: 72px; height: 72px; overflow: hidden; color: transparent; background: linear-gradient(135deg, var(--flash-blue), var(--flash-pink)); clip-path: circle(48%); transition: clip-path 600ms, transform 600ms; }
+.flashVisual-shape[data-variant="1"] .flashScene > b,
+.flashVisual-shape[data-variant="3"] .flashScene > b,
+.flashVisual-morph[data-running="true"] .flashScene > b { clip-path: polygon(50% 0,61% 35%,100% 38%,70% 59%,80% 100%,50% 74%,20% 100%,30% 59%,0 38%,39% 35%); animation: flash-morph 2.8s ease-in-out infinite alternate; }
+.flashVisual-frames .flashScene > b,
+.flashVisual-sprite .flashScene > b { color: var(--flash-yellow); animation: flash-hop 1s steps(4) infinite; }
+.flashVisual-type .flashScene > b { width: 6ch; overflow: hidden; white-space: nowrap; }
+.flashVisual-type[data-running="true"] .flashScene > b { animation: flash-type 2.8s steps(5) infinite; }
+.flashVisual-logo .flashScene > b { letter-spacing: calc(.15em + (var(--variant) % 2) * .5em); transform: scale(calc(1 + (var(--variant) % 2) * .2)); transition: 650ms cubic-bezier(.2,1.4,.3,1); }
+.flashVisual-glow-text:hover .flashScene > b { animation: flash-wave .8s ease-in-out infinite alternate; }
+.flashVisual-liquid .flashScene > b { width: 78px; height: 64px; overflow: hidden; border-radius: 48% 52% 58% 42%; color: transparent; background: linear-gradient(135deg, var(--flash-blue), var(--flash-violet)); transition: 500ms cubic-bezier(.2,1.8,.4,1); }
+.flashVisual-liquid:hover .flashScene > b { border-radius: 70% 30% 35% 65%; transform: scale(1.35,.65) rotate(12deg); }
+.flashVisual-tiles .flashScene { grid-template-columns: repeat(3, 36px); grid-template-rows: repeat(3, 36px); align-content: center; }
+.flashVisual-tiles .flashScene > i { position: static; width: 34px; height: 34px; background: hsl(calc(var(--i) * 22 + 190) 80% 58%); transition: transform 600ms calc(var(--i) * 30ms), opacity 600ms; }
+.flashVisual-tiles[data-variant="1"] .flashScene > i,
+.flashVisual-tiles[data-variant="3"] .flashScene > i { opacity: .35; transform: translate(calc((var(--i) - 4) * 7px), calc((4 - var(--i)) * 5px)) rotateY(80deg); }
+.flashVisual-tiles .flashScene > b,
+.flashVisual-tiles .flashScene > strong { display: none; }
+
+.flashVisual-mask .flashScene::after { position: absolute; inset: 0; background: linear-gradient(135deg, var(--flash-pink), var(--flash-violet)); clip-path: circle(calc((var(--variant) % 2) * 75%) at 50% 50%); content: ""; transition: clip-path 750ms; }
+.flashVisual-blinds .flashScene { background: repeating-linear-gradient(90deg, var(--flash-violet) 0 9%, transparent 9% 11%); transform-origin: top; }
+.flashVisual-blinds[data-running="true"] .flashScene { animation: flash-blinds 2.5s ease-in-out infinite alternate; }
+.flashVisual-spotlight { background: radial-gradient(circle 48px at var(--mx) var(--my), var(--flash-yellow), #151020 70px); }
+
+.flashVisual-button .flashScene > b { padding: 15px 27px; border: 1px solid #fff; border-radius: 22px; background: linear-gradient(#ff79c1, #a81773); box-shadow: inset 0 2px rgb(255 255 255 / 55%), 0 7px 0 #5e0a42; font-size: 13px; }
+.flashVisual-button:hover .flashScene > b { filter: brightness(1.3); transform: translateY(-2px); }
+.flashVisual-button:active .flashScene > b { transform: translateY(5px); box-shadow: inset 0 2px rgb(255 255 255 / 35%), 0 2px 0 #5e0a42; }
+.flashVisual-radial-menu .flashScene > i { width: 25px; height: 25px; border: 1px solid var(--flash-blue); border-radius: 50%; opacity: calc((var(--variant) % 2)); transform: rotate(calc(var(--i) * 40deg)) translate(calc((var(--variant) % 2) * 62px)) rotate(calc(var(--i) * -40deg)); transition: 500ms; }
+.flashVisual-loader .flashScene > b { display: grid; width: 75px; height: 75px; place-items: center; border: 5px solid #30273a; border-top-color: var(--flash-pink); border-radius: 50%; font-size: 9px; }
+.flashVisual-loader[data-running="true"] .flashScene > b { animation: flash-spin 1.2s linear infinite; }
+
+.flashVisual-follow .flashScene > i,
+.flashVisual-particles .flashScene > i { left: var(--mx); top: var(--my); width: 8px; height: 8px; border-radius: 50%; background: var(--flash-blue); opacity: calc(1 - var(--i) / 20); transform: translate(calc(var(--i) * -3px), calc(var(--i) * 2px)); box-shadow: 0 0 10px var(--flash-blue); transition: left calc(80ms + var(--i) * 15ms), top calc(80ms + var(--i) * 15ms); }
+.flashVisual-eyes .flashScene > i { position: relative; display: inline-block; width: 52px; height: 65px; margin: 0 4px; border-radius: 50%; background: #fff; }
+.flashVisual-eyes .flashScene > i:nth-child(n+3) { display: none; }
+.flashVisual-eyes .flashScene > i::after { position: absolute; top: clamp(10px, var(--my), 40px); left: clamp(8px, var(--mx), 28px); width: 16px; height: 16px; border-radius: 50%; background: #130b1e; content: ""; }
+.flashVisual-paint canvas { width: 100%; height: 100%; touch-action: none; }
+
+.flashVisual-character .flashScene > b,
+.flashVisual-parts .flashScene > b,
+.flashVisual-peek .flashScene > b { display: grid; width: 64px; height: 75px; place-items: center; border-radius: 50% 50% 42% 42%; background: var(--flash-yellow); color: #281331; font-size: 9px; }
+.flashVisual-character[data-running="true"] .flashScene > b { animation: flash-breathe 2s ease-in-out infinite; }
+.flashVisual-parts[data-running="true"] .flashScene > b { animation: flash-walk .65s steps(2) infinite; }
+.flashVisual-peek .flashScene > b { position: absolute; right: -42px; transition: right 500ms cubic-bezier(.2,1.5,.3,1); }
+.flashVisual-peek:hover .flashScene > b { right: 20px; }
+
+.flashVisual-bounce .flashScene > b { width: 36px; height: 36px; overflow: hidden; border-radius: 50%; color: transparent; background: var(--flash-pink); }
+.flashVisual-bounce[data-running="true"] .flashScene > b { animation: flash-bounce 1.1s ease-in infinite; }
+.flashVisual-spring .flashScene::before { position: absolute; top: 50%; left: 50%; width: 2px; height: 80px; background: var(--flash-blue); content: ""; transform: translate(-50%,-50%) rotate(45deg); }
+.flashDragHandle { position: absolute; z-index: 4; top: var(--my); left: var(--mx); width: 42px; height: 42px; border: 2px solid var(--flash-yellow); border-radius: 50%; background: var(--flash-pink); box-shadow: 0 0 15px var(--flash-pink); transform: translate(-50%,-50%); touch-action: none; cursor: grab; }
+.flashVisual-cube .flashDragHandle { width: 70px; height: 70px; border-radius: 4px; background: rgb(65 217 255 / 28%); transform: translate(-50%,-50%) rotateX(var(--rx)) rotateY(var(--ry)); }
+.flashVisual-weather .flashScene > i { top: -20px; left: calc(var(--i) * 12%); width: 2px; height: 20px; background: var(--flash-blue); animation: flash-rain calc(.6s + var(--i) * 30ms) linear infinite; }
+
+.flashVisual-particles .flashScene > i { opacity: calc((var(--variant) % 2) * (1 - var(--i) / 20)); transform: translate(calc(cos(var(--i) * 45deg) * 65px), calc(sin(var(--i) * 45deg) * 65px)); transition: 700ms; }
+.flashVisual-burst .flashScene > i { width: 8px; height: 8px; background: var(--flash-pink); transform: translate(calc((var(--i) - 4) * (var(--variant) % 2) * 18px), calc((4 - var(--i)) * (var(--variant) % 2) * 13px)); transition: 800ms; }
+.flashVisual-constellation .flashScene > i { width: 4px; height: 4px; border-radius: 50%; background: #fff; transform: rotate(calc(var(--i) * 40deg)) translate(65px); box-shadow: 0 0 9px var(--flash-blue); }
+.flashVisual-constellation[data-running="true"] .flashScene { animation: flash-spin 8s linear infinite; }
+
+.flashVisual-parallax .flashScene > i { width: calc(25px + var(--i) * 5px); height: calc(25px + var(--i) * 5px); border-radius: 50%; background: hsl(calc(190 + var(--i) * 8) 70% 48% / 50%); transform: translate(calc((var(--mx) - 50%) * var(--i) / 15), calc((var(--my) - 50%) * var(--i) / 15)); }
+.flashVisual-starfield .flashScene > i { top: 50%; left: 50%; width: 2px; height: calc(4px + var(--i) * 2px); background: white; transform: rotate(calc(var(--i) * 37deg)) translateY(calc(12px + var(--i) * 4px)); }
+.flashVisual-starfield[data-running="true"] .flashScene > i { animation: flash-stars calc(1s + var(--i) * 40ms) linear infinite; }
+.flashVisual-grid .flashScene { background: linear-gradient(transparent 48%, var(--flash-pink) 49% 50%, transparent 51%), repeating-linear-gradient(90deg, transparent 0 28px, rgb(65 217 255 / 35%) 29px 30px), repeating-linear-gradient(0deg, transparent 0 20px, rgb(65 217 255 / 28%) 21px 22px); transform: perspective(180px) rotateX(55deg) scale(1.35); }
+.flashVisual-grid[data-running="true"] .flashScene { animation: flash-grid 1.4s linear infinite; }
+
+.flashVisual-carousel .flashScene > i { width: 55px; height: 80px; border: 2px solid var(--flash-blue); background: linear-gradient(135deg, #382153, #101b38); transform: rotateY(calc((var(--i) * 40deg) + var(--variant) * 40deg)) translateZ(105px); transition: 500ms; }
+.flashVisual-wireframe .flashScene > i { width: calc(25px + var(--i) * 18px); height: calc(18px + var(--i) * 13px); border: 1px solid rgb(65 217 255 / 60%); }
+.flashVisual-wireframe[data-running="true"] .flashScene > i { animation: flash-tunnel 1.8s calc(var(--i) * -180ms) linear infinite; }
+
+.flashVisual-audio-bars .flashScene > i,
+.flashVisual-beat .flashScene > i { bottom: 30px; left: calc(8% + var(--i) * 9.5%); width: 5%; height: calc(10px + var(--i) * 4px); background: linear-gradient(var(--flash-yellow), var(--flash-pink)); transform-origin: bottom; }
+.flashVisual-audio-bars[data-running="true"] .flashScene > i { animation: flash-bars calc(.35s + var(--i) * 20ms) ease-in-out infinite alternate; }
+.flashVisual-waveform .flashScene > i { left: calc(var(--i) * 11%); width: 12%; height: 2px; background: var(--flash-blue); transform: translateY(calc(sin(var(--i) * 40deg) * 40px)) rotate(calc(cos(var(--i) * 40deg) * 25deg)); }
+.flashVisual-beat[data-running="true"] .flashScene { animation: flash-beat 1.2s ease-in-out infinite; }
+
+.flashVisual-intro .flashScene > b { font-size: 31px; animation: flash-intro 2.5s ease-in-out infinite; }
+.flashVisual-portfolio .flashScene { width: 300%; grid-template-columns: repeat(3, 1fr); transform: translateX(calc((var(--variant) % 3) * -33.333%)); transition: transform 700ms cubic-bezier(.7,0,.2,1); }
+.flashVisual-room .flashScene > i { position: relative; width: 65px; height: 105px; margin: 0 7px; border: 4px solid #684478; border-bottom: 0; background: #130c1d; }
+.flashVisual-room .flashScene > i:nth-child(n+3) { display: none; }
+.flashVisual-banner { height: 120px; background: linear-gradient(110deg, #f8268f, #4c22c4); }
+.flashVisual-banner .flashScene > b { font-size: 22px; transform: rotate(-5deg); }
+.flashVisual-banner[data-running="true"] .flashScene > b { animation: flash-cta 1.8s ease-in-out infinite; }
+.flashVisual-slot .flashScene > i { position: relative; width: 42px; height: 50px; margin: 3px; border: 1px solid #fff; background: var(--flash-yellow); }
+.flashVisual-slot .flashScene > i:nth-child(n+4) { display: none; }
+.flashVisual-slot[data-variant="1"] .flashScene > i { background: var(--flash-blue); }
+.flashVisual-slot[data-variant="2"] .flashScene > i { background: var(--flash-pink); }
+.flashVisual-safe-close .flashScene::after { position: absolute; top: calc(10px + (var(--variant) % 3) * 40px); right: calc(10px + (var(--variant) % 2) * 90px); display: grid; width: 25px; height: 25px; place-items: center; border: 1px solid #fff; background: #31172f; content: "×"; transition: 160ms; }
+.flashVisual-safe-close:hover .flashScene::after { top: 65%; right: 65%; }
+
+.flashVisual-shooter .flashScene > i { width: 28px; height: 28px; border: 4px double var(--flash-pink); border-radius: 50%; transform: translate(calc((var(--i) - 4) * 15px), calc((var(--i) % 3 - 1) * 28px)); }
+.flashVisual-score .flashScene > b { font-size: calc(20px + (var(--variant) % 4) * 5px); transform: translateY(calc((var(--variant) % 2) * -10px)); }
+.flashVisual-generative .flashScene { background: repeating-radial-gradient(circle at calc(20% + (var(--variant) % 4) * 18%) 50%, transparent 0 9px, rgb(65 217 255 / 65%) 10px 11px); }
+.flashVisual-kaleidoscope .flashScene > i { width: 18px; height: 70px; background: linear-gradient(var(--flash-pink), transparent); transform-origin: bottom; transform: rotate(calc(var(--i) * 40deg)) translateY(-18px); }
+.flashVisual-kaleidoscope:hover .flashScene { filter: hue-rotate(120deg); transform: rotate(25deg); }
+.flashVisual-poem .flashScene > i { position: relative; width: auto; height: auto; margin: 5px; color: #ccbfe0; }
+.flashVisual-poem .flashScene > i::after { content: "ことば"; }
+.flashVisual-poem .flashScene > i:hover { color: var(--flash-yellow); transform: translateY(-12px); }
+.flashVisual-onion .flashScene > i { width: 50px; height: 70px; border: 2px solid hsl(calc(var(--i) * 40) 80% 65% / 35%); border-radius: 50%; transform: translateX(calc((var(--variant) % 2) * (var(--i) - 4) * 5px)); }
+
+.flashComparisonVisual,
+.flashTimelineVisual { position: absolute; inset: 0; display: grid; place-items: center; }
+.flashComparisonVisual { grid-template-columns: 1fr auto 1fr; gap: 12px; padding: 30px; color: #9987aa; font-size: 9px; text-align: center; }
+.flashComparisonVisual b { color: var(--flash-pink); font-size: 20px; }
+.flashComparisonVisual strong { color: var(--flash-blue); }
+.flashComparisonVisual small { grid-column: 1 / -1; color: #706379; }
+.flashTimelineVisual { align-content: center; gap: 5px; padding: 20px; }
+.flashTimelineVisual i { display: grid; grid-template-columns: repeat(12, 1fr); width: 100%; gap: 2px; }
+.flashTimelineVisual i b { height: 16px; border: 1px solid #403248; background: #13101b; }
+.flashTimelineVisual i b[data-key="true"] { background: var(--flash-violet); box-shadow: inset 0 0 0 3px #1e1528; }
+.flashPlayhead { position: absolute; top: 35px; bottom: 35px; left: 10%; width: 1px; background: var(--flash-pink); box-shadow: 0 0 8px var(--flash-pink); }
+.flashVisual-timeline[data-running="true"] .flashPlayhead,
+.flashVisual-fps[data-running="true"] .flashPlayhead { animation: flash-playhead 2.4s linear infinite; }
+.flashTimelineVisual em { color: var(--flash-yellow); font-size: 8px; font-style: normal; }
+
+.flashStageAction,
+.flashSafeExit { position: absolute; z-index: 5; right: 8px; bottom: 8px; }
+.flashSafeExit { right: auto; left: 8px; border-color: var(--flash-yellow); }
+.flashStageControls { position: absolute; z-index: 5; right: 8px; bottom: 8px; display: flex; gap: 4px; }
+.flashStageControls button { width: 32px; padding: 0; }
+.flashInstruction { min-height: 0 !important; margin: 10px 0 8px !important; color: #b9abc5 !important; }
+.flashInstruction strong { color: var(--flash-yellow); }
+.flashTechTags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+.flashTechTags span { padding: 4px 6px; border: 1px solid #44324e; color: var(--flash-blue); font-size: 7px; }
+.flashFacts { margin: 0; border-top: 1px solid #302439; }
+.flashFacts div { display: grid; grid-template-columns: 50px 1fr; gap: 8px; padding: 6px 0; border-bottom: 1px solid #251c2c; font-size: 8px; line-height: 1.4; }
+.flashFacts dt { color: var(--flash-pink); }
+.flashFacts dd { margin: 0; color: #8f8499; }
+.flashRecreationNote { min-height: 0 !important; margin: 9px 0 !important; color: #726878 !important; font-size: 7px !important; }
+.flashAccessibility { color: #766d7e; font-size: 8px; line-height: 1.5; }
+.flashAccessibility summary { color: #a99caf; cursor: pointer; }
+.flashAccessibility p { margin: 6px 0; }
+.flashCardControls { display: flex; gap: 6px; margin-top: 10px; }
+.flashCardControls button { flex: 1; min-height: 32px; }
+.flashRoomCloseRow { padding: 0 30px 30px; background: #080711; text-align: right; }
+
+.flashRoom[data-playing="false"] .flashVisual *,
+.flashRoom[data-playing="false"] .flashRoomEntrance::before { animation-play-state: paused !important; }
+.flashRoom[data-speed="slow"] .flashVisual * { animation-duration: 5s !important; }
+.flashRoom[data-speed="fast"] .flashVisual * { animation-duration: .65s !important; }
+
+@keyframes flash-orbit { to { transform: rotate(360deg); } }
+@keyframes flash-motion { 0% { transform: translateX(-105px) scale(.7); } 75% { transform: translateX(105px) scale(1.3); } 100% { transform: translateX(90px) scale(1); } }
+@keyframes flash-morph { to { transform: rotate(140deg) scale(.8); } }
+@keyframes flash-hop { 50% { transform: translateY(-35px) rotate(8deg); } }
+@keyframes flash-type { 0%,15% { width: 0; } 70%,100% { width: 6ch; } }
+@keyframes flash-wave { to { transform: skewX(-10deg) translateY(-8px); text-shadow: 6px 8px 0 var(--flash-violet), 0 0 24px var(--flash-blue); } }
+@keyframes flash-blinds { to { transform: scaleY(.08); filter: hue-rotate(100deg); } }
+@keyframes flash-spin { to { transform: rotate(360deg); } }
+@keyframes flash-breathe { 50% { transform: translateY(-7px) scale(1.04,.96); } }
+@keyframes flash-walk { 50% { transform: translateX(45px) rotate(8deg); } }
+@keyframes flash-bounce { 0% { transform: translateY(-55px) scale(.9,1.1); } 65% { transform: translateY(45px) scale(1.15,.8); } 100% { transform: translateY(-55px); } }
+@keyframes flash-rain { to { transform: translate(25px,230px); } }
+@keyframes flash-stars { from { opacity: 0; transform: rotate(calc(var(--i) * 37deg)) translateY(4px) scaleY(.2); } to { opacity: 1; transform: rotate(calc(var(--i) * 37deg)) translateY(95px) scaleY(2); } }
+@keyframes flash-grid { to { background-position: 0 0, 30px 0, 0 22px; } }
+@keyframes flash-tunnel { from { opacity: 0; transform: scale(.1); } to { opacity: 1; transform: scale(1.4); } }
+@keyframes flash-bars { to { transform: scaleY(.2); filter: hue-rotate(80deg); } }
+@keyframes flash-beat { 50% { background-color: #351042; filter: brightness(1.25); } }
+@keyframes flash-intro { 0%,15% { opacity: 0; transform: scale(.2) rotate(-20deg); } 50%,85% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.8); } }
+@keyframes flash-cta { 50% { transform: rotate(4deg) scale(1.25); color: var(--flash-yellow); } }
+@keyframes flash-playhead { to { left: 90%; } }
+
+@media (max-width: 1000px) {
+  .flashCategoryNav { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .flashExhibitGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 650px) {
+  .flashRoomEntrance { min-height: 210px; padding: 22px 18px; }
+  .flashRoomEntrance::before { right: -80px; opacity: .5; }
+  .flashEntranceTitle { max-width: 9em; line-height: 1.15; }
+  .flashEntrancePurpose { max-width: 18em; line-height: 1.6; }
+  .flashEntranceMeta { display: grid; }
+  .flashRoomIntro { grid-template-columns: 1fr; padding: 22px 16px; }
+  .flashCategoryNav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .flashCategoryNav button { min-height: 58px; padding: 7px; font-size: 8px; }
+  .flashCategorySection { min-height: 0; padding: 22px 12px; }
+  .flashExhibitGrid { grid-template-columns: 1fr; }
+  .flashVisual { height: 175px; }
+  .flashRoomCloseRow { padding: 0 12px 22px; }
+  .flashRoomCloseRow button { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flashRoomEntrance::before,
+  .flashVisual *,
+  .flashVisual::before,
+  .flashVisual::after { animation: none !important; }
+  .flashVisual-motion .flashScene > b { transform: translateX(0); }
+  .flashPlayhead { left: 50%; }
+}

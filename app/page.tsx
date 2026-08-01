@@ -1,11 +1,13 @@
 import { ExhibitRoomAccordion } from "./components/ExhibitRoomAccordion";
 import { CursorExhibitRoom } from "./components/CursorExhibitRoom";
+import { FlashSpecialExhibitRoom } from "./components/FlashSpecialExhibitRoom";
 import { cursorExhibits } from "./data/cursorExhibits";
 import { exhibitRooms } from "./data/exhibitRooms";
+import { flashExhibitCount } from "./data/flashExhibits";
 
 const spokes = Array.from({ length: 8 }, (_, index) => index);
 const permanentExhibitCount = 9;
-const periodRoomCount = exhibitRooms.length + 1;
+const periodRoomCount = exhibitRooms.length + 2;
 const periodExhibitCount = exhibitRooms.reduce(
   (roomTotal, room) => roomTotal + room.exhibits.reduce(
     (exhibitTotal, exhibit) => exhibitTotal + (
@@ -15,7 +17,7 @@ const periodExhibitCount = exhibitRooms.reduce(
   ),
   cursorExhibits.length,
 );
-const totalExhibitCount = permanentExhibitCount + periodExhibitCount;
+const totalExhibitCount = permanentExhibitCount + periodExhibitCount + flashExhibitCount;
 
 function ExhibitHeader({
   number,
@@ -178,6 +180,7 @@ export default function Home() {
             <ExhibitRoomAccordion key={room.roomId} room={room} />
           ))}
           <CursorExhibitRoom />
+          <FlashSpecialExhibitRoom />
         </div>
       </section>
 
