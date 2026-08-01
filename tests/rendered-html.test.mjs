@@ -5,6 +5,19 @@ import test from "node:test";
 const projectRoot = new URL("../", import.meta.url);
 const outputRoot = new URL("../out/", import.meta.url);
 
+function readCssBlock(css, marker) {
+  const markerIndex = css.indexOf(marker);
+  assert.notEqual(markerIndex, -1, `${marker} が見つかりません`);
+  const openIndex = css.indexOf("{", markerIndex);
+  let depth = 0;
+  for (let index = openIndex; index < css.length; index += 1) {
+    if (css[index] === "{") depth += 1;
+    if (css[index] === "}") depth -= 1;
+    if (depth === 0) return css.slice(openIndex + 1, index);
+  }
+  assert.fail(`${marker} の閉じ括弧が見つかりません`);
+}
+
 test("GitHub Pages用の静的HTMLへ9種類の展示を書き出す", async () => {
   const html = await readFile(new URL("index.html", outputRoot), "utf8");
 
@@ -75,7 +88,7 @@ test("カーソル展示室と8種類の体験展示を書き出す", async () =
   assert.match(html, /ローディング展示室を見る/);
   assert.match(html, /スクロール展示室 \/ 通知・警告展示室 — 準備中/);
   assert.equal((html.match(/class="arrowSelectionTarget"/g) ?? []).length, 3);
-  assert.equal((html.match(/aria-pressed="false"/g) ?? []).length, 3);
+  assert.equal((html.match(/class="arrowSelectionTarget"[^>]*aria-pressed="false"/g) ?? []).length, 3);
   assert.match(html, /FILE/);
   assert.match(html, /WINDOW/);
   assert.match(html, /FOLDER/);
@@ -164,17 +177,17 @@ test("カーソル展示のデータ、Pointer Events、性能とアクセシビ
   assert.match(data, /Reactのローカルstateで3対象の選択状態と結果表示を切り替えています/);
 });
 
-test("最新mainとカーソル展示を合わせた展示室・展示件数を表示する", async () => {
+test("Flash特別展示室を加えた展示室・展示件数を表示する", async () => {
   const [html, page] = await Promise.all([
     readFile(new URL("index.html", outputRoot), "utf8"),
     readFile(new URL("app/page.tsx", projectRoot), "utf8"),
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /4 ROOMS \/ 48 OBJECTS/);
+  assert.match(normalizedHtml, /5 ROOMS \/ 102 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
   assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 4);
-  assert.equal((html.match(/aria-expanded="false"/g) ?? []).length, 4);
+  assert.equal((html.match(/aria-expanded="false"/g) ?? []).length, 5);
   assert.equal(
     (html.match(/class="exhibit"/g) ?? []).length
       + (html.match(/class="dosExhibit"/g) ?? []).length
@@ -183,9 +196,291 @@ test("最新mainとカーソル展示を合わせた展示室・展示件数を�
       + (html.match(/class="cursorExhibit"/g) ?? []).length,
     48,
   );
-  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 1/);
+  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 2/);
+  assert.match(page, /periodExhibitCount \+ flashExhibitCount/);
   assert.match(page, /exhibit\.kind === "vanished-os" \? exhibit\.loadingExhibits\.length : 1/);
   assert.doesNotMatch(page, /3 ROOMS \/ 30 OBJECTS/);
+});
+
+test("Flash特別展示室へ18カテゴリ・54展示と優先デモを実装する", async () => {
+  const [html, data, component, visuals, refinedVisuals, css] = await Promise.all([
+    readFile(new URL("index.html", outputRoot), "utf8"),
+    readFile(new URL("app/data/flashExhibits.ts", projectRoot), "utf8"),
+    readFile(new URL("app/components/FlashSpecialExhibitRoom.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/FlashVisuals.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/FlashRefinedVisuals.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+
+  assert.match(html, /Flash特別展示室/);
+  assert.match(html, /Flashは何を、どのように動かしたのか/);
+  assert.match(html.replaceAll("<!-- -->", ""), /18 CATEGORIES \/ 54 EXHIBITS/);
+  assert.match(html, /aria-controls="flash-special-exhibit-panel"/);
+  assert.match(html, /id="flash-special-exhibit-panel"[^>]*aria-hidden="true"[^>]*inert=""/);
+  assert.equal((data.match(/^  \{ \.\.\.common, id:/gm) ?? []).length, 54);
+  assert.equal((data.match(/^  \{ id: /gm) ?? []).length, 18);
+
+  for (const category of [
+    "基本アニメーション", "文字・ロゴ", "ベクター・図形変形", "マスク・画面転換",
+    "ボタン・UI", "マウス連動", "キャラクター", "擬似物理", "パーティクル",
+    "背景・空間表現", "擬似3D", "音連動", "Flashサイト演出", "バナー広告",
+    "ゲーム演出", "芸術・実験表現", "制作技法", "Flash表現は現代Webへどう引き継がれたか",
+  ]) assert.match(data, new RegExp(category));
+
+  for (const title of [
+    "シェイプトゥイーン", "モーショントゥイーン", "慣性カーソル追従", "ロゴの分解・集合",
+    "円形マスク転換", "光粒子の噴出", "3Dカルーセル", "音楽ビジュアライザー",
+    "スキップ可能なフルスクリーンイントロ", "点滅CTAと価格の飛び込み",
+    "クリック・シューター", "12 / 24 / 30 / 60fps比較", "同じ動き：タイムラインからCSSへ",
+  ]) assert.match(data, new RegExp(title.replaceAll("/", "\\/")));
+
+  for (const field of ["flashTechnique", "modernTechnique", "interactionType", "reducedMotionFallback", "accessibilityNote"]) {
+    assert.match(data, new RegExp(`${field}:`));
+  }
+  assert.match(component, /IntersectionObserver/);
+  assert.match(component, /observer\.disconnect\(\)/);
+  assert.match(component, /window\.matchMedia\(REDUCED_MOTION_QUERY\)/);
+  assert.match(component, /removeEventListener\("change", update\)/);
+  assert.match(visuals, /new AudioContext\(\)/);
+  assert.match(visuals, /createAnalyser\(\)/);
+  assert.match(visuals, /getByteFrequencyData/);
+  assert.match(visuals, /getByteTimeDomainData/);
+  assert.match(visuals, /oscillator\.start\(\)/);
+  assert.doesNotMatch(visuals, /new Audio\(|autoplay/);
+  assert.match(visuals, /oscillator\.stop/);
+  assert.match(visuals, /context\.close/);
+  assert.match(visuals, /cancelAnimationFrame/);
+  assert.match(visuals, /refinedVisuals\[props\.exhibit\.visualType\]/);
+  assert.match(refinedVisuals, /createAnalyser\(\)/);
+  assert.match(visuals, /setPointerCapture/);
+  assert.match(visuals, /<canvas/);
+  assert.match(component, /すべて一時停止/);
+  assert.match(component, /JavaScript・CSS・SVG・Canvasなど現代のWeb技術で再現/);
+  assert.match(css, /\.flashExhibitGrid\s*\{[^}]*grid-template-columns: repeat\(3,/);
+  assert.match(css, /@media \(max-width: 650px\)[\s\S]*\.flashExhibitGrid\s*\{[^}]*grid-template-columns: 1fr/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.flashVisual/);
+  assert.match(css, /content-visibility: auto/);
+});
+
+test("再検討した9展示と現代Web継承比較を専用実装にする", async () => {
+  const [data, visuals, refined, css] = await Promise.all([
+    readFile(new URL("app/data/flashExhibits.ts", projectRoot), "utf8"),
+    readFile(new URL("app/components/FlashVisuals.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/FlashRefinedVisuals.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+
+  assert.match(data, /Flash表現は現代Webへどう引き継がれたか/);
+  assert.match(data, /一つの制作環境に統合されていた動き、入力、音、描画/);
+  for (const visualType of ["frames", "logo", "beat", "banner", "sprite", "score", "generative", "poem", "onion", "comparison-motion", "comparison-pointer", "comparison-media"]) {
+    assert.match(refined, new RegExp(`(?:${visualType.replaceAll("-", "\\-")}|\\"${visualType}\\")`));
+  }
+  assert.match(visuals, /const Dedicated = refinedVisuals/);
+
+  const characterPoseBlock = refined.match(/export const characterPoses: Pose\[\] = \[([\s\S]*?)\n\];/)?.[1] ?? "";
+  const runPoseBlock = refined.match(/export const runPoses: Pose\[\] = \[([\s\S]*?)\n\];/)?.[1] ?? "";
+  const readPoseNumbers = (block) => [...block.matchAll(/\{ label: "([^"]+)", headX: (-?\d+), headY: (-?\d+), body: (-?\d+), frontArm: (-?\d+), backArm: (-?\d+), frontLeg: (-?\d+), backLeg: (-?\d+), lift: (-?\d+), turn: (-?\d+) \}/g)].map((match) => ({
+    label: match[1], headX: Number(match[2]), headY: Number(match[3]), body: Number(match[4]), frontArm: Number(match[5]), backArm: Number(match[6]), frontLeg: Number(match[7]), backLeg: Number(match[8]), lift: Number(match[9]), turn: Number(match[10]),
+  }));
+  const characterPoseData = readPoseNumbers(characterPoseBlock);
+  const runPoseData = readPoseNumbers(runPoseBlock);
+  assert.equal(characterPoseData.length, 8);
+  assert.equal(runPoseData.length, 8);
+  assert.match(refined, /FRAME \{currentFrame \+ 1\} \/ 8/);
+  assert.match(refined, /前のフレーム/);
+  assert.match(refined, /次のフレーム/);
+  assert.match(refined, /setCurrentFrame\(\(frame\) => \(frame \+ 1\) % characterPoses\.length\)/);
+  assert.match(refined, /disabled=\{running\}/);
+
+  assert.match(refined, /"ORBITAL"\.split\(""\)/);
+  assert.match(refined, /logoLetters\.map/);
+  assert.match(refined, />集合<\/button>/);
+  assert.match(refined, />分解<\/button>/);
+  assert.match(css, /\.logoAssemblyStage span/);
+  assert.match(css, /transition-delay: calc\(var\(--letter-index\) \* 65ms\)/);
+
+  assert.match(refined, /const bpmOptions = \[72, 108, 144\]/);
+  assert.match(refined, /nextBeatRef\.current \+= 60 \/ bpm/);
+  assert.match(refined, /envelope\.gain\.exponentialRampToValueAtTime/);
+  assert.match(refined, /getByteFrequencyData/);
+  assert.match(refined, /const peak = level > 0\.06/);
+  assert.match(refined, /data-running=\{started && active\}/);
+  assert.match(refined, /context\.currentTime/);
+
+  for (const className of ["adProduct", "adCopy", "adPrice", "adLimited", "adCta"]) assert.match(refined, new RegExp(`className="${className}"`));
+  assert.match(refined, /DEMO CLICKED/);
+  assert.match(refined, /DEMO ADVERTISEMENT/);
+  assert.match(css, /@keyframes ad-product/);
+  assert.match(css, /@keyframes ad-cta/);
+  assert.match(css, /\.bannerCtaVisual\[data-running="true"\]/);
+
+  assert.match(refined, /function SpriteRunVisual/);
+  assert.match(refined, /export const runPoses: Pose\[\]/);
+  assert.doesNotMatch(runPoseBlock, /TURN|FALL|LOOK/);
+  assert.match(refined, /PoseFigure pose=\{runPoses\[currentFrame\]\}/);
+  assert.match(refined, /\(frame \+ 1\) % runPoses\.length/);
+  assert.equal(new Set(runPoseData.map((pose) => pose.frontArm)).size, 8);
+  assert.equal(new Set(runPoseData.map((pose) => pose.backArm)).size, 8);
+  assert.equal(new Set(runPoseData.map((pose) => pose.frontLeg)).size, 8);
+  assert.equal(new Set(runPoseData.map((pose) => pose.backLeg)).size, 8);
+  assert.equal(runPoseData[0].label, "CONTACT LEFT");
+  assert.equal(runPoseData.at(-1).label, "UP RIGHT");
+  assert.ok(Math.abs(runPoseData[0].frontArm - runPoseData.at(-1).frontArm) <= 20);
+  assert.ok(Math.abs(runPoseData[0].frontLeg - runPoseData.at(-1).frontLeg) <= 10);
+  assert.match(refined, /spriteFar/);
+  assert.match(refined, /spriteFront/);
+  assert.match(refined, /走行速度/);
+  assert.match(refined, /spriteSpeeds\[speed\]/);
+  assert.match(css, /\.spriteRunVisual\[data-running="false"\] \.spriteFar,[\s\S]*animation-play-state: paused/);
+
+  assert.match(refined, /<span className="refinedFrameOutput" aria-hidden="true">FRAME/);
+  assert.doesNotMatch(refined, /className="refinedFrameOutput"[^>]*aria-live/);
+  assert.match(refined, /フレーム\$\{selected \+ 1\}.*を選択しました/);
+  assert.match(refined, /自動再生を開始しました/);
+  assert.match(refined, /自動再生を停止しました/);
+  assert.match(refined, /<span className="spriteFrameOutput" aria-hidden="true">RUN FRAME/);
+  assert.doesNotMatch(refined, /className="spriteFrameOutput"[^>]*aria-live/);
+  assert.match(refined, /走行速度を\$\{/);
+  assert.ok((refined.match(/className="refinedInteractionStatus" role="status" aria-live="polite"/g) ?? []).length >= 2);
+
+  assert.match(refined, /type Damage = \{ id: number/);
+  assert.match(refined, /setDamages\(\(items\) => \[\.\.\.items, damage\]\)/);
+  assert.match(refined, /resetTimer\.current = window\.setTimeout\([\s\S]*setCombo\(0\); resetTimer\.current = null; \}, 1700\)/);
+  assert.match(refined, /ULTRA 10 COMBO/);
+  assert.match(refined, /POWER 5 COMBO/);
+  assert.match(refined, /function ComboDamageVisual\(\{ active, reduced \}/);
+  assert.match(refined, /const clearAllTimers = useCallback/);
+  assert.match(refined, /comboRef\.current = 0;[\s\S]*setCombo\(0\);[\s\S]*setDamages\(\[\]\);/);
+  assert.match(refined, /removalTimers\.current\.forEach\(\(timer\) => window\.clearTimeout\(timer\)\)/);
+  assert.match(refined, /useEffect\(\(\) => \(\) => clearAllTimers\(\), \[clearAllTimers\]\)/);
+  assert.match(refined, /if \(!active\) return <ComboDamageStage active=\{false\} reduced=\{reduced\} combo=\{0\} damages=\{\[\]\}/);
+  assert.match(refined, /onClick=\{onHit\} disabled=\{!active\}/);
+  assert.doesNotMatch(refined, /score \* 120 \|\| 120/);
+
+  assert.match(refined, /function seededRandom/);
+  assert.match(refined, /<svg viewBox="0 0 300 160"/);
+  assert.match(refined, /<line key=/);
+  assert.match(refined, /setSeed\(\(value\) => value \+ 7919\)/);
+  assert.match(refined, /type="range"/);
+
+  assert.equal((refined.match(/"光", "記憶", "画面", "速度", "夜", "窓", "音", "影"/g) ?? []).length, 1);
+  assert.match(refined, /poemWords\.map\(\(word, index\) => <button/);
+  assert.match(refined, /aria-pressed=\{selected === index\}/);
+  assert.match(refined, /const sentence =/);
+  assert.match(refined, /aria-live="polite"/);
+
+  assert.match(refined, /const \[currentFrame, setCurrentFrame\] = useState\(3\)/);
+  assert.match(refined, /PREV \{previous \+ 1\}/);
+  assert.match(refined, /CURRENT \{currentFrame \+ 1\}/);
+  assert.match(refined, /NEXT \{next \+ 1\}/);
+  assert.match(refined, /前のみ/);
+  assert.match(refined, /前後/);
+  assert.match(refined, /次のみ/);
+
+  assert.match(refined, /function MotionTweenComparisonVisual/);
+  assert.match(refined, /function PointerComparisonVisual/);
+  assert.match(refined, /function MediaComparisonVisual/);
+  assert.match(refined, /FLASH時代/);
+  assert.match(refined, /現代WEB/);
+  for (const axis of ["制作単位", "実行環境", "コード", "再利用性", "外部連携", "アクセシビリティ", "依存"]) assert.match(refined, new RegExp(axis));
+  assert.match(refined, /onPointerMove=\{move\}/);
+  assert.match(css, /@media \(max-width: 650px\)[\s\S]*\.inheritanceDemos,[\s\S]*grid-template-columns: 1fr/);
+
+  assert.match(refined, /window\.clearTimeout/);
+  assert.match(refined, /cancelAnimationFrame/);
+  assert.match(refined, /context\.suspend/);
+  assert.match(refined, /context\.close/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.bannerCtaVisual/);
+});
+
+test("FlashバナーのCTAを安全に2回強調し、価格とreduced motionを調整する", async () => {
+  const [data, refined, css] = await Promise.all([
+    readFile(new URL("app/data/flashExhibits.ts", projectRoot), "utf8"),
+    readFile(new URL("app/components/FlashRefinedVisuals.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+  const ctaFrames = readCssBlock(css, "@keyframes ad-cta");
+  const priceFrames = readCssBlock(css, "@keyframes ad-price");
+
+  assert.match(data, /title: "点滅CTAと価格の飛び込み"/);
+  assert.match(data, /CTAが短く2回だけ発光/);
+  assert.match(data, /高速な点滅や常時点滅は使わず/);
+  assert.match(refined, /<button type="button" className="adCta"/);
+  assert.match(css, /\.adCta:focus-visible\s*\{[^}]*outline:/);
+  assert.match(css, /\.bannerCtaVisual\[data-running="true"\] \.adCta\s*\{\s*animation: ad-cta 7s/);
+  assert.match(css, /\.bannerCtaVisual\[data-running="true"\] \.adPrice\s*\{\s*animation: ad-price 7s/);
+
+  assert.match(ctaFrames, /70%,78%\s*\{[^}]*opacity: 1;[^}]*scale\(1\.06\)[^}]*brightness\(1\.35\)[^}]*box-shadow: 0 0 0 5px rgb\(255 255 255 \/ 50%\),0 0 18px rgb\(255 216 78 \/ 70%\)/);
+  assert.match(ctaFrames, /74%,82%,92%\s*\{[^}]*opacity: 1;[^}]*scale\(1\)[^}]*brightness\(1\)/);
+  assert.doesNotMatch(ctaFrames, /(?:70%|74%|78%|82%|92%)[^{]*\{[^}]*opacity: 0/);
+  const ctaPulseSelector = ctaFrames.match(/(70%,78%)\s*\{/)?.[1] ?? "";
+  const ctaPulsePoints = ctaPulseSelector.split(",").filter(Boolean).map((value) => Number(value.replace("%", "")));
+  assert.deepEqual(ctaPulsePoints, [70, 78]);
+  assert.ok(Math.max(...ctaPulsePoints) - Math.min(...ctaPulsePoints) <= 10);
+
+  assert.match(priceFrames, /40%\s*\{[^}]*scale\(1\.08\)[^}]*brightness\(1\.28\)[^}]*text-shadow:[^}]*48%/);
+  assert.match(priceFrames, /45%,92%\s*\{[^}]*transform: none;[^}]*brightness\(1\)/);
+  assert.equal((priceFrames.match(/brightness\(1\.28\)/g) ?? []).length, 1);
+
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.bannerCtaVisual \.adPrice,\.bannerCtaVisual \.adCta\s*\{[^}]*animation: none !important;[^}]*opacity: 1;[^}]*transform: none;[^}]*filter: none;[^}]*box-shadow: none;/);
+});
+
+test("Flash専用展示の状態遷移、停止制御、操作可能なARIA構造を実装する", async () => {
+  const [component, visuals, refinedVisuals, css] = await Promise.all([
+    readFile(new URL("app/components/FlashSpecialExhibitRoom.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/FlashVisuals.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/FlashRefinedVisuals.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+
+  assert.doesNotMatch(css, /var\(--variant\)[^;\n]*\s%\s[234]/);
+  assert.doesNotMatch(css, /var\(--i\)[^;\n]*\s%\s[234]/);
+  assert.match(css, /\.logoAssemblyVisual\[data-assembled="true"\]/);
+  assert.match(css, /\.flashVisual-mask\[data-variant="1"\]/);
+  assert.match(css, /\.flashVisual-burst\[data-variant="1"\]/);
+
+  assert.match(component, /const runtimeActive = open && pageVisible && playing && !reduced/);
+  assert.match(component, /const active = categoryActive && visible && globalPlaying && localPlaying && !reduced/);
+  assert.match(component, /CONTINUOUS_INTERACTIVE_VISUALS/);
+  assert.match(component, /visibilitychange/);
+  assert.match(component, /aria-pressed=\{!localPlaying\}/);
+  assert.match(css, /\.spriteRunVisual\[data-running="true"\]/);
+  assert.match(css, /\.weatherVisual\[data-running="true"\]/);
+  assert.match(css, /\.introVisual\[data-running="false"\]/);
+
+  assert.match(visuals, /const \[selectedWeather, setSelectedWeather\]/);
+  assert.match(visuals, /const weatherNames = \["雨", "雪", "炎"\]/);
+  assert.match(visuals, /\(weather \+ 1\) % weatherNames\.length/);
+  assert.match(visuals, /\[12, 24, 30, 60\]\.map/);
+  assert.match(visuals, /const \[fpsPlaying, setFpsPlaying\]/);
+  assert.match(css, /steps\(12,end\)/);
+  assert.match(css, /steps\(24,end\)/);
+  assert.match(css, /steps\(30,end\)/);
+  assert.match(css, /steps\(60,end\)/);
+
+  assert.match(visuals, /function ShooterVisual/);
+  assert.match(visuals, /className=\{`shooterTarget/);
+  assert.match(visuals, /setScore\(\(current\) => current \+ 100\)/);
+  assert.match(visuals, /const reset = \(\) => \{ setTargets\(initialTargets\); setScore\(0\); \}/);
+  assert.doesNotMatch(visuals, /shooterVisual[^\n]*onClick/);
+
+  for (const control of [">START<", ">SKIP<", ">ENTER<", "左の部屋へ移動", "右の部屋へ移動", "SELECTED FRAME", "オニオンスキン"]) {
+    assert.match(`${visuals}\n${refinedVisuals}`, new RegExp(control));
+  }
+  assert.match(visuals, /event\.key === "Escape"/);
+  assert.match(visuals, /aria-current=\{currentSlide === index/);
+  assert.match(visuals, /aria-expanded=\{menuOpen\}/);
+  assert.match(visuals, /tabIndex=\{menuOpen \? 0 : -1\}/);
+  assert.match(visuals, /getBoundingClientRect/);
+  assert.match(visuals, /Math\.atan2/);
+  assert.match(visuals, /Math\.cos\(angle\) \* 13/);
+
+  assert.doesNotMatch(visuals, /role="img"/);
+  assert.match(visuals, /role="group"/);
+  assert.match(visuals, /ResizeObserver/);
+  assert.match(visuals, /devicePixelRatio/);
+  assert.match(visuals, /requestAnimationFrame/);
+  assert.match(visuals, /cancelAnimationFrame/);
 });
 
 test("MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモを書き出す", async () => {
