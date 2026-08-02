@@ -22,7 +22,9 @@ test("GitHub Pages用の静的HTMLへ9種類の展示を書き出す", async () 
   const html = await readFile(new URL("index.html", outputRoot), "utf8");
 
   assert.match(html, /<html lang="ja">/);
-  assert.match(html, /<title>デジタルアニメーションミュージアム \| Digital Animation Museum<\/title>/);
+  assert.match(html, /<title>DIGITAL MOTION ARCHIVE<\/title>/);
+  assert.match(html, /<h1 class="museumTitleHeading">[\s\S]*DIGITAL MOTION ARCHIVE[\s\S]*<\/h1>/);
+  assert.match(html, /ローディング、カーソル、UIアニメーションの歴史と再現/);
   assert.match(html, /CUIの回転文字/);
   assert.match(html, /点が増える表示/);
   assert.match(html, /Windows風の砂時計/);
@@ -35,6 +37,39 @@ test("GitHub Pages用の静的HTMLへ9種類の展示を書き出す", async () 
   assert.equal((html.match(/class="exhibit"/g) ?? []).length, 9);
   assert.equal((html.match(/class="stage" role="img"/g) ?? []).length, 9);
   assert.doesNotMatch(html, /72%/);
+});
+
+test("正式名称のタイトル導入、初回判定、軽減モーションと再生操作を実装する", async () => {
+  const [component, css, page, layout] = await Promise.all([
+    readFile(new URL("app/components/MuseumTitleSequence.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+    readFile(new URL("app/page.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/layout.tsx", projectRoot), "utf8"),
+  ]);
+
+  assert.match(component, /export const ARCHIVE_YEARS = \[1960, 1984, 1995, 2007, 2026\] as const/);
+  assert.match(component, /type SequencePhase = "loading" \| "years" \| "typing" \| "complete"/);
+  assert.match(component, /const LOADING_DURATION = 650/);
+  assert.match(component, /const YEAR_DURATION = 160/);
+  assert.match(component, /const CHARACTER_DURATION = 45/);
+  assert.match(component, /window\.sessionStorage\.getItem\(TITLE_SEQUENCE_STORAGE_KEY\)/);
+  assert.match(component, /window\.sessionStorage\.setItem\(TITLE_SEQUENCE_STORAGE_KEY, "seen"\)/);
+  assert.match(component, /window\.matchMedia\(REDUCED_MOTION_QUERY\)/);
+  assert.match(component, /window\.clearTimeout/);
+  assert.match(component, /removeEventListener\("change", handleMotionPreference\)/);
+  assert.match(component, /<span className="visuallyHidden">\{TITLE\}<\/span>/);
+  assert.match(component, /<span className="museumTitleAnimated" aria-hidden="true">/);
+  assert.match(component, /className="museumTitleReplay"/);
+  assert.match(component, /onClick=\{replay\}/);
+  assert.match(page, /<MuseumTitleSequence \/>/);
+  assert.match(page, /© DIGITAL MOTION ARCHIVE/);
+  assert.match(layout, /title: "DIGITAL MOTION ARCHIVE"/);
+  assert.match(css, /\.museumTitleStage\s*\{[\s\S]*min-height:/);
+  assert.match(css, /\.museumTitleText\s*\{[\s\S]*flex-wrap: wrap/);
+  assert.match(css, /\.museumTitleSegment\s*\{[\s\S]*white-space: nowrap/);
+  assert.match(css, /@media \(max-width: 650px\)[\s\S]*\.museumTitleText\s*\{[\s\S]*flex-direction: column/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.museumTitleAnimated\s*\{\s*display: none/);
+  assert.match(css, /\.museumTitleReplay:focus-visible/);
 });
 
 test("既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き出す", async () => {

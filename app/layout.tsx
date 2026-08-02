@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "デジタルアニメーションミュージアム | Digital Animation Museum",
+  title: "DIGITAL MOTION ARCHIVE",
   description:
-    "ローディング画面やカーソルなど、画面上のデジタルアニメーションの歴史と操作感をブラウザで体験するミュージアム。",
+    "ローディング、カーソル、起動画面、UIアニメーションなど、デジタル上の動きの歴史を収集・再現するアーカイブ。",
 };
 
 export const viewport: Viewport = {

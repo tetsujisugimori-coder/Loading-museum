@@ -1,6 +1,7 @@
 import { ExhibitRoomAccordion } from "./components/ExhibitRoomAccordion";
 import { CursorExhibitRoom } from "./components/CursorExhibitRoom";
 import { FlashSpecialExhibitRoom } from "./components/FlashSpecialExhibitRoom";
+import { MuseumTitleSequence } from "./components/MuseumTitleSequence";
 import { cursorExhibits } from "./data/cursorExhibits";
 import { exhibitRooms } from "./data/exhibitRooms";
 import { flashExhibitCount } from "./data/flashExhibits";
@@ -47,15 +48,7 @@ export default function Home() {
   return (
     <main className="museumShell">
       <header className="museumHeader">
-        <div>
-          <p className="eyebrow">Digital Animation Museum / permanent collection</p>
-          <h1>
-            デジタル<span>アニメーション</span>ミュージアム
-          </h1>
-          <p className="subtitle">
-            Digital Animation Museum — 画面上の動きが伝えてきた、状態と操作の記憶。
-          </p>
-        </div>
+        <MuseumTitleSequence />
         <p className="archiveMeta">
           ARCHIVE NODE <strong>JP–01</strong>
           <br />
@@ -187,7 +180,7 @@ export default function Home() {
       <footer>
         <span className="liveStatus">ALL EXHIBITS RUNNING</span>
         <span>WAITING INTERFACES / CHRONOLOGICAL INDEX</span>
-        <span>© DIGITAL ANIMATION MUSEUM</span>
+        <span>© DIGITAL MOTION ARCHIVE</span>
       </footer>
     </main>
   );
