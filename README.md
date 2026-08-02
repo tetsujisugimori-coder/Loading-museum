@@ -16,7 +16,7 @@ DIGITAL MOTION ARCHIVEは、ローディング画面やカーソルなど、画�
 
 常設展示の下に、開閉できる5つの年代・操作展示室と、独立したFlash特別展示室があります。「MS-DOS・PCコマンドライン展示室」「Linux / UNIX 展示室」「消えたOS展示室」では、文字端末やClassic Mac OS、BeOS、NeXTSTEP、Palm OS、webOS、Windows Phoneの待機・起動・読込・同期・更新表現を収録しています。
 
-「Apple創成期展示室」は「Apple IからApple IIへ」を主題に、1976〜1979年の文字・カセット・カラー・ディスクの状態表現をたどります。実機未経験者向けの「はじめてのApple I / Apple II」入門ツアーでは、Apple Iの基板と周辺機器、Monitorでのメモリ操作、Apple IとApple IIの概念比較、BASICのLIST／RUN、データとカセット音の相互変換、カセットとDisk IIの違いを6章で説明し、15語の用語集を用意しました。その後の「詳しく触る」では既存13展示を維持し、Apple Iの構成・Monitor・Cassette Interface、Apple IIの起動・BASIC・SAVE／LOAD・カラー表示、Disk IIの外観と内部概念図を個別に操作できます。各カードは「史料ベース」「概念再構成」「創作比較」に分類し、現代の操作との近い考え方も、同一の仕組みではないことを添えて表示します。
+「Apple I / Apple II 展示室」は、基板中心のApple Iから、BASIC・カラー・Disk IIを備えたApple IIへの変化を扱います。実機未経験者向けの「はじめてのApple I / Apple II」入門ツアーに続き、「詳しく触る」の13展示を`利用者の操作 → 機器やデータの変化 → 画面・音・ランプの変化 → 結果`として観察できます。接続により機能が増えるApple I、再生操作で初めて鳴る初期ONの抽象カセット音、LIST／RUNを直接実行するBASIC、目的から選ぶSAVE／LOAD、3用途のハイレゾ線画、ディスク挿入から起動完了まで、4種類のDisk II待機タイムラインを収録しています。各カードは「史料ベース」「概念再構成」「創作比較」に分類し、現代の操作との近い考え方も、同一の仕組みではないことを添えて表示します。
 
 「カーソル展示室」では、標準矢印、リンク用の手、Iビーム、待機、禁止、ドラッグ、クリックエフェクト、残像の8展示をマウスまたはタッチで体験できます。
 
@@ -26,7 +26,7 @@ DIGITAL MOTION ARCHIVEは、ローディング画面やカーソルなど、画�
 
 展示はHTML、CSS、JavaScriptで構成し、外部画像やGIFは使用していません。歴史的特徴を教育・研究目的で再構成した非公式展示であり、実際のスクリーンショット、企業ロゴ、製品アイコン、起動音は転載していません。PC、タブレット、スマートフォンに対応します。展示室全体・展示単位・画面外・タブ非表示・展示室を閉じた状態で継続アニメーションを停止し、OSで「視差効果を減らす」が有効な場合は代表フレームへ切り替えます。音声を使う展示は初期ミュートで、利用者が開始または明示的に有効にした合成音だけを再生し、自動再生しません。
 
-Apple創成期展示室の史実説明は、Computer History Museum所蔵のApple-1 Operation Manual、Apple II Reference ManualとDisk II Manual、Smithsonian所蔵のApple I Cassette Interfaceを主な参照資料としています。
+Apple I / Apple II 展示室の史実説明は、Computer History Museum所蔵のApple-1 Operation Manual、Apple II Reference ManualとDisk II Manual、Smithsonian所蔵のApple I Cassette Interfaceを主な参照資料としています。
 
 ## 開発
 

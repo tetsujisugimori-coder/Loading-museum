@@ -95,10 +95,12 @@ type AppleDemoControlsProps = {
   onPlay: () => void;
   onReset: () => void;
   onSpeedChange: (speed: AppleDemoSpeed) => void;
+  onBeforePlay?: () => void;
+  canPlay?: boolean;
   phase: AppleDemoPhase;
   showLoop?: boolean;
   speed: AppleDemoSpeed;
-} | { label: string; sequence: AppleSequence; showLoop?: boolean };
+} | { label: string; sequence: AppleSequence; showLoop?: boolean; onBeforePlay?: () => void; canPlay?: boolean };
 
 export function AppleDemoControls(props: AppleDemoControlsProps) {
   const label = props.label;
@@ -113,11 +115,16 @@ export function AppleDemoControls(props: AppleDemoControlsProps) {
   const phase = sequence?.phase ?? ("phase" in props ? props.phase : "idle");
   const speed = sequence?.speed ?? ("speed" in props ? props.speed : "normal");
   const running = phase === "running";
+  const canPlay = props.canPlay ?? true;
+  const handlePlay = () => {
+    props.onBeforePlay?.();
+    onPlay();
+  };
   const playLabel = phase === "paused" ? "再開" : phase === "complete" ? "再実行" : "再生";
 
   return (
     <div className="appleDemoControls" role="group" aria-label={`${label}の再生操作`}>
-      <button type="button" onClick={onPlay} disabled={running} aria-label={`${label}を${playLabel}`}>
+      <button type="button" onClick={handlePlay} disabled={running || !canPlay} aria-label={`${label}を${playLabel}`}>
         {playLabel}
       </button>
       <button type="button" onClick={onPause} disabled={!running} aria-label={`${label}を一時停止`}>

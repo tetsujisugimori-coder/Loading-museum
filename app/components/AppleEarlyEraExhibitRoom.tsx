@@ -82,8 +82,8 @@ export default function AppleEarlyEraExhibitRoom() {
       >
         <span className="roomToggleMain">
           <span className="roomEyebrow">ROOM / 1976–1979</span>
-          <span className="roomTitle" id="apple-early-room-title">Apple創成期展示室</span>
-          <span className="roomSummary">Apple IからApple IIへ — 文字・カセット・カラー・ディスクの状態表現</span>
+          <span className="roomTitle" id="apple-early-room-title">Apple I / Apple II 展示室</span>
+          <span className="roomSummary">基板中心のApple Iから、BASIC・カラー・Disk IIを備えたApple IIへの変化</span>
         </span>
         <span className="roomToggleMeta" aria-hidden="true">
           <span>1976–1979</span>
@@ -104,9 +104,9 @@ export default function AppleEarlyEraExhibitRoom() {
         <div className="roomPanelInner">
           <div className="appleEarlyRoomBody">
           <header className="appleEarlyIntro">
-            <p className="appleEarlyKicker">APPLE I → APPLE II → DISK II / 1976–1979</p>
-            <h3>Apple IからApple IIへ</h3>
-            <p className="appleEarlySubtitle">文字・カセット・カラー・ディスクが変えたコンピュータとの対話</p>
+            <p className="appleEarlyKicker">PERIOD ROOM / 1976–1979</p>
+            <h3>展示の見方</h3>
+            <p className="appleEarlySubtitle">入門ツアーで基本を知り、その後の13展示で操作と変化を確かめます。</p>
             <div className="appleEarlyIntroGrid">
               <section><h4>1 / Apple I</h4><p>組み立て済み基板として販売され、利用者が電源、キーボード、ディスプレイなどを用意しました。文字Monitorが操作、Apple Cassette Interfaceが外部レコーダーによる保存と読込の入口でした。</p></section>
               <section><h4>2 / Apple II</h4><p>筐体、キーボード、カラー表示、BASICが一体化され、家庭で扱いやすいコンピュータになりました。文字入力だけでなく、色ブロックや線の生成過程も画面状態を伝えます。</p></section>

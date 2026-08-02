@@ -244,7 +244,7 @@ test("カーソル展示のデータ、Pointer Events、性能とアクセシビ
   assert.match(data, /Reactのローカルstateで3対象の選択状態と結果表示を切り替えています/);
 });
 
-test("Apple創成期展示室を加えた展示室・展示件数を表示する", async () => {
+test("Apple I / Apple II 展示室を加えた展示室・展示件数を表示する", async () => {
   const [html, page] = await Promise.all([
     readFile(new URL("index.html", outputRoot), "utf8"),
     readFile(new URL("app/page.tsx", projectRoot), "utf8"),
@@ -271,13 +271,14 @@ test("Apple創成期展示室を加えた展示室・展示件数を表示する
   assert.doesNotMatch(page, /3 ROOMS \/ 30 OBJECTS/);
 });
 
-test("Apple創成期展示室へ初心者向け入門と13種類の分類済み展示を実装する", async () => {
-  const [html, data, beginnerData, room, guide, controls, media, graphics, terminal, css] = await Promise.all([
+test("Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する", async () => {
+  const [html, data, beginnerData, room, guide, interaction, controls, media, graphics, terminal, css] = await Promise.all([
     readFile(new URL("index.html", outputRoot), "utf8"),
     readFile(new URL("app/data/appleEarlyExhibits.ts", projectRoot), "utf8"),
     readFile(new URL("app/data/appleEarlyBeginnerGuide.ts", projectRoot), "utf8"),
     readFile(new URL("app/components/AppleEarlyEraExhibitRoom.tsx", projectRoot), "utf8"),
     readFile(new URL("app/components/AppleEarlyBeginnerGuide.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/AppleInteractionFlow.tsx", projectRoot), "utf8"),
     readFile(new URL("app/components/AppleEarlyDemoControls.tsx", projectRoot), "utf8"),
     readFile(new URL("app/components/AppleEarlyMediaDemos.tsx", projectRoot), "utf8"),
     readFile(new URL("app/components/AppleEarlyGraphicsDemos.tsx", projectRoot), "utf8"),
@@ -286,11 +287,12 @@ test("Apple創成期展示室へ初心者向け入門と13種類の分類済み�
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /Apple創成期展示室/);
+  assert.match(normalizedHtml, /Apple I \/ Apple II 展示室/);
   assert.match(normalizedHtml, /1976–1979/);
   assert.match(normalizedHtml, /13 EXHIBITS/);
-  assert.match(normalizedHtml, /Apple IからApple IIへ/);
-  assert.match(normalizedHtml, /文字・カセット・カラー・ディスクが変えたコンピュータとの対話/);
+  assert.match(normalizedHtml, /基板中心のApple Iから、BASIC・カラー・Disk IIを備えたApple IIへの変化/);
+  assert.doesNotMatch(normalizedHtml, /Apple創成期展示室/);
+  assert.doesNotMatch(normalizedHtml, /文字・カセット・カラー・ディスクが変えたコンピュータとの対話/);
   assert.doesNotMatch(normalizedHtml, /完成品になる前のコンピュータ/);
   assert.match(html, /aria-controls="apple-early-era-room-panel"/);
   assert.match(html, /id="apple-early-era-room-panel"[^>]*data-open="false"[^>]*role="region"[^>]*aria-labelledby="apple-early-era-room-toggle"[^>]*aria-hidden="true"[^>]*inert=""/);
@@ -324,12 +326,12 @@ test("Apple創成期展示室へ初心者向け入門と13種類の分類済み�
   assert.match(beginnerData, /readonly ComparisonRow\[\]/);
 
   for (const title of [
-    "周辺機器を組み合わせる Apple I", "メモリアドレスを入力する Apple I Monitor",
+    "接続すると機能が増えるApple I", "メモリアドレスを入力する Apple I Monitor",
     "カセット信号を探す Apple Cassette Interface", "文字出力を送り続けるスクロール",
-    "電源投入から入力可能になるまで", "BASICプログラムの入力・LIST・RUN",
-    "外部レコーダーへのSAVEとLOAD", "色ブロックで見るローレゾ描画",
-    "線と曲線で見るハイレゾ描画", "Disk IIからの起動",
-    "連続読込・シーク・再試行の違い", "創作ゲームで見るディスクロード",
+    "電源投入から入力可能になるまで", "BASICを書き、LISTで確認し、RUNする",
+    "カセットへ保存し、読み戻す", "色ブロックで見るローレゾ描画",
+    "ハイレゾで描くグラフ・図形・ゲーム画面", "ディスクを挿入してApple IIを起動する",
+    "Disk IIの待ち方を比べる", "創作ゲームで見るディスクロード",
     "4種類のエラーと回復方法を比較する",
   ]) assert.match(normalizedHtml, new RegExp(title));
 
@@ -350,11 +352,31 @@ test("Apple創成期展示室へ初心者向け入門と13種類の分類済み�
   assert.match(guide, /role="img"/);
   assert.match(controls, /setStep\(prefersReducedMotion \? finalStep : 0\)/);
   assert.match(controls, /setPhase\(prefersReducedMotion \? "complete" : "idle"\)/);
+  for (const stageLabel of ["利用者の操作", "機器・データの変化", "画面・音・ランプ", "できるようになったこと"]) assert.match(interaction, new RegExp(stageLabel));
+  for (const capability of ["基板のみ", "動作可能になる", "文字を入力できる", "文字を確認できる", "プログラムを保存・読込できる"]) assert.match(terminal, new RegExp(capability));
   assert.match(media, /AudioContext/);
-  assert.match(media, /抽象化した信号確認音/);
-  assert.match(media, /実機音の正確な再現ではありません/);
+  assert.match(media, /useState\(true\)/);
+  assert.match(media, /再生すると抽象化した信号音が鳴ります/);
+  assert.match(media, /実機信号の正確な再現ではありません/);
+  assert.match(media, /onBeforePlay=\{startWithSound\}/);
+  assert.match(media, /const startWithSound = \(\) =>/);
+  assert.match(media, /if \(soundEnabled\) startTone/);
+  assert.match(media, /if \(!soundEnabled \|\| !isRunning \|\| !tone\) stopTone\(\)/);
+  assert.match(media, /void contextRef\.current\?\.close\(\)/);
   assert.match(media, /props\.active && sequence\.phase === "running"/);
-  for (const mode of ["SAVE成功", "LOAD成功", "LOAD失敗"]) assert.match(normalizedHtml, new RegExp(mode));
+  assert.match(terminal, /onClick=\{\(\) => executeCommand\("LIST"\)\}/);
+  assert.match(terminal, /onClick=\{\(\) => executeCommand\("RUN"\)\}/);
+  for (const panel of ["プログラム", "操作", "結果"]) assert.match(normalizedHtml, new RegExp(panel));
+  for (const purpose of ["プログラムを保存する", "プログラムを読み込む", "信号なし", "音量不足", "接続不良"]) assert.match(normalizedHtml, new RegExp(purpose));
+  assert.match(media, /const reverse = purpose === "save"/);
+  for (const useCase of ["関数グラフ", "教育用の幾何図形", "ゲームや地図を想定した線画"]) assert.match(normalizedHtml, new RegExp(useCase));
+  assert.equal((graphics.match(/label: "/g) ?? []).length >= 3, true);
+  assert.match(normalizedHtml, /ディスク未挿入/);
+  assert.match(normalizedHtml, /起動完了/);
+  assert.match(normalizedHtml, /プログラムを操作できる状態になりました/);
+  assert.match(normalizedHtml, /カセットではレコーダーを操作してLOADしましたが/);
+  assert.match(normalizedHtml, /待ち時間（概念比較）/);
+  for (const feeling of ["比較的短く感じます", "ランプが途切れて見えます", "少し待ちます", "長く感じます"]) assert.match(media, new RegExp(feeling));
   for (const errorKind of ["カセット信号なし", "ディスク未挿入", "ディスク読込失敗", "BASIC命令エラー"]) assert.match(normalizedHtml, new RegExp(errorKind));
   assert.match(normalizedHtml, /テープレコーダー/);
   assert.match(normalizedHtml, /Cassette Interface/);
@@ -364,6 +386,7 @@ test("Apple創成期展示室へ初心者向け入門と13種類の分類済み�
   assert.match(graphics, /requestAnimationFrame/);
   assert.match(graphics, /cancelAnimationFrame/);
   assert.match(graphics, /role="img"/);
+  assert.doesNotMatch(graphics, />PLAY<|>PAUSE<|>RESET<|SPEED|LOOP/);
   assert.doesNotMatch(terminal, /\beval\s*\(/);
   assert.match(terminal, /JavaScriptは実行しません/);
   assert.match(css, /@media \(max-width: 520px\)/);
@@ -371,6 +394,10 @@ test("Apple創成期展示室へ初心者向け入門と13種類の分類済み�
   assert.match(css, /\.appleComparisonRow/);
   assert.match(css, /\.appleCassetteConversion/);
   assert.match(css, /\.appleGlossary/);
+  assert.match(css, /\.appleInteractionFlow/);
+  assert.match(css, /\.appleBasicPanels/);
+  assert.match(css, /\.appleDiskBootTimeline/);
+  assert.match(css, /\.appleAccessTimeline/);
   assert.match(css, /@media \(max-width: 700px\)[\s\S]*\.appleCassetteConversion \{ grid-template-columns: 1fr/);
   assert.match(css, /@media \(max-width: 520px\)[\s\S]*\.appleGuidedSteps/);
   assert.doesNotMatch(css, /\.appleBeginner(?:Guide|Chapters|Comparison|CassetteConversion|Glossary)[^{]*\{[^}]*min-width:\s*\d+px/);
