@@ -871,3 +871,64 @@
 - ブラウザ検証環境に`prefers-reduced-motion`の強制変更機能がないため、実際のOS設定を切り替えた目視確認は未実施。React分岐、CSSの即時完成表示、全アニメーション停止は自動テストとソースレビューで確認した。
 - ブラウザ検証環境は同一ブラウザセッションのstorageをタブ間で保持するため、未完了離脱だけを完全に独立した新規セッションとして再現する目視確認は未実施。既読書き込みがcomplete effect内だけにあることと、途中stateでは書き込まないことを回帰テストで確認した。
 - 年代、ラベル、各段階の時間は`ARCHIVE_ERAS`と`SEQUENCE_DELAYS`、タイムラインの見た目はCSS変数と`data-state`規則で今後調整できる。
+
+## 2026-08-02 — PR #16 データ駆動タイムラインと時間同期の最終調整
+
+### 5件固定だった問題と動的化
+
+- React側は`ARCHIVE_ERAS.map()`でノードを生成していた一方、CSS側の列数、左右余白、進捗線が5件専用だったため、年代を増減するとDOMとレイアウトが一致しない状態だった。
+- `ArchiveTimeline`から`--museum-title-timeline-count`へ`ARCHIVE_ERAS.length`、`--museum-title-timeline-progress`へ純粋関数で求めた進捗率を渡す構成へ変更した。
+- CSSの列数は`repeat(var(--museum-title-timeline-count), ...)`、接続線の左右余白は`calc(50% / var(--museum-title-timeline-count))`とし、常に先頭ノード中央から最終ノード中央までを結ぶ。
+- 進捗線は接続線全体を描いたうえで、`clip-path`に進捗率を渡して表示範囲だけを伸ばす。5件固定の`data-completed`別width規則は削除した。
+
+### 進捗率と安全処理
+
+- `getTimelineProgressPercent(sequence, eraCount)`を追加した。進捗率は`(完了数 - 1) / (年代数 - 1) × 100`で、5年代では`0 / 25 / 50 / 75 / 100%`となる。
+- index-complete以降は完了数が年代総数になるため100%。`getCompletedEraCount()`は0から年代総数の範囲へclampし、不正なeraIndexでも総数を超えない。
+- 年代数が1以下の場合は除算せず0%を返す。CSS側の列数にも最低1の安全値を渡すため、ゼロ除算、`NaN`、無効な`repeat(0, ...)`を避ける。
+
+### signal brightenの時間同期
+
+- React状態の`SEQUENCE_DELAYS.signalBrighten`は150ms、CSS animationは160msで10msずれていた。CSSを150msへ変更し、Reactがnoiseへ進む前に主要animationが完了するよう統一した。
+- index completeは状態／CSSとも200ms、signal noiseは状態／CSSとも200ms。signal lockedは180msの静的確定表示で、jitter 70msはnoise 200ms内で完了する補助animationとして維持した。
+
+### 一時6年代での確認
+
+- ローカル確認時だけ`2035 / QUANTUM UI`を6件目として追加し、1440pxと320pxで6列へ自動追従することを確認した。
+- 進捗は`0 / 20 / 40 / 60 / 80 / 100%`、index-completeでは6ノードと接続線がすべて完了した。両幅で接続線の端は先頭／最終ノード中央と一致し、横スクロールは0だった。
+- 確認直後にダミー年代を削除し、最終状態が既存5年代だけであることをブラウザとテストで再確認した。ダミー年代はコミット対象に含めない。
+
+### 変更したファイル
+
+- `app/components/MuseumTitleSequence.tsx`
+- `app/components/museum-title-sequence-state.ts`
+- `app/globals.css`
+- `tests/museum-title-sequence-state.test.mjs`
+- `tests/rendered-html.test.mjs`
+- `LOG.md`
+
+### テストの追加・変更
+
+- 状態遷移テストへ、5年代の0／25／50／75／100%、index-completeの100%、1年代の有限な0%、完了数の上限制御、0年代の安全処理を追加した。
+- HTML回帰テストへ、`ARCHIVE_ERAS.length`の利用、進捗純粋関数、CSSカスタムプロパティ、動的列数、動的左右余白、`clip-path`進捗、5件固定CSSの不在、brighten 150msを追加した。
+- 既存の`pending / current / complete`判定、complete停止、正式タイトル、メッセージ、Replay、reduced motion回帰を維持した。
+
+### 実行コマンドと結果
+
+- `npm run lint`: 成功。
+- `npm run typecheck`: 成功。CSSカスタムプロパティを渡す`CSSProperties`の型エラーなし。
+- `node --test tests/museum-title-sequence-state.test.mjs`: 24件成功。
+- `npm run check`: ESLint、TypeScript、Next.js静的ビルド、状態遷移24件と既存回帰17件の合計41件がすべて成功。
+- `npm run build`: 独立実行でも成功し、静的ページ3件を生成した。
+
+### ブラウザ確認結果
+
+- 5年代で進捗が`0 / 25 / 50 / 75 / 100%`と段階的に伸び、index-completeで全ノードと接続線が完了することを確認した。
+- 1440、768、390、375、320pxで接続線の左右端が先頭／最終ノード中央と一致し、現在ノードの強調、既存5年代、横スクロールなしを確認した。
+- brightenのcomputed animation durationは`0.15s`で、約150ms後にnoiseへ移行した。noiseへの切替に中断やエラーはなかった。
+- 6年代の一時確認後、5年代へ復元されたこと、MS-DOS展示室の8展示とARIA状態が正常であることを確認した。
+- console warning／error、エラーダイアログ、Hydration Errorはなかった。
+
+### 未確認事項
+
+- 今回の変更はreduced motion分岐へ触れておらず回帰テストは成功しているが、ブラウザ検証環境ではOSの`prefers-reduced-motion`を強制変更できないため、実設定を切り替えた目視確認は再実施していない。

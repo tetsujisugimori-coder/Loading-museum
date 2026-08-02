@@ -253,7 +253,7 @@ body::after {
   display: grid;
   width: 100%;
   height: 25px;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--museum-title-timeline-count, 1), minmax(0, 1fr));
   align-items: start;
 }
 
@@ -262,27 +262,22 @@ body::after {
   position: absolute;
   z-index: 0;
   top: 4px;
-  left: 10%;
+  left: calc(50% / var(--museum-title-timeline-count, 1));
+  right: calc(50% / var(--museum-title-timeline-count, 1));
   height: 1px;
   content: "";
 }
 
 .museumTitleTimeline::before {
-  right: 10%;
   background: var(--line-bright);
   opacity: 0.55;
 }
 
 .museumTitleTimeline::after {
-  width: 0;
   background: var(--green);
   box-shadow: 0 0 6px rgb(57 231 125 / 35%);
+  clip-path: inset(0 calc(100% - var(--museum-title-timeline-progress, 0%)) 0 0);
 }
-
-.museumTitleTimeline[data-completed="2"]::after { width: 20%; }
-.museumTitleTimeline[data-completed="3"]::after { width: 40%; }
-.museumTitleTimeline[data-completed="4"]::after { width: 60%; }
-.museumTitleTimeline[data-completed="5"]::after { width: 80%; }
 
 .museumTitleTimelineNode {
   position: relative;
@@ -343,7 +338,7 @@ body::after {
 }
 
 .museumTitleSignalFrame[data-signal-step="brighten"] .museumTitleText {
-  animation: museum-title-signal-brighten 160ms ease-out both;
+  animation: museum-title-signal-brighten 150ms ease-out both;
 }
 
 .museumTitleSignalNoise {

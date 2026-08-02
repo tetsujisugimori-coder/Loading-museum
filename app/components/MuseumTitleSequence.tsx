@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   advanceSequenceForRun,
   ARCHIVE_ERAS,
@@ -9,8 +9,9 @@ import {
   createReducedMotionSequence,
   createReplaySequence,
   getCompletedEraCount,
-  getTimelineNodeState,
   getSequenceDelay,
+  getTimelineNodeState,
+  getTimelineProgressPercent,
   TITLE,
   TITLE_FIRST_LINE,
   TITLE_SECOND_LINE,
@@ -70,8 +71,20 @@ function CompletedTitle({ blinkingCursor }: { blinkingCursor: boolean }) {
 }
 
 function ArchiveTimeline({ sequence }: { sequence: SequenceState }) {
+  const timelineCount = ARCHIVE_ERAS.length;
+  const completedCount = getCompletedEraCount(sequence, timelineCount);
+  const progressPercent = getTimelineProgressPercent(sequence, timelineCount);
+  const timelineStyle = {
+    "--museum-title-timeline-count": Math.max(1, timelineCount),
+    "--museum-title-timeline-progress": `${progressPercent}%`,
+  } as CSSProperties;
+
   return (
-    <span className="museumTitleTimeline" data-completed={getCompletedEraCount(sequence)}>
+    <span
+      className="museumTitleTimeline"
+      data-completed={completedCount}
+      style={timelineStyle}
+    >
       {ARCHIVE_ERAS.map((era, index) => (
         <span
           className="museumTitleTimelineNode"

@@ -11,6 +11,7 @@ import {
   getCompletedEraCount,
   getSequenceDelay,
   getTimelineNodeState,
+  getTimelineProgressPercent,
   isLastEra,
   nextSequenceState,
   SEQUENCE_DELAYS,
@@ -150,6 +151,29 @@ test("年代走査完了後は全タイムラインノードが点灯する", ()
     ARCHIVE_ERAS.map((_, index) => getTimelineNodeState(index, state)),
     Array.from({ length: ARCHIVE_ERAS.length }, () => "complete"),
   );
+});
+
+test("タイムライン進捗率を年代件数と現在位置から算出する", () => {
+  assert.equal(getTimelineProgressPercent(createYearsState(0)), 0);
+  assert.equal(getTimelineProgressPercent(createYearsState(1)), 25);
+  assert.equal(getTimelineProgressPercent(createYearsState(2)), 50);
+  assert.equal(getTimelineProgressPercent(createYearsState(3)), 75);
+  assert.equal(getTimelineProgressPercent(createYearsState(ARCHIVE_ERAS.length - 1)), 100);
+  assert.equal(
+    getTimelineProgressPercent({
+      ...createInitialSequence(),
+      phase: "index-complete",
+      eraIndex: ARCHIVE_ERAS.length - 1,
+    }),
+    100,
+  );
+});
+
+test("年代が1件でも安全な進捗率を返し、完了数を件数内へ制限する", () => {
+  assert.equal(getTimelineProgressPercent(createYearsState(0), 1), 0);
+  assert.equal(Number.isFinite(getTimelineProgressPercent(createYearsState(0), 1)), true);
+  assert.equal(getCompletedEraCount(createYearsState(99), ARCHIVE_ERAS.length), ARCHIVE_ERAS.length);
+  assert.equal(getCompletedEraCount(createYearsState(0), 0), 0);
 });
 
 test("全年代と全時間定数を一か所で管理する", () => {

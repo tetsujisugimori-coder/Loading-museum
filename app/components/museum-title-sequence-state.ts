@@ -79,10 +79,25 @@ export function isLastEra(sequence: SequenceState): boolean {
   return sequence.eraIndex === ARCHIVE_ERAS.length - 1;
 }
 
-export function getCompletedEraCount(sequence: SequenceState): number {
+export function getCompletedEraCount(
+  sequence: SequenceState,
+  eraCount = ARCHIVE_ERAS.length,
+): number {
+  const safeEraCount = Math.max(0, eraCount);
   if (sequence.phase === "loading") return 0;
-  if (sequence.phase === "years") return sequence.eraIndex + 1;
-  return ARCHIVE_ERAS.length;
+  if (sequence.phase === "years") {
+    return Math.min(Math.max(0, sequence.eraIndex + 1), safeEraCount);
+  }
+  return safeEraCount;
+}
+
+export function getTimelineProgressPercent(
+  sequence: SequenceState,
+  eraCount = ARCHIVE_ERAS.length,
+): number {
+  if (eraCount <= 1) return 0;
+  const completedCount = getCompletedEraCount(sequence, eraCount);
+  return (Math.max(0, completedCount - 1) / (eraCount - 1)) * 100;
 }
 
 export function getTimelineNodeState(

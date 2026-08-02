@@ -62,6 +62,10 @@ test("正式名称のタイトル導入、年代テーマ、確定演出、軽�
   assert.match(component, /ARCHIVE_ERAS\.map/);
   assert.match(component, /className="museumTitleTimeline"/);
   assert.match(component, /className="museumTitleTimelineNode"/);
+  assert.match(component, /const timelineCount = ARCHIVE_ERAS\.length/);
+  assert.match(component, /getTimelineProgressPercent\(sequence, timelineCount\)/);
+  assert.match(component, /"--museum-title-timeline-count"/);
+  assert.match(component, /"--museum-title-timeline-progress"/);
   assert.match(component, /data-state=\{getTimelineNodeState\(index, sequence\)\}/);
   assert.match(component, /ARCHIVE INDEX COMPLETE/);
   assert.match(component, /className="museumTitleSignalFrame"/);
@@ -89,6 +93,11 @@ test("正式名称のタイトル導入、年代テーマ、確定演出、軽�
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.museumTitleAnimated\s*\{\s*display: none/);
   assert.match(css, /\.museumTitleReplay:focus-visible/);
   assert.match(css, /@keyframes museum-title-signal-brighten/);
+  assert.match(css, /museum-title-signal-brighten 150ms/);
+  assert.match(css, /repeat\(var\(--museum-title-timeline-count, 1\), minmax\(0, 1fr\)\)/);
+  assert.match(css, /left: calc\(50% \/ var\(--museum-title-timeline-count, 1\)\)/);
+  assert.match(css, /clip-path: inset\(0 calc\(100% - var\(--museum-title-timeline-progress, 0%\)\) 0 0\)/);
+  assert.doesNotMatch(css, /museumTitleTimeline\[data-completed=/);
   assert.match(css, /@keyframes museum-title-signal-noise/);
   assert.match(css, /@keyframes museum-title-signal-jitter/);
   assert.match(css, /@keyframes museum-title-index-lock/);
