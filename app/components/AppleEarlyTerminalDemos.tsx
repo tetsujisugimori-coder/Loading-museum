@@ -13,8 +13,33 @@ const SCROLL_LINES = [
   "PROCESS COMPLETE",
 ] as const;
 
+const SETUP_PARTS = ["電源", "キーボード", "ディスプレイ", "Cassette Interface"] as const;
+
 function promptLine(text: string, index: number) {
   return <span key={`${index}-${text}`}>{text}</span>;
+}
+
+export function AppleOneSetupDemo({ active, prefersReducedMotion }: { active: boolean; prefersReducedMotion: boolean }) {
+  const sequence = useAppleSequence({ active, baseDelay: 520, prefersReducedMotion, stepCount: SETUP_PARTS.length + 1 });
+  return (
+    <div className="appleInteractiveDemo appleSetupDemo">
+      <div className="appleSetupDiagram" role="img" aria-label="Apple I基板へ電源、キーボード、ディスプレイ、Cassette Interfaceを接続する概念図">
+        <div className="appleSetupBoard">Apple I<span>組み立て済み基板</span></div>
+        <ul>
+          {SETUP_PARTS.map((part, index) => (
+            <li key={part} data-connected={sequence.step > index}>
+              <span aria-hidden="true">{sequence.step > index ? "●" : "○"}</span>{part}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <p className="appleMuseumStatus">
+        <span>展示側ステータス</span>
+        {sequence.phase === "complete" ? "操作環境が成立しました" : `${SETUP_PARTS[Math.min(sequence.step, SETUP_PARTS.length - 1)]}を接続しています`}
+      </p>
+      <AppleDemoControls label="Apple I構成確認" sequence={sequence} />
+    </div>
+  );
 }
 
 export function AppleOneMonitorDemo() {

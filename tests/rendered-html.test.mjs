@@ -251,7 +251,7 @@ test("Apple創成期展示室を加えた展示室・展示件数を表示する
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /6 ROOMS \/ 114 OBJECTS/);
+  assert.match(normalizedHtml, /6 ROOMS \/ 115 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
   assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 5);
   assert.equal((html.match(/aria-expanded="false"/g) ?? []).length, 6);
@@ -262,7 +262,7 @@ test("Apple創成期展示室を加えた展示室・展示件数を表示する
       + (html.match(/class="vanishedLoadingExhibit"/g) ?? []).length
       + (html.match(/class="cursorExhibit"/g) ?? []).length
       + (html.match(/class="appleEarlyExhibit"/g) ?? []).length,
-    60,
+    61,
   );
   assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 3/);
   assert.match(page, /cursorExhibits\.length \+ appleEarlyExhibitCount/);
@@ -271,11 +271,12 @@ test("Apple創成期展示室を加えた展示室・展示件数を表示する
   assert.doesNotMatch(page, /3 ROOMS \/ 30 OBJECTS/);
 });
 
-test("Apple創成期展示室へ1976–1979年の12種類の再現展示を実装する", async () => {
-  const [html, data, room, media, graphics, terminal, css] = await Promise.all([
+test("Apple創成期展示室へ1976–1979年の13種類の分類済み展示を実装する", async () => {
+  const [html, data, room, controls, media, graphics, terminal, css] = await Promise.all([
     readFile(new URL("index.html", outputRoot), "utf8"),
     readFile(new URL("app/data/appleEarlyExhibits.ts", projectRoot), "utf8"),
     readFile(new URL("app/components/AppleEarlyEraExhibitRoom.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/AppleEarlyDemoControls.tsx", projectRoot), "utf8"),
     readFile(new URL("app/components/AppleEarlyMediaDemos.tsx", projectRoot), "utf8"),
     readFile(new URL("app/components/AppleEarlyGraphicsDemos.tsx", projectRoot), "utf8"),
     readFile(new URL("app/components/AppleEarlyTerminalDemos.tsx", projectRoot), "utf8"),
@@ -285,22 +286,47 @@ test("Apple創成期展示室へ1976–1979年の12種類の再現展示を実�
 
   assert.match(normalizedHtml, /Apple創成期展示室/);
   assert.match(normalizedHtml, /1976–1979/);
-  assert.match(normalizedHtml, /12 EXHIBITS/);
+  assert.match(normalizedHtml, /13 EXHIBITS/);
+  assert.match(normalizedHtml, /Apple IからApple IIへ/);
+  assert.match(normalizedHtml, /文字・カセット・カラー・ディスクが変えたコンピュータとの対話/);
+  assert.doesNotMatch(normalizedHtml, /完成品になる前のコンピュータ/);
   assert.match(html, /aria-controls="apple-early-era-room-panel"/);
   assert.match(html, /id="apple-early-era-room-panel"[^>]*data-open="false"[^>]*role="region"[^>]*aria-labelledby="apple-early-era-room-toggle"[^>]*aria-hidden="true"[^>]*inert=""/);
-  assert.equal((html.match(/class="appleEarlyExhibit"/g) ?? []).length, 12);
+  assert.equal((html.match(/class="appleEarlyExhibit"/g) ?? []).length, 13);
 
   for (const title of [
-    "Apple I風モニタ入力", "Apple I風カセットロード", "Apple II電源投入", "Apple II BASIC風入力",
-    "カセット保存と読み込み", "Disk II風起動", "Disk IIアクセスパターン", "テキストスクロール",
-    "ローレゾ風グラフィック描画", "ハイレゾ風描画", "ゲームロード風演出", "エラーと再試行",
+    "周辺機器を組み合わせる Apple I", "メモリアドレスを入力する Apple I Monitor",
+    "カセット信号を探す Apple Cassette Interface", "文字出力を送り続けるスクロール",
+    "電源投入から入力可能になるまで", "BASICプログラムの入力・LIST・RUN",
+    "外部レコーダーへのSAVEとLOAD", "色ブロックで見るローレゾ描画",
+    "線と曲線で見るハイレゾ描画", "Disk IIからの起動",
+    "連続読込・シーク・再試行の違い", "創作ゲームで見るディスクロード",
+    "4種類のエラーと回復方法を比較する",
   ]) assert.match(normalizedHtml, new RegExp(title));
 
-  assert.equal((data.match(/visualType: "/g) ?? []).length, 12);
+  assert.equal((data.match(/visualType: "/g) ?? []).length, 13);
+  assert.match(data, /type AppleEarlyReconstructionLevel = "史料ベース" \| "概念再構成" \| "創作比較"/);
+  assert.ok((normalizedHtml.match(/史料ベース/g) ?? []).length >= 2);
+  assert.ok((normalizedHtml.match(/概念再構成/g) ?? []).length >= 9);
+  assert.ok((normalizedHtml.match(/創作比較/g) ?? []).length >= 1);
+  assert.equal((normalizedHtml.match(/>詳しい解説<\/summary>/g) ?? []).length, 13);
+  assert.match(normalizedHtml, /この展示で見るもの/);
+  assert.match(normalizedHtml, /参考資料/);
   assert.match(room, /document\.visibilityState/);
   assert.match(room, /prefers-reduced-motion: reduce/);
+  assert.match(controls, /setStep\(prefersReducedMotion \? finalStep : 0\)/);
+  assert.match(controls, /setPhase\(prefersReducedMotion \? "complete" : "idle"\)/);
   assert.match(media, /AudioContext/);
-  assert.match(media, /初期ミュート/);
+  assert.match(media, /抽象化した信号確認音/);
+  assert.match(media, /実機音の正確な再現ではありません/);
+  assert.match(media, /props\.active && sequence\.phase === "running"/);
+  for (const mode of ["SAVE成功", "LOAD成功", "LOAD失敗"]) assert.match(normalizedHtml, new RegExp(mode));
+  for (const errorKind of ["カセット信号なし", "ディスク未挿入", "ディスク読込失敗", "BASIC命令エラー"]) assert.match(normalizedHtml, new RegExp(errorKind));
+  assert.match(normalizedHtml, /テープレコーダー/);
+  assert.match(normalizedHtml, /Cassette Interface/);
+  assert.match(normalizedHtml, /内部動作の概念図/);
+  assert.match(normalizedHtml, /実機風画面/);
+  assert.match(normalizedHtml, /展示側ステータス/);
   assert.match(graphics, /requestAnimationFrame/);
   assert.match(graphics, /cancelAnimationFrame/);
   assert.match(graphics, /role="img"/);
@@ -308,6 +334,10 @@ test("Apple創成期展示室へ1976–1979年の12種類の再現展示を実�
   assert.match(terminal, /JavaScriptは実行しません/);
   assert.match(css, /@media \(max-width: 520px\)/);
   assert.match(css, /\.roomCardAppleEarly/);
+  assert.match(css, /\.appleSignalPath/);
+  assert.match(css, /\.appleDiskViews/);
+  assert.match(css, /\.appleRecoveryPath/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
 });
 
 test("Flash特別展示室へ18カテゴリ・54展示と優先デモを実装する", async () => {

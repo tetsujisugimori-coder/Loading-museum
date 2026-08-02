@@ -69,8 +69,8 @@ export function useAppleSequence(options: AppleSequenceOptions | number, demoPro
 
   const pause = () => setPhase("paused");
   const reset = () => {
-    setStep(0);
-    setPhase("idle");
+    setStep(prefersReducedMotion ? finalStep : 0);
+    setPhase(prefersReducedMotion ? "complete" : "idle");
   };
 
   return {

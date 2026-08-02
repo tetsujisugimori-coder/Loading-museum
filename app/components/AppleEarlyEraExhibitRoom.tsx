@@ -12,7 +12,7 @@ import {
   EarlyGameLoadingDemo,
   ErrorRetryDemo,
 } from "./AppleEarlyMediaDemos";
-import { AppleOneMonitorDemo, AppleBasicDemo, TextScrollDemo } from "./AppleEarlyTerminalDemos";
+import { AppleOneSetupDemo, AppleOneMonitorDemo, AppleBasicDemo, TextScrollDemo } from "./AppleEarlyTerminalDemos";
 
 function ExhibitVisual({
   type,
@@ -25,6 +25,7 @@ function ExhibitVisual({
 }) {
   const props = { active, prefersReducedMotion };
   switch (type) {
+    case "apple-one-setup": return <AppleOneSetupDemo {...props} />;
     case "apple-one-monitor": return <AppleOneMonitorDemo />;
     case "apple-one-cassette": return <AppleCassetteLoadDemo {...props} />;
     case "apple-two-boot": return <AppleTwoBootDemo {...props} />;
@@ -79,13 +80,13 @@ export default function AppleEarlyEraExhibitRoom() {
         onClick={() => setIsOpen((open) => !open)}
       >
         <span className="roomToggleMain">
-          <span className="roomEyebrow">ROOM / EARLY-APPLE-COMPUTING</span>
+          <span className="roomEyebrow">ROOM / 1976–1979</span>
           <span className="roomTitle" id="apple-early-room-title">Apple創成期展示室</span>
-          <span className="roomSummary">基板、音声信号、ディスクが家庭用コンピュータの入口を形づくった時代</span>
+          <span className="roomSummary">Apple IからApple IIへ — 文字・カセット・カラー・ディスクの状態表現</span>
         </span>
         <span className="roomToggleMeta" aria-hidden="true">
           <span>1976–1979</span>
-          <span>12 EXHIBITS</span>
+          <span>{appleEarlyExhibits.length} EXHIBITS</span>
           <span className="roomToggleMark">{isOpen ? "−" : "+"}</span>
         </span>
       </button>
@@ -100,16 +101,17 @@ export default function AppleEarlyEraExhibitRoom() {
         inert={!isOpen}
       >
         <div className="roomPanelInner">
-        <div className="appleEarlyRoomBody">
+          <div className="appleEarlyRoomBody">
           <header className="appleEarlyIntro">
-            <p className="appleEarlyKicker">1976–1979 / BOARD, CASSETTE, COLOR, DISK</p>
-            <h3>完成品になる前のコンピュータと、家庭へ開かれた「動き」</h3>
+            <p className="appleEarlyKicker">APPLE I → APPLE II → DISK II / 1976–1979</p>
+            <h3>Apple IからApple IIへ</h3>
+            <p className="appleEarlySubtitle">文字・カセット・カラー・ディスクが変えたコンピュータとの対話</p>
             <div className="appleEarlyIntroGrid">
-              <p>Apple Iは、キーボードやディスプレイを利用者が用意する基板中心の製品でした。画面上のモニタ入力とカセット信号は、操作と保存の最小単位を見せます。</p>
-              <p>Apple IIは筐体、カラー表示、BASIC、カセット入出力を一体化し、後にDisk IIが起動と読み込みの体験を大きく変えました。</p>
-              <p>当時の状態は、文字、点滅カーソル、音声パルス、アクセスランプ、ドライブ機構など複数の手掛かりで伝えられていました。</p>
+              <section><h4>1 / Apple I</h4><p>組み立て済み基板として販売され、利用者が電源、キーボード、ディスプレイなどを用意しました。文字Monitorが操作、Apple Cassette Interfaceが外部レコーダーによる保存と読込の入口でした。</p></section>
+              <section><h4>2 / Apple II</h4><p>筐体、キーボード、カラー表示、BASICが一体化され、家庭で扱いやすいコンピュータになりました。文字入力だけでなく、色ブロックや線の生成過程も画面状態を伝えます。</p></section>
+              <section><h4>3 / Disk II</h4><p>カセットより高速で扱いやすいディスクへ移ると、起動と読込の待ち方が変わりました。挿入状態、アクセスランプ、画面変化と、教育用の内部概念図を分けて観察します。</p></section>
             </div>
-            <p className="appleEarlyNotice">この展示は公開資料を基にした教育目的のWeb再現です。AppleのROM、ソフトウェア、ゲーム、ロゴや筐体意匠を複製するエミュレータではありません。</p>
+            <p className="appleEarlyNotice">各展示の「史料ベース」「概念再構成」「創作比較」バッジで、当時の資料との距離を示します。実機ROM、ソフトウェア、ゲーム、ロゴ、筐体意匠を複製するエミュレータではありません。</p>
           </header>
 
           <div className="appleEarlyExhibitGrid">
@@ -118,27 +120,32 @@ export default function AppleEarlyEraExhibitRoom() {
                 <header className="appleEarlyExhibitHeader">
                   <span className="appleEarlyIndex">{String(index + 1).padStart(2, "0")}</span>
                   <div>
-                    <p>{exhibit.system} / {exhibit.medium}</p>
+                    <div className="appleEarlyBadges"><span>{exhibit.category}</span><span data-level={exhibit.reconstructionLevel}>{exhibit.reconstructionLevel}</span></div>
                     <h4 id={`${exhibit.id}-title`}>{exhibit.name}</h4>
                   </div>
                 </header>
 
-                <ExhibitVisual type={exhibit.visualType} active={isOpen && isPageVisible} prefersReducedMotion={prefersReducedMotion} />
-
-                <dl className="appleEarlyFacts">
+                <p className="appleEarlyShortDescription">{exhibit.shortDescription}</p>
+                <dl className="appleEarlyEssentials">
                   <div><dt>年代</dt><dd>{exhibit.period}</dd></div>
                   <div><dt>対象機種</dt><dd>{exhibit.system}</dd></div>
                   <div><dt>記録媒体</dt><dd>{exhibit.medium}</dd></div>
-                  <div><dt>再現内容</dt><dd>{exhibit.reconstruction}</dd></div>
-                  <div><dt>状態表現</dt><dd>{exhibit.statusLanguage}</dd></div>
-                  <div><dt>技術的背景</dt><dd>{exhibit.technicalBackground}</dd></div>
-                  <div><dt>現代Webとの接続</dt><dd>{exhibit.modernWebConnection}</dd></div>
-                  <div><dt>注意事項</dt><dd>{exhibit.caution}</dd></div>
-                  <div><dt>史実との関係</dt><dd>{exhibit.historicalBasis}</dd></div>
                 </dl>
+                <p className="appleObservation"><span>この展示で見るもの</span>{exhibit.observationPoint}</p>
+
+                <ExhibitVisual type={exhibit.visualType} active={isOpen && isPageVisible} prefersReducedMotion={prefersReducedMotion} />
+
+                <p className="appleQuickInstructions"><span>操作</span>{exhibit.instructions}</p>
                 <details className="appleEarlyInstructions">
-                  <summary>操作方法</summary>
-                  <p>{exhibit.instructions}</p>
+                  <summary>詳しい解説</summary>
+                  <dl className="appleEarlyFacts">
+                    <div><dt>技術的背景</dt><dd>{exhibit.technicalBackground}</dd></div>
+                    <div><dt>史実との関係</dt><dd>{exhibit.historicalBasis}</dd></div>
+                    <div><dt>現代Webとの接続</dt><dd>{exhibit.modernWebConnection}</dd></div>
+                    <div><dt>再構成上の注意</dt><dd>{exhibit.caution}</dd></div>
+                    <div><dt>参考資料</dt><dd><ul>{exhibit.sources.map((source) => <li key={source}>{source}</li>)}</ul></dd></div>
+                    <div><dt>詳細な操作方法</dt><dd>{exhibit.instructions}</dd></div>
+                  </dl>
                 </details>
               </article>
             ))}
