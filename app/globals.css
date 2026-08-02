@@ -64,6 +64,10 @@ body::after {
   border-top: 1px solid var(--line-bright);
 }
 
+.museumTitleSequence {
+  min-width: 0;
+}
+
 .eyebrow {
   display: flex;
   gap: 12px;
@@ -83,17 +87,333 @@ body::after {
   content: "";
 }
 
-h1 {
+.museumTitleHeading {
   margin: 16px 0 10px;
-  font-size: clamp(31px, 3.1vw, 54px);
+  font-size: clamp(29px, 3.1vw, 54px);
   font-weight: 600;
-  letter-spacing: 0.055em;
+  letter-spacing: 0.045em;
   line-height: 1;
   text-shadow: 0 0 18px rgb(141 255 177 / 14%);
 }
 
-h1 span {
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
+}
+
+.museumTitleStage {
+  display: flex;
+  min-height: 110px;
+  align-items: center;
+}
+
+.museumTitleReducedFallback {
+  display: none;
+}
+
+.museumTitleAnimated {
+  display: block;
+  width: 100%;
   color: var(--phosphor);
+}
+
+.museumTitleText {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-wrap: wrap;
+  column-gap: 0.34em;
+  row-gap: 0.14em;
+}
+
+.museumTitleSegment {
+  display: inline-flex;
+  min-height: 1em;
+  align-items: baseline;
+  color: var(--phosphor);
+  white-space: nowrap;
+}
+
+.museumTitleCursor {
+  display: inline-block;
+  width: 0.58em;
+  height: 0.14em;
+  margin-left: 0.09em;
+  background: var(--phosphor);
+  box-shadow: 0 0 9px rgb(141 255 177 / 45%);
+  translate: 0 0.08em;
+}
+
+.museumTitleCursorBlink {
+  animation: museum-title-cursor 800ms steps(1, end) infinite;
+}
+
+@keyframes museum-title-cursor {
+  50% { opacity: 0; }
+}
+
+.museumTitleSystemLine {
+  display: flex;
+  gap: 0.08em;
+  align-items: baseline;
+  color: var(--green);
+  font-size: 0.38em;
+  letter-spacing: 0.14em;
+}
+
+.museumTitleLoadingDots {
+  display: inline-block;
+  width: 2.3em;
+  overflow: hidden;
+  animation: museum-title-dots 600ms steps(3, end) both;
+}
+
+.museumTitleLoadingBar {
+  position: relative;
+  display: inline-block;
+  margin-left: 0.8em;
+  color: var(--line-bright);
+}
+
+.museumTitleLoadingBar::after {
+  position: absolute;
+  inset: 0;
+  width: 0;
+  overflow: hidden;
+  color: var(--cyan);
+  content: "[■■■■■]";
+  white-space: nowrap;
+  animation: museum-title-load 620ms steps(5, end) forwards;
+}
+
+@keyframes museum-title-dots {
+  from { width: 0; }
+}
+
+@keyframes museum-title-load {
+  to { width: 100%; }
+}
+
+.museumTitleEraScan,
+.museumTitleIndexComplete {
+  display: grid;
+  width: min(600px, 100%);
+  gap: 9px;
+}
+
+.museumTitleChronology {
+  display: grid;
+  width: 100%;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: baseline;
+  color: var(--muted);
+  font-size: 0.25em;
+  letter-spacing: 0.18em;
+}
+
+.museumTitleChronologyLabel {
+  color: var(--green);
+}
+
+.museumTitleYear {
+  color: var(--phosphor);
+  font-size: 3.5em;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.museumTitleEraTheme {
+  min-width: 0;
+  color: var(--paper);
+  font-size: 1.65em;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.museumTitleYearProgress {
+  color: var(--cyan);
+}
+
+.museumTitleSystemMessage {
+  color: var(--cyan);
+  font-size: 0.3em;
+  letter-spacing: 0.18em;
+  text-shadow: 0 0 10px rgb(77 231 231 / 28%);
+}
+
+.museumTitleTimeline {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 25px;
+  grid-template-columns: repeat(var(--museum-title-timeline-count, 1), minmax(0, 1fr));
+  align-items: start;
+}
+
+.museumTitleTimeline::before,
+.museumTitleTimeline::after {
+  position: absolute;
+  z-index: 0;
+  top: 4px;
+  left: calc(50% / var(--museum-title-timeline-count, 1));
+  right: calc(50% / var(--museum-title-timeline-count, 1));
+  height: 1px;
+  content: "";
+}
+
+.museumTitleTimeline::before {
+  background: var(--line-bright);
+  opacity: 0.55;
+}
+
+.museumTitleTimeline::after {
+  background: var(--green);
+  box-shadow: 0 0 6px rgb(57 231 125 / 35%);
+  clip-path: inset(0 calc(100% - var(--museum-title-timeline-progress, 0%)) 0 0);
+}
+
+.museumTitleTimelineNode {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+  justify-items: center;
+}
+
+.museumTitleTimelineDot {
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--line-bright);
+  border-radius: 50%;
+  background: var(--panel);
+}
+
+.museumTitleTimelineYear {
+  color: var(--muted);
+  font-size: 7px;
+  letter-spacing: 0.08em;
+}
+
+.museumTitleTimelineNode[data-state="complete"] .museumTitleTimelineDot,
+.museumTitleTimelineNode[data-state="current"] .museumTitleTimelineDot {
+  border-color: var(--green);
+  background: var(--green);
+  box-shadow: 0 0 7px rgb(57 231 125 / 42%);
+}
+
+.museumTitleTimelineNode[data-state="current"] .museumTitleTimelineDot {
+  border-color: var(--cyan);
+  background: var(--cyan);
+  box-shadow: 0 0 9px rgb(77 231 231 / 62%);
+  transform: scale(1.25);
+}
+
+.museumTitleTimelineNode[data-state="complete"] .museumTitleTimelineYear,
+.museumTitleTimelineNode[data-state="current"] .museumTitleTimelineYear {
+  color: var(--paper);
+}
+
+.museumTitleIndexComplete .museumTitleTimeline::before,
+.museumTitleIndexComplete .museumTitleTimeline::after {
+  animation: museum-title-index-lock 200ms ease-out both;
+}
+
+@keyframes museum-title-index-lock {
+  50% { filter: brightness(1.6); box-shadow: 0 0 9px rgb(77 231 231 / 42%); }
+}
+
+.museumTitleSignalFrame {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.museumTitleSignalFrame[data-signal-step="brighten"] .museumTitleText {
+  animation: museum-title-signal-brighten 150ms ease-out both;
+}
+
+.museumTitleSignalNoise {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 10px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 5%,
+      rgb(77 231 231 / 78%) 6% 10%,
+      rgb(141 255 177 / 36%) 11% 18%,
+      transparent 19% 26%
+    ) top / 100% 2px no-repeat,
+    linear-gradient(180deg, rgb(77 231 231 / 18%), transparent 9px);
+  box-shadow: 0 0 7px rgb(77 231 231 / 35%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.museumTitleSignalFrame[data-signal-step="noise"] .museumTitleSignalNoise {
+  animation: museum-title-signal-noise 200ms linear both;
+}
+
+.museumTitleSignalFrame[data-signal-step="noise"] .museumTitleText {
+  animation: museum-title-signal-jitter 70ms linear both;
+}
+
+.museumTitleSignalStatus {
+  display: block;
+  margin-top: 8px;
+  color: var(--cyan);
+  font-size: 0.22em;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 8px rgb(77 231 231 / 32%);
+}
+
+@keyframes museum-title-signal-brighten {
+  0%, 100% {
+    filter: brightness(1);
+    text-shadow: 0 0 18px rgb(141 255 177 / 14%);
+  }
+  48% {
+    filter: brightness(1.7);
+    text-shadow: 0 0 8px rgb(255 255 255 / 55%), 0 0 24px rgb(141 255 177 / 48%);
+  }
+}
+
+@keyframes museum-title-signal-noise {
+  0% { top: 4%; opacity: 0; }
+  18%, 72% { opacity: 0.68; }
+  100% { top: calc(100% - 10px); opacity: 0; }
+}
+
+@keyframes museum-title-signal-jitter {
+  0%, 100% { transform: translateX(0); }
+  35% { transform: translateX(-1px); }
+  65% { transform: translateX(2px); }
+}
+
+.museumTitleSupport {
+  display: flex;
+  min-height: 28px;
+  gap: 16px;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 240ms ease-out;
+  visibility: hidden;
+}
+
+.museumTitleSupport[data-visible="true"] {
+  opacity: 1;
+  visibility: visible;
 }
 
 .subtitle {
@@ -101,6 +421,30 @@ h1 span {
   color: var(--muted);
   font-size: 12px;
   letter-spacing: 0.13em;
+}
+
+.museumTitleReplay {
+  flex: none;
+  min-height: 28px;
+  padding: 3px 8px;
+  border: 1px solid var(--line-bright);
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.museumTitleReplay:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.museumTitleReplay:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
 }
 
 .archiveMeta {
@@ -3522,6 +3866,68 @@ footer {
     gap: 16px;
   }
 
+  .museumTitleHeading {
+    font-size: clamp(26px, 8.8vw, 38px);
+    line-height: 1.08;
+  }
+
+  .museumTitleStage {
+    min-height: 116px;
+  }
+
+  .museumTitleText {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0.16em;
+  }
+
+  .museumTitleSupport {
+    min-height: 54px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .museumTitleChronology {
+    grid-template-areas:
+      "label progress"
+      "year theme";
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .museumTitleEraScan,
+  .museumTitleIndexComplete {
+    gap: 7px;
+  }
+
+  .museumTitleTimeline {
+    height: 12px;
+  }
+
+  .museumTitleTimelineYear {
+    display: none;
+  }
+
+  .museumTitleReplay {
+    max-width: 100%;
+    font-size: 8px;
+    letter-spacing: 0.09em;
+  }
+
+  .museumTitleChronologyLabel { grid-area: label; }
+  .museumTitleYear { grid-area: year; }
+  .museumTitleEraTheme {
+    grid-area: theme;
+    align-self: center;
+    font-size: 1.45em;
+    text-align: right;
+  }
+  .museumTitleYearProgress {
+    grid-area: progress;
+    text-align: right;
+  }
+
   .archiveMeta {
     text-align: left;
   }
@@ -3728,7 +4134,7 @@ footer {
     min-height: 225px;
   }
 
-  h1 {
+  .museumTitleHeading {
     line-height: 1.18;
   }
 
@@ -3751,6 +4157,30 @@ footer {
     animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 1ms !important;
+  }
+
+  .museumTitleAnimated {
+    display: none;
+  }
+
+  .museumTitleReducedFallback {
+    display: block;
+  }
+
+  .museumTitleCursor,
+  .museumTitleTimeline,
+  .museumTitleTimeline::before,
+  .museumTitleTimeline::after,
+  .museumTitleSignalFrame,
+  .museumTitleSignalNoise,
+  .museumTitleSupport {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .museumTitleSupport {
+    opacity: 1;
+    visibility: visible;
   }
 
   .terminalCursor {

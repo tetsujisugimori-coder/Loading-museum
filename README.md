@@ -1,6 +1,6 @@
-# デジタルアニメーションミュージアム
+# DIGITAL MOTION ARCHIVE
 
-Digital Animation Museumは、ローディング画面やカーソルなど、画面上の状態と操作を伝えてきたデジタルアニメーションを収集し、HTML、CSS、JavaScriptで再現する1ページのミュージアムです。
+DIGITAL MOTION ARCHIVEは、ローディング画面やカーソルなど、画面上の状態と操作を伝えてきたデジタルアニメーションを収集し、HTML、CSS、JavaScriptで再現する1ページのミュージアムです。
 
 ## 展示
 
