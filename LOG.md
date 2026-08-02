@@ -742,3 +742,65 @@
 
 - ブラウザ検証環境には`prefers-reduced-motion`を強制変更する機能がなかったため、実際のOS設定を切り替えた目視確認は未実施。CSSメディア規則、matchMedia分岐、即時完成表示はソース回帰テストで確認した。
 - 年代は`ARCHIVE_YEARS`配列、各時間はコンポーネント先頭の定数として管理しており、展示年表の拡張や速度の微調整を今後容易に行える。
+
+## 2026-08-02 — PR #16 年代テーマ・signal-lock・状態遷移テスト追加
+
+### 年代テーマの目的と対応
+
+- 年だけでは選定理由が初見で伝わりにくかったため、アーカイブ端末が各時代の代表的な操作環境を走査する短い技術テーマを追加した。
+- 対応は`1960 / MAINFRAME`、`1984 / GUI`、`1995 / WEB`、`2007 / TOUCH`、`2026 / GENERATIVE UI`。`ARCHIVE_ERAS`で年とテーマを一体管理する。
+- 年を最も強く、テーマを年より小さくラベルより強く表示する。650px以下ではラベル／進捗と年／テーマの2行グリッドにし、320pxでも`GENERATIVE UI`を折り返さず表示する。
+- 年代切り替えは1件190msとし、5件で950ms、全シーケンスは約3秒に収めた。
+
+### タイトル確定演出
+
+- 状態遷移へ`signal-lock`を追加し、内部を`brighten`と`noise`の2段階に分けた。タイプ入力の最後の文字が確定すると、完成タイトルを保ったまま信号固定演出へ入る。
+- `brighten`は160ms。`filter: brightness()`と一時的な`text-shadow`だけを使い、拡大、揺れ、レイアウト変更を行わない。
+- `noise`は200ms。タイトル領域内に高さ2pxの水平ノイズを一度だけ走査し、200ms後に通常の完成表示へ戻す。ノイズは`aria-hidden="true"`かつpointer event対象外である。
+- 副題とReplayは`complete`到達後だけ表示し、signal-lock中は非表示のままにした。
+
+### reduced motionとsessionStorage
+
+- `prefers-reduced-motion: reduce`では既存どおり視覚用アニメーション領域を非表示にし、完成タイトル、副題、Replayを即時表示する。カーソル点滅、輝度、ノイズ、副題フェードはすべて停止する。
+- 実行中にOS設定がreduceへ変わった場合は完成stateへ移行し、state変更によるeffect cleanupで進行中タイマーを解除する。Replayでも動きを再開しない。
+- `sessionStorage`への既読書き込みを初期化effectから外し、`sequence.phase === "complete"`を監視するeffectへ移した。途中離脱は未読、正常完了またはreduced motionによる即時完了は既読となる。
+- 書き込み値とkeyは変えず、Replayでも削除しない。複数回の完了やReact Strict Modeで同じ値を再設定しても結果が変わらない冪等な処理である。
+
+### 状態遷移ロジックとテスト
+
+- DOMとReactに依存しない年代データ、タイトル定数、時間定数、state型、初期／完了／reduced motion／Replay state生成、次状態、待機時間、runId検証を`app/components/museum-title-sequence-state.ts`へ分離した。
+- `tests/museum-title-sequence-state.test.mjs`を追加し、loadingから年代、5年代の順序、typingの1文字増加、signal-lockの輝度／ノイズ、complete停止、Replay、古いrunId無視、年代データ、完了state、reduced motion、時間定数を13件の純粋関数テストで確認した。
+- `tests/rendered-html.test.mjs`は5テーマ、signal-lockのclassとdata構造、装飾ノイズのARIA、完了時だけの既読記録、輝度／ノイズkeyframes、reduced motion規則を検査するよう更新した。
+- `package.json`の`npm test`へ新しい単体テストを追加した。
+
+### 変更したファイル
+
+- `app/components/MuseumTitleSequence.tsx`
+- `app/components/museum-title-sequence-state.ts`
+- `app/globals.css`
+- `tests/museum-title-sequence-state.test.mjs`
+- `tests/rendered-html.test.mjs`
+- `package.json`
+- `LOG.md`
+
+### 実行コマンドと結果
+
+- `npm run lint`: 成功。
+- `npm run typecheck`: 成功。
+- `node --test tests/museum-title-sequence-state.test.mjs`: 単体テスト13件成功。
+- `npm run check`: ESLint、TypeScript、Next.js静的ビルド、既存17件と追加13件の合計30テストがすべて成功。
+- `npm run build`: `npm run check`内で成功。最終差分反映後にも独立して再実行する。
+
+### ブラウザ確認結果
+
+- Chromium系Microsoft Edgeで`loading → years → typing → signal-lock / brighten → signal-lock / noise → complete`を確認し、1960 / MAINFRAMEから2026 / GENERATIVE UIまで5件が指定順に表示された。
+- 輝度用animation名、160msのstate、ノイズ用animation名、高さ2px、200msのstateを確認した。副題とReplayはnoise終了後のcompleteで表示された。
+- 新しい同一セッションのタブでloading中に別ページへ離脱し、戻った際にloadingから全演出が再開することを確認した。完了後の再読込は約1.5秒以内に完成表示へ短縮された。
+- 1440、768、390、375、320px相当ですべてclient widthとscroll widthが一致し、横スクロールがないことを確認した。320pxで`GENERATIVE UI`、年、ラベル、進捗が重ならず、ノイズの左右端と上下端がタイトルframe内に収まった。
+- ReplayをEnterで実行してloadingへ戻り、フォーカスがReplayに残ることを確認した。MS-DOS展示室は8展示、`aria-expanded`、`aria-hidden`、`inert`が開閉に合わせて正しく切り替わった。
+- エラーオーバーレイ、コンソール警告／エラー、Hydration Errorはなかった。
+
+### 未確認事項・今後の調整
+
+- ブラウザ検証環境に`prefers-reduced-motion`の強制変更機能がないため、実際のOS設定を切り替えた目視確認は未実施。React分岐、CSSの完成表示、全モーション停止は自動テストとソースレビューで確認した。
+- 時間は`SEQUENCE_DELAYS`のloading 650ms、era 190ms、character 45ms、signalBrighten 160ms、signalNoise 200msで一括調整できる。

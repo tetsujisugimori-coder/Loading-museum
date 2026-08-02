@@ -39,21 +39,27 @@ test("GitHub Pages用の静的HTMLへ9種類の展示を書き出す", async () 
   assert.doesNotMatch(html, /72%/);
 });
 
-test("正式名称のタイトル導入、初回判定、軽減モーションと再生操作を実装する", async () => {
-  const [component, css, page, layout] = await Promise.all([
+test("正式名称のタイトル導入、年代テーマ、確定演出、軽減モーションと再生操作を実装する", async () => {
+  const [component, state, css, page, layout] = await Promise.all([
     readFile(new URL("app/components/MuseumTitleSequence.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/museum-title-sequence-state.ts", projectRoot), "utf8"),
     readFile(new URL("app/globals.css", projectRoot), "utf8"),
     readFile(new URL("app/page.tsx", projectRoot), "utf8"),
     readFile(new URL("app/layout.tsx", projectRoot), "utf8"),
   ]);
 
-  assert.match(component, /export const ARCHIVE_YEARS = \[1960, 1984, 1995, 2007, 2026\] as const/);
-  assert.match(component, /type SequencePhase = "loading" \| "years" \| "typing" \| "complete"/);
-  assert.match(component, /const LOADING_DURATION = 650/);
-  assert.match(component, /const YEAR_DURATION = 160/);
-  assert.match(component, /const CHARACTER_DURATION = 45/);
+  for (const theme of ["MAINFRAME", "GUI", "WEB", "TOUCH", "GENERATIVE UI"]) {
+    assert.match(state, new RegExp(`theme: "${theme}"`));
+  }
+  assert.match(state, /type SequencePhase = "loading" \| "years" \| "typing" \| "signal-lock" \| "complete"/);
+  assert.match(state, /signalBrighten: 160/);
+  assert.match(state, /signalNoise: 200/);
+  assert.match(component, /className="museumTitleEraTheme"/);
+  assert.match(component, /className="museumTitleSignalFrame"/);
+  assert.match(component, /className="museumTitleSignalNoise" aria-hidden="true"/);
   assert.match(component, /window\.sessionStorage\.getItem\(TITLE_SEQUENCE_STORAGE_KEY\)/);
   assert.match(component, /window\.sessionStorage\.setItem\(TITLE_SEQUENCE_STORAGE_KEY, "seen"\)/);
+  assert.match(component, /if \(sequence\.phase !== "complete"\) return;\s*rememberSequence\(\)/);
   assert.match(component, /window\.matchMedia\(REDUCED_MOTION_QUERY\)/);
   assert.match(component, /window\.clearTimeout/);
   assert.match(component, /removeEventListener\("change", handleMotionPreference\)/);
@@ -70,6 +76,9 @@ test("正式名称のタイトル導入、初回判定、軽減モーション�
   assert.match(css, /@media \(max-width: 650px\)[\s\S]*\.museumTitleText\s*\{[\s\S]*flex-direction: column/);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.museumTitleAnimated\s*\{\s*display: none/);
   assert.match(css, /\.museumTitleReplay:focus-visible/);
+  assert.match(css, /@keyframes museum-title-signal-brighten/);
+  assert.match(css, /@keyframes museum-title-signal-noise/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.museumTitleSignalNoise/);
 });
 
 test("既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き出す", async () => {

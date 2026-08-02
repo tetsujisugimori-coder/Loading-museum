@@ -1,33 +1,22 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  advanceSequenceForRun,
+  ARCHIVE_ERAS,
+  createCompletedSequence,
+  createInitialSequence,
+  createReducedMotionSequence,
+  createReplaySequence,
+  getSequenceDelay,
+  TITLE,
+  TITLE_FIRST_LINE,
+  TITLE_SECOND_LINE,
+} from "./museum-title-sequence-state";
 
-export const ARCHIVE_YEARS = [1960, 1984, 1995, 2007, 2026] as const;
 export const TITLE_SEQUENCE_STORAGE_KEY = "digital-motion-archive-title-seen-v1";
 
-const TITLE_FIRST_LINE = "DIGITAL MOTION";
-const TITLE_SECOND_LINE = "ARCHIVE";
-const TITLE = `${TITLE_FIRST_LINE} ${TITLE_SECOND_LINE}`;
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
-const LOADING_DURATION = 650;
-const YEAR_DURATION = 160;
-const CHARACTER_DURATION = 45;
-
-type SequencePhase = "loading" | "years" | "typing" | "complete";
-
-type SequenceState = {
-  phase: SequencePhase;
-  yearIndex: number;
-  characterCount: number;
-  runId: number;
-};
-
-const initialSequence: SequenceState = {
-  phase: "loading",
-  yearIndex: 0,
-  characterCount: 0,
-  runId: 0,
-};
 
 function sessionHasSeenSequence() {
   try {
@@ -43,44 +32,6 @@ function rememberSequence() {
   } catch {
     // Storage can be unavailable in restricted browsing contexts. The sequence still works.
   }
-}
-
-function completedSequence(runId: number): SequenceState {
-  return {
-    phase: "complete",
-    yearIndex: ARCHIVE_YEARS.length - 1,
-    characterCount: TITLE.length,
-    runId,
-  };
-}
-
-function nextSequenceState(current: SequenceState): SequenceState {
-  if (current.phase === "loading") {
-    return { ...current, phase: "years", yearIndex: 0 };
-  }
-
-  if (current.phase === "years") {
-    if (current.yearIndex < ARCHIVE_YEARS.length - 1) {
-      return { ...current, yearIndex: current.yearIndex + 1 };
-    }
-    return { ...current, phase: "typing", characterCount: 0 };
-  }
-
-  if (current.phase === "typing") {
-    if (current.characterCount < TITLE.length) {
-      return { ...current, characterCount: current.characterCount + 1 };
-    }
-    return completedSequence(current.runId);
-  }
-
-  return current;
-}
-
-function phaseDelay(sequence: SequenceState) {
-  if (sequence.phase === "loading") return LOADING_DURATION;
-  if (sequence.phase === "years") return YEAR_DURATION;
-  if (sequence.phase === "typing") return CHARACTER_DURATION;
-  return null;
 }
 
 function TypedTitle({ characterCount }: { characterCount: number }) {
@@ -103,14 +54,26 @@ function TypedTitle({ characterCount }: { characterCount: number }) {
   );
 }
 
+function CompletedTitle({ blinkingCursor }: { blinkingCursor: boolean }) {
+  return (
+    <span className="museumTitleText">
+      <span className="museumTitleSegment">{TITLE_FIRST_LINE}</span>
+      <span className="museumTitleSegment">
+        {TITLE_SECOND_LINE}
+        <span className={blinkingCursor ? "museumTitleCursor museumTitleCursorBlink" : "museumTitleCursor"} />
+      </span>
+    </span>
+  );
+}
+
 export function MuseumTitleSequence() {
-  const [sequence, setSequence] = useState<SequenceState>(initialSequence);
+  const [sequence, setSequence] = useState(createInitialSequence);
   const reducedMotionRef = useRef(false);
 
   const replay = useCallback(() => {
     setSequence((current) => {
-      if (reducedMotionRef.current) return completedSequence(current.runId + 1);
-      return { ...initialSequence, runId: current.runId + 1 };
+      if (reducedMotionRef.current) return createReducedMotionSequence(current.runId + 1);
+      return createReplaySequence(current);
     });
   }, []);
 
@@ -121,16 +84,18 @@ export function MuseumTitleSequence() {
 
     if (mediaQuery.matches || sessionHasSeenSequence()) {
       initializationTimeoutId = window.setTimeout(() => {
-        setSequence((current) => completedSequence(current.runId));
+        setSequence((current) => (
+          mediaQuery.matches
+            ? createReducedMotionSequence(current.runId)
+            : createCompletedSequence(current.runId)
+        ));
       }, 0);
-    } else {
-      rememberSequence();
     }
 
     const handleMotionPreference = (event: MediaQueryListEvent) => {
       reducedMotionRef.current = event.matches;
       if (event.matches) {
-        setSequence((current) => completedSequence(current.runId));
+        setSequence((current) => createReducedMotionSequence(current.runId));
       }
     };
 
@@ -144,33 +109,37 @@ export function MuseumTitleSequence() {
   }, []);
 
   useEffect(() => {
-    const delay = phaseDelay(sequence);
+    const delay = getSequenceDelay(sequence);
     if (delay === null || reducedMotionRef.current) return;
 
     const timeoutId = window.setTimeout(() => {
-      setSequence((current) => (
-        current.runId === sequence.runId ? nextSequenceState(current) : current
-      ));
+      setSequence((current) => advanceSequenceForRun(current, sequence.runId));
     }, delay);
 
     return () => window.clearTimeout(timeoutId);
   }, [sequence]);
 
+  useEffect(() => {
+    if (sequence.phase !== "complete") return;
+    rememberSequence();
+  }, [sequence.phase]);
+
   const isComplete = sequence.phase === "complete";
+  const isSignalLock = sequence.phase === "signal-lock";
+  const currentEra = ARCHIVE_ERAS[sequence.eraIndex];
 
   return (
-    <div className="museumTitleSequence" data-phase={sequence.phase}>
+    <div
+      className="museumTitleSequence"
+      data-phase={sequence.phase}
+      data-signal-step={sequence.signalLockStep ?? undefined}
+    >
       <p className="eyebrow">Digital motion archive / permanent collection</p>
       <div className="museumTitleStage">
         <h1 className="museumTitleHeading">
           <span className="visuallyHidden">{TITLE}</span>
           <span className="museumTitleReducedFallback" aria-hidden="true">
-            <span className="museumTitleText">
-              <span className="museumTitleSegment">{TITLE_FIRST_LINE}</span>
-              <span className="museumTitleSegment">
-                {TITLE_SECOND_LINE}<span className="museumTitleCursor museumTitleCursorBlink" />
-              </span>
-            </span>
+            <CompletedTitle blinkingCursor />
           </span>
           <span className="museumTitleAnimated" aria-hidden="true">
             {sequence.phase === "loading" ? (
@@ -183,23 +152,24 @@ export function MuseumTitleSequence() {
             {sequence.phase === "years" ? (
               <span className="museumTitleChronology">
                 <span className="museumTitleChronologyLabel">ARCHIVE YEAR</span>
-                <span className="museumTitleYear">{ARCHIVE_YEARS[sequence.yearIndex]}</span>
+                <span className="museumTitleYear">{currentEra.year}</span>
+                <span className="museumTitleEraTheme">{currentEra.theme}</span>
                 <span className="museumTitleYearProgress">
-                  {String(sequence.yearIndex + 1).padStart(2, "0")} / {String(ARCHIVE_YEARS.length).padStart(2, "0")}
+                  {String(sequence.eraIndex + 1).padStart(2, "0")} / {String(ARCHIVE_ERAS.length).padStart(2, "0")}
                 </span>
               </span>
             ) : null}
             {sequence.phase === "typing" ? (
               <TypedTitle characterCount={sequence.characterCount} />
             ) : null}
-            {isComplete ? (
-              <span className="museumTitleText">
-                <span className="museumTitleSegment">{TITLE_FIRST_LINE}</span>
-                <span className="museumTitleSegment">
-                  {TITLE_SECOND_LINE}
-                  <span className="museumTitleCursor museumTitleCursorBlink" />
-                </span>
+            {isSignalLock ? (
+              <span className="museumTitleSignalFrame" data-signal-step={sequence.signalLockStep}>
+                <CompletedTitle blinkingCursor={false} />
+                <span className="museumTitleSignalNoise" aria-hidden="true" />
               </span>
+            ) : null}
+            {isComplete ? (
+              <CompletedTitle blinkingCursor />
             ) : null}
           </span>
         </h1>

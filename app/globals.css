@@ -109,7 +109,7 @@ body::after {
 
 .museumTitleStage {
   display: flex;
-  min-height: 68px;
+  min-height: 72px;
   align-items: center;
 }
 
@@ -202,8 +202,8 @@ body::after {
 
 .museumTitleChronology {
   display: grid;
-  width: min(360px, 100%);
-  grid-template-columns: auto 1fr auto;
+  width: min(600px, 100%);
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
   gap: 14px;
   align-items: baseline;
   color: var(--muted);
@@ -222,8 +222,66 @@ body::after {
   line-height: 1;
 }
 
+.museumTitleEraTheme {
+  min-width: 0;
+  color: var(--paper);
+  font-size: 1.65em;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
 .museumTitleYearProgress {
   color: var(--cyan);
+}
+
+.museumTitleSignalFrame {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.museumTitleSignalFrame[data-signal-step="brighten"] .museumTitleText {
+  animation: museum-title-signal-brighten 160ms ease-out both;
+}
+
+.museumTitleSignalNoise {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 5%,
+    rgb(77 231 231 / 75%) 6% 10%,
+    rgb(141 255 177 / 30%) 11% 18%,
+    transparent 19% 26%
+  );
+  box-shadow: 0 0 7px rgb(77 231 231 / 35%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.museumTitleSignalFrame[data-signal-step="noise"] .museumTitleSignalNoise {
+  animation: museum-title-signal-noise 200ms linear both;
+}
+
+@keyframes museum-title-signal-brighten {
+  0%, 100% {
+    filter: brightness(1);
+    text-shadow: 0 0 18px rgb(141 255 177 / 14%);
+  }
+  48% {
+    filter: brightness(1.7);
+    text-shadow: 0 0 8px rgb(255 255 255 / 55%), 0 0 24px rgb(141 255 177 / 48%);
+  }
+}
+
+@keyframes museum-title-signal-noise {
+  0% { top: 4%; opacity: 0; }
+  18%, 72% { opacity: 0.72; }
+  100% { top: calc(100% - 2px); opacity: 0; }
 }
 
 .museumTitleSupport {
@@ -3697,7 +3755,7 @@ footer {
   }
 
   .museumTitleStage {
-    min-height: 86px;
+    min-height: 97px;
   }
 
   .museumTitleText {
@@ -3714,7 +3772,24 @@ footer {
   }
 
   .museumTitleChronology {
+    grid-template-areas:
+      "label progress"
+      "year theme";
+    grid-template-columns: auto minmax(0, 1fr);
     gap: 8px;
+  }
+
+  .museumTitleChronologyLabel { grid-area: label; }
+  .museumTitleYear { grid-area: year; }
+  .museumTitleEraTheme {
+    grid-area: theme;
+    align-self: center;
+    font-size: 1.45em;
+    text-align: right;
+  }
+  .museumTitleYearProgress {
+    grid-area: progress;
+    text-align: right;
   }
 
   .archiveMeta {
@@ -3957,6 +4032,8 @@ footer {
   }
 
   .museumTitleCursor,
+  .museumTitleSignalFrame,
+  .museumTitleSignalNoise,
   .museumTitleSupport {
     animation: none !important;
     transition: none !important;
