@@ -271,11 +271,13 @@ test("Apple創成期展示室を加えた展示室・展示件数を表示する
   assert.doesNotMatch(page, /3 ROOMS \/ 30 OBJECTS/);
 });
 
-test("Apple創成期展示室へ1976–1979年の13種類の分類済み展示を実装する", async () => {
-  const [html, data, room, controls, media, graphics, terminal, css] = await Promise.all([
+test("Apple創成期展示室へ初心者向け入門と13種類の分類済み展示を実装する", async () => {
+  const [html, data, beginnerData, room, guide, controls, media, graphics, terminal, css] = await Promise.all([
     readFile(new URL("index.html", outputRoot), "utf8"),
     readFile(new URL("app/data/appleEarlyExhibits.ts", projectRoot), "utf8"),
+    readFile(new URL("app/data/appleEarlyBeginnerGuide.ts", projectRoot), "utf8"),
     readFile(new URL("app/components/AppleEarlyEraExhibitRoom.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/AppleEarlyBeginnerGuide.tsx", projectRoot), "utf8"),
     readFile(new URL("app/components/AppleEarlyDemoControls.tsx", projectRoot), "utf8"),
     readFile(new URL("app/components/AppleEarlyMediaDemos.tsx", projectRoot), "utf8"),
     readFile(new URL("app/components/AppleEarlyGraphicsDemos.tsx", projectRoot), "utf8"),
@@ -293,6 +295,33 @@ test("Apple創成期展示室へ1976–1979年の13種類の分類済み展示�
   assert.match(html, /aria-controls="apple-early-era-room-panel"/);
   assert.match(html, /id="apple-early-era-room-panel"[^>]*data-open="false"[^>]*role="region"[^>]*aria-labelledby="apple-early-era-room-toggle"[^>]*aria-hidden="true"[^>]*inert=""/);
   assert.equal((html.match(/class="appleEarlyExhibit"/g) ?? []).length, 13);
+  assert.match(normalizedHtml, /はじめてのApple I \/ Apple II/);
+  assert.match(normalizedHtml, /BEGINNER TOUR/);
+  assert.match(normalizedHtml, /詳しく触る/);
+  assert.match(normalizedHtml, /HANDS-ON COLLECTION \/ 13 EXHIBITS/);
+
+  for (const connection of ["キーボード", "テレビ / モニター", "電源", "カセットレコーダー", "Cassette Interface", "Apple I基板"]) {
+    assert.match(normalizedHtml, new RegExp(connection.replace("/", "\\/")));
+  }
+  assert.match(normalizedHtml, /基板だけでは現在のPCのように使えず/);
+  assert.match(normalizedHtml, /Apple IとApple IIで、何が変わったのか/);
+  assert.match(normalizedHtml, /概念的な比較/);
+  assert.match(normalizedHtml, /メモリの場所を指定/);
+  assert.match(normalizedHtml, /0300は、コンピュータ内部の記憶場所/);
+  assert.match(normalizedHtml, /LISTは、入力済みのプログラムを一覧表示/);
+  assert.match(normalizedHtml, /RUNは、プログラムを先頭から実行/);
+  assert.match(normalizedHtml, /0と1などのデータを、音の高低やパルスの違いへ変換/);
+  assert.match(normalizedHtml, /音を再びコンピュータのデータへ戻します/);
+  assert.match(normalizedHtml, /Apple I側では、Cassette Interface/);
+  assert.match(normalizedHtml, /Apple II側では、利用者がSAVE／LOAD/);
+  assert.match(normalizedHtml, /Disk IIで、何が便利になったのか/);
+  assert.match(normalizedHtml, /トラック/);
+  assert.match(normalizedHtml, /シーク/);
+  assert.match(normalizedHtml, /用語解説 — 15語/);
+  assert.equal((beginnerData.match(/term: "/g) ?? []).length, 15);
+  assert.equal((beginnerData.match(/id: "apple-/g) ?? []).length, 4);
+  assert.match(beginnerData, /as const/);
+  assert.match(beginnerData, /readonly ComparisonRow\[\]/);
 
   for (const title of [
     "周辺機器を組み合わせる Apple I", "メモリアドレスを入力する Apple I Monitor",
@@ -314,6 +343,11 @@ test("Apple創成期展示室へ1976–1979年の13種類の分類済み展示�
   assert.match(normalizedHtml, /参考資料/);
   assert.match(room, /document\.visibilityState/);
   assert.match(room, /prefers-reduced-motion: reduce/);
+  assert.match(room, /AppleEarlyBeginnerGuide/);
+  assert.match(guide, /useAppleSequence/);
+  assert.match(guide, /showLoop=\{false\}/);
+  assert.match(guide, /aria-live="polite"/);
+  assert.match(guide, /role="img"/);
   assert.match(controls, /setStep\(prefersReducedMotion \? finalStep : 0\)/);
   assert.match(controls, /setPhase\(prefersReducedMotion \? "complete" : "idle"\)/);
   assert.match(media, /AudioContext/);
@@ -333,6 +367,13 @@ test("Apple創成期展示室へ1976–1979年の13種類の分類済み展示�
   assert.doesNotMatch(terminal, /\beval\s*\(/);
   assert.match(terminal, /JavaScriptは実行しません/);
   assert.match(css, /@media \(max-width: 520px\)/);
+  assert.match(css, /\.appleBeginnerGuide/);
+  assert.match(css, /\.appleComparisonRow/);
+  assert.match(css, /\.appleCassetteConversion/);
+  assert.match(css, /\.appleGlossary/);
+  assert.match(css, /@media \(max-width: 700px\)[\s\S]*\.appleCassetteConversion \{ grid-template-columns: 1fr/);
+  assert.match(css, /@media \(max-width: 520px\)[\s\S]*\.appleGuidedSteps/);
+  assert.doesNotMatch(css, /\.appleBeginner(?:Guide|Chapters|Comparison|CassetteConversion|Glossary)[^{]*\{[^}]*min-width:\s*\d+px/);
   assert.match(css, /\.roomCardAppleEarly/);
   assert.match(css, /\.appleSignalPath/);
   assert.match(css, /\.appleDiskViews/);

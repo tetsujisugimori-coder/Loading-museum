@@ -27,6 +27,7 @@ export type AppleEarlyExhibit = {
   reconstructionLevel: AppleEarlyReconstructionLevel;
   shortDescription: string;
   observationPoint: string;
+  differenceNote?: string;
   technicalBackground: string;
   modernWebConnection: string;
   caution: string;
@@ -89,6 +90,7 @@ export const appleEarlyExhibits: readonly AppleEarlyExhibit[] = [
     reconstructionLevel: "概念再構成",
     shortDescription: "外部レコーダーの音声信号を検出し、インターフェースからメモリへ転送する流れです。",
     observationPoint: "信号探索、同期パルス、データ読込に合わせて経路と波形が変わる点。",
+    differenceNote: "Apple I側では、Cassette Interfaceが音を検出してメモリへ転送する仕組みを中心に見ます。",
     technicalBackground: "Apple Cassette Interfaceはカセットそのものではなく、外部テープレコーダーとApple Iを接続する拡張インターフェースでした。",
     modernWebConnection: "入力経路、受信工程、完了を分けて示すストリーミング状態UIと比較できます。",
     caution: `${sharedCaution} 波形と合成音は工程差を伝える抽象表現で、実機信号の正確な再現ではありません。`,
@@ -161,6 +163,7 @@ export const appleEarlyExhibits: readonly AppleEarlyExhibit[] = [
     reconstructionLevel: "概念再構成",
     shortDescription: "利用者が外部レコーダーを操作するSAVE成功、LOAD成功、LOAD失敗を比較します。",
     observationPoint: "録音と再生で信号方向が逆になり、失敗時は原因と次の操作が示される点。",
+    differenceNote: "Apple II側では、利用者がSAVE／LOADと外部レコーダーを順番に操作する体験を中心に見ます。",
     technicalBackground: "カセットではコンピュータ側の命令だけでなく、外部レコーダーの録音・再生・巻き戻し操作も必要でした。",
     modernWebConnection: "保存と復元を分け、失敗時に原因と回復方法を示すUIと比較できます。",
     caution: `${sharedCaution} 工程名と波形は操作を理解するための抽象表現です。`,

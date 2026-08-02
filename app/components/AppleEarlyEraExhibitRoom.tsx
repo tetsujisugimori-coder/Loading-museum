@@ -13,6 +13,7 @@ import {
   ErrorRetryDemo,
 } from "./AppleEarlyMediaDemos";
 import { AppleOneSetupDemo, AppleOneMonitorDemo, AppleBasicDemo, TextScrollDemo } from "./AppleEarlyTerminalDemos";
+import AppleEarlyBeginnerGuide from "./AppleEarlyBeginnerGuide";
 
 function ExhibitVisual({
   type,
@@ -114,6 +115,14 @@ export default function AppleEarlyEraExhibitRoom() {
             <p className="appleEarlyNotice">各展示の「史料ベース」「概念再構成」「創作比較」バッジで、当時の資料との距離を示します。実機ROM、ソフトウェア、ゲーム、ロゴ、筐体意匠を複製するエミュレータではありません。</p>
           </header>
 
+          <AppleEarlyBeginnerGuide active={isOpen && isPageVisible} prefersReducedMotion={prefersReducedMotion} />
+
+          <section className="appleDetailedExhibits" aria-labelledby="apple-detailed-exhibits-title">
+            <header>
+              <p>HANDS-ON COLLECTION / 13 EXHIBITS</p>
+              <h3 id="apple-detailed-exhibits-title">詳しく触る</h3>
+              <p>ここからは、Monitor入力、BASIC、カセット、カラー描画、Disk IIなどを個別に操作できます。</p>
+            </header>
           <div className="appleEarlyExhibitGrid">
             {appleEarlyExhibits.map((exhibit, index) => (
               <article className="appleEarlyExhibit" key={exhibit.id} aria-labelledby={`${exhibit.id}-title`}>
@@ -133,9 +142,12 @@ export default function AppleEarlyEraExhibitRoom() {
                 </dl>
                 <p className="appleObservation"><span>この展示で見るもの</span>{exhibit.observationPoint}</p>
 
+                {exhibit.differenceNote ? <p className="appleDifferenceNote"><span>この展示の違い</span>{exhibit.differenceNote}</p> : null}
+
                 <ExhibitVisual type={exhibit.visualType} active={isOpen && isPageVisible} prefersReducedMotion={prefersReducedMotion} />
 
                 <p className="appleQuickInstructions"><span>操作</span>{exhibit.instructions}</p>
+                <p className="appleModernAnalogy"><span>現代で例えると</span>完全に同じ仕組みではありませんが、{exhibit.modernWebConnection}</p>
                 <details className="appleEarlyInstructions">
                   <summary>詳しい解説</summary>
                   <dl className="appleEarlyFacts">
@@ -150,6 +162,7 @@ export default function AppleEarlyEraExhibitRoom() {
               </article>
             ))}
           </div>
+          </section>
 
           <button type="button" className="roomClose" onClick={closeRoom}>展示室を閉じる</button>
         </div>
