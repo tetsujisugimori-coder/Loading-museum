@@ -932,3 +932,56 @@
 ### 未確認事項
 
 - 今回の変更はreduced motion分岐へ触れておらず回帰テストは成功しているが、ブラウザ検証環境ではOSの`prefers-reduced-motion`を強制変更できないため、実設定を切り替えた目視確認は再実施していない。
+
+## 2026-08-02 — Apple創成期展示室（1976–1979）
+
+### 目的と展示方針
+
+- 既存展示より前の1976〜1979年を扱う「Apple創成期展示室」を、時代別展示室の先頭へ追加した。
+- Apple Iの基板中心の構成、文字モニタ、Apple Cassette Interface、Apple IIの電源投入・BASIC・カラー表示、Disk IIの起動・アクセスを通して、初期家庭用コンピュータが入力、待機、読込、成功、失敗をどう伝えたかを体験できる入口にした。
+- Computer History Museum所蔵のApple-1 Operation Manual、Apple II Reference Manual、Disk II Manual、Smithsonian所蔵のApple I Cassette Interfaceを主な史料とした。
+- 実機ROM、ソフトウェア、ゲーム、スクリーンショット、ロゴ、筐体意匠は複製せず、TypeScript、React、CSS、Canvas、Web Audio APIによる教育目的の非公式再構成として明記した。
+
+### 12展示と操作
+
+- Apple I風モニタ入力、Apple I風カセットロード、Apple II電源投入、Apple II BASIC風入力、カセット保存と読み込み、Disk II風起動、Disk IIアクセスパターン、テキストスクロール、ローレゾ風グラフィック描画、ハイレゾ風描画、ゲームロード風演出、エラーと再試行の12展示を追加した。
+- 各カードへ年代、対象機種、記録媒体、再現内容、状態表現、技術的背景、現代Webとの接続、注意事項、史実との関係、操作方法を掲載した。
+- 共通の再生、一時停止、リセット、速度、ループ制御を実装し、段階ごとに追跡できる単一タイマーをcleanupする。Apple IモニタとBASICは許可した文字形式だけを解析し、`eval`や任意JavaScript実行は行わない。
+- カセットは波形と文字を常時提供し、合成矩形波は初期ミュートで利用者が明示的に有効化した場合だけ再生する。Disk IIは抽象化したプラッタ、ヘッド、アクセスランプと状態文字を組み合わせた。
+- ローレゾはCSSグリッド、ハイレゾはCanvas 2Dと`requestAnimationFrame`で独自図形を描き、停止時とアンマウント時にフレームを解除する。
+
+### アクセシビリティ、性能、レスポンシブ
+
+- 展示室はネイティブbutton、`aria-expanded`、`aria-controls`、region、`aria-labelledby`、`aria-hidden`、`inert`を連動させ、閉じる操作後は開閉buttonへフォーカスを戻す。
+- 状態文字を色、光、音だけに依存させず、操作群へ名前を付け、Canvasへ代替説明を保持した。装飾的な走査線、カセット、ドライブ機構は読み上げ対象外にした。
+- 展示室を閉じた時、ページ非表示時はタイマーとCanvas描画を停止する。長い一覧には`content-visibility: auto`を使い、カードの推定寸法を予約した。
+- `prefers-reduced-motion: reduce`ではシーケンスを最終状態へ進め、カーソル、リール、波形、ノイズ、ディスク、ゲームのCSSアニメーションを停止する。
+- 900px以下で1列、520px以下で操作群と事実欄を再配置し、狭い画面でも入力欄やドライブ図がはみ出さない構成にした。
+
+### 集計、変更ファイル
+
+- ヘッダーを`COLLECTION 1976—NOW`、`6 ROOMS / 114 OBJECTS`へ更新した。
+- `app/data/appleEarlyExhibits.ts`
+- `app/components/AppleEarlyDemoControls.tsx`
+- `app/components/AppleEarlyTerminalDemos.tsx`
+- `app/components/AppleEarlyMediaDemos.tsx`
+- `app/components/AppleEarlyGraphicsDemos.tsx`
+- `app/components/AppleEarlyEraExhibitRoom.tsx`
+- `app/page.tsx`
+- `app/globals.css`
+- `tests/rendered-html.test.mjs`
+- `README.md`
+- `LOG.md`
+
+### テストとブラウザ確認
+
+- `npm run check`: ESLint、TypeScript、Next.js静的ビルド、状態遷移24件とHTML回帰18件の合計42テストが成功。
+- 静的ビルドで`/`と`/_not-found`を生成し、Hydration Errorは発生しなかった。
+- 実ブラウザで展示室の開閉とARIA状態、Apple I風`0300: A9 01`入力の`STORED / 0300`応答、BASIC風`RUN`の出力、カセットロードの`SIGNAL FOUND`遷移、Canvasの`DRAW COMPLETE`を確認した。
+- 12展示の2列レイアウト、資料カード、ローレゾとハイレゾ描画をスクリーンショットで目視確認した。リポジトリ内に既存の保存先規約がないため、画像ファイルはコミットしていない。
+
+### 未実装事項・今後の調整
+
+- 実機エミュレーション、ROM／当時のソフトウェア読込、製品固有の正確な映像・音響・ドライブ機構の再現は意図的に対象外とした。
+- ブラウザ検証環境ではOSの`prefers-reduced-motion`を切り替えられないため、実設定での目視確認は未実施。React分岐、CSS停止規則、静的HTML回帰テストで確認した。
+- カセット周波数、各シーケンス速度、色調、カード推定高さは、今後の史料追加や実機比較に合わせて定数とCSS変数から調整できる。

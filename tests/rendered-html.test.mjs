@@ -244,29 +244,70 @@ test("カーソル展示のデータ、Pointer Events、性能とアクセシビ
   assert.match(data, /Reactのローカルstateで3対象の選択状態と結果表示を切り替えています/);
 });
 
-test("Flash特別展示室を加えた展示室・展示件数を表示する", async () => {
+test("Apple創成期展示室を加えた展示室・展示件数を表示する", async () => {
   const [html, page] = await Promise.all([
     readFile(new URL("index.html", outputRoot), "utf8"),
     readFile(new URL("app/page.tsx", projectRoot), "utf8"),
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /5 ROOMS \/ 102 OBJECTS/);
+  assert.match(normalizedHtml, /6 ROOMS \/ 114 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
-  assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 4);
-  assert.equal((html.match(/aria-expanded="false"/g) ?? []).length, 5);
+  assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 5);
+  assert.equal((html.match(/aria-expanded="false"/g) ?? []).length, 6);
   assert.equal(
     (html.match(/class="exhibit"/g) ?? []).length
       + (html.match(/class="dosExhibit"/g) ?? []).length
       + (html.match(/class="unixExhibit"/g) ?? []).length
       + (html.match(/class="vanishedLoadingExhibit"/g) ?? []).length
-      + (html.match(/class="cursorExhibit"/g) ?? []).length,
-    48,
+      + (html.match(/class="cursorExhibit"/g) ?? []).length
+      + (html.match(/class="appleEarlyExhibit"/g) ?? []).length,
+    60,
   );
-  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 2/);
+  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 3/);
+  assert.match(page, /cursorExhibits\.length \+ appleEarlyExhibitCount/);
   assert.match(page, /periodExhibitCount \+ flashExhibitCount/);
   assert.match(page, /exhibit\.kind === "vanished-os" \? exhibit\.loadingExhibits\.length : 1/);
   assert.doesNotMatch(page, /3 ROOMS \/ 30 OBJECTS/);
+});
+
+test("Apple創成期展示室へ1976–1979年の12種類の再現展示を実装する", async () => {
+  const [html, data, room, media, graphics, terminal, css] = await Promise.all([
+    readFile(new URL("index.html", outputRoot), "utf8"),
+    readFile(new URL("app/data/appleEarlyExhibits.ts", projectRoot), "utf8"),
+    readFile(new URL("app/components/AppleEarlyEraExhibitRoom.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/AppleEarlyMediaDemos.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/AppleEarlyGraphicsDemos.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/AppleEarlyTerminalDemos.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+  const normalizedHtml = html.replaceAll("<!-- -->", "");
+
+  assert.match(normalizedHtml, /Apple創成期展示室/);
+  assert.match(normalizedHtml, /1976–1979/);
+  assert.match(normalizedHtml, /12 EXHIBITS/);
+  assert.match(html, /aria-controls="apple-early-era-room-panel"/);
+  assert.match(html, /id="apple-early-era-room-panel"[^>]*data-open="false"[^>]*role="region"[^>]*aria-labelledby="apple-early-era-room-toggle"[^>]*aria-hidden="true"[^>]*inert=""/);
+  assert.equal((html.match(/class="appleEarlyExhibit"/g) ?? []).length, 12);
+
+  for (const title of [
+    "Apple I風モニタ入力", "Apple I風カセットロード", "Apple II電源投入", "Apple II BASIC風入力",
+    "カセット保存と読み込み", "Disk II風起動", "Disk IIアクセスパターン", "テキストスクロール",
+    "ローレゾ風グラフィック描画", "ハイレゾ風描画", "ゲームロード風演出", "エラーと再試行",
+  ]) assert.match(normalizedHtml, new RegExp(title));
+
+  assert.equal((data.match(/visualType: "/g) ?? []).length, 12);
+  assert.match(room, /document\.visibilityState/);
+  assert.match(room, /prefers-reduced-motion: reduce/);
+  assert.match(media, /AudioContext/);
+  assert.match(media, /初期ミュート/);
+  assert.match(graphics, /requestAnimationFrame/);
+  assert.match(graphics, /cancelAnimationFrame/);
+  assert.match(graphics, /role="img"/);
+  assert.doesNotMatch(terminal, /\beval\s*\(/);
+  assert.match(terminal, /JavaScriptは実行しません/);
+  assert.match(css, /@media \(max-width: 520px\)/);
+  assert.match(css, /\.roomCardAppleEarly/);
 });
 
 test("Flash特別展示室へ18カテゴリ・54展示と優先デモを実装する", async () => {
@@ -588,6 +629,10 @@ test("MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモ�
 
 test("独立した消えたOS展示室へ6 OS・18種類のLoading再構成を書き出す", async () => {
   const html = await readFile(new URL("index.html", outputRoot), "utf8");
+  const vanishedRoomHtml = html.slice(
+    html.indexOf('aria-controls="vanished-operating-systems-panel"'),
+    html.indexOf('aria-controls="cursor-exhibit-room-panel"'),
+  );
 
   assert.match(html, /消えたOS展示室/);
   assert.match(html, /主流から退いたOSが残した起動演出と設計思想/);
@@ -599,8 +644,8 @@ test("独立した消えたOS展示室へ6 OS・18種類のLoading再構成を�
   assert.match(html, /id="vanished-operating-systems-panel"/);
   assert.equal((html.match(/class="vanishedOsExhibit"/g) ?? []).length, 6);
   assert.equal((html.match(/class="vanishedLoadingExhibit"/g) ?? []).length, 18);
-  assert.equal((html.match(/>再生<\/button>/g) ?? []).length, 18);
-  assert.equal((html.match(/>停止<\/button>/g) ?? []).length, 18);
+  assert.equal((vanishedRoomHtml.match(/>再生<\/button>/g) ?? []).length, 18);
+  assert.equal((vanishedRoomHtml.match(/>停止<\/button>/g) ?? []).length, 18);
   assert.equal(
     (html.match(/JavaScriptとCSSによる教育・研究目的の歴史的表現の再構成（非公式）/g) ?? []).length,
     18,
