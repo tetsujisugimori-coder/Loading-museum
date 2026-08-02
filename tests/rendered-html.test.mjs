@@ -51,12 +51,22 @@ test("正式名称のタイトル導入、年代テーマ、確定演出、軽�
   for (const theme of ["MAINFRAME", "GUI", "WEB", "TOUCH", "GENERATIVE UI"]) {
     assert.match(state, new RegExp(`theme: "${theme}"`));
   }
-  assert.match(state, /type SequencePhase = "loading" \| "years" \| "typing" \| "signal-lock" \| "complete"/);
-  assert.match(state, /signalBrighten: 160/);
+  for (const phase of ["index-complete", "typing-hold", "signal-lock"]) {
+    assert.match(state, new RegExp(`\\| "${phase}"`));
+  }
+  assert.match(state, /signalBrighten: 150/);
   assert.match(state, /signalNoise: 200/);
+  assert.match(state, /signalLocked: 180/);
+  assert.match(state, /lastEra: 400/);
   assert.match(component, /className="museumTitleEraTheme"/);
+  assert.match(component, /ARCHIVE_ERAS\.map/);
+  assert.match(component, /className="museumTitleTimeline"/);
+  assert.match(component, /className="museumTitleTimelineNode"/);
+  assert.match(component, /data-state=\{getTimelineNodeState\(index, sequence\)\}/);
+  assert.match(component, /ARCHIVE INDEX COMPLETE/);
   assert.match(component, /className="museumTitleSignalFrame"/);
   assert.match(component, /className="museumTitleSignalNoise" aria-hidden="true"/);
+  assert.match(component, /SIGNAL LOCKED/);
   assert.match(component, /window\.sessionStorage\.getItem\(TITLE_SEQUENCE_STORAGE_KEY\)/);
   assert.match(component, /window\.sessionStorage\.setItem\(TITLE_SEQUENCE_STORAGE_KEY, "seen"\)/);
   assert.match(component, /if \(sequence\.phase !== "complete"\) return;\s*rememberSequence\(\)/);
@@ -67,6 +77,8 @@ test("正式名称のタイトル導入、年代テーマ、確定演出、軽�
   assert.match(component, /<span className="museumTitleAnimated" aria-hidden="true">/);
   assert.match(component, /className="museumTitleReplay"/);
   assert.match(component, /onClick=\{replay\}/);
+  assert.match(component, /<button className="museumTitleReplay" type="button" onClick=\{replay\}>/);
+  assert.match(component, /RUN INTRO AGAIN/);
   assert.match(page, /<MuseumTitleSequence \/>/);
   assert.match(page, /© DIGITAL MOTION ARCHIVE/);
   assert.match(layout, /title: "DIGITAL MOTION ARCHIVE"/);
@@ -78,6 +90,8 @@ test("正式名称のタイトル導入、年代テーマ、確定演出、軽�
   assert.match(css, /\.museumTitleReplay:focus-visible/);
   assert.match(css, /@keyframes museum-title-signal-brighten/);
   assert.match(css, /@keyframes museum-title-signal-noise/);
+  assert.match(css, /@keyframes museum-title-signal-jitter/);
+  assert.match(css, /@keyframes museum-title-index-lock/);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.museumTitleSignalNoise/);
 });
 

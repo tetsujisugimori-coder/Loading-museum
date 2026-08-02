@@ -8,10 +8,13 @@ import {
   createInitialSequence,
   createReducedMotionSequence,
   createReplaySequence,
+  getCompletedEraCount,
+  getTimelineNodeState,
   getSequenceDelay,
   TITLE,
   TITLE_FIRST_LINE,
   TITLE_SECOND_LINE,
+  type SequenceState,
 } from "./museum-title-sequence-state";
 
 export const TITLE_SEQUENCE_STORAGE_KEY = "digital-motion-archive-title-seen-v1";
@@ -62,6 +65,23 @@ function CompletedTitle({ blinkingCursor }: { blinkingCursor: boolean }) {
         {TITLE_SECOND_LINE}
         <span className={blinkingCursor ? "museumTitleCursor museumTitleCursorBlink" : "museumTitleCursor"} />
       </span>
+    </span>
+  );
+}
+
+function ArchiveTimeline({ sequence }: { sequence: SequenceState }) {
+  return (
+    <span className="museumTitleTimeline" data-completed={getCompletedEraCount(sequence)}>
+      {ARCHIVE_ERAS.map((era, index) => (
+        <span
+          className="museumTitleTimelineNode"
+          data-state={getTimelineNodeState(index, sequence)}
+          key={era.year}
+        >
+          <span className="museumTitleTimelineDot" />
+          <span className="museumTitleTimelineYear">{era.year}</span>
+        </span>
+      ))}
     </span>
   );
 }
@@ -150,22 +170,34 @@ export function MuseumTitleSequence() {
               </span>
             ) : null}
             {sequence.phase === "years" ? (
-              <span className="museumTitleChronology">
-                <span className="museumTitleChronologyLabel">ARCHIVE YEAR</span>
-                <span className="museumTitleYear">{currentEra.year}</span>
-                <span className="museumTitleEraTheme">{currentEra.theme}</span>
-                <span className="museumTitleYearProgress">
-                  {String(sequence.eraIndex + 1).padStart(2, "0")} / {String(ARCHIVE_ERAS.length).padStart(2, "0")}
+              <span className="museumTitleEraScan">
+                <span className="museumTitleChronology">
+                  <span className="museumTitleChronologyLabel">ARCHIVE YEAR</span>
+                  <span className="museumTitleYear">{currentEra.year}</span>
+                  <span className="museumTitleEraTheme">{currentEra.theme}</span>
+                  <span className="museumTitleYearProgress">
+                    {String(sequence.eraIndex + 1).padStart(2, "0")} / {String(ARCHIVE_ERAS.length).padStart(2, "0")}
+                  </span>
                 </span>
+                <ArchiveTimeline sequence={sequence} />
               </span>
             ) : null}
-            {sequence.phase === "typing" ? (
+            {sequence.phase === "index-complete" ? (
+              <span className="museumTitleIndexComplete">
+                <span className="museumTitleSystemMessage">ARCHIVE INDEX COMPLETE</span>
+                <ArchiveTimeline sequence={sequence} />
+              </span>
+            ) : null}
+            {sequence.phase === "typing" || sequence.phase === "typing-hold" ? (
               <TypedTitle characterCount={sequence.characterCount} />
             ) : null}
             {isSignalLock ? (
               <span className="museumTitleSignalFrame" data-signal-step={sequence.signalLockStep}>
                 <CompletedTitle blinkingCursor={false} />
                 <span className="museumTitleSignalNoise" aria-hidden="true" />
+                {sequence.signalLockStep === "locked" ? (
+                  <span className="museumTitleSignalStatus">SIGNAL LOCKED</span>
+                ) : null}
               </span>
             ) : null}
             {isComplete ? (
@@ -177,7 +209,7 @@ export function MuseumTitleSequence() {
       <div className="museumTitleSupport" data-visible={isComplete}>
         <p className="subtitle">ローディング、カーソル、UIアニメーションの歴史と再現</p>
         <button className="museumTitleReplay" type="button" onClick={replay}>
-          <span aria-hidden="true">↻</span> Replay
+          <span aria-hidden="true">↻</span> RUN INTRO AGAIN
         </button>
       </div>
     </div>

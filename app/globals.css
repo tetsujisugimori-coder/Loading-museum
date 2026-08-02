@@ -109,7 +109,7 @@ body::after {
 
 .museumTitleStage {
   display: flex;
-  min-height: 72px;
+  min-height: 110px;
   align-items: center;
 }
 
@@ -200,9 +200,16 @@ body::after {
   to { width: 100%; }
 }
 
-.museumTitleChronology {
+.museumTitleEraScan,
+.museumTitleIndexComplete {
   display: grid;
   width: min(600px, 100%);
+  gap: 9px;
+}
+
+.museumTitleChronology {
+  display: grid;
+  width: 100%;
   grid-template-columns: auto auto minmax(0, 1fr) auto;
   gap: 14px;
   align-items: baseline;
@@ -234,6 +241,100 @@ body::after {
   color: var(--cyan);
 }
 
+.museumTitleSystemMessage {
+  color: var(--cyan);
+  font-size: 0.3em;
+  letter-spacing: 0.18em;
+  text-shadow: 0 0 10px rgb(77 231 231 / 28%);
+}
+
+.museumTitleTimeline {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 25px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: start;
+}
+
+.museumTitleTimeline::before,
+.museumTitleTimeline::after {
+  position: absolute;
+  z-index: 0;
+  top: 4px;
+  left: 10%;
+  height: 1px;
+  content: "";
+}
+
+.museumTitleTimeline::before {
+  right: 10%;
+  background: var(--line-bright);
+  opacity: 0.55;
+}
+
+.museumTitleTimeline::after {
+  width: 0;
+  background: var(--green);
+  box-shadow: 0 0 6px rgb(57 231 125 / 35%);
+}
+
+.museumTitleTimeline[data-completed="2"]::after { width: 20%; }
+.museumTitleTimeline[data-completed="3"]::after { width: 40%; }
+.museumTitleTimeline[data-completed="4"]::after { width: 60%; }
+.museumTitleTimeline[data-completed="5"]::after { width: 80%; }
+
+.museumTitleTimelineNode {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+  justify-items: center;
+}
+
+.museumTitleTimelineDot {
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--line-bright);
+  border-radius: 50%;
+  background: var(--panel);
+}
+
+.museumTitleTimelineYear {
+  color: var(--muted);
+  font-size: 7px;
+  letter-spacing: 0.08em;
+}
+
+.museumTitleTimelineNode[data-state="complete"] .museumTitleTimelineDot,
+.museumTitleTimelineNode[data-state="current"] .museumTitleTimelineDot {
+  border-color: var(--green);
+  background: var(--green);
+  box-shadow: 0 0 7px rgb(57 231 125 / 42%);
+}
+
+.museumTitleTimelineNode[data-state="current"] .museumTitleTimelineDot {
+  border-color: var(--cyan);
+  background: var(--cyan);
+  box-shadow: 0 0 9px rgb(77 231 231 / 62%);
+  transform: scale(1.25);
+}
+
+.museumTitleTimelineNode[data-state="complete"] .museumTitleTimelineYear,
+.museumTitleTimelineNode[data-state="current"] .museumTitleTimelineYear {
+  color: var(--paper);
+}
+
+.museumTitleIndexComplete .museumTitleTimeline::before,
+.museumTitleIndexComplete .museumTitleTimeline::after {
+  animation: museum-title-index-lock 200ms ease-out both;
+}
+
+@keyframes museum-title-index-lock {
+  50% { filter: brightness(1.6); box-shadow: 0 0 9px rgb(77 231 231 / 42%); }
+}
+
 .museumTitleSignalFrame {
   position: relative;
   display: block;
@@ -250,14 +351,16 @@ body::after {
   top: 0;
   right: 0;
   left: 0;
-  height: 2px;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent 0 5%,
-    rgb(77 231 231 / 75%) 6% 10%,
-    rgb(141 255 177 / 30%) 11% 18%,
-    transparent 19% 26%
-  );
+  height: 10px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 5%,
+      rgb(77 231 231 / 78%) 6% 10%,
+      rgb(141 255 177 / 36%) 11% 18%,
+      transparent 19% 26%
+    ) top / 100% 2px no-repeat,
+    linear-gradient(180deg, rgb(77 231 231 / 18%), transparent 9px);
   box-shadow: 0 0 7px rgb(77 231 231 / 35%);
   opacity: 0;
   pointer-events: none;
@@ -265,6 +368,19 @@ body::after {
 
 .museumTitleSignalFrame[data-signal-step="noise"] .museumTitleSignalNoise {
   animation: museum-title-signal-noise 200ms linear both;
+}
+
+.museumTitleSignalFrame[data-signal-step="noise"] .museumTitleText {
+  animation: museum-title-signal-jitter 70ms linear both;
+}
+
+.museumTitleSignalStatus {
+  display: block;
+  margin-top: 8px;
+  color: var(--cyan);
+  font-size: 0.22em;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 8px rgb(77 231 231 / 32%);
 }
 
 @keyframes museum-title-signal-brighten {
@@ -280,8 +396,14 @@ body::after {
 
 @keyframes museum-title-signal-noise {
   0% { top: 4%; opacity: 0; }
-  18%, 72% { opacity: 0.72; }
-  100% { top: calc(100% - 2px); opacity: 0; }
+  18%, 72% { opacity: 0.68; }
+  100% { top: calc(100% - 10px); opacity: 0; }
+}
+
+@keyframes museum-title-signal-jitter {
+  0%, 100% { transform: translateX(0); }
+  35% { transform: translateX(-1px); }
+  65% { transform: translateX(2px); }
 }
 
 .museumTitleSupport {
@@ -3755,7 +3877,7 @@ footer {
   }
 
   .museumTitleStage {
-    min-height: 97px;
+    min-height: 116px;
   }
 
   .museumTitleText {
@@ -3777,6 +3899,25 @@ footer {
       "year theme";
     grid-template-columns: auto minmax(0, 1fr);
     gap: 8px;
+  }
+
+  .museumTitleEraScan,
+  .museumTitleIndexComplete {
+    gap: 7px;
+  }
+
+  .museumTitleTimeline {
+    height: 12px;
+  }
+
+  .museumTitleTimelineYear {
+    display: none;
+  }
+
+  .museumTitleReplay {
+    max-width: 100%;
+    font-size: 8px;
+    letter-spacing: 0.09em;
   }
 
   .museumTitleChronologyLabel { grid-area: label; }
@@ -4032,6 +4173,9 @@ footer {
   }
 
   .museumTitleCursor,
+  .museumTitleTimeline,
+  .museumTitleTimeline::before,
+  .museumTitleTimeline::after,
   .museumTitleSignalFrame,
   .museumTitleSignalNoise,
   .museumTitleSupport {

@@ -804,3 +804,70 @@
 
 - ブラウザ検証環境に`prefers-reduced-motion`の強制変更機能がないため、実際のOS設定を切り替えた目視確認は未実施。React分岐、CSSの完成表示、全モーション停止は自動テストとソースレビューで確認した。
 - 時間は`SEQUENCE_DELAYS`のloading 650ms、era 190ms、character 45ms、signalBrighten 160ms、signalNoise 200msで一括調整できる。
+
+## 2026-08-02 — PR #16 蓄積型年代タイムラインと導入信号演出の最終調整
+
+### 蓄積型年代タイムライン
+
+- 年代表示を単独の数値切替から、走査済みの時代を残して現在位置を示す5ノードのタイムラインへ変更した。各ノードは`pending`、`current`、`complete`の3状態を持ち、`ARCHIVE_ERAS.map()`で生成する。
+- 1960 / MAINFRAMEから2026 / GENERATIVE UIまで、完了済みノードと接続線を緑、走査中ノードをシアン、未走査ノードを低輝度で表示する。色だけでなく点の大きさと`data-state`も変わる。
+- 最終年代の2026は通常年代230msより長い400ms保持とした。過去から現在へ到達したことと、`GENERATIVE UI`を読み取る時間を確保するためである。
+- 年代走査後に200msの`ARCHIVE INDEX COMPLETE`を追加し、5ノードをすべてcompleteとして表示する。年代インデックスの確定とタイプ入力の開始を分ける短い区切りとして機能する。
+
+### タイプ入力と信号固定
+
+- 最後の文字を表示した直後に次の演出へ移らないよう、80msの`typing-hold`を追加した。完成タイトルを一度読める状態で保持してから信号固定へ入る。
+- `signal-lock`を`brighten`（150ms）、`noise`（200ms）、`locked`（180ms）の3段階にした。輝度上昇、水平ノイズ、`SIGNAL LOCKED`の確定表示を順に一度だけ実行する。
+- ノイズ帯は主線2pxと減衰する残像を合わせた高さ10pxとし、noise中だけタイトルを左右1〜2px揺らして信号調整感を加えた。transformのみを使い、タイトル領域の寸法は変えない。
+- Replayの表記を端末コマンド風の`↻ RUN INTRO AGAIN`へ変更した。ネイティブbutton、キーボード操作、既存のfocus-visible表示は維持する。
+
+### 最終シーケンスと時間定数
+
+- 最終フローは`loading → years（1960 → 1984 → 1995 → 2007 → 2026）→ index-complete → typing → typing-hold → signal-lock / brighten → signal-lock / noise → signal-lock / locked → complete`。
+- 時間は`SEQUENCE_DELAYS`でloading 650ms、通常年代230ms、最終年代400ms、index complete 200ms、1文字40ms、typing hold 80ms、brighten 150ms、noise 200ms、locked 180msとして一括管理する。
+- 実ブラウザでReplay開始からcompleteまで約4.0秒だった。年代の意味を読み取れる余白を残しながら、展示前の待機が長くなりすぎない範囲に収めた。
+
+### sessionStorage、モーション軽減、アクセシビリティ
+
+- `sessionStorage`への既読記録は引き続き`complete`到達時だけ行う。途中離脱は未読のまま、完了後の同一セッション再訪は完成状態へ短縮する。読み書き失敗時の`try/catch`フォールバックも維持した。
+- `prefers-reduced-motion: reduce`ではloading、年代、index complete、typing、typing hold、輝度、ノイズ、揺れ、locked表示を省略し、完成タイトルと副題を即時表示する。
+- 視覚用タイムライン、途中の文字、ノイズ、カーソル、確定メッセージは`aria-hidden`領域内に置き、`h1`には常に完成済みの`DIGITAL MOTION ARCHIVE`を保持する。
+
+### 状態遷移テスト
+
+- `getCompletedEraCount()`と`getTimelineNodeState()`を追加し、年代ごとの蓄積状態をDOMに依存しない純粋関数としてテスト可能にした。
+- `nextSequenceState()`と`getSequenceDelay()`でindex complete、typing hold、3段階signal-lockを含む全遷移を明示した。タイマーは各stateにつき1本で、effect cleanupとrunIdによる古い実行の無効化を維持する。
+- 状態遷移テストを22件へ拡張し、5年代の順序、各timeline state、最終年代の長い待機、全文字入力、hold、brighten、noise、locked、complete停止、Replay、古いrunId無視、時間定数を確認する。
+
+### 変更したファイル
+
+- `app/components/MuseumTitleSequence.tsx`
+- `app/components/museum-title-sequence-state.ts`
+- `app/globals.css`
+- `tests/museum-title-sequence-state.test.mjs`
+- `tests/rendered-html.test.mjs`
+- `LOG.md`
+
+### 実行コマンドと結果
+
+- `npm run lint`: 成功。
+- `npm run typecheck`: 成功。
+- `node --test tests/museum-title-sequence-state.test.mjs`: 22件成功。
+- `npm run check`: ESLint、TypeScript、Next.js静的ビルド、状態遷移22件と既存回帰17件の合計39テストがすべて成功。
+- `npm run build`: 成功。最終差分反映後に独立して実行し、静的ページ3件の生成まで完了した。
+
+### ブラウザ確認結果
+
+- Replayで全フローを計測し、loading約650ms、通常年代約230ms、最終年代約400ms、index complete約200ms、typing、typing hold、brighten、noise、locked、completeの指定順を確認した。
+- 各年代で過去年代がcompleteとして残り、現在年代だけcurrent、将来年代がpendingになること、index completeで5件すべてcompleteになることを確認した。
+- noise中に高さ10pxの主線と残像、タイトルのjitter animationが適用され、lockedで`SIGNAL LOCKED`が表示されることを確認した。
+- 1440、768、390、375、320px相当でdocumentのclient widthとscroll widthが一致し、横スクロールがないことを確認した。小画面では`DIGITAL MOTION`と`ARCHIVE`の間だけで改行し、320pxでもタイムラインとsignal frameが予約済みタイトル領域内に収まった。
+- `RUN INTRO AGAIN`はアクセシブル名を持つbuttonが1件だけ存在し、Enterキーでloadingへ戻ることを確認した。
+- MS-DOS展示室は開いた状態で8展示、`aria-expanded="true"`、`aria-hidden="false"`、inertなし、閉じた状態で`aria-expanded="false"`、`aria-hidden="true"`、inertありへ正しく切り替わった。
+- 開発環境のconsoleはReact DevTools案内とHMR接続だけで、warning／error、エラーダイアログ、Hydration Errorはなかった。
+
+### 未確認事項・今後の調整
+
+- ブラウザ検証環境に`prefers-reduced-motion`の強制変更機能がないため、実際のOS設定を切り替えた目視確認は未実施。React分岐、CSSの即時完成表示、全アニメーション停止は自動テストとソースレビューで確認した。
+- ブラウザ検証環境は同一ブラウザセッションのstorageをタブ間で保持するため、未完了離脱だけを完全に独立した新規セッションとして再現する目視確認は未実施。既読書き込みがcomplete effect内だけにあることと、途中stateでは書き込まないことを回帰テストで確認した。
+- 年代、ラベル、各段階の時間は`ARCHIVE_ERAS`と`SEQUENCE_DELAYS`、タイムラインの見た目はCSS変数と`data-state`規則で今後調整できる。
