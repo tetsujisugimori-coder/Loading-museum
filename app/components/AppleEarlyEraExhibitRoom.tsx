@@ -80,16 +80,11 @@ export default function AppleEarlyEraExhibitRoom() {
         aria-controls={panelId}
         onClick={() => setIsOpen((open) => !open)}
       >
-        <span className="roomToggleMain">
-          <span className="roomEyebrow">ROOM / 1976–1979</span>
-          <span className="roomTitle" id="apple-early-room-title">Apple I / Apple II 展示室</span>
-          <span className="roomSummary">基板中心のApple Iから、BASIC・カラー・Disk IIを備えたApple IIへの変化</span>
-        </span>
-        <span className="roomToggleMeta" aria-hidden="true">
-          <span>1976–1979</span>
-          <span>{appleEarlyExhibits.length} EXHIBITS</span>
-          <span className="roomToggleMark">{isOpen ? "−" : "+"}</span>
-        </span>
+        <span className="roomIndex">ROOM / 1976–1979</span>
+        <span className="roomTitle" id="apple-early-room-title">Apple I / Apple II 展示室</span>
+        <span className="roomDescription">Apple IからApple II、Disk IIへ</span>
+        <span className="roomMeta"><span>{appleEarlyExhibits.length} EXHIBITS</span></span>
+        <span className="roomArrow" aria-hidden="true">↓</span>
       </button>
 
       <div

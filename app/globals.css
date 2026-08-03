@@ -4195,7 +4195,7 @@ footer {
 /* Apple early era room: an original educational reconstruction of 1976–1979 interfaces. */
 .roomCardAppleEarly { --apple-amber: #d2a652; --apple-green: #91b78c; --apple-cream: #e8ddbd; --apple-ink: #100f0c; border-color: #715b39; background: linear-gradient(145deg,#191711,#0d0e0c 68%); box-shadow: inset 5px 0 0 #76522f; }
 .roomCardAppleEarly .roomToggle:focus-visible { outline-color: var(--apple-amber); }
-.roomCardAppleEarly .roomEyebrow,.roomCardAppleEarly .roomToggleMeta { color: var(--apple-amber); }
+.roomCardAppleEarly .roomIndex,.roomCardAppleEarly .roomMeta,.roomCardAppleEarly .roomArrow { color: var(--apple-amber); }
 .appleEarlyRoomBody { padding: clamp(16px,3vw,34px); border-top: 1px solid #57462d; }
 .appleEarlyIntro { max-width: 1120px; margin: 0 auto 28px; padding: clamp(17px,3vw,30px); border: 1px solid #53452f; background: linear-gradient(110deg,rgb(52 42 25 / 45%),rgb(12 14 12 / 85%)); }
 .appleEarlyKicker { margin: 0 0 10px; color: var(--apple-amber); font-size: 9px; letter-spacing: .16em; }

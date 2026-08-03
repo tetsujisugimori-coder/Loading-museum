@@ -290,7 +290,8 @@ test("Apple I / Apple II 展示室へ因果関係が分かる13展示を実装�
   assert.match(normalizedHtml, /Apple I \/ Apple II 展示室/);
   assert.match(normalizedHtml, /1976–1979/);
   assert.match(normalizedHtml, /13 EXHIBITS/);
-  assert.match(normalizedHtml, /基板中心のApple Iから、BASIC・カラー・Disk IIを備えたApple IIへの変化/);
+  assert.match(normalizedHtml, /Apple IからApple II、Disk IIへ/);
+  assert.equal((normalizedHtml.match(/>ROOM \/ 1976–1979</g) ?? []).length, 1);
   assert.doesNotMatch(normalizedHtml, /Apple創成期展示室/);
   assert.doesNotMatch(normalizedHtml, /文字・カセット・カラー・ディスクが変えたコンピュータとの対話/);
   assert.doesNotMatch(normalizedHtml, /完成品になる前のコンピュータ/);
