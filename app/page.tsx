@@ -2,13 +2,15 @@ import { ExhibitRoomAccordion } from "./components/ExhibitRoomAccordion";
 import { CursorExhibitRoom } from "./components/CursorExhibitRoom";
 import { FlashSpecialExhibitRoom } from "./components/FlashSpecialExhibitRoom";
 import { MuseumTitleSequence } from "./components/MuseumTitleSequence";
+import AppleEarlyEraExhibitRoom from "./components/AppleEarlyEraExhibitRoom";
+import { appleEarlyExhibitCount } from "./data/appleEarlyExhibits";
 import { cursorExhibits } from "./data/cursorExhibits";
 import { exhibitRooms } from "./data/exhibitRooms";
 import { flashExhibitCount } from "./data/flashExhibits";
 
 const spokes = Array.from({ length: 8 }, (_, index) => index);
 const permanentExhibitCount = 9;
-const periodRoomCount = exhibitRooms.length + 2;
+const periodRoomCount = exhibitRooms.length + 3;
 const periodExhibitCount = exhibitRooms.reduce(
   (roomTotal, room) => roomTotal + room.exhibits.reduce(
     (exhibitTotal, exhibit) => exhibitTotal + (
@@ -16,7 +18,7 @@ const periodExhibitCount = exhibitRooms.reduce(
     ),
     0,
   ),
-  cursorExhibits.length,
+  cursorExhibits.length + appleEarlyExhibitCount,
 );
 const totalExhibitCount = permanentExhibitCount + periodExhibitCount + flashExhibitCount;
 
@@ -52,7 +54,7 @@ export default function Home() {
         <p className="archiveMeta">
           ARCHIVE NODE <strong>JP–01</strong>
           <br />
-          COLLECTION 1980—NOW
+          COLLECTION 1976—NOW
           <br />
           {periodRoomCount} ROOMS / {totalExhibitCount} OBJECTS
         </p>
@@ -169,6 +171,7 @@ export default function Home() {
           <h2 id="room-collection-title">時代別展示室</h2>
         </div>
         <div className="roomList">
+          <AppleEarlyEraExhibitRoom />
           {exhibitRooms.map((room) => (
             <ExhibitRoomAccordion key={room.roomId} room={room} />
           ))}

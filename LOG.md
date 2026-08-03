@@ -932,3 +932,271 @@
 ### 未確認事項
 
 - 今回の変更はreduced motion分岐へ触れておらず回帰テストは成功しているが、ブラウザ検証環境ではOSの`prefers-reduced-motion`を強制変更できないため、実設定を切り替えた目視確認は再実施していない。
+
+## 2026-08-02 — Apple I / Apple II 展示室（1976–1979）
+
+### 目的と展示方針
+
+- 既存展示より前の1976〜1979年を扱う「Apple I / Apple II 展示室」を、時代別展示室の先頭へ追加した。
+- Apple Iの基板中心の構成、文字モニタ、Apple Cassette Interface、Apple IIの電源投入・BASIC・カラー表示、Disk IIの起動・アクセスを通して、初期家庭用コンピュータが入力、待機、読込、成功、失敗をどう伝えたかを体験できる入口にした。
+- Computer History Museum所蔵のApple-1 Operation Manual、Apple II Reference Manual、Disk II Manual、Smithsonian所蔵のApple I Cassette Interfaceを主な史料とした。
+- 実機ROM、ソフトウェア、ゲーム、スクリーンショット、ロゴ、筐体意匠は複製せず、TypeScript、React、CSS、Canvas、Web Audio APIによる教育目的の非公式再構成として明記した。
+
+### 12展示と操作
+
+- Apple I風モニタ入力、Apple I風カセットロード、Apple II電源投入、Apple II BASIC風入力、カセット保存と読み込み、Disk II風起動、Disk IIアクセスパターン、テキストスクロール、ローレゾ風グラフィック描画、ハイレゾ風描画、ゲームロード風演出、エラーと再試行の12展示を追加した。
+- 各カードへ年代、対象機種、記録媒体、再現内容、状態表現、技術的背景、現代Webとの接続、注意事項、史実との関係、操作方法を掲載した。
+- 共通の再生、一時停止、リセット、速度、ループ制御を実装し、段階ごとに追跡できる単一タイマーをcleanupする。Apple IモニタとBASICは許可した文字形式だけを解析し、`eval`や任意JavaScript実行は行わない。
+- カセットは波形と文字を常時提供し、合成矩形波は初期ミュートで利用者が明示的に有効化した場合だけ再生する。Disk IIは抽象化したプラッタ、ヘッド、アクセスランプと状態文字を組み合わせた。
+- ローレゾはCSSグリッド、ハイレゾはCanvas 2Dと`requestAnimationFrame`で独自図形を描き、停止時とアンマウント時にフレームを解除する。
+
+### アクセシビリティ、性能、レスポンシブ
+
+- 展示室はネイティブbutton、`aria-expanded`、`aria-controls`、region、`aria-labelledby`、`aria-hidden`、`inert`を連動させ、閉じる操作後は開閉buttonへフォーカスを戻す。
+- 状態文字を色、光、音だけに依存させず、操作群へ名前を付け、Canvasへ代替説明を保持した。装飾的な走査線、カセット、ドライブ機構は読み上げ対象外にした。
+- 展示室を閉じた時、ページ非表示時はタイマーとCanvas描画を停止する。長い一覧には`content-visibility: auto`を使い、カードの推定寸法を予約した。
+- `prefers-reduced-motion: reduce`ではシーケンスを最終状態へ進め、カーソル、リール、波形、ノイズ、ディスク、ゲームのCSSアニメーションを停止する。
+- 900px以下で1列、520px以下で操作群と事実欄を再配置し、狭い画面でも入力欄やドライブ図がはみ出さない構成にした。
+
+### 集計、変更ファイル
+
+- ヘッダーを`COLLECTION 1976—NOW`、`6 ROOMS / 114 OBJECTS`へ更新した。
+- `app/data/appleEarlyExhibits.ts`
+- `app/components/AppleEarlyDemoControls.tsx`
+- `app/components/AppleEarlyTerminalDemos.tsx`
+- `app/components/AppleEarlyMediaDemos.tsx`
+- `app/components/AppleEarlyGraphicsDemos.tsx`
+- `app/components/AppleEarlyEraExhibitRoom.tsx`
+- `app/page.tsx`
+- `app/globals.css`
+- `tests/rendered-html.test.mjs`
+- `README.md`
+- `LOG.md`
+
+### テストとブラウザ確認
+
+- `npm run check`: ESLint、TypeScript、Next.js静的ビルド、状態遷移24件とHTML回帰18件の合計42テストが成功。
+- 静的ビルドで`/`と`/_not-found`を生成し、Hydration Errorは発生しなかった。
+- 実ブラウザで展示室の開閉とARIA状態、Apple I風`0300: A9 01`入力の`STORED / 0300`応答、BASIC風`RUN`の出力、カセットロードの`SIGNAL FOUND`遷移、Canvasの`DRAW COMPLETE`を確認した。
+- 12展示の2列レイアウト、資料カード、ローレゾとハイレゾ描画をスクリーンショットで目視確認した。リポジトリ内に既存の保存先規約がないため、画像ファイルはコミットしていない。
+
+### 未実装事項・今後の調整
+
+- 実機エミュレーション、ROM／当時のソフトウェア読込、製品固有の正確な映像・音響・ドライブ機構の再現は意図的に対象外とした。
+- ブラウザ検証環境ではOSの`prefers-reduced-motion`を切り替えられないため、実設定での目視確認は未実施。React分岐、CSS停止規則、静的HTML回帰テストで確認した。
+- カセット周波数、各シーケンス速度、色調、カード推定高さは、今後の史料追加や実機比較に合わせて定数とCSS変数から調整できる。
+
+## 2026-08-03 — PR #18 展示監修レビュー対応
+
+### 修正の目的
+
+- 実装量に対して展示テーマ、史実と創作の境界、観察点、操作結果の意味が伝わりにくかったApple I / Apple II 展示室を、Apple IからApple II、Disk IIへ進む技術史として再設計した。
+- 説明だけに存在したLOAD失敗とエラー選択を実装し、表示と操作の不一致を解消した。
+
+### 入口題名と導入文
+
+- 曖昧で史実上も不正確だった「完成品になる前のコンピュータと、家庭へ開かれた『動き』」を削除した。
+- 正式展示室名を「Apple I / Apple II 展示室」へ統一し、主題をApple IからApple II、Disk IIへ進む技術史として整理した。
+- 導入をApple I、Apple II、Disk IIの3段階に分け、基板と周辺機器、筐体・キーボード・カラー・BASICの一体化、カセットからディスクへの移行を具体的に説明した。
+
+### 展示分類、順序、情報量
+
+- `AppleEarlyReconstructionLevel`を`史料ベース | 概念再構成 | 創作比較`のunion typeとして追加し、13カードすべてへ分類バッジを表示した。
+- `category`、`shortDescription`、`observationPoint`、`sources`をデータへ追加した。Apple Iの周辺機器構成図を新設し、Apple I 4件、Apple II 5件、Disk II 2件、比較展示2件の歴史順へ変更した。
+- 初期表示を分類、展示名、年代、機種、媒体、短い説明、観察点、操作UI、短い操作案内へ限定した。技術背景、史実、現代Web比較、注意、出典、詳細操作は13件の「詳しい解説」detailsへ移した。
+- 展示数は13、サイト全体は`6 ROOMS / 115 OBJECTS`になった。
+
+### カセット展示の再設計
+
+- Apple I側はカセットの絵ではなく「テープレコーダー → Cassette Interface → メモリ」の信号経路、工程別波形、読込位置、次の操作を主役にした。Apple Cassette Interfaceが外部レコーダーとコンピュータを接続する拡張インターフェースであることを明記した。
+- Apple II側は外部レコーダーを利用者が扱う体験として、SAVE成功、LOAD成功、LOAD失敗を別の状態列で実装した。LOAD失敗は信号なし、接続・音量確認、巻き戻し、再試行可能へ進む。
+- 合成音は初期ミュート、小音量を維持し、探索、同期、読込で周波数を切り替える抽象化した確認音とした。実機音の正確な再現ではないとUIへ表示した。
+- 再生停止、一時停止、リセット、展示室閉鎖、ページ非表示、アンマウントでOscillatorを停止し、アンマウント時はAudioContextも閉じる。
+
+### 実機風画面、Disk II、エラー回復
+
+- Apple II起動の長い英語工程表示を画面から除き、実機風画面は乱れ、消去、短いプロンプトだけにした。電源投入、画面初期化、ROM処理、操作可能は日本語の展示側ステータスへ分離した。
+- Disk IIはディスク挿入、アクセスランプ、画面変化を「外から見える状態」、トラック、ヘッド、シークを「内部動作の概念図」として分離した。
+- 連続読込、断続的な読込、離れたトラックへのシーク、読込エラーと再試行に、日本語の違い説明と異なるヘッド位置を追加した。
+- エラー比較へカセット信号なし、ディスク未挿入、ディスク読込失敗、BASIC命令エラーの選択UIを追加し、それぞれ固有の短い実機風通知、停止工程、回復方法、READY復帰を実装した。
+
+### アクセシビリティ、モーション、レスポンシブ
+
+- 既存のbutton、accordion ARIA、region、inert、フォーカス復帰、Canvas代替説明、初期ミュートを維持した。
+- 分類バッジ、信号経路、エラー選択、Disk IIの外観と概念図を読み上げ可能にした。頻繁な工程はlive通知せず、完了とエラーなど重要な変化だけを`aria-live="polite"`へ送る。
+- reduced motion中のリセットでも先頭工程へ戻らず、最終静止状態を維持するよう共通制御を修正した。
+- 700px以下で信号経路、Disk II外観・概念図、回復手順を縦配置し、520px以下でモードボタン、機器構成、ステータスを1列化した。
+
+### 変更ファイル
+
+- `app/data/appleEarlyExhibits.ts`
+- `app/components/AppleEarlyDemoControls.tsx`
+- `app/components/AppleEarlyTerminalDemos.tsx`
+- `app/components/AppleEarlyMediaDemos.tsx`
+- `app/components/AppleEarlyEraExhibitRoom.tsx`
+- `app/globals.css`
+- `README.md`
+- `LOG.md`
+- `tests/rendered-html.test.mjs`
+- `docs/screenshots/README.md`
+- `docs/screenshots/apple-early-era-desktop.png`
+
+### テスト結果
+
+- `npm run check`: ESLint、TypeScript、Next.js静的ビルド、状態遷移24件とHTML回帰18件の合計42件が成功。
+- `npm run build`: 独立実行でも成功し、静的ページ3件を生成。
+- 新しい回帰テストで入口新文言、旧見出し不在、13展示、115オブジェクト、3分類、SAVE／LOAD／LOAD失敗、4エラー、details、信号経路、実機画面と展示ステータス分離、Disk II概念図、reduced-motionリセットを確認した。
+
+### ブラウザ確認結果
+
+- 入口でApple I、Apple II、Disk IIの3段階と、史料ベース／概念再構成／創作比較の分類が表示されることを確認した。
+- LOAD失敗を再生し、`信号なし → 接続・音量確認 → 巻き戻し → 再試行可能`と進み、失敗波形と重要状態通知が一致することを確認した。
+- ディスク読込失敗を選択し、短い実機風`I/O ERROR`と、再試行・読込位置変更・回復完了の展示解説が分離されることを確認した。
+- 「詳しい解説」を展開し、技術背景、史実、現代Web比較、注意、出典、詳細操作が初期表示から折りたたまれていることを確認した。
+- 確認音は初期ミュートで、再生中は`data-running=true`、リセット後と展示室閉鎖後は`false`になり、閉鎖時の`aria-expanded=false`、`aria-hidden=true`、`inert`も確認した。
+- ブラウザ画面にエラーalertやHydration Errorは表示されなかった。
+
+### スクリーンショット
+
+- デスクトップ: `docs/screenshots/apple-early-era-desktop.png`
+- ブラウザ検証面のウィンドウ幅を390pxへ変更する機能が利用できなかったため、今回のスマートフォン画像は未作成。520px以下の横スクロールと縦配置はCSS規則と静的回帰テストで確認したが、実機幅の目視は未確認。
+
+### 未実装・実機資料との比較が必要な点
+
+- 実機ROM、実在ソフト、実在ゲーム、製品固有画面、正確な音声信号、ドライブ内部機構の完全再現は対象外。
+- カセット波形と複数周波数は工程差を伝える教育用抽象表現であり、実機のエンコード方式、信号タイミング、録音レベルとの比較が必要。
+- Disk IIのヘッド位置、回転速度、アクセス列は概念図であり、特定ドライブとソフトウェアの実測挙動との比較が必要。
+- Apple II電源投入直後の画面変化は世代、ROM、接続機器で異なり得るため、複数実機・版別資料との比較が必要。
+- OSの`prefers-reduced-motion`を実際に切り替えた目視と、390px実ブラウザ幅は未確認。コード分岐、CSS停止、静的テストでは確認した。
+
+## 2026-08-03 — PR #18 実機未経験者向け入門ツアー
+
+### 修正の目的と分かりづらかった点
+
+- Apple I、Apple II、Disk IIを知っている利用者が差を確認する構成から、実機未経験者が「何を接続し、何を入力し、なぜ音へ保存し、ディスクで何が変わったか」を順番に理解できる構成へ変更した。
+- Monitor、メモリ、アドレス、Cassette Interface、パルス、同期、トラック、シークなどが前提説明なしで現れる問題を、既存13展示の前に置く入門ツアーと常時利用できる用語集で解消した。
+
+### 初心者向け導入の構成
+
+- 展示室を「はじめてのApple I / Apple II」と「詳しく触る」の二層構造にした。入門ツアーは、Apple Iの構成、Apple Iでの入力、Apple IとApple IIの比較、Apple IIのBASIC、カセット変換、カセットとDisk IIの比較の6章で構成する。
+- 6章の短い説明と現在位置をreadonlyデータで管理し、共通再生制御で章を順に強調する。内容自体は常に表示し、軽減モーション時は最終状態の静止表示になる。
+
+### Apple I構成図とMonitorガイド
+
+- Apple I基板を中心に、キーボード、テレビ／モニター、電源、カセットレコーダー、Apple Cassette Interfaceを配置し、接続方向と各機器の役割を文字でも示した。
+- Apple Iは基板中心の製品であり、周辺機器を別途用意する必要があったこと、図は精密な実機配線図ではないことを明記した。
+- Monitor入力を「場所指定 → 値の書込み → 確認 → 指定位置から開始」の4段階に分け、`0300`と`A9 01`が何を表すかを日本語で説明した。
+
+### Apple I／Apple II比較とBASICガイド
+
+- 販売形態、画面、入力、実行、保存、主な利用者像を比較表にし、史実を単純化した概念的な比較であることを明記した。
+- BASICを「行番号付き入力 → LIST → RUN → 結果とREADY → エラー修正」の5段階で説明し、無限ループを行わない安全な展示であることを示した。
+
+### カセット変換、Apple I／Apple IIの役割、Disk II比較
+
+- `データ → 音の信号 → テープへ録音 → テープ再生 → メモリへ復元`を5段階の図にし、0と1、信号、パルス、同期の意味を短文で説明した。
+- Apple IはCassette Interfaceによる信号検出とメモリ転送、Apple IIは利用者によるSAVE／LOADと外部レコーダー操作が主役であることを、入門と対象カードの「この展示の違い」に表示した。
+- カセットとDisk IIを探索、読込、操作、状態の手掛かり、再試行で比較した。トラックとシークを平易に説明し、読み取り位置の図は外から見えない内部概念図だと明記した。
+
+### 用語解説、現代比較、アクセシビリティ
+
+- 基板、Monitor、メモリ、アドレス、BASIC、SAVE、LOAD、カセットインターフェース、信号、パルス、同期、Disk II、トラック、シーク、ROMの15語を、キーボードで開閉できる`details`用語集へ収録した。
+- 13展示すべてへ「現代で例えると」を常時表示し、完全に同じ仕組みではなく近い考え方であると明記した。
+- 図には文章の代替説明、経路ラベル、番号、矢印を付け、色だけに依存しない。ツアー工程を逐一live通知せず、完了だけを通知する。
+
+### 変更ファイル
+
+- `app/data/appleEarlyBeginnerGuide.ts`
+- `app/data/appleEarlyExhibits.ts`
+- `app/components/AppleEarlyBeginnerGuide.tsx`
+- `app/components/AppleEarlyEraExhibitRoom.tsx`
+- `app/globals.css`
+- `tests/rendered-html.test.mjs`
+- `README.md`
+- `LOG.md`
+
+### テスト、ブラウザ確認、スクリーンショット
+
+- `npm run check`: ESLint、TypeScript、Next.js静的ビルド、状態遷移24件とHTML回帰18件の合計42件が成功した。
+- `npm run build`: 単独実行でも成功し、静的ページ3件を生成した。
+- 回帰テストで、入門題名、接続機器、MonitorとBASICの説明、データと音の相互変換、Apple I／Apple IIのカセット役割、Disk II比較、トラック、シーク、二層構造、15語の用語集、13展示、115オブジェクト、軽減モーションCSS、狭幅で固定最小幅を持たないことを確認した。
+- 実ブラウザで展示室と入門ツアーを開き、6章すべてが読み上げ順に存在すること、第1章から第2章へ強調が進み、最後に完了通知が出ることを確認した。
+- Apple Iの構成、Monitorの4段階、Apple I／Apple II比較、BASICの5段階、カセット変換、Apple I／Apple IIのカセット役割、Disk II比較、トラック／シーク、用語15語、「詳しく触る」と既存13展示を確認した。
+- 1487px幅ではページ全体の横スクロール、alert、Hydration Errorがないことを確認した。ブラウザ検証機能がviewport変更と軽減モーションのエミュレーションに対応しないため、390px実ブラウザ幅とOS軽減モーション設定での目視は未確認。
+- スクリーンショット: `docs/screenshots/apple-early-beginner-intro-desktop.jpg`、`apple-early-beginner-apple-one-setup.jpg`、`apple-early-beginner-comparison.jpg`、`apple-early-beginner-cassette-flow.jpg`。
+
+### 未実装事項、史実上の注意、今後の比較
+
+- 実機の回路図、正確な配線、ROM、製品固有画面、カセット符号化、Disk II内部機構を再現するものではない。比較表は初心者が代表的な違いを理解するための概念的整理である。
+- カセットの周波数・パルス・同期タイミング、Monitorの版別操作、Apple IIのROM／BASIC差、Disk IIの実測シークと読込速度は、今後一次資料と複数実機で比較する必要がある。
+- 390px実ブラウザ幅のスクリーンショットと、OSの`prefers-reduced-motion`を実際に有効化した目視確認は未実装。520px以下・700px以下の縦配置、固定最小幅の不使用、モーション停止はCSSと回帰テストで確認した。
+
+## 2026-08-03 — PR #18 操作と結果の因果関係を明確化
+
+### 修正概要と展示室タイトル
+
+- 展示室の正式表示を`Apple I / Apple II 展示室`へ統一し、重複していた内部見出しを`展示の見方`へ変更した。
+- 各主要展示に「利用者の操作 → 機器・データの変化 → 画面・音・ランプ → できるようになったこと」の共通表示を追加し、実機未経験者が操作と結果を対応付けられる構成にした。
+
+### Apple I接続、カセット音、BASIC
+
+- Apple I接続展示を、基板のみ、電源、キーボード、ディスプレイ、Cassette Interface＋レコーダーの順に機能が増える段階表示へ変更した。接続済み経路、信号、表示、保存・読込能力が同期して変化する。
+- Apple Cassette Interfaceの抽象音は初期ONとし、説明文で小音量かつ実機信号の正確な再現ではないことを明示した。AudioContextは再生ボタン操作時だけ開始・再開し、ミュート、リセット、展示停止、アンマウント時に発音を止める。
+- BASIC展示を`プログラム`、`操作`、`結果`の3領域に分け、LISTとRUNを専用ボタンから直接実行できるようにした。行追加、NEW、サンプル復元、行番号・LIST・RUN・READYの常設解説も追加した。
+
+### SAVE／LOAD、ハイレゾ、Disk II
+
+- カセット展示は先に`プログラムを保存する`または`プログラムを読み込む`を選ぶ構成へ変更した。保存と読込でデータ方向を反転し、現在操作する機器、次の操作、成功結果を表示する。読込は成功、信号なし、音量不足、接続不良を選べ、失敗後に原因確認、巻き戻し、再試行可能まで進む。
+- ハイレゾ展示へ、関数グラフ、教育用の幾何図形、ゲームや地図を想定した線画の3種類を追加した。すべてオリジナルCanvas描画で、用途説明、描画状態、日本語の再生操作を切り替える。
+- Disk II起動展示を、未挿入、挿入、電源投入／再起動、回転、アクセスランプ、探索、読込、画面切替、起動完了・操作可能の9段階にした。挿入操作前は再生できず、最終画面とカセットとの差も明示する。
+- Disk IIアクセス比較は、連続読込、断続読込、離れたトラックへのシーク、読込エラーと再試行を、共通タイムライン、概念的な待ち時間、ランプ、内部模式図、利用者の体感で比較する。
+
+### 操作言語、アクセシビリティ、レスポンシブ
+
+- 新規・変更した再生操作を`再生`、`再実行`、`再開`、`一時停止`、`リセット`、`速度`、`ゆっくり`、`標準`、`速い`、`ループ`の日本語へ統一した。
+- 状態説明は色だけに依存せず番号と文章を併記し、現在工程には`aria-live`、用途・目的選択には押下状態、完了には重要通知を付けた。装飾的な信号とCanvasには文章による説明を保持した。
+- 900px、700px、520px以下で工程、BASICの3領域、Disk II図、操作群を縦配置へ切り替え、Canvasは幅100%・高さautoを維持する。`prefers-reduced-motion`では新しい信号・行追加アニメーションを停止する。
+
+### 変更ファイル
+
+- `app/components/AppleInteractionFlow.tsx`
+- `app/components/AppleEarlyDemoControls.tsx`
+- `app/components/AppleEarlyEraExhibitRoom.tsx`
+- `app/components/AppleEarlyTerminalDemos.tsx`
+- `app/components/AppleEarlyMediaDemos.tsx`
+- `app/components/AppleEarlyGraphicsDemos.tsx`
+- `app/data/appleEarlyExhibits.ts`
+- `app/globals.css`
+- `tests/rendered-html.test.mjs`
+- `README.md`
+- `LOG.md`
+- `docs/screenshots/README.md`
+- `docs/screenshots/apple-interactions-*.jpg`
+
+### テスト結果
+
+- `npm run check`: ESLint、TypeScript、Next.js静的ビルド、状態遷移24件とHTML回帰18件の合計42件が成功した。
+- 回帰テストで正式タイトル、旧タイトル不在、共通4段階、Apple I接続、音の初期ONと停止処理、BASICの直接LIST／RUN、目的先行のSAVE／LOADと失敗分岐、ハイレゾ3用途、Disk II起動完了、4種類の待ち方、日本語操作、レスポンシブCSSを確認した。
+- `npm run build`: 独立実行でも成功し、静的ページ3件を生成した。
+
+### ブラウザ確認とスクリーンショット
+
+- 1487px幅で展示室を開き、Apple I接続が保存・読込可能まで進むこと、BASICのLISTとRUNが直接結果へ反映されることを確認した。
+- カセット音が初期ONでも再生前は動かず、再生操作後に信号工程と同期し、ミュートとリセットで停止することを確認した。
+- LOADの信号なし分岐が再試行可能まで進むこと、ハイレゾ3用途を切り替えられること、Disk IIが挿入後に9工程を経て操作可能になること、待ち方4種の説明と共通タイムラインが切り替わることを確認した。
+- ページ全体の横スクロール、表示されたalert、Hydration Errorはなかった。
+- スクリーンショットは`docs/screenshots/apple-interactions-room-title.jpg`、`apple-interactions-setup.jpg`、`apple-interactions-basic.jpg`、`apple-interactions-cassette.jpg`、`apple-interactions-high-resolution.jpg`、`apple-interactions-disk-boot.jpg`、`apple-interactions-disk-wait.jpg`へ保存した。
+
+### 未実装事項と実機資料との比較が必要な点
+
+- 390px実ブラウザ幅と、OSの`prefers-reduced-motion`を実際に有効化した目視確認は未実施。狭幅配置とモーション停止はCSSおよび回帰テストで確認した。
+- Apple Iの接続図は教育用概念図であり、実機の回路・正確な配線順・電気信号との比較が必要。
+- カセット音と周波数切替は工程を伝える抽象表現で、実機の符号化、録音レベル、タイミングを再現していない。
+- BASICは安全な限定インタープリターであり、Apple IIのROM BASIC各版の完全な文法・表示・速度を再現していない。
+- ハイレゾ3用途は実在ソフトやゲーム画面を複製しない創作例で、当時の実機解像度、色制約、描画速度との比較が必要。
+- Disk IIの回転、ランプ、トラック、ヘッド移動、待ち時間は概念比較であり、特定ドライブ、ROM、DOS、ソフトウェアの実測挙動との比較が必要。
+
+## 2026-08-03 — Apple展示室入口の表記調整
+
+- 入口を既存展示室と同じ構造へ揃え、`ROOM / 1976–1979`、`Apple I / Apple II 展示室`、`Apple IからApple II、Disk IIへ`、`13 EXHIBITS`へ簡潔化した。
+- 年代の重複表示を解消した。変更は入口のタイトル、補足文、年代・件数表記と関連文書・回帰テストだけで、展示内容、初心者向けツアー、アニメーション、BASIC、カセット、Disk II、Canvas、音声処理は変更していない。

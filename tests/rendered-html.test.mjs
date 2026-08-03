@@ -244,29 +244,169 @@ test("カーソル展示のデータ、Pointer Events、性能とアクセシビ
   assert.match(data, /Reactのローカルstateで3対象の選択状態と結果表示を切り替えています/);
 });
 
-test("Flash特別展示室を加えた展示室・展示件数を表示する", async () => {
+test("Apple I / Apple II 展示室を加えた展示室・展示件数を表示する", async () => {
   const [html, page] = await Promise.all([
     readFile(new URL("index.html", outputRoot), "utf8"),
     readFile(new URL("app/page.tsx", projectRoot), "utf8"),
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /5 ROOMS \/ 102 OBJECTS/);
+  assert.match(normalizedHtml, /6 ROOMS \/ 115 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
-  assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 4);
-  assert.equal((html.match(/aria-expanded="false"/g) ?? []).length, 5);
+  assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 5);
+  assert.equal((html.match(/aria-expanded="false"/g) ?? []).length, 6);
   assert.equal(
     (html.match(/class="exhibit"/g) ?? []).length
       + (html.match(/class="dosExhibit"/g) ?? []).length
       + (html.match(/class="unixExhibit"/g) ?? []).length
       + (html.match(/class="vanishedLoadingExhibit"/g) ?? []).length
-      + (html.match(/class="cursorExhibit"/g) ?? []).length,
-    48,
+      + (html.match(/class="cursorExhibit"/g) ?? []).length
+      + (html.match(/class="appleEarlyExhibit"/g) ?? []).length,
+    61,
   );
-  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 2/);
+  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 3/);
+  assert.match(page, /cursorExhibits\.length \+ appleEarlyExhibitCount/);
   assert.match(page, /periodExhibitCount \+ flashExhibitCount/);
   assert.match(page, /exhibit\.kind === "vanished-os" \? exhibit\.loadingExhibits\.length : 1/);
   assert.doesNotMatch(page, /3 ROOMS \/ 30 OBJECTS/);
+});
+
+test("Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する", async () => {
+  const [html, data, beginnerData, room, guide, interaction, controls, media, graphics, terminal, css] = await Promise.all([
+    readFile(new URL("index.html", outputRoot), "utf8"),
+    readFile(new URL("app/data/appleEarlyExhibits.ts", projectRoot), "utf8"),
+    readFile(new URL("app/data/appleEarlyBeginnerGuide.ts", projectRoot), "utf8"),
+    readFile(new URL("app/components/AppleEarlyEraExhibitRoom.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/AppleEarlyBeginnerGuide.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/AppleInteractionFlow.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/AppleEarlyDemoControls.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/AppleEarlyMediaDemos.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/AppleEarlyGraphicsDemos.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/AppleEarlyTerminalDemos.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+  const normalizedHtml = html.replaceAll("<!-- -->", "");
+
+  assert.match(normalizedHtml, /Apple I \/ Apple II 展示室/);
+  assert.match(normalizedHtml, /1976–1979/);
+  assert.match(normalizedHtml, /13 EXHIBITS/);
+  assert.match(normalizedHtml, /Apple IからApple II、Disk IIへ/);
+  assert.equal((normalizedHtml.match(/>ROOM \/ 1976–1979</g) ?? []).length, 1);
+  assert.doesNotMatch(normalizedHtml, /Apple創成期展示室/);
+  assert.doesNotMatch(normalizedHtml, /文字・カセット・カラー・ディスクが変えたコンピュータとの対話/);
+  assert.doesNotMatch(normalizedHtml, /完成品になる前のコンピュータ/);
+  assert.match(html, /aria-controls="apple-early-era-room-panel"/);
+  assert.match(html, /id="apple-early-era-room-panel"[^>]*data-open="false"[^>]*role="region"[^>]*aria-labelledby="apple-early-era-room-toggle"[^>]*aria-hidden="true"[^>]*inert=""/);
+  assert.equal((html.match(/class="appleEarlyExhibit"/g) ?? []).length, 13);
+  assert.match(normalizedHtml, /はじめてのApple I \/ Apple II/);
+  assert.match(normalizedHtml, /BEGINNER TOUR/);
+  assert.match(normalizedHtml, /詳しく触る/);
+  assert.match(normalizedHtml, /HANDS-ON COLLECTION \/ 13 EXHIBITS/);
+
+  for (const connection of ["キーボード", "テレビ / モニター", "電源", "カセットレコーダー", "Cassette Interface", "Apple I基板"]) {
+    assert.match(normalizedHtml, new RegExp(connection.replace("/", "\\/")));
+  }
+  assert.match(normalizedHtml, /基板だけでは現在のPCのように使えず/);
+  assert.match(normalizedHtml, /Apple IとApple IIで、何が変わったのか/);
+  assert.match(normalizedHtml, /概念的な比較/);
+  assert.match(normalizedHtml, /メモリの場所を指定/);
+  assert.match(normalizedHtml, /0300は、コンピュータ内部の記憶場所/);
+  assert.match(normalizedHtml, /LISTは、入力済みのプログラムを一覧表示/);
+  assert.match(normalizedHtml, /RUNは、プログラムを先頭から実行/);
+  assert.match(normalizedHtml, /0と1などのデータを、音の高低やパルスの違いへ変換/);
+  assert.match(normalizedHtml, /音を再びコンピュータのデータへ戻します/);
+  assert.match(normalizedHtml, /Apple I側では、Cassette Interface/);
+  assert.match(normalizedHtml, /Apple II側では、利用者がSAVE／LOAD/);
+  assert.match(normalizedHtml, /Disk IIで、何が便利になったのか/);
+  assert.match(normalizedHtml, /トラック/);
+  assert.match(normalizedHtml, /シーク/);
+  assert.match(normalizedHtml, /用語解説 — 15語/);
+  assert.equal((beginnerData.match(/term: "/g) ?? []).length, 15);
+  assert.equal((beginnerData.match(/id: "apple-/g) ?? []).length, 4);
+  assert.match(beginnerData, /as const/);
+  assert.match(beginnerData, /readonly ComparisonRow\[\]/);
+
+  for (const title of [
+    "接続すると機能が増えるApple I", "メモリアドレスを入力する Apple I Monitor",
+    "カセット信号を探す Apple Cassette Interface", "文字出力を送り続けるスクロール",
+    "電源投入から入力可能になるまで", "BASICを書き、LISTで確認し、RUNする",
+    "カセットへ保存し、読み戻す", "色ブロックで見るローレゾ描画",
+    "ハイレゾで描くグラフ・図形・ゲーム画面", "ディスクを挿入してApple IIを起動する",
+    "Disk IIの待ち方を比べる", "創作ゲームで見るディスクロード",
+    "4種類のエラーと回復方法を比較する",
+  ]) assert.match(normalizedHtml, new RegExp(title));
+
+  assert.equal((data.match(/visualType: "/g) ?? []).length, 13);
+  assert.match(data, /type AppleEarlyReconstructionLevel = "史料ベース" \| "概念再構成" \| "創作比較"/);
+  assert.ok((normalizedHtml.match(/史料ベース/g) ?? []).length >= 2);
+  assert.ok((normalizedHtml.match(/概念再構成/g) ?? []).length >= 9);
+  assert.ok((normalizedHtml.match(/創作比較/g) ?? []).length >= 1);
+  assert.equal((normalizedHtml.match(/>詳しい解説<\/summary>/g) ?? []).length, 13);
+  assert.match(normalizedHtml, /この展示で見るもの/);
+  assert.match(normalizedHtml, /参考資料/);
+  assert.match(room, /document\.visibilityState/);
+  assert.match(room, /prefers-reduced-motion: reduce/);
+  assert.match(room, /AppleEarlyBeginnerGuide/);
+  assert.match(guide, /useAppleSequence/);
+  assert.match(guide, /showLoop=\{false\}/);
+  assert.match(guide, /aria-live="polite"/);
+  assert.match(guide, /role="img"/);
+  assert.match(controls, /setStep\(prefersReducedMotion \? finalStep : 0\)/);
+  assert.match(controls, /setPhase\(prefersReducedMotion \? "complete" : "idle"\)/);
+  for (const stageLabel of ["利用者の操作", "機器・データの変化", "画面・音・ランプ", "できるようになったこと"]) assert.match(interaction, new RegExp(stageLabel));
+  for (const capability of ["基板のみ", "動作可能になる", "文字を入力できる", "文字を確認できる", "プログラムを保存・読込できる"]) assert.match(terminal, new RegExp(capability));
+  assert.match(media, /AudioContext/);
+  assert.match(media, /useState\(true\)/);
+  assert.match(media, /再生すると抽象化した信号音が鳴ります/);
+  assert.match(media, /実機信号の正確な再現ではありません/);
+  assert.match(media, /onBeforePlay=\{startWithSound\}/);
+  assert.match(media, /const startWithSound = \(\) =>/);
+  assert.match(media, /if \(soundEnabled\) startTone/);
+  assert.match(media, /if \(!soundEnabled \|\| !isRunning \|\| !tone\) stopTone\(\)/);
+  assert.match(media, /void contextRef\.current\?\.close\(\)/);
+  assert.match(media, /props\.active && sequence\.phase === "running"/);
+  assert.match(terminal, /onClick=\{\(\) => executeCommand\("LIST"\)\}/);
+  assert.match(terminal, /onClick=\{\(\) => executeCommand\("RUN"\)\}/);
+  for (const panel of ["プログラム", "操作", "結果"]) assert.match(normalizedHtml, new RegExp(panel));
+  for (const purpose of ["プログラムを保存する", "プログラムを読み込む", "信号なし", "音量不足", "接続不良"]) assert.match(normalizedHtml, new RegExp(purpose));
+  assert.match(media, /const reverse = purpose === "save"/);
+  for (const useCase of ["関数グラフ", "教育用の幾何図形", "ゲームや地図を想定した線画"]) assert.match(normalizedHtml, new RegExp(useCase));
+  assert.equal((graphics.match(/label: "/g) ?? []).length >= 3, true);
+  assert.match(normalizedHtml, /ディスク未挿入/);
+  assert.match(normalizedHtml, /起動完了/);
+  assert.match(normalizedHtml, /プログラムを操作できる状態になりました/);
+  assert.match(normalizedHtml, /カセットではレコーダーを操作してLOADしましたが/);
+  assert.match(normalizedHtml, /待ち時間（概念比較）/);
+  for (const feeling of ["比較的短く感じます", "ランプが途切れて見えます", "少し待ちます", "長く感じます"]) assert.match(media, new RegExp(feeling));
+  for (const errorKind of ["カセット信号なし", "ディスク未挿入", "ディスク読込失敗", "BASIC命令エラー"]) assert.match(normalizedHtml, new RegExp(errorKind));
+  assert.match(normalizedHtml, /テープレコーダー/);
+  assert.match(normalizedHtml, /Cassette Interface/);
+  assert.match(normalizedHtml, /内部動作の概念図/);
+  assert.match(normalizedHtml, /実機風画面/);
+  assert.match(normalizedHtml, /展示側ステータス/);
+  assert.match(graphics, /requestAnimationFrame/);
+  assert.match(graphics, /cancelAnimationFrame/);
+  assert.match(graphics, /role="img"/);
+  assert.doesNotMatch(graphics, />PLAY<|>PAUSE<|>RESET<|SPEED|LOOP/);
+  assert.doesNotMatch(terminal, /\beval\s*\(/);
+  assert.match(terminal, /JavaScriptは実行しません/);
+  assert.match(css, /@media \(max-width: 520px\)/);
+  assert.match(css, /\.appleBeginnerGuide/);
+  assert.match(css, /\.appleComparisonRow/);
+  assert.match(css, /\.appleCassetteConversion/);
+  assert.match(css, /\.appleGlossary/);
+  assert.match(css, /\.appleInteractionFlow/);
+  assert.match(css, /\.appleBasicPanels/);
+  assert.match(css, /\.appleDiskBootTimeline/);
+  assert.match(css, /\.appleAccessTimeline/);
+  assert.match(css, /@media \(max-width: 700px\)[\s\S]*\.appleCassetteConversion \{ grid-template-columns: 1fr/);
+  assert.match(css, /@media \(max-width: 520px\)[\s\S]*\.appleGuidedSteps/);
+  assert.doesNotMatch(css, /\.appleBeginner(?:Guide|Chapters|Comparison|CassetteConversion|Glossary)[^{]*\{[^}]*min-width:\s*\d+px/);
+  assert.match(css, /\.roomCardAppleEarly/);
+  assert.match(css, /\.appleSignalPath/);
+  assert.match(css, /\.appleDiskViews/);
+  assert.match(css, /\.appleRecoveryPath/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
 });
 
 test("Flash特別展示室へ18カテゴリ・54展示と優先デモを実装する", async () => {
@@ -588,6 +728,10 @@ test("MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモ�
 
 test("独立した消えたOS展示室へ6 OS・18種類のLoading再構成を書き出す", async () => {
   const html = await readFile(new URL("index.html", outputRoot), "utf8");
+  const vanishedRoomHtml = html.slice(
+    html.indexOf('aria-controls="vanished-operating-systems-panel"'),
+    html.indexOf('aria-controls="cursor-exhibit-room-panel"'),
+  );
 
   assert.match(html, /消えたOS展示室/);
   assert.match(html, /主流から退いたOSが残した起動演出と設計思想/);
@@ -599,8 +743,8 @@ test("独立した消えたOS展示室へ6 OS・18種類のLoading再構成を�
   assert.match(html, /id="vanished-operating-systems-panel"/);
   assert.equal((html.match(/class="vanishedOsExhibit"/g) ?? []).length, 6);
   assert.equal((html.match(/class="vanishedLoadingExhibit"/g) ?? []).length, 18);
-  assert.equal((html.match(/>再生<\/button>/g) ?? []).length, 18);
-  assert.equal((html.match(/>停止<\/button>/g) ?? []).length, 18);
+  assert.equal((vanishedRoomHtml.match(/>再生<\/button>/g) ?? []).length, 18);
+  assert.equal((vanishedRoomHtml.match(/>停止<\/button>/g) ?? []).length, 18);
   assert.equal(
     (html.match(/JavaScriptとCSSによる教育・研究目的の歴史的表現の再構成（非公式）/g) ?? []).length,
     18,
