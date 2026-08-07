@@ -15,8 +15,8 @@ export type MacintoshBirthExhibit = {
 
 export const macintoshBirthExhibits: readonly MacintoshBirthExhibit[] = [
   { id: "macintosh-boot", title: "Macintosh起動体験", period: "1984", demo: "boot", summary: "電源投入から状態表示、ディスク読込、デスクトップ到達までを一続きで体験します。", interaction: "「電源を入れる」で起動し、工程表示の変化を追います。" },
-  { id: "happy-mac", title: "Happy Mac", period: "1984–", demo: "status", summary: "正常起動を表情で知らせる、言葉に頼りすぎない視覚フィードバックを紹介します。", interaction: "成功／失敗を切り替え、表情と状態文を比較します。" },
-  { id: "sad-mac", title: "Sad Mac", period: "1984–", demo: "status", summary: "起動できない状態と短いエラーコードが、診断の入口になった文化を紹介します。", interaction: "成功／失敗を切り替え、コードを含む通知を比較します。" },
+  { id: "happy-mac", title: "起動時に現れる状態", period: "1984–", demo: "status", summary: "Happy Mac、Sad Mac、?付きフロッピーを同じ比較展示で区別します。", interaction: "3つの状態を切り替え、意味と後続動作を比較します。" },
+  { id: "sad-mac", title: "Sad Macと起動停止", period: "1984–", demo: "status", summary: "低レベルの異常で停止するSad Macを、ディスク待ちと混同しないよう示します。", interaction: "主展示の比較操作で、コードを含む通知を確認します。" },
   { id: "floppy-wait", title: "フロッピーディスク挿入待ち", period: "1984–", demo: "disk", summary: "システムディスクを待ち、挿入後に読込みを始める初期Macintosh特有の流れです。", interaction: "ディスクをクリックまたはドラッグしてドライブへ挿入します。" },
   { id: "finder", title: "Finder", period: "1984–", demo: "desktop", summary: "Disk、Folder、File、Trashを机上の物として扱うデスクトップメタファーです。", interaction: "アイコンを選び、開くボタンまたはダブルクリックで内容を表示します。" },
   { id: "window-controls", title: "ウィンドウ操作", period: "1984–", demo: "window", summary: "タイトルバー、前後関係、移動、サイズ変更、スクロールを一枚の画面で扱います。", interaction: "ウィンドウを開閉し、タイトルバーをドラッグ、右下でリサイズします。" },
@@ -26,7 +26,7 @@ export const macintoshBirthExhibits: readonly MacintoshBirthExhibit[] = [
   { id: "trash", title: "ゴミ箱", period: "1984–", demo: "trash", summary: "不要なファイルを入れる場所であり、初期にはディスク排出にも関係したメタファーです。", interaction: "文書をゴミ箱へドラッグするか、選択後に削除します。" },
   { id: "scroll-bar", title: "スクロールバー", period: "1984–", demo: "scroll", summary: "小さな画面の外側に続く情報空間を、矢印・溝・つまみで移動します。", interaction: "上下ボタン、ページ移動、レンジ操作で文書をスクロールします。" },
   { id: "desk-accessories", title: "デスクアクセサリ", period: "1984–", demo: "accessories", summary: "Calculator、Clock、Scrapbook、Puzzleのような小型道具をメニューから呼び出しました。", interaction: "道具を選び、電卓やパズルの小さな操作を試します。" },
-  { id: "macpaint", title: "MacPaint", period: "1984", demo: "paint", summary: "ポインタの軌跡がそのまま絵になる、GUIとマウスの直接描画を再構成します。", interaction: "ペン、消しゴム、塗りつぶし、Undoを使って描きます。" },
+  { id: "macpaint", title: "MacPaint", period: "1984", demo: "paint", summary: "ポインタの軌跡がそのまま絵になる直接描画と、移動・コピー対象を示す蟻の行進を再構成します。", interaction: "ペン、消しゴム、選択範囲の移動、選択解除、塗りつぶし、Undoを使います。" },
   { id: "macwrite", title: "MacWrite", period: "1984", demo: "write", summary: "画面で整えた文字が印刷結果へつながるWYSIWYGの考え方を紹介します。", interaction: "文章を選択し、書体の雰囲気とサイズを変更します。" },
   { id: "mac-fonts", title: "Macintoshフォント", period: "1984–", demo: "fonts", summary: "Chicago、Geneva、Monaco、New Yorkが担った画面上の声を、代替書体で比較します。", interaction: "名称を選び、同じ文章の字幅や表情を比べます。" },
   { id: "susan-kare", title: "Susan Kareとアイコンデザイン", period: "1983–", demo: "pixel-icons", summary: "限られたピクセルで意味と親しみを伝えたアイコン設計を、独自図案で学びます。", interaction: "格子をクリックして、16×16のオリジナル記号を編集します。" },

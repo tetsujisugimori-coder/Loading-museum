@@ -296,7 +296,7 @@ test("Macintosh誕生展示室へ24種類の操作展示を書き出す", async 
   assert.match(component, /setPointerCapture/);
   assert.match(component, /getContext\("2d"\)/);
   assert.match(component, /AudioContext/);
-  assert.match(component, /Apple II展示室へ戻る/);
+  assert.match(component, /AppleⅠ\/AppleⅡ展示室へ戻る/);
   assert.match(css, /\.macExhibitGrid/);
   assert.match(css, /@media \(max-width:520px\)/);
   assert.match(css, /@media \(prefers-reduced-motion:reduce\)/);
@@ -316,6 +316,11 @@ test("Macintosh誕生展示室へ24種類の操作展示を書き出す", async 
   assert.match(component, /MacWrite is a WYSIWYG word processor/);
   assert.match(component, /MultiFinder \(1987\)/);
   assert.match(component, /Macintosh II（1987）/);
+  assert.match(component, /macWatchCursor/);
+  assert.match(component, /macPaintSelection/);
+  assert.match(component, /Read Meを復元/);
+  assert.match(css, /mac-marching-ants/);
+  assert.match(css, /mac-watch-hand/);
   assert.doesNotMatch(component, /resize:both/);
   assert.doesNotMatch(css, /\.macWindow\s*\{[^}]*resize:both/);
 });
