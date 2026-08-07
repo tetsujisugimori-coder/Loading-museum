@@ -15,13 +15,9 @@ export type MacintoshBirthExhibit = {
 
 export const macintoshBirthExhibits: readonly MacintoshBirthExhibit[] = [
   { id: "macintosh-boot", title: "Macintosh起動体験", period: "1984", demo: "boot", summary: "電源投入から状態表示、ディスク読込、デスクトップ到達までを一続きで体験します。", interaction: "「電源を入れる」で起動し、工程表示の変化を追います。" },
-  { id: "floppy-wait", title: "フロッピーディスク挿入待ち", period: "1984–", demo: "disk", summary: "システムディスクを待ち、挿入後に読込みを始める初期Macintosh特有の流れです。", interaction: "ディスクをクリックまたはドラッグしてドライブへ挿入します。" },
   { id: "finder", title: "Finderで直接操作する", period: "1984–", demo: "desktop", summary: "メニュー、アイコン、ファイル、ゴミ箱を一つのFinder画面で直接扱います。", interaction: "アイコンを選び、開き、Read Meをゴミ箱へドラッグして復元します。" },
   { id: "window-controls", title: "ウィンドウ操作", period: "1984–", demo: "window", summary: "タイトルバー、前後関係、移動、サイズ変更、スクロールを一枚の画面で扱います。", interaction: "ウィンドウを開閉し、タイトルバーをドラッグ、右下でリサイズします。" },
-  { id: "menu-bar", title: "メニューバー", period: "1984–", demo: "history", summary: "画面上端に固定された共通メニューが、命令を予測可能な場所へ集めました。", interaction: "Finderで直接操作する展示のメニューを使います。" },
   { id: "mouse-pointer", title: "マウスとポインタ", period: "1984–", demo: "pointer", summary: "指し示し、クリック、選択、ドラッグする直接操作がGUIの中心になりました。", interaction: "対象をクリック／ダブルクリック／ドラッグして操作ログを変えます。" },
-  { id: "icon-operation", title: "アイコン操作", period: "1984–", demo: "history", summary: "絵は説明ではなく、選択・移動・起動できる操作対象になりました。", interaction: "Finderで直接操作する展示で試します。" },
-  { id: "trash", title: "ゴミ箱", period: "1984–", demo: "history", summary: "不要なファイルを入れる場所であり、初期にはディスク排出にも関係したメタファーです。", interaction: "Finderで直接操作する展示でRead Meをドラッグします。" },
   { id: "scroll-bar", title: "スクロールバー", period: "1984–", demo: "scroll", summary: "小さな画面の外側に続く情報空間を、矢印・溝・つまみで移動します。", interaction: "上下ボタン、ページ移動、レンジ操作で文書をスクロールします。" },
   { id: "desk-accessories", title: "デスクアクセサリ", period: "1984–", demo: "accessories", summary: "Calculator、Clock、Scrapbook、Puzzleのような小型道具をメニューから呼び出しました。", interaction: "道具を選び、電卓やパズルの小さな操作を試します。" },
   { id: "macpaint", title: "MacPaint", period: "1984", demo: "paint", summary: "ポインタの軌跡がそのまま絵になる直接描画と、移動・コピー対象を示す蟻の行進を再構成します。", interaction: "ペン、消しゴム、選択範囲の移動、選択解除、塗りつぶし、Undoを使います。" },
