@@ -251,7 +251,7 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /7 ROOMS \/ 139 OBJECTS/);
+  assert.match(normalizedHtml, /7 ROOMS \/ 137 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
   assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 6);
   assert.ok((html.match(/aria-expanded="false"/g) ?? []).length >= 8);
@@ -263,7 +263,7 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
       + (html.match(/class="cursorExhibit"/g) ?? []).length
       + (html.match(/class="appleEarlyExhibit"/g) ?? []).length
       + (html.match(/class="macExhibit"/g) ?? []).length,
-    85,
+    83,
   );
   assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 4/);
   assert.match(page, /cursorExhibits\.length \+ appleEarlyExhibitCount \+ macintoshBirthExhibitCount/);
@@ -272,7 +272,7 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
   assert.doesNotMatch(page, /3 ROOMS \/ 30 OBJECTS/);
 });
 
-test("Macintosh誕生展示室へ24種類の操作展示を書き出す", async () => {
+test("Macintosh誕生展示室へ22種類の操作展示を書き出す", async () => {
   const [html, data, component, css] = await Promise.all([
     readFile(new URL("index.html", outputRoot), "utf8"),
     readFile(new URL("app/data/macintoshBirthExhibits.ts", projectRoot), "utf8"),
@@ -282,12 +282,12 @@ test("Macintosh誕生展示室へ24種類の操作展示を書き出す", async 
   const normalizedHtml = html.replaceAll("<!-- -->", "");
   assert.match(normalizedHtml, /Macintosh誕生展示室/);
   assert.match(normalizedHtml, /1984–1991/);
-  assert.match(normalizedHtml, /24 EXHIBITS/);
-  assert.equal((html.match(/class="macExhibit"/g) ?? []).length, 24);
-  assert.equal((data.match(/^  \{ id: /gm) ?? []).length, 24);
+  assert.match(normalizedHtml, /22 EXHIBITS/);
+  assert.equal((html.match(/class="macExhibit"/g) ?? []).length, 22);
+  assert.equal((data.match(/^  \{ id: /gm) ?? []).length, 22);
   assert.match(html, /aria-controls="macintosh-birth-room-panel"/);
   assert.match(html, /id="macintosh-birth-room-panel"[^>]*aria-hidden="true"[^>]*inert=""/);
-  for (const title of ["Macintosh起動体験", "Happy Mac", "Sad Mac", "フロッピーディスク挿入待ち", "Finder", "ウィンドウ操作", "メニューバー", "マウスとポインタ", "アイコン操作", "ゴミ箱", "スクロールバー", "デスクアクセサリ", "MacPaint", "MacWrite", "Macintoshフォント", "Susan Kareとアイコンデザイン", "System 1〜System 6", "MultiFinder", "System 7", "Balloon Help", "Macintosh機種の変遷", "Macintosh IIとカラー化", "Macintoshサウンド", "Apple IIからMacintoshへ"]) assert.match(normalizedHtml, new RegExp(title));
+  for (const title of ["Macintosh起動体験", "Finderで直接操作する", "フロッピーディスク挿入待ち", "ウィンドウ操作", "メニューバー", "マウスとポインタ", "アイコン操作", "ゴミ箱", "スクロールバー", "デスクアクセサリ", "MacPaint", "MacWrite", "Macintoshフォント", "Susan Kareとアイコンデザイン", "System 1〜System 6", "MultiFinder", "System 7", "Balloon Help", "Macintosh機種の変遷", "Macintosh IIとカラー化", "Macintoshサウンド", "Apple IIからMacintoshへ"]) assert.match(normalizedHtml, new RegExp(title));
   assert.match(component, /window\.setTimeout/);
   assert.match(component, /window\.clearTimeout/);
   assert.match(component, /visibilitychange/);
@@ -300,11 +300,11 @@ test("Macintosh誕生展示室へ24種類の操作展示を書き出す", async 
   assert.match(css, /\.macExhibitGrid/);
   assert.match(css, /@media \(max-width:520px\)/);
   assert.match(css, /@media \(prefers-reduced-motion:reduce\)/);
-  assert.match(component, /type BootState = "off" \| "diagnostic" \| "happy" \| "need-disk" \| "loading" \| "finder" \| "sad"/);
+  assert.match(component, /type BootState = "off" \| "diagnostic" \| "happy" \| "need-disk" \| "loading" \| "finder"/);
   assert.match(component, /Happy Mac/);
-  assert.match(component, /Sad Mac/);
+  assert.doesNotMatch(data, /起動時に現れる状態|Sad Macと起動停止/);
   assert.match(component, /\?付きフロッピー/);
-  assert.match(component, /0000 00F0/);
+  assert.doesNotMatch(component, /Sad Mac|0000 00F0|state === "sad"/);
   assert.match(component, /System 1 \/ Finder 1\.x/);
   assert.match(component, /macFinderMenuBar/);
   assert.match(component, /macCloseBox/);
