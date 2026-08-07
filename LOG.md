@@ -1,5 +1,83 @@
 # Loading Museum 作業ログ
 
+## 2026-08-07 — Macintosh誕生展示室
+
+- 対象年代: 1984年の初代Macintoshから1991年のSystem 7まで。
+- Apple I / Apple II展示室の直後に、開閉式の「Macintosh誕生展示室」を追加した。文字とコマンド中心の操作から、マウス、アイコン、ウィンドウ、デスクトップを直接操作するGUIへの転換を体験の軸にした。
+- Appleの実機UI、ROM、アイコン、画像、フォントファイル、音源は複製せず、歴史的特徴をCSS、React state、Pointer Events、Canvas API、Web Audio APIで教育目的に再構成した。
+
+### 追加した24展示
+
+1. Macintosh起動体験
+2. Happy Mac
+3. Sad Mac
+4. フロッピーディスク挿入待ち
+5. Finder
+6. ウィンドウ操作
+7. メニューバー
+8. マウスとポインタ
+9. アイコン操作
+10. ゴミ箱
+11. スクロールバー
+12. デスクアクセサリ
+13. MacPaint
+14. MacWrite
+15. Macintoshフォント
+16. Susan Kareとアイコンデザイン
+17. System 1〜System 6
+18. MultiFinder
+19. System 7
+20. Balloon Help
+21. Macintosh機種の変遷
+22. Macintosh IIとカラー化
+23. Macintoshサウンド
+24. Apple IIからMacintoshへ
+
+### 新規コンポーネント・ファイル
+
+- `app/components/MacintoshBirthExhibitRoom.tsx`: 展示室の開閉、ページ可視性、軽減モーションと24展示の操作デモを実装。
+- `app/data/macintoshBirthExhibits.ts`: 24展示の年代、概要、操作案内、デモ種別を一元管理。
+- `docs/screenshots/macintosh-room-desktop.png`: デスクトップ確認画像。
+- `docs/screenshots/macintosh-room-mobile.png`: 390×844確認画像。
+
+### 更新ファイル
+
+- `app/page.tsx`: Apple II展示室の次にMacintosh展示室を追加し、7 ROOMS / 139 OBJECTSへ集計を更新。
+- `app/globals.css`: 白黒、グレー、ピクセル感、初期GUI風境界線を基調にした展示室、操作デモ、1列モバイル表示、reduced motion規則を追加。
+- `tests/rendered-html.test.mjs`: 24展示、表示件数、アコーディオン、操作技術、Apple IIリンク、レスポンシブと軽減モーションの構造テストを追加。
+- `README.md`: 展示室一覧、Macintosh展示室の概要、総展示数を更新。
+
+### アニメーション・インタラクション
+
+- 電源ONから自己診断、ディスク読込、Finder到達までの起動シーケンス。
+- 成功／失敗の表情切替、フロッピーのクリック／ドラッグ挿入、Finderアイコンの選択・ダブルクリック・移動・ゴミ箱ドロップ。
+- ウィンドウの開閉、前後切替、Pointer Eventsによるタイトルバードラッグ、CSS resize、メニュー展開とEscape終了、スクロール操作。
+- デスクアクセサリ、Canvasのペン／消しゴム／塗りつぶし／Undo、contentEditableの文書とフォント／サイズ変更、16×16ピクセル編集。
+- System 1〜6、機種変遷、System 7機能の選択、MultiFinder、hover・focus・tap対応Balloon Help、モノクロ／カラー切替。
+- 利用者がボタンを押した時だけ鳴るWeb Audio API独自合成音、Apple IIからGUIへの変化スライダー、Apple II展示室へのアンカーリンク。
+
+### モバイル・アクセシビリティ・性能
+
+- 800px以下で展示を1列化し、520px以下で導入工程、アイコン、ピクセル編集、比較表示、ディスク操作を再配置。390×844で横スクロールがないことを確認した。
+- 操作対象をbutton、input、canvas、aとして実装し、`aria-expanded`、`aria-controls`、`aria-hidden`、`inert`、`aria-pressed`、`aria-live`、`aria-label`、focus-visibleを付与した。Balloon Helpはhoverだけでなくfocusとtapに対応した。
+- `prefers-reduced-motion`では自動起動工程を即時完了し、アニメーションと長いtransitionを停止する。タイマー、matchMedia、visibilitychangeをcleanupし、閉室・タブ非表示時は起動タイマーを継続しない。
+- 24カードへ`content-visibility: auto`と`contain-intrinsic-size`を適用した。
+
+### テスト・ビルド・ブラウザ確認
+
+- `npm run lint`: 成功、警告0件。
+- `npm run typecheck`: 成功。
+- `npm test`: 静的buildとNodeテスト43件がすべて成功。
+- `npm run build`: 成功。`/`と`/_not-found`を静的生成。
+- デスクトップ: 24展示、起動完了`FINDER READY`、成功／失敗切替、横方向の欠けなしを確認。
+- 390×844: 1列表示、横スクロールなし、ディスク挿入、Balloon Help、Apple IIリンクを確認。
+- 両表示でブラウザconsoleのwarning／errorは0件。
+
+### 簡略実装・今後追加候補
+
+- 実機エミュレーションや完全なFinder／MacPaint／MacWriteではなく、展示目的に絞った安全なミニデモ。MacPaintの塗りつぶしはキャンバス全体、Undoは操作単位のスナップショット、ウィンドウのリサイズはブラウザ標準ハンドルを使用する。
+- 今後追加候補: Mac OS 8 / 9展示室、Mac OS X展示室、Macintosh vs Windows特別展示。
+
 ## 2026-08-02 — PR #14 FlashバナーCTAの安全な発光強調
 
 - 対象は「点滅CTAと価格の飛び込み」展示だけとし、18カテゴリ・54展示、他の専用コンポーネント、レイアウトは変更しなかった。
