@@ -3,14 +3,16 @@ import { CursorExhibitRoom } from "./components/CursorExhibitRoom";
 import { FlashSpecialExhibitRoom } from "./components/FlashSpecialExhibitRoom";
 import { MuseumTitleSequence } from "./components/MuseumTitleSequence";
 import AppleEarlyEraExhibitRoom from "./components/AppleEarlyEraExhibitRoom";
+import MacintoshBirthExhibitRoom from "./components/MacintoshBirthExhibitRoom";
 import { appleEarlyExhibitCount } from "./data/appleEarlyExhibits";
+import { macintoshBirthExhibitCount } from "./data/macintoshBirthExhibits";
 import { cursorExhibits } from "./data/cursorExhibits";
 import { exhibitRooms } from "./data/exhibitRooms";
 import { flashExhibitCount } from "./data/flashExhibits";
 
 const spokes = Array.from({ length: 8 }, (_, index) => index);
 const permanentExhibitCount = 9;
-const periodRoomCount = exhibitRooms.length + 3;
+const periodRoomCount = exhibitRooms.length + 4;
 const periodExhibitCount = exhibitRooms.reduce(
   (roomTotal, room) => roomTotal + room.exhibits.reduce(
     (exhibitTotal, exhibit) => exhibitTotal + (
@@ -18,7 +20,7 @@ const periodExhibitCount = exhibitRooms.reduce(
     ),
     0,
   ),
-  cursorExhibits.length + appleEarlyExhibitCount,
+  cursorExhibits.length + appleEarlyExhibitCount + macintoshBirthExhibitCount,
 );
 const totalExhibitCount = permanentExhibitCount + periodExhibitCount + flashExhibitCount;
 
@@ -172,6 +174,7 @@ export default function Home() {
         </div>
         <div className="roomList">
           <AppleEarlyEraExhibitRoom />
+          <MacintoshBirthExhibitRoom />
           {exhibitRooms.map((room) => (
             <ExhibitRoomAccordion key={room.roomId} room={room} />
           ))}

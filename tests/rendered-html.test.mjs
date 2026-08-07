@@ -244,31 +244,62 @@ test("カーソル展示のデータ、Pointer Events、性能とアクセシビ
   assert.match(data, /Reactのローカルstateで3対象の選択状態と結果表示を切り替えています/);
 });
 
-test("Apple I / Apple II 展示室を加えた展示室・展示件数を表示する", async () => {
+test("Macintosh誕生展示室を加えた展示室・展示件数を表示する", async () => {
   const [html, page] = await Promise.all([
     readFile(new URL("index.html", outputRoot), "utf8"),
     readFile(new URL("app/page.tsx", projectRoot), "utf8"),
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /6 ROOMS \/ 115 OBJECTS/);
+  assert.match(normalizedHtml, /7 ROOMS \/ 139 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
-  assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 5);
-  assert.equal((html.match(/aria-expanded="false"/g) ?? []).length, 6);
+  assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 6);
+  assert.equal((html.match(/aria-expanded="false"/g) ?? []).length, 8);
   assert.equal(
     (html.match(/class="exhibit"/g) ?? []).length
       + (html.match(/class="dosExhibit"/g) ?? []).length
       + (html.match(/class="unixExhibit"/g) ?? []).length
       + (html.match(/class="vanishedLoadingExhibit"/g) ?? []).length
       + (html.match(/class="cursorExhibit"/g) ?? []).length
-      + (html.match(/class="appleEarlyExhibit"/g) ?? []).length,
-    61,
+      + (html.match(/class="appleEarlyExhibit"/g) ?? []).length
+      + (html.match(/class="macExhibit"/g) ?? []).length,
+    85,
   );
-  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 3/);
-  assert.match(page, /cursorExhibits\.length \+ appleEarlyExhibitCount/);
+  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 4/);
+  assert.match(page, /cursorExhibits\.length \+ appleEarlyExhibitCount \+ macintoshBirthExhibitCount/);
   assert.match(page, /periodExhibitCount \+ flashExhibitCount/);
   assert.match(page, /exhibit\.kind === "vanished-os" \? exhibit\.loadingExhibits\.length : 1/);
   assert.doesNotMatch(page, /3 ROOMS \/ 30 OBJECTS/);
+});
+
+test("Macintosh誕生展示室へ24種類の操作展示を書き出す", async () => {
+  const [html, data, component, css] = await Promise.all([
+    readFile(new URL("index.html", outputRoot), "utf8"),
+    readFile(new URL("app/data/macintoshBirthExhibits.ts", projectRoot), "utf8"),
+    readFile(new URL("app/components/MacintoshBirthExhibitRoom.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+  const normalizedHtml = html.replaceAll("<!-- -->", "");
+  assert.match(normalizedHtml, /Macintosh誕生展示室/);
+  assert.match(normalizedHtml, /1984–1991/);
+  assert.match(normalizedHtml, /24 EXHIBITS/);
+  assert.equal((html.match(/class="macExhibit"/g) ?? []).length, 24);
+  assert.equal((data.match(/^  \{ id: /gm) ?? []).length, 24);
+  assert.match(html, /aria-controls="macintosh-birth-room-panel"/);
+  assert.match(html, /id="macintosh-birth-room-panel"[^>]*aria-hidden="true"[^>]*inert=""/);
+  for (const title of ["Macintosh起動体験", "Happy Mac", "Sad Mac", "フロッピーディスク挿入待ち", "Finder", "ウィンドウ操作", "メニューバー", "マウスとポインタ", "アイコン操作", "ゴミ箱", "スクロールバー", "デスクアクセサリ", "MacPaint", "MacWrite", "Macintoshフォント", "Susan Kareとアイコンデザイン", "System 1〜System 6", "MultiFinder", "System 7", "Balloon Help", "Macintosh機種の変遷", "Macintosh IIとカラー化", "Macintoshサウンド", "Apple IIからMacintoshへ"]) assert.match(normalizedHtml, new RegExp(title));
+  assert.match(component, /window\.setTimeout/);
+  assert.match(component, /window\.clearTimeout/);
+  assert.match(component, /visibilitychange/);
+  assert.match(component, /prefers-reduced-motion: reduce/);
+  assert.match(component, /onPointerDown/);
+  assert.match(component, /onDragStart/);
+  assert.match(component, /getContext\("2d"\)/);
+  assert.match(component, /AudioContext/);
+  assert.match(component, /Apple II展示室へ戻る/);
+  assert.match(css, /\.macExhibitGrid/);
+  assert.match(css, /@media \(max-width:520px\)/);
+  assert.match(css, /@media \(prefers-reduced-motion:reduce\)/);
 });
 
 test("Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する", async () => {
