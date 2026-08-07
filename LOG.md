@@ -1,5 +1,28 @@
 # Loading Museum 作業ログ
 
+## 2026-08-07 — Macintosh展示室を史実ベースのUI再構成へ更新
+
+- PR #20のMacintosh展示室を基準に、初期Macintoshの画面構成と操作感を理解できる展示へ修正した。実機画面、ROM、System Software、アイコン画像、フォントファイル、起動音は使用していない。
+- 起動体験を`電源オフ → 起動診断 → Happy Mac → ?付きフロッピー（起動ディスク待ち） → システム読込 → Finder`の意味を持つ状態遷移に変更した。Sad Macはこの経路と分離し、停止状態と16進エラーコード風表示を持つ別分岐として実装した。
+- System 1 / Finder 1.xを参考に、Appleメニューを含む常駐メニューバー、白黒デスクトップ、ディスク／フォルダ／書類／ゴミ箱、反転選択、ダブルクリック、Finder風ウィンドウを独自描画した。
+- Finder風ウィンドウは左上の閉じるボックス、右側のスクロールレール、右下Grow boxを実装し、タイトルバーだけからPointer Captureで移動する。位置とサイズはpxで扱い、画面外へ完全に逃げないよう制限した。ブラウザ標準resizeは撤去した。
+- マウス展示は単一ボタンマウスと矢印ポインタを説明し、対象を押した時だけX/Y両方向へドラッグできるよう修正した。
+- フォント展示は英字サンプル`Welcome to Macintosh`とpangramの書体比較へ限定し、MacWrite展示は本文・書式・文字サイズ・印刷を意識したWYSIWYG文書編集へ分離した。
+- MultiFinderは1987年の協調的マルチタスクとして、前面アプリでメニューバーを切り替え、前面作業中の背景時計を遅く更新する簡略演出を追加した。
+- カラー比較はMacintosh II（1987）のカラーMacとSystem 7（1991）のUIを混同しない説明に改め、同じFinder風画面を1-bit白黒と初期カラーの識別用途で比較する。
+- `prefers-reduced-motion`で?付きフロッピーの点滅と移動transitionを停止する。各展示へ年代／OS・Finder世代／再現対象を表示し、キーボード、タッチ、focus操作が分かる案内を付けた。
+
+### 確認手順と結果
+
+- `npm run lint`、`npm run typecheck`、`npm test`が成功。Nodeテスト43件がすべて成功し、静的export buildも成功した。
+- 実ブラウザでは、起動体験のHappy Mac、?付きフロッピー、システムディスク挿入後のFinder到達、Sad Mac分岐を確認した。
+- デスクトップではFinder風メニューバー、白黒デスクトップ、状態比較を確認。390×844では1列表示となり、横スクロールなし（clientWidth / scrollWidth = 375px）を確認した。console warning / errorは0件。
+- 更新後の確認画像: `docs/screenshots/macintosh-authentic-ui-desktop.png`、`docs/screenshots/macintosh-authentic-ui-mobile.png`。
+
+### 意図的な簡略化
+
+- 起動診断、読込、エラーコード、アイコン図案、Finderウィンドウ、MultiFinderの停止感は、操作と歴史的な区別を理解するための独自表現であり、実機のビットマップ、ROM処理、スケジューラ、画面配置の完全再現ではない。
+
 ## 2026-08-07 — Macintosh誕生展示室
 
 - 対象年代: 1984年の初代Macintoshから1991年のSystem 7まで。

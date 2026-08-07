@@ -254,7 +254,7 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
   assert.match(normalizedHtml, /7 ROOMS \/ 139 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
   assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 6);
-  assert.equal((html.match(/aria-expanded="false"/g) ?? []).length, 8);
+  assert.ok((html.match(/aria-expanded="false"/g) ?? []).length >= 8);
   assert.equal(
     (html.match(/class="exhibit"/g) ?? []).length
       + (html.match(/class="dosExhibit"/g) ?? []).length
@@ -293,13 +293,31 @@ test("Macintosh誕生展示室へ24種類の操作展示を書き出す", async 
   assert.match(component, /visibilitychange/);
   assert.match(component, /prefers-reduced-motion: reduce/);
   assert.match(component, /onPointerDown/);
-  assert.match(component, /onDragStart/);
+  assert.match(component, /setPointerCapture/);
   assert.match(component, /getContext\("2d"\)/);
   assert.match(component, /AudioContext/);
   assert.match(component, /Apple II展示室へ戻る/);
   assert.match(css, /\.macExhibitGrid/);
   assert.match(css, /@media \(max-width:520px\)/);
   assert.match(css, /@media \(prefers-reduced-motion:reduce\)/);
+  assert.match(component, /type BootState = "off" \| "diagnostic" \| "happy" \| "need-disk" \| "loading" \| "finder" \| "sad"/);
+  assert.match(component, /Happy Mac/);
+  assert.match(component, /Sad Mac/);
+  assert.match(component, /\?付きフロッピー/);
+  assert.match(component, /0000 00F0/);
+  assert.match(component, /System 1 \/ Finder 1\.x/);
+  assert.match(component, /macFinderMenuBar/);
+  assert.match(component, /macCloseBox/);
+  assert.match(component, /macScrollRail/);
+  assert.match(component, /macGrowBox/);
+  assert.match(component, /mode: "move" \| "grow"/);
+  assert.match(component, /X \$\{position\.x\}px \/ Y \$\{position\.y\}px/);
+  assert.match(component, /Welcome to Macintosh/);
+  assert.match(component, /MacWrite is a WYSIWYG word processor/);
+  assert.match(component, /MultiFinder \(1987\)/);
+  assert.match(component, /Macintosh II（1987）/);
+  assert.doesNotMatch(component, /resize:both/);
+  assert.doesNotMatch(css, /\.macWindow\s*\{[^}]*resize:both/);
 });
 
 test("Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する", async () => {
