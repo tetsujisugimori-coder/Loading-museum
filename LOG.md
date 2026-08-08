@@ -1361,3 +1361,10 @@
 - 変更ファイル: `app/components/DomAnimationRoom.tsx`、`app/data/domAnimationExhibits.ts`、`app/page.tsx`、`app/globals.css`、`README.md`、`tests/rendered-html.test.mjs`、本LOG。
 - テスト結果: `npm run typecheck`、`npm run lint`、`npm test`、`npm run build`が成功した。`tests/dom-animation-room.test.tsx`では、展示室を開いた後のtransform、classList、React管理外コンテナへの要素追加・全削除を実DOM操作として検証する。PC幅・390px幅では、操作ボタン、状態表示、横あふれなしを確認した。
 - 未実装事項: CSS Transition展示室は未実装。次の候補として、CSS側の遷移制御そのものを主題にした「CSS Transition展示室」を追加する。
+## 2026-08-08 — DOM展示室の初学者向け改善
+
+- 導入を、DOMはブラウザがHTMLを操作できる部品として扱う仕組みであり、JavaScript本体とは別のブラウザAPI群であることが伝わる内容へ更新した。
+- 各カードを「何が起きるか → 体験 → 使用API → 実コード → DOM状態」の順で読み取れるように整理し、Opacity Fade、classList Toggle、Create and Remove Elementを具体的な対象と結果が分かる展示へ改善した。
+- textContent、setAttribute/removeAttribute、addEventListener、querySelector、dataset、focus、scrollIntoView、cloneNodeの8展示を追加し、DOM展示は17件になった。
+- `prefers-reduced-motion`では既存どおり遷移時間を即時化し、Manual DOM Animationは連続移動を行わない。
+- 追加展示の操作テストと静的出力テストを更新し、型チェック・lint・テスト・静的ビルドを再実行する。

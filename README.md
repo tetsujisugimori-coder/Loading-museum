@@ -20,7 +20,7 @@ DIGITAL MOTION ARCHIVEは、ローディング画面やカーソルなど、画�
 
 「Macintosh誕生展示室」は、1984年の初代MacintoshからSystem 7までを扱う18展示です。電源投入、状態表示、フロッピー読込、Finder、ウィンドウ、メニュー、MacPaintへ進む導入体験の後、フォント、ピクセルアイコン、System 1〜6、MultiFinder、System 7、Balloon Help、機種変遷、カラー化、独自合成音、Apple IIからGUIへの転換を、マウス・タッチ・キーボードで操作できます。MacPaintでは白抜きの窓を選択して移動し、画像と選択枠をまとめてUndoまたは初期化できます。
 
-「DOMアニメーション展示室」は、JavaScriptからブラウザのDOM APIを呼び出し、HTML要素の位置、回転、拡大率、透明度、クラス、CSS変数、構造、ビューポート上の矩形を変える9展示です。Reactの表示管理と、展示専用`ref`への直接DOM操作を分け、React管理外コンテナでのみ`document.createElement()`を扱います。`requestAnimationFrame()`による手動アニメーションも、二重起動を防ぎ、停止・リセット・軽減モーションに対応しています。
+「DOMアニメーション展示室」は、JavaScriptからブラウザのDOM APIを呼び出し、HTML要素の位置、回転、拡大率、透明度、クラス、CSS変数、構造、文字、属性、イベント、検索、状態札、フォーカス、スクロール、複製を変える17展示です。Reactの表示管理と、展示専用`ref`への直接DOM操作を分け、React管理外コンテナでのみ`document.createElement()`を扱います。`requestAnimationFrame()`による手動アニメーションも、二重起動を防ぎ、停止・リセット・軽減モーションに対応しています。
 
 「カーソル展示室」では、標準矢印、リンク用の手、Iビーム、待機、禁止、ドラッグ、クリックエフェクト、残像の8展示をマウスまたはタッチで体験できます。
 

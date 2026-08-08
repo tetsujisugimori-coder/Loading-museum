@@ -87,7 +87,7 @@ function OpacityFade({ exhibit }: { exhibit: DomAnimationExhibit }) {
   const targetRef = useRef<HTMLDivElement>(null);
   const [value, setValue] = useState("1");
   const opacity = (next: string) => { if (targetRef.current) targetRef.current.style.opacity = next; setValue(next); };
-  return <ExhibitCard exhibit={exhibit}><Stage><div ref={targetRef} className="domTarget domFadeTarget">VISIBLE</div></Stage><Controls><button type="button" onClick={() => opacity("0")}>フェードアウト</button><button type="button" onClick={() => opacity("1")}>フェードイン</button><button type="button" onClick={() => opacity("1")}>リセット</button></Controls><Status>opacity: {value}{value === "0" ? "（対象は透明ですが、状態はここで確認できます）" : ""}</Status></ExhibitCard>;
+  return <ExhibitCard exhibit={exhibit}><Stage><div ref={targetRef} className="domTarget domFadeTarget">DOM CARD<br /><small>透明度: {Number(value) * 100}%</small></div></Stage><p className="domFinePrint">opacityは透明度です。1は完全に見え、0は完全に透明です。透明でも場所は残り、display: noneのようにレイアウトから外す方法とは異なります。</p><Controls><button type="button" onClick={() => opacity("1")}>ゆっくり表示する</button><button type="button" onClick={() => opacity("0")}>ゆっくり透明にする</button><button type="button" onClick={() => opacity("1")}>リセット</button></Controls><Status>opacity: {value} / 透明度: {Number(value) * 100}%</Status></ExhibitCard>;
 }
 
 function ClassListToggle({ exhibit }: { exhibit: DomAnimationExhibit }) {
@@ -99,7 +99,7 @@ function ClassListToggle({ exhibit }: { exhibit: DomAnimationExhibit }) {
     const next = mode === "add" ? (target.classList.add("is-active"), true) : mode === "remove" ? (target.classList.remove("is-active"), false) : target.classList.toggle("is-active");
     setActive(next);
   };
-  return <ExhibitCard exhibit={exhibit}><Stage><div ref={targetRef} className="domTarget domClassTarget"><strong>{active ? "ACTIVE" : "IDLE"}</strong><span>{active ? "class applied" : "class none"}</span></div></Stage><Controls><button type="button" onClick={() => update("add")}>クラス追加</button><button type="button" onClick={() => update("remove")}>クラス削除</button><button type="button" onClick={() => update("toggle")}>トグル</button><button type="button" onClick={() => update("remove")}>リセット</button></Controls><Status>class: {active ? "is-active" : "none"}</Status></ExhibitCard>;
+  return <ExhibitCard exhibit={exhibit}><Stage><div ref={targetRef} className="domTarget domClassTarget"><strong>{active ? "点灯中" : "消灯中"}</strong><span>展示室の照明</span></div></Stage><p className="domFinePrint">クラスは、見た目のルールをひとまとめにした名前札です。is-activeが付くと照明のCSSルールがまとまって働きます。</p><Controls><button type="button" onClick={() => update("add")}>点灯する（add）</button><button type="button" onClick={() => update("remove")}>消灯する（remove）</button><button type="button" onClick={() => update("toggle")}>点灯／消灯を切り替える（toggle）</button><button type="button" onClick={() => update("remove")}>リセット</button></Controls><Status>class=&quot;domTarget domClassTarget{active ? " is-active" : ""}&quot;</Status></ExhibitCard>;
 }
 
 function CustomProperty({ exhibit }: { exhibit: DomAnimationExhibit }) {
@@ -113,10 +113,10 @@ function CustomProperty({ exhibit }: { exhibit: DomAnimationExhibit }) {
 function CreateRemove({ exhibit }: { exhibit: DomAnimationExhibit }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [count, setCount] = useState(0);
-  const add = () => { const item = document.createElement("div"); item.className = "domCreatedItem"; item.textContent = `NODE ${containerRef.current ? containerRef.current.children.length + 1 : 1}`; containerRef.current?.append(item); setCount(containerRef.current?.children.length ?? 0); };
+  const add = () => { const item = document.createElement("div"); item.className = "domCreatedItem"; item.textContent = ["✦", "●", "✧", "◆"][containerRef.current ? containerRef.current.children.length % 4 : 0]; containerRef.current?.append(item); setCount(containerRef.current?.children.length ?? 0); };
   const remove = () => { const container = containerRef.current; container?.lastElementChild?.remove(); setCount(container?.children.length ?? 0); };
   const clear = () => { if (containerRef.current) containerRef.current.replaceChildren(); setCount(0); };
-  return <ExhibitCard exhibit={exhibit}><Stage><div className="domExternalLabel">React管理外の専用コンテナ</div><div ref={containerRef} className="domExternalContainer" aria-label="DOM APIで追加される要素の領域" /></Stage><Controls><button type="button" onClick={add}>要素追加</button><button type="button" onClick={remove} disabled={count === 0}>最後の要素を削除</button><button type="button" onClick={clear} disabled={count === 0}>全削除</button><button type="button" onClick={clear}>リセット</button></Controls><Status>child count: {count}</Status></ExhibitCard>;
+  return <ExhibitCard exhibit={exhibit}><p className="domFinePrint">ボタンを押すたび、JavaScriptが新しいHTML要素を1個作り、展示ケースの中へ追加します。作る → 画面に追加する → DOMから取り除く、の順を観察できます。</p><Stage><div className="domExternalLabel">補足: React管理外の専用コンテナ</div><div ref={containerRef} className="domExternalContainer" aria-label="DOM APIで追加される要素の領域" /></Stage><Controls><button type="button" onClick={add}>星を作って追加する</button><button type="button" onClick={remove} disabled={count === 0}>最後の星を取り除く</button><button type="button" onClick={clear} disabled={count === 0}>全削除</button><button type="button" onClick={clear}>リセット</button></Controls><Status>child count: {count} / 実行API: document.createElement → append / remove</Status></ExhibitCard>;
 }
 
 type RectState = { x: number; y: number; width: number; height: number; top: number; left: number } | null;
@@ -154,6 +154,24 @@ function ManualAnimation({ exhibit, active, reduced }: { exhibit: DomAnimationEx
   return <ExhibitCard exhibit={exhibit}><Stage><div ref={targetRef} className="domTarget domRunnerTarget">RUN</div></Stage><Controls><button type="button" onClick={play} disabled={running || position >= 180}>{reduced ? "最終位置へ" : "再生"}</button><button type="button" onClick={stop} disabled={!running}>一時停止</button><button type="button" onClick={reset}>リセット</button></Controls><Status>animation: {running ? "playing" : position >= 180 ? "finished" : "paused"} / position: {position}px</Status><p className="domFinePrint">requestAnimationFrameの詳細は、次の専用展示室で扱います。</p></ExhibitCard>;
 }
 
+function LearningDemo({ exhibit }: { exhibit: DomAnimationExhibit }) {
+  const targetRef = useRef<HTMLDivElement>(null); const inputRef = useRef<HTMLInputElement>(null); const [state, setState] = useState("待機中"); const [disabled, setDisabled] = useState(false); const [copies, setCopies] = useState(0);
+  useEffect(() => { if (exhibit.id !== "dom-events") return; const target = targetRef.current; if (!target) return; const react = () => setState("イベント: DOM addEventListener がクリックを受け取りました"); target.addEventListener("pointerenter", react); target.addEventListener("keydown", react); return () => { target.removeEventListener("pointerenter", react); target.removeEventListener("keydown", react); }; }, [exhibit.id]);
+  const action = (name: string) => {
+    const target = targetRef.current; if (!target) return;
+    if (exhibit.id === "dom-text-content") { target.textContent = name; target.classList.add("domTextChanged"); setState(`textContent: ${name}`); }
+    if (exhibit.id === "dom-attributes") { const next = !disabled; const panel = target.querySelector("button"); if (next) panel?.setAttribute("disabled", ""); else panel?.removeAttribute("disabled"); target.dataset.open = String(!next); setDisabled(next); setState(`disabled=${next} / aria-expanded=${!next}`); }
+    if (exhibit.id === "dom-events") { target.dataset.event = name; setState(`イベント: ${name}`); }
+    if (exhibit.id === "dom-query-selector") { const found = target.querySelector("[data-piece='moon']") as HTMLElement | null; found?.classList.add("domFound"); setState(`querySelector("[data-piece='moon']") → moon を発見`); }
+    if (exhibit.id === "dom-dataset") { target.dataset.state = name; setState(`data-state="${name}"`); }
+    if (exhibit.id === "dom-focus") { inputRef.current?.focus(); setState("focus(): 検索欄へフォーカスしました"); }
+    if (exhibit.id === "dom-scroll-into-view") { target.scrollIntoView({ behavior: "smooth", block: "center" }); setState("scrollIntoView(): この展示を画面内へ案内しました"); }
+    if (exhibit.id === "dom-clone-node") { const original = target.querySelector("#dom-ticket") as HTMLElement | null; if (original) { const copy = original.cloneNode(true) as HTMLElement; copy.removeAttribute("id"); copy.classList.add("domTicketCopy"); target.append(copy); setCopies((n) => n + 1); setState(`cloneNode(true): 子要素を含む複製 ${copies + 1} 枚`); } }
+  };
+  const controls: Record<string, readonly string[]> = { "dom-text-content":["NEXT EXHIBIT","休憩室はこちら","WELCOME"], "dom-attributes":[disabled ? "操作を有効にする" : "操作を無効にする"], "dom-events":["クリック", "ホバー", "Enter"], "dom-query-selector":["moonを探して照らす"], "dom-dataset":["通常", "注目", "完了"], "dom-focus":["検索欄へ移動"], "dom-scroll-into-view":["この展示へ案内する"], "dom-clone-node":["切符を複製する"] };
+  return <ExhibitCard exhibit={exhibit}><Stage><div ref={targetRef} className={`domLearningTarget ${exhibit.id}`} data-state="通常">{exhibit.id === "dom-attributes" && <><button type="button">展示ケースを開く</button><span>aria-expanded: {String(!disabled)}</span></>}{exhibit.id === "dom-events" && <button type="button" onClick={() => action("click")}>✦ 押して反応</button>}{exhibit.id === "dom-query-selector" && <div className="domPieces"><i data-piece="sun">●</i><i data-piece="moon">☾</i><i data-piece="star">✦</i></div>}{exhibit.id === "dom-focus" && <input ref={inputRef} aria-label="展示を検索" placeholder="展示を検索" />}{exhibit.id === "dom-clone-node" && <div id="dom-ticket" className="domTicket"><b>ADMIT ONE</b><span>DOM MUSEUM</span></div>}{!["dom-attributes","dom-events","dom-query-selector","dom-focus","dom-clone-node"].includes(exhibit.id) && "操作結果がここに現れます"}</div></Stage><Controls>{controls[exhibit.id].map((label) => <button key={label} type="button" onClick={() => action(label)}>{label}</button>)}<button type="button" onClick={() => { if (targetRef.current) { targetRef.current.removeAttribute("data-state"); targetRef.current.querySelectorAll(".domFound,.domTicketCopy").forEach((node) => node.remove()); } setCopies(0); setState("リセットしました"); }}>リセット</button></Controls><Status>{state}</Status></ExhibitCard>;
+}
+
 function Demo({ exhibit, active, reduced }: { exhibit: DomAnimationExhibit; active: boolean; reduced: boolean }) {
   switch (exhibit.id) {
     case "dom-transform-move": return <TransformMove exhibit={exhibit} />;
@@ -164,7 +182,8 @@ function Demo({ exhibit, active, reduced }: { exhibit: DomAnimationExhibit; acti
     case "dom-custom-property": return <CustomProperty exhibit={exhibit} />;
     case "dom-create-remove": return <CreateRemove exhibit={exhibit} />;
     case "dom-bounding-rect": return <BoundingRect exhibit={exhibit} />;
-    default: return <ManualAnimation exhibit={exhibit} active={active} reduced={reduced} />;
+    case "dom-manual-animation": return <ManualAnimation exhibit={exhibit} active={active} reduced={reduced} />;
+    default: return <LearningDemo exhibit={exhibit} />;
   }
 }
 
@@ -176,11 +195,11 @@ export default function DomAnimationRoom() {
 
   return <section className="roomCard roomCardDom" aria-labelledby="dom-animation-room-title">
     <button ref={toggleRef} id="dom-animation-room-toggle" type="button" className="roomToggle" aria-expanded={open} aria-controls="dom-animation-room-panel" onClick={() => setOpen((current) => !current)}>
-      <span className="roomIndex">ROOM / WEB PLATFORM</span><span className="roomTitle" id="dom-animation-room-title">DOM ANIMATION ROOM</span><span className="roomDescription">DOMアニメーション展示室 / JavaScript + Browser DOM APIs</span><span className="roomMeta"><span>9 EXHIBITS</span><span>INTERACTIVE API STUDIES</span></span><span className="roomArrow" aria-hidden="true">↓</span>
+      <span className="roomIndex">ROOM / WEB PLATFORM</span><span className="roomTitle" id="dom-animation-room-title">DOM ANIMATION ROOM</span><span className="roomDescription">DOMアニメーション展示室 / JavaScript + Browser DOM APIs</span><span className="roomMeta"><span>17 EXHIBITS</span><span>INTERACTIVE API STUDIES</span></span><span className="roomArrow" aria-hidden="true">↓</span>
     </button>
     <div id="dom-animation-room-panel" className="roomPanel" data-open={open} role="region" aria-labelledby="dom-animation-room-toggle" aria-hidden={!open} inert={!open}>
       <div className="roomPanelInner"><div className="domRoomBody">
-        <header className="domRoomIntro"><p>WEB PLATFORM / DIRECT MANIPULATION</p><h3>JavaScriptが命令し、ブラウザが要素を動かす</h3><p>DOMは、ブラウザがHTML文書をJavaScriptから操作できる形で表現した仕組みです。JavaScriptからDOM APIを呼び出すことで、要素の位置、透明度、形、状態、内容、構造などを変更できます。</p><p>この展示室では、JavaScriptが命令を出し、ブラウザのDOM APIが画面上の要素を操作する関係を、実際の動きで確認します。通常のReactアプリでは表示内容をstateとJSXで管理します。この展示では、直接操作を各展示専用のrefへ限定しています。</p><p className="domRoleNote">JavaScriptが値・状態を変更し、CSSはその変化を見やすく補助します。CSS側の遷移制御は、次の「CSS Transition展示室」の主題です。</p></header>
+        <header className="domRoomIntro"><p>WEB PLATFORM / DIRECT MANIPULATION</p><h3>ボタン操作が、HTMLの部品を変える</h3><p>DOMとは、ブラウザがHTMLを「操作できる部品の集まり」として扱う仕組みです。JavaScriptそのものの機能ではなく、ブラウザがHTML要素を操作するために提供しているAPIです。</p><p>JavaScriptはDOM APIを通じて、文字・色・大きさ・クラス（見た目のルール名）・属性（要素の追加情報）・要素の追加削除などを変えられます。この展示室では、ボタン操作による見た目の変化と、実際に呼ばれたDOM APIを対応させて学べます。</p><p>通常のReactアプリでは表示内容をstateとJSXで管理します。この展示では直接操作を各展示専用のrefへ限定し、ReactのDOMと混ぜません。</p><p className="domRoleNote">DOM APIは「どの状態にするか」「どの要素を変えるか」を切り替える役目です。CSSアニメーションそのものとは別で、CSSは値の変化を見やすく補助します。</p></header>
         <div className="domExhibitGrid">{domAnimationExhibits.map((exhibit) => <Demo key={exhibit.id} exhibit={exhibit} active={open} reduced={reduced} />)}</div>
         <button type="button" className="roomClose domRoomClose" onClick={close}>展示室を閉じる</button>
       </div></div>

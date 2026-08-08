@@ -26,13 +26,13 @@ test("DOM API展示を開き、transform・classList・要素追加を操作で�
   expect(move.getByRole("status").textContent).toContain("translateX(160px)");
 
   const classList = exhibit("classList Toggle");
-  await user.click(classList.getByRole("button", { name: "トグル" }));
-  expect(classList.getByText("ACTIVE").parentElement?.classList.contains("is-active")).toBe(true);
+  await user.click(classList.getByRole("button", { name: "点灯／消灯を切り替える（toggle）" }));
+  expect(classList.getByText("点灯中").parentElement?.classList.contains("is-active")).toBe(true);
   expect(classList.getByRole("status").textContent).toContain("is-active");
 
   const structure = exhibit("Create and Remove Element");
-  await user.click(structure.getByRole("button", { name: "要素追加" }));
-  await user.click(structure.getByRole("button", { name: "要素追加" }));
+  await user.click(structure.getByRole("button", { name: "星を作って追加する" }));
+  await user.click(structure.getByRole("button", { name: "星を作って追加する" }));
   expect(structure.getByRole("status").textContent).toContain("child count: 2");
   await user.click(structure.getByRole("button", { name: "全削除" }));
   expect(structure.getByRole("status").textContent).toContain("child count: 0");

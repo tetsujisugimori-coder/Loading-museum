@@ -251,7 +251,7 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /8 ROOMS \/ 142 OBJECTS/);
+  assert.match(normalizedHtml, /8 ROOMS \/ 150 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
   assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 7);
   assert.ok((html.match(/aria-expanded="false"/g) ?? []).length >= 9);
@@ -264,7 +264,7 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
       + (html.match(/class="appleEarlyExhibit"/g) ?? []).length
       + (html.match(/class="macExhibit"/g) ?? []).length
       + (html.match(/class="domExhibit"/g) ?? []).length,
-    88,
+    96,
   );
   assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 5/);
   assert.match(page, /cursorExhibits\.length \+ appleEarlyExhibitCount \+ macintoshBirthExhibitCount \+ domAnimationExhibitCount/);
@@ -273,7 +273,7 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
   assert.doesNotMatch(page, /3 ROOMS \/ 30 OBJECTS/);
 });
 
-test("DOMアニメーション展示室へ9種類のDOM API操作展示を書き出す", async () => {
+test("DOMアニメーション展示室へ17種類のDOM API操作展示を書き出す", async () => {
   const [html, data, component, css] = await Promise.all([
     readFile(new URL("index.html", outputRoot), "utf8"),
     readFile(new URL("app/data/domAnimationExhibits.ts", projectRoot), "utf8"),
@@ -284,9 +284,9 @@ test("DOMアニメーション展示室へ9種類のDOM API操作展示を書き
   assert.match(normalizedHtml, /DOM ANIMATION ROOM/);
   assert.match(normalizedHtml, /DOMアニメーション展示室/);
   assert.match(normalizedHtml, /JavaScript \+ Browser DOM APIs/);
-  assert.match(normalizedHtml, /9 EXHIBITS/);
-  assert.equal((html.match(/class="domExhibit"/g) ?? []).length, 9);
-  assert.equal((data.match(/^  \{ id: /gm) ?? []).length, 9);
+  assert.match(normalizedHtml, /17 EXHIBITS/);
+  assert.equal((html.match(/class="domExhibit"/g) ?? []).length, 17);
+  assert.equal((data.match(/^  \{ id: /gm) ?? []).length, 17);
   assert.match(component, /useRef/);
   assert.match(component, /document\.createElement/);
   assert.match(component, /getBoundingClientRect/);
@@ -294,6 +294,13 @@ test("DOMアニメーション展示室へ9種類のDOM API操作展示を書き
   assert.match(component, /cancelAnimationFrame/);
   assert.match(component, /runningRef\.current/);
   assert.match(component, /React管理外の専用コンテナ/);
+  assert.match(component, /textContent/);
+  assert.match(component, /setAttribute/);
+  assert.match(component, /addEventListener/);
+  assert.match(component, /querySelector/);
+  assert.match(component, /dataset/);
+  assert.match(component, /scrollIntoView/);
+  assert.match(component, /cloneNode/);
   assert.match(component, /prefers-reduced-motion: reduce/);
   assert.match(css, /\.domExhibitGrid/);
   assert.match(css, /\.roomCardDom/);
