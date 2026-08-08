@@ -2,8 +2,12 @@
 
 ## 2026-08-08 — PR #22 MacPaint UndoとSystem切替の再発防止
 
-- MacPaintは選択範囲を動かし始める直前にCanvas全体を履歴へ一度だけ保存する。Undoは描画と、初期の窓（12×12px）の選択位置を戻す。初期状態へ戻すと家のサンプル、窓の選択、Undo履歴を初期化する。
-- System 1〜6は通常の`button type="button"`と同一の`selected` stateで、選択表示・`aria-pressed`・見出し・説明を更新する。System選択は3列、モバイルでは2列のgridで内部スクロールを持たない。
+- MacPaintの履歴を`ImageData`だけでなく選択範囲も持つスナップショットへ変更した。選択移動の開始時に一度だけ保存し、移動中は元画像と選択画像から再描画するため、絵を重ねて壊さず、Undoで画像と点線枠を同じ位置へ戻す。
+- 「最初のサンプルへ戻す」はCanvas、白抜きの窓の選択範囲、描画／選択／ドラッグ状態、Undo履歴をまとめて初期化する。塗りつぶしも実装し、履歴が空のときはUndoを無効化した。
+- Finder全体の`.macDesktopField`から`touch-action:none`を外し、Read Meの`.macDraggableFile`とMacPaintのCanvas／選択枠だけへ限定した。System選択とFinderメニューは通常の縦スクロールとタップを維持する。
+- System 1〜6は通常の`button type="button"`と同一の`selected` stateで、選択表示・`aria-pressed`・System名・年代・説明・簡略プレビューを更新する。System選択は3列、390pxでは2列のgridで内部スクロールを持たない。
+- 390px実ブラウザでSystem 1 → 5 → 6 → 1 → 6をクリックし、System 5をEnter、System 6をSpaceでも選択した。全操作で表示一式が同時更新され、実効CSSは`display:grid`、2列、`max-height:none`、`overflow:visible`、`scrollHeight === clientHeight`、console errorなしだった。
+- MacPaintは実ブラウザで、初期Undo無効 → 塗りつぶし後に有効 → サンプル復帰後に再び無効となり、白抜き窓の選択枠と案内が復元されることを確認した。ソース回帰テストでは履歴の画像＋選択範囲、リセット時の履歴消去、限定した`touch-action`も検証する。
 - 現在のMacintosh展示は18件。LOG内の24件・22件の記述はこの時点より前の履歴である。
 
 ## 2026-08-08 — PR #22 System 1〜6モバイル選択の修正

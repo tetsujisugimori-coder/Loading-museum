@@ -5016,7 +5016,7 @@ footer {
 
 /* Macintosh PR #22: pixel-state motion and direct manipulation. */
 .macFinderSurface { position: relative; }
-.macDesktopField { position: relative; min-height: 220px; touch-action: none; }
+.macDesktopField { position: relative; min-height: 220px; }
 .macDraggableFile,.macTrashTarget { position: absolute; z-index: 2; }
 .macDraggableFile { touch-action: none; cursor: grab; }
 .macDraggableFile:active { cursor: grabbing; }
@@ -5030,9 +5030,18 @@ footer {
 @keyframes mac-watch-hand { to { transform: rotate(360deg); } }
 .macPaintStage { position: relative; }.macPaintStage canvas { display: block; width: 100%; height: auto; touch-action: none; }
 .macPaintSelection { position: absolute; z-index: 2; min-width: 8px; min-height: 8px; padding: 0; border: 2px dashed #000; background: transparent; background-image: repeating-linear-gradient(90deg,#000 0 4px,#fff 4px 8px); background-size: 16px 2px; background-position: 0 0; touch-action: none; animation: mac-marching-ants .55s steps(4,end) infinite; }
+.macPaintDragHint { position:absolute; z-index:3; padding:2px 3px; border:1px solid #000; background:#fff; font-size:7px; line-height:1.2; white-space:nowrap; pointer-events:none; }
 @keyframes mac-marching-ants { to { background-position: 16px 0; } }
 @media (prefers-reduced-motion: reduce) { .macWatchCursor i,.macPaintSelection { animation: none; } }
 .macChoiceDemo>div { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); max-height:none; overflow:visible; }
+.macChoiceDemo output { display:grid; gap:3px; }
+.macSystemYear { font-size:8px; font-weight:700; }
+.macSystemPreview { display:grid!important; grid-template-columns:1fr!important; min-height:92px; overflow:hidden!important; border:2px solid #000; background:#fff; }
+.macSystemPreview .macFinderMenuBar { display:flex; }
+.macSystemPreview .macFinderMenuBar i { margin-left:auto; font-style:normal; }
+.macSystemPreviewDesktop { display:grid; min-height:70px; place-items:center; background:repeating-linear-gradient(45deg,#fff 0 1px,#bbb 1px 2px,#fff 2px 3px); }
+.macSystemPreviewDesktop i { display:block; width:26px; height:30px; border:2px solid #000; background:#fff; }
+.macSystemPreviewDesktop b { font-size:8px; }
 
 /* Keep System 1–6 independent from the legacy flex/scroll demo selector. */
 .macChoiceDemo>div { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; max-height:none; overflow:visible; overflow-y:visible; }
