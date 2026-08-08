@@ -300,11 +300,21 @@ test("DOMアニメーション展示室へ17種類のDOM API操作展示を書�
   assert.match(component, /querySelector/);
   assert.match(component, /dataset/);
   assert.match(component, /scrollIntoView/);
+  assert.match(component, /const gate = destinationRef\.current; gate\?\.scrollIntoView\(\{ behavior: reduced \? "auto" : "smooth", block: "center" \}\)/);
+  assert.match(component, /id="arrival-gate"/);
+  assert.match(component, /domCreatedItemLeaving/);
+  assert.match(component, /transitionend/);
+  assert.match(component, /domTextChanged/);
+  assert.match(component, /#featured-exhibit/);
+  assert.match(component, /\.museum-artifact/);
+  assert.match(component, /\[data-kind="signal"\]/);
   assert.match(component, /cloneNode/);
   assert.match(component, /prefers-reduced-motion: reduce/);
   assert.match(css, /\.domExhibitGrid/);
   assert.match(css, /\.roomCardDom/);
   assert.match(css, /@media \(prefers-reduced-motion:reduce\).*roomCardDom/s);
+  assert.match(css, /\.domCreatedItemLeaving/);
+  assert.match(css, /\.domTextChanged/);
 });
 
 test("Macintosh誕生展示室へ18種類の操作展示を書き出す", async () => {

@@ -37,3 +37,38 @@ test("DOM API展示を開き、transform・classList・要素追加を操作で�
   await user.click(structure.getByRole("button", { name: "全削除" }));
   expect(structure.getByRole("status").textContent).toContain("child count: 0");
 });
+
+test("学習用DOMの文字・セレクタ・到着ゲートを実際の対象へ反映する", async () => {
+  const user = userEvent.setup();
+  const originalScrollIntoView = HTMLElement.prototype.scrollIntoView;
+  const scrollTargets: Element[] = [];
+  Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
+    configurable: true,
+    value(this: Element) { scrollTargets.push(this); },
+  });
+
+  try {
+    render(<DomAnimationRoom />);
+    await user.click(screen.getByRole("button", { name: /DOM ANIMATION ROOM/ }));
+
+    const sign = exhibit("textContent — 展示看板");
+    await user.click(sign.getByRole("button", { name: "NEXT EXHIBIT" }));
+    expect(sign.getByText("NEXT EXHIBIT", { selector: ".domLearningTarget" })).toBeTruthy();
+    expect(sign.getByRole("status").textContent).toContain("textContent: NEXT EXHIBIT");
+
+    const selector = exhibit("querySelector — 展示物を探す");
+    await user.click(selector.getByRole("button", { name: "#featured-exhibit" }));
+    expect(selector.getByRole("status").textContent).toContain("id=featured-exhibit");
+    await user.click(selector.getByRole("button", { name: '[data-kind="signal"]' }));
+    expect(selector.getByRole("status").textContent).toContain("data-kind=signal");
+
+    const guide = exhibit("scrollIntoView() — 到着ゲートへ案内");
+    await user.click(guide.getByRole("button", { name: "到着ゲートまで案内する" }));
+    expect(scrollTargets).toEqual([document.getElementById("arrival-gate")]);
+  } finally {
+    Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
+      configurable: true,
+      value: originalScrollIntoView,
+    });
+  }
+});

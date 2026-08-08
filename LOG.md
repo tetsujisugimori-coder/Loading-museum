@@ -1379,3 +1379,4 @@
 - scrollIntoViewの目的地を展示グリッド外の`#arrival-gate`へ移し、利用者操作時だけ`behavior: reduced ? "auto" : "smooth"`で案内・強調する。
 - Create and Remove Elementは退場class、transitionend（安全タイマー付き）、removeの順に変更し、連打による重複削除を防ぐ。
 - textContentは短いスライド＋フェードを実装し、querySelectorはID・class・属性の3種のCSSセレクタを実体験できるようにした。`npm run check`は成功。
+- 回帰テストは、実際の到着ゲートへの`scrollIntoView()`、看板の`textContent`更新、ID／属性セレクタの取得を操作ベースで確認し、退場class・`transitionend`・軽減モーション分岐は静的テストでも固定した。
