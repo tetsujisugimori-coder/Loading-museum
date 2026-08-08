@@ -328,10 +328,19 @@ test("Macintosh誕生展示室へ18種類の操作展示を書き出す", async 
   assert.match(component, /ctx\.fillStyle = "#fff"; ctx\.fillRect\(168, 98, 12, 12\)/);
   assert.match(component, />塗りつぶし<\/button>/);
   assert.match(component, /Read Meを復元/);
+  assert.match(component, /const fileRect = event\.currentTarget\.getBoundingClientRect\(\)/);
+  assert.match(component, /size: \{ width: fileRect\.width, height: fileRect\.height \}/);
+  assert.match(component, /rectanglesOverlap\(fileRect, trash\)/);
+  assert.match(component, /const isOverTrashRef = useRef\(false\)/);
+  assert.match(component, /const shouldMoveToTrash = !cancelled && drag\.moved && isOverTrashRef\.current/);
+  assert.match(component, /onPointerCancel=\{\(\) => finishFileDrag\(true\)\}/);
+  assert.match(component, /onLostPointerCapture=\{\(\) => finishFileDrag\(\)\}/);
+  assert.doesNotMatch(component, /event\.clientX - 30|event\.clientY - 24/);
   assert.match(css, /mac-marching-ants/);
   assert.match(css, /mac-watch-hand/);
   assert.doesNotMatch(css, /\.macDesktopField\s*\{[^}]*touch-action\s*:\s*none/);
-  assert.match(css, /\.macDraggableFile\s*\{[^}]*touch-action:\s*none/);
+  assert.match(css, /\.macDesktopItem\.macDraggableFile\s*\{[^}]*touch-action:\s*none/);
+  assert.match(css, /\.macDesktopItem\.macDraggableFile,\.macDesktopItem\.macTrashTarget\s*\{[^}]*position:\s*absolute/);
   assert.match(css, /\.macPaintStage canvas\s*\{[^}]*touch-action:\s*none/);
   assert.match(css, /\.macPaintSelection\s*\{[^}]*touch-action:\s*none/);
   assert.doesNotMatch(component, /resize:both/);
@@ -1126,12 +1135,13 @@ test("静的export設定と既存レスポンシブ・reduced-motion対応を維
   assert.match(css, /content-visibility: auto/);
 });
 
-test("System 1〜6の選択UIは通常buttonと非スクロールgridを維持する", async () => {
+test("System 1〜6のbutton構造と非スクロールgridを静的に維持する", async () => {
   const [component, css] = await Promise.all([
     readFile(new URL("app/components/MacintoshBirthExhibitRoom.tsx", projectRoot), "utf8"),
     readFile(new URL("app/globals.css", projectRoot), "utf8"),
   ]);
-  assert.match(component, /<button key=\{label\} type="button" aria-pressed=\{selected === index\} onClick=\{\(\) => setSelected\(index\)\}/);
+  assert.match(component, /<button key=\{label\} type="button" aria-pressed=\{selected === index\} onClick=\{\(\) => activate\(index, "click"\)\} onKeyDown=/);
+  assert.match(component, /activate\(index, event\.key === "Enter" \? "enter" : "space"\)/);
   assert.match(component, /\["System 1", "System 2", "System 3", "System 4", "System 5", "System 6"\]/);
   assert.match(css, /\.macChoiceDemo>div \{ display:grid; grid-template-columns:repeat\(3,minmax\(0,1fr\)\); gap:8px; max-height:none; overflow:visible; overflow-y:visible; \}/);
   assert.match(css, /@media \(max-width:520px\) \{ \.macChoiceDemo>div \{ display:grid; grid-template-columns:repeat\(2,minmax\(0,1fr\)\);/);

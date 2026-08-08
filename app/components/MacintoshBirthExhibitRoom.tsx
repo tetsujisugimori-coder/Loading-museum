@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import { macintoshBirthExhibits, type MacintoshDemoType } from "../data/macintoshBirthExhibits";
+import { rectanglesOverlap, selectSystemChoice, SYSTEM_1_TO_6_CHOICES, type SystemActivation } from "./macintosh-interaction-state";
 
 type BootState = "off" | "diagnostic" | "happy" | "need-disk" | "loading" | "finder";
 type Point = { x: number; y: number };
@@ -60,19 +61,47 @@ function FinderWindow({ title, front, onFront, onClose, rect, controls, children
 }
 
 function FinderSurface({ compact = false, color = false }: { compact?: boolean; color?: boolean }) {
-  const [selected, setSelected] = useState("Macintosh HD"); const [open, setOpen] = useState<"folder" | "file" | "about" | "calculator" | null>(null); const [menu, setMenu] = useState<"apple" | "file" | "edit" | "view" | "special" | null>(null); const [waiting, setWaiting] = useState(false); const [fileState, setFileState] = useState<"desktop" | "trash" | "removed">("desktop"); const [trashOpen, setTrashOpen] = useState(false); const [view, setView] = useState("By Icon"); const [filePoint, setFilePoint] = useState<Point>({ x: 132, y: 90 }); const fieldRef = useRef<HTMLDivElement>(null); const trashRef = useRef<HTMLDivElement>(null); const fileDrag = useRef<{ start: Point; origin: Point; moved: boolean } | null>(null);
+  const [selected, setSelected] = useState("Macintosh HD"); const [open, setOpen] = useState<"folder" | "file" | "about" | "calculator" | null>(null); const [menu, setMenu] = useState<"apple" | "file" | "edit" | "view" | "special" | null>(null); const [waiting, setWaiting] = useState(false); const [fileState, setFileState] = useState<"desktop" | "trash" | "removed">("desktop"); const [trashOpen, setTrashOpen] = useState(false); const [view, setView] = useState("By Icon"); const [filePoint, setFilePoint] = useState<Point>({ x: 132, y: 90 }); const fieldRef = useRef<HTMLDivElement>(null); const trashRef = useRef<HTMLDivElement>(null);
+  const fileDrag = useRef<{ pointerId: number; target: HTMLButtonElement; start: Point; origin: Point; size: { width: number; height: number }; moved: boolean } | null>(null);
+  // State drives the lid animation; the ref is updated synchronously for the final drop decision.
+  const isOverTrashRef = useRef(false);
   useEffect(() => { const close = (event: KeyboardEvent) => { if (event.key === "Escape") setMenu(null); }; window.addEventListener("keydown", close); return () => window.removeEventListener("keydown", close); }, []);
   const controls = useWindowDrag({ x: compact ? 10 : 34, y: compact ? 28 : 46, width: compact ? 132 : 230, height: compact ? 82 : 142 }, { width: compact ? 154 : 330, height: compact ? 105 : 220 });
   const run = (action: () => void) => { if (waiting) return; setWaiting(true); window.setTimeout(() => { action(); setWaiting(false); }, 700); };
   const activate = (id: string) => { setSelected(id); if (id === "System Folder") run(() => setOpen("folder")); if (id === "Read Me") run(() => setOpen("file")); };
-  const fileDown = (event: ReactPointerEvent<HTMLButtonElement>) => { if (waiting) return; event.currentTarget.setPointerCapture(event.pointerId); fileDrag.current = { start: { x: event.clientX, y: event.clientY }, origin: filePoint, moved: false }; setSelected("Read Me"); };
-  const fileMove = (event: ReactPointerEvent<HTMLButtonElement>) => { const drag = fileDrag.current; const field = fieldRef.current; if (!drag || !field) return; const next = { x: Math.max(0, Math.min(field.clientWidth - 72, drag.origin.x + event.clientX - drag.start.x)), y: Math.max(22, Math.min(field.clientHeight - 58, drag.origin.y + event.clientY - drag.start.y)) }; drag.moved = drag.moved || Math.abs(next.x - drag.origin.x) > 4 || Math.abs(next.y - drag.origin.y) > 4; setFilePoint(next); const trash = trashRef.current?.getBoundingClientRect(); const fileRect = { left: event.clientX - 30, right: event.clientX + 30, top: event.clientY - 24, bottom: event.clientY + 24 }; setTrashOpen(Boolean(trash && fileRect.right >= trash.left && fileRect.left <= trash.right && fileRect.bottom >= trash.top && fileRect.top <= trash.bottom)); };
-  const fileUp = () => { const drag = fileDrag.current; fileDrag.current = null; if (drag?.moved && trashOpen) run(() => { setFileState("trash"); setTrashOpen(false); }); else setTrashOpen(false); };
+  const setOverTrash = (overTrash: boolean) => { isOverTrashRef.current = overTrash; setTrashOpen(overTrash); };
+  const fileDown = (event: ReactPointerEvent<HTMLButtonElement>) => {
+    if (waiting) return;
+    const fileRect = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.setPointerCapture(event.pointerId);
+    fileDrag.current = { pointerId: event.pointerId, target: event.currentTarget, start: { x: event.clientX, y: event.clientY }, origin: filePoint, size: { width: fileRect.width, height: fileRect.height }, moved: false };
+    setOverTrash(false);
+    setSelected("Read Me");
+  };
+  const fileMove = (event: ReactPointerEvent<HTMLButtonElement>) => {
+    const drag = fileDrag.current; const field = fieldRef.current; const trash = trashRef.current?.getBoundingClientRect();
+    if (!drag || !field) return;
+    const fieldRect = field.getBoundingClientRect();
+    const next = { x: Math.max(0, Math.min(field.clientWidth - drag.size.width, drag.origin.x + event.clientX - drag.start.x)), y: Math.max(0, Math.min(field.clientHeight - drag.size.height, drag.origin.y + event.clientY - drag.start.y)) };
+    drag.moved = drag.moved || Math.abs(next.x - drag.origin.x) > 4 || Math.abs(next.y - drag.origin.y) > 4;
+    setFilePoint(next);
+    const fileRect = { left: fieldRect.left + next.x, right: fieldRect.left + next.x + drag.size.width, top: fieldRect.top + next.y, bottom: fieldRect.top + next.y + drag.size.height };
+    setOverTrash(Boolean(trash && rectanglesOverlap(fileRect, trash)));
+  };
+  const finishFileDrag = (cancelled = false) => {
+    const drag = fileDrag.current;
+    if (!drag) { setOverTrash(false); return; }
+    const shouldMoveToTrash = !cancelled && drag.moved && isOverTrashRef.current;
+    fileDrag.current = null;
+    setOverTrash(false);
+    if (drag.target.hasPointerCapture(drag.pointerId)) drag.target.releasePointerCapture(drag.pointerId);
+    if (shouldMoveToTrash) run(() => setFileState("trash"));
+  };
   const icons = [{ id: "Macintosh HD", kind: "disk" as const }, { id: "System Folder", kind: "folder" as const }];
   return <div className="macFinderSurface" data-compact={compact} data-color={color} data-waiting={waiting}>
-    <div className="macFinderMenuBar" onPointerDown={() => menu && setMenu(null)}><button type="button" aria-label="Appleメニュー" aria-expanded={menu === "apple"} onPointerDown={(event) => event.stopPropagation()} onClick={() => setMenu(menu === "apple" ? null : "apple")}>◆</button><b>Finder</b>{(["file", "edit", "view", "special"] as const).map((name) => <button key={name} type="button" onPointerDown={(event) => event.stopPropagation()} onClick={() => setMenu(menu === name ? null : name)}>{name[0].toUpperCase() + name.slice(1)}</button>)}{menu && <div className="macAppleMenu">{menu === "apple" && <><button type="button" onClick={() => { setOpen("about"); setMenu(null); }}>About This Finder</button><button type="button" onClick={() => { setOpen("calculator"); setMenu(null); }}>Calculator</button></>}{menu === "file" && <button type="button" onClick={() => { activate(selected); setMenu(null); }}>Open</button>}{menu === "edit" && <button type="button" onClick={() => { setSelected("Read Me"); setMenu(null); }}>Select Read Me</button>}{menu === "view" && <button type="button" onClick={() => { setView("By Icon"); setMenu(null); }}>By Icon</button>}{menu === "special" && <button type="button" disabled={fileState !== "trash"} onClick={() => { setFileState("removed"); setMenu(null); }}>Empty Trash</button>}</div>}</div>
+    <div className="macFinderMenuBar" onPointerDown={() => menu && setMenu(null)}><button type="button" aria-label="Appleメニュー" aria-expanded={menu === "apple"} onPointerDown={(event) => event.stopPropagation()} onClick={() => setMenu(menu === "apple" ? null : "apple")}>◆</button><b>Finder</b>{(["file", "edit", "view", "special"] as const).map((name) => <button key={name} type="button" onPointerDown={(event) => event.stopPropagation()} onClick={() => setMenu(menu === name ? null : name)}>{name[0].toUpperCase() + name.slice(1)}</button>)}{menu && <div className="macAppleMenu" onPointerDown={(event) => event.stopPropagation()}>{menu === "apple" && <><button type="button" onClick={() => { setOpen("about"); setMenu(null); }}>About This Finder</button><button type="button" onClick={() => { setOpen("calculator"); setMenu(null); }}>Calculator</button></>}{menu === "file" && <button type="button" onClick={() => { activate(selected); setMenu(null); }}>Open</button>}{menu === "edit" && <button type="button" onClick={() => { setSelected("Read Me"); setMenu(null); }}>Select Read Me</button>}{menu === "view" && <button type="button" onClick={() => { setView("By Icon"); setMenu(null); }}>By Icon</button>}{menu === "special" && <button type="button" disabled={fileState !== "trash"} onClick={() => { setFileState("removed"); setMenu(null); }}>Empty Trash</button>}</div>}</div>
     <div className="macDesktopField" ref={fieldRef}>{icons.map((icon) => <button key={icon.id} type="button" disabled={waiting} className="macDesktopItem" aria-pressed={selected === icon.id} onClick={() => setSelected(icon.id)} onDoubleClick={() => activate(icon.id)} onKeyDown={(event) => { if (event.key === "Enter") activate(icon.id); }}><Icon kind={icon.kind} label={icon.id} /></button>)}
-      {fileState === "desktop" && <button type="button" disabled={waiting} className="macDesktopItem macDraggableFile" style={{ left: `${filePoint.x}px`, top: `${filePoint.y}px` }} aria-pressed={selected === "Read Me"} onPointerDown={fileDown} onPointerMove={fileMove} onPointerUp={fileUp} onDoubleClick={() => activate("Read Me")} onKeyDown={(event) => { if (event.key === "Enter") activate("Read Me"); }}><Icon kind="file" label="Read Me" /></button>}
+      {fileState === "desktop" && <button type="button" disabled={waiting} className="macDesktopItem macDraggableFile" style={{ left: `${filePoint.x}px`, top: `${filePoint.y}px` }} aria-pressed={selected === "Read Me"} onPointerDown={fileDown} onPointerMove={fileMove} onPointerUp={() => finishFileDrag()} onPointerCancel={() => finishFileDrag(true)} onLostPointerCapture={() => finishFileDrag()} onDoubleClick={() => activate("Read Me")} onKeyDown={(event) => { if (event.key === "Enter") activate("Read Me"); }}><Icon kind="file" label="Read Me" /></button>}
       <div ref={trashRef} className="macDesktopItem macTrashTarget" data-open={trashOpen}><Icon kind="trash" label="Trash" /></div>
       {open && <FinderWindow title={open === "folder" ? "System Folder" : open === "about" ? "About This Finder" : open === "calculator" ? "Calculator" : "Read Me"} front onFront={() => undefined} onClose={() => setOpen(null)} rect={controls.rect} controls={controls}><p>{open === "folder" ? "System · Finder · Fonts" : open === "about" ? "Finder 1.x style reconstruction" : open === "calculator" ? "12 + 7 = 19" : "Welcome to Macintosh"}</p></FinderWindow>}{waiting && <span className="macWatchCursor" aria-label="処理中の腕時計カーソル"><i /></span>}
     </div><output className="macFinderStatus" aria-live="polite">{waiting ? "腕時計カーソル: 処理中" : fileState === "trash" ? "Read Me はゴミ箱内" : fileState === "removed" ? "Read Me は完全に削除されました" : `${selected} / ${view} ${open ? "OPEN" : "SELECTED"}`}</output>{fileState === "trash" && <button type="button" onClick={() => { setFileState("desktop"); setFilePoint({ x: 132, y: 90 }); }}>Read Meを復元</button>}<small>メニュー、アイコン、ゴミ箱は一つのFinder状態を共有します。Escapeでメニューを閉じます。</small>
@@ -101,17 +130,16 @@ const fontFamilies: Record<string, string> = { Chicago: "Arial Black, Arial, san
 function FontDemo() { const [font, setFont] = useState("Chicago"); const sample = "Welcome to Macintosh\nThe quick brown fox jumps over the lazy dog."; return <div className="macDemo macFontExhibit"><div className="macControlRow">{Object.keys(fontFamilies).map((name) => <button type="button" key={name} aria-pressed={font === name} onClick={() => setFont(name)}>{name}</button>)}</div><pre style={{ fontFamily: fontFamilies[font] }}>{sample}</pre><small>英字の比較を主目的にしています。表示書体は現代フォントによる近似で、日本語は当時の標準英字フォントとは別の代替表示です。</small></div>; }
 function MacWriteDemo() { const [size, setSize] = useState(12); const [bold, setBold] = useState(false); const [printed, setPrinted] = useState(false); return <div className="macDemo macWriteExhibit"><div className="macWriteRuler">0　　　　1　　　　2　　　　3</div><div className="macControlRow"><button type="button" aria-pressed={bold} onClick={() => setBold((value) => !value)}>B</button><button type="button" onClick={() => setSize((value) => Math.min(18, value + 1))}>大きく</button><button type="button" onClick={() => setSize((value) => Math.max(9, value - 1))}>小さく</button><button type="button" onClick={() => setPrinted(true)}>Print…</button></div><p contentEditable suppressContentEditableWarning style={{ fontSize: `${size}px`, fontWeight: bold ? 700 : 400 }}>MacWrite is a WYSIWYG word processor. Select, arrange, and print the document as you see it.</p><output>{printed ? "PRINTING — 表示した組版を印刷へ渡す考え方" : "MacWrite (1984): 画面上の文書を印刷結果へ近づける"}</output></div>; }
 function PixelIconsDemo() { const [pixels, setPixels] = useState(() => new Set([18, 21, 37, 42, 50, 53, 68, 69, 70, 71, 84, 87, 101, 102])); return <div className="macDemo macPixelDemo"><div>{Array.from({ length: 256 }, (_, index) => <button type="button" key={index} aria-label={`ピクセル ${index + 1}`} aria-pressed={pixels.has(index)} onClick={() => setPixels((current) => { const next = new Set(current); if (next.has(index)) next.delete(index); else next.add(index); return next; })} />)}</div><p>16 × 16 / 独自図案。実在アイコンの複製ではありません。</p></div>; }
-const SYSTEM_1_TO_6_YEARS = ["1984", "1985", "1986", "1987", "1987", "1988"] as const;
-const SYSTEM_1_TO_6_PREVIEWS = ["単一アプリ", "Finder整備", "階層改善", "大容量対応", "MultiFinder", "安定した環境"] as const;
-
 export function ChoiceDemo({ labels, note, years, preview }: { labels: readonly string[]; note: readonly string[]; years?: readonly string[]; preview?: readonly string[] }) {
   const [selected, setSelected] = useState(0);
   const isSystemHistory = labels.length === 6 && labels[0] === "System 1" && labels[5] === "System 6";
-  const visibleYears = years ?? (isSystemHistory ? SYSTEM_1_TO_6_YEARS : undefined);
-  const visiblePreview = preview ?? (isSystemHistory ? SYSTEM_1_TO_6_PREVIEWS : undefined);
+  const visibleYears = years ?? (isSystemHistory ? SYSTEM_1_TO_6_CHOICES.map((choice) => choice.year) : undefined);
+  const visibleNote = isSystemHistory ? SYSTEM_1_TO_6_CHOICES.map((choice) => choice.note) : note;
+  const visiblePreview = preview ?? (isSystemHistory ? SYSTEM_1_TO_6_CHOICES.map((choice) => choice.preview) : undefined);
+  const activate = (index: number, activation: SystemActivation) => setSelected((current) => isSystemHistory ? selectSystemChoice(current, index, activation) : index);
   return <div className="macDemo macChoiceDemo" data-system={labels[selected]}>
-    <div>{labels.map((label, index) => <button key={label} type="button" aria-pressed={selected === index} onClick={() => setSelected(index)}>{label}</button>)}</div>
-    <output aria-live="polite"><strong>{labels[selected]}</strong>{visibleYears && <span className="macSystemYear">{visibleYears[selected]}</span>}<span>{note[selected]}</span></output>
+    <div>{labels.map((label, index) => <button key={label} type="button" aria-pressed={selected === index} onClick={() => activate(index, "click")} onKeyDown={(event) => { if (!isSystemHistory || (event.key !== "Enter" && event.key !== " ")) return; event.preventDefault(); activate(index, event.key === "Enter" ? "enter" : "space"); }}>{label}</button>)}</div>
+    <output aria-live="polite"><strong>{labels[selected]}</strong>{visibleYears && <span className="macSystemYear">{visibleYears[selected]}</span>}<span>{visibleNote[selected]}</span></output>
     {visiblePreview && <div className="macSystemPreview" role="img" aria-label={`${labels[selected]}の簡略プレビュー`} data-system={labels[selected]}><span className="macFinderMenuBar"><b>Finder</b><i>{visiblePreview[selected]}</i></span><span className="macSystemPreviewDesktop"><i /><b>{labels[selected]}</b></span></div>}
   </div>;
 }

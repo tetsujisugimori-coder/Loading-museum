@@ -5017,8 +5017,8 @@ footer {
 /* Macintosh PR #22: pixel-state motion and direct manipulation. */
 .macFinderSurface { position: relative; }
 .macDesktopField { position: relative; min-height: 220px; }
-.macDraggableFile,.macTrashTarget { position: absolute; z-index: 2; }
-.macDraggableFile { touch-action: none; cursor: grab; }
+.macDesktopItem.macDraggableFile,.macDesktopItem.macTrashTarget { position:absolute; z-index:2; }
+.macDesktopItem.macDraggableFile { margin:0; touch-action:none; cursor:grab; }
 .macDraggableFile:active { cursor: grabbing; }
 .macTrashTarget { right: 12px; bottom: 10px; pointer-events: none; }
 .macTrashTarget[data-open="true"] .macIcon-trash i { transform: translateY(-5px); }

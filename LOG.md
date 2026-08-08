@@ -1,5 +1,16 @@
 # Loading Museum 作業ログ
 
+## 2026-08-08 — PR #22 Finder実矩形判定とSystem操作回帰
+
+- Read Meの当たり判定をポインタ周辺の仮`60×48px`から、ドラッグ開始時に`getBoundingClientRect()`で測った実要素の幅・高さへ変更した。画面上の`.macDesktopItem`は`68×68px`で、`filePoint`を左上とする矩形とゴミ箱の実矩形が少しでも重なれば蓋を開く。
+- `.macDesktopItem { position:relative }`が後からRead Meとゴミ箱のabsolute指定を上書きしていたため、`.macDesktopItem.macDraggableFile`／`.macDesktopItem.macTrashTarget`へセレクタを強めた。これで表示位置と判定座標を同じFinderデスクトップ基準へ統一した。
+- `trashOpen`は蓋の描画用state、`isOverTrashRef`はpointermove直後でも同期的に読めるドロップ判定用refとして同時更新する。終了処理は`finishFileDrag()`へ集約し、pointerup、pointercancel、lostpointercaptureでドラッグref、Pointer Capture、蓋を必ず片付ける。pointercancelだけはドロップせず、lostpointercaptureは最後の重なり状態に応じて安全に確定する。
+- Finderメニュー項目のpointerdownがメニューバーへ伝播してclick前に閉じていたため、メニュー内で伝播を止めた。Restore後は再ドラッグでき、Special → Empty Trash後は`removed`となってRestoreを表示しない。
+- 状態回帰テストを3件、React Testing Libraryによる実イベントテストを2件追加した。実装と同じ状態データでRead Meの68px矩形がゴミ箱へ左・右・上・下から重なることを確認し、実DOMでは初期System 1、System 1 → 5 → 6 → 1 → 6のクリック、Tab → Enter／Space、`aria-pressed`・名称・年代・説明・プレビューの同期更新を確認する。既存の文字列テストは「button構造とCSSの静的確認」と明記した。
+- 実ブラウザではPC幅でRead Meを左・右・上・下から投入し、全方向で「Read Me はゴミ箱内」とRestore表示を確認した。ゴミ箱へ重ねて外へ戻した場合は蓋が閉じ、ファイルがデスクトップへ残った。Restore後の再投入、Empty Trash後の完全削除、console errorなしも確認した。
+- 390px幅ではSystem 1 → 5 → 6 → 1 → 6をクリックし、Tab → EnterでSystem 5、Tab → SpaceでSystem 6へ切り替えた。名称・年代・説明・プレビュー・`aria-pressed`が同期し、2列grid、`max-height:none`、`overflow:visible`、`scrollHeight === clientHeight`だった。Finderメニューとデスクトップは`touch-action:auto`、System展示は`pan-y`で、ページ縦スクロールも120px進むことを確認した。
+- `npm run check`でESLint、TypeScript、Next.js build／static export、Nodeテスト47件とReact実イベントテスト2件の合計49件がすべて成功した。
+
 ## 2026-08-08 — PR #22 MacPaint UndoとSystem切替の再発防止
 
 - MacPaintの履歴を`ImageData`だけでなく選択範囲も持つスナップショットへ変更した。選択移動の開始時に一度だけ保存し、移動中は元画像と選択画像から再描画するため、絵を重ねて壊さず、Undoで画像と点線枠を同じ位置へ戻す。
