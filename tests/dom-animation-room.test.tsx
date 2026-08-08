@@ -14,6 +14,26 @@ function exhibit(title: string) {
   return within(card);
 }
 
+function mockReducedMotion(matches: boolean) {
+  const originalMatchMedia = window.matchMedia;
+  Object.defineProperty(window, "matchMedia", {
+    configurable: true,
+    value: () => ({
+      matches,
+      media: "(prefers-reduced-motion: reduce)",
+      addEventListener: () => undefined,
+      removeEventListener: () => undefined,
+      addListener: () => undefined,
+      removeListener: () => undefined,
+      dispatchEvent: () => false,
+    }),
+  });
+  return () => Object.defineProperty(window, "matchMedia", {
+    configurable: true,
+    value: originalMatchMedia,
+  });
+}
+
 test("DOM API展示を開き、transform・classList・要素追加を操作できる", async () => {
   const user = userEvent.setup();
   render(<DomAnimationRoom />);
@@ -62,19 +82,7 @@ test("追加した展示物は退場中もDOMに残り、transitionend後に取�
 });
 
 test("軽減モーション時の削除は退場待機なしで完了する", async () => {
-  const originalMatchMedia = window.matchMedia;
-  Object.defineProperty(window, "matchMedia", {
-    configurable: true,
-    value: () => ({
-      matches: true,
-      media: "(prefers-reduced-motion: reduce)",
-      addEventListener: () => undefined,
-      removeEventListener: () => undefined,
-      addListener: () => undefined,
-      removeListener: () => undefined,
-      dispatchEvent: () => false,
-    }),
-  });
+  const restoreMatchMedia = mockReducedMotion(true);
 
   try {
     const user = userEvent.setup();
@@ -87,20 +95,17 @@ test("軽減モーション時の削除は退場待機なしで完了する", as
     expect(container.childElementCount).toBe(0);
     expect(structure.getByRole("status").textContent).toContain("DOMから削除");
   } finally {
-    Object.defineProperty(window, "matchMedia", {
-      configurable: true,
-      value: originalMatchMedia,
-    });
+    restoreMatchMedia();
   }
 });
 
 test("学習用DOMの文字・セレクタ・到着ゲートを実際の対象へ反映する", async () => {
   const user = userEvent.setup();
   const originalScrollIntoView = HTMLElement.prototype.scrollIntoView;
-  const scrollTargets: Element[] = [];
+  const scrollCalls: Array<{ target: Element; options: ScrollIntoViewOptions }> = [];
   Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
     configurable: true,
-    value(this: Element) { scrollTargets.push(this); },
+    value(this: Element, options: ScrollIntoViewOptions) { scrollCalls.push({ target: this, options }); },
   });
 
   try {
@@ -122,11 +127,42 @@ test("学習用DOMの文字・セレクタ・到着ゲートを実際の対象�
 
     const guide = exhibit("scrollIntoView() — 到着ゲートへ案内");
     await user.click(guide.getByRole("button", { name: "到着ゲートまで案内する" }));
-    expect(scrollTargets).toEqual([document.getElementById("arrival-gate")]);
+    expect(scrollCalls).toEqual([{
+      target: document.getElementById("arrival-gate"),
+      options: { behavior: "smooth", block: "center" },
+    }]);
   } finally {
     Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
       configurable: true,
       value: originalScrollIntoView,
     });
+  }
+});
+
+test("軽減モーション時のscrollIntoViewは即時移動オプションを使う", async () => {
+  const restoreMatchMedia = mockReducedMotion(true);
+  const originalScrollIntoView = HTMLElement.prototype.scrollIntoView;
+  const scrollCalls: Array<{ target: Element; options: ScrollIntoViewOptions }> = [];
+  Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
+    configurable: true,
+    value(this: Element, options: ScrollIntoViewOptions) { scrollCalls.push({ target: this, options }); },
+  });
+
+  try {
+    const user = userEvent.setup();
+    render(<DomAnimationRoom />);
+    await user.click(screen.getByRole("button", { name: /DOM ANIMATION ROOM/ }));
+    const guide = exhibit("scrollIntoView() — 到着ゲートへ案内");
+    await user.click(guide.getByRole("button", { name: "到着ゲートまで案内する" }));
+    expect(scrollCalls).toEqual([{
+      target: document.getElementById("arrival-gate"),
+      options: { behavior: "auto", block: "center" },
+    }]);
+  } finally {
+    Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
+      configurable: true,
+      value: originalScrollIntoView,
+    });
+    restoreMatchMedia();
   }
 });

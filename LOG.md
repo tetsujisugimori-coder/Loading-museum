@@ -1381,3 +1381,4 @@
 - textContentは短いスライド＋フェードを実装し、querySelectorはID・class・属性の3種のCSSセレクタを実体験できるようにした。`npm run check`は成功。
 - 回帰テストは、実際の到着ゲートへの`scrollIntoView()`、看板の`textContent`更新、ID／属性セレクタの取得を操作ベースで確認し、退場class・`transitionend`・軽減モーション分岐は静的テストでも固定した。
 - 追加の操作テストでは、Create and Remove Elementが退場用classを付けた間も要素をDOMに残し、`transitionend`後に取り除くこと、連続削除が安全なこと、軽減モーション時は即時に取り除くことを確認した。querySelectorはID・class・属性の3種類をすべて操作して確認する。
+- `scrollIntoView()`は、通常時に`{ behavior: "smooth", block: "center" }`、軽減モーション時に`{ behavior: "auto", block: "center" }`を、どちらも実際の`#arrival-gate`に対して呼ぶことを操作テストで確認した。
