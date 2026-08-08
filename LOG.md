@@ -1368,3 +1368,8 @@
 - textContent、setAttribute/removeAttribute、addEventListener、querySelector、dataset、focus、scrollIntoView、cloneNodeの8展示を追加し、DOM展示は17件になった。
 - `prefers-reduced-motion`では既存どおり遷移時間を即時化し、Manual DOM Animationは連続移動を行わない。
 - 追加展示の操作テストと静的出力テストを更新し、型チェック・lint・テスト・静的ビルドを再実行する。
+## 2026-08-08 — PR #25 DOMイベント／スクロール展示の修正
+
+- addEventListener展示を学習用buttonへの直接登録へ修正。click、pointerenter、keydown（Enterのみ）で反応回数と最後のイベントを更新し、アンマウント時にremoveEventListenerで解除する。
+- scrollIntoView展示はカード自身でなく`#arrival-gate`を目的地にし、利用者ボタンでのみスクロールと到着強調を行う。軽減モーション時は即時移動にする。
+- Attributesはdisabled、aria-expanded、data-openの実属性と状態表示・コード例を一致させた。classListは実際のclassNameを`class="..."`形式で表示する。
