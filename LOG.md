@@ -1374,3 +1374,8 @@
 - scrollIntoView展示はカード自身でなく`#arrival-gate`を目的地にし、利用者ボタンでのみスクロールと到着強調を行う。軽減モーション時は即時移動にする。
 - Attributesはdisabled、aria-expanded、data-openの実属性と状態表示・コード例を一致させた。classListは実際のclassNameを`class="..."`形式で表示する。
 - Reactの再レンダーで学習用DOMの値が戻らないよう、textContentとdatasetの対象はJSXで固定の子テキスト／data-stateを持たない専用要素にした。`npm run check`（lint、型チェック、48 Nodeテスト、3操作テスト、静的ビルド）を成功させた。
+## 2026-08-08 — PR #25 到着ゲートとDOM退場演出
+
+- scrollIntoViewの目的地を展示グリッド外の`#arrival-gate`へ移し、利用者操作時だけ`behavior: reduced ? "auto" : "smooth"`で案内・強調する。
+- Create and Remove Elementは退場class、transitionend（安全タイマー付き）、removeの順に変更し、連打による重複削除を防ぐ。
+- textContentは短いスライド＋フェードを実装し、querySelectorはID・class・属性の3種のCSSセレクタを実体験できるようにした。`npm run check`は成功。
