@@ -1361,3 +1361,24 @@
 - 変更ファイル: `app/components/DomAnimationRoom.tsx`、`app/data/domAnimationExhibits.ts`、`app/page.tsx`、`app/globals.css`、`README.md`、`tests/rendered-html.test.mjs`、本LOG。
 - テスト結果: `npm run typecheck`、`npm run lint`、`npm test`、`npm run build`が成功した。`tests/dom-animation-room.test.tsx`では、展示室を開いた後のtransform、classList、React管理外コンテナへの要素追加・全削除を実DOM操作として検証する。PC幅・390px幅では、操作ボタン、状態表示、横あふれなしを確認した。
 - 未実装事項: CSS Transition展示室は未実装。次の候補として、CSS側の遷移制御そのものを主題にした「CSS Transition展示室」を追加する。
+## 2026-08-08 — DOM展示室の初学者向け改善
+
+- 導入を、DOMはブラウザがHTMLを操作できる部品として扱う仕組みであり、JavaScript本体とは別のブラウザAPI群であることが伝わる内容へ更新した。
+- 各カードを「何が起きるか → 体験 → 使用API → 実コード → DOM状態」の順で読み取れるように整理し、Opacity Fade、classList Toggle、Create and Remove Elementを具体的な対象と結果が分かる展示へ改善した。
+- textContent、setAttribute/removeAttribute、addEventListener、querySelector、dataset、focus、scrollIntoView、cloneNodeの8展示を追加し、DOM展示は17件になった。
+- `prefers-reduced-motion`では既存どおり遷移時間を即時化し、Manual DOM Animationは連続移動を行わない。
+- 追加展示の操作テストと静的出力テストを更新し、型チェック・lint・テスト・静的ビルドを再実行する。
+## 2026-08-08 — PR #25 DOMイベント／スクロール展示の修正
+
+- addEventListener展示を学習用buttonへの直接登録へ修正。click、pointerenter、keydown（Enterのみ）で反応回数と最後のイベントを更新し、アンマウント時にremoveEventListenerで解除する。
+- scrollIntoView展示はカード自身でなく`#arrival-gate`を目的地にし、利用者ボタンでのみスクロールと到着強調を行う。軽減モーション時は即時移動にする。
+- Attributesはdisabled、aria-expanded、data-openの実属性と状態表示・コード例を一致させた。classListは実際のclassNameを`class="..."`形式で表示する。
+- Reactの再レンダーで学習用DOMの値が戻らないよう、textContentとdatasetの対象はJSXで固定の子テキスト／data-stateを持たない専用要素にした。`npm run check`（lint、型チェック、48 Nodeテスト、3操作テスト、静的ビルド）を成功させた。
+## 2026-08-08 — PR #25 到着ゲートとDOM退場演出
+
+- scrollIntoViewの目的地を展示グリッド外の`#arrival-gate`へ移し、利用者操作時だけ`behavior: reduced ? "auto" : "smooth"`で案内・強調する。
+- Create and Remove Elementは退場class、transitionend（安全タイマー付き）、removeの順に変更し、連打による重複削除を防ぐ。
+- textContentは短いスライド＋フェードを実装し、querySelectorはID・class・属性の3種のCSSセレクタを実体験できるようにした。`npm run check`は成功。
+- 回帰テストは、実際の到着ゲートへの`scrollIntoView()`、看板の`textContent`更新、ID／属性セレクタの取得を操作ベースで確認し、退場class・`transitionend`・軽減モーション分岐は静的テストでも固定した。
+- 追加の操作テストでは、Create and Remove Elementが退場用classを付けた間も要素をDOMに残し、`transitionend`後に取り除くこと、連続削除が安全なこと、軽減モーション時は即時に取り除くことを確認した。querySelectorはID・class・属性の3種類をすべて操作して確認する。
+- `scrollIntoView()`は、通常時に`{ behavior: "smooth", block: "center" }`、軽減モーション時に`{ behavior: "auto", block: "center" }`を、どちらも実際の`#arrival-gate`に対して呼ぶことを操作テストで確認した。
