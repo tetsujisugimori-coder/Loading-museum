@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { cleanup, render, screen, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, expect, test } from "vitest";
 import DomAnimationRoom from "../app/components/DomAnimationRoom";
@@ -38,6 +38,62 @@ test("DOM API展示を開き、transform・classList・要素追加を操作で�
   expect(structure.getByRole("status").textContent).toContain("child count: 0");
 });
 
+test("追加した展示物は退場中もDOMに残り、transitionend後に取り除かれる", async () => {
+  const user = userEvent.setup();
+  render(<DomAnimationRoom />);
+  await user.click(screen.getByRole("button", { name: /DOM ANIMATION ROOM/ }));
+
+  const structure = exhibit("Create and Remove Element");
+  const container = structure.getByLabelText("DOM APIで追加される要素の領域");
+  await user.click(structure.getByRole("button", { name: "星を作って追加する" }));
+  const created = container.lastElementChild as HTMLElement;
+  expect(created).toBeTruthy();
+
+  await user.click(structure.getByRole("button", { name: "最後の星を取り除く" }));
+  expect(container.lastElementChild).toBe(created);
+  expect(created.classList.contains("domCreatedItemLeaving")).toBe(true);
+  expect(structure.getByRole("status").textContent).toContain("退場中");
+
+  // 同じ要素を連続で削除しようとしても、退場処理は一度だけです。
+  await user.click(structure.getByRole("button", { name: "最後の星を取り除く" }));
+  fireEvent.transitionEnd(created);
+  expect(container.childElementCount).toBe(0);
+  expect(structure.getByRole("status").textContent).toContain("DOMから削除");
+});
+
+test("軽減モーション時の削除は退場待機なしで完了する", async () => {
+  const originalMatchMedia = window.matchMedia;
+  Object.defineProperty(window, "matchMedia", {
+    configurable: true,
+    value: () => ({
+      matches: true,
+      media: "(prefers-reduced-motion: reduce)",
+      addEventListener: () => undefined,
+      removeEventListener: () => undefined,
+      addListener: () => undefined,
+      removeListener: () => undefined,
+      dispatchEvent: () => false,
+    }),
+  });
+
+  try {
+    const user = userEvent.setup();
+    render(<DomAnimationRoom />);
+    await user.click(screen.getByRole("button", { name: /DOM ANIMATION ROOM/ }));
+    const structure = exhibit("Create and Remove Element");
+    const container = structure.getByLabelText("DOM APIで追加される要素の領域");
+    await user.click(structure.getByRole("button", { name: "星を作って追加する" }));
+    await user.click(structure.getByRole("button", { name: "最後の星を取り除く" }));
+    expect(container.childElementCount).toBe(0);
+    expect(structure.getByRole("status").textContent).toContain("DOMから削除");
+  } finally {
+    Object.defineProperty(window, "matchMedia", {
+      configurable: true,
+      value: originalMatchMedia,
+    });
+  }
+});
+
 test("学習用DOMの文字・セレクタ・到着ゲートを実際の対象へ反映する", async () => {
   const user = userEvent.setup();
   const originalScrollIntoView = HTMLElement.prototype.scrollIntoView;
@@ -59,6 +115,8 @@ test("学習用DOMの文字・セレクタ・到着ゲートを実際の対象�
     const selector = exhibit("querySelector — 展示物を探す");
     await user.click(selector.getByRole("button", { name: "#featured-exhibit" }));
     expect(selector.getByRole("status").textContent).toContain("id=featured-exhibit");
+    await user.click(selector.getByRole("button", { name: ".museum-artifact" }));
+    expect(selector.getByRole("status").textContent).toContain("class=museum-artifact domFound");
     await user.click(selector.getByRole("button", { name: '[data-kind="signal"]' }));
     expect(selector.getByRole("status").textContent).toContain("data-kind=signal");
 
