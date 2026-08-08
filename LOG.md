@@ -1373,3 +1373,4 @@
 - addEventListener展示を学習用buttonへの直接登録へ修正。click、pointerenter、keydown（Enterのみ）で反応回数と最後のイベントを更新し、アンマウント時にremoveEventListenerで解除する。
 - scrollIntoView展示はカード自身でなく`#arrival-gate`を目的地にし、利用者ボタンでのみスクロールと到着強調を行う。軽減モーション時は即時移動にする。
 - Attributesはdisabled、aria-expanded、data-openの実属性と状態表示・コード例を一致させた。classListは実際のclassNameを`class="..."`形式で表示する。
+- Reactの再レンダーで学習用DOMの値が戻らないよう、textContentとdatasetの対象はJSXで固定の子テキスト／data-stateを持たない専用要素にした。`npm run check`（lint、型チェック、48 Nodeテスト、3操作テスト、静的ビルド）を成功させた。
