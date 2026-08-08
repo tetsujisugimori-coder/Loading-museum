@@ -9,7 +9,7 @@
     "dev": "next dev",
     "build": "next build",
     "check": "npm run lint && npm run typecheck && npm test",
-    "test": "npm run build && node --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs",
+    "test": "npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run tests/macintosh-system-choice.test.tsx",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
@@ -19,12 +19,16 @@
     "react-dom": "19.2.6"
   },
   "devDependencies": {
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "22.19.19",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "eslint": "9.39.4",
     "eslint-config-next": "16.2.6",
-    "typescript": "5.9.3"
+    "jsdom": "^26.1.0",
+    "typescript": "5.9.3",
+    "vitest": "^3.2.4"
   },
   "type": "module"
 }

@@ -1,5 +1,154 @@
 # Loading Museum 作業ログ
 
+## 2026-08-08 — PR #22 Finder実矩形判定とSystem操作回帰
+
+- Read Meの当たり判定をポインタ周辺の仮`60×48px`から、ドラッグ開始時に`getBoundingClientRect()`で測った実要素の幅・高さへ変更した。画面上の`.macDesktopItem`は`68×68px`で、`filePoint`を左上とする矩形とゴミ箱の実矩形が少しでも重なれば蓋を開く。
+- `.macDesktopItem { position:relative }`が後からRead Meとゴミ箱のabsolute指定を上書きしていたため、`.macDesktopItem.macDraggableFile`／`.macDesktopItem.macTrashTarget`へセレクタを強めた。これで表示位置と判定座標を同じFinderデスクトップ基準へ統一した。
+- `trashOpen`は蓋の描画用state、`isOverTrashRef`はpointermove直後でも同期的に読めるドロップ判定用refとして同時更新する。終了処理は`finishFileDrag()`へ集約し、pointerup、pointercancel、lostpointercaptureでドラッグref、Pointer Capture、蓋を必ず片付ける。pointercancelだけはドロップせず、lostpointercaptureは最後の重なり状態に応じて安全に確定する。
+- Finderメニュー項目のpointerdownがメニューバーへ伝播してclick前に閉じていたため、メニュー内で伝播を止めた。Restore後は再ドラッグでき、Special → Empty Trash後は`removed`となってRestoreを表示しない。
+- 状態回帰テストを3件、React Testing Libraryによる実イベントテストを2件追加した。実装と同じ状態データでRead Meの68px矩形がゴミ箱へ左・右・上・下から重なることを確認し、実DOMでは初期System 1、System 1 → 5 → 6 → 1 → 6のクリック、Tab → Enter／Space、`aria-pressed`・名称・年代・説明・プレビューの同期更新を確認する。既存の文字列テストは「button構造とCSSの静的確認」と明記した。
+- 実ブラウザではPC幅でRead Meを左・右・上・下から投入し、全方向で「Read Me はゴミ箱内」とRestore表示を確認した。ゴミ箱へ重ねて外へ戻した場合は蓋が閉じ、ファイルがデスクトップへ残った。Restore後の再投入、Empty Trash後の完全削除、console errorなしも確認した。
+- 390px幅ではSystem 1 → 5 → 6 → 1 → 6をクリックし、Tab → EnterでSystem 5、Tab → SpaceでSystem 6へ切り替えた。名称・年代・説明・プレビュー・`aria-pressed`が同期し、2列grid、`max-height:none`、`overflow:visible`、`scrollHeight === clientHeight`だった。Finderメニューとデスクトップは`touch-action:auto`、System展示は`pan-y`で、ページ縦スクロールも120px進むことを確認した。
+- `npm run check`でESLint、TypeScript、Next.js build／static export、Nodeテスト47件とReact実イベントテスト2件の合計49件がすべて成功した。
+
+## 2026-08-08 — PR #22 MacPaint UndoとSystem切替の再発防止
+
+- MacPaintの履歴を`ImageData`だけでなく選択範囲も持つスナップショットへ変更した。選択移動の開始時に一度だけ保存し、移動中は元画像と選択画像から再描画するため、絵を重ねて壊さず、Undoで画像と点線枠を同じ位置へ戻す。
+- 「最初のサンプルへ戻す」はCanvas、白抜きの窓の選択範囲、描画／選択／ドラッグ状態、Undo履歴をまとめて初期化する。塗りつぶしも実装し、履歴が空のときはUndoを無効化した。
+- Finder全体の`.macDesktopField`から`touch-action:none`を外し、Read Meの`.macDraggableFile`とMacPaintのCanvas／選択枠だけへ限定した。System選択とFinderメニューは通常の縦スクロールとタップを維持する。
+- System 1〜6は通常の`button type="button"`と同一の`selected` stateで、選択表示・`aria-pressed`・System名・年代・説明・簡略プレビューを更新する。System選択は3列、390pxでは2列のgridで内部スクロールを持たない。
+- 390px実ブラウザでSystem 1 → 5 → 6 → 1 → 6をクリックし、System 5をEnter、System 6をSpaceでも選択した。全操作で表示一式が同時更新され、実効CSSは`display:grid`、2列、`max-height:none`、`overflow:visible`、`scrollHeight === clientHeight`、console errorなしだった。
+- MacPaintは実ブラウザで、初期Undo無効 → 塗りつぶし後に有効 → サンプル復帰後に再び無効となり、白抜き窓の選択枠と案内が復元されることを確認した。ソース回帰テストでは履歴の画像＋選択範囲、リセット時の履歴消去、限定した`touch-action`も検証する。
+- 現在のMacintosh展示は18件。LOG内の24件・22件の記述はこの時点より前の履歴である。
+
+## 2026-08-08 — PR #22 System 1〜6モバイル選択の修正
+
+- System選択へ古いflex／内部スクロール指定が混入していたため、System専用のgrid上書きで通常幅を3列×2行、520px以下を2列×3行とし、`max-height`と`overflow`を無効化した。390px幅でSystem 1 → 5 → 6 → 1 → 6をタップ、Enter、Spaceで確認する。
+
+## 2026-08-08 — PR #22 重複Finderカードの削除
+
+- フロッピーディスク挿入待ち、メニューバー、アイコン操作、ゴミ箱を削除し、起動とFinderの直接操作へ統合した。展示数は18件。
+- System 1〜6の選択領域は内部スクロールを廃止し、3列×2行のgridへ変更した。System 5/6でも同じselected index、`aria-pressed`、説明を使うため、押下中だけのスクロールと表示不一致を防ぐ。
+
+## 2026-08-08 — PR #22 のFinder統合と起動展示の整理
+
+- 「起動時に現れる状態」と「Sad Macと起動停止」の2カード、比較UI、起動の異常分岐を削除し、起動は`電源投入 → 初期化 → Happy Mac → ?付きフロッピー → ディスク挿入 → 読込 → Finder`だけの一本道にした。展示数は22件へ更新した。
+- Finder、メニューバー、アイコン操作、ゴミ箱の操作面を「Finderで直接操作する」へ集約し、残るカードは史実説明だけにした。Apple、File、Edit、View、Specialのメニューは同じFinder状態を更新し、About、Calculator、Open、By Icon、Empty Trashを実行できる。
+- ゴミ箱の蓋が開かない原因は、ポインタ一点で当たり判定していたことだった。ドラッグ中のRead Meの矩形とゴミ箱矩形の重なりで判定し、ポインタ／タッチのPointer Capture中も同じ状態を共有するようにした。復元とSpecialメニューは同じゴミ箱状態を使う。
+- MacPaintは最初から家の白黒サンプルと選択範囲を表示し、蟻の行進、選択内容を伴う移動、選択解除、Undo、初期サンプル復帰を案内した。
+- System 1〜6は同一の選択インデックスを`aria-pressed`、説明文、表示へ使う。System 5/6を連続して選んでもタイマーや個別の位置状態を作らないため、前の状態が残る問題を回避する。
+- 確認手順: 起動をFinderまで進める、Finderの各メニューとRead Meのドラッグ／復元、MacPaintの初期選択と移動、System 1〜6（特に5/6）の連続切替を確認する。
+
+## 2026-08-08 — Macintoshの動きと直接操作の補修
+
+- 起動体験を、電源投入、短い診断、Happy Mac、起動ディスク探索、点滅する?付きフロッピー、利用者によるシステムディスク挿入、読込、Finder到達の一続きにした。Happy Mac、Sad Mac（`0000 00F0`風の停止表示）、?付きフロッピーは同一の比較操作にも統合した。
+- Finderへ短い腕時計カーソルの待機状態を追加し、`Read Me`をゴミ箱へポインタ／タッチで縦横に直接ドラッグできるようにした。ゴミ箱上では蓋を開き、削除後は復元できる。
+- MacPaintへ矩形選択、`steps()`による白黒の蟻の行進、選択範囲の移動、選択解除を追加した。モーション軽減設定では点滅と腕時計の針を停止する。
+- System 1〜6は選択時の状態をその場で保持する純粋な選択展示にし、System 5/6を含め切替後の古いタイマーや位置情報が残らないようにした。System 5/6の版ごとの差は展示上の簡略化である。
+- 実機ROM、システム、画像、起動音は利用せず、HTML/CSS/TypeScriptによる独自描画とした。Finder／MacPaintの座標・待ち時間は展示の理解のために短縮・簡略化している。
+- 確認手順: 起動でディスク待ちまで進めて挿入、Finderで`Read Me`を開く／ゴミ箱へ捨てて復元、MacPaintで矩形選択と移動、System 1〜6を連続切替する。
+
+## 2026-08-07 — Macintosh展示室を史実ベースのUI再構成へ更新
+
+- PR #20のMacintosh展示室を基準に、初期Macintoshの画面構成と操作感を理解できる展示へ修正した。実機画面、ROM、System Software、アイコン画像、フォントファイル、起動音は使用していない。
+- 起動体験を`電源オフ → 起動診断 → Happy Mac → ?付きフロッピー（起動ディスク待ち） → システム読込 → Finder`の意味を持つ状態遷移に変更した。Sad Macはこの経路と分離し、停止状態と16進エラーコード風表示を持つ別分岐として実装した。
+- System 1 / Finder 1.xを参考に、Appleメニューを含む常駐メニューバー、白黒デスクトップ、ディスク／フォルダ／書類／ゴミ箱、反転選択、ダブルクリック、Finder風ウィンドウを独自描画した。
+- Finder風ウィンドウは左上の閉じるボックス、右側のスクロールレール、右下Grow boxを実装し、タイトルバーだけからPointer Captureで移動する。位置とサイズはpxで扱い、画面外へ完全に逃げないよう制限した。ブラウザ標準resizeは撤去した。
+- マウス展示は単一ボタンマウスと矢印ポインタを説明し、対象を押した時だけX/Y両方向へドラッグできるよう修正した。
+- フォント展示は英字サンプル`Welcome to Macintosh`とpangramの書体比較へ限定し、MacWrite展示は本文・書式・文字サイズ・印刷を意識したWYSIWYG文書編集へ分離した。
+- MultiFinderは1987年の協調的マルチタスクとして、前面アプリでメニューバーを切り替え、前面作業中の背景時計を遅く更新する簡略演出を追加した。
+- カラー比較はMacintosh II（1987）のカラーMacとSystem 7（1991）のUIを混同しない説明に改め、同じFinder風画面を1-bit白黒と初期カラーの識別用途で比較する。
+- `prefers-reduced-motion`で?付きフロッピーの点滅と移動transitionを停止する。各展示へ年代／OS・Finder世代／再現対象を表示し、キーボード、タッチ、focus操作が分かる案内を付けた。
+
+### 確認手順と結果
+
+- `npm run lint`、`npm run typecheck`、`npm test`が成功。Nodeテスト43件がすべて成功し、静的export buildも成功した。
+- 実ブラウザでは、起動体験のHappy Mac、?付きフロッピー、システムディスク挿入後のFinder到達、Sad Mac分岐を確認した。
+- デスクトップではFinder風メニューバー、白黒デスクトップ、状態比較を確認。390×844では1列表示となり、横スクロールなし（clientWidth / scrollWidth = 375px）を確認した。console warning / errorは0件。
+- 更新後の確認画像: `docs/screenshots/macintosh-authentic-ui-desktop.png`、`docs/screenshots/macintosh-authentic-ui-mobile.png`。
+
+### 意図的な簡略化
+
+- 起動診断、読込、エラーコード、アイコン図案、Finderウィンドウ、MultiFinderの停止感は、操作と歴史的な区別を理解するための独自表現であり、実機のビットマップ、ROM処理、スケジューラ、画面配置の完全再現ではない。
+
+## 2026-08-07 — Macintosh誕生展示室
+
+- 対象年代: 1984年の初代Macintoshから1991年のSystem 7まで。
+- Apple I / Apple II展示室の直後に、開閉式の「Macintosh誕生展示室」を追加した。文字とコマンド中心の操作から、マウス、アイコン、ウィンドウ、デスクトップを直接操作するGUIへの転換を体験の軸にした。
+- Appleの実機UI、ROM、アイコン、画像、フォントファイル、音源は複製せず、歴史的特徴をCSS、React state、Pointer Events、Canvas API、Web Audio APIで教育目的に再構成した。
+
+### 追加した24展示
+
+1. Macintosh起動体験
+2. Happy Mac
+3. Sad Mac
+4. フロッピーディスク挿入待ち
+5. Finder
+6. ウィンドウ操作
+7. メニューバー
+8. マウスとポインタ
+9. アイコン操作
+10. ゴミ箱
+11. スクロールバー
+12. デスクアクセサリ
+13. MacPaint
+14. MacWrite
+15. Macintoshフォント
+16. Susan Kareとアイコンデザイン
+17. System 1〜System 6
+18. MultiFinder
+19. System 7
+20. Balloon Help
+21. Macintosh機種の変遷
+22. Macintosh IIとカラー化
+23. Macintoshサウンド
+24. Apple IIからMacintoshへ
+
+### 新規コンポーネント・ファイル
+
+- `app/components/MacintoshBirthExhibitRoom.tsx`: 展示室の開閉、ページ可視性、軽減モーションと24展示の操作デモを実装。
+- `app/data/macintoshBirthExhibits.ts`: 24展示の年代、概要、操作案内、デモ種別を一元管理。
+- `docs/screenshots/macintosh-room-desktop.png`: デスクトップ確認画像。
+- `docs/screenshots/macintosh-room-mobile.png`: 390×844確認画像。
+
+### 更新ファイル
+
+- `app/page.tsx`: Apple II展示室の次にMacintosh展示室を追加し、7 ROOMS / 139 OBJECTSへ集計を更新。
+- `app/globals.css`: 白黒、グレー、ピクセル感、初期GUI風境界線を基調にした展示室、操作デモ、1列モバイル表示、reduced motion規則を追加。
+- `tests/rendered-html.test.mjs`: 24展示、表示件数、アコーディオン、操作技術、Apple IIリンク、レスポンシブと軽減モーションの構造テストを追加。
+- `README.md`: 展示室一覧、Macintosh展示室の概要、総展示数を更新。
+
+### アニメーション・インタラクション
+
+- 電源ONから自己診断、ディスク読込、Finder到達までの起動シーケンス。
+- 成功／失敗の表情切替、フロッピーのクリック／ドラッグ挿入、Finderアイコンの選択・ダブルクリック・移動・ゴミ箱ドロップ。
+- ウィンドウの開閉、前後切替、Pointer Eventsによるタイトルバードラッグ、CSS resize、メニュー展開とEscape終了、スクロール操作。
+- デスクアクセサリ、Canvasのペン／消しゴム／塗りつぶし／Undo、contentEditableの文書とフォント／サイズ変更、16×16ピクセル編集。
+- System 1〜6、機種変遷、System 7機能の選択、MultiFinder、hover・focus・tap対応Balloon Help、モノクロ／カラー切替。
+- 利用者がボタンを押した時だけ鳴るWeb Audio API独自合成音、Apple IIからGUIへの変化スライダー、Apple II展示室へのアンカーリンク。
+
+### モバイル・アクセシビリティ・性能
+
+- 800px以下で展示を1列化し、520px以下で導入工程、アイコン、ピクセル編集、比較表示、ディスク操作を再配置。390×844で横スクロールがないことを確認した。
+- 操作対象をbutton、input、canvas、aとして実装し、`aria-expanded`、`aria-controls`、`aria-hidden`、`inert`、`aria-pressed`、`aria-live`、`aria-label`、focus-visibleを付与した。Balloon Helpはhoverだけでなくfocusとtapに対応した。
+- `prefers-reduced-motion`では自動起動工程を即時完了し、アニメーションと長いtransitionを停止する。タイマー、matchMedia、visibilitychangeをcleanupし、閉室・タブ非表示時は起動タイマーを継続しない。
+- 24カードへ`content-visibility: auto`と`contain-intrinsic-size`を適用した。
+
+### テスト・ビルド・ブラウザ確認
+
+- `npm run lint`: 成功、警告0件。
+- `npm run typecheck`: 成功。
+- `npm test`: 静的buildとNodeテスト43件がすべて成功。
+- `npm run build`: 成功。`/`と`/_not-found`を静的生成。
+- デスクトップ: 24展示、起動完了`FINDER READY`、成功／失敗切替、横方向の欠けなしを確認。
+- 390×844: 1列表示、横スクロールなし、ディスク挿入、Balloon Help、Apple IIリンクを確認。
+- 両表示でブラウザconsoleのwarning／errorは0件。
+
+### 簡略実装・今後追加候補
+
+- 実機エミュレーションや完全なFinder／MacPaint／MacWriteではなく、展示目的に絞った安全なミニデモ。MacPaintの塗りつぶしはキャンバス全体、Undoは操作単位のスナップショット、ウィンドウのリサイズはブラウザ標準ハンドルを使用する。
+- 今後追加候補: Mac OS 8 / 9展示室、Mac OS X展示室、Macintosh vs Windows特別展示。
+
 ## 2026-08-02 — PR #14 FlashバナーCTAの安全な発光強調
 
 - 対象は「点滅CTAと価格の飛び込み」展示だけとし、18カテゴリ・54展示、他の専用コンポーネント、レイアウトは変更しなかった。

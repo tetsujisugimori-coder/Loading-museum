@@ -244,31 +244,107 @@ test("カーソル展示のデータ、Pointer Events、性能とアクセシビ
   assert.match(data, /Reactのローカルstateで3対象の選択状態と結果表示を切り替えています/);
 });
 
-test("Apple I / Apple II 展示室を加えた展示室・展示件数を表示する", async () => {
+test("Macintosh誕生展示室を加えた展示室・展示件数を表示する", async () => {
   const [html, page] = await Promise.all([
     readFile(new URL("index.html", outputRoot), "utf8"),
     readFile(new URL("app/page.tsx", projectRoot), "utf8"),
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /6 ROOMS \/ 115 OBJECTS/);
+  assert.match(normalizedHtml, /7 ROOMS \/ 133 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
-  assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 5);
-  assert.equal((html.match(/aria-expanded="false"/g) ?? []).length, 6);
+  assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 6);
+  assert.ok((html.match(/aria-expanded="false"/g) ?? []).length >= 8);
   assert.equal(
     (html.match(/class="exhibit"/g) ?? []).length
       + (html.match(/class="dosExhibit"/g) ?? []).length
       + (html.match(/class="unixExhibit"/g) ?? []).length
       + (html.match(/class="vanishedLoadingExhibit"/g) ?? []).length
       + (html.match(/class="cursorExhibit"/g) ?? []).length
-      + (html.match(/class="appleEarlyExhibit"/g) ?? []).length,
-    61,
+      + (html.match(/class="appleEarlyExhibit"/g) ?? []).length
+      + (html.match(/class="macExhibit"/g) ?? []).length,
+    79,
   );
-  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 3/);
-  assert.match(page, /cursorExhibits\.length \+ appleEarlyExhibitCount/);
+  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 4/);
+  assert.match(page, /cursorExhibits\.length \+ appleEarlyExhibitCount \+ macintoshBirthExhibitCount/);
   assert.match(page, /periodExhibitCount \+ flashExhibitCount/);
   assert.match(page, /exhibit\.kind === "vanished-os" \? exhibit\.loadingExhibits\.length : 1/);
   assert.doesNotMatch(page, /3 ROOMS \/ 30 OBJECTS/);
+});
+
+test("Macintosh誕生展示室へ18種類の操作展示を書き出す", async () => {
+  const [html, data, component, css] = await Promise.all([
+    readFile(new URL("index.html", outputRoot), "utf8"),
+    readFile(new URL("app/data/macintoshBirthExhibits.ts", projectRoot), "utf8"),
+    readFile(new URL("app/components/MacintoshBirthExhibitRoom.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+  const normalizedHtml = html.replaceAll("<!-- -->", "");
+  assert.match(normalizedHtml, /Macintosh誕生展示室/);
+  assert.match(normalizedHtml, /1984–1991/);
+  assert.match(normalizedHtml, /18 EXHIBITS/);
+  assert.equal((html.match(/class="macExhibit"/g) ?? []).length, 18);
+  assert.equal((data.match(/^  \{ id: /gm) ?? []).length, 18);
+  assert.match(html, /aria-controls="macintosh-birth-room-panel"/);
+  assert.match(html, /id="macintosh-birth-room-panel"[^>]*aria-hidden="true"[^>]*inert=""/);
+  for (const title of ["Macintosh起動体験", "Finderで直接操作する", "ウィンドウ操作", "マウスとポインタ", "スクロールバー", "デスクアクセサリ", "MacPaint", "MacWrite", "Macintoshフォント", "Susan Kareとアイコンデザイン", "System 1〜System 6", "MultiFinder", "System 7", "Balloon Help", "Macintosh機種の変遷", "Macintosh IIとカラー化", "Macintoshサウンド", "Apple IIからMacintoshへ"]) assert.match(normalizedHtml, new RegExp(title));
+  assert.match(component, /window\.setTimeout/);
+  assert.match(component, /window\.clearTimeout/);
+  assert.match(component, /visibilitychange/);
+  assert.match(component, /prefers-reduced-motion: reduce/);
+  assert.match(component, /onPointerDown/);
+  assert.match(component, /setPointerCapture/);
+  assert.match(component, /getContext\("2d"\)/);
+  assert.match(component, /AudioContext/);
+  assert.match(component, /AppleⅠ\/AppleⅡ展示室へ戻る/);
+  assert.match(css, /\.macExhibitGrid/);
+  assert.match(css, /@media \(max-width:520px\)/);
+  assert.match(css, /@media \(prefers-reduced-motion:reduce\)/);
+  assert.match(component, /type BootState = "off" \| "diagnostic" \| "happy" \| "need-disk" \| "loading" \| "finder"/);
+  assert.match(component, /Happy Mac/);
+  assert.doesNotMatch(data, /起動時に現れる状態|Sad Macと起動停止/);
+  assert.match(component, /\?付きフロッピー/);
+  assert.doesNotMatch(component, /Sad Mac|0000 00F0|state === "sad"/);
+  assert.match(component, /System 1 \/ Finder 1\.x/);
+  assert.match(component, /macFinderMenuBar/);
+  assert.match(component, /macCloseBox/);
+  assert.match(component, /macScrollRail/);
+  assert.match(component, /macGrowBox/);
+  assert.match(component, /mode: "move" \| "grow"/);
+  assert.match(component, /X \$\{position\.x\}px \/ Y \$\{position\.y\}px/);
+  assert.match(component, /Welcome to Macintosh/);
+  assert.match(component, /MacWrite is a WYSIWYG word processor/);
+  assert.match(component, /MultiFinder \(1987\)/);
+  assert.match(component, /Macintosh II（1987）/);
+  assert.match(component, /macWatchCursor/);
+  assert.match(component, /macPaintSelection/);
+  assert.match(component, /type PaintSnapshot = \{ image: ImageData; selection: Rect \| null \}/);
+  assert.match(component, /history\.current\.push\(\{ image: context\.getImageData\(0, 0, surface\.width, surface\.height\), selection \}\)/);
+  assert.match(component, /ctx\.putImageData\(previous\.image, 0, 0\); setSelection\(previous\.selection\)/);
+  assert.match(component, /history\.current = \[\]; setUndoCount\(0\)/);
+  assert.match(component, /disabled=\{undoCount === 0\}/);
+  assert.match(component, /content: ctx\.getImageData\(selection\.x, selection\.y, selection\.width, selection\.height\)/);
+  assert.match(component, /ctx\.putImageData\(move\.base, 0, 0\)/);
+  assert.match(component, /ctx\.fillStyle = "#fff"; ctx\.fillRect\(168, 98, 12, 12\)/);
+  assert.match(component, />塗りつぶし<\/button>/);
+  assert.match(component, /Read Meを復元/);
+  assert.match(component, /const fileRect = event\.currentTarget\.getBoundingClientRect\(\)/);
+  assert.match(component, /size: \{ width: fileRect\.width, height: fileRect\.height \}/);
+  assert.match(component, /rectanglesOverlap\(fileRect, trash\)/);
+  assert.match(component, /const isOverTrashRef = useRef\(false\)/);
+  assert.match(component, /const shouldMoveToTrash = !cancelled && drag\.moved && isOverTrashRef\.current/);
+  assert.match(component, /onPointerCancel=\{\(\) => finishFileDrag\(true\)\}/);
+  assert.match(component, /onLostPointerCapture=\{\(\) => finishFileDrag\(\)\}/);
+  assert.doesNotMatch(component, /event\.clientX - 30|event\.clientY - 24/);
+  assert.match(css, /mac-marching-ants/);
+  assert.match(css, /mac-watch-hand/);
+  assert.doesNotMatch(css, /\.macDesktopField\s*\{[^}]*touch-action\s*:\s*none/);
+  assert.match(css, /\.macDesktopItem\.macDraggableFile\s*\{[^}]*touch-action:\s*none/);
+  assert.match(css, /\.macDesktopItem\.macDraggableFile,\.macDesktopItem\.macTrashTarget\s*\{[^}]*position:\s*absolute/);
+  assert.match(css, /\.macPaintStage canvas\s*\{[^}]*touch-action:\s*none/);
+  assert.match(css, /\.macPaintSelection\s*\{[^}]*touch-action:\s*none/);
+  assert.doesNotMatch(component, /resize:both/);
+  assert.doesNotMatch(css, /\.macWindow\s*\{[^}]*resize:both/);
 });
 
 test("Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する", async () => {
@@ -1057,4 +1133,17 @@ test("静的export設定と既存レスポンシブ・reduced-motion対応を維
   assert.match(css, /\.webosHistoricalPulse\[data-running="true"\]/);
   assert.match(css, /\.windowsMovingDots\[data-running="true"\]/);
   assert.match(css, /content-visibility: auto/);
+});
+
+test("System 1〜6のbutton構造と非スクロールgridを静的に維持する", async () => {
+  const [component, css] = await Promise.all([
+    readFile(new URL("app/components/MacintoshBirthExhibitRoom.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+  assert.match(component, /<button key=\{label\} type="button" aria-pressed=\{selected === index\} onClick=\{\(\) => activate\(index, "click"\)\} onKeyDown=/);
+  assert.match(component, /activate\(index, event\.key === "Enter" \? "enter" : "space"\)/);
+  assert.match(component, /\["System 1", "System 2", "System 3", "System 4", "System 5", "System 6"\]/);
+  assert.match(css, /\.macChoiceDemo>div \{ display:grid; grid-template-columns:repeat\(3,minmax\(0,1fr\)\); gap:8px; max-height:none; overflow:visible; overflow-y:visible; \}/);
+  assert.match(css, /@media \(max-width:520px\) \{ \.macChoiceDemo>div \{ display:grid; grid-template-columns:repeat\(2,minmax\(0,1fr\)\);/);
+  assert.doesNotMatch(css, /\.macChoiceDemo>div \{ max-height:92px; overflow:auto; \}/);
 });
