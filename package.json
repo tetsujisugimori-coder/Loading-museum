@@ -9,7 +9,7 @@
     "dev": "next dev",
     "build": "next build",
     "check": "npm run lint && npm run typecheck && npm test",
-    "test": "npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run tests/macintosh-system-choice.test.tsx",
+    "test": "npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run tests/macintosh-system-choice.test.tsx tests/dom-animation-room.test.tsx",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },

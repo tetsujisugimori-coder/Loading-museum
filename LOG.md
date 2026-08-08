@@ -1349,3 +1349,15 @@
 
 - 入口を既存展示室と同じ構造へ揃え、`ROOM / 1976–1979`、`Apple I / Apple II 展示室`、`Apple IからApple II、Disk IIへ`、`13 EXHIBITS`へ簡潔化した。
 - 年代の重複表示を解消した。変更は入口のタイトル、補足文、年代・件数表記と関連文書・回帰テストだけで、展示内容、初心者向けツアー、アニメーション、BASIC、カセット、Disk II、Canvas、音声処理は変更していない。
+## 2026-08-08 — DOMアニメーション展示室
+
+- 目的: JavaScriptからブラウザ提供のDOM APIを操作し、HTML要素の変化とコードの関係を実際に試せる「DOM ANIMATION ROOM」を追加した。DOMはJavaScript言語そのものではなく、ブラウザがHTML文書をJavaScriptから扱うために提供するAPI群であることを導入で明記した。
+- 展示: Transform Move、Rotate、Scale、Opacity Fade、classList Toggle、CSS Custom Property、Create and Remove Element、Bounding Client Rect、Manual DOM Animationの9展示を実装した。全展示にAPI名、最小コード、状態表示、リセット、JavaScriptで再現の表記を置いた。
+- ReactとDOM API: 表示・状態表示はReactのstate/JSXで管理し、直接DOM操作は各展示専用の`useRef`要素へ限定した。`document.createElement()`による追加・削除は、React管理外と表示した専用コンテナだけで行い、Reactの子要素とは競合させない。
+- 共通部品: `ExhibitCard`、`Stage`、`Controls`、`Status`と、軽減モーションを読む`useReducedMotion`を`DomAnimationRoom.tsx`内に設けた。展示情報は`app/data/domAnimationExhibits.ts`で型付き配列として管理する。
+- アクセシビリティ: すべてbuttonでキーボード操作でき、状態は`aria-live`のoutputへ表示する。色だけに依存せずラベルと状態値を併記する。
+- reduced motion: CSS遷移を即時化し、Manual DOM Animationは連続移動せず「最終位置へ」ボタンで端へ即時反映する方式にした。
+- 安全性: Manual DOM Animationはanimation ID、位置、実行中フラグをrefで保持し、二重起動を防ぐ。停止、リセット、展示室を閉じた時、アンマウント時に`cancelAnimationFrame()`を行う。
+- 変更ファイル: `app/components/DomAnimationRoom.tsx`、`app/data/domAnimationExhibits.ts`、`app/page.tsx`、`app/globals.css`、`README.md`、`tests/rendered-html.test.mjs`、本LOG。
+- テスト結果: `npm run typecheck`、`npm run lint`、`npm test`、`npm run build`が成功した。`tests/dom-animation-room.test.tsx`では、展示室を開いた後のtransform、classList、React管理外コンテナへの要素追加・全削除を実DOM操作として検証する。PC幅・390px幅では、操作ボタン、状態表示、横あふれなしを確認した。
+- 未実装事項: CSS Transition展示室は未実装。次の候補として、CSS側の遷移制御そのものを主題にした「CSS Transition展示室」を追加する。

@@ -251,10 +251,10 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /7 ROOMS \/ 133 OBJECTS/);
+  assert.match(normalizedHtml, /8 ROOMS \/ 142 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
-  assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 6);
-  assert.ok((html.match(/aria-expanded="false"/g) ?? []).length >= 8);
+  assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 7);
+  assert.ok((html.match(/aria-expanded="false"/g) ?? []).length >= 9);
   assert.equal(
     (html.match(/class="exhibit"/g) ?? []).length
       + (html.match(/class="dosExhibit"/g) ?? []).length
@@ -262,14 +262,42 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
       + (html.match(/class="vanishedLoadingExhibit"/g) ?? []).length
       + (html.match(/class="cursorExhibit"/g) ?? []).length
       + (html.match(/class="appleEarlyExhibit"/g) ?? []).length
-      + (html.match(/class="macExhibit"/g) ?? []).length,
-    79,
+      + (html.match(/class="macExhibit"/g) ?? []).length
+      + (html.match(/class="domExhibit"/g) ?? []).length,
+    88,
   );
-  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 4/);
-  assert.match(page, /cursorExhibits\.length \+ appleEarlyExhibitCount \+ macintoshBirthExhibitCount/);
+  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 5/);
+  assert.match(page, /cursorExhibits\.length \+ appleEarlyExhibitCount \+ macintoshBirthExhibitCount \+ domAnimationExhibitCount/);
   assert.match(page, /periodExhibitCount \+ flashExhibitCount/);
   assert.match(page, /exhibit\.kind === "vanished-os" \? exhibit\.loadingExhibits\.length : 1/);
   assert.doesNotMatch(page, /3 ROOMS \/ 30 OBJECTS/);
+});
+
+test("DOMアニメーション展示室へ9種類のDOM API操作展示を書き出す", async () => {
+  const [html, data, component, css] = await Promise.all([
+    readFile(new URL("index.html", outputRoot), "utf8"),
+    readFile(new URL("app/data/domAnimationExhibits.ts", projectRoot), "utf8"),
+    readFile(new URL("app/components/DomAnimationRoom.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+  const normalizedHtml = html.replaceAll("<!-- -->", "");
+  assert.match(normalizedHtml, /DOM ANIMATION ROOM/);
+  assert.match(normalizedHtml, /DOMアニメーション展示室/);
+  assert.match(normalizedHtml, /JavaScript \+ Browser DOM APIs/);
+  assert.match(normalizedHtml, /9 EXHIBITS/);
+  assert.equal((html.match(/class="domExhibit"/g) ?? []).length, 9);
+  assert.equal((data.match(/^  \{ id: /gm) ?? []).length, 9);
+  assert.match(component, /useRef/);
+  assert.match(component, /document\.createElement/);
+  assert.match(component, /getBoundingClientRect/);
+  assert.match(component, /requestAnimationFrame/);
+  assert.match(component, /cancelAnimationFrame/);
+  assert.match(component, /runningRef\.current/);
+  assert.match(component, /React管理外の専用コンテナ/);
+  assert.match(component, /prefers-reduced-motion: reduce/);
+  assert.match(css, /\.domExhibitGrid/);
+  assert.match(css, /\.roomCardDom/);
+  assert.match(css, /@media \(prefers-reduced-motion:reduce\).*roomCardDom/s);
 });
 
 test("Macintosh誕生展示室へ18種類の操作展示を書き出す", async () => {
