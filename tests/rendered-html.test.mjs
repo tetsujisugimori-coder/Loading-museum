@@ -1112,3 +1112,15 @@ test("静的export設定と既存レスポンシブ・reduced-motion対応を維
   assert.match(css, /\.windowsMovingDots\[data-running="true"\]/);
   assert.match(css, /content-visibility: auto/);
 });
+
+test("System 1〜6の選択UIは通常buttonと非スクロールgridを維持する", async () => {
+  const [component, css] = await Promise.all([
+    readFile(new URL("app/components/MacintoshBirthExhibitRoom.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+  assert.match(component, /<button key=\{label\} type="button" aria-pressed=\{selected === index\} onClick=\{\(\) => setSelected\(index\)\}/);
+  assert.match(component, /\["System 1", "System 2", "System 3", "System 4", "System 5", "System 6"\]/);
+  assert.match(css, /\.macChoiceDemo>div \{ display:grid; grid-template-columns:repeat\(3,minmax\(0,1fr\)\); gap:8px; max-height:none; overflow:visible; overflow-y:visible; \}/);
+  assert.match(css, /@media \(max-width:520px\) \{ \.macChoiceDemo>div \{ display:grid; grid-template-columns:repeat\(2,minmax\(0,1fr\)\);/);
+  assert.doesNotMatch(css, /\.macChoiceDemo>div \{ max-height:92px; overflow:auto; \}/);
+});

@@ -1,5 +1,11 @@
 # Loading Museum 作業ログ
 
+## 2026-08-08 — PR #22 MacPaint UndoとSystem切替の再発防止
+
+- MacPaintは選択範囲を動かし始める直前にCanvas全体を履歴へ一度だけ保存する。Undoは描画と、初期の窓（12×12px）の選択位置を戻す。初期状態へ戻すと家のサンプル、窓の選択、Undo履歴を初期化する。
+- System 1〜6は通常の`button type="button"`と同一の`selected` stateで、選択表示・`aria-pressed`・見出し・説明を更新する。System選択は3列、モバイルでは2列のgridで内部スクロールを持たない。
+- 現在のMacintosh展示は18件。LOG内の24件・22件の記述はこの時点より前の履歴である。
+
 ## 2026-08-08 — PR #22 System 1〜6モバイル選択の修正
 
 - System選択へ古いflex／内部スクロール指定が混入していたため、System専用のgrid上書きで通常幅を3列×2行、520px以下を2列×3行とし、`max-height`と`overflow`を無効化した。390px幅でSystem 1 → 5 → 6 → 1 → 6をタップ、Enter、Spaceで確認する。
