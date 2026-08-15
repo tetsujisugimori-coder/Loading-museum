@@ -251,9 +251,9 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /7 ROOMS \/ 133 OBJECTS/);
+  assert.match(normalizedHtml, /8 ROOMS \/ 150 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
-  assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 6);
+  assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 7);
   assert.ok((html.match(/aria-expanded="false"/g) ?? []).length >= 8);
   assert.equal(
     (html.match(/class="exhibit"/g) ?? []).length
@@ -262,10 +262,12 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
       + (html.match(/class="vanishedLoadingExhibit"/g) ?? []).length
       + (html.match(/class="cursorExhibit"/g) ?? []).length
       + (html.match(/class="appleEarlyExhibit"/g) ?? []).length
-      + (html.match(/class="macExhibit"/g) ?? []).length,
-    79,
+      + (html.match(/class="macExhibit"/g) ?? []).length
+      + (html.match(/class="domOperation"/g) ?? []).length,
+      96,
   );
-  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 4/);
+  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 5/);
+  assert.match(page, /const totalExhibitCount = permanentExhibitCount \+ periodExhibitCount \+ flashExhibitCount \+ 17/);
   assert.match(page, /cursorExhibits\.length \+ appleEarlyExhibitCount \+ macintoshBirthExhibitCount/);
   assert.match(page, /periodExhibitCount \+ flashExhibitCount/);
   assert.match(page, /exhibit\.kind === "vanished-os" \? exhibit\.loadingExhibits\.length : 1/);
@@ -1146,4 +1148,72 @@ test("System 1〜6のbutton構造と非スクロールgridを静的に維持す�
   assert.match(css, /\.macChoiceDemo>div \{ display:grid; grid-template-columns:repeat\(3,minmax\(0,1fr\)\); gap:8px; max-height:none; overflow:visible; overflow-y:visible; \}/);
   assert.match(css, /@media \(max-width:520px\) \{ \.macChoiceDemo>div \{ display:grid; grid-template-columns:repeat\(2,minmax\(0,1fr\)\);/);
   assert.doesNotMatch(css, /\.macChoiceDemo>div \{ max-height:92px; overflow:auto; \}/);
+});
+
+test("DOM ANIMATION ROOM を静的HTMLへ出力し、17操作のAPI体験を確認する", async () => {
+  const [html, component, css] = await Promise.all([
+    readFile(new URL("index.html", outputRoot), "utf8"),
+    readFile(new URL("app/components/DomAnimationRoom.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+
+  assert.match(html, /DOM ANIMATION ROOM/);
+  assert.match(html, /17 操作デモ/);
+  assert.match(html, /aria-controls="dom-animation-room-panel"/);
+  assert.match(html, /id="dom-animation-room-panel"/);
+  assert.equal((html.match(/class="domOperation"/g) ?? []).length, 17);
+
+  for (const operationTitle of [
+    "1. 要素を作って末尾へ追加",
+    "2. 要素を先頭へ差し込む",
+    "3. 任意位置へ差し込む",
+    "4. 属性を付与して識別",
+    "5. 一時属性を取り除く",
+    "6. classList で状態を切り替える",
+    "7. classList.toggle のループ",
+    "8. style.setProperty で見た目を変更",
+    "9. dataset で状態を保持",
+    "10. textContent で表示文字列を更新",
+    "11. querySelectorAll でまとめて操作",
+    "12. closest で祖先をたどる",
+    "13. contains で包含関係を確認",
+    "14. cloneNode で複製",
+    "15. replaceChildren でまとめて入れ替え",
+    "16. addEventListener \/ removeEventListener",
+    "17. scrollIntoView と座標取得",
+  ]) {
+    assert.match(html, new RegExp(operationTitle));
+  }
+
+  for (const api of [
+    "createElement",
+    "appendChild",
+    "prepend",
+    "insertBefore",
+    "setAttribute",
+    "classList",
+    "scrollIntoView",
+    "getBoundingClientRect",
+    "dataset",
+    "querySelectorAll",
+    "closest",
+    "contains",
+    "cloneNode",
+    "replaceChildren",
+    "addEventListener",
+  ]) {
+    assert.match(html, new RegExp(api));
+  }
+
+  assert.match(component, /function usePrefersReducedMotion/);
+  assert.match(component, /const domOperations: readonly DomOperation\[]/);
+  assert.match(component, /id: "operation-17-scroll-and-rect"/);
+  assert.match(component, /aria-hidden\s*=\s*\{!isOpen\}/);
+  assert.match(component, /run\s*=\s*\(/);
+  assert.match(component, /reset\s*=\s*\(/);
+  assert.match(css, /\.roomCardDomAnimation/);
+  assert.match(css, /\.domOperationsGrid/);
+  assert.match(css, /\.domOperation/);
+  assert.match(css, /\.domOperationStage/);
+  assert.match(css, /@media \(max-width: 650px\)/);
 });

@@ -4,6 +4,7 @@ import { FlashSpecialExhibitRoom } from "./components/FlashSpecialExhibitRoom";
 import { MuseumTitleSequence } from "./components/MuseumTitleSequence";
 import AppleEarlyEraExhibitRoom from "./components/AppleEarlyEraExhibitRoom";
 import MacintoshBirthExhibitRoom from "./components/MacintoshBirthExhibitRoom";
+import { DomAnimationRoom } from "./components/DomAnimationRoom";
 import { appleEarlyExhibitCount } from "./data/appleEarlyExhibits";
 import { macintoshBirthExhibitCount } from "./data/macintoshBirthExhibits";
 import { cursorExhibits } from "./data/cursorExhibits";
@@ -12,7 +13,7 @@ import { flashExhibitCount } from "./data/flashExhibits";
 
 const spokes = Array.from({ length: 8 }, (_, index) => index);
 const permanentExhibitCount = 9;
-const periodRoomCount = exhibitRooms.length + 4;
+const periodRoomCount = exhibitRooms.length + 5;
 const periodExhibitCount = exhibitRooms.reduce(
   (roomTotal, room) => roomTotal + room.exhibits.reduce(
     (exhibitTotal, exhibit) => exhibitTotal + (
@@ -22,7 +23,7 @@ const periodExhibitCount = exhibitRooms.reduce(
   ),
   cursorExhibits.length + appleEarlyExhibitCount + macintoshBirthExhibitCount,
 );
-const totalExhibitCount = permanentExhibitCount + periodExhibitCount + flashExhibitCount;
+const totalExhibitCount = permanentExhibitCount + periodExhibitCount + flashExhibitCount + 17;
 
 function ExhibitHeader({
   number,
@@ -175,6 +176,7 @@ export default function Home() {
         <div className="roomList">
           <AppleEarlyEraExhibitRoom />
           <MacintoshBirthExhibitRoom />
+          <DomAnimationRoom />
           {exhibitRooms.map((room) => (
             <ExhibitRoomAccordion key={room.roomId} room={room} />
           ))}
