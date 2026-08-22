@@ -1383,3 +1383,12 @@
 - Browser checked at desktop and 320px: 47 cards, no horizontal overflow, core game and AI controls, comparison mode, no console errors. Reduced-motion media emulation showed the static reduced UI; animation-loop count could not be read through the browser bridge and is covered by the automated animation mock test.
 
 Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./docs/waapi-ai-working-motion-references.md), [change log](./docs/waapi-change-log.md).
+
+## 2026-08-23 — PR #28 WAAPI個別モーション再構築
+
+- 47標本を維持したまま、再生ポリシーを手動入場、手動退出、直接操作、自動有限、作業中ループへ分類した。
+- Fade / Slideの自動再生を止め、Button Pressはpointer・keyboardの押下と解放へ、ToggleはOFF / ON / OFFの実状態へ変更した。
+- 共通ゲームプレビューを14件の専用シーンへ分離し、Combat、Reward、Hit Stop、Parry、Dodge、Line Clear、Match-3、Pinball、Lock-on、Equip、Status、Turn Order、Battle、Raceの固有DOM・状態・キーフレームを実装した。
+- AI 6件を固有グリフ・固有モーションへ変更し、個別カードと一括比較で同じ描画とキーフレームを共有した。
+- 統合前5件のデータ、render kind、DOM、CSSと、実在しないコード例APIを削除した。
+- データ定義、状態境界、直接操作、固有DOM、固有キーフレーム、停止cleanupをReact / Vitestテストで検証対象にした。

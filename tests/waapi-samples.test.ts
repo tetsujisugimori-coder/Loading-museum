@@ -40,6 +40,12 @@ describe("WAAPI標本データ", () => {
     expect(byId("slide-out-right").normal.keyframes[0]).toMatchObject({ opacity: 1, transform: "translateX(0)" });
     expect(byId("slide-out-right").normal.keyframes.at(-1)).toMatchObject({ opacity: 0, transform: "translateX(var(--slide-distance))" });
     expect(formatAnimationCode(byId("slide-in-left"))).toContain("getBoundingClientRect");
+    expect(byId("fade-in").playbackPolicy).toBe("manual-entrance");
+    expect(byId("slide-in-left").playbackPolicy).toBe("manual-entrance");
+    expect(byId("fade-out").playbackPolicy).toBe("manual-exit");
+    expect(byId("slide-out-right").playbackPolicy).toBe("manual-exit");
+    expect(byId("button-press").playbackPolicy).toBe("direct-interaction");
+    expect(byId("toggle-switch").playbackPolicy).toBe("direct-interaction");
   });
 
   it("軽減表示でもExit、Counter、Toggle、Marqueeの意味を維持する", () => {
@@ -67,6 +73,20 @@ describe("WAAPI標本データ", () => {
       expect(item.inspirationType).toBe("AI Product Interface");
       expect(item.stateKinds).toEqual(expect.arrayContaining(["Continuous", "Finite", "Failure"]));
       expect(item.inspiredBy).toMatch(/着想|再構成|再現ではありません/);
+      expect(item.playbackPolicy).toBe("working-loop");
+      expect(formatAnimationCode(item)).not.toContain("observer.onExit");
+    });
+    expect(new Set(items.map((item) => JSON.stringify(item.normal.keyframes))).size).toBe(6);
+  });
+
+  it("ゲーム14件は個別キーフレームと実装コードを持つ", () => {
+    const items = waapiSamples.filter((item) => ["combat", "reward-lab", "hit-stop", "parry", "dodge", "line-clear", "match3", "pinball", "lockon", "equip", "status-effects", "turn-order", "battle-transition", "race"].includes(item.render));
+    expect(items).toHaveLength(14);
+    expect(new Set(items.map((item) => JSON.stringify(item.normal.keyframes))).size).toBe(14);
+    items.forEach((item) => {
+      expect(item.playbackPolicy).toBe("direct-interaction");
+      expect(item.implementationCode?.length, item.name).toBeGreaterThan(80);
+      expect(formatAnimationCode(item), item.name).toBe(item.implementationCode);
     });
   });
 });

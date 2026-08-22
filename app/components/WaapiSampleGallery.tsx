@@ -42,13 +42,11 @@ function usePrefersReducedMotion() {
   return reducedMotion;
 }
 
-const gameKinds: SampleRenderKind[] = ["treasure", "achievement", "rhythm", "coin", "combo", "critical", "hp", "boss", "menu", "quest", "level", "cards"];
+const gameKinds: SampleRenderKind[] = ["treasure", "rhythm", "coin", "combo", "hp", "boss", "menu", "cards"];
 
-function PreviewArtwork({ kind, entered, onToggle, onPress, onRelease }: { kind: SampleRenderKind; entered: boolean; onToggle: () => void; onPress: () => void; onRelease: () => void }) {
-  if (kind === "button") return <button className="waapiButtonObject" data-motion-target type="button" onPointerDown={onPress} onPointerUp={onRelease} onPointerLeave={onRelease} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") onPress(); }} onKeyUp={(event) => { if (event.key === "Enter" || event.key === " ") onRelease(); }}>PRESS</button>;
+function PreviewArtwork({ kind, entered }: { kind: SampleRenderKind; entered: boolean }) {
   if (kind === "modal") return <div className="waapiModalBackdrop" data-motion-overlay aria-hidden={!entered}><div className="waapiModalObject" data-motion-target inert={!entered ? true : undefined}><i /><i /><button type="button">OK</button></div></div>;
   if (kind === "toast") return <div className="waapiToastObject" data-motion-target><i aria-hidden="true">✓</i><span>保存しました</span></div>;
-  if (kind === "toggle") return <button type="button" className="waapiToggleTrack" aria-label="展示スイッチ" aria-pressed={entered} onClick={onToggle}><i data-motion-target /></button>;
   if (kind === "typewriter") return <span className="waapiTypewriter" data-motion-target>LOADING MUSEUM</span>;
   if (kind === "characters") return <div className="waapiCharacters" aria-label="MOTION">{"MOTION".split("").map((letter, index) => <span data-motion-target aria-hidden="true" key={`${letter}-${index}`}>{letter}</span>)}</div>;
   if (kind === "counter") return <div className="waapiCounterWindow" role="img" aria-label="最終値 9"><div className="waapiCounterColumn" data-motion-target>{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((digit) => <span key={digit}>{digit}</span>)}</div></div>;
@@ -56,7 +54,6 @@ function PreviewArtwork({ kind, entered, onToggle, onPress, onRelease }: { kind:
   if (kind === "watch") return <div className="waapiWatch"><i data-motion-target /><b /></div>;
   if (kind === "dock") return <div className="waapiDock"><i data-motion-target>APP</i><b /></div>;
   if (kind === "geometry") return <div className="waapiGeometry">{[["-42px", "-30px", "-70deg"], ["44px", "-22px", "85deg"], ["-36px", "34px", "48deg"], ["40px", "30px", "-95deg"]].map(([x, y, r], index) => <i key={index} data-motion-target style={{ "--part-x": x, "--part-y": y, "--part-r": r } as React.CSSProperties} />)}</div>;
-  if (kind === "damage") return <strong className="waapiDamageNumber" data-motion-target>-128</strong>;
   if (kind === "marquee") return <span className="waapiMarqueeText" data-motion-target>WELCOME TO MY HOMEPAGE ★ UNDER CONSTRUCTION</span>;
   if (kind === "side-panel") return <div className="waapiSidePanel" data-motion-target><b>ITEM MENU</b><span>Collection</span><span>Settings</span></div>;
   if (kind === "badge") return <div className="waapiBadgeObject" data-motion-target>NEW</div>;
@@ -77,6 +74,39 @@ function applyFrame(target: HTMLElement, frame: Keyframe | undefined) {
     const value = frame[property];
     if (value !== undefined && value !== null) target.style[property] = String(value);
   }
+}
+
+function ButtonPressPreview({ sample, reducedMotion }: { sample: WaapiSample; reducedMotion: boolean }) {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const animationRef = useRef<Animation | null>(null);
+  const pressed = useRef(false);
+  const run = (down: boolean) => {
+    if (pressed.current === down) return;
+    pressed.current = down;
+    animationRef.current?.cancel();
+    const definition = down ? (reducedMotion ? sample.reduced : sample.normal) : (reducedMotion ? sample.reducedExit : sample.exit);
+    if (buttonRef.current && definition) animationRef.current = buttonRef.current.animate(definition.keyframes, definition.options);
+  };
+  useEffect(() => () => animationRef.current?.cancel(), []);
+  return <div className="waapiPreviewGroup"><div className="waapiPreviewStage waapiPreviewStage--button"><button ref={buttonRef} className="waapiButtonObject" type="button" onPointerDown={() => run(true)} onPointerUp={() => run(false)} onPointerCancel={() => run(false)} onPointerLeave={() => run(false)} onBlur={() => run(false)} onKeyDown={(event) => { if (!event.repeat && (event.key === "Enter" || event.key === " ")) run(true); }} onKeyUp={(event) => { if (event.key === "Enter" || event.key === " ") run(false); }}>PRESS</button></div><p className="waapiDirectHint">直接押して確認（pointer / keyboard）</p></div>;
+}
+
+function TogglePreview({ sample, reducedMotion }: { sample: WaapiSample; reducedMotion: boolean }) {
+  const trackRef = useRef<HTMLButtonElement>(null);
+  const knobRef = useRef<HTMLElement>(null);
+  const animations = useRef<Animation[]>([]);
+  const [on, setOn] = useState(false);
+  const toggle = () => {
+    const next = !on;
+    setOn(next);
+    animations.current.forEach((animation) => animation.cancel());
+    const definition = next ? (reducedMotion ? sample.reduced : sample.normal) : (reducedMotion ? sample.reducedExit : sample.exit);
+    if (!definition) return;
+    if (knobRef.current) animations.current.push(knobRef.current.animate(definition.keyframes, definition.options));
+    if (trackRef.current) animations.current.push(trackRef.current.animate(next ? [{ backgroundColor: "#26342d" }, { backgroundColor: "#2f8b55" }] : [{ backgroundColor: "#2f8b55" }, { backgroundColor: "#26342d" }], { duration: reducedMotion ? 1 : 260, fill: "both" }));
+  };
+  useEffect(() => () => animations.current.forEach((animation) => animation.cancel()), []);
+  return <div className="waapiPreviewGroup"><div className="waapiPreviewStage waapiPreviewStage--toggle"><button ref={trackRef} type="button" className="waapiToggleTrack" aria-label={`展示スイッチ ${on ? "ON" : "OFF"}`} aria-pressed={on} onClick={toggle}><i ref={knobRef} /><span>{on ? "ON" : "OFF"}</span></button><output aria-live="polite">State: {on ? "ON" : "OFF"}</output></div><p className="waapiDirectHint">OFF → ON → OFF を直接操作</p></div>;
 }
 
 function StandardSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSample; active: boolean; reducedMotion: boolean }) {
@@ -132,30 +162,21 @@ function StandardSamplePreview({ sample, active, reducedMotion }: { sample: Waap
   }, [reducedMotion, sample]);
 
   useEffect(() => {
-    if (!active) return;
+    if (!active || sample.playbackPolicy !== "auto-finite") return;
     const frame = window.requestAnimationFrame(() => play(true));
     // Finite animations retain their completion state when leaving the viewport.
     return () => window.cancelAnimationFrame(frame);
-  }, [active, play]);
+  }, [active, play, sample.playbackPolicy]);
   useEffect(() => stop, [stop]);
 
   const toggle = () => play(!entered);
-  const press = () => {
-    const target = stageRef.current?.querySelector<HTMLElement>("[data-motion-target]");
-    if (target) { stop(); animateElement(target, reducedMotion ? sample.reduced : sample.normal, animationsRef); }
-  };
-  const release = () => {
-    const target = stageRef.current?.querySelector<HTMLElement>("[data-motion-target]");
-    const definition = reducedMotion ? sample.reducedExit : sample.exit;
-    if (target && definition) { stop(); animateElement(target, definition, animationsRef); }
-  };
   return (
     <div className="waapiPreviewGroup">
       <div ref={stageRef} className={`waapiPreviewStage waapiPreviewStage--${sample.render}`} data-entered={entered}>
-        <PreviewArtwork kind={sample.render} entered={entered} onToggle={toggle} onPress={press} onRelease={release} />
+        <PreviewArtwork kind={sample.render} entered={entered} />
       </div>
       <div className="waapiPreviewControls">
-        <button type="button" onClick={() => play(true)} aria-label={`${sample.name}を再生`}>Replay</button>
+        <button type="button" onClick={() => play(true)} aria-label={`${sample.name}を再生`}>{sample.playbackPolicy === "manual-exit" ? "Play exit" : sample.playbackPolicy === "manual-entrance" ? "Play entrance" : "Replay"}</button>
         {isBidirectional && <button type="button" onClick={toggle} aria-label={`${sample.name}を${entered ? "閉じる" : "開く"}`}>{entered ? "Close / Exit" : "Open / Enter"}</button>}
       </div>
     </div>
@@ -171,7 +192,6 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
   const [hp, setHp] = useState(72);
   const [trailHp, setTrailHp] = useState(72);
   const [menuIndex, setMenuIndex] = useState(0);
-  const [level, setLevel] = useState(8);
   const [cardStatus, setCardStatus] = useState("READY");
   const stop = useCallback(() => { animations.current.forEach((item) => item.cancel()); animations.current = []; }, []);
   const run = useCallback(() => {
@@ -191,9 +211,8 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
     const steps = reducedMotion ? sample.reducedSequence : sample.sequence;
     steps?.forEach((item) => { const node = stage.querySelector<HTMLElement>(item.target); if (node) animateElement(node, { ...definition, keyframes: item.keyframes, options: item.options }, animations); });
     if (sample.render === "coin") Promise.resolve(main.finished).then(() => setScore((value) => value + 100)).catch(() => undefined);
-    if (sample.render === "level") setLevel(9);
   }, [reducedMotion, sample, stop]);
-  const reset = useCallback(() => { stop(); setRhythm("READY"); setScore(0); setComboIndex(0); setHp(72); setTrailHp(72); setMenuIndex(0); setLevel(8); setCardStatus("READY"); }, [stop]);
+  const reset = useCallback(() => { stop(); setRhythm("READY"); setScore(0); setComboIndex(0); setHp(72); setTrailHp(72); setMenuIndex(0); setCardStatus("READY"); }, [stop]);
   useEffect(() => {
     if (!active) return;
     const frame = window.requestAnimationFrame(run);
@@ -228,16 +247,12 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
   return <div className="waapiPreviewGroup">
     <div ref={stageRef} className={`waapiPreviewStage waapiPreviewStage--game waapiPreviewStage--${sample.render}`} tabIndex={sample.render === "menu" ? 0 : undefined} onKeyDown={sample.render === "menu" ? (event) => { if (event.key === "ArrowDown") { event.preventDefault(); moveMenu(1); } if (event.key === "ArrowUp") { event.preventDefault(); moveMenu(-1); } } : undefined}>
       {sample.render === "treasure" && <button type="button" className="gameChest" onClick={run} aria-label="宝箱を開く"><i data-chest-glow /><b data-motion-target /><span /><em data-chest-item>◆</em></button>}
-      {sample.render === "achievement" && <div className="gameAchievement" data-motion-target><i data-achievement-badge>★</i><span>ACHIEVEMENT UNLOCKED<small>FIRST DISCOVERY</small></span></div>}
       {sample.render === "rhythm" && <div className={`gameRhythm gameRhythm--${rhythm.toLowerCase()}`}><strong data-motion-target>{rhythm}</strong></div>}
       {sample.render === "coin" && <div className="gameCoinScene"><button type="button" data-motion-target onClick={run} aria-label="コインを取る">¢</button><output data-score aria-label={`Score ${score}`}>SCORE {score}</output></div>}
       {sample.render === "combo" && <strong className={`gameCombo gameCombo--${comboIndex}`} data-motion-target>{["READY", "2 COMBO", "5 COMBO", "10 COMBO"][comboIndex]}</strong>}
-      {sample.render === "critical" && <div className="gameCritical"><i data-hit-flash /><b data-slash /><strong data-motion-target>CRITICAL<small>999</small></strong></div>}
       {sample.render === "hp" && <div className="gameHp"><header><span>KNIGHT</span><output>{hp} / 100 HP</output></header><div><i style={{ width: `${trailHp}%` }} /><b data-motion-target style={{ width: `${hp}%` }} /></div></div>}
       {sample.render === "boss" && <div className="gameBoss"><i data-boss-dark /><b data-motion-target>♜</b><strong data-boss-name>THE OBSERVER</strong></div>}
       {sample.render === "menu" && <div className="gameMenu"><i style={{ transform: `translateY(${menuIndex * 34}px)` }}>▶</i>{["CONTINUE", "COLLECTION", "SETTINGS"].map((label, index) => <span className={menuIndex === index ? "isSelected" : ""} key={label}>{label}</span>)}<b data-motion-target style={{ opacity: 0 }} /></div>}
-      {sample.render === "quest" && <div className="gameQuest"><span>Find the lost artifact</span><i data-ink /><strong data-motion-target>QUEST COMPLETE</strong></div>}
-      {sample.render === "level" && <div className="gameLevel"><i data-level-aura /><span>◇</span><strong data-motion-target>LV {level}</strong><b data-level-label>LEVEL UP</b></div>}
       {sample.render === "cards" && <div className="gameCards" aria-label={`Card state: ${cardStatus}`}>{["A", "K", "Q", "J"].map((label, index) => <i data-card draggable onDragStart={() => setCardStatus("DRAG")} data-motion-target={index === 0 ? "" : undefined} key={label}>{label}</i>)}<output aria-live="polite">{cardStatus}</output></div>}
     </div>
     <div className="waapiPreviewControls gameControls">
@@ -255,6 +270,8 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
 function SamplePreview(props: { sample: WaapiSample; active: boolean; reducedMotion: boolean }) {
   if (expandedGameKinds.includes(props.sample.render)) return <ExpandedGamePreview {...props} />;
   if (aiKinds.includes(props.sample.render)) return <AiWorkingPreview {...props} />;
+  if (props.sample.render === "button") return <ButtonPressPreview sample={props.sample} reducedMotion={props.reducedMotion} />;
+  if (props.sample.render === "toggle") return <TogglePreview sample={props.sample} reducedMotion={props.reducedMotion} />;
   return gameKinds.includes(props.sample.render) ? <GameSamplePreview {...props} /> : <StandardSamplePreview {...props} />;
 }
 

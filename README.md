@@ -1,5 +1,9 @@
 # DIGITAL MOTION ARCHIVE
 
+## WAAPI標本ギャラリー
+
+ページ内の「SPECIMEN CABINET / WAAPI」から47件の標本を開けます。Fade / Slideは手動再生、Button / Toggleは対象を直接操作、ゲーム14件は個別の入力と状態遷移、AI 6件は作業中だけ動く固有グリフとして実装しています。OSの `prefers-reduced-motion` 設定では反復や大きな移動を止め、文字・色・静的配置で同じ意味を残します。
+
 DIGITAL MOTION ARCHIVEは、ローディング画面やカーソルなど、画面上の状態と操作を伝えてきたデジタルアニメーションを収集し、HTML、CSS、JavaScriptで再現する1ページのミュージアムです。
 
 ## 展示

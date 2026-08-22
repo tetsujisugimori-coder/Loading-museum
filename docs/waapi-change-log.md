@@ -1,5 +1,14 @@
 # WAAPI展示室 Change Log
 
+## 2026-08-23 — PR #28 個別モーション再構築
+
+- 47件を維持し、Fade / Slideを手動再生、Button / Toggleを直接操作、有限標本を自動再生、AIを作業中限定ループとして明示的に分類した。
+- ゲーム14件の共通ファクトリと共通Actor / Target DOMを廃止し、各標本専用の状態、DOM、キーフレーム、Reset処理へ分離した。
+- Parry / Dodgeの成功受付を警告開始後420〜680msへ限定し、早押し、成功、遅延、自動失敗を区別した。
+- AI 6件をブロック、リボン、コード行、星群、暖色核、引用ネットワークの固有DOM・固有モーションへ変更し、比較モードでも同じグリフを再利用した。
+- 実在しない `observer.onExit` をコード例から除去し、ゲーム14件とAI 6件は表示実装に対応するコードをデータへ収録した。
+- 統合前のDamage / Critical / Achievement / Quest / Level Upのデータ、render kind、DOM、CSSを削除した。
+
 ## 2026-08-22 — PR #28 追加修正
 
 - 既存32件を監査し、Damage / CriticalをCombat Damage Feedbackへ統合。

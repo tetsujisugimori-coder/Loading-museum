@@ -5463,45 +5463,61 @@ footer {
   }
 }
 
-/* Expanded WAAPI game and AI working-motion specimens */
-.waapiExpandedGame,.waapiAiPreview{position:relative;overflow:hidden;display:grid;place-items:center;align-content:center;gap:10px;min-height:230px;background:radial-gradient(circle at 50% 42%,#17382c 0,#081711 68%);isolation:isolate}
-.waapiExpandedGame>strong,.waapiAiPreview>strong{z-index:3;letter-spacing:.12em;color:#fff4b0;text-shadow:0 0 14px rgb(255 227 110/.45)}
-.waapiExpandedGame output,.waapiAiPreview output{z-index:3;font:600 11px/1.4 ui-monospace,monospace;color:#b8d9c5}
-.waapiGamePrompt{position:absolute;inset:10px auto auto 12px;font:700 10px/1 ui-monospace,monospace;color:#72f2a0}
-.waapiGameActor,.waapiGameTarget{position:absolute;width:56px;height:70px;bottom:44px;display:grid;place-items:center}
-.waapiGameActor{left:15%}.waapiGameTarget{right:15%}
-.waapiGameActor i,.waapiGameTarget i{width:34px;height:34px;border:2px solid #72f2a0;border-radius:45% 45% 35% 35%;box-shadow:0 0 16px rgb(114 242 160/.32)}
-.waapiGameActor b,.waapiGameTarget b{position:absolute;bottom:0;width:48px;height:24px;border:2px solid #6d8d79;border-radius:10px 10px 4px 4px}
-.waapiGameTarget i{border-color:#ff858b}.waapiGameTarget b{border-color:#a45159}
-.waapiExpandedGame button[draggable]{z-index:4;border:1px dashed #ffe36e;background:#13271d;color:#ffe36e;padding:8px;cursor:grab}
-.waapiExpandedGame--combat{background:linear-gradient(135deg,#261415,#07150f)}
-.waapiExpandedGame--reward-lab{background:radial-gradient(circle,#473713,#0d160d 67%)}
-.waapiExpandedGame--parry:after,.waapiExpandedGame--lockon:after{content:"";position:absolute;width:92px;height:92px;border:2px dashed #72f2a0;border-radius:50%;right:10%;bottom:37px;box-shadow:0 0 20px rgb(114 242 160/.35)}
-.waapiExpandedGame--dodge .waapiGameActor{box-shadow:-14px 0 rgb(114 242 160/.18),-28px 0 rgb(114 242 160/.08)}
-.waapiExpandedGame--line-clear{background:repeating-linear-gradient(0deg,#081711 0 22px,#153527 23px 24px)}
-.waapiExpandedGame--match3 .waapiGameActor i,.waapiExpandedGame--match3 .waapiGameTarget i{transform:rotate(45deg);border-radius:8px}
-.waapiBlockBoard{position:absolute;inset:auto 20% 35px;display:grid;grid-template-columns:repeat(6,1fr);gap:3px}.waapiBlockBoard i{aspect-ratio:1;background:#5bc883;border:1px solid #d7ffe4}.waapiBlockBoard i:nth-last-child(-n+6){background:#ffe36e}
-.waapiStatusMaterial{position:absolute;inset:34px 32% 52px;display:flex;justify-content:center;align-items:flex-end;gap:5px}.waapiStatusMaterial i{width:12px;height:28px;border-radius:50%;background:#7fda75}.waapiExpandedGame--status-effects[data-mode="burn"] .waapiStatusMaterial i{background:#ff714f;clip-path:polygon(50% 0,100% 70%,70% 100%,30% 100%,0 70%)}.waapiExpandedGame--status-effects[data-mode="freeze"] .waapiStatusMaterial i{height:42px;background:#9be7ff;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}.waapiExpandedGame--status-effects[data-mode="poison"] .waapiStatusMaterial i{border-radius:50%;height:12px;background:#a978dc}
-.waapiTurnCards{position:absolute;inset:38px 12% auto;display:flex;gap:5px;list-style:none;margin:0;padding:0}.waapiTurnCards li{display:grid;gap:2px;padding:7px;background:#173b2a;border:1px solid #61c685;font:700 9px ui-monospace;color:#d8f5e2}.waapiTurnCards b{color:#ffe36e}
-.waapiLockTargets{position:absolute;inset:48px 8% auto;display:flex;justify-content:space-between}.waapiLockTargets i{width:28px;height:36px;border:1px solid #587064;border-radius:50%}.waapiLockTargets i.isLocked{border:3px double #ffde69;box-shadow:0 0 12px #ffde69}
-.waapiRaceTrack{position:absolute;inset:35px 5% 32px;background:repeating-linear-gradient(90deg,transparent 0 30px,rgb(255 255 255/.12) 31px 33px);overflow:hidden}.waapiRaceTrack i:first-child{position:absolute;left:18%;bottom:18px;width:48px;height:20px;background:#e85b5b;clip-path:polygon(0 35%,72% 35%,100% 100%,0 100%)}
-.waapiExpandedGame--pinball{background:radial-gradient(circle at 30% 35%,#a13f66 0 8px,transparent 9px),radial-gradient(circle at 70% 50%,#d29939 0 9px,transparent 10px),#091914}
-.waapiExpandedGame--battle-transition:before{content:"BATTLE";position:absolute;inset:0;display:grid;place-items:center;background:repeating-linear-gradient(135deg,#0b2218 0 12px,#173e2b 13px 24px);font:900 34px ui-monospace;color:#75eaa0;opacity:.42}
-.waapiExpandedGame--race:before{content:"3  2  1";font:900 38px ui-monospace;color:#ffdf69;opacity:.18;position:absolute}
-.waapiAiPreview{background:#0b1210;border:1px solid #273b31}
-.waapiAiPreview>p{position:absolute;top:10px;left:12px;margin:0;color:#9bb4a5;font:700 10px ui-monospace}
-.waapiAiGlyph{display:flex;align-items:center;justify-content:center;gap:7px;height:78px}
-.waapiAiGlyph i{display:block;width:18px;height:42px;border:1px solid #77e99d;background:#153e28;border-radius:4px}
-.waapiAiPreview--ai-ribbon .waapiAiGlyph i{height:12px;width:46px;margin-left:-18px;transform:rotate(calc(var(--i,1)*15deg));border-radius:20px;background:#6254bd}
-.waapiAiPreview--ai-code .waapiAiGlyph{display:grid}.waapiAiPreview--ai-code .waapiAiGlyph i{width:94px;height:7px}
-.waapiAiPreview--ai-sparkle .waapiAiGlyph i{width:20px;height:20px;transform:rotate(45deg);background:#6b5bd6}
-.waapiAiPreview--ai-warm .waapiAiGlyph i{margin-left:-20px;width:50px;height:50px;border-radius:50%;background:#9d593f;border-color:#e3a580}
-.waapiAiPreview--ai-weave .waapiAiGlyph i{width:54px;height:2px;background:#60a7aa;transform:rotate(-20deg)}
-.waapiAiComparison{margin:28px 0;padding:18px;border:1px solid #315341;background:#0b1711}
-.waapiAiComparison>button{width:100%;padding:12px}.waapiAiComparison header{display:grid;gap:14px;margin:16px 0}.waapiAiComparison header p{display:flex;gap:5px;flex-wrap:wrap;margin:0}.waapiAiComparison header span{padding:5px 7px;border:1px solid #304a3c;font-size:11px}.waapiAiComparison header span.isCurrent{background:#23603d;color:#fff}.waapiAiComparison header div{display:flex;gap:6px;flex-wrap:wrap}
-.waapiAiComparisonGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.waapiAiMini{min-height:100px;display:grid;place-items:center;align-content:center;gap:6px;border:1px solid #294838;background:#0c2016}.waapiAiMini i{width:32px;height:32px;border:2px solid #72f2a0;border-radius:8px}.waapiAiMini strong,.waapiAiMini output{font:700 10px ui-monospace;color:#c7ddcf}
-@media(max-width:640px){.waapiAiComparisonGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.waapiExpandedGame{min-height:210px}.waapiGameActor{left:8%}.waapiGameTarget{right:8%}.waapiFilters{grid-template-columns:1fr}.gameControls{gap:5px}.gameControls button{min-height:40px;white-space:normal}}
-@media(prefers-reduced-motion:reduce){.waapiExpandedGame *,.waapiAiPreview *,.waapiAiComparison *{scroll-behavior:auto!important}}
+/* Expanded WAAPI AI working-motion specimens */
+.waapiAiPreview {
+  position: relative;
+  min-height: 230px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 10px;
+  border: 1px solid #273b31;
+  background: #0b1210;
+  isolation: isolate;
+}
+
+.waapiAiPreview > p {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  margin: 0;
+  color: #9bb4a5;
+  font: 700 10px var(--mono);
+}
+
+.waapiAiPreview > strong,
+.waapiAiPreview output {
+  z-index: 3;
+  color: #c7ddcf;
+  font: 700 10px var(--mono);
+}
+
+.waapiAiComparison {
+  margin: 28px 0;
+  padding: 18px;
+  border: 1px solid #315341;
+  background: #0b1711;
+}
+
+.waapiAiComparison > button { width: 100%; padding: 12px; }
+.waapiAiComparison header { display: grid; gap: 14px; margin: 16px 0; }
+.waapiAiComparison header p { display: flex; flex-wrap: wrap; gap: 5px; margin: 0; }
+.waapiAiComparison header span { padding: 5px 7px; border: 1px solid #304a3c; font-size: 11px; }
+.waapiAiComparison header span.isCurrent { color: white; background: #23603d; }
+.waapiAiComparison header div { display: flex; flex-wrap: wrap; gap: 6px; }
+.waapiAiComparisonGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.waapiAiMini { min-height: 120px; display: grid; place-items: center; align-content: center; gap: 6px; border: 1px solid #294838; background: #0c2016; }
+.waapiAiMini strong,
+.waapiAiMini output { color: #c7ddcf; font: 700 10px var(--mono); }
+
+@media (max-width: 640px) {
+  .waapiAiComparisonGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .waapiAiPreview { min-height: 210px; }
+  .waapiFilters { grid-template-columns: 1fr; }
+  .gameControls { gap: 5px; }
+  .gameControls button { min-height: 40px; white-space: normal; }
+}
 
 /* WAAPI specimen v3: semantic props and interactive game studies */
 .waapiCategoryCounts { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; padding: 0; list-style: none; }
@@ -5537,10 +5553,6 @@ footer {
 .gameChest > b { position: absolute; z-index: 3; left: 8px; right: 8px; top: 17px; height: 29px; border: 5px solid #48240c; border-radius: 12px 12px 2px 2px; background: #bb671e; transform-origin: center top; }
 .gameChest > em { position: absolute; z-index: 2; left: 43px; top: 35px; color: #8af2ff; font-size: 25px; font-style: normal; text-shadow: 0 0 12px #62e7ff; }
 .gameChest > i { position: absolute; z-index: 1; inset: 12px; border-radius: 50%; background: radial-gradient(circle,#fff9ae,#ffd34e55 45%,transparent 70%); }
-.gameAchievement { width: min(220px,calc(100% - 18px)); display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid #dfb849; background: linear-gradient(120deg,#241b0b,#44310e); color: #ffe793; box-shadow: 0 7px 25px #0009; font: 700 10px var(--mono); }
-.gameAchievement i { display: grid; place-items: center; width: 42px; height: 42px; flex: 0 0 auto; border: 2px solid #ffe793; border-radius: 50%; color: #ffe36e; font-style: normal; }
-.gameAchievement span { display: grid; gap: 5px; }
-.gameAchievement small { color: #fff; font-size: 8px; }
 .gameRhythm strong { color: #d7e0e8; font: 900 29px var(--mono); letter-spacing: .06em; }
 .gameRhythm--perfect strong { color: #ffe36e; text-shadow: 0 0 10px #ffe36e; }
 .gameRhythm--good strong { color: #68d9ff; }
@@ -5551,11 +5563,6 @@ footer {
 .gameCombo { color: #8fdcff; font: 900 25px var(--mono); text-shadow: 0 0 6px currentColor; }
 .gameCombo--2 { color: #f3d56b; font-size: 31px; text-shadow: 0 0 13px currentColor; }
 .gameCombo--3 { color: #ff7e9c; font-size: 36px; text-shadow: 0 0 18px currentColor; }
-.gameCritical { position: relative; display: grid; place-items: center; min-width: 180px; min-height: 100px; }
-.gameCritical > i { position: absolute; inset: 8px; background: radial-gradient(circle,#fff7b4aa,transparent 58%); }
-.gameCritical > b { position: absolute; width: 150px; height: 5px; background: linear-gradient(90deg,transparent,#fff,#ff465f,transparent); transform: rotate(-24deg); }
-.gameCritical strong { z-index: 2; display: grid; color: #ff596d; font: 900 22px var(--mono); text-shadow: 2px 2px 0 #5e101a; }
-.gameCritical small { color: #fff3a3; font-size: 34px; text-align: center; }
 .gameHp { width: min(240px,90%); display: grid; gap: 8px; }
 .gameHp header { display: flex; justify-content: space-between; color: #d9e6de; font: 8px var(--mono); }
 .gameHp > div { position: relative; height: 18px; overflow: hidden; border: 2px solid #9db4a5; background: #260b0c; }
@@ -5569,22 +5576,164 @@ footer {
 .gameMenu { position: relative; width: 170px; display: grid; gap: 10px; padding-left: 28px; color: #8999aa; font: 10px var(--mono); }
 .gameMenu > i { position: absolute; top: 0; left: 3px; color: #ffe36e; font-style: normal; transition: transform .22s ease; }
 .gameMenu .isSelected { color: #fff; font-weight: 800; text-shadow: 0 0 8px #68d9ff; }
-.gameQuest { position: relative; width: min(225px,88%); padding: 24px 12px; border: 1px solid #806e4a; background: linear-gradient(135deg,#d5c799,#aa9768); color: #2d291d; box-shadow: 0 7px 18px #0008; font: 9px var(--mono); }
-.gameQuest strong { position: absolute; inset: 25px 8px auto; padding: 7px; border: 3px double #9b242b; color: #9b242b; text-align: center; font: 900 12px var(--mono); }
-.gameQuest i { position: absolute; inset: 20px 55px; border-radius: 50%; background: #a01e292c; }
-.gameLevel { position: relative; display: grid; place-items: center; gap: 4px; color: #e8f4ff; }
-.gameLevel > i { position: absolute; width: 100px; height: 100px; border-radius: 50%; background: radial-gradient(circle,#71e7ff66,transparent 65%); }
-.gameLevel > span { z-index: 1; color: #8aeaff; font-size: 42px; }
-.gameLevel > strong { z-index: 2; color: #ffe36e; font: 900 20px var(--mono); }
-.gameLevel > b { z-index: 2; color: #fff; font: 900 10px var(--mono); letter-spacing: .15em; }
 .gameCards { position: relative; width: 210px; height: 120px; }
 .gameCards i { position: absolute; left: 85px; top: 30px; width: 42px; height: 60px; display: grid; place-items: center; border: 2px solid #d9e6ff; border-radius: 5px; background: linear-gradient(135deg,#f7f3df,#c8d8ec); color: #1e3657; box-shadow: 2px 3px 0 #18304d; font: 900 16px var(--serif); }
 
 @media (max-width: 360px) {
   .waapiPreviewStage--game { min-height: 170px; }
-  .gameAchievement { padding: 9px; font-size: 8px; }
   .gameControls button { flex-basis: 72px; font-size: 8px; }
   .waapiCodePanel pre { max-width: calc(100vw - 54px); }
+}
+
+/* Dedicated WAAPI game scenes and AI working glyphs */
+.gameScene {
+  position: relative;
+  min-height: 230px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 42%, #17382c, #081711 68%);
+  isolation: isolate;
+}
+
+.gameScene output {
+  position: absolute;
+  z-index: 8;
+  right: 10px;
+  bottom: 8px;
+  left: 10px;
+  color: #c8e4d2;
+  font: 700 10px var(--mono);
+  text-align: center;
+}
+
+.gameCombat .combatAttacker,
+.gameCombat .combatTarget,
+.gameHitStop .hitFighter,
+.gameHitStop .hitEnemy {
+  position: absolute;
+  bottom: 58px;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 72px;
+  color: #e7fff0;
+  border: 2px solid #72f2a0;
+}
+
+.gameCombat .combatAttacker,
+.gameHitStop .hitFighter { left: 14%; }
+.gameCombat .combatTarget,
+.gameHitStop .hitEnemy { right: 14%; }
+.gameCombat .combatTarget b { position: absolute; top: -20px; font: 8px var(--mono); }
+.combatSlash { position: absolute; z-index: 4; right: 13%; bottom: 88px; width: 75px; height: 5px; background: #fff5a8; }
+.gameCombat output { bottom: 112px; color: #ffdf69; font-size: 20px; }
+
+.gameReward { display: grid; place-items: center; }
+.gameReward > p { color: #a9c6b2; font: 700 10px var(--mono); }
+.rewardAchievement,
+.rewardQuest,
+.rewardLevel { display: grid; place-items: center; gap: 7px; padding: 18px; font-family: var(--mono); }
+.rewardAchievement { grid-template-columns: auto 1fr; border: 1px solid #e5bd4d; background: #3c2c0e; color: #ffe793; }
+.rewardAchievement i { grid-row: span 2; font-size: 34px; }
+.rewardAchievement small { color: white; }
+.rewardQuest { width: 210px; border: 1px solid #8b7956; background: #d7c99b; color: #332c1b; }
+.rewardQuest b { padding: 7px; border: 3px double #a62d37; color: #a62d37; transform: rotate(-7deg); }
+.rewardLevel { color: #8aeaff; text-shadow: 0 0 16px currentColor; }
+.rewardLevel i { font-size: 48px; }
+.rewardLevel small { color: #ffe36e; }
+
+.gameHitStop > span { position: absolute; inset: 30px; background: radial-gradient(circle, #fff8baaa, transparent 55%); opacity: 0; }
+.gameParry,
+.gameDodge { background: linear-gradient(135deg, #101f24, #090d11); }
+.timingHero { position: absolute; left: 24%; bottom: 68px; display: grid; place-items: center; width: 48px; height: 60px; border: 2px solid #77e99d; color: #77e99d; }
+.timingHero i { position: absolute; inset: 4px; border: 1px solid currentColor; opacity: .22; }
+.timingHero i:nth-child(2) { transform: translateX(-16px); }
+.timingHero i:nth-child(3) { transform: translateX(-32px); }
+.timingThreat { position: absolute; right: 23%; bottom: 78px; color: #ff6f75; font-size: 42px; }
+.timingWindow { position: absolute; right: 17%; bottom: 53px; width: 92px; height: 92px; border: 2px dashed #ffe36e; border-radius: 50%; }
+
+.gameLine { display: grid; place-items: center; background: #07131c; }
+.blockBoard { position: relative; display: grid; grid-template-columns: repeat(5, 24px); gap: 3px; padding: 8px; border: 2px solid #66839a; }
+.blockBoard > i,
+.blockBoard span i { width: 24px; height: 24px; background: #4e87bc; box-shadow: inset 0 0 0 2px #9bcaf0; }
+.blockBoard .clearRow { background: #ffe36e; }
+.blockBoard.isCleared .clearRow { opacity: .12; }
+.blockBoard span { position: absolute; top: 8px; right: 35px; display: grid; gap: 3px; }
+
+.gameMatch { display: grid; place-items: center; }
+.matchBoard { display: grid; grid-template-columns: repeat(3, 36px); gap: 5px; }
+.matchBoard button { width: 36px; height: 36px; padding: 0; border-color: #436153; color: #79dfff; background: #15281f; }
+.matchBoard button[aria-pressed="true"] { outline: 2px solid #ffe36e; color: #ffe36e; }
+
+.gamePinball { background: radial-gradient(circle at 65% 38%, #311747, #081516 70%); }
+.pinBumper { position: absolute; left: 58%; top: 35%; display: grid; place-items: center; width: 52px; height: 52px; border: 4px double #ff8bc4; border-radius: 50%; color: #fff; box-shadow: 0 0 22px #ff4f9e88; }
+.pinBall { position: absolute; left: 45%; top: 45%; width: 14px; height: 14px; border-radius: 50%; background: white; box-shadow: 0 0 12px white; }
+.pinTrail { position: absolute; left: 27%; top: 28%; width: 80px; height: 90px; border: 1px dashed #72f2a066; border-color: transparent #72f2a066 transparent transparent; border-radius: 50%; transform: rotate(25deg); }
+
+.gameLock { display: grid; place-items: center; }
+.lockTargets { display: flex; gap: 48px; color: #78998a; }
+.lockTargets i { font-size: 30px; font-style: normal; }
+.lockTargets .isLocked { color: #ffdf69; }
+.lockReticle { position: absolute; width: 56px; height: 56px; border: 2px dashed #72f2a0; border-radius: 50%; }
+
+.gameEquip { display: grid; grid-template-columns: 1fr 1fr; place-items: center; padding: 30px; }
+.gameEquip > button { padding: 12px; color: #eaf5ee; border: 1px solid #627b6c; background: #17241d; }
+.equipSlot { display: grid; place-items: center; width: 72px; height: 72px; border: 2px dashed #8eb49c; color: #8eb49c; font: 700 9px var(--mono); }
+.equipSlot.isFilled { border-style: solid; color: #ffe36e; font-size: 34px; }
+
+.gameStatus { display: grid; place-items: center; }
+.statusHero { font-size: 64px; color: #cce5d5; }
+.statusMaterial { position: absolute; display: flex; gap: 5px; color: #ff7358; font-size: 28px; }
+.effectFREEZE .statusMaterial { color: #8de5ff; transform: rotate(45deg); }
+.effectPOISON .statusMaterial { color: #b48be0; transform: translateY(-20px); }
+
+.gameTurn { display: grid; place-items: center; }
+.gameTurn ol { display: grid; gap: 6px; width: min(210px, 85%); margin: 0; padding: 0; list-style: none; }
+.gameTurn li { display: flex; gap: 12px; padding: 9px; border: 1px solid #456b55; color: #d8eee0; background: #11251a; font: 700 10px var(--mono); }
+.gameTurn li b { color: #ffe36e; }
+
+.gameBattle > div:not(.battleCover) { position: absolute; inset: 25px; display: grid; place-items: center; }
+.battleField { color: #a8d299; background: linear-gradient(#173b25, #0d2316); }
+.battleArena { grid-template-columns: 1fr auto 1fr; color: #ffe36e; background: radial-gradient(circle, #341a26, #100b10); }
+.battleArena i { font-size: 38px; font-style: normal; }
+.sceneFIELD .battleArena,
+.sceneBATTLE .battleField { visibility: hidden; }
+.battleCover { position: absolute; z-index: 6; inset: 0; display: grid; place-items: center; background: repeating-linear-gradient(135deg, #0d2b1c 0 14px, #1e5036 15px 28px); color: #fff4a9; font: 900 30px var(--mono); clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+
+.gameRace > strong { position: absolute; z-index: 3; inset: 26px 0 auto; color: #ffe36e; font: 900 38px var(--mono); text-align: center; }
+.raceTrack { position: absolute; right: 8%; bottom: 54px; left: 8%; height: 72px; border-bottom: 4px double white; background: repeating-linear-gradient(90deg, transparent 0 36px, #ffffff22 37px 39px); }
+.raceCar { position: absolute; bottom: 4px; left: 2px; width: 48px; height: 22px; background: #e85b5b; clip-path: polygon(0 35%, 72% 35%, 100% 100%, 0 100%); }
+
+.waapiDirectHint { margin: 0; color: #9db6a6; font: 9px var(--mono); text-align: center; }
+.waapiToggleTrack { position: relative; display: grid; grid-template-columns: 30px 1fr; align-items: center; width: 86px; height: 36px; padding: 4px; border-radius: 20px; }
+.waapiToggleTrack i { width: 26px; height: 26px; border-radius: 50%; background: #eafff1; }
+.waapiToggleTrack span { color: white; font: 700 9px var(--mono); }
+
+.aiGlyph { position: relative; width: 120px; height: 76px; }
+.aiModular { display: grid; grid-template-columns: repeat(3, 1fr); align-items: end; gap: 5px; }
+.aiModular i { display: grid; place-items: center; height: 28px; border: 1px solid #72f2a0; color: #b9e8c9; font: 7px var(--mono); }
+.aiModular i:nth-child(2) { height: 45px; }
+.aiModular i:nth-child(3) { height: 62px; }
+.aiRibbon i { position: absolute; top: 31px; left: 14px; width: 92px; height: 13px; border-radius: 12px; background: #6c5bd0; }
+.aiRibbon i:nth-child(2) { background: #47a8bb; }
+.aiRibbon i:nth-child(3) { background: #cb6a87; }
+.aiCode { display: grid; align-content: center; gap: 7px; }
+.aiCode i { padding: 4px; border-left: 3px solid #72f2a0; color: #bde8ca; background: #12281c; font: 8px var(--mono); transform-origin: left; }
+.aiSparkle b { position: absolute; inset: 15px; display: grid; place-items: center; color: #ad9aff; font-size: 36px; }
+.aiSparkle i { position: absolute; top: 30px; left: 54px; color: #dcd5ff; font-size: 26px; }
+.aiWarm i { position: absolute; inset: 8px 30px; border-radius: 50%; background: #bd704f66; box-shadow: 0 0 28px #df8b65aa; }
+.aiWarm i:nth-child(2) { inset: 18px 40px; background: #ffbf8a; }
+.aiWarm b { position: absolute; right: 0; bottom: 0; left: 0; color: #f0baa2; font: 8px var(--mono); text-align: center; }
+.aiWeave path { fill: none; stroke: #64c1b8; stroke-width: 2; stroke-dasharray: 8 5; }
+.aiWeave circle { fill: #ffe36e; }
+.waapiAiMini .aiGlyph { transform: scale(.65); margin: -10px 0; }
+
+@media (max-width: 640px) {
+  .gameScene { min-height: 210px; }
+  .gameCombat .combatAttacker,
+  .gameHitStop .hitFighter { left: 7%; }
+  .gameCombat .combatTarget,
+  .gameHitStop .hitEnemy { right: 7%; }
+  .gameEquip { padding: 20px 8px; }
 }
 
 /* WAAPI SPECIMEN GALLERY ------------------------------------------------------ */
@@ -6258,12 +6407,6 @@ footer {
 .waapiGeometry i:nth-child(2) { top: 5px; right: 5px; border-left: 0; border-bottom: 0; }
 .waapiGeometry i:nth-child(3) { bottom: 5px; left: 5px; border-right: 0; border-top: 0; }
 .waapiGeometry i:nth-child(4) { right: 5px; bottom: 5px; border-left: 0; border-top: 0; }
-
-.waapiDamageNumber {
-  color: #ffd36d;
-  font: 700 27px var(--mono);
-  text-shadow: 2px 2px 0 #7c291f;
-}
 
 .waapiPreviewStage--marquee {
   place-items: center start;
