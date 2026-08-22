@@ -5,6 +5,7 @@ import { MuseumTitleSequence } from "./components/MuseumTitleSequence";
 import AppleEarlyEraExhibitRoom from "./components/AppleEarlyEraExhibitRoom";
 import MacintoshBirthExhibitRoom from "./components/MacintoshBirthExhibitRoom";
 import { DomAnimationRoom } from "./components/DomAnimationRoom";
+import { WaapiSampleGallery } from "./components/WaapiSampleGallery";
 import { appleEarlyExhibitCount } from "./data/appleEarlyExhibits";
 import { macintoshBirthExhibitCount } from "./data/macintoshBirthExhibits";
 import { cursorExhibits } from "./data/cursorExhibits";
@@ -167,6 +168,8 @@ export default function Home() {
           <p className="caption">空白ではなく「これから現れる構造」を先に見せる。</p>
         </article>
       </section>
+
+      <WaapiSampleGallery />
 
       <section className="roomCollection" aria-labelledby="room-collection-title">
         <div className="roomCollectionHeader">

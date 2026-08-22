@@ -1,5 +1,27 @@
 # Loading Museum 作業ログ
 
+## 2026-08-22 — PR #28 WAAPI標本32件・ゲーム操作展示への再構成
+
+- 既存ローディング展示室と重複するProgress Bar、Windows XP風セグメント、Windows 8/10風ドット、macOS風インジケーターの4件をWAAPI一覧から削除し、非公開理由をbacklogへ記録した。
+- 残る20件のタイトル、描画対象、開始・終了状態、説明を監査し、Fade／Slideを明示的な初期化と実寸距離へ変更した。有限アニメーションはIntersectionObserverの範囲外でも完了状態を取消さず、一覧を閉じた時だけ破棄する。
+- Treasure Chest、Achievement、Rhythm判定、Coin Arc、Combo、Critical Hit、HP Damage / Heal、Boss Entrance、Menu Cursor、Quest Stamp、Level Up、Card Deal / Shuffleの12ゲーム標本を追加し、公開数を32件へ再構成した。
+- Typewriterの文字数由来stepsとカーソル、Counterの軽減時最終値、直接操作Toggle／Button、中央静止Marquee、専用Enter／Exitを持つModal／Toastを実装した。空の緑箱は情報カード、サイドパネル、NEWバッジ、通知ベル、エラー入力欄へ置換した。
+- データ型へ複数ターゲットsequence、target別delay、専用Exit、Reduced sequence、動的距離、コードパターンを追加した。コード表示は単一、stagger、実寸測定、Enter / Exit、ゲームsequenceを実演と同じ定義から生成する。
+- 全標本の通常・軽減設定を有限回にし、Exitは完全非表示、Entranceは完全表示、Counter／Toggle／Marqueeとゲーム操作は意味のある最終状態を残す。
+- `npm test`成功: Next.js本番build、Node 49件、Vitest 12件（合計61件）。32件、削除4件、ゲーム操作、Fade／Slide、Reduced motion、コード生成を回帰テストへ追加した。
+- Edge実ブラウザで32タイトル、件数、カテゴリ件数、ステージoverflow、Fade／Slideの実寸距離と終了状態、デスクトップ表示、エラーオーバーレイなし、console warning/errorなしを確認した。ブラウザ操作ツールが連続操作中に時間切れとなったため、12ゲーム全件の一連操作、320px実幅、OS設定を切り替えたReduced motionの全32件目視は未完了。これらはjsdom操作テストとデータテストでは確認済み。
+
+## 2026-08-22 — PR #28 WAAPI標本ギャラリーの品質修正
+
+- 名称群を`groups.flatMap()`で9種類の共通モーションへ割り当てていた構造を撤去し、代表24件を明示データと専用プレビューで個別実装した。
+- 各標本へ通常・軽減キーフレーム、AnimationOptions、描画形式、参考にした特徴、適する用途、避ける用途、コード解説を持たせた。画面のコードは実演と同じ設定データから生成する。
+- Fade／Slideの方向、Modal／Toastの両方向、Toggle、Progress、文字演出、OS由来ローダー、幾何学形成、Damage Number、Marqueeを名称どおりの異なるDOMと動きで描画する。
+- `prefers-reduced-motion`はギャラリー全体で一度だけ監視する。移動・回転・反復を短いフェード、枠線変化、静的進捗へ置換し、軽減時の無限ループを止めた。
+- Animation Control Consoleを有限アニメーションへ変更した。ステージ実寸から移動距離を計算し、例外を捕捉しながらPlay／Pause／Reverse／Cancel／Finish／速度／Seekを操作し、実際の状態値を表示する。
+- 強さ比較は同じ通知カードを使い、控えめ・標準・派手で移動距離、拡大率、duration、easing、オーバーシュート、発光を実際に変える構成へ改めた。
+- 公開候補から外した案は展示数へ含めず、`docs/waapi-sample-backlog.md`へ未実装候補として分離した。
+- データ整合性5件とjsdom操作4件を追加し、遅延DOM、検索、複合フィルター、Replay、停止、コード開閉、Console、Reduced motion、Modal／Toastの両方向を検証する。
+
 ## 2026-08-08 — PR #22 Finder実矩形判定とSystem操作回帰
 
 - Read Meの当たり判定をポインタ周辺の仮`60×48px`から、ドラッグ開始時に`getBoundingClientRect()`で測った実要素の幅・高さへ変更した。画面上の`.macDesktopItem`は`68×68px`で、`filePoint`を左上とする矩形とゴミ箱の実矩形が少しでも重なれば蓋を開く。
@@ -1349,3 +1371,24 @@
 
 - 入口を既存展示室と同じ構造へ揃え、`ROOM / 1976–1979`、`Apple I / Apple II 展示室`、`Apple IからApple II、Disk IIへ`、`13 EXHIBITS`へ簡潔化した。
 - 年代の重複表示を解消した。変更は入口のタイトル、補足文、年代・件数表記と関連文書・回帰テストだけで、展示内容、初心者向けツアー、アニメーション、BASIC、カセット、Disk II、Canvas、音声処理は変更していない。
+
+## 2026-08-22 — WAAPI gallery 47 specimens
+
+- Similar game notifications were consolidated into Combat Damage Feedback and Reward Reveal Lab.
+- Twelve input-driven game specimens were added; Dodge Afterimage is the priority S-rank interaction specimen.
+- Six AI Working Motion specimens and a synchronized comparison lab were added without copying logos or SVG paths.
+- AI loops exist only while work is active and are cancelled on Complete, Error, Reset, offscreen, gallery close, comparison close, and unmount. Reduced motion never starts those loops.
+- The gallery now filters by category, interaction, visual element, state, and inspiration type while retaining the existing filters.
+- Verified with `npm test` (production build, 49 Node tests and 20 Vitest tests), `npm run lint`, and `npm run typecheck`.
+- Browser checked at desktop and 320px: 47 cards, no horizontal overflow, core game and AI controls, comparison mode, no console errors. Reduced-motion media emulation showed the static reduced UI; animation-loop count could not be read through the browser bridge and is covered by the automated animation mock test.
+
+Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./docs/waapi-ai-working-motion-references.md), [change log](./docs/waapi-change-log.md).
+
+## 2026-08-23 — PR #28 WAAPI個別モーション再構築
+
+- 47標本を維持したまま、再生ポリシーを手動入場、手動退出、直接操作、自動有限、作業中ループへ分類した。
+- Fade / Slideの自動再生を止め、Button Pressはpointer・keyboardの押下と解放へ、ToggleはOFF / ON / OFFの実状態へ変更した。
+- 共通ゲームプレビューを14件の専用シーンへ分離し、Combat、Reward、Hit Stop、Parry、Dodge、Line Clear、Match-3、Pinball、Lock-on、Equip、Status、Turn Order、Battle、Raceの固有DOM・状態・キーフレームを実装した。
+- AI 6件を固有グリフ・固有モーションへ変更し、個別カードと一括比較で同じ描画とキーフレームを共有した。
+- 統合前5件のデータ、render kind、DOM、CSSと、実在しないコード例APIを削除した。
+- データ定義、状態境界、直接操作、固有DOM、固有キーフレーム、停止cleanupをReact / Vitestテストで検証対象にした。
