@@ -63,23 +63,23 @@ describe("WAAPI標本ギャラリー操作", () => {
     expect(screen.queryByText("Fade In")).toBeNull();
     expect(screen.queryByRole("region", { name: /WAAPI/ })).toBeNull();
     openGallery();
-    expect(screen.getAllByRole("article").length).toBeGreaterThanOrEqual(24);
-    expect(screen.getByText("24 / 24 samples")).not.toBeNull();
+    expect(screen.getAllByRole("article").length).toBeGreaterThanOrEqual(32);
+    expect(screen.getByText("32 / 32 samples")).not.toBeNull();
 
     fireEvent.change(screen.getByLabelText("検索"), { target: { value: "  FADE IN  " } });
-    expect(screen.getByText("1 / 24 samples")).not.toBeNull();
+    expect(screen.getByText("1 / 32 samples")).not.toBeNull();
     expect(screen.getByText("Fade In")).not.toBeNull();
 
     fireEvent.click(screen.getByRole("button", { name: "絞り込みを解除" }));
-    fireEvent.change(screen.getByLabelText("カテゴリ"), { target: { value: "Feedback" } });
+    fireEvent.change(screen.getByLabelText("カテゴリ"), { target: { value: "UI Feedback" } });
     fireEvent.change(screen.getByLabelText("用途"), { target: { value: "Modal" } });
-    expect(screen.getByText("1 / 24 samples")).not.toBeNull();
+    expect(screen.getByText("1 / 32 samples")).not.toBeNull();
     expect(screen.getByText("Modal Open / Close")).not.toBeNull();
 
     fireEvent.change(screen.getByLabelText("検索"), { target: { value: "一致しない文字列" } });
     expect(screen.getByText(/条件に一致する標本はありません/)).not.toBeNull();
     fireEvent.click(screen.getByRole("button", { name: "絞り込みを解除" }));
-    expect(screen.getByText("24 / 24 samples")).not.toBeNull();
+    expect(screen.getByText("32 / 32 samples")).not.toBeNull();
 
     const cancelCount = animations.reduce((total, item) => total + item.animation.cancel.mock.calls.length, 0);
     fireEvent.click(screen.getByRole("button", { name: /サンプル一覧を閉じる/ }));
@@ -99,11 +99,12 @@ describe("WAAPI標本ギャラリー操作", () => {
     expect(within(fadeCard).getByRole("button", { name: "コードと解説を閉じる" }).getAttribute("aria-expanded")).toBe("true");
 
     const modalCard = screen.getByText("Modal Open / Close").closest("article")!;
-    const modalToggle = within(modalCard).getByRole("button", { name: /Modal Open \/ Closeを閉じる/ });
-    fireEvent.click(modalToggle);
+    fireEvent.click(within(modalCard).getByRole("button", { name: /Modal Open \/ Closeを開く/ }));
+    fireEvent.click(within(modalCard).getByRole("button", { name: /Modal Open \/ Closeを閉じる/ }));
     expect(within(modalCard).getByRole("button", { name: /Modal Open \/ Closeを開く/ })).not.toBeNull();
 
     const toastCard = screen.getByText("Toast Enter / Exit").closest("article")!;
+    fireEvent.click(within(toastCard).getByRole("button", { name: /Toast Enter \/ Exitを開く/ }));
     fireEvent.click(within(toastCard).getByRole("button", { name: /Toast Enter \/ Exitを閉じる/ }));
     expect(within(toastCard).getByRole("button", { name: /Toast Enter \/ Exitを開く/ })).not.toBeNull();
   });
@@ -131,5 +132,43 @@ describe("WAAPI標本ギャラリー操作", () => {
     expect(screen.getByText(/現在は/).textContent).toContain("軽減表示");
     expect(screen.getByText(/軽減表示中のため自動再生を停止/)).not.toBeNull();
     expect(animations.every(({ options }) => typeof options === "number" || options?.iterations !== Infinity)).toBe(true);
+  });
+
+  it("ゲーム標本を直接操作し、Resetで意味のある初期状態へ戻す", async () => {
+    render(<WaapiSampleGallery />);
+    openGallery();
+
+    const rhythmCard = screen.getByText("Rhythm PERFECT / GOOD / MISS").closest("article")!;
+    fireEvent.click(within(rhythmCard).getByRole("button", { name: "PERFECT" }));
+    expect(within(rhythmCard).getByText("PERFECT", { selector: "strong" })).not.toBeNull();
+    fireEvent.click(within(rhythmCard).getByRole("button", { name: "MISS" }));
+    expect(within(rhythmCard).getByText("MISS", { selector: "strong" })).not.toBeNull();
+
+    const comboCard = screen.getByText("Combo Counter Escalation").closest("article")!;
+    fireEvent.click(within(comboCard).getByRole("button", { name: "Add combo" }));
+    expect(within(comboCard).getByText("2 COMBO")).not.toBeNull();
+    fireEvent.click(within(comboCard).getByRole("button", { name: "Reset" }));
+    expect(within(comboCard).getByText("READY", { selector: "strong" })).not.toBeNull();
+
+    const hpCard = screen.getByText("HP Bar Damage / Heal").closest("article")!;
+    fireEvent.click(within(hpCard).getByRole("button", { name: "Damage" }));
+    expect(within(hpCard).getByText("48 / 100 HP")).not.toBeNull();
+    fireEvent.click(within(hpCard).getByRole("button", { name: "Heal" }));
+    expect(within(hpCard).getByText("66 / 100 HP")).not.toBeNull();
+
+    const menuCard = screen.getByText("Menu Selection Cursor").closest("article")!;
+    fireEvent.click(within(menuCard).getByRole("button", { name: "↓ Down" }));
+    expect(within(menuCard).getByText("COLLECTION").className).toContain("isSelected");
+    fireEvent.keyDown(menuCard.querySelector(".waapiPreviewStage")!, { key: "ArrowDown" });
+    expect(within(menuCard).getByText("SETTINGS").className).toContain("isSelected");
+
+    const cardsCard = screen.getByText("Card Deal / Shuffle").closest("article")!;
+    const before = animations.length;
+    fireEvent.click(within(cardsCard).getByRole("button", { name: "Shuffle" }));
+    const afterShuffle = animations.length;
+    fireEvent.click(within(cardsCard).getByRole("button", { name: "Deal" }));
+    expect(afterShuffle).toBeGreaterThan(before);
+    expect(animations.length).toBeGreaterThan(afterShuffle);
+    await act(async () => {});
   });
 });

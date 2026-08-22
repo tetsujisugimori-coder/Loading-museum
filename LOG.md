@@ -1,5 +1,16 @@
 # Loading Museum 作業ログ
 
+## 2026-08-22 — PR #28 WAAPI標本32件・ゲーム操作展示への再構成
+
+- 既存ローディング展示室と重複するProgress Bar、Windows XP風セグメント、Windows 8/10風ドット、macOS風インジケーターの4件をWAAPI一覧から削除し、非公開理由をbacklogへ記録した。
+- 残る20件のタイトル、描画対象、開始・終了状態、説明を監査し、Fade／Slideを明示的な初期化と実寸距離へ変更した。有限アニメーションはIntersectionObserverの範囲外でも完了状態を取消さず、一覧を閉じた時だけ破棄する。
+- Treasure Chest、Achievement、Rhythm判定、Coin Arc、Combo、Critical Hit、HP Damage / Heal、Boss Entrance、Menu Cursor、Quest Stamp、Level Up、Card Deal / Shuffleの12ゲーム標本を追加し、公開数を32件へ再構成した。
+- Typewriterの文字数由来stepsとカーソル、Counterの軽減時最終値、直接操作Toggle／Button、中央静止Marquee、専用Enter／Exitを持つModal／Toastを実装した。空の緑箱は情報カード、サイドパネル、NEWバッジ、通知ベル、エラー入力欄へ置換した。
+- データ型へ複数ターゲットsequence、target別delay、専用Exit、Reduced sequence、動的距離、コードパターンを追加した。コード表示は単一、stagger、実寸測定、Enter / Exit、ゲームsequenceを実演と同じ定義から生成する。
+- 全標本の通常・軽減設定を有限回にし、Exitは完全非表示、Entranceは完全表示、Counter／Toggle／Marqueeとゲーム操作は意味のある最終状態を残す。
+- `npm test`成功: Next.js本番build、Node 49件、Vitest 12件（合計61件）。32件、削除4件、ゲーム操作、Fade／Slide、Reduced motion、コード生成を回帰テストへ追加した。
+- Edge実ブラウザで32タイトル、件数、カテゴリ件数、ステージoverflow、Fade／Slideの実寸距離と終了状態、デスクトップ表示、エラーオーバーレイなし、console warning/errorなしを確認した。ブラウザ操作ツールが連続操作中に時間切れとなったため、12ゲーム全件の一連操作、320px実幅、OS設定を切り替えたReduced motionの全32件目視は未完了。これらはjsdom操作テストとデータテストでは確認済み。
+
 ## 2026-08-22 — PR #28 WAAPI標本ギャラリーの品質修正
 
 - 名称群を`groups.flatMap()`で9種類の共通モーションへ割り当てていた構造を撤去し、代表24件を明示データと専用プレビューで個別実装した。

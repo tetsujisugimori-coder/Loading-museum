@@ -1239,10 +1239,14 @@ test("既存ローディング標本の直下に、遅延生成するWAAPI標本
   assert.match(component, /type="range"/);
   assert.match(component, /formatAnimationCode\(sample, reducedMotion\)/);
   assert.match(data, /export const waapiSamples/);
-  assert.match(data, /Windows XP風 横移動セグメントローダー/);
+  assert.doesNotMatch(data, /Windows XP風 横移動セグメントローダー/);
+  assert.doesNotMatch(data, /macOS風 待機インジケーター/);
+  assert.match(data, /export const waapiSamples/);
+  assert.match(data, /Rhythm PERFECT \/ GOOD \/ MISS/);
+  assert.match(data, /Card Deal \/ Shuffle/);
   assert.match(data, /1990年代Web風 Marquee/);
   assert.doesNotMatch(data, /groups\.flatMap/);
-  assert.doesNotMatch(data, /Treasure Chest Open/);
+  assert.match(data, /Treasure Chest Open/);
   assert.match(css, /\.waapiSampleGrid/);
   assert.match(css, /@media \(max-width: 340px\)/);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);

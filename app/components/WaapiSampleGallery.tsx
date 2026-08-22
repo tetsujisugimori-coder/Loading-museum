@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   formatAnimationCode,
   waapiSampleCount,
@@ -41,28 +41,44 @@ function usePrefersReducedMotion() {
   return reducedMotion;
 }
 
-function PreviewArtwork({ kind }: { kind: SampleRenderKind }) {
-  if (kind === "button") return <div className="waapiButtonObject" data-motion-target>PRESS</div>;
-  if (kind === "modal") return <div className="waapiModalBackdrop"><div className="waapiModalObject" data-motion-target><i /><i /><b>OK</b></div></div>;
-  if (kind === "toast") return <div className="waapiToastObject" data-motion-target><i />保存しました</div>;
-  if (kind === "toggle") return <div className="waapiToggleTrack"><i data-motion-target /></div>;
-  if (kind === "progress") return <div className="waapiProgressTrack"><i data-motion-target /></div>;
+const gameKinds: SampleRenderKind[] = ["treasure", "achievement", "rhythm", "coin", "combo", "critical", "hp", "boss", "menu", "quest", "level", "cards"];
+
+function PreviewArtwork({ kind, entered, onToggle, onPress, onRelease }: { kind: SampleRenderKind; entered: boolean; onToggle: () => void; onPress: () => void; onRelease: () => void }) {
+  if (kind === "button") return <button className="waapiButtonObject" data-motion-target type="button" onPointerDown={onPress} onPointerUp={onRelease} onPointerLeave={onRelease} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") onPress(); }} onKeyUp={(event) => { if (event.key === "Enter" || event.key === " ") onRelease(); }}>PRESS</button>;
+  if (kind === "modal") return <div className="waapiModalBackdrop" data-motion-overlay aria-hidden={!entered}><div className="waapiModalObject" data-motion-target inert={!entered ? true : undefined}><i /><i /><button type="button">OK</button></div></div>;
+  if (kind === "toast") return <div className="waapiToastObject" data-motion-target><i aria-hidden="true">✓</i><span>保存しました</span></div>;
+  if (kind === "toggle") return <button type="button" className="waapiToggleTrack" aria-label="展示スイッチ" aria-pressed={entered} onClick={onToggle}><i data-motion-target /></button>;
   if (kind === "typewriter") return <span className="waapiTypewriter" data-motion-target>LOADING MUSEUM</span>;
   if (kind === "characters") return <div className="waapiCharacters" aria-label="MOTION">{"MOTION".split("").map((letter, index) => <span data-motion-target aria-hidden="true" key={`${letter}-${index}`}>{letter}</span>)}</div>;
-  if (kind === "counter") return <div className="waapiCounterWindow"><div className="waapiCounterColumn" data-motion-target>{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((digit) => <span key={digit}>{digit}</span>)}</div></div>;
+  if (kind === "counter") return <div className="waapiCounterWindow" role="img" aria-label="最終値 9"><div className="waapiCounterColumn" data-motion-target>{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((digit) => <span key={digit}>{digit}</span>)}</div></div>;
   if (kind === "cursor") return <div className="waapiTerminalText">READY<span data-motion-target aria-hidden="true" /></div>;
-  if (kind === "xp-segments") return <div className="waapiXpTrack"><div className="waapiXpSegments" data-motion-target>{[0, 1, 2, 3].map((item) => <i key={item} />)}</div></div>;
-  if (kind === "orbit-dots") return <div className="waapiOrbitDots">{Array.from({ length: 8 }, (_, index) => <i key={index} data-motion-target style={{ "--dot-index": index } as React.CSSProperties} />)}</div>;
   if (kind === "watch") return <div className="waapiWatch"><i data-motion-target /><b /></div>;
-  if (kind === "spinner-spokes") return <div className="waapiSpinnerSpokes">{Array.from({ length: 12 }, (_, index) => <i key={index} data-motion-target style={{ "--spoke-index": index } as React.CSSProperties} />)}</div>;
   if (kind === "dock") return <div className="waapiDock"><i data-motion-target>APP</i><b /></div>;
   if (kind === "geometry") return <div className="waapiGeometry">{[["-42px", "-30px", "-70deg"], ["44px", "-22px", "85deg"], ["-36px", "34px", "48deg"], ["40px", "30px", "-95deg"]].map(([x, y, r], index) => <i key={index} data-motion-target style={{ "--part-x": x, "--part-y": y, "--part-r": r } as React.CSSProperties} />)}</div>;
   if (kind === "damage") return <strong className="waapiDamageNumber" data-motion-target>-128</strong>;
   if (kind === "marquee") return <span className="waapiMarqueeText" data-motion-target>WELCOME TO MY HOMEPAGE ★ UNDER CONSTRUCTION</span>;
-  return <div className="waapiBoxObject" data-motion-target><i /></div>;
+  if (kind === "side-panel") return <div className="waapiSidePanel" data-motion-target><b>ITEM MENU</b><span>Collection</span><span>Settings</span></div>;
+  if (kind === "badge") return <div className="waapiBadgeObject" data-motion-target>NEW</div>;
+  if (kind === "bell") return <div className="waapiBellObject" data-motion-target aria-label="新しい通知">●<i /></div>;
+  if (kind === "form-error") return <div className="waapiFormError" data-motion-target><label>ACCESS CODE<input value="12X" readOnly /></label><span>! 3桁の数字を入力してください</span></div>;
+  return <div className="waapiInfoCard" data-motion-target><small>SPECIMEN 07</small><b>Nocturnal motion</b><span>Acquired 2026</span></div>;
 }
 
-function SamplePreview({ sample, active, reducedMotion }: { sample: WaapiSample; active: boolean; reducedMotion: boolean }) {
+function animateElement(target: HTMLElement, definition: WaapiSample["normal"], animations: React.MutableRefObject<Animation[]>, extra: KeyframeAnimationOptions = {}) {
+  const animation = target.animate(definition.keyframes, { ...definition.options, ...extra });
+  animations.current.push(animation);
+  return animation;
+}
+
+function applyFrame(target: HTMLElement, frame: Keyframe | undefined) {
+  if (!frame) return;
+  for (const property of ["opacity", "transform", "filter", "clipPath", "backgroundColor", "borderColor", "boxShadow", "width"] as const) {
+    const value = frame[property];
+    if (value !== undefined && value !== null) target.style[property] = String(value);
+  }
+}
+
+function StandardSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSample; active: boolean; reducedMotion: boolean }) {
   const stageRef = useRef<HTMLDivElement>(null);
   const animationsRef = useRef<Animation[]>([]);
   const [entered, setEntered] = useState(false);
@@ -77,39 +93,163 @@ function SamplePreview({ sample, active, reducedMotion }: { sample: WaapiSample;
     const stage = stageRef.current;
     if (!stage) return;
     stop();
-    const motion = reducedMotion ? sample.reduced : sample.normal;
-    const frames = forward ? motion.keyframes : [...motion.keyframes].reverse();
+    const motion = forward ? (reducedMotion ? sample.reduced : sample.normal) : (reducedMotion ? sample.reducedExit : sample.exit);
+    if (!motion) return;
     const targets = Array.from(stage.querySelectorAll<HTMLElement>("[data-motion-target]"));
-    if (sample.render === "marquee" && !reducedMotion && targets[0]) {
-      const distance = -(stage.clientWidth + targets[0].offsetWidth);
-      targets[0].style.setProperty("--marquee-distance", `${distance}px`);
+    if ((sample.id === "slide-in-left" || sample.id === "slide-out-right") && targets[0]) {
+      const stageRect = stage.getBoundingClientRect();
+      const targetRect = targets[0].getBoundingClientRect();
+      const distance = stageRect.width / 2 + targetRect.width / 2 + 8;
+      targets[0].style.setProperty("--slide-distance", `${sample.id === "slide-in-left" ? -distance : distance}px`);
     }
-    animationsRef.current = targets.map((target, index) => target.animate(frames, {
+    if (sample.render === "marquee" && targets[0]) {
+      const distance = stage.clientWidth / 2 + targets[0].offsetWidth / 2 + 8;
+      targets[0].style.setProperty("--marquee-start", `${distance}px`);
+      targets[0].style.setProperty("--marquee-end", `${-distance}px`);
+    }
+    animationsRef.current = targets.map((target, index) => target.animate(motion.keyframes, {
       ...motion.options,
       delay: reducedMotion ? 0 : Number(motion.options.delay ?? 0) + index * (sample.stagger ?? 0),
     }));
+    if (sample.render === "modal") {
+      const overlay = stage.querySelector<HTMLElement>("[data-motion-overlay]");
+      if (overlay) animationsRef.current.push(overlay.animate(forward ? [{ opacity: 0 }, { opacity: 1 }] : [{ opacity: 1 }, { opacity: 0 }], { duration: forward ? 240 : 180, easing: forward ? "ease-out" : "ease-in", fill: "both" }));
+    }
     setEntered(forward);
   }, [reducedMotion, sample, stop]);
 
+  useLayoutEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    const firstTarget = stage.querySelector<HTMLElement>("[data-motion-target]");
+    if ((sample.id === "slide-in-left" || sample.id === "slide-out-right") && firstTarget) {
+      const distance = stage.clientWidth / 2 + firstTarget.offsetWidth / 2 + 8;
+      firstTarget.style.setProperty("--slide-distance", `${sample.id === "slide-in-left" ? -distance : distance}px`);
+    }
+    const first = (reducedMotion ? sample.reduced : sample.normal).keyframes[0];
+    stage.querySelectorAll<HTMLElement>("[data-motion-target]").forEach((target) => applyFrame(target, first));
+  }, [reducedMotion, sample]);
+
   useEffect(() => {
-    if (active) play(true);
-    else stop();
-    return stop;
-  }, [active, play, stop]);
+    if (!active) return;
+    const frame = window.requestAnimationFrame(() => play(true));
+    // Finite animations retain their completion state when leaving the viewport.
+    return () => window.cancelAnimationFrame(frame);
+  }, [active, play]);
+  useEffect(() => stop, [stop]);
 
   const toggle = () => play(!entered);
+  const press = () => {
+    const target = stageRef.current?.querySelector<HTMLElement>("[data-motion-target]");
+    if (target) { stop(); animateElement(target, reducedMotion ? sample.reduced : sample.normal, animationsRef); }
+  };
+  const release = () => {
+    const target = stageRef.current?.querySelector<HTMLElement>("[data-motion-target]");
+    const definition = reducedMotion ? sample.reducedExit : sample.exit;
+    if (target && definition) { stop(); animateElement(target, definition, animationsRef); }
+  };
   return (
     <div className="waapiPreviewGroup">
       <div ref={stageRef} className={`waapiPreviewStage waapiPreviewStage--${sample.render}`} data-entered={entered}>
-        <PreviewArtwork kind={sample.render} />
+        <PreviewArtwork kind={sample.render} entered={entered} onToggle={toggle} onPress={press} onRelease={release} />
       </div>
       <div className="waapiPreviewControls">
         <button type="button" onClick={() => play(true)} aria-label={`${sample.name}を再生`}>Replay</button>
         {isBidirectional && <button type="button" onClick={toggle} aria-label={`${sample.name}を${entered ? "閉じる" : "開く"}`}>{entered ? "Close / Exit" : "Open / Enter"}</button>}
-        {sample.render === "toggle" && <button type="button" aria-pressed={entered} onClick={toggle}>Switch {entered ? "OFF" : "ON"}</button>}
       </div>
     </div>
   );
+}
+
+function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSample; active: boolean; reducedMotion: boolean }) {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const animations = useRef<Animation[]>([]);
+  const [rhythm, setRhythm] = useState("READY");
+  const [score, setScore] = useState(0);
+  const [comboIndex, setComboIndex] = useState(0);
+  const [hp, setHp] = useState(72);
+  const [trailHp, setTrailHp] = useState(72);
+  const [menuIndex, setMenuIndex] = useState(0);
+  const [level, setLevel] = useState(8);
+  const stop = useCallback(() => { animations.current.forEach((item) => item.cancel()); animations.current = []; }, []);
+  const run = useCallback(() => {
+    const stage = stageRef.current;
+    const target = stage?.querySelector<HTMLElement>("[data-motion-target]");
+    if (!stage || !target) return;
+    stop();
+    const definition = reducedMotion ? sample.reduced : sample.normal;
+    if (sample.render === "coin" && !reducedMotion) {
+      const scoreNode = stage.querySelector<HTMLElement>("[data-score]");
+      if (scoreNode) {
+        const from = target.getBoundingClientRect(); const to = scoreNode.getBoundingClientRect();
+        target.style.setProperty("--coin-x", `${to.left - from.left}px`); target.style.setProperty("--coin-y", `${to.top - from.top}px`);
+      }
+    }
+    const main = animateElement(target, definition, animations);
+    const steps = reducedMotion ? sample.reducedSequence : sample.sequence;
+    steps?.forEach((item) => { const node = stage.querySelector<HTMLElement>(item.target); if (node) animateElement(node, { ...definition, keyframes: item.keyframes, options: item.options }, animations); });
+    if (sample.render === "coin") Promise.resolve(main.finished).then(() => setScore((value) => value + 100)).catch(() => undefined);
+    if (sample.render === "level") setLevel(9);
+  }, [reducedMotion, sample, stop]);
+  const reset = useCallback(() => { stop(); setRhythm("READY"); setScore(0); setComboIndex(0); setHp(72); setTrailHp(72); setMenuIndex(0); setLevel(8); }, [stop]);
+  useEffect(() => {
+    if (!active) return;
+    const frame = window.requestAnimationFrame(run);
+    return () => window.cancelAnimationFrame(frame);
+  }, [active, run]);
+  useEffect(() => stop, [stop]);
+
+  const judge = (value: "PERFECT" | "GOOD" | "MISS") => {
+    const target = stageRef.current?.querySelector<HTMLElement>("[data-motion-target]"); if (!target) return;
+    stop(); setRhythm(value);
+    const frames: Record<typeof value, Keyframe[]> = {
+      PERFECT: [{ opacity: 0, transform: "scale(.45)", textShadow: "0 0 0 #ffe36e" }, { opacity: 1, transform: "scale(1.55)", textShadow: "0 0 24px #ffe36e" }, { opacity: 1, transform: "scale(1)", textShadow: "0 0 8px #ffe36e" }],
+      GOOD: [{ opacity: 0, transform: "translateY(8px) scale(.85)" }, { opacity: 1, transform: "translateY(-5px) scale(1.12)" }, { opacity: 1, transform: "translateY(0) scale(1)" }],
+      MISS: [{ opacity: 0, transform: "translateY(-5px)" }, { opacity: 1, transform: "translateY(14px)" }, { opacity: .7, transform: "translateY(8px)" }],
+    };
+    animateElement(target, { ...sample.normal, keyframes: reducedMotion ? [{ opacity: 1 }, { opacity: 1 }] : frames[value] }, animations);
+  };
+  const addCombo = () => { const next = Math.min(comboIndex + 1, 3); setComboIndex(next); const node = stageRef.current?.querySelector<HTMLElement>("[data-motion-target]"); if (node && !reducedMotion) { node.style.setProperty("--combo-scale", [1, 1.12, 1.24, 1.34][next].toString()); animateElement(node, sample.normal, animations); } };
+  const changeHp = (delta: number) => { const next = Math.max(0, Math.min(100, hp + delta)); setHp(next); if (reducedMotion || delta > 0) setTrailHp(next); else window.setTimeout(() => setTrailHp(next), 360); };
+  const moveMenu = (delta: number) => setMenuIndex((value) => Math.max(0, Math.min(2, value + delta)));
+  const cardAction = (mode: "shuffle" | "deal") => {
+    const cards = stageRef.current?.querySelectorAll<HTMLElement>("[data-card]"); if (!cards) return; stop();
+    cards.forEach((card, index) => {
+      const deal = [{ opacity: 1, transform: "translate(0,0) rotate(0)" }, { opacity: 1, transform: `translate(${(index - 1.5) * 38}px, ${Math.abs(index - 1.5) * 6}px) rotate(${(index - 1.5) * 7}deg)` }];
+      const shuffle = [{ transform: "translate(0,0) rotate(0)" }, { transform: `translate(${index % 2 ? 32 : -32}px,-12px) rotate(${index % 2 ? 9 : -9}deg)` }, { transform: "translate(0,0) rotate(0)" }];
+      animations.current.push(card.animate(reducedMotion ? (mode === "deal" ? deal : [{ opacity: .5 }, { opacity: 1 }]) : (mode === "deal" ? deal : shuffle), { duration: reducedMotion ? 140 : mode === "deal" ? 520 : 420, delay: reducedMotion ? 0 : index * 90, easing: "ease-out", fill: "both" }));
+    });
+  };
+
+  return <div className="waapiPreviewGroup">
+    <div ref={stageRef} className={`waapiPreviewStage waapiPreviewStage--game waapiPreviewStage--${sample.render}`} tabIndex={sample.render === "menu" ? 0 : undefined} onKeyDown={sample.render === "menu" ? (event) => { if (event.key === "ArrowDown") { event.preventDefault(); moveMenu(1); } if (event.key === "ArrowUp") { event.preventDefault(); moveMenu(-1); } } : undefined}>
+      {sample.render === "treasure" && <button type="button" className="gameChest" onClick={run} aria-label="宝箱を開く"><i data-chest-glow /><b data-motion-target /><span /><em data-chest-item>◆</em></button>}
+      {sample.render === "achievement" && <div className="gameAchievement" data-motion-target><i data-achievement-badge>★</i><span>ACHIEVEMENT UNLOCKED<small>FIRST DISCOVERY</small></span></div>}
+      {sample.render === "rhythm" && <div className={`gameRhythm gameRhythm--${rhythm.toLowerCase()}`}><strong data-motion-target>{rhythm}</strong></div>}
+      {sample.render === "coin" && <div className="gameCoinScene"><button type="button" data-motion-target onClick={run} aria-label="コインを取る">¢</button><output data-score aria-label={`Score ${score}`}>SCORE {score}</output></div>}
+      {sample.render === "combo" && <strong className={`gameCombo gameCombo--${comboIndex}`} data-motion-target>{["READY", "2 COMBO", "5 COMBO", "10 COMBO"][comboIndex]}</strong>}
+      {sample.render === "critical" && <div className="gameCritical"><i data-hit-flash /><b data-slash /><strong data-motion-target>CRITICAL<small>999</small></strong></div>}
+      {sample.render === "hp" && <div className="gameHp"><header><span>KNIGHT</span><output>{hp} / 100 HP</output></header><div><i style={{ width: `${trailHp}%` }} /><b data-motion-target style={{ width: `${hp}%` }} /></div></div>}
+      {sample.render === "boss" && <div className="gameBoss"><i data-boss-dark /><b data-motion-target>♜</b><strong data-boss-name>THE OBSERVER</strong></div>}
+      {sample.render === "menu" && <div className="gameMenu"><i style={{ transform: `translateY(${menuIndex * 34}px)` }}>▶</i>{["CONTINUE", "COLLECTION", "SETTINGS"].map((label, index) => <span className={menuIndex === index ? "isSelected" : ""} key={label}>{label}</span>)}<b data-motion-target style={{ opacity: 0 }} /></div>}
+      {sample.render === "quest" && <div className="gameQuest"><span>Find the lost artifact</span><i data-ink /><strong data-motion-target>QUEST COMPLETE</strong></div>}
+      {sample.render === "level" && <div className="gameLevel"><i data-level-aura /><span>◇</span><strong data-motion-target>LV {level}</strong><b data-level-label>LEVEL UP</b></div>}
+      {sample.render === "cards" && <div className="gameCards">{["A", "K", "Q", "J"].map((label, index) => <i data-card data-motion-target={index === 0 ? "" : undefined} key={label}>{label}</i>)}</div>}
+    </div>
+    <div className="waapiPreviewControls gameControls">
+      {!(["rhythm", "hp", "menu", "cards", "combo"] as SampleRenderKind[]).includes(sample.render) && <button type="button" onClick={run}>Replay</button>}
+      {sample.render === "rhythm" && <>{(["PERFECT", "GOOD", "MISS"] as const).map((value) => <button type="button" key={value} onClick={() => judge(value)}>{value}</button>)}</>}
+      {sample.render === "combo" && <button type="button" onClick={addCombo}>Add combo</button>}
+      {sample.render === "hp" && <><button type="button" onClick={() => changeHp(-24)}>Damage</button><button type="button" onClick={() => changeHp(18)}>Heal</button></>}
+      {sample.render === "menu" && <><button type="button" onClick={() => moveMenu(-1)}>↑ Up</button><button type="button" onClick={() => moveMenu(1)}>↓ Down</button></>}
+      {sample.render === "cards" && <><button type="button" onClick={() => cardAction("shuffle")}>Shuffle</button><button type="button" onClick={() => cardAction("deal")}>Deal</button></>}
+      <button type="button" onClick={reset}>Reset</button>
+    </div>
+  </div>;
+}
+
+function SamplePreview(props: { sample: WaapiSample; active: boolean; reducedMotion: boolean }) {
+  return gameKinds.includes(props.sample.render) ? <GameSamplePreview {...props} /> : <StandardSamplePreview {...props} />;
 }
 
 function SampleCard({ sample, active, reducedMotion }: { sample: WaapiSample; active: boolean; reducedMotion: boolean }) {
@@ -233,6 +373,7 @@ export function WaapiSampleGallery() {
   const reducedMotion = usePrefersReducedMotion();
   const filteredSamples = useMemo(() => filterWaapiSamples(query, filters), [filters, query]);
   const options = useMemo(() => Object.fromEntries(filterKeys.map((key) => [key, Array.from(new Set(waapiSamples.flatMap((sample) => Array.isArray(sample[key]) ? sample[key] : [sample[key]]))).sort()])), []);
+  const categoryCounts = useMemo(() => Array.from(new Set(waapiSamples.map((sample) => sample.category))).map((category) => ({ category, count: waapiSamples.filter((sample) => sample.category === category).length })), []);
 
   useEffect(() => {
     if (!open || !gridRef.current) return;
@@ -267,7 +408,7 @@ export function WaapiSampleGallery() {
     <div className="waapiGalleryDivider" />
     <button type="button" className="waapiGalleryToggle" aria-expanded={open} aria-controls="waapi-gallery-panel" onClick={toggleGallery}><span>SPECIMEN CABINET / WAAPI</span><strong id="waapi-gallery-title">{open ? "サンプル一覧を閉じる" : "サンプル一覧を見る"}（{waapiSampleCount}）</strong><span aria-hidden="true">{open ? "↑" : "↓"}</span></button>
     {open && <div id="waapi-gallery-panel" className="waapiGalleryPanel">
-      <div className="waapiGalleryIntro"><p>24件を、名前・見た目・キーフレーム・解説が一致する個別標本として展示します。OS・ゲーム由来の例はロゴや実画面ではなく、方向・テンポ・軌道だけを抽象化しています。</p></div>
+      <div className="waapiGalleryIntro"><p>32件を、名前・見た目・キーフレーム・解説が一致する個別標本として展示します。ゲーム由来の例は固有作品を模倣せず、一般化した操作と状態変化として再構成しています。</p><ul className="waapiCategoryCounts">{categoryCounts.map(({ category, count }) => <li key={category}><span>{category}</span><b>{count}</b></li>)}</ul></div>
       <aside className="waapiReducedGuide"><h3>Reduced motion（動きを減らす設定）</h3><p>OSやブラウザの設定をWebサイトが受け取り、大きな移動・反復・回転を避ける仕組みです。この展示では動きを単に消すのではなく、短いフェード、枠線、静的な進捗へ置き換えて意味を保ちます。現在は<strong>{reducedMotion ? "軽減表示" : "通常表示"}</strong>です。</p></aside>
       <div className="waapiFilters"><label className="waapiSearch">検索<input value={query} onChange={(event) => { setQuery(event.target.value); setVisibleIds(new Set()); }} placeholder="名前・用途・年代・説明を検索" /></label>{filterKeys.map((key) => <label key={key}>{filterLabels[key]}<select value={filters[key]} onChange={(event) => { setFilters((current) => ({ ...current, [key]: event.target.value })); setVisibleIds(new Set()); }}><option value="">すべて</option>{(options[key] as string[]).map((option) => <option key={option} value={option}>{option}</option>)}</select></label>)}<button type="button" onClick={clearFilters}>絞り込みを解除</button></div>
       <p className="waapiResults" aria-live="polite">{filteredSamples.length} / {waapiSampleCount} samples</p>
