@@ -2,15 +2,18 @@ import { describe, expect, it } from "vitest";
 import { formatAnimationCode, waapiSampleCount, waapiSamples } from "../app/data/waapiSamples";
 
 const removed = ["Progress Bar", "Windows XP風 横移動セグメントローダー", "Windows 8/10風 回転ドット", "macOS風 待機インジケーター"];
-const games = ["Treasure Chest Open", "Achievement Unlock", "Rhythm PERFECT / GOOD / MISS", "Coin Pickup Arc", "Combo Counter Escalation", "Critical Hit", "HP Bar Damage / Heal", "Boss Entrance", "Menu Selection Cursor", "Quest Complete Stamp", "Level Up Glow", "Card Deal / Shuffle"];
+const games = ["Treasure Chest Open", "Rhythm PERFECT / GOOD / MISS", "Coin Pickup Arc", "Combo Counter Escalation", "HP Bar Damage / Heal", "Boss Entrance", "Menu Selection Cursor", "Card Deal / Shuffle", "Combat Damage Feedback", "Reward Reveal Lab", "Hit Stop & Knockback", "Perfect Parry", "Dodge Afterimage", "Falling Block Line Clear", "Match-3 Cascade", "Pinball Bumper Hit", "Lock-on Reticle", "Inventory Equip Snap", "Status Effect Lab", "Turn Order Reflow", "Battle Transition", "Race Countdown & Launch"];
+const ai = ["ChatGPT / Codex-inspired Modular Thought Blocks", "Microsoft Copilot-inspired Ribbon Assembly", "GitHub Copilot-inspired Code Companion", "Gemini-inspired Sparkle Reasoning", "Claude-inspired Warm Thought Pulse", "Perplexity-inspired Answer Weave"];
 
 describe("WAAPI標本データ", () => {
-  it("公開標本は重複のない32件で、重複ローダー4件を除きゲーム12件を含む", () => {
-    expect(waapiSampleCount).toBe(32);
-    expect(new Set(waapiSamples.map((item) => item.id)).size).toBe(32);
-    expect(new Set(waapiSamples.map((item) => item.name)).size).toBe(32);
+  it("公開標本は重複のない47件で、統合後ゲーム標本とAI標本を含む", () => {
+    expect(waapiSampleCount).toBe(47);
+    expect(new Set(waapiSamples.map((item) => item.id)).size).toBe(47);
+    expect(new Set(waapiSamples.map((item) => item.name)).size).toBe(47);
     removed.forEach((name) => expect(waapiSamples.some((item) => item.name === name)).toBe(false));
     games.forEach((name) => expect(waapiSamples.some((item) => item.name === name)).toBe(true));
+    ai.forEach((name) => expect(waapiSamples.some((item) => item.name === name)).toBe(true));
+    ["Damage Number Pop", "Critical Hit", "Achievement Unlock", "Quest Complete Stamp", "Level Up Glow"].forEach((name) => expect(waapiSamples.some((item) => item.name === name)).toBe(false));
   });
 
   it("全標本が通常・軽減設定と再現コードを持ち、Infinityを使わない", () => {
@@ -22,6 +25,9 @@ describe("WAAPI標本データ", () => {
       expect(item.sequence?.every((part) => part.options.iterations !== Infinity) ?? true).toBe(true);
       expect(item.reducedSequence?.every((part) => part.options.iterations !== Infinity) ?? true).toBe(true);
       expect(formatAnimationCode(item), item.name).toMatch(/animate|querySelectorAll/);
+      expect(item.interactionTypes.length, item.name).toBeGreaterThan(0);
+      expect(item.visualElements.length, item.name).toBeGreaterThan(0);
+      expect(item.stateKinds.length, item.name).toBeGreaterThan(0);
     }
   });
 
@@ -52,5 +58,15 @@ describe("WAAPI標本データ", () => {
     expect(formatAnimationCode(byId("modal-open-close"))).toContain("const exit");
     expect(formatAnimationCode(byId("treasure-chest-open"))).toContain("[data-chest-glow]");
     expect(formatAnimationCode(byId("typewriter"))).toContain("textContent.length");
+  });
+
+  it("AI標本は共通状態機械用の分類と誠実な着想説明を持つ", () => {
+    const items = waapiSamples.filter((item) => item.category === "AI Working Motion");
+    expect(items).toHaveLength(6);
+    items.forEach((item) => {
+      expect(item.inspirationType).toBe("AI Product Interface");
+      expect(item.stateKinds).toEqual(expect.arrayContaining(["Continuous", "Finite", "Failure"]));
+      expect(item.inspiredBy).toMatch(/着想|再構成|再現ではありません/);
+    });
   });
 });

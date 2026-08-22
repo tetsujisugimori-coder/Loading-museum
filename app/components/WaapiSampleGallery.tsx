@@ -8,23 +8,24 @@ import {
   type SampleRenderKind,
   type WaapiSample,
 } from "../data/waapiSamples";
+import { AiComparisonLab, AiWorkingPreview, ExpandedGamePreview, aiKinds, expandedGameKinds } from "./WaapiExpandedPreviews";
 
 const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
-const filterKeys = ["category", "usage", "sourceType", "era", "intensity", "difficulty"] as const;
+const filterKeys = ["category", "interactionTypes", "visualElements", "stateKinds", "inspirationType", "usage", "sourceType", "era", "intensity", "difficulty"] as const;
 type FilterKey = (typeof filterKeys)[number];
 type Filters = Record<FilterKey, string>;
 
-const blankFilters: Filters = { category: "", usage: "", sourceType: "", era: "", intensity: "", difficulty: "" };
-const filterLabels: Record<FilterKey, string> = { category: "カテゴリ", usage: "用途", sourceType: "元ネタ種別", era: "年代", intensity: "動きの強さ", difficulty: "難易度" };
+const blankFilters: Filters = { category: "", interactionTypes: "", visualElements: "", stateKinds: "", inspirationType: "", usage: "", sourceType: "", era: "", intensity: "", difficulty: "" };
+const filterLabels: Record<FilterKey, string> = { category: "カテゴリ", interactionTypes: "操作", visualElements: "視覚要素", stateKinds: "状態", inspirationType: "着想元", usage: "用途", sourceType: "媒体", era: "年代", intensity: "動きの強さ", difficulty: "難易度" };
 
 export function filterWaapiSamples(query: string, filters: Filters) {
   const normalizedQuery = query.trim().toLocaleLowerCase();
   return waapiSamples.filter((sample) => {
-    const searchText = [sample.name, sample.category, ...sample.usage, sample.era, sample.sourceType, sample.inspiredBy, sample.description, sample.suitableFor, sample.avoidFor, sample.difficulty, sample.intensity, ...sample.properties, ...sample.tags].join(" ").toLocaleLowerCase();
+    const searchText = [sample.name, sample.category, ...sample.usage, sample.era, sample.sourceType, sample.inspiredBy, sample.description, sample.suitableFor, sample.avoidFor, sample.difficulty, sample.intensity, ...sample.properties, ...sample.tags, ...sample.interactionTypes, ...sample.visualElements, ...sample.stateKinds, sample.inspirationType, sample.reducedMotionDescription, sample.referenceEnvironment, sample.evidenceLabel].join(" ").toLocaleLowerCase();
     return (!normalizedQuery || searchText.includes(normalizedQuery)) && filterKeys.every((key) => {
       const selected = filters[key];
       const value = sample[key];
-      return !selected || (Array.isArray(value) ? value.includes(selected) : value === selected);
+      return !selected || (Array.isArray(value) ? (value as readonly string[]).includes(selected) : value === selected);
     });
   });
 }
@@ -171,6 +172,7 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
   const [trailHp, setTrailHp] = useState(72);
   const [menuIndex, setMenuIndex] = useState(0);
   const [level, setLevel] = useState(8);
+  const [cardStatus, setCardStatus] = useState("READY");
   const stop = useCallback(() => { animations.current.forEach((item) => item.cancel()); animations.current = []; }, []);
   const run = useCallback(() => {
     const stage = stageRef.current;
@@ -191,7 +193,7 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
     if (sample.render === "coin") Promise.resolve(main.finished).then(() => setScore((value) => value + 100)).catch(() => undefined);
     if (sample.render === "level") setLevel(9);
   }, [reducedMotion, sample, stop]);
-  const reset = useCallback(() => { stop(); setRhythm("READY"); setScore(0); setComboIndex(0); setHp(72); setTrailHp(72); setMenuIndex(0); setLevel(8); }, [stop]);
+  const reset = useCallback(() => { stop(); setRhythm("READY"); setScore(0); setComboIndex(0); setHp(72); setTrailHp(72); setMenuIndex(0); setLevel(8); setCardStatus("READY"); }, [stop]);
   useEffect(() => {
     if (!active) return;
     const frame = window.requestAnimationFrame(run);
@@ -212,12 +214,14 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
   const addCombo = () => { const next = Math.min(comboIndex + 1, 3); setComboIndex(next); const node = stageRef.current?.querySelector<HTMLElement>("[data-motion-target]"); if (node && !reducedMotion) { node.style.setProperty("--combo-scale", [1, 1.12, 1.24, 1.34][next].toString()); animateElement(node, sample.normal, animations); } };
   const changeHp = (delta: number) => { const next = Math.max(0, Math.min(100, hp + delta)); setHp(next); if (reducedMotion || delta > 0) setTrailHp(next); else window.setTimeout(() => setTrailHp(next), 360); };
   const moveMenu = (delta: number) => setMenuIndex((value) => Math.max(0, Math.min(2, value + delta)));
-  const cardAction = (mode: "shuffle" | "deal") => {
+  const cardAction = (mode: "shuffle" | "deal" | "select" | "drag" | "play" | "resolve" | "discard") => {
+    setCardStatus(mode.toUpperCase());
     const cards = stageRef.current?.querySelectorAll<HTMLElement>("[data-card]"); if (!cards) return; stop();
     cards.forEach((card, index) => {
       const deal = [{ opacity: 1, transform: "translate(0,0) rotate(0)" }, { opacity: 1, transform: `translate(${(index - 1.5) * 38}px, ${Math.abs(index - 1.5) * 6}px) rotate(${(index - 1.5) * 7}deg)` }];
       const shuffle = [{ transform: "translate(0,0) rotate(0)" }, { transform: `translate(${index % 2 ? 32 : -32}px,-12px) rotate(${index % 2 ? 9 : -9}deg)` }, { transform: "translate(0,0) rotate(0)" }];
-      animations.current.push(card.animate(reducedMotion ? (mode === "deal" ? deal : [{ opacity: .5 }, { opacity: 1 }]) : (mode === "deal" ? deal : shuffle), { duration: reducedMotion ? 140 : mode === "deal" ? 520 : 420, delay: reducedMotion ? 0 : index * 90, easing: "ease-out", fill: "both" }));
+      const interaction = mode === "deal" ? deal : mode === "shuffle" ? shuffle : [{ opacity: 1, transform: `translate(${(index - 1.5) * 34}px,${mode === "discard" ? 55 : mode === "play" ? -34 : -4}px) rotate(${(index - 1.5) * 7}deg) scale(${mode === "select" || mode === "drag" ? 1.12 : 1})` }, { opacity: mode === "discard" ? 0 : 1, transform: `translate(${(index - 1.5) * 38}px,${mode === "play" ? -44 : 0}px) rotate(${(index - 1.5) * 5}deg) scale(1)` }];
+      animations.current.push(card.animate(reducedMotion ? [{ opacity: .5 }, { opacity: mode === "discard" ? 0 : 1 }] : interaction, { duration: reducedMotion ? 140 : mode === "deal" ? 520 : 420, delay: reducedMotion ? 0 : index * 90, easing: "ease-out", fill: "both" }));
     });
   };
 
@@ -234,7 +238,7 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
       {sample.render === "menu" && <div className="gameMenu"><i style={{ transform: `translateY(${menuIndex * 34}px)` }}>▶</i>{["CONTINUE", "COLLECTION", "SETTINGS"].map((label, index) => <span className={menuIndex === index ? "isSelected" : ""} key={label}>{label}</span>)}<b data-motion-target style={{ opacity: 0 }} /></div>}
       {sample.render === "quest" && <div className="gameQuest"><span>Find the lost artifact</span><i data-ink /><strong data-motion-target>QUEST COMPLETE</strong></div>}
       {sample.render === "level" && <div className="gameLevel"><i data-level-aura /><span>◇</span><strong data-motion-target>LV {level}</strong><b data-level-label>LEVEL UP</b></div>}
-      {sample.render === "cards" && <div className="gameCards">{["A", "K", "Q", "J"].map((label, index) => <i data-card data-motion-target={index === 0 ? "" : undefined} key={label}>{label}</i>)}</div>}
+      {sample.render === "cards" && <div className="gameCards" aria-label={`Card state: ${cardStatus}`}>{["A", "K", "Q", "J"].map((label, index) => <i data-card draggable onDragStart={() => setCardStatus("DRAG")} data-motion-target={index === 0 ? "" : undefined} key={label}>{label}</i>)}<output aria-live="polite">{cardStatus}</output></div>}
     </div>
     <div className="waapiPreviewControls gameControls">
       {!(["rhythm", "hp", "menu", "cards", "combo"] as SampleRenderKind[]).includes(sample.render) && <button type="button" onClick={run}>Replay</button>}
@@ -242,13 +246,15 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
       {sample.render === "combo" && <button type="button" onClick={addCombo}>Add combo</button>}
       {sample.render === "hp" && <><button type="button" onClick={() => changeHp(-24)}>Damage</button><button type="button" onClick={() => changeHp(18)}>Heal</button></>}
       {sample.render === "menu" && <><button type="button" onClick={() => moveMenu(-1)}>↑ Up</button><button type="button" onClick={() => moveMenu(1)}>↓ Down</button></>}
-      {sample.render === "cards" && <><button type="button" onClick={() => cardAction("shuffle")}>Shuffle</button><button type="button" onClick={() => cardAction("deal")}>Deal</button></>}
+      {sample.render === "cards" && <>{(["shuffle", "deal", "select", "drag", "play", "resolve", "discard"] as const).map((action) => <button type="button" key={action} onClick={() => cardAction(action)}>{action.toUpperCase()}</button>)}</>}
       <button type="button" onClick={reset}>Reset</button>
     </div>
   </div>;
 }
 
 function SamplePreview(props: { sample: WaapiSample; active: boolean; reducedMotion: boolean }) {
+  if (expandedGameKinds.includes(props.sample.render)) return <ExpandedGamePreview {...props} />;
+  if (aiKinds.includes(props.sample.render)) return <AiWorkingPreview {...props} />;
   return gameKinds.includes(props.sample.render) ? <GameSamplePreview {...props} /> : <StandardSamplePreview {...props} />;
 }
 
@@ -261,11 +267,14 @@ function SampleCard({ sample, active, reducedMotion }: { sample: WaapiSample; ac
       <SamplePreview sample={sample} active={active} reducedMotion={reducedMotion} />
       <p className="waapiDescription">{sample.description}</p>
       <p className="waapiInspired"><strong>参考にした動き:</strong> {sample.inspiredBy}</p>
+      {sample.referenceUrl && <p className="waapiInspired"><strong>{sample.evidenceLabel}:</strong> <a href={sample.referenceUrl} target="_blank" rel="noreferrer">公式資料</a> / 確認日 {sample.referenceCheckedOn} / {sample.referenceEnvironment}。製品UI変更で説明が古くなる可能性があります。</p>}
       <dl className="waapiMeta">
         <div><dt>適する用途</dt><dd>{sample.suitableFor}</dd></div>
         <div><dt>避ける用途</dt><dd>{sample.avoidFor}</dd></div>
         <div><dt>CSS</dt><dd>{sample.properties.join(", ")}</dd></div>
         <div><dt>強さ / 難易度</dt><dd>{sample.intensity} / {sample.difficulty}</dd></div>
+        <div><dt>操作 / 状態</dt><dd>{sample.interactionTypes.join(", ")} / {sample.stateKinds.join(", ")}</dd></div>
+        <div><dt>視覚要素 / 着想元</dt><dd>{sample.visualElements.join(", ")} / {sample.inspirationType}</dd></div>
       </dl>
       <p className="waapiReduced">Reduced motion: 対応 — {sample.reducedMotionDescription}</p>
       <button type="button" className="waapiDetailsToggle" aria-expanded={detailsOpen} aria-controls={`${sample.id}-details`} onClick={() => setDetailsOpen((value) => !value)}>コードと解説を{detailsOpen ? "閉じる" : "見る"}</button>
@@ -408,12 +417,13 @@ export function WaapiSampleGallery() {
     <div className="waapiGalleryDivider" />
     <button type="button" className="waapiGalleryToggle" aria-expanded={open} aria-controls="waapi-gallery-panel" onClick={toggleGallery}><span>SPECIMEN CABINET / WAAPI</span><strong id="waapi-gallery-title">{open ? "サンプル一覧を閉じる" : "サンプル一覧を見る"}（{waapiSampleCount}）</strong><span aria-hidden="true">{open ? "↑" : "↓"}</span></button>
     {open && <div id="waapi-gallery-panel" className="waapiGalleryPanel">
-      <div className="waapiGalleryIntro"><p>32件を、名前・見た目・キーフレーム・解説が一致する個別標本として展示します。ゲーム由来の例は固有作品を模倣せず、一般化した操作と状態変化として再構成しています。</p><ul className="waapiCategoryCounts">{categoryCounts.map(({ category, count }) => <li key={category}><span>{category}</span><b>{count}</b></li>)}</ul></div>
+      <div className="waapiGalleryIntro"><p>47件を、名前・見た目・入力・判定・結果・キーフレームが一致する個別標本として展示します。ゲーム例は一般化した操作と状態変化、AI例は公式資料で確認した機能と明記した抽象的再構成です。</p><ul className="waapiCategoryCounts">{categoryCounts.map(({ category, count }) => <li key={category}><span>{category}</span><b>{count}</b></li>)}</ul></div>
       <aside className="waapiReducedGuide"><h3>Reduced motion（動きを減らす設定）</h3><p>OSやブラウザの設定をWebサイトが受け取り、大きな移動・反復・回転を避ける仕組みです。この展示では動きを単に消すのではなく、短いフェード、枠線、静的な進捗へ置き換えて意味を保ちます。現在は<strong>{reducedMotion ? "軽減表示" : "通常表示"}</strong>です。</p></aside>
       <div className="waapiFilters"><label className="waapiSearch">検索<input value={query} onChange={(event) => { setQuery(event.target.value); setVisibleIds(new Set()); }} placeholder="名前・用途・年代・説明を検索" /></label>{filterKeys.map((key) => <label key={key}>{filterLabels[key]}<select value={filters[key]} onChange={(event) => { setFilters((current) => ({ ...current, [key]: event.target.value })); setVisibleIds(new Set()); }}><option value="">すべて</option>{(options[key] as string[]).map((option) => <option key={option} value={option}>{option}</option>)}</select></label>)}<button type="button" onClick={clearFilters}>絞り込みを解除</button></div>
       <p className="waapiResults" aria-live="polite">{filteredSamples.length} / {waapiSampleCount} samples</p>
       <AnimationControlConsole reducedMotion={reducedMotion} />
       <MotionIntensityComparison reducedMotion={reducedMotion} />
+      <AiComparisonLab reducedMotion={reducedMotion} />
       {filteredSamples.length === 0 ? <p className="waapiEmptyState">条件に一致する標本はありません。検索語またはフィルターを変更してください。</p> : <div ref={gridRef} className="waapiSampleGrid">{filteredSamples.map((sample) => <div key={sample.id} data-sample-id={sample.id}><SampleCard sample={sample} active={visibleIds.has(sample.id)} reducedMotion={reducedMotion} /></div>)}</div>}
     </div>}
   </section>;

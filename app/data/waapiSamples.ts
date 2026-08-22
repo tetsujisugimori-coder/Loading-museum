@@ -1,9 +1,13 @@
-export type SampleCategory = "Basic" | "Entrance" | "Exit" | "UI Feedback" | "Text" | "OS / Historical" | "Game UI" | "Advanced";
+export type SampleCategory = "Basic" | "Entrance" | "Exit" | "UI Feedback" | "Text" | "OS / Historical" | "Game UI" | "AI Working Motion" | "Advanced";
 export type SampleEra = "1990s" | "2000s" | "2010s" | "2020s";
 export type SampleSourceType = "OS" | "Game" | "Web" | "App" | "Generic UI";
 export type SampleIntensity = "Subtle" | "Standard" | "Strong";
 export type SampleDifficulty = "Beginner" | "Intermediate" | "Advanced";
-export type SampleRenderKind = "info-card" | "side-panel" | "badge" | "bell" | "form-error" | "button" | "modal" | "toast" | "toggle" | "typewriter" | "characters" | "counter" | "cursor" | "watch" | "dock" | "geometry" | "damage" | "marquee" | "treasure" | "achievement" | "rhythm" | "coin" | "combo" | "critical" | "hp" | "boss" | "menu" | "quest" | "level" | "cards";
+export type SampleInteraction = "Click" | "Keyboard" | "Timing" | "Drag" | "Automatic";
+export type SampleVisualElement = "Character" | "Typography" | "Particles" | "Layout" | "Transition" | "Geometry";
+export type SampleStateKind = "Success" | "Failure" | "Continuous" | "Finite";
+export type SampleInspirationType = "General Game Pattern" | "Historical UI" | "AI Product Interface";
+export type SampleRenderKind = "info-card" | "side-panel" | "badge" | "bell" | "form-error" | "button" | "modal" | "toast" | "toggle" | "typewriter" | "characters" | "counter" | "cursor" | "watch" | "dock" | "geometry" | "marquee" | "treasure" | "rhythm" | "coin" | "combo" | "hp" | "boss" | "menu" | "cards" | "combat" | "reward-lab" | "hit-stop" | "parry" | "dodge" | "line-clear" | "match3" | "pinball" | "lockon" | "equip" | "status-effects" | "turn-order" | "battle-transition" | "race" | "ai-modular" | "ai-ribbon" | "ai-code" | "ai-sparkle" | "ai-warm" | "ai-weave" | "damage" | "critical" | "achievement" | "quest" | "level";
 export type CodePattern = "single" | "stagger" | "dynamic" | "enter-exit" | "sequence" | "interaction";
 
 export type MotionDefinition = { keyframes: Keyframe[]; options: KeyframeAnimationOptions; explanation: string };
@@ -13,6 +17,8 @@ export type WaapiSample = {
   inspiredBy: string; description: string; suitableFor: string; avoidFor: string; difficulty: SampleDifficulty;
   intensity: SampleIntensity; properties: string[]; render: SampleRenderKind; normal: MotionDefinition; reduced: MotionDefinition;
   reducedMotionDescription: string; codePattern: CodePattern; tags: string[]; stagger?: number;
+  interactionTypes: SampleInteraction[]; visualElements: SampleVisualElement[]; stateKinds: SampleStateKind[]; inspirationType: SampleInspirationType;
+  referenceUrl?: string; referenceCheckedOn?: string; referenceEnvironment?: string; evidenceLabel?: "Confirmed feature" | "Inspired reconstruction";
   exit?: MotionDefinition; reducedExit?: MotionDefinition; sequence?: MotionStep[]; reducedSequence?: MotionStep[];
 };
 
@@ -21,10 +27,11 @@ const motion = (keyframes: Keyframe[], duration: number, easing: string, explana
 const step = (target: string, keyframes: Keyframe[], duration: number, easing = "ease-out", delay = 0): MotionStep => ({ target, keyframes, options: once(duration, easing, delay) });
 const fadeIn = (duration = 180) => motion([{ opacity: 0 }, { opacity: 1 }], duration, "ease-out", "移動を使わず、完全な非表示から完成状態を表示します。");
 const fadeOut = (duration = 160) => motion([{ opacity: 1 }, { opacity: 0 }], duration, "ease-in", "完全な表示から完全な非表示へ短く遷移します。");
-type Input = Omit<WaapiSample, "usage" | "era" | "sourceType" | "suitableFor" | "avoidFor" | "difficulty" | "intensity" | "properties" | "tags"> & Partial<Pick<WaapiSample, "usage" | "era" | "sourceType" | "suitableFor" | "avoidFor" | "difficulty" | "intensity" | "properties" | "tags">>;
-const sample = (value: Input): WaapiSample => ({ usage: ["Animation"], era: "2020s", sourceType: "Generic UI", suitableFor: "短い状態変化のフィードバック", avoidFor: "重要な意味を動きだけで伝える場面", difficulty: "Intermediate", intensity: "Standard", properties: ["opacity", "transform"], tags: [], ...value });
+type OptionalSampleFields = "usage" | "era" | "sourceType" | "suitableFor" | "avoidFor" | "difficulty" | "intensity" | "properties" | "tags" | "interactionTypes" | "visualElements" | "stateKinds" | "inspirationType";
+type Input = Omit<WaapiSample, OptionalSampleFields> & Partial<Pick<WaapiSample, OptionalSampleFields>>;
+const sample = (value: Input): WaapiSample => ({ usage: ["Animation"], era: "2020s", sourceType: "Generic UI", suitableFor: "短い状態変化のフィードバック", avoidFor: "重要な意味を動きだけで伝える場面", difficulty: "Intermediate", intensity: "Standard", properties: ["opacity", "transform"], tags: [], interactionTypes: ["Click"], visualElements: ["Geometry"], stateKinds: ["Finite"], inspirationType: value.category === "OS / Historical" ? "Historical UI" : value.category === "AI Working Motion" ? "AI Product Interface" : "General Game Pattern", ...value });
 
-export const waapiSamples: readonly WaapiSample[] = [
+const originalWaapiSamples: readonly WaapiSample[] = [
   sample({ id: "fade-in", name: "Fade In", category: "Entrance", render: "info-card", inspiredBy: "標本ラベルの入場", description: "見えない標本ラベルが静かに現れ、表示状態で残ります。", normal: motion([{ opacity: 0 }, { opacity: 1 }], 360, "ease-out", "opacity 0を明示してから1へ進み、完了状態を保持します。"), reduced: fadeIn(), reducedMotionDescription: "完全な非表示から短く表示し、内容を残します。", codePattern: "single", usage: ["Card", "Label"], difficulty: "Beginner", intensity: "Subtle", properties: ["opacity"], tags: ["fade", "entrance"] }),
   sample({ id: "fade-out", name: "Fade Out", category: "Exit", render: "info-card", inspiredBy: "標本ラベルの退場", description: "表示中の標本ラベルが完全に消え、非表示状態で残ります。", normal: motion([{ opacity: 1 }, { opacity: 0 }], 320, "ease-in", "opacity 1から0へ進み、半透明ではなく完全な非表示で保持します。"), reduced: fadeOut(), reducedMotionDescription: "移動なしで完全に透明にし、非表示状態を維持します。", codePattern: "single", usage: ["Card", "Label"], difficulty: "Beginner", intensity: "Subtle", properties: ["opacity"], tags: ["fade", "exit"] }),
   sample({ id: "slide-in-left", name: "Slide In Left", category: "Entrance", render: "side-panel", inspiredBy: "左から開くゲームメニュー", description: "実寸で測った左外からパネルが入り、所定位置に残ります。", normal: motion([{ opacity: 0, transform: "translateX(var(--slide-distance))" }, { opacity: 1, transform: "translateX(0)" }], 460, "cubic-bezier(.2,.8,.2,1)", "ステージと対象の実寸から左外の距離を設定します。"), reduced: fadeIn(), reducedMotionDescription: "長距離移動を省き、完成パネルを表示します。", codePattern: "dynamic", usage: ["Navigation", "Game Menu"], tags: ["slide", "left"] }),
@@ -60,6 +67,9 @@ export const waapiSamples: readonly WaapiSample[] = [
   sample({ id: "card-deal-shuffle", name: "Card Deal / Shuffle", category: "Game UI", render: "cards", inspiredBy: "配札とシャッフル", description: "ShuffleとDealで異なる処理を行い4枚を別位置・角度・delayで置きます。", normal: motion([{ opacity: 1, transform: "translate(0,0) rotate(0)" }, { opacity: 1, transform: "translate(var(--card-x),var(--card-y)) rotate(var(--card-r))" }], 520, "cubic-bezier(.2,.8,.2,1)", "カード別CSS変数とdelayで配ります。"), reduced: motion([{ opacity: 0, transform: "translate(var(--card-x),var(--card-y)) rotate(var(--card-r))" }, { opacity: 1, transform: "translate(var(--card-x),var(--card-y)) rotate(var(--card-r))" }], 140, "ease-out", "最終位置でフェードします。"), reducedMotionDescription: "最終位置へ即時配置し短くフェードします。", codePattern: "interaction", stagger: 90, sourceType: "Game", difficulty: "Advanced", tags: ["cards", "deal", "shuffle"] }),
 ] as const;
 
+const mergedIds = new Set(["damage-number-pop", "critical-hit", "achievement-unlock", "quest-complete-stamp", "level-up-glow"]);
+export const waapiSamples: readonly WaapiSample[] = [...originalWaapiSamples.filter((item) => !mergedIds.has(item.id)), ...additionalWaapiSamples];
+
 export const waapiSampleCount = waapiSamples.length;
 const print = (value: unknown) => JSON.stringify(value, null, 2);
 const formatSteps = (steps?: MotionStep[]) => steps?.map((item) => `stage.querySelector(${JSON.stringify(item.target)}).animate(${print(item.keyframes)}, ${print(item.options)});`).join("\n") ?? "";
@@ -67,6 +77,29 @@ const formatSteps = (steps?: MotionStep[]) => steps?.map((item) => `stage.queryS
 export function formatAnimationCode(sample: WaapiSample, reducedMotion = false) {
   const definition = reducedMotion ? sample.reduced : sample.normal;
   const animate = `element.animate(${print(definition.keyframes)}, ${print(definition.options)});`;
+  if (sample.category === "AI Working Motion") return `const states = ["Idle", "Starting", "Working", "Tool / Reasoning", "Completing", "Complete", "Error"];
+let loops = [];
+const stopLoops = () => { loops.forEach(animation => animation.cancel()); loops = []; };
+const setState = (state) => {
+  stopLoops();
+  output.textContent = state;
+  if (!reducedMotion && ["Starting", "Working", "Tool / Reasoning", "Completing"].includes(state)) {
+    loops = [...stage.querySelectorAll("[data-ai-part]")].map((part, index) => part.animate(${print(definition.keyframes)}, { ...${print(definition.options)}, delay: index * 90, iterations: Infinity }));
+  }
+};
+observer.onExit(stopLoops); panel.addEventListener("close", stopLoops); signal.addEventListener("abort", stopLoops);`;
+  if (["combat", "reward-lab", "hit-stop", "parry", "dodge", "line-clear", "match3", "pinball", "lockon", "equip", "status-effects", "turn-order", "battle-transition", "race"].includes(sample.render)) return `let phase = "IDLE";
+const animations = [];
+const play = (result) => {
+  phase = "ANTICIPATION";
+  animations.push(...[...stage.querySelectorAll("[data-game-part]")].map((part, index) => part.animate(${print(definition.keyframes)}, { ...${print(definition.options)}, delay: index * 55 })));
+  resultLabel.textContent = result;
+};
+const reset = () => { animations.forEach(animation => animation.cancel()); phase = "IDLE"; resultLabel.textContent = "READY"; };`;
+  if (sample.render === "cards") return `const actions = ["shuffle", "deal", "select", "drag", "play", "resolve", "discard"];
+const cards = [...stage.querySelectorAll("[data-card]")];
+const run = (action) => cards.map((card, index) => card.animate(keyframesFor(action, index), { duration: 420, delay: index * 90, fill: "both" }));
+const reset = () => cards.forEach(card => card.getAnimations().forEach(animation => animation.cancel()));`;
   if (sample.codePattern === "stagger") return `const elements = stage.querySelectorAll("[data-motion-target]");\nconst keyframes = ${print(definition.keyframes)};\nconst options = ${print(definition.options)};\nelements.forEach((element, index) => element.animate(keyframes, { ...options, delay: index * ${sample.stagger ?? 0} }));`;
   if (sample.id.startsWith("slide-")) return `const element = stage.querySelector("[data-motion-target]");\nconst stageRect = stage.getBoundingClientRect();\nconst itemRect = element.getBoundingClientRect();\nconst distance = ${sample.id === "slide-in-left" ? "-(stageRect.width / 2 + itemRect.width / 2 + 8)" : "stageRect.width / 2 + itemRect.width / 2 + 8"};\nelement.style.setProperty("--slide-distance", distance + "px");\n${animate}`;
   if (sample.render === "marquee") return `const element = stage.querySelector("[data-motion-target]");\nconst stageRect = stage.getBoundingClientRect();\nconst textRect = element.getBoundingClientRect();\nelement.style.setProperty("--marquee-start", stageRect.width / 2 + textRect.width / 2 + "px");\nelement.style.setProperty("--marquee-end", -(stageRect.width / 2 + textRect.width / 2) + "px");\n${animate}`;
@@ -79,3 +112,4 @@ export function formatAnimationCode(sample: WaapiSample, reducedMotion = false) 
   if (sample.codePattern === "sequence" || sample.codePattern === "interaction") return `const element = stage.querySelector("[data-motion-target]");\n${animate}\n${formatSteps(reducedMotion ? sample.reducedSequence : sample.sequence)}\n// The labelled controls run this sequence; Reset cancels it and reapplies frame 0.`;
   return `const element = stage.querySelector("[data-motion-target]");\n${animate}`;
 }
+import { additionalWaapiSamples } from "./waapiAdditionalSamples";

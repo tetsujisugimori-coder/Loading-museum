@@ -1371,3 +1371,15 @@
 
 - 入口を既存展示室と同じ構造へ揃え、`ROOM / 1976–1979`、`Apple I / Apple II 展示室`、`Apple IからApple II、Disk IIへ`、`13 EXHIBITS`へ簡潔化した。
 - 年代の重複表示を解消した。変更は入口のタイトル、補足文、年代・件数表記と関連文書・回帰テストだけで、展示内容、初心者向けツアー、アニメーション、BASIC、カセット、Disk II、Canvas、音声処理は変更していない。
+
+## 2026-08-22 — WAAPI gallery 47 specimens
+
+- Similar game notifications were consolidated into Combat Damage Feedback and Reward Reveal Lab.
+- Twelve input-driven game specimens were added; Dodge Afterimage is the priority S-rank interaction specimen.
+- Six AI Working Motion specimens and a synchronized comparison lab were added without copying logos or SVG paths.
+- AI loops exist only while work is active and are cancelled on Complete, Error, Reset, offscreen, gallery close, comparison close, and unmount. Reduced motion never starts those loops.
+- The gallery now filters by category, interaction, visual element, state, and inspiration type while retaining the existing filters.
+- Verified with `npm test` (production build, 49 Node tests and 20 Vitest tests), `npm run lint`, and `npm run typecheck`.
+- Browser checked at desktop and 320px: 47 cards, no horizontal overflow, core game and AI controls, comparison mode, no console errors. Reduced-motion media emulation showed the static reduced UI; animation-loop count could not be read through the browser bridge and is covered by the automated animation mock test.
+
+Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./docs/waapi-ai-working-motion-references.md), [change log](./docs/waapi-change-log.md).

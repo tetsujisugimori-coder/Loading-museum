@@ -5463,6 +5463,46 @@ footer {
   }
 }
 
+/* Expanded WAAPI game and AI working-motion specimens */
+.waapiExpandedGame,.waapiAiPreview{position:relative;overflow:hidden;display:grid;place-items:center;align-content:center;gap:10px;min-height:230px;background:radial-gradient(circle at 50% 42%,#17382c 0,#081711 68%);isolation:isolate}
+.waapiExpandedGame>strong,.waapiAiPreview>strong{z-index:3;letter-spacing:.12em;color:#fff4b0;text-shadow:0 0 14px rgb(255 227 110/.45)}
+.waapiExpandedGame output,.waapiAiPreview output{z-index:3;font:600 11px/1.4 ui-monospace,monospace;color:#b8d9c5}
+.waapiGamePrompt{position:absolute;inset:10px auto auto 12px;font:700 10px/1 ui-monospace,monospace;color:#72f2a0}
+.waapiGameActor,.waapiGameTarget{position:absolute;width:56px;height:70px;bottom:44px;display:grid;place-items:center}
+.waapiGameActor{left:15%}.waapiGameTarget{right:15%}
+.waapiGameActor i,.waapiGameTarget i{width:34px;height:34px;border:2px solid #72f2a0;border-radius:45% 45% 35% 35%;box-shadow:0 0 16px rgb(114 242 160/.32)}
+.waapiGameActor b,.waapiGameTarget b{position:absolute;bottom:0;width:48px;height:24px;border:2px solid #6d8d79;border-radius:10px 10px 4px 4px}
+.waapiGameTarget i{border-color:#ff858b}.waapiGameTarget b{border-color:#a45159}
+.waapiExpandedGame button[draggable]{z-index:4;border:1px dashed #ffe36e;background:#13271d;color:#ffe36e;padding:8px;cursor:grab}
+.waapiExpandedGame--combat{background:linear-gradient(135deg,#261415,#07150f)}
+.waapiExpandedGame--reward-lab{background:radial-gradient(circle,#473713,#0d160d 67%)}
+.waapiExpandedGame--parry:after,.waapiExpandedGame--lockon:after{content:"";position:absolute;width:92px;height:92px;border:2px dashed #72f2a0;border-radius:50%;right:10%;bottom:37px;box-shadow:0 0 20px rgb(114 242 160/.35)}
+.waapiExpandedGame--dodge .waapiGameActor{box-shadow:-14px 0 rgb(114 242 160/.18),-28px 0 rgb(114 242 160/.08)}
+.waapiExpandedGame--line-clear{background:repeating-linear-gradient(0deg,#081711 0 22px,#153527 23px 24px)}
+.waapiExpandedGame--match3 .waapiGameActor i,.waapiExpandedGame--match3 .waapiGameTarget i{transform:rotate(45deg);border-radius:8px}
+.waapiBlockBoard{position:absolute;inset:auto 20% 35px;display:grid;grid-template-columns:repeat(6,1fr);gap:3px}.waapiBlockBoard i{aspect-ratio:1;background:#5bc883;border:1px solid #d7ffe4}.waapiBlockBoard i:nth-last-child(-n+6){background:#ffe36e}
+.waapiStatusMaterial{position:absolute;inset:34px 32% 52px;display:flex;justify-content:center;align-items:flex-end;gap:5px}.waapiStatusMaterial i{width:12px;height:28px;border-radius:50%;background:#7fda75}.waapiExpandedGame--status-effects[data-mode="burn"] .waapiStatusMaterial i{background:#ff714f;clip-path:polygon(50% 0,100% 70%,70% 100%,30% 100%,0 70%)}.waapiExpandedGame--status-effects[data-mode="freeze"] .waapiStatusMaterial i{height:42px;background:#9be7ff;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}.waapiExpandedGame--status-effects[data-mode="poison"] .waapiStatusMaterial i{border-radius:50%;height:12px;background:#a978dc}
+.waapiTurnCards{position:absolute;inset:38px 12% auto;display:flex;gap:5px;list-style:none;margin:0;padding:0}.waapiTurnCards li{display:grid;gap:2px;padding:7px;background:#173b2a;border:1px solid #61c685;font:700 9px ui-monospace;color:#d8f5e2}.waapiTurnCards b{color:#ffe36e}
+.waapiLockTargets{position:absolute;inset:48px 8% auto;display:flex;justify-content:space-between}.waapiLockTargets i{width:28px;height:36px;border:1px solid #587064;border-radius:50%}.waapiLockTargets i.isLocked{border:3px double #ffde69;box-shadow:0 0 12px #ffde69}
+.waapiRaceTrack{position:absolute;inset:35px 5% 32px;background:repeating-linear-gradient(90deg,transparent 0 30px,rgb(255 255 255/.12) 31px 33px);overflow:hidden}.waapiRaceTrack i:first-child{position:absolute;left:18%;bottom:18px;width:48px;height:20px;background:#e85b5b;clip-path:polygon(0 35%,72% 35%,100% 100%,0 100%)}
+.waapiExpandedGame--pinball{background:radial-gradient(circle at 30% 35%,#a13f66 0 8px,transparent 9px),radial-gradient(circle at 70% 50%,#d29939 0 9px,transparent 10px),#091914}
+.waapiExpandedGame--battle-transition:before{content:"BATTLE";position:absolute;inset:0;display:grid;place-items:center;background:repeating-linear-gradient(135deg,#0b2218 0 12px,#173e2b 13px 24px);font:900 34px ui-monospace;color:#75eaa0;opacity:.42}
+.waapiExpandedGame--race:before{content:"3  2  1";font:900 38px ui-monospace;color:#ffdf69;opacity:.18;position:absolute}
+.waapiAiPreview{background:#0b1210;border:1px solid #273b31}
+.waapiAiPreview>p{position:absolute;top:10px;left:12px;margin:0;color:#9bb4a5;font:700 10px ui-monospace}
+.waapiAiGlyph{display:flex;align-items:center;justify-content:center;gap:7px;height:78px}
+.waapiAiGlyph i{display:block;width:18px;height:42px;border:1px solid #77e99d;background:#153e28;border-radius:4px}
+.waapiAiPreview--ai-ribbon .waapiAiGlyph i{height:12px;width:46px;margin-left:-18px;transform:rotate(calc(var(--i,1)*15deg));border-radius:20px;background:#6254bd}
+.waapiAiPreview--ai-code .waapiAiGlyph{display:grid}.waapiAiPreview--ai-code .waapiAiGlyph i{width:94px;height:7px}
+.waapiAiPreview--ai-sparkle .waapiAiGlyph i{width:20px;height:20px;transform:rotate(45deg);background:#6b5bd6}
+.waapiAiPreview--ai-warm .waapiAiGlyph i{margin-left:-20px;width:50px;height:50px;border-radius:50%;background:#9d593f;border-color:#e3a580}
+.waapiAiPreview--ai-weave .waapiAiGlyph i{width:54px;height:2px;background:#60a7aa;transform:rotate(-20deg)}
+.waapiAiComparison{margin:28px 0;padding:18px;border:1px solid #315341;background:#0b1711}
+.waapiAiComparison>button{width:100%;padding:12px}.waapiAiComparison header{display:grid;gap:14px;margin:16px 0}.waapiAiComparison header p{display:flex;gap:5px;flex-wrap:wrap;margin:0}.waapiAiComparison header span{padding:5px 7px;border:1px solid #304a3c;font-size:11px}.waapiAiComparison header span.isCurrent{background:#23603d;color:#fff}.waapiAiComparison header div{display:flex;gap:6px;flex-wrap:wrap}
+.waapiAiComparisonGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.waapiAiMini{min-height:100px;display:grid;place-items:center;align-content:center;gap:6px;border:1px solid #294838;background:#0c2016}.waapiAiMini i{width:32px;height:32px;border:2px solid #72f2a0;border-radius:8px}.waapiAiMini strong,.waapiAiMini output{font:700 10px ui-monospace;color:#c7ddcf}
+@media(max-width:640px){.waapiAiComparisonGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.waapiExpandedGame{min-height:210px}.waapiGameActor{left:8%}.waapiGameTarget{right:8%}.waapiFilters{grid-template-columns:1fr}.gameControls{gap:5px}.gameControls button{min-height:40px;white-space:normal}}
+@media(prefers-reduced-motion:reduce){.waapiExpandedGame *,.waapiAiPreview *,.waapiAiComparison *{scroll-behavior:auto!important}}
+
 /* WAAPI specimen v3: semantic props and interactive game studies */
 .waapiCategoryCounts { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; padding: 0; list-style: none; }
 .waapiCategoryCounts li { display: flex; gap: 8px; align-items: center; padding: 5px 8px; border: 1px solid #315640; color: #b9d8c3; font: 9px var(--mono); }

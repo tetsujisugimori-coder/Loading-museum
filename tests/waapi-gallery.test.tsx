@@ -2,6 +2,8 @@
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { WaapiSampleGallery } from "../app/components/WaapiSampleGallery";
+import { AiWorkingPreview } from "../app/components/WaapiExpandedPreviews";
+import { waapiSamples } from "../app/data/waapiSamples";
 
 class FakeAnimation {
   currentTime: CSSNumberish | null = 0;
@@ -63,23 +65,23 @@ describe("WAAPI標本ギャラリー操作", () => {
     expect(screen.queryByText("Fade In")).toBeNull();
     expect(screen.queryByRole("region", { name: /WAAPI/ })).toBeNull();
     openGallery();
-    expect(screen.getAllByRole("article").length).toBeGreaterThanOrEqual(32);
-    expect(screen.getByText("32 / 32 samples")).not.toBeNull();
+    expect(screen.getAllByRole("article").length).toBeGreaterThanOrEqual(47);
+    expect(screen.getByText("47 / 47 samples")).not.toBeNull();
 
     fireEvent.change(screen.getByLabelText("検索"), { target: { value: "  FADE IN  " } });
-    expect(screen.getByText("1 / 32 samples")).not.toBeNull();
+    expect(screen.getByText("1 / 47 samples")).not.toBeNull();
     expect(screen.getByText("Fade In")).not.toBeNull();
 
     fireEvent.click(screen.getByRole("button", { name: "絞り込みを解除" }));
     fireEvent.change(screen.getByLabelText("カテゴリ"), { target: { value: "UI Feedback" } });
     fireEvent.change(screen.getByLabelText("用途"), { target: { value: "Modal" } });
-    expect(screen.getByText("1 / 32 samples")).not.toBeNull();
+    expect(screen.getByText("1 / 47 samples")).not.toBeNull();
     expect(screen.getByText("Modal Open / Close")).not.toBeNull();
 
     fireEvent.change(screen.getByLabelText("検索"), { target: { value: "一致しない文字列" } });
     expect(screen.getByText(/条件に一致する標本はありません/)).not.toBeNull();
     fireEvent.click(screen.getByRole("button", { name: "絞り込みを解除" }));
-    expect(screen.getByText("32 / 32 samples")).not.toBeNull();
+    expect(screen.getByText("47 / 47 samples")).not.toBeNull();
 
     const cancelCount = animations.reduce((total, item) => total + item.animation.cancel.mock.calls.length, 0);
     fireEvent.click(screen.getByRole("button", { name: /サンプル一覧を閉じる/ }));
@@ -164,11 +166,127 @@ describe("WAAPI標本ギャラリー操作", () => {
 
     const cardsCard = screen.getByText("Card Deal / Shuffle").closest("article")!;
     const before = animations.length;
-    fireEvent.click(within(cardsCard).getByRole("button", { name: "Shuffle" }));
+    fireEvent.click(within(cardsCard).getByRole("button", { name: "SHUFFLE" }));
     const afterShuffle = animations.length;
-    fireEvent.click(within(cardsCard).getByRole("button", { name: "Deal" }));
+    fireEvent.click(within(cardsCard).getByRole("button", { name: "DEAL" }));
     expect(afterShuffle).toBeGreaterThan(before);
     expect(animations.length).toBeGreaterThan(afterShuffle);
     await act(async () => {});
+  });
+
+  it("新しいゲーム標本、5軸フィルター、AI共通状態を操作できる", () => {
+    render(<WaapiSampleGallery />);
+    openGallery();
+    fireEvent.change(screen.getByLabelText("操作"), { target: { value: "Timing" } });
+    fireEvent.change(screen.getByLabelText("状態"), { target: { value: "Failure" } });
+    expect(screen.getByText("Perfect Parry")).not.toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "絞り込みを解除" }));
+
+    const combat = screen.getByText("Combat Damage Feedback").closest("article")!;
+    fireEvent.click(within(combat).getByRole("button", { name: "CRITICAL" }));
+    expect(within(combat).getByText("ANTICIPATION", { selector: ".waapiGamePrompt" })).not.toBeNull();
+
+    const aiCard = screen.getByText("Claude-inspired Warm Thought Pulse").closest("article")!;
+    fireEvent.click(within(aiCard).getByRole("button", { name: "START" }));
+    expect(within(aiCard).getByText("Starting", { selector: "p" })).not.toBeNull();
+    expect(animations.some(({ options }) => typeof options !== "number" && options?.iterations === Infinity)).toBe(true);
+    fireEvent.click(within(aiCard).getByRole("button", { name: "COMPLETE" }));
+    expect(within(aiCard).getByText("Complete", { selector: "p" })).not.toBeNull();
+  });
+
+  it("AI比較モードは一括フェーズを進め、閉じるとループを停止する", () => {
+    render(<WaapiSampleGallery />);
+    openGallery();
+    fireEvent.click(screen.getByRole("button", { name: /AI 6種の共通フェーズ比較を開く/ }));
+    fireEvent.click(screen.getByRole("button", { name: "START ALL" }));
+    expect(screen.getAllByText("Searching").length).toBeGreaterThan(1);
+    const running = animations.filter(({ options }) => typeof options !== "number" && options?.iterations === Infinity);
+    expect(running.length).toBeGreaterThanOrEqual(6);
+    fireEvent.click(screen.getByRole("button", { name: /AI 6種の共通フェーズ比較を閉じる/ }));
+    expect(running.every(({ animation }) => animation.cancel.mock.calls.length > 0)).toBe(true);
+  });
+
+  it("追加ゲーム12件の固有操作と分岐を提供する", () => {
+    render(<WaapiSampleGallery />);
+    openGallery();
+    const card = (name: string) => screen.getByText(name).closest("article")!;
+    const result = (name: string) => card(name).querySelector(".waapiExpandedGame > strong")?.textContent;
+
+    const hit = card("Hit Stop & Knockback");
+    fireEvent.click(within(hit).getByRole("button", { name: "ATTACK" }));
+    expect(result("Hit Stop & Knockback")).toContain("60ms");
+    fireEvent.click(within(hit).getByRole("button", { name: "HEAVY ATTACK" }));
+    expect(result("Hit Stop & Knockback")).toContain("110ms");
+
+    ["ENEMY ATTACK", "PARRY"].forEach((name) => expect(within(card("Perfect Parry")).getByRole("button", { name })).not.toBeNull());
+    ["ATTACK START", "DODGE LEFT", "DODGE RIGHT"].forEach((name) => expect(within(card("Dodge Afterimage")).getByRole("button", { name })).not.toBeNull());
+    fireEvent.click(within(card("Falling Block Line Clear")).getByRole("button", { name: "DROP" }));
+    expect(card("Falling Block Line Clear").querySelector(".waapiGamePrompt")?.textContent).toBe("ANTICIPATION");
+
+    const match = card("Match-3 Cascade");
+    fireEvent.click(within(match).getByRole("button", { name: "SWAP" }));
+    expect(result("Match-3 Cascade")).toContain("NO MATCH");
+    fireEvent.click(within(match).getByRole("button", { name: "SELECT GEM A" }));
+    fireEvent.click(within(match).getByRole("button", { name: "SELECT GEM B" }));
+    fireEvent.click(within(match).getByRole("button", { name: "SWAP" }));
+    expect(result("Match-3 Cascade")).toContain("CASCADE");
+
+    fireEvent.click(within(card("Pinball Bumper Hit")).getByRole("button", { name: "LAUNCH" }));
+    expect(result("Pinball Bumper Hit")).toBe("SUCCESS");
+    const lock = card("Lock-on Reticle");
+    fireEvent.click(within(lock).getByRole("button", { name: "NEXT TARGET" }));
+    expect(result("Lock-on Reticle")).toContain("WARDEN");
+    fireEvent.keyDown(lock.querySelector(".waapiExpandedGame")!, { key: "ArrowLeft" });
+    expect(result("Lock-on Reticle")).toContain("SCOUT");
+
+    const equip = card("Inventory Equip Snap");
+    fireEvent.click(within(equip).getByRole("button", { name: "EQUIP" }));
+    expect(result("Inventory Equip Snap")).toContain("+12");
+    fireEvent.click(within(equip).getByRole("button", { name: "UNEQUIP" }));
+    expect(equip.querySelector(".waapiGamePrompt")?.textContent).toContain("UNEQUIPPED");
+
+    const status = card("Status Effect Lab");
+    for (const name of ["BURN", "FREEZE", "POISON"]) { fireEvent.click(within(status).getByRole("button", { name })); expect(result("Status Effect Lab")).toContain(name); }
+    fireEvent.click(within(status).getByRole("button", { name: "CLEAR" }));
+    expect(status.querySelector(".waapiGamePrompt")?.textContent).toBe("CLEARED");
+
+    const turns = card("Turn Order Reflow");
+    fireEvent.click(within(turns).getByRole("button", { name: "HASTE" }));
+    expect(turns.querySelector(".waapiTurnCards")?.getAttribute("aria-label")).toContain("MAGE、KNIGHT");
+    fireEvent.click(within(turns).getByRole("button", { name: "STUN" }));
+    expect(turns.querySelector(".waapiTurnCards")?.getAttribute("aria-label")).toContain("MAGE ⊘");
+
+    const battle = card("Battle Transition");
+    ["ENCOUNTER", "RETURN"].forEach((name) => { fireEvent.click(within(battle).getByRole("button", { name })); expect(result("Battle Transition")).toContain(name === "RETURN" ? "FIELD" : "BATTLE"); });
+    const race = card("Race Countdown & Launch");
+    fireEvent.click(within(race).getByRole("button", { name: "FALSE START" }));
+    expect(result("Race Countdown & Launch")).toContain("FALSE START");
+  });
+
+  it("Card Dealの全工程とAIの完了・エラー・リセットを操作できる", () => {
+    render(<WaapiSampleGallery />);
+    openGallery();
+    const cards = screen.getByText("Card Deal / Shuffle").closest("article")!;
+    for (const name of ["SHUFFLE", "DEAL", "SELECT", "DRAG", "PLAY", "RESOLVE", "DISCARD", "Reset"]) expect(within(cards).getByRole("button", { name })).not.toBeNull();
+    const ai = screen.getByText("ChatGPT / Codex-inspired Modular Thought Blocks").closest("article")!;
+    fireEvent.click(within(ai).getByRole("button", { name: "START" }));
+    fireEvent.click(within(ai).getByRole("button", { name: "NEXT PHASE" }));
+    expect(within(ai).getByText("Working", { selector: "p" })).not.toBeNull();
+    fireEvent.click(within(ai).getByRole("button", { name: "ERROR" }));
+    expect(within(ai).getByText("Error", { selector: "p" })).not.toBeNull();
+    fireEvent.click(within(ai).getByRole("button", { name: "RESET" }));
+    expect(within(ai).getByText("Idle", { selector: "p" })).not.toBeNull();
+  });
+
+  it("AI作業ループはSTART連打で増殖せず、画面外化でcancelされる", () => {
+    const sample = waapiSamples.find((item) => item.id === "ai-modular-thought-blocks")!;
+    const view = render(<AiWorkingPreview sample={sample} active reducedMotion={false} />);
+    fireEvent.click(screen.getByRole("button", { name: "START" }));
+    const loops = animations.filter(({ options }) => typeof options !== "number" && options?.iterations === Infinity);
+    expect(loops).toHaveLength(4);
+    fireEvent.click(screen.getByRole("button", { name: "START" }));
+    expect(animations.filter(({ options }) => typeof options !== "number" && options?.iterations === Infinity)).toHaveLength(4);
+    view.rerender(<AiWorkingPreview sample={sample} active={false} reducedMotion={false} />);
+    expect(loops.every(({ animation }) => animation.cancel.mock.calls.length > 0)).toBe(true);
   });
 });
