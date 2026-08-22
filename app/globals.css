@@ -5463,14 +5463,930 @@ footer {
   }
 }
 
-/* WAAPI SPECIMEN GALLERY */
-.waapiGallery { margin-top: 18px; border: 1px solid var(--line); background: linear-gradient(135deg, rgb(8 15 13 / 92%), rgb(5 9 8 / 96%)); }
-.waapiGalleryDivider { height: 4px; background: repeating-linear-gradient(90deg, var(--green) 0 4px, transparent 4px 9px); opacity: .65; }
-.waapiGalleryToggle { width: 100%; min-height: 92px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 20px; padding: 19px 22px; border: 0; background: transparent; color: var(--paper); text-align: left; cursor: pointer; }
-.waapiGalleryToggle > span:first-child { grid-column: 1; color: var(--cyan); font: 10px var(--mono); letter-spacing: .12em; }.waapiGalleryToggle strong { grid-column: 1; font-size: 17px; font-weight: 500; letter-spacing: .04em; }.waapiGalleryToggle > span:last-child { grid-column: 2; grid-row: 1 / 3; color: var(--green); font-size: 22px; }.waapiGalleryToggle:hover, .waapiGalleryToggle:focus-visible { outline: 1px solid var(--green); outline-offset: -4px; background: rgb(77 231 125 / 5%); }
-.waapiGalleryPanel { border-top: 1px solid var(--line); padding: 22px; }.waapiGalleryIntro { max-width: 760px; color: var(--muted); font-size: 12px; line-height: 1.7; }.waapiGalleryIntro p { margin: 0 0 18px; }
-.waapiFilters { display: grid; grid-template-columns: minmax(200px, 2fr) repeat(3, minmax(120px, 1fr)); gap: 12px; align-items: end; padding: 16px; border: 1px solid #264638; background: rgb(3 8 6 / 55%); }.waapiFilters label { display: grid; gap: 6px; color: var(--muted); font: 10px var(--mono); letter-spacing: .06em; }.waapiFilters input, .waapiFilters select { width: 100%; min-height: 34px; border: 1px solid #315b48; background: #07100c; color: var(--paper); padding: 6px 8px; font: 12px var(--mono); }.waapiFilters button, .waapiConsoleButtons button, .waapiPreview button { min-height: 34px; border: 1px solid rgb(77 231 125 / 42%); background: #0b1711; color: #ccffe0; font: 10px var(--mono); letter-spacing: .05em; cursor: pointer; }.waapiFilters button:hover, .waapiFilters button:focus-visible, .waapiConsoleButtons button:hover, .waapiConsoleButtons button:focus-visible, .waapiPreview button:hover, .waapiPreview button:focus-visible { border-color: var(--green); color: var(--green); box-shadow: 0 0 12px rgb(77 231 125 / 18%); }.waapiResults { margin: 14px 0; color: var(--cyan); font: 11px var(--mono); letter-spacing: .08em; }
-.waapiConsole { display: grid; grid-template-columns: minmax(180px, .8fr) minmax(200px, 1.5fr); gap: 10px 18px; margin: 18px 0 24px; padding: 16px; border: 1px solid #427d5f; background: radial-gradient(circle at 75% 15%, rgb(77 231 125 / 13%), transparent 36%), #07100c; }.waapiConsole p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.55; }.waapiConsole > div:first-child > p:first-child { color: var(--cyan); font: 10px var(--mono); letter-spacing: .1em; }.waapiConsole h3 { margin: 6px 0; font-size: 15px; font-weight: 500; }.waapiConsoleStage { position: relative; min-height: 52px; overflow: hidden; border: 1px dashed #3b7958; background: #020704; }.waapiConsoleStage div { position: absolute; top: 18px; left: 0; width: 42px; height: 14px; border-radius: 10px; background: var(--green); box-shadow: 0 0 20px var(--green); }.waapiConsoleStatus { grid-column: 2; color: var(--green) !important; font-family: var(--mono) !important; }.waapiConsoleButtons { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 7px; }.waapiConsoleButtons button { padding: 5px 10px; }
-.waapiComparison { margin: 20px 0; padding: 15px; border-left: 2px solid var(--cyan); background: rgb(15 30 24 / 45%); }.waapiComparison h3 { margin: 0 0 11px; font-size: 13px; font-weight: 500; }.waapiComparison > div { display: grid; grid-template-columns: 110px repeat(3, minmax(35px, 1fr)); gap: 8px; align-items: center; margin-top: 7px; color: var(--muted); font: 10px var(--mono); }.waapiComparison i { height: 11px; background: var(--green); transform-origin: left; animation: waapi-comparison 1.8s ease-in-out infinite alternate; }.waapiComparison i[data-level="Subtle"] { opacity: .38; transform: scaleX(.42); }.waapiComparison i[data-level="Standard"] { opacity: .68; transform: scaleX(.7); animation-delay: .2s; }.waapiComparison i[data-level="Strong"] { box-shadow: 0 0 15px var(--green); animation-delay: .4s; }@keyframes waapi-comparison { to { filter: brightness(1.7); } }
-.waapiSampleGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(245px, 1fr)); gap: 13px; }.waapiSampleCard { height: 100%; display: grid; grid-template-rows: auto 102px auto auto auto; gap: 9px; padding: 13px; border: 1px solid #254a3a; background: linear-gradient(150deg, rgb(13 29 22 / 96%), rgb(5 10 8 / 96%)); }.waapiCardHeading p { margin: 0 0 4px; color: var(--cyan); font: 9px var(--mono); letter-spacing: .08em; }.waapiCardHeading h4 { margin: 0; min-height: 31px; color: var(--paper); font-size: 13px; font-weight: 500; line-height: 1.25; }.waapiPreview { position: relative; display: grid; place-items: center; overflow: hidden; border: 1px dashed #346149; background: radial-gradient(circle, rgb(77 231 125 / 12%), transparent 60%), #061009; }.waapiPreviewObject { width: 42px; height: 42px; display: grid; place-items: center; border: 2px solid var(--green); background: rgb(77 231 125 / 16%); color: #d8ffe7; font: 10px var(--mono); }.waapiPreview--spin .waapiPreviewObject { border-radius: 50%; border-right-color: transparent; }.waapiPreview--progress .waapiPreviewObject { width: 68%; height: 8px; transform-origin: left; }.waapiPreview--text .waapiPreviewObject { width: auto; height: auto; border: 0; background: transparent; font-size: 13px; letter-spacing: .18em; }.waapiPreview--game .waapiPreviewObject { border-color: #f9d26c; color: #ffe9a4; box-shadow: 0 0 14px rgb(255 210 104 / 45%); }.waapiPreview--system .waapiPreviewObject { width: 64px; height: 24px; border-radius: 2px; box-shadow: 0 0 15px rgb(77 231 125 / 30%); }.waapiPreview button { position: absolute; right: 7px; bottom: 7px; min-height: 25px; padding: 3px 7px; background: rgb(2 7 4 / 88%); }.waapiDescription { min-height: 34px; margin: 0; color: #a4c6b1; font-size: 10px; line-height: 1.5; }.waapiMeta { display: grid; gap: 4px; margin: 0; border-top: 1px solid rgb(77 231 125 / 18%); padding-top: 7px; }.waapiMeta div { display: grid; grid-template-columns: 60px 1fr; gap: 6px; font: 9px var(--mono); line-height: 1.35; }.waapiMeta dt { color: var(--muted); }.waapiMeta dd { margin: 0; color: #ccdfd2; overflow-wrap: anywhere; }.waapiReduced { margin: 0; color: #80b99a; font: 9px var(--mono); }
-@media (max-width: 800px) { .waapiFilters { grid-template-columns: repeat(2, minmax(0, 1fr)); }.waapiSearch { grid-column: 1 / -1; }.waapiConsole { grid-template-columns: 1fr; }.waapiConsoleStatus { grid-column: 1; } }@media (max-width: 520px) { .waapiGalleryPanel { padding: 13px; }.waapiGalleryToggle { padding: 16px; }.waapiFilters { grid-template-columns: 1fr; }.waapiSearch { grid-column: auto; }.waapiSampleGrid { grid-template-columns: 1fr; }.waapiComparison > div { grid-template-columns: 80px repeat(3, minmax(25px, 1fr)); }.waapiConsoleButtons button { flex: 1 0 28%; } }@media (prefers-reduced-motion: reduce) { .waapiComparison i { animation: none; }.waapiPreviewObject { transition: none !important; } }
+/* WAAPI SPECIMEN GALLERY ------------------------------------------------------ */
+.waapiGallery {
+  margin-top: 18px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, rgb(8 15 13 / 92%), rgb(5 9 8 / 96%));
+}
+
+.waapiGalleryDivider {
+  height: 4px;
+  background: repeating-linear-gradient(90deg, var(--green) 0 4px, transparent 4px 9px);
+  opacity: .65;
+}
+
+.waapiGalleryToggle {
+  width: 100%;
+  min-height: 92px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 4px 20px;
+  padding: 19px 22px;
+  border: 0;
+  background: transparent;
+  color: var(--paper);
+  text-align: left;
+  cursor: pointer;
+}
+
+.waapiGalleryToggle > span:first-child {
+  grid-column: 1;
+  color: var(--cyan);
+  font: 10px var(--mono);
+  letter-spacing: .12em;
+}
+
+.waapiGalleryToggle strong {
+  grid-column: 1;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: .04em;
+}
+
+.waapiGalleryToggle > span:last-child {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  color: var(--green);
+  font-size: 22px;
+}
+
+.waapiGalleryToggle:hover,
+.waapiGalleryToggle:focus-visible {
+  outline: 1px solid var(--green);
+  outline-offset: -4px;
+  background: rgb(77 231 125 / 5%);
+}
+
+.waapiGalleryPanel {
+  min-width: 0;
+  padding: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.waapiGalleryIntro {
+  max-width: 780px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.waapiGalleryIntro p {
+  margin: 0 0 16px;
+}
+
+.waapiReducedGuide {
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  border-left: 2px solid var(--cyan);
+  background: rgb(20 45 36 / 48%);
+}
+
+.waapiReducedGuide h3,
+.waapiReducedGuide p {
+  margin: 0;
+}
+
+.waapiReducedGuide h3 {
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.waapiReducedGuide p {
+  color: #b8d8c5;
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.waapiReducedGuide strong {
+  margin-left: 4px;
+  color: var(--green);
+}
+
+.waapiFilters {
+  display: grid;
+  grid-template-columns: minmax(220px, 2fr) repeat(3, minmax(120px, 1fr));
+  gap: 12px;
+  align-items: end;
+  padding: 16px;
+  border: 1px solid #264638;
+  background: rgb(3 8 6 / 55%);
+}
+
+.waapiFilters label {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font: 10px var(--mono);
+  letter-spacing: .06em;
+}
+
+.waapiFilters input,
+.waapiFilters select {
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  padding: 6px 8px;
+  border: 1px solid #315b48;
+  background: #07100c;
+  color: var(--paper);
+  font: 12px var(--mono);
+}
+
+.waapiFilters button,
+.waapiConsoleButtons button,
+.waapiPreviewControls button,
+.waapiDetailsToggle,
+.waapiComparisonHeading button {
+  min-height: 40px;
+  padding: 6px 10px;
+  border: 1px solid rgb(77 231 125 / 42%);
+  background: #0b1711;
+  color: #ccffe0;
+  font: 10px var(--mono);
+  letter-spacing: .05em;
+  cursor: pointer;
+}
+
+.waapiFilters button:hover,
+.waapiFilters button:focus-visible,
+.waapiConsoleButtons button:hover,
+.waapiConsoleButtons button:focus-visible,
+.waapiPreviewControls button:hover,
+.waapiPreviewControls button:focus-visible,
+.waapiDetailsToggle:hover,
+.waapiDetailsToggle:focus-visible,
+.waapiComparisonHeading button:hover,
+.waapiComparisonHeading button:focus-visible {
+  border-color: var(--green);
+  color: var(--green);
+  box-shadow: 0 0 12px rgb(77 231 125 / 18%);
+}
+
+.waapiResults {
+  margin: 14px 0;
+  color: var(--cyan);
+  font: 11px var(--mono);
+  letter-spacing: .08em;
+}
+
+.waapiConsole {
+  display: grid;
+  grid-template-columns: minmax(190px, .8fr) minmax(220px, 1.5fr);
+  gap: 12px 18px;
+  margin: 18px 0 24px;
+  padding: 16px;
+  border: 1px solid #427d5f;
+  background: radial-gradient(circle at 75% 15%, rgb(77 231 125 / 13%), transparent 36%), #07100c;
+}
+
+.waapiConsoleIntro p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.waapiConsoleIntro > p:first-child {
+  color: var(--cyan);
+  font: 10px var(--mono);
+  letter-spacing: .1em;
+}
+
+.waapiConsole h3 {
+  margin: 6px 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.waapiConsoleNotice {
+  margin-top: 8px !important;
+  color: #f3d56b !important;
+}
+
+.waapiConsoleStage {
+  position: relative;
+  min-width: 0;
+  min-height: 58px;
+  overflow: hidden;
+  border: 1px dashed #3b7958;
+  background: #020704;
+}
+
+.waapiConsoleStage div {
+  position: absolute;
+  top: 20px;
+  left: 8px;
+  width: 46px;
+  height: 16px;
+  border-radius: 10px;
+  background: var(--green);
+  box-shadow: 0 0 20px var(--green);
+}
+
+.waapiConsoleReadout {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  margin: 0;
+}
+
+.waapiConsoleReadout div {
+  min-width: 0;
+  padding: 7px;
+  border: 1px solid #244b38;
+}
+
+.waapiConsoleReadout dt,
+.waapiConsoleReadout dd {
+  margin: 0;
+  font: 9px var(--mono);
+  overflow-wrap: anywhere;
+}
+
+.waapiConsoleReadout dt {
+  color: var(--muted);
+}
+
+.waapiConsoleReadout dd {
+  margin-top: 4px;
+  color: var(--green);
+}
+
+.waapiConsoleButtons {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.waapiSeek {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 64px;
+  gap: 10px;
+  align-items: center;
+  color: var(--muted);
+  font: 10px var(--mono);
+}
+
+.waapiSeek input {
+  width: 100%;
+}
+
+.waapiSeek output {
+  color: var(--green);
+  text-align: right;
+}
+
+.waapiConsoleError {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #ff9297;
+  font-size: 11px;
+}
+
+.waapiComparison {
+  margin: 20px 0 24px;
+  padding: 15px;
+  border-left: 2px solid var(--cyan);
+  background: rgb(15 30 24 / 45%);
+}
+
+.waapiComparisonHeading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 12px;
+}
+
+.waapiComparisonHeading p,
+.waapiComparisonHeading h3 {
+  margin: 0;
+}
+
+.waapiComparisonHeading p {
+  color: var(--cyan);
+  font: 9px var(--mono);
+  letter-spacing: .1em;
+}
+
+.waapiComparisonHeading h3 {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.waapiComparisonGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.waapiComparisonGrid article {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #2e5944;
+}
+
+.waapiComparisonGrid h4 {
+  margin: 0 0 8px;
+  color: var(--paper);
+  font-size: 12px;
+}
+
+.waapiCompareStage {
+  min-height: 74px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px dashed #315d47;
+  background: #061009;
+}
+
+.waapiCompareStage > div,
+.waapiToastObject {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  border: 1px solid #4a8c68;
+  background: #102a1d;
+  color: #dcffe9;
+  font: 10px var(--mono);
+}
+
+.waapiCompareStage i,
+.waapiToastObject i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.waapiComparisonGrid dl,
+.waapiCodePanel dl {
+  display: grid;
+  gap: 3px;
+  margin: 9px 0 0;
+}
+
+.waapiComparisonGrid dl div,
+.waapiCodePanel dl div {
+  display: grid;
+  grid-template-columns: minmax(70px, .8fr) minmax(0, 1.2fr);
+  gap: 5px;
+  font: 8px var(--mono);
+}
+
+.waapiComparisonGrid dt,
+.waapiComparisonGrid dd,
+.waapiCodePanel dt,
+.waapiCodePanel dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.waapiComparisonGrid dt,
+.waapiCodePanel dt {
+  color: var(--muted);
+}
+
+.waapiComparisonGrid dd,
+.waapiCodePanel dd {
+  color: #bedac7;
+}
+
+.waapiEmptyState {
+  padding: 28px 16px;
+  border: 1px dashed #3d7457;
+  color: var(--paper);
+  text-align: center;
+}
+
+.waapiSampleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 13px;
+}
+
+.waapiSampleGrid > div {
+  min-width: 0;
+}
+
+.waapiSampleCard {
+  height: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 13px;
+  border: 1px solid #254a3a;
+  background: linear-gradient(150deg, rgb(13 29 22 / 96%), rgb(5 10 8 / 96%));
+}
+
+.waapiCardHeading p {
+  margin: 0 0 4px;
+  color: var(--cyan);
+  font: 9px var(--mono);
+  letter-spacing: .08em;
+}
+
+.waapiCardHeading h4 {
+  min-height: 32px;
+  margin: 0;
+  color: var(--paper);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.waapiPreviewGroup {
+  display: grid;
+  gap: 7px;
+}
+
+.waapiPreviewStage {
+  position: relative;
+  min-height: 126px;
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px dashed #346149;
+  background: radial-gradient(circle, rgb(77 231 125 / 12%), transparent 60%), #061009;
+}
+
+.waapiPreviewControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.waapiPreviewControls button {
+  flex: 1 1 90px;
+}
+
+.waapiBoxObject {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--green);
+  background: rgb(77 231 125 / 16%);
+}
+
+.waapiBoxObject i {
+  width: 8px;
+  height: 8px;
+  background: var(--cyan);
+}
+
+.waapiButtonObject {
+  padding: 9px 16px;
+  border: 1px solid var(--green);
+  background: #153b29;
+  color: #e4ffed;
+  font: 10px var(--mono);
+}
+
+.waapiModalBackdrop {
+  width: 84%;
+  min-height: 90px;
+  display: grid;
+  place-items: center;
+  background: rgb(0 0 0 / 35%);
+}
+
+.waapiModalObject {
+  width: 130px;
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid #63a87f;
+  background: #13251d;
+  box-shadow: 0 12px 28px rgb(0 0 0 / 35%);
+}
+
+.waapiModalObject i {
+  height: 5px;
+  background: #4a6d5a;
+}
+
+.waapiModalObject i:nth-child(2) {
+  width: 68%;
+}
+
+.waapiModalObject b {
+  justify-self: end;
+  padding: 3px 9px;
+  background: #2c6846;
+  font: 9px var(--mono);
+}
+
+.waapiToastObject {
+  white-space: nowrap;
+}
+
+.waapiToggleTrack {
+  width: 58px;
+  height: 30px;
+  padding: 3px;
+  border: 1px solid #4a7761;
+  border-radius: 18px;
+  background: #1a2d24;
+}
+
+.waapiToggleTrack i {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #9aa9a0;
+}
+
+.waapiProgressTrack,
+.waapiXpTrack {
+  width: 78%;
+  overflow: hidden;
+  border: 1px solid #3c654f;
+  background: #07100c;
+}
+
+.waapiProgressTrack {
+  height: 13px;
+  padding: 2px;
+}
+
+.waapiProgressTrack i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--green), var(--cyan));
+  transform-origin: left;
+}
+
+.waapiTypewriter {
+  max-width: calc(100% - 28px);
+  color: #dcffe9;
+  font: 13px var(--mono);
+  letter-spacing: .08em;
+  white-space: nowrap;
+}
+
+.waapiCharacters {
+  display: flex;
+  gap: 5px;
+  color: #d9ffeb;
+  font: 16px var(--mono);
+  letter-spacing: .08em;
+}
+
+.waapiCounterWindow {
+  width: 42px;
+  height: 28px;
+  overflow: hidden;
+  border-block: 1px solid #4e8e6b;
+  background: #010503;
+}
+
+.waapiCounterColumn {
+  display: grid;
+}
+
+.waapiCounterColumn span {
+  height: 28px;
+  display: grid;
+  place-items: center;
+  color: var(--green);
+  font: 18px var(--mono);
+}
+
+.waapiTerminalText {
+  color: #c8ffe0;
+  font: 14px var(--mono);
+}
+
+.waapiTerminalText span {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  margin-left: 4px;
+  background: var(--green);
+  vertical-align: -2px;
+}
+
+.waapiXpTrack {
+  height: 22px;
+  position: relative;
+}
+
+.waapiXpSegments {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  display: flex;
+  gap: 3px;
+}
+
+.waapiXpSegments i {
+  width: 15px;
+  height: 10px;
+  background: linear-gradient(#59a5ff, #205bb9);
+}
+
+.waapiOrbitDots,
+.waapiSpinnerSpokes {
+  position: relative;
+  width: 68px;
+  height: 68px;
+}
+
+.waapiOrbitDots i {
+  --angle: calc(var(--dot-index) * 45deg);
+  position: absolute;
+  top: 29px;
+  left: 29px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #77bfff;
+  transform: rotate(var(--angle)) translateY(-25px);
+  transform-origin: 4px 4px;
+}
+
+.waapiWatch {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border: 3px solid #d9e6df;
+  border-radius: 50%;
+  box-shadow: 0 -8px 0 -5px #d9e6df, 0 8px 0 -5px #d9e6df;
+}
+
+.waapiWatch i {
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  width: 3px;
+  height: 17px;
+  background: #d9e6df;
+  transform-origin: 50% 18px;
+}
+
+.waapiWatch b {
+  position: absolute;
+  inset: 19px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.waapiSpinnerSpokes i {
+  --angle: calc(var(--spoke-index) * 30deg);
+  position: absolute;
+  top: 5px;
+  left: 31px;
+  width: 5px;
+  height: 17px;
+  border-radius: 5px;
+  background: #dfe9e3;
+  transform: rotate(var(--angle));
+  transform-origin: 2px 29px;
+}
+
+.waapiDock {
+  position: relative;
+  min-width: 100px;
+  min-height: 76px;
+  display: grid;
+  place-items: end center;
+}
+
+.waapiDock i {
+  z-index: 1;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #62df91, #227748);
+  color: #062210;
+  font: 9px var(--mono);
+  font-style: normal;
+}
+
+.waapiDock b {
+  position: absolute;
+  bottom: -2px;
+  width: 100px;
+  height: 5px;
+  border-radius: 50%;
+  background: #7a9485;
+}
+
+.waapiGeometry {
+  position: relative;
+  width: 70px;
+  height: 70px;
+}
+
+.waapiGeometry i {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 4px solid #5dff98;
+}
+
+.waapiGeometry i:nth-child(1) { top: 5px; left: 5px; border-right: 0; border-bottom: 0; }
+.waapiGeometry i:nth-child(2) { top: 5px; right: 5px; border-left: 0; border-bottom: 0; }
+.waapiGeometry i:nth-child(3) { bottom: 5px; left: 5px; border-right: 0; border-top: 0; }
+.waapiGeometry i:nth-child(4) { right: 5px; bottom: 5px; border-left: 0; border-top: 0; }
+
+.waapiDamageNumber {
+  color: #ffd36d;
+  font: 700 27px var(--mono);
+  text-shadow: 2px 2px 0 #7c291f;
+}
+
+.waapiPreviewStage--marquee {
+  place-items: center start;
+}
+
+.waapiMarqueeText {
+  position: absolute;
+  left: 100%;
+  color: #f4ea72;
+  font: 700 11px var(--mono);
+  white-space: nowrap;
+  text-shadow: 1px 1px #d34c8e;
+}
+
+.waapiDescription,
+.waapiInspired {
+  margin: 0;
+  color: #a4c6b1;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.waapiInspired strong {
+  color: var(--paper);
+}
+
+.waapiMeta {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding-top: 7px;
+  border-top: 1px solid rgb(77 231 125 / 18%);
+}
+
+.waapiMeta div {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 6px;
+  font: 9px var(--mono);
+  line-height: 1.4;
+}
+
+.waapiMeta dt {
+  color: var(--muted);
+}
+
+.waapiMeta dd {
+  margin: 0;
+  color: #ccdfd2;
+  overflow-wrap: anywhere;
+}
+
+.waapiReduced {
+  margin: 0;
+  color: #80b99a;
+  font: 9px var(--mono);
+  line-height: 1.45;
+}
+
+.waapiDetailsToggle {
+  width: 100%;
+  margin-top: auto;
+}
+
+.waapiCodePanel {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #315d47;
+  background: #040906;
+}
+
+.waapiCodePanel p {
+  margin: 7px 0 0;
+  color: #b3cdbd;
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+.waapiCodePanel p:first-child {
+  margin-top: 0;
+}
+
+.waapiCodePanel pre {
+  max-width: 100%;
+  margin: 8px 0;
+  padding: 9px;
+  overflow-x: auto;
+  border: 1px solid #203d2f;
+  color: #c9ffe0;
+  font: 9px/1.55 var(--mono);
+  white-space: pre;
+}
+
+@media (max-width: 800px) {
+  .waapiFilters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .waapiSearch {
+    grid-column: 1 / -1;
+  }
+
+  .waapiConsole {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .waapiConsoleReadout {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .waapiGalleryPanel {
+    padding: 13px;
+  }
+
+  .waapiGalleryToggle {
+    padding: 16px;
+  }
+
+  .waapiFilters,
+  .waapiComparisonGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .waapiSearch {
+    grid-column: auto;
+  }
+
+  .waapiSampleGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .waapiConsoleReadout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .waapiConsoleButtons button {
+    flex: 1 1 28%;
+  }
+
+  .waapiComparisonHeading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 340px) {
+  .waapiGalleryPanel,
+  .waapiSampleCard,
+  .waapiConsole,
+  .waapiComparison {
+    padding: 10px;
+  }
+
+  .waapiConsoleReadout,
+  .waapiMeta div,
+  .waapiComparisonGrid dl div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .waapiSeek {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .waapiSeek output {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .waapiGallery *,
+  .waapiGallery *::before,
+  .waapiGallery *::after {
+    scroll-behavior: auto !important;
+  }
+}

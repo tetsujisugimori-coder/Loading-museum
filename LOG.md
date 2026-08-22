@@ -1,13 +1,15 @@
 # Loading Museum 作業ログ
 
-## 2026-08-22 — WAAPI サンプルギャラリー試作
+## 2026-08-22 — PR #28 WAAPI標本ギャラリーの品質修正
 
-- 既存のDOM ANIMATION ROOMを保持したまま、その直下に初期状態でDOMを生成しない折りたたみ式のWAAPIサンプルギャラリーを追加した。
-- 大量の標本を共通データからカード生成する構造にし、検索とカテゴリ、用途、技術、元ネタ種別、年代、動きの強さ、難易度の複合フィルターを実装した。
-- OS、ゲーム、Web文化、アプリUI、テキスト、WAAPI操作を広く試作展示化した。固有のロゴ・画面を複製せず、動きの特徴を抽象化している。
-- Replayと、Play / Pause / Reverse / Cancel / Finish / 速度 / Seekを備えるAnimation Control Consoleを追加した。
-- IntersectionObserverで表示付近のプレビューだけを再生し、`prefers-reduced-motion`ではループを止めて短い静止的な再生へ切り替える。
-- 今回は試作展示を広く作り、レビュー後に採用・修正・統合・削除を判断する方針とする。
+- 名称群を`groups.flatMap()`で9種類の共通モーションへ割り当てていた構造を撤去し、代表24件を明示データと専用プレビューで個別実装した。
+- 各標本へ通常・軽減キーフレーム、AnimationOptions、描画形式、参考にした特徴、適する用途、避ける用途、コード解説を持たせた。画面のコードは実演と同じ設定データから生成する。
+- Fade／Slideの方向、Modal／Toastの両方向、Toggle、Progress、文字演出、OS由来ローダー、幾何学形成、Damage Number、Marqueeを名称どおりの異なるDOMと動きで描画する。
+- `prefers-reduced-motion`はギャラリー全体で一度だけ監視する。移動・回転・反復を短いフェード、枠線変化、静的進捗へ置換し、軽減時の無限ループを止めた。
+- Animation Control Consoleを有限アニメーションへ変更した。ステージ実寸から移動距離を計算し、例外を捕捉しながらPlay／Pause／Reverse／Cancel／Finish／速度／Seekを操作し、実際の状態値を表示する。
+- 強さ比較は同じ通知カードを使い、控えめ・標準・派手で移動距離、拡大率、duration、easing、オーバーシュート、発光を実際に変える構成へ改めた。
+- 公開候補から外した案は展示数へ含めず、`docs/waapi-sample-backlog.md`へ未実装候補として分離した。
+- データ整合性5件とjsdom操作4件を追加し、遅延DOM、検索、複合フィルター、Replay、停止、コード開閉、Console、Reduced motion、Modal／Toastの両方向を検証する。
 
 ## 2026-08-08 — PR #22 Finder実矩形判定とSystem操作回帰
 
