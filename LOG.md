@@ -1,5 +1,14 @@
 # Loading Museum 作業ログ
 
+## 2026-08-22 — WAAPI サンプルギャラリー試作
+
+- 既存のDOM ANIMATION ROOMを保持したまま、その直下に初期状態でDOMを生成しない折りたたみ式のWAAPIサンプルギャラリーを追加した。
+- 大量の標本を共通データからカード生成する構造にし、検索とカテゴリ、用途、技術、元ネタ種別、年代、動きの強さ、難易度の複合フィルターを実装した。
+- OS、ゲーム、Web文化、アプリUI、テキスト、WAAPI操作を広く試作展示化した。固有のロゴ・画面を複製せず、動きの特徴を抽象化している。
+- Replayと、Play / Pause / Reverse / Cancel / Finish / 速度 / Seekを備えるAnimation Control Consoleを追加した。
+- IntersectionObserverで表示付近のプレビューだけを再生し、`prefers-reduced-motion`ではループを止めて短い静止的な再生へ切り替える。
+- 今回は試作展示を広く作り、レビュー後に採用・修正・統合・削除を判断する方針とする。
+
 ## 2026-08-08 — PR #22 Finder実矩形判定とSystem操作回帰
 
 - Read Meの当たり判定をポインタ周辺の仮`60×48px`から、ドラッグ開始時に`getBoundingClientRect()`で測った実要素の幅・高さへ変更した。画面上の`.macDesktopItem`は`68×68px`で、`filePoint`を左上とする矩形とゴミ箱の実矩形が少しでも重なれば蓋を開く。

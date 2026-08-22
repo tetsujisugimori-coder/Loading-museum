@@ -1217,3 +1217,26 @@ test("DOM ANIMATION ROOM を静的HTMLへ出力し、17操作のAPI体験を確�
   assert.match(css, /\.domOperationStage/);
   assert.match(css, /@media \(max-width: 650px\)/);
 });
+
+test("既存ローディング標本の直下に、遅延生成するWAAPI標本ギャラリーを追加する", async () => {
+  const [page, component, data, css] = await Promise.all([
+    readFile(new URL("app/page.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/WaapiSampleGallery.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/data/waapiSamples.ts", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+
+  assert.ok(page.indexOf("<WaapiSampleGallery />") > page.indexOf("</section>\n\n      <WaapiSampleGallery />"));
+  assert.ok(page.indexOf("<WaapiSampleGallery />") < page.indexOf("<section className=\"roomCollection\""));
+  assert.match(component, /aria-expanded=\{open\}/);
+  assert.match(component, /open && <div id="waapi-gallery-panel"/);
+  assert.match(component, /IntersectionObserver/);
+  assert.match(component, /Animation Control Console/);
+  assert.match(component, /\["Play", "Pause", "Reverse", "Cancel", "Finish", "0\.5x", "1x", "2x", "Seek"\]/);
+  assert.match(data, /export const waapiSamples/);
+  assert.match(data, /Windows XP風 横移動セグメントローダー/);
+  assert.match(data, /Treasure Chest Open/);
+  assert.match(data, /Marquee風 Horizontal Scroll/);
+  assert.match(css, /\.waapiSampleGrid/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\).*\.waapiComparison i/s);
+});
