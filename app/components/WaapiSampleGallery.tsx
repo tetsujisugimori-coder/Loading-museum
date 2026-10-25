@@ -327,7 +327,7 @@ function SampleCard({ sample, active, reducedMotion }: { sample: WaapiSample; ac
       {detailsOpen && <div id={`${sample.id}-details`} className="waapiCodePanel">
         <p><strong>現在の表示:</strong> {reducedMotion ? "軽減表示" : "通常表示"}</p>
         <pre><code>{formatAnimationCode(sample, reducedMotion)}</code></pre>
-        <dl><div><dt>duration</dt><dd>{String(motion.options.duration)}ms</dd></div><div><dt>easing</dt><dd>{String(motion.options.easing)}</dd></div><div><dt>iterations / fill</dt><dd>{String(motion.options.iterations)} / {String(motion.options.fill)}</dd></div></dl>
+        <dl><div><dt>duration</dt><dd>{sample.render === "match3" ? reducedMotion ? "Animationなし（即時表示）" : "320 + 連鎖段数 × 580 ms（2段: 1480 ms）" : `${String(motion.options.duration)}ms`}</dd></div><div><dt>easing</dt><dd>{sample.render === "match3" ? reducedMotion ? "なし" : "linear" : String(motion.options.easing)}</dd></div><div><dt>iterations / fill</dt><dd>{sample.render === "match3" ? reducedMotion ? "なし / なし" : "1 / none" : `${String(motion.options.iterations)} / ${String(motion.options.fill)}`}</dd></div></dl>
         <p><strong>何が起きるか:</strong> {motion.explanation}</p><p><strong>実装上の注意:</strong> {sample.avoidFor}では使用を避け、状態は文章でも伝えます。</p><p><strong>軽減時:</strong> {sample.reducedMotionDescription}</p>
       </div>}
     </article>

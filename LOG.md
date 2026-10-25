@@ -1407,3 +1407,13 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 
 記録: 2026-10-25 13:25 JST。
 - 目視追加修正: 375px Falling Blockの結果ラベルが最下段に重なる旧CSSを確認。Line/Match結果を独立行へ移し、実矩形の非重なり回帰を追加。2026-10-25 13:26 JST。
+
+## 2026-10-25 — PR #32 実連鎖・盤面履歴演出・途中軽減切替
+
+- 既存fix/waapi-state-consistency、HEAD 63ed9cdを確認し追加修正。PR #31は4852ae6のDraft/未マージで不変。新PR・merge・公開なし。
+- 初期3×4盤面の一般交換8/11で5→3石、2段連鎖800点を検証。各段の盤面/消去集合/token履歴を純関数で記録し、同じ結果を盤面・得点・WAAPI位置差へ使用。
+- 第一希望の交換→消去→落下→追加消去を装飾レイヤーで再生。論理結果は同期確定。fill/完了callback/遅延state更新なし。新操作開始・Reset・軽減ON・画面外・unmountで取消して確定盤面を露出する。
+- 対象4ゲームだけ軽減切替のAnimation取消を有効化。HPの世代管理とCSS軽減は維持。軽減OFFは次操作から再生。
+- 修正前4件失敗を固定、追加14件。既存88件を維持し計102件。独立レビューで再操作入力と旧duration/fill表示のP3を修正。ブラウザ結果・独立最終・最終HEADは設計記録へ追補。
+- 197定義、ID/名称/順序、集計、検索、Pages設定を保持。typewriter ID重複と全館title200%横超過は対象外。#31将来統合時はLOG/package両追記を保持する。
+- 最終製品check/build成功:102成功・失敗0・skip0。独立31件と一般盤面315交換の照合成功、追加P3 2件修正後の残件なし。native WAAPIとhover CSS Transitionを分離してブラウザ検証。実機Safari/VoiceOver未検証、実CI成功とは扱わない。最終6条件JSONを設計記録から参照。

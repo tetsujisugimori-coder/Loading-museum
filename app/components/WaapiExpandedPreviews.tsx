@@ -4,7 +4,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNo
 import type { SampleRenderKind, WaapiSample } from "../data/waapiSamples";
 import { aiPhases, judgeTiming, nextAiState, nextComparisonPhase, type AiComparisonPhase, type AiWorkingState } from "./waapi-interaction-state";
 
-import { initialGems, exchangeGems, initialBlocks, dropAndCompact } from "./waapi-board-state";
+import { initialGems, exchangeGems, initialBlocks, dropAndCompact, type GemExchange } from "./waapi-board-state";
 
 export const expandedGameKinds: SampleRenderKind[] = ["combat", "reward-lab", "hit-stop", "parry", "dodge", "line-clear", "match3", "pinball", "lockon", "equip", "status-effects", "turn-order", "battle-transition", "race"];
 export const aiKinds: SampleRenderKind[] = ["ai-modular", "ai-ribbon", "ai-code", "ai-sparkle", "ai-warm", "ai-weave"];
@@ -14,7 +14,7 @@ function Controls({ children, reset }: { children: ReactNode; reset: () => void 
   return <div className="waapiPreviewControls gameControls">{children}<button type="button" onClick={reset}>RESET</button></div>;
 }
 
-function useRuntime(active: boolean) {
+function useRuntime(active: boolean, reducedMotion = false) {
   const animations = useRef<Animation[]>([]);
   const timers = useRef<number[]>([]);
   const stop = useCallback(() => {
@@ -28,6 +28,7 @@ function useRuntime(active: boolean) {
   }, []);
   const later = useCallback((callback: () => void, delay: number) => timers.current.push(window.setTimeout(callback, delay)), []);
   useEffect(() => { if (!active) stop(); return stop; }, [active, stop]);
+  useLayoutEffect(() => { if (reducedMotion) stop(); }, [reducedMotion, stop]);
   return { stop, animate, later };
 }
 
@@ -63,7 +64,7 @@ function TimingPreview({ active, reducedMotion, dodge }: PreviewProps & { dodge:
 
 function LineClearPreview({ active, reducedMotion }: PreviewProps) {
   const stage = useRef<HTMLDivElement>(null);
-  const { stop, animate } = useRuntime(active);
+  const { stop, animate } = useRuntime(active, reducedMotion);
   const [board, setBoard] = useState(() => [...initialBlocks]);
   const [phase, setPhase] = useState("READY");
   const before = useRef<Map<string, number>>(new Map());
@@ -85,20 +86,44 @@ function LineClearPreview({ active, reducedMotion }: PreviewProps) {
 
 function MatchPreview({ active, reducedMotion }: PreviewProps) {
   const boardNode = useRef<HTMLDivElement>(null); const dragFrom = useRef<number | null>(null);
-  const { stop, animate } = useRuntime(active);
+  const { stop, animate } = useRuntime(active, reducedMotion);
   const [board, setBoard] = useState(() => [...initialGems]);
   const [selected, setSelected] = useState<number[]>([]);
+  const [result, setResult] = useState<GemExchange | null>(null);
+  const pending = useRef(false);
   const [phase, setPhase] = useState("SELECT TWO ADJACENT GEMS"); const [score, setScore] = useState(0);
-  const choose = (index: number) => setSelected(value => value.includes(index) ? value.filter(i => i !== index) : [...value, index].slice(-2));
+  useLayoutEffect(() => {
+    if (!pending.current || !result || !boardNode.current) return;
+    pending.current = false;
+    if (reducedMotion || !active) return;
+    const cells = Array.from(boardNode.current.querySelectorAll<HTMLButtonElement>(":scope > button"));
+    const rects = cells.map(node => node.getBoundingClientRect());
+    const duration = 320 + result.chains * 580;
+    const times = [0, 320];
+    for (let chain = 0; chain < result.chains; chain++) times.push(320 + chain * 580 + 220, 320 + (chain + 1) * 580);
+    boardNode.current.querySelectorAll<HTMLElement>("[data-gem-token]").forEach(node => {
+      const id = Number(node.dataset.gemToken); let last = id;
+      node.style.font = getComputedStyle(cells[id]).font;
+      const frames: Keyframe[] = result.frames.map((tokens, frame) => {
+        const index = tokens.findIndex(token => token?.id === id);
+        if (index >= 0) last = index;
+        return { offset: times[frame] / duration, transform: `translate(${rects[last].left - rects[id].left}px,${rects[last].top - rects[id].top}px)`, opacity: index < 0 ? 0 : 1 };
+      });
+      animate(node, frames, { duration, easing: "linear" });
+    });
+    // Only glyphs are hidden during replay; the final board remains the accessible state.
+    cells.forEach(node => animate(node.querySelector("span"), [{ opacity: 0, offset: 0 }, { opacity: 0, offset: .999 }, { opacity: 1, offset: 1 }], { duration }));
+  }, [result, active, reducedMotion, animate]);
+  const choose = (index: number) => { stop(); if (board[index]) setSelected(value => value.includes(index) ? value.filter(i => i !== index) : [...value, index].slice(-2)); };
   const swap = (pair = selected) => {
-    stop();
+    stop(); pending.current = false;
     if (pair.length !== 2) return setPhase("SELECT TWO ADJACENT GEMS");
-    const result = exchangeGems(board, pair[0], pair[1]);
-    setBoard(result.board); setPhase(result.status); setScore(value => value + result.removed * 100); setSelected([]); dragFrom.current = null;
-    if (!reducedMotion && result.removed) boardNode.current?.querySelectorAll("button").forEach(node => animate(node, [{ opacity: .3, transform: "translateY(-12px)" }, { opacity: 1, transform: "translateY(0)" }], { duration: 300 }));
+    const next = exchangeGems(board, pair[0], pair[1]);
+    pending.current = next.removed > 0;
+    setResult(next); setBoard(next.board); setPhase(next.status); setScore(value => value + next.removed * 100); setSelected([]); dragFrom.current = null;
   };
-  const reset = () => { stop(); dragFrom.current = null; setBoard([...initialGems]); setSelected([]); setPhase("SELECT TWO ADJACENT GEMS"); setScore(0); };
-  return <div className="waapiPreviewGroup"><div className="waapiPreviewStage gameScene gameMatch" data-scene="match3"><div ref={boardNode} className="matchBoard">{board.map((gem, i) => <button type="button" key={i} aria-label={`行${Math.floor(i / 3) + 1} 列${i % 3 + 1}: ${gem ?? "空"}`} aria-pressed={selected.includes(i)} disabled={!gem} draggable={!!gem} onClick={() => choose(i)} onDragStart={() => { dragFrom.current = i; }} onDragEnd={() => { dragFrom.current = null; }} onDragOver={e => e.preventDefault()} onDrop={e => { e.preventDefault(); if (dragFrom.current !== null) swap([dragFrom.current, i]); }}>{gem ?? "·"}</button>)}</div><output>{phase} · SCORE {score}</output></div><Controls reset={reset}><button type="button" onClick={() => swap()}>SWAP</button></Controls><p>縦横の隣接だけ交換。3石以上の一致を消去し、下へ詰めて再判定します。1石100点。補充なしの有限盤面で、一致しない交換は戻します。</p></div>;
+  const reset = () => { stop(); pending.current = false; dragFrom.current = null; setResult(null); setBoard([...initialGems]); setSelected([]); setPhase("SELECT TWO ADJACENT GEMS"); setScore(0); };
+  return <div className="waapiPreviewGroup"><div className="waapiPreviewStage gameScene gameMatch" data-scene="match3"><div ref={boardNode} className="matchBoard" onPointerDownCapture={stop} onFocusCapture={stop}>{board.map((gem, i) => <button type="button" key={i} aria-label={`行${Math.floor(i / 3) + 1} 列${i % 3 + 1}: ${gem ?? "空"}`} aria-pressed={selected.includes(i)} disabled={!gem} draggable={!!gem} onClick={() => choose(i)} onDragStart={() => { stop(); dragFrom.current = i; }} onDragEnd={() => { dragFrom.current = null; }} onDragOver={e => e.preventDefault()} onDrop={e => { e.preventDefault(); if (dragFrom.current !== null) swap([dragFrom.current, i]); }}><span>{gem ?? "·"}</span></button>)}{result?.frames[0]?.map((token, i) => token && <span key={token.id} className="matchGhost" data-gem-token={token.id} aria-hidden="true" style={{ left: `${i % 3 * 41}px`, top: `${Math.floor(i / 3) * 41}px` }}>{token.gem}</span>)}</div><output aria-live="polite">{phase} · SCORE {score}</output>{result && result.steps.length > 0 && <small className="matchSteps">確定結果: {result.steps.map((step, i) => `${i + 1}段目 ${step.matched.length}石`).join(" → ")}</small>}</div><Controls reset={reset}><button type="button" onClick={() => swap()}>SWAP</button></Controls><p>縦横の隣接だけ交換。3石以上の一致を消去し、下へ詰めて再判定。1石100点、補充なし。不成立は戻します。例: 3行3列と4行3列で2段連鎖。結果は即時確定し、各石の交換・消去・落下を重ねて再生します。再操作・中断時は演出を止めて確定盤面を表示します。</p></div>;
 }
 
 function PinballPreview({ active, reducedMotion }: PreviewProps) {
@@ -110,7 +135,7 @@ function PinballPreview({ active, reducedMotion }: PreviewProps) {
 
 const targets = [{ name: "SCOUT", distance: "18m" }, { name: "WARDEN", distance: "31m" }, { name: "DRONE", distance: "12m" }];
 function LockonPreview({ active, reducedMotion }: PreviewProps) {
-  const reticle = useRef<HTMLSpanElement>(null); const { stop, animate } = useRuntime(active); const [index, setIndex] = useState(0);
+  const reticle = useRef<HTMLSpanElement>(null); const { stop, animate } = useRuntime(active, reducedMotion); const [index, setIndex] = useState(0);
   const previous = useRef<DOMRect | null>(null);
   useLayoutEffect(() => {
     if (previous.current && reticle.current && !reducedMotion) {
@@ -125,7 +150,7 @@ function LockonPreview({ active, reducedMotion }: PreviewProps) {
 }
 
 function EquipPreview({ active, reducedMotion }: PreviewProps) {
-  const slot = useRef<HTMLDivElement>(null); const { stop, animate } = useRuntime(active); const [equipped, setEquipped] = useState(false);
+  const slot = useRef<HTMLDivElement>(null); const { stop, animate } = useRuntime(active, reducedMotion); const [equipped, setEquipped] = useState(false);
   const from = useRef<DOMRect | null>(null); const item = useRef<HTMLButtonElement>(null);
   useLayoutEffect(() => {
     if (equipped && slot.current && from.current && !reducedMotion) {

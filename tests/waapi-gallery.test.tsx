@@ -261,8 +261,8 @@ describe("WAAPI標本ギャラリー操作", () => {
     fireEvent.click(within(match).getByRole("button", { name: "SWAP" }));
     expect(result("Match-3 Cascade")).toContain("SELECT TWO ADJACENT GEMS");
     const gemButtons = match.querySelectorAll(".matchBoard button");
-    fireEvent.click(gemButtons[0]);
-    fireEvent.click(gemButtons[3]);
+    fireEvent.click(gemButtons[4]);
+    fireEvent.click(gemButtons[5]);
     fireEvent.click(within(match).getByRole("button", { name: "SWAP" }));
     expect(result("Match-3 Cascade")).toContain("MATCH 3");
 

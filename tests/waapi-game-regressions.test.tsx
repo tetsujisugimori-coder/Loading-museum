@@ -11,7 +11,7 @@ it('accepts vertical adjacency, then judges actual contents', () => { const r=se
 it('initial and reset reticle belongs to selected target', () => { const r=setup('lockon'); expect(r.container.querySelector('.isLocked .lockReticle')).not.toBeNull(); });
 it('equipment is represented by DOM state, not only a filled animation', () => { const r=setup('equip'); fireEvent.click(r.getByText('EQUIP')); expect(r.container.querySelector('.gameEquip > button')).toBeNull(); });
 it('falling block stores occupied cells rather than a fixed solid rectangle', () => { const r=setup('line-clear'); expect(r.container.querySelectorAll('[data-block-id]').length).toBeGreaterThan(0); expect(r.container.querySelectorAll('[data-block-id]').length).toBeLessThan(20); });
-it.each([[0,3],[1,2]])('actually matches adjacent %i/%i, scores removed cells and restores on reset', (a,b) => {
+it.each([[5,8],[4,5]])('actually matches adjacent %i/%i, scores removed cells and restores on reset', (a,b) => {
  const r=setup('match3'); const cells=()=>Array.from(r.container.querySelectorAll<HTMLButtonElement>('.matchBoard button')); const original=cells().map(c=>c.textContent);
  fireEvent.click(cells()[a]); fireEvent.click(cells()[b]); fireEvent.click(r.getByText('SWAP'));
  const empty=cells().filter(c=>c.disabled).length; expect(empty).toBeGreaterThanOrEqual(3); expect(r.container.querySelector('output')!.textContent).toContain(`SCORE ${empty*100}`); expect(cells().map(c=>c.textContent)).not.toEqual(original);
@@ -22,7 +22,7 @@ it('rejects diagonal and returns a legal no-match exchange without score', () =>
  for (const pair of [[0,4],[0,1]]) { fireEvent.click(cells[pair[0]]); fireEvent.click(cells[pair[1]]); fireEvent.click(r.getByText('SWAP')); expect(Array.from(cells,c=>c.textContent)).toEqual(original); expect(r.container.querySelector('output')!.textContent).toContain('SCORE 0'); }
  expect(r.container.querySelector('output')!.textContent).toContain('NO MATCH');
 });
-it('drag uses the dropped pair, not stale selection', () => { const r=setup('match3'); const cells=r.container.querySelectorAll('.matchBoard button'); fireEvent.dragStart(cells[0]); fireEvent.drop(cells[3]); expect(r.container.querySelector('output')!.textContent).toContain('MATCH'); expect(r.container.querySelectorAll('.matchBoard button:disabled').length).toBeGreaterThanOrEqual(3); });
+it('drag uses the dropped pair, not stale selection', () => { const r=setup('match3'); const cells=r.container.querySelectorAll('.matchBoard button'); fireEvent.dragStart(cells[8]); fireEvent.drop(cells[11]); expect(r.container.querySelector('output')!.textContent).toContain('MATCH'); expect(r.container.querySelectorAll('.matchBoard button:disabled').length).toBeGreaterThanOrEqual(3); });
 it('clears the completed row and moves actual block identities down, reset and repeat', () => {
  const r=setup('line-clear'); const state=()=>Array.from(r.container.querySelectorAll('[data-cell]'),c=>c.getAttribute('data-block-id')); const initial=state();
  for(let trial=0;trial<2;trial++) { fireEvent.click(r.getByText('DROP')); const next=state(); expect(next).not.toEqual(initial); expect(next[16]).toBe('d'); expect(next[19]).toBe('e'); expect(next).not.toContain('f'); expect(r.container.querySelector('output')!.textContent).toContain('COMPACT'); fireEvent.click(r.getByText('RESET')); expect(state()).toEqual(initial); }

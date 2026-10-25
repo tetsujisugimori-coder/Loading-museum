@@ -6599,3 +6599,8 @@ footer {
 }
 .gameLine output,
 .gameMatch output { position: static; }
+
+/* Match trace is decorative. Cancel exposes the already committed result, without fill. */
+.matchBoard { position: relative; }
+.matchGhost { position: absolute; width: 36px; height: 36px; display: grid; place-items: center; opacity: 0; pointer-events: none; color: #79dfff; background: #15281f; border: 1px solid #436153; border-radius: 4px; }
+.matchSteps { text-align: center; }

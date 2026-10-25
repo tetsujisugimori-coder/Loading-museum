@@ -35,15 +35,43 @@ with sync_playwright() as p:
     page.get_by_role('button',name='絞り込みを解除',exact=True).click();assert cards.count()==47;checks.append('catalog/categories/search')
     def card(name): return cards.filter(has=page.get_by_role('heading',name=name,exact=True))
     m=card('Match-3 Cascade'); cells=m.locator('.matchBoard button'); initial=cells.all_text_contents()
-    for a,b,outcome in [(2,3,'NOT ADJACENT'),(0,4,'NOT ADJACENT'),(0,1,'NO MATCH'),(0,3,'MATCH 3'),(1,2,'MATCH')]:
+    for a,b,outcome in [(2,3,'NOT ADJACENT'),(0,4,'NOT ADJACENT'),(0,1,'NO MATCH'),(4,5,'MATCH 3'),(8,11,'MATCH 8')]:
      m.get_by_role('button',name='RESET',exact=True).click();cells.nth(a).click();cells.nth(b).click();m.get_by_role('button',name='SWAP',exact=True).click()
      text=m.locator('output').inner_text();assert outcome in text,text
      if outcome in ['NOT ADJACENT','NO MATCH']:assert cells.all_text_contents()==initial;assert 'SCORE 0' in text
      else:
       empty=m.locator('.matchBoard button:disabled').count();assert empty>=3;assert f'SCORE {empty*100}' in text;assert cells.all_text_contents()!=initial
     m.get_by_role('button',name='RESET',exact=True).click();assert cells.all_text_contents()==initial
-    cells.nth(0).drag_to(cells.nth(3));assert m.locator('.matchBoard button:disabled').count()>=3
-    m.get_by_role('button',name='RESET',exact=True).click();checks.append('match adjacency/score/reset/drag')
+    cells.nth(8).drag_to(cells.nth(11));assert m.locator('.matchBoard button:disabled').count()>=3
+    assert 'CASCADE ×2' in m.locator('output').inner_text();assert 'SCORE 800' in m.locator('output').inner_text()
+    m.get_by_role('button',name='RESET',exact=True).click();checks.append('match adjacency/score/reset/real drag')
+    # Native WAAPI trace: pause actual animations to inspect exchange, erase, fall, next erase.
+    cells.nth(8).click();cells.nth(11).click();m.get_by_role('button',name='SWAP',exact=True).click()
+    assert '1段目 5石 → 2段目 3石' in m.locator('.matchSteps').inner_text()
+    motion=m.locator('.matchBoard').evaluate('''board=>{
+      const animations=board.getAnimations({subtree:true});animations.forEach(a=>a.pause());
+      const ghosts=[...board.querySelectorAll('[data-gem-token]')];
+      const stages=[0,320,540,900,1120,1480].map(time=>{animations.forEach(a=>a.currentTime=time);return ghosts.map(n=>({id:Number(n.dataset.gemToken),opacity:Number(getComputedStyle(n).opacity),matrix:getComputedStyle(n).transform}));});
+      animations.forEach(a=>a.currentTime=900); // mid-cascade, before the second erase
+      return {count:animations.length,stages,buttonFont:getComputedStyle(board.querySelector("button")).font,ghostFont:getComputedStyle(ghosts[0]).font};
+    }''')
+    assert motion['count']==24,motion
+    assert motion['buttonFont']==motion['ghostFont'],motion
+    assert motion['stages'][0][8]['matrix']!=motion['stages'][1][8]['matrix'],'swapped stone did not move'
+    assert sum(x['opacity']<.01 for x in motion['stages'][2])==5,motion
+    assert any(a['matrix']!=b['matrix'] for a,b in zip(motion['stages'][2],motion['stages'][3])),'survivors did not fall'
+    assert sum(x['opacity']<.01 for x in motion['stages'][4])==8,motion
+    assert cells.all_text_contents()==['·','·','·','·','◆','·','·','◆','·','·','●','◆']
+    page.emulate_media(reduced_motion='reduce')
+    page.wait_for_function("[...document.querySelectorAll('.matchBoard')].every(n=>n.getAnimations({subtree:true}).length===0)")
+    assert 'SCORE 800' in m.locator('output').inner_text()
+    m.get_by_role('button',name='RESET',exact=True).click();page.wait_for_timeout(1600);assert cells.all_text_contents()==initial
+    page.emulate_media(reduced_motion='no-preference');page.wait_for_timeout(80)
+    # Keyboard starts a new ordinary replay, then Reset interrupts it.
+    cells.nth(8).focus();page.keyboard.press('Enter');cells.nth(11).focus();page.keyboard.press('Enter');m.get_by_role('button',name='SWAP',exact=True).focus();page.keyboard.press('Enter')
+    assert m.locator('.matchBoard').evaluate('(n)=>n.getAnimations({subtree:true}).length')>0
+    m.get_by_role('button',name='RESET',exact=True).click();page.wait_for_timeout(1600);assert cells.all_text_contents()==initial
+    assert 'SCORE 0' in m.locator('output').inner_text();checks.append('native trace swap/5 erase/fall/3 erase; runtime reduce; keyboard; reset interruption')
     f=card('Falling Block Line Clear')
     state=lambda:f.locator('[data-cell]').evaluate_all('(xs)=>xs.map(x=>x.dataset.blockId||null)')
     initial_blocks=state()
@@ -57,6 +85,10 @@ with sync_playwright() as p:
     checks.append('falling board/compaction/reset')
     hp=card('HP Bar Damage / Heal')
     def hpcheck(value):
+     # Preserve the delay-expiry wait above, then await actual CSS convergence rather than
+     # assuming the compositor has painted its final frame at a fixed wall-clock instant.
+     hp.locator('.gameHp > div').evaluate('(x)=>x.dataset.hpProbe = "active"')
+     page.wait_for_function('(value)=>{const x=document.querySelector("[data-hp-probe=active]");return x && [...x.children].every(n=>n.style.width===`${value}%` && Math.abs(n.getBoundingClientRect().width/x.clientWidth*100-value)<1)}',arg=value,timeout=3000)
      assert f'{value} / 100 HP'==hp.locator('output').inner_text()
      values=hp.locator('.gameHp > div').evaluate('(x)=>[...x.children].map(n=>({style:n.style.width,actual:n.getBoundingClientRect().width/x.clientWidth*100}))')
      assert all(v['style']==f'{value}%' and abs(v['actual']-value)<1 for v in values),values
@@ -82,6 +114,28 @@ with sync_playwright() as p:
     for name in ['WARDEN','DRONE','SCOUT']:lock.get_by_role('button',name='NEXT TARGET',exact=True).click();lockcheck(name)
     lock.locator('.gameLock').focus();page.keyboard.press('ArrowLeft');lockcheck('DRONE')
     lock.get_by_role('button',name='RESET',exact=True).click();lockcheck('SCOUT');checks.append('lock geometry/keyboard/reset')
+    # Freeze newly created native WAAPI effects at their real start so a slow remote
+    # driver cannot miss a 320ms effect before the mid-flight media switch.
+    page.evaluate('''()=>{const original=Element.prototype.animate;Element.prototype.animate=function(...args){const a=original.apply(this,args);const c=this.closest('[data-pause-probe]');if(c){a.pause();(c.probeAnimations??=[]).push(a);}return a;};}''')
+    for c,action,reset in [(f,'DROP','RESET'),(eq,'EQUIP','RESET'),(lock,'NEXT TARGET','RESET')]:
+     c.evaluate('(n)=>{n.dataset.pauseProbe="active";n.probeAnimations=[]}')
+     c.get_by_role('button',name=reset,exact=True).click();page.emulate_media(reduced_motion='no-preference');page.wait_for_timeout(80)
+     c.get_by_role('button',name=action,exact=True).click()
+     assert c.evaluate('(n)=>{const a=n.probeAnimations;a.forEach(x=>x.currentTime=Number(x.effect.getTiming().duration)/2);return a.length}')>0
+     expected=c.locator('output').inner_text()
+     page.emulate_media(reduced_motion='reduce')
+     page.wait_for_function('()=>{const n=document.querySelector("[data-pause-probe]");return n && n.probeAnimations.length>0 && n.probeAnimations.every(a=>a.playState==="idle")}',timeout=3000)
+     remaining=c.evaluate('(n)=>n.probeAnimations.filter(a=>a.playState!=="idle").map(a=>({type:a.constructor.name,state:a.playState,time:a.currentTime,target:a.effect.target.className,keyframes:a.effect.getKeyframes()}))')
+     assert not remaining,(action,remaining)
+     assert c.locator('output').inner_text()==expected
+     page.evaluate('window.scrollTo(0,0)');page.wait_for_timeout(100);c.scroll_into_view_if_needed();page.wait_for_timeout(100)
+     assert c.locator('output').inner_text()==expected
+     c.get_by_role('button',name=reset,exact=True).click();page.emulate_media(reduced_motion='no-preference');page.wait_for_timeout(80)
+     c.evaluate('(n)=>n.probeAnimations=[]');c.get_by_role('button',name=action,exact=True).click();assert c.evaluate('(n)=>n.probeAnimations.some(a=>a.playState==="paused")')
+     c.get_by_role('button',name=reset,exact=True).click();assert c.evaluate('(n)=>n.probeAnimations.every(a=>a.playState==="idle")');c.evaluate('(n)=>delete n.dataset.pauseProbe')
+    hp.get_by_role('button',name='Damage',exact=True).click();page.emulate_media(reduced_motion='reduce');page.wait_for_timeout(500);hpcheck(48)
+    hp.get_by_role('button',name='Reset',exact=True).click();page.wait_for_timeout(850);hpcheck(72)
+    page.emulate_media(reduced_motion='no-preference');checks.append('five targets retain logical state on runtime media change and resume next action')
     # Text-only enlargement of all current UI controls and explanatory text (not viewport emulation).
     for theme in ['light','dark']:
      page.emulate_media(color_scheme=theme)
