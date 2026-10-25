@@ -1,0 +1,608 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-stage1
+
+ ❯ tests/waapi-stage1-menu-coin.test.tsx (4 tests | 4 failed) 2200ms
+   × Menu cursor belongs to the current row for buttons, keyboard, limits and Reset 583ms
+     → expected null not to be null
+   × Coin entry, Replay and re-entry never grant points, including late completion after Reset 513ms
+     → expected 'SCORE 100' to be 'SCORE 0' // Object.is equality
+   × Coin explicit COLLECT awards once per Reset and rapid input cannot duplicate it 580ms
+     → Unable to find an accessible element with the role "button" and name "COLLECT"
+
+Here are the accessible roles:
+
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Coin Pickup Arc":
+  [36m<h4 />[39m
+
+  --------------------------------------------------button:
+
+  Name "コインを取る":
+  [36m<button[39m
+    [33maria-label[39m=[32m"コインを取る"[39m
+    [33mdata-motion-target[39m=[32m"true"[39m
+    [33mstyle[39m=[32m"--coin-x: 0px; --coin-y: 0px;"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Replay":
+  [36m<button[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Reset":
+  [36m<button[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "Score 0":
+  [36m<output[39m
+    [33maria-label[39m=[32m"Score 0"[39m
+    [33mdata-score[39m=[32m"true"[39m
+  [36m/>[39m
+
+  --------------------------------------------------paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"waapiDescription"[39m
+  [36m/>[39m
+
+  --------------------------------------------------paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"waapiInspired"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------term:
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  --------------------------------------------------
+  definition:
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  --------------------------------------------------paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"waapiReduced"[39m
+  [36m/>[39m
+
+  --------------------------------------------------button:
+
+  Name "コードと解説を見る":
+  [36m<button[39m
+    [33maria-controls[39m=[32m"coin-pickup-arc-details"[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33mclass[39m=[32m"waapiDetailsToggle"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<article[39m
+  [33mclass[39m=[32m"waapiSampleCard"[39m
+[36m>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"waapiCardHeading"[39m
+  [36m>[39m
+    [36m<p>[39m
+      [0mGame UI[0m
+      [0m / [0m
+      [0m2020s[0m
+      [0m / [0m
+      [0mGame[0m
+    [36m</p>[39m
+    [36m<h4>[39m
+      [0mCoin Pickup Arc[0m
+    [36m</h4>[39m
+  [36m</div>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"waapiPreviewGroup"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"waapiPreviewStage waapiPreviewStage--game waapiPreviewStage--coin"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"gameCoinScene"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"コインを取る"[39m
+          [33mdata-motion-target[39m=[32m"true"[39m
+          [33mstyle[39m=[32m"--coin-x: 0px; --coin-y: 0px;"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m¢[0m
+        [36m</button>[39m
+        [36m<output[39m
+          [33maria-label[39m=[32m"Score 0"[39m
+          [33mdata-score[39m=[32m"true"[39m
+        [36m>[39m
+          [0mSCORE [0m
+          [0m0[0m
+        [36m</output>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"waapiPreviewControls gameControls"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m>[39m
+        [0mReplay[0m
+      [36m</button>[39m
+      [36m<button[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m>[39m
+        [0mReset[0m
+      [36m</button>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<p[39m
+    [33mclass[39m=[32m"waapiDescription"[39m
+  [36m>[39m
+    [0m自動デモは弧の観察だけ。COLLECTで1回100点を即時確定し、実寸の軌道で獲得過程を再生します。[0m
+  [36m</p>[39m
+  [36m<p[39m
+    [33mclass[39m=[32m"waapiInspired"[39m
+  [36m>[39m
+    [36m<strong>[39m
+      [0m参考にした動き:[0m
+    [36m</strong>[39m
+    [0m [0m
+    [0mコイン獲得[0m
+  [36m</p>[39m
+  [36m<dl[39m
+    [33mclass[39m=[32m"waapiMeta"[39m
+  [36m>[39m
+    [36m<div>[39m
+      [36m<dt>[39m
+        [0m適する用途[0m
+      [36m</dt>[39m
+      [36m<dd>[39m
+        [0m短い状態変化のフィードバック[0m
+      [36m</dd>[39m
+    [36m</div>[39m
+    [36m<div>[39m
+      [36m<dt>[39m
+        [0m避ける用途[0m
+      [36m</dt>[39m
+      [36m<dd>[39m
+        [0m重要な意味を動きだけで伝える場面[0m
+      [36m</dd>[39m
+    [36m</div>[39m
+    [36m<div>[39m
+      [36m<dt>[39m
+        [0mCSS[0m
+      [36m</dt>[39m
+      [36m<dd>[39m
+        [0mopacity, transform[0m
+      [36m</dd>[39m
+    [36m</div>[39m
+    [36m<div>[39m
+      [36m<dt>[39m
+        [0m強さ / 難易度[0m
+      [36m</dt>[39m
+      [36m<dd>[39m
+        [0mStandard[0m
+        [0m / [0m
+        [0mAdvanced[0m
+      [36m</dd>[39m
+    [36m</div>[39m
+    [36m<div>[39m
+      [36m<dt>[39m
+        [0m操作 / 状態[0m
+      [36m</dt>[39m
+      [36m<dd>[39m
+        [0mClick[0m
+        [0m / [0m
+        [0mFinite[0m
+      [36m</dd>[39m
+    [36m</div>[39m
+    [36m<div>[39m
+      [36m<dt>[39m
+        [0m視覚要素 / 着想元[0m
+      [36m</dt>[39m
+      [36m<dd>[39m
+        [0mGeometry[0m
+        [0m / [0m
+        [0mGeneral Game Pattern[0m
+      [36m</dd>[39m
+    [36m</div>[39m
+  [36m</dl>[39m
+  [36m<p[39m
+    [33mclass[39m=[32m"waapiReduced"[39m
+  [36m>[39m
+    [0mReduced motion: 対応 — [0m
+    [0m自動デモでは加点せず、COLLECTの100点と色を残します。[0m
+  [36m</p>[39m
+  [36m<button[39m
+    [33maria-controls[39m=[32m"coin-pickup-arc-details"[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33mclass[39m=[32m"waapiDetailsToggle"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mコードと解説を[0m
+    [0m見る[0m
+  [36m</button>[39m
+[36m</article>[39m
+   × Coin has an explicit explanation separating demonstration, award and Reset 523ms
+     → expected 'Game UI / 2020s / GameCoin Pickup Arc…' to contain '加点しません'
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/waapi-stage1-menu-coin.test.tsx > Menu cursor belongs to the current row for buttons, keyboard, limits and Reset
+AssertionError: expected null not to be null
+ ❯ check tests/waapi-stage1-menu-coin.test.tsx:22:162
+
+ ❯ tests/waapi-stage1-menu-coin.test.tsx:23:2
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/waapi-stage1-menu-coin.test.tsx > Coin entry, Replay and re-entry never grant points, including late completion after Reset
+AssertionError: expected 'SCORE 100' to be 'SCORE 0' // Object.is equality
+
+Expected: "SCORE 0"
+Received: "SCORE 100"
+
+ ❯ tests/waapi-stage1-menu-coin.test.tsx:26:108
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/waapi-stage1-menu-coin.test.tsx > Coin explicit COLLECT awards once per Reset and rapid input cannot duplicate it
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "COLLECT"
+
+Here are the accessible roles:
+
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Coin Pickup Arc":
+  [36m<h4 />[39m
+
+  --------------------------------------------------button:
+
+  Name "コインを取る":
+  [36m<button[39m
+    [33maria-label[39m=[32m"コインを取る"[39m
+    [33mdata-motion-target[39m=[32m"true"[39m
+    [33mstyle[39m=[32m"--coin-x: 0px; --coin-y: 0px;"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Replay":
+  [36m<button[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Reset":
+  [36m<button[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "Score 0":
+  [36m<output[39m
+    [33maria-label[39m=[32m"Score 0"[39m
+    [33mdata-score[39m=[32m"true"[39m
+  [36m/>[39m
+
+  --------------------------------------------------paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"waapiDescription"[39m
+  [36m/>[39m
+
+  --------------------------------------------------paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"waapiInspired"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------term:
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  --------------------------------------------------
+  definition:
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  --------------------------------------------------paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"waapiReduced"[39m
+  [36m/>[39m
+
+  --------------------------------------------------button:
+
+  Name "コードと解説を見る":
+  [36m<button[39m
+    [33maria-controls[39m=[32m"coin-pickup-arc-details"[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33mclass[39m=[32m"waapiDetailsToggle"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<article[39m
+  [33mclass[39m=[32m"waapiSampleCard"[39m
+[36m>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"waapiCardHeading"[39m
+  [36m>[39m
+    [36m<p>[39m
+      [0mGame UI[0m
+      [0m / [0m
+      [0m2020s[0m
+      [0m / [0m
+      [0mGame[0m
+    [36m</p>[39m
+    [36m<h4>[39m
+      [0mCoin Pickup Arc[0m
+    [36m</h4>[39m
+  [36m</div>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"waapiPreviewGroup"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"waapiPreviewStage waapiPreviewStage--game waapiPreviewStage--coin"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"gameCoinScene"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"コインを取る"[39m
+          [33mdata-motion-target[39m=[32m"true"[39m
+          [33mstyle[39m=[32m"--coin-x: 0px; --coin-y: 0px;"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m¢[0m
+        [36m</button>[39m
+        [36m<output[39m
+          [33maria-label[39m=[32m"Score 0"[39m
+          [33mdata-score[39m=[32m"true"[39m
+        [36m>[39m
+          [0mSCORE [0m
+          [0m0[0m
+        [36m</output>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"waapiPreviewControls gameControls"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m>[39m
+        [0mReplay[0m
+      [36m</button>[39m
+      [36m<button[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m>[39m
+        [0mReset[0m
+      [36m</button>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<p[39m
+    [33mclass[39m=[32m"waapiDescription"[39m
+  [36m>[39m
+    [0m自動デモは弧の観察だけ。COLLECTで1回100点を即時確定し、実寸の軌道で獲得過程を再生します。[0m
+  [36m</p>[39m
+  [36m<p[39m
+    [33mclass[39m=[32m"waapiInspired"[39m
+  [36m>[39m
+    [36m<strong>[39m
+      [0m参考にした動き:[0m
+    [36m</strong>[39m
+    [0m [0m
+    [0mコイン獲得[0m
+  [36m</p>[39m
+  [36m<dl[39m
+    [33mclass[39m=[32m"waapiMeta"[39m
+  [36m>[39m
+    [36m<div>[39m
+      [36m<dt>[39m
+        [0m適する用途[0m
+      [36m</dt>[39m
+      [36m<dd>[39m
+        [0m短い状態変化のフィードバック[0m
+      [36m</dd>[39m
+    [36m</div>[39m
+    [36m<div>[39m
+      [36m<dt>[39m
+        [0m避ける用途[0m
+      [36m</dt>[39m
+      [36m<dd>[39m
+        [0m重要な意味を動きだけで伝える場面[0m
+      [36m</dd>[39m
+    [36m</div>[39m
+    [36m<div>[39m
+      [36m<dt>[39m
+        [0mCSS[0m
+      [36m</dt>[39m
+      [36m<dd>[39m
+        [0mopacity, transform[0m
+      [36m</dd>[39m
+    [36m</div>[39m
+    [36m<div>[39m
+      [36m<dt>[39m
+        [0m強さ / 難易度[0m
+      [36m</dt>[39m
+      [36m<dd>[39m
+        [0mStandard[0m
+        [0m / [0m
+        [0mAdvanced[0m
+      [36m</dd>[39m
+    [36m</div>[39m
+    [36m<div>[39m
+      [36m<dt>[39m
+        [0m操作 / 状態[0m
+      [36m</dt>[39m
+      [36m<dd>[39m
+        [0mClick[0m
+        [0m / [0m
+        [0mFinite[0m
+      [36m</dd>[39m
+    [36m</div>[39m
+    [36m<div>[39m
+      [36m<dt>[39m
+        [0m視覚要素 / 着想元[0m
+      [36m</dt>[39m
+      [36m<dd>[39m
+        [0mGeometry[0m
+        [0m / [0m
+        [0mGeneral Game Pattern[0m
+      [36m</dd>[39m
+    [36m</div>[39m
+  [36m</dl>[39m
+  [36m<p[39m
+    [33mclass[39m=[32m"waapiReduced"[39m
+  [36m>[39m
+    [0mReduced motion: 対応 — [0m
+    [0m自動デモでは加点せず、COLLECTの100点と色を残します。[0m
+  [36m</p>[39m
+  [36m<button[39m
+    [33maria-controls[39m=[32m"coin-pickup-arc-details"[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33mclass[39m=[32m"waapiDetailsToggle"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mコードと解説を[0m
+    [0m見る[0m
+  [36m</button>[39m
+[36m</article>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/waapi-stage1-menu-coin.test.tsx:30:57
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/waapi-stage1-menu-coin.test.tsx > Coin has an explicit explanation separating demonstration, award and Reset
+AssertionError: expected 'Game UI / 2020s / GameCoin Pickup Arc…' to contain '加点しません'
+
+Expected: "加点しません"
+Received: "Game UI / 2020s / GameCoin Pickup Arc¢SCORE 0ReplayReset自動デモは弧の観察だけ。COLLECTで1回100点を即時確定し、実寸の軌道で獲得過程を再生します。参考にした動き: コイン獲得適する用途短い状態変化のフィードバック避ける用途重要な意味を動きだけで伝える場面CSSopacity, transform強さ / 難易度Standard / Advanced操作 / 状態Click / Finite視覚要素 / 着想元Geometry / General Game PatternReduced motion: 対応 — 自動デモでは加点せず、COLLECTの100点と色を残します。コードと解説を見る"
+
+ ❯ tests/waapi-stage1-menu-coin.test.tsx:35:107
+     33| });
+     34| it('Coin has an explicit explanation separating demonstration, award a…
+     35|  const {card}=open('Coin Pickup Arc');expect(card.textContent).toConta…
+       |                                                                                                           ^
+     36| });
+     37| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  21:13:46
+   Duration  3.32s (transform 250ms, setup 0ms, collect 402ms, tests 2.20s, environment 377ms, prepare 111ms)
+

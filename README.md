@@ -70,3 +70,6 @@ npm test
 実DOMブラウザ検査は `scripts/verify-waapi-browser.py`。既存のPython Playwrightと対応ブラウザが利用可能な環境で、static exportを `/Loading-museum/` に配信して実行します。`WAAPI_URL`、`WAAPI_BROWSERS`、`WAAPI_WIDTHS`、必要なら `WAAPI_CHROMIUM_PATH` / `WAAPI_WEBKIT_PATH` を指定できます。スクリプトはインストール・公開を行わず、利用不能環境をUNVERIFIEDとして報告します。通常npm checkとは別の検証です。
 
 PR #32追加修正では、Match-3の3列4行盤面で「3行3列 ↔ 4行3列」の交換から5石→3石の2段連鎖・800点を実演できます。盤面・得点は即時確定し、各石の交換・消去・落下履歴を装飾レイヤーで再生します。再操作・Reset・動き軽減への途中切替では演出を取り消して確定盤面へ戻り、古いアニメーションから結果を変更しません。[追加設計・検証記録](docs/maintenance/waapi-cascade-motion-20261025.md)。
+
+### WAAPI Game UI 状態整合（第1段階）
+Menu照準は選択行へ追従。Parry/Dodgeの成功窓は開始後420〜680ms（両端を含む）で、動き軽減でも判定時間は変わりません。Battleの画面外中断はFIELDへ戻して明示します。Combatの軽減途中切替は演出を取消し結果を保持します。Coinの自動デモ/Replayは無加点、COLLECTまたはコイン操作でResetごとに1回100点を獲得します。得点は同期確定、軌道は補助演出です。[設計・検証範囲](docs/maintenance/waapi-game-stage1-20261025.md)。

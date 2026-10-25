@@ -17,24 +17,28 @@ function Controls({ children, reset }: { children: ReactNode; reset: () => void 
 function useRuntime(active: boolean, reducedMotion = false) {
   const animations = useRef<Animation[]>([]);
   const timers = useRef<number[]>([]);
-  const stop = useCallback(() => {
+  const stopAnimations = useCallback(() => {
     animations.current.forEach((animation) => animation.cancel());
+    animations.current = [];
+  }, []);
+  const stop = useCallback(() => {
+    stopAnimations();
     timers.current.forEach((timer) => window.clearTimeout(timer));
     animations.current = [];
     timers.current = [];
-  }, []);
+  }, [stopAnimations]);
   const animate = useCallback((node: Element | null, frames: Keyframe[], options: KeyframeAnimationOptions) => {
     if (node) animations.current.push(node.animate(frames, options));
   }, []);
   const later = useCallback((callback: () => void, delay: number) => timers.current.push(window.setTimeout(callback, delay)), []);
   useEffect(() => { if (!active) stop(); return stop; }, [active, stop]);
   useLayoutEffect(() => { if (reducedMotion) stop(); }, [reducedMotion, stop]);
-  return { stop, animate, later };
+  return { stop, stopAnimations, animate, later };
 }
 
 function CombatPreview({ active, reducedMotion }: PreviewProps) {
   const target = useRef<HTMLDivElement>(null); const number = useRef<HTMLOutputElement>(null); const slash = useRef<HTMLSpanElement>(null);
-  const { stop, animate } = useRuntime(active); const [result, setResult] = useState("READY");
+  const { stop, animate } = useRuntime(active, reducedMotion); const [result, setResult] = useState("READY");
   const play = (kind: "NORMAL" | "GUARD" | "CRITICAL") => { stop(); setResult(kind === "NORMAL" ? "-128" : kind === "GUARD" ? "GUARD -24" : "CRITICAL -999"); if (reducedMotion) return; const power = kind === "CRITICAL" ? 14 : kind === "GUARD" ? 3 : 7; animate(target.current, [{ transform: "translateX(0)", filter: "brightness(1)" }, { transform: `translateX(${power}px)`, filter: `brightness(${kind === "CRITICAL" ? 2.8 : 1.7})` }, { transform: "translateX(0)", filter: "brightness(1)" }], { duration: kind === "CRITICAL" ? 520 : 360 }); animate(number.current, [{ opacity: 0, transform: "translateY(8px) scale(.6)" }, { opacity: 1, transform: `translateY(-16px) scale(${kind === "CRITICAL" ? 1.5 : 1.05})` }, { opacity: 1, transform: "translateY(-8px) scale(1)" }], { duration: 520, fill: "both" }); animate(slash.current, [{ opacity: 0, transform: "rotate(-24deg) scaleX(.1)" }, { opacity: 1, transform: "rotate(-24deg) scaleX(1)" }, { opacity: 0 }], { duration: 220 }); };
   const reset = () => { stop(); setResult("READY"); };
   return <div className="waapiPreviewGroup"><div className="waapiPreviewStage gameScene gameCombat" data-scene="combat"><div className="combatAttacker">⚔</div><span ref={slash} className="combatSlash" /><div ref={target} className="combatTarget">◆<b>ENEMY</b></div><output ref={number}>{result}</output></div><Controls reset={reset}>{(["NORMAL", "GUARD", "CRITICAL"] as const).map((kind) => <button type="button" key={kind} onClick={() => play(kind)}>{kind}</button>)}</Controls></div>;
@@ -55,11 +59,38 @@ function HitStopPreview({ active, reducedMotion }: PreviewProps) {
 }
 
 function TimingPreview({ active, reducedMotion, dodge }: PreviewProps & { dodge: boolean }) {
-  const hero = useRef<HTMLDivElement>(null); const warningAt = useRef(0); const { stop, animate, later } = useRuntime(active); const [phase, setPhase] = useState("READY");
-  const warning = () => { stop(); warningAt.current = performance.now(); setPhase("WARNING"); later(() => setPhase("ACTIVE WINDOW"), reducedMotion ? 0 : 420); later(() => { if (warningAt.current) { warningAt.current = 0; setPhase(dodge ? "LATE · HIT" : "LATE · FAIL"); } }, reducedMotion ? 900 : 720); };
-  const act = (side: -1 | 0 | 1) => { if (!warningAt.current) return setPhase("FAIL · NO ATTACK"); const result = judgeTiming(performance.now() - warningAt.current, 420, 680); warningAt.current = 0; stop(); const success = result === "PERFECT"; setPhase(success ? dodge ? `${side < 0 ? "LEFT" : "RIGHT"} · S-RANK` : "PERFECT PARRY" : `${result} · HIT`); if (!reducedMotion) animate(hero.current, dodge && success ? [{ transform: "translateX(0)", opacity: 1 }, { transform: `translateX(${side * 66}px)`, opacity: .55 }, { transform: `translateX(${side * 58}px)`, opacity: 1 }] : [{ transform: "scale(1)" }, { transform: `scale(${success ? 1.22 : .86})` }, { transform: "scale(1)" }], { duration: 420, fill: "both" }); };
-  const reset = () => { stop(); warningAt.current = 0; setPhase("READY"); };
-  return <div className="waapiPreviewGroup"><div className={`waapiPreviewStage gameScene ${dodge ? "gameDodge" : "gameParry"}`} data-scene={dodge ? "dodge" : "parry"}><div ref={hero} className="timingHero">◆{dodge && <><i /><i /><i /></>}</div><div className="timingThreat">!</div><div className="timingWindow" /><output>{phase}</output></div><Controls reset={reset}><button type="button" onClick={warning}>{dodge ? "ATTACK START" : "ENEMY ATTACK"}</button>{dodge ? <><button type="button" onClick={() => act(-1)}>DODGE LEFT</button><button type="button" onClick={() => act(1)}>DODGE RIGHT</button></> : <button type="button" onClick={() => act(0)}>PARRY</button>}</Controls></div>;
+  const hero = useRef<HTMLDivElement>(null);
+  const warningAt = useRef<number | null>(null);
+  const generation = useRef(0);
+  const { stop, stopAnimations, animate, later } = useRuntime(active);
+  const [phase, setPhase] = useState("READY");
+  // The judgment clock is independent of animation and reduced-motion preference.
+  const cancel = useCallback((message: string) => {
+    generation.current++; warningAt.current = null; stop(); setPhase(message);
+  }, [stop]);
+  useEffect(() => { if (!active && warningAt.current !== null) cancel("INTERRUPTED · RETRY"); }, [active, cancel]);
+  useLayoutEffect(() => { if (reducedMotion) stopAnimations(); }, [reducedMotion, stopAnimations]);
+  const warning = () => {
+    stop(); const run = ++generation.current; warningAt.current = performance.now(); setPhase("WARNING");
+    const refresh = () => {
+      if (run !== generation.current || warningAt.current === null) return;
+      const elapsed = performance.now() - warningAt.current;
+      const judgment = judgeTiming(elapsed, 420, 680);
+      setPhase(judgment === "EARLY" ? "WARNING" : judgment === "PERFECT" ? "ACTIVE WINDOW" : "LATE · WINDOW CLOSED");
+      // Recheck the same clock in case a timer fires early; 680ms itself is accepted.
+      if (elapsed <= 680) later(refresh, Math.max(0.1, (elapsed < 420 ? 420 : 680.1) - elapsed));
+    };
+    later(refresh, 420);
+  };
+  const act = (side: -1 | 0 | 1) => {
+    if (warningAt.current === null) return setPhase("FAIL · NO ATTACK");
+    const result = judgeTiming(performance.now() - warningAt.current, 420, 680);
+    generation.current++; warningAt.current = null; stop(); const success = result === "PERFECT";
+    setPhase(success ? dodge ? `${side < 0 ? "LEFT" : "RIGHT"} · S-RANK` : "PERFECT PARRY" : `${result} · HIT`);
+    if (!reducedMotion) animate(hero.current, dodge && success ? [{ transform: "translateX(0)", opacity: 1 }, { transform: `translateX(${side * 66}px)`, opacity: .55 }, { transform: `translateX(${side * 58}px)`, opacity: 1 }] : [{ transform: "scale(1)" }, { transform: `scale(${success ? 1.22 : .86})` }, { transform: "scale(1)" }], { duration: 420 });
+  };
+  const reset = () => cancel("READY");
+  return <div className="waapiPreviewGroup"><div className={`waapiPreviewStage gameScene ${dodge ? "gameDodge" : "gameParry"}`} data-scene={dodge ? "dodge" : "parry"}><div ref={hero} className="timingHero">◆{dodge && <><i /><i /><i /></>}</div><div className="timingThreat">!</div><div className="timingWindow" /><output>{phase}</output></div><Controls reset={reset}><button type="button" onClick={warning}>{dodge ? "ATTACK START" : "ENEMY ATTACK"}</button>{dodge ? <><button type="button" onClick={() => act(-1)}>DODGE LEFT</button><button type="button" onClick={() => act(1)}>DODGE RIGHT</button></> : <button type="button" onClick={() => act(0)}>PARRY</button>}</Controls><p>開始から420〜680ms（両端を含む）が成功窓。動き軽減でも判定時間は同じです。画面外では中断し、開始操作から再試行します。</p></div>;
 }
 
 function LineClearPreview({ active, reducedMotion }: PreviewProps) {
@@ -180,10 +211,27 @@ function TurnPreview({ active, reducedMotion }: PreviewProps) {
 }
 
 function BattlePreview({ active, reducedMotion }: PreviewProps) {
-  const cover = useRef<HTMLDivElement>(null); const { stop, animate, later } = useRuntime(active); const [scene, setScene] = useState<"FIELD" | "BATTLE">("FIELD"); const [phase, setPhase] = useState("FIELD");
-  const transition = (next: "FIELD" | "BATTLE") => { stop(); setPhase(next === "BATTLE" ? "ENCOUNTER" : "RETURN"); animate(cover.current, reducedMotion ? [{ opacity: 0 }, { opacity: 0 }] : [{ clipPath: "polygon(0 0,0 0,0 100%,0 100%)" }, { clipPath: "polygon(0 0,100% 0,100% 100%,0 100%)", offset: .48 }, { clipPath: "polygon(100% 0,100% 0,100% 100%,100% 100%)" }], { duration: reducedMotion ? 1 : 920, fill: "both" }); later(() => setScene(next), reducedMotion ? 0 : 440); later(() => setPhase(next === "BATTLE" ? "READY" : "FIELD"), reducedMotion ? 5 : 930); };
-  const reset = () => { stop(); setScene("FIELD"); setPhase("FIELD"); };
-  return <div className="waapiPreviewGroup"><div className={`waapiPreviewStage gameScene gameBattle scene${scene}`} data-scene="battle"><div className="battleField">FIELD · PATH</div><div className="battleArena"><i>◆</i><b>VS</b><i>♜</i></div><div ref={cover} className="battleCover">BATTLE</div><output>{phase}</output></div><Controls reset={reset}><button type="button" onClick={() => transition("BATTLE")}>ENCOUNTER</button><button type="button" onClick={() => transition("FIELD")}>RETURN</button></Controls></div>;
+  const cover = useRef<HTMLDivElement>(null);
+  const { stop, stopAnimations, animate, later } = useRuntime(active);
+  const [scene, setScene] = useState<"FIELD" | "BATTLE">("FIELD");
+  const [phase, setPhase] = useState("FIELD");
+  const pending = useRef(false); const generation = useRef(0);
+  const cancel = useCallback((message: string) => {
+    generation.current++; pending.current = false; stop(); setScene("FIELD"); setPhase(message);
+  }, [stop]);
+  useEffect(() => { if (!active && pending.current) cancel("FIELD · INTERRUPTED"); }, [active, cancel]);
+  // Cancelling decoration does not cancel the logical transition timers.
+  useLayoutEffect(() => { if (reducedMotion) stopAnimations(); }, [reducedMotion, stopAnimations]);
+  const transition = (next: "FIELD" | "BATTLE") => {
+    stop(); const run = ++generation.current;
+    if (reducedMotion) { pending.current = false; setScene(next); setPhase(next === "BATTLE" ? "READY" : "FIELD"); return; }
+    pending.current = true; setPhase(next === "BATTLE" ? "ENCOUNTER" : "RETURN");
+    animate(cover.current, [{ clipPath: "polygon(0 0,0 0,0 100%,0 100%)" }, { clipPath: "polygon(0 0,100% 0,100% 100%,0 100%)", offset: .48 }, { clipPath: "polygon(100% 0,100% 0,100% 100%,100% 100%)" }], { duration: 920 });
+    later(() => { if (run === generation.current) setScene(next); }, 440);
+    later(() => { if (run !== generation.current) return; pending.current = false; setPhase(next === "BATTLE" ? "READY" : "FIELD"); }, 930);
+  };
+  const reset = () => cancel("FIELD");
+  return <div className="waapiPreviewGroup"><div className={`waapiPreviewStage gameScene gameBattle scene${scene}`} data-scene="battle"><div className="battleField">FIELD · PATH</div><div className="battleArena"><i>◆</i><b>VS</b><i>♜</i></div><div ref={cover} className="battleCover">BATTLE</div><output>{phase}</output></div><Controls reset={reset}><button type="button" onClick={() => transition("BATTLE")}>ENCOUNTER</button><button type="button" onClick={() => transition("FIELD")}>RETURN</button></Controls><p>遷移中の画面外移動はFIELDへ戻して中断。再入場後に再操作できます。動き軽減への途中切替は演出だけ停止し、遷移は完了します。</p></div>;
 }
 
 function RacePreview({ active, reducedMotion }: PreviewProps) {

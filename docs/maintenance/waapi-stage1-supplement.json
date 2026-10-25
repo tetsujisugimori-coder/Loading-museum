@@ -1,0 +1,170 @@
+[
+  {
+    "engine": "chromium",
+    "width": 375,
+    "motion": "no-preference",
+    "results": [
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 53.20000000298023,
+        "reduced": false
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "RIGHT · S-RANK",
+        "elapsed": 521.4000000022352,
+        "reduced": false
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 770.6000000014901,
+        "reduced": false
+      }
+    ],
+    "menuResizeFont": {
+      "top": 0,
+      "bottom": 0
+    }
+  },
+  {
+    "engine": "chromium",
+    "width": 390,
+    "motion": "no-preference",
+    "results": [
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 51.69999999925494,
+        "reduced": false
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "RIGHT · S-RANK",
+        "elapsed": 521.3000000007451,
+        "reduced": false
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 770.6000000014901,
+        "reduced": false
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "width": 765,
+    "motion": "no-preference",
+    "results": [
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 52.80000000074506,
+        "reduced": false
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "RIGHT · S-RANK",
+        "elapsed": 522.3000000007451,
+        "reduced": false
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 770.5999999977648,
+        "reduced": false
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "public": "UNVERIFIED",
+    "error": "Page.goto: net::ERR_EMPTY_RESPONSE at https://tetsujisugimori-coder.github.io/Loading-museum/\nCall log:\n  - navigating to \"https://tetsujisugimori-coder.github.io/Loading-museum/\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "engine": "webkit",
+    "width": 375,
+    "motion": "no-preference",
+    "results": [
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 51,
+        "reduced": false
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "RIGHT · S-RANK",
+        "elapsed": 521,
+        "reduced": false
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 771,
+        "reduced": false
+      }
+    ],
+    "menuResizeFont": {
+      "top": 0,
+      "bottom": 0
+    }
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "motion": "no-preference",
+    "results": [
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 52,
+        "reduced": false
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "RIGHT · S-RANK",
+        "elapsed": 521,
+        "reduced": false
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 771,
+        "reduced": false
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "width": 765,
+    "motion": "no-preference",
+    "results": [
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 51,
+        "reduced": false
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "RIGHT · S-RANK",
+        "elapsed": 521,
+        "reduced": false
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 771,
+        "reduced": false
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "public": "loaded not operation tested",
+    "title": "DIGITAL MOTION ARCHIVE"
+  }
+]

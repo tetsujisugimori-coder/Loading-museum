@@ -1,0 +1,200 @@
+[
+  {
+    "browser": "chromium",
+    "battleReentry": {
+      "output": "ENCOUNTER",
+      "scene": "waapiPreviewStage gameScene gameBattle sceneFIELD"
+    },
+    "battleReset": "FIELD",
+    "reopenCount": 22,
+    "reopenStates": [
+      {
+        "name": "Treasure Chest Open",
+        "stage": "◆"
+      },
+      {
+        "name": "Rhythm PERFECT / GOOD / MISS",
+        "stage": "READY"
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "stage": "¢\nSCORE 0"
+      },
+      {
+        "name": "Combo Counter Escalation",
+        "stage": "READY"
+      },
+      {
+        "name": "HP Bar Damage / Heal",
+        "stage": "KNIGHT\n72 / 100 HP"
+      },
+      {
+        "name": "Boss Entrance",
+        "stage": "♜\nTHE OBSERVER"
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "stage": "▶\nCONTINUE\nCOLLECTION\nSETTINGS"
+      },
+      {
+        "name": "Card Deal / Shuffle",
+        "stage": "A\nK\nQ\nJ\nREADY"
+      },
+      {
+        "name": "Combat Damage Feedback",
+        "stage": "⚔\n◆\nENEMY\nREADY"
+      },
+      {
+        "name": "Reward Reveal Lab",
+        "stage": "CHOOSE A REWARD"
+      },
+      {
+        "name": "Hit Stop & Knockback",
+        "stage": "⚔\n■\nREADY"
+      },
+      {
+        "name": "Perfect Parry",
+        "stage": "◆\n!\nREADY"
+      },
+      {
+        "name": "Dodge Afterimage",
+        "stage": "◆\n!\nREADY"
+      },
+      {
+        "name": "Falling Block Line Clear",
+        "stage": "READY"
+      },
+      {
+        "name": "Match-3 Cascade",
+        "stage": "◆\n◆\n●\n◆\n◆\n●\n●\n●\n◆\n◆\n●\n●\nSELECT TWO ADJACENT GEMS · SCORE 0"
+      },
+      {
+        "name": "Pinball Bumper Hit",
+        "stage": "500\nREADY · SCORE 0"
+      },
+      {
+        "name": "Lock-on Reticle",
+        "stage": "◆\n◆\n◆\nLOCKED · SCOUT · 18m"
+      },
+      {
+        "name": "Inventory Equip Snap",
+        "stage": "⚔ IRON BLADE\nDROP\nATK 12 (+0)"
+      },
+      {
+        "name": "Status Effect Lab",
+        "stage": "♟\nSTATUS · NORMAL"
+      },
+      {
+        "name": "Turn Order Reflow",
+        "stage": "1\nKNIGHT\n2\nMAGE\n3\nROGUE\nNORMALIZE · DOM ORDER UPDATED"
+      },
+      {
+        "name": "Battle Transition",
+        "stage": "FIELD · PATH\nBATTLE\nFIELD"
+      },
+      {
+        "name": "Race Countdown & Launch",
+        "stage": "READY\nREADY"
+      }
+    ]
+  },
+  {
+    "browser": "webkit",
+    "battleReentry": {
+      "output": "ENCOUNTER",
+      "scene": "waapiPreviewStage gameScene gameBattle sceneFIELD"
+    },
+    "battleReset": "FIELD",
+    "reopenCount": 22,
+    "reopenStates": [
+      {
+        "name": "Treasure Chest Open",
+        "stage": "◆"
+      },
+      {
+        "name": "Rhythm PERFECT / GOOD / MISS",
+        "stage": "READY"
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "stage": "¢SCORE 0"
+      },
+      {
+        "name": "Combo Counter Escalation",
+        "stage": "READY"
+      },
+      {
+        "name": "HP Bar Damage / Heal",
+        "stage": "KNIGHT\n72 / 100 HP"
+      },
+      {
+        "name": "Boss Entrance",
+        "stage": "♜\nTHE OBSERVER"
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "stage": "▶\nCONTINUE\nCOLLECTION\nSETTINGS"
+      },
+      {
+        "name": "Card Deal / Shuffle",
+        "stage": "AKQJREADY"
+      },
+      {
+        "name": "Combat Damage Feedback",
+        "stage": "⚔◆ENEMYREADY"
+      },
+      {
+        "name": "Reward Reveal Lab",
+        "stage": "CHOOSE A REWARD"
+      },
+      {
+        "name": "Hit Stop & Knockback",
+        "stage": "⚔■READY"
+      },
+      {
+        "name": "Perfect Parry",
+        "stage": "◆!READY"
+      },
+      {
+        "name": "Dodge Afterimage",
+        "stage": "◆!READY"
+      },
+      {
+        "name": "Falling Block Line Clear",
+        "stage": "READY"
+      },
+      {
+        "name": "Match-3 Cascade",
+        "stage": "◆\n◆\n●\n◆\n◆\n●\n●\n●\n◆\n◆\n●\n●\nSELECT TWO ADJACENT GEMS · SCORE 0"
+      },
+      {
+        "name": "Pinball Bumper Hit",
+        "stage": "500READY · SCORE 0"
+      },
+      {
+        "name": "Lock-on Reticle",
+        "stage": "◆\n◆\n◆\nLOCKED · SCOUT · 18m"
+      },
+      {
+        "name": "Inventory Equip Snap",
+        "stage": "⚔ IRON BLADE\nDROP\nATK 12 (+0)"
+      },
+      {
+        "name": "Status Effect Lab",
+        "stage": "♟\nSTATUS · NORMAL"
+      },
+      {
+        "name": "Turn Order Reflow",
+        "stage": "1\nKNIGHT\n2\nMAGE\n3\nROGUE\nNORMALIZE · DOM ORDER UPDATED"
+      },
+      {
+        "name": "Battle Transition",
+        "stage": "FIELD · PATHBATTLEFIELD"
+      },
+      {
+        "name": "Race Countdown & Launch",
+        "stage": "READYREADY"
+      }
+    ]
+  }
+]
