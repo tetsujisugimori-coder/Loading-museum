@@ -290,10 +290,16 @@ caption.textContent = "完了";`,
   {
     id: "operation-11-query-selector-all",
     title: "11. querySelectorAll でまとめて操作",
-    action: "同じ class のノードをまとめて取得し、反復して状態を付与します。",
+    action: "同じ class の6要素をまとめて取得し、表示番号が偶数の P2/P4/P6 だけを強調します。",
     apis: ["querySelectorAll", "forEach", "classList.add"],
-    codeExample: `const targets = scene.querySelectorAll(".tag");
-targets.forEach((target) => target.classList.add("is-marked"));`,
+    codeExample: `const targets = scene.querySelectorAll(".domCandidate");
+targets.forEach((target, index) => {
+  const number = index + 1; // 表示番号は1から始まる
+  target.textContent = \`P\${number}\`;
+  if (number % 2 === 0) {
+    target.classList.add("is-marked");
+  }
+});`,
     run({ stage, log }) {
       const scene = stage.ownerDocument.createElement("ul");
       scene.className = "domOperationList";
@@ -304,14 +310,15 @@ targets.forEach((target) => target.classList.add("is-marked"));`,
 
       const targets = scene.querySelectorAll<HTMLElement>(".domCandidate");
       targets.forEach((target, index) => {
-        target.textContent = `P${index + 1}`;
-        if (index % 2 === 0) {
+        const number = index + 1;
+        target.textContent = `P${number}`;
+        if (number % 2 === 0) {
           target.classList.add("is-marked");
         }
       });
 
       stage.appendChild(scene);
-      log(`querySelectorAll で ${targets.length} 要素を取得し、偶数番号をハイライトしました。`);
+      log(`querySelectorAll で ${targets.length} 要素を取得し、偶数番号 P2/P4/P6 をハイライトしました。`);
     },
   },
   {

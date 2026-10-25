@@ -1393,6 +1393,23 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 - 統合前5件のデータ、render kind、DOM、CSSと、実在しないコード例APIを削除した。
 - データ定義、状態境界、直接操作、固有DOM、固有キーフレーム、停止cleanupをReact / Vitestテストで検証対象にした。
 
+## 2026-10-25 第1段階1a: DOM11の偶数選択と教材説明の整合
+
+- 親Issue #29。PR #30 のマージ済み main `f8d76535208ba143cf981fc41afa5c022621326b` を起点とし、未マージ PR #28（WAAPI）には依存しない。開始時の作業ツリーは clean。第0段階文書は保持した。
+- 原因: 表示番号は1始まりなのに、0始まりの `index % 2 === 0` で P1/P3/P5 を強調していた。結果説明は偶数、コード例は `.tag` の全要素と、三者が不一致だった。
+- 採用: `number = index + 1` による表示番号の偶数判定で P2/P4/P6 だけに `is-marked` を付与。説明と実行結果に具体的な番号を明記し、コード例も実際の `.domCandidate` と同じ判定にした。奇数という説明に変える次善策は、元の偶数という学習意図を変えるため採用しない。
+- 変更ファイル: `app/components/DomAnimationRoom.tsx`（DOM11のみ）、`tests/dom11-selection.test.tsx`、`package.json`（既存testへ新規テストを追加）、`LOG.md`。依存・lockfile・公開設定は変更なし。
+- 自動検証: 既存React/jsdom基盤で4件追加。6ノード、厳密な偶数集合と奇数除外、説明整合、reset後の空状態、再実行と連続再生、表示コード例を実DOMへ適用した結果、17操作ID順を確認。修正前は3件失敗（実動作P1/P3/P5、コード例の選択なし）・1件成功、修正後4件成功。最初のテスト作成時は曖昧なgroup取得で失敗し、実行結果エリア名を指定して修正した。
+- `npm run check` 成功: lint、typecheck、Next.js production build/static export、Node 48件、Vitest 6件（既存2＋追加4）、skip 0。Node 24.22.1。初回npm ciは既定cacheへの書込み不可で失敗し、/tmpの専用cacheを指定して成功。検査削減なし。
+- 実ブラウザ操作: ローカルstatic exportを隔離したheadless Chromium 141.0.7390.37で1280px/375px/390px幅、各900px高で開室→再生→reset→再生→再生。全幅でP2/P4/P6のみのclassと実computed背景色、P1/P3/P5の非強調、説明一致、17カード、pageerror 0を確認。375pxのカード画面も目視確認。公開版の変更・実機操作ではない。初回接続はローカルサーバーへの接続拒否で未実行、サーバーと検査を同じ実行内で起動し直して成功。
+- 維持確認: main比較でDOM17件のID・名称・順序一致、DOM11以外の同コンポーネント本文はバイト一致。その他appファイルは差分なし。既存150展示（第0段階対応表）の追加・削除・改名・並べ替えなし。既存出力検査の150 OBJECTSと室別件数も成功。ただし全150件の実操作合格を意味しない。
+- 未検証: WebKit、実機iPhone Safari、VoiceOver、文字200%、全展示の操作、DOM17の幾何とライフサイクル。PR用CIは未設定（main push/manualのPages公開のみ）で、ローカル成功を実CI成功とは扱わない。公開workflowは起動しない。
+- 引継ぎ: 第1段階1bで最小ブラウザ検証基盤、1cでDOM17の接続・測定・中央判定と中断境界を扱う。DOM7/8 timer、DOM10 RAF、閉室focusは今回未変更の第2段階課題。READMEの133表記は別段階の課題として保持。
+
+記録時刻: 2026-10-25 12:31 JST。
+- 追加照合: 第0段階付録150行と、生成HTMLの常設9件＋データ配列の124件＋DOM定義17件から組み立てた全一覧を比較し、ID・名称・描画順の差分0。消えたOSは既存カテゴリー順で展開し、Flashは未表示カテゴリーを含む全54定義を照合した。これは定義/出力の静的照合であり全件実操作ではない。
+- 独立レビュー: 実装担当とは別の読取専用レビューで4変更ファイルを確認、P0/P1/P2/P3指摘なし。レビュー担当自身もDOM11 4件＋既存Mac2件を再実行し6/6成功。他app無変更、DOM11以外の本文一致、17ID/名称/順を独立確認。全checkと実ブラウザは実装担当の検証結果であり、レビュー担当の再実行とは区別する。
+
 ## 2026-10-25 — WAAPI 5 P2 / 1 P3 状態整合修正
 
 - PR28 merge `85e2a030501e9d4c3edca9a6b70f14f8d1ca2d0e` を最新mainとして再確認し、独立ブランチで作業。PR31はDraft/未マージ、ブランチ・DOM11を変更しない。LOGとpackageの双方の追記は将来統合時にも保持する。
@@ -1417,3 +1434,14 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 - 修正前4件失敗を固定、追加14件。既存88件を維持し計102件。独立レビューで再操作入力と旧duration/fill表示のP3を修正。ブラウザ結果・独立最終・最終HEADは設計記録へ追補。
 - 197定義、ID/名称/順序、集計、検索、Pages設定を保持。typewriter ID重複と全館title200%横超過は対象外。#31将来統合時はLOG/package両追記を保持する。
 - 最終製品check/build成功:102成功・失敗0・skip0。独立31件と一般盤面315交換の照合成功、追加P3 2件修正後の残件なし。native WAAPIとhover CSS Transitionを分離してブラウザ検証。実機Safari/VoiceOver未検証、実CI成功とは扱わない。最終6条件JSONを設計記録から参照。
+
+
+## 2026-10-25 — PR #31 を #32 マージ後 main へ統合
+
+- 統合前 #31 `4852ae62b33a5cb6ae9b4a049ec74fcfd7cd77d2`、fetch後main `1e7d7de0bdf28efb785155a66027fad8d202e329`。#32のmergeと後追い独立レビュー文書も確認。
+- 第一希望どおり二親mergeを採用。package.jsonはmainのテスト群＋DOM11、LOGは両PRの原文を保持し日付順で解消。rebase/force pushなし、依存/lockfile/公開設定変更なし。
+- DOM11 P2/P4/P6・説明/コード例/Reset/反復を保持。mainに対する実装差分はDOM11だけ、#32の全実装/テスト/文書を保持。
+- checkと独立build成功。Node49＋Vitest57＝106成功、失敗0、skip0。独立担当もVitest57を再実行。
+- Chromium141.0.7390.37 / WebKit26.0 各765/375/390px: DOM11全6条件PASS、既存WAAPIの6条件×9群も機能失敗なし。pageerror0。モバイル全館タイトル文字200%横超過だけ既存PARTIAL。
+- 独立レビューの文書P3 1件を修正。実機Safari/VoiceOver未検証。実CIとは区別し、公開workflowを起動しない。最終HEADは既存Draft PR #31本文に完全SHAを記録。
+- 詳細: [統合設計・検証・独立レビュー](docs/maintenance/dom11-main-integration-20261025.md)、[ブラウザ証跡](docs/maintenance/dom11-integration-browser-results-20261025.json)。Draft保持、人間のマージ判断待ち。既存typewriter ID重複/タイトル横超過は対象外。
