@@ -1,0 +1,786 @@
+{
+  "observed_at": "2026-10-25T09:00:13.926256+00:00",
+  "status": "PARTIAL",
+  "source": {
+    "main_sha": "1e7d7de0bdf28efb785155a66027fad8d202e329",
+    "pr31_pre_merge_sha": "4852ae62b33a5cb6ae9b4a049ec74fcfd7cd77d2",
+    "state": "Uncommitted merge integration; final commit not yet created. Product source unchanged during both builds/browser runs.",
+    "post_run_export_index_sha256": "dc57be8cd706ea813f7118be3c498ea7d454339bde29a46c096674b9126ff824",
+    "waapi_harness_identical_to_main": true
+  },
+  "method": {
+    "environment": "Local static Next.js export, Python Playwright in same network namespace as local HTTP server; actual headless Chromium and WebKit, not jsdom",
+    "viewport_widths": [
+      765,
+      375,
+      390
+    ],
+    "height": 900,
+    "motion": "Playwright media emulation during actual native WAAPI effects; no OS settings modified",
+    "text_enlargement": "CSS computed font sizes doubled, not browser zoom, OS text enlargement or real iPhone",
+    "theme": "Light/dark browser media emulation",
+    "output_freeze_note": "Separate build completed during WAAPI suite with unchanged product source; no fetch errors/pageerrors observed. DOM11 tested prior check export and WAAPI same source integrated export."
+  },
+  "counts": {
+    "dom11_conditions": 6,
+    "dom11_pass": 6,
+    "dom11_check_groups": 36,
+    "waapi_conditions": 6,
+    "waapi_pass": 2,
+    "waapi_partial_existing_debt": 4,
+    "waapi_check_groups": 54,
+    "failed_conditions": 0,
+    "skipped_conditions": 0,
+    "pageerrors": 0
+  },
+  "identity_comparison": {
+    "all_17_dom_ids_names_and_order_equal_main_in_all_six_browser_conditions": true,
+    "main_ids": [
+      "operation-01-create-append-result",
+      "operation-02-prepend-result",
+      "operation-03-insert-before-result",
+      "operation-04-set-attribute-result",
+      "operation-05-remove-attribute-result",
+      "operation-06-class-list-add-remove-result",
+      "operation-07-class-toggle-loop-result",
+      "operation-08-style-set-property-result",
+      "operation-09-dataset-state-result",
+      "operation-10-text-content-result",
+      "operation-11-query-selector-all-result",
+      "operation-12-closest-result",
+      "operation-13-contains-result",
+      "operation-14-clone-node-result",
+      "operation-15-replace-children-result",
+      "operation-16-event-listener-result",
+      "operation-17-scroll-and-rect-result"
+    ],
+    "main_names": [
+      "1. 要素を作って末尾へ追加",
+      "2. 要素を先頭へ差し込む",
+      "3. 任意位置へ差し込む",
+      "4. 属性を付与して識別",
+      "5. 一時属性を取り除く",
+      "6. classList で状態を切り替える",
+      "7. classList.toggle のループ",
+      "8. style.setProperty で見た目を変更",
+      "9. dataset で状態を保持",
+      "10. textContent で表示文字列を更新",
+      "11. querySelectorAll でまとめて操作",
+      "12. closest で祖先をたどる",
+      "13. contains で包含関係を確認",
+      "14. cloneNode で複製",
+      "15. replaceChildren でまとめて入れ替え",
+      "16. addEventListener / removeEventListener",
+      "17. scrollIntoView と座標取得"
+    ]
+  },
+  "dom11": [
+    {
+      "browser": "chromium",
+      "version": "141.0.7390.37",
+      "width": 765,
+      "height": 900,
+      "status": "PASS",
+      "checks": [
+        "keyboard open; 17 DOM cards and ordered identity",
+        "initial click: actual even highlight and odd non-highlight; result text",
+        "reset removes selection; 3 repeated plays retain 6 nodes/even set",
+        "keyboard Enter/Space play/reset",
+        "displayed code example applied to actual DOM",
+        "light/dark; CSS text 200% target card no horizontal overflow"
+      ],
+      "styles": [
+        {
+          "text": "P1",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P2",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P3",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P4",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P5",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P6",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        }
+      ],
+      "layout": {
+        "width": 336,
+        "scroll": 336,
+        "viewport": 765,
+        "right": 376.5
+      },
+      "domIds": [
+        "operation-01-create-append-result",
+        "operation-02-prepend-result",
+        "operation-03-insert-before-result",
+        "operation-04-set-attribute-result",
+        "operation-05-remove-attribute-result",
+        "operation-06-class-list-add-remove-result",
+        "operation-07-class-toggle-loop-result",
+        "operation-08-style-set-property-result",
+        "operation-09-dataset-state-result",
+        "operation-10-text-content-result",
+        "operation-11-query-selector-all-result",
+        "operation-12-closest-result",
+        "operation-13-contains-result",
+        "operation-14-clone-node-result",
+        "operation-15-replace-children-result",
+        "operation-16-event-listener-result",
+        "operation-17-scroll-and-rect-result"
+      ],
+      "domNames": [
+        "1. 要素を作って末尾へ追加",
+        "2. 要素を先頭へ差し込む",
+        "3. 任意位置へ差し込む",
+        "4. 属性を付与して識別",
+        "5. 一時属性を取り除く",
+        "6. classList で状態を切り替える",
+        "7. classList.toggle のループ",
+        "8. style.setProperty で見た目を変更",
+        "9. dataset で状態を保持",
+        "10. textContent で表示文字列を更新",
+        "11. querySelectorAll でまとめて操作",
+        "12. closest で祖先をたどる",
+        "13. contains で包含関係を確認",
+        "14. cloneNode で複製",
+        "15. replaceChildren でまとめて入れ替え",
+        "16. addEventListener / removeEventListener",
+        "17. scrollIntoView と座標取得"
+      ],
+      "pageErrors": []
+    },
+    {
+      "browser": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "height": 900,
+      "status": "PASS",
+      "checks": [
+        "keyboard open; 17 DOM cards and ordered identity",
+        "initial click: actual even highlight and odd non-highlight; result text",
+        "reset removes selection; 3 repeated plays retain 6 nodes/even set",
+        "keyboard Enter/Space play/reset",
+        "displayed code example applied to actual DOM",
+        "light/dark; CSS text 200% target card no horizontal overflow"
+      ],
+      "styles": [
+        {
+          "text": "P1",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P2",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P3",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P4",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P5",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P6",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        }
+      ],
+      "layout": {
+        "width": 307,
+        "scroll": 307,
+        "viewport": 375,
+        "right": 342
+      },
+      "domIds": [
+        "operation-01-create-append-result",
+        "operation-02-prepend-result",
+        "operation-03-insert-before-result",
+        "operation-04-set-attribute-result",
+        "operation-05-remove-attribute-result",
+        "operation-06-class-list-add-remove-result",
+        "operation-07-class-toggle-loop-result",
+        "operation-08-style-set-property-result",
+        "operation-09-dataset-state-result",
+        "operation-10-text-content-result",
+        "operation-11-query-selector-all-result",
+        "operation-12-closest-result",
+        "operation-13-contains-result",
+        "operation-14-clone-node-result",
+        "operation-15-replace-children-result",
+        "operation-16-event-listener-result",
+        "operation-17-scroll-and-rect-result"
+      ],
+      "domNames": [
+        "1. 要素を作って末尾へ追加",
+        "2. 要素を先頭へ差し込む",
+        "3. 任意位置へ差し込む",
+        "4. 属性を付与して識別",
+        "5. 一時属性を取り除く",
+        "6. classList で状態を切り替える",
+        "7. classList.toggle のループ",
+        "8. style.setProperty で見た目を変更",
+        "9. dataset で状態を保持",
+        "10. textContent で表示文字列を更新",
+        "11. querySelectorAll でまとめて操作",
+        "12. closest で祖先をたどる",
+        "13. contains で包含関係を確認",
+        "14. cloneNode で複製",
+        "15. replaceChildren でまとめて入れ替え",
+        "16. addEventListener / removeEventListener",
+        "17. scrollIntoView と座標取得"
+      ],
+      "pageErrors": []
+    },
+    {
+      "browser": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "height": 900,
+      "status": "PASS",
+      "checks": [
+        "keyboard open; 17 DOM cards and ordered identity",
+        "initial click: actual even highlight and odd non-highlight; result text",
+        "reset removes selection; 3 repeated plays retain 6 nodes/even set",
+        "keyboard Enter/Space play/reset",
+        "displayed code example applied to actual DOM",
+        "light/dark; CSS text 200% target card no horizontal overflow"
+      ],
+      "styles": [
+        {
+          "text": "P1",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P2",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P3",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P4",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P5",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P6",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        }
+      ],
+      "layout": {
+        "width": 322,
+        "scroll": 322,
+        "viewport": 390,
+        "right": 357
+      },
+      "domIds": [
+        "operation-01-create-append-result",
+        "operation-02-prepend-result",
+        "operation-03-insert-before-result",
+        "operation-04-set-attribute-result",
+        "operation-05-remove-attribute-result",
+        "operation-06-class-list-add-remove-result",
+        "operation-07-class-toggle-loop-result",
+        "operation-08-style-set-property-result",
+        "operation-09-dataset-state-result",
+        "operation-10-text-content-result",
+        "operation-11-query-selector-all-result",
+        "operation-12-closest-result",
+        "operation-13-contains-result",
+        "operation-14-clone-node-result",
+        "operation-15-replace-children-result",
+        "operation-16-event-listener-result",
+        "operation-17-scroll-and-rect-result"
+      ],
+      "domNames": [
+        "1. 要素を作って末尾へ追加",
+        "2. 要素を先頭へ差し込む",
+        "3. 任意位置へ差し込む",
+        "4. 属性を付与して識別",
+        "5. 一時属性を取り除く",
+        "6. classList で状態を切り替える",
+        "7. classList.toggle のループ",
+        "8. style.setProperty で見た目を変更",
+        "9. dataset で状態を保持",
+        "10. textContent で表示文字列を更新",
+        "11. querySelectorAll でまとめて操作",
+        "12. closest で祖先をたどる",
+        "13. contains で包含関係を確認",
+        "14. cloneNode で複製",
+        "15. replaceChildren でまとめて入れ替え",
+        "16. addEventListener / removeEventListener",
+        "17. scrollIntoView と座標取得"
+      ],
+      "pageErrors": []
+    },
+    {
+      "browser": "webkit",
+      "version": "26.0",
+      "width": 765,
+      "height": 900,
+      "status": "PASS",
+      "checks": [
+        "keyboard open; 17 DOM cards and ordered identity",
+        "initial click: actual even highlight and odd non-highlight; result text",
+        "reset removes selection; 3 repeated plays retain 6 nodes/even set",
+        "keyboard Enter/Space play/reset",
+        "displayed code example applied to actual DOM",
+        "light/dark; CSS text 200% target card no horizontal overflow"
+      ],
+      "styles": [
+        {
+          "text": "P1",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P2",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P3",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P4",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P5",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P6",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        }
+      ],
+      "layout": {
+        "width": 336,
+        "scroll": 336,
+        "viewport": 765,
+        "right": 376.5
+      },
+      "domIds": [
+        "operation-01-create-append-result",
+        "operation-02-prepend-result",
+        "operation-03-insert-before-result",
+        "operation-04-set-attribute-result",
+        "operation-05-remove-attribute-result",
+        "operation-06-class-list-add-remove-result",
+        "operation-07-class-toggle-loop-result",
+        "operation-08-style-set-property-result",
+        "operation-09-dataset-state-result",
+        "operation-10-text-content-result",
+        "operation-11-query-selector-all-result",
+        "operation-12-closest-result",
+        "operation-13-contains-result",
+        "operation-14-clone-node-result",
+        "operation-15-replace-children-result",
+        "operation-16-event-listener-result",
+        "operation-17-scroll-and-rect-result"
+      ],
+      "domNames": [
+        "1. 要素を作って末尾へ追加",
+        "2. 要素を先頭へ差し込む",
+        "3. 任意位置へ差し込む",
+        "4. 属性を付与して識別",
+        "5. 一時属性を取り除く",
+        "6. classList で状態を切り替える",
+        "7. classList.toggle のループ",
+        "8. style.setProperty で見た目を変更",
+        "9. dataset で状態を保持",
+        "10. textContent で表示文字列を更新",
+        "11. querySelectorAll でまとめて操作",
+        "12. closest で祖先をたどる",
+        "13. contains で包含関係を確認",
+        "14. cloneNode で複製",
+        "15. replaceChildren でまとめて入れ替え",
+        "16. addEventListener / removeEventListener",
+        "17. scrollIntoView と座標取得"
+      ],
+      "pageErrors": []
+    },
+    {
+      "browser": "webkit",
+      "version": "26.0",
+      "width": 375,
+      "height": 900,
+      "status": "PASS",
+      "checks": [
+        "keyboard open; 17 DOM cards and ordered identity",
+        "initial click: actual even highlight and odd non-highlight; result text",
+        "reset removes selection; 3 repeated plays retain 6 nodes/even set",
+        "keyboard Enter/Space play/reset",
+        "displayed code example applied to actual DOM",
+        "light/dark; CSS text 200% target card no horizontal overflow"
+      ],
+      "styles": [
+        {
+          "text": "P1",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P2",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P3",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P4",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P5",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P6",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        }
+      ],
+      "layout": {
+        "width": 307,
+        "scroll": 307,
+        "viewport": 375,
+        "right": 342
+      },
+      "domIds": [
+        "operation-01-create-append-result",
+        "operation-02-prepend-result",
+        "operation-03-insert-before-result",
+        "operation-04-set-attribute-result",
+        "operation-05-remove-attribute-result",
+        "operation-06-class-list-add-remove-result",
+        "operation-07-class-toggle-loop-result",
+        "operation-08-style-set-property-result",
+        "operation-09-dataset-state-result",
+        "operation-10-text-content-result",
+        "operation-11-query-selector-all-result",
+        "operation-12-closest-result",
+        "operation-13-contains-result",
+        "operation-14-clone-node-result",
+        "operation-15-replace-children-result",
+        "operation-16-event-listener-result",
+        "operation-17-scroll-and-rect-result"
+      ],
+      "domNames": [
+        "1. 要素を作って末尾へ追加",
+        "2. 要素を先頭へ差し込む",
+        "3. 任意位置へ差し込む",
+        "4. 属性を付与して識別",
+        "5. 一時属性を取り除く",
+        "6. classList で状態を切り替える",
+        "7. classList.toggle のループ",
+        "8. style.setProperty で見た目を変更",
+        "9. dataset で状態を保持",
+        "10. textContent で表示文字列を更新",
+        "11. querySelectorAll でまとめて操作",
+        "12. closest で祖先をたどる",
+        "13. contains で包含関係を確認",
+        "14. cloneNode で複製",
+        "15. replaceChildren でまとめて入れ替え",
+        "16. addEventListener / removeEventListener",
+        "17. scrollIntoView と座標取得"
+      ],
+      "pageErrors": []
+    },
+    {
+      "browser": "webkit",
+      "version": "26.0",
+      "width": 390,
+      "height": 900,
+      "status": "PASS",
+      "checks": [
+        "keyboard open; 17 DOM cards and ordered identity",
+        "initial click: actual even highlight and odd non-highlight; result text",
+        "reset removes selection; 3 repeated plays retain 6 nodes/even set",
+        "keyboard Enter/Space play/reset",
+        "displayed code example applied to actual DOM",
+        "light/dark; CSS text 200% target card no horizontal overflow"
+      ],
+      "styles": [
+        {
+          "text": "P1",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P2",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P3",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P4",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P5",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(210, 251, 231)"
+        },
+        {
+          "text": "P6",
+          "bg": "rgba(77, 231, 125, 0.14)",
+          "color": "rgb(210, 251, 231)"
+        }
+      ],
+      "layout": {
+        "width": 322,
+        "scroll": 322,
+        "viewport": 390,
+        "right": 357
+      },
+      "domIds": [
+        "operation-01-create-append-result",
+        "operation-02-prepend-result",
+        "operation-03-insert-before-result",
+        "operation-04-set-attribute-result",
+        "operation-05-remove-attribute-result",
+        "operation-06-class-list-add-remove-result",
+        "operation-07-class-toggle-loop-result",
+        "operation-08-style-set-property-result",
+        "operation-09-dataset-state-result",
+        "operation-10-text-content-result",
+        "operation-11-query-selector-all-result",
+        "operation-12-closest-result",
+        "operation-13-contains-result",
+        "operation-14-clone-node-result",
+        "operation-15-replace-children-result",
+        "operation-16-event-listener-result",
+        "operation-17-scroll-and-rect-result"
+      ],
+      "domNames": [
+        "1. 要素を作って末尾へ追加",
+        "2. 要素を先頭へ差し込む",
+        "3. 任意位置へ差し込む",
+        "4. 属性を付与して識別",
+        "5. 一時属性を取り除く",
+        "6. classList で状態を切り替える",
+        "7. classList.toggle のループ",
+        "8. style.setProperty で見た目を変更",
+        "9. dataset で状態を保持",
+        "10. textContent で表示文字列を更新",
+        "11. querySelectorAll でまとめて操作",
+        "12. closest で祖先をたどる",
+        "13. contains で包含関係を確認",
+        "14. cloneNode で複製",
+        "15. replaceChildren でまとめて入れ替え",
+        "16. addEventListener / removeEventListener",
+        "17. scrollIntoView と座標取得"
+      ],
+      "pageErrors": []
+    }
+  ],
+  "waapi": [
+    {
+      "browser": "chromium",
+      "version": "141.0.7390.37",
+      "width": 765,
+      "status": "PASS",
+      "checks": [
+        "catalog/categories/search",
+        "match adjacency/score/reset/real drag",
+        "native trace swap/5 erase/fall/3 erase; runtime reduce; keyboard; reset interruption",
+        "falling board/compaction/reset",
+        "hp immediate/repeated reset and damage",
+        "equip scroll/unequip/reset/keyboard",
+        "lock geometry/keyboard/reset",
+        "five targets retain logical state on runtime media change and resume next action",
+        "light/dark media and text200% target overflow"
+      ],
+      "warnings": [],
+      "pageErrors": []
+    },
+    {
+      "browser": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "status": "PARTIAL",
+      "checks": [
+        "catalog/categories/search",
+        "match adjacency/score/reset/real drag",
+        "native trace swap/5 erase/fall/3 erase; runtime reduce; keyboard; reset interruption",
+        "falling board/compaction/reset",
+        "hp immediate/repeated reset and damage",
+        "equip scroll/unequip/reset/keyboard",
+        "lock geometry/keyboard/reset",
+        "five targets retain logical state on runtime media change and resume next action",
+        "light/dark media and text200% target overflow"
+      ],
+      "warnings": [
+        {
+          "wholePageText200Overflow": {
+            "width": 375,
+            "scrollWidth": 608
+          }
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "browser": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "status": "PARTIAL",
+      "checks": [
+        "catalog/categories/search",
+        "match adjacency/score/reset/real drag",
+        "native trace swap/5 erase/fall/3 erase; runtime reduce; keyboard; reset interruption",
+        "falling board/compaction/reset",
+        "hp immediate/repeated reset and damage",
+        "equip scroll/unequip/reset/keyboard",
+        "lock geometry/keyboard/reset",
+        "five targets retain logical state on runtime media change and resume next action",
+        "light/dark media and text200% target overflow"
+      ],
+      "warnings": [
+        {
+          "wholePageText200Overflow": {
+            "width": 390,
+            "scrollWidth": 632
+          }
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "browser": "webkit",
+      "version": "26.0",
+      "width": 765,
+      "status": "PASS",
+      "checks": [
+        "catalog/categories/search",
+        "match adjacency/score/reset/real drag",
+        "native trace swap/5 erase/fall/3 erase; runtime reduce; keyboard; reset interruption",
+        "falling board/compaction/reset",
+        "hp immediate/repeated reset and damage",
+        "equip scroll/unequip/reset/keyboard",
+        "lock geometry/keyboard/reset",
+        "five targets retain logical state on runtime media change and resume next action",
+        "light/dark media and text200% target overflow"
+      ],
+      "warnings": [],
+      "pageErrors": []
+    },
+    {
+      "browser": "webkit",
+      "version": "26.0",
+      "width": 375,
+      "status": "PARTIAL",
+      "checks": [
+        "catalog/categories/search",
+        "match adjacency/score/reset/real drag",
+        "native trace swap/5 erase/fall/3 erase; runtime reduce; keyboard; reset interruption",
+        "falling board/compaction/reset",
+        "hp immediate/repeated reset and damage",
+        "equip scroll/unequip/reset/keyboard",
+        "lock geometry/keyboard/reset",
+        "five targets retain logical state on runtime media change and resume next action",
+        "light/dark media and text200% target overflow"
+      ],
+      "warnings": [
+        {
+          "wholePageText200Overflow": {
+            "width": 375,
+            "scrollWidth": 598
+          }
+        }
+      ],
+      "pageErrors": []
+    },
+    {
+      "browser": "webkit",
+      "version": "26.0",
+      "width": 390,
+      "status": "PARTIAL",
+      "checks": [
+        "catalog/categories/search",
+        "match adjacency/score/reset/real drag",
+        "native trace swap/5 erase/fall/3 erase; runtime reduce; keyboard; reset interruption",
+        "falling board/compaction/reset",
+        "hp immediate/repeated reset and damage",
+        "equip scroll/unequip/reset/keyboard",
+        "lock geometry/keyboard/reset",
+        "five targets retain logical state on runtime media change and resume next action",
+        "light/dark media and text200% target overflow"
+      ],
+      "warnings": [
+        {
+          "wholePageText200Overflow": {
+            "width": 390,
+            "scrollWidth": 621
+          }
+        }
+      ],
+      "pageErrors": []
+    }
+  ],
+  "known_debt": [
+    "Whole museum title overflows horizontally after CSS text 200% at 375px/390px; target DOM11 and five WAAPI cards fit.",
+    "Existing Flash/WAAPI typewriter ID duplication out of scope."
+  ],
+  "limitations": [
+    "Not real iPhone Safari or VoiceOver.",
+    "Not OS font enlargement or true browser zoom.",
+    "Native HTML draggable mouse simulation was tested by existing WAAPI harness; physical touch device not tested.",
+    "DOM11 and five representative WAAPI exhibits operated; not full operation of all 197 exhibits.",
+    "Source identity and browser checks do not constitute deployed production or GitHub Actions verification."
+  ]
+}

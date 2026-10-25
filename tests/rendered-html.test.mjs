@@ -251,7 +251,7 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /8 ROOMS \/ 150 OBJECTS/);
+  assert.match(normalizedHtml, /9 ROOMS \/ 197 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
   assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 7);
   assert.ok((html.match(/aria-expanded="false"/g) ?? []).length >= 8);
@@ -266,8 +266,8 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
       + (html.match(/class="domOperation"/g) ?? []).length,
       96,
   );
-  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 5/);
-  assert.match(page, /const totalExhibitCount = permanentExhibitCount \+ periodExhibitCount \+ flashExhibitCount \+ 17/);
+  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 6/);
+  assert.match(page, /const totalExhibitCount = permanentExhibitCount \+ periodExhibitCount \+ flashExhibitCount \+ 17 \+ waapiSampleCount/);
   assert.match(page, /cursorExhibits\.length \+ appleEarlyExhibitCount \+ macintoshBirthExhibitCount/);
   assert.match(page, /periodExhibitCount \+ flashExhibitCount/);
   assert.match(page, /exhibit\.kind === "vanished-os" \? exhibit\.loadingExhibits\.length : 1/);
@@ -1216,4 +1216,38 @@ test("DOM ANIMATION ROOM を静的HTMLへ出力し、17操作のAPI体験を確�
   assert.match(css, /\.domOperation/);
   assert.match(css, /\.domOperationStage/);
   assert.match(css, /@media \(max-width: 650px\)/);
+});
+
+test("既存ローディング標本の直下に、遅延生成するWAAPI標本ギャラリーを追加する", async () => {
+  const [page, component, data, css] = await Promise.all([
+    readFile(new URL("app/page.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/components/WaapiSampleGallery.tsx", projectRoot), "utf8"),
+    readFile(new URL("app/data/waapiSamples.ts", projectRoot), "utf8"),
+    readFile(new URL("app/globals.css", projectRoot), "utf8"),
+  ]);
+
+  assert.ok(page.indexOf("<WaapiSampleGallery />") > page.indexOf("</section>\n\n      <WaapiSampleGallery />"));
+  assert.ok(page.indexOf("<WaapiSampleGallery />") < page.indexOf("<section className=\"roomCollection\""));
+  assert.match(component, /aria-expanded=\{open\}/);
+  assert.match(component, /open && <div id="waapi-gallery-panel"/);
+  assert.match(component, /IntersectionObserver/);
+  assert.match(component, /ResizeObserver/);
+  assert.match(component, /function usePrefersReducedMotion/);
+  assert.equal((component.match(/matchMedia/g) ?? []).length, 1);
+  assert.match(component, /Animation Control Console/);
+  for (const control of ["Play", "Pause", "Reverse", "Cancel", "Finish"]) assert.match(component, new RegExp(`>${control}<`));
+  assert.match(component, /type="range"/);
+  assert.match(component, /formatAnimationCode\(sample, reducedMotion\)/);
+  assert.match(data, /export const waapiSamples/);
+  assert.doesNotMatch(data, /Windows XP風 横移動セグメントローダー/);
+  assert.doesNotMatch(data, /macOS風 待機インジケーター/);
+  assert.match(data, /export const waapiSamples/);
+  assert.match(data, /Rhythm PERFECT \/ GOOD \/ MISS/);
+  assert.match(data, /Card Deal \/ Shuffle/);
+  assert.match(data, /1990年代Web風 Marquee/);
+  assert.doesNotMatch(data, /groups\.flatMap/);
+  assert.match(data, /Treasure Chest Open/);
+  assert.match(css, /\.waapiSampleGrid/);
+  assert.match(css, /@media \(max-width: 340px\)/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
 });

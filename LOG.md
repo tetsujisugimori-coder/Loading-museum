@@ -1,5 +1,27 @@
 # Loading Museum 作業ログ
 
+## 2026-08-22 — PR #28 WAAPI標本32件・ゲーム操作展示への再構成
+
+- 既存ローディング展示室と重複するProgress Bar、Windows XP風セグメント、Windows 8/10風ドット、macOS風インジケーターの4件をWAAPI一覧から削除し、非公開理由をbacklogへ記録した。
+- 残る20件のタイトル、描画対象、開始・終了状態、説明を監査し、Fade／Slideを明示的な初期化と実寸距離へ変更した。有限アニメーションはIntersectionObserverの範囲外でも完了状態を取消さず、一覧を閉じた時だけ破棄する。
+- Treasure Chest、Achievement、Rhythm判定、Coin Arc、Combo、Critical Hit、HP Damage / Heal、Boss Entrance、Menu Cursor、Quest Stamp、Level Up、Card Deal / Shuffleの12ゲーム標本を追加し、公開数を32件へ再構成した。
+- Typewriterの文字数由来stepsとカーソル、Counterの軽減時最終値、直接操作Toggle／Button、中央静止Marquee、専用Enter／Exitを持つModal／Toastを実装した。空の緑箱は情報カード、サイドパネル、NEWバッジ、通知ベル、エラー入力欄へ置換した。
+- データ型へ複数ターゲットsequence、target別delay、専用Exit、Reduced sequence、動的距離、コードパターンを追加した。コード表示は単一、stagger、実寸測定、Enter / Exit、ゲームsequenceを実演と同じ定義から生成する。
+- 全標本の通常・軽減設定を有限回にし、Exitは完全非表示、Entranceは完全表示、Counter／Toggle／Marqueeとゲーム操作は意味のある最終状態を残す。
+- `npm test`成功: Next.js本番build、Node 49件、Vitest 12件（合計61件）。32件、削除4件、ゲーム操作、Fade／Slide、Reduced motion、コード生成を回帰テストへ追加した。
+- Edge実ブラウザで32タイトル、件数、カテゴリ件数、ステージoverflow、Fade／Slideの実寸距離と終了状態、デスクトップ表示、エラーオーバーレイなし、console warning/errorなしを確認した。ブラウザ操作ツールが連続操作中に時間切れとなったため、12ゲーム全件の一連操作、320px実幅、OS設定を切り替えたReduced motionの全32件目視は未完了。これらはjsdom操作テストとデータテストでは確認済み。
+
+## 2026-08-22 — PR #28 WAAPI標本ギャラリーの品質修正
+
+- 名称群を`groups.flatMap()`で9種類の共通モーションへ割り当てていた構造を撤去し、代表24件を明示データと専用プレビューで個別実装した。
+- 各標本へ通常・軽減キーフレーム、AnimationOptions、描画形式、参考にした特徴、適する用途、避ける用途、コード解説を持たせた。画面のコードは実演と同じ設定データから生成する。
+- Fade／Slideの方向、Modal／Toastの両方向、Toggle、Progress、文字演出、OS由来ローダー、幾何学形成、Damage Number、Marqueeを名称どおりの異なるDOMと動きで描画する。
+- `prefers-reduced-motion`はギャラリー全体で一度だけ監視する。移動・回転・反復を短いフェード、枠線変化、静的進捗へ置換し、軽減時の無限ループを止めた。
+- Animation Control Consoleを有限アニメーションへ変更した。ステージ実寸から移動距離を計算し、例外を捕捉しながらPlay／Pause／Reverse／Cancel／Finish／速度／Seekを操作し、実際の状態値を表示する。
+- 強さ比較は同じ通知カードを使い、控えめ・標準・派手で移動距離、拡大率、duration、easing、オーバーシュート、発光を実際に変える構成へ改めた。
+- 公開候補から外した案は展示数へ含めず、`docs/waapi-sample-backlog.md`へ未実装候補として分離した。
+- データ整合性5件とjsdom操作4件を追加し、遅延DOM、検索、複合フィルター、Replay、停止、コード開閉、Console、Reduced motion、Modal／Toastの両方向を検証する。
+
 ## 2026-08-08 — PR #22 Finder実矩形判定とSystem操作回帰
 
 - Read Meの当たり判定をポインタ周辺の仮`60×48px`から、ドラッグ開始時に`getBoundingClientRect()`で測った実要素の幅・高さへ変更した。画面上の`.macDesktopItem`は`68×68px`で、`filePoint`を左上とする矩形とゴミ箱の実矩形が少しでも重なれば蓋を開く。
@@ -1350,6 +1372,27 @@
 - 入口を既存展示室と同じ構造へ揃え、`ROOM / 1976–1979`、`Apple I / Apple II 展示室`、`Apple IからApple II、Disk IIへ`、`13 EXHIBITS`へ簡潔化した。
 - 年代の重複表示を解消した。変更は入口のタイトル、補足文、年代・件数表記と関連文書・回帰テストだけで、展示内容、初心者向けツアー、アニメーション、BASIC、カセット、Disk II、Canvas、音声処理は変更していない。
 
+## 2026-08-22 — WAAPI gallery 47 specimens
+
+- Similar game notifications were consolidated into Combat Damage Feedback and Reward Reveal Lab.
+- Twelve input-driven game specimens were added; Dodge Afterimage is the priority S-rank interaction specimen.
+- Six AI Working Motion specimens and a synchronized comparison lab were added without copying logos or SVG paths.
+- AI loops exist only while work is active and are cancelled on Complete, Error, Reset, offscreen, gallery close, comparison close, and unmount. Reduced motion never starts those loops.
+- The gallery now filters by category, interaction, visual element, state, and inspiration type while retaining the existing filters.
+- Verified with `npm test` (production build, 49 Node tests and 20 Vitest tests), `npm run lint`, and `npm run typecheck`.
+- Browser checked at desktop and 320px: 47 cards, no horizontal overflow, core game and AI controls, comparison mode, no console errors. Reduced-motion media emulation showed the static reduced UI; animation-loop count could not be read through the browser bridge and is covered by the automated animation mock test.
+
+Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./docs/waapi-ai-working-motion-references.md), [change log](./docs/waapi-change-log.md).
+
+## 2026-08-23 — PR #28 WAAPI個別モーション再構築
+
+- 47標本を維持したまま、再生ポリシーを手動入場、手動退出、直接操作、自動有限、作業中ループへ分類した。
+- Fade / Slideの自動再生を止め、Button Pressはpointer・keyboardの押下と解放へ、ToggleはOFF / ON / OFFの実状態へ変更した。
+- 共通ゲームプレビューを14件の専用シーンへ分離し、Combat、Reward、Hit Stop、Parry、Dodge、Line Clear、Match-3、Pinball、Lock-on、Equip、Status、Turn Order、Battle、Raceの固有DOM・状態・キーフレームを実装した。
+- AI 6件を固有グリフ・固有モーションへ変更し、個別カードと一括比較で同じ描画とキーフレームを共有した。
+- 統合前5件のデータ、render kind、DOM、CSSと、実在しないコード例APIを削除した。
+- データ定義、状態境界、直接操作、固有DOM、固有キーフレーム、停止cleanupをReact / Vitestテストで検証対象にした。
+
 ## 2026-10-25 第1段階1a: DOM11の偶数選択と教材説明の整合
 
 - 親Issue #29。PR #30 のマージ済み main `f8d76535208ba143cf981fc41afa5c022621326b` を起点とし、未マージ PR #28（WAAPI）には依存しない。開始時の作業ツリーは clean。第0段階文書は保持した。
@@ -1366,3 +1409,39 @@
 記録時刻: 2026-10-25 12:31 JST。
 - 追加照合: 第0段階付録150行と、生成HTMLの常設9件＋データ配列の124件＋DOM定義17件から組み立てた全一覧を比較し、ID・名称・描画順の差分0。消えたOSは既存カテゴリー順で展開し、Flashは未表示カテゴリーを含む全54定義を照合した。これは定義/出力の静的照合であり全件実操作ではない。
 - 独立レビュー: 実装担当とは別の読取専用レビューで4変更ファイルを確認、P0/P1/P2/P3指摘なし。レビュー担当自身もDOM11 4件＋既存Mac2件を再実行し6/6成功。他app無変更、DOM11以外の本文一致、17ID/名称/順を独立確認。全checkと実ブラウザは実装担当の検証結果であり、レビュー担当の再実行とは区別する。
+
+## 2026-10-25 — WAAPI 5 P2 / 1 P3 状態整合修正
+
+- PR28 merge `85e2a030501e9d4c3edca9a6b70f14f8d1ca2d0e` を最新mainとして再確認し、独立ブランチで作業。PR31はDraft/未マージ、ブランチ・DOM11を変更しない。LOGとpackageの双方の追記は将来統合時にも保持する。
+- Match-3は行列隣接、実交換/消去/落下再判定、消去石×100点へ変更。補充なし有限盤面、不成立交換は復帰。Falling Blockは実占有状態を消去/下詰めし、実位置差をアニメーション化。段階的落下/点滅は省略し説明を一致。
+- HPは取消可能な360ms timerと世代guard、状態所有のバー。装備は所持品・装備・ATKを一状態から描画。照準は選択対象の子へ配置し固定座標を廃止。全館にWAAPI定義長を加算し9室/197展示、分類と検索は別集計。
+- 修正前DOM検査8件の失敗を確認。新規ゲーム13＋HP4の17件を追加。全checkはNode49＋Vitest39の88件を対象とし、lint/type/buildと合わせ最終commitで再確認する。初回symlink buildエラーはcheckout内の依存コピーで解消、依存更新なし。
+- Chromium141/WebKit26.0、765/375/390pxの6条件で対象操作・実幅/配置・連打・Reset・スクロール再表示・キーボード・カテゴリー/検索を確認。pageerror0。対象5カードの文字200%は収まるが、既存全館タイトルがモバイル文字200%で横超過するため総合PARTIAL。修正前mergeでも再現し対象外として保留。
+- 独立レビューでP0〜P2残件なし。P3の教材説明/コード例/軽減表示/件数の6指摘を修正。レビューはソース＋jsdom、実機保証ではない。
+- 既存150のID/名称/描画順は第0段階付録と差分0、WAAPI47 ID一意、合計197。AI6、console、既存modal、公開設定を維持。常設9/DOM17の旧集計定数は残存負債。全197の全操作は未検証。
+- 実機iPhone Safari/VoiceOver/ソフトキーボード/非表示タブは未検証。PR用CIは存在せずPages用のみなので、検査のための公開workflowを実行しない。新規Issueは作成せず既存#27/#29を関連参照する。
+- 詳細: [原因・設計・検査・残存負債](docs/maintenance/waapi-consistency-20261025.md)、[ブラウザ6条件](docs/maintenance/waapi-browser-results-20261025.json)。DOM17、DOM7/8/10、展示室focusの後続保守は変更せず引き継ぐ。
+
+記録: 2026-10-25 13:25 JST。
+- 目視追加修正: 375px Falling Blockの結果ラベルが最下段に重なる旧CSSを確認。Line/Match結果を独立行へ移し、実矩形の非重なり回帰を追加。2026-10-25 13:26 JST。
+
+## 2026-10-25 — PR #32 実連鎖・盤面履歴演出・途中軽減切替
+
+- 既存fix/waapi-state-consistency、HEAD 63ed9cdを確認し追加修正。PR #31は4852ae6のDraft/未マージで不変。新PR・merge・公開なし。
+- 初期3×4盤面の一般交換8/11で5→3石、2段連鎖800点を検証。各段の盤面/消去集合/token履歴を純関数で記録し、同じ結果を盤面・得点・WAAPI位置差へ使用。
+- 第一希望の交換→消去→落下→追加消去を装飾レイヤーで再生。論理結果は同期確定。fill/完了callback/遅延state更新なし。新操作開始・Reset・軽減ON・画面外・unmountで取消して確定盤面を露出する。
+- 対象4ゲームだけ軽減切替のAnimation取消を有効化。HPの世代管理とCSS軽減は維持。軽減OFFは次操作から再生。
+- 修正前4件失敗を固定、追加14件。既存88件を維持し計102件。独立レビューで再操作入力と旧duration/fill表示のP3を修正。ブラウザ結果・独立最終・最終HEADは設計記録へ追補。
+- 197定義、ID/名称/順序、集計、検索、Pages設定を保持。typewriter ID重複と全館title200%横超過は対象外。#31将来統合時はLOG/package両追記を保持する。
+- 最終製品check/build成功:102成功・失敗0・skip0。独立31件と一般盤面315交換の照合成功、追加P3 2件修正後の残件なし。native WAAPIとhover CSS Transitionを分離してブラウザ検証。実機Safari/VoiceOver未検証、実CI成功とは扱わない。最終6条件JSONを設計記録から参照。
+
+
+## 2026-10-25 — PR #31 を #32 マージ後 main へ統合
+
+- 統合前 #31 `4852ae62b33a5cb6ae9b4a049ec74fcfd7cd77d2`、fetch後main `1e7d7de0bdf28efb785155a66027fad8d202e329`。#32のmergeと後追い独立レビュー文書も確認。
+- 第一希望どおり二親mergeを採用。package.jsonはmainのテスト群＋DOM11、LOGは両PRの原文を保持し日付順で解消。rebase/force pushなし、依存/lockfile/公開設定変更なし。
+- DOM11 P2/P4/P6・説明/コード例/Reset/反復を保持。mainに対する実装差分はDOM11だけ、#32の全実装/テスト/文書を保持。
+- checkと独立build成功。Node49＋Vitest57＝106成功、失敗0、skip0。独立担当もVitest57を再実行。
+- Chromium141.0.7390.37 / WebKit26.0 各765/375/390px: DOM11全6条件PASS、既存WAAPIの6条件×9群も機能失敗なし。pageerror0。モバイル全館タイトル文字200%横超過だけ既存PARTIAL。
+- 独立レビューの文書P3 1件を修正。実機Safari/VoiceOver未検証。実CIとは区別し、公開workflowを起動しない。最終HEADは既存Draft PR #31本文に完全SHAを記録。
+- 詳細: [統合設計・検証・独立レビュー](docs/maintenance/dom11-main-integration-20261025.md)、[ブラウザ証跡](docs/maintenance/dom11-integration-browser-results-20261025.json)。Draft保持、人間のマージ判断待ち。既存typewriter ID重複/タイトル横超過は対象外。

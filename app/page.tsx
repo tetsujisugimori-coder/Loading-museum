@@ -5,15 +5,17 @@ import { MuseumTitleSequence } from "./components/MuseumTitleSequence";
 import AppleEarlyEraExhibitRoom from "./components/AppleEarlyEraExhibitRoom";
 import MacintoshBirthExhibitRoom from "./components/MacintoshBirthExhibitRoom";
 import { DomAnimationRoom } from "./components/DomAnimationRoom";
+import { WaapiSampleGallery } from "./components/WaapiSampleGallery";
 import { appleEarlyExhibitCount } from "./data/appleEarlyExhibits";
 import { macintoshBirthExhibitCount } from "./data/macintoshBirthExhibits";
 import { cursorExhibits } from "./data/cursorExhibits";
 import { exhibitRooms } from "./data/exhibitRooms";
 import { flashExhibitCount } from "./data/flashExhibits";
+import { waapiSampleCount } from "./data/waapiSamples";
 
 const spokes = Array.from({ length: 8 }, (_, index) => index);
 const permanentExhibitCount = 9;
-const periodRoomCount = exhibitRooms.length + 5;
+const periodRoomCount = exhibitRooms.length + 6;
 const periodExhibitCount = exhibitRooms.reduce(
   (roomTotal, room) => roomTotal + room.exhibits.reduce(
     (exhibitTotal, exhibit) => exhibitTotal + (
@@ -23,7 +25,7 @@ const periodExhibitCount = exhibitRooms.reduce(
   ),
   cursorExhibits.length + appleEarlyExhibitCount + macintoshBirthExhibitCount,
 );
-const totalExhibitCount = permanentExhibitCount + periodExhibitCount + flashExhibitCount + 17;
+const totalExhibitCount = permanentExhibitCount + periodExhibitCount + flashExhibitCount + 17 + waapiSampleCount;
 
 function ExhibitHeader({
   number,
@@ -167,6 +169,8 @@ export default function Home() {
           <p className="caption">空白ではなく「これから現れる構造」を先に見せる。</p>
         </article>
       </section>
+
+      <WaapiSampleGallery />
 
       <section className="roomCollection" aria-labelledby="room-collection-title">
         <div className="roomCollectionHeader">

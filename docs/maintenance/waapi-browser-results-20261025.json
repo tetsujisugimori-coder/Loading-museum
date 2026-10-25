@@ -1,0 +1,132 @@
+[
+  {
+    "browser": "chromium",
+    "version": "141.0.7390.37",
+    "width": 765,
+    "status": "PASS",
+    "checks": [
+      "catalog/categories/search",
+      "match adjacency/score/reset/drag",
+      "falling board/compaction/reset",
+      "hp immediate/repeated reset and damage",
+      "equip scroll/unequip/reset/keyboard",
+      "lock geometry/keyboard/reset",
+      "light/dark media and text200% target overflow"
+    ],
+    "warnings": [],
+    "pageErrors": []
+  },
+  {
+    "browser": "chromium",
+    "version": "141.0.7390.37",
+    "width": 375,
+    "status": "PARTIAL",
+    "checks": [
+      "catalog/categories/search",
+      "match adjacency/score/reset/drag",
+      "falling board/compaction/reset",
+      "hp immediate/repeated reset and damage",
+      "equip scroll/unequip/reset/keyboard",
+      "lock geometry/keyboard/reset",
+      "light/dark media and text200% target overflow"
+    ],
+    "warnings": [
+      {
+        "wholePageText200Overflow": {
+          "width": 375,
+          "scrollWidth": 608
+        }
+      }
+    ],
+    "pageErrors": []
+  },
+  {
+    "browser": "chromium",
+    "version": "141.0.7390.37",
+    "width": 390,
+    "status": "PARTIAL",
+    "checks": [
+      "catalog/categories/search",
+      "match adjacency/score/reset/drag",
+      "falling board/compaction/reset",
+      "hp immediate/repeated reset and damage",
+      "equip scroll/unequip/reset/keyboard",
+      "lock geometry/keyboard/reset",
+      "light/dark media and text200% target overflow"
+    ],
+    "warnings": [
+      {
+        "wholePageText200Overflow": {
+          "width": 390,
+          "scrollWidth": 632
+        }
+      }
+    ],
+    "pageErrors": []
+  },
+  {
+    "browser": "webkit",
+    "version": "26.0",
+    "width": 765,
+    "status": "PASS",
+    "checks": [
+      "catalog/categories/search",
+      "match adjacency/score/reset/drag",
+      "falling board/compaction/reset",
+      "hp immediate/repeated reset and damage",
+      "equip scroll/unequip/reset/keyboard",
+      "lock geometry/keyboard/reset",
+      "light/dark media and text200% target overflow"
+    ],
+    "warnings": [],
+    "pageErrors": []
+  },
+  {
+    "browser": "webkit",
+    "version": "26.0",
+    "width": 375,
+    "status": "PARTIAL",
+    "checks": [
+      "catalog/categories/search",
+      "match adjacency/score/reset/drag",
+      "falling board/compaction/reset",
+      "hp immediate/repeated reset and damage",
+      "equip scroll/unequip/reset/keyboard",
+      "lock geometry/keyboard/reset",
+      "light/dark media and text200% target overflow"
+    ],
+    "warnings": [
+      {
+        "wholePageText200Overflow": {
+          "width": 375,
+          "scrollWidth": 598
+        }
+      }
+    ],
+    "pageErrors": []
+  },
+  {
+    "browser": "webkit",
+    "version": "26.0",
+    "width": 390,
+    "status": "PARTIAL",
+    "checks": [
+      "catalog/categories/search",
+      "match adjacency/score/reset/drag",
+      "falling board/compaction/reset",
+      "hp immediate/repeated reset and damage",
+      "equip scroll/unequip/reset/keyboard",
+      "lock geometry/keyboard/reset",
+      "light/dark media and text200% target overflow"
+    ],
+    "warnings": [
+      {
+        "wholePageText200Overflow": {
+          "width": 390,
+          "scrollWidth": 621
+        }
+      }
+    ],
+    "pageErrors": []
+  }
+]
