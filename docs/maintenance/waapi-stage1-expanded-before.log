@@ -1,0 +1,75 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-stage1
+
+ ❯ tests/waapi-stage1-expanded.test.tsx (6 tests | 6 failed) 187ms
+   × parry reduced-motion labels agree with early and active judgment 115ms
+     → expected 'ACTIVE WINDOW' to be 'WARNING' // Object.is equality
+   × dodge reduced-motion labels agree with early and active judgment 20ms
+     → expected 'ACTIVE WINDOW' to be 'WARNING' // Object.is equality
+   × parry ceases active label after success window 11ms
+     → expected 'ACTIVE WINDOW' to contain 'LATE'
+   × dodge ceases active label after success window 10ms
+     → expected 'ACTIVE WINDOW' to contain 'LATE'
+   × battle offscreen interruption returns FIELD and stays retryable 15ms
+     → expected 'waapiPreviewStage gameScene gameBattl…' to contain 'sceneFIELD'
+   × combat paused animations cancel on reduced motion without discarding damage 15ms
+     → expected false to be true // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/waapi-stage1-expanded.test.tsx > parry reduced-motion labels agree with early and active judgment
+ FAIL  tests/waapi-stage1-expanded.test.tsx > dodge reduced-motion labels agree with early and active judgment
+AssertionError: expected 'ACTIVE WINDOW' to be 'WARNING' // Object.is equality
+
+Expected: "WARNING"
+Received: "ACTIVE WINDOW"
+
+ ❯ tests/waapi-stage1-expanded.test.tsx:9:238
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/waapi-stage1-expanded.test.tsx > parry ceases active label after success window
+ FAIL  tests/waapi-stage1-expanded.test.tsx > dodge ceases active label after success window
+AssertionError: expected 'ACTIVE WINDOW' to contain 'LATE'
+
+Expected: "LATE"
+Received: "ACTIVE WINDOW"
+
+ ❯ tests/waapi-stage1-expanded.test.tsx:10:214
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/waapi-stage1-expanded.test.tsx > battle offscreen interruption returns FIELD and stays retryable
+AssertionError: expected 'waapiPreviewStage gameScene gameBattl…' to contain 'sceneFIELD'
+
+Expected: "sceneFIELD"
+Received: "waapiPreviewStage gameScene gameBattle sceneBATTLE"
+
+ ❯ tests/waapi-stage1-expanded.test.tsx:11:309
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/waapi-stage1-expanded.test.tsx > combat paused animations cancel on reduced motion without discarding damage
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/waapi-stage1-expanded.test.tsx:12:332
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed (6)
+   Start at  21:12:06
+   Duration  1.47s (transform 186ms, setup 0ms, collect 309ms, tests 187ms, environment 595ms, prepare 167ms)
+

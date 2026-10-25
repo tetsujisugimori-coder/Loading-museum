@@ -1,0 +1,154 @@
+[
+  {
+    "browser": "chromium",
+    "menu": [
+      {
+        "selected": "CONTINUE",
+        "cursor": {
+          "top": 222.828125,
+          "bottom": 234.828125
+        },
+        "text": {
+          "top": 222.828125,
+          "bottom": 233.828125
+        },
+        "dy": 0
+      },
+      {
+        "selected": "COLLECTION",
+        "cursor": {
+          "top": 256.828125,
+          "bottom": 268.828125
+        },
+        "text": {
+          "top": 243.828125,
+          "bottom": 254.828125
+        },
+        "dy": 13
+      },
+      {
+        "selected": "SETTINGS",
+        "cursor": {
+          "top": 290.828125,
+          "bottom": 302.828125
+        },
+        "text": {
+          "top": 264.828125,
+          "bottom": 275.828125
+        },
+        "dy": 26
+      }
+    ],
+    "timing": [
+      {
+        "name": "Perfect Parry",
+        "before": "ACTIVE WINDOW",
+        "after": "EARLY · HIT"
+      },
+      {
+        "name": "Dodge Afterimage",
+        "before": "ACTIVE WINDOW",
+        "after": "EARLY · HIT"
+      }
+    ],
+    "coin": {
+      "before": "SCORE 0",
+      "after": "SCORE 100"
+    },
+    "combatMotionON": [
+      {
+        "state": "paused",
+        "time": 100
+      },
+      {
+        "state": "paused",
+        "time": 100
+      },
+      {
+        "state": "paused",
+        "time": 100
+      }
+    ],
+    "combatReset": [
+      "idle",
+      "idle",
+      "idle"
+    ]
+  },
+  {
+    "browser": "webkit",
+    "menu": [
+      {
+        "selected": "CONTINUE",
+        "cursor": {
+          "top": 233.71875,
+          "bottom": 245.71875
+        },
+        "text": {
+          "top": 233.71875,
+          "bottom": 245.71875
+        },
+        "dy": 0
+      },
+      {
+        "selected": "COLLECTION",
+        "cursor": {
+          "top": 267.71875,
+          "bottom": 279.71875
+        },
+        "text": {
+          "top": 255.71875,
+          "bottom": 267.71875
+        },
+        "dy": 12
+      },
+      {
+        "selected": "SETTINGS",
+        "cursor": {
+          "top": 301.71875,
+          "bottom": 313.71875
+        },
+        "text": {
+          "top": 277.71875,
+          "bottom": 289.71875
+        },
+        "dy": 24
+      }
+    ],
+    "timing": [
+      {
+        "name": "Perfect Parry",
+        "before": "ACTIVE WINDOW",
+        "after": "EARLY · HIT"
+      },
+      {
+        "name": "Dodge Afterimage",
+        "before": "ACTIVE WINDOW",
+        "after": "EARLY · HIT"
+      }
+    ],
+    "coin": {
+      "before": "SCORE 0",
+      "after": "SCORE 100"
+    },
+    "combatMotionON": [
+      {
+        "state": "paused",
+        "time": 100
+      },
+      {
+        "state": "paused",
+        "time": 100
+      },
+      {
+        "state": "paused",
+        "time": 100
+      }
+    ],
+    "combatReset": [
+      "idle",
+      "idle",
+      "idle"
+    ]
+  }
+]

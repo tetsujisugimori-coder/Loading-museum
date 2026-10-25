@@ -5574,7 +5574,8 @@ footer {
 .gameBoss > b { z-index: 1; color: #a473d5; font-size: 72px; filter: drop-shadow(0 0 14px #842fc2); }
 .gameBoss > strong { z-index: 2; align-self: end; margin-bottom: 18px; color: #f2d5ff; font: 900 12px var(--mono); letter-spacing: .14em; }
 .gameMenu { position: relative; width: 170px; display: grid; gap: 10px; padding-left: 28px; color: #8999aa; font: 10px var(--mono); }
-.gameMenu > i { position: absolute; top: 0; left: 3px; color: #ffe36e; font-style: normal; transition: transform .22s ease; }
+.gameMenu > span { position: relative; }
+.gameMenu > span > i { position: absolute; inset: 0 auto auto -25px; height: 100%; display: flex; align-items: center; color: #ffe36e; font-style: normal; font-weight: inherit; }
 .gameMenu .isSelected { color: #fff; font-weight: 800; text-shadow: 0 0 8px #68d9ff; }
 .gameCards { position: relative; width: 210px; height: 120px; }
 .gameCards i { position: absolute; left: 85px; top: 30px; width: 42px; height: 60px; display: grid; place-items: center; border: 2px solid #d9e6ff; border-radius: 5px; background: linear-gradient(135deg,#f7f3df,#c8d8ec); color: #1e3657; box-shadow: 2px 3px 0 #18304d; font: 900 16px var(--serif); }

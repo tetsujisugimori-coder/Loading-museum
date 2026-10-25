@@ -188,6 +188,7 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
   const animations = useRef<Animation[]>([]);
   const [rhythm, setRhythm] = useState("READY");
   const [score, setScore] = useState(0);
+  const collected = useRef(false);
   const [comboIndex, setComboIndex] = useState(0);
   const [hp, setHp] = useState(72);
   const [trailHp, setTrailHp] = useState(72);
@@ -201,6 +202,8 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
     setTrailHp(hpValue.current);
   }, []);
   const [menuIndex, setMenuIndex] = useState(0);
+  const menuCursor = useRef<HTMLElement>(null);
+  const menuFrom = useRef<DOMRect | null>(null);
   const [cardStatus, setCardStatus] = useState("READY");
   const stop = useCallback(() => { cancelHpUpdate(); animations.current.forEach((item) => item.cancel()); animations.current = []; }, [cancelHpUpdate]);
   const run = useCallback(() => {
@@ -216,12 +219,13 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
         target.style.setProperty("--coin-x", `${to.left - from.left}px`); target.style.setProperty("--coin-y", `${to.top - from.top}px`);
       }
     }
-    const main = animateElement(target, definition, animations);
+    animateElement(target, definition, animations);
     const steps = reducedMotion ? sample.reducedSequence : sample.sequence;
     steps?.forEach((item) => { const node = stage.querySelector<HTMLElement>(item.target); if (node) animateElement(node, { ...definition, keyframes: item.keyframes, options: item.options }, animations); });
-    if (sample.render === "coin") Promise.resolve(main.finished).then(() => setScore((value) => value + 100)).catch(() => undefined);
+    // Entry and Replay are visual demonstrations, never scoring events.
   }, [reducedMotion, sample, stop]);
-  const reset = useCallback(() => { stop(); setRhythm("READY"); setScore(0); setComboIndex(0); hpValue.current = 72; setHp(72); setTrailHp(72); setMenuIndex(0); setCardStatus("READY"); }, [stop]);
+  const collectCoin = () => { if (collected.current) return; collected.current = true; setScore(100); run(); };
+  const reset = useCallback(() => { stop(); collected.current = false; menuFrom.current = null; setRhythm("READY"); setScore(0); setComboIndex(0); hpValue.current = 72; setHp(72); setTrailHp(72); setMenuIndex(0); setCardStatus("READY"); }, [stop]);
   useEffect(() => {
     // HP is driven by interaction state, never by the generic entry animation.
     if (sample.render === "hp") return;
@@ -230,7 +234,7 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
     return () => window.cancelAnimationFrame(frame);
   }, [active, run, sample.render]);
   useEffect(() => {
-    if (sample.render !== "hp" || active) return;
+    if (!["hp", "coin", "menu"].includes(sample.render) || active) return;
     stop();
   }, [active, sample.render, stop]);
   useEffect(() => stop, [stop]);
@@ -261,7 +265,23 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
       }, 360);
     }
   };
-  const moveMenu = (delta: number) => setMenuIndex((value) => Math.max(0, Math.min(2, value + delta)));
+  useLayoutEffect(() => {
+    if (sample.render !== "menu") return;
+    if (reducedMotion) stop();
+    if (menuFrom.current && menuCursor.current && !reducedMotion && active) {
+      const to = menuCursor.current.getBoundingClientRect();
+      animations.current.push(menuCursor.current.animate([
+        { transform: `translate(${menuFrom.current.left - to.left}px, ${menuFrom.current.top - to.top}px)` },
+        { transform: "translate(0, 0)" },
+      ], { duration: 220, easing: "cubic-bezier(.2,.8,.2,1)" }));
+    }
+    menuFrom.current = null;
+  }, [menuIndex, reducedMotion, active, sample.render, stop]);
+  const moveMenu = (delta: number) => {
+    menuFrom.current = menuCursor.current?.getBoundingClientRect() ?? null;
+    stop();
+    setMenuIndex((value) => Math.max(0, Math.min(2, value + delta)));
+  };
   const cardAction = (mode: "shuffle" | "deal" | "select" | "drag" | "play" | "resolve" | "discard") => {
     setCardStatus(mode.toUpperCase());
     const cards = stageRef.current?.querySelectorAll<HTMLElement>("[data-card]"); if (!cards) return; stop();
@@ -277,22 +297,24 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
     <div ref={stageRef} className={`waapiPreviewStage waapiPreviewStage--game waapiPreviewStage--${sample.render}`} tabIndex={sample.render === "menu" ? 0 : undefined} onKeyDown={sample.render === "menu" ? (event) => { if (event.key === "ArrowDown") { event.preventDefault(); moveMenu(1); } if (event.key === "ArrowUp") { event.preventDefault(); moveMenu(-1); } } : undefined}>
       {sample.render === "treasure" && <button type="button" className="gameChest" onClick={run} aria-label="宝箱を開く"><i data-chest-glow /><b data-motion-target /><span /><em data-chest-item>◆</em></button>}
       {sample.render === "rhythm" && <div className={`gameRhythm gameRhythm--${rhythm.toLowerCase()}`}><strong data-motion-target>{rhythm}</strong></div>}
-      {sample.render === "coin" && <div className="gameCoinScene"><button type="button" data-motion-target onClick={run} aria-label="コインを取る">¢</button><output data-score aria-label={`Score ${score}`}>SCORE {score}</output></div>}
+      {sample.render === "coin" && <div className="gameCoinScene"><button type="button" data-motion-target onClick={collectCoin} disabled={score > 0} aria-label="コインを取る">¢</button><output data-score aria-label={`Score ${score}`}>SCORE {score}</output></div>}
       {sample.render === "combo" && <strong className={`gameCombo gameCombo--${comboIndex}`} data-motion-target>{["READY", "2 COMBO", "5 COMBO", "10 COMBO"][comboIndex]}</strong>}
       {sample.render === "hp" && <div className="gameHp"><header><span>KNIGHT</span><output>{hp} / 100 HP</output></header><div><i style={{ width: `${trailHp}%` }} /><b data-motion-target style={{ width: `${hp}%` }} /></div></div>}
       {sample.render === "boss" && <div className="gameBoss"><i data-boss-dark /><b data-motion-target>♜</b><strong data-boss-name>THE OBSERVER</strong></div>}
-      {sample.render === "menu" && <div className="gameMenu"><i style={{ transform: `translateY(${menuIndex * 34}px)` }}>▶</i>{["CONTINUE", "COLLECTION", "SETTINGS"].map((label, index) => <span className={menuIndex === index ? "isSelected" : ""} key={label}>{label}</span>)}<b data-motion-target style={{ opacity: 0 }} /></div>}
+      {sample.render === "menu" && <div className="gameMenu">{["CONTINUE", "COLLECTION", "SETTINGS"].map((label, index) => <span className={menuIndex === index ? "isSelected" : ""} aria-current={menuIndex === index ? "true" : undefined} key={label}>{menuIndex === index && <i ref={menuCursor} aria-hidden="true">▶</i>}{label}</span>)}</div>}
       {sample.render === "cards" && <div className="gameCards" aria-label={`Card state: ${cardStatus}`}>{["A", "K", "Q", "J"].map((label, index) => <i data-card draggable onDragStart={() => setCardStatus("DRAG")} data-motion-target={index === 0 ? "" : undefined} key={label}>{label}</i>)}<output aria-live="polite">{cardStatus}</output></div>}
     </div>
     <div className="waapiPreviewControls gameControls">
       {!(["rhythm", "hp", "menu", "cards", "combo"] as SampleRenderKind[]).includes(sample.render) && <button type="button" onClick={run}>Replay</button>}
       {sample.render === "rhythm" && <>{(["PERFECT", "GOOD", "MISS"] as const).map((value) => <button type="button" key={value} onClick={() => judge(value)}>{value}</button>)}</>}
+      {sample.render === "coin" && <button type="button" onClick={collectCoin} disabled={score > 0}>COLLECT</button>}
       {sample.render === "combo" && <button type="button" onClick={addCombo}>Add combo</button>}
       {sample.render === "hp" && <><button type="button" onClick={() => changeHp(-24)}>Damage</button><button type="button" onClick={() => changeHp(18)}>Heal</button></>}
       {sample.render === "menu" && <><button type="button" onClick={() => moveMenu(-1)}>↑ Up</button><button type="button" onClick={() => moveMenu(1)}>↓ Down</button></>}
       {sample.render === "cards" && <>{(["shuffle", "deal", "select", "drag", "play", "resolve", "discard"] as const).map((action) => <button type="button" key={action} onClick={() => cardAction(action)}>{action.toUpperCase()}</button>)}</>}
       <button type="button" onClick={reset}>Reset</button>
     </div>
+    {sample.render === "coin" && <p>自動デモ・Replayは加点しません。COLLECT（またはコイン）で1回100点を即時確定し、獲得の弧を再生。Resetで0点と未獲得に戻します。</p>}
   </div>;
 }
 
@@ -307,6 +329,8 @@ function SamplePreview(props: { sample: WaapiSample; active: boolean; reducedMot
 function SampleCard({ sample, active, reducedMotion }: { sample: WaapiSample; active: boolean; reducedMotion: boolean }) {
   const [detailsOpen, setDetailsOpen] = useState(false);
   const motion = reducedMotion ? sample.reduced : sample.normal;
+  const stage1Duration = sample.render === "menu" ? 220 : ["parry", "dodge"].includes(sample.render) ? 420 : sample.render === "battle-transition" ? 920 : null;
+  const stage1Motion = stage1Duration !== null;
   return (
     <article className="waapiSampleCard">
       <div className="waapiCardHeading"><p>{sample.category} / {sample.era} / {sample.sourceType}</p><h4>{sample.name}</h4></div>
@@ -327,7 +351,7 @@ function SampleCard({ sample, active, reducedMotion }: { sample: WaapiSample; ac
       {detailsOpen && <div id={`${sample.id}-details`} className="waapiCodePanel">
         <p><strong>現在の表示:</strong> {reducedMotion ? "軽減表示" : "通常表示"}</p>
         <pre><code>{formatAnimationCode(sample, reducedMotion)}</code></pre>
-        <dl><div><dt>duration</dt><dd>{sample.render === "match3" ? reducedMotion ? "Animationなし（即時表示）" : "320 + 連鎖段数 × 580 ms（2段: 1480 ms）" : `${String(motion.options.duration)}ms`}</dd></div><div><dt>easing</dt><dd>{sample.render === "match3" ? reducedMotion ? "なし" : "linear" : String(motion.options.easing)}</dd></div><div><dt>iterations / fill</dt><dd>{sample.render === "match3" ? reducedMotion ? "なし / なし" : "1 / none" : `${String(motion.options.iterations)} / ${String(motion.options.fill)}`}</dd></div></dl>
+        <dl><div><dt>duration</dt><dd>{sample.render === "match3" ? reducedMotion ? "Animationなし（即時表示）" : "320 + 連鎖段数 × 580 ms（2段: 1480 ms）" : stage1Motion ? reducedMotion ? "Animationなし（論理状態は維持）" : `${stage1Duration}ms（装飾演出）` : `${String(motion.options.duration)}ms`}</dd></div><div><dt>easing</dt><dd>{sample.render === "match3" ? reducedMotion ? "なし" : "linear" : stage1Motion ? reducedMotion ? "なし" : sample.render === "menu" ? "cubic-bezier(.2,.8,.2,1)" : "linear" : String(motion.options.easing)}</dd></div><div><dt>iterations / fill</dt><dd>{sample.render === "match3" ? reducedMotion ? "なし / なし" : "1 / none" : stage1Motion ? reducedMotion ? "なし / なし" : "1 / none" : `${String(motion.options.iterations)} / ${String(motion.options.fill)}`}</dd></div></dl>
         <p><strong>何が起きるか:</strong> {motion.explanation}</p><p><strong>実装上の注意:</strong> {sample.avoidFor}では使用を避け、状態は文章でも伝えます。</p><p><strong>軽減時:</strong> {sample.reducedMotionDescription}</p>
       </div>}
     </article>

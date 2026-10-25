@@ -1445,3 +1445,12 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 - Chromium141.0.7390.37 / WebKit26.0 各765/375/390px: DOM11全6条件PASS、既存WAAPIの6条件×9群も機能失敗なし。pageerror0。モバイル全館タイトル文字200%横超過だけ既存PARTIAL。
 - 独立レビューの文書P3 1件を修正。実機Safari/VoiceOver未検証。実CIとは区別し、公開workflowを起動しない。最終HEADは既存Draft PR #31本文に完全SHAを記録。
 - 詳細: [統合設計・検証・独立レビュー](docs/maintenance/dom11-main-integration-20261025.md)、[ブラウザ証跡](docs/maintenance/dom11-integration-browser-results-20261025.json)。Draft保持、人間のマージ判断待ち。既存typewriter ID重複/タイトル横超過は対象外。
+
+## 2026-10-25 — WAAPI Game UI 第1段階（Issue #33）
+
+- main a40f2a0をfetch確認、#28/#31/#32 merge済み、指定基準差分なし。専用worktree/branchで既存変更を保護。
+- Menuは対象行所属＋実測FLIP。Parry/Dodgeは420〜680ms同一時計、軽減でも判定不変。Battle画面外中断はFIELD、軽減途中は装飾のみ取消して論理完了。Combatは既存軽減取消。Coinは明示COLLECT1回100点、自動/Replay無加点。
+- 同一再現10件を修正前失敗→修正後成功。追加27＋独立指摘メタ回帰1で新28件、既存106維持。詳細は[設計・証跡](docs/maintenance/waapi-game-stage1-20261025.md)。
+- 独立P3 2件（実時間/fillメタ、Battle RETURN教材）を修正し再レビュー。197/47、ID/名称/順序、旧5主要処理、Pages設定を維持。第2/3段階・新展示追加・公開なし。
+- 最終GUI/品質判定は設計記録へ追記。全197全操作、実機Safari/VoiceOverの合格を宣言しない。既存title200%横超過/typewriter重複は別負債。
+- 最終check: Node49＋Vitest85＝134成功/0失敗/0skip。新対象native6条件PASS・Menu矩形36測定差0px・pageerror0。旧主要6条件×9群も機能失敗なし。WebKitのmedia change配送を記録し、paused取消を条件待ちで実測。初回80ms観測失敗は原因未確定のまま証跡保持、最終成功で消去しない。
