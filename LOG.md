@@ -1392,3 +1392,18 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 - AI 6件を固有グリフ・固有モーションへ変更し、個別カードと一括比較で同じ描画とキーフレームを共有した。
 - 統合前5件のデータ、render kind、DOM、CSSと、実在しないコード例APIを削除した。
 - データ定義、状態境界、直接操作、固有DOM、固有キーフレーム、停止cleanupをReact / Vitestテストで検証対象にした。
+
+## 2026-10-25 — WAAPI 5 P2 / 1 P3 状態整合修正
+
+- PR28 merge `85e2a030501e9d4c3edca9a6b70f14f8d1ca2d0e` を最新mainとして再確認し、独立ブランチで作業。PR31はDraft/未マージ、ブランチ・DOM11を変更しない。LOGとpackageの双方の追記は将来統合時にも保持する。
+- Match-3は行列隣接、実交換/消去/落下再判定、消去石×100点へ変更。補充なし有限盤面、不成立交換は復帰。Falling Blockは実占有状態を消去/下詰めし、実位置差をアニメーション化。段階的落下/点滅は省略し説明を一致。
+- HPは取消可能な360ms timerと世代guard、状態所有のバー。装備は所持品・装備・ATKを一状態から描画。照準は選択対象の子へ配置し固定座標を廃止。全館にWAAPI定義長を加算し9室/197展示、分類と検索は別集計。
+- 修正前DOM検査8件の失敗を確認。新規ゲーム13＋HP4の17件を追加。全checkはNode49＋Vitest39の88件を対象とし、lint/type/buildと合わせ最終commitで再確認する。初回symlink buildエラーはcheckout内の依存コピーで解消、依存更新なし。
+- Chromium141/WebKit26.0、765/375/390pxの6条件で対象操作・実幅/配置・連打・Reset・スクロール再表示・キーボード・カテゴリー/検索を確認。pageerror0。対象5カードの文字200%は収まるが、既存全館タイトルがモバイル文字200%で横超過するため総合PARTIAL。修正前mergeでも再現し対象外として保留。
+- 独立レビューでP0〜P2残件なし。P3の教材説明/コード例/軽減表示/件数の6指摘を修正。レビューはソース＋jsdom、実機保証ではない。
+- 既存150のID/名称/描画順は第0段階付録と差分0、WAAPI47 ID一意、合計197。AI6、console、既存modal、公開設定を維持。常設9/DOM17の旧集計定数は残存負債。全197の全操作は未検証。
+- 実機iPhone Safari/VoiceOver/ソフトキーボード/非表示タブは未検証。PR用CIは存在せずPages用のみなので、検査のための公開workflowを実行しない。新規Issueは作成せず既存#27/#29を関連参照する。
+- 詳細: [原因・設計・検査・残存負債](docs/maintenance/waapi-consistency-20261025.md)、[ブラウザ6条件](docs/maintenance/waapi-browser-results-20261025.json)。DOM17、DOM7/8/10、展示室focusの後続保守は変更せず引き継ぐ。
+
+記録: 2026-10-25 13:25 JST。
+- 目視追加修正: 375px Falling Blockの結果ラベルが最下段に重なる旧CSSを確認。Line/Match結果を独立行へ移し、実矩形の非重なり回帰を追加。2026-10-25 13:26 JST。

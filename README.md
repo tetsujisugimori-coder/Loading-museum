@@ -26,7 +26,7 @@ DIGITAL MOTION ARCHIVEは、ローディング画面やカーソルなど、画�
 
 「カーソル展示室」では、標準矢印、リンク用の手、Iビーム、待機、禁止、ドラッグ、クリックエフェクト、残像の8展示をマウスまたはタッチで体験できます。
 
-独立した「Flash特別展示室」では、Flashが何だったかを解説する常設展とは役割を分け、Flashが生んだ動きと操作感を18カテゴリ・54展示で体験できます。8姿勢を選べるフレーム・バイ・フレーム、文字単位のロゴ集合、ビート検出、段階広告、スプライト走行、コンボ数字、seed付き線画、言葉を組み替える詩、制作補助としてのオニオンスキンなど、代表展示には固有の状態と操作を用意しました。CSS、SVG、Canvas、Pointer Events、Web Audio APIなどで再構成し、全体では常設展示を含む133種類の表現を掲載しています。
+独立した「Flash特別展示室」では、Flashが何だったかを解説する常設展とは役割を分け、Flashが生んだ動きと操作感を18カテゴリ・54展示で体験できます。8姿勢を選べるフレーム・バイ・フレーム、文字単位のロゴ集合、ビート検出、段階広告、スプライト走行、コンボ数字、seed付き線画、言葉を組み替える詩、制作補助としてのオニオンスキンなど、代表展示には固有の状態と操作を用意しました。CSS、SVG、Canvas、Pointer Events、Web Audio APIなどで再構成し、従来の150展示にWAAPI47標本を加え、全体では197種類の表現を掲載しています。
 
 第18カテゴリ「Flash表現は現代Webへどう引き継がれたか」では、技術名を対応づけるだけでなく、同じ動きや同じ入力を左右で実演します。Flashがタイムライン、入力、音、描画を一つの制作環境へ統合した強みと、現代Webがそれらをプラグイン不要のブラウザ標準へ分け、DOM、モバイル、検索、アクセシビリティと連携しやすくした強みの両方を比較できます。
 
@@ -62,3 +62,9 @@ npm test
 `main`へのpush後、GitHub Actionsが静的サイトを自動公開します。
 
 公開URL: https://tetsujisugimori-coder.github.io/Loading-museum/
+
+## WAAPI状態整合の回帰検証
+
+[2026-10-25修正記録](docs/maintenance/waapi-consistency-20261025.md)に5件の状態不具合・全館集計の原因と検証範囲を記録しています。Match-3は補充なしの有限盤面、Falling Blockは即時の配置・消去と残存行移動の簡略教材です。
+
+実DOMブラウザ検査は `scripts/verify-waapi-browser.py`。既存のPython Playwrightと対応ブラウザが利用可能な環境で、static exportを `/Loading-museum/` に配信して実行します。`WAAPI_URL`、`WAAPI_BROWSERS`、`WAAPI_WIDTHS`、必要なら `WAAPI_CHROMIUM_PATH` / `WAAPI_WEBKIT_PATH` を指定できます。スクリプトはインストール・公開を行わず、利用不能環境をUNVERIFIEDとして報告します。通常npm checkとは別の検証です。

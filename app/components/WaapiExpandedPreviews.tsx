@@ -1,8 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import type { SampleRenderKind, WaapiSample } from "../data/waapiSamples";
 import { aiPhases, judgeTiming, nextAiState, nextComparisonPhase, type AiComparisonPhase, type AiWorkingState } from "./waapi-interaction-state";
+
+import { initialGems, exchangeGems, initialBlocks, dropAndCompact } from "./waapi-board-state";
 
 export const expandedGameKinds: SampleRenderKind[] = ["combat", "reward-lab", "hit-stop", "parry", "dodge", "line-clear", "match3", "pinball", "lockon", "equip", "status-effects", "turn-order", "battle-transition", "race"];
 export const aiKinds: SampleRenderKind[] = ["ai-modular", "ai-ribbon", "ai-code", "ai-sparkle", "ai-warm", "ai-weave"];
@@ -60,19 +62,43 @@ function TimingPreview({ active, reducedMotion, dodge }: PreviewProps & { dodge:
 }
 
 function LineClearPreview({ active, reducedMotion }: PreviewProps) {
-  const piece = useRef<HTMLSpanElement>(null); const { stop, animate, later } = useRuntime(active); const [phase, setPhase] = useState("READY"); const [cleared, setCleared] = useState(false);
-  const drop = () => { stop(); setCleared(false); setPhase("DROP"); animate(piece.current, [{ transform: "translateY(-96px)" }, { transform: "translateY(0)" }], { duration: reducedMotion ? 1 : 430, fill: "both" }); later(() => setPhase("ROW COMPLETE"), reducedMotion ? 0 : 440); later(() => { setCleared(true); setPhase("CLEAR → COMPACT"); }, reducedMotion ? 10 : 760); };
-  const reset = () => { stop(); setCleared(false); setPhase("READY"); };
-  return <div className="waapiPreviewGroup"><div className="waapiPreviewStage gameScene gameLine" data-scene="line-clear"><div className={cleared ? "blockBoard isCleared" : "blockBoard"}>{Array.from({ length: 20 }, (_, i) => <i key={i} className={i >= 15 ? "clearRow" : ""} />)}<span ref={piece}><i /><i /></span></div><output>{phase}</output></div><Controls reset={reset}><button type="button" onClick={drop}>DROP</button></Controls></div>;
+  const stage = useRef<HTMLDivElement>(null);
+  const { stop, animate } = useRuntime(active);
+  const [board, setBoard] = useState(() => [...initialBlocks]);
+  const [phase, setPhase] = useState("READY");
+  const before = useRef<Map<string, number>>(new Map());
+  useLayoutEffect(() => {
+    if (!reducedMotion) stage.current?.querySelectorAll<HTMLElement>("[data-block-id]").forEach(node => {
+      const oldTop = before.current.get(node.dataset.blockId!);
+      if (oldTop !== undefined) animate(node, [{ transform: `translateY(${oldTop - node.getBoundingClientRect().top}px)` }, { transform: "translateY(0)" }], { duration: 430, easing: "ease-out" });
+    });
+    before.current.clear();
+  }, [board, animate, reducedMotion]);
+  const drop = () => {
+    stop(); before.current = new Map(Array.from(stage.current?.querySelectorAll<HTMLElement>("[data-block-id]") ?? []).map(node => [node.dataset.blockId!, node.getBoundingClientRect().top]));
+    const next = dropAndCompact(board); setBoard(next.board);
+    setPhase(next.cleared ? `CLEAR ${next.cleared} ROW → COMPACT` : next.dropped ? "DROP · NO COMPLETE ROW" : "NO SPACE · RESET TO RETRY");
+  };
+  const reset = () => { stop(); before.current.clear(); setBoard([...initialBlocks]); setPhase("READY"); };
+  return <div className="waapiPreviewGroup"><div ref={stage} className="waapiPreviewStage gameScene gameLine" data-scene="line-clear"><div className="blockBoard">{board.map((block, i) => <i key={i} data-cell={i} data-block-id={block ?? undefined} className={block ? "isOccupied" : "isEmpty"} aria-label={`行${Math.floor(i / 5) + 1} 列${i % 5 + 1}: ${block ? "ブロック" : "空"}`} />)}</div><output>{phase}</output></div><Controls reset={reset}><button type="button" onClick={drop} disabled={board.includes("piece-top")}>DROP</button></Controls><p>縦2セルを落とし、完成行を消去。残った行を下へ詰めます。次の試行はRESET。</p></div>;
 }
 
-const gems = ["◆", "●", "■", "●", "◆", "▲", "●", "●", "◆"];
 function MatchPreview({ active, reducedMotion }: PreviewProps) {
-  const board = useRef<HTMLDivElement>(null); const { stop, animate, later } = useRuntime(active); const [selected, setSelected] = useState<number[]>([]); const [phase, setPhase] = useState("SELECT TWO ADJACENT GEMS"); const [score, setScore] = useState(0);
-  const choose = (index: number) => setSelected((value) => value.includes(index) ? value.filter((i) => i !== index) : [...value, index].slice(-2));
-  const swap = () => { if (selected.length !== 2 || Math.abs(selected[0] - selected[1]) !== 1) return setPhase("NOT ADJACENT · RETURN"); stop(); setPhase("SWAP → MATCH ×3"); board.current?.querySelectorAll("button").forEach((node, i) => animate(node, [{ transform: `translateY(${i % 2 ? -4 : 4}px)` }, { transform: "translateY(0)" }], { duration: reducedMotion ? 1 : 260 })); later(() => { setPhase("CASCADE ×2 · +300"); setScore((v) => v + 300); setSelected([]); }, reducedMotion ? 0 : 520); };
-  const reset = () => { stop(); setSelected([]); setPhase("SELECT TWO ADJACENT GEMS"); setScore(0); };
-  return <div className="waapiPreviewGroup"><div className="waapiPreviewStage gameScene gameMatch" data-scene="match3"><div ref={board} className="matchBoard">{gems.map((gem, i) => <button type="button" key={i} aria-pressed={selected.includes(i)} draggable onClick={() => choose(i)} onDragStart={() => choose(i)} onDragOver={(e) => e.preventDefault()} onDrop={() => { choose(i); requestAnimationFrame(swap); }}>{gem}</button>)}</div><output>{phase} · SCORE {score}</output></div><Controls reset={reset}><button type="button" onClick={swap}>SWAP</button></Controls></div>;
+  const boardNode = useRef<HTMLDivElement>(null); const dragFrom = useRef<number | null>(null);
+  const { stop, animate } = useRuntime(active);
+  const [board, setBoard] = useState(() => [...initialGems]);
+  const [selected, setSelected] = useState<number[]>([]);
+  const [phase, setPhase] = useState("SELECT TWO ADJACENT GEMS"); const [score, setScore] = useState(0);
+  const choose = (index: number) => setSelected(value => value.includes(index) ? value.filter(i => i !== index) : [...value, index].slice(-2));
+  const swap = (pair = selected) => {
+    stop();
+    if (pair.length !== 2) return setPhase("SELECT TWO ADJACENT GEMS");
+    const result = exchangeGems(board, pair[0], pair[1]);
+    setBoard(result.board); setPhase(result.status); setScore(value => value + result.removed * 100); setSelected([]); dragFrom.current = null;
+    if (!reducedMotion && result.removed) boardNode.current?.querySelectorAll("button").forEach(node => animate(node, [{ opacity: .3, transform: "translateY(-12px)" }, { opacity: 1, transform: "translateY(0)" }], { duration: 300 }));
+  };
+  const reset = () => { stop(); dragFrom.current = null; setBoard([...initialGems]); setSelected([]); setPhase("SELECT TWO ADJACENT GEMS"); setScore(0); };
+  return <div className="waapiPreviewGroup"><div className="waapiPreviewStage gameScene gameMatch" data-scene="match3"><div ref={boardNode} className="matchBoard">{board.map((gem, i) => <button type="button" key={i} aria-label={`行${Math.floor(i / 3) + 1} 列${i % 3 + 1}: ${gem ?? "空"}`} aria-pressed={selected.includes(i)} disabled={!gem} draggable={!!gem} onClick={() => choose(i)} onDragStart={() => { dragFrom.current = i; }} onDragEnd={() => { dragFrom.current = null; }} onDragOver={e => e.preventDefault()} onDrop={e => { e.preventDefault(); if (dragFrom.current !== null) swap([dragFrom.current, i]); }}>{gem ?? "·"}</button>)}</div><output>{phase} · SCORE {score}</output></div><Controls reset={reset}><button type="button" onClick={() => swap()}>SWAP</button></Controls><p>縦横の隣接だけ交換。3石以上の一致を消去し、下へ詰めて再判定します。1石100点。補充なしの有限盤面で、一致しない交換は戻します。</p></div>;
 }
 
 function PinballPreview({ active, reducedMotion }: PreviewProps) {
@@ -85,16 +111,32 @@ function PinballPreview({ active, reducedMotion }: PreviewProps) {
 const targets = [{ name: "SCOUT", distance: "18m" }, { name: "WARDEN", distance: "31m" }, { name: "DRONE", distance: "12m" }];
 function LockonPreview({ active, reducedMotion }: PreviewProps) {
   const reticle = useRef<HTMLSpanElement>(null); const { stop, animate } = useRuntime(active); const [index, setIndex] = useState(0);
-  const move = (delta: number) => { stop(); const next = (index + delta + 3) % 3; setIndex(next); animate(reticle.current, [{ transform: `translateX(${(index - 1) * 72}px) scale(1.25)` }, { transform: `translateX(${(next - 1) * 72}px) scale(.8)` }, { transform: `translateX(${(next - 1) * 72}px) scale(1)` }], { duration: reducedMotion ? 1 : 320, fill: "both" }); };
-  const reset = () => { stop(); setIndex(0); };
-  return <div className="waapiPreviewGroup"><div className="waapiPreviewStage gameScene gameLock" data-scene="lockon" tabIndex={0} onKeyDown={(e) => { if (e.key === "ArrowLeft") move(-1); if (e.key === "ArrowRight") move(1); }}><div className="lockTargets">{targets.map((item, i) => <i key={item.name} className={i === index ? "isLocked" : ""}>◆</i>)}</div><span ref={reticle} className="lockReticle" /><output>LOCKED · {targets[index].name} · {targets[index].distance}</output></div><Controls reset={reset}><button type="button" onClick={() => move(-1)}>PREVIOUS TARGET</button><button type="button" onClick={() => move(1)}>NEXT TARGET</button></Controls></div>;
+  const previous = useRef<DOMRect | null>(null);
+  useLayoutEffect(() => {
+    if (previous.current && reticle.current && !reducedMotion) {
+      const next = reticle.current.getBoundingClientRect();
+      animate(reticle.current, [{ transform: `translate(${previous.current.left - next.left}px, ${previous.current.top - next.top}px) scale(1.25)` }, { transform: "translate(0,0) scale(1)" }], { duration: 320 });
+    }
+    previous.current = null;
+  }, [index, animate, reducedMotion]);
+  const move = (delta: number) => { previous.current = reticle.current?.getBoundingClientRect() ?? null; stop(); setIndex(value => (value + delta + targets.length) % targets.length); };
+  const reset = () => { stop(); previous.current = null; setIndex(0); };
+  return <div className="waapiPreviewGroup"><div className="waapiPreviewStage gameScene gameLock" data-scene="lockon" tabIndex={0} aria-label="照準対象。左右キーで切替" onKeyDown={e => { if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); move(e.key === "ArrowLeft" ? -1 : 1); } }}><div className="lockTargets">{targets.map((item, i) => <i key={item.name} aria-label={item.name} aria-current={i === index ? "true" : undefined} className={i === index ? "isLocked" : ""}>◆{i === index && <span ref={reticle} className="lockReticle" aria-hidden="true" />}</i>)}</div><output>LOCKED · {targets[index].name} · {targets[index].distance}</output></div><Controls reset={reset}><button type="button" onClick={() => move(-1)}>PREVIOUS TARGET</button><button type="button" onClick={() => move(1)}>NEXT TARGET</button></Controls></div>;
 }
 
 function EquipPreview({ active, reducedMotion }: PreviewProps) {
-  const item = useRef<HTMLButtonElement>(null); const slot = useRef<HTMLDivElement>(null); const { stop, animate } = useRuntime(active); const [equipped, setEquipped] = useState(false);
-  const equip = () => { stop(); setEquipped(true); const from = item.current?.getBoundingClientRect(); const to = slot.current?.getBoundingClientRect(); animate(item.current, [{ transform: "translate(0,0) scale(1)" }, { transform: `translate(${(to?.left ?? 0) - (from?.left ?? 0)}px,${(to?.top ?? 0) - (from?.top ?? 0)}px) scale(.7)`, opacity: 0 }], { duration: reducedMotion ? 1 : 420, fill: "both" }); };
-  const reset = () => { stop(); setEquipped(false); };
-  return <div className="waapiPreviewGroup"><div className="waapiPreviewStage gameScene gameEquip" data-scene="equip"><button ref={item} type="button" draggable onClick={equip} onDragStart={() => setEquipped(false)}>⚔ IRON BLADE</button><div ref={slot} onDragOver={(e) => e.preventDefault()} onDrop={equip} className={equipped ? "equipSlot isFilled" : "equipSlot"}>{equipped ? "⚔" : "DROP"}</div><output>ATK {equipped ? "24 (+12)" : "12 (+0)"}</output></div><Controls reset={reset}><button type="button" onClick={equip}>EQUIP</button><button type="button" onClick={reset}>UNEQUIP</button></Controls></div>;
+  const slot = useRef<HTMLDivElement>(null); const { stop, animate } = useRuntime(active); const [equipped, setEquipped] = useState(false);
+  const from = useRef<DOMRect | null>(null); const item = useRef<HTMLButtonElement>(null);
+  useLayoutEffect(() => {
+    if (equipped && slot.current && from.current && !reducedMotion) {
+      const to = slot.current.getBoundingClientRect();
+      animate(slot.current, [{ transform: `translate(${from.current.left - to.left}px,${from.current.top - to.top}px) scale(.7)` }, { transform: "translate(0,0) scale(1)" }], { duration: 420 });
+    }
+    from.current = null;
+  }, [equipped, animate, reducedMotion]);
+  const equip = () => { if (equipped) return; stop(); from.current = item.current?.getBoundingClientRect() ?? null; setEquipped(true); };
+  const reset = () => { stop(); from.current = null; setEquipped(false); };
+  return <div className="waapiPreviewGroup"><div className="waapiPreviewStage gameScene gameEquip" data-scene="equip">{!equipped ? <button ref={item} type="button" draggable onClick={equip} onDragStart={e => e.dataTransfer.setData("text/plain", "iron-blade")}>⚔ IRON BLADE</button> : <span className="inventoryEmpty">所持品なし</span>}<div ref={slot} onDragOver={e => e.preventDefault()} onDrop={e => { e.preventDefault(); if (e.dataTransfer.getData("text/plain") === "iron-blade") equip(); }} className={equipped ? "equipSlot isFilled" : "equipSlot"}>{equipped ? "⚔ IRON BLADE" : "DROP"}</div><output>ATK {equipped ? "24 (+12)" : "12 (+0)"}</output></div><Controls reset={reset}><button type="button" onClick={equip} disabled={equipped}>EQUIP</button><button type="button" onClick={reset}>UNEQUIP</button></Controls></div>;
 }
 
 function StatusPreview({ active, reducedMotion }: PreviewProps) {

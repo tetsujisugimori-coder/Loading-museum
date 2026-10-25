@@ -251,7 +251,7 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /8 ROOMS \/ 150 OBJECTS/);
+  assert.match(normalizedHtml, /9 ROOMS \/ 197 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
   assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 7);
   assert.ok((html.match(/aria-expanded="false"/g) ?? []).length >= 8);
@@ -266,8 +266,8 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
       + (html.match(/class="domOperation"/g) ?? []).length,
       96,
   );
-  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 5/);
-  assert.match(page, /const totalExhibitCount = permanentExhibitCount \+ periodExhibitCount \+ flashExhibitCount \+ 17/);
+  assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 6/);
+  assert.match(page, /const totalExhibitCount = permanentExhibitCount \+ periodExhibitCount \+ flashExhibitCount \+ 17 \+ waapiSampleCount/);
   assert.match(page, /cursorExhibits\.length \+ appleEarlyExhibitCount \+ macintoshBirthExhibitCount/);
   assert.match(page, /periodExhibitCount \+ flashExhibitCount/);
   assert.match(page, /exhibit\.kind === "vanished-os" \? exhibit\.loadingExhibits\.length : 1/);

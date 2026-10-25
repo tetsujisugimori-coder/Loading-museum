@@ -5656,7 +5656,7 @@ footer {
 .blockBoard > i,
 .blockBoard span i { width: 24px; height: 24px; background: #4e87bc; box-shadow: inset 0 0 0 2px #9bcaf0; }
 .blockBoard .clearRow { background: #ffe36e; }
-.blockBoard.isCleared .clearRow { opacity: .12; }
+.blockBoard > .isEmpty { background: transparent; box-shadow: inset 0 0 0 1px #334a40; }
 .blockBoard span { position: absolute; top: 8px; right: 35px; display: grid; gap: 3px; }
 
 .gameMatch { display: grid; place-items: center; }
@@ -5671,9 +5671,9 @@ footer {
 
 .gameLock { display: grid; place-items: center; }
 .lockTargets { display: flex; gap: 48px; color: #78998a; }
-.lockTargets i { font-size: 30px; font-style: normal; }
+.lockTargets i { position: relative; display: grid; place-items: center; font-size: 30px; font-style: normal; }
 .lockTargets .isLocked { color: #ffdf69; }
-.lockReticle { position: absolute; width: 56px; height: 56px; border: 2px dashed #72f2a0; border-radius: 50%; }
+.lockReticle { position: absolute; pointer-events: none; width: 56px; height: 56px; border: 2px dashed #72f2a0; border-radius: 50%; }
 
 .gameEquip { display: grid; grid-template-columns: 1fr 1fr; place-items: center; padding: 30px; }
 .gameEquip > button { padding: 12px; color: #eaf5ee; border: 1px solid #627b6c; background: #17241d; }
@@ -6584,3 +6584,18 @@ footer {
     scroll-behavior: auto !important;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .gameHp > div i, .gameHp > div b { transition: none; }
+}
+
+/* Board results remain in flow so they never cover the last row, including enlarged text. */
+.waapiPreviewStage.gameLine,
+.waapiPreviewStage.gameMatch {
+  min-height: 180px;
+  grid-template-rows: 1fr auto;
+  gap: 12px;
+  padding: 12px;
+}
+.gameLine output,
+.gameMatch output { position: static; }
