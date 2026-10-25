@@ -1,0 +1,60 @@
+
+ RUN  v3.2.4 /tmp/observation-pending-negative
+
+ ❯ tests/waapi-observation.test.tsx (30 tests | 1 failed | 29 skipped) 198ms
+   ↓ independent observation controller contract (WAAPI double) > initial preview is paused at zero and has actual native labels rather than simulated success
+   ↓ independent observation controller contract (WAAPI double) > play advances time from the animation, not a second game clock
+   ↓ independent observation controller contract (WAAPI double) > pause keeps the exact position and resume continues from that point
+   ↓ independent observation controller contract (WAAPI double) > restart deliberately starts at zero while the start control remains paused
+   ↓ independent observation controller contract (WAAPI double) > forward and backward steps use 1000/60 ms, not a rounded frame count
+   ↓ independent observation controller contract (WAAPI double) > seek selects a fractional time and stops an active playback
+   ↓ independent observation controller contract (WAAPI double) > steps clamp both boundaries without crossing them
+   ↓ independent observation controller contract (WAAPI double) > finished playback can rewind and resume from a selected position
+   ↓ independent observation controller contract (WAAPI double) > rapid play/pause and slider changes do not allocate competing animations
+   ↓ independent observation controller contract (WAAPI double) > stale RAF callbacks after seek do not overwrite the newer position
+   ↓ independent observation controller contract (WAAPI double) > offscreen cancels native animation and returns paused at the preserved time
+   ↓ independent observation controller contract (WAAPI double) > tab visibility cancels and restores static preview without automatic play
+   ↓ independent observation controller contract (WAAPI double) > reduced motion cancels running animation, allows manual stepping, and does not auto-resume on OFF
+   ↓ independent observation controller contract (WAAPI double) > unmount cancels owner animations and makes old RAF callbacks inert
+   ↓ independent observation controller contract (WAAPI double) > easing changes cancel the old scenario, preserve position, and do not continue play
+   ↓ independent observation controller contract (WAAPI double) > resize remeasures after initial observer delivery and preserves observation time
+   ↓ independent observation controller contract (WAAPI double) > missing WAAPI is labelled unavailable and cannot produce successful play
+   ↓ independent observation controller contract (WAAPI double) > clamps malformed and out-of-range time input without producing NaN
+   × independent observation controller contract (WAAPI double) > pending pause completion is reflected in native status rather than remaining pending forever 196ms
+     → expected '時間 32.00 / 650 ms · 4.9% · 移動途中 · con…' not to contain '（pending）'
+   ↓ actual gallery integration: observation never owns game state > Menu selection survives observation seek, finish, reverse, mode exit, and ordinary Reset still works
+   ↓ actual gallery integration: observation never owns game state > Coin preview repeatedly finishes and rewinds with zero points; normal COLLECT awards once
+   ↓ actual gallery integration: observation never owns game state > collected Coin retains its score and collected guard through observation and return
+   ↓ actual gallery integration: observation never owns game state > observation reset does not reset collected game state and old callback cannot revive playback
+   ↓ actual gallery integration: observation never owns game state > mode exit cancels observation and reopening cannot resurrect the old running instance
+   ↓ actual gallery integration: observation never owns game state > gallery closure cancels observation; reopening has no old callback or auto-score
+   ↓ actual gallery integration: observation never owns game state > gallery media notification reaches observation without changing Coin collected state
+   ↓ asynchronous ready settlement and measurement data > old ready completion after replacement cannot restore an earlier observation state
+   ↓ asynchronous ready settlement and measurement data > Menu preview uses actual row measurements and retains destination DOM ownership
+   ↓ asynchronous ready settlement and measurement data > Coin preview computes destination variables from separate preview DOM, never score DOM
+   ↓ step during playback starts from current native time, not the last RAF display sample
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > pending pause completion is reflected in native status rather than remaining pending forever
+AssertionError: expected '時間 32.00 / 650 ms · 4.9% · 移動途中 · con…' not to contain '（pending）'
+
+Expected: "（pending）"
+Received: "時間 32.00 / 650 ms · 4.9% · 移動途中 · controller: paused · native playState: paused（pending）"
+
+ ❯ tests/waapi-observation.test.tsx:183:74
+    181|     click('再生 / 再開'); advance(32); click('一時停止');
+    182|     await act(async () => { vi.advanceTimersByTime(20); await Promise.…
+    183|     expect(targetAnimation().pending).toBe(false); expect(reading()).n…
+       |                                                                          ^
+    184|   });
+    185| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 29 skipped (30)
+   Start at  05:06:42
+   Duration  2.21s (transform 391ms, setup 0ms, collect 573ms, tests 198ms, environment 522ms, prepare 239ms)
+

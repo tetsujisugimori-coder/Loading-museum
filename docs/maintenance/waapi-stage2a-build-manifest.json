@@ -1,0 +1,23 @@
+{
+  "base_main": "1d0d7eeac4e6fcbe2dfb792dd69250e65af302b7",
+  "build_verified_at": "2026-10-25T21:03:47Z",
+  "environment": "cloud Node 24.22.1; npm 11.9.0",
+  "test_execution": "npm run check with VITEST_MIN/MAX_FORKS/THREADS=1, then npm run build",
+  "counts": {
+    "node": 49,
+    "vitest": 122,
+    "existing": 134,
+    "new": 37,
+    "fail": 0,
+    "skip": 0
+  },
+  "sha256": {
+    "app/components/WaapiGameObservation.tsx": "443ef345a3389ec748d94d3a546c3c428071760773544bb0844895030c4e1b27",
+    "app/components/WaapiSampleGallery.tsx": "9069e4ae3e13646cfc63f02a02b2336742cc0ab8f2a7a9a4a5bc48d11ccf83d8",
+    "app/globals.css": "7907ac4cb2aa05e0639617728a7b79e9e14da00e75724f97c4fcab7fbc9e7a68",
+    "package.json": "e2f22df877eb045fc38a5c1548a158d2b1dcfd45b6780d4ba935008bce1cfb30",
+    "out/index.html": "c5337baa21a95cde1e26e5502bec80029adfbf00093401d0b9aefcedb44f0dd4"
+  },
+  "scope": "Local static export. Final commit may additionally contain documentation/evidence only. Not deployed; not GitHub CI.",
+  "verification_split": "Full native six-condition logic matrix before toggle-only CSS selector addition; final CSS six-condition focused matrix separately verifies geometry, focus, entry, steps and retained state. Component logic hashes unchanged."
+}

@@ -1,0 +1,21 @@
+{
+  "base_main": "1d0d7eeac4e6fcbe2dfb792dd69250e65af302b7",
+  "build_verified_at": "2026-10-25T20:27:19Z",
+  "environment": "cloud Node 24.22.1; npm 11.9.0",
+  "test_execution": "npm run check with VITEST_MIN/MAX_FORKS/THREADS=1, then npm run build",
+  "counts": {
+    "node": 49,
+    "vitest": 118,
+    "new": 33,
+    "fail": 0,
+    "skip": 0
+  },
+  "sha256": {
+    "app/components/WaapiGameObservation.tsx": "ff6f08aac3223a0709a068c9636099a35b2ae66e9a9ab1698540eb17226a5b04",
+    "app/components/WaapiSampleGallery.tsx": "9069e4ae3e13646cfc63f02a02b2336742cc0ab8f2a7a9a4a5bc48d11ccf83d8",
+    "app/globals.css": "a3e1f8d240292fdcc965305a614d38256d322ce6fafcb4c638cb233852f47f53",
+    "package.json": "e2f22df877eb045fc38a5c1548a158d2b1dcfd45b6780d4ba935008bce1cfb30",
+    "out/index.html": "8991b8602b824207780b69c507aa47208ae4f8ea5e83bba6a61f1ca9cc02233d"
+  },
+  "scope": "Local static export. Final commit may additionally contain documentation/evidence only. Not deployed; not GitHub CI."
+}

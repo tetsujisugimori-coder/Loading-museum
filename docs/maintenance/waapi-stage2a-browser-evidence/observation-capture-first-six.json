@@ -1,0 +1,1689 @@
+[
+  {
+    "engine": "chromium",
+    "width": 375,
+    "checks": [
+      "Menu Selection Cursor: native time/play/pause/resume/steps/seek/boundaries/finished rewind/easing/keyboard/rapid/offscreen/synthetic visibility/media change; excludes any separately recorded pathFailures",
+      "Menu Selection Cursor: normal state retained; original input and Reset contract",
+      "Menu Selection Cursor: both color media/CSS text200 no observation overflow/end geometry",
+      "Menu Selection Cursor: close/unmount cancellation",
+      "Coin Pickup Arc: native time/play/pause/resume/steps/seek/boundaries/finished rewind/easing/keyboard/rapid/offscreen/synthetic visibility/media change; excludes any separately recorded pathFailures",
+      "Coin Pickup Arc: normal state retained; original input and Reset contract",
+      "Coin Pickup Arc: both color media/CSS text200 no observation overflow/end geometry",
+      "Coin Pickup Arc: close/unmount cancellation"
+    ],
+    "measurements": [
+      {
+        "name": "Menu Selection Cursor",
+        "initial": {
+          "time": 0,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+          "rect": {
+            "x": 105.5,
+            "y": 152.953125,
+            "w": 6.03125,
+            "h": 11
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -42)",
+          "duration": 220
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "pauseInput": {
+          "before": {
+            "time": 16.666999999899623,
+            "clock": 5052,
+            "native": "running",
+            "pending": false
+          },
+          "immediate": {
+            "time": 16.666999999899623,
+            "clock": 5052.4000000003725,
+            "native": "paused",
+            "pending": false
+          }
+        },
+        "settledPause": {
+          "time": 16.666999999899623,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 16.67 / 220 ms · 7.6% · 移動途中 · controller: paused · native currentTime: 16.67 ms · native playState: paused",
+          "rect": {
+            "x": 105.5,
+            "y": 165.75668334960938,
+            "w": 6.03125,
+            "h": 11
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -29.1964)",
+          "duration": 220
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "explicitSeekResumePause": {
+          "input": 110,
+          "settled": {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 105.5,
+              "y": 192.68846130371094,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.26466)",
+            "duration": 220
+          }
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "pause": {
+          "time": 16.666999999899623,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 16.67 / 220 ms · 7.6% · 移動途中 · controller: paused · native currentTime: 16.67 ms · native playState: paused",
+          "rect": {
+            "x": 105.5,
+            "y": 165.75668334960938,
+            "w": 6.03125,
+            "h": 11
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -29.1964)",
+          "duration": 220
+        },
+        "positions": [
+          {
+            "time": 0,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+            "rect": {
+              "x": 105.5,
+              "y": 152.65625,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -42)",
+            "duration": 220
+          },
+          {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 105.5,
+              "y": 192.68846130371094,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.26466)",
+            "duration": 220
+          },
+          {
+            "time": 219.99,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 219.99 / 220 ms · 100.0% · 移動途中 · controller: paused · native currentTime: 219.99 ms · native playState: paused",
+            "rect": {
+              "x": 105.5,
+              "y": 194.953125,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -9.03972e-09)",
+            "duration": 220
+          },
+          {
+            "time": 220,
+            "native": "paused",
+            "pending": false,
+            "controller": "finished",
+            "reading": "観察位置 220.00 / 220 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 220.00 ms · native playState: paused",
+            "rect": {
+              "x": 105.5,
+              "y": 194.953125,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "duration": 220
+          }
+        ]
+      },
+      {
+        "resizeAndFontAtHeldTime": {
+          "before": {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 113,
+              "y": 192.29783630371094,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.26466)",
+            "duration": 220
+          },
+          "after": {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 113,
+              "y": 192.29783630371094,
+              "w": 12,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.26466)",
+            "duration": 220
+          }
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "initial": {
+          "time": 0,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 0.00 / 650 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+          "rect": {
+            "x": 82.5,
+            "y": 185.453125,
+            "w": 42,
+            "h": 42
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "duration": 650
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "pauseInput": {
+          "before": {
+            "time": 16.7189999997035,
+            "clock": 17186.400000000373,
+            "native": "running",
+            "pending": false
+          },
+          "immediate": {
+            "time": 16.7189999997035,
+            "clock": 17186.799999999814,
+            "native": "paused",
+            "pending": false
+          }
+        },
+        "settledPause": {
+          "time": 16.7189999997035,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 16.72 / 650 ms · 2.6% · 移動途中 · controller: paused · native currentTime: 16.72 ms · native playState: paused",
+          "rect": {
+            "x": 89.91429901123047,
+            "y": 171.5079345703125,
+            "w": 42.851722717285156,
+            "h": 42.851715087890625
+          },
+          "opacity": "1",
+          "transform": "matrix(1.02028, 0, 0, 1.02028, 7.84016, -13.5193)",
+          "duration": 650
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "explicitSeekResumePause": {
+          "input": 325,
+          "settled": {
+            "time": 325,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 325.00 / 650 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 325.00 ms · native playState: paused",
+            "rect": {
+              "x": 194.65567016601562,
+              "y": 127.00770568847656,
+              "w": 25.119842529296875,
+              "h": 25.119842529296875
+            },
+            "opacity": "0.211559",
+            "transform": "matrix(0.598092, 0, 0, 0.598092, 103.716, -66.8855)",
+            "duration": 650
+          }
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "pause": {
+          "time": 16.7189999997035,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 16.72 / 650 ms · 2.6% · 移動途中 · controller: paused · native currentTime: 16.72 ms · native playState: paused",
+          "rect": {
+            "x": 89.91429901123047,
+            "y": 171.5079345703125,
+            "w": 42.851722717285156,
+            "h": 42.851715087890625
+          },
+          "opacity": "1",
+          "transform": "matrix(1.02028, 0, 0, 1.02028, 7.84016, -13.5193)",
+          "duration": 650
+        },
+        "positions": [
+          {
+            "time": 0,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 0.00 / 650 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+            "rect": {
+              "x": 82.5,
+              "y": 185.453125,
+              "w": 42,
+              "h": 42
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "duration": 650
+          },
+          {
+            "time": 325,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 325.00 / 650 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 325.00 ms · native playState: paused",
+            "rect": {
+              "x": 194.65567016601562,
+              "y": 127.00770568847656,
+              "w": 25.119842529296875,
+              "h": 25.119842529296875
+            },
+            "opacity": "0.211559",
+            "transform": "matrix(0.598092, 0, 0, 0.598092, 103.716, -66.8855)",
+            "duration": 650
+          },
+          {
+            "time": 649.99,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 649.99 / 650 ms · 100.0% · 移動途中 · controller: paused · native currentTime: 649.99 ms · native playState: paused",
+            "rect": {
+              "x": 210.0343780517578,
+              "y": 139.0031280517578,
+              "w": 18.899993896484375,
+              "h": 18.899993896484375
+            },
+            "opacity": "1.12709e-10",
+            "transform": "matrix(0.45, 0, 0, 0.45, 115.984, -58)",
+            "duration": 650
+          },
+          {
+            "time": 650,
+            "native": "paused",
+            "pending": false,
+            "controller": "finished",
+            "reading": "観察位置 650.00 / 650 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 650.00 ms · native playState: paused",
+            "rect": {
+              "x": 210.0343780517578,
+              "y": 139.0031280517578,
+              "w": 18.899993896484375,
+              "h": 18.899993896484375
+            },
+            "opacity": "0",
+            "transform": "matrix(0.45, 0, 0, 0.45, 115.984, -58)",
+            "duration": 650
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "status": "PASS",
+    "artifactSHA256": {
+      "app/components/WaapiGameObservation.tsx": "767a0617f7a1a253a01a9832a95d7f98a497e5a0a42898b575409d0cfa6cd766",
+      "app/globals.css": "a3e1f8d240292fdcc965305a614d38256d322ce6fafcb4c638cb233852f47f53",
+      "out/index.html": "052021543aa0a438c01d6c15eff9841323402fe0012f4705d9e48080edaa1c08"
+    },
+    "version": "141.0.7390.37"
+  },
+  {
+    "engine": "chromium",
+    "width": 390,
+    "checks": [
+      "Menu Selection Cursor: native time/play/pause/resume/steps/seek/boundaries/finished rewind/easing/keyboard/rapid/offscreen/synthetic visibility/media change; excludes any separately recorded pathFailures",
+      "Menu Selection Cursor: normal state retained; original input and Reset contract",
+      "Menu Selection Cursor: both color media/CSS text200 no observation overflow/end geometry",
+      "Menu Selection Cursor: close/unmount cancellation",
+      "Coin Pickup Arc: native time/play/pause/resume/steps/seek/boundaries/finished rewind/easing/keyboard/rapid/offscreen/synthetic visibility/media change; excludes any separately recorded pathFailures",
+      "Coin Pickup Arc: normal state retained; original input and Reset contract",
+      "Coin Pickup Arc: both color media/CSS text200 no observation overflow/end geometry",
+      "Coin Pickup Arc: close/unmount cancellation"
+    ],
+    "measurements": [
+      {
+        "name": "Menu Selection Cursor",
+        "initial": {
+          "time": 0,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+          "rect": {
+            "x": 113,
+            "y": 152.5625,
+            "w": 6.03125,
+            "h": 11
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -42)",
+          "duration": 220
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "pauseInput": {
+          "before": {
+            "time": 16.700000000483328,
+            "clock": 5351.199999999255,
+            "native": "running",
+            "pending": false
+          },
+          "immediate": {
+            "time": 16.700000000483328,
+            "clock": 5351.5,
+            "native": "paused",
+            "pending": false
+          }
+        },
+        "settledPause": {
+          "time": 16.700000000483328,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 16.70 / 220 ms · 7.6% · 移動途中 · controller: paused · native currentTime: 16.70 ms · native playState: paused",
+          "rect": {
+            "x": 113,
+            "y": 165.39065551757812,
+            "w": 6.03125,
+            "h": 11
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -29.1718)",
+          "duration": 220
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "explicitSeekResumePause": {
+          "input": 110,
+          "settled": {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 113,
+              "y": 192.29783630371094,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.26466)",
+            "duration": 220
+          }
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "pause": {
+          "time": 16.700000000483328,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 16.70 / 220 ms · 7.6% · 移動途中 · controller: paused · native currentTime: 16.70 ms · native playState: paused",
+          "rect": {
+            "x": 113,
+            "y": 165.39065551757812,
+            "w": 6.03125,
+            "h": 11
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -29.1718)",
+          "duration": 220
+        },
+        "positions": [
+          {
+            "time": 0,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+            "rect": {
+              "x": 113,
+              "y": 152.5625,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -42)",
+            "duration": 220
+          },
+          {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 113,
+              "y": 192.29783630371094,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.26466)",
+            "duration": 220
+          },
+          {
+            "time": 219.99,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 219.99 / 220 ms · 100.0% · 移動途中 · controller: paused · native currentTime: 219.99 ms · native playState: paused",
+            "rect": {
+              "x": 113,
+              "y": 194.5625,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -9.03972e-09)",
+            "duration": 220
+          },
+          {
+            "time": 220,
+            "native": "paused",
+            "pending": false,
+            "controller": "finished",
+            "reading": "観察位置 220.00 / 220 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 220.00 ms · native playState: paused",
+            "rect": {
+              "x": 113,
+              "y": 194.5625,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "duration": 220
+          }
+        ]
+      },
+      {
+        "resizeAndFontAtHeldTime": {
+          "before": {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 105.5,
+              "y": 192.68846130371094,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.26466)",
+            "duration": 220
+          },
+          "after": {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 105.5,
+              "y": 192.68846130371094,
+              "w": 12,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.26466)",
+            "duration": 220
+          }
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "initial": {
+          "time": 0,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 0.00 / 650 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+          "rect": {
+            "x": 90,
+            "y": 199.0625,
+            "w": 42,
+            "h": 42
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "duration": 650
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "pauseInput": {
+          "before": {
+            "time": 16.657999999953432,
+            "clock": 17630,
+            "native": "running",
+            "pending": false
+          },
+          "immediate": {
+            "time": 16.657999999953432,
+            "clock": 17630.099999999627,
+            "native": "paused",
+            "pending": false
+          }
+        },
+        "settledPause": {
+          "time": 16.657999999953432,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 16.66 / 650 ms · 2.6% · 移動途中 · controller: paused · native currentTime: 16.66 ms · native playState: paused",
+          "rect": {
+            "x": 97.3869857788086,
+            "y": 185.16867065429688,
+            "w": 42.84857940673828,
+            "h": 42.84858703613281
+          },
+          "opacity": "1",
+          "transform": "matrix(1.0202, 0, 0, 1.0202, 7.81128, -13.4695)",
+          "duration": 650
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "explicitSeekResumePause": {
+          "input": 325,
+          "settled": {
+            "time": 325,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 325.00 / 650 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 325.00 ms · native playState: paused",
+            "rect": {
+              "x": 202.15567016601562,
+              "y": 140.61708068847656,
+              "w": 25.119842529296875,
+              "h": 25.119842529296875
+            },
+            "opacity": "0.211559",
+            "transform": "matrix(0.598092, 0, 0, 0.598092, 103.716, -66.8855)",
+            "duration": 650
+          }
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "pause": {
+          "time": 16.657999999953432,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 16.66 / 650 ms · 2.6% · 移動途中 · controller: paused · native currentTime: 16.66 ms · native playState: paused",
+          "rect": {
+            "x": 97.3869857788086,
+            "y": 185.16867065429688,
+            "w": 42.84857940673828,
+            "h": 42.84858703613281
+          },
+          "opacity": "1",
+          "transform": "matrix(1.0202, 0, 0, 1.0202, 7.81128, -13.4695)",
+          "duration": 650
+        },
+        "positions": [
+          {
+            "time": 0,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 0.00 / 650 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+            "rect": {
+              "x": 90,
+              "y": 199.0625,
+              "w": 42,
+              "h": 42
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "duration": 650
+          },
+          {
+            "time": 325,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 325.00 / 650 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 325.00 ms · native playState: paused",
+            "rect": {
+              "x": 202.15567016601562,
+              "y": 140.61708068847656,
+              "w": 25.119842529296875,
+              "h": 25.119842529296875
+            },
+            "opacity": "0.211559",
+            "transform": "matrix(0.598092, 0, 0, 0.598092, 103.716, -66.8855)",
+            "duration": 650
+          },
+          {
+            "time": 649.99,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 649.99 / 650 ms · 100.0% · 移動途中 · controller: paused · native currentTime: 649.99 ms · native playState: paused",
+            "rect": {
+              "x": 217.5343780517578,
+              "y": 152.6125030517578,
+              "w": 18.899993896484375,
+              "h": 18.899993896484375
+            },
+            "opacity": "1.12709e-10",
+            "transform": "matrix(0.45, 0, 0, 0.45, 115.984, -58)",
+            "duration": 650
+          },
+          {
+            "time": 650,
+            "native": "paused",
+            "pending": false,
+            "controller": "finished",
+            "reading": "観察位置 650.00 / 650 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 650.00 ms · native playState: paused",
+            "rect": {
+              "x": 217.5343780517578,
+              "y": 152.6125030517578,
+              "w": 18.899993896484375,
+              "h": 18.899993896484375
+            },
+            "opacity": "0",
+            "transform": "matrix(0.45, 0, 0, 0.45, 115.984, -58)",
+            "duration": 650
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "status": "PASS",
+    "artifactSHA256": {
+      "app/components/WaapiGameObservation.tsx": "767a0617f7a1a253a01a9832a95d7f98a497e5a0a42898b575409d0cfa6cd766",
+      "app/globals.css": "a3e1f8d240292fdcc965305a614d38256d322ce6fafcb4c638cb233852f47f53",
+      "out/index.html": "052021543aa0a438c01d6c15eff9841323402fe0012f4705d9e48080edaa1c08"
+    },
+    "version": "141.0.7390.37"
+  },
+  {
+    "engine": "chromium",
+    "width": 765,
+    "checks": [
+      "Menu Selection Cursor: native time/play/pause/resume/steps/seek/boundaries/finished rewind/easing/keyboard/rapid/offscreen/synthetic visibility/media change; excludes any separately recorded pathFailures",
+      "Menu Selection Cursor: normal state retained; original input and Reset contract",
+      "Menu Selection Cursor: both color media/CSS text200 no observation overflow/end geometry",
+      "Menu Selection Cursor: close/unmount cancellation",
+      "Coin Pickup Arc: native time/play/pause/resume/steps/seek/boundaries/finished rewind/easing/keyboard/rapid/offscreen/synthetic visibility/media change; excludes any separately recorded pathFailures",
+      "Coin Pickup Arc: normal state retained; original input and Reset contract",
+      "Coin Pickup Arc: both color media/CSS text200 no observation overflow/end geometry",
+      "Coin Pickup Arc: close/unmount cancellation"
+    ],
+    "measurements": [
+      {
+        "name": "Menu Selection Cursor",
+        "initial": {
+          "time": 0,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+          "rect": {
+            "x": 126.5,
+            "y": 152.609375,
+            "w": 6.03125,
+            "h": 11
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -42)",
+          "duration": 220
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "pauseInput": {
+          "before": {
+            "time": 16.694000000558873,
+            "clock": 4622.799999999814,
+            "native": "running",
+            "pending": false
+          },
+          "immediate": {
+            "time": 16.694000000558873,
+            "clock": 4623.0999999996275,
+            "native": "paused",
+            "pending": false
+          }
+        },
+        "settledPause": {
+          "time": 16.694000000558873,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 16.69 / 220 ms · 7.6% · 移動途中 · controller: paused · native currentTime: 16.69 ms · native playState: paused",
+          "rect": {
+            "x": 126.5,
+            "y": 165.4330596923828,
+            "w": 6.03125,
+            "h": 11
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -29.1763)",
+          "duration": 220
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "explicitSeekResumePause": {
+          "input": 110,
+          "settled": {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 192.34471130371094,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.26466)",
+            "duration": 220
+          }
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "pause": {
+          "time": 16.694000000558873,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 16.69 / 220 ms · 7.6% · 移動途中 · controller: paused · native currentTime: 16.69 ms · native playState: paused",
+          "rect": {
+            "x": 126.5,
+            "y": 165.4330596923828,
+            "w": 6.03125,
+            "h": 11
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -29.1763)",
+          "duration": 220
+        },
+        "positions": [
+          {
+            "time": 0,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 152.609375,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -42)",
+            "duration": 220
+          },
+          {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 192.34471130371094,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.26466)",
+            "duration": 220
+          },
+          {
+            "time": 219.99,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 219.99 / 220 ms · 100.0% · 移動途中 · controller: paused · native currentTime: 219.99 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 194.609375,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -9.03972e-09)",
+            "duration": 220
+          },
+          {
+            "time": 220,
+            "native": "paused",
+            "pending": false,
+            "controller": "finished",
+            "reading": "観察位置 220.00 / 220 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 220.00 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 194.609375,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "duration": 220
+          }
+        ]
+      },
+      {
+        "resizeAndFontAtHeldTime": {
+          "before": {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 105.5,
+              "y": 120.68846130371094,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.26466)",
+            "duration": 220
+          },
+          "after": {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 105.5,
+              "y": 120.68846130371094,
+              "w": 12,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.26466)",
+            "duration": 220
+          }
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "initial": {
+          "time": 0,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 0.00 / 650 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+          "rect": {
+            "x": 103.5,
+            "y": 199.109375,
+            "w": 42,
+            "h": 42
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "duration": 650
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "pauseInput": {
+          "before": {
+            "time": 16.64600000036387,
+            "clock": 16743.799999999814,
+            "native": "running",
+            "pending": false
+          },
+          "immediate": {
+            "time": 16.64600000036387,
+            "clock": 16744.299999999814,
+            "native": "paused",
+            "pending": false
+          }
+        },
+        "settledPause": {
+          "time": 16.64600000036387,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 16.65 / 650 ms · 2.6% · 移動途中 · controller: paused · native currentTime: 16.65 ms · native playState: paused",
+          "rect": {
+            "x": 110.8816146850586,
+            "y": 185.22564697265625,
+            "w": 42.84796905517578,
+            "h": 42.84797668457031
+          },
+          "opacity": "1",
+          "transform": "matrix(1.02019, 0, 0, 1.02019, 7.8056, -13.4597)",
+          "duration": 650
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "explicitSeekResumePause": {
+          "input": 325,
+          "settled": {
+            "time": 325,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 325.00 / 650 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 325.00 ms · native playState: paused",
+            "rect": {
+              "x": 215.65567016601562,
+              "y": 140.66395568847656,
+              "w": 25.119842529296875,
+              "h": 25.119842529296875
+            },
+            "opacity": "0.211559",
+            "transform": "matrix(0.598092, 0, 0, 0.598092, 103.716, -66.8855)",
+            "duration": 650
+          }
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "pause": {
+          "time": 16.64600000036387,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 16.65 / 650 ms · 2.6% · 移動途中 · controller: paused · native currentTime: 16.65 ms · native playState: paused",
+          "rect": {
+            "x": 110.8816146850586,
+            "y": 185.22564697265625,
+            "w": 42.84796905517578,
+            "h": 42.84797668457031
+          },
+          "opacity": "1",
+          "transform": "matrix(1.02019, 0, 0, 1.02019, 7.8056, -13.4597)",
+          "duration": 650
+        },
+        "positions": [
+          {
+            "time": 0,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 0.00 / 650 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+            "rect": {
+              "x": 103.5,
+              "y": 199.109375,
+              "w": 42,
+              "h": 42
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "duration": 650
+          },
+          {
+            "time": 325,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 325.00 / 650 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 325.00 ms · native playState: paused",
+            "rect": {
+              "x": 215.65567016601562,
+              "y": 140.66395568847656,
+              "w": 25.119842529296875,
+              "h": 25.119842529296875
+            },
+            "opacity": "0.211559",
+            "transform": "matrix(0.598092, 0, 0, 0.598092, 103.716, -66.8855)",
+            "duration": 650
+          },
+          {
+            "time": 649.99,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 649.99 / 650 ms · 100.0% · 移動途中 · controller: paused · native currentTime: 649.99 ms · native playState: paused",
+            "rect": {
+              "x": 231.0343780517578,
+              "y": 152.6593780517578,
+              "w": 18.899993896484375,
+              "h": 18.899993896484375
+            },
+            "opacity": "1.12709e-10",
+            "transform": "matrix(0.45, 0, 0, 0.45, 115.984, -58)",
+            "duration": 650
+          },
+          {
+            "time": 650,
+            "native": "paused",
+            "pending": false,
+            "controller": "finished",
+            "reading": "観察位置 650.00 / 650 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 650.00 ms · native playState: paused",
+            "rect": {
+              "x": 231.0343780517578,
+              "y": 152.6593780517578,
+              "w": 18.899993896484375,
+              "h": 18.899993896484375
+            },
+            "opacity": "0",
+            "transform": "matrix(0.45, 0, 0, 0.45, 115.984, -58)",
+            "duration": 650
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "status": "PASS",
+    "artifactSHA256": {
+      "app/components/WaapiGameObservation.tsx": "767a0617f7a1a253a01a9832a95d7f98a497e5a0a42898b575409d0cfa6cd766",
+      "app/globals.css": "a3e1f8d240292fdcc965305a614d38256d322ce6fafcb4c638cb233852f47f53",
+      "out/index.html": "052021543aa0a438c01d6c15eff9841323402fe0012f4705d9e48080edaa1c08"
+    },
+    "version": "141.0.7390.37"
+  },
+  {
+    "engine": "webkit",
+    "width": 375,
+    "checks": [],
+    "measurements": [
+      {
+        "name": "Menu Selection Cursor",
+        "initial": {
+          "time": 0,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+          "rect": {
+            "x": 105.5,
+            "y": 163,
+            "w": 6.03125,
+            "h": 12
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -44)",
+          "duration": 220
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "pauseInput": {
+          "before": {
+            "time": 220,
+            "clock": 6710,
+            "native": "finished",
+            "pending": false
+          },
+          "immediate": {
+            "time": 220,
+            "clock": 6711,
+            "native": "paused",
+            "pending": false
+          }
+        },
+        "settledPause": {
+          "time": 220,
+          "native": "paused",
+          "pending": false,
+          "controller": "finished",
+          "reading": "観察位置 220.00 / 220 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 220.00 ms · native playState: paused",
+          "rect": {
+            "x": 105.5,
+            "y": 207,
+            "w": 6.03125,
+            "h": 12
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "duration": 220
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "explicitSeekResumePause": {
+          "input": 110,
+          "settled": {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 105.5,
+              "y": 204.62744140625,
+              "w": 6.03125,
+              "h": 12
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.372504)",
+            "duration": 220
+          }
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "pause": {
+          "time": 73.333,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 73.33 / 220 ms · 33.3% · 移動途中 · controller: paused · native currentTime: 73.33 ms · native playState: paused",
+          "rect": {
+            "x": 105.5,
+            "y": 200.7587890625,
+            "w": 6.03125,
+            "h": 12
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -6.241436)",
+          "duration": 220
+        },
+        "positions": [
+          {
+            "time": 0,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+            "rect": {
+              "x": 105.5,
+              "y": 163.00048828125,
+              "w": 6.03125,
+              "h": 12
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -43.999733)",
+            "duration": 220
+          },
+          {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 105.5,
+              "y": 204.62744140625,
+              "w": 6.03125,
+              "h": 12
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.372504)",
+            "duration": 220
+          },
+          {
+            "time": 219.99,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 219.99 / 220 ms · 100.0% · 移動途中 · controller: paused · native currentTime: 219.99 ms · native playState: paused",
+            "rect": {
+              "x": 105.5,
+              "y": 207,
+              "w": 6.03125,
+              "h": 12
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "duration": 220
+          },
+          {
+            "time": 220,
+            "native": "paused",
+            "pending": false,
+            "controller": "finished",
+            "reading": "観察位置 220.00 / 220 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 220.00 ms · native playState: paused",
+            "rect": {
+              "x": 105.5,
+              "y": 207,
+              "w": 6.03125,
+              "h": 12
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "duration": 220
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "status": "FAIL",
+    "artifactSHA256": {
+      "app/components/WaapiGameObservation.tsx": "767a0617f7a1a253a01a9832a95d7f98a497e5a0a42898b575409d0cfa6cd766",
+      "app/globals.css": "a3e1f8d240292fdcc965305a614d38256d322ce6fafcb4c638cb233852f47f53",
+      "out/index.html": "052021543aa0a438c01d6c15eff9841323402fe0012f4705d9e48080edaa1c08"
+    },
+    "version": "26.0",
+    "pathFailures": [
+      {
+        "path": "Menu Selection Cursor: mid-flight pause",
+        "expected": "0 < native currentTime < duration",
+        "observed": {
+          "time": 220,
+          "native": "paused",
+          "pending": false,
+          "controller": "finished",
+          "reading": "観察位置 220.00 / 220 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 220.00 ms · native playState: paused",
+          "rect": {
+            "x": 105.5,
+            "y": 207,
+            "w": 6.03125,
+            "h": 12
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "duration": 220
+        }
+      }
+    ],
+    "failure": "",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/scratch/e622c1e9421e/loading-observation/scripts/verify-waapi-observation.py\", line 102, in <module>\n    o.scroll_into_view_if_needed();q.wait_for_timeout(100);stable(o);assert snapshot(o)['native']=='paused';assert abs(snapshot(o)['time']-duration/3)<.1\n                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "checks": [],
+    "measurements": [
+      {
+        "name": "Menu Selection Cursor",
+        "initial": {
+          "time": 0,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+          "rect": {
+            "x": 113,
+            "y": 163,
+            "w": 6.03125,
+            "h": 12
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -44)",
+          "duration": 220
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "pauseInput": {
+          "before": {
+            "time": 10,
+            "clock": 7822,
+            "native": "running",
+            "pending": false
+          },
+          "immediate": {
+            "time": 10,
+            "clock": 7823,
+            "native": "paused",
+            "pending": false
+          }
+        },
+        "settledPause": {
+          "time": 10,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 10.00 / 220 ms · 4.5% · 移動途中 · controller: paused · native currentTime: 10.00 ms · native playState: paused",
+          "rect": {
+            "x": 113,
+            "y": 171.08984375,
+            "w": 6.03125,
+            "h": 12
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -35.910397)",
+          "duration": 220
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "explicitSeekResumePause": {
+          "input": 110,
+          "settled": {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 113,
+              "y": 204.62744140625,
+              "w": 6.03125,
+              "h": 12
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.372504)",
+            "duration": 220
+          }
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "pause": {
+          "time": 10,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 10.00 / 220 ms · 4.5% · 移動途中 · controller: paused · native currentTime: 10.00 ms · native playState: paused",
+          "rect": {
+            "x": 113,
+            "y": 171.08984375,
+            "w": 6.03125,
+            "h": 12
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -35.910397)",
+          "duration": 220
+        },
+        "positions": [
+          {
+            "time": 0,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+            "rect": {
+              "x": 113,
+              "y": 163.00048828125,
+              "w": 6.03125,
+              "h": 12
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -43.999733)",
+            "duration": 220
+          },
+          {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 113,
+              "y": 216.11181640625,
+              "w": 6.03125,
+              "h": 12
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.372504)",
+            "duration": 220
+          },
+          {
+            "time": 219.99,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 219.99 / 220 ms · 100.0% · 移動途中 · controller: paused · native currentTime: 219.99 ms · native playState: paused",
+            "rect": {
+              "x": 113,
+              "y": 218.484375,
+              "w": 6.03125,
+              "h": 12
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "duration": 220
+          },
+          {
+            "time": 220,
+            "native": "paused",
+            "pending": false,
+            "controller": "finished",
+            "reading": "観察位置 220.00 / 220 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 220.00 ms · native playState: paused",
+            "rect": {
+              "x": 113,
+              "y": 207,
+              "w": 6.03125,
+              "h": 12
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "duration": 220
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "status": "FAIL",
+    "artifactSHA256": {
+      "app/components/WaapiGameObservation.tsx": "767a0617f7a1a253a01a9832a95d7f98a497e5a0a42898b575409d0cfa6cd766",
+      "app/globals.css": "a3e1f8d240292fdcc965305a614d38256d322ce6fafcb4c638cb233852f47f53",
+      "out/index.html": "052021543aa0a438c01d6c15eff9841323402fe0012f4705d9e48080edaa1c08"
+    },
+    "version": "26.0",
+    "failure": "[{'time': 0, 'native': 'paused', 'pending': False, 'controller': 'paused', 'reading': '観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused', 'rect': {'x': 113, 'y': 163.00048828125, 'w': 6.03125, 'h': 12}, 'opacity': '1', 'transform': 'matrix(1, 0, 0, 1, 0, -43.999733)', 'duration': 220}, {'time': 110, 'native': 'paused', 'pending': False, 'controller': 'paused', 'reading': '観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused', 'rect': {'x': 113, 'y': 216.11181640625, 'w': 6.03125, 'h': 12}, 'opacity': '1', 'transform': 'matrix(1, 0, 0, 1, 0, -2.372504)', 'duration': 220}, {'time': 219.99, 'native': 'paused', 'pending': False, 'controller': 'paused', 'reading': '観察位置 219.99 / 220 ms · 100.0% · 移動途中 · controller: paused · native currentTime: 219.99 ms · native playState: paused', 'rect': {'x': 113, 'y': 218.484375, 'w': 6.03125, 'h': 12}, 'opacity': '1', 'transform': 'matrix(1, 0, 0, 1, 0, 0)', 'duration': 220}, {'time': 220, 'native': 'paused', 'pending': False, 'controller': 'finished', 'reading': '観察位置 220.00 / 220 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 220.00 ms · native playState: paused', 'rect': {'x': 113, 'y': 207, 'w': 6.03125, 'h': 12}, 'opacity': '1', 'transform': 'matrix(1, 0, 0, 1, 0, 0)', 'duration': 220}]",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/scratch/e622c1e9421e/loading-observation/scripts/verify-waapi-observation.py\", line 83, in <module>\n    assert positions[0]['rect']['y']<positions[1]['rect']['y']<positions[-1]['rect']['y'],positions\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: [{'time': 0, 'native': 'paused', 'pending': False, 'controller': 'paused', 'reading': '観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused', 'rect': {'x': 113, 'y': 163.00048828125, 'w': 6.03125, 'h': 12}, 'opacity': '1', 'transform': 'matrix(1, 0, 0, 1, 0, -43.999733)', 'duration': 220}, {'time': 110, 'native': 'paused', 'pending': False, 'controller': 'paused', 'reading': '観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused', 'rect': {'x': 113, 'y': 216.11181640625, 'w': 6.03125, 'h': 12}, 'opacity': '1', 'transform': 'matrix(1, 0, 0, 1, 0, -2.372504)', 'duration': 220}, {'time': 219.99, 'native': 'paused', 'pending': False, 'controller': 'paused', 'reading': '観察位置 219.99 / 220 ms · 100.0% · 移動途中 · controller: paused · native currentTime: 219.99 ms · native playState: paused', 'rect': {'x': 113, 'y': 218.484375, 'w': 6.03125, 'h': 12}, 'opacity': '1', 'transform': 'matrix(1, 0, 0, 1, 0, 0)', 'duration': 220}, {'time': 220, 'native': 'paused', 'pending': False, 'controller': 'finished', 'reading': '観察位置 220.00 / 220 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 220.00 ms · native playState: paused', 'rect': {'x': 113, 'y': 207, 'w': 6.03125, 'h': 12}, 'opacity': '1', 'transform': 'matrix(1, 0, 0, 1, 0, 0)', 'duration': 220}]\n"
+  },
+  {
+    "engine": "webkit",
+    "width": 765,
+    "checks": [
+      "Menu Selection Cursor: native time/play/pause/resume/steps/seek/boundaries/finished rewind/easing/keyboard/rapid/offscreen/synthetic visibility/media change; excludes any separately recorded pathFailures",
+      "Menu Selection Cursor: normal state retained; original input and Reset contract"
+    ],
+    "measurements": [
+      {
+        "name": "Menu Selection Cursor",
+        "initial": {
+          "time": 0,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+          "rect": {
+            "x": 126.5,
+            "y": 163,
+            "w": 6.03125,
+            "h": 12
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -44)",
+          "duration": 220
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "pauseInput": {
+          "before": {
+            "time": 25,
+            "clock": 9322.000000000002,
+            "native": "running",
+            "pending": false
+          },
+          "immediate": {
+            "time": 25,
+            "clock": 9323,
+            "native": "paused",
+            "pending": false
+          }
+        },
+        "settledPause": {
+          "time": 25,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 25.00 / 220 ms · 11.4% · 移動途中 · controller: paused · native currentTime: 25.00 ms · native playState: paused",
+          "rect": {
+            "x": 126.5,
+            "y": 182.59033203125,
+            "w": 6.03125,
+            "h": 12
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -24.409554)",
+          "duration": 220
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "explicitSeekResumePause": {
+          "input": 110,
+          "settled": {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 204.62744140625,
+              "w": 6.03125,
+              "h": 12
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.372504)",
+            "duration": 220
+          }
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "pause": {
+          "time": 25,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 25.00 / 220 ms · 11.4% · 移動途中 · controller: paused · native currentTime: 25.00 ms · native playState: paused",
+          "rect": {
+            "x": 126.5,
+            "y": 182.59033203125,
+            "w": 6.03125,
+            "h": 12
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -24.409554)",
+          "duration": 220
+        },
+        "positions": [
+          {
+            "time": 0,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 163.000244140625,
+              "w": 6.03125,
+              "h": 12
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -43.999733)",
+            "duration": 220
+          },
+          {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 204.62744140625,
+              "w": 6.03125,
+              "h": 12
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.372504)",
+            "duration": 220
+          },
+          {
+            "time": 219.99,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 219.99 / 220 ms · 100.0% · 移動途中 · controller: paused · native currentTime: 219.99 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 207,
+              "w": 6.03125,
+              "h": 12
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "duration": 220
+          },
+          {
+            "time": 220,
+            "native": "paused",
+            "pending": false,
+            "controller": "finished",
+            "reading": "観察位置 220.00 / 220 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 220.00 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 207,
+              "w": 6.03125,
+              "h": 12
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "duration": 220
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "status": "FAIL",
+    "artifactSHA256": {
+      "app/components/WaapiGameObservation.tsx": "767a0617f7a1a253a01a9832a95d7f98a497e5a0a42898b575409d0cfa6cd766",
+      "app/globals.css": "a3e1f8d240292fdcc965305a614d38256d322ce6fafcb4c638cb233852f47f53",
+      "out/index.html": "052021543aa0a438c01d6c15eff9841323402fe0012f4705d9e48080edaa1c08"
+    },
+    "version": "26.0",
+    "failure": "unsupported operand type(s) for -: 'NoneType' and 'float'",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/scratch/e622c1e9421e/loading-observation/scripts/verify-waapi-observation.py\", line 131, in <module>\n    before=snapshot(o);assert abs(before['time']-duration/2)<.1 and before['native']=='paused',before\n                                  ~~~~~~~~~~~~~~^~~~~~~~~~~\nTypeError: unsupported operand type(s) for -: 'NoneType' and 'float'\n"
+  }
+]

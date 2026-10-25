@@ -1,0 +1,121 @@
+[
+  {
+    "engine": "chromium",
+    "width": 390,
+    "checks": [
+      "Menu Selection Cursor: native time/play/pause/resume/steps/seek/boundaries/finished rewind/easing/keyboard/rapid/offscreen/synthetic visibility/media change",
+      "Menu Selection Cursor: normal state retained; original input and Reset contract"
+    ],
+    "measurements": [
+      {
+        "name": "Menu Selection Cursor",
+        "initial": {
+          "time": 0,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "時間 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native playState: paused",
+          "rect": {
+            "x": 113,
+            "y": 167.5625,
+            "w": 6.03125,
+            "h": 11
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -42)",
+          "duration": 220
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "pause": {
+          "time": 33.31899999967946,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "時間 33.32 / 220 ms · 15.1% · 移動途中 · controller: paused · native playState: paused",
+          "rect": {
+            "x": 113,
+            "y": 191.26893615722656,
+            "w": 6.03125,
+            "h": 11
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -18.2936)",
+          "duration": 220
+        },
+        "positions": [
+          {
+            "time": 0,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "時間 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native playState: paused",
+            "rect": {
+              "x": 113,
+              "y": 167.5625,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -42)",
+            "duration": 220
+          },
+          {
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "時間 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native playState: paused",
+            "rect": {
+              "x": 113,
+              "y": 207.29783630371094,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.26466)",
+            "duration": 220
+          },
+          {
+            "time": 219.99,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "時間 219.99 / 220 ms · 100.0% · 移動途中 · controller: paused · native playState: paused",
+            "rect": {
+              "x": 113,
+              "y": 209.5625,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -9.03972e-09)",
+            "duration": 220
+          },
+          {
+            "time": 220,
+            "native": "paused",
+            "pending": false,
+            "controller": "finished",
+            "reading": "時間 220.00 / 220 ms · 100.0% · 終了位置 · controller: finished · native playState: paused",
+            "rect": {
+              "x": 113,
+              "y": 209.5625,
+              "w": 6.03125,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "duration": 220
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "status": "FAIL",
+    "version": "141.0.7390.37",
+    "failure": "",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/scratch/e622c1e9421e/loading-observation/scripts/verify-waapi-observation.py\", line 117, in <module>\n    q.emulate_media(color_scheme=theme);assert o.evaluate('n=>n.scrollWidth<=n.clientWidth+1')\n                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+  }
+]

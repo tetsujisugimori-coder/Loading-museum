@@ -1,0 +1,86 @@
+[
+  {
+    "before": {
+      "time": 19,
+      "clock": 7716,
+      "native": "running",
+      "pending": false
+    },
+    "immediate": {
+      "time": 19,
+      "clock": 7717.000000000001,
+      "native": "paused",
+      "pending": true
+    },
+    "settled": {
+      "time": 174,
+      "clock": 7836,
+      "native": "paused",
+      "pending": false
+    },
+    "display": "時間 19.00 / 220 ms · 8.6% · 移動途中 · controller: paused · native playState: paused（pending）"
+  },
+  {
+    "before": {
+      "time": 135,
+      "clock": 8314,
+      "native": "running",
+      "pending": false
+    },
+    "immediate": {
+      "time": 135,
+      "clock": 8314,
+      "native": "paused",
+      "pending": true
+    },
+    "settled": {
+      "time": 158,
+      "clock": 8355,
+      "native": "paused",
+      "pending": false
+    },
+    "display": "時間 135.00 / 220 ms · 61.4% · 移動途中 · controller: paused · native playState: paused（pending）"
+  },
+  {
+    "before": {
+      "time": 220,
+      "clock": 8901,
+      "native": "finished",
+      "pending": false
+    },
+    "immediate": {
+      "time": 220,
+      "clock": 8902.000000000002,
+      "native": "paused",
+      "pending": true
+    },
+    "settled": {
+      "time": 220,
+      "clock": 9100,
+      "native": "paused",
+      "pending": false
+    },
+    "display": "時間 220.00 / 220 ms · 100.0% · 終了位置 · controller: paused · native playState: paused（pending）"
+  },
+  {
+    "before": {
+      "time": 165,
+      "clock": 9825.000000000002,
+      "native": "running",
+      "pending": false
+    },
+    "immediate": {
+      "time": 165,
+      "clock": 9825.000000000002,
+      "native": "paused",
+      "pending": true
+    },
+    "settled": {
+      "time": 207,
+      "clock": 9894,
+      "native": "paused",
+      "pending": false
+    },
+    "display": "時間 165.00 / 220 ms · 75.0% · 移動途中 · controller: paused · native playState: paused（pending）"
+  }
+]

@@ -10,6 +10,8 @@ import {
 } from "../data/waapiSamples";
 import { AiComparisonLab, AiWorkingPreview, ExpandedGamePreview, aiKinds, expandedGameKinds } from "./WaapiExpandedPreviews";
 
+import { WaapiGameObservation } from "./WaapiGameObservation";
+
 const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
 const filterKeys = ["category", "interactionTypes", "visualElements", "stateKinds", "inspirationType", "usage", "sourceType", "era", "intensity", "difficulty"] as const;
 type FilterKey = (typeof filterKeys)[number];
@@ -186,6 +188,10 @@ function StandardSamplePreview({ sample, active, reducedMotion }: { sample: Waap
 function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSample; active: boolean; reducedMotion: boolean }) {
   const stageRef = useRef<HTMLDivElement>(null);
   const animations = useRef<Animation[]>([]);
+  const [observing, setObserving] = useState(false);
+  const observed = useRef(false);
+  const supportsObservation = sample.render === "menu" || sample.render === "coin";
+  const normalActive = active && !observing;
   const [rhythm, setRhythm] = useState("READY");
   const [score, setScore] = useState(0);
   const collected = useRef(false);
@@ -229,14 +235,14 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
   useEffect(() => {
     // HP is driven by interaction state, never by the generic entry animation.
     if (sample.render === "hp") return;
-    if (!active) return;
+    if (!normalActive || observed.current) return;
     const frame = window.requestAnimationFrame(run);
     return () => window.cancelAnimationFrame(frame);
-  }, [active, run, sample.render]);
+  }, [normalActive, run, sample.render]);
   useEffect(() => {
-    if (!["hp", "coin", "menu"].includes(sample.render) || active) return;
+    if (!["hp", "coin", "menu"].includes(sample.render) || normalActive) return;
     stop();
-  }, [active, sample.render, stop]);
+  }, [normalActive, sample.render, stop]);
   useEffect(() => stop, [stop]);
 
   const judge = (value: "PERFECT" | "GOOD" | "MISS") => {
@@ -268,7 +274,7 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
   useLayoutEffect(() => {
     if (sample.render !== "menu") return;
     if (reducedMotion) stop();
-    if (menuFrom.current && menuCursor.current && !reducedMotion && active) {
+    if (menuFrom.current && menuCursor.current && !reducedMotion && normalActive) {
       const to = menuCursor.current.getBoundingClientRect();
       animations.current.push(menuCursor.current.animate([
         { transform: `translate(${menuFrom.current.left - to.left}px, ${menuFrom.current.top - to.top}px)` },
@@ -276,7 +282,7 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
       ], { duration: 220, easing: "cubic-bezier(.2,.8,.2,1)" }));
     }
     menuFrom.current = null;
-  }, [menuIndex, reducedMotion, active, sample.render, stop]);
+  }, [menuIndex, reducedMotion, normalActive, sample.render, stop]);
   const moveMenu = (delta: number) => {
     menuFrom.current = menuCursor.current?.getBoundingClientRect() ?? null;
     stop();
@@ -294,6 +300,8 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
   };
 
   return <div className="waapiPreviewGroup">
+    {supportsObservation && <button type="button" className="waapiObservationToggle" aria-pressed={observing} onClick={() => { stop(); observed.current = true; setObserving((value) => !value); }}>{observing ? "通常モードへ戻る" : "観察モードを開く"}</button>}
+    <div hidden={observing} data-normal-game>
     <div ref={stageRef} className={`waapiPreviewStage waapiPreviewStage--game waapiPreviewStage--${sample.render}`} tabIndex={sample.render === "menu" ? 0 : undefined} onKeyDown={sample.render === "menu" ? (event) => { if (event.key === "ArrowDown") { event.preventDefault(); moveMenu(1); } if (event.key === "ArrowUp") { event.preventDefault(); moveMenu(-1); } } : undefined}>
       {sample.render === "treasure" && <button type="button" className="gameChest" onClick={run} aria-label="宝箱を開く"><i data-chest-glow /><b data-motion-target /><span /><em data-chest-item>◆</em></button>}
       {sample.render === "rhythm" && <div className={`gameRhythm gameRhythm--${rhythm.toLowerCase()}`}><strong data-motion-target>{rhythm}</strong></div>}
@@ -314,6 +322,9 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
       {sample.render === "cards" && <>{(["shuffle", "deal", "select", "drag", "play", "resolve", "discard"] as const).map((action) => <button type="button" key={action} onClick={() => cardAction(action)}>{action.toUpperCase()}</button>)}</>}
       <button type="button" onClick={reset}>Reset</button>
     </div>
+    </div>
+    {observing && <p data-held-game-state>通常ゲームの保持状態：{sample.render === "coin" ? `SCORE ${score}（${score > 0 ? "獲得済み" : "未獲得"}）` : ["CONTINUE", "COLLECTION", "SETTINGS"][menuIndex]}</p>}
+    {observing && <WaapiGameObservation sample={sample} active={active} reducedMotion={reducedMotion} />}
     {sample.render === "coin" && <p>自動デモ・Replayは加点しません。COLLECT（またはコイン）で1回100点を即時確定し、獲得の弧を再生。Resetで0点と未獲得に戻します。</p>}
   </div>;
 }

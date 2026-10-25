@@ -1,0 +1,111 @@
+[
+  {
+    "engine": "chromium",
+    "version": "141.0.7390.37",
+    "width": 390,
+    "checks": [
+      "menu all3 positions normal/CSS200 geometry keyboard reset"
+    ],
+    "errors": [],
+    "menu": [
+      {
+        "cursor": {
+          "top": 226.921875,
+          "bottom": 237.921875
+        },
+        "target": {
+          "top": 226.921875,
+          "bottom": 237.921875
+        },
+        "dy": 0,
+        "scale": 1,
+        "index": 0
+      },
+      {
+        "cursor": {
+          "top": 247.921875,
+          "bottom": 258.921875
+        },
+        "target": {
+          "top": 247.921875,
+          "bottom": 258.921875
+        },
+        "dy": 0,
+        "scale": 1,
+        "index": 1
+      },
+      {
+        "cursor": {
+          "top": 268.921875,
+          "bottom": 279.921875
+        },
+        "target": {
+          "top": 268.921875,
+          "bottom": 279.921875
+        },
+        "dy": 0,
+        "scale": 1,
+        "index": 2
+      },
+      {
+        "cursor": {
+          "top": 251.921875,
+          "bottom": 274.921875
+        },
+        "target": {
+          "top": 251.921875,
+          "bottom": 274.921875
+        },
+        "dy": 0,
+        "scale": 2,
+        "index": 0
+      },
+      {
+        "cursor": {
+          "top": 284.921875,
+          "bottom": 307.921875
+        },
+        "target": {
+          "top": 284.921875,
+          "bottom": 307.921875
+        },
+        "dy": 0,
+        "scale": 2,
+        "index": 1
+      },
+      {
+        "cursor": {
+          "top": 317.921875,
+          "bottom": 340.921875
+        },
+        "target": {
+          "top": 317.921875,
+          "bottom": 340.921875
+        },
+        "dy": 0,
+        "scale": 2,
+        "index": 2
+      }
+    ],
+    "timing": [
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 30.5,
+        "name": "Perfect Parry",
+        "motion": "no-preference",
+        "requested": 30
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 961.1000000000931,
+        "name": "Perfect Parry",
+        "motion": "no-preference",
+        "requested": 500
+      }
+    ],
+    "status": "FAIL",
+    "failure": "{'before': 'LATE · WINDOW CLOSED', 'after': 'LATE · HIT', 'elapsed': 961.1000000000931, 'name': 'Perfect Parry', 'motion': 'no-preference', 'requested': 500}"
+  }
+]

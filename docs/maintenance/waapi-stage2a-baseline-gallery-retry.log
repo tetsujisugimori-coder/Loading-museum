@@ -1,0 +1,26 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v3.2.4 /tmp/loading-stage2a-baseline
+
+ ✓ tests/waapi-gallery.test.tsx (11 tests) 20727ms
+   ✓ WAAPI標本ギャラリー操作 > 初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う  4907ms
+   ✓ WAAPI標本ギャラリー操作 > Replay、コード解説、ModalとToastの両方向を操作する  561ms
+   ✓ WAAPI標本ギャラリー操作 > Consoleの全操作、速度、Seek、実playStateを安全に反映する  678ms
+   ✓ WAAPI標本ギャラリー操作 > Reduced motion時は自動ループを残さず、代替表示を説明する  677ms
+   ✓ WAAPI標本ギャラリー操作 > Fade/Slideは手動再生、Button/Toggleは直接操作だけを提供する  888ms
+   ✓ WAAPI標本ギャラリー操作 > ゲーム標本を直接操作し、Resetで意味のある初期状態へ戻す  1227ms
+   ✓ WAAPI標本ギャラリー操作 > 新しいゲーム標本、5軸フィルター、AI共通状態を操作できる  4818ms
+   ✓ WAAPI標本ギャラリー操作 > AI比較モードは一括フェーズを進め、閉じるとループを停止する  2753ms
+   ✓ WAAPI標本ギャラリー操作 > 追加ゲーム14件は固有DOM・状態・操作結果を提供する  2866ms
+   ✓ WAAPI標本ギャラリー操作 > Card Dealの全工程とAIの完了・エラー・リセットを操作できる  1279ms
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  05:05:53
+   Duration  22.82s (transform 497ms, setup 0ms, collect 737ms, tests 20.73s, environment 634ms, prepare 155ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

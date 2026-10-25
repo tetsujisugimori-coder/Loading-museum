@@ -1,0 +1,236 @@
+[
+  {
+    "engine": "chromium",
+    "version": "141.0.7390.37",
+    "width": 375,
+    "artifactSHA256": {
+      "app/components/WaapiGameObservation.tsx": "443ef345a3389ec748d94d3a546c3c428071760773544bb0844895030c4e1b27",
+      "app/globals.css": "7907ac4cb2aa05e0639617728a7b79e9e14da00e75724f97c4fcab7fbc9e7a68",
+      "out/index.html": "c5337baa21a95cde1e26e5502bec80029adfbf00093401d0b9aefcedb44f0dd4"
+    },
+    "checks": [
+      "Menu Selection Cursor: toggle >=40px/focus/keyboard Space mode toggle/Enter step/native time/normal state preserved/touch toggle/CSS200/both media no observation overflow",
+      "Coin Pickup Arc: toggle >=40px/focus/keyboard Space mode toggle/Enter step/native time/normal state preserved/touch toggle/CSS200/both media no observation overflow"
+    ],
+    "measurements": [
+      {
+        "name": "Menu Selection Cursor",
+        "toggle": {
+          "height": 40,
+          "width": 295,
+          "outline": "rgb(49, 153, 214) solid 3px",
+          "outlineWidth": 3,
+          "color": "rgb(57, 231, 125)",
+          "background": "rgb(11, 23, 17)",
+          "focused": true
+        },
+        "text200Toggle": {
+          "x": 40,
+          "y": -66.546875,
+          "width": 295,
+          "height": 43
+        },
+        "observationSize": {
+          "client": 295,
+          "scroll": 295
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "toggle": {
+          "height": 40,
+          "width": 295,
+          "outline": "rgb(49, 153, 214) solid 3px",
+          "outlineWidth": 3,
+          "color": "rgb(57, 231, 125)",
+          "background": "rgb(11, 23, 17)",
+          "focused": true
+        },
+        "text200Toggle": {
+          "x": 40,
+          "y": -123.046875,
+          "width": 295,
+          "height": 43
+        },
+        "observationSize": {
+          "client": 295,
+          "scroll": 295
+        }
+      }
+    ],
+    "pageErrors": [],
+    "status": "PASS"
+  },
+  {
+    "engine": "chromium",
+    "version": "141.0.7390.37",
+    "width": 390,
+    "artifactSHA256": {
+      "app/components/WaapiGameObservation.tsx": "443ef345a3389ec748d94d3a546c3c428071760773544bb0844895030c4e1b27",
+      "app/globals.css": "7907ac4cb2aa05e0639617728a7b79e9e14da00e75724f97c4fcab7fbc9e7a68",
+      "out/index.html": "c5337baa21a95cde1e26e5502bec80029adfbf00093401d0b9aefcedb44f0dd4"
+    },
+    "checks": [
+      "Menu Selection Cursor: toggle >=40px/focus/keyboard Space mode toggle/Enter step/native time/normal state preserved/touch toggle/CSS200/both media no observation overflow",
+      "Coin Pickup Arc: toggle >=40px/focus/keyboard Space mode toggle/Enter step/native time/normal state preserved/touch toggle/CSS200/both media no observation overflow"
+    ],
+    "measurements": [
+      {
+        "name": "Menu Selection Cursor",
+        "toggle": {
+          "height": 40,
+          "width": 310,
+          "outline": "rgb(49, 153, 214) solid 3px",
+          "outlineWidth": 3,
+          "color": "rgb(57, 231, 125)",
+          "background": "rgb(11, 23, 17)",
+          "focused": true
+        },
+        "text200Toggle": {
+          "x": 40,
+          "y": -66.9375,
+          "width": 310,
+          "height": 43
+        },
+        "observationSize": {
+          "client": 310,
+          "scroll": 310
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "toggle": {
+          "height": 40,
+          "width": 310,
+          "outline": "rgb(49, 153, 214) solid 3px",
+          "outlineWidth": 3,
+          "color": "rgb(57, 231, 125)",
+          "background": "rgb(11, 23, 17)",
+          "focused": true
+        },
+        "text200Toggle": {
+          "x": 40,
+          "y": -109.4375,
+          "width": 310,
+          "height": 43
+        },
+        "observationSize": {
+          "client": 310,
+          "scroll": 310
+        }
+      }
+    ],
+    "pageErrors": [],
+    "status": "PASS"
+  },
+  {
+    "engine": "chromium",
+    "version": "141.0.7390.37",
+    "width": 765,
+    "artifactSHA256": {
+      "app/components/WaapiGameObservation.tsx": "443ef345a3389ec748d94d3a546c3c428071760773544bb0844895030c4e1b27",
+      "app/globals.css": "7907ac4cb2aa05e0639617728a7b79e9e14da00e75724f97c4fcab7fbc9e7a68",
+      "out/index.html": "c5337baa21a95cde1e26e5502bec80029adfbf00093401d0b9aefcedb44f0dd4"
+    },
+    "checks": [
+      "Menu Selection Cursor: toggle >=40px/focus/keyboard Space mode toggle/Enter step/native time/normal state preserved/touch toggle/CSS200/both media no observation overflow",
+      "Coin Pickup Arc: toggle >=40px/focus/keyboard Space mode toggle/Enter step/native time/normal state preserved/touch toggle/CSS200/both media no observation overflow"
+    ],
+    "measurements": [
+      {
+        "name": "Menu Selection Cursor",
+        "toggle": {
+          "height": 40,
+          "width": 307,
+          "outline": "rgb(49, 153, 214) solid 3px",
+          "outlineWidth": 3,
+          "color": "rgb(57, 231, 125)",
+          "background": "rgb(11, 23, 17)",
+          "focused": true
+        },
+        "text200Toggle": {
+          "x": 55,
+          "y": -66.890625,
+          "width": 307,
+          "height": 43
+        },
+        "observationSize": {
+          "client": 307,
+          "scroll": 307
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "toggle": {
+          "height": 40,
+          "width": 307,
+          "outline": "rgb(49, 153, 214) solid 3px",
+          "outlineWidth": 3,
+          "color": "rgb(57, 231, 125)",
+          "background": "rgb(11, 23, 17)",
+          "focused": true
+        },
+        "text200Toggle": {
+          "x": 55,
+          "y": -109.390625,
+          "width": 307,
+          "height": 43
+        },
+        "observationSize": {
+          "client": 307,
+          "scroll": 307
+        }
+      }
+    ],
+    "pageErrors": [],
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "width": 375,
+    "artifactSHA256": {
+      "app/components/WaapiGameObservation.tsx": "443ef345a3389ec748d94d3a546c3c428071760773544bb0844895030c4e1b27",
+      "app/globals.css": "7907ac4cb2aa05e0639617728a7b79e9e14da00e75724f97c4fcab7fbc9e7a68",
+      "out/index.html": "c5337baa21a95cde1e26e5502bec80029adfbf00093401d0b9aefcedb44f0dd4"
+    },
+    "checks": [],
+    "measurements": [],
+    "pageErrors": [],
+    "status": "FAIL",
+    "failure": "{'height': 40, 'width': 295, 'outline': 'rgb(204, 255, 224) none 0px', 'outlineWidth': 0, 'color': 'rgb(204, 255, 224)', 'background': 'rgb(11, 23, 17)', 'focused': True}",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/scratch/e622c1e9421e/loading-observation/scripts/verify-waapi-observation-style.py\", line 24, in <module>\n    assert g['height']>=40 and g['outlineWidth']>0 and g['focused'],g\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'height': 40, 'width': 295, 'outline': 'rgb(204, 255, 224) none 0px', 'outlineWidth': 0, 'color': 'rgb(204, 255, 224)', 'background': 'rgb(11, 23, 17)', 'focused': True}\n"
+  },
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "width": 390,
+    "artifactSHA256": {
+      "app/components/WaapiGameObservation.tsx": "443ef345a3389ec748d94d3a546c3c428071760773544bb0844895030c4e1b27",
+      "app/globals.css": "7907ac4cb2aa05e0639617728a7b79e9e14da00e75724f97c4fcab7fbc9e7a68",
+      "out/index.html": "c5337baa21a95cde1e26e5502bec80029adfbf00093401d0b9aefcedb44f0dd4"
+    },
+    "checks": [],
+    "measurements": [],
+    "pageErrors": [],
+    "status": "FAIL",
+    "failure": "{'height': 40, 'width': 310, 'outline': 'rgb(204, 255, 224) none 0px', 'outlineWidth': 0, 'color': 'rgb(204, 255, 224)', 'background': 'rgb(11, 23, 17)', 'focused': True}",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/scratch/e622c1e9421e/loading-observation/scripts/verify-waapi-observation-style.py\", line 24, in <module>\n    assert g['height']>=40 and g['outlineWidth']>0 and g['focused'],g\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'height': 40, 'width': 310, 'outline': 'rgb(204, 255, 224) none 0px', 'outlineWidth': 0, 'color': 'rgb(204, 255, 224)', 'background': 'rgb(11, 23, 17)', 'focused': True}\n"
+  },
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "width": 765,
+    "artifactSHA256": {
+      "app/components/WaapiGameObservation.tsx": "443ef345a3389ec748d94d3a546c3c428071760773544bb0844895030c4e1b27",
+      "app/globals.css": "7907ac4cb2aa05e0639617728a7b79e9e14da00e75724f97c4fcab7fbc9e7a68",
+      "out/index.html": "c5337baa21a95cde1e26e5502bec80029adfbf00093401d0b9aefcedb44f0dd4"
+    },
+    "checks": [],
+    "measurements": [],
+    "pageErrors": [],
+    "status": "FAIL",
+    "failure": "{'height': 40, 'width': 307, 'outline': 'rgb(204, 255, 224) none 0px', 'outlineWidth': 0, 'color': 'rgb(204, 255, 224)', 'background': 'rgb(11, 23, 17)', 'focused': True}",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/scratch/e622c1e9421e/loading-observation/scripts/verify-waapi-observation-style.py\", line 24, in <module>\n    assert g['height']>=40 and g['outlineWidth']>0 and g['focused'],g\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'height': 40, 'width': 307, 'outline': 'rgb(204, 255, 224) none 0px', 'outlineWidth': 0, 'color': 'rgb(204, 255, 224)', 'background': 'rgb(11, 23, 17)', 'focused': True}\n"
+  }
+]

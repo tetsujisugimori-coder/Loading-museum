@@ -5875,6 +5875,7 @@ footer {
 .waapiConsoleButtons button,
 .waapiPreviewControls button,
 .waapiDetailsToggle,
+.waapiObservationToggle,
 .waapiComparisonHeading button {
   min-height: 40px;
   padding: 6px 10px;
@@ -5893,7 +5894,9 @@ footer {
 .waapiPreviewControls button:hover,
 .waapiPreviewControls button:focus-visible,
 .waapiDetailsToggle:hover,
+.waapiObservationToggle:hover,
 .waapiDetailsToggle:focus-visible,
+.waapiObservationToggle:focus-visible,
 .waapiComparisonHeading button:hover,
 .waapiComparisonHeading button:focus-visible {
   border-color: var(--green);
@@ -6605,3 +6608,18 @@ footer {
 .matchBoard { position: relative; }
 .matchGhost { position: absolute; width: 36px; height: 36px; display: grid; place-items: center; opacity: 0; pointer-events: none; color: #79dfff; background: #15281f; border: 1px solid #436153; border-radius: 4px; }
 .matchSteps { text-align: center; }
+
+/* Stage 2A: isolated presentation controls, not another game state owner. */
+.waapiObservation { min-width: 0; display: grid; gap: 12px; }
+.waapiObservation p, .waapiObservation output { overflow-wrap: anywhere; }
+.waapiObservation label { display: grid; gap: 6px; min-width: 0; }
+.waapiObservation input, .waapiObservation select { width: 100%; min-width: 0; max-width: 100%; margin: 0; box-sizing: border-box; }
+.waapiObservation button, .waapiObservationToggle { white-space: normal; overflow-wrap: anywhere; }
+.waapiObservation :focus-visible, .waapiObservationToggle:focus-visible { outline: 3px solid #3199d6; outline-offset: 3px; }
+.waapiObservation pre { max-width: 100%; white-space: pre-wrap; overflow-wrap: anywhere; }
+.waapiObservationStage { overflow: hidden; }
+.waapiObservation .gameMenu { width: min(170px, 100%); max-width: 100%; overflow-wrap: anywhere; }
+.observationCoin { position: absolute; left: 10px; bottom: 8px; width: 42px; height: 42px; display: grid; place-items: center; border: 3px double #8b6300; border-radius: 50%; background: #ffe36e; color: #684600; font: 900 22px var(--serif); }
+.observationGoal { position: absolute; right: 0; top: 4px; max-width: 75%; padding: 7px 9px; border: 1px solid #5379a7; background: #0b1930; color: #fff; font: 700 10px var(--mono); overflow-wrap: anywhere; }
+[data-normal-game][hidden] { display: none; }
+[data-normal-game]:not([hidden]) { display: contents; }

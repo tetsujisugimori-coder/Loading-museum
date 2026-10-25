@@ -1454,3 +1454,18 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 - 独立P3 2件（実時間/fillメタ、Battle RETURN教材）を修正し再レビュー。197/47、ID/名称/順序、旧5主要処理、Pages設定を維持。第2/3段階・新展示追加・公開なし。
 - 最終GUI/品質判定は設計記録へ追記。全197全操作、実機Safari/VoiceOverの合格を宣言しない。既存title200%横超過/typewriter重複は別負債。
 - 最終check: Node49＋Vitest85＝134成功/0失敗/0skip。新対象native6条件PASS・Menu矩形36測定差0px・pageerror0。旧主要6条件×9群も機能失敗なし。WebKitのmedia change配送を記録し、paused取消を条件待ちで実測。初回80ms観測失敗は原因未確定のまま証跡保持、最終成功で消去しない。
+
+## 2026-10-26 — WAAPI Stage 2A Menu / Coin 観察モード（Issue #35）
+
+- main `1d0d7eeac4e6fcbe2dfb792dd69250e65af302b7`とPR #28/#32/#34のmergeを確認。同一依頼の既存Issue #35を再利用し、本文は変更しない。cleanな独立clone・専用branchで作業し、既存作業を削除しない。
+- 第一希望の独立preview DOMを採用。観察componentへゲームのsetterを渡さず、native currentTimeでpause/resume/seek/仮想1000/60ms stepを実行。controller/native状態を分離。本体Animation共有案は状態所有権とfillの混同を避けるため不採用。
+- Menuは独立CONTINUE→SETTINGS実測FLIPとeasing比較。本体の選択行所属を保持。Coinは既存arcの視覚観察だけを行い、通常COLLECTの1回100点・Reset契約を保持する。
+- 画面外/visibility/動き低減/再測定は取消・保持時間で停止再構成。モード終了/閉室はpreview破棄、次回0ms。本体mode往復は選択・得点・獲得済みを保持。旧ready/RAFは世代とAnimation同一性で拒否する。
+- 開発中のstep時刻基準、pending表示、説明の保持範囲を試験・独立レビューで訂正。Chromium range margin横超過、WebKit文字200% select intrinsic横超過も実測し修正する。初回timeout/検証ハーネス失敗と製品不具合を分離し記録を保持。検査上限・既存期待値・依存lockを変更しない。
+- 最終検証結果は[設計・検証記録](docs/maintenance/waapi-game-stage2a-20261025.md)と[独立レビュー](docs/maintenance/waapi-stage2a-independent-review.md)へ記録する。Stage2B/HP比較、新展示、公開は実施しない。
+- native実値表示追補前の全件成功: worker数1の環境指定でcheck成功、既存134＋新規33＝167成功/0失敗/0skip。lint/型/buildと独立build成功。既定並列の5秒timeoutは成功扱いにせず2run保存。テスト上限や検査対象を変えず、実行並列度のみ限定した。
+- native追補: WebKitのduration越え実値を観察位置と別表示し、nullを未取得として明記。さらにpause pending中に入力位置が進む実測を受け、入力時刻capture→pause→同値seekで位置を固定。独立3追加の変更前失敗→修正確認と実ブラウザprobeを分離して保存する。自然再生で中間入力に到達しなかった試行は合格へ変換しない。
+- step境界正規化前のコード: worker数1でcheck＋独立build成功、Node49＋Vitest121＝170成功/0失敗/0skip（既存134＋新36）。raw表示・入力時停止位置固定を含むソース/出力SHA-256をmanifestへ保存。ブラウザはこの出力で再検証する。
+- 最終境界版: native実値の終端超過を表示しつつ、stepは入力時nativeを範囲正規化してから加減算。隔離旧sourceは207.333ms対期待203.333msで1失敗、現7件成功。最終check＋独立build成功、既存134＋新37＝171成功/0失敗/0skip。旧167/170件版のログ/hashは別名で保持する。
+- 最終style版: 共通button/focus CSSへ切替buttonを追加し、WK390の旧33px/UA灰色を40px以上の既存表示へ統一。ロジック不変。全171件check/build成功、最終CSS focused6条件すべてPASS/pageerror0。全native時間経路6条件は直前同ロジック版であり、版を分けて記録。
+- 全native6条件48群は5PASS/1PARTIAL（WK390 Coin中間pause入力未到達）。別probeで3回の自然中間入力位置保持を補完したが初回PARTIALは保存。旧主要54群は機能失敗なし、既存title横超過のみPARTIAL。総合PARTIALを維持し、並列timeout・旧Battle不再現/根因未特定・未実機/VoiceOver/実背景化・CI不存在を開示する。Draft提出後は人間の判断待ち、merge/公開なし。

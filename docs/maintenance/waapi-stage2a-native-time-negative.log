@@ -1,0 +1,587 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-observation
+
+ ❯ tests/waapi-observation-independent.test.tsx (5 tests | 2 failed) 351ms
+   ✓ running 1ステップ進む samples the current native time, not the previous rendered frame 195ms
+   ✓ running 1ステップ戻る samples the current native time, not the previous rendered frame 43ms
+   ✓ pause samples the native currentTime between frames without rewinding 39ms
+   × labels native overshoot separately from the bounded observation position 49ms
+     → Unable to find an element with the text: /native currentTime: 224.00 ms/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Menu Selection Cursor 観察モード"[39m
+      [33mclass[39m=[32m"waapiObservation"[39m
+      [33mdata-controller[39m=[32m"paused"[39m
+    [36m>[39m
+      [36m<p>[39m
+        [0m観察専用プレビュー。本体の選択・得点は変えません。まず中間位置を予想し、停止・コマ送りで確かめよう。[0m
+      [36m</p>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"waapiPreviewStage waapiObservationStage"[39m
+        [33mdata-observation-stage[39m=[32m"true"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"gameMenu"[39m
+          [33mdata-observation-measure[39m=[32m"true"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mdata-observation-measure[39m=[32m"true"[39m
+            [33mdata-observation-start[39m=[32m""[39m
+          [36m>[39m
+            [0mCONTINUE[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mdata-observation-measure[39m=[32m"true"[39m
+          [36m>[39m
+            [0mCOLLECTION[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mdata-observation-end[39m=[32m""[39m
+            [33mdata-observation-measure[39m=[32m"true"[39m
+          [36m>[39m
+            [36m<i[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mdata-observation-target[39m=[32m"true"[39m
+            [36m>[39m
+              [0m▶[0m
+            [36m</i>[39m
+            [0mSETTINGS[0m
+          [36m</span>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<label>[39m
+        [0m観察のeasing[0m
+        [36m<select[39m
+          [33maria-label[39m=[32m"観察のeasing"[39m
+        [36m>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"cubic-bezier(.2,.8,.2,1)"[39m
+          [36m>[39m
+            [0mease-out[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"linear"[39m
+          [36m>[39m
+            [0mlinear[0m
+          [36m</option>[39m
+        [36m</select>[39m
+      [36m</label>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"waapiPreviewControls"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m再生 / 再開[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m一時停止[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m最初から再生[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m観察位置を先頭へ[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m1ステップ戻る[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mdisabled[39m=[32m""[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m1ステップ進む[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<label>[39m
+        [0m観察時間（ms）[0m
+        [36m<input[39m
+          [33maria-label[39m=[32m"観察時間（ms）"[39m
+          [33mmax[39m=[32m"220"[39m
+          [33mmin[39m=[32m"0"[39m
+          [33mstep[39m=[32m"any"[39m
+          [33mtype[39m=[32m"range"[39m
+          [33mvalue[39m=[32m"220"[39m
+        [36m/>[39m
+      [36m</label>[39m
+      [36m<output[39m
+        [33mdata-observation-reading[39m=[32m"true"[39m
+      [36m>[39m
+        [0m時間 [0m
+        [0m220.00[0m
+        [0m / [0m
+        [0m220[0m
+        [0m ms · [0m
+        [0m100.0[0m
+        [0m% · [0m
+        [0m終了位置[0m
+        [0m · controller: [0m
+        [0mpaused[0m
+        [0m · native playState: [0m
+        [0mpaused[0m
+      [36m</output>[39m
+      [36m<p>[39m
+        [0m再生は時間が進み、一時停止はその位置を保持。1ステップは仮想60fps相当の1000/60msで、ディスプレイの更新周波数ではありません。先頭へ戻す操作は観察だけをリセットします。[0m
+      [36m</p>[39m
+      [36m<p>[39m
+        [0mCONTINUE → SETTINGSの独立シナリオ。ease-outは通常と同じ減速、linearは等速。easingは途中の速さを変え、終了位置はSETTINGS行へのDOM所属で決まります。通常の選択は別の状態です。[0m
+      [36m</p>[39m
+      [36m<details>[39m
+        [36m<summary>[39m
+          [0m観察コードの要点[0m
+        [36m</summary>[39m
+        [36m<pre>[39m
+          [0m// 独立したプレビューDOMだけを操作
+const a = preview.animate(frames, { duration: 220, iterations: 1, fill: 'both' });
+a.pause(); a.currentTime = ms; // 0〜durationに制限
+// 再開: a.play() / 一時停止: a.pause()
+// 終了位置からもpause→currentTimeで戻れる
+// 取消: a.cancel()。ゲームの状態更新は呼ばない。[0m
+        [36m</pre>[39m
+      [36m</details>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+   × represents unresolved native time explicitly instead of claiming zero 23ms
+     → Unable to find an element with the text: /native currentTime: 未取得/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Coin Pickup Arc 観察モード"[39m
+      [33mclass[39m=[32m"waapiObservation"[39m
+      [33mdata-controller[39m=[32m"paused"[39m
+    [36m>[39m
+      [36m<p>[39m
+        [0m観察専用プレビュー。本体の選択・得点は変えません。まず中間位置を予想し、停止・コマ送りで確かめよう。[0m
+      [36m</p>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"waapiPreviewStage waapiObservationStage"[39m
+        [33mdata-observation-stage[39m=[32m"true"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"gameCoinScene"[39m
+          [33mdata-observation-measure[39m=[32m"true"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"observationCoin"[39m
+            [33mdata-observation-target[39m=[32m"true"[39m
+            [33mstyle[39m=[32m"--coin-x: 0px; --coin-y: 0px;"[39m
+          [36m>[39m
+            [0m¢[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"observationGoal"[39m
+            [33mdata-observation-goal[39m=[32m"true"[39m
+            [33mdata-observation-measure[39m=[32m"true"[39m
+          [36m>[39m
+            [0mGOAL（加点なし）[0m
+          [36m</span>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"waapiPreviewControls"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m再生 / 再開[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m一時停止[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m最初から再生[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m観察位置を先頭へ[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mdisabled[39m=[32m""[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m1ステップ戻る[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m1ステップ進む[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<label>[39m
+        [0m観察時間（ms）[0m
+        [36m<input[39m
+          [33maria-label[39m=[32m"観察時間（ms）"[39m
+          [33mmax[39m=[32m"650"[39m
+          [33mmin[39m=[32m"0"[39m
+          [33mstep[39m=[32m"any"[39m
+          [33mtype[39m=[32m"range"[39m
+          [33mvalue[39m=[32m"0"[39m
+        [36m/>[39m
+      [36m</label>[39m
+      [36m<output[39m
+        [33mdata-observation-reading[39m=[32m"true"[39m
+      [36m>[39m
+        [0m時間 [0m
+        [0m0.00[0m
+        [0m / [0m
+        [0m650[0m
+        [0m ms · [0m
+        [0m0.0[0m
+        [0m% · [0m
+        [0m開始位置[0m
+        [0m · controller: [0m
+        [0mpaused[0m
+        [0m · native playState: [0m
+        [0mpaused[0m
+      [36m</output>[39m
+      [36m<p>[39m
+        [0m再生は時間が進み、一時停止はその位置を保持。1ステップは仮想60fps相当の1000/60msで、ディスプレイの更新周波数ではありません。先頭へ戻す操作は観察だけをリセットします。[0m
+      [36m</p>[39m
+      [36m<p>[39m
+        [0m弧の高さ・透明度を時間指定で確認。終点に到達しても得点は増えません。通常モードのCOLLECTだけが得点を確定します。[0m
+      [36m</p>[39m
+      [36m<details>[39m
+        [36m<summary>[39m
+          [0m観察コードの要点[0m
+        [36m</summary>[39m
+        [36m<pre>[39m
+          [0m// 独立したプレビューDOMだけを操作
+const a = preview.animate(frames, { duration: 650, iterations: 1, fill: 'both' });
+a.pause(); a.currentTime = ms; // 0〜durationに制限
+// 再開: a.play() / 一時停止: a.pause()
+// 終了位置からもpause→currentTimeで戻れる
+// 取消: a.cancel()。ゲームの状態更新は呼ばない。[0m
+        [36m</pre>[39m
+      [36m</details>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/waapi-observation-independent.test.tsx > labels native overshoot separately from the bounded observation position
+TestingLibraryElementError: Unable to find an element with the text: /native currentTime: 224.00 ms/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Menu Selection Cursor 観察モード"[39m
+      [33mclass[39m=[32m"waapiObservation"[39m
+      [33mdata-controller[39m=[32m"paused"[39m
+    [36m>[39m
+      [36m<p>[39m
+        [0m観察専用プレビュー。本体の選択・得点は変えません。まず中間位置を予想し、停止・コマ送りで確かめよう。[0m
+      [36m</p>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"waapiPreviewStage waapiObservationStage"[39m
+        [33mdata-observation-stage[39m=[32m"true"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"gameMenu"[39m
+          [33mdata-observation-measure[39m=[32m"true"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mdata-observation-measure[39m=[32m"true"[39m
+            [33mdata-observation-start[39m=[32m""[39m
+          [36m>[39m
+            [0mCONTINUE[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mdata-observation-measure[39m=[32m"true"[39m
+          [36m>[39m
+            [0mCOLLECTION[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mdata-observation-end[39m=[32m""[39m
+            [33mdata-observation-measure[39m=[32m"true"[39m
+          [36m>[39m
+            [36m<i[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mdata-observation-target[39m=[32m"true"[39m
+            [36m>[39m
+              [0m▶[0m
+            [36m</i>[39m
+            [0mSETTINGS[0m
+          [36m</span>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<label>[39m
+        [0m観察のeasing[0m
+        [36m<select[39m
+          [33maria-label[39m=[32m"観察のeasing"[39m
+        [36m>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"cubic-bezier(.2,.8,.2,1)"[39m
+          [36m>[39m
+            [0mease-out[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"linear"[39m
+          [36m>[39m
+            [0mlinear[0m
+          [36m</option>[39m
+        [36m</select>[39m
+      [36m</label>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"waapiPreviewControls"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m再生 / 再開[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m一時停止[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m最初から再生[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m観察位置を先頭へ[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m1ステップ戻る[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mdisabled[39m=[32m""[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m1ステップ進む[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<label>[39m
+        [0m観察時間（ms）[0m
+        [36m<input[39m
+          [33maria-label[39m=[32m"観察時間（ms）"[39m
+          [33mmax[39m=[32m"220"[39m
+          [33mmin[39m=[32m"0"[39m
+          [33mstep[39m=[32m"any"[39m
+          [33mtype[39m=[32m"range"[39m
+          [33mvalue[39m=[32m"220"[39m
+        [36m/>[39m
+      [36m</label>[39m
+      [36m<output[39m
+        [33mdata-observation-reading[39m=[32m"true"[39m
+      [36m>[39m
+        [0m時間 [0m
+        [0m220.00[0m
+        [0m / [0m
+        [0m220[0m
+        [0m ms · [0m
+        [0m100.0[0m
+        [0m% · [0m
+        [0m終了位置[0m
+        [0m · controller: [0m
+        [0mpaused[0m
+        [0m · native playState: [0m
+        [0mpaused[0m
+      [36m</output>[39m
+      [36m<p>[39m
+        [0m再生は時間が進み、一時停止はその位置を保持。1ステップは仮想60fps相当の1000/60msで、ディスプレイの更新周波数ではありません。先頭へ戻す操作は観察だけをリセットします。[0m
+      [36m</p>[39m
+      [36m<p>[39m
+        [0mCONTINUE → SETTINGSの独立シナリオ。ease-outは通常と同じ減速、linearは等速。easingは途中の速さを変え、終了位置はSETTINGS行へのDOM所属で決まります。通常の選択は別の状態です。[0m
+      [36m</p>[39m
+      [36m<details>[39m
+        [36m<summary>[39m
+          [0m観察コードの要点[0m
+        [36m</summary>[39m
+        [36m<pre>[39m
+          [0m// 独立したプレビューDOMだけを操作
+const a = preview.animate(frames, { duration: 220, iterations: 1, fill: 'both' });
+a.pause(); a.currentTime = ms; // 0〜durationに制限
+// 再開: a.play() / 一時停止: a.pause()
+// 終了位置からもpause→currentTimeで戻れる
+// 取消: a.cancel()。ゲームの状態更新は呼ばない。[0m
+        [36m</pre>[39m
+      [36m</details>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/waapi-observation-independent.test.tsx:45:16
+     43|  fireEvent.click(screen.getByRole('button',{name:'一時停止'}));
+     44|  expect(Number((screen.getByRole('slider') as HTMLInputElement).value)…
+     45|  expect(screen.getByText(/native currentTime: 224.00 ms/)).toBeTruthy(…
+       |                ^
+     46|  expect(screen.getByText(/観察位置/)).toBeTruthy();
+     47| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/waapi-observation-independent.test.tsx > represents unresolved native time explicitly instead of claiming zero
+TestingLibraryElementError: Unable to find an element with the text: /native currentTime: 未取得/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Coin Pickup Arc 観察モード"[39m
+      [33mclass[39m=[32m"waapiObservation"[39m
+      [33mdata-controller[39m=[32m"paused"[39m
+    [36m>[39m
+      [36m<p>[39m
+        [0m観察専用プレビュー。本体の選択・得点は変えません。まず中間位置を予想し、停止・コマ送りで確かめよう。[0m
+      [36m</p>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"waapiPreviewStage waapiObservationStage"[39m
+        [33mdata-observation-stage[39m=[32m"true"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"gameCoinScene"[39m
+          [33mdata-observation-measure[39m=[32m"true"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"observationCoin"[39m
+            [33mdata-observation-target[39m=[32m"true"[39m
+            [33mstyle[39m=[32m"--coin-x: 0px; --coin-y: 0px;"[39m
+          [36m>[39m
+            [0m¢[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"observationGoal"[39m
+            [33mdata-observation-goal[39m=[32m"true"[39m
+            [33mdata-observation-measure[39m=[32m"true"[39m
+          [36m>[39m
+            [0mGOAL（加点なし）[0m
+          [36m</span>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"waapiPreviewControls"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m再生 / 再開[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m一時停止[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m最初から再生[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m観察位置を先頭へ[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mdisabled[39m=[32m""[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m1ステップ戻る[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0m1ステップ進む[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<label>[39m
+        [0m観察時間（ms）[0m
+        [36m<input[39m
+          [33maria-label[39m=[32m"観察時間（ms）"[39m
+          [33mmax[39m=[32m"650"[39m
+          [33mmin[39m=[32m"0"[39m
+          [33mstep[39m=[32m"any"[39m
+          [33mtype[39m=[32m"range"[39m
+          [33mvalue[39m=[32m"0"[39m
+        [36m/>[39m
+      [36m</label>[39m
+      [36m<output[39m
+        [33mdata-observation-reading[39m=[32m"true"[39m
+      [36m>[39m
+        [0m時間 [0m
+        [0m0.00[0m
+        [0m / [0m
+        [0m650[0m
+        [0m ms · [0m
+        [0m0.0[0m
+        [0m% · [0m
+        [0m開始位置[0m
+        [0m · controller: [0m
+        [0mpaused[0m
+        [0m · native playState: [0m
+        [0mpaused[0m
+      [36m</output>[39m
+      [36m<p>[39m
+        [0m再生は時間が進み、一時停止はその位置を保持。1ステップは仮想60fps相当の1000/60msで、ディスプレイの更新周波数ではありません。先頭へ戻す操作は観察だけをリセットします。[0m
+      [36m</p>[39m
+      [36m<p>[39m
+        [0m弧の高さ・透明度を時間指定で確認。終点に到達しても得点は増えません。通常モードのCOLLECTだけが得点を確定します。[0m
+      [36m</p>[39m
+      [36m<details>[39m
+        [36m<summary>[39m
+          [0m観察コードの要点[0m
+        [36m</summary>[39m
+        [36m<pre>[39m
+          [0m// 独立したプレビューDOMだけを操作
+const a = preview.animate(frames, { duration: 650, iterations: 1, fill: 'both' });
+a.pause(); a.currentTime = ms; // 0〜durationに制限
+// 再開: a.play() / 一時停止: a.pause()
+// 終了位置からもpause→currentTimeで戻れる
+// 取消: a.cancel()。ゲームの状態更新は呼ばない。[0m
+        [36m</pre>[39m
+      [36m</details>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/waapi-observation-independent.test.tsx:52:16
+     50|  a.currentTime=null;
+     51|  fireEvent.click(screen.getByRole('button',{name:'一時停止'}));
+     52|  expect(screen.getByText(/native currentTime: 未取得/)).toBeTruthy();
+       |                ^
+     53| });
+     54| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 3 passed (5)
+   Start at  05:32:29
+   Duration  3.21s (transform 250ms, setup 0ms, collect 465ms, tests 351ms, environment 1.24s, prepare 262ms)
+

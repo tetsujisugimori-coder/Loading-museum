@@ -1,0 +1,33 @@
+
+ RUN  v3.2.4 /tmp/loading-observation-boundary-review
+
+ ❯ tests/waapi-observation-independent.test.tsx (7 tests | 1 failed) 981ms
+   ✓ running 1ステップ進む samples the current native time, not the previous rendered frame  453ms
+   ✓ running 1ステップ戻る samples the current native time, not the previous rendered frame 88ms
+   ✓ pause samples the native currentTime between frames without rewinding 56ms
+   ✓ labels native overshoot separately from the bounded observation position 78ms
+   ✓ represents unresolved native time explicitly instead of claiming zero 142ms
+   ✓ pause pins the native time captured at input even when pause processing advances the native clock 87ms
+   × steps backward from the bounded end position when native time overshoots duration 72ms
+     → expected 207.33333333333334 to be close to 203.33333333333334, received difference is 4, but expected 5e-9
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/waapi-observation-independent.test.tsx > steps backward from the bounded end position when native time overshoots duration
+AssertionError: expected 207.33333333333334 to be close to 203.33333333333334, received difference is 4, but expected 5e-9
+ ❯ tests/waapi-observation-independent.test.tsx:71:24
+     69|  expect(Number((screen.getByRole('slider') as HTMLInputElement).value)…
+     70|  fireEvent.click(screen.getByRole('button',{name:'1ステップ戻る'}));
+     71|  expect(a.currentTime).toBeCloseTo(220-1000/60,8);
+       |                        ^
+     72|  expect(Number((screen.getByRole('slider') as HTMLInputElement).value)…
+     73| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed (7)
+   Start at  05:51:49
+   Duration  3.49s (transform 544ms, setup 0ms, collect 853ms, tests 981ms, environment 814ms, prepare 207ms)
+
