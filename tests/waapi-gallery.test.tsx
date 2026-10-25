@@ -255,16 +255,16 @@ describe("WAAPI標本ギャラリー操作", () => {
     ["ENEMY ATTACK", "PARRY"].forEach((name) => expect(within(card("Perfect Parry")).getByRole("button", { name })).not.toBeNull());
     ["ATTACK START", "DODGE LEFT", "DODGE RIGHT"].forEach((name) => expect(within(card("Dodge Afterimage")).getByRole("button", { name })).not.toBeNull());
     fireEvent.click(within(card("Falling Block Line Clear")).getByRole("button", { name: "DROP" }));
-    expect(result("Falling Block Line Clear")).toBe("DROP");
+    expect(result("Falling Block Line Clear")).toBe("CLEAR 1 ROW → COMPACT");
 
     const match = card("Match-3 Cascade");
     fireEvent.click(within(match).getByRole("button", { name: "SWAP" }));
-    expect(result("Match-3 Cascade")).toContain("NOT ADJACENT");
+    expect(result("Match-3 Cascade")).toContain("SELECT TWO ADJACENT GEMS");
     const gemButtons = match.querySelectorAll(".matchBoard button");
-    fireEvent.click(gemButtons[0]);
-    fireEvent.click(gemButtons[1]);
+    fireEvent.click(gemButtons[4]);
+    fireEvent.click(gemButtons[5]);
     fireEvent.click(within(match).getByRole("button", { name: "SWAP" }));
-    expect(result("Match-3 Cascade")).toContain("MATCH ×3");
+    expect(result("Match-3 Cascade")).toContain("MATCH 3");
 
     fireEvent.click(within(card("Pinball Bumper Hit")).getByRole("button", { name: "LAUNCH" }));
     expect(result("Pinball Bumper Hit")).toContain("LAUNCH");

@@ -1392,3 +1392,28 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 - AI 6件を固有グリフ・固有モーションへ変更し、個別カードと一括比較で同じ描画とキーフレームを共有した。
 - 統合前5件のデータ、render kind、DOM、CSSと、実在しないコード例APIを削除した。
 - データ定義、状態境界、直接操作、固有DOM、固有キーフレーム、停止cleanupをReact / Vitestテストで検証対象にした。
+
+## 2026-10-25 — WAAPI 5 P2 / 1 P3 状態整合修正
+
+- PR28 merge `85e2a030501e9d4c3edca9a6b70f14f8d1ca2d0e` を最新mainとして再確認し、独立ブランチで作業。PR31はDraft/未マージ、ブランチ・DOM11を変更しない。LOGとpackageの双方の追記は将来統合時にも保持する。
+- Match-3は行列隣接、実交換/消去/落下再判定、消去石×100点へ変更。補充なし有限盤面、不成立交換は復帰。Falling Blockは実占有状態を消去/下詰めし、実位置差をアニメーション化。段階的落下/点滅は省略し説明を一致。
+- HPは取消可能な360ms timerと世代guard、状態所有のバー。装備は所持品・装備・ATKを一状態から描画。照準は選択対象の子へ配置し固定座標を廃止。全館にWAAPI定義長を加算し9室/197展示、分類と検索は別集計。
+- 修正前DOM検査8件の失敗を確認。新規ゲーム13＋HP4の17件を追加。全checkはNode49＋Vitest39の88件を対象とし、lint/type/buildと合わせ最終commitで再確認する。初回symlink buildエラーはcheckout内の依存コピーで解消、依存更新なし。
+- Chromium141/WebKit26.0、765/375/390pxの6条件で対象操作・実幅/配置・連打・Reset・スクロール再表示・キーボード・カテゴリー/検索を確認。pageerror0。対象5カードの文字200%は収まるが、既存全館タイトルがモバイル文字200%で横超過するため総合PARTIAL。修正前mergeでも再現し対象外として保留。
+- 独立レビューでP0〜P2残件なし。P3の教材説明/コード例/軽減表示/件数の6指摘を修正。レビューはソース＋jsdom、実機保証ではない。
+- 既存150のID/名称/描画順は第0段階付録と差分0、WAAPI47 ID一意、合計197。AI6、console、既存modal、公開設定を維持。常設9/DOM17の旧集計定数は残存負債。全197の全操作は未検証。
+- 実機iPhone Safari/VoiceOver/ソフトキーボード/非表示タブは未検証。PR用CIは存在せずPages用のみなので、検査のための公開workflowを実行しない。新規Issueは作成せず既存#27/#29を関連参照する。
+- 詳細: [原因・設計・検査・残存負債](docs/maintenance/waapi-consistency-20261025.md)、[ブラウザ6条件](docs/maintenance/waapi-browser-results-20261025.json)。DOM17、DOM7/8/10、展示室focusの後続保守は変更せず引き継ぐ。
+
+記録: 2026-10-25 13:25 JST。
+- 目視追加修正: 375px Falling Blockの結果ラベルが最下段に重なる旧CSSを確認。Line/Match結果を独立行へ移し、実矩形の非重なり回帰を追加。2026-10-25 13:26 JST。
+
+## 2026-10-25 — PR #32 実連鎖・盤面履歴演出・途中軽減切替
+
+- 既存fix/waapi-state-consistency、HEAD 63ed9cdを確認し追加修正。PR #31は4852ae6のDraft/未マージで不変。新PR・merge・公開なし。
+- 初期3×4盤面の一般交換8/11で5→3石、2段連鎖800点を検証。各段の盤面/消去集合/token履歴を純関数で記録し、同じ結果を盤面・得点・WAAPI位置差へ使用。
+- 第一希望の交換→消去→落下→追加消去を装飾レイヤーで再生。論理結果は同期確定。fill/完了callback/遅延state更新なし。新操作開始・Reset・軽減ON・画面外・unmountで取消して確定盤面を露出する。
+- 対象4ゲームだけ軽減切替のAnimation取消を有効化。HPの世代管理とCSS軽減は維持。軽減OFFは次操作から再生。
+- 修正前4件失敗を固定、追加14件。既存88件を維持し計102件。独立レビューで再操作入力と旧duration/fill表示のP3を修正。ブラウザ結果・独立最終・最終HEADは設計記録へ追補。
+- 197定義、ID/名称/順序、集計、検索、Pages設定を保持。typewriter ID重複と全館title200%横超過は対象外。#31将来統合時はLOG/package両追記を保持する。
+- 最終製品check/build成功:102成功・失敗0・skip0。独立31件と一般盤面315交換の照合成功、追加P3 2件修正後の残件なし。native WAAPIとhover CSS Transitionを分離してブラウザ検証。実機Safari/VoiceOver未検証、実CI成功とは扱わない。最終6条件JSONを設計記録から参照。

@@ -191,9 +191,18 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
   const [comboIndex, setComboIndex] = useState(0);
   const [hp, setHp] = useState(72);
   const [trailHp, setTrailHp] = useState(72);
+  const hpValue = useRef(72);
+  const hpTimer = useRef<number | null>(null);
+  const hpGeneration = useRef(0);
+  const cancelHpUpdate = useCallback(() => {
+    hpGeneration.current += 1;
+    if (hpTimer.current !== null) window.clearTimeout(hpTimer.current);
+    hpTimer.current = null;
+    setTrailHp(hpValue.current);
+  }, []);
   const [menuIndex, setMenuIndex] = useState(0);
   const [cardStatus, setCardStatus] = useState("READY");
-  const stop = useCallback(() => { animations.current.forEach((item) => item.cancel()); animations.current = []; }, []);
+  const stop = useCallback(() => { cancelHpUpdate(); animations.current.forEach((item) => item.cancel()); animations.current = []; }, [cancelHpUpdate]);
   const run = useCallback(() => {
     const stage = stageRef.current;
     const target = stage?.querySelector<HTMLElement>("[data-motion-target]");
@@ -212,12 +221,18 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
     steps?.forEach((item) => { const node = stage.querySelector<HTMLElement>(item.target); if (node) animateElement(node, { ...definition, keyframes: item.keyframes, options: item.options }, animations); });
     if (sample.render === "coin") Promise.resolve(main.finished).then(() => setScore((value) => value + 100)).catch(() => undefined);
   }, [reducedMotion, sample, stop]);
-  const reset = useCallback(() => { stop(); setRhythm("READY"); setScore(0); setComboIndex(0); setHp(72); setTrailHp(72); setMenuIndex(0); setCardStatus("READY"); }, [stop]);
+  const reset = useCallback(() => { stop(); setRhythm("READY"); setScore(0); setComboIndex(0); hpValue.current = 72; setHp(72); setTrailHp(72); setMenuIndex(0); setCardStatus("READY"); }, [stop]);
   useEffect(() => {
+    // HP is driven by interaction state, never by the generic entry animation.
+    if (sample.render === "hp") return;
     if (!active) return;
     const frame = window.requestAnimationFrame(run);
     return () => window.cancelAnimationFrame(frame);
-  }, [active, run]);
+  }, [active, run, sample.render]);
+  useEffect(() => {
+    if (sample.render !== "hp" || active) return;
+    stop();
+  }, [active, sample.render, stop]);
   useEffect(() => stop, [stop]);
 
   const judge = (value: "PERFECT" | "GOOD" | "MISS") => {
@@ -231,7 +246,21 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
     animateElement(target, { ...sample.normal, keyframes: reducedMotion ? [{ opacity: 1 }, { opacity: 1 }] : frames[value] }, animations);
   };
   const addCombo = () => { const next = Math.min(comboIndex + 1, 3); setComboIndex(next); const node = stageRef.current?.querySelector<HTMLElement>("[data-motion-target]"); if (node && !reducedMotion) { node.style.setProperty("--combo-scale", [1, 1.12, 1.24, 1.34][next].toString()); animateElement(node, sample.normal, animations); } };
-  const changeHp = (delta: number) => { const next = Math.max(0, Math.min(100, hp + delta)); setHp(next); if (reducedMotion || delta > 0) setTrailHp(next); else window.setTimeout(() => setTrailHp(next), 360); };
+  const changeHp = (delta: number) => {
+    cancelHpUpdate();
+    const next = Math.max(0, Math.min(100, hpValue.current + delta));
+    hpValue.current = next;
+    setHp(next);
+    if (reducedMotion || delta > 0 || !active) setTrailHp(next);
+    else {
+      const generation = hpGeneration.current;
+      hpTimer.current = window.setTimeout(() => {
+        if (generation !== hpGeneration.current) return;
+        hpTimer.current = null;
+        setTrailHp(next);
+      }, 360);
+    }
+  };
   const moveMenu = (delta: number) => setMenuIndex((value) => Math.max(0, Math.min(2, value + delta)));
   const cardAction = (mode: "shuffle" | "deal" | "select" | "drag" | "play" | "resolve" | "discard") => {
     setCardStatus(mode.toUpperCase());
@@ -298,7 +327,7 @@ function SampleCard({ sample, active, reducedMotion }: { sample: WaapiSample; ac
       {detailsOpen && <div id={`${sample.id}-details`} className="waapiCodePanel">
         <p><strong>現在の表示:</strong> {reducedMotion ? "軽減表示" : "通常表示"}</p>
         <pre><code>{formatAnimationCode(sample, reducedMotion)}</code></pre>
-        <dl><div><dt>duration</dt><dd>{String(motion.options.duration)}ms</dd></div><div><dt>easing</dt><dd>{String(motion.options.easing)}</dd></div><div><dt>iterations / fill</dt><dd>{String(motion.options.iterations)} / {String(motion.options.fill)}</dd></div></dl>
+        <dl><div><dt>duration</dt><dd>{sample.render === "match3" ? reducedMotion ? "Animationなし（即時表示）" : "320 + 連鎖段数 × 580 ms（2段: 1480 ms）" : `${String(motion.options.duration)}ms`}</dd></div><div><dt>easing</dt><dd>{sample.render === "match3" ? reducedMotion ? "なし" : "linear" : String(motion.options.easing)}</dd></div><div><dt>iterations / fill</dt><dd>{sample.render === "match3" ? reducedMotion ? "なし / なし" : "1 / none" : `${String(motion.options.iterations)} / ${String(motion.options.fill)}`}</dd></div></dl>
         <p><strong>何が起きるか:</strong> {motion.explanation}</p><p><strong>実装上の注意:</strong> {sample.avoidFor}では使用を避け、状態は文章でも伝えます。</p><p><strong>軽減時:</strong> {sample.reducedMotionDescription}</p>
       </div>}
     </article>
@@ -434,7 +463,7 @@ export function WaapiSampleGallery() {
     <div className="waapiGalleryDivider" />
     <button type="button" className="waapiGalleryToggle" aria-expanded={open} aria-controls="waapi-gallery-panel" onClick={toggleGallery}><span>SPECIMEN CABINET / WAAPI</span><strong id="waapi-gallery-title">{open ? "サンプル一覧を閉じる" : "サンプル一覧を見る"}（{waapiSampleCount}）</strong><span aria-hidden="true">{open ? "↑" : "↓"}</span></button>
     {open && <div id="waapi-gallery-panel" className="waapiGalleryPanel">
-      <div className="waapiGalleryIntro"><p>47件を、名前・見た目・入力・判定・結果・キーフレームが一致する個別標本として展示します。ゲーム例は一般化した操作と状態変化、AI例は公式資料で確認した機能と明記した抽象的再構成です。</p><ul className="waapiCategoryCounts">{categoryCounts.map(({ category, count }) => <li key={category}><span>{category}</span><b>{count}</b></li>)}</ul></div>
+      <div className="waapiGalleryIntro"><p>{waapiSampleCount}件を、名前・見た目・入力・判定・結果・キーフレームが一致する個別標本として展示します。ゲーム例は一般化した操作と状態変化、AI例は公式資料で確認した機能と明記した抽象的再構成です。</p><ul className="waapiCategoryCounts">{categoryCounts.map(({ category, count }) => <li key={category}><span>{category}</span><b>{count}</b></li>)}</ul></div>
       <aside className="waapiReducedGuide"><h3>Reduced motion（動きを減らす設定）</h3><p>OSやブラウザの設定をWebサイトが受け取り、大きな移動・反復・回転を避ける仕組みです。この展示では動きを単に消すのではなく、短いフェード、枠線、静的な進捗へ置き換えて意味を保ちます。現在は<strong>{reducedMotion ? "軽減表示" : "通常表示"}</strong>です。</p></aside>
       <div className="waapiFilters"><label className="waapiSearch">検索<input value={query} onChange={(event) => { setQuery(event.target.value); setVisibleIds(new Set()); }} placeholder="名前・用途・年代・説明を検索" /></label>{filterKeys.map((key) => <label key={key}>{filterLabels[key]}<select value={filters[key]} onChange={(event) => { setFilters((current) => ({ ...current, [key]: event.target.value })); setVisibleIds(new Set()); }}><option value="">すべて</option>{(options[key] as string[]).map((option) => <option key={option} value={option}>{option}</option>)}</select></label>)}<button type="button" onClick={clearFilters}>絞り込みを解除</button></div>
       <p className="waapiResults" aria-live="polite">{filteredSamples.length} / {waapiSampleCount} samples</p>
