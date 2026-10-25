@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "head": "406bdbddada5e0783d6b9ce654ceea9788a19040",
+  "node": "v24.22.1",
+  "npm": "11.9.0",
+  "cpu_count": 9,
+  "affinity_count": 9,
+  "cgroup_cpu_max": null,
+  "product_hashes": {
+    "package.json": "e2f22df877eb045fc38a5c1548a158d2b1dcfd45b6780d4ba935008bce1cfb30",
+    "package-lock.json": "8052a2a9f829b9f926cc2664ddf4125cc1fba676299ce32c6aa92eed0474c0df",
+    "app/components/WaapiSampleGallery.tsx": "9069e4ae3e13646cfc63f02a02b2336742cc0ab8f2a7a9a4a5bc48d11ccf83d8",
+    "app/components/WaapiGameObservation.tsx": "443ef345a3389ec748d94d3a546c3c428071760773544bb0844895030c4e1b27"
+  },
+  "measurement_notes": [
+    "Process list and CPU counters are namespace-visible, not proof that the host had no other workloads.",
+    "No concurrent browser/build was intentionally started by this verification team.",
+    "Each npm run check includes lint, typecheck, build, Node and Vitest.",
+    "No test expectation, test count, package configuration or 5000ms timeout is modified.",
+    "Synthetic parser negative controls passed; they are not product tests."
+  ],
+  "runs": [
+    {
+      "name": "default-1",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "environment_overrides": {},
+      "started_at": "2026-10-25T23:06:11.552550+00:00",
+      "samples": [
+        {
+          "at": "2026-10-25T23:06:11.555963+00:00",
+          "loadavg": "0.27 0.20 0.13 5/516 20\n",
+          "cpu_stat": [
+            "cpu  327416 8 120259 12034102 3618 0 8994 1182663 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0 11.7 codex\n      2       1 12.3 python\n     20       2  0.0 npm\n     21       2  0.0 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:13.567951+00:00",
+          "loadavg": "0.27 0.20 0.13 3/549 52\n",
+          "cpu_stat": [
+            "cpu  327496 8 120327 12035611 3618 0 8996 1182863 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  3.4 codex\n      2       1  3.2 python\n     20       2 57.4 npm run check\n     33      20  0.0 sh\n     34      33  108 npm run lint\n     46      34  0.0 sh\n     47      46 87.5 MainThread\n     53       2  100 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:15.582969+00:00",
+          "loadavg": "0.33 0.22 0.13 4/554 59\n",
+          "cpu_stat": [
+            "cpu  327551 8 120373 12037188 3650 0 9005 1183018 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  2.0 codex\n      2       1  1.8 python\n     20       2 28.7 npm run check\n     33      20  0.0 sh\n     34      33 36.7 npm run lint\n     46      34  0.0 sh\n     47      46 91.2 MainThread\n     60       2  100 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:17.607452+00:00",
+          "loadavg": "0.33 0.22 0.13 3/554 60\n",
+          "cpu_stat": [
+            "cpu  327605 8 120425 12038763 3669 0 9011 1183173 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  1.4 codex\n      2       1  1.3 python\n     20       2 19.1 npm run check\n     33      20  0.0 sh\n     34      33 22.0 npm run lint\n     46      34  0.0 sh\n     47      46 95.9 MainThread\n     61       2  0.0 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:19.618597+00:00",
+          "loadavg": "0.38 0.23 0.14 2/555 61\n",
+          "cpu_stat": [
+            "cpu  327690 8 120474 12040278 3688 0 9017 1183352 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  1.1 codex\n      2       1  1.0 python\n     20       2 15.5 npm run check\n     33      20  0.0 sh\n     34      33 16.6 npm run lint\n     46      34  0.0 sh\n     47      46  104 MainThread\n     62       2  0.0 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:21.628125+00:00",
+          "loadavg": "0.38 0.23 0.14 3/555 62\n",
+          "cpu_stat": [
+            "cpu  327780 8 120533 12041771 3696 0 9020 1183542 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.9 codex\n      2       1  0.8 python\n     20       2 13.2 npm run check\n     33      20  0.0 sh\n     34      33 16.2 npm run lint\n     46      34  0.0 sh\n     47      46  109 MainThread\n     63       2  100 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:23.639639+00:00",
+          "loadavg": "0.38 0.23 0.14 2/555 63\n",
+          "cpu_stat": [
+            "cpu  327948 8 120587 12043154 3698 0 9023 1183798 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.7 codex\n      2       1  0.7 python\n     20       2 11.0 npm run check\n     33      20  0.0 sh\n     34      33 13.3 npm run lint\n     46      34  0.0 sh\n     47      46  124 MainThread\n     64       2  100 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:25.661417+00:00",
+          "loadavg": "0.59 0.27 0.15 4/556 64\n",
+          "cpu_stat": [
+            "cpu  328120 8 120620 12044572 3698 0 9024 1184052 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.6 codex\n      2       1  0.6 python\n     20       2  9.4 npm run check\n     33      20  0.0 sh\n     34      33 11.2 npm run lint\n     46      34  0.0 sh\n     47      46  134 MainThread\n     65       2 50.0 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:27.685248+00:00",
+          "loadavg": "0.59 0.27 0.15 4/556 65\n",
+          "cpu_stat": [
+            "cpu  328273 8 120650 12046027 3698 0 9026 1184280 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.5 codex\n      2       1  0.5 python\n     20       2  8.3 npm run check\n     33      20  0.0 sh\n     34      33  9.7 npm run lint\n     46      34  0.0 sh\n     47      46  139 MainThread\n     66       2  100 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:29.703770+00:00",
+          "loadavg": "0.62 0.29 0.16 2/555 66\n",
+          "cpu_stat": [
+            "cpu  328409 8 120697 12047451 3698 0 9027 1184538 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.5 codex\n      2       1  0.5 python\n     20       2  7.3 npm run check\n     33      20  0.0 sh\n     34      33  8.6 npm run lint\n     46      34  0.0 sh\n     47      46  145 MainThread\n     67       2  0.0 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:31.719955+00:00",
+          "loadavg": "0.62 0.29 0.16 3/555 67\n",
+          "cpu_stat": [
+            "cpu  328558 8 120722 12048920 3698 0 9029 1184748 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.4 codex\n      2       1  0.4 python\n     20       2  6.6 npm run check\n     33      20  0.0 sh\n     34      33  7.7 npm run lint\n     46      34  0.0 sh\n     47      46  147 MainThread\n     68       2 50.0 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:33.747540+00:00",
+          "loadavg": "0.62 0.29 0.16 2/554 68\n",
+          "cpu_stat": [
+            "cpu  328691 8 120748 12050416 3698 0 9030 1184949 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.4 codex\n      2       1  0.4 python\n     20       2  6.0 npm run check\n     33      20  0.0 sh\n     34      33  6.9 npm run lint\n     46      34  0.0 sh\n     47      46  147 MainThread\n     69       2  100 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:35.769065+00:00",
+          "loadavg": "0.65 0.30 0.16 2/554 69\n",
+          "cpu_stat": [
+            "cpu  328888 8 120772 12051803 3699 0 9032 1185204 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.3 codex\n      2       1  0.4 python\n     20       2  5.5 npm run check\n     33      20  0.0 sh\n     34      33  6.3 npm run lint\n     46      34  0.0 sh\n     47      46  151 MainThread\n     70       2 66.6 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:37.805649+00:00",
+          "loadavg": "0.65 0.30 0.16 2/554 70\n",
+          "cpu_stat": [
+            "cpu  329051 8 120777 12053295 3699 0 9032 1185405 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.3 codex\n      2       1  0.4 python\n     20       2  5.1 npm run check\n     33      20  0.0 sh\n     34      33  5.8 npm run lint\n     46      34  0.0 sh\n     47      46  151 MainThread\n     71       2  0.0 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:39.816957+00:00",
+          "loadavg": "0.92 0.36 0.18 2/555 71\n",
+          "cpu_stat": [
+            "cpu  329175 8 120786 12054762 3699 0 9034 1185686 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.3 codex\n      2       1  0.3 python\n     20       2  4.7 npm run check\n     33      20  0.0 sh\n     34      33  5.4 npm run lint\n     46      34  0.0 sh\n     47      46  151 MainThread\n     72       2  100 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:41.849274+00:00",
+          "loadavg": "0.92 0.36 0.18 2/537 80\n",
+          "cpu_stat": [
+            "cpu  329313 8 120803 12056263 3699 0 9035 1185902 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.3 codex\n      2       1  0.3 python\n     20       2  4.4 npm run check\n     33      20  0.0 sh\n     73      33  100 MainThread\n     81       2  0.0 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:43.860040+00:00",
+          "loadavg": "0.92 0.36 0.18 2/551 94\n",
+          "cpu_stat": [
+            "cpu  329476 8 120853 12057681 3703 0 9038 1186127 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.3 codex\n      2       1  0.3 python\n     20       2  4.1 npm run check\n     33      20  0.0 sh\n     73      33 69.9 npm run typeche\n     86      73  0.0 sh\n     87      86  232 MainThread\n     95       2  0.0 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:45.874920+00:00",
+          "loadavg": "1.17 0.42 0.20 4/550 95\n",
+          "cpu_stat": [
+            "cpu  329599 8 120880 12059162 3716 0 9042 1186337 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.2 codex\n      2       1  0.3 python\n     20       2  3.9 npm run check\n     33      20  0.0 sh\n     73      33 40.7 npm run typeche\n     86      73  0.0 sh\n     87      86  164 MainThread\n     96       2  0.0 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:47.939443+00:00",
+          "loadavg": "1.17 0.42 0.20 4/551 96\n",
+          "cpu_stat": [
+            "cpu  329720 8 120909 12060627 3717 0 9046 1186624 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.2 codex\n      2       1  0.4 python\n     20       2  3.6 npm run check\n     33      20  0.0 sh\n     73      33 28.8 npm run typeche\n     86      73  0.0 sh\n     87      86  158 MainThread\n     97       2 50.0 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:49.964039+00:00",
+          "loadavg": "1.16 0.43 0.21 3/551 97\n",
+          "cpu_stat": [
+            "cpu  329851 8 120928 12062099 3717 0 9048 1186873 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.2 codex\n      2       1  0.4 python\n     20       2  3.4 npm run check\n     33      20  0.0 sh\n     73      33 21.7 npm run typeche\n     86      73  0.0 sh\n     87      86  158 MainThread\n     98       2  100 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:51.996035+00:00",
+          "loadavg": "1.16 0.43 0.21 3/551 98\n",
+          "cpu_stat": [
+            "cpu  330026 8 120940 12063550 3717 0 9051 1187105 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.2 codex\n      2       1  0.4 python\n     20       2  3.3 npm run check\n     33      20  0.0 sh\n     73      33 17.4 npm run typeche\n     86      73  0.0 sh\n     87      86  163 MainThread\n     99       2 50.0 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:54.020787+00:00",
+          "loadavg": "1.14 0.44 0.21 2/552 99\n",
+          "cpu_stat": [
+            "cpu  330148 8 120961 12065038 3718 0 9054 1187326 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.2 codex\n      2       1  0.3 python\n     20       2  3.1 npm run check\n     33      20  0.0 sh\n     73      33 14.6 npm run typeche\n     86      73  0.0 sh\n     87      86  156 MainThread\n    100       2  0.0 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:56.041115+00:00",
+          "loadavg": "1.14 0.44 0.21 2/552 100\n",
+          "cpu_stat": [
+            "cpu  330255 8 120968 12066583 3718 0 9055 1187503 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.2 codex\n      2       1  0.3 python\n     20       2  3.0 npm run check\n     33      20  0.0 sh\n     73      33 12.5 npm run typeche\n     86      73  0.0 sh\n     87      86  152 MainThread\n    101       2  100 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:06:58.071405+00:00",
+          "loadavg": "1.14 0.44 0.21 3/552 101\n",
+          "cpu_stat": [
+            "cpu  330356 8 120977 12068140 3718 0 9055 1187694 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.2 codex\n      2       1  0.3 python\n     20       2  2.8 npm run check\n     33      20  0.0 sh\n     73      33 10.9 npm run typeche\n     86      73  0.0 sh\n     87      86  148 MainThread\n    102       2 66.6 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:07:00.099750+00:00",
+          "loadavg": "1.13 0.45 0.22 2/552 102\n",
+          "cpu_stat": [
+            "cpu  330458 8 120986 12069695 3718 0 9056 1187866 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.2 codex\n      2       1  0.3 python\n     20       2  2.7 npm run check\n     33      20  0.0 sh\n     73      33  9.7 npm run typeche\n     86      73  0.0 sh\n     87      86  145 MainThread\n    103       2  100 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:07:02.116505+00:00",
+          "loadavg": "1.13 0.45 0.22 3/552 103\n",
+          "cpu_stat": [
+            "cpu  330575 8 120998 12071230 3718 0 9056 1188034 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.1 codex\n      2       1  0.3 python\n     20       2  2.6 npm run check\n     33      20  0.0 sh\n     73      33  8.8 npm run typeche\n     86      73  0.0 sh\n     87      86  144 MainThread\n    104       2  100 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:07:04.140614+00:00",
+          "loadavg": "1.12 0.46 0.22 3/534 104\n",
+          "cpu_stat": [
+            "cpu  330678 8 121011 12072770 3718 0 9057 1188236 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.1 codex\n      2       1  0.3 python\n     20       2  2.5 npm run check\n     33      20  0.0 sh\n    105       2 50.0 ps\n    106      33  0.0 node\n"
+        },
+        {
+          "at": "2026-10-25T23:07:06.169835+00:00",
+          "loadavg": "1.12 0.46 0.22 2/564 139\n",
+          "cpu_stat": [
+            "cpu  330777 8 121053 12074321 3719 0 9061 1188404 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.1 codex\n      2       1  0.3 python\n     20       2  2.4 npm run check\n     33      20  0.0 sh\n    106      33 58.9 npm test\n    118     106  0.0 sh\n    119     118 91.1 npm run build\n    131     119  0.0 sh\n    132     131  111 MainThread\n    140       2  100 ps\n"
+        },
+        {
+          "at": "2026-10-25T23:07:08.188136+00:00",
+          "loadavg": "1.12 0.46 0.22 6/578 154\n",
+          "cpu_stat": [
+            "cpu  330865 8 121086 12075871 3734 0 9064 1188573 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.1 codex\n      2       1  0.3 python\n     20       2  2.3 npm run check\n     33      20  0.0 sh\n    106      33 29.7 npm test\n    118     106  0.0 sh\n    119     118 31.2 npm run build\n    131     119  0.0 sh\n    132     131  111 MainThread\n    155       2  0.0 ps\n"
+        }
+      ],
+      "exit_code": 1,
+      "finished_at": "2026-10-25T23:07:10.206181+00:00",
+      "elapsed_seconds": 58.655,
+      "child_cpu_user_seconds": 70.037,
+      "child_cpu_system_seconds": 13.391,
+      "log": "default-1.log",
+      "result": {
+        "node": {},
+        "vitest_summary": null,
+        "failure_locations": [],
+        "timeout_mentions": 0,
+        "vitest_duration": []
+      }
+    }
+  ]
+}

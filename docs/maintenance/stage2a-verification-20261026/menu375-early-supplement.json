@@ -1,0 +1,272 @@
+[
+  {
+    "duration": 220,
+    "start": {
+      "clock": 9211,
+      "time": 0,
+      "state": "running",
+      "pending": true
+    },
+    "readyPlay": {
+      "clock": 9221,
+      "time": 11,
+      "state": "running",
+      "pending": false
+    },
+    "input": {
+      "clock": 9221,
+      "time": 11,
+      "state": "running",
+      "pending": false
+    },
+    "immediate": {
+      "clock": 9221,
+      "time": 11,
+      "state": "paused",
+      "pending": false
+    },
+    "readyPause": {
+      "clock": 9227,
+      "time": 11,
+      "state": "paused",
+      "pending": false
+    },
+    "held": {
+      "clock": 9329,
+      "time": 11,
+      "state": "paused",
+      "pending": false
+    },
+    "target": "Menu Selection Cursor",
+    "width": 375,
+    "repeat": 0,
+    "earlyInput": true,
+    "positionHeld": true,
+    "verdict": "PASS"
+  },
+  {
+    "duration": 220,
+    "start": {
+      "clock": 9841.000000000002,
+      "time": 0,
+      "state": "running",
+      "pending": true
+    },
+    "readyPlay": {
+      "clock": 9845,
+      "time": 220,
+      "state": "finished",
+      "pending": false
+    },
+    "input": {
+      "clock": 9845,
+      "time": 220,
+      "state": "finished",
+      "pending": false
+    },
+    "immediate": {
+      "clock": 9845,
+      "time": 220,
+      "state": "paused",
+      "pending": false
+    },
+    "readyPause": {
+      "clock": 9845,
+      "time": 220,
+      "state": "paused",
+      "pending": false
+    },
+    "held": {
+      "clock": 9958,
+      "time": 220,
+      "state": "paused",
+      "pending": false
+    },
+    "target": "Menu Selection Cursor",
+    "width": 375,
+    "repeat": 1,
+    "earlyInput": false,
+    "positionHeld": true,
+    "verdict": "EARLY_INPUT_MISSED"
+  },
+  {
+    "duration": 220,
+    "start": {
+      "clock": 10389,
+      "time": 0,
+      "state": "running",
+      "pending": true
+    },
+    "readyPlay": {
+      "clock": 10399,
+      "time": 14,
+      "state": "running",
+      "pending": false
+    },
+    "input": {
+      "clock": 10399,
+      "time": 14,
+      "state": "running",
+      "pending": false
+    },
+    "immediate": {
+      "clock": 10400,
+      "time": 14,
+      "state": "paused",
+      "pending": false
+    },
+    "readyPause": {
+      "clock": 10400,
+      "time": 14,
+      "state": "paused",
+      "pending": false
+    },
+    "held": {
+      "clock": 10500,
+      "time": 14,
+      "state": "paused",
+      "pending": false
+    },
+    "target": "Menu Selection Cursor",
+    "width": 375,
+    "repeat": 2,
+    "earlyInput": true,
+    "positionHeld": true,
+    "verdict": "PASS"
+  },
+  {
+    "duration": 220,
+    "start": {
+      "clock": 10842,
+      "time": 0,
+      "state": "running",
+      "pending": true
+    },
+    "readyPlay": {
+      "clock": 10851,
+      "time": 220,
+      "state": "finished",
+      "pending": false
+    },
+    "input": {
+      "clock": 10851,
+      "time": 220,
+      "state": "finished",
+      "pending": false
+    },
+    "immediate": {
+      "clock": 10851,
+      "time": 220,
+      "state": "paused",
+      "pending": false
+    },
+    "readyPause": {
+      "clock": 10852,
+      "time": 220,
+      "state": "paused",
+      "pending": false
+    },
+    "held": {
+      "clock": 10952,
+      "time": 220,
+      "state": "paused",
+      "pending": false
+    },
+    "target": "Menu Selection Cursor",
+    "width": 375,
+    "repeat": 3,
+    "earlyInput": false,
+    "positionHeld": true,
+    "verdict": "EARLY_INPUT_MISSED"
+  },
+  {
+    "duration": 220,
+    "start": {
+      "clock": 12428,
+      "time": 0,
+      "state": "running",
+      "pending": true
+    },
+    "readyPlay": {
+      "clock": 12464,
+      "time": 92,
+      "state": "running",
+      "pending": false
+    },
+    "input": {
+      "clock": 12464,
+      "time": 92,
+      "state": "running",
+      "pending": false
+    },
+    "immediate": {
+      "clock": 12471,
+      "time": 92,
+      "state": "paused",
+      "pending": false
+    },
+    "readyPause": {
+      "clock": 12477,
+      "time": 92,
+      "state": "paused",
+      "pending": false
+    },
+    "held": {
+      "clock": 12579,
+      "time": 92,
+      "state": "paused",
+      "pending": false
+    },
+    "target": "Menu Selection Cursor",
+    "width": 375,
+    "repeat": 4,
+    "earlyInput": false,
+    "positionHeld": true,
+    "verdict": "EARLY_INPUT_MISSED"
+  },
+  {
+    "duration": 220,
+    "start": {
+      "clock": 13523,
+      "time": 0,
+      "state": "running",
+      "pending": true
+    },
+    "readyPlay": {
+      "clock": 13560,
+      "time": 76,
+      "state": "running",
+      "pending": false
+    },
+    "input": {
+      "clock": 13560,
+      "time": 76,
+      "state": "running",
+      "pending": false
+    },
+    "immediate": {
+      "clock": 13565,
+      "time": 76,
+      "state": "paused",
+      "pending": false
+    },
+    "readyPause": {
+      "clock": 13569,
+      "time": 76,
+      "state": "paused",
+      "pending": false
+    },
+    "held": {
+      "clock": 13670,
+      "time": 76,
+      "state": "paused",
+      "pending": false
+    },
+    "target": "Menu Selection Cursor",
+    "width": 375,
+    "repeat": 5,
+    "earlyInput": false,
+    "positionHeld": true,
+    "verdict": "EARLY_INPUT_MISSED"
+  }
+]

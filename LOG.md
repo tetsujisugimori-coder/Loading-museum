@@ -1469,3 +1469,13 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 - 最終境界版: native実値の終端超過を表示しつつ、stepは入力時nativeを範囲正規化してから加減算。隔離旧sourceは207.333ms対期待203.333msで1失敗、現7件成功。最終check＋独立build成功、既存134＋新37＝171成功/0失敗/0skip。旧167/170件版のログ/hashは別名で保持する。
 - 最終style版: 共通button/focus CSSへ切替buttonを追加し、WK390の旧33px/UA灰色を40px以上の既存表示へ統一。ロジック不変。全171件check/build成功、最終CSS focused6条件すべてPASS/pageerror0。全native時間経路6条件は直前同ロジック版であり、版を分けて記録。
 - 全native6条件48群は5PASS/1PARTIAL（WK390 Coin中間pause入力未到達）。別probeで3回の自然中間入力位置保持を補完したが初回PARTIALは保存。旧主要54群は機能失敗なし、既存title横超過のみPARTIAL。総合PARTIALを維持し、並列timeout・旧Battle不再現/根因未特定・未実機/VoiceOver/実背景化・CI不存在を開示する。Draft提出後は人間の判断待ち、merge/公開なし。
+
+## 2026-10-26 Stage 2A 追加独立検証（Issue #35 / Draft PR #36）
+- 基準HEAD `406bdbddada5e0783d6b9ce654ceea9788a19040`、main `1d0d7eeac4e6fcbe2dfb792dd69250e65af302b7`。原clean作業を保全した独立worktreeで検証。製品コード・既存証拠・依存・期待値・5000ms上限・公開設定は変更しない。
+- [追加証拠一式](docs/maintenance/stage2a-verification-20261026/README.md)を新規保存。旧PARTIAL/FAILは解消済みとして書き換えない。
+- 既定check3回=170/1、170/1、171/0、worker1=170/1（成功/失敗、skip全0）。同じgallery試験timeout、既定116.617/103.068/84.166秒、逐次156.946秒。並列だけの原因と断定不可。
+- 最終source/CSSの新buildでnative全時間6条件。Ch3条件/WK765 PASS、WK390初回終端入力PARTIAL→同期待値再実行PASS、WK375開室ツールtimeout→再実行8群PARTIAL（Menu終端入力）。別native probeでMenu375の11/14ms保持を補完。Coin390は中間9回＋早期60/70/89/96ms保持、未到達試行も保存。対応Playwright1.56/native browserを使用、初期driver不一致は別記録。
+- Battle765同順3反復は未到達/固定1100ms条件FAIL/PASS。新たなtimer証拠は検査読取競合に整合するがassert読取時刻未記録で根因完全特定とはしない。旧空Assertionの根因不明を維持。
+- 通常復帰のCoin新規P2を独立再現：観察後Replay/COLLECT中の低減ONが旧Animationを取消さない。Ch/WK native＋独立代用品2対照成功/2回帰失敗。得点は維持、製品未修正。原因はobserved自動run抑止が取消責務も抑止すること。局所分離を修正提案、無断改修しない。
+- 通常Coinの持続的自動デモ抑止自体はIssue35の安全契約と整合しREADME説明を補足。WKMenu100ms取消失敗は別probeでIO通知遅延と1000ms以内idleを観測、元失敗同根因とは断定しない。
+- 独立最終推奨はFAILED / マージNO。N2修復と同一期待値再検証、品質ゲート原因切分けを優先。実機/VoiceOver/実背景化/OS文字拡大/公開版操作は未検証、既存title200%横超過/typewriter重複は別負債、全197展示PASSは主張しない。最終HEAD/tree/CI照合は提出時のPR/Issue追記で記録する。Draft未マージ維持、公開workflow未実行。

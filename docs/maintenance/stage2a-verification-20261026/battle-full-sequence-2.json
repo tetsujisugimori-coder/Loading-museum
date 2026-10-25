@@ -1,0 +1,2598 @@
+[
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "width": 765,
+    "checks": [
+      "menu all3 positions normal/CSS200 geometry keyboard reset",
+      "parry/dodge early success late both motion modes and reset during toggle"
+    ],
+    "errors": [],
+    "menu": [
+      {
+        "cursor": {
+          "top": 258,
+          "bottom": 270
+        },
+        "target": {
+          "top": 258,
+          "bottom": 270
+        },
+        "dy": 0,
+        "scale": 1,
+        "index": 0
+      },
+      {
+        "cursor": {
+          "top": 280,
+          "bottom": 292
+        },
+        "target": {
+          "top": 280,
+          "bottom": 292
+        },
+        "dy": 0,
+        "scale": 1,
+        "index": 1
+      },
+      {
+        "cursor": {
+          "top": 302,
+          "bottom": 314
+        },
+        "target": {
+          "top": 302,
+          "bottom": 314
+        },
+        "dy": 0,
+        "scale": 1,
+        "index": 2
+      },
+      {
+        "cursor": {
+          "top": 253,
+          "bottom": 277
+        },
+        "target": {
+          "top": 253,
+          "bottom": 277
+        },
+        "dy": 0,
+        "scale": 2,
+        "index": 0
+      },
+      {
+        "cursor": {
+          "top": 287,
+          "bottom": 311
+        },
+        "target": {
+          "top": 287,
+          "bottom": 311
+        },
+        "dy": 0,
+        "scale": 2,
+        "index": 1
+      },
+      {
+        "cursor": {
+          "top": 321,
+          "bottom": 345
+        },
+        "target": {
+          "top": 321,
+          "bottom": 345
+        },
+        "dy": 0,
+        "scale": 2,
+        "index": 2
+      }
+    ],
+    "timing": [
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 30,
+        "name": "Perfect Parry",
+        "motion": "no-preference",
+        "requested": 30
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "PERFECT PARRY",
+        "elapsed": 500,
+        "name": "Perfect Parry",
+        "motion": "no-preference",
+        "requested": 500
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 752,
+        "name": "Perfect Parry",
+        "motion": "no-preference",
+        "requested": 750
+      },
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 33,
+        "name": "Dodge Afterimage",
+        "motion": "no-preference",
+        "requested": 30
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "LEFT · S-RANK",
+        "elapsed": 500,
+        "name": "Dodge Afterimage",
+        "motion": "no-preference",
+        "requested": 500
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 750,
+        "name": "Dodge Afterimage",
+        "motion": "no-preference",
+        "requested": 750
+      },
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 30,
+        "name": "Perfect Parry",
+        "motion": "reduce",
+        "requested": 30
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "PERFECT PARRY",
+        "elapsed": 501,
+        "name": "Perfect Parry",
+        "motion": "reduce",
+        "requested": 500
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 750,
+        "name": "Perfect Parry",
+        "motion": "reduce",
+        "requested": 750
+      },
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 32,
+        "name": "Dodge Afterimage",
+        "motion": "reduce",
+        "requested": 30
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "LEFT · S-RANK",
+        "elapsed": 500,
+        "name": "Dodge Afterimage",
+        "motion": "reduce",
+        "requested": 500
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 751,
+        "name": "Dodge Afterimage",
+        "motion": "reduce",
+        "requested": 750
+      }
+    ],
+    "battleOffscreen": {
+      "text": "FIELD · INTERRUPTED",
+      "class": "waapiPreviewStage gameScene gameBattle sceneFIELD"
+    },
+    "status": "FAIL",
+    "failure": "{'afterMotion': 'READY'}",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/scratch/e622c1e9421e/loading-stage2a-verification/docs/maintenance/stage2a-verification-20261026/verify-battle-full-sequence-instrumented.py\", line 49, in <module>\n    c.get_by_role('button',name='ENCOUNTER',exact=True).click();q.emulate_media(reduced_motion='reduce');q.wait_for_timeout(1100);assert 'ENCOUNTER' not in c.locator('output').inner_text(), {'afterMotion':c.locator('output').inner_text()}\n                                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'afterMotion': 'READY'}\n",
+    "timerEvents": [
+      {
+        "kind": "set",
+        "id": 1,
+        "delay": null,
+        "clock": 3284.0000000000005
+      },
+      {
+        "kind": "fire",
+        "id": 1,
+        "delay": null,
+        "clock": 3649
+      },
+      {
+        "kind": "set",
+        "id": 2,
+        "delay": 650,
+        "clock": 4990
+      },
+      {
+        "kind": "fire",
+        "id": 2,
+        "delay": 650,
+        "clock": 8586
+      },
+      {
+        "kind": "clear",
+        "id": 2,
+        "clock": 8913
+      },
+      {
+        "kind": "set",
+        "id": 5,
+        "delay": 230,
+        "clock": 8913
+      },
+      {
+        "kind": "fire",
+        "id": 5,
+        "delay": 230,
+        "clock": 9143
+      },
+      {
+        "kind": "clear",
+        "id": 5,
+        "clock": 9156
+      },
+      {
+        "kind": "set",
+        "id": 6,
+        "delay": 230,
+        "clock": 9156
+      },
+      {
+        "kind": "fire",
+        "id": 6,
+        "delay": 230,
+        "clock": 9387
+      },
+      {
+        "kind": "clear",
+        "id": 6,
+        "clock": 9391
+      },
+      {
+        "kind": "set",
+        "id": 7,
+        "delay": 230,
+        "clock": 9391
+      },
+      {
+        "kind": "fire",
+        "id": 7,
+        "delay": 230,
+        "clock": 9976
+      },
+      {
+        "kind": "clear",
+        "id": 7,
+        "clock": 9982.000000000002
+      },
+      {
+        "kind": "set",
+        "id": 8,
+        "delay": 230,
+        "clock": 9982.000000000002
+      },
+      {
+        "kind": "button",
+        "text": "Reset",
+        "clock": 10173
+      },
+      {
+        "kind": "fire",
+        "id": 8,
+        "delay": 230,
+        "clock": 10213.000000000002
+      },
+      {
+        "kind": "clear",
+        "id": 8,
+        "clock": 10217
+      },
+      {
+        "kind": "set",
+        "id": 9,
+        "delay": 400,
+        "clock": 10217
+      },
+      {
+        "kind": "fire",
+        "id": 9,
+        "delay": 400,
+        "clock": 10617
+      },
+      {
+        "kind": "button",
+        "text": "↓ Down",
+        "clock": 10645
+      },
+      {
+        "kind": "clear",
+        "id": 9,
+        "clock": 10646
+      },
+      {
+        "kind": "set",
+        "id": 10,
+        "delay": 200,
+        "clock": 10646
+      },
+      {
+        "kind": "fire",
+        "id": 10,
+        "delay": 200,
+        "clock": 10846
+      },
+      {
+        "kind": "clear",
+        "id": 10,
+        "clock": 10849
+      },
+      {
+        "kind": "set",
+        "id": 11,
+        "delay": 40,
+        "clock": 10849
+      },
+      {
+        "kind": "fire",
+        "id": 11,
+        "delay": 40,
+        "clock": 10889
+      },
+      {
+        "kind": "clear",
+        "id": 11,
+        "clock": 10891
+      },
+      {
+        "kind": "set",
+        "id": 12,
+        "delay": 40,
+        "clock": 10891
+      },
+      {
+        "kind": "fire",
+        "id": 12,
+        "delay": 40,
+        "clock": 10931.000000000002
+      },
+      {
+        "kind": "clear",
+        "id": 12,
+        "clock": 10940
+      },
+      {
+        "kind": "set",
+        "id": 13,
+        "delay": 40,
+        "clock": 10940
+      },
+      {
+        "kind": "fire",
+        "id": 13,
+        "delay": 40,
+        "clock": 11021
+      },
+      {
+        "kind": "clear",
+        "id": 13,
+        "clock": 11025
+      },
+      {
+        "kind": "set",
+        "id": 14,
+        "delay": 40,
+        "clock": 11025
+      },
+      {
+        "kind": "fire",
+        "id": 14,
+        "delay": 40,
+        "clock": 11065
+      },
+      {
+        "kind": "clear",
+        "id": 14,
+        "clock": 11067
+      },
+      {
+        "kind": "set",
+        "id": 15,
+        "delay": 40,
+        "clock": 11067
+      },
+      {
+        "kind": "fire",
+        "id": 15,
+        "delay": 40,
+        "clock": 11136.000000000002
+      },
+      {
+        "kind": "clear",
+        "id": 15,
+        "clock": 11141
+      },
+      {
+        "kind": "set",
+        "id": 16,
+        "delay": 40,
+        "clock": 11141
+      },
+      {
+        "kind": "fire",
+        "id": 16,
+        "delay": 40,
+        "clock": 11182
+      },
+      {
+        "kind": "clear",
+        "id": 16,
+        "clock": 11191
+      },
+      {
+        "kind": "set",
+        "id": 17,
+        "delay": 40,
+        "clock": 11191
+      },
+      {
+        "kind": "button",
+        "text": "↓ Down",
+        "clock": 11217
+      },
+      {
+        "kind": "fire",
+        "id": 17,
+        "delay": 40,
+        "clock": 11233
+      },
+      {
+        "kind": "clear",
+        "id": 17,
+        "clock": 11237
+      },
+      {
+        "kind": "set",
+        "id": 18,
+        "delay": 40,
+        "clock": 11237
+      },
+      {
+        "kind": "fire",
+        "id": 18,
+        "delay": 40,
+        "clock": 11281
+      },
+      {
+        "kind": "clear",
+        "id": 18,
+        "clock": 11290.000000000002
+      },
+      {
+        "kind": "set",
+        "id": 19,
+        "delay": 40,
+        "clock": 11290.000000000002
+      },
+      {
+        "kind": "fire",
+        "id": 19,
+        "delay": 40,
+        "clock": 11330
+      },
+      {
+        "kind": "clear",
+        "id": 19,
+        "clock": 11342
+      },
+      {
+        "kind": "set",
+        "id": 20,
+        "delay": 40,
+        "clock": 11342
+      },
+      {
+        "kind": "fire",
+        "id": 20,
+        "delay": 40,
+        "clock": 11382
+      },
+      {
+        "kind": "clear",
+        "id": 20,
+        "clock": 11382
+      },
+      {
+        "kind": "set",
+        "id": 21,
+        "delay": 40,
+        "clock": 11382
+      },
+      {
+        "kind": "fire",
+        "id": 21,
+        "delay": 40,
+        "clock": 11423
+      },
+      {
+        "kind": "clear",
+        "id": 21,
+        "clock": 11424
+      },
+      {
+        "kind": "set",
+        "id": 22,
+        "delay": 40,
+        "clock": 11424
+      },
+      {
+        "kind": "fire",
+        "id": 22,
+        "delay": 40,
+        "clock": 11465
+      },
+      {
+        "kind": "clear",
+        "id": 22,
+        "clock": 11466.000000000002
+      },
+      {
+        "kind": "set",
+        "id": 23,
+        "delay": 40,
+        "clock": 11466.000000000002
+      },
+      {
+        "kind": "fire",
+        "id": 23,
+        "delay": 40,
+        "clock": 11506
+      },
+      {
+        "kind": "clear",
+        "id": 23,
+        "clock": 11507
+      },
+      {
+        "kind": "set",
+        "id": 24,
+        "delay": 40,
+        "clock": 11507
+      },
+      {
+        "kind": "fire",
+        "id": 24,
+        "delay": 40,
+        "clock": 11568
+      },
+      {
+        "kind": "clear",
+        "id": 24,
+        "clock": 11572.000000000002
+      },
+      {
+        "kind": "set",
+        "id": 25,
+        "delay": 40,
+        "clock": 11572.000000000002
+      },
+      {
+        "kind": "fire",
+        "id": 25,
+        "delay": 40,
+        "clock": 11663
+      },
+      {
+        "kind": "clear",
+        "id": 25,
+        "clock": 11668.000000000002
+      },
+      {
+        "kind": "set",
+        "id": 26,
+        "delay": 40,
+        "clock": 11668.000000000002
+      },
+      {
+        "kind": "fire",
+        "id": 26,
+        "delay": 40,
+        "clock": 11708
+      },
+      {
+        "kind": "clear",
+        "id": 26,
+        "clock": 11710
+      },
+      {
+        "kind": "set",
+        "id": 27,
+        "delay": 40,
+        "clock": 11710
+      },
+      {
+        "kind": "fire",
+        "id": 27,
+        "delay": 40,
+        "clock": 11752
+      },
+      {
+        "kind": "clear",
+        "id": 27,
+        "clock": 11754
+      },
+      {
+        "kind": "set",
+        "id": 28,
+        "delay": 40,
+        "clock": 11754
+      },
+      {
+        "kind": "fire",
+        "id": 28,
+        "delay": 40,
+        "clock": 11797
+      },
+      {
+        "kind": "button",
+        "text": "Reset",
+        "clock": 11819
+      },
+      {
+        "kind": "clear",
+        "id": 28,
+        "clock": 11819
+      },
+      {
+        "kind": "set",
+        "id": 29,
+        "delay": 40,
+        "clock": 11819
+      },
+      {
+        "kind": "fire",
+        "id": 29,
+        "delay": 40,
+        "clock": 11906
+      },
+      {
+        "kind": "clear",
+        "id": 29,
+        "clock": 11909
+      },
+      {
+        "kind": "set",
+        "id": 30,
+        "delay": 40,
+        "clock": 11909
+      },
+      {
+        "kind": "fire",
+        "id": 30,
+        "delay": 40,
+        "clock": 11950.000000000002
+      },
+      {
+        "kind": "clear",
+        "id": 30,
+        "clock": 12836
+      },
+      {
+        "kind": "set",
+        "id": 31,
+        "delay": 40,
+        "clock": 12836
+      },
+      {
+        "kind": "fire",
+        "id": 31,
+        "delay": 40,
+        "clock": 12940
+      },
+      {
+        "kind": "button",
+        "text": "Reset",
+        "clock": 12949
+      },
+      {
+        "kind": "clear",
+        "id": 31,
+        "clock": 12973
+      },
+      {
+        "kind": "set",
+        "id": 32,
+        "delay": 40,
+        "clock": 12973
+      },
+      {
+        "kind": "fire",
+        "id": 32,
+        "delay": 40,
+        "clock": 13014.000000000002
+      },
+      {
+        "kind": "clear",
+        "id": 32,
+        "clock": 13020
+      },
+      {
+        "kind": "set",
+        "id": 33,
+        "delay": 40,
+        "clock": 13020
+      },
+      {
+        "kind": "fire",
+        "id": 33,
+        "delay": 40,
+        "clock": 13124
+      },
+      {
+        "kind": "clear",
+        "id": 33,
+        "clock": 13155.000000000002
+      },
+      {
+        "kind": "set",
+        "id": 34,
+        "delay": 80,
+        "clock": 13155.000000000002
+      },
+      {
+        "kind": "fire",
+        "id": 34,
+        "delay": 80,
+        "clock": 13403
+      },
+      {
+        "kind": "clear",
+        "id": 34,
+        "clock": 13600
+      },
+      {
+        "kind": "set",
+        "id": 35,
+        "delay": 150,
+        "clock": 13600
+      },
+      {
+        "kind": "button",
+        "text": "↓ Down",
+        "clock": 13726
+      },
+      {
+        "kind": "fire",
+        "id": 35,
+        "delay": 150,
+        "clock": 13750
+      },
+      {
+        "kind": "clear",
+        "id": 35,
+        "clock": 13755
+      },
+      {
+        "kind": "set",
+        "id": 36,
+        "delay": 200,
+        "clock": 13755
+      },
+      {
+        "kind": "fire",
+        "id": 36,
+        "delay": 200,
+        "clock": 13961
+      },
+      {
+        "kind": "clear",
+        "id": 36,
+        "clock": 14003
+      },
+      {
+        "kind": "set",
+        "id": 37,
+        "delay": 180,
+        "clock": 14003
+      },
+      {
+        "kind": "fire",
+        "id": 37,
+        "delay": 180,
+        "clock": 14187.000000000002
+      },
+      {
+        "kind": "clear",
+        "id": 37,
+        "clock": 14194
+      },
+      {
+        "kind": "button",
+        "text": "↓ Down",
+        "clock": 14234
+      },
+      {
+        "kind": "button",
+        "text": "Reset",
+        "clock": 15186
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 15752
+      },
+      {
+        "kind": "button",
+        "text": "ENEMY ATTACK",
+        "clock": 15804
+      },
+      {
+        "kind": "set",
+        "id": 38,
+        "delay": 420,
+        "clock": 15805
+      },
+      {
+        "kind": "set",
+        "id": 39,
+        "delay": 30,
+        "clock": 15805
+      },
+      {
+        "kind": "fire",
+        "id": 39,
+        "delay": 30,
+        "clock": 15835
+      },
+      {
+        "kind": "button",
+        "text": "PARRY",
+        "clock": 15835
+      },
+      {
+        "kind": "clear",
+        "id": 38,
+        "clock": 15835
+      },
+      {
+        "kind": "set",
+        "id": 40,
+        "delay": 20,
+        "clock": 15836
+      },
+      {
+        "kind": "fire",
+        "id": 40,
+        "delay": 20,
+        "clock": 15856
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 15925
+      },
+      {
+        "kind": "button",
+        "text": "ENEMY ATTACK",
+        "clock": 15974
+      },
+      {
+        "kind": "set",
+        "id": 41,
+        "delay": 420,
+        "clock": 15974
+      },
+      {
+        "kind": "set",
+        "id": 42,
+        "delay": 500,
+        "clock": 15974
+      },
+      {
+        "kind": "fire",
+        "id": 41,
+        "delay": 420,
+        "clock": 16394.000000000004
+      },
+      {
+        "kind": "set",
+        "id": 43,
+        "delay": 260.0999999999964,
+        "clock": 16394.000000000004
+      },
+      {
+        "kind": "fire",
+        "id": 42,
+        "delay": 500,
+        "clock": 16474
+      },
+      {
+        "kind": "button",
+        "text": "PARRY",
+        "clock": 16474
+      },
+      {
+        "kind": "clear",
+        "id": 41,
+        "clock": 16474
+      },
+      {
+        "kind": "clear",
+        "id": 43,
+        "clock": 16474
+      },
+      {
+        "kind": "set",
+        "id": 44,
+        "delay": 20,
+        "clock": 16475
+      },
+      {
+        "kind": "fire",
+        "id": 44,
+        "delay": 20,
+        "clock": 16495
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 16591
+      },
+      {
+        "kind": "button",
+        "text": "ENEMY ATTACK",
+        "clock": 16643
+      },
+      {
+        "kind": "set",
+        "id": 45,
+        "delay": 420,
+        "clock": 16643
+      },
+      {
+        "kind": "set",
+        "id": 46,
+        "delay": 750,
+        "clock": 16643
+      },
+      {
+        "kind": "fire",
+        "id": 45,
+        "delay": 420,
+        "clock": 17063
+      },
+      {
+        "kind": "set",
+        "id": 47,
+        "delay": 260.1,
+        "clock": 17063
+      },
+      {
+        "kind": "fire",
+        "id": 47,
+        "delay": 260.1,
+        "clock": 17327
+      },
+      {
+        "kind": "fire",
+        "id": 46,
+        "delay": 750,
+        "clock": 17395
+      },
+      {
+        "kind": "button",
+        "text": "PARRY",
+        "clock": 17396
+      },
+      {
+        "kind": "clear",
+        "id": 45,
+        "clock": 17396
+      },
+      {
+        "kind": "clear",
+        "id": 47,
+        "clock": 17396
+      },
+      {
+        "kind": "set",
+        "id": 48,
+        "delay": 20,
+        "clock": 17396
+      },
+      {
+        "kind": "fire",
+        "id": 48,
+        "delay": 20,
+        "clock": 17417
+      },
+      {
+        "kind": "button",
+        "text": "ENEMY ATTACK",
+        "clock": 17537
+      },
+      {
+        "kind": "set",
+        "id": 49,
+        "delay": 420,
+        "clock": 17537
+      },
+      {
+        "kind": "set",
+        "id": 51,
+        "delay": 0,
+        "clock": 18723
+      },
+      {
+        "kind": "set",
+        "id": 52,
+        "delay": 0,
+        "clock": 18723
+      },
+      {
+        "kind": "set",
+        "id": 53,
+        "delay": 0,
+        "clock": 18723
+      },
+      {
+        "kind": "set",
+        "id": 54,
+        "delay": 0,
+        "clock": 18723
+      },
+      {
+        "kind": "set",
+        "id": 55,
+        "delay": 0,
+        "clock": 18723
+      },
+      {
+        "kind": "set",
+        "id": 56,
+        "delay": 0,
+        "clock": 18723
+      },
+      {
+        "kind": "set",
+        "id": 57,
+        "delay": 0,
+        "clock": 18723
+      },
+      {
+        "kind": "set",
+        "id": 58,
+        "delay": 0,
+        "clock": 18724
+      },
+      {
+        "kind": "set",
+        "id": 59,
+        "delay": 0,
+        "clock": 18724
+      },
+      {
+        "kind": "set",
+        "id": 60,
+        "delay": 0,
+        "clock": 18724
+      },
+      {
+        "kind": "set",
+        "id": 61,
+        "delay": 0,
+        "clock": 18724
+      },
+      {
+        "kind": "set",
+        "id": 62,
+        "delay": 0,
+        "clock": 18724
+      },
+      {
+        "kind": "fire",
+        "id": 49,
+        "delay": 420,
+        "clock": 19105
+      },
+      {
+        "kind": "fire",
+        "id": 51,
+        "delay": 0,
+        "clock": 19105
+      },
+      {
+        "kind": "fire",
+        "id": 52,
+        "delay": 0,
+        "clock": 19105
+      },
+      {
+        "kind": "fire",
+        "id": 53,
+        "delay": 0,
+        "clock": 19105
+      },
+      {
+        "kind": "fire",
+        "id": 54,
+        "delay": 0,
+        "clock": 19105
+      },
+      {
+        "kind": "fire",
+        "id": 55,
+        "delay": 0,
+        "clock": 19105
+      },
+      {
+        "kind": "fire",
+        "id": 56,
+        "delay": 0,
+        "clock": 19105
+      },
+      {
+        "kind": "fire",
+        "id": 57,
+        "delay": 0,
+        "clock": 19105
+      },
+      {
+        "kind": "fire",
+        "id": 58,
+        "delay": 0,
+        "clock": 19105
+      },
+      {
+        "kind": "fire",
+        "id": 59,
+        "delay": 0,
+        "clock": 19105
+      },
+      {
+        "kind": "fire",
+        "id": 60,
+        "delay": 0,
+        "clock": 19105
+      },
+      {
+        "kind": "fire",
+        "id": 61,
+        "delay": 0,
+        "clock": 19105
+      },
+      {
+        "kind": "fire",
+        "id": 62,
+        "delay": 0,
+        "clock": 19105
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 19335
+      },
+      {
+        "kind": "clear",
+        "id": 49,
+        "clock": 19335
+      },
+      {
+        "kind": "clear",
+        "id": 51,
+        "clock": 20645
+      },
+      {
+        "kind": "clear",
+        "id": 52,
+        "clock": 20645
+      },
+      {
+        "kind": "clear",
+        "id": 53,
+        "clock": 20645
+      },
+      {
+        "kind": "clear",
+        "id": 54,
+        "clock": 20645
+      },
+      {
+        "kind": "clear",
+        "id": 55,
+        "clock": 20645
+      },
+      {
+        "kind": "clear",
+        "id": 56,
+        "clock": 20645
+      },
+      {
+        "kind": "clear",
+        "id": 57,
+        "clock": 20645
+      },
+      {
+        "kind": "clear",
+        "id": 58,
+        "clock": 20645
+      },
+      {
+        "kind": "clear",
+        "id": 59,
+        "clock": 20645
+      },
+      {
+        "kind": "clear",
+        "id": 60,
+        "clock": 20645
+      },
+      {
+        "kind": "clear",
+        "id": 61,
+        "clock": 20645
+      },
+      {
+        "kind": "clear",
+        "id": 62,
+        "clock": 20645
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 21227
+      },
+      {
+        "kind": "button",
+        "text": "ATTACK START",
+        "clock": 21276
+      },
+      {
+        "kind": "set",
+        "id": 64,
+        "delay": 420,
+        "clock": 21276
+      },
+      {
+        "kind": "set",
+        "id": 65,
+        "delay": 30,
+        "clock": 21276
+      },
+      {
+        "kind": "fire",
+        "id": 65,
+        "delay": 30,
+        "clock": 21309
+      },
+      {
+        "kind": "button",
+        "text": "DODGE LEFT",
+        "clock": 21309
+      },
+      {
+        "kind": "clear",
+        "id": 64,
+        "clock": 21309
+      },
+      {
+        "kind": "set",
+        "id": 66,
+        "delay": 20,
+        "clock": 21310
+      },
+      {
+        "kind": "fire",
+        "id": 66,
+        "delay": 20,
+        "clock": 21330.000000000004
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 21426.000000000004
+      },
+      {
+        "kind": "button",
+        "text": "ATTACK START",
+        "clock": 21456
+      },
+      {
+        "kind": "set",
+        "id": 67,
+        "delay": 420,
+        "clock": 21457
+      },
+      {
+        "kind": "set",
+        "id": 68,
+        "delay": 500,
+        "clock": 21457
+      },
+      {
+        "kind": "fire",
+        "id": 67,
+        "delay": 420,
+        "clock": 21877
+      },
+      {
+        "kind": "set",
+        "id": 69,
+        "delay": 259.1,
+        "clock": 21877
+      },
+      {
+        "kind": "fire",
+        "id": 68,
+        "delay": 500,
+        "clock": 21957
+      },
+      {
+        "kind": "button",
+        "text": "DODGE LEFT",
+        "clock": 21957
+      },
+      {
+        "kind": "clear",
+        "id": 67,
+        "clock": 21957
+      },
+      {
+        "kind": "clear",
+        "id": 69,
+        "clock": 21957
+      },
+      {
+        "kind": "set",
+        "id": 70,
+        "delay": 20,
+        "clock": 21957
+      },
+      {
+        "kind": "fire",
+        "id": 70,
+        "delay": 20,
+        "clock": 21978
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 22044
+      },
+      {
+        "kind": "button",
+        "text": "ATTACK START",
+        "clock": 22082
+      },
+      {
+        "kind": "set",
+        "id": 71,
+        "delay": 420,
+        "clock": 22083.000000000004
+      },
+      {
+        "kind": "set",
+        "id": 72,
+        "delay": 750,
+        "clock": 22083.000000000004
+      },
+      {
+        "kind": "fire",
+        "id": 71,
+        "delay": 420,
+        "clock": 22514
+      },
+      {
+        "kind": "set",
+        "id": 73,
+        "delay": 249.10000000000366,
+        "clock": 22514
+      },
+      {
+        "kind": "fire",
+        "id": 73,
+        "delay": 249.10000000000366,
+        "clock": 22763
+      },
+      {
+        "kind": "set",
+        "id": 74,
+        "delay": 0.10000000000366072,
+        "clock": 22763
+      },
+      {
+        "kind": "fire",
+        "id": 74,
+        "delay": 0.10000000000366072,
+        "clock": 22763
+      },
+      {
+        "kind": "set",
+        "id": 75,
+        "delay": 0.10000000000366072,
+        "clock": 22763
+      },
+      {
+        "kind": "fire",
+        "id": 75,
+        "delay": 0.10000000000366072,
+        "clock": 22763
+      },
+      {
+        "kind": "set",
+        "id": 76,
+        "delay": 0.10000000000366072,
+        "clock": 22763
+      },
+      {
+        "kind": "fire",
+        "id": 76,
+        "delay": 0.10000000000366072,
+        "clock": 22763
+      },
+      {
+        "kind": "set",
+        "id": 77,
+        "delay": 0.10000000000366072,
+        "clock": 22763
+      },
+      {
+        "kind": "fire",
+        "id": 77,
+        "delay": 0.10000000000366072,
+        "clock": 22763
+      },
+      {
+        "kind": "set",
+        "id": 78,
+        "delay": 0.10000000000366072,
+        "clock": 22763
+      },
+      {
+        "kind": "fire",
+        "id": 78,
+        "delay": 0.10000000000366072,
+        "clock": 22763
+      },
+      {
+        "kind": "set",
+        "id": 79,
+        "delay": 0.10000000000366072,
+        "clock": 22763
+      },
+      {
+        "kind": "fire",
+        "id": 79,
+        "delay": 0.10000000000366072,
+        "clock": 22764
+      },
+      {
+        "kind": "fire",
+        "id": 72,
+        "delay": 750,
+        "clock": 22833.000000000004
+      },
+      {
+        "kind": "button",
+        "text": "DODGE LEFT",
+        "clock": 22833.000000000004
+      },
+      {
+        "kind": "clear",
+        "id": 71,
+        "clock": 22833.000000000004
+      },
+      {
+        "kind": "clear",
+        "id": 73,
+        "clock": 22833.000000000004
+      },
+      {
+        "kind": "clear",
+        "id": 74,
+        "clock": 22833.000000000004
+      },
+      {
+        "kind": "clear",
+        "id": 75,
+        "clock": 22833.000000000004
+      },
+      {
+        "kind": "clear",
+        "id": 76,
+        "clock": 22833.000000000004
+      },
+      {
+        "kind": "clear",
+        "id": 77,
+        "clock": 22833.000000000004
+      },
+      {
+        "kind": "clear",
+        "id": 78,
+        "clock": 22833.000000000004
+      },
+      {
+        "kind": "clear",
+        "id": 79,
+        "clock": 22833.000000000004
+      },
+      {
+        "kind": "set",
+        "id": 80,
+        "delay": 20,
+        "clock": 22834
+      },
+      {
+        "kind": "fire",
+        "id": 80,
+        "delay": 20,
+        "clock": 22854
+      },
+      {
+        "kind": "button",
+        "text": "ATTACK START",
+        "clock": 22944
+      },
+      {
+        "kind": "set",
+        "id": 81,
+        "delay": 420,
+        "clock": 22944
+      },
+      {
+        "kind": "set",
+        "id": 83,
+        "delay": 0,
+        "clock": 23138
+      },
+      {
+        "kind": "set",
+        "id": 84,
+        "delay": 0,
+        "clock": 23138
+      },
+      {
+        "kind": "set",
+        "id": 85,
+        "delay": 0,
+        "clock": 23138
+      },
+      {
+        "kind": "set",
+        "id": 86,
+        "delay": 0,
+        "clock": 23138
+      },
+      {
+        "kind": "set",
+        "id": 87,
+        "delay": 0,
+        "clock": 23138
+      },
+      {
+        "kind": "set",
+        "id": 88,
+        "delay": 0,
+        "clock": 23138
+      },
+      {
+        "kind": "set",
+        "id": 89,
+        "delay": 0,
+        "clock": 23138
+      },
+      {
+        "kind": "set",
+        "id": 90,
+        "delay": 0,
+        "clock": 23139
+      },
+      {
+        "kind": "set",
+        "id": 91,
+        "delay": 0,
+        "clock": 23139
+      },
+      {
+        "kind": "set",
+        "id": 92,
+        "delay": 0,
+        "clock": 23139
+      },
+      {
+        "kind": "set",
+        "id": 93,
+        "delay": 0,
+        "clock": 23139
+      },
+      {
+        "kind": "set",
+        "id": 94,
+        "delay": 0,
+        "clock": 23139
+      },
+      {
+        "kind": "fire",
+        "id": 83,
+        "delay": 0,
+        "clock": 23224
+      },
+      {
+        "kind": "fire",
+        "id": 84,
+        "delay": 0,
+        "clock": 23224
+      },
+      {
+        "kind": "fire",
+        "id": 85,
+        "delay": 0,
+        "clock": 23224
+      },
+      {
+        "kind": "fire",
+        "id": 86,
+        "delay": 0,
+        "clock": 23224
+      },
+      {
+        "kind": "fire",
+        "id": 87,
+        "delay": 0,
+        "clock": 23224
+      },
+      {
+        "kind": "fire",
+        "id": 88,
+        "delay": 0,
+        "clock": 23224
+      },
+      {
+        "kind": "fire",
+        "id": 89,
+        "delay": 0,
+        "clock": 23224
+      },
+      {
+        "kind": "fire",
+        "id": 90,
+        "delay": 0,
+        "clock": 23224
+      },
+      {
+        "kind": "fire",
+        "id": 91,
+        "delay": 0,
+        "clock": 23224
+      },
+      {
+        "kind": "fire",
+        "id": 92,
+        "delay": 0,
+        "clock": 23224
+      },
+      {
+        "kind": "fire",
+        "id": 93,
+        "delay": 0,
+        "clock": 23224
+      },
+      {
+        "kind": "fire",
+        "id": 94,
+        "delay": 0,
+        "clock": 23224
+      },
+      {
+        "kind": "fire",
+        "id": 81,
+        "delay": 420,
+        "clock": 23364
+      },
+      {
+        "kind": "set",
+        "id": 95,
+        "delay": 260.1,
+        "clock": 23364
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 23492
+      },
+      {
+        "kind": "clear",
+        "id": 81,
+        "clock": 23492
+      },
+      {
+        "kind": "clear",
+        "id": 95,
+        "clock": 23492
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 24603
+      },
+      {
+        "kind": "button",
+        "text": "ENEMY ATTACK",
+        "clock": 24627
+      },
+      {
+        "kind": "set",
+        "id": 96,
+        "delay": 420,
+        "clock": 24627
+      },
+      {
+        "kind": "set",
+        "id": 97,
+        "delay": 30,
+        "clock": 24627
+      },
+      {
+        "kind": "fire",
+        "id": 97,
+        "delay": 30,
+        "clock": 24657
+      },
+      {
+        "kind": "button",
+        "text": "PARRY",
+        "clock": 24657
+      },
+      {
+        "kind": "clear",
+        "id": 96,
+        "clock": 24657
+      },
+      {
+        "kind": "set",
+        "id": 98,
+        "delay": 20,
+        "clock": 24657
+      },
+      {
+        "kind": "fire",
+        "id": 98,
+        "delay": 20,
+        "clock": 24679.000000000004
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 24816
+      },
+      {
+        "kind": "button",
+        "text": "ENEMY ATTACK",
+        "clock": 24844
+      },
+      {
+        "kind": "set",
+        "id": 99,
+        "delay": 420,
+        "clock": 24844
+      },
+      {
+        "kind": "set",
+        "id": 100,
+        "delay": 500,
+        "clock": 24844
+      },
+      {
+        "kind": "fire",
+        "id": 99,
+        "delay": 420,
+        "clock": 25264
+      },
+      {
+        "kind": "set",
+        "id": 101,
+        "delay": 260.1,
+        "clock": 25265
+      },
+      {
+        "kind": "fire",
+        "id": 100,
+        "delay": 500,
+        "clock": 25345
+      },
+      {
+        "kind": "button",
+        "text": "PARRY",
+        "clock": 25345
+      },
+      {
+        "kind": "clear",
+        "id": 99,
+        "clock": 25345
+      },
+      {
+        "kind": "clear",
+        "id": 101,
+        "clock": 25345
+      },
+      {
+        "kind": "set",
+        "id": 102,
+        "delay": 20,
+        "clock": 25345
+      },
+      {
+        "kind": "fire",
+        "id": 102,
+        "delay": 20,
+        "clock": 25365.000000000004
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 25426.000000000004
+      },
+      {
+        "kind": "button",
+        "text": "ENEMY ATTACK",
+        "clock": 25447
+      },
+      {
+        "kind": "set",
+        "id": 103,
+        "delay": 420,
+        "clock": 25447
+      },
+      {
+        "kind": "set",
+        "id": 104,
+        "delay": 750,
+        "clock": 25447
+      },
+      {
+        "kind": "fire",
+        "id": 103,
+        "delay": 420,
+        "clock": 25867
+      },
+      {
+        "kind": "set",
+        "id": 105,
+        "delay": 260.1,
+        "clock": 25867
+      },
+      {
+        "kind": "fire",
+        "id": 105,
+        "delay": 260.1,
+        "clock": 26128
+      },
+      {
+        "kind": "fire",
+        "id": 104,
+        "delay": 750,
+        "clock": 26197
+      },
+      {
+        "kind": "button",
+        "text": "PARRY",
+        "clock": 26198
+      },
+      {
+        "kind": "clear",
+        "id": 103,
+        "clock": 26198
+      },
+      {
+        "kind": "clear",
+        "id": 105,
+        "clock": 26198
+      },
+      {
+        "kind": "set",
+        "id": 106,
+        "delay": 20,
+        "clock": 26198
+      },
+      {
+        "kind": "fire",
+        "id": 106,
+        "delay": 20,
+        "clock": 26218
+      },
+      {
+        "kind": "button",
+        "text": "ENEMY ATTACK",
+        "clock": 26292
+      },
+      {
+        "kind": "set",
+        "id": 107,
+        "delay": 420,
+        "clock": 26292
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 26419
+      },
+      {
+        "kind": "clear",
+        "id": 107,
+        "clock": 26419
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 27416
+      },
+      {
+        "kind": "button",
+        "text": "ATTACK START",
+        "clock": 27452
+      },
+      {
+        "kind": "set",
+        "id": 108,
+        "delay": 420,
+        "clock": 27452
+      },
+      {
+        "kind": "set",
+        "id": 109,
+        "delay": 30,
+        "clock": 27452
+      },
+      {
+        "kind": "fire",
+        "id": 109,
+        "delay": 30,
+        "clock": 27484
+      },
+      {
+        "kind": "button",
+        "text": "DODGE LEFT",
+        "clock": 27484
+      },
+      {
+        "kind": "clear",
+        "id": 108,
+        "clock": 27484
+      },
+      {
+        "kind": "set",
+        "id": 110,
+        "delay": 20,
+        "clock": 27484
+      },
+      {
+        "kind": "fire",
+        "id": 110,
+        "delay": 20,
+        "clock": 27504
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 27596
+      },
+      {
+        "kind": "button",
+        "text": "ATTACK START",
+        "clock": 27640
+      },
+      {
+        "kind": "set",
+        "id": 111,
+        "delay": 420,
+        "clock": 27640
+      },
+      {
+        "kind": "set",
+        "id": 112,
+        "delay": 500,
+        "clock": 27640
+      },
+      {
+        "kind": "fire",
+        "id": 111,
+        "delay": 420,
+        "clock": 28062
+      },
+      {
+        "kind": "set",
+        "id": 113,
+        "delay": 257.1,
+        "clock": 28066
+      },
+      {
+        "kind": "fire",
+        "id": 112,
+        "delay": 500,
+        "clock": 28140
+      },
+      {
+        "kind": "button",
+        "text": "DODGE LEFT",
+        "clock": 28141
+      },
+      {
+        "kind": "clear",
+        "id": 111,
+        "clock": 28143
+      },
+      {
+        "kind": "clear",
+        "id": 113,
+        "clock": 28143
+      },
+      {
+        "kind": "set",
+        "id": 114,
+        "delay": 20,
+        "clock": 28143
+      },
+      {
+        "kind": "fire",
+        "id": 114,
+        "delay": 20,
+        "clock": 28164
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 28264
+      },
+      {
+        "kind": "button",
+        "text": "ATTACK START",
+        "clock": 28349
+      },
+      {
+        "kind": "set",
+        "id": 115,
+        "delay": 420,
+        "clock": 28349
+      },
+      {
+        "kind": "set",
+        "id": 116,
+        "delay": 750,
+        "clock": 28349
+      },
+      {
+        "kind": "fire",
+        "id": 115,
+        "delay": 420,
+        "clock": 28770
+      },
+      {
+        "kind": "set",
+        "id": 117,
+        "delay": 259.1,
+        "clock": 28770
+      },
+      {
+        "kind": "fire",
+        "id": 117,
+        "delay": 259.1,
+        "clock": 29029
+      },
+      {
+        "kind": "set",
+        "id": 118,
+        "delay": 0.10000000000002274,
+        "clock": 29029
+      },
+      {
+        "kind": "fire",
+        "id": 118,
+        "delay": 0.10000000000002274,
+        "clock": 29029
+      },
+      {
+        "kind": "set",
+        "id": 119,
+        "delay": 0.10000000000002274,
+        "clock": 29029
+      },
+      {
+        "kind": "fire",
+        "id": 119,
+        "delay": 0.10000000000002274,
+        "clock": 29029
+      },
+      {
+        "kind": "set",
+        "id": 120,
+        "delay": 0.10000000000002274,
+        "clock": 29029
+      },
+      {
+        "kind": "fire",
+        "id": 120,
+        "delay": 0.10000000000002274,
+        "clock": 29029
+      },
+      {
+        "kind": "set",
+        "id": 121,
+        "delay": 0.10000000000002274,
+        "clock": 29033
+      },
+      {
+        "kind": "fire",
+        "id": 121,
+        "delay": 0.10000000000002274,
+        "clock": 29034
+      },
+      {
+        "kind": "fire",
+        "id": 116,
+        "delay": 750,
+        "clock": 29100
+      },
+      {
+        "kind": "button",
+        "text": "DODGE LEFT",
+        "clock": 29100
+      },
+      {
+        "kind": "clear",
+        "id": 115,
+        "clock": 29100
+      },
+      {
+        "kind": "clear",
+        "id": 117,
+        "clock": 29100
+      },
+      {
+        "kind": "clear",
+        "id": 118,
+        "clock": 29100
+      },
+      {
+        "kind": "clear",
+        "id": 119,
+        "clock": 29100
+      },
+      {
+        "kind": "clear",
+        "id": 120,
+        "clock": 29100
+      },
+      {
+        "kind": "clear",
+        "id": 121,
+        "clock": 29100
+      },
+      {
+        "kind": "set",
+        "id": 122,
+        "delay": 20,
+        "clock": 29101
+      },
+      {
+        "kind": "fire",
+        "id": 122,
+        "delay": 20,
+        "clock": 29121.000000000004
+      },
+      {
+        "kind": "button",
+        "text": "ATTACK START",
+        "clock": 29219
+      },
+      {
+        "kind": "set",
+        "id": 123,
+        "delay": 420,
+        "clock": 29219
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 29403.000000000004
+      },
+      {
+        "kind": "clear",
+        "id": 123,
+        "clock": 29403.000000000004
+      },
+      {
+        "kind": "clear",
+        "id": 83,
+        "clock": 30673
+      },
+      {
+        "kind": "clear",
+        "id": 84,
+        "clock": 30673
+      },
+      {
+        "kind": "clear",
+        "id": 85,
+        "clock": 30673
+      },
+      {
+        "kind": "clear",
+        "id": 86,
+        "clock": 30673
+      },
+      {
+        "kind": "clear",
+        "id": 87,
+        "clock": 30673
+      },
+      {
+        "kind": "clear",
+        "id": 88,
+        "clock": 30673
+      },
+      {
+        "kind": "clear",
+        "id": 89,
+        "clock": 30673
+      },
+      {
+        "kind": "clear",
+        "id": 90,
+        "clock": 30673
+      },
+      {
+        "kind": "clear",
+        "id": 91,
+        "clock": 30673
+      },
+      {
+        "kind": "clear",
+        "id": 92,
+        "clock": 30673
+      },
+      {
+        "kind": "clear",
+        "id": 93,
+        "clock": 30673
+      },
+      {
+        "kind": "clear",
+        "id": 94,
+        "clock": 30673
+      },
+      {
+        "kind": "button",
+        "text": "ENCOUNTER",
+        "clock": 31331
+      },
+      {
+        "kind": "set",
+        "id": 125,
+        "delay": 440,
+        "clock": 31333.000000000004
+      },
+      {
+        "kind": "set",
+        "id": 126,
+        "delay": 930,
+        "clock": 31333.000000000004
+      },
+      {
+        "kind": "fire",
+        "id": 125,
+        "delay": 440,
+        "clock": 31775.000000000004
+      },
+      {
+        "kind": "fire",
+        "id": 126,
+        "delay": 930,
+        "clock": 32262.999999999996
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 32541.000000000004
+      },
+      {
+        "kind": "clear",
+        "id": 125,
+        "clock": 32541.000000000004
+      },
+      {
+        "kind": "clear",
+        "id": 126,
+        "clock": 32541.000000000004
+      },
+      {
+        "kind": "button",
+        "text": "ENCOUNTER",
+        "clock": 32654.000000000004
+      },
+      {
+        "kind": "set",
+        "id": 127,
+        "delay": 440,
+        "clock": 32654.000000000004
+      },
+      {
+        "kind": "set",
+        "id": 128,
+        "delay": 930,
+        "clock": 32654.000000000004
+      },
+      {
+        "kind": "clear",
+        "id": 127,
+        "clock": 32737.000000000004
+      },
+      {
+        "kind": "clear",
+        "id": 128,
+        "clock": 32737.000000000004
+      },
+      {
+        "kind": "button",
+        "text": "ENCOUNTER",
+        "clock": 35318
+      },
+      {
+        "kind": "set",
+        "id": 129,
+        "delay": 440,
+        "clock": 35319
+      },
+      {
+        "kind": "set",
+        "id": 130,
+        "delay": 930,
+        "clock": 35319
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 35502
+      },
+      {
+        "kind": "clear",
+        "id": 129,
+        "clock": 35502
+      },
+      {
+        "kind": "clear",
+        "id": 130,
+        "clock": 35502
+      },
+      {
+        "kind": "button",
+        "text": "ENCOUNTER",
+        "clock": 36611.00000000001
+      },
+      {
+        "kind": "set",
+        "id": 131,
+        "delay": 440,
+        "clock": 36612
+      },
+      {
+        "kind": "set",
+        "id": 132,
+        "delay": 930,
+        "clock": 36612
+      },
+      {
+        "kind": "button",
+        "text": "RESET",
+        "clock": 36795
+      },
+      {
+        "kind": "clear",
+        "id": 131,
+        "clock": 36795
+      },
+      {
+        "kind": "clear",
+        "id": 132,
+        "clock": 36795
+      },
+      {
+        "kind": "button",
+        "text": "ENCOUNTER",
+        "clock": 37890
+      },
+      {
+        "kind": "set",
+        "id": 133,
+        "delay": 440,
+        "clock": 37890
+      },
+      {
+        "kind": "set",
+        "id": 134,
+        "delay": 930,
+        "clock": 37890
+      },
+      {
+        "kind": "set",
+        "id": 136,
+        "delay": 0,
+        "clock": 38811
+      },
+      {
+        "kind": "set",
+        "id": 137,
+        "delay": 0,
+        "clock": 38811
+      },
+      {
+        "kind": "set",
+        "id": 138,
+        "delay": 0,
+        "clock": 38811
+      },
+      {
+        "kind": "set",
+        "id": 139,
+        "delay": 0,
+        "clock": 38811
+      },
+      {
+        "kind": "set",
+        "id": 140,
+        "delay": 0,
+        "clock": 38811
+      },
+      {
+        "kind": "set",
+        "id": 141,
+        "delay": 0,
+        "clock": 38811
+      },
+      {
+        "kind": "set",
+        "id": 142,
+        "delay": 0,
+        "clock": 38811
+      },
+      {
+        "kind": "set",
+        "id": 143,
+        "delay": 0,
+        "clock": 38813
+      },
+      {
+        "kind": "set",
+        "id": 144,
+        "delay": 0,
+        "clock": 38813
+      },
+      {
+        "kind": "set",
+        "id": 145,
+        "delay": 0,
+        "clock": 38813
+      },
+      {
+        "kind": "set",
+        "id": 146,
+        "delay": 0,
+        "clock": 38813
+      },
+      {
+        "kind": "set",
+        "id": 147,
+        "delay": 0,
+        "clock": 38813
+      },
+      {
+        "kind": "fire",
+        "id": 133,
+        "delay": 440,
+        "clock": 39030
+      },
+      {
+        "kind": "fire",
+        "id": 136,
+        "delay": 0,
+        "clock": 39031
+      },
+      {
+        "kind": "fire",
+        "id": 137,
+        "delay": 0,
+        "clock": 39031
+      },
+      {
+        "kind": "fire",
+        "id": 138,
+        "delay": 0,
+        "clock": 39031
+      },
+      {
+        "kind": "fire",
+        "id": 139,
+        "delay": 0,
+        "clock": 39031
+      },
+      {
+        "kind": "fire",
+        "id": 140,
+        "delay": 0,
+        "clock": 39031
+      },
+      {
+        "kind": "fire",
+        "id": 141,
+        "delay": 0,
+        "clock": 39031
+      },
+      {
+        "kind": "fire",
+        "id": 142,
+        "delay": 0,
+        "clock": 39031
+      },
+      {
+        "kind": "fire",
+        "id": 143,
+        "delay": 0,
+        "clock": 39031
+      },
+      {
+        "kind": "fire",
+        "id": 144,
+        "delay": 0,
+        "clock": 39031
+      },
+      {
+        "kind": "fire",
+        "id": 145,
+        "delay": 0,
+        "clock": 39031
+      },
+      {
+        "kind": "fire",
+        "id": 146,
+        "delay": 0,
+        "clock": 39031
+      },
+      {
+        "kind": "fire",
+        "id": 147,
+        "delay": 0,
+        "clock": 39031
+      },
+      {
+        "kind": "fire",
+        "id": 134,
+        "delay": 930,
+        "clock": 39031
+      }
+    ],
+    "failureState": {
+      "clock": 43683,
+      "class": "waapiPreviewStage gameScene gameBattle sceneBATTLE",
+      "text": "FIELD · PATH◆VS♜BATTLEREADY",
+      "animations": [],
+      "rect": {
+        "x": 403,
+        "y": 136,
+        "width": 307,
+        "height": 126,
+        "top": 136,
+        "right": 710,
+        "bottom": 262,
+        "left": 403
+      }
+    }
+  }
+]

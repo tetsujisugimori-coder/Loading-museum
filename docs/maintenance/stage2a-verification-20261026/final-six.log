@@ -1,0 +1,16 @@
+chromium 375 PASS 
+chromium 390 PASS 
+chromium 765 PASS 
+webkit 375 FAIL Locator.click: Timeout 10000ms exceeded.
+Call log:
+  - waiting for get_by_role("button", name="サンプル一覧を見る")
+    - locator resolved to <button type="button" aria-expanded="false" class="waapiGalleryToggle" aria-controls="waapi-gallery-panel">…</button>
+  - attempting click action
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - performing click action
+
+webkit 390 PARTIAL 
+webkit 765 PASS 

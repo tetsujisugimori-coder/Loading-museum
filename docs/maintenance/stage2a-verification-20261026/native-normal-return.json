@@ -1,0 +1,655 @@
+[
+  {
+    "engine": "chromium",
+    "version": "141.0.7390.37",
+    "width": 390,
+    "name": "Menu Selection Cursor",
+    "checks": [
+      {
+        "label": "initial explicit state",
+        "pass": true
+      },
+      {
+        "label": "mode return retains state",
+        "pass": true
+      },
+      {
+        "label": "mode return does not autoplay",
+        "pass": true
+      },
+      {
+        "label": "normal keyboard works",
+        "pass": true
+      },
+      {
+        "label": "offscreen condition actually reached",
+        "pass": true
+      },
+      {
+        "label": "offscreen cancels normal animation",
+        "pass": true
+      },
+      {
+        "label": "reentry retains state",
+        "pass": true
+      },
+      {
+        "label": "reentry after observation does not autoplay",
+        "pass": true
+      },
+      {
+        "label": "synthetic visibility retains state",
+        "pass": true
+      },
+      {
+        "label": "synthetic visibility no spontaneous animation",
+        "pass": true
+      },
+      {
+        "label": "Reset restores initial state",
+        "pass": true
+      },
+      {
+        "label": "Reset does not spontaneously replay",
+        "pass": true
+      },
+      {
+        "label": "gallery actually unmounted",
+        "pass": true
+      },
+      {
+        "label": "gallery reopen reinitializes state",
+        "pass": true
+      },
+      {
+        "label": "no pageerror",
+        "pass": true
+      }
+    ],
+    "snapshots": [
+      {
+        "clock": 4926.0999999996275,
+        "hidden": false,
+        "selection": "▶COLLECTION",
+        "score": null,
+        "animations": [
+          {
+            "time": 66.6920000005593,
+            "state": "running",
+            "pending": false
+          }
+        ],
+        "label": "explicit state"
+      },
+      {
+        "clock": 5530,
+        "hidden": false,
+        "selection": "▶COLLECTION",
+        "score": null,
+        "animations": [],
+        "label": "mode return"
+      },
+      {
+        "clock": 5655.300000000745,
+        "hidden": false,
+        "selection": "▶SETTINGS",
+        "score": null,
+        "animations": [
+          {
+            "time": 33.420000000270456,
+            "state": "running",
+            "pending": false
+          }
+        ],
+        "label": "keyboard after observation"
+      },
+      {
+        "clock": 6213.300000000745,
+        "hidden": false,
+        "selection": "▶COLLECTION",
+        "score": null,
+        "animations": [],
+        "label": "offscreen"
+      },
+      {
+        "clock": 6419.300000000745,
+        "hidden": false,
+        "selection": "▶COLLECTION",
+        "score": null,
+        "animations": [],
+        "label": "offscreen return"
+      },
+      {
+        "clock": 6539.800000000745,
+        "hidden": false,
+        "selection": "▶COLLECTION",
+        "score": null,
+        "animations": [],
+        "label": "synthetic visibility return"
+      },
+      {
+        "clock": 6661.199999999255,
+        "hidden": false,
+        "selection": "▶CONTINUE",
+        "score": null,
+        "animations": [],
+        "label": "Reset after observation"
+      },
+      {
+        "clock": 7123.800000000745,
+        "hidden": false,
+        "selection": "▶CONTINUE",
+        "score": null,
+        "animations": [],
+        "label": "gallery reopen"
+      }
+    ],
+    "errors": [],
+    "status": "PASS",
+    "outsideGeometry": {
+      "top": 5257.0625,
+      "bottom": 5817.3125,
+      "height": 900,
+      "outside": true
+    },
+    "reopenAutoplay": "not judged: snapshot may follow finite animation completion"
+  },
+  {
+    "engine": "chromium",
+    "version": "141.0.7390.37",
+    "width": 390,
+    "name": "Coin Pickup Arc",
+    "checks": [
+      {
+        "label": "initial explicit state",
+        "pass": true
+      },
+      {
+        "label": "mode return retains state",
+        "pass": true
+      },
+      {
+        "label": "mode return does not autoplay",
+        "pass": true
+      },
+      {
+        "label": "Replay retains score",
+        "pass": true
+      },
+      {
+        "label": "Replay creates native animation",
+        "pass": true
+      },
+      {
+        "label": "offscreen condition actually reached",
+        "pass": true
+      },
+      {
+        "label": "offscreen cancels normal animation",
+        "pass": true
+      },
+      {
+        "label": "reentry retains state",
+        "pass": true
+      },
+      {
+        "label": "reentry after observation does not autoplay",
+        "pass": true
+      },
+      {
+        "label": "synthetic visibility retains state",
+        "pass": true
+      },
+      {
+        "label": "synthetic visibility no spontaneous animation",
+        "pass": true
+      },
+      {
+        "label": "Reset restores initial state",
+        "pass": true
+      },
+      {
+        "label": "Reset does not spontaneously replay",
+        "pass": true
+      },
+      {
+        "label": "COLLECT rearmed by Reset",
+        "pass": true
+      },
+      {
+        "label": "COLLECT disabled after acquisition",
+        "pass": true
+      },
+      {
+        "label": "gallery actually unmounted",
+        "pass": true
+      },
+      {
+        "label": "gallery reopen reinitializes state",
+        "pass": true
+      },
+      {
+        "label": "no pageerror",
+        "pass": true
+      }
+    ],
+    "snapshots": [
+      {
+        "clock": 6674.0999999996275,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 100",
+        "animations": [
+          {
+            "time": 66.75100000052758,
+            "state": "running",
+            "pending": false
+          },
+          {
+            "time": 66.75100000052758,
+            "state": "running",
+            "pending": false
+          }
+        ],
+        "label": "explicit state"
+      },
+      {
+        "clock": 6960.89999999851,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 100",
+        "animations": [],
+        "label": "mode return"
+      },
+      {
+        "clock": 7139.5,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 100",
+        "animations": [
+          {
+            "time": 33.403000000022054,
+            "state": "running",
+            "pending": false
+          },
+          {
+            "time": 33.403000000022054,
+            "state": "running",
+            "pending": false
+          }
+        ],
+        "label": "explicit Replay after observation"
+      },
+      {
+        "clock": 7525.39999999851,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 100",
+        "animations": [],
+        "label": "offscreen"
+      },
+      {
+        "clock": 7740.39999999851,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 100",
+        "animations": [],
+        "label": "offscreen return"
+      },
+      {
+        "clock": 7876.0999999996275,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 100",
+        "animations": [],
+        "label": "synthetic visibility return"
+      },
+      {
+        "clock": 8145.39999999851,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 0",
+        "animations": [],
+        "label": "Reset after observation"
+      },
+      {
+        "clock": 8435.39999999851,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 100",
+        "animations": [
+          {
+            "time": 116.71899999964275,
+            "state": "running",
+            "pending": false
+          },
+          {
+            "time": 116.71899999964275,
+            "state": "running",
+            "pending": false
+          }
+        ],
+        "label": "COLLECT after Reset"
+      },
+      {
+        "clock": 9093.099999999627,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 0",
+        "animations": [
+          {
+            "time": 0,
+            "state": "running",
+            "pending": true
+          },
+          {
+            "time": 0,
+            "state": "running",
+            "pending": true
+          }
+        ],
+        "label": "gallery reopen"
+      }
+    ],
+    "errors": [],
+    "status": "PASS",
+    "outsideGeometry": {
+      "top": 5257.0625,
+      "bottom": 5967.3125,
+      "height": 900,
+      "outside": true
+    },
+    "reopenAutoplay": "not judged: snapshot may follow finite animation completion"
+  },
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "width": 390,
+    "name": "Menu Selection Cursor",
+    "checks": [
+      {
+        "label": "initial explicit state",
+        "pass": true
+      },
+      {
+        "label": "mode return retains state",
+        "pass": true
+      },
+      {
+        "label": "mode return does not autoplay",
+        "pass": true
+      },
+      {
+        "label": "normal keyboard works",
+        "pass": true
+      },
+      {
+        "label": "offscreen condition actually reached",
+        "pass": true
+      },
+      {
+        "label": "offscreen cancels normal animation",
+        "pass": false
+      }
+    ],
+    "snapshots": [
+      {
+        "clock": 11140,
+        "hidden": false,
+        "selection": "▶COLLECTION",
+        "score": null,
+        "animations": [
+          {
+            "time": 0,
+            "state": "running",
+            "pending": true
+          }
+        ],
+        "label": "explicit state"
+      },
+      {
+        "clock": 12373.000000000002,
+        "hidden": false,
+        "selection": "▶COLLECTION",
+        "score": null,
+        "animations": [],
+        "label": "mode return"
+      },
+      {
+        "clock": 12487,
+        "hidden": false,
+        "selection": "▶SETTINGS",
+        "score": null,
+        "animations": [
+          {
+            "time": 0,
+            "state": "running",
+            "pending": true
+          }
+        ],
+        "label": "keyboard after observation"
+      },
+      {
+        "clock": 13693,
+        "hidden": false,
+        "selection": "▶COLLECTION",
+        "score": null,
+        "animations": [
+          {
+            "time": 0,
+            "state": "running",
+            "pending": true
+          }
+        ],
+        "label": "offscreen"
+      }
+    ],
+    "errors": [],
+    "status": "FAILED",
+    "outsideGeometry": {
+      "top": 5287,
+      "bottom": 5819,
+      "height": 900,
+      "outside": true
+    },
+    "error": "offscreen cancels normal animation",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/scratch/e622c1e9421e/loading-stage2a-verification/docs/maintenance/stage2a-verification-20261026/verify-native-normal-return.py\", line 49, in <module>\n    x=snap('offscreen');check('offscreen cancels normal animation',not x['animations'])\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/e622c1e9421e/loading-stage2a-verification/docs/maintenance/stage2a-verification-20261026/verify-native-normal-return.py\", line 29, in check\n    assert condition,label\n           ^^^^^^^^^\nAssertionError: offscreen cancels normal animation\n",
+    "screenshot": "/workspace/scratch/e622c1e9421e/loading-stage2a-verification/docs/maintenance/stage2a-verification-20261026/webkit-normal-return-menu-failure.png"
+  },
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "width": 390,
+    "name": "Coin Pickup Arc",
+    "checks": [
+      {
+        "label": "initial explicit state",
+        "pass": true
+      },
+      {
+        "label": "mode return retains state",
+        "pass": true
+      },
+      {
+        "label": "mode return does not autoplay",
+        "pass": true
+      },
+      {
+        "label": "Replay retains score",
+        "pass": true
+      },
+      {
+        "label": "Replay creates native animation",
+        "pass": true
+      },
+      {
+        "label": "offscreen condition actually reached",
+        "pass": true
+      },
+      {
+        "label": "offscreen cancels normal animation",
+        "pass": true
+      },
+      {
+        "label": "reentry retains state",
+        "pass": true
+      },
+      {
+        "label": "reentry after observation does not autoplay",
+        "pass": true
+      },
+      {
+        "label": "synthetic visibility retains state",
+        "pass": true
+      },
+      {
+        "label": "synthetic visibility no spontaneous animation",
+        "pass": true
+      },
+      {
+        "label": "Reset restores initial state",
+        "pass": true
+      },
+      {
+        "label": "Reset does not spontaneously replay",
+        "pass": true
+      },
+      {
+        "label": "COLLECT rearmed by Reset",
+        "pass": true
+      },
+      {
+        "label": "COLLECT disabled after acquisition",
+        "pass": true
+      },
+      {
+        "label": "gallery actually unmounted",
+        "pass": true
+      },
+      {
+        "label": "gallery reopen reinitializes state",
+        "pass": true
+      },
+      {
+        "label": "no pageerror",
+        "pass": true
+      }
+    ],
+    "snapshots": [
+      {
+        "clock": 7425,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 100",
+        "animations": [
+          {
+            "time": 0,
+            "state": "running",
+            "pending": true
+          },
+          {
+            "time": 0,
+            "state": "running",
+            "pending": true
+          }
+        ],
+        "label": "explicit state"
+      },
+      {
+        "clock": 8140.000000000001,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 100",
+        "animations": [],
+        "label": "mode return"
+      },
+      {
+        "clock": 8483,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 100",
+        "animations": [
+          {
+            "time": 65,
+            "state": "running",
+            "pending": false
+          },
+          {
+            "time": 65,
+            "state": "running",
+            "pending": false
+          }
+        ],
+        "label": "explicit Replay after observation"
+      },
+      {
+        "clock": 8667,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 100",
+        "animations": [],
+        "label": "offscreen"
+      },
+      {
+        "clock": 8960,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 100",
+        "animations": [],
+        "label": "offscreen return"
+      },
+      {
+        "clock": 9090,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 100",
+        "animations": [],
+        "label": "synthetic visibility return"
+      },
+      {
+        "clock": 9701,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 0",
+        "animations": [],
+        "label": "Reset after observation"
+      },
+      {
+        "clock": 9862,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 100",
+        "animations": [
+          {
+            "time": 0,
+            "state": "running",
+            "pending": true
+          },
+          {
+            "time": 0,
+            "state": "running",
+            "pending": true
+          }
+        ],
+        "label": "COLLECT after Reset"
+      },
+      {
+        "clock": 11623.000000000002,
+        "hidden": false,
+        "selection": null,
+        "score": "SCORE 0",
+        "animations": [],
+        "label": "gallery reopen"
+      }
+    ],
+    "errors": [],
+    "status": "PASS",
+    "outsideGeometry": {
+      "top": 5287,
+      "bottom": 5994,
+      "height": 900,
+      "outside": true
+    },
+    "reopenAutoplay": "not judged: snapshot may follow finite animation completion"
+  }
+]
