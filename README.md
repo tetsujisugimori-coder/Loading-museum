@@ -85,3 +85,7 @@ Menuは独立CONTINUE→SETTINGS移動をease-out／linearで比較。本体の�
 2026-10-26 追加検証による補足：一度観察した通常Coinは、そのカードが閉室などで破棄されるまで自動デモを再開せず、Replay/COLLECTで再生します。Resetも自動再生を復活させません。閉室再開は従来どおり選択・得点を初期化します。追加検証時点では、観察から通常へ戻った後のCoinで、Replay/COLLECT途中の動き低減ONが旧Animationを取消さない問題を独立再現しました（得点は維持）。当時の未修正判定は、[追加検証・マージ判断](docs/maintenance/stage2a-verification-20261026/README.md)を参照してください。
 
 2026-10-26 N2修復：通常Coinの低減ON取消を自動デモの許可条件から分離しました。観察後の自動再生抑止、Replay無加点、COLLECTのResetごと1回100点、明示操作の低減用表示は保持します。Q1のgallery試験は問い合わせ範囲と独立した検証責務を整理し、5000ms・既存期待値を維持しています。ただし反復全checkでtimeoutが残るためQ1は未解決P2、総合PARTIAL・マージ推奨NOです。[修復の証拠・品質ゲート・保証範囲](docs/maintenance/stage2a-repair-20261026/README.md)。
+
+### Stage 2A Q1追加調査の回収範囲（2026-10-27）
+
+[回収できた全check集計と未提出資料の境界](docs/maintenance/stage2a-q1-recovery-20261027/README.md)を追記しました。旧調査は既定3回・worker1 2回すべてFAILでQ1未解決です。クラウド作業領域消失後に旧集計1件のみハッシュ一致で回収し、未提出テスト改善は反映していません。今回の文書提出を製品修正・GUI成功と扱わず、PARTIAL／マージNOを維持します。

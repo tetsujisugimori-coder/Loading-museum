@@ -1492,3 +1492,11 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 - N2最終nativeはCh/WK×375/390/765の12取消経路を同scriptで修正前12失敗→修正後12成功。両旧Animationがrunning中cancel→idle/null、228行動assert＋paused6成功、pageerror0。独立担当がsource/build/JSONを照合。Q1未解決のため総合PARTIAL/マージNOを維持。
 
 - 最終主要回帰: Stage2A時間操作6条件48群PASS、旧主要ゲーム6条件54群成功（狭幅文字200%の既存全page横超過4PARTIAL）。Stage1初回4PASS2FAIL、限定追加Ch765 PASS/WK390 Battle後半assert FAILを保持し根因未特定。独立レビューPARTIAL/NO。HTTP配信12ファイル同一、29PNGと可逆gzip4件の証拠を保存。実CI/実機/全197操作未検証。
+
+## 2026-10-27 Stage 2A Q1追加調査：回収証拠に限定した提出
+
+- 基準HEAD `50fbcd91c6f0c174f40ea627ce2bd33c6e985ce2`。旧追加調査153ファイルの提出は診断資料開示承認待ちで停止し、31blob送信後もtree/commit/ref未更新だった。その後クラウドworktree・一時manifestが消失。利用者Windowsは操作していない。
+- 掲載承認後、既知blob `679f0126249bf8ab89cd71a417df7bac356e8c52` から旧5回の集計 `results.json.gz` のみ回収。Git SHA・圧縮/展開SHA-256が消失前記録と一致。他152ファイル未回収、旧query改善/8対照検査を現在branchへ反映していない。
+- 旧計測は基準HEAD＋未commit変更を対象としたもので今回HEADの検証ではない。Node49＋Vitest138（旧130＋未提出対照8）の成功総数は既定184/187、182/187、185/187、worker1 185/187、186/187。全5回exit1、詳細ログ未回収。Q1共通根因UNKNOWN、P2未解決。
+- [限定提出の説明](docs/maintenance/stage2a-q1-recovery-20261027/README.md)に失敗位置・時間・回収保証・N2既存証拠との区別を記録。今回変更は文書/証拠のみ。全check/build/nativeを再実施していない。独立レビューは証拠読解であり実ブラウザ再操作ではない。
+- 総合PARTIAL／マージNO。既存B1/M1等UNKNOWNと実機未検証を維持。Draft/openを保持し、公開workflow・マージ・auto-mergeを行わない。最終HEAD/tree/実CI有無はPR/Issueに提出後照合結果を記録する。
