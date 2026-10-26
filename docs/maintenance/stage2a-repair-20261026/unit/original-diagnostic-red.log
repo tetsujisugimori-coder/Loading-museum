@@ -1,0 +1,38 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-stage2a-repair
+
+ ❯ docs/maintenance/stage2a-verification-20261026/normal-mode-contract.test.tsx (4 tests | 2 failed) 3661ms
+   ✓ control: normal Coin Replay before observation cancels old motion when reduced motion turns ON  1242ms
+   × normal Coin Replay after observation must still cancel old motion when reduced motion turns ON 1147ms
+     → expected "spy" to be called at least once
+   × normal Coin COLLECT after observation must still cancel old motion when reduced motion turns ON 797ms
+     → expected "spy" to be called at least once
+   ✓ control: normal Menu motion after observation cancels on reduced motion ON and retains selection  474ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  docs/maintenance/stage2a-verification-20261026/normal-mode-contract.test.tsx > normal Coin Replay after observation must still cancel old motion when reduced motion turns ON
+ FAIL  docs/maintenance/stage2a-verification-20261026/normal-mode-contract.test.tsx > normal Coin COLLECT after observation must still cancel old motion when reduced motion turns ON
+AssertionError: expected "spy" to be called at least once
+ ❯ docs/maintenance/stage2a-verification-20261026/normal-mode-contract.test.tsx:45:24
+     43|     const old = lastNormal(); expect(old.playState).toBe('running'); r…
+     44|     expect(card.querySelector('[data-normal-game] output')!.textConten…
+     45|     expect(old.cancel).toHaveBeenCalled(); expect(old.playState).toBe(…
+       |                        ^
+     46|   });
+     47| }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 2 passed (4)
+   Start at  12:05:17
+   Duration  9.05s (transform 1.85s, setup 0ms, collect 2.24s, tests 3.66s, environment 1.82s, prepare 281ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

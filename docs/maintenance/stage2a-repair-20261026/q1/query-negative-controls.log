@@ -1,0 +1,16 @@
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-stage2a-repair
+
+ ✓ docs/maintenance/stage2a-repair-20261026/q1/query-negative-controls.test.tsx > valid scoped labels and expanded visible close trigger remain queryable 526ms
+ ✓ docs/maintenance/stage2a-repair-20261026/q1/query-negative-controls.test.tsx > missing search label is rejected 25ms
+ ✓ docs/maintenance/stage2a-repair-20261026/q1/query-negative-controls.test.tsx > renamed search label is rejected 11ms
+ ✓ docs/maintenance/stage2a-repair-20261026/q1/query-negative-controls.test.tsx > renamed close trigger is rejected 69ms
+ ✓ docs/maintenance/stage2a-repair-20261026/q1/query-negative-controls.test.tsx > collapsed close trigger is rejected 51ms
+ ✓ docs/maintenance/stage2a-repair-20261026/q1/query-negative-controls.test.tsx > hidden close trigger is rejected 96ms
+ ✓ docs/maintenance/stage2a-repair-20261026/q1/query-negative-controls.test.tsx > duplicate expanded close triggers are rejected 23ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  12:07:33
+   Duration  5.00s (transform 343ms, setup 0ms, collect 512ms, tests 810ms, environment 2.07s, prepare 385ms)
+

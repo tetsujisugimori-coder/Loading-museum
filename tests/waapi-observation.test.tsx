@@ -260,3 +260,49 @@ it('step during playback starts from current native time, not the last RAF displ
   click('再生 / 再開'); advance(25); // Last display sample is 16 ms; native clock is already at 25 ms.
   expect(time()).toBe(16); click('1ステップ進む'); expect(time()).toBeCloseTo(25 + 1000 / 60, 10);
 });
+
+// N2: cancellation is independent from the observed auto-demonstration guard.
+describe('observed Coin normal motion cancellation', () => {
+  function media(value: boolean) { act(() => { mediaReduced = value; mediaListeners.forEach(f => f()); }); advance(20); }
+  function normalAnimations() { return animations.filter(a => a.target.hasAttribute('data-motion-target') && a.target.closest('[data-normal-game]')); }
+  function observedCoin() { const view = openGallery('Coin Pickup Arc'); click('観察モードを開く'); click('通常モードへ戻る'); return view; }
+  for (const operation of ['Replay', 'COLLECT']) {
+    for (const paused of [false, true]) {
+      it(`${operation} after observation cancels ${paused ? 'paused' : 'running'} normal motion on reduced ON without changing score`, () => {
+        const { card } = observedCoin(); click(operation); const old = normalAnimations().at(-1)!;
+        const owned = animations.filter(a => a.target.closest('[data-normal-game] .gameCoinScene') && a.playState === 'running');
+        expect(owned).toHaveLength(2);
+        if (paused) old.pause();
+        expect(old.playState).toBe(paused ? 'paused' : 'running'); media(true);
+        expect(old.cancel).toHaveBeenCalled(); expect(old.playState).toBe('idle'); expect(old.currentTime).toBeNull();
+        expect(owned.every(a => a.cancel.mock.calls.length > 0 && a.playState === 'idle' && a.currentTime === null)).toBe(true);
+        expect(card.querySelector('[data-normal-game] output')!.textContent).toBe(operation === 'COLLECT' ? 'SCORE 100' : 'SCORE 0');
+        expect((button('COLLECT') as HTMLButtonElement).disabled).toBe(operation === 'COLLECT');
+        const count = normalAnimations().length; media(false); advance(1000); expect(normalAnimations()).toHaveLength(count);
+      });
+    }
+  }
+  it('reduced explicit Replay uses reduced definition and repeated ON/OFF does not award or autoplay', () => {
+    const { card } = observedCoin(); media(true); click('Replay');
+    expect(normalAnimations().at(-1)!.frames).toEqual(coin.reduced.keyframes);
+    expect(normalAnimations().at(-1)!.options.duration).toBe(coin.reduced.options.duration);
+    for (let i = 0; i < 3; i++) { media(false); click('Replay'); const old = normalAnimations().at(-1)!; media(true); expect(old.playState).toBe('idle'); }
+    expect(card.querySelector('[data-normal-game] output')!.textContent).toBe('SCORE 0');
+  });
+  it('rapid mode switches retain collected state and Reset permits exactly one new acquisition', () => {
+    const { card } = observedCoin(); click('COLLECT');
+    for (let i = 0; i < 3; i++) { click('観察モードを開く'); click('通常モードへ戻る'); click('Replay'); media(true); media(false); }
+    expect(card.querySelector('[data-normal-game] output')!.textContent).toBe('SCORE 100'); expect((button('COLLECT') as HTMLButtonElement).disabled).toBe(true);
+    click('Reset'); advance(1000); expect(card.querySelector('[data-normal-game] output')!.textContent).toBe('SCORE 0');
+    click('COLLECT'); click('COLLECT'); expect(card.querySelector('[data-normal-game] output')!.textContent).toBe('SCORE 100');
+  });
+  it('observed normal Coin leaving the viewport cancels, re-entry stays stopped, and unmount clears old instances', () => {
+    const view = observedCoin(); click('Replay'); const old = normalAnimations().at(-1)!;
+    const entry = intersections.findLast(x => x.target === view.card.parentElement)!;
+    act(() => entry.callback([{ target: entry.target, isIntersecting: false } as IntersectionObserverEntry], {} as IntersectionObserver));
+    expect(old.playState).toBe('idle'); const count = normalAnimations().length;
+    act(() => entry.callback([{ target: entry.target, isIntersecting: true } as IntersectionObserverEntry], {} as IntersectionObserver)); advance(1000);
+    expect(normalAnimations()).toHaveLength(count); click('Replay'); const recent = normalAnimations().at(-1)!; view.unmount();
+    expect(recent.cancel).toHaveBeenCalled(); expect(recent.playState).toBe('idle'); advance(1000); expect(normalAnimations()).toHaveLength(count + 1);
+  });
+});

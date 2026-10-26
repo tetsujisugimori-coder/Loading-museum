@@ -1,0 +1,53 @@
+[
+  {
+    "name": "profile-scoped-1",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "docs/maintenance/stage2a-repair-20261026/q1/profile-scoped.test.tsx",
+      "--reporter=verbose"
+    ],
+    "started_at": "2026-10-26T03:06:04.300085+00:00",
+    "elapsed_seconds": 14.636641474000498,
+    "exit_code": 0,
+    "loadavg": [
+      1.93115234375,
+      2.5517578125,
+      1.83349609375
+    ]
+  },
+  {
+    "name": "profile-scoped-2",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "docs/maintenance/stage2a-repair-20261026/q1/profile-scoped.test.tsx",
+      "--reporter=verbose"
+    ],
+    "started_at": "2026-10-26T03:06:18.950223+00:00",
+    "elapsed_seconds": 13.029010835998633,
+    "exit_code": 0,
+    "loadavg": [
+      2.02734375,
+      2.541015625,
+      1.841796875
+    ]
+  },
+  {
+    "name": "profile-scoped-3",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "docs/maintenance/stage2a-repair-20261026/q1/profile-scoped.test.tsx",
+      "--reporter=verbose"
+    ],
+    "started_at": "2026-10-26T03:06:31.983796+00:00",
+    "elapsed_seconds": 17.3089052380019,
+    "exit_code": 1,
+    "loadavg": [
+      2.21875,
+      2.56201171875,
+      1.8603515625
+    ]
+  }
+]

@@ -1,0 +1,118 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 check
+> npm run lint && npm run typecheck && npm test
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 lint
+> eslint .
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 typecheck
+> tsc --noEmit
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 test
+> npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run tests/macintosh-system-choice.test.tsx tests/waapi-samples.test.ts tests/waapi-gallery.test.tsx tests/waapi-interaction-state.test.ts tests/waapi-game-regressions.test.tsx tests/waapi-hp-regression.test.tsx tests/waapi-cascade-motion.test.tsx tests/dom11-selection.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-stage1-menu-coin.test.tsx tests/waapi-observation.test.tsx tests/waapi-observation-independent.test.tsx
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 7.3s
+  Running TypeScript ...
+  Finished TypeScript in 69s ...
+  Collecting page data using 4 workers ...
+  Generating static pages using 4 workers (0/3) ...
+✓ Generating static pages using 4 workers (3/3) in 704ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+✔ Read Meの実矩形はゴミ箱へ四方向から重なる (0.991734ms)
+✔ System 1→5→6→1→6をクリック相当の操作で連続選択する (1.71442ms)
+✔ System 5をEnter、System 6をSpace相当の操作で選択する (0.532882ms)
+✔ loadingから最初の年代へ移行する (1.895389ms)
+✔ 年代ごとにeraIndexが進む (0.256248ms)
+✔ 通常年代は共通の待機時間を使う (0.133333ms)
+✔ 最後の年代だけ長い待機時間を使う (0.09101ms)
+✔ 最後の年代後にindex-completeへ移行する (0.615524ms)
+✔ index-complete後にtypingへ移行する (3.478238ms)
+✔ タイトル文字数が1文字ずつ増える (0.178346ms)
+✔ タイトル全文をtyping状態で保持する (0.106168ms)
+✔ タイトル全文表示後にtyping-holdへ移行する (0.135204ms)
+✔ typing-hold後にsignal-lockのbrightenへ移行する (0.192618ms)
+✔ signal-lockはbrightenからnoiseへ進む (0.843019ms)
+✔ signal-lockはnoiseからlockedへ進む (0.116487ms)
+✔ signal-lockのlocked後にcompleteへ進む (0.518772ms)
+✔ complete以降は状態が進まない (0.341803ms)
+✔ complete状態は最後の年代とタイトル全文を保持する (0.135768ms)
+✔ ReplayはrunIdを増やす (0.07339ms)
+✔ Replayは初期状態へ戻す (1.200381ms)
+✔ 古いrunIdによるタイマー更新を無視する (0.234127ms)
+✔ reduced motionは即時completeになる (0.093313ms)
+✔ 年代走査中の点灯数とノード状態をeraIndexから算出する (0.496933ms)
+✔ 年代走査完了後は全タイムラインノードが点灯する (0.248715ms)
+✔ タイムライン進捗率を年代件数と現在位置から算出する (0.874688ms)
+✔ 年代が1件でも安全な進捗率を返し、完了数を件数内へ制限する (0.090264ms)
+✔ 全年代と全時間定数を一か所で管理する (0.280757ms)
+✔ GitHub Pages用の静的HTMLへ9種類の展示を書き出す (26.895561ms)
+✔ 正式名称のタイトル導入、年代テーマ、確定演出、軽減モーションと再生操作を実装する (23.284814ms)
+✔ 既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き出す (8.73203ms)
+✔ カーソル展示室と8種類の体験展示を書き出す (4.916201ms)
+✔ カーソル展示のデータ、Pointer Events、性能とアクセシビリティ対応を実装する (15.562794ms)
+✔ Macintosh誕生展示室を加えた展示室・展示件数を表示する (6.061471ms)
+✔ Macintosh誕生展示室へ18種類の操作展示を書き出す (20.050446ms)
+✔ Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する (20.499284ms)
+✔ Flash特別展示室へ18カテゴリ・54展示と優先デモを実装する (8.207732ms)
+✔ 再検討した9展示と現代Web継承比較を専用実装にする (14.009478ms)
+✔ FlashバナーのCTAを安全に2回強調し、価格とreduced motionを調整する (15.246331ms)
+✔ Flash専用展示の状態遷移、停止制御、操作可能なARIA構造を実装する (8.011647ms)
+✔ MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモを書き出す (5.2892ms)
+✔ 独立した消えたOS展示室へ6 OS・18種類のLoading再構成を書き出す (8.72544ms)
+✔ 展示室のデータ定義とタイマー停止・フォーカス復帰を実装する (1.77861ms)
+✔ 消えたOS展示のデータ・起動・停止・reduced motionを実装する (2.111545ms)
+✔ Linux / UNIXデモの再実行・速度切替・安全な停止を実装する (2.897556ms)
+✔ CSSとJavaScriptをLoading-museumサブパスから参照する (4.808016ms)
+✔ 静的export設定と既存レスポンシブ・reduced-motion対応を維持する (9.067103ms)
+✔ System 1〜6のbutton構造と非スクロールgridを静的に維持する (2.390303ms)
+✔ DOM ANIMATION ROOM を静的HTMLへ出力し、17操作のAPI体験を確認する (6.960191ms)
+✔ 既存ローディング標本の直下に、遅延生成するWAAPI標本ギャラリーを追加する (4.580748ms)
+ℹ tests 49
+ℹ suites 0
+ℹ pass 49
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 799.416869
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-stage2a-repair
+

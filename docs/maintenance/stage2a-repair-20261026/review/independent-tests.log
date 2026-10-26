@@ -1,0 +1,80 @@
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-stage2a-repair
+
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > initial preview is paused at zero and has actual native labels rather than simulated success 393ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > play advances time from the animation, not a second game clock 166ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > pause keeps the exact position and resume continues from that point 1296ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > restart deliberately starts at zero while the start control remains paused 198ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > forward and backward steps use 1000/60 ms, not a rounded frame count 217ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > seek selects a fractional time and stops an active playback 79ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > steps clamp both boundaries without crossing them 147ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > finished playback can rewind and resume from a selected position 505ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > rapid play/pause and slider changes do not allocate competing animations 1141ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > stale RAF callbacks after seek do not overwrite the newer position 57ms
+ ✓ docs/maintenance/stage2a-verification-20261026/normal-mode-contract.test.tsx > control: normal Coin Replay before observation cancels old motion when reduced motion turns ON 2632ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > offscreen cancels native animation and returns paused at the preserved time 56ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > tab visibility cancels and restores static preview without automatic play 58ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > reduced motion cancels running animation, allows manual stepping, and does not auto-resume on OFF 181ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > unmount cancels owner animations and makes old RAF callbacks inert 238ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > easing changes cancel the old scenario, preserve position, and do not continue play 206ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > resize remeasures after initial observer delivery and preserves observation time 56ms
+ ✓ docs/maintenance/stage2a-verification-20261026/normal-mode-contract.test.tsx > normal Coin Replay after observation must still cancel old motion when reduced motion turns ON 1806ms
+ ✓ docs/maintenance/stage2a-verification-20261026/normal-mode-contract.test.tsx > normal Coin COLLECT after observation must still cancel old motion when reduced motion turns ON 1253ms
+ ✓ docs/maintenance/stage2a-verification-20261026/normal-mode-contract.test.tsx > control: normal Menu motion after observation cancels on reduced motion ON and retains selection 680ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > missing WAAPI is labelled unavailable and cannot produce successful play 40ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > clamps malformed and out-of-range time input without producing NaN 3ms
+ ✓ tests/waapi-observation.test.tsx > independent observation controller contract (WAAPI double) > pending pause completion is reflected in native status rather than remaining pending forever 44ms
+ ✓ tests/waapi-observation.test.tsx > actual gallery integration: observation never owns game state > Menu selection survives observation seek, finish, reverse, mode exit, and ordinary Reset still works 1698ms
+ ✓ tests/waapi-observation.test.tsx > actual gallery integration: observation never owns game state > Coin preview repeatedly finishes and rewinds with zero points; normal COLLECT awards once 1055ms
+ ✓ tests/waapi-observation.test.tsx > actual gallery integration: observation never owns game state > collected Coin retains its score and collected guard through observation and return 954ms
+ ✓ tests/waapi-observation.test.tsx > actual gallery integration: observation never owns game state > observation reset does not reset collected game state and old callback cannot revive playback 743ms
+ ✓ tests/waapi-observation.test.tsx > actual gallery integration: observation never owns game state > mode exit cancels observation and reopening cannot resurrect the old running instance 727ms
+ × tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > 初期DOMを遅延し、正規化検索・解除・開閉を扱う 8507ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ✓ tests/waapi-observation.test.tsx > actual gallery integration: observation never owns game state > gallery closure cancels observation; reopening has no old callback or auto-score 830ms
+ ✓ tests/waapi-observation.test.tsx > actual gallery integration: observation never owns game state > gallery media notification reaches observation without changing Coin collected state 715ms
+ ✓ tests/waapi-observation.test.tsx > asynchronous ready settlement and measurement data > old ready completion after replacement cannot restore an earlier observation state 33ms
+ ✓ tests/waapi-observation.test.tsx > asynchronous ready settlement and measurement data > Menu preview uses actual row measurements and retains destination DOM ownership 9ms
+ ✓ tests/waapi-observation.test.tsx > asynchronous ready settlement and measurement data > Coin preview computes destination variables from separate preview DOM, never score DOM 8ms
+ ✓ tests/waapi-observation.test.tsx > step during playback starts from current native time, not the last RAF display sample 62ms
+ ✓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > 複合フィルター・0件・解除後の全件表示と閉鎖取消を扱う 2862ms
+ ✓ tests/waapi-observation.test.tsx > observed Coin normal motion cancellation > Replay after observation cancels running normal motion on reduced ON without changing score 722ms
+ ✓ tests/waapi-observation.test.tsx > observed Coin normal motion cancellation > Replay after observation cancels paused normal motion on reduced ON without changing score 736ms
+ ✓ tests/waapi-observation.test.tsx > observed Coin normal motion cancellation > COLLECT after observation cancels running normal motion on reduced ON without changing score 710ms
+ ✓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > Replay、コード解説、ModalとToastの両方向を操作する 1718ms
+ ✓ tests/waapi-observation.test.tsx > observed Coin normal motion cancellation > COLLECT after observation cancels paused normal motion on reduced ON without changing score 1435ms
+ ✓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > Consoleの全操作、速度、Seek、実playStateを安全に反映する 2588ms
+ ✓ tests/waapi-observation.test.tsx > observed Coin normal motion cancellation > reduced explicit Replay uses reduced definition and repeated ON/OFF does not award or autoplay 1242ms
+ ✓ tests/waapi-observation.test.tsx > observed Coin normal motion cancellation > rapid mode switches retain collected state and Reset permits exactly one new acquisition 1559ms
+ ✓ tests/waapi-observation.test.tsx > observed Coin normal motion cancellation > observed normal Coin leaving the viewport cancels, re-entry stays stopped, and unmount clears old instances 1222ms
+ ✓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > Reduced motion時は自動ループを残さず、代替表示を説明する 1541ms
+ ✓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > Fade/Slideは手動再生、Button/Toggleは直接操作だけを提供する 2613ms
+ ✓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > ゲーム標本を直接操作し、Resetで意味のある初期状態へ戻す 1558ms
+ ✓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > 新しいゲーム標本、5軸フィルター、AI共通状態を操作できる 1424ms
+ ✓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > AI比較モードは一括フェーズを進め、閉じるとループを停止する 1682ms
+ ✓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > 追加ゲーム14件は固有DOM・状態・操作結果を提供する 1189ms
+ ✓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > Card Dealの全工程とAIの完了・エラー・リセットを操作できる 1247ms
+ ✓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > AI作業ループはSTART連打で増殖せず、画面外化でcancelされる 99ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > 初期DOMを遅延し、正規化検索・解除・開閉を扱う
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/waapi-gallery.test.tsx:64:3
+     62| 
+     63| describe("WAAPI標本ギャラリー操作", () => {
+     64|   it("初期DOMを遅延し、正規化検索・解除・開閉を扱う", () => {
+       |   ^
+     65|     render(<WaapiSampleGallery />);
+     66|     expect(screen.queryByText("Fade In")).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 52 passed (53)
+   Start at  12:21:23
+   Duration  34.54s (transform 3.26s, setup 0ms, collect 6.59s, tests 52.97s, environment 10.38s, prepare 1.25s)
+

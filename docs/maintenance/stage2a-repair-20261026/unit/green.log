@@ -1,0 +1,36 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-stage2a-repair
+
+ ✓ docs/maintenance/stage2a-verification-20261026/normal-mode-contract.test.tsx (4 tests) 12126ms
+   ✓ control: normal Coin Replay before observation cancels old motion when reduced motion turns ON  2758ms
+   ✓ normal Coin Replay after observation must still cancel old motion when reduced motion turns ON  3277ms
+   ✓ normal Coin COLLECT after observation must still cancel old motion when reduced motion turns ON  2770ms
+   ✓ control: normal Menu motion after observation cancels on reduced motion ON and retains selection  3317ms
+ ✓ tests/waapi-observation.test.tsx (37 tests) 30426ms
+   ✓ independent observation controller contract (WAAPI double) > rapid play/pause and slider changes do not allocate competing animations  570ms
+   ✓ actual gallery integration: observation never owns game state > Menu selection survives observation seek, finish, reverse, mode exit, and ordinary Reset still works  1836ms
+   ✓ actual gallery integration: observation never owns game state > Coin preview repeatedly finishes and rewinds with zero points; normal COLLECT awards once  2801ms
+   ✓ actual gallery integration: observation never owns game state > collected Coin retains its score and collected guard through observation and return  2292ms
+   ✓ actual gallery integration: observation never owns game state > observation reset does not reset collected game state and old callback cannot revive playback  1239ms
+   ✓ actual gallery integration: observation never owns game state > mode exit cancels observation and reopening cannot resurrect the old running instance  1406ms
+   ✓ actual gallery integration: observation never owns game state > gallery closure cancels observation; reopening has no old callback or auto-score  1506ms
+   ✓ actual gallery integration: observation never owns game state > gallery media notification reaches observation without changing Coin collected state  2390ms
+   ✓ observed Coin normal motion cancellation > Replay after observation cancels running normal motion on reduced ON without changing score  1612ms
+   ✓ observed Coin normal motion cancellation > Replay after observation cancels paused normal motion on reduced ON without changing score  1043ms
+   ✓ observed Coin normal motion cancellation > COLLECT after observation cancels running normal motion on reduced ON without changing score  1739ms
+   ✓ observed Coin normal motion cancellation > COLLECT after observation cancels paused normal motion on reduced ON without changing score  2536ms
+   ✓ observed Coin normal motion cancellation > reduced explicit Replay uses reduced definition and repeated ON/OFF does not award or autoplay  2377ms
+   ✓ observed Coin normal motion cancellation > rapid mode switches retain collected state and Reset permits exactly one new acquisition  3350ms
+   ✓ observed Coin normal motion cancellation > observed normal Coin leaving the viewport cancels, re-entry stays stopped, and unmount clears old instances  1688ms
+
+ Test Files  2 passed (2)
+      Tests  41 passed (41)
+   Start at  12:08:29
+   Duration  38.87s (transform 1.63s, setup 0ms, collect 3.29s, tests 42.55s, environment 6.60s, prepare 1.48s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

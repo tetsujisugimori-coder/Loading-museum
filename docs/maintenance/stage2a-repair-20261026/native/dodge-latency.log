@@ -1,0 +1,82 @@
+{
+  "startedAt": "2026-10-26T04:12:57.453319+00:00",
+  "engine": "webkit",
+  "width": 390,
+  "samples": [
+    {
+      "start": 6910,
+      "scheduledAt": 7410,
+      "input": 7415,
+      "elapsed": 505,
+      "lateness": 5,
+      "before": {
+        "time": 7415,
+        "text": "ACTIVE WINDOW"
+      },
+      "immediate": {
+        "time": 7440,
+        "text": "ACTIVE WINDOW"
+      },
+      "nextRaf": {
+        "time": 7512,
+        "text": "LEFT · S-RANK"
+      },
+      "after": {
+        "time": 7533,
+        "text": "LEFT · S-RANK"
+      },
+      "attempt": 1
+    },
+    {
+      "start": 7908,
+      "scheduledAt": 8408,
+      "input": 8410,
+      "elapsed": 502,
+      "lateness": 2,
+      "before": {
+        "time": 8410,
+        "text": "ACTIVE WINDOW"
+      },
+      "immediate": {
+        "time": 8410,
+        "text": "ACTIVE WINDOW"
+      },
+      "nextRaf": {
+        "time": 8416,
+        "text": "LEFT · S-RANK"
+      },
+      "after": {
+        "time": 8443,
+        "text": "LEFT · S-RANK"
+      },
+      "attempt": 2
+    },
+    {
+      "start": 8738,
+      "scheduledAt": 9238,
+      "input": 9241,
+      "elapsed": 503,
+      "lateness": 3,
+      "before": {
+        "time": 9241,
+        "text": "ACTIVE WINDOW"
+      },
+      "immediate": {
+        "time": 9243,
+        "text": "ACTIVE WINDOW"
+      },
+      "nextRaf": {
+        "time": 9254,
+        "text": "LEFT · S-RANK"
+      },
+      "after": {
+        "time": 9280,
+        "text": "LEFT · S-RANK"
+      },
+      "attempt": 3
+    }
+  ],
+  "pageerror": [],
+  "version": "26.0",
+  "finishedAt": "2026-10-26T04:13:08.976919+00:00"
+}

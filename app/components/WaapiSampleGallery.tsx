@@ -233,6 +233,10 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
   const collectCoin = () => { if (collected.current) return; collected.current = true; setScore(100); run(); };
   const reset = useCallback(() => { stop(); collected.current = false; menuFrom.current = null; setRhythm("READY"); setScore(0); setComboIndex(0); hpValue.current = 72; setHp(72); setTrailHp(72); setMenuIndex(0); setCardStatus("READY"); }, [stop]);
   useEffect(() => {
+    // Safety cancellation must not depend on permission to autoplay after observation.
+    if (sample.render === "coin" && reducedMotion) stop();
+  }, [reducedMotion, sample.render, stop]);
+  useEffect(() => {
     // HP is driven by interaction state, never by the generic entry animation.
     if (sample.render === "hp") return;
     if (!normalActive || observed.current) return;

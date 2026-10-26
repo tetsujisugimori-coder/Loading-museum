@@ -1,0 +1,123 @@
+{
+  "phase": "N2 local cancellation effect applied; Q1 final separated/scoped tests",
+  "hashes": {
+    "app/components/WaapiSampleGallery.tsx": "0292e0340f1e5e854777a9d342bfa83b60a26e42ff0b66b9fdf343098ca3f365",
+    "tests/waapi-gallery.test.tsx": "8f453caf5b331b287f5241c4649896eb82bd5281cb1cc2b1b73f5e9ff719aa9c"
+  },
+  "runs": [
+    {
+      "name": "separated-1",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "tests/waapi-gallery.test.tsx",
+        "-t",
+        "初期DOM|複合フィルター",
+        "--reporter=verbose"
+      ],
+      "started_at": "2026-10-26T03:10:41.011129+00:00",
+      "elapsed_seconds": 7.894311795997055,
+      "exit_code": 0,
+      "loadavg": [
+        1.40966796875,
+        2.08056640625,
+        1.83349609375
+      ]
+    },
+    {
+      "name": "separated-2",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "tests/waapi-gallery.test.tsx",
+        "-t",
+        "初期DOM|複合フィルター",
+        "--reporter=verbose"
+      ],
+      "started_at": "2026-10-26T03:10:48.906613+00:00",
+      "elapsed_seconds": 6.894473971999105,
+      "exit_code": 0,
+      "loadavg": [
+        1.79541015625,
+        2.1435546875,
+        1.85693359375
+      ]
+    },
+    {
+      "name": "separated-3",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "tests/waapi-gallery.test.tsx",
+        "-t",
+        "初期DOM|複合フィルター",
+        "--reporter=verbose"
+      ],
+      "started_at": "2026-10-26T03:10:55.801440+00:00",
+      "elapsed_seconds": 9.80503324899837,
+      "exit_code": 0,
+      "loadavg": [
+        1.7314453125,
+        2.12451171875,
+        1.85205078125
+      ]
+    },
+    {
+      "name": "profile-separated-1",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "docs/maintenance/stage2a-repair-20261026/q1/profile-separated.test.tsx",
+        "-t",
+        "初期DOM|複合フィルター",
+        "--reporter=verbose"
+      ],
+      "started_at": "2026-10-26T03:11:05.607155+00:00",
+      "elapsed_seconds": 9.002148316001694,
+      "exit_code": 0,
+      "loadavg": [
+        1.84033203125,
+        2.13623046875,
+        1.85888671875
+      ]
+    },
+    {
+      "name": "profile-separated-2",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "docs/maintenance/stage2a-repair-20261026/q1/profile-separated.test.tsx",
+        "-t",
+        "初期DOM|複合フィルター",
+        "--reporter=verbose"
+      ],
+      "started_at": "2026-10-26T03:11:14.611417+00:00",
+      "elapsed_seconds": 7.049898319997737,
+      "exit_code": 0,
+      "loadavg": [
+        1.7109375,
+        2.0986328125,
+        1.84912109375
+      ]
+    },
+    {
+      "name": "profile-separated-3",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "docs/maintenance/stage2a-repair-20261026/q1/profile-separated.test.tsx",
+        "-t",
+        "初期DOM|複合フィルター",
+        "--reporter=verbose"
+      ],
+      "started_at": "2026-10-26T03:11:21.663070+00:00",
+      "elapsed_seconds": 6.880692850001651,
+      "exit_code": 0,
+      "loadavg": [
+        1.65380859375,
+        2.080078125,
+        1.84423828125
+      ]
+    }
+  ]
+}

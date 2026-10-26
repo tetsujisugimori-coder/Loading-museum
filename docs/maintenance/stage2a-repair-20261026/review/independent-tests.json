@@ -1,0 +1,14 @@
+{
+  "command": [
+    "./node_modules/.bin/vitest",
+    "run",
+    "docs/maintenance/stage2a-verification-20261026/normal-mode-contract.test.tsx",
+    "tests/waapi-observation.test.tsx",
+    "tests/waapi-gallery.test.tsx",
+    "--reporter=verbose"
+  ],
+  "started_at": "2026-10-26T03:21:22.793460+00:00",
+  "ended_at": "2026-10-26T03:21:59.338217+00:00",
+  "elapsed_seconds": 36.54488509700241,
+  "exit_code": 1
+}

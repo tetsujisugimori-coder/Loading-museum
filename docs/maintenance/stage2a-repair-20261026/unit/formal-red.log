@@ -1,0 +1,92 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-stage2a-repair
+
+ ❯ tests/waapi-observation.test.tsx (37 tests | 5 failed | 30 skipped) 15078ms
+   ↓ independent observation controller contract (WAAPI double) > initial preview is paused at zero and has actual native labels rather than simulated success
+   ↓ independent observation controller contract (WAAPI double) > play advances time from the animation, not a second game clock
+   ↓ independent observation controller contract (WAAPI double) > pause keeps the exact position and resume continues from that point
+   ↓ independent observation controller contract (WAAPI double) > restart deliberately starts at zero while the start control remains paused
+   ↓ independent observation controller contract (WAAPI double) > forward and backward steps use 1000/60 ms, not a rounded frame count
+   ↓ independent observation controller contract (WAAPI double) > seek selects a fractional time and stops an active playback
+   ↓ independent observation controller contract (WAAPI double) > steps clamp both boundaries without crossing them
+   ↓ independent observation controller contract (WAAPI double) > finished playback can rewind and resume from a selected position
+   ↓ independent observation controller contract (WAAPI double) > rapid play/pause and slider changes do not allocate competing animations
+   ↓ independent observation controller contract (WAAPI double) > stale RAF callbacks after seek do not overwrite the newer position
+   ↓ independent observation controller contract (WAAPI double) > offscreen cancels native animation and returns paused at the preserved time
+   ↓ independent observation controller contract (WAAPI double) > tab visibility cancels and restores static preview without automatic play
+   ↓ independent observation controller contract (WAAPI double) > reduced motion cancels running animation, allows manual stepping, and does not auto-resume on OFF
+   ↓ independent observation controller contract (WAAPI double) > unmount cancels owner animations and makes old RAF callbacks inert
+   ↓ independent observation controller contract (WAAPI double) > easing changes cancel the old scenario, preserve position, and do not continue play
+   ↓ independent observation controller contract (WAAPI double) > resize remeasures after initial observer delivery and preserves observation time
+   ↓ independent observation controller contract (WAAPI double) > missing WAAPI is labelled unavailable and cannot produce successful play
+   ↓ independent observation controller contract (WAAPI double) > clamps malformed and out-of-range time input without producing NaN
+   ↓ independent observation controller contract (WAAPI double) > pending pause completion is reflected in native status rather than remaining pending forever
+   ↓ actual gallery integration: observation never owns game state > Menu selection survives observation seek, finish, reverse, mode exit, and ordinary Reset still works
+   ↓ actual gallery integration: observation never owns game state > Coin preview repeatedly finishes and rewinds with zero points; normal COLLECT awards once
+   ↓ actual gallery integration: observation never owns game state > collected Coin retains its score and collected guard through observation and return
+   ↓ actual gallery integration: observation never owns game state > observation reset does not reset collected game state and old callback cannot revive playback
+   ↓ actual gallery integration: observation never owns game state > mode exit cancels observation and reopening cannot resurrect the old running instance
+   ↓ actual gallery integration: observation never owns game state > gallery closure cancels observation; reopening has no old callback or auto-score
+   ↓ actual gallery integration: observation never owns game state > gallery media notification reaches observation without changing Coin collected state
+   ↓ asynchronous ready settlement and measurement data > old ready completion after replacement cannot restore an earlier observation state
+   ↓ asynchronous ready settlement and measurement data > Menu preview uses actual row measurements and retains destination DOM ownership
+   ↓ asynchronous ready settlement and measurement data > Coin preview computes destination variables from separate preview DOM, never score DOM
+   ↓ step during playback starts from current native time, not the last RAF display sample
+   × observed Coin normal motion cancellation > Replay after observation cancels running normal motion on reduced ON without changing score 3014ms
+     → expected "spy" to be called at least once
+   × observed Coin normal motion cancellation > Replay after observation cancels paused normal motion on reduced ON without changing score 2094ms
+     → expected "spy" to be called at least once
+   × observed Coin normal motion cancellation > COLLECT after observation cancels running normal motion on reduced ON without changing score 1715ms
+     → expected "spy" to be called at least once
+   × observed Coin normal motion cancellation > COLLECT after observation cancels paused normal motion on reduced ON without changing score 1411ms
+     → expected "spy" to be called at least once
+   × observed Coin normal motion cancellation > reduced explicit Replay uses reduced definition and repeated ON/OFF does not award or autoplay 1591ms
+     → expected 'running' to be 'idle' // Object.is equality
+   ✓ observed Coin normal motion cancellation > rapid mode switches retain collected state and Reset permits exactly one new acquisition  3225ms
+   ✓ observed Coin normal motion cancellation > observed normal Coin leaving the viewport cancels, re-entry stays stopped, and unmount clears old instances  2024ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/waapi-observation.test.tsx > observed Coin normal motion cancellation > Replay after observation cancels running normal motion on reduced ON without changing score
+ FAIL  tests/waapi-observation.test.tsx > observed Coin normal motion cancellation > Replay after observation cancels paused normal motion on reduced ON without changing score
+ FAIL  tests/waapi-observation.test.tsx > observed Coin normal motion cancellation > COLLECT after observation cancels running normal motion on reduced ON without changing score
+ FAIL  tests/waapi-observation.test.tsx > observed Coin normal motion cancellation > COLLECT after observation cancels paused normal motion on reduced ON without changing score
+AssertionError: expected "spy" to be called at least once
+ ❯ tests/waapi-observation.test.tsx:277:28
+    275|         if (paused) old.pause();
+    276|         expect(old.playState).toBe(paused ? 'paused' : 'running'); med…
+    277|         expect(old.cancel).toHaveBeenCalled(); expect(old.playState).t…
+       |                            ^
+    278|         expect(owned.every(a => a.cancel.mock.calls.length > 0 && a.pl…
+    279|         expect(card.querySelector('[data-normal-game] output')!.textCo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/waapi-observation.test.tsx > observed Coin normal motion cancellation > reduced explicit Replay uses reduced definition and repeated ON/OFF does not award or autoplay
+AssertionError: expected 'running' to be 'idle' // Object.is equality
+
+Expected: "idle"
+Received: "running"
+
+ ❯ tests/waapi-observation.test.tsx:289:141
+    287|     expect(normalAnimations().at(-1)!.frames).toEqual(coin.reduced.key…
+    288|     expect(normalAnimations().at(-1)!.options.duration).toBe(coin.redu…
+    289|     for (let i = 0; i < 3; i++) { media(false); click('Replay'); const…
+       |                                                                                                                                             ^
+    290|     expect(card.querySelector('[data-normal-game] output')!.textConten…
+    291|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 2 passed | 30 skipped (37)
+   Start at  12:05:28
+   Duration  19.58s (transform 1.68s, setup 0ms, collect 2.06s, tests 15.08s, environment 876ms, prepare 375ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

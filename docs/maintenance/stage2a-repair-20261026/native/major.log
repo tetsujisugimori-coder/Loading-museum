@@ -1,0 +1,264 @@
+[
+  {
+    "browser": "chromium",
+    "version": "141.0.7390.37",
+    "width": 375,
+    "status": "PARTIAL",
+    "checks": [
+      "catalog/categories/search",
+      "match adjacency/score/reset/real drag",
+      "native trace swap/5 erase/fall/3 erase; runtime reduce; keyboard; reset interruption",
+      "falling board/compaction/reset",
+      "hp immediate/repeated reset and damage",
+      "equip scroll/unequip/reset/keyboard",
+      "lock geometry/keyboard/reset",
+      "five targets retain logical state on runtime media change and resume next action",
+      "light/dark media and text200% target overflow"
+    ],
+    "categoryPredicateControls": [
+      {
+        "name": "complete category coverage",
+        "pass": true
+      },
+      {
+        "name": "empty locator rejected",
+        "pass": true
+      },
+      {
+        "name": "empty expected set rejected",
+        "pass": true
+      },
+      {
+        "name": "unexecuted category rejected",
+        "pass": true
+      }
+    ],
+    "categoryExpected": 8,
+    "categoryExecuted": 8,
+    "warnings": [
+      {
+        "wholePageText200Overflow": {
+          "width": 375,
+          "scrollWidth": 608
+        }
+      }
+    ],
+    "pageErrors": []
+  },
+  {
+    "browser": "chromium",
+    "version": "141.0.7390.37",
+    "width": 390,
+    "status": "PARTIAL",
+    "checks": [
+      "catalog/categories/search",
+      "match adjacency/score/reset/real drag",
+      "native trace swap/5 erase/fall/3 erase; runtime reduce; keyboard; reset interruption",
+      "falling board/compaction/reset",
+      "hp immediate/repeated reset and damage",
+      "equip scroll/unequip/reset/keyboard",
+      "lock geometry/keyboard/reset",
+      "five targets retain logical state on runtime media change and resume next action",
+      "light/dark media and text200% target overflow"
+    ],
+    "categoryPredicateControls": [
+      {
+        "name": "complete category coverage",
+        "pass": true
+      },
+      {
+        "name": "empty locator rejected",
+        "pass": true
+      },
+      {
+        "name": "empty expected set rejected",
+        "pass": true
+      },
+      {
+        "name": "unexecuted category rejected",
+        "pass": true
+      }
+    ],
+    "categoryExpected": 8,
+    "categoryExecuted": 8,
+    "warnings": [
+      {
+        "wholePageText200Overflow": {
+          "width": 390,
+          "scrollWidth": 632
+        }
+      }
+    ],
+    "pageErrors": []
+  },
+  {
+    "browser": "chromium",
+    "version": "141.0.7390.37",
+    "width": 765,
+    "status": "PASS",
+    "checks": [
+      "catalog/categories/search",
+      "match adjacency/score/reset/real drag",
+      "native trace swap/5 erase/fall/3 erase; runtime reduce; keyboard; reset interruption",
+      "falling board/compaction/reset",
+      "hp immediate/repeated reset and damage",
+      "equip scroll/unequip/reset/keyboard",
+      "lock geometry/keyboard/reset",
+      "five targets retain logical state on runtime media change and resume next action",
+      "light/dark media and text200% target overflow"
+    ],
+    "categoryPredicateControls": [
+      {
+        "name": "complete category coverage",
+        "pass": true
+      },
+      {
+        "name": "empty locator rejected",
+        "pass": true
+      },
+      {
+        "name": "empty expected set rejected",
+        "pass": true
+      },
+      {
+        "name": "unexecuted category rejected",
+        "pass": true
+      }
+    ],
+    "categoryExpected": 8,
+    "categoryExecuted": 8,
+    "warnings": [],
+    "pageErrors": []
+  },
+  {
+    "browser": "webkit",
+    "version": "26.0",
+    "width": 375,
+    "status": "PARTIAL",
+    "checks": [
+      "catalog/categories/search",
+      "match adjacency/score/reset/real drag",
+      "native trace swap/5 erase/fall/3 erase; runtime reduce; keyboard; reset interruption",
+      "falling board/compaction/reset",
+      "hp immediate/repeated reset and damage",
+      "equip scroll/unequip/reset/keyboard",
+      "lock geometry/keyboard/reset",
+      "five targets retain logical state on runtime media change and resume next action",
+      "light/dark media and text200% target overflow"
+    ],
+    "categoryPredicateControls": [
+      {
+        "name": "complete category coverage",
+        "pass": true
+      },
+      {
+        "name": "empty locator rejected",
+        "pass": true
+      },
+      {
+        "name": "empty expected set rejected",
+        "pass": true
+      },
+      {
+        "name": "unexecuted category rejected",
+        "pass": true
+      }
+    ],
+    "categoryExpected": 8,
+    "categoryExecuted": 8,
+    "warnings": [
+      {
+        "wholePageText200Overflow": {
+          "width": 375,
+          "scrollWidth": 598
+        }
+      }
+    ],
+    "pageErrors": []
+  },
+  {
+    "browser": "webkit",
+    "version": "26.0",
+    "width": 390,
+    "status": "PARTIAL",
+    "checks": [
+      "catalog/categories/search",
+      "match adjacency/score/reset/real drag",
+      "native trace swap/5 erase/fall/3 erase; runtime reduce; keyboard; reset interruption",
+      "falling board/compaction/reset",
+      "hp immediate/repeated reset and damage",
+      "equip scroll/unequip/reset/keyboard",
+      "lock geometry/keyboard/reset",
+      "five targets retain logical state on runtime media change and resume next action",
+      "light/dark media and text200% target overflow"
+    ],
+    "categoryPredicateControls": [
+      {
+        "name": "complete category coverage",
+        "pass": true
+      },
+      {
+        "name": "empty locator rejected",
+        "pass": true
+      },
+      {
+        "name": "empty expected set rejected",
+        "pass": true
+      },
+      {
+        "name": "unexecuted category rejected",
+        "pass": true
+      }
+    ],
+    "categoryExpected": 8,
+    "categoryExecuted": 8,
+    "warnings": [
+      {
+        "wholePageText200Overflow": {
+          "width": 390,
+          "scrollWidth": 621
+        }
+      }
+    ],
+    "pageErrors": []
+  },
+  {
+    "browser": "webkit",
+    "version": "26.0",
+    "width": 765,
+    "status": "PASS",
+    "checks": [
+      "catalog/categories/search",
+      "match adjacency/score/reset/real drag",
+      "native trace swap/5 erase/fall/3 erase; runtime reduce; keyboard; reset interruption",
+      "falling board/compaction/reset",
+      "hp immediate/repeated reset and damage",
+      "equip scroll/unequip/reset/keyboard",
+      "lock geometry/keyboard/reset",
+      "five targets retain logical state on runtime media change and resume next action",
+      "light/dark media and text200% target overflow"
+    ],
+    "categoryPredicateControls": [
+      {
+        "name": "complete category coverage",
+        "pass": true
+      },
+      {
+        "name": "empty locator rejected",
+        "pass": true
+      },
+      {
+        "name": "empty expected set rejected",
+        "pass": true
+      },
+      {
+        "name": "unexecuted category rejected",
+        "pass": true
+      }
+    ],
+    "categoryExpected": 8,
+    "categoryExecuted": 8,
+    "warnings": [],
+    "pageErrors": []
+  }
+]

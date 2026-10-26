@@ -1479,3 +1479,16 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 - 通常復帰のCoin新規P2を独立再現：観察後Replay/COLLECT中の低減ONが旧Animationを取消さない。Ch/WK native＋独立代用品2対照成功/2回帰失敗。得点は維持、製品未修正。原因はobserved自動run抑止が取消責務も抑止すること。局所分離を修正提案、無断改修しない。
 - 通常Coinの持続的自動デモ抑止自体はIssue35の安全契約と整合しREADME説明を補足。WKMenu100ms取消失敗は別probeでIO通知遅延と1000ms以内idleを観測、元失敗同根因とは断定しない。
 - 独立最終推奨はFAILED / マージNO。N2修復と同一期待値再検証、品質ゲート原因切分けを優先。実機/VoiceOver/実背景化/OS文字拡大/公開版操作は未検証、既存title200%横超過/typewriter重複は別負債、全197展示PASSは主張しない。最終HEAD/tree/CI照合は提出時のPR/Issue追記で記録する。Draft未マージ維持、公開workflow未実行。
+
+## 2026-10-26 Stage 2A N2局所修復・Q1品質ゲート追補（Issue #35 / Draft PR #36）
+
+- 基準 `5bb0d052d4a6aea74c97794f5596eef900ad015f`、fetchしたmain `1d0d7eeac4e6fcbe2dfb792dd69250e65af302b7`。旧clean worktreeを保全し独立worktreeで作業。旧失敗証拠は変更しない。
+- N2第一希望のCoin低減ON取消独立effectを採用（製品4行）。observed自動再生抑止・得点・獲得済み状態・Menu/他ゲームは変更しない。旧診断4件2成功2失敗→同期待値4成功、新正式7件2成功5失敗→7成功。観察既存30件も成功、focused合計41成功。
+- Q1は全DOM queryが計測53〜61%を占めることを確認。scope/expanded最適化だけでは反復timeoutが残り、独立責務2本へ分離、全元assert/5000msを保持。旧連続履歴はnative別検査で補完する。環境変動の根因はUNKNOWN、分割だけで根治と呼ばない。
+- [今回の結果と未検証境界](docs/maintenance/stage2a-repair-20261026/README.md)、[Q1区間計測と期待値対応](docs/maintenance/stage2a-repair-20261026/q1/README.md)を追加。最終反復・native・独立レビュー結果は同資料へ追記。Pagesworkflowは変更/起動せず、Stage2B・公開・マージは未実施。
+
+- Stage 2A N2/Q1追加結果: 全check既定3回は177/179・175/179・178/179、復帰後worker1は179/179・175/179。いずれもskip0。timeout残存のためQ1未解決P2、マージNO。新N2正式7件は5回すべて成功。exec-server切断による途中worker1結果不明と診断型注釈エラーも別記録し、成功回だけを採用しない。
+
+- N2最終nativeはCh/WK×375/390/765の12取消経路を同scriptで修正前12失敗→修正後12成功。両旧Animationがrunning中cancel→idle/null、228行動assert＋paused6成功、pageerror0。独立担当がsource/build/JSONを照合。Q1未解決のため総合PARTIAL/マージNOを維持。
+
+- 最終主要回帰: Stage2A時間操作6条件48群PASS、旧主要ゲーム6条件54群成功（狭幅文字200%の既存全page横超過4PARTIAL）。Stage1初回4PASS2FAIL、限定追加Ch765 PASS/WK390 Battle後半assert FAILを保持し根因未特定。独立レビューPARTIAL/NO。HTTP配信12ファイル同一、29PNGと可逆gzip4件の証拠を保存。実CI/実機/全197操作未検証。

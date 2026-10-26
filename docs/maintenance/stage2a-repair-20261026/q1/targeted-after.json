@@ -1,0 +1,59 @@
+[
+  {
+    "name": "scoped-1",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "tests/waapi-gallery.test.tsx",
+      "-t",
+      "初期DOM",
+      "--reporter=verbose"
+    ],
+    "started_at": "2026-10-26T03:06:50.560320+00:00",
+    "elapsed_seconds": 10.201458344999992,
+    "exit_code": 0,
+    "loadavg": [
+      1.9482421875,
+      2.484375,
+      1.845703125
+    ]
+  },
+  {
+    "name": "scoped-2",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "tests/waapi-gallery.test.tsx",
+      "-t",
+      "初期DOM",
+      "--reporter=verbose"
+    ],
+    "started_at": "2026-10-26T03:07:00.764872+00:00",
+    "elapsed_seconds": 13.628533087001415,
+    "exit_code": 1,
+    "loadavg": [
+      2.4716796875,
+      2.58251953125,
+      1.88525390625
+    ]
+  },
+  {
+    "name": "scoped-3",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "tests/waapi-gallery.test.tsx",
+      "-t",
+      "初期DOM",
+      "--reporter=verbose"
+    ],
+    "started_at": "2026-10-26T03:07:14.402635+00:00",
+    "elapsed_seconds": 15.106388581996725,
+    "exit_code": 0,
+    "loadavg": [
+      2.373046875,
+      2.55419921875,
+      1.8876953125
+    ]
+  }
+]

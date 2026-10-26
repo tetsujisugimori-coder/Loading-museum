@@ -1,0 +1,31 @@
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-stage2a-repair
+
+stdout | docs/maintenance/stage2a-repair-20261026/q1/profile-scoped.test.tsx > Q1 scoped section timing > 初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う
+Q1_PROFILE {"samples":[{"label":"render(<WaapiSampleGallery />);","ms":105.79863299999943},{"label":"expect(screen.queryByText(\"Fade In\")).toBeNull();","ms":31.97147700000005},{"label":"expect(screen.queryByRole(\"region\", { name: /WAAPI/ })).toBeNull();","ms":198.79901900000004},{"label":"openGallery();","ms":1580.0246890000008},{"label":"expect(screen.getAllByRole(\"article\").length).toBeGreaterThanOrEqual(47);","ms":312.0943079999997},{"label":"expect(screen.getByText(\"47 / 47 samples\")).not.toBeNull();","ms":119.25912399999834},{"label":"fireEvent.change(screen.getByLabelText(\"検索\"), { target: { value: \"  FADE IN  \" } });","ms":256.3796459999994},{"label":"expect(screen.getByText(\"1 / 47 samples\")).not.toBeNull();","ms":7.164209999999002},{"label":"expect(screen.getByText(\"Fade In\")).not.toBeNull();","ms":5.203080999999656},{"label":"fireEvent.click(screen.getByRole(\"button\", { name: \"絞り込みを解除\" }));","ms":729.9511020000009},{"label":"fireEvent.change(screen.getByLabelText(\"カテゴリ\"), { target: { value: \"UI Feedback\" } });","ms":211.051872},{"label":"fireEvent.change(screen.getByLabelText(\"用途\"), { target: { value: \"Modal\" } });","ms":97.50576200000069},{"label":"expect(screen.getByText(\"1 / 47 samples\")).not.toBeNull();","ms":33.636547000000064},{"label":"expect(screen.getByText(\"Modal Open / Close\")).not.toBeNull();","ms":17.447949999999764},{"label":"fireEvent.change(screen.getByLabelText(\"検索\"), { target: { value: \"一致しない文字列\" } });","ms":68.3336130000007},{"label":"expect(screen.getByText(/条件に一致する標本はありません/)).not.toBeNull();","ms":22.88094799999999},{"label":"fireEvent.click(screen.getByRole(\"button\", { name: \"絞り込みを解除\" }));","ms":1135.0873699999993},{"label":"expect(screen.getByText(\"47 / 47 samples\")).not.toBeNull();","ms":292.23902199999975},{"label":"fireEvent.click(screen.getByRole(\"button\", { name: /サンプル一覧を閉じる/ }));","ms":495.36690799999997},{"label":"expect(screen.queryByText(\"Fade In\")).toBeNull();","ms":1.2319990000014513},{"label":"expect(animations.reduce((total, item) => total + item.animation.cancel.mock.calls.length, 0)).toBeGreaterThan(cancelCount);","ms":0.1631839999990916},{"label":"cleanup","ms":5.230256999999256}],"querySamples":[{"label":"queryByText Fade In","ms":29.9869690000005},{"label":"queryByRole region","ms":198.63344700000016},{"label":"getByRole button","ms":35.2535969999999},{"label":"getAllByRole article","ms":310.161118},{"label":"getByText 47 / 47 samples","ms":113.59077499999876},{"label":"getByText 1 / 47 samples","ms":6.864495000001625},{"label":"getByText Fade In","ms":5.044776000000638},{"label":"getByText 1 / 47 samples","ms":31.944163000000117},{"label":"getByText Modal Open / Close","ms":17.071437000000515},{"label":"getByText /条件に一致する標本はありません/","ms":21.347485000000233},{"label":"getByText 47 / 47 samples","ms":290.80819599999995},{"label":"getByRole button","ms":240.59368399999948},{"label":"queryByText Fade In","ms":0.9984369999983755}],"totalMs":5726.820720999997}
+
+ × docs/maintenance/stage2a-repair-20261026/q1/profile-scoped.test.tsx > Q1 scoped section timing > 初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う 5841ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  docs/maintenance/stage2a-repair-20261026/q1/profile-scoped.test.tsx > Q1 scoped section timing > 初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ docs/maintenance/stage2a-repair-20261026/q1/profile-scoped.test.tsx:83:3
+     81| }
+     82| describe("Q1 scoped section timing", () => {
+     83|   it("初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う", () => {
+       |   ^
+     84|     timed("render(<WaapiSampleGallery />);", () => render(<WaapiSample…
+     85|     timed("expect(screen.queryByText(\"Fade In\")).toBeNull();", () =>…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  12:06:35
+   Duration  12.95s (transform 884ms, setup 0ms, collect 1.54s, tests 5.85s, environment 3.65s, prepare 879ms)
+

@@ -1,0 +1,531 @@
+{
+  "baseline_head": "5bb0d052d4a6aea74c97794f5596eef900ad015f",
+  "baseline_test_sha256": "eccd435df33aa4d3ef269053bf2870d7afce44683e62955138fc9969bcf99a40",
+  "runs": [
+    {
+      "log": "profile-original-1.log",
+      "operation_ms": 6103.421183000001,
+      "screen_query_ms": 3712.4183539999985,
+      "last_close_role_query_ms": 2062.0736750000005,
+      "cleanup_ms": 8.195235999999568,
+      "samples": [
+        {
+          "label": "render(<WaapiSampleGallery />);",
+          "ms": 121.99670799999967
+        },
+        {
+          "label": "expect(screen.queryByText(\"Fade In\")).toBeNull();",
+          "ms": 34.7348649999999
+        },
+        {
+          "label": "expect(screen.queryByRole(\"region\", { name: /WAAPI/ })).toBeNull();",
+          "ms": 148.36398599999984
+        },
+        {
+          "label": "openGallery();",
+          "ms": 929.9143949999998
+        },
+        {
+          "label": "expect(screen.getAllByRole(\"article\").length).toBeGreaterThanOrEqual(47);",
+          "ms": 168.46852000000035
+        },
+        {
+          "label": "expect(screen.getByText(\"47 / 47 samples\")).not.toBeNull();",
+          "ms": 67.59712000000036
+        },
+        {
+          "label": "fireEvent.change(screen.getByLabelText(\"検索\"), { target: { value: \"  FADE IN  \" } });",
+          "ms": 640.0396460000002
+        },
+        {
+          "label": "expect(screen.getByText(\"1 / 47 samples\")).not.toBeNull();",
+          "ms": 16.79646799999955
+        },
+        {
+          "label": "expect(screen.getByText(\"Fade In\")).not.toBeNull();",
+          "ms": 14.302139000000352
+        },
+        {
+          "label": "fireEvent.click(screen.getByRole(\"button\", { name: \"絞り込みを解除\" }));",
+          "ms": 576.6939820000007
+        },
+        {
+          "label": "fireEvent.change(screen.getByLabelText(\"カテゴリ\"), { target: { value: \"UI Feedback\" } });",
+          "ms": 497.36566500000026
+        },
+        {
+          "label": "fireEvent.change(screen.getByLabelText(\"用途\"), { target: { value: \"Modal\" } });",
+          "ms": 66.0141479999993
+        },
+        {
+          "label": "expect(screen.getByText(\"1 / 47 samples\")).not.toBeNull();",
+          "ms": 2.500520999999935
+        },
+        {
+          "label": "expect(screen.getByText(\"Modal Open / Close\")).not.toBeNull();",
+          "ms": 5.830719000000499
+        },
+        {
+          "label": "fireEvent.change(screen.getByLabelText(\"検索\"), { target: { value: \"一致しない文字列\" } });",
+          "ms": 41.059001000000535
+        },
+        {
+          "label": "expect(screen.getByText(/条件に一致する標本はありません/)).not.toBeNull();",
+          "ms": 5.357202999999572
+        },
+        {
+          "label": "fireEvent.click(screen.getByRole(\"button\", { name: \"絞り込みを解除\" }));",
+          "ms": 381.2191549999998
+        },
+        {
+          "label": "expect(screen.getByText(\"47 / 47 samples\")).not.toBeNull();",
+          "ms": 60.7260839999999
+        },
+        {
+          "label": "fireEvent.click(screen.getByRole(\"button\", { name: /サンプル一覧を閉じる/ }));",
+          "ms": 2302.8425660000003
+        },
+        {
+          "label": "expect(screen.queryByText(\"Fade In\")).toBeNull();",
+          "ms": 12.30987500000083
+        },
+        {
+          "label": "expect(animations.reduce((total, item) => total + item.animation.cancel.mock.calls.length, 0)).toBeGreaterThan(cancelCount);",
+          "ms": 1.093181000000186
+        },
+        {
+          "label": "cleanup",
+          "ms": 8.195235999999568
+        }
+      ],
+      "query_samples": [
+        {
+          "label": "queryByText Fade In",
+          "ms": 34.14303599999994
+        },
+        {
+          "label": "queryByRole region",
+          "ms": 147.12856899999997
+        },
+        {
+          "label": "getByRole button",
+          "ms": 17.17493999999988
+        },
+        {
+          "label": "getAllByRole article",
+          "ms": 167.42259000000013
+        },
+        {
+          "label": "getByText 47 / 47 samples",
+          "ms": 67.31178899999941
+        },
+        {
+          "label": "getByLabelText 検索",
+          "ms": 518.9685810000001
+        },
+        {
+          "label": "getByText 1 / 47 samples",
+          "ms": 16.460570999999618
+        },
+        {
+          "label": "getByText Fade In",
+          "ms": 13.244228999999905
+        },
+        {
+          "label": "getByRole button",
+          "ms": 69.09348599999976
+        },
+        {
+          "label": "getByLabelText カテゴリ",
+          "ms": 440.9832070000002
+        },
+        {
+          "label": "getByLabelText 用途",
+          "ms": 29.527350000000297
+        },
+        {
+          "label": "getByText 1 / 47 samples",
+          "ms": 2.1913150000000314
+        },
+        {
+          "label": "getByText Modal Open / Close",
+          "ms": 5.4084899999998015
+        },
+        {
+          "label": "getByLabelText 検索",
+          "ms": 23.423753000000033
+        },
+        {
+          "label": "getByText /条件に一致する標本はありません/",
+          "ms": 4.530009000000064
+        },
+        {
+          "label": "getByRole button",
+          "ms": 27.558720999999423
+        },
+        {
+          "label": "getByText 47 / 47 samples",
+          "ms": 60.00776299999961
+        },
+        {
+          "label": "getByRole button",
+          "ms": 2062.0736750000005
+        },
+        {
+          "label": "queryByText Fade In",
+          "ms": 5.766279999999824
+        }
+      ]
+    },
+    {
+      "log": "profile-original-2.log",
+      "operation_ms": 6311.591713000002,
+      "screen_query_ms": 3506.088812000002,
+      "last_close_role_query_ms": 1408.848618,
+      "cleanup_ms": 5.408108000001448,
+      "samples": [
+        {
+          "label": "render(<WaapiSampleGallery />);",
+          "ms": 102.1873169999999
+        },
+        {
+          "label": "expect(screen.queryByText(\"Fade In\")).toBeNull();",
+          "ms": 45.484987000000274
+        },
+        {
+          "label": "expect(screen.queryByRole(\"region\", { name: /WAAPI/ })).toBeNull();",
+          "ms": 171.2466629999999
+        },
+        {
+          "label": "openGallery();",
+          "ms": 1036.6506720000002
+        },
+        {
+          "label": "expect(screen.getAllByRole(\"article\").length).toBeGreaterThanOrEqual(47);",
+          "ms": 209.61436099999992
+        },
+        {
+          "label": "expect(screen.getByText(\"47 / 47 samples\")).not.toBeNull();",
+          "ms": 90.51925200000005
+        },
+        {
+          "label": "fireEvent.change(screen.getByLabelText(\"検索\"), { target: { value: \"  FADE IN  \" } });",
+          "ms": 606.6151900000004
+        },
+        {
+          "label": "expect(screen.getByText(\"1 / 47 samples\")).not.toBeNull();",
+          "ms": 9.047773999999663
+        },
+        {
+          "label": "expect(screen.getByText(\"Fade In\")).not.toBeNull();",
+          "ms": 6.043732000000091
+        },
+        {
+          "label": "fireEvent.click(screen.getByRole(\"button\", { name: \"絞り込みを解除\" }));",
+          "ms": 882.1385089999994
+        },
+        {
+          "label": "fireEvent.change(screen.getByLabelText(\"カテゴリ\"), { target: { value: \"UI Feedback\" } });",
+          "ms": 903.5074129999994
+        },
+        {
+          "label": "fireEvent.change(screen.getByLabelText(\"用途\"), { target: { value: \"Modal\" } });",
+          "ms": 109.1738860000005
+        },
+        {
+          "label": "expect(screen.getByText(\"1 / 47 samples\")).not.toBeNull();",
+          "ms": 4.4196210000000065
+        },
+        {
+          "label": "expect(screen.getByText(\"Modal Open / Close\")).not.toBeNull();",
+          "ms": 4.894065999999839
+        },
+        {
+          "label": "fireEvent.change(screen.getByLabelText(\"検索\"), { target: { value: \"一致しない文字列\" } });",
+          "ms": 26.597931999999673
+        },
+        {
+          "label": "expect(screen.getByText(/条件に一致する標本はありません/)).not.toBeNull();",
+          "ms": 5.934353999999985
+        },
+        {
+          "label": "fireEvent.click(screen.getByRole(\"button\", { name: \"絞り込みを解除\" }));",
+          "ms": 547.7777369999994
+        },
+        {
+          "label": "expect(screen.getByText(\"47 / 47 samples\")).not.toBeNull();",
+          "ms": 81.47769100000005
+        },
+        {
+          "label": "fireEvent.click(screen.getByRole(\"button\", { name: /サンプル一覧を閉じる/ }));",
+          "ms": 1458.5114470000008
+        },
+        {
+          "label": "expect(screen.queryByText(\"Fade In\")).toBeNull();",
+          "ms": 3.371327000000747
+        },
+        {
+          "label": "expect(animations.reduce((total, item) => total + item.animation.cancel.mock.calls.length, 0)).toBeGreaterThan(cancelCount);",
+          "ms": 0.9696739999999409
+        },
+        {
+          "label": "cleanup",
+          "ms": 5.408108000001448
+        }
+      ],
+      "query_samples": [
+        {
+          "label": "queryByText Fade In",
+          "ms": 44.68211599999995
+        },
+        {
+          "label": "queryByRole region",
+          "ms": 170.72269599999981
+        },
+        {
+          "label": "getByRole button",
+          "ms": 31.231386999999813
+        },
+        {
+          "label": "getAllByRole article",
+          "ms": 208.3529440000002
+        },
+        {
+          "label": "getByText 47 / 47 samples",
+          "ms": 89.20762999999988
+        },
+        {
+          "label": "getByLabelText 検索",
+          "ms": 484.9559999999992
+        },
+        {
+          "label": "getByText 1 / 47 samples",
+          "ms": 8.47325600000022
+        },
+        {
+          "label": "getByText Fade In",
+          "ms": 5.901171000000431
+        },
+        {
+          "label": "getByRole button",
+          "ms": 103.0061539999997
+        },
+        {
+          "label": "getByLabelText カテゴリ",
+          "ms": 793.2784680000004
+        },
+        {
+          "label": "getByLabelText 用途",
+          "ms": 20.894428999999946
+        },
+        {
+          "label": "getByText 1 / 47 samples",
+          "ms": 4.203782000000501
+        },
+        {
+          "label": "getByText Modal Open / Close",
+          "ms": 4.500920000000406
+        },
+        {
+          "label": "getByLabelText 検索",
+          "ms": 9.668324000000212
+        },
+        {
+          "label": "getByText /条件に一致する標本はありません/",
+          "ms": 5.778368000000228
+        },
+        {
+          "label": "getByRole button",
+          "ms": 29.62509399999999
+        },
+        {
+          "label": "getByText 47 / 47 samples",
+          "ms": 81.23803899999984
+        },
+        {
+          "label": "getByRole button",
+          "ms": 1408.848618
+        },
+        {
+          "label": "queryByText Fade In",
+          "ms": 1.5194160000010015
+        }
+      ]
+    },
+    {
+      "log": "profile-original-3.log",
+      "operation_ms": 6698.391274000001,
+      "screen_query_ms": 3561.3997320000017,
+      "last_close_role_query_ms": 1143.4852250000004,
+      "cleanup_ms": 5.588271000000532,
+      "samples": [
+        {
+          "label": "render(<WaapiSampleGallery />);",
+          "ms": 56.003318000000036
+        },
+        {
+          "label": "expect(screen.queryByText(\"Fade In\")).toBeNull();",
+          "ms": 50.99019600000065
+        },
+        {
+          "label": "expect(screen.queryByRole(\"region\", { name: /WAAPI/ })).toBeNull();",
+          "ms": 129.7150249999995
+        },
+        {
+          "label": "openGallery();",
+          "ms": 1532.7989200000002
+        },
+        {
+          "label": "expect(screen.getAllByRole(\"article\").length).toBeGreaterThanOrEqual(47);",
+          "ms": 256.03655400000025
+        },
+        {
+          "label": "expect(screen.getByText(\"47 / 47 samples\")).not.toBeNull();",
+          "ms": 120.7182040000007
+        },
+        {
+          "label": "fireEvent.change(screen.getByLabelText(\"検索\"), { target: { value: \"  FADE IN  \" } });",
+          "ms": 840.3594190000003
+        },
+        {
+          "label": "expect(screen.getByText(\"1 / 47 samples\")).not.toBeNull();",
+          "ms": 22.806204999999864
+        },
+        {
+          "label": "expect(screen.getByText(\"Fade In\")).not.toBeNull();",
+          "ms": 14.514134000000013
+        },
+        {
+          "label": "fireEvent.click(screen.getByRole(\"button\", { name: \"絞り込みを解除\" }));",
+          "ms": 633.160167
+        },
+        {
+          "label": "fireEvent.change(screen.getByLabelText(\"カテゴリ\"), { target: { value: \"UI Feedback\" } });",
+          "ms": 936.4914979999994
+        },
+        {
+          "label": "fireEvent.change(screen.getByLabelText(\"用途\"), { target: { value: \"Modal\" } });",
+          "ms": 111.46310199999971
+        },
+        {
+          "label": "expect(screen.getByText(\"1 / 47 samples\")).not.toBeNull();",
+          "ms": 5.904393000000709
+        },
+        {
+          "label": "expect(screen.getByText(\"Modal Open / Close\")).not.toBeNull();",
+          "ms": 7.413081999999122
+        },
+        {
+          "label": "fireEvent.change(screen.getByLabelText(\"検索\"), { target: { value: \"一致しない文字列\" } });",
+          "ms": 35.64127700000063
+        },
+        {
+          "label": "expect(screen.getByText(/条件に一致する標本はありません/)).not.toBeNull();",
+          "ms": 4.217050999999628
+        },
+        {
+          "label": "fireEvent.click(screen.getByRole(\"button\", { name: \"絞り込みを解除\" }));",
+          "ms": 654.224823999999
+        },
+        {
+          "label": "expect(screen.getByText(\"47 / 47 samples\")).not.toBeNull();",
+          "ms": 88.6743660000011
+        },
+        {
+          "label": "fireEvent.click(screen.getByRole(\"button\", { name: /サンプル一覧を閉じる/ }));",
+          "ms": 1188.944653999999
+        },
+        {
+          "label": "expect(screen.queryByText(\"Fade In\")).toBeNull();",
+          "ms": 1.6858109999993758
+        },
+        {
+          "label": "expect(animations.reduce((total, item) => total + item.animation.cancel.mock.calls.length, 0)).toBeGreaterThan(cancelCount);",
+          "ms": 1.040803000001688
+        },
+        {
+          "label": "cleanup",
+          "ms": 5.588271000000532
+        }
+      ],
+      "query_samples": [
+        {
+          "label": "queryByText Fade In",
+          "ms": 49.420946000000185
+        },
+        {
+          "label": "queryByRole region",
+          "ms": 129.10021700000016
+        },
+        {
+          "label": "getByRole button",
+          "ms": 12.829181000000062
+        },
+        {
+          "label": "getAllByRole article",
+          "ms": 255.6650749999999
+        },
+        {
+          "label": "getByText 47 / 47 samples",
+          "ms": 120.28112200000032
+        },
+        {
+          "label": "getByLabelText 検索",
+          "ms": 696.4455340000004
+        },
+        {
+          "label": "getByText 1 / 47 samples",
+          "ms": 21.635285999999724
+        },
+        {
+          "label": "getByText Fade In",
+          "ms": 14.364923999999519
+        },
+        {
+          "label": "getByRole button",
+          "ms": 59.70292800000061
+        },
+        {
+          "label": "getByLabelText カテゴリ",
+          "ms": 855.8199190000014
+        },
+        {
+          "label": "getByLabelText 用途",
+          "ms": 32.122057999999015
+        },
+        {
+          "label": "getByText 1 / 47 samples",
+          "ms": 5.670017000000371
+        },
+        {
+          "label": "getByText Modal Open / Close",
+          "ms": 7.268513000000894
+        },
+        {
+          "label": "getByLabelText 検索",
+          "ms": 18.783746999999494
+        },
+        {
+          "label": "getByText /条件に一致する標本はありません/",
+          "ms": 4.017783999999665
+        },
+        {
+          "label": "getByRole button",
+          "ms": 46.58448200000021
+        },
+        {
+          "label": "getByText 47 / 47 samples",
+          "ms": 87.98864099999992
+        },
+        {
+          "label": "getByRole button",
+          "ms": 1143.4852250000004
+        },
+        {
+          "label": "queryByText Fade In",
+          "ms": 0.2141329999994923
+        }
+      ]
+    }
+  ]
+}

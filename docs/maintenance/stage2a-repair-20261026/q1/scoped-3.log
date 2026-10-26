@@ -1,0 +1,20 @@
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-stage2a-repair
+
+ ✓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > 初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う 5013ms
+ ↓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > Replay、コード解説、ModalとToastの両方向を操作する
+ ↓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > Consoleの全操作、速度、Seek、実playStateを安全に反映する
+ ↓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > Reduced motion時は自動ループを残さず、代替表示を説明する
+ ↓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > Fade/Slideは手動再生、Button/Toggleは直接操作だけを提供する
+ ↓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > ゲーム標本を直接操作し、Resetで意味のある初期状態へ戻す
+ ↓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > 新しいゲーム標本、5軸フィルター、AI共通状態を操作できる
+ ↓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > AI比較モードは一括フェーズを進め、閉じるとループを停止する
+ ↓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > 追加ゲーム14件は固有DOM・状態・操作結果を提供する
+ ↓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > Card Dealの全工程とAIの完了・エラー・リセットを操作できる
+ ↓ tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > AI作業ループはSTART連打で増殖せず、画面外化でcancelされる
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 10 skipped (11)
+   Start at  12:07:17
+   Duration  11.29s (transform 2.15s, setup 0ms, collect 2.51s, tests 5.02s, environment 864ms, prepare 320ms)
+
