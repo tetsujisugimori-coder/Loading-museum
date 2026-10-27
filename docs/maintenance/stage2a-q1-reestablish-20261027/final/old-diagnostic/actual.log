@@ -1,0 +1,13 @@
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-q1-recovered
+
+ ✓ docs/maintenance/stage2a-verification-20261026/normal-mode-contract.test.tsx (4 tests) 1601ms
+   ✓ control: normal Coin Replay before observation cancels old motion when reduced motion turns ON  521ms
+   ✓ normal Coin Replay after observation must still cancel old motion when reduced motion turns ON  408ms
+   ✓ control: normal Menu motion after observation cancels on reduced motion ON and retains selection  375ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  09:24:42
+   Duration  2.50s (transform 224ms, setup 0ms, collect 348ms, tests 1.60s, environment 319ms, prepare 70ms)
+

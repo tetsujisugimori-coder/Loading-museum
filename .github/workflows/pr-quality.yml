@@ -1,0 +1,184 @@
+name: PR quality
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    env:
+      QUALITY_EVIDENCE: ${{ runner.temp }}/pr-quality-evidence
+      QUALITY_UPLOAD: ${{ runner.temp }}/pr-quality-upload
+      EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+      EVENT_SHA: ${{ github.sha }}
+      EVENT_NAME: ${{ github.event_name }}
+      RUN_ID: ${{ github.run_id }}
+      RUN_ATTEMPT: ${{ github.run_attempt }}
+    steps:
+      - name: Prepare bounded evidence and command recorder
+        run: |
+          mkdir -p "$QUALITY_EVIDENCE"
+          cat > "$QUALITY_EVIDENCE/run-command.py" <<'PY'
+          import datetime, json, pathlib, subprocess, sys, time
+          root, name, *command = sys.argv[1:]
+          root = pathlib.Path(root)
+          started = datetime.datetime.now(datetime.timezone.utc).isoformat()
+          tick = time.perf_counter_ns()
+          result = {"command": command, "started_at": started}
+          code = 1
+          try:
+              with (root / (name + ".log")).open("wb") as log:
+                  child = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                  for line in child.stdout:
+                      log.write(line)
+                      log.flush()
+                      sys.stdout.buffer.write(line)
+                      sys.stdout.buffer.flush()
+                  code = child.wait()
+          except Exception as error:
+              result["recorder_error"] = type(error).__name__ + ": " + str(error)
+          result.update(exit_code=code, finished_at=datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                        elapsed_seconds=(time.perf_counter_ns() - tick) / 1_000_000_000)
+          (root / (name + ".json")).write_text(json.dumps(result, indent=2) + "\n")
+          sys.exit(code if code >= 0 else 128 - code)
+          PY
+
+      - name: Checkout exact PR head, not the synthetic merge commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+
+      - name: Setup fixed Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24.22.1'
+          package-manager-cache: false
+
+      - name: Pin npm to the local baseline version
+        id: npm
+        run: python3 "$QUALITY_EVIDENCE/run-command.py" "$QUALITY_EVIDENCE" npm-setup npm install --global npm@11.9.0
+
+      - name: Verify and record source identity
+        id: identity
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          def command(*args):
+              return subprocess.check_output(args, text=True).strip()
+          head = command("git", "rev-parse", "HEAD")
+          tree = command("git", "rev-parse", "HEAD^{tree}")
+          node = command("node", "--version")
+          npm = command("npm", "--version")
+          data = {"run_id": os.environ["RUN_ID"], "attempt": os.environ["RUN_ATTEMPT"],
+                  "event": os.environ["EVENT_NAME"], "event_sha": os.environ["EVENT_SHA"],
+                  "expected_head": os.environ["EXPECTED_HEAD"], "checked_head": head, "checked_tree": tree,
+                  "node": node, "npm": npm, "ci": os.environ.get("CI"),
+                  "runner_os": os.environ.get("RUNNER_OS"), "runner_arch": os.environ.get("RUNNER_ARCH"),
+                  "image_os": os.environ.get("ImageOS"), "image_version": os.environ.get("ImageVersion"),
+                  "available_parallelism": int(command("node", "-p", "require('node:os').availableParallelism()")),
+                  "package_lock_sha256": hashlib.sha256(pathlib.Path("package-lock.json").read_bytes()).hexdigest(),
+                  "worktree_changes": command("git", "status", "--porcelain"),
+                  "scope": "PR head only, not merge integration; one CI check is not five-run stability validation"}
+          pathlib.Path(os.environ["QUALITY_EVIDENCE"], "provenance.json").write_text(json.dumps(data, indent=2) + "\n")
+          assert head == data["expected_head"], "checked commit differs from requested head"
+          assert node == "v24.22.1" and npm == "11.9.0", "runtime version mismatch"
+          assert not data["worktree_changes"], "source checkout is not clean"
+          PY
+
+      - name: Install locked dependencies
+        id: install
+        run: python3 "$QUALITY_EVIDENCE/run-command.py" "$QUALITY_EVIDENCE" install npm ci
+
+      - name: Run complete check without retries or timeout changes
+        id: check
+        run: python3 "$QUALITY_EVIDENCE/run-command.py" "$QUALITY_EVIDENCE" check npm run check
+
+      # check already builds through npm test. This separate build is intentional.
+      # A failed check remains failed; only the next observation is allowed to run.
+      - name: Run independent build even after a check failure
+        id: build
+        if: ${{ !cancelled() && steps.install.outcome == 'success' && steps.identity.outcome == 'success' }}
+        run: python3 "$QUALITY_EVIDENCE/run-command.py" "$QUALITY_EVIDENCE" build npm run build
+
+      - name: Record actual step outcomes and evidence digests
+        id: evidence
+        if: always()
+        env:
+          NPM_OUTCOME: ${{ steps.npm.outcome }}
+          IDENTITY_OUTCOME: ${{ steps.identity.outcome }}
+          INSTALL_OUTCOME: ${{ steps.install.outcome }}
+          CHECK_OUTCOME: ${{ steps.check.outcome }}
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, shutil, subprocess
+          root = pathlib.Path(os.environ["QUALITY_EVIDENCE"])
+          root.mkdir(parents=True, exist_ok=True)
+          outcomes = {name.lower(): os.environ.get(name + "_OUTCOME", "")
+                      for name in ["NPM", "IDENTITY", "INSTALL", "CHECK", "BUILD"]}
+          data = {"run_id": os.environ["RUN_ID"], "attempt": os.environ["RUN_ATTEMPT"],
+                  "expected_head": os.environ["EXPECTED_HEAD"], "event_sha": os.environ["EVENT_SHA"],
+                  "outcomes": outcomes}
+          source_unchanged = True
+          if (root / "provenance.json").exists():
+              def command(*args):
+                  return subprocess.check_output(args, text=True).strip()
+              data["checked_head_after"] = command("git", "rev-parse", "HEAD")
+              data["checked_tree_after"] = command("git", "rev-parse", "HEAD^{tree}")
+              data["tracked_changes_after"] = command("git", "status", "--porcelain", "--untracked-files=no")
+              before = json.loads((root / "provenance.json").read_text())
+              source_unchanged = (data["checked_head_after"] == data["expected_head"]
+                                  and data["checked_tree_after"] == before["checked_tree"]
+                                  and not data["tracked_changes_after"])
+          data["source_unchanged"] = source_unchanged if (root / "provenance.json").exists() else None
+          (root / "outcomes.json").write_text(json.dumps(data, indent=2) + "\n")
+          allowed = ["run-command.py", "npm-setup.log", "npm-setup.json", "install.log", "install.json",
+                     "check.log", "check.json", "build.log", "build.json", "provenance.json", "outcomes.json"]
+          upload = pathlib.Path(os.environ["QUALITY_UPLOAD"])
+          if upload.is_symlink() or (upload.exists() and not upload.is_dir()):
+              upload.unlink()
+          elif upload.exists():
+              shutil.rmtree(upload)
+          upload.mkdir(parents=True)
+          for name in allowed:
+              candidate = root / name
+              if candidate.is_file() and not candidate.is_symlink():
+                  shutil.copyfile(candidate, upload / name)
+          manifest = {name: hashlib.sha256((upload / name).read_bytes()).hexdigest()
+                      for name in allowed if (upload / name).is_file()}
+          (upload / "sha256.json").write_text(json.dumps(manifest, indent=2) + "\n")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as output:
+              output.write("upload_ready=true\n")
+          assert source_unchanged, "checked source changed during validation"
+          PY
+
+      - name: Preserve logs and provenance on success or failure
+        if: ${{ always() && steps.evidence.outputs.upload_ready == 'true' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: pr-quality-${{ github.run_id }}-${{ github.run_attempt }}-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            ${{ runner.temp }}/pr-quality-upload/run-command.py
+            ${{ runner.temp }}/pr-quality-upload/npm-setup.log
+            ${{ runner.temp }}/pr-quality-upload/npm-setup.json
+            ${{ runner.temp }}/pr-quality-upload/install.log
+            ${{ runner.temp }}/pr-quality-upload/install.json
+            ${{ runner.temp }}/pr-quality-upload/check.log
+            ${{ runner.temp }}/pr-quality-upload/check.json
+            ${{ runner.temp }}/pr-quality-upload/build.log
+            ${{ runner.temp }}/pr-quality-upload/build.json
+            ${{ runner.temp }}/pr-quality-upload/provenance.json
+            ${{ runner.temp }}/pr-quality-upload/outcomes.json
+            ${{ runner.temp }}/pr-quality-upload/sha256.json
+          if-no-files-found: error
+          retention-days: 14
+          include-hidden-files: false

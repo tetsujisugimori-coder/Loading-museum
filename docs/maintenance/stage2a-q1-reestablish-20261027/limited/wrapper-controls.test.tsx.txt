@@ -1,0 +1,44 @@
+// @vitest-environment jsdom
+import { afterEach, expect, it, vi } from 'vitest';
+import { cleanup } from '@testing-library/react';
+import { __clock, __mark, screen } from './runtime-profile';
+
+afterEach(() => { cleanup(); vi.useRealTimers(); vi.restoreAllMocks(); document.body.innerHTML=''; });
+
+it('captured real monotonic clock does not follow fake 10000 ms advance', () => {
+  vi.useFakeTimers();
+  const real = __clock(), fake = Date.now();
+  vi.advanceTimersByTime(10000);
+  const elapsedRealMs=Number(__clock()-real)/1e6;
+  expect(Date.now()-fake).toBe(10000);
+  expect(elapsedRealMs).toBeGreaterThanOrEqual(0);
+  expect(elapsedRealMs).toBeLessThan(10000);
+  console.log('CLOCK_CONTROL', JSON.stringify({fakeDeltaMs:Date.now()-fake,realDeltaMs:elapsedRealMs}));
+});
+
+it('synchronous query wrapper preserves exact returned element identity', () => {
+  const element=document.createElement('p'); element.textContent='identity control'; document.body.append(element);
+  expect(screen.getByText('identity control')).toBe(element);
+});
+
+it('synchronous query wrapper propagates the identical thrown error', () => {
+  const sentinel=new Error('controlled selector failure');
+  vi.spyOn(document.body,'querySelectorAll').mockImplementation(()=>{throw sentinel;});
+  let caught:unknown;
+  try { screen.getByText('never found'); } catch(error) { caught=error; }
+  expect(caught).toBe(sentinel);
+});
+
+it('markers are synchronous and leave the existing await as the only settlement boundary', async () => {
+  const order:string[]=[];
+  const original=Promise.resolve().then(()=>{order.push('settled');return 'original result';});
+  const start=__clock();
+  expect(__mark('before-existing-await',start)).toBeUndefined();
+  order.push('before');
+  expect(order).toEqual(['before']);
+  const result=await original;
+  expect(__mark('after-existing-await',start)).toBeUndefined();
+  order.push('after');
+  expect(result).toBe('original result');
+  expect(order).toEqual(['before','settled','after']);
+});

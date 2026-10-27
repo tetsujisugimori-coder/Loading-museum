@@ -1,0 +1,1203 @@
+[
+  {
+    "test": "independent observation controller contract (WAAPI double) > initial preview is paused at zero and has actual native labels rather than simulated success",
+    "durationsMsByOperation": {
+      "render": 31.513994,
+      "screen.getByRole": 44.938602,
+      "screen.getByText": 2.9560039999999996,
+      "cleanup": 2.544824
+    },
+    "largestSingle": {
+      "label": "screen.getByRole",
+      "ms": 44.938602
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > play advances time from the animation, not a second game clock",
+    "durationsMsByOperation": {
+      "render": 6.188945,
+      "screen.getByRole": 15.356368,
+      "event.click": 4.565489,
+      "act-call-return": 1.796116,
+      "screen.getByText": 0.754947,
+      "cleanup": 0.627276
+    },
+    "largestSingle": {
+      "label": "screen.getByRole",
+      "ms": 12.109656
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > pause keeps the exact position and resume continues from that point",
+    "durationsMsByOperation": {
+      "render": 4.753192,
+      "screen.getByRole": 18.292983,
+      "event.click": 3.534915,
+      "act-call-return": 2.127977,
+      "cleanup": 0.38487
+    },
+    "largestSingle": {
+      "label": "screen.getByRole",
+      "ms": 5.247707
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > restart deliberately starts at zero while the start control remains paused",
+    "durationsMsByOperation": {
+      "render": 4.069842,
+      "screen.getByRole": 14.342301,
+      "event.change": 1.528543,
+      "event.click": 2.078561,
+      "act-call-return": 0.8791939999999999,
+      "cleanup": 0.292241
+    },
+    "largestSingle": {
+      "label": "render",
+      "ms": 4.069842
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > forward and backward steps use 1000/60 ms, not a rounded frame count",
+    "durationsMsByOperation": {
+      "render": 4.889006,
+      "screen.getByRole": 18.348596999999998,
+      "event.click": 4.242291,
+      "cleanup": 0.420534
+    },
+    "largestSingle": {
+      "label": "screen.getByRole",
+      "ms": 5.994492
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > seek selects a fractional time and stops an active playback",
+    "durationsMsByOperation": {
+      "render": 3.076375,
+      "screen.getByRole": 5.741911999999999,
+      "event.click": 0.801318,
+      "act-call-return": 0.6162179999999999,
+      "event.change": 0.850422,
+      "screen.getByText": 0.492072,
+      "cleanup": 0.303297
+    },
+    "largestSingle": {
+      "label": "screen.getByRole",
+      "ms": 3.207303
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > steps clamp both boundaries without crossing them",
+    "durationsMsByOperation": {
+      "render": 3.358821,
+      "screen.getByRole": 17.346967,
+      "event.click": 2.317412,
+      "event.change": 1.896247,
+      "cleanup": 0.304538
+    },
+    "largestSingle": {
+      "label": "render",
+      "ms": 3.358821
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > finished playback can rewind and resume from a selected position",
+    "durationsMsByOperation": {
+      "render": 3.757231,
+      "screen.getByRole": 16.13369,
+      "event.click": 3.063846,
+      "act-call-return": 1.807324,
+      "screen.getByText": 0.459332,
+      "event.change": 0.871643,
+      "cleanup": 0.388996
+    },
+    "largestSingle": {
+      "label": "screen.getByRole",
+      "ms": 4.734795
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > rapid play/pause and slider changes do not allocate competing animations",
+    "durationsMsByOperation": {
+      "render": 2.950876,
+      "screen.getByRole": 79.026894,
+      "event.click": 14.420020000000001,
+      "event.change": 6.338709,
+      "act-call-return": 0.02022,
+      "cleanup": 0.355866
+    },
+    "largestSingle": {
+      "label": "screen.getByRole",
+      "ms": 6.519012
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > stale RAF callbacks after seek do not overwrite the newer position",
+    "durationsMsByOperation": {
+      "render": 4.961325,
+      "screen.getByRole": 5.543273,
+      "event.click": 0.794878,
+      "event.change": 0.823181,
+      "act-call-return": 0.073401,
+      "screen.getByText": 0.545693,
+      "cleanup": 0.338901
+    },
+    "largestSingle": {
+      "label": "render",
+      "ms": 4.961325
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > offscreen cancels native animation and returns paused at the preserved time",
+    "durationsMsByOperation": {
+      "render": 2.423702,
+      "screen.getByRole": 4.658669,
+      "event.click": 0.643389,
+      "act-call-return": 0.542387,
+      "render-result.rerender": 2.6056150000000002,
+      "screen.getByText": 0.388526,
+      "cleanup": 0.184348
+    },
+    "largestSingle": {
+      "label": "screen.getByRole",
+      "ms": 2.834791
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > tab visibility cancels and restores static preview without automatic play",
+    "durationsMsByOperation": {
+      "render": 2.128346,
+      "screen.getByRole": 4.646731,
+      "event.click": 0.69061,
+      "act-call-return": 2.7336379999999996,
+      "cleanup": 0.244178
+    },
+    "largestSingle": {
+      "label": "screen.getByRole",
+      "ms": 2.835953
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > reduced motion cancels running animation, allows manual stepping, and does not auto-resume on OFF",
+    "durationsMsByOperation": {
+      "render": 2.485746,
+      "screen.getByRole": 13.148532000000001,
+      "event.click": 2.1772709999999997,
+      "act-call-return": 1.196654,
+      "render-result.rerender": 2.939168,
+      "cleanup": 0.195174
+    },
+    "largestSingle": {
+      "label": "screen.getByRole",
+      "ms": 2.912338
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > unmount cancels owner animations and makes old RAF callbacks inert",
+    "durationsMsByOperation": {
+      "render": 2.72795,
+      "screen.getByRole": 2.699438,
+      "event.click": 0.674837,
+      "render-result.unmount": 0.284539,
+      "act-call-return": 0.025438,
+      "cleanup": 0.030026
+    },
+    "largestSingle": {
+      "label": "render",
+      "ms": 2.72795
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > easing changes cancel the old scenario, preserve position, and do not continue play",
+    "durationsMsByOperation": {
+      "render": 2.724174,
+      "screen.getByRole": 2.394589,
+      "event.change": 2.557944,
+      "screen.getByLabelText": 1.732911,
+      "cleanup": 0.289066
+    },
+    "largestSingle": {
+      "label": "render",
+      "ms": 2.724174
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > resize remeasures after initial observer delivery and preserves observation time",
+    "durationsMsByOperation": {
+      "render": 2.761511,
+      "screen.getByRole": 2.3449929999999997,
+      "event.change": 0.812143,
+      "act-call-return": 1.469014,
+      "cleanup": 0.182795
+    },
+    "largestSingle": {
+      "label": "render",
+      "ms": 2.761511
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > missing WAAPI is labelled unavailable and cannot produce successful play",
+    "durationsMsByOperation": {
+      "render": 2.190251,
+      "screen.getByText": 0.382596,
+      "screen.getByRole": 2.827731,
+      "cleanup": 0.221604
+    },
+    "largestSingle": {
+      "label": "screen.getByRole",
+      "ms": 2.827731
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > clamps malformed and out-of-range time input without producing NaN",
+    "durationsMsByOperation": {
+      "cleanup": 0.001853
+    },
+    "largestSingle": {
+      "label": "cleanup",
+      "ms": 0.001853
+    }
+  },
+  {
+    "test": "independent observation controller contract (WAAPI double) > pending pause completion is reflected in native status rather than remaining pending forever",
+    "durationsMsByOperation": {
+      "render": 2.518315,
+      "act-call-return": 0.662378,
+      "existing-await-line:180": 1.404265,
+      "screen.getByRole": 7.362023,
+      "event.click": 1.584378,
+      "existing-await-line:182": 1.00209,
+      "screen.getByText": 0.6180019999999999,
+      "cleanup": 0.231228
+    },
+    "largestSingle": {
+      "label": "screen.getByRole",
+      "ms": 4.671028
+    }
+  },
+  {
+    "test": "actual gallery integration: observation never owns game state > Menu selection survives observation seek, finish, reverse, mode exit, and ordinary Reset still works",
+    "durationsMsByOperation": {
+      "render": 2.162288,
+      "screen.getByRole": 86.80833200000001,
+      "event.click": 177.09623200000001,
+      "screen.getByLabelText": 110.99311,
+      "event.change": 23.301108999999997,
+      "act-call-return": 2.472586,
+      "cleanup": 1.40677
+    },
+    "largestSingle": {
+      "label": "event.click",
+      "ms": 163.040584
+    }
+  },
+  {
+    "test": "actual gallery integration: observation never owns game state > Coin preview repeatedly finishes and rewinds with zero points; normal COLLECT awards once",
+    "durationsMsByOperation": {
+      "render": 1.296523,
+      "screen.getByRole": 120.08653799999999,
+      "event.click": 120.28210599999998,
+      "screen.getByLabelText": 122.69348,
+      "event.change": 13.070184000000001,
+      "act-call-return": 4.67223,
+      "cleanup": 0.971294
+    },
+    "largestSingle": {
+      "label": "screen.getByLabelText",
+      "ms": 122.69348
+    }
+  },
+  {
+    "test": "actual gallery integration: observation never owns game state > collected Coin retains its score and collected guard through observation and return",
+    "durationsMsByOperation": {
+      "render": 1.353289,
+      "screen.getByRole": 78.21425300000001,
+      "event.click": 119.121746,
+      "screen.getByLabelText": 114.685494,
+      "event.change": 16.263164,
+      "act-call-return": 0.459632,
+      "cleanup": 0.913797
+    },
+    "largestSingle": {
+      "label": "screen.getByLabelText",
+      "ms": 114.685494
+    }
+  },
+  {
+    "test": "actual gallery integration: observation never owns game state > observation reset does not reset collected game state and old callback cannot revive playback",
+    "durationsMsByOperation": {
+      "render": 1.226468,
+      "screen.getByRole": 47.87428499999999,
+      "event.click": 115.45182599999998,
+      "screen.getByLabelText": 109.198857,
+      "event.change": 10.303815,
+      "act-call-return": 0.428075,
+      "cleanup": 1.085185
+    },
+    "largestSingle": {
+      "label": "event.click",
+      "ms": 111.12612
+    }
+  },
+  {
+    "test": "actual gallery integration: observation never owns game state > mode exit cancels observation and reopening cannot resurrect the old running instance",
+    "durationsMsByOperation": {
+      "render": 1.096402,
+      "screen.getByRole": 51.498656000000004,
+      "event.click": 68.140732,
+      "screen.getByLabelText": 95.896693,
+      "event.change": 14.805448,
+      "act-call-return": 0.728428,
+      "cleanup": 1.038515
+    },
+    "largestSingle": {
+      "label": "screen.getByLabelText",
+      "ms": 95.896693
+    }
+  },
+  {
+    "test": "actual gallery integration: observation never owns game state > gallery closure cancels observation; reopening has no old callback or auto-score",
+    "durationsMsByOperation": {
+      "render": 0.913306,
+      "screen.getByRole": 50.766187,
+      "event.click": 86.20244499999998,
+      "screen.getByLabelText": 95.621459,
+      "event.change": 15.394506,
+      "act-call-return": 0.39815,
+      "screen.queryByRole": 0.164107,
+      "screen.getByText": 2.436992,
+      "cleanup": 0.734917
+    },
+    "largestSingle": {
+      "label": "screen.getByLabelText",
+      "ms": 95.621459
+    }
+  },
+  {
+    "test": "actual gallery integration: observation never owns game state > gallery media notification reaches observation without changing Coin collected state",
+    "durationsMsByOperation": {
+      "render": 0.957563,
+      "screen.getByRole": 52.531040999999995,
+      "event.click": 98.512325,
+      "screen.getByLabelText": 105.940722,
+      "event.change": 15.721249,
+      "act-call-return": 15.378673000000001,
+      "cleanup": 0.820686
+    },
+    "largestSingle": {
+      "label": "screen.getByLabelText",
+      "ms": 105.940722
+    }
+  },
+  {
+    "test": "asynchronous ready settlement and measurement data > old ready completion after replacement cannot restore an earlier observation state",
+    "durationsMsByOperation": {
+      "render": 2.626918,
+      "screen.getByRole": 3.588987,
+      "event.change": 1.665531,
+      "render-result.rerender": 2.7067490000000003,
+      "act-call-return": 0.091708,
+      "existing-await-line:234": 1.235462,
+      "screen.getByText": 0.8745879999999999,
+      "cleanup": 0.20548
+    },
+    "largestSingle": {
+      "label": "render",
+      "ms": 2.626918
+    }
+  },
+  {
+    "test": "asynchronous ready settlement and measurement data > Menu preview uses actual row measurements and retains destination DOM ownership",
+    "durationsMsByOperation": {
+      "render": 3.437214,
+      "cleanup": 0.262495
+    },
+    "largestSingle": {
+      "label": "render",
+      "ms": 3.437214
+    }
+  },
+  {
+    "test": "asynchronous ready settlement and measurement data > Coin preview computes destination variables from separate preview DOM, never score DOM",
+    "durationsMsByOperation": {
+      "render": 2.640108,
+      "cleanup": 0.144728
+    },
+    "largestSingle": {
+      "label": "render",
+      "ms": 2.640108
+    }
+  },
+  {
+    "test": "step during playback starts from current native time, not the last RAF display sample",
+    "durationsMsByOperation": {
+      "render": 2.439756,
+      "screen.getByRole": 9.237321,
+      "event.click": 1.702575,
+      "act-call-return": 0.594536,
+      "cleanup": 0.171188
+    },
+    "largestSingle": {
+      "label": "screen.getByRole",
+      "ms": 4.809808
+    }
+  },
+  {
+    "test": "observed Coin normal motion cancellation > Replay after observation cancels running normal motion on reduced ON without changing score",
+    "durationsMsByOperation": {
+      "render": 0.997954,
+      "screen.getByRole": 43.85444,
+      "event.click": 83.336208,
+      "screen.getByLabelText": 89.1841,
+      "event.change": 14.789223,
+      "act-call-return": 6.332111,
+      "cleanup": 0.742359
+    },
+    "largestSingle": {
+      "label": "screen.getByLabelText",
+      "ms": 89.1841
+    }
+  },
+  {
+    "test": "observed Coin normal motion cancellation > Replay after observation cancels paused normal motion on reduced ON without changing score",
+    "durationsMsByOperation": {
+      "render": 0.874748,
+      "screen.getByRole": 47.105056,
+      "event.click": 53.887746,
+      "screen.getByLabelText": 97.579739,
+      "event.change": 10.307461,
+      "act-call-return": 5.5819209999999995,
+      "cleanup": 0.665352
+    },
+    "largestSingle": {
+      "label": "screen.getByLabelText",
+      "ms": 97.579739
+    }
+  },
+  {
+    "test": "observed Coin normal motion cancellation > COLLECT after observation cancels running normal motion on reduced ON without changing score",
+    "durationsMsByOperation": {
+      "render": 0.975059,
+      "screen.getByRole": 47.160452,
+      "event.click": 60.222280000000005,
+      "screen.getByLabelText": 100.785229,
+      "event.change": 16.398719,
+      "act-call-return": 12.270708999999998,
+      "cleanup": 0.882139
+    },
+    "largestSingle": {
+      "label": "screen.getByLabelText",
+      "ms": 100.785229
+    }
+  },
+  {
+    "test": "observed Coin normal motion cancellation > COLLECT after observation cancels paused normal motion on reduced ON without changing score",
+    "durationsMsByOperation": {
+      "render": 1.089301,
+      "screen.getByRole": 44.358716,
+      "event.click": 103.856888,
+      "screen.getByLabelText": 108.517921,
+      "event.change": 16.200841,
+      "act-call-return": 12.350038999999999,
+      "cleanup": 0.74328
+    },
+    "largestSingle": {
+      "label": "screen.getByLabelText",
+      "ms": 108.517921
+    }
+  },
+  {
+    "test": "observed Coin normal motion cancellation > reduced explicit Replay uses reduced definition and repeated ON/OFF does not award or autoplay",
+    "durationsMsByOperation": {
+      "render": 4.947365,
+      "screen.getByRole": 66.721644,
+      "event.click": 84.94390000000001,
+      "screen.getByLabelText": 103.633091,
+      "event.change": 9.078249,
+      "act-call-return": 18.490568,
+      "cleanup": 0.738102
+    },
+    "largestSingle": {
+      "label": "screen.getByLabelText",
+      "ms": 103.633091
+    }
+  },
+  {
+    "test": "observed Coin normal motion cancellation > rapid mode switches retain collected state and Reset permits exactly one new acquisition",
+    "durationsMsByOperation": {
+      "render": 0.911093,
+      "screen.getByRole": 173.385573,
+      "event.click": 104.76974,
+      "screen.getByLabelText": 112.411357,
+      "event.change": 9.37763,
+      "act-call-return": 30.362688000000006,
+      "cleanup": 0.813125
+    },
+    "largestSingle": {
+      "label": "screen.getByLabelText",
+      "ms": 112.411357
+    }
+  },
+  {
+    "test": "observed Coin normal motion cancellation > observed normal Coin leaving the viewport cancels, re-entry stays stopped, and unmount clears old instances",
+    "durationsMsByOperation": {
+      "render": 1.019696,
+      "screen.getByRole": 43.976694,
+      "event.click": 108.866486,
+      "screen.getByLabelText": 108.65681,
+      "event.change": 15.736552,
+      "act-call-return": 10.118045999999998,
+      "render-result.unmount": 1.005065,
+      "cleanup": 0.060581
+    },
+    "largestSingle": {
+      "label": "screen.getByLabelText",
+      "ms": 108.65681
+    }
+  },
+  {
+    "test": "WAAPI標本ギャラリー操作 > 初期DOMを遅延し、正規化検索・解除・開閉を扱う",
+    "durationsMsByOperation": {
+      "render": 15.764563,
+      "screen.queryByText": 6.100491,
+      "screen.queryByRole": 30.636713,
+      "screen.getByRole": 24.664955,
+      "event.click": 292.924944,
+      "screen.getAllByRole": 43.945075,
+      "screen.getByText": 52.134474,
+      "within.getByLabelText": 10.642615,
+      "event.change": 29.580681,
+      "within.getByRole": 3.244849,
+      "cleanup": 0.802229
+    },
+    "largestSingle": {
+      "label": "event.click",
+      "ms": 170.339306
+    }
+  },
+  {
+    "test": "WAAPI標本ギャラリー操作 > 複合フィルター・0件・解除後の全件表示と閉鎖取消を扱う",
+    "durationsMsByOperation": {
+      "render": 11.405976,
+      "screen.getByRole": 20.774732,
+      "event.click": 235.762292,
+      "screen.getByText": 66.330544,
+      "within.getByLabelText": 25.999044,
+      "event.change": 39.369471,
+      "within.getByRole": 2.565786,
+      "screen.queryByText": 0.184488,
+      "cleanup": 0.303067
+    },
+    "largestSingle": {
+      "label": "event.click",
+      "ms": 120.36421
+    }
+  },
+  {
+    "test": "WAAPI標本ギャラリー操作 > Replay、コード解説、ModalとToastの両方向を操作する",
+    "durationsMsByOperation": {
+      "render": 1.535814,
+      "screen.getByRole": 2.258934,
+      "event.click": 69.258144,
+      "screen.getByText": 59.023425,
+      "within.getByRole": 37.303799000000005,
+      "within.getByText": 0.49141,
+      "cleanup": 8.424463
+    },
+    "largestSingle": {
+      "label": "event.click",
+      "ms": 62.097295
+    }
+  },
+  {
+    "test": "WAAPI標本ギャラリー操作 > Consoleの全操作、速度、Seek、実playStateを安全に反映する",
+    "durationsMsByOperation": {
+      "render": 1.58642,
+      "screen.getByRole": 9.808169,
+      "event.click": 73.43138400000001,
+      "within.getByRole": 55.353475,
+      "within.getByText": 0.539142,
+      "event.change": 0.98226,
+      "within.getAllByText": 0.304699,
+      "cleanup": 8.158483
+    },
+    "largestSingle": {
+      "label": "event.click",
+      "ms": 67.89982
+    }
+  },
+  {
+    "test": "WAAPI標本ギャラリー操作 > Reduced motion時は自動ループを残さず、代替表示を説明する",
+    "durationsMsByOperation": {
+      "render": 2.21635,
+      "screen.getByRole": 3.115424,
+      "event.click": 66.032716,
+      "act-call-return": 0.060821,
+      "existing-await-line:154": 0.492652,
+      "screen.getByText": 36.848952999999995,
+      "cleanup": 8.327598
+    },
+    "largestSingle": {
+      "label": "event.click",
+      "ms": 66.032716
+    }
+  },
+  {
+    "test": "WAAPI標本ギャラリー操作 > Fade/Slideは手動再生、Button/Toggleは直接操作だけを提供する",
+    "durationsMsByOperation": {
+      "render": 1.457346,
+      "screen.getByRole": 2.104411,
+      "event.click": 69.43576300000001,
+      "screen.getByText": 75.94519199999999,
+      "within.getByRole": 21.231531,
+      "within.queryByRole": 3.9298409999999997,
+      "event.pointerDown": 0.635668,
+      "event.pointerCancel": 0.236656,
+      "event.keyDown": 0.764411,
+      "event.blur": 0.493374,
+      "within.getByText": 1.043562,
+      "cleanup": 19.366451
+    },
+    "largestSingle": {
+      "label": "event.click",
+      "ms": 66.757237
+    }
+  },
+  {
+    "test": "WAAPI標本ギャラリー操作 > ゲーム標本を直接操作し、Resetで意味のある初期状態へ戻す",
+    "durationsMsByOperation": {
+      "render": 1.98461,
+      "screen.getByRole": 2.775392,
+      "event.click": 128.643934,
+      "screen.getByText": 106.385006,
+      "within.getByRole": 85.30584599999999,
+      "within.getByText": 2.586125,
+      "event.keyDown": 1.182852,
+      "act-call-return": 0.071548,
+      "existing-await-line:222": 19.977892,
+      "cleanup": 12.237098
+    },
+    "largestSingle": {
+      "label": "event.click",
+      "ms": 112.787163
+    }
+  },
+  {
+    "test": "WAAPI標本ギャラリー操作 > 新しいゲーム標本、5軸フィルター、AI共通状態を操作できる",
+    "durationsMsByOperation": {
+      "render": 2.038261,
+      "screen.getByRole": 24.904776,
+      "event.click": 235.234133,
+      "screen.getByLabelText": 130.84696,
+      "event.change": 29.546707,
+      "screen.getByText": 44.125321,
+      "within.getByRole": 18.417931,
+      "within.getByText": 0.883942,
+      "cleanup": 6.600766
+    },
+    "largestSingle": {
+      "label": "event.click",
+      "ms": 149.134781
+    }
+  },
+  {
+    "test": "WAAPI標本ギャラリー操作 > AI比較モードは一括フェーズを進め、閉じるとループを停止する",
+    "durationsMsByOperation": {
+      "render": 1.346719,
+      "screen.getByRole": 452.274581,
+      "event.click": 75.658129,
+      "screen.getAllByText": 18.527567,
+      "cleanup": 6.408957
+    },
+    "largestSingle": {
+      "label": "screen.getByRole",
+      "ms": 157.043684
+    }
+  },
+  {
+    "test": "WAAPI標本ギャラリー操作 > 追加ゲーム14件は固有DOM・状態・操作結果を提供する",
+    "durationsMsByOperation": {
+      "render": 1.450756,
+      "screen.getByRole": 2.267957,
+      "event.click": 136.81693500000006,
+      "screen.getByText": 560.6682140000001,
+      "within.getByRole": 139.74308200000002,
+      "event.keyDown": 1.348092,
+      "cleanup": 8.352134
+    },
+    "largestSingle": {
+      "label": "event.click",
+      "ms": 100.567603
+    }
+  },
+  {
+    "test": "WAAPI標本ギャラリー操作 > Card Dealの全工程とAIの完了・エラー・リセットを操作できる",
+    "durationsMsByOperation": {
+      "render": 1.528994,
+      "screen.getByRole": 2.007806,
+      "event.click": 111.32719499999999,
+      "screen.getByText": 37.076037,
+      "within.getByRole": 58.315365,
+      "within.getByText": 0.824052,
+      "cleanup": 11.995965
+    },
+    "largestSingle": {
+      "label": "event.click",
+      "ms": 107.127557
+    }
+  },
+  {
+    "test": "WAAPI標本ギャラリー操作 > AI作業ループはSTART連打で増殖せず、画面外化でcancelされる",
+    "durationsMsByOperation": {
+      "render": 1.609626,
+      "screen.getByRole": 6.227714000000001,
+      "event.click": 1.897939,
+      "render-result.rerender": 0.589047,
+      "cleanup": 0.269987
+    },
+    "largestSingle": {
+      "label": "screen.getByRole",
+      "ms": 3.606895
+    }
+  },
+  {
+    "test": "Damage直後Reset後、旧追従更新の予定時刻を過ぎても72を保つ",
+    "durationsMsByOperation": {
+      "render": 15.981856,
+      "screen.getByRole": 43.95172,
+      "event.click": 182.280255,
+      "screen.getByLabelText": 115.821807,
+      "event.change": 23.844664,
+      "screen.getByText": 5.401859,
+      "act-call-return": 1.228111,
+      "within.getByRole": 11.505355999999999,
+      "cleanup": 2.09028
+    },
+    "largestSingle": {
+      "label": "event.click",
+      "ms": 179.762271
+    }
+  },
+  {
+    "test": "Damage連打とHealは最新HPに収束し、Reset連打も不変",
+    "durationsMsByOperation": {
+      "render": 1.935997,
+      "screen.getByRole": 2.333787,
+      "event.click": 134.07341000000002,
+      "screen.getByLabelText": 105.732786,
+      "event.change": 24.983224,
+      "screen.getByText": 3.011297,
+      "act-call-return": 1.9902289999999998,
+      "within.getByRole": 31.717229,
+      "cleanup": 1.129903
+    },
+    "largestSingle": {
+      "label": "event.click",
+      "ms": 126.914292
+    }
+  },
+  {
+    "test": "Damage中のアンマウントは遅延更新を解除する",
+    "durationsMsByOperation": {
+      "render": 1.378797,
+      "screen.getByRole": 1.916578,
+      "event.click": 119.43644400000001,
+      "screen.getByLabelText": 114.544784,
+      "event.change": 19.553402,
+      "screen.getByText": 2.872188,
+      "act-call-return": 0.064918,
+      "within.getByRole": 4.722826,
+      "cleanup": 1.036392
+    },
+    "largestSingle": {
+      "label": "event.click",
+      "ms": 118.571831
+    }
+  },
+  {
+    "test": "画面外停止と再表示は現在HPを保持し古い追従更新を残さない",
+    "durationsMsByOperation": {
+      "render": 8.750195,
+      "screen.getByRole": 2.277171,
+      "event.click": 89.258868,
+      "screen.getByLabelText": 98.385014,
+      "event.change": 10.000198,
+      "screen.getByText": 2.627629,
+      "act-call-return": 4.292107,
+      "within.getByRole": 7.388292999999999,
+      "cleanup": 0.726464
+    },
+    "largestSingle": {
+      "label": "screen.getByLabelText",
+      "ms": 98.385014
+    }
+  },
+  {
+    "test": "parry reduced-motion labels agree with early and active judgment",
+    "durationsMsByOperation": {
+      "render": 14.917828,
+      "render-result.getByRole": 46.963509,
+      "event.click": 6.155754,
+      "act-call-return": 0.920867,
+      "cleanup": 1.53985
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 41.647804
+    }
+  },
+  {
+    "test": "dodge reduced-motion labels agree with early and active judgment",
+    "durationsMsByOperation": {
+      "render": 3.462757,
+      "render-result.getByRole": 9.571781999999999,
+      "event.click": 1.957088,
+      "act-call-return": 0.823261,
+      "cleanup": 0.382246
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 5.287617
+    }
+  },
+  {
+    "test": "parry ceases active label after success window",
+    "durationsMsByOperation": {
+      "render": 1.819382,
+      "render-result.getByRole": 3.425281,
+      "event.click": 0.75042,
+      "act-call-return": 0.581927,
+      "cleanup": 1.434702
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 3.425281
+    }
+  },
+  {
+    "test": "dodge ceases active label after success window",
+    "durationsMsByOperation": {
+      "render": 1.750468,
+      "render-result.getByRole": 3.379732,
+      "event.click": 0.800836,
+      "act-call-return": 0.567435,
+      "cleanup": 0.214503
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 3.379732
+    }
+  },
+  {
+    "test": "battle offscreen interruption returns FIELD and stays retryable",
+    "durationsMsByOperation": {
+      "render": 3.406718,
+      "render-result.getByRole": 7.85799,
+      "event.click": 2.185294,
+      "act-call-return": 1.9386900000000002,
+      "render-result.rerender": 1.56685,
+      "cleanup": 0.406933
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 4.009952
+    }
+  },
+  {
+    "test": "combat paused animations cancel on reduced motion without discarding damage",
+    "durationsMsByOperation": {
+      "render": 2.52185,
+      "render-result.getByRole": 4.664919,
+      "event.click": 1.450296,
+      "render-result.rerender": 0.639964,
+      "cleanup": 0.206561
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 4.664919
+    }
+  },
+  {
+    "test": "parry exact boundaries and adjacent times, reduced=false",
+    "durationsMsByOperation": {
+      "render": 1.26098,
+      "render-result.getByRole": 31.550598,
+      "event.click": 6.811393000000001,
+      "act-call-return": 1.455553,
+      "cleanup": 0.420784
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 3.173231
+    }
+  },
+  {
+    "test": "parry exact boundaries and adjacent times, reduced=true",
+    "durationsMsByOperation": {
+      "render": 1.445718,
+      "render-result.getByRole": 28.520535,
+      "event.click": 6.247474000000001,
+      "act-call-return": 1.204276,
+      "cleanup": 0.291499
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 3.799485
+    }
+  },
+  {
+    "test": "dodge exact boundaries and adjacent times, reduced=false",
+    "durationsMsByOperation": {
+      "render": 1.610356,
+      "render-result.getByRole": 33.751205999999996,
+      "event.click": 7.538155000000001,
+      "act-call-return": 1.450305,
+      "cleanup": 0.311148
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 3.774097
+    }
+  },
+  {
+    "test": "dodge exact boundaries and adjacent times, reduced=true",
+    "durationsMsByOperation": {
+      "render": 1.567311,
+      "render-result.getByRole": 30.643404999999998,
+      "event.click": 6.3095680000000005,
+      "act-call-return": 1.2673489999999998,
+      "cleanup": 0.297828
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 3.863622
+    }
+  },
+  {
+    "test": "parry mid-motion switch preserves clock; reset rejects old timer and supports zero start",
+    "durationsMsByOperation": {
+      "render": 1.282402,
+      "render-result.getByRole": 13.635466,
+      "event.click": 3.927058,
+      "act-call-return": 0.690831,
+      "render-result.rerender": 0.6083959999999999,
+      "cleanup": 0.162184
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 2.310291
+    }
+  },
+  {
+    "test": "dodge mid-motion switch preserves clock; reset rejects old timer and supports zero start",
+    "durationsMsByOperation": {
+      "render": 1.064353,
+      "render-result.getByRole": 18.819056,
+      "event.click": 3.881741,
+      "act-call-return": 0.780125,
+      "render-result.rerender": 0.938855,
+      "cleanup": 0.16601
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 5.202319
+    }
+  },
+  {
+    "test": "parry offscreen stops attack; return cannot judge stale input",
+    "durationsMsByOperation": {
+      "render": 1.026687,
+      "render-result.getByRole": 3.452692,
+      "event.click": 1.0587659999999999,
+      "render-result.rerender": 0.892123,
+      "act-call-return": 0.046871,
+      "render-result.unmount": 0.213321,
+      "cleanup": 0.027511
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 1.847023
+    }
+  },
+  {
+    "test": "dodge offscreen stops attack; return cannot judge stale input",
+    "durationsMsByOperation": {
+      "render": 1.209773,
+      "render-result.getByRole": 4.358077,
+      "event.click": 1.031094,
+      "render-result.rerender": 1.011674,
+      "act-call-return": 0.011827,
+      "render-result.unmount": 0.127192,
+      "cleanup": 0.020811
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 2.287126
+    }
+  },
+  {
+    "test": "battle interruption at 0ms has no stale state after return/reset",
+    "durationsMsByOperation": {
+      "render": 0.901368,
+      "render-result.getByRole": 3.261625,
+      "event.click": 1.131915,
+      "act-call-return": 0.071047,
+      "render-result.rerender": 0.874687,
+      "cleanup": 0.193381
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 1.658319
+    }
+  },
+  {
+    "test": "battle interruption at 439ms has no stale state after return/reset",
+    "durationsMsByOperation": {
+      "render": 1.328081,
+      "render-result.getByRole": 4.321231,
+      "event.click": 1.1981449999999998,
+      "act-call-return": 0.029273,
+      "render-result.rerender": 0.956421,
+      "cleanup": 0.335685
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 2.543142
+    }
+  },
+  {
+    "test": "battle interruption at 440ms has no stale state after return/reset",
+    "durationsMsByOperation": {
+      "render": 1.143643,
+      "render-result.getByRole": 3.3315599999999996,
+      "event.click": 0.867847,
+      "act-call-return": 0.277158,
+      "render-result.rerender": 0.8240020000000001,
+      "cleanup": 0.181885
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 1.695355
+    }
+  },
+  {
+    "test": "battle interruption at 929ms has no stale state after return/reset",
+    "durationsMsByOperation": {
+      "render": 1.0686,
+      "render-result.getByRole": 3.403639,
+      "event.click": 1.0461260000000001,
+      "act-call-return": 0.346181,
+      "render-result.rerender": 0.827226,
+      "cleanup": 0.195074
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 1.714423
+    }
+  },
+  {
+    "test": "battle reduced switch cancels animation but completes logical transition; off -> new animation",
+    "durationsMsByOperation": {
+      "render": 0.92266,
+      "render-result.getByRole": 7.015509999999999,
+      "event.click": 1.9419360000000003,
+      "act-call-return": 0.646704,
+      "render-result.rerender": 0.687827,
+      "cleanup": 0.167963
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 1.985431
+    }
+  },
+  {
+    "test": "battle continuous reverse and completed offscreen preserve final scene",
+    "durationsMsByOperation": {
+      "render": 0.805214,
+      "render-result.getByRole": 4.907043,
+      "event.click": 1.583006,
+      "act-call-return": 0.9007670000000001,
+      "render-result.rerender": 0.48979799999999996,
+      "render-result.unmount": 0.149505,
+      "cleanup": 0.021242
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 1.710177
+    }
+  },
+  {
+    "test": "combat running canceled on reduction, reset and repeated input remain stable",
+    "durationsMsByOperation": {
+      "render": 1.249562,
+      "render-result.getByRole": 8.103299999999999,
+      "event.click": 2.020866,
+      "render-result.rerender": 1.309053,
+      "render-result.unmount": 0.1996,
+      "cleanup": 0.073641
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 2.293265
+    }
+  },
+  {
+    "test": "combat paused canceled on reduction, reset and repeated input remain stable",
+    "durationsMsByOperation": {
+      "render": 0.908549,
+      "render-result.getByRole": 7.352339000000001,
+      "event.click": 1.762275,
+      "render-result.rerender": 1.08905,
+      "render-result.unmount": 0.181733,
+      "cleanup": 0.024897
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 1.905412
+    }
+  },
+  {
+    "test": "combat finished canceled on reduction, reset and repeated input remain stable",
+    "durationsMsByOperation": {
+      "render": 0.944883,
+      "render-result.getByRole": 7.352398,
+      "event.click": 1.9120600000000003,
+      "render-result.rerender": 1.145556,
+      "render-result.unmount": 0.112189,
+      "cleanup": 0.021152
+    },
+    "largestSingle": {
+      "label": "render-result.getByRole",
+      "ms": 1.885751
+    }
+  },
+  {
+    "test": "System 1〜6の操作回帰 > クリックでSystem 1→5→6→1→6を連続して切り替える",
+    "durationsMsByOperation": {
+      "render": 17.213036,
+      "screen.getByRole": 89.10698599999999,
+      "existing-await-line:32": 51.835255000000004,
+      "cleanup": 1.913083
+    },
+    "largestSingle": {
+      "label": "screen.getByRole",
+      "ms": 45.711848
+    }
+  },
+  {
+    "test": "System 1〜6の操作回帰 > Tab→EnterとTab→SpaceでSystem 5／6を切り替える",
+    "durationsMsByOperation": {
+      "render": 2.714661,
+      "screen.getByRole": 19.918782,
+      "existing-await-line:41": 14.629252,
+      "existing-await-line:42": 8.041317,
+      "existing-await-line:44": 4.853153,
+      "existing-await-line:47": 4.827624,
+      "existing-await-line:49": 4.690087,
+      "cleanup": 0.328474
+    },
+    "largestSingle": {
+      "label": "existing-await-line:41",
+      "ms": 14.629252
+    }
+  }
+]

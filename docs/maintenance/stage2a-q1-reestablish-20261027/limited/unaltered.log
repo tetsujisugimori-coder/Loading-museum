@@ -1,0 +1,31 @@
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-q1-recovered
+
+ ✓ tests/waapi-observation.test.tsx (37 tests) 5109ms
+   ✓ actual gallery integration: observation never owns game state > Menu selection survives observation seek, finish, reverse, mode exit, and ordinary Reset still works  404ms
+   ✓ actual gallery integration: observation never owns game state > Coin preview repeatedly finishes and rewinds with zero points; normal COLLECT awards once  363ms
+   ✓ actual gallery integration: observation never owns game state > collected Coin retains its score and collected guard through observation and return  350ms
+   ✓ actual gallery integration: observation never owns game state > gallery closure cancels observation; reopening has no old callback or auto-score  311ms
+   ✓ actual gallery integration: observation never owns game state > gallery media notification reaches observation without changing Coin collected state  324ms
+   ✓ observed Coin normal motion cancellation > COLLECT after observation cancels paused normal motion on reduced ON without changing score  314ms
+   ✓ observed Coin normal motion cancellation > reduced explicit Replay uses reduced definition and repeated ON/OFF does not award or autoplay  375ms
+   ✓ observed Coin normal motion cancellation > rapid mode switches retain collected state and Reset permits exactly one new acquisition  494ms
+ ✓ tests/waapi-gallery.test.tsx (12 tests) 4328ms
+   ✓ WAAPI標本ギャラリー操作 > 初期DOMを遅延し、正規化検索・解除・開閉を扱う  591ms
+   ✓ WAAPI標本ギャラリー操作 > 複合フィルター・0件・解除後の全件表示と閉鎖取消を扱う  415ms
+   ✓ WAAPI標本ギャラリー操作 > ゲーム標本を直接操作し、Resetで意味のある初期状態へ戻す  313ms
+   ✓ WAAPI標本ギャラリー操作 > 新しいゲーム標本、5軸フィルター、AI共通状態を操作できる  433ms
+   ✓ WAAPI標本ギャラリー操作 > AI比較モードは一括フェーズを進め、閉じるとループを停止する  663ms
+   ✓ WAAPI標本ギャラリー操作 > 追加ゲーム14件は固有DOM・状態・操作結果を提供する  880ms
+ ✓ tests/waapi-hp-regression.test.tsx (4 tests) 1269ms
+   ✓ Damage直後Reset後、旧追従更新の予定時刻を過ぎても72を保つ  434ms
+   ✓ Damage連打とHealは最新HPに収束し、Reset連打も不変  337ms
+ ✓ tests/waapi-stage1-expanded.test.tsx (23 tests) 471ms
+ ✓ tests/macintosh-system-choice.test.tsx (2 tests) 214ms
+
+ Test Files  5 passed (5)
+      Tests  78 passed (78)
+   Start at  09:16:58
+   Duration  14.53s (transform 296ms, setup 0ms, collect 853ms, tests 11.39s, environment 1.38s, prepare 268ms)
+
+JSON report written to /tmp/q1-limited-20261027/unaltered-results.json

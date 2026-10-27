@@ -1,0 +1,44 @@
+[
+  {
+    "label": "unaltered",
+    "command": [
+      "node",
+      "/workspace/scratch/e622c1e9421e/loading-q1-recovered/node_modules/vitest/vitest.mjs",
+      "run",
+      "tests/waapi-gallery.test.tsx",
+      "tests/waapi-hp-regression.test.tsx",
+      "tests/waapi-observation.test.tsx",
+      "tests/waapi-stage1-expanded.test.tsx",
+      "tests/macintosh-system-choice.test.tsx",
+      "--maxWorkers=1",
+      "--minWorkers=1",
+      "--reporter=default",
+      "--reporter=json",
+      "--outputFile=/tmp/q1-limited-20261027/unaltered-results.json"
+    ],
+    "cwd": "/workspace/scratch/e622c1e9421e/loading-q1-recovered",
+    "exitCode": 0,
+    "wallSeconds": 14.88776570200207
+  },
+  {
+    "label": "instrumented",
+    "command": [
+      "node",
+      "/workspace/scratch/e622c1e9421e/loading-q1-recovered/node_modules/vitest/vitest.mjs",
+      "run",
+      "tests/waapi-gallery.test.tsx",
+      "tests/waapi-hp-regression.test.tsx",
+      "tests/waapi-observation.test.tsx",
+      "tests/waapi-stage1-expanded.test.tsx",
+      "tests/macintosh-system-choice.test.tsx",
+      "--maxWorkers=1",
+      "--minWorkers=1",
+      "--reporter=default",
+      "--reporter=json",
+      "--outputFile=/tmp/q1-limited-20261027/instrumented-results.json"
+    ],
+    "cwd": "/tmp/q1-limited-20261027/instrumented",
+    "exitCode": 0,
+    "wallSeconds": 14.156863153999439
+  }
+]

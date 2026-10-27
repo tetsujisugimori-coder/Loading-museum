@@ -1,0 +1,1464 @@
+{
+  "schema_version": 1,
+  "head": "90f266b6538cffbdc101a5d5fde7ec95f80cad7f",
+  "node": "v24.22.1",
+  "npm": "11.9.0",
+  "cpu_count": 9,
+  "affinity_count": 9,
+  "cgroup_cpu_max": null,
+  "product_hashes": {
+    "package.json": "e2f22df877eb045fc38a5c1548a158d2b1dcfd45b6780d4ba935008bce1cfb30",
+    "package-lock.json": "8052a2a9f829b9f926cc2664ddf4125cc1fba676299ce32c6aa92eed0474c0df",
+    "app/components/WaapiSampleGallery.tsx": "0292e0340f1e5e854777a9d342bfa83b60a26e42ff0b66b9fdf343098ca3f365",
+    "app/components/WaapiGameObservation.tsx": "443ef345a3389ec748d94d3a546c3c428071760773544bb0844895030c4e1b27",
+    "tests/waapi-gallery.test.tsx": "8f453caf5b331b287f5241c4649896eb82bd5281cb1cc2b1b73f5e9ff719aa9c",
+    "tests/waapi-observation.test.tsx": "d9ea62d2c128e8fe416bd42911f1bd435b24cc4581f3766ee73e6fab0d015f22"
+  },
+  "measurement_notes": [
+    "Process list and CPU counters are namespace-visible, not proof that the host had no other workloads.",
+    "No concurrent browser/build was intentionally started by this verification team.",
+    "Each npm run check includes lint, typecheck, build, Node and Vitest.",
+    "Current committed tests and 5000ms are unchanged. Old unpublished query changes/eight controls are absent.",
+    "Synthetic parser negative controls passed; they are not product tests."
+  ],
+  "runs": [
+    {
+      "name": "default-1",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "environment_overrides": {},
+      "started_at": "2026-10-27T00:21:33.100734+00:00",
+      "samples": [
+        {
+          "monotonic_ns": 18902125242113,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2395244 kB",
+            "MemAvailable:    6622808 kB"
+          ],
+          "process_count": 4,
+          "at": "2026-10-27T00:21:33.101973+00:00",
+          "loadavg": "1.18 1.63 1.47 3/614 24\n",
+          "cpu_stat": [
+            "cpu  537485 0 582092 15803438 100 0 4155 86154 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2 12.5 python\n     24       7  0.0 node\n     25       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18904132074999,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1931724 kB",
+            "MemAvailable:    6159296 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:21:35.108732+00:00",
+          "loadavg": "1.18 1.63 1.47 4/650 62\n",
+          "cpu_stat": [
+            "cpu  537807 0 582247 15804738 100 0 4162 86185 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.9 python\n     24       7 15.0 npm run check\n     37      24  0.0 sh\n     38      37 17.0 npm run lint\n     50      38  0.0 sh\n     51      50  152 MainThread\n     63       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18906136197903,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1663208 kB",
+            "MemAvailable:    5890780 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:21:37.112736+00:00",
+          "loadavg": "1.24 1.64 1.47 3/650 63\n",
+          "cpu_stat": [
+            "cpu  538321 0 582370 15805880 100 0 4168 86206 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.4 python\n     24       7  7.4 npm run check\n     37      24  0.0 sh\n     38      37  7.9 npm run lint\n     50      38  0.0 sh\n     51      50  195 MainThread\n     64       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18908140029737,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1545684 kB",
+            "MemAvailable:    5773256 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:21:39.116566+00:00",
+          "loadavg": "1.24 1.64 1.47 3/650 64\n",
+          "cpu_stat": [
+            "cpu  538835 0 582477 15807036 100 0 4176 86232 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.3 python\n     24       7  5.6 npm run check\n     37      24  0.0 sh\n     38      37  6.0 npm run lint\n     50      38  0.0 sh\n     51      50  202 MainThread\n     65       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18910143858326,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2225864 kB",
+            "MemAvailable:    6453432 kB"
+          ],
+          "process_count": 6,
+          "at": "2026-10-27T00:21:41.120379+00:00",
+          "loadavg": "1.24 1.64 1.47 4/634 98\n",
+          "cpu_stat": [
+            "cpu  539282 0 582606 15808237 100 0 4179 86255 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.2 python\n     24       7  4.2 npm run check\n     37      24  0.0 sh\n     87      37  111 npm\n     99       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18912147815660,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1829356 kB",
+            "MemAvailable:    6050220 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:21:43.124369+00:00",
+          "loadavg": "1.46 1.68 1.49 3/672 135\n",
+          "cpu_stat": [
+            "cpu  539923 0 582754 15809217 100 0 4186 86289 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n     24       7  3.3 npm run check\n     37      24  0.0 sh\n     87      37 11.9 npm test\n    100      87  0.0 sh\n    101     100 11.5 npm run build\n    113     101  0.0 sh\n    114     113  330 MainThread\n    136       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18914152344734,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1418024 kB",
+            "MemAvailable:    5644956 kB"
+          ],
+          "process_count": 11,
+          "at": "2026-10-27T00:21:45.128925+00:00",
+          "loadavg": "1.46 1.68 1.49 4/690 157\n",
+          "cpu_stat": [
+            "cpu  540551 0 582880 15810250 100 0 4193 86314 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.2 python\n     24       7  2.8 npm run check\n     37      24  0.0 sh\n     87      37  7.0 npm test\n    100      87  0.0 sh\n    101     100  6.9 npm run build\n    113     101  0.0 sh\n    114     113  227 MainThread\n    137     114  206 MainThread\n    158       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18916158080434,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1323400 kB",
+            "MemAvailable:    5528044 kB"
+          ],
+          "process_count": 11,
+          "at": "2026-10-27T00:21:47.134717+00:00",
+          "loadavg": "1.51 1.68 1.49 5/690 158\n",
+          "cpu_stat": [
+            "cpu  540990 0 583002 15811467 100 0 4203 86339 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.2 python\n     24       7  2.4 npm run check\n     37      24  0.0 sh\n     87      37  4.7 npm test\n    100      87  0.0 sh\n    101     100  4.5 npm run build\n    113     101  0.0 sh\n    114     113  147 MainThread\n    137     114  197 MainThread\n    159       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18918171117483,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1866756 kB",
+            "MemAvailable:    6029104 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:21:49.147713+00:00",
+          "loadavg": "1.51 1.68 1.49 3/670 204\n",
+          "cpu_stat": [
+            "cpu  541401 0 583144 15812685 100 0 4206 86377 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.2 python\n     24       7  2.1 npm run check\n     37      24  0.0 sh\n     87      37  3.5 npm test\n    100      87  0.0 sh\n    101     100  3.4 npm run build\n    113     101  0.0 sh\n    114     113  110 MainThread\n    205       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18920178363319,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1317172 kB",
+            "MemAvailable:    5447908 kB"
+          ],
+          "process_count": 17,
+          "at": "2026-10-27T00:21:51.154985+00:00",
+          "loadavg": "1.51 1.68 1.49 22/715 436\n",
+          "cpu_stat": [
+            "cpu  542364 0 583392 15813232 100 0 4210 86430 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.2 python\n     24       7  1.8 npm run check\n     37      24  0.0 sh\n     87      37  2.8 npm test\n    100      87  0.0 sh\n    241     100 48.8 node (vitest)\n    265     241 67.5 node (vitest 1)\n    266     241 80.0 node (vitest 2)\n    267     241 81.9 node (vitest 3)\n    273     241 84.0 node (vitest 4)\n    274     241 81.2 node (vitest 5)\n    275     241 78.4 node (vitest 6)\n    281     241 74.3 node (vitest 7)\n    292     241 70.8 node (vitest 8)\n    425     241 14.4 esbuild\n    437       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18922202152847,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1286852 kB",
+            "MemAvailable:    5054852 kB"
+          ],
+          "process_count": 17,
+          "at": "2026-10-27T00:21:53.178780+00:00",
+          "loadavg": "3.39 2.07 1.62 12/708 558\n",
+          "cpu_stat": [
+            "cpu  543590 0 583614 15813440 100 0 4212 86617 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n     24       7  1.6 npm run check\n     37      24  0.0 sh\n     87      37  2.3 npm test\n    100      87  0.0 sh\n    241     100 29.1 node (vitest)\n    265     241 93.9 node (vitest 1)\n    266     241  103 node (vitest 2)\n    267     241 89.3 node (vitest 3)\n    273     241 97.6 node (vitest 4)\n    425     241  6.8 esbuild\n    447     241 59.3 node (vitest 7)\n    518     241 28.0 node (vitest 5)\n    525     241 39.5 node (vitest 6)\n    558     241  0.0 MainThread\n    559       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18924214022911,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1578168 kB",
+            "MemAvailable:    5350188 kB"
+          ],
+          "process_count": 17,
+          "at": "2026-10-27T00:21:55.191224+00:00",
+          "loadavg": "3.39 2.07 1.62 5/716 638\n",
+          "cpu_stat": [
+            "cpu  544407 0 583765 15814241 100 0 4221 86667 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n     24       7  1.5 npm run check\n     37      24  0.0 sh\n     87      37  2.0 npm test\n    100      87  0.0 sh\n    241     100 19.3 node (vitest)\n    265     241  107 node (vitest 1)\n    266     241  114 node (vitest 2)\n    425     241  3.9 esbuild\n    518     241  6.1 node (vitest 5)\n    525     241  6.9 node (vitest 6)\n    558     241  6.0 node (vitest 8)\n    579     241  7.1 node (vitest 4)\n    580     241  7.8 node (vitest 7)\n    619     241 10.6 node (vitest 3)\n    639       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18926221392235,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1794368 kB",
+            "MemAvailable:    5566388 kB"
+          ],
+          "process_count": 17,
+          "at": "2026-10-27T00:21:57.197959+00:00",
+          "loadavg": "3.36 2.08 1.62 3/717 659\n",
+          "cpu_stat": [
+            "cpu  544915 0 583892 15815380 100 0 4227 86698 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n     24       7  1.4 npm run check\n     37      24  0.0 sh\n     87      37  1.7 npm test\n    100      87  0.0 sh\n    241     100 14.5 node (vitest)\n    265     241  110 node (vitest 1)\n    425     241  2.7 esbuild\n    518     241  3.4 node (vitest 5)\n    525     241  3.8 node (vitest 6)\n    558     241  2.9 node (vitest 8)\n    579     241  3.2 node (vitest 4)\n    580     241  3.5 node (vitest 7)\n    619     241  4.0 node (vitest 3)\n    640     241 50.0 node (vitest 2)\n    660       7  0.0 ps\n"
+        }
+      ],
+      "exit_code": 0,
+      "finished_at": "2026-10-27T00:21:59.202627+00:00",
+      "elapsed_seconds": 26.102,
+      "child_cpu_user_seconds": 67.537,
+      "child_cpu_system_seconds": 5.754,
+      "log": "default-1.log",
+      "result": {
+        "node": {
+          "tests": 49,
+          "pass": 49,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "vitest_summary": "130 passed (130)",
+        "failure_locations": [],
+        "timeout_mentions": 0,
+        "vitest_duration": [
+          "7.93s (transform 1.13s, setup 0ms, collect 3.67s, tests 23.36s, environment 4.87s, prepare 1.24s)"
+        ]
+      }
+    },
+    {
+      "name": "default-2",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "environment_overrides": {},
+      "started_at": "2026-10-27T00:21:59.203705+00:00",
+      "samples": [
+        {
+          "monotonic_ns": 18928227952516,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2487636 kB",
+            "MemAvailable:    6259628 kB"
+          ],
+          "process_count": 4,
+          "at": "2026-10-27T00:21:59.204333+00:00",
+          "loadavg": "3.36 2.08 1.62 5/611 681\n",
+          "cpu_stat": [
+            "cpu  545050 0 584022 15816910 100 0 4227 86711 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n    681       7  0.0 node\n    682       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18930235500118,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2222740 kB",
+            "MemAvailable:    5994740 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:22:01.212091+00:00",
+          "loadavg": "3.33 2.10 1.63 7/656 719\n",
+          "cpu_stat": [
+            "cpu  545395 0 584177 15818183 100 0 4233 86741 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n    681       7 14.0 npm run check\n    694     681  0.0 sh\n    695     694 16.2 npm run lint\n    707     695  0.0 sh\n    708     707  154 MainThread\n    720       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18932239576845,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2073720 kB",
+            "MemAvailable:    5845720 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:22:03.216083+00:00",
+          "loadavg": "3.33 2.10 1.63 3/649 720\n",
+          "cpu_stat": [
+            "cpu  545925 0 584295 15819324 100 0 4241 86765 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n    681       7  6.9 npm run check\n    694     681  0.0 sh\n    695     694  7.6 npm run lint\n    707     695  0.0 sh\n    708     707  194 MainThread\n    721       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18934243271123,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2014792 kB",
+            "MemAvailable:    5786852 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:22:05.219819+00:00",
+          "loadavg": "3.33 2.10 1.63 5/650 721\n",
+          "cpu_stat": [
+            "cpu  546430 0 584403 15820479 100 0 4248 86804 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n    681       7  4.6 npm run check\n    694     681  0.0 sh\n    695     694  5.0 npm run lint\n    707     695  0.0 sh\n    708     707  204 MainThread\n    722       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18936247084874,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2325576 kB",
+            "MemAvailable:    6097636 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:22:07.223670+00:00",
+          "loadavg": "3.22 2.10 1.63 4/646 743\n",
+          "cpu_stat": [
+            "cpu  546861 0 584541 15821681 100 0 4256 86833 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n    681       7  3.4 npm run check\n    694     681  0.0 sh\n    723     694 23.7 npm run typeche\n    735     723  0.0 sh\n    736     735  207 MainThread\n    744       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18938252069095,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2235028 kB",
+            "MemAvailable:    6014376 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:22:09.228614+00:00",
+          "loadavg": "3.22 2.10 1.63 3/674 792\n",
+          "cpu_stat": [
+            "cpu  547412 0 584696 15822757 100 0 4264 86864 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n    681       7  2.7 npm run check\n    694     681  0.0 sh\n    745     694 15.2 npm test\n    757     745  0.0 sh\n    758     757 18.1 npm run build\n    770     758  0.0 sh\n    771     770  313 MainThread\n    793       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18940256610831,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1975596 kB",
+            "MemAvailable:    5760908 kB"
+          ],
+          "process_count": 11,
+          "at": "2026-10-27T00:22:11.233218+00:00",
+          "loadavg": "3.20 2.11 1.64 4/694 815\n",
+          "cpu_stat": [
+            "cpu  548082 0 584841 15823703 100 0 4270 86900 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n    681       7  2.3 npm run check\n    694     681  0.0 sh\n    745     694  7.0 npm test\n    757     745  0.0 sh\n    758     757  7.7 npm run build\n    770     758  0.0 sh\n    771     770  266 MainThread\n    795     771  192 MainThread\n    816       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18942260620988,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1757016 kB",
+            "MemAvailable:    5542328 kB"
+          ],
+          "process_count": 11,
+          "at": "2026-10-27T00:22:13.237145+00:00",
+          "loadavg": "3.20 2.11 1.64 4/694 816\n",
+          "cpu_stat": [
+            "cpu  548549 0 584978 15824874 100 0 4284 86926 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n    681       7  2.3 npm run check\n    694     681  0.0 sh\n    745     694  5.4 npm test\n    757     745  0.0 sh\n    758     757  5.8 npm run build\n    770     758  0.0 sh\n    771     770  165 MainThread\n    795     771  200 MainThread\n    817       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18944264823235,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2063224 kB",
+            "MemAvailable:    5848856 kB"
+          ],
+          "process_count": 14,
+          "at": "2026-10-27T00:22:15.241523+00:00",
+          "loadavg": "3.20 2.11 1.64 4/701 849\n",
+          "cpu_stat": [
+            "cpu  548976 0 585118 15826086 101 0 4296 86959 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n    681       7  2.0 npm run check\n    694     681  0.0 sh\n    745     694  4.0 npm test\n    757     745  0.0 sh\n    758     757  4.2 npm run build\n    770     758  0.0 sh\n    771     770  120 MainThread\n    818     771 78.9 MainThread\n    819     771 64.8 MainThread\n    825     771 88.8 MainThread\n    832     771 45.7 MainThread\n    850       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18946269382778,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1823572 kB",
+            "MemAvailable:    5610820 kB"
+          ],
+          "process_count": 17,
+          "at": "2026-10-27T00:22:17.246046+00:00",
+          "loadavg": "4.31 2.36 1.72 18/718 1095\n",
+          "cpu_stat": [
+            "cpu  549840 0 585362 15826753 101 0 4301 86992 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n    681       7  1.8 npm run check\n    694     681  0.0 sh\n    745     694  3.1 npm test\n    757     745  0.0 sh\n    899     757 54.7 node (vitest)\n    923     899 71.3 node (vitest 1)\n    924     899 69.6 node (vitest 2)\n    925     899 76.0 node (vitest 3)\n    931     899 79.3 node (vitest 4)\n    932     899 68.5 node (vitest 5)\n    938     899 80.1 node (vitest 6)\n    939     899 76.8 node (vitest 7)\n    940     899 76.0 node (vitest 8)\n   1083     899 23.2 esbuild\n   1096       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18948282734640,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1281580 kB",
+            "MemAvailable:    5057040 kB"
+          ],
+          "process_count": 20,
+          "at": "2026-10-27T00:22:19.259390+00:00",
+          "loadavg": "4.31 2.36 1.72 17/721 1233\n",
+          "cpu_stat": [
+            "cpu  551202 0 585563 15826959 101 0 4304 87052 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n    681       7  1.6 npm run check\n    694     681  0.0 sh\n    745     694  2.6 npm test\n    757     745  0.0 sh\n    899     757 28.1 node (vitest)\n    923     899  102 node (vitest 1)\n    924     899  100 node (vitest 2)\n    925     899 96.2 node (vitest 3)\n    931     899 99.3 node (vitest 4)\n   1083     899  7.0 esbuild\n   1105     899 66.0 node (vitest 7)\n   1177     899 16.6 node (vitest 6)\n   1197     899 28.8 node (vitest 5)\n   1217     899 87.5 MainThread\n   1231    1217  0.0 sh\n   1234    1231  0.0 sort\n   1235       7  0.0 ps\n   1236    1231  0.0 uniq\n   1237    1231  0.0 sh\n"
+        },
+        {
+          "monotonic_ns": 18950291882830,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1670380 kB",
+            "MemAvailable:    5445724 kB"
+          ],
+          "process_count": 17,
+          "at": "2026-10-27T00:22:21.268571+00:00",
+          "loadavg": "4.20 2.37 1.73 4/718 1297\n",
+          "cpu_stat": [
+            "cpu  551884 0 585708 15827903 101 0 4308 87086 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n    681       7  1.4 npm run check\n    694     681  0.0 sh\n    745     694  2.2 npm test\n    757     745  0.0 sh\n    899     757 18.3 node (vitest)\n    923     899  113 node (vitest 1)\n    924     899  113 node (vitest 2)\n   1083     899  3.9 esbuild\n   1177     899  4.3 node (vitest 6)\n   1197     899  5.2 node (vitest 5)\n   1217     899  6.9 node (vitest 8)\n   1238     899  7.0 node (vitest 4)\n   1239     899  6.0 node (vitest 7)\n   1278     899  7.0 node (vitest 3)\n   1298       7  0.0 ps\n"
+        }
+      ],
+      "exit_code": 0,
+      "finished_at": "2026-10-27T00:22:23.273000+00:00",
+      "elapsed_seconds": 24.069,
+      "child_cpu_user_seconds": 64.744,
+      "child_cpu_system_seconds": 5.106,
+      "log": "default-2.log",
+      "result": {
+        "node": {
+          "tests": 49,
+          "pass": 49,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "vitest_summary": "130 passed (130)",
+        "failure_locations": [],
+        "timeout_mentions": 0,
+        "vitest_duration": [
+          "6.94s (transform 1.07s, setup 0ms, collect 3.56s, tests 19.87s, environment 4.70s, prepare 1.18s)"
+        ]
+      }
+    },
+    {
+      "name": "default-3",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "environment_overrides": {},
+      "started_at": "2026-10-27T00:22:23.274064+00:00",
+      "samples": [
+        {
+          "monotonic_ns": 18952298330935,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2529564 kB",
+            "MemAvailable:    6304896 kB"
+          ],
+          "process_count": 4,
+          "at": "2026-10-27T00:22:23.274705+00:00",
+          "loadavg": "4.20 2.37 1.73 3/611 1339\n",
+          "cpu_stat": [
+            "cpu  552329 0 585840 15829098 101 0 4311 87121 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1339       7  0.0 node\n   1340       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18954301861871,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2187296 kB",
+            "MemAvailable:    5962684 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:22:25.278406+00:00",
+          "loadavg": "4.20 2.37 1.73 6/650 1377\n",
+          "cpu_stat": [
+            "cpu  552684 0 585987 15830371 103 0 4315 87152 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1339       7 13.5 npm run check\n   1352    1339  0.0 sh\n   1353    1352 15.0 npm run lint\n   1365    1353  0.0 sh\n   1366    1365  161 MainThread\n   1378       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18956305976623,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2029280 kB",
+            "MemAvailable:    5804668 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:22:27.282493+00:00",
+          "loadavg": "4.03 2.37 1.73 4/650 1378\n",
+          "cpu_stat": [
+            "cpu  553181 0 586114 15831521 103 0 4319 87179 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1339       7  7.4 npm run check\n   1352    1339  0.0 sh\n   1353    1352  8.4 npm run lint\n   1365    1353  0.0 sh\n   1366    1365  193 MainThread\n   1379       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18958310008895,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1795708 kB",
+            "MemAvailable:    5571096 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:22:29.286585+00:00",
+          "loadavg": "4.03 2.37 1.73 6/650 1379\n",
+          "cpu_stat": [
+            "cpu  553657 0 586238 15832692 103 0 4320 87214 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n   1339       7  4.9 npm run check\n   1352    1339  0.0 sh\n   1353    1352  5.5 npm run lint\n   1365    1353  0.0 sh\n   1366    1365  200 MainThread\n   1380       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18960314130108,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2162088 kB",
+            "MemAvailable:    5937476 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:22:31.290703+00:00",
+          "loadavg": "4.03 2.39 1.74 4/646 1401\n",
+          "cpu_stat": [
+            "cpu  554104 0 586384 15833886 103 0 4323 87239 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.1 python\n   1339       7  3.7 npm run check\n   1352    1339  0.0 sh\n   1381    1352 23.6 npm run typeche\n   1393    1381  0.0 sh\n   1394    1393  221 MainThread\n   1402       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18962317748262,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2251032 kB",
+            "MemAvailable:    6019796 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:22:33.294476+00:00",
+          "loadavg": "4.03 2.39 1.74 6/675 1450\n",
+          "cpu_stat": [
+            "cpu  554689 0 586547 15834914 103 0 4328 87268 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1339       7  2.9 npm run check\n   1352    1339  0.0 sh\n   1403    1352 14.8 npm test\n   1415    1403  0.0 sh\n   1416    1415 17.3 npm run build\n   1428    1416  0.0 sh\n   1429    1428  340 MainThread\n   1451       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18964324512575,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2000608 kB",
+            "MemAvailable:    5775400 kB"
+          ],
+          "process_count": 11,
+          "at": "2026-10-27T00:22:35.301157+00:00",
+          "loadavg": "4.03 2.39 1.74 4/695 1473\n",
+          "cpu_stat": [
+            "cpu  555328 0 586689 15835903 103 0 4331 87309 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1339       7  2.4 npm run check\n   1352    1339  0.0 sh\n   1403    1352  8.2 npm test\n   1415    1403  0.0 sh\n   1416    1415  8.9 npm run build\n   1428    1416  0.0 sh\n   1429    1428  271 MainThread\n   1453    1429  192 MainThread\n   1474       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18966328817155,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1802344 kB",
+            "MemAvailable:    5577136 kB"
+          ],
+          "process_count": 11,
+          "at": "2026-10-27T00:22:37.305355+00:00",
+          "loadavg": "4.18 2.45 1.77 4/695 1474\n",
+          "cpu_stat": [
+            "cpu  555808 0 586806 15837077 103 0 4334 87358 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1339       7  2.1 npm run check\n   1352    1339  0.0 sh\n   1403    1352  5.3 npm test\n   1415    1403  0.0 sh\n   1416    1415  5.7 npm run build\n   1428    1416  0.0 sh\n   1429    1428  169 MainThread\n   1453    1429  205 MainThread\n   1475       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18968333704292,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2174912 kB",
+            "MemAvailable:    5949704 kB"
+          ],
+          "process_count": 14,
+          "at": "2026-10-27T00:22:39.310293+00:00",
+          "loadavg": "4.18 2.45 1.77 7/702 1504\n",
+          "cpu_stat": [
+            "cpu  556197 0 586937 15838335 103 0 4338 87392 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1339       7  1.8 npm run check\n   1352    1339  0.0 sh\n   1403    1352  3.9 npm test\n   1415    1403  0.0 sh\n   1416    1415  4.2 npm run build\n   1428    1416  0.0 sh\n   1429    1428  123 MainThread\n   1476    1429  100 MainThread\n   1482    1429  116 MainThread\n   1488    1429 80.0 MainThread\n   1490    1429 50.0 MainThread\n   1505       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18970341803900,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2075128 kB",
+            "MemAvailable:    5850552 kB"
+          ],
+          "process_count": 17,
+          "at": "2026-10-27T00:22:41.318372+00:00",
+          "loadavg": "4.01 2.45 1.77 7/719 1752\n",
+          "cpu_stat": [
+            "cpu  556919 0 587149 15839153 103 0 4342 87464 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1339       7  1.7 npm run check\n   1352    1339  0.0 sh\n   1403    1352  3.1 npm test\n   1415    1403  0.0 sh\n   1557    1415 39.4 node (vitest)\n   1581    1557 83.1 node (vitest 1)\n   1582    1557 84.4 node (vitest 2)\n   1583    1557 84.2 node (vitest 3)\n   1589    1557 75.0 node (vitest 4)\n   1590    1557 88.1 node (vitest 5)\n   1591    1557 88.1 node (vitest 6)\n   1597    1557 82.8 node (vitest 7)\n   1599    1557 80.2 node (vitest 8)\n   1741    1557  100 esbuild\n   1753       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18972347344528,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1442728 kB",
+            "MemAvailable:    5218152 kB"
+          ],
+          "process_count": 17,
+          "at": "2026-10-27T00:22:43.323962+00:00",
+          "loadavg": "4.01 2.45 1.77 11/718 1833\n",
+          "cpu_stat": [
+            "cpu  558163 0 587366 15839432 103 0 4348 87541 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1339       7  1.5 npm run check\n   1352    1339  0.0 sh\n   1403    1352  2.6 npm test\n   1415    1403  0.0 sh\n   1557    1415 34.7 node (vitest)\n   1581    1557 93.8 node (vitest 1)\n   1582    1557 93.1 node (vitest 2)\n   1583    1557 71.1 node (vitest 3)\n   1589    1557 89.1 node (vitest 4)\n   1741    1557  8.8 esbuild\n   1754    1557 68.4 node (vitest 8)\n   1760    1557 76.6 node (vitest 7)\n   1794    1557 44.0 node (vitest 5)\n   1802    1557 57.7 node (vitest 6)\n   1834       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18974353833858,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1513288 kB",
+            "MemAvailable:    5288776 kB"
+          ],
+          "process_count": 17,
+          "at": "2026-10-27T00:22:45.330591+00:00",
+          "loadavg": "4.01 2.45 1.77 7/717 1954\n",
+          "cpu_stat": [
+            "cpu  559106 0 587527 15840087 104 0 4353 87584 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1339       7  1.4 npm run check\n   1352    1339  0.0 sh\n   1403    1352  2.2 npm test\n   1415    1403  0.0 sh\n   1557    1415 21.7 node (vitest)\n   1581    1557  108 node (vitest 1)\n   1582    1557  107 node (vitest 2)\n   1741    1557  4.7 esbuild\n   1835    1557  6.5 node (vitest 5)\n   1836    1557  6.0 node (vitest 6)\n   1875    1557  7.0 node (vitest 7)\n   1895    1557  7.7 node (vitest 8)\n   1915    1557  8.4 node (vitest 4)\n   1935    1557 14.6 node (vitest 3)\n   1955       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18976358682873,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1789696 kB",
+            "MemAvailable:    5565184 kB"
+          ],
+          "process_count": 17,
+          "at": "2026-10-27T00:22:47.335306+00:00",
+          "loadavg": "3.93 2.45 1.78 3/717 1975\n",
+          "cpu_stat": [
+            "cpu  559641 0 587644 15841203 104 0 4354 87617 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1339       7  1.2 npm run check\n   1352    1339  0.0 sh\n   1403    1352  1.9 npm test\n   1415    1403  0.0 sh\n   1557    1415 15.7 node (vitest)\n   1581    1557  112 node (vitest 1)\n   1741    1557  3.1 esbuild\n   1835    1557  3.2 node (vitest 5)\n   1836    1557  3.0 node (vitest 6)\n   1875    1557  3.0 node (vitest 7)\n   1895    1557  3.2 node (vitest 8)\n   1915    1557  3.3 node (vitest 4)\n   1935    1557  3.9 node (vitest 3)\n   1956    1557 69.2 node (vitest 2)\n   1976       7  0.0 ps\n"
+        }
+      ],
+      "exit_code": 0,
+      "finished_at": "2026-10-27T00:22:49.340062+00:00",
+      "elapsed_seconds": 26.066,
+      "child_cpu_user_seconds": 66.154,
+      "child_cpu_system_seconds": 5.272,
+      "log": "default-3.log",
+      "result": {
+        "node": {
+          "tests": 49,
+          "pass": 49,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "vitest_summary": "130 passed (130)",
+        "failure_locations": [],
+        "timeout_mentions": 0,
+        "vitest_duration": [
+          "7.13s (transform 1.13s, setup 0ms, collect 3.93s, tests 20.55s, environment 4.82s, prepare 1.17s)"
+        ]
+      }
+    },
+    {
+      "name": "worker1-1",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "environment_overrides": {
+        "VITEST_MAX_FORKS": "1",
+        "VITEST_MIN_FORKS": "1",
+        "VITEST_MAX_THREADS": "1",
+        "VITEST_MIN_THREADS": "1"
+      },
+      "started_at": "2026-10-27T00:22:49.341296+00:00",
+      "samples": [
+        {
+          "monotonic_ns": 18978368190532,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2405608 kB",
+            "MemAvailable:    6181068 kB"
+          ],
+          "process_count": 4,
+          "at": "2026-10-27T00:22:49.344657+00:00",
+          "loadavg": "3.93 2.45 1.78 4/611 1997\n",
+          "cpu_stat": [
+            "cpu  559793 0 587767 15842722 104 0 4355 87630 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  0.0 node\n   1998       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18980373483661,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2150280 kB",
+            "MemAvailable:    5925748 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:22:51.350018+00:00",
+          "loadavg": "3.93 2.48 1.79 5/649 2035\n",
+          "cpu_stat": [
+            "cpu  560159 0 587915 15843990 104 0 4365 87656 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7 13.0 npm run check\n   2010    1997  0.0 sh\n   2011    2010 13.8 npm run lint\n   2023    2011  0.0 sh\n   2024    2023  172 MainThread\n   2036       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18982377902035,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2015888 kB",
+            "MemAvailable:    5791356 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:22:53.354479+00:00",
+          "loadavg": "3.93 2.48 1.79 4/649 2036\n",
+          "cpu_stat": [
+            "cpu  560661 0 588034 15845145 104 0 4377 87677 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  7.4 npm run check\n   2010    1997  0.0 sh\n   2011    2010  7.8 npm run lint\n   2023    2011  0.0 sh\n   2024    2023  195 MainThread\n   2037       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18984382324682,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1868556 kB",
+            "MemAvailable:    5644084 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:22:55.358921+00:00",
+          "loadavg": "3.93 2.48 1.79 3/649 2037\n",
+          "cpu_stat": [
+            "cpu  561161 0 588154 15846302 104 0 4385 87703 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  4.9 npm run check\n   2010    1997  0.0 sh\n   2011    2010  5.1 npm run lint\n   2023    2011  0.0 sh\n   2024    2023  204 MainThread\n   2038       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18986386487391,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2274172 kB",
+            "MemAvailable:    6049700 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:22:57.363254+00:00",
+          "loadavg": "3.78 2.47 1.79 4/645 2059\n",
+          "cpu_stat": [
+            "cpu  561546 0 588280 15847505 104 0 4394 87806 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  3.7 npm run check\n   2010    1997  0.2 sh\n   2039    2010 25.1 npm run typeche\n   2051    2039  0.0 sh\n   2052    2051  213 MainThread\n   2060       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18988392173487,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2337456 kB",
+            "MemAvailable:    6106408 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:22:59.368724+00:00",
+          "loadavg": "3.78 2.47 1.79 5/672 2108\n",
+          "cpu_stat": [
+            "cpu  562114 0 588430 15848568 104 0 4400 87852 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  2.9 npm run check\n   2010    1997  0.2 sh\n   2061    2010 18.7 npm test\n   2073    2061  0.0 sh\n   2074    2073 19.7 npm run build\n   2086    2074  0.0 sh\n   2087    2086  331 MainThread\n   2109       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18990396902731,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2004144 kB",
+            "MemAvailable:    5779060 kB"
+          ],
+          "process_count": 11,
+          "at": "2026-10-27T00:23:01.373550+00:00",
+          "loadavg": "3.64 2.46 1.79 5/692 2131\n",
+          "cpu_stat": [
+            "cpu  562832 0 588565 15849488 104 0 4403 87883 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  2.4 npm run check\n   2010    1997  0.1 sh\n   2061    2010  9.7 npm test\n   2073    2061  0.0 sh\n   2074    2073  9.1 npm run build\n   2086    2074  0.0 sh\n   2087    2086  284 MainThread\n   2111    2087  189 MainThread\n   2132       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18992404339892,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1851656 kB",
+            "MemAvailable:    5626572 kB"
+          ],
+          "process_count": 11,
+          "at": "2026-10-27T00:23:03.380946+00:00",
+          "loadavg": "3.64 2.46 1.79 4/692 2132\n",
+          "cpu_stat": [
+            "cpu  563284 0 588691 15850686 104 0 4404 87918 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  2.1 npm run check\n   2010    1997  0.1 sh\n   2061    2010  6.2 npm test\n   2073    2061  0.0 sh\n   2074    2073  5.7 npm run build\n   2086    2074  0.0 sh\n   2087    2086  174 MainThread\n   2111    2087  196 MainThread\n   2133       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18994409542121,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1816940 kB",
+            "MemAvailable:    5591916 kB"
+          ],
+          "process_count": 11,
+          "at": "2026-10-27T00:23:05.386102+00:00",
+          "loadavg": "3.64 2.46 1.79 3/692 2133\n",
+          "cpu_stat": [
+            "cpu  563679 0 588805 15851955 104 0 4406 87959 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  1.8 npm run check\n   2010    1997  0.1 sh\n   2061    2010  4.5 npm test\n   2073    2061  0.0 sh\n   2074    2073  4.1 npm run build\n   2086    2074  0.0 sh\n   2087    2086  125 MainThread\n   2111    2087  182 MainThread\n   2134       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18996416076382,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2403308 kB",
+            "MemAvailable:    6178960 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:07.392639+00:00",
+          "loadavg": "3.82 2.52 1.81 3/669 2269\n",
+          "cpu_stat": [
+            "cpu  564045 0 588983 15853182 104 0 4412 87991 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  1.6 npm run check\n   2010    1997  0.1 sh\n   2061    2010  3.6 npm test\n   2073    2061  0.0 sh\n   2215    2073 71.2 node (vitest)\n   2239    2215 85.3 node (vitest 1)\n   2259    2215 12.5 esbuild\n   2270       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 18998420593857,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2272520 kB",
+            "MemAvailable:    6048172 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:09.397220+00:00",
+          "loadavg": "3.82 2.52 1.81 4/669 2270\n",
+          "cpu_stat": [
+            "cpu  564403 0 589109 15854474 104 0 4420 88018 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  1.4 npm run check\n   2010    1997  0.1 sh\n   2061    2010  3.0 npm test\n   2073    2061  0.0 sh\n   2215    2073 25.2 node (vitest)\n   2239    2215  132 node (vitest 1)\n   2259    2215  2.0 esbuild\n   2271       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19000425026550,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2213244 kB",
+            "MemAvailable:    5988900 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:11.401767+00:00",
+          "loadavg": "3.68 2.51 1.82 4/669 2271\n",
+          "cpu_stat": [
+            "cpu  564736 0 589219 15855815 104 0 4425 88035 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  1.3 npm run check\n   2010    1997  0.0 sh\n   2061    2010  2.5 npm test\n   2073    2061  0.0 sh\n   2215    2073 15.3 node (vitest)\n   2239    2215  129 node (vitest 1)\n   2259    2215  1.1 esbuild\n   2272       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19002429534257,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2332160 kB",
+            "MemAvailable:    6107816 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:13.406094+00:00",
+          "loadavg": "3.68 2.51 1.82 3/669 2292\n",
+          "cpu_stat": [
+            "cpu  565060 0 589343 15857149 104 0 4431 88056 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  1.2 npm run check\n   2010    1997  0.0 sh\n   2061    2010  2.2 npm test\n   2073    2061  0.0 sh\n   2215    2073 11.5 node (vitest)\n   2259    2215  0.9 esbuild\n   2273    2215  137 node (vitest 1)\n   2293       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19004434064147,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2212844 kB",
+            "MemAvailable:    5988500 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:15.410605+00:00",
+          "loadavg": "3.68 2.51 1.82 3/668 2293\n",
+          "cpu_stat": [
+            "cpu  565437 0 589458 15858437 104 0 4434 88085 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  1.1 npm run check\n   2010    1997  0.0 sh\n   2061    2010  1.9 npm test\n   2073    2061  0.0 sh\n   2215    2073  9.1 node (vitest)\n   2259    2215  0.7 esbuild\n   2273    2215  148 node (vitest 1)\n   2294       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19006438430413,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2539908 kB",
+            "MemAvailable:    6315564 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:17.414967+00:00",
+          "loadavg": "3.54 2.51 1.82 3/668 2314\n",
+          "cpu_stat": [
+            "cpu  565746 0 589573 15859794 104 0 4437 88110 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  1.0 npm run check\n   2010    1997  0.0 sh\n   2061    2010  1.7 npm test\n   2073    2061  0.0 sh\n   2215    2073  7.5 node (vitest)\n   2259    2215  0.5 esbuild\n   2295    2215  124 node (vitest 1)\n   2315       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19008442611420,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2507456 kB",
+            "MemAvailable:    6283112 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:19.419127+00:00",
+          "loadavg": "3.54 2.51 1.82 3/668 2335\n",
+          "cpu_stat": [
+            "cpu  566093 0 589702 15861099 104 0 4439 88137 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  0.9 npm run check\n   2010    1997  0.0 sh\n   2061    2010  1.6 npm test\n   2073    2061  0.0 sh\n   2215    2073  6.4 node (vitest)\n   2259    2215  0.5 esbuild\n   2316    2215  129 node (vitest 1)\n   2336       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19010448581065,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2445328 kB",
+            "MemAvailable:    6220984 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:21.425101+00:00",
+          "loadavg": "3.42 2.50 1.82 3/668 2356\n",
+          "cpu_stat": [
+            "cpu  566444 0 589832 15862405 104 0 4439 88155 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  0.9 npm run check\n   2010    1997  0.0 sh\n   2061    2010  1.4 npm test\n   2073    2061  0.0 sh\n   2215    2073  6.0 node (vitest)\n   2259    2215  0.5 esbuild\n   2337    2215  117 node (vitest 1)\n   2357       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19012452512794,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2482092 kB",
+            "MemAvailable:    6257760 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:23.429016+00:00",
+          "loadavg": "3.42 2.50 1.82 3/671 2398\n",
+          "cpu_stat": [
+            "cpu  566762 0 589977 15863715 104 0 4448 88183 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  0.8 npm run check\n   2010    1997  0.0 sh\n   2061    2010  1.3 npm test\n   2073    2061  0.0 sh\n   2215    2073  5.7 node (vitest)\n   2259    2215  0.6 esbuild\n   2379    2215  116 node (vitest 1)\n   2399       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19014457019060,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2550040 kB",
+            "MemAvailable:    6325808 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:25.433549+00:00",
+          "loadavg": "3.42 2.50 1.82 3/672 2459\n",
+          "cpu_stat": [
+            "cpu  567076 0 590123 15865038 104 0 4453 88199 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   1997       7  0.8 npm run check\n   2010    1997  0.0 sh\n   2061    2010  1.2 npm test\n   2073    2061  0.0 sh\n   2215    2073  5.5 node (vitest)\n   2259    2215  0.6 esbuild\n   2440    2215  100 node (vitest 1)\n   2460       7  0.0 ps\n"
+        }
+      ],
+      "exit_code": 0,
+      "finished_at": "2026-10-27T00:23:27.438252+00:00",
+      "elapsed_seconds": 38.097,
+      "child_cpu_user_seconds": 60.923,
+      "child_cpu_system_seconds": 4.39,
+      "log": "worker1-1.log",
+      "result": {
+        "node": {
+          "tests": 49,
+          "pass": 49,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "vitest_summary": "130 passed (130)",
+        "failure_locations": [],
+        "timeout_mentions": 0,
+        "vitest_duration": [
+          "19.93s (transform 394ms, setup 0ms, collect 1.42s, tests 13.65s, environment 2.73s, prepare 635ms)"
+        ]
+      }
+    },
+    {
+      "name": "worker1-2",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "environment_overrides": {
+        "VITEST_MAX_FORKS": "1",
+        "VITEST_MIN_FORKS": "1",
+        "VITEST_MAX_THREADS": "1",
+        "VITEST_MIN_THREADS": "1"
+      },
+      "started_at": "2026-10-27T00:23:27.440337+00:00",
+      "samples": [
+        {
+          "monotonic_ns": 19016464688150,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2714772 kB",
+            "MemAvailable:    6490528 kB"
+          ],
+          "process_count": 4,
+          "at": "2026-10-27T00:23:27.441075+00:00",
+          "loadavg": "3.79 2.59 1.85 3/615 2521\n",
+          "cpu_stat": [
+            "cpu  567290 0 590257 15866478 104 0 4456 88215 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  0.0 node\n   2522       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19018467581140,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2344836 kB",
+            "MemAvailable:    6120600 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:23:29.444110+00:00",
+          "loadavg": "3.79 2.59 1.85 5/653 2559\n",
+          "cpu_stat": [
+            "cpu  567674 0 590404 15867730 104 0 4465 88235 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7 12.0 npm run check\n   2534    2521  0.0 sh\n   2535    2534 14.3 npm run lint\n   2547    2535  0.0 sh\n   2548    2547  180 MainThread\n   2560       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19020471690143,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2124992 kB",
+            "MemAvailable:    5900756 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:23:31.448197+00:00",
+          "loadavg": "3.64 2.58 1.85 4/653 2560\n",
+          "cpu_stat": [
+            "cpu  568166 0 590518 15868906 104 0 4474 88256 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  5.9 npm run check\n   2534    2521  0.0 sh\n   2535    2534  6.8 npm run lint\n   2547    2535  0.0 sh\n   2548    2547  197 MainThread\n   2561       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19022476544211,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1969964 kB",
+            "MemAvailable:    5745728 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:23:33.453058+00:00",
+          "loadavg": "3.64 2.58 1.85 6/653 2561\n",
+          "cpu_stat": [
+            "cpu  568639 0 590637 15870067 104 0 4482 88300 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  4.9 npm run check\n   2534    2521  0.0 sh\n   2535    2534  5.1 npm run lint\n   2547    2535  0.0 sh\n   2548    2547  203 MainThread\n   2562       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19024480396114,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2210864 kB",
+            "MemAvailable:    5986680 kB"
+          ],
+          "process_count": 8,
+          "at": "2026-10-27T00:23:35.456914+00:00",
+          "loadavg": "3.64 2.58 1.85 5/646 2583\n",
+          "cpu_stat": [
+            "cpu  569089 0 590781 15871259 104 0 4494 88329 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  3.7 npm run check\n   2534    2521  0.0 sh\n   2563    2534 16.1 npm run typeche\n   2575    2563  0.0 sh\n   2576    2575  209 MainThread\n   2584       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19026487860841,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2269016 kB",
+            "MemAvailable:    6038392 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:37.464412+00:00",
+          "loadavg": "3.51 2.57 1.85 4/675 2632\n",
+          "cpu_stat": [
+            "cpu  569692 0 590947 15872268 104 0 4500 88362 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  2.9 npm run check\n   2534    2521  0.0 sh\n   2585    2534 13.0 npm test\n   2597    2585  0.0 sh\n   2598    2597 17.9 npm run build\n   2610    2598  0.0 sh\n   2611    2610  346 MainThread\n   2633       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19028492309045,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2010372 kB",
+            "MemAvailable:    5785720 kB"
+          ],
+          "process_count": 11,
+          "at": "2026-10-27T00:23:39.468901+00:00",
+          "loadavg": "3.51 2.57 1.85 4/694 2654\n",
+          "cpu_stat": [
+            "cpu  570354 0 591086 15873252 104 0 4507 88387 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  2.4 npm run check\n   2534    2521  0.0 sh\n   2585    2534  7.6 npm test\n   2597    2585  0.0 sh\n   2598    2597  9.3 npm run build\n   2610    2598  0.0 sh\n   2611    2610  272 MainThread\n   2634    2611  189 MainThread\n   2655       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19030496251324,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1822284 kB",
+            "MemAvailable:    5597632 kB"
+          ],
+          "process_count": 11,
+          "at": "2026-10-27T00:23:41.472810+00:00",
+          "loadavg": "3.39 2.56 1.85 4/694 2655\n",
+          "cpu_stat": [
+            "cpu  570817 0 591211 15874446 104 0 4516 88411 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  2.1 npm run check\n   2534    2521  0.0 sh\n   2585    2534  5.0 npm test\n   2597    2585  0.0 sh\n   2598    2597  6.1 npm run build\n   2610    2598  0.0 sh\n   2611    2610  173 MainThread\n   2634    2611  198 MainThread\n   2656       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19032500366026,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2136804 kB",
+            "MemAvailable:    5912192 kB"
+          ],
+          "process_count": 14,
+          "at": "2026-10-27T00:23:43.476892+00:00",
+          "loadavg": "3.39 2.56 1.85 4/702 2688\n",
+          "cpu_stat": [
+            "cpu  571228 0 591346 15875669 104 0 4523 88444 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  1.8 npm run check\n   2534    2521  0.0 sh\n   2585    2534  3.7 npm test\n   2597    2585  0.0 sh\n   2598    2597  4.5 npm run build\n   2610    2598  0.0 sh\n   2611    2610  127 MainThread\n   2657    2611 77.7 MainThread\n   2663    2611 68.5 MainThread\n   2665    2611 91.1 MainThread\n   2672    2611 42.4 MainThread\n   2689       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19034505420074,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2321848 kB",
+            "MemAvailable:    6097888 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:45.481940+00:00",
+          "loadavg": "3.39 2.56 1.85 3/669 2793\n",
+          "cpu_stat": [
+            "cpu  571566 0 591509 15876949 105 0 4527 88466 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  1.6 npm run check\n   2534    2521  0.0 sh\n   2585    2534  3.0 npm test\n   2597    2585  0.0 sh\n   2738    2597 45.9 node (vitest)\n   2762    2738  110 node (vitest 1)\n   2782    2738  7.5 esbuild\n   2794       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19036510546369,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2247908 kB",
+            "MemAvailable:    6023948 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:47.487216+00:00",
+          "loadavg": "3.36 2.57 1.86 3/669 2794\n",
+          "cpu_stat": [
+            "cpu  571927 0 591631 15878255 105 0 4528 88484 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  1.4 npm run check\n   2534    2521  0.0 sh\n   2585    2534  2.5 npm test\n   2597    2585  0.0 sh\n   2738    2597 19.7 node (vitest)\n   2762    2738  130 node (vitest 1)\n   2782    2738  2.1 esbuild\n   2795       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19038514808855,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2203680 kB",
+            "MemAvailable:    5979720 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:49.491390+00:00",
+          "loadavg": "3.36 2.57 1.86 3/669 2795\n",
+          "cpu_stat": [
+            "cpu  572243 0 591743 15879605 105 0 4528 88507 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  1.3 npm run check\n   2534    2521  0.0 sh\n   2585    2534  2.1 npm test\n   2597    2585  0.0 sh\n   2738    2597 12.5 node (vitest)\n   2762    2738  128 node (vitest 1)\n   2782    2738  1.2 esbuild\n   2796       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19040518828669,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2318540 kB",
+            "MemAvailable:    6094580 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:51.495351+00:00",
+          "loadavg": "3.41 2.59 1.87 3/669 2816\n",
+          "cpu_stat": [
+            "cpu  572587 0 591873 15880907 105 0 4537 88537 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  1.2 npm run check\n   2534    2521  0.0 sh\n   2585    2534  1.8 npm test\n   2597    2585  0.0 sh\n   2738    2597  9.6 node (vitest)\n   2782    2738  0.8 esbuild\n   2797    2738  150 node (vitest 1)\n   2817       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19042528336458,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2246292 kB",
+            "MemAvailable:    6022332 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:53.504856+00:00",
+          "loadavg": "3.41 2.59 1.87 3/669 2817\n",
+          "cpu_stat": [
+            "cpu  572949 0 591991 15882209 105 0 4544 88565 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  1.1 npm run check\n   2534    2521  0.0 sh\n   2585    2534  1.7 npm test\n   2597    2585  0.0 sh\n   2738    2597  7.6 node (vitest)\n   2782    2738  0.7 esbuild\n   2797    2738  146 node (vitest 1)\n   2818       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19044532619408,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2489332 kB",
+            "MemAvailable:    6265432 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:55.509121+00:00",
+          "loadavg": "3.41 2.59 1.87 3/669 2838\n",
+          "cpu_stat": [
+            "cpu  573262 0 592108 15883567 105 0 4545 88580 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  1.0 npm run check\n   2534    2521  0.0 sh\n   2585    2534  1.5 npm test\n   2597    2585  0.0 sh\n   2738    2597  6.4 node (vitest)\n   2782    2738  0.7 esbuild\n   2819    2738  116 node (vitest 1)\n   2839       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19046540243401,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2502084 kB",
+            "MemAvailable:    6278184 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:57.516771+00:00",
+          "loadavg": "3.46 2.61 1.88 3/669 2859\n",
+          "cpu_stat": [
+            "cpu  573616 0 592234 15884870 105 0 4547 88610 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  0.9 npm run check\n   2534    2521  0.0 sh\n   2585    2534  1.4 npm test\n   2597    2585  0.0 sh\n   2738    2597  5.6 node (vitest)\n   2782    2738  0.7 esbuild\n   2840    2738  117 node (vitest 1)\n   2860       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19048545007486,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2548668 kB",
+            "MemAvailable:    6324768 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:23:59.521595+00:00",
+          "loadavg": "3.46 2.61 1.88 3/669 2880\n",
+          "cpu_stat": [
+            "cpu  573972 0 592360 15886166 105 0 4552 88646 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  0.9 npm run check\n   2534    2521  0.0 sh\n   2585    2534  1.2 npm test\n   2597    2585  0.0 sh\n   2738    2597  4.9 node (vitest)\n   2782    2738  0.6 esbuild\n   2861    2738  123 node (vitest 1)\n   2881       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19050549499152,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2425372 kB",
+            "MemAvailable:    6201472 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:24:01.526038+00:00",
+          "loadavg": "3.42 2.62 1.89 3/669 2901\n",
+          "cpu_stat": [
+            "cpu  574287 0 592495 15887491 105 0 4560 88687 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  0.8 npm run check\n   2534    2521  0.0 sh\n   2585    2534  1.1 npm test\n   2597    2585  0.0 sh\n   2738    2597  4.9 node (vitest)\n   2782    2738  0.6 esbuild\n   2882    2738  130 node (vitest 1)\n   2902       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19052553825152,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2517044 kB",
+            "MemAvailable:    6293148 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:24:03.530373+00:00",
+          "loadavg": "3.42 2.62 1.89 3/668 2950\n",
+          "cpu_stat": [
+            "cpu  574584 0 592634 15888826 105 0 4567 88737 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  0.8 npm run check\n   2534    2521  0.0 sh\n   2585    2534  1.1 npm test\n   2597    2585  0.0 sh\n   2738    2597  4.9 node (vitest)\n   2782    2738  0.7 esbuild\n   2943    2738  100 MainThread\n   2951       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19054559824288,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2492016 kB",
+            "MemAvailable:    6268168 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:24:05.536382+00:00",
+          "loadavg": "3.42 2.62 1.89 4/669 3023\n",
+          "cpu_stat": [
+            "cpu  574874 0 592786 15890156 105 0 4570 88783 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   2521       7  0.7 npm run check\n   2534    2521  0.0 sh\n   2585    2534  1.0 npm test\n   2597    2585  0.0 sh\n   2738    2597  4.8 node (vitest)\n   2782    2738  0.7 esbuild\n   3004    2738  100 node (vitest 1)\n   3024       7  0.0 ps\n"
+        }
+      ],
+      "exit_code": 0,
+      "finished_at": "2026-10-27T00:24:07.540662+00:00",
+      "elapsed_seconds": 40.1,
+      "child_cpu_user_seconds": 61.916,
+      "child_cpu_system_seconds": 4.691,
+      "log": "worker1-2.log",
+      "result": {
+        "node": {
+          "tests": 49,
+          "pass": 49,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "vitest_summary": "130 passed (130)",
+        "failure_locations": [],
+        "timeout_mentions": 0,
+        "vitest_duration": [
+          "21.36s (transform 379ms, setup 0ms, collect 1.46s, tests 14.70s, environment 2.93s, prepare 662ms)"
+        ]
+      }
+    },
+    {
+      "name": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "environment_overrides": {},
+      "started_at": "2026-10-27T00:24:07.543040+00:00",
+      "samples": [
+        {
+          "monotonic_ns": 19056567401490,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2693872 kB",
+            "MemAvailable:    6470012 kB"
+          ],
+          "process_count": 4,
+          "at": "2026-10-27T00:24:07.543802+00:00",
+          "loadavg": "3.23 2.59 1.89 3/612 3045\n",
+          "cpu_stat": [
+            "cpu  574973 0 592896 15891729 105 0 4571 88809 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   3045       7  0.0 node\n   3046       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19058570942121,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2460032 kB",
+            "MemAvailable:    6229500 kB"
+          ],
+          "process_count": 6,
+          "at": "2026-10-27T00:24:09.547495+00:00",
+          "loadavg": "3.23 2.59 1.89 7/646 3080\n",
+          "cpu_stat": [
+            "cpu  575587 0 593046 15892671 105 0 4577 88920 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   3045       7 14.5 npm run build\n   3058    3045  0.0 sh\n   3059    3058  352 MainThread\n   3081       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19060575184426,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2046988 kB",
+            "MemAvailable:    5822436 kB"
+          ],
+          "process_count": 7,
+          "at": "2026-10-27T00:24:11.551822+00:00",
+          "loadavg": "3.13 2.58 1.89 5/666 3103\n",
+          "cpu_stat": [
+            "cpu  576242 0 593182 15893634 105 0 4578 88978 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   3045       7  7.2 npm run build\n   3058    3045  0.0 sh\n   3059    3058  287 MainThread\n   3083    3059  190 MainThread\n   3104       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19062579984078,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         1857736 kB",
+            "MemAvailable:    5633184 kB"
+          ],
+          "process_count": 7,
+          "at": "2026-10-27T00:24:13.556600+00:00",
+          "loadavg": "3.13 2.58 1.89 4/666 3104\n",
+          "cpu_stat": [
+            "cpu  576710 0 593308 15894819 105 0 4578 89015 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   3045       7  4.8 npm run build\n   3058    3045  0.0 sh\n   3059    3058  187 MainThread\n   3083    3059  200 MainThread\n   3105       7  0.0 ps\n"
+        },
+        {
+          "monotonic_ns": 19064584139083,
+          "memory_kb": [
+            "MemTotal:       10206484 kB",
+            "MemFree:         2195160 kB",
+            "MemAvailable:    5970620 kB"
+          ],
+          "process_count": 10,
+          "at": "2026-10-27T00:24:15.560761+00:00",
+          "loadavg": "3.13 2.58 1.89 5/673 3137\n",
+          "cpu_stat": [
+            "cpu  577132 0 593433 15896049 105 0 4581 89045 0 0"
+          ],
+          "processes": "    PID    PPID %CPU COMMAND\n      1       0  0.0 codex\n      2       1  0.0 bash\n      7       2  0.0 python\n   3045       7  3.6 npm run build\n   3058    3045  0.0 sh\n   3059    3058  140 MainThread\n   3106    3059  105 MainThread\n   3108    3059  111 MainThread\n   3118    3059  112 MainThread\n   3121    3059 50.0 MainThread\n   3138       7  0.0 ps\n"
+        }
+      ],
+      "exit_code": 0,
+      "finished_at": "2026-10-27T00:24:17.565407+00:00",
+      "elapsed_seconds": 10.022,
+      "child_cpu_user_seconds": 20.403,
+      "child_cpu_system_seconds": 1.316,
+      "log": "build.log",
+      "result": {
+        "node": {},
+        "vitest_summary": null,
+        "failure_locations": [],
+        "timeout_mentions": 0,
+        "vitest_duration": []
+      }
+    }
+  ],
+  "tree": "478b654f2856f81f7a88723105f364c202e5925e",
+  "initial_status": "?? .github/workflows/pr-quality.yml\n?? docs/maintenance/stage2a-q1-reestablish-20261027/ci-design.md\n?? docs/maintenance/stage2a-q1-reestablish-20261027/limited/\n?? docs/maintenance/stage2a-q1-reestablish-20261027/native/\n",
+  "vitest_version": "3.2.4"
+}
