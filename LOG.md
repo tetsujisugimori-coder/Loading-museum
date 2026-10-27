@@ -1500,3 +1500,12 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 - 旧計測は基準HEAD＋未commit変更を対象としたもので今回HEADの検証ではない。Node49＋Vitest138（旧130＋未提出対照8）の成功総数は既定184/187、182/187、185/187、worker1 185/187、186/187。全5回exit1、詳細ログ未回収。Q1共通根因UNKNOWN、P2未解決。
 - [限定提出の説明](docs/maintenance/stage2a-q1-recovery-20261027/README.md)に失敗位置・時間・回収保証・N2既存証拠との区別を記録。今回変更は文書/証拠のみ。全check/build/nativeを再実施していない。独立レビューは証拠読解であり実ブラウザ再操作ではない。
 - 総合PARTIAL／マージNO。既存B1/M1等UNKNOWNと実機未検証を維持。Draft/openを保持し、公開workflow・マージ・auto-mergeを行わない。最終HEAD/tree/実CI有無はPR/Issueに提出後照合結果を記録する。
+
+## 2026-10-27 Stage 2A-Q1 現行コードの再検証とPR CI
+
+- 基準b2d9211/current main1d0d7eeをGitHub/local確認、開始clean。旧153中1回収/152未回収・旧187件と新結果を区別。新baselineは現行Node49+Vitest130=179件で既定3回・worker1 2回すべて179成功/失敗skip0、別build成功。途中90f266bへ証拠を保全。
+- 限定関連78件×2（原文/計測copy）成功、wrapper負例4成功。query負荷は測ったが旧timeout非再現、A製品/Bテスト/C環境/D混在の共通根因UNKNOWN。製品/正式test/5000ms/期待値を変更せず、RED/GREENを捏造しない。
+- 最終製品コード再確認も179件×5すべて成功、別build成功、N2旧診断4/4成功。記録の経過秒はpoll終了検出を含むouter wallで、子コマンド厳密終了時刻とは異なる。
+- PR専用read-only CIをe258b7bで追加。実run40426920758はjob.envのrunner.temp非対応でvalidationFAIL/jobs0。最小修正95555da後run40427284755/attempt1は179/179＋独立build成功。artifact ZIP/API digest一致、内部hash/provenance照合。先行CIを最終HEAD成功として流用しない。
+- [新記録](docs/maintenance/stage2a-q1-reestablish-20261027/README.md)、CI設計・独立review・必要診断を段階保全。Pages公開workflow無変更/未実行、Stage2B未着手。native/最終独立レビューと最終HEADのCI照合は追加結果として記録する。旧根因未解明のため総合PARTIAL・マージNO維持。
+- Native新実測: N2 strict6/6・228行動・live取消12/12・paused6/6成功、Stage1 6/6・30群成功。観察48群は5PASS/WK765 Menu終端入力PARTIAL。限定probeは2例途中保持成功＋1例INPUT_MISSEDでPARTIAL、元結果を成功へ昇格しない。Playwright1.56/Ch141/WK26、/tmp限定runtime補完・失敗経過を保存。実機/全館未検証、B1/M1等UNKNOWN維持。

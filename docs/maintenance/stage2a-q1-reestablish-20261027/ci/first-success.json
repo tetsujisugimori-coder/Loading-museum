@@ -1,0 +1,76 @@
+{
+  "run_id": 40427284755,
+  "attempt": 1,
+  "head": "95555da7190a760a232fd2d31cf10196d0bd7c61",
+  "tree": "08e59d16b9d327bb92d2cbe4252a78aa2267841e",
+  "result": "success",
+  "url": "https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/40427284755",
+  "node_pass": 49,
+  "vitest_pass": 130,
+  "fail": 0,
+  "skip": 0,
+  "artifact_id": 12700496396,
+  "artifact_zip_sha256": "41152a3cbeaee8bf6fc1a70923723466d3f413b5ca656f2262ee7b64951503bc",
+  "api_digest_matches": true,
+  "manifest_verified_files": 11,
+  "provenance": {
+    "run_id": "40427284755",
+    "attempt": "1",
+    "event": "pull_request",
+    "event_sha": "07bb7ce4380b753a7a0168ada5e4e149cdb1b983",
+    "expected_head": "95555da7190a760a232fd2d31cf10196d0bd7c61",
+    "checked_head": "95555da7190a760a232fd2d31cf10196d0bd7c61",
+    "checked_tree": "08e59d16b9d327bb92d2cbe4252a78aa2267841e",
+    "node": "v24.22.1",
+    "npm": "11.9.0",
+    "ci": "true",
+    "runner_os": "Linux",
+    "runner_arch": "X64",
+    "image_os": "ubuntu24",
+    "image_version": "20261023.334.3",
+    "available_parallelism": 4,
+    "package_lock_sha256": "8052a2a9f829b9f926cc2664ddf4125cc1fba676299ce32c6aa92eed0474c0df",
+    "worktree_changes": "",
+    "scope": "PR head only, not merge integration; one CI check is not five-run stability validation"
+  },
+  "outcomes": {
+    "run_id": "40427284755",
+    "attempt": "1",
+    "expected_head": "95555da7190a760a232fd2d31cf10196d0bd7c61",
+    "event_sha": "07bb7ce4380b753a7a0168ada5e4e149cdb1b983",
+    "outcomes": {
+      "npm": "success",
+      "identity": "success",
+      "install": "success",
+      "check": "success",
+      "build": "success"
+    },
+    "checked_head_after": "95555da7190a760a232fd2d31cf10196d0bd7c61",
+    "checked_tree_after": "08e59d16b9d327bb92d2cbe4252a78aa2267841e",
+    "tracked_changes_after": "",
+    "source_unchanged": true
+  },
+  "check_command": {
+    "command": [
+      "npm",
+      "run",
+      "check"
+    ],
+    "started_at": "2026-10-27T00:35:12.977840+00:00",
+    "exit_code": 0,
+    "finished_at": "2026-10-27T00:35:50.997504+00:00",
+    "elapsed_seconds": 38.019664203
+  },
+  "build_command": {
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "started_at": "2026-10-27T00:35:51.051638+00:00",
+    "exit_code": 0,
+    "finished_at": "2026-10-27T00:36:01.054712+00:00",
+    "elapsed_seconds": 10.003079276
+  },
+  "scope": "intermediate CI validation; final HEAD run must be checked separately"
+}

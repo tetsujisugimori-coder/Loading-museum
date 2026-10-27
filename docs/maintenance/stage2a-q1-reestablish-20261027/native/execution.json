@@ -1,0 +1,197 @@
+{
+  "startedAt": "2026-10-27T00:31:44.248247+00:00",
+  "headAtStart": "e258b7b08fca6d7a4b5d91d5c7fb0f0a56d5cabd",
+  "source": {
+    "app/components/AppleEarlyBeginnerGuide.tsx": "8d0816c420849431da0eeecc5adafdb1d63e1ec83ef810456929595b744c1dfb",
+    "app/components/AppleEarlyDemoControls.tsx": "b70baf0c8d31f4067d6c3cd9e75940d1df4e28ca521a9ed3913130dd35b3d8f1",
+    "app/components/AppleEarlyEraExhibitRoom.tsx": "a4dcaa30c592a3b06c4ad00334159189ba2310258d12bfc084761fa026cdb0eb",
+    "app/components/AppleEarlyGraphicsDemos.tsx": "034786798313cefe9bb172f019acf74210f73a6c266359e3508b3d43a16440b1",
+    "app/components/AppleEarlyMediaDemos.tsx": "99fbae3d607473022b97383af79d5b414e6c3fb22750073a4181377ff5a2c4b1",
+    "app/components/AppleEarlyTerminalDemos.tsx": "5c494b566dddbfee741caea6165ab9cb39f84013c54d901684da9d2d5f22bf2b",
+    "app/components/AppleInteractionFlow.tsx": "56b1cad169aae38e38e5306562b2ca708edab1cb4600c90e80b056870c65d6d1",
+    "app/components/CursorExhibitRoom.tsx": "75af87aca2d78e3db79fbf42bd53ab69a54b2c630c6e583c19a4f42c4e0047ba",
+    "app/components/DomAnimationRoom.tsx": "6df9716c19a8dbd13b8f6be48e248fca11c392d87594accc721994d819847132",
+    "app/components/ExhibitRoomAccordion.tsx": "bb229dba140d63e7e214ddfe750a3e50156b3de0d4e1821cd539be1cdb5f03d2",
+    "app/components/FlashRefinedVisuals.tsx": "f033bb6782cd14053b55524dd089db6d2c3ce09bc7c4be048e53112c9f2e1bec",
+    "app/components/FlashSpecialExhibitRoom.tsx": "c8c201ddeff6cc0f4cd1bbb40c5e3b54a85442e90c98fdd00f8e49492d2b4b4c",
+    "app/components/FlashVisuals.tsx": "f7b31dbb33c6d9206de07305d33d2165a0b376387316db263653e40b8de4fb65",
+    "app/components/MacintoshBirthExhibitRoom.tsx": "30177e6d98016f87b9e607085f7ed9d98d79899001aea64315152486877b91f8",
+    "app/components/MuseumTitleSequence.tsx": "f53a69d03e97f6b662b963033d99f77e932ed54b9dae57c3a64304dc1cb16926",
+    "app/components/TerminalDemoPlayer.tsx": "f872664b0deea822d49bf5420860919015d08b573bff0e5cb805ee7e825f67b3",
+    "app/components/VanishedOsPlayer.tsx": "5859fe5c6b25da256ff31e71c1a0bfb345aa10842541a8701f97cf4da2ce5490",
+    "app/components/WaapiExpandedPreviews.tsx": "da69278fa30f705fa8f5c4886812ef51c2ffca002bed4382de4d4280ae44204d",
+    "app/components/WaapiGameObservation.tsx": "443ef345a3389ec748d94d3a546c3c428071760773544bb0844895030c4e1b27",
+    "app/components/WaapiSampleGallery.tsx": "0292e0340f1e5e854777a9d342bfa83b60a26e42ff0b66b9fdf343098ca3f365",
+    "app/components/macintosh-interaction-state.ts": "ad68a5e867bfeea05fade291555e6fa065e459c6a9f25be317924dd1dc9fb596",
+    "app/components/museum-title-sequence-state.ts": "3085030acff4aafa9954815866af66dd81840d5970d1d6723275ac578f17e2e2",
+    "app/components/waapi-board-state.ts": "9d4da1c02874e6034b8dab7682892dc308582e62f7e7e9c549c493355e523bcb",
+    "app/components/waapi-interaction-state.ts": "424d8fd6b142098341857ff66b0c976d95fdf26da98642faeab9ee58ce799a18",
+    "app/data/appleEarlyBeginnerGuide.ts": "374995301c907a25525807b66f42ba481cc5060af149365cf9453c4e444e7202",
+    "app/data/appleEarlyExhibits.ts": "904426e76eaa3614db3ef3fda475e08875664c9c30d5758a9228dde1794c9443",
+    "app/data/cursorExhibits.ts": "e2a7c340906c9b7c45fb695785f4ac3247908fffc3bd86ff1ae9b1757944c94a",
+    "app/data/exhibitRooms.ts": "5f781c2d56603b44681dcf81c1973827c0187e7bc90a996846b62703a5a8b962",
+    "app/data/flashExhibits.ts": "04ad1a2b00f7b3ddbfb10c5c5a40cd8f18a96d8bbbaca94effc0eff1f80d93af",
+    "app/data/macintoshBirthExhibits.ts": "4576d347287b3a982102ff3ae431231061caf03941202f25d19a93fccdbe6910",
+    "app/data/vanishedOperatingSystems.ts": "6f8e24e38b2774485c3990c38cca032668b2b60257e5b0db59b88dc4a183e0c1",
+    "app/data/waapiAdditionalSamples.ts": "c8c0dd02cc3bdcf321043426819c6b2d5441619b513c272cc7740d4ca8fdb4f5",
+    "app/data/waapiSamples.ts": "9192ea98459f9f818ed264fd40a9e4aaf61ec9bfd4f59799cb56602805922697",
+    "app/globals.css": "7907ac4cb2aa05e0639617728a7b79e9e14da00e75724f97c4fcab7fbc9e7a68",
+    "app/layout.tsx": "a2e0dbed02330a5e8d3250dcfaeac66f65e1be85d544430073db2fbf976d21f3",
+    "app/page.tsx": "3976429bfd045acd8ac4e9ebe3bcaaf2622ac704a2875946ae96ef9a291f4590"
+  },
+  "scripts": {
+    "scripts/verify-waapi-observation.py": "3cf0a5d4f098f6ba92206e828511db962db835a6e4fa76daa08dc5d2b2e81f11",
+    "scripts/verify-waapi-stage1.py": "c854037f9d55e37ed74b1138f2ebda1bbf00f1b810fada43062699b8bc4ff407",
+    "docs/maintenance/stage2a-repair-20261026/native/verify-coin-cancellation.py": "bca60def0a00aa8f9975db5e20f9abd8ea29610848eec39a281426aa4547ee52",
+    "docs/maintenance/stage2a-repair-20261026/native/assess-native.py": "29c9318b08f1af08cfbe7325162b31d4106de80e913da6b347acd8f43111f2cd"
+  },
+  "runs": [
+    {
+      "name": "n2",
+      "startedAt": "2026-10-27T00:31:44.376424+00:00",
+      "monotonicStart": 19513.400212046,
+      "command": [
+        "/tmp/loading-q1-20261027-pw156/bin/python",
+        "docs/maintenance/stage2a-repair-20261026/native/verify-coin-cancellation.py"
+      ],
+      "exitCode": 0,
+      "finishedAt": "2026-10-27T00:33:01.362060+00:00",
+      "elapsedSeconds": 76.98569652399965
+    },
+    {
+      "name": "n2-strict",
+      "startedAt": "2026-10-27T00:33:01.362784+00:00",
+      "monotonicStart": 19590.386568394,
+      "command": [
+        "/tmp/loading-q1-20261027-pw156/bin/python",
+        "docs/maintenance/stage2a-repair-20261026/native/assess-native.py",
+        "/workspace/scratch/e622c1e9421e/loading-q1-recovered/docs/maintenance/stage2a-q1-reestablish-20261027/native/n2.json",
+        "/workspace/scratch/e622c1e9421e/loading-q1-recovered/docs/maintenance/stage2a-q1-reestablish-20261027/native/n2-strict.json"
+      ],
+      "exitCode": 0,
+      "finishedAt": "2026-10-27T00:33:01.477613+00:00",
+      "elapsedSeconds": 0.11484555700008059
+    },
+    {
+      "name": "observation",
+      "startedAt": "2026-10-27T00:33:01.478281+00:00",
+      "monotonicStart": 19590.502065132,
+      "command": [
+        "/tmp/loading-q1-20261027-pw156/bin/python",
+        "scripts/verify-waapi-observation.py"
+      ],
+      "exitCode": 1,
+      "finishedAt": "2026-10-27T00:34:43.884696+00:00",
+      "elapsedSeconds": 102.40643186099987
+    },
+    {
+      "name": "stage1",
+      "startedAt": "2026-10-27T00:34:43.885336+00:00",
+      "monotonicStart": 19692.909119732,
+      "command": [
+        "/tmp/loading-q1-20261027-pw156/bin/python",
+        "scripts/verify-waapi-stage1.py"
+      ],
+      "exitCode": 0,
+      "finishedAt": "2026-10-27T00:37:16.438773+00:00",
+      "elapsedSeconds": 152.55345558399858
+    }
+  ],
+  "scope": "native installed Chromium/WebKit, no physical device assurance",
+  "servedIdentity": [
+    {
+      "path": "404/index.html",
+      "local": "c54eaab00cf20e68d37fba823e79c417aa24e30ff43308366af3580a6abcf881",
+      "served": "c54eaab00cf20e68d37fba823e79c417aa24e30ff43308366af3580a6abcf881",
+      "equal": true
+    },
+    {
+      "path": "404.html",
+      "local": "c54eaab00cf20e68d37fba823e79c417aa24e30ff43308366af3580a6abcf881",
+      "served": "c54eaab00cf20e68d37fba823e79c417aa24e30ff43308366af3580a6abcf881",
+      "equal": true
+    },
+    {
+      "path": "_next/static/2lS0SBz6HoPm4Fx2UbCi6/_buildManifest.js",
+      "local": "9476e0afd3f9da68a64e6ec58631191fd3eaca62c9f5a377e7517fe9a89e59ea",
+      "served": "9476e0afd3f9da68a64e6ec58631191fd3eaca62c9f5a377e7517fe9a89e59ea",
+      "equal": true
+    },
+    {
+      "path": "_next/static/2lS0SBz6HoPm4Fx2UbCi6/_clientMiddlewareManifest.js",
+      "local": "5483e3295dc35dfe29ea932efc85341c916f10ff78ff5b0e965e003710893a4a",
+      "served": "5483e3295dc35dfe29ea932efc85341c916f10ff78ff5b0e965e003710893a4a",
+      "equal": true
+    },
+    {
+      "path": "_next/static/2lS0SBz6HoPm4Fx2UbCi6/_ssgManifest.js",
+      "local": "678f6ce2cb80b1fe72fc67e7412be6e2ab6ada083111b64f7c40d35e3cba5e00",
+      "served": "678f6ce2cb80b1fe72fc67e7412be6e2ab6ada083111b64f7c40d35e3cba5e00",
+      "equal": true
+    },
+    {
+      "path": "_next/static/chunks/03~yq9q893hmn.js",
+      "local": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "served": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "equal": true
+    },
+    {
+      "path": "_next/static/chunks/07lhk_q6pmm3r.js",
+      "local": "d8957e42e0c2769a5d79cb7ff90fc7c6b6b5bd8e0a1cd66f8950e404c806aa3e",
+      "served": "d8957e42e0c2769a5d79cb7ff90fc7c6b6b5bd8e0a1cd66f8950e404c806aa3e",
+      "equal": true
+    },
+    {
+      "path": "_next/static/chunks/084ft.p70.t2f.css",
+      "local": "55588abf772557d025bbd09f16994405d5a39f1b9b5a2b13085b9d56547022e6",
+      "served": "55588abf772557d025bbd09f16994405d5a39f1b9b5a2b13085b9d56547022e6",
+      "equal": true
+    },
+    {
+      "path": "_next/static/chunks/0dbhjjzl8qfwv.js",
+      "local": "59d6d2186868625417737f3f33980e55f778eb3672cd03a10cf26b1259ca2314",
+      "served": "59d6d2186868625417737f3f33980e55f778eb3672cd03a10cf26b1259ca2314",
+      "equal": true
+    },
+    {
+      "path": "_next/static/chunks/0ht900cau6_ur.js",
+      "local": "b2b0fb9dbb3e38abc0110efd9dc4c5ec29e2e7c6cff449d61c95f354b4014f5b",
+      "served": "b2b0fb9dbb3e38abc0110efd9dc4c5ec29e2e7c6cff449d61c95f354b4014f5b",
+      "equal": true
+    },
+    {
+      "path": "_next/static/chunks/0imfkye460j0g.js",
+      "local": "87220b0d003adc71dd86122f2ea5f93b88d45637c106da4983ad60fa7691da44",
+      "served": "87220b0d003adc71dd86122f2ea5f93b88d45637c106da4983ad60fa7691da44",
+      "equal": true
+    },
+    {
+      "path": "_next/static/chunks/10kedf-fhjleq.js",
+      "local": "2718721c6c41e9ec38be5f36472e65d7f20708aa7c36e4a69c81176d493be3a4",
+      "served": "2718721c6c41e9ec38be5f36472e65d7f20708aa7c36e4a69c81176d493be3a4",
+      "equal": true
+    },
+    {
+      "path": "_next/static/chunks/turbopack-06cagmb1zkfh1.js",
+      "local": "74ac6fbe3d3dec545d513253306841f2453674f266e76499c3ad61abc6cccb35",
+      "served": "74ac6fbe3d3dec545d513253306841f2453674f266e76499c3ad61abc6cccb35",
+      "equal": true
+    },
+    {
+      "path": "_not-found/index.html",
+      "local": "c54eaab00cf20e68d37fba823e79c417aa24e30ff43308366af3580a6abcf881",
+      "served": "c54eaab00cf20e68d37fba823e79c417aa24e30ff43308366af3580a6abcf881",
+      "equal": true
+    },
+    {
+      "path": "index.html",
+      "local": "4b0d9d6a2e65fd01f5f206fdc5414be10cad916105cef1864845029467c7cd20",
+      "served": "4b0d9d6a2e65fd01f5f206fdc5414be10cad916105cef1864845029467c7cd20",
+      "equal": true
+    }
+  ],
+  "serverStoppedAt": "2026-10-27T00:37:16.442930+00:00",
+  "headAtEnd": "95555da7190a760a232fd2d31cf10196d0bd7c61",
+  "sourceUnchangedDuringRun": true,
+  "finishedAt": "2026-10-27T00:37:16.447450+00:00"
+}

@@ -1,0 +1,1657 @@
+{
+  "startedAt": "2026-10-27T00:31:44Z",
+  "finishedAt": "2026-10-27T00:33:01Z",
+  "mode": "new-head-20261027",
+  "sourceHead": "e258b7b08fca6d7a4b5d91d5c7fb0f0a56d5cabd",
+  "scriptSha256": "bca60def0a00aa8f9975db5e20f9abd8ea29610848eec39a281426aa4547ee52",
+  "playwrightVersion": "1.56.0",
+  "source": {
+    "app/components/WaapiSampleGallery.tsx": "0292e0340f1e5e854777a9d342bfa83b60a26e42ff0b66b9fdf343098ca3f365",
+    "app/components/WaapiGameObservation.tsx": "443ef345a3389ec748d94d3a546c3c428071760773544bb0844895030c4e1b27",
+    "app/globals.css": "7907ac4cb2aa05e0639617728a7b79e9e14da00e75724f97c4fcab7fbc9e7a68"
+  },
+  "build": {
+    "404/index.html": "c54eaab00cf20e68d37fba823e79c417aa24e30ff43308366af3580a6abcf881",
+    "404.html": "c54eaab00cf20e68d37fba823e79c417aa24e30ff43308366af3580a6abcf881",
+    "_next/static/2lS0SBz6HoPm4Fx2UbCi6/_buildManifest.js": "9476e0afd3f9da68a64e6ec58631191fd3eaca62c9f5a377e7517fe9a89e59ea",
+    "_next/static/2lS0SBz6HoPm4Fx2UbCi6/_clientMiddlewareManifest.js": "5483e3295dc35dfe29ea932efc85341c916f10ff78ff5b0e965e003710893a4a",
+    "_next/static/2lS0SBz6HoPm4Fx2UbCi6/_ssgManifest.js": "678f6ce2cb80b1fe72fc67e7412be6e2ab6ada083111b64f7c40d35e3cba5e00",
+    "_next/static/chunks/03~yq9q893hmn.js": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+    "_next/static/chunks/07lhk_q6pmm3r.js": "d8957e42e0c2769a5d79cb7ff90fc7c6b6b5bd8e0a1cd66f8950e404c806aa3e",
+    "_next/static/chunks/084ft.p70.t2f.css": "55588abf772557d025bbd09f16994405d5a39f1b9b5a2b13085b9d56547022e6",
+    "_next/static/chunks/0dbhjjzl8qfwv.js": "59d6d2186868625417737f3f33980e55f778eb3672cd03a10cf26b1259ca2314",
+    "_next/static/chunks/0ht900cau6_ur.js": "b2b0fb9dbb3e38abc0110efd9dc4c5ec29e2e7c6cff449d61c95f354b4014f5b",
+    "_next/static/chunks/0imfkye460j0g.js": "87220b0d003adc71dd86122f2ea5f93b88d45637c106da4983ad60fa7691da44",
+    "_next/static/chunks/10kedf-fhjleq.js": "2718721c6c41e9ec38be5f36472e65d7f20708aa7c36e4a69c81176d493be3a4",
+    "_next/static/chunks/turbopack-06cagmb1zkfh1.js": "74ac6fbe3d3dec545d513253306841f2453674f266e76499c3ad61abc6cccb35",
+    "_not-found/index.html": "c54eaab00cf20e68d37fba823e79c417aa24e30ff43308366af3580a6abcf881",
+    "index.html": "4b0d9d6a2e65fd01f5f206fdc5414be10cad916105cef1864845029467c7cd20"
+  },
+  "positiveControl": {
+    "name": "both native references cancelled (predicate fixture)",
+    "accepted": true
+  },
+  "negativeControls": [
+    {
+      "name": "running without cancel",
+      "rejected": true
+    },
+    {
+      "name": "natural finish without cancel",
+      "rejected": true
+    },
+    {
+      "name": "already ended at media input",
+      "rejected": true
+    },
+    {
+      "name": "score pulse not cancelled",
+      "rejected": true
+    }
+  ],
+  "strictStatus": "PASS",
+  "strictPredicateControls": [
+    {
+      "name": "complete pair accepted",
+      "pass": true
+    },
+    {
+      "name": "missing score ref",
+      "pass": true,
+      "classification": "FAIL_MISSING_OR_WRONG_REFERENCE"
+    },
+    {
+      "name": "duplicate ref",
+      "pass": true,
+      "classification": "FAIL_MISSING_OR_WRONG_REFERENCE"
+    },
+    {
+      "name": "different ref",
+      "pass": true,
+      "classification": "FAIL_MISSING_OR_WRONG_REFERENCE"
+    },
+    {
+      "name": "missing score cancellation",
+      "pass": true,
+      "classification": "FAIL_CANCEL_EVIDENCE"
+    },
+    {
+      "name": "no cancellation",
+      "pass": true,
+      "classification": "FAIL_CANCEL_EVIDENCE"
+    },
+    {
+      "name": "input already finished",
+      "pass": true,
+      "classification": "INPUT_MISSED"
+    },
+    {
+      "name": "missing captured IDs",
+      "pass": true,
+      "classification": "FAIL_IDENTITY"
+    },
+    {
+      "name": "duplicate captured IDs",
+      "pass": true,
+      "classification": "FAIL_IDENTITY"
+    },
+    {
+      "name": "score remains running",
+      "pass": true,
+      "classification": "FAIL_NOT_IDLE"
+    },
+    {
+      "name": "natural finish before cancel",
+      "pass": true,
+      "classification": "CANCELLED_AFTER_NATURAL_FINISH"
+    },
+    {
+      "name": "score reached source-defined end before cancel",
+      "pass": true,
+      "classification": "CANCELLED_AFTER_NATURAL_FINISH"
+    }
+  ],
+  "conditions": [
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "status": "PASS",
+      "pageerror": [],
+      "pausedDiagnostic": {
+        "before": {
+          "id": 38,
+          "clock": 2611.199999999255,
+          "currentTime": 0,
+          "playState": "paused",
+          "pending": false,
+          "duration": 650
+        },
+        "after": {
+          "clock": 2919.199999999255,
+          "currentTime": null,
+          "playState": "idle",
+          "pending": false,
+          "duration": 650
+        },
+        "cancel": [
+          {
+            "kind": "cancel",
+            "id": 38,
+            "before": {
+              "clock": 2649.699999999255,
+              "currentTime": 0,
+              "playState": "paused",
+              "pending": false,
+              "duration": 650
+            },
+            "after": {
+              "clock": 2649.699999999255,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            }
+          }
+        ],
+        "pass": true
+      },
+      "checks": {
+        "count": 38,
+        "passed": 38,
+        "failed": []
+      },
+      "cancellation": [
+        {
+          "action": "Replay",
+          "animationId": 14,
+          "input": {
+            "label": "Replay",
+            "input": 1998,
+            "clock": 2010.5,
+            "score": "SCORE 0",
+            "collected": false,
+            "last": {
+              "id": 14,
+              "clock": 2010.800000000745,
+              "currentTime": 0,
+              "playState": "running",
+              "pending": true,
+              "duration": 650
+            },
+            "ownedIds": [
+              14,
+              15
+            ],
+            "normalCount": 4
+          },
+          "mediaInput": {
+            "id": 14,
+            "clock": 2049,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 14,
+              "clock": 2095.800000000745,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 15,
+              "clock": 2095.800000000745,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancels": [
+            {
+              "kind": "cancel",
+              "id": 14,
+              "before": {
+                "clock": 2052.400000002235,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 650
+              },
+              "after": {
+                "clock": 2052.400000002235,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 650
+              }
+            },
+            {
+              "kind": "cancel",
+              "id": 15,
+              "before": {
+                "clock": 2052.400000002235,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 240
+              },
+              "after": {
+                "clock": 2052.400000002235,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 240
+              }
+            }
+          ],
+          "after": {
+            "clock": 2095.800000000745,
+            "currentTime": null,
+            "playState": "idle",
+            "pending": false,
+            "duration": 650
+          },
+          "score": "SCORE 0",
+          "collected": false,
+          "eligible": true,
+          "verdict": "PASS"
+        },
+        {
+          "action": "COLLECT",
+          "animationId": 26,
+          "input": {
+            "label": "COLLECT",
+            "input": 2283.60000000149,
+            "clock": 2293.199999999255,
+            "score": "SCORE 100",
+            "collected": true,
+            "last": {
+              "id": 26,
+              "clock": 2293.60000000149,
+              "currentTime": 0,
+              "playState": "running",
+              "pending": true,
+              "duration": 650
+            },
+            "ownedIds": [
+              26,
+              27
+            ],
+            "normalCount": 6
+          },
+          "mediaInput": {
+            "id": 26,
+            "clock": 2335.900000002235,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 26,
+              "clock": 2374.10000000149,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 27,
+              "clock": 2374.199999999255,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancels": [
+            {
+              "kind": "cancel",
+              "id": 26,
+              "before": {
+                "clock": 2338.900000002235,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 650
+              },
+              "after": {
+                "clock": 2338.900000002235,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 650
+              }
+            },
+            {
+              "kind": "cancel",
+              "id": 27,
+              "before": {
+                "clock": 2338.900000002235,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 240
+              },
+              "after": {
+                "clock": 2338.900000002235,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 240
+              }
+            }
+          ],
+          "after": {
+            "clock": 2374.199999999255,
+            "currentTime": null,
+            "playState": "idle",
+            "pending": false,
+            "duration": 650
+          },
+          "score": "SCORE 100",
+          "collected": true,
+          "eligible": true,
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "status": "PASS",
+      "pageerror": [],
+      "pausedDiagnostic": {
+        "before": {
+          "id": 38,
+          "clock": 2766.60000000149,
+          "currentTime": 0,
+          "playState": "paused",
+          "pending": false,
+          "duration": 650
+        },
+        "after": {
+          "clock": 3074.89999999851,
+          "currentTime": null,
+          "playState": "idle",
+          "pending": false,
+          "duration": 650
+        },
+        "cancel": [
+          {
+            "kind": "cancel",
+            "id": 38,
+            "before": {
+              "clock": 2810.60000000149,
+              "currentTime": 0,
+              "playState": "paused",
+              "pending": false,
+              "duration": 650
+            },
+            "after": {
+              "clock": 2810.60000000149,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            }
+          }
+        ],
+        "pass": true
+      },
+      "checks": {
+        "count": 38,
+        "passed": 38,
+        "failed": []
+      },
+      "cancellation": [
+        {
+          "action": "Replay",
+          "animationId": 14,
+          "input": {
+            "label": "Replay",
+            "input": 1984.1000000014901,
+            "clock": 1998,
+            "score": "SCORE 0",
+            "collected": false,
+            "last": {
+              "id": 14,
+              "clock": 1998.3999999985099,
+              "currentTime": 0,
+              "playState": "running",
+              "pending": true,
+              "duration": 650
+            },
+            "ownedIds": [
+              14,
+              15
+            ],
+            "normalCount": 4
+          },
+          "mediaInput": {
+            "id": 14,
+            "clock": 2034.199999999255,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 14,
+              "clock": 2064.89999999851,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 15,
+              "clock": 2064.89999999851,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancels": [
+            {
+              "kind": "cancel",
+              "id": 14,
+              "before": {
+                "clock": 2039.800000000745,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 650
+              },
+              "after": {
+                "clock": 2039.800000000745,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 650
+              }
+            },
+            {
+              "kind": "cancel",
+              "id": 15,
+              "before": {
+                "clock": 2039.800000000745,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 240
+              },
+              "after": {
+                "clock": 2039.800000000745,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 240
+              }
+            }
+          ],
+          "after": {
+            "clock": 2064.89999999851,
+            "currentTime": null,
+            "playState": "idle",
+            "pending": false,
+            "duration": 650
+          },
+          "score": "SCORE 0",
+          "collected": false,
+          "eligible": true,
+          "verdict": "PASS"
+        },
+        {
+          "action": "COLLECT",
+          "animationId": 26,
+          "input": {
+            "label": "COLLECT",
+            "input": 2367.699999999255,
+            "clock": 2381.5,
+            "score": "SCORE 100",
+            "collected": true,
+            "last": {
+              "id": 26,
+              "clock": 2381.800000000745,
+              "currentTime": 0,
+              "playState": "running",
+              "pending": true,
+              "duration": 650
+            },
+            "ownedIds": [
+              26,
+              27
+            ],
+            "normalCount": 6
+          },
+          "mediaInput": {
+            "id": 26,
+            "clock": 2422.39999999851,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 26,
+              "clock": 2447.199999999255,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 27,
+              "clock": 2447.199999999255,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancels": [
+            {
+              "kind": "cancel",
+              "id": 26,
+              "before": {
+                "clock": 2425.199999999255,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 650
+              },
+              "after": {
+                "clock": 2425.199999999255,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 650
+              }
+            },
+            {
+              "kind": "cancel",
+              "id": 27,
+              "before": {
+                "clock": 2425.300000000745,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 240
+              },
+              "after": {
+                "clock": 2425.300000000745,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 240
+              }
+            }
+          ],
+          "after": {
+            "clock": 2447.199999999255,
+            "currentTime": null,
+            "playState": "idle",
+            "pending": false,
+            "duration": 650
+          },
+          "score": "SCORE 100",
+          "collected": true,
+          "eligible": true,
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 765,
+      "status": "PASS",
+      "pageerror": [],
+      "pausedDiagnostic": {
+        "before": {
+          "id": 38,
+          "clock": 3691.300000000745,
+          "currentTime": 0,
+          "playState": "paused",
+          "pending": false,
+          "duration": 650
+        },
+        "after": {
+          "clock": 3998.699999999255,
+          "currentTime": null,
+          "playState": "idle",
+          "pending": false,
+          "duration": 650
+        },
+        "cancel": [
+          {
+            "kind": "cancel",
+            "id": 38,
+            "before": {
+              "clock": 3728.800000000745,
+              "currentTime": 0,
+              "playState": "paused",
+              "pending": false,
+              "duration": 650
+            },
+            "after": {
+              "clock": 3728.800000000745,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            }
+          }
+        ],
+        "pass": true
+      },
+      "checks": {
+        "count": 38,
+        "passed": 38,
+        "failed": []
+      },
+      "cancellation": [
+        {
+          "action": "Replay",
+          "animationId": 14,
+          "input": {
+            "label": "Replay",
+            "input": 2742.60000000149,
+            "clock": 2756.800000000745,
+            "score": "SCORE 0",
+            "collected": false,
+            "last": {
+              "id": 14,
+              "clock": 2757,
+              "currentTime": 0,
+              "playState": "running",
+              "pending": true,
+              "duration": 650
+            },
+            "ownedIds": [
+              14,
+              15
+            ],
+            "normalCount": 4
+          },
+          "mediaInput": {
+            "id": 14,
+            "clock": 2795.199999999255,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 14,
+              "clock": 2827.39999999851,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 15,
+              "clock": 2827.39999999851,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancels": [
+            {
+              "kind": "cancel",
+              "id": 14,
+              "before": {
+                "clock": 2797.800000000745,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 650
+              },
+              "after": {
+                "clock": 2797.800000000745,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 650
+              }
+            },
+            {
+              "kind": "cancel",
+              "id": 15,
+              "before": {
+                "clock": 2797.800000000745,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 240
+              },
+              "after": {
+                "clock": 2797.800000000745,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 240
+              }
+            }
+          ],
+          "after": {
+            "clock": 2827.5,
+            "currentTime": null,
+            "playState": "idle",
+            "pending": false,
+            "duration": 650
+          },
+          "score": "SCORE 0",
+          "collected": false,
+          "eligible": true,
+          "verdict": "PASS"
+        },
+        {
+          "action": "COLLECT",
+          "animationId": 26,
+          "input": {
+            "label": "COLLECT",
+            "input": 3212.10000000149,
+            "clock": 3224.39999999851,
+            "score": "SCORE 100",
+            "collected": true,
+            "last": {
+              "id": 26,
+              "clock": 3224.699999999255,
+              "currentTime": 0,
+              "playState": "running",
+              "pending": true,
+              "duration": 650
+            },
+            "ownedIds": [
+              26,
+              27
+            ],
+            "normalCount": 6
+          },
+          "mediaInput": {
+            "id": 26,
+            "clock": 3259.699999999255,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 26,
+              "clock": 3283.89999999851,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 27,
+              "clock": 3283.89999999851,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancels": [
+            {
+              "kind": "cancel",
+              "id": 26,
+              "before": {
+                "clock": 3261.89999999851,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 650
+              },
+              "after": {
+                "clock": 3261.89999999851,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 650
+              }
+            },
+            {
+              "kind": "cancel",
+              "id": 27,
+              "before": {
+                "clock": 3261.89999999851,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 240
+              },
+              "after": {
+                "clock": 3261.89999999851,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 240
+              }
+            }
+          ],
+          "after": {
+            "clock": 3283.89999999851,
+            "currentTime": null,
+            "playState": "idle",
+            "pending": false,
+            "duration": 650
+          },
+          "score": "SCORE 100",
+          "collected": true,
+          "eligible": true,
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 375,
+      "status": "PASS",
+      "pageerror": [],
+      "pausedDiagnostic": {
+        "before": {
+          "id": 36,
+          "clock": 5779,
+          "currentTime": 0,
+          "playState": "paused",
+          "pending": false,
+          "duration": 650
+        },
+        "after": {
+          "clock": 6093,
+          "currentTime": null,
+          "playState": "idle",
+          "pending": false,
+          "duration": 650
+        },
+        "cancel": [
+          {
+            "kind": "cancel",
+            "id": 36,
+            "before": {
+              "clock": 5864,
+              "currentTime": 0,
+              "playState": "paused",
+              "pending": false,
+              "duration": 650
+            },
+            "after": {
+              "clock": 5864,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            }
+          }
+        ],
+        "pass": true
+      },
+      "checks": {
+        "count": 38,
+        "passed": 38,
+        "failed": []
+      },
+      "cancellation": [
+        {
+          "action": "Replay",
+          "animationId": 12,
+          "input": {
+            "label": "Replay",
+            "input": 4351,
+            "clock": 4363,
+            "score": "SCORE 0",
+            "collected": false,
+            "last": {
+              "id": 12,
+              "clock": 4363,
+              "currentTime": 0,
+              "playState": "running",
+              "pending": true,
+              "duration": 650
+            },
+            "ownedIds": [
+              12,
+              13
+            ],
+            "normalCount": 2
+          },
+          "mediaInput": {
+            "id": 12,
+            "clock": 4494,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 12,
+              "clock": 4591,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 13,
+              "clock": 4591,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancels": [
+            {
+              "kind": "cancel",
+              "id": 12,
+              "before": {
+                "clock": 4499,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 650
+              },
+              "after": {
+                "clock": 4499,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 650
+              }
+            },
+            {
+              "kind": "cancel",
+              "id": 13,
+              "before": {
+                "clock": 4499,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 240
+              },
+              "after": {
+                "clock": 4499,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 240
+              }
+            }
+          ],
+          "after": {
+            "clock": 4591,
+            "currentTime": null,
+            "playState": "idle",
+            "pending": false,
+            "duration": 650
+          },
+          "score": "SCORE 0",
+          "collected": false,
+          "eligible": true,
+          "verdict": "PASS"
+        },
+        {
+          "action": "COLLECT",
+          "animationId": 24,
+          "input": {
+            "label": "COLLECT",
+            "input": 5103,
+            "clock": 5109,
+            "score": "SCORE 100",
+            "collected": true,
+            "last": {
+              "id": 24,
+              "clock": 5109,
+              "currentTime": 0,
+              "playState": "running",
+              "pending": true,
+              "duration": 650
+            },
+            "ownedIds": [
+              24,
+              25
+            ],
+            "normalCount": 4
+          },
+          "mediaInput": {
+            "id": 24,
+            "clock": 5194,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 24,
+              "clock": 5219,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 25,
+              "clock": 5219,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancels": [
+            {
+              "kind": "cancel",
+              "id": 24,
+              "before": {
+                "clock": 5196,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 650
+              },
+              "after": {
+                "clock": 5196,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 650
+              }
+            },
+            {
+              "kind": "cancel",
+              "id": 25,
+              "before": {
+                "clock": 5196,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 240
+              },
+              "after": {
+                "clock": 5196,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 240
+              }
+            }
+          ],
+          "after": {
+            "clock": 5219,
+            "currentTime": null,
+            "playState": "idle",
+            "pending": false,
+            "duration": 650
+          },
+          "score": "SCORE 100",
+          "collected": true,
+          "eligible": true,
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 390,
+      "status": "PASS",
+      "pageerror": [],
+      "pausedDiagnostic": {
+        "before": {
+          "id": 38,
+          "clock": 5983.000000000001,
+          "currentTime": 0,
+          "playState": "paused",
+          "pending": false,
+          "duration": 650
+        },
+        "after": {
+          "clock": 6305,
+          "currentTime": null,
+          "playState": "idle",
+          "pending": false,
+          "duration": 650
+        },
+        "cancel": [
+          {
+            "kind": "cancel",
+            "id": 38,
+            "before": {
+              "clock": 6103,
+              "currentTime": 0,
+              "playState": "paused",
+              "pending": false,
+              "duration": 650
+            },
+            "after": {
+              "clock": 6103,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            }
+          }
+        ],
+        "pass": true
+      },
+      "checks": {
+        "count": 38,
+        "passed": 38,
+        "failed": []
+      },
+      "cancellation": [
+        {
+          "action": "Replay",
+          "animationId": 14,
+          "input": {
+            "label": "Replay",
+            "input": 4312,
+            "clock": 4323,
+            "score": "SCORE 0",
+            "collected": false,
+            "last": {
+              "id": 14,
+              "clock": 4323,
+              "currentTime": 0,
+              "playState": "running",
+              "pending": true,
+              "duration": 650
+            },
+            "ownedIds": [
+              14,
+              15
+            ],
+            "normalCount": 4
+          },
+          "mediaInput": {
+            "id": 14,
+            "clock": 4456,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 14,
+              "clock": 4506,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 15,
+              "clock": 4506,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancels": [
+            {
+              "kind": "cancel",
+              "id": 14,
+              "before": {
+                "clock": 4460,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 650
+              },
+              "after": {
+                "clock": 4460,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 650
+              }
+            },
+            {
+              "kind": "cancel",
+              "id": 15,
+              "before": {
+                "clock": 4460,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 240
+              },
+              "after": {
+                "clock": 4460,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 240
+              }
+            }
+          ],
+          "after": {
+            "clock": 4506,
+            "currentTime": null,
+            "playState": "idle",
+            "pending": false,
+            "duration": 650
+          },
+          "score": "SCORE 0",
+          "collected": false,
+          "eligible": true,
+          "verdict": "PASS"
+        },
+        {
+          "action": "COLLECT",
+          "animationId": 26,
+          "input": {
+            "label": "COLLECT",
+            "input": 5151,
+            "clock": 5165,
+            "score": "SCORE 100",
+            "collected": true,
+            "last": {
+              "id": 26,
+              "clock": 5165,
+              "currentTime": 0,
+              "playState": "running",
+              "pending": true,
+              "duration": 650
+            },
+            "ownedIds": [
+              26,
+              27
+            ],
+            "normalCount": 6
+          },
+          "mediaInput": {
+            "id": 26,
+            "clock": 5274,
+            "currentTime": 8,
+            "playState": "running",
+            "pending": false,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 26,
+              "clock": 5313,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 27,
+              "clock": 5313,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancels": [
+            {
+              "kind": "cancel",
+              "id": 26,
+              "before": {
+                "clock": 5280,
+                "currentTime": 8,
+                "playState": "running",
+                "pending": false,
+                "duration": 650
+              },
+              "after": {
+                "clock": 5280,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 650
+              }
+            },
+            {
+              "kind": "cancel",
+              "id": 27,
+              "before": {
+                "clock": 5280,
+                "currentTime": 8,
+                "playState": "running",
+                "pending": false,
+                "duration": 240
+              },
+              "after": {
+                "clock": 5280,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 240
+              }
+            }
+          ],
+          "after": {
+            "clock": 5313,
+            "currentTime": null,
+            "playState": "idle",
+            "pending": false,
+            "duration": 650
+          },
+          "score": "SCORE 100",
+          "collected": true,
+          "eligible": true,
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 765,
+      "status": "PASS",
+      "pageerror": [],
+      "pausedDiagnostic": {
+        "before": {
+          "id": 36,
+          "clock": 7295,
+          "currentTime": 0,
+          "playState": "paused",
+          "pending": false,
+          "duration": 650
+        },
+        "after": {
+          "clock": 7720,
+          "currentTime": null,
+          "playState": "idle",
+          "pending": false,
+          "duration": 650
+        },
+        "cancel": [
+          {
+            "kind": "cancel",
+            "id": 36,
+            "before": {
+              "clock": 7421,
+              "currentTime": 0,
+              "playState": "paused",
+              "pending": false,
+              "duration": 650
+            },
+            "after": {
+              "clock": 7421,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            }
+          }
+        ],
+        "pass": true
+      },
+      "checks": {
+        "count": 38,
+        "passed": 38,
+        "failed": []
+      },
+      "cancellation": [
+        {
+          "action": "Replay",
+          "animationId": 12,
+          "input": {
+            "label": "Replay",
+            "input": 5332,
+            "clock": 5349,
+            "score": "SCORE 0",
+            "collected": false,
+            "last": {
+              "id": 12,
+              "clock": 5349,
+              "currentTime": 0,
+              "playState": "running",
+              "pending": true,
+              "duration": 650
+            },
+            "ownedIds": [
+              12,
+              13
+            ],
+            "normalCount": 2
+          },
+          "mediaInput": {
+            "id": 12,
+            "clock": 5488,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 12,
+              "clock": 5564,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 13,
+              "clock": 5564,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancels": [
+            {
+              "kind": "cancel",
+              "id": 12,
+              "before": {
+                "clock": 5494,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 650
+              },
+              "after": {
+                "clock": 5494,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 650
+              }
+            },
+            {
+              "kind": "cancel",
+              "id": 13,
+              "before": {
+                "clock": 5494,
+                "currentTime": 0,
+                "playState": "running",
+                "pending": true,
+                "duration": 240
+              },
+              "after": {
+                "clock": 5494,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 240
+              }
+            }
+          ],
+          "after": {
+            "clock": 5564,
+            "currentTime": null,
+            "playState": "idle",
+            "pending": false,
+            "duration": 650
+          },
+          "score": "SCORE 0",
+          "collected": false,
+          "eligible": true,
+          "verdict": "PASS"
+        },
+        {
+          "action": "COLLECT",
+          "animationId": 24,
+          "input": {
+            "label": "COLLECT",
+            "input": 6310.000000000001,
+            "clock": 6326.000000000001,
+            "score": "SCORE 100",
+            "collected": true,
+            "last": {
+              "id": 24,
+              "clock": 6327,
+              "currentTime": 0,
+              "playState": "running",
+              "pending": true,
+              "duration": 650
+            },
+            "ownedIds": [
+              24,
+              25
+            ],
+            "normalCount": 4
+          },
+          "mediaInput": {
+            "id": 24,
+            "clock": 6421,
+            "currentTime": 9,
+            "playState": "running",
+            "pending": false,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 24,
+              "clock": 6452,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 25,
+              "clock": 6452,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancels": [
+            {
+              "kind": "cancel",
+              "id": 24,
+              "before": {
+                "clock": 6425,
+                "currentTime": 9,
+                "playState": "running",
+                "pending": false,
+                "duration": 650
+              },
+              "after": {
+                "clock": 6425,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 650
+              }
+            },
+            {
+              "kind": "cancel",
+              "id": 25,
+              "before": {
+                "clock": 6425,
+                "currentTime": 9,
+                "playState": "running",
+                "pending": false,
+                "duration": 240
+              },
+              "after": {
+                "clock": 6425,
+                "currentTime": null,
+                "playState": "idle",
+                "pending": false,
+                "duration": 240
+              }
+            }
+          ],
+          "after": {
+            "clock": 6452,
+            "currentTime": null,
+            "playState": "idle",
+            "pending": false,
+            "duration": 650
+          },
+          "score": "SCORE 100",
+          "collected": true,
+          "eligible": true,
+          "verdict": "PASS"
+        }
+      ]
+    }
+  ],
+  "checkNamesInExecutionOrder": [
+    "Q1 initial Fade absent",
+    "Q1 initial WAAPI region absent",
+    "Q1 open all47 articles",
+    "Q1 normalized search Fade",
+    "Q1 category and usage label identity",
+    "Q1 composite Modal filter",
+    "Q1 no results notice",
+    "Q1 clear restores all47",
+    "Q1 close Fade absent and cancel increases",
+    "Q1 close cancels previously live refs",
+    "no autoplay after observation",
+    "observation initially retains score 0",
+    "Replay score retained after reduction",
+    "Replay acquisition retained",
+    "reduction OFF no autoplay Replay",
+    "COLLECT score retained after reduction",
+    "COLLECT acquisition retained",
+    "reduction OFF no autoplay COLLECT",
+    "explicit reduced Replay exact coin 1ms score 180ms no delay",
+    "reduced Replay no award",
+    "reduced COLLECT awards once",
+    "repeat COLLECT cannot duplicate score",
+    "repeated ON OFF preserves acquired score",
+    "repeated ON OFF old motion idle",
+    "Reset score and acquired clear",
+    "Reset old animations idle and no old callbacks",
+    "Reset permits new acquisition",
+    "actual root-margin exit reached",
+    "offscreen cancels owned animations",
+    "reentry preserves score no autoplay",
+    "synthetic hidden cancels observation motion",
+    "synthetic visible observation no autoplay",
+    "unmount cancels all owned animations",
+    "unmount removes card",
+    "Menu selection after observation",
+    "Menu reduced selection preserved",
+    "Menu old animations cancelled after reduction",
+    "no pageerror"
+  ],
+  "completeRaw": "n2.json.gz"
+}

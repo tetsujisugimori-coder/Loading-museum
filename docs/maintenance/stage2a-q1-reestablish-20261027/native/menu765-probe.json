@@ -1,0 +1,237 @@
+{
+  "startedAt": "2026-10-27T00:37:58.139331+00:00",
+  "engine": "webkit",
+  "width": 765,
+  "samples": [
+    {
+      "requested": 20,
+      "duration": 220,
+      "reset": {
+        "clock": 2857,
+        "currentTime": 0,
+        "playState": "paused",
+        "pending": false,
+        "controller": "paused",
+        "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+        "transform": "matrix(1, 0, 0, 1, 0, -44)"
+      },
+      "beforePlay": 2857,
+      "playReturned": 2857,
+      "ready": {
+        "clock": 2860,
+        "currentTime": 4,
+        "playState": "running",
+        "pending": false,
+        "controller": "running",
+        "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: running · native currentTime: 0.00 ms · native playState: running（pending）",
+        "transform": "matrix(1, 0, 0, 1, 0, -40.779079)"
+      },
+      "frames": [
+        {
+          "clock": 2862,
+          "currentTime": 4,
+          "playState": "running",
+          "pending": false,
+          "controller": "running",
+          "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: running · native currentTime: 0.00 ms · native playState: running（pending）",
+          "transform": "matrix(1, 0, 0, 1, 0, -39.15736)"
+        },
+        {
+          "clock": 3003,
+          "currentTime": 147,
+          "playState": "running",
+          "pending": false,
+          "controller": "running",
+          "reading": "観察位置 4.00 / 220 ms · 1.8% · 移動途中 · controller: running · native currentTime: 4.00 ms · native playState: running",
+          "transform": "matrix(1, 0, 0, 1, 0, -0.72564)"
+        }
+      ],
+      "beforePause": {
+        "clock": 3005,
+        "currentTime": 147,
+        "playState": "running",
+        "pending": false,
+        "controller": "running",
+        "reading": "観察位置 4.00 / 220 ms · 1.8% · 移動途中 · controller: running · native currentTime: 4.00 ms · native playState: running",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.72564)"
+      },
+      "pauseReturned": 3006,
+      "settled": {
+        "clock": 3006,
+        "currentTime": 147,
+        "playState": "paused",
+        "pending": false,
+        "controller": "paused",
+        "reading": "観察位置 147.00 / 220 ms · 66.8% · 移動途中 · controller: paused · native currentTime: 147.00 ms · native playState: paused",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.777956)"
+      },
+      "held": {
+        "clock": 3108,
+        "currentTime": 147,
+        "playState": "paused",
+        "pending": false,
+        "controller": "paused",
+        "reading": "観察位置 147.00 / 220 ms · 66.8% · 移動途中 · controller: paused · native currentTime: 147.00 ms · native playState: paused",
+        "transform": "matrix(1, 0, 0, 1, 0, -0.777956)"
+      },
+      "eligibleRunningInput": true,
+      "verdict": "PASS"
+    },
+    {
+      "requested": 110,
+      "duration": 220,
+      "reset": {
+        "clock": 3131,
+        "currentTime": 0,
+        "playState": "paused",
+        "pending": false,
+        "controller": "paused",
+        "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+        "transform": "matrix(1, 0, 0, 1, 0, -44)"
+      },
+      "beforePlay": 3133,
+      "playReturned": 3133,
+      "ready": {
+        "clock": 3135.0000000000005,
+        "currentTime": 132,
+        "playState": "running",
+        "pending": false,
+        "controller": "running",
+        "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: running · native currentTime: 0.00 ms · native playState: running（pending）",
+        "transform": "matrix(1, 0, 0, 1, 0, -1.225116)"
+      },
+      "frames": [],
+      "beforePause": {
+        "clock": 3136,
+        "currentTime": 132,
+        "playState": "running",
+        "pending": false,
+        "controller": "running",
+        "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: running · native currentTime: 0.00 ms · native playState: running（pending）",
+        "transform": "matrix(1, 0, 0, 1, 0, -1.225116)"
+      },
+      "pauseReturned": 3136,
+      "settled": {
+        "clock": 3136,
+        "currentTime": 132,
+        "playState": "paused",
+        "pending": false,
+        "controller": "paused",
+        "reading": "観察位置 132.00 / 220 ms · 60.0% · 移動途中 · controller: paused · native currentTime: 132.00 ms · native playState: paused",
+        "transform": "matrix(1, 0, 0, 1, 0, -1.263159)"
+      },
+      "held": {
+        "clock": 3238,
+        "currentTime": 132,
+        "playState": "paused",
+        "pending": false,
+        "controller": "paused",
+        "reading": "観察位置 132.00 / 220 ms · 60.0% · 移動途中 · controller: paused · native currentTime: 132.00 ms · native playState: paused",
+        "transform": "matrix(1, 0, 0, 1, 0, -1.263159)"
+      },
+      "eligibleRunningInput": true,
+      "verdict": "PASS"
+    },
+    {
+      "requested": 190,
+      "duration": 220,
+      "reset": {
+        "clock": 3261,
+        "currentTime": 0,
+        "playState": "paused",
+        "pending": false,
+        "controller": "paused",
+        "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+        "transform": "matrix(1, 0, 0, 1, 0, -44)"
+      },
+      "beforePlay": 3263,
+      "playReturned": 3263,
+      "ready": {
+        "clock": 3265,
+        "currentTime": 130,
+        "playState": "running",
+        "pending": false,
+        "controller": "running",
+        "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: running · native currentTime: 0.00 ms · native playState: running（pending）",
+        "transform": "matrix(1, 0, 0, 1, 0, -1.302112)"
+      },
+      "frames": [
+        {
+          "clock": 3267,
+          "currentTime": 130,
+          "playState": "running",
+          "pending": false,
+          "controller": "running",
+          "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: running · native currentTime: 0.00 ms · native playState: running（pending）",
+          "transform": "matrix(1, 0, 0, 1, 0, -1.263159)"
+        },
+        {
+          "clock": 3359,
+          "currentTime": 220,
+          "playState": "finished",
+          "pending": false,
+          "controller": "running",
+          "reading": "観察位置 130.00 / 220 ms · 59.1% · 移動途中 · controller: running · native currentTime: 130.00 ms · native playState: running",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "beforePause": {
+        "clock": 3360,
+        "currentTime": 220,
+        "playState": "finished",
+        "pending": false,
+        "controller": "running",
+        "reading": "観察位置 130.00 / 220 ms · 59.1% · 移動途中 · controller: running · native currentTime: 130.00 ms · native playState: running",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      "pauseReturned": 3361,
+      "settled": {
+        "clock": 3363,
+        "currentTime": 220,
+        "playState": "paused",
+        "pending": false,
+        "controller": "paused",
+        "reading": "観察位置 220.00 / 220 ms · 100.0% · 終了位置 · controller: paused · native currentTime: 220.00 ms · native playState: paused",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      "held": {
+        "clock": 3464,
+        "currentTime": 220,
+        "playState": "paused",
+        "pending": false,
+        "controller": "finished",
+        "reading": "観察位置 220.00 / 220 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 220.00 ms · native playState: paused",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      },
+      "eligibleRunningInput": false,
+      "verdict": "INPUT_MISSED"
+    }
+  ],
+  "pageerror": [],
+  "scope": "supplemental browser-local button inputs, not replacement of original observation partial",
+  "predicateControls": [
+    {
+      "name": "natural endpoint is not live pause",
+      "expected": "INPUT_MISSED",
+      "actual": "INPUT_MISSED",
+      "pass": true
+    },
+    {
+      "name": "drift rejected",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "pass": true
+    },
+    {
+      "name": "held live pause accepted",
+      "expected": "PASS",
+      "actual": "PASS",
+      "pass": true
+    }
+  ],
+  "indexLocalSha256": "4b0d9d6a2e65fd01f5f206fdc5414be10cad916105cef1864845029467c7cd20",
+  "indexServedSha256": "4b0d9d6a2e65fd01f5f206fdc5414be10cad916105cef1864845029467c7cd20",
+  "version": "26.0",
+  "status": "PARTIAL",
+  "finishedAt": "2026-10-27T00:38:02.385385+00:00"
+}

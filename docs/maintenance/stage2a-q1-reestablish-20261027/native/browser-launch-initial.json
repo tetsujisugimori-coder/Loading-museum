@@ -1,0 +1,14 @@
+[
+  {
+    "engine": "chromium",
+    "checkedAt": "2026-10-27T00:25:05.552820+00:00",
+    "status": "LAUNCHED",
+    "version": "141.0.7390.37"
+  },
+  {
+    "engine": "webkit",
+    "checkedAt": "2026-10-27T00:25:06.037188+00:00",
+    "status": "FAILED",
+    "error": "BrowserType.launch: Target page, context or browser has been closed\nBrowser logs:\n\n<launching> /tmp/loading-q1-20261027-browsers156/webkit-2215/pw_run.sh --inspector-pipe --headless --no-startup-window\n<launched> pid=67\n[pid=67][err] /tmp/loading-q1-20261027-browsers156/webkit-2215/minibrowser-wpe/bin/MiniBrowser: error while loading shared libraries: libwoff2dec.so.1.0.2: cannot open shared object file: No such file or directory\nCall log:\n  - <launching> /tmp/loading-q1-20261027-browsers156/webkit-2215/pw_run.sh --inspector-pipe --headless --no-startup-window\n  - <launched> pid=67\n  - [pid=67][err] /tmp/loading-q1-20261027-browsers156/webkit-2215/minibrowser-wpe/bin/MiniBrowser: error while loading shared libraries: libwoff2dec.so.1.0.2: cannot open shared object file: No such file or directory\n  - [pid=67] <gracefully close start>\n  - [pid=67] <kill>\n  - [pid=67] <will force kill>\n  - [pid=67] <process did exit: exitCode=127, signal=null>\n  - [pid=67] starting temporary directories cleanup\n  - [pid=67] finished temporary directories cleanup\n  - [pid=67] <gracefully close end>\n"
+  }
+]

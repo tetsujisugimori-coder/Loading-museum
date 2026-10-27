@@ -89,3 +89,7 @@ Menuは独立CONTINUE→SETTINGS移動をease-out／linearで比較。本体の�
 ### Stage 2A Q1追加調査の回収範囲（2026-10-27）
 
 [回収できた全check集計と未提出資料の境界](docs/maintenance/stage2a-q1-recovery-20261027/README.md)を追記しました。旧調査は既定3回・worker1 2回すべてFAILでQ1未解決です。クラウド作業領域消失後に旧集計1件のみハッシュ一致で回収し、未提出テスト改善は反映していません。今回の文書提出を製品修正・GUI成功と扱わず、PARTIAL／マージNOを維持します。
+
+### Stage 2A-Q1 現行コードの再検証（2026-10-27）
+
+[新規baseline・限定診断・最終反復・PR品質CI](docs/maintenance/stage2a-q1-reestablish-20261027/README.md)を追加しました。現行179件のbaselineと最終各5回は全成功ですが、旧timeoutの共通根因は未特定です。製品・正式テストを推測修正せず、専用PR CIを整備しました。非再現を根治とはせず、保証境界を残してPARTIAL／マージNO／Stage2B HOLDを維持します。
