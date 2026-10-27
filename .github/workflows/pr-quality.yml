@@ -15,8 +15,6 @@ jobs:
       run:
         shell: bash
     env:
-      QUALITY_EVIDENCE: ${{ runner.temp }}/pr-quality-evidence
-      QUALITY_UPLOAD: ${{ runner.temp }}/pr-quality-upload
       EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
       EVENT_SHA: ${{ github.sha }}
       EVENT_NAME: ${{ github.event_name }}
@@ -25,6 +23,9 @@ jobs:
     steps:
       - name: Prepare bounded evidence and command recorder
         run: |
+          export QUALITY_EVIDENCE="$RUNNER_TEMP/pr-quality-evidence"
+          export QUALITY_UPLOAD="$RUNNER_TEMP/pr-quality-upload"
+          printf 'QUALITY_EVIDENCE=%s\nQUALITY_UPLOAD=%s\n' "$QUALITY_EVIDENCE" "$QUALITY_UPLOAD" >> "$GITHUB_ENV"
           mkdir -p "$QUALITY_EVIDENCE"
           cat > "$QUALITY_EVIDENCE/run-command.py" <<'PY'
           import datetime, json, pathlib, subprocess, sys, time

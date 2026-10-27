@@ -35,3 +35,11 @@
 上記はハーネスの負例・証拠保護の検査であり、GitHub Actions上の実行や製品179件の成功ではない。action pinの当日公式ref確認は設計担当の記録を参照し、本担当が別途remote refsを再取得したとは主張しない。
 
 この静的・軽量レビュー版は凍結。最終CIおよび最終HEADの全差分・native証拠は別の追補レビューで確認する。
+
+## 実CI validation失敗に伴う訂正・再レビュー（2026-10-27 09:33 JST）
+
+上記「未解消P0〜P2なし」は静的レビューで発見できた範囲の判断だった。実CI run `40426920758` attempt `1`（対象HEAD `e258b7b`）はjob起動前のworkflow validationで失敗し、製品check/buildは未実行である。保存されたGitHub annotation HTMLを本担当も読み、job.env内の2箇所で `Unrecognized named-value: 'runner'`（Line18/19、runner.temp）を確認した。**P2 CI起動阻害を初回レビューで見落としていた**。YAML/Python構文や軽量対照の成功はGitHub expressionの配置制約検証ではない。旧結論を実CIが実行可能という保証に用いない。
+
+最小修正を再読解した。job.envのQUALITY_EVIDENCE/QUALITY_UPLOADだけを削除し、先頭run stepで `$RUNNER_TEMP` から両パスをexport、同じ値を `$GITHUB_ENV` へ出力する。先頭step自身と後続stepへ適切に分けて値を渡し、既存の固定allowlist・空staging・upload_ready・失敗伝搬を変更していない。修正後workflow SHA-256は `abceff5c565052cb04bc50ddb2c66a316dcba14f18adb3c6a6357b1aea5a4c9a`。
+
+当該unsupported context経路の除去を静的確認した段階であり、修正後のGitHub validation・job開始・完走は次の実run待ち。これらを確認するまでCI復旧PASSとはしない。製品/test/5000ms条件やPages workflowへの変更はない。

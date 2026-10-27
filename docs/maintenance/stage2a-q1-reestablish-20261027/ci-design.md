@@ -145,3 +145,9 @@ mismatch tree exit 1 PASS
 ```
 
 再レビューで指摘されたupload stagingの残存・symlinkも対処した。専用stagingはsymlinkならリンクだけ除去し、既存directoryなら内容を破棄して空から作る。固定ファイルコピーとmanifest作成が完了したときだけ `upload_ready` を出し、artifactはこの出力を必要条件にする。後処理初期失敗で未検証の旧stagingを送信しない。source不一致はready後のassertで失敗し、その診断は送信できる。上記負例には事前stagingの残存build.logとcheck.logのsymlinkも追加した。
+
+## 初回実CIのvalidation失敗と最小修正
+
+[run 40426920758 attempt 1](https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/40426920758)（head `e258b7b`）はworkflow validationでFAILURE、job起動0件。GitHubの注釈は18/19行の `runner.temp` に対する `Unrecognized named-value: runner`。初稿はjob-level `env` にrunner contextを使用していたが、その文脈では利用できなかった。YAML/Python構文検査と軽量対照ではGitHub独自のcontext可用性を検証しておらず、独立静的レビューも見逃した。これはCI設定のP2であり、製品テスト失敗でも成功でもない。
+
+該当job-level envの2項目だけを削除し、最初のPrepare step内でrunnerの `$RUNNER_TEMP` からパスを定め、同stepはexportしたshell変数、後続stepは `$GITHUB_ENV` に記録した値を使う方式へ修正した。artifactのstep-level `with.path` にあるrunner contextは維持する。Pages workflow、製品コード、test契約、timeoutは変更しない。同じPRイベントによるGitHub validationの再実行結果は、提出担当が次のrunで確認する。local構文再検査だけで修正後CI成功とはしない。
