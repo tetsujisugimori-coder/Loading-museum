@@ -11,11 +11,21 @@ results=[]
 ROOT=Path(__file__).resolve().parents[1]
 artifacts={str(path):hashlib.sha256((ROOT/path).read_bytes()).hexdigest() for path in [Path("app/components/WaapiGameObservation.tsx"),Path("app/globals.css"),Path("out/index.html")] if (ROOT/path).is_file()}
 
+def live_pause_reached(before,settled,duration):
+ return before['native']=='running' and settled['native']=='paused' and 0<before['time']<duration and 0<settled['time']<duration and abs(before['time']-settled['time'])<.1
+pause_controls=[]
+for label,before,after,expected in [
+ ('live-held',{'time':50,'native':'running'},{'time':50,'native':'paused'},True),
+ ('natural-endpoint',{'time':220,'native':'finished'},{'time':220,'native':'paused'},False),
+ ('seek-only-not-live',{'time':50,'native':'paused'},{'time':50,'native':'paused'},False),
+ ('pause-drift',{'time':50,'native':'running'},{'time':60,'native':'paused'},False)]:
+ actual=live_pause_reached(before,after,220);assert actual==expected;pause_controls.append({'name':label,'expected':expected,'actual':actual})
+
 def save(): Path(OUT).write_text(json.dumps(results,ensure_ascii=False,indent=2))
 with sync_playwright() as p:
  for engine in os.environ.get('WAAPI_BROWSERS','chromium,webkit').split(','):
   for width in map(int,os.environ.get('WAAPI_WIDTHS','375,390,765').split(',')):
-   r={'engine':engine,'width':width,'checks':[],'measurements':[],'errors':[],'status':'RUNNING','artifactSHA256':artifacts};results.append(r)
+   r={'engine':engine,'width':width,'checks':[],'measurements':[],'errors':[],'status':'RUNNING','artifactSHA256':artifacts,'pausePredicateControls':pause_controls};results.append(r)
    browser=None
    try:
     path=os.environ.get('WAAPI_'+engine.upper()+'_PATH')
@@ -54,12 +64,21 @@ with sync_playwright() as p:
      o=begin(c);x=snapshot(o);duration=x['duration'];assert duration>0 and x['time']==0 and x['native']=='paused',x
      r['measurements'].append({'name':name,'initial':x})
      # Native playback and pause are driven through actual buttons, not a mocked Animation.
-     pause_input=o.evaluate('''async n=>{const b=t=>[...n.querySelectorAll('button')].find(b=>b.textContent===t);b('再生 / 再開').click();const a=n.querySelector('[data-observation-target]').getAnimations()[0];const started=performance.now();while(!(a.currentTime>0)&&performance.now()-started<1000)await new Promise(r=>setTimeout(r,1));const before={time:a.currentTime,clock:performance.now(),native:a.playState,pending:a.pending};b('一時停止').click();return {before,immediate:{time:a.currentTime,clock:performance.now(),native:a.playState,pending:a.pending}};}''');stable(o);a=snapshot(o)
+     pause_input=o.evaluate('''async n=>{
+      const b=t=>[...n.querySelectorAll('button')].find(b=>b.textContent===t);
+      const started=performance.now();b('再生 / 再開').click();
+      const a=n.querySelector('[data-observation-target]').getAnimations()[0];
+      await a.ready;const readyAt=performance.now();let frames=0;
+      while(!(a.currentTime>0)&&performance.now()-started<1000){await new Promise(resolve=>requestAnimationFrame(resolve));frames++;}
+      const before={time:a.currentTime,clock:performance.now(),native:a.playState,pending:a.pending};
+      b('一時停止').click();const immediate={time:a.currentTime,clock:performance.now(),native:a.playState,pending:a.pending};
+      await a.ready;return {started,readyAt,frames,before,immediate,readyAfterPause:performance.now()};
+     }''');stable(o);a=snapshot(o)
      r['measurements'].append({'name':name,'pauseInput':pause_input,'settledPause':a})
      assert f"native currentTime: {a['time']:.2f} ms" in a['reading'],a
      if 0<pause_input['before']['time']<duration:
       assert abs(a['time']-pause_input['before']['time'])<.1, {'pauseTimeDrift':{'input':pause_input,'settled':a}}
-     if not 0<a['time']<duration:
+     if not live_pause_reached(pause_input['before'],a,duration):
       r.setdefault('pathFailures',[]).append({'path':name+': mid-flight pause','expected':'0 < native currentTime < duration','observed':a})
       # Continue independent seek/step/cleanup cases; this does not pass the failed pause path.
       a=seek(o,duration/3)

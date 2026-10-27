@@ -6210,6 +6210,13 @@ footer {
   flex: 1 1 90px;
 }
 
+/* Keep fixed action labels readable at enlarged text sizes; the controls wrap. */
+.waapiPreviewStage--coin + .waapiPreviewControls button,
+.gameTurn + .waapiPreviewControls button,
+.gameBattle + .waapiPreviewControls button {
+  min-width: max-content;
+}
+
 .waapiBoxObject {
   width: 46px;
   height: 46px;
