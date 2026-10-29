@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render } from '@testing-library/react';
+import { act, cleanup, fireEvent, render } from '@testing-library/react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { ExpandedGamePreview } from '../app/components/WaapiExpandedPreviews';
 import { waapiSamples } from '../app/data/waapiSamples';
@@ -42,4 +42,51 @@ it('Reset during finite movement cancels old animations without delayed board re
  fireEvent.click(r.getByText('RESET')); fireEvent.click(r.getByText('RESET'));
  expect(animations.every(animation=>animation.cancel.mock.calls.length>0)).toBe(true);
  expect(state()).toEqual(initial); expect(vi.getTimerCount()).toBe(0);
+});
+
+
+it('Turn RESET restores DOM immediately and invalidates queued FLIP callbacks', () => {
+ const sample=waapiSamples.find(s=>s.render==='turn-order')!;
+ const r=render(<ExpandedGamePreview sample={sample} active reducedMotion={false} />);
+ const order=()=>Array.from(r.container.querySelectorAll('[data-unit]'),e=>e.getAttribute('data-unit'));
+ fireEvent.click(r.getByText('HASTE'));
+ expect(order()).toEqual(['MAGE','KNIGHT','ROGUE']);
+ fireEvent.click(r.getByText('RESET'));
+ expect(order()).toEqual(['KNIGHT','MAGE','ROGUE']);
+ expect(r.container.querySelector('output')!.textContent).toContain('NORMALIZE');
+ act(()=>vi.runAllTimers());
+ expect(HTMLElement.prototype.animate).not.toHaveBeenCalled();
+ fireEvent.click(r.getByText('HASTE'));
+ act(()=>vi.runAllTimers());
+ expect(HTMLElement.prototype.animate).toHaveBeenCalledTimes(3);
+ const running=vi.mocked(HTMLElement.prototype.animate).mock.results.map(result=>result.value);
+ fireEvent.click(r.getByText('RESET'));
+ expect(order()).toEqual(['KNIGHT','MAGE','ROGUE']);
+ expect(running.every(animation=>vi.mocked(animation.cancel).mock.calls.length===1)).toBe(true);
+ fireEvent.click(r.getByText('HASTE'));
+ r.rerender(<ExpandedGamePreview sample={sample} active={false} reducedMotion={false} />);
+ act(()=>vi.runAllTimers());
+ expect(HTMLElement.prototype.animate).toHaveBeenCalledTimes(3);
+ r.rerender(<ExpandedGamePreview sample={sample} active reducedMotion={false} />);
+ fireEvent.click(r.getByText('STUN'));
+ r.unmount();
+ act(()=>vi.runAllTimers());
+ expect(HTMLElement.prototype.animate).toHaveBeenCalledTimes(3);
+});
+
+
+it('Turn motion reduction cancels running FLIP animations', () => {
+ const sample=waapiSamples.find(s=>s.render==='turn-order')!;
+ const r=render(<ExpandedGamePreview sample={sample} active reducedMotion={false} />);
+ fireEvent.click(r.getByText('HASTE'));
+ act(()=>vi.runAllTimers());
+ const running=vi.mocked(HTMLElement.prototype.animate).mock.results.map(result=>result.value);
+ expect(running).toHaveLength(3);
+ r.rerender(<ExpandedGamePreview sample={sample} active reducedMotion />);
+ expect(running.every(animation=>vi.mocked(animation.cancel).mock.calls.length===1)).toBe(true);
+ r.rerender(<ExpandedGamePreview sample={sample} active reducedMotion={false} />);
+ fireEvent.click(r.getByText('STUN'));
+ r.rerender(<ExpandedGamePreview sample={sample} active reducedMotion />);
+ act(()=>vi.runAllTimers());
+ expect(HTMLElement.prototype.animate).toHaveBeenCalledTimes(3);
 });

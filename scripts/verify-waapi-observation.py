@@ -66,13 +66,15 @@ with sync_playwright() as p:
      # Native playback and pause are driven through actual buttons, not a mocked Animation.
      pause_input=o.evaluate('''async n=>{
       const b=t=>[...n.querySelectorAll('button')].find(b=>b.textContent===t);
+      // Settle fonts and two rendering frames before the timed input; do not alter playback or assertions.
+      const preflightStart=performance.now();await document.fonts.ready;const fontsReady=performance.now();await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));const preflightDone=performance.now();
       const started=performance.now();b('再生 / 再開').click();
       const a=n.querySelector('[data-observation-target]').getAnimations()[0];
       await a.ready;const readyAt=performance.now();let frames=0;
       while(!(a.currentTime>0)&&performance.now()-started<1000){await new Promise(resolve=>requestAnimationFrame(resolve));frames++;}
       const before={time:a.currentTime,clock:performance.now(),native:a.playState,pending:a.pending};
       b('一時停止').click();const immediate={time:a.currentTime,clock:performance.now(),native:a.playState,pending:a.pending};
-      await a.ready;return {started,readyAt,frames,before,immediate,readyAfterPause:performance.now()};
+      await a.ready;return {preflightStart,fontsReady,preflightDone,started,readyAt,frames,before,immediate,readyAfterPause:performance.now()};
      }''');stable(o);a=snapshot(o)
      r['measurements'].append({'name':name,'pauseInput':pause_input,'settledPause':a})
      assert f"native currentTime: {a['time']:.2f} ms" in a['reading'],a
