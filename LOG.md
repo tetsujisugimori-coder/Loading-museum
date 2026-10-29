@@ -1509,3 +1509,7 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 - PR専用read-only CIをe258b7bで追加。実run40426920758はjob.envのrunner.temp非対応でvalidationFAIL/jobs0。最小修正95555da後run40427284755/attempt1は179/179＋独立build成功。artifact ZIP/API digest一致、内部hash/provenance照合。先行CIを最終HEAD成功として流用しない。
 - [新記録](docs/maintenance/stage2a-q1-reestablish-20261027/README.md)、CI設計・独立review・必要診断を段階保全。Pages公開workflow無変更/未実行、Stage2B未着手。native/最終独立レビューと最終HEADのCI照合は追加結果として記録する。旧根因未解明のため総合PARTIAL・マージNO維持。
 - Native新実測: N2 strict6/6・228行動・live取消12/12・paused6/6成功、Stage1 6/6・30群成功。観察48群は5PASS/WK765 Menu終端入力PARTIAL。限定probeは2例途中保持成功＋1例INPUT_MISSEDでPARTIAL、元結果を成功へ昇格しない。Playwright1.56/Ch141/WK26、/tmp限定runtime補完・失敗経過を保存。実機/全館未検証、B1/M1等UNKNOWN維持。
+
+## 2026-10-29 JST — Stage 2A 品質ゲート再確認
+
+現行品質・検証基盤・歴史原因を分ける。A/B合格なら歴史原因UNKNOWNだけで阻害しない。現時点はブラウザ必須経路が未到達のためHOLD。[詳細と証拠](docs/maintenance/stage2a-acceptance-20261029/README.md)。

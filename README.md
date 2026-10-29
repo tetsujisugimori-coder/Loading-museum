@@ -93,3 +93,5 @@ Menuは独立CONTINUE→SETTINGS移動をease-out／linearで比較。本体の�
 ### Stage 2A-Q1 現行コードの再検証（2026-10-27）
 
 [新規baseline・限定診断・最終反復・PR品質CI](docs/maintenance/stage2a-q1-reestablish-20261027/README.md)を追加しました。現行179件のbaselineと最終各5回は全成功ですが、旧timeoutの共通根因は未特定です。製品・正式テストを推測修正せず、専用PR CIを整備しました。非再現を根治とはせず、保証境界を残してPARTIAL／マージNO／Stage2B HOLDを維持します。
+
+Stage 2A受入の最新判定と検証記録: [2026-10-29 品質ゲート](docs/maintenance/stage2a-acceptance-20261029/README.md)（HOLD、現行ブラウザ経路の証拠不足）。
