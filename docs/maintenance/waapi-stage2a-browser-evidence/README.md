@@ -1,0 +1,51 @@
+# Stage 2A native browser evidence
+
+These checks run the local static export, not the deployed site. Browser executables are official Chromium 141.0.7390.37 (Playwright build 1194) and WebKit 26.0 (build 2215), driven by Python Playwright 1.56.0. Ubuntu WebKit runtime libraries were extracted into a temporary directory on the Debian cloud host; no system installation, app lockfile update, or browser binary modification was made. Current global Playwright browser CDN download returned a small HTML error page, so the matching older official distributions were used. This is not physical Safari, VoiceOver, OS text enlargement, or browser zoom.
+
+Six intended conditions are Chromium/WebKit × viewport widths 375/390/765 CSS px. CSS font-size doubling and color-scheme media are emulation. `visibilitychange` is deliberately synthetic, not an actual OS background/foreground test. Native Animation currentTime/playState/pending/geometry are read; no Animation mock is substituted. Browser `pageerror` is collected separately from launcher/tool errors.
+
+## Preserved intermediate results
+
+- `loading-stage2a-native-six-initial.json`: Chromium375/390 passed eight path groups each after the range UA-margin fix. Chromium765 resize caused the card to move out of view and correctly cancel the animation, while the harness incorrectly expected paused native state; the harness now scrolls the card back into view. WebKit two-rAF wait reached the 220ms end, so it did not test mid-flight pause. Those failed observations are preserved, not overwritten as successes.
+- `loading-stage2a-wk390-debug.json`: WebKit Menu playback/seek/steps/normal selection isolation/resize/font paths passed, then CSS200 detected scrollWidth359/clientWidth310. This is a real layout finding, not a timeout waiver.
+- `loading-webkit-overflow2.json`: the overflow contribution came from the easing LABEL containing a native select, despite child bounding rectangles being within the section.
+- `loading-stage2a-baseline-retry.json`: unchanged Stage1 Chromium390 baseline passed five groups. Earlier baseline trial requested a 500ms success-window input but actually delivered it at ~961ms under load; the resulting LATE was consistent with measured elapsed time. The unchanged test was rerun rather than relaxing the window.
+
+Final result files and scope are added after the final native run. A test run does not establish coverage of all 197 exhibits.
+
+- `observation-first-range-overflow.json`: initial Chromium390 found 2px overflow from the range control's UA margin (100% width plus margins). Scoped margin:0 and border-box fixed it; the later Chromium375/390 runs cover the fix.
+- `stage1-first-six.json`: Stage1 first six-condition regression passed Chromium390/765 and WebKit375/390, five groups each. Chromium375 requested30ms input arrived at5817ms, WebKit765 requested500ms arrived at732ms; both correctly returned LATE but failed the harness's requested EARLY/SUCCESS path. These are untested requested timing windows, not evidence that LATE is wrong. No timing window/assertion was relaxed. An independent retry is required for these conditions.
+
+- `major-regression-six.json`: unchanged existing major-game script completed all nine assertion groups in all six conditions (54 groups, not 54 new unit tests). Match-3, Falling Block, HP, Inventory, Lock-on, gallery catalog/category/search, runtime motion changes and target CSS200 layout were exercised. No pageerrors. Both765 conditions PASS. Both375/390 conditions remain PARTIAL because of the known whole-page title CSS200 overflow (Chromium608/632px; WebKit598/621px), not target-card overflow.
+- `short-option-live-probe.json`: in WebKit390 CSS200, changing only native select option labels to `ease-out` / `linear` reduced section scrollWidth359 to310 (clientWidth310). This is a temporary DOM diagnostic, not the final source-build verification. The full option explanation must remain in wrapping text outside the select.
+
+- `stage1-retry-ch375.json`: unchanged retry passed all five groups.
+- `stage1-retry-wk765.json`: all timing cases passed at actual requested windows, but the later Battle group raised an assertion after the successful offscreen FIELD/INTERRUPTED observation. This trial alone does not identify the failing assertion or establish an application regression. A diagnostic copy preserving all assertions/timing and adding a traceback/actual Battle value is used next; the failed trial is retained.
+
+- `stage1-wk765-diagnostic-pass.json`: final short-option build, same assertions/timing plus failure diagnostics, all five groups PASS and pageerror0. Together with the preceding conditions, each of six Stage1 conditions has a five-group passing run. The preceding empty Battle AssertionError did not recur and its cause remains unidentified; this retry is not a claimed root-cause fix. Preserve it as residual test instability.
+
+## Pause pending investigation
+
+`loading-webkit-pause-input.json` + `probe-observation-pause.py` isolate the native behavior on WebKit390. In three trials, the real pause-button input saw19/135/165ms, paused immediately with `pending:true`, then settled at174/158/207ms. One separate trial had already reached220ms before the button input and therefore did not exercise mid-flight pause. The first three are genuine pause-position drift while the native pending pause settles, not merely delayed test input. The application should capture the button-input native time and assign that time after pause to retain the requested observation position. A same-task reading of the React output before its commit is not evidence of a permanently stale label; the main test reads after readiness/commit.
+
+- `observation-final-first-six.json` and `observation-wk-native-synchronization.json` retain the pre-capture-fix native trials. Failures include a fixed200ms offscreen callback wait, short natural-pause input arriving at the end, and a fixed300ms normal-menu animation completion assumption. They are not silently dropped.
+- `observation-capture-first-six.json` is the raw-time-label + input-time-capture build. Chromium375/390/765 passed all eight groups including exact input-to-settled native pause time. WebKit proceeded past the corrected pause tests but stopped on observer-resume fixed100ms waits or viewport-absolute Y comparisons affected by page position. The next harness version waits for actual active/Animation presence (bounded1s) and compares target motion relative to its stage while retaining absolute rectangles. Those revised checks remain pending until run.
+- `chromium-375-Coin-text200.png` is a representative final raw-label/capture build screenshot, visually reviewed for wrapping/control layout. It does not replace native action assertions.
+
+## Completed native logic run (before final toggle-only CSS addition)
+
+`final-six.json` records one complete run of the boundary-clamp/raw-label/pause-capture implementation. It embeds SHA-256 of the observation component, CSS and static index. Chromium375/390/765 and WebKit375/765: PASS. WebKit390: PARTIAL only because the Coin natural-playback pause input arrived at650ms (already finished); it did not test a mid-flight input. All48 grouped paths were reached; the group labels explicitly exclude any `pathFailures`. No pageerrors in any condition. Observed mid-flight pause input time equals settled native time in the other11 target/condition cases, e.g. WebKit Menu4/24/32ms and Coin388/26ms. All six conditions cover explicit midpoint seek→play→pause, touch-range value/native consistency, keyboard controls, raw and inactive-null labels, lifecycle/media cancellation, normal-state isolation, stage-relative geometry, resize/font, and CSS200 layout.
+
+`loading-webkit-coin-pause-final.json` + `probe-observation-coin-pause-final.py` supplement the one missed natural Coin390 timing path without rewriting the original PARTIAL: one trial again arrived at650ms; three real mid-flight inputs107/121/105ms settled at exactly107/121/105ms. This closes the requested observation path but is not proof of deterministic timing under arbitrary load.
+
+`loading-webkit-toggle-before.json`: WebKit390 original mode toggle was33px tall with UA gray styling; focus outline existed. The final follow-up adds the toggle to existing common button selectors only. `verify-waapi-observation-style.py` is a separate six-condition focused verification of that CSS-only final build; it does not claim to rerun the full native suite on that CSS build. Its final JSON and representative images are recorded separately.
+
+Remaining limits: actual device Safari/VoiceOver, real OS background/foreground, real browser zoom/OS text enlargement, and deployed-site operation are untested. Synthetic visibility and emulated media/touch are identified above. The existing title CSS200 overflow and one unexplained earlier Battle assertion remain visible in the history. All197 exhibits were not individually operated.
+
+## Final CSS-only build follow-up
+
+`final-style-six.json`: all six conditions PASS, two target groups each (12 focused groups), no pageerrors. Every mode toggle measured40px high, and real Shift+Tab→Tab navigation produced `:focus-visible=true` with3px outline in both engines. Space switches mode, Enter steps the native animation, touch switches mode, preserved normal Menu/Coin state remains unchanged, and both CSS200 target layouts remain within bounds. The observation component SHA-256 is identical between `final-six.json` and `final-style-six.json`; CSS/static-index hashes differ because the last change adds the toggle to existing common button/focus selectors.
+
+`final-style-first-focus-probe.json` preserves the prior failed harness attempt: programmatic focus plus pressing Shift alone did not establish WebKit keyboard-focus modality. The actual Tab navigation test was used instead; no outline expectation was weakened. A transient Python quoting error during harness editing was caught before a browser ran and corrected; it is not a Museum pageerror.
+
+The two representative PNGs in this folder now show the final CSS-only build (entire target card, CSS200), including the mode-toggle styling and focus ring. They were visually inspected. They are not evidence that the full native suite was re-executed after the CSS-only addition.

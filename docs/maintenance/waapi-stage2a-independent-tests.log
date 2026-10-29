@@ -1,0 +1,32 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-observation
+
+ ✓ tests/waapi-observation-independent.test.tsx (3 tests) 445ms
+ ✓ tests/waapi-stage1-expanded.test.tsx (23 tests) 2195ms
+   ✓ parry reduced-motion labels agree with early and active judgment  318ms
+ ✓ tests/waapi-stage1-menu-coin.test.tsx (5 tests) 9284ms
+   ✓ Menu cursor belongs to the current row for buttons, keyboard, limits and Reset  2612ms
+   ✓ Coin entry, Replay and re-entry never grant points, including late completion after Reset  1443ms
+   ✓ Coin explicit COLLECT awards once per Reset and rapid input cannot duplicate it  1258ms
+   ✓ Coin has an explicit explanation separating demonstration, award and Reset  1606ms
+   ✓ Menu detail metadata describes actual no-fill decoration rather than generic sample defaults  2361ms
+ ✓ tests/waapi-observation.test.tsx (30 tests) 9552ms
+   ✓ actual gallery integration: observation never owns game state > Menu selection survives observation seek, finish, reverse, mode exit, and ordinary Reset still works  1137ms
+   ✓ actual gallery integration: observation never owns game state > Coin preview repeatedly finishes and rewinds with zero points; normal COLLECT awards once  1235ms
+   ✓ actual gallery integration: observation never owns game state > collected Coin retains its score and collected guard through observation and return  1034ms
+   ✓ actual gallery integration: observation never owns game state > observation reset does not reset collected game state and old callback cannot revive playback  832ms
+   ✓ actual gallery integration: observation never owns game state > mode exit cancels observation and reopening cannot resurrect the old running instance  760ms
+   ✓ actual gallery integration: observation never owns game state > gallery closure cancels observation; reopening has no old callback or auto-score  1335ms
+   ✓ actual gallery integration: observation never owns game state > gallery media notification reaches observation without changing Coin collected state  1721ms
+
+ Test Files  4 passed (4)
+      Tests  61 passed (61)
+   Start at  05:08:11
+   Duration  13.00s (transform 1.66s, setup 0ms, collect 4.12s, tests 21.48s, environment 3.71s, prepare 1.60s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

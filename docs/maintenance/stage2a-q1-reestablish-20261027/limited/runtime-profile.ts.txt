@@ -1,0 +1,15 @@
+import * as rtl from '@testing-library/react';
+import { afterEach as hook, expect } from 'vitest';
+export const __clock = process.hrtime.bigint.bind(process.hrtime);
+let records: Array<{label:string;ms:number}> = [];
+export function __mark(label:string, start:bigint) { records.push({label, ms:Number(__clock()-start)/1e6}); }
+function measure<T>(label:string, f:()=>T):T { const start=__clock(); try{return f();}finally{__mark(label,start);} }
+function wrap<T extends object>(value:T,label:string):T { return new Proxy(value,{get(target,key,receiver){const f=Reflect.get(target,key,receiver);return typeof f==='function'? (...args:unknown[])=>measure(label+'.'+String(key),()=>Reflect.apply(f,target,args)):f;}}); }
+export const screen=wrap(rtl.screen,'screen');
+export const fireEvent=wrap(rtl.fireEvent,'event');
+export const within=((...args:Parameters<typeof rtl.within>)=>wrap(rtl.within(...args),'within')) as typeof rtl.within;
+export const render=((...args:Parameters<typeof rtl.render>)=>wrap(measure('render',()=>rtl.render(...args)),'render-result')) as typeof rtl.render;
+export const cleanup=()=>measure('cleanup',rtl.cleanup);
+// Returned act thenable is unchanged; do not subscribe or introduce awaits.
+export const act=((...args:Parameters<typeof rtl.act>)=>measure('act-call-return',()=>rtl.act(...args))) as typeof rtl.act;
+export const afterEach=((f:()=>unknown)=>hook(()=>{const result=f(); console.log('LIMITED_PROFILE',JSON.stringify({test:expect.getState().currentTestName,records}));records=[];return result;})) as typeof hook;

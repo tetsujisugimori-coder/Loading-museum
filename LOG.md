@@ -1454,3 +1454,70 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 - 独立P3 2件（実時間/fillメタ、Battle RETURN教材）を修正し再レビュー。197/47、ID/名称/順序、旧5主要処理、Pages設定を維持。第2/3段階・新展示追加・公開なし。
 - 最終GUI/品質判定は設計記録へ追記。全197全操作、実機Safari/VoiceOverの合格を宣言しない。既存title200%横超過/typewriter重複は別負債。
 - 最終check: Node49＋Vitest85＝134成功/0失敗/0skip。新対象native6条件PASS・Menu矩形36測定差0px・pageerror0。旧主要6条件×9群も機能失敗なし。WebKitのmedia change配送を記録し、paused取消を条件待ちで実測。初回80ms観測失敗は原因未確定のまま証跡保持、最終成功で消去しない。
+
+## 2026-10-26 — WAAPI Stage 2A Menu / Coin 観察モード（Issue #35）
+
+- main `1d0d7eeac4e6fcbe2dfb792dd69250e65af302b7`とPR #28/#32/#34のmergeを確認。同一依頼の既存Issue #35を再利用し、本文は変更しない。cleanな独立clone・専用branchで作業し、既存作業を削除しない。
+- 第一希望の独立preview DOMを採用。観察componentへゲームのsetterを渡さず、native currentTimeでpause/resume/seek/仮想1000/60ms stepを実行。controller/native状態を分離。本体Animation共有案は状態所有権とfillの混同を避けるため不採用。
+- Menuは独立CONTINUE→SETTINGS実測FLIPとeasing比較。本体の選択行所属を保持。Coinは既存arcの視覚観察だけを行い、通常COLLECTの1回100点・Reset契約を保持する。
+- 画面外/visibility/動き低減/再測定は取消・保持時間で停止再構成。モード終了/閉室はpreview破棄、次回0ms。本体mode往復は選択・得点・獲得済みを保持。旧ready/RAFは世代とAnimation同一性で拒否する。
+- 開発中のstep時刻基準、pending表示、説明の保持範囲を試験・独立レビューで訂正。Chromium range margin横超過、WebKit文字200% select intrinsic横超過も実測し修正する。初回timeout/検証ハーネス失敗と製品不具合を分離し記録を保持。検査上限・既存期待値・依存lockを変更しない。
+- 最終検証結果は[設計・検証記録](docs/maintenance/waapi-game-stage2a-20261025.md)と[独立レビュー](docs/maintenance/waapi-stage2a-independent-review.md)へ記録する。Stage2B/HP比較、新展示、公開は実施しない。
+- native実値表示追補前の全件成功: worker数1の環境指定でcheck成功、既存134＋新規33＝167成功/0失敗/0skip。lint/型/buildと独立build成功。既定並列の5秒timeoutは成功扱いにせず2run保存。テスト上限や検査対象を変えず、実行並列度のみ限定した。
+- native追補: WebKitのduration越え実値を観察位置と別表示し、nullを未取得として明記。さらにpause pending中に入力位置が進む実測を受け、入力時刻capture→pause→同値seekで位置を固定。独立3追加の変更前失敗→修正確認と実ブラウザprobeを分離して保存する。自然再生で中間入力に到達しなかった試行は合格へ変換しない。
+- step境界正規化前のコード: worker数1でcheck＋独立build成功、Node49＋Vitest121＝170成功/0失敗/0skip（既存134＋新36）。raw表示・入力時停止位置固定を含むソース/出力SHA-256をmanifestへ保存。ブラウザはこの出力で再検証する。
+- 最終境界版: native実値の終端超過を表示しつつ、stepは入力時nativeを範囲正規化してから加減算。隔離旧sourceは207.333ms対期待203.333msで1失敗、現7件成功。最終check＋独立build成功、既存134＋新37＝171成功/0失敗/0skip。旧167/170件版のログ/hashは別名で保持する。
+- 最終style版: 共通button/focus CSSへ切替buttonを追加し、WK390の旧33px/UA灰色を40px以上の既存表示へ統一。ロジック不変。全171件check/build成功、最終CSS focused6条件すべてPASS/pageerror0。全native時間経路6条件は直前同ロジック版であり、版を分けて記録。
+- 全native6条件48群は5PASS/1PARTIAL（WK390 Coin中間pause入力未到達）。別probeで3回の自然中間入力位置保持を補完したが初回PARTIALは保存。旧主要54群は機能失敗なし、既存title横超過のみPARTIAL。総合PARTIALを維持し、並列timeout・旧Battle不再現/根因未特定・未実機/VoiceOver/実背景化・CI不存在を開示する。Draft提出後は人間の判断待ち、merge/公開なし。
+
+## 2026-10-26 Stage 2A 追加独立検証（Issue #35 / Draft PR #36）
+- 基準HEAD `406bdbddada5e0783d6b9ce654ceea9788a19040`、main `1d0d7eeac4e6fcbe2dfb792dd69250e65af302b7`。原clean作業を保全した独立worktreeで検証。製品コード・既存証拠・依存・期待値・5000ms上限・公開設定は変更しない。
+- [追加証拠一式](docs/maintenance/stage2a-verification-20261026/README.md)を新規保存。旧PARTIAL/FAILは解消済みとして書き換えない。
+- 既定check3回=170/1、170/1、171/0、worker1=170/1（成功/失敗、skip全0）。同じgallery試験timeout、既定116.617/103.068/84.166秒、逐次156.946秒。並列だけの原因と断定不可。
+- 最終source/CSSの新buildでnative全時間6条件。Ch3条件/WK765 PASS、WK390初回終端入力PARTIAL→同期待値再実行PASS、WK375開室ツールtimeout→再実行8群PARTIAL（Menu終端入力）。別native probeでMenu375の11/14ms保持を補完。Coin390は中間9回＋早期60/70/89/96ms保持、未到達試行も保存。対応Playwright1.56/native browserを使用、初期driver不一致は別記録。
+- Battle765同順3反復は未到達/固定1100ms条件FAIL/PASS。新たなtimer証拠は検査読取競合に整合するがassert読取時刻未記録で根因完全特定とはしない。旧空Assertionの根因不明を維持。
+- 通常復帰のCoin新規P2を独立再現：観察後Replay/COLLECT中の低減ONが旧Animationを取消さない。Ch/WK native＋独立代用品2対照成功/2回帰失敗。得点は維持、製品未修正。原因はobserved自動run抑止が取消責務も抑止すること。局所分離を修正提案、無断改修しない。
+- 通常Coinの持続的自動デモ抑止自体はIssue35の安全契約と整合しREADME説明を補足。WKMenu100ms取消失敗は別probeでIO通知遅延と1000ms以内idleを観測、元失敗同根因とは断定しない。
+- 独立最終推奨はFAILED / マージNO。N2修復と同一期待値再検証、品質ゲート原因切分けを優先。実機/VoiceOver/実背景化/OS文字拡大/公開版操作は未検証、既存title200%横超過/typewriter重複は別負債、全197展示PASSは主張しない。最終HEAD/tree/CI照合は提出時のPR/Issue追記で記録する。Draft未マージ維持、公開workflow未実行。
+
+## 2026-10-26 Stage 2A N2局所修復・Q1品質ゲート追補（Issue #35 / Draft PR #36）
+
+- 基準 `5bb0d052d4a6aea74c97794f5596eef900ad015f`、fetchしたmain `1d0d7eeac4e6fcbe2dfb792dd69250e65af302b7`。旧clean worktreeを保全し独立worktreeで作業。旧失敗証拠は変更しない。
+- N2第一希望のCoin低減ON取消独立effectを採用（製品4行）。observed自動再生抑止・得点・獲得済み状態・Menu/他ゲームは変更しない。旧診断4件2成功2失敗→同期待値4成功、新正式7件2成功5失敗→7成功。観察既存30件も成功、focused合計41成功。
+- Q1は全DOM queryが計測53〜61%を占めることを確認。scope/expanded最適化だけでは反復timeoutが残り、独立責務2本へ分離、全元assert/5000msを保持。旧連続履歴はnative別検査で補完する。環境変動の根因はUNKNOWN、分割だけで根治と呼ばない。
+- [今回の結果と未検証境界](docs/maintenance/stage2a-repair-20261026/README.md)、[Q1区間計測と期待値対応](docs/maintenance/stage2a-repair-20261026/q1/README.md)を追加。最終反復・native・独立レビュー結果は同資料へ追記。Pagesworkflowは変更/起動せず、Stage2B・公開・マージは未実施。
+
+- Stage 2A N2/Q1追加結果: 全check既定3回は177/179・175/179・178/179、復帰後worker1は179/179・175/179。いずれもskip0。timeout残存のためQ1未解決P2、マージNO。新N2正式7件は5回すべて成功。exec-server切断による途中worker1結果不明と診断型注釈エラーも別記録し、成功回だけを採用しない。
+
+- N2最終nativeはCh/WK×375/390/765の12取消経路を同scriptで修正前12失敗→修正後12成功。両旧Animationがrunning中cancel→idle/null、228行動assert＋paused6成功、pageerror0。独立担当がsource/build/JSONを照合。Q1未解決のため総合PARTIAL/マージNOを維持。
+
+- 最終主要回帰: Stage2A時間操作6条件48群PASS、旧主要ゲーム6条件54群成功（狭幅文字200%の既存全page横超過4PARTIAL）。Stage1初回4PASS2FAIL、限定追加Ch765 PASS/WK390 Battle後半assert FAILを保持し根因未特定。独立レビューPARTIAL/NO。HTTP配信12ファイル同一、29PNGと可逆gzip4件の証拠を保存。実CI/実機/全197操作未検証。
+
+## 2026-10-27 Stage 2A Q1追加調査：回収証拠に限定した提出
+
+- 基準HEAD `50fbcd91c6f0c174f40ea627ce2bd33c6e985ce2`。旧追加調査153ファイルの提出は診断資料開示承認待ちで停止し、31blob送信後もtree/commit/ref未更新だった。その後クラウドworktree・一時manifestが消失。利用者Windowsは操作していない。
+- 掲載承認後、既知blob `679f0126249bf8ab89cd71a417df7bac356e8c52` から旧5回の集計 `results.json.gz` のみ回収。Git SHA・圧縮/展開SHA-256が消失前記録と一致。他152ファイル未回収、旧query改善/8対照検査を現在branchへ反映していない。
+- 旧計測は基準HEAD＋未commit変更を対象としたもので今回HEADの検証ではない。Node49＋Vitest138（旧130＋未提出対照8）の成功総数は既定184/187、182/187、185/187、worker1 185/187、186/187。全5回exit1、詳細ログ未回収。Q1共通根因UNKNOWN、P2未解決。
+- [限定提出の説明](docs/maintenance/stage2a-q1-recovery-20261027/README.md)に失敗位置・時間・回収保証・N2既存証拠との区別を記録。今回変更は文書/証拠のみ。全check/build/nativeを再実施していない。独立レビューは証拠読解であり実ブラウザ再操作ではない。
+- 総合PARTIAL／マージNO。既存B1/M1等UNKNOWNと実機未検証を維持。Draft/openを保持し、公開workflow・マージ・auto-mergeを行わない。最終HEAD/tree/実CI有無はPR/Issueに提出後照合結果を記録する。
+
+## 2026-10-27 Stage 2A-Q1 現行コードの再検証とPR CI
+
+- 基準b2d9211/current main1d0d7eeをGitHub/local確認、開始clean。旧153中1回収/152未回収・旧187件と新結果を区別。新baselineは現行Node49+Vitest130=179件で既定3回・worker1 2回すべて179成功/失敗skip0、別build成功。途中90f266bへ証拠を保全。
+- 限定関連78件×2（原文/計測copy）成功、wrapper負例4成功。query負荷は測ったが旧timeout非再現、A製品/Bテスト/C環境/D混在の共通根因UNKNOWN。製品/正式test/5000ms/期待値を変更せず、RED/GREENを捏造しない。
+- 最終製品コード再確認も179件×5すべて成功、別build成功、N2旧診断4/4成功。記録の経過秒はpoll終了検出を含むouter wallで、子コマンド厳密終了時刻とは異なる。
+- PR専用read-only CIをe258b7bで追加。実run40426920758はjob.envのrunner.temp非対応でvalidationFAIL/jobs0。最小修正95555da後run40427284755/attempt1は179/179＋独立build成功。artifact ZIP/API digest一致、内部hash/provenance照合。先行CIを最終HEAD成功として流用しない。
+- [新記録](docs/maintenance/stage2a-q1-reestablish-20261027/README.md)、CI設計・独立review・必要診断を段階保全。Pages公開workflow無変更/未実行、Stage2B未着手。native/最終独立レビューと最終HEADのCI照合は追加結果として記録する。旧根因未解明のため総合PARTIAL・マージNO維持。
+- Native新実測: N2 strict6/6・228行動・live取消12/12・paused6/6成功、Stage1 6/6・30群成功。観察48群は5PASS/WK765 Menu終端入力PARTIAL。限定probeは2例途中保持成功＋1例INPUT_MISSEDでPARTIAL、元結果を成功へ昇格しない。Playwright1.56/Ch141/WK26、/tmp限定runtime補完・失敗経過を保存。実機/全館未検証、B1/M1等UNKNOWN維持。
+
+## 2026-10-29 JST — Stage 2A 品質ゲート再確認
+
+現行品質・検証基盤・歴史原因を分ける。A/B合格なら歴史原因UNKNOWNだけで阻害しない。現時点はブラウザ必須経路が未到達のためHOLD。[詳細と証拠](docs/maintenance/stage2a-acceptance-20261029/README.md)。
+
+## 2026-10-29 JST — Stage 2A 後続の実装修正と受入検証
+
+Turn OrderのReset旧callback・低減時取消を局所修正。181件×5回と条件別browser証拠は [後続記録](docs/maintenance/stage2a-final-acceptance-20261029/README.md) に保存。最終HEADのCI確認前はHOLD。旧FAIL/PARTIAL、HTTP制約と対象外の文字200%横超過を保持。
+
+## 2026-10-29 20:05 JST — Stage 2A 受入判定更新
+
+コードHEAD `745a485` のPR CI 40862133914は181件と独立build成功。必要な現行表示・操作と検証は記録条件で合格し、歴史原因UNKNOWNは単独阻害としない。Stage 2Aマージ推奨YES、Stage 2B着手推奨GO候補。文書追補後の最終HEAD CIと人間の判断はPR本文を参照。旧HOLD・失敗・HTTP制約・既知対象外問題を維持。

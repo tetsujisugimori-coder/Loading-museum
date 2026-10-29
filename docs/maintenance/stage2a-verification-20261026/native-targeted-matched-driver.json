@@ -1,0 +1,1032 @@
+[
+  {
+    "engine": "chromium",
+    "version": "141.0.7390.37",
+    "width": 390,
+    "errors": [],
+    "pause": [
+      {
+        "requestedFraction": 0.05,
+        "duration": 650,
+        "input": {
+          "clock": 4936.800000000745,
+          "currentTime": 33.334000000575514,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 4937,
+          "currentTime": 33.334000000575514,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 4938.200000001118,
+          "currentTime": 33.334000000575514,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 5042.800000000745,
+          "currentTime": 33.334000000575514,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 33.33 / 650 ms · 5.1% · 移動途中 · controller: paused · native currentTime: 33.33 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 0,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.05,
+        "duration": 650,
+        "input": {
+          "clock": 5347.5,
+          "currentTime": 33.284000001367886,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 5348.5,
+          "currentTime": 33.284000001367886,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 5348.9000000003725,
+          "currentTime": 33.284000001367886,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 5449.0999999996275,
+          "currentTime": 33.284000001367886,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 33.28 / 650 ms · 5.1% · 移動途中 · controller: paused · native currentTime: 33.28 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 1,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.05,
+        "duration": 650,
+        "input": {
+          "clock": 5803.5999999996275,
+          "currentTime": 49.96800000080803,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 5804.0999999996275,
+          "currentTime": 49.96800000080803,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 5805.0999999996275,
+          "currentTime": 49.96800000080803,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 5908.9000000003725,
+          "currentTime": 49.96800000080803,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 49.97 / 650 ms · 7.7% · 移動途中 · controller: paused · native currentTime: 49.97 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 2,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.5,
+        "duration": 650,
+        "input": {
+          "clock": 6431.4000000003725,
+          "currentTime": 333.28200000154595,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 6431.9000000003725,
+          "currentTime": 333.28200000154595,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 6432.200000001118,
+          "currentTime": 333.28200000154595,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 6532.4000000003725,
+          "currentTime": 333.28200000154595,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 333.28 / 650 ms · 51.3% · 移動途中 · controller: paused · native currentTime: 333.28 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 0,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.5,
+        "duration": 650,
+        "input": {
+          "clock": 7062.9000000003725,
+          "currentTime": 333.2740000011487,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 7063.300000000745,
+          "currentTime": 333.2740000011487,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 7063.4000000003725,
+          "currentTime": 333.2740000011487,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 7165.9000000003725,
+          "currentTime": 333.2740000011487,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 333.27 / 650 ms · 51.3% · 移動途中 · controller: paused · native currentTime: 333.27 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 1,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.5,
+        "duration": 650,
+        "input": {
+          "clock": 8302.800000000745,
+          "currentTime": 333.2900000012362,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 8302.900000000373,
+          "currentTime": 333.2900000012362,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 8304.700000001118,
+          "currentTime": 333.2900000012362,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 8408.200000001118,
+          "currentTime": 333.2900000012362,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 333.29 / 650 ms · 51.3% · 移動途中 · controller: paused · native currentTime: 333.29 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 2,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.9,
+        "duration": 650,
+        "input": {
+          "clock": 9295.400000000373,
+          "currentTime": 599.9860000000101,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 9296.200000001118,
+          "currentTime": 599.9860000000101,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 9296.800000000745,
+          "currentTime": 599.9860000000101,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 9397,
+          "currentTime": 599.9860000000101,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 599.99 / 650 ms · 92.3% · 移動途中 · controller: paused · native currentTime: 599.99 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 0,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.9,
+        "duration": 650,
+        "input": {
+          "clock": 10456.800000000745,
+          "currentTime": 600.032000001395,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 10457.099999999627,
+          "currentTime": 600.032000001395,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 10460.300000000745,
+          "currentTime": 600.032000001395,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 10561.400000000373,
+          "currentTime": 600.032000001395,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 600.03 / 650 ms · 92.3% · 移動途中 · controller: paused · native currentTime: 600.03 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 1,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.9,
+        "duration": 650,
+        "input": {
+          "clock": 11435.099999999627,
+          "currentTime": 600.0040000012667,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 11436.200000001118,
+          "currentTime": 600.0040000012667,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 11437.599999999627,
+          "currentTime": 600.0040000012667,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 11542.5,
+          "currentTime": 600.0040000012667,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 600.00 / 650 ms · 92.3% · 移動途中 · controller: paused · native currentTime: 600.00 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 2,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.3,
+        "duration": 650,
+        "input": {
+          "clock": 12242.900000000373,
+          "currentTime": 200.02000000135388,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 12242.900000000373,
+          "currentTime": 200.02000000135388,
+          "playState": "running",
+          "pending": false
+        },
+        "ready": {
+          "clock": 12243,
+          "currentTime": 200.02000000135388,
+          "playState": "running",
+          "pending": false
+        },
+        "held": {
+          "clock": 12343.099999999627,
+          "currentTime": 300.0200000013553,
+          "playState": "running",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 100.00000000000142,
+        "display": "観察位置 300.02 / 650 ms · 46.2% · 移動途中 · controller: running · native currentTime: 300.02 ms · native playState: running",
+        "mode": "omit-pause",
+        "repeat": 0,
+        "midInput": true,
+        "pausePass": false,
+        "verdict": "NEGATIVE_CONTROL_REJECTED"
+      },
+      {
+        "requestedFraction": 1,
+        "duration": 650,
+        "input": {
+          "clock": 13213.599999999627,
+          "currentTime": 650,
+          "playState": "finished",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 13213.900000000373,
+          "currentTime": 650,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 13213.900000000373,
+          "currentTime": 650,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 13314.5,
+          "currentTime": 650,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 650.00 / 650 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 650.00 ms · native playState: paused",
+        "mode": "terminal",
+        "repeat": 0,
+        "midInput": false,
+        "pausePass": false,
+        "verdict": "NEGATIVE_CONTROL_REJECTED"
+      }
+    ],
+    "normal": [
+      {
+        "action": "Replay",
+        "pausedDiagnostic": false,
+        "mediaInput": {
+          "time": 16.7160000008284,
+          "state": "running",
+          "pending": false,
+          "clock": 13748.700000001118,
+          "duration": 650
+        },
+        "before": {
+          "time": 0,
+          "state": "running",
+          "pending": true,
+          "clock": 13644.400000000373,
+          "duration": 650
+        },
+        "afterReduce": {
+          "time": 116.71200000082926,
+          "state": "running",
+          "pending": false,
+          "clock": 13759.300000000745
+        },
+        "expected": "idle",
+        "verdict": "FAIL",
+        "score": "SCORE 0"
+      },
+      {
+        "action": "COLLECT",
+        "pausedDiagnostic": false,
+        "mediaInput": {
+          "time": 83.40400000032311,
+          "state": "running",
+          "pending": false,
+          "clock": 14351.599999999627,
+          "duration": 650
+        },
+        "before": {
+          "time": 33.404000000324174,
+          "state": "running",
+          "pending": false,
+          "clock": 14186.599999999627,
+          "duration": 650
+        },
+        "afterReduce": {
+          "time": 216.73200000032367,
+          "state": "running",
+          "pending": false,
+          "clock": 14360.400000000373
+        },
+        "expected": "idle",
+        "verdict": "FAIL",
+        "score": "SCORE 100"
+      },
+      {
+        "action": "Replay",
+        "pausedDiagnostic": true,
+        "mediaInput": {
+          "time": 116.69599999992641,
+          "state": "paused",
+          "pending": false,
+          "clock": 15025.599999999627,
+          "duration": 650
+        },
+        "before": {
+          "time": 116.69599999992641,
+          "state": "paused",
+          "pending": false,
+          "clock": 14921.700000001118,
+          "duration": 650
+        },
+        "afterReduce": {
+          "time": 116.69599999992641,
+          "state": "paused",
+          "pending": false,
+          "clock": 15033.599999999627
+        },
+        "expected": "idle",
+        "verdict": "FAIL",
+        "score": "SCORE 0"
+      },
+      {
+        "action": "COLLECT",
+        "pausedDiagnostic": true,
+        "mediaInput": {
+          "time": 0,
+          "state": "paused",
+          "pending": false,
+          "clock": 15441.700000001118,
+          "duration": 650
+        },
+        "before": {
+          "time": 0,
+          "state": "paused",
+          "pending": false,
+          "clock": 15378.599999999627,
+          "duration": 650
+        },
+        "afterReduce": {
+          "time": 0,
+          "state": "paused",
+          "pending": false,
+          "clock": 15450.800000000745
+        },
+        "expected": "idle",
+        "verdict": "FAIL",
+        "score": "SCORE 100"
+      }
+    ],
+    "status": "FAIL"
+  },
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "width": 390,
+    "errors": [],
+    "pause": [
+      {
+        "requestedFraction": 0.05,
+        "duration": 650,
+        "input": {
+          "clock": 18220,
+          "currentTime": 254,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 18220,
+          "currentTime": 254,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 18225,
+          "currentTime": 254,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 18325,
+          "currentTime": 254,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 254.00 / 650 ms · 39.1% · 移動途中 · controller: paused · native currentTime: 254.00 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 0,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.05,
+        "duration": 650,
+        "input": {
+          "clock": 19606,
+          "currentTime": 191,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 19606,
+          "currentTime": 191,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 19607,
+          "currentTime": 191,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 19708.000000000004,
+          "currentTime": 191,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 191.00 / 650 ms · 29.4% · 移動途中 · controller: paused · native currentTime: 191.00 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 1,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.05,
+        "duration": 650,
+        "input": {
+          "clock": 20618.000000000004,
+          "currentTime": 246,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 20618.000000000004,
+          "currentTime": 246,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 20619,
+          "currentTime": 246,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 20719,
+          "currentTime": 246,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 246.00 / 650 ms · 37.8% · 移動途中 · controller: paused · native currentTime: 246.00 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 2,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.5,
+        "duration": 650,
+        "input": {
+          "clock": 21438,
+          "currentTime": 334,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 21439,
+          "currentTime": 334,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 21442,
+          "currentTime": 334,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 21542,
+          "currentTime": 334,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 334.00 / 650 ms · 51.4% · 移動途中 · controller: paused · native currentTime: 334.00 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 0,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.5,
+        "duration": 650,
+        "input": {
+          "clock": 22099,
+          "currentTime": 340,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 22101,
+          "currentTime": 340,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 22105,
+          "currentTime": 340,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 22205.000000000004,
+          "currentTime": 340,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 340.00 / 650 ms · 52.3% · 移動途中 · controller: paused · native currentTime: 340.00 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 1,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.5,
+        "duration": 650,
+        "input": {
+          "clock": 22895,
+          "currentTime": 337,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 22896,
+          "currentTime": 337,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 22898,
+          "currentTime": 337,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 22999,
+          "currentTime": 337,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 337.00 / 650 ms · 51.8% · 移動途中 · controller: paused · native currentTime: 337.00 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 2,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.9,
+        "duration": 650,
+        "input": {
+          "clock": 23766,
+          "currentTime": 585,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 23767,
+          "currentTime": 585,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 23768,
+          "currentTime": 585,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 23868.000000000004,
+          "currentTime": 585,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 585.00 / 650 ms · 90.0% · 移動途中 · controller: paused · native currentTime: 585.00 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 0,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.9,
+        "duration": 650,
+        "input": {
+          "clock": 25276,
+          "currentTime": 588,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 25278.000000000004,
+          "currentTime": 588,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 25279,
+          "currentTime": 588,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 25379,
+          "currentTime": 588,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 588.00 / 650 ms · 90.5% · 移動途中 · controller: paused · native currentTime: 588.00 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 1,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.9,
+        "duration": 650,
+        "input": {
+          "clock": 26877,
+          "currentTime": 599,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 26882,
+          "currentTime": 599,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 26885,
+          "currentTime": 599,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 26986,
+          "currentTime": 599,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 599.00 / 650 ms · 92.2% · 移動途中 · controller: paused · native currentTime: 599.00 ms · native playState: paused",
+        "mode": "pause",
+        "repeat": 2,
+        "midInput": true,
+        "pausePass": true,
+        "verdict": "PASS"
+      },
+      {
+        "requestedFraction": 0.3,
+        "duration": 650,
+        "input": {
+          "clock": 27516,
+          "currentTime": 275,
+          "playState": "running",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 27516,
+          "currentTime": 275,
+          "playState": "running",
+          "pending": false
+        },
+        "ready": {
+          "clock": 27516,
+          "currentTime": 275,
+          "playState": "running",
+          "pending": false
+        },
+        "held": {
+          "clock": 27616,
+          "currentTime": 396,
+          "playState": "running",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 121,
+        "display": "観察位置 275.00 / 650 ms · 42.3% · 移動途中 · controller: running · native currentTime: 275.00 ms · native playState: running",
+        "mode": "omit-pause",
+        "repeat": 0,
+        "midInput": true,
+        "pausePass": false,
+        "verdict": "NEGATIVE_CONTROL_REJECTED"
+      },
+      {
+        "requestedFraction": 1,
+        "duration": 650,
+        "input": {
+          "clock": 28919,
+          "currentTime": 660,
+          "playState": "finished",
+          "pending": false
+        },
+        "immediate": {
+          "clock": 28920,
+          "currentTime": 660,
+          "playState": "paused",
+          "pending": false
+        },
+        "ready": {
+          "clock": 28920,
+          "currentTime": 660,
+          "playState": "paused",
+          "pending": false
+        },
+        "held": {
+          "clock": 29021,
+          "currentTime": 660,
+          "playState": "paused",
+          "pending": false
+        },
+        "deltaReady": 0,
+        "deltaHeld": 0,
+        "display": "観察位置 650.00 / 650 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 660.00 ms · native playState: paused",
+        "mode": "terminal",
+        "repeat": 0,
+        "midInput": false,
+        "pausePass": false,
+        "verdict": "NEGATIVE_CONTROL_REJECTED"
+      }
+    ],
+    "normal": [
+      {
+        "action": "Replay",
+        "pausedDiagnostic": false,
+        "mediaInput": {
+          "time": 0,
+          "state": "running",
+          "pending": true,
+          "clock": 30654,
+          "duration": 650
+        },
+        "before": {
+          "time": 0,
+          "state": "running",
+          "pending": true,
+          "clock": 29919,
+          "duration": 650
+        },
+        "afterReduce": {
+          "time": 565,
+          "state": "running",
+          "pending": false,
+          "clock": 30835
+        },
+        "expected": "idle",
+        "verdict": "FAIL",
+        "score": "SCORE 0"
+      },
+      {
+        "action": "COLLECT",
+        "pausedDiagnostic": false,
+        "mediaInput": {
+          "time": 103,
+          "state": "running",
+          "pending": false,
+          "clock": 33530,
+          "duration": 650
+        },
+        "before": {
+          "time": 103,
+          "state": "running",
+          "pending": false,
+          "clock": 32433,
+          "duration": 650
+        },
+        "afterReduce": {
+          "time": 650,
+          "state": "finished",
+          "pending": false,
+          "clock": 33632
+        },
+        "expected": "idle",
+        "verdict": "FAIL",
+        "score": "SCORE 100"
+      },
+      {
+        "action": "Replay",
+        "pausedDiagnostic": true,
+        "mediaInput": {
+          "time": 0,
+          "state": "paused",
+          "pending": false,
+          "clock": 35886,
+          "duration": 650
+        },
+        "before": {
+          "time": 0,
+          "state": "paused",
+          "pending": false,
+          "clock": 35680,
+          "duration": 650
+        },
+        "afterReduce": {
+          "time": 0,
+          "state": "paused",
+          "pending": false,
+          "clock": 35902
+        },
+        "expected": "idle",
+        "verdict": "FAIL",
+        "score": "SCORE 0"
+      },
+      {
+        "action": "COLLECT",
+        "pausedDiagnostic": true,
+        "mediaInput": {
+          "time": 0,
+          "state": "paused",
+          "pending": false,
+          "clock": 37104,
+          "duration": 650
+        },
+        "before": {
+          "time": 0,
+          "state": "paused",
+          "pending": false,
+          "clock": 36902,
+          "duration": 650
+        },
+        "afterReduce": {
+          "time": 0,
+          "state": "paused",
+          "pending": false,
+          "clock": 37126
+        },
+        "expected": "idle",
+        "verdict": "FAIL",
+        "score": "SCORE 100"
+      }
+    ],
+    "status": "FAIL"
+  }
+]

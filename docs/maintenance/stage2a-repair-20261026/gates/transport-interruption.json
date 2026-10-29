@@ -1,0 +1,15 @@
+{
+  "observed_at": "2026-10-26T03:38:29.731509+00:00",
+  "session_id": 26111,
+  "event": "exec-server transport disconnected; failed to resume exec-server session: recovery timed out after 25s",
+  "confirmed_complete": [
+    "default-1",
+    "default-2",
+    "default-3"
+  ],
+  "worker1_1": "started; build and Node49 succeeded; Vitest terminal result not observed",
+  "worker1_2": "not observed started",
+  "source_files": "present in same worktree; no move or overwrite",
+  "process_visibility_limit": "new exec has its own PID namespace; ps cannot prove old executor process exit",
+  "classification": "execution interrupted or outcome unknown; not PASS"
+}

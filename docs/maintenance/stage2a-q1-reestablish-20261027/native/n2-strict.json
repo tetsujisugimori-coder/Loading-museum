@@ -1,0 +1,580 @@
+{
+  "input": "n2.json",
+  "scriptSha256": "bca60def0a00aa8f9975db5e20f9abd8ea29610848eec39a281426aa4547ee52",
+  "timingContract": {
+    "coinDuration": 650,
+    "scoreNativeDuration": 240,
+    "scoreSourceDelay": 620,
+    "scoreArithmeticEnd": 860,
+    "source": "app/data/waapiSamples.ts",
+    "nativeEndTimeCaptured": false
+  },
+  "strictControls": [
+    {
+      "name": "complete pair accepted",
+      "pass": true
+    },
+    {
+      "name": "missing score ref",
+      "pass": true,
+      "classification": "FAIL_MISSING_OR_WRONG_REFERENCE"
+    },
+    {
+      "name": "duplicate ref",
+      "pass": true,
+      "classification": "FAIL_MISSING_OR_WRONG_REFERENCE"
+    },
+    {
+      "name": "different ref",
+      "pass": true,
+      "classification": "FAIL_MISSING_OR_WRONG_REFERENCE"
+    },
+    {
+      "name": "missing score cancellation",
+      "pass": true,
+      "classification": "FAIL_CANCEL_EVIDENCE"
+    },
+    {
+      "name": "no cancellation",
+      "pass": true,
+      "classification": "FAIL_CANCEL_EVIDENCE"
+    },
+    {
+      "name": "input already finished",
+      "pass": true,
+      "classification": "INPUT_MISSED"
+    },
+    {
+      "name": "missing captured IDs",
+      "pass": true,
+      "classification": "FAIL_IDENTITY"
+    },
+    {
+      "name": "duplicate captured IDs",
+      "pass": true,
+      "classification": "FAIL_IDENTITY"
+    },
+    {
+      "name": "score remains running",
+      "pass": true,
+      "classification": "FAIL_NOT_IDLE"
+    },
+    {
+      "name": "natural finish before cancel",
+      "pass": true,
+      "classification": "CANCELLED_AFTER_NATURAL_FINISH"
+    },
+    {
+      "name": "score reached source-defined end before cancel",
+      "pass": true,
+      "classification": "CANCELLED_AFTER_NATURAL_FINISH"
+    }
+  ],
+  "conditions": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "status": "PASS",
+      "complete": true,
+      "cases": [
+        {
+          "action": "Replay",
+          "classification": "PASS",
+          "animationId": 14,
+          "ownedIds": [
+            14,
+            15
+          ],
+          "mediaInput": {
+            "id": 14,
+            "clock": 2049,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 14,
+              "clock": 2095.800000000745,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 15,
+              "clock": 2095.800000000745,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancelCount": 2
+        },
+        {
+          "action": "COLLECT",
+          "classification": "PASS",
+          "animationId": 26,
+          "ownedIds": [
+            26,
+            27
+          ],
+          "mediaInput": {
+            "id": 26,
+            "clock": 2335.900000002235,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 26,
+              "clock": 2374.10000000149,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 27,
+              "clock": 2374.199999999255,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancelCount": 2
+        }
+      ],
+      "checks": 38,
+      "failedChecks": [],
+      "pausedDiagnostic": true,
+      "pageerror": []
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "status": "PASS",
+      "complete": true,
+      "cases": [
+        {
+          "action": "Replay",
+          "classification": "PASS",
+          "animationId": 14,
+          "ownedIds": [
+            14,
+            15
+          ],
+          "mediaInput": {
+            "id": 14,
+            "clock": 2034.199999999255,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 14,
+              "clock": 2064.89999999851,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 15,
+              "clock": 2064.89999999851,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancelCount": 2
+        },
+        {
+          "action": "COLLECT",
+          "classification": "PASS",
+          "animationId": 26,
+          "ownedIds": [
+            26,
+            27
+          ],
+          "mediaInput": {
+            "id": 26,
+            "clock": 2422.39999999851,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 26,
+              "clock": 2447.199999999255,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 27,
+              "clock": 2447.199999999255,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancelCount": 2
+        }
+      ],
+      "checks": 38,
+      "failedChecks": [],
+      "pausedDiagnostic": true,
+      "pageerror": []
+    },
+    {
+      "engine": "chromium",
+      "width": 765,
+      "status": "PASS",
+      "complete": true,
+      "cases": [
+        {
+          "action": "Replay",
+          "classification": "PASS",
+          "animationId": 14,
+          "ownedIds": [
+            14,
+            15
+          ],
+          "mediaInput": {
+            "id": 14,
+            "clock": 2795.199999999255,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 14,
+              "clock": 2827.39999999851,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 15,
+              "clock": 2827.39999999851,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancelCount": 2
+        },
+        {
+          "action": "COLLECT",
+          "classification": "PASS",
+          "animationId": 26,
+          "ownedIds": [
+            26,
+            27
+          ],
+          "mediaInput": {
+            "id": 26,
+            "clock": 3259.699999999255,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 26,
+              "clock": 3283.89999999851,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 27,
+              "clock": 3283.89999999851,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancelCount": 2
+        }
+      ],
+      "checks": 38,
+      "failedChecks": [],
+      "pausedDiagnostic": true,
+      "pageerror": []
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "status": "PASS",
+      "complete": true,
+      "cases": [
+        {
+          "action": "Replay",
+          "classification": "PASS",
+          "animationId": 12,
+          "ownedIds": [
+            12,
+            13
+          ],
+          "mediaInput": {
+            "id": 12,
+            "clock": 4494,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 12,
+              "clock": 4591,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 13,
+              "clock": 4591,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancelCount": 2
+        },
+        {
+          "action": "COLLECT",
+          "classification": "PASS",
+          "animationId": 24,
+          "ownedIds": [
+            24,
+            25
+          ],
+          "mediaInput": {
+            "id": 24,
+            "clock": 5194,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 24,
+              "clock": 5219,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 25,
+              "clock": 5219,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancelCount": 2
+        }
+      ],
+      "checks": 38,
+      "failedChecks": [],
+      "pausedDiagnostic": true,
+      "pageerror": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "status": "PASS",
+      "complete": true,
+      "cases": [
+        {
+          "action": "Replay",
+          "classification": "PASS",
+          "animationId": 14,
+          "ownedIds": [
+            14,
+            15
+          ],
+          "mediaInput": {
+            "id": 14,
+            "clock": 4456,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 14,
+              "clock": 4506,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 15,
+              "clock": 4506,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancelCount": 2
+        },
+        {
+          "action": "COLLECT",
+          "classification": "PASS",
+          "animationId": 26,
+          "ownedIds": [
+            26,
+            27
+          ],
+          "mediaInput": {
+            "id": 26,
+            "clock": 5274,
+            "currentTime": 8,
+            "playState": "running",
+            "pending": false,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 26,
+              "clock": 5313,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 27,
+              "clock": 5313,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancelCount": 2
+        }
+      ],
+      "checks": 38,
+      "failedChecks": [],
+      "pausedDiagnostic": true,
+      "pageerror": []
+    },
+    {
+      "engine": "webkit",
+      "width": 765,
+      "status": "PASS",
+      "complete": true,
+      "cases": [
+        {
+          "action": "Replay",
+          "classification": "PASS",
+          "animationId": 12,
+          "ownedIds": [
+            12,
+            13
+          ],
+          "mediaInput": {
+            "id": 12,
+            "clock": 5488,
+            "currentTime": 0,
+            "playState": "running",
+            "pending": true,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 12,
+              "clock": 5564,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 13,
+              "clock": 5564,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancelCount": 2
+        },
+        {
+          "action": "COLLECT",
+          "classification": "PASS",
+          "animationId": 24,
+          "ownedIds": [
+            24,
+            25
+          ],
+          "mediaInput": {
+            "id": 24,
+            "clock": 6421,
+            "currentTime": 9,
+            "playState": "running",
+            "pending": false,
+            "duration": 650
+          },
+          "ownedAfter": [
+            {
+              "id": 24,
+              "clock": 6452,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 650
+            },
+            {
+              "id": 25,
+              "clock": 6452,
+              "currentTime": null,
+              "playState": "idle",
+              "pending": false,
+              "duration": 240
+            }
+          ],
+          "ownedCancelCount": 2
+        }
+      ],
+      "checks": 38,
+      "failedChecks": [],
+      "pausedDiagnostic": true,
+      "pageerror": []
+    }
+  ],
+  "status": "PASS"
+}

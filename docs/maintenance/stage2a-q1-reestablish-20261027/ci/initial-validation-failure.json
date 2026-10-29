@@ -1,0 +1,13 @@
+{
+  "run_id": 40426920758,
+  "attempt": 1,
+  "head": "e258b7b08fca6d7a4b5d91d5c7fb0f0a56d5cabd",
+  "url": "https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/40426920758",
+  "status": "completed",
+  "conclusion": "failure",
+  "jobs": 0,
+  "kind": "workflow validation failure; product tests not started",
+  "annotation": "(Line: 18, Col: 25): Unrecognized named-value: 'runner'. Located at position 1 within expression: runner.temp, (Line: 19, Col: 23): Unrecognized named-value: 'runner'. Located at position 1 within expression: runner.temp",
+  "source": "public GitHub run HTML fetched 2026-10-27T00:32Z",
+  "local_yaml_python_validation": "passed but insufficient to validate GitHub expression-context availability"
+}

@@ -61,31 +61,51 @@ function openGallery() {
 }
 
 describe("WAAPI標本ギャラリー操作", () => {
-  it("初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う", () => {
+  it("初期DOMを遅延し、正規化検索・解除・開閉を扱う", () => {
     render(<WaapiSampleGallery />);
     expect(screen.queryByText("Fade In")).toBeNull();
     expect(screen.queryByRole("region", { name: /WAAPI/ })).toBeNull();
     openGallery();
     expect(screen.getAllByRole("article").length).toBeGreaterThanOrEqual(47);
     expect(screen.getByText("47 / 47 samples")).not.toBeNull();
+    // Scope controls so labels in all 47 specimens are not traversed on each input.
+    const filtersRoot = document.querySelector(".waapiFilters");
+    expect(filtersRoot).not.toBeNull();
+    const filters = within(filtersRoot as HTMLElement);
 
-    fireEvent.change(screen.getByLabelText("検索"), { target: { value: "  FADE IN  " } });
+    fireEvent.change(filters.getByLabelText("検索"), { target: { value: "  FADE IN  " } });
     expect(screen.getByText("1 / 47 samples")).not.toBeNull();
     expect(screen.getByText("Fade In")).not.toBeNull();
-
-    fireEvent.click(screen.getByRole("button", { name: "絞り込みを解除" }));
-    fireEvent.change(screen.getByLabelText("カテゴリ"), { target: { value: "UI Feedback" } });
-    fireEvent.change(screen.getByLabelText("用途"), { target: { value: "Modal" } });
-    expect(screen.getByText("1 / 47 samples")).not.toBeNull();
-    expect(screen.getByText("Modal Open / Close")).not.toBeNull();
-
-    fireEvent.change(screen.getByLabelText("検索"), { target: { value: "一致しない文字列" } });
-    expect(screen.getByText(/条件に一致する標本はありません/)).not.toBeNull();
-    fireEvent.click(screen.getByRole("button", { name: "絞り込みを解除" }));
+    fireEvent.click(filters.getByRole("button", { name: "絞り込みを解除" }));
     expect(screen.getByText("47 / 47 samples")).not.toBeNull();
 
     const cancelCount = animations.reduce((total, item) => total + item.animation.cancel.mock.calls.length, 0);
-    fireEvent.click(screen.getByRole("button", { name: /サンプル一覧を閉じる/ }));
+    // Expanded narrows candidates before accessible-name calculation while
+    // preserving role, accessible name, visibility and uniqueness checks.
+    fireEvent.click(screen.getByRole("button", { name: /サンプル一覧を閉じる/, expanded: true }));
+    expect(screen.queryByText("Fade In")).toBeNull();
+    expect(animations.reduce((total, item) => total + item.animation.cancel.mock.calls.length, 0)).toBeGreaterThan(cancelCount);
+  });
+
+  it("複合フィルター・0件・解除後の全件表示と閉鎖取消を扱う", () => {
+    render(<WaapiSampleGallery />);
+    openGallery();
+    expect(screen.getByText("47 / 47 samples")).not.toBeNull();
+    const filtersRoot = document.querySelector(".waapiFilters");
+    expect(filtersRoot).not.toBeNull();
+    const filters = within(filtersRoot as HTMLElement);
+
+    fireEvent.change(filters.getByLabelText("カテゴリ"), { target: { value: "UI Feedback" } });
+    fireEvent.change(filters.getByLabelText("用途"), { target: { value: "Modal" } });
+    expect(screen.getByText("1 / 47 samples")).not.toBeNull();
+    expect(screen.getByText("Modal Open / Close")).not.toBeNull();
+    fireEvent.change(filters.getByLabelText("検索"), { target: { value: "一致しない文字列" } });
+    expect(screen.getByText(/条件に一致する標本はありません/)).not.toBeNull();
+    fireEvent.click(filters.getByRole("button", { name: "絞り込みを解除" }));
+    expect(screen.getByText("47 / 47 samples")).not.toBeNull();
+
+    const cancelCount = animations.reduce((total, item) => total + item.animation.cancel.mock.calls.length, 0);
+    fireEvent.click(screen.getByRole("button", { name: /サンプル一覧を閉じる/, expanded: true }));
     expect(screen.queryByText("Fade In")).toBeNull();
     expect(animations.reduce((total, item) => total + item.animation.cancel.mock.calls.length, 0)).toBeGreaterThan(cancelCount);
   });

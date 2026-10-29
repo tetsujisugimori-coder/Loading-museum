@@ -1,0 +1,54 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 check
+> npm run lint && npm run typecheck && npm test
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 lint
+> eslint .
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 typecheck
+> tsc --noEmit
+
+docs/maintenance/stage2a-repair-20261026/q1/profile-original.test.tsx(71,45): error TS2345: Argument of type '((<T extends HTMLElement = HTMLElement>(id: Matcher, options?: SelectorMatcherOptions | undefined) => T) & ((id: Matcher, options?: SelectorMatcherOptions | undefined) => HTMLElement)) | ... 4 more ... | ((<T extends HTMLElement = HTMLElement>(role: ByRoleMatcher, options?: ByRoleOptions | undefined) => T | null) & ...' is not assignable to parameter of type 'NormalizedProcedure<((<T extends HTMLElement = HTMLElement>(id: Matcher, options?: SelectorMatcherOptions | undefined) => T) & ((id: Matcher, options?: SelectorMatcherOptions | undefined) => HTMLElement)) | ... 4 more ... | ((<T extends HTMLElement = HTMLElement>(role: ByRoleMatcher, options?: ByRoleOptions | undefi...'.
+  Type '(<T extends HTMLElement = HTMLElement>(role: ByRoleMatcher, options?: ByRoleOptions | undefined) => T) & ((role: ByRoleMatcher, options?: ByRoleOptions | undefined) => HTMLElement)' is not assignable to type 'NormalizedProcedure<((<T extends HTMLElement = HTMLElement>(id: Matcher, options?: SelectorMatcherOptions | undefined) => T) & ((id: Matcher, options?: SelectorMatcherOptions | undefined) => HTMLElement)) | ... 4 more ... | ((<T extends HTMLElement = HTMLElement>(role: ByRoleMatcher, options?: ByRoleOptions | undefi...'.
+    Types of parameters 'role' and 'args' are incompatible.
+      Type '[id: Matcher, options?: SelectorMatcherOptions | undefined] | [id: Matcher, options?: SelectorMatcherOptions | undefined] | [role: ...] | [role: ...] | [role: ...]' is not assignable to type '[role: ByRoleMatcher, options?: ByRoleOptions | undefined]'.
+        Type '[id: Matcher, options?: SelectorMatcherOptions | undefined]' is not assignable to type '[role: ByRoleMatcher, options?: ByRoleOptions | undefined]'.
+          Type at position 0 in source is not compatible with type at position 0 in target.
+            Type 'Matcher' is not assignable to type 'ByRoleMatcher'.
+              Type 'number' is not assignable to type 'ByRoleMatcher'.
+docs/maintenance/stage2a-repair-20261026/q1/profile-scoped.test.tsx(71,45): error TS2345: Argument of type '((<T extends HTMLElement = HTMLElement>(id: Matcher, options?: SelectorMatcherOptions | undefined) => T) & ((id: Matcher, options?: SelectorMatcherOptions | undefined) => HTMLElement)) | ... 4 more ... | ((<T extends HTMLElement = HTMLElement>(role: ByRoleMatcher, options?: ByRoleOptions | undefined) => T | null) & ...' is not assignable to parameter of type 'NormalizedProcedure<((<T extends HTMLElement = HTMLElement>(id: Matcher, options?: SelectorMatcherOptions | undefined) => T) & ((id: Matcher, options?: SelectorMatcherOptions | undefined) => HTMLElement)) | ... 4 more ... | ((<T extends HTMLElement = HTMLElement>(role: ByRoleMatcher, options?: ByRoleOptions | undefi...'.
+  Type '(<T extends HTMLElement = HTMLElement>(role: ByRoleMatcher, options?: ByRoleOptions | undefined) => T) & ((role: ByRoleMatcher, options?: ByRoleOptions | undefined) => HTMLElement)' is not assignable to type 'NormalizedProcedure<((<T extends HTMLElement = HTMLElement>(id: Matcher, options?: SelectorMatcherOptions | undefined) => T) & ((id: Matcher, options?: SelectorMatcherOptions | undefined) => HTMLElement)) | ... 4 more ... | ((<T extends HTMLElement = HTMLElement>(role: ByRoleMatcher, options?: ByRoleOptions | undefi...'.
+    Types of parameters 'role' and 'args' are incompatible.
+      Type '[id: Matcher, options?: SelectorMatcherOptions | undefined] | [id: Matcher, options?: SelectorMatcherOptions | undefined] | [role: ...] | [role: ...] | [role: ...]' is not assignable to type '[role: ByRoleMatcher, options?: ByRoleOptions | undefined]'.
+        Type '[id: Matcher, options?: SelectorMatcherOptions | undefined]' is not assignable to type '[role: ByRoleMatcher, options?: ByRoleOptions | undefined]'.
+          Type at position 0 in source is not compatible with type at position 0 in target.
+            Type 'Matcher' is not assignable to type 'ByRoleMatcher'.
+              Type 'number' is not assignable to type 'ByRoleMatcher'.
+docs/maintenance/stage2a-repair-20261026/q1/profile-separated.test.tsx(71,45): error TS2345: Argument of type '((<T extends HTMLElement = HTMLElement>(id: Matcher, options?: SelectorMatcherOptions | undefined) => T) & ((id: Matcher, options?: SelectorMatcherOptions | undefined) => HTMLElement)) | ... 4 more ... | ((<T extends HTMLElement = HTMLElement>(role: ByRoleMatcher, options?: ByRoleOptions | undefined) => T | null) & ...' is not assignable to parameter of type 'NormalizedProcedure<((<T extends HTMLElement = HTMLElement>(id: Matcher, options?: SelectorMatcherOptions | undefined) => T) & ((id: Matcher, options?: SelectorMatcherOptions | undefined) => HTMLElement)) | ... 4 more ... | ((<T extends HTMLElement = HTMLElement>(role: ByRoleMatcher, options?: ByRoleOptions | undefi...'.
+  Type '(<T extends HTMLElement = HTMLElement>(role: ByRoleMatcher, options?: ByRoleOptions | undefined) => T) & ((role: ByRoleMatcher, options?: ByRoleOptions | undefined) => HTMLElement)' is not assignable to type 'NormalizedProcedure<((<T extends HTMLElement = HTMLElement>(id: Matcher, options?: SelectorMatcherOptions | undefined) => T) & ((id: Matcher, options?: SelectorMatcherOptions | undefined) => HTMLElement)) | ... 4 more ... | ((<T extends HTMLElement = HTMLElement>(role: ByRoleMatcher, options?: ByRoleOptions | undefi...'.
+    Types of parameters 'role' and 'args' are incompatible.
+      Type '[id: Matcher, options?: SelectorMatcherOptions | undefined] | [id: Matcher, options?: SelectorMatcherOptions | undefined] | [role: ...] | [role: ...] | [role: ...]' is not assignable to type '[role: ByRoleMatcher, options?: ByRoleOptions | undefined]'.
+        Type '[id: Matcher, options?: SelectorMatcherOptions | undefined]' is not assignable to type '[role: ByRoleMatcher, options?: ByRoleOptions | undefined]'.
+          Type at position 0 in source is not compatible with type at position 0 in target.
+            Type 'Matcher' is not assignable to type 'ByRoleMatcher'.
+              Type 'number' is not assignable to type 'ByRoleMatcher'.
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

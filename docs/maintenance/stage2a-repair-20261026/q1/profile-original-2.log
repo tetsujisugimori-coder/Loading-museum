@@ -1,0 +1,31 @@
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-stage2a-repair
+
+stdout | docs/maintenance/stage2a-repair-20261026/q1/profile-original.test.tsx > Q1 baseline section timing > 初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う
+Q1_PROFILE {"samples":[{"label":"render(<WaapiSampleGallery />);","ms":102.1873169999999},{"label":"expect(screen.queryByText(\"Fade In\")).toBeNull();","ms":45.484987000000274},{"label":"expect(screen.queryByRole(\"region\", { name: /WAAPI/ })).toBeNull();","ms":171.2466629999999},{"label":"openGallery();","ms":1036.6506720000002},{"label":"expect(screen.getAllByRole(\"article\").length).toBeGreaterThanOrEqual(47);","ms":209.61436099999992},{"label":"expect(screen.getByText(\"47 / 47 samples\")).not.toBeNull();","ms":90.51925200000005},{"label":"fireEvent.change(screen.getByLabelText(\"検索\"), { target: { value: \"  FADE IN  \" } });","ms":606.6151900000004},{"label":"expect(screen.getByText(\"1 / 47 samples\")).not.toBeNull();","ms":9.047773999999663},{"label":"expect(screen.getByText(\"Fade In\")).not.toBeNull();","ms":6.043732000000091},{"label":"fireEvent.click(screen.getByRole(\"button\", { name: \"絞り込みを解除\" }));","ms":882.1385089999994},{"label":"fireEvent.change(screen.getByLabelText(\"カテゴリ\"), { target: { value: \"UI Feedback\" } });","ms":903.5074129999994},{"label":"fireEvent.change(screen.getByLabelText(\"用途\"), { target: { value: \"Modal\" } });","ms":109.1738860000005},{"label":"expect(screen.getByText(\"1 / 47 samples\")).not.toBeNull();","ms":4.4196210000000065},{"label":"expect(screen.getByText(\"Modal Open / Close\")).not.toBeNull();","ms":4.894065999999839},{"label":"fireEvent.change(screen.getByLabelText(\"検索\"), { target: { value: \"一致しない文字列\" } });","ms":26.597931999999673},{"label":"expect(screen.getByText(/条件に一致する標本はありません/)).not.toBeNull();","ms":5.934353999999985},{"label":"fireEvent.click(screen.getByRole(\"button\", { name: \"絞り込みを解除\" }));","ms":547.7777369999994},{"label":"expect(screen.getByText(\"47 / 47 samples\")).not.toBeNull();","ms":81.47769100000005},{"label":"fireEvent.click(screen.getByRole(\"button\", { name: /サンプル一覧を閉じる/ }));","ms":1458.5114470000008},{"label":"expect(screen.queryByText(\"Fade In\")).toBeNull();","ms":3.371327000000747},{"label":"expect(animations.reduce((total, item) => total + item.animation.cancel.mock.calls.length, 0)).toBeGreaterThan(cancelCount);","ms":0.9696739999999409},{"label":"cleanup","ms":5.408108000001448}],"querySamples":[{"label":"queryByText Fade In","ms":44.68211599999995},{"label":"queryByRole region","ms":170.72269599999981},{"label":"getByRole button","ms":31.231386999999813},{"label":"getAllByRole article","ms":208.3529440000002},{"label":"getByText 47 / 47 samples","ms":89.20762999999988},{"label":"getByLabelText 検索","ms":484.9559999999992},{"label":"getByText 1 / 47 samples","ms":8.47325600000022},{"label":"getByText Fade In","ms":5.901171000000431},{"label":"getByRole button","ms":103.0061539999997},{"label":"getByLabelText カテゴリ","ms":793.2784680000004},{"label":"getByLabelText 用途","ms":20.894428999999946},{"label":"getByText 1 / 47 samples","ms":4.203782000000501},{"label":"getByText Modal Open / Close","ms":4.500920000000406},{"label":"getByLabelText 検索","ms":9.668324000000212},{"label":"getByText /条件に一致する標本はありません/","ms":5.778368000000228},{"label":"getByRole button","ms":29.62509399999999},{"label":"getByText 47 / 47 samples","ms":81.23803899999984},{"label":"getByRole button","ms":1408.848618},{"label":"queryByText Fade In","ms":1.5194160000010015}],"totalMs":6311.591713000002}
+
+ × docs/maintenance/stage2a-repair-20261026/q1/profile-original.test.tsx > Q1 baseline section timing > 初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う 6367ms
+   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  docs/maintenance/stage2a-repair-20261026/q1/profile-original.test.tsx > Q1 baseline section timing > 初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ docs/maintenance/stage2a-repair-20261026/q1/profile-original.test.tsx:83:3
+     81| }
+     82| describe("Q1 baseline section timing", () => {
+     83|   it("初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う", () => {
+       |   ^
+     84|     timed("render(<WaapiSampleGallery />);", () => render(<WaapiSample…
+     85|     timed("expect(screen.queryByText(\"Fade In\")).toBeNull();", () =>…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  11:58:50
+   Duration  10.43s (transform 995ms, setup 0ms, collect 1.30s, tests 6.37s, environment 1.61s, prepare 260ms)
+

@@ -1,0 +1,1 @@
+First check stopped at typecheck: new diagnostic spy wrappers had a union-signature TS2345 error. No product tests ran. The next iteration had begun and was interrupted; neither is counted among the final five check runs. Original files and logs are retained. The correction only changes diagnostic TypeScript annotation, not runtime query behavior.

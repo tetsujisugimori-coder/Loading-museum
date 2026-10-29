@@ -1,0 +1,60 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-observation
+
+ ✓ tests/waapi-observation-independent.test.tsx (6 tests) 386ms
+ ❯ tests/waapi-observation.test.tsx (30 tests | 1 failed) 19969ms
+   ✓ independent observation controller contract (WAAPI double) > initial preview is paused at zero and has actual native labels rather than simulated success 219ms
+   ✓ independent observation controller contract (WAAPI double) > play advances time from the animation, not a second game clock 55ms
+   ✓ independent observation controller contract (WAAPI double) > pause keeps the exact position and resume continues from that point 125ms
+   ✓ independent observation controller contract (WAAPI double) > restart deliberately starts at zero while the start control remains paused 104ms
+   ✓ independent observation controller contract (WAAPI double) > forward and backward steps use 1000/60 ms, not a rounded frame count 113ms
+   ✓ independent observation controller contract (WAAPI double) > seek selects a fractional time and stops an active playback 41ms
+   ✓ independent observation controller contract (WAAPI double) > steps clamp both boundaries without crossing them 91ms
+   ✓ independent observation controller contract (WAAPI double) > finished playback can rewind and resume from a selected position 111ms
+   ✓ independent observation controller contract (WAAPI double) > rapid play/pause and slider changes do not allocate competing animations  342ms
+   ✓ independent observation controller contract (WAAPI double) > stale RAF callbacks after seek do not overwrite the newer position 30ms
+   ✓ independent observation controller contract (WAAPI double) > offscreen cancels native animation and returns paused at the preserved time 22ms
+   ✓ independent observation controller contract (WAAPI double) > tab visibility cancels and restores static preview without automatic play 36ms
+   ✓ independent observation controller contract (WAAPI double) > reduced motion cancels running animation, allows manual stepping, and does not auto-resume on OFF 55ms
+   ✓ independent observation controller contract (WAAPI double) > unmount cancels owner animations and makes old RAF callbacks inert 25ms
+   ✓ independent observation controller contract (WAAPI double) > easing changes cancel the old scenario, preserve position, and do not continue play 39ms
+   ✓ independent observation controller contract (WAAPI double) > resize remeasures after initial observer delivery and preserves observation time 26ms
+   ✓ independent observation controller contract (WAAPI double) > missing WAAPI is labelled unavailable and cannot produce successful play 27ms
+   ✓ independent observation controller contract (WAAPI double) > clamps malformed and out-of-range time input without producing NaN 1ms
+   ✓ independent observation controller contract (WAAPI double) > pending pause completion is reflected in native status rather than remaining pending forever 50ms
+   ✓ actual gallery integration: observation never owns game state > Menu selection survives observation seek, finish, reverse, mode exit, and ordinary Reset still works  1687ms
+   ✓ actual gallery integration: observation never owns game state > Coin preview repeatedly finishes and rewinds with zero points; normal COLLECT awards once  3382ms
+   ✓ actual gallery integration: observation never owns game state > collected Coin retains its score and collected guard through observation and return  1044ms
+   ✓ actual gallery integration: observation never owns game state > observation reset does not reset collected game state and old callback cannot revive playback  794ms
+   ✓ actual gallery integration: observation never owns game state > mode exit cancels observation and reopening cannot resurrect the old running instance  1409ms
+   ✓ actual gallery integration: observation never owns game state > gallery closure cancels observation; reopening has no old callback or auto-score  1802ms
+   × actual gallery integration: observation never owns game state > gallery media notification reaches observation without changing Coin collected state 8198ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ✓ asynchronous ready settlement and measurement data > old ready completion after replacement cannot restore an earlier observation state 50ms
+   ✓ asynchronous ready settlement and measurement data > Menu preview uses actual row measurements and retains destination DOM ownership 21ms
+   ✓ asynchronous ready settlement and measurement data > Coin preview computes destination variables from separate preview DOM, never score DOM 18ms
+   ✓ step during playback starts from current native time, not the last RAF display sample 44ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/waapi-observation.test.tsx > actual gallery integration: observation never owns game state > gallery media notification reaches observation without changing Coin collected state
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/waapi-observation.test.tsx:219:3
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 35 passed (36)
+   Start at  05:35:20
+   Duration  24.81s (transform 761ms, setup 0ms, collect 1.22s, tests 20.35s, environment 1.17s, prepare 523ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

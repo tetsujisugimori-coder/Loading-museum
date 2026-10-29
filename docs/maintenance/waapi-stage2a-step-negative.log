@@ -1,0 +1,42 @@
+
+ RUN  v3.2.4 /tmp/loading-observation-review-before
+
+ ❯ before.test.tsx (3 tests | 2 failed) 265ms
+   × running 1ステップ進む samples the current native time, not the previous rendered frame 184ms
+     → expected 80.66666666666667 to be close to 89.66666666666667, received difference is 9, but expected 5e-9
+   × running 1ステップ戻る samples the current native time, not the previous rendered frame 35ms
+     → expected 47.33333333333333 to be close to 56.33333333333333, received difference is 9, but expected 5e-9
+   ✓ pause samples the native currentTime between frames without rewinding 44ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  before.test.tsx > running 1ステップ進む samples the current native time, not the previous rendered frame
+AssertionError: expected 80.66666666666667 to be close to 89.66666666666667, received difference is 9, but expected 5e-9
+ ❯ before.test.tsx:28:25
+     26|   a.currentTime=73;
+     27|   fireEvent.click(screen.getByRole('button',{name:label}));
+     28|   expect(a.currentTime).toBeCloseTo(73+direction*1000/60,8);
+       |                         ^
+     29|   expect(Number((screen.getByRole('slider') as HTMLInputElement).value…
+     30|   expect(a.playState).toBe('paused');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  before.test.tsx > running 1ステップ戻る samples the current native time, not the previous rendered frame
+AssertionError: expected 47.33333333333333 to be close to 56.33333333333333, received difference is 9, but expected 5e-9
+ ❯ before.test.tsx:28:25
+     26|   a.currentTime=73;
+     27|   fireEvent.click(screen.getByRole('button',{name:label}));
+     28|   expect(a.currentTime).toBeCloseTo(73+direction*1000/60,8);
+       |                         ^
+     29|   expect(Number((screen.getByRole('slider') as HTMLInputElement).value…
+     30|   expect(a.playState).toBe('paused');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
+   Start at  05:07:46
+   Duration  2.51s (transform 258ms, setup 0ms, collect 505ms, tests 265ms, environment 881ms, prepare 183ms)
+

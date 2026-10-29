@@ -1,0 +1,219 @@
+webkit 765 checkpoint 0
+webkit 765 checkpoint 1
+webkit 765 checkpoint 2
+webkit 765 checkpoint 3
+webkit 765 checkpoint 4
+webkit 765 PASS 
+closed webkit 765
+[
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "width": 765,
+    "checks": [
+      "menu all3 positions normal/CSS200 geometry keyboard reset",
+      "parry/dodge early success late both motion modes and reset during toggle",
+      "battle completion offscreen interruption reset repeat motion toggle",
+      "combat paused native animations cancelled by motion ON and logical result retained",
+      "coin demo/reentry no award explicit keyboard collect once rapid replay reset"
+    ],
+    "errors": [],
+    "menu": [
+      {
+        "cursor": {
+          "top": 258,
+          "bottom": 270
+        },
+        "target": {
+          "top": 258,
+          "bottom": 270
+        },
+        "dy": 0,
+        "scale": 1,
+        "index": 0
+      },
+      {
+        "cursor": {
+          "top": 280,
+          "bottom": 292
+        },
+        "target": {
+          "top": 280,
+          "bottom": 292
+        },
+        "dy": 0,
+        "scale": 1,
+        "index": 1
+      },
+      {
+        "cursor": {
+          "top": 302,
+          "bottom": 314
+        },
+        "target": {
+          "top": 302,
+          "bottom": 314
+        },
+        "dy": 0,
+        "scale": 1,
+        "index": 2
+      },
+      {
+        "cursor": {
+          "top": 253,
+          "bottom": 277
+        },
+        "target": {
+          "top": 253,
+          "bottom": 277
+        },
+        "dy": 0,
+        "scale": 2,
+        "index": 0
+      },
+      {
+        "cursor": {
+          "top": 287,
+          "bottom": 311
+        },
+        "target": {
+          "top": 287,
+          "bottom": 311
+        },
+        "dy": 0,
+        "scale": 2,
+        "index": 1
+      },
+      {
+        "cursor": {
+          "top": 321,
+          "bottom": 345
+        },
+        "target": {
+          "top": 321,
+          "bottom": 345
+        },
+        "dy": 0,
+        "scale": 2,
+        "index": 2
+      }
+    ],
+    "timing": [
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 30.99999999999818,
+        "name": "Perfect Parry",
+        "motion": "no-preference",
+        "requested": 30
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "PERFECT PARRY",
+        "elapsed": 503,
+        "name": "Perfect Parry",
+        "motion": "no-preference",
+        "requested": 500
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 750,
+        "name": "Perfect Parry",
+        "motion": "no-preference",
+        "requested": 750
+      },
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 31,
+        "name": "Dodge Afterimage",
+        "motion": "no-preference",
+        "requested": 30
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "LEFT · S-RANK",
+        "elapsed": 500,
+        "name": "Dodge Afterimage",
+        "motion": "no-preference",
+        "requested": 500
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 750,
+        "name": "Dodge Afterimage",
+        "motion": "no-preference",
+        "requested": 750
+      },
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 30,
+        "name": "Perfect Parry",
+        "motion": "reduce",
+        "requested": 30
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "PERFECT PARRY",
+        "elapsed": 500,
+        "name": "Perfect Parry",
+        "motion": "reduce",
+        "requested": 500
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 750.9999999999964,
+        "name": "Perfect Parry",
+        "motion": "reduce",
+        "requested": 750
+      },
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 31,
+        "name": "Dodge Afterimage",
+        "motion": "reduce",
+        "requested": 30
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "LEFT · S-RANK",
+        "elapsed": 500,
+        "name": "Dodge Afterimage",
+        "motion": "reduce",
+        "requested": 500
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 750,
+        "name": "Dodge Afterimage",
+        "motion": "reduce",
+        "requested": 750
+      }
+    ],
+    "battleOffscreen": {
+      "text": "FIELD · INTERRUPTED",
+      "class": "waapiPreviewStage gameScene gameBattle sceneFIELD"
+    },
+    "combat": [
+      "idle",
+      "idle",
+      "idle"
+    ],
+    "combatMediaEvents": {
+      "events": [
+        {
+          "time": 350,
+          "matches": true
+        }
+      ],
+      "observedAfter": 438.0000000000073
+    },
+    "status": "PASS"
+  }
+]

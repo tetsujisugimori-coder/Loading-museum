@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "docs/maintenance/stage2a-verification-20261026/normal-mode-contract.test.tsx",
+    "--maxWorkers=1",
+    "--minWorkers=1"
+  ],
+  "started_at": "2026-10-27T00:24:41.929668+00:00",
+  "seconds": 2.921904501999961,
+  "exit_code": 0
+}

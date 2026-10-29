@@ -1,0 +1,69 @@
+{
+  "scope": "all Python/browser/library/cache changes confined to dedicated /tmp paths; no global package install, apt update, OS configuration change or protected-path changes",
+  "attempts": [
+    {
+      "package": "preinstalled Python Playwright1.62.0",
+      "browser": "Chromium151 revision1234",
+      "status": "DOWNLOAD_FAILED",
+      "exitCode": 1,
+      "evidence": "browser-install.log",
+      "observedResponse": {
+        "status": 206,
+        "contentType": "text/html",
+        "bytes": 195,
+        "bodyTitle": "Site Unavailable"
+      },
+      "reasonBoundary": "invalid archive response; not a proven general network outage"
+    },
+    {
+      "operation": "same1.62 browser install require_escalated",
+      "status": "EXECUTION_ENVIRONMENT_STARTUP_FAILED",
+      "exitCode": 1,
+      "message": "bwrap: Can't create file at /home/agent/.codex/sessions: Read-only file system",
+      "downloadCommandRan": false,
+      "protectedPathAccessedByAgent": false
+    },
+    {
+      "package": "temporary venv Playwright1.56.0",
+      "status": "INSTALLED",
+      "evidence": "python-playwright156-install.log"
+    },
+    {
+      "operation": "matching Chromium1194 / WebKit2215 browser archives",
+      "status": "DOWNLOADED_WITH_MISSING_HOST_LIBRARY_WARNING",
+      "evidence": "browser156-install.log"
+    },
+    {
+      "operation": "apt-get download libwoff1 libharfbuzz-icu0",
+      "status": "FAILED_BEFORE_DOWNLOAD",
+      "exitCode": 100,
+      "evidence": "webkit-library-download.log",
+      "followup": "public Debian pool HTTPS download without reading or modifying private apt configuration"
+    },
+    {
+      "operation": "official Debian library extraction and symlinks into /tmp WPE sys/lib",
+      "status": "COMPLETED",
+      "evidence": "webkit-library-sources.json",
+      "packages": [
+        "libwoff1",
+        "libharfbuzz-icu0",
+        "libgles2",
+        "libglvnd0"
+      ],
+      "globalInstall": false
+    },
+    {
+      "operation": "bounded runtime launch/page/button",
+      "status": "COMPLETED",
+      "evidence": "webkit-bounded-launch.json",
+      "boundary": "runtime check only, not product acceptance"
+    }
+  ],
+  "librarySearchPath": "/tmp/loading-q1-20261027-browsers156/webkit-2215/minibrowser-wpe/lib:/tmp/loading-q1-20261027-browsers156/webkit-2215/minibrowser-wpe/sys/lib",
+  "home": "/tmp/loading-q1-20261027-home",
+  "fontCache": "/tmp/loading-q1-20261027-cache",
+  "browserVersionsActuallyLaunched": {
+    "chromium": "141.0.7390.37",
+    "webkit": "26.0"
+  }
+}

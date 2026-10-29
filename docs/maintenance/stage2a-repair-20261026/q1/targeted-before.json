@@ -1,0 +1,116 @@
+[
+  {
+    "name": "original-1",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "tests/waapi-gallery.test.tsx",
+      "-t",
+      "初期DOM",
+      "--reporter=verbose"
+    ],
+    "started_at": "2026-10-26T02:58:04.477780+00:00",
+    "elapsed_seconds": 8.88337598599901,
+    "exit_code": 0,
+    "loadavg": [
+      2.00146484375,
+      2.14453125,
+      1.22265625
+    ]
+  },
+  {
+    "name": "original-2",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "tests/waapi-gallery.test.tsx",
+      "-t",
+      "初期DOM",
+      "--reporter=verbose"
+    ],
+    "started_at": "2026-10-26T02:58:13.361781+00:00",
+    "elapsed_seconds": 13.012080444997991,
+    "exit_code": 1,
+    "loadavg": [
+      2.4326171875,
+      2.2353515625,
+      1.26806640625
+    ]
+  },
+  {
+    "name": "original-3",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "tests/waapi-gallery.test.tsx",
+      "-t",
+      "初期DOM",
+      "--reporter=verbose"
+    ],
+    "started_at": "2026-10-26T02:58:26.374593+00:00",
+    "elapsed_seconds": 10.717776672998298,
+    "exit_code": 1,
+    "loadavg": [
+      2.2919921875,
+      2.21044921875,
+      1.27099609375
+    ]
+  },
+  {
+    "name": "profile-original-1",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "docs/maintenance/stage2a-repair-20261026/q1/profile-original.test.tsx",
+      "-t",
+      "初期DOM",
+      "--reporter=verbose"
+    ],
+    "started_at": "2026-10-26T02:58:37.093251+00:00",
+    "elapsed_seconds": 12.569987566002965,
+    "exit_code": 1,
+    "loadavg": [
+      2.314453125,
+      2.21923828125,
+      1.2841796875
+    ]
+  },
+  {
+    "name": "profile-original-2",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "docs/maintenance/stage2a-repair-20261026/q1/profile-original.test.tsx",
+      "-t",
+      "初期DOM",
+      "--reporter=verbose"
+    ],
+    "started_at": "2026-10-26T02:58:49.663750+00:00",
+    "elapsed_seconds": 12.211151242998312,
+    "exit_code": 1,
+    "loadavg": [
+      2.80517578125,
+      2.3251953125,
+      1.3330078125
+    ]
+  },
+  {
+    "name": "profile-original-3",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "docs/maintenance/stage2a-repair-20261026/q1/profile-original.test.tsx",
+      "-t",
+      "初期DOM",
+      "--reporter=verbose"
+    ],
+    "started_at": "2026-10-26T02:59:01.876762+00:00",
+    "elapsed_seconds": 14.346855470001174,
+    "exit_code": 1,
+    "loadavg": [
+      2.6259765625,
+      2.30859375,
+      1.3447265625
+    ]
+  }
+]

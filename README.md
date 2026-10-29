@@ -73,3 +73,27 @@ PR #32追加修正では、Match-3の3列4行盤面で「3行3列 ↔ 4行3列�
 
 ### WAAPI Game UI 状態整合（第1段階）
 Menu照準は選択行へ追従。Parry/Dodgeの成功窓は開始後420〜680ms（両端を含む）で、動き軽減でも判定時間は変わりません。Battleの画面外中断はFIELDへ戻して明示します。Combatの軽減途中切替は演出を取消し結果を保持します。Coinの自動デモ/Replayは無加点、COLLECTまたはコイン操作でResetごとに1回100点を獲得します。得点は同期確定、軌道は補助演出です。[設計・検証範囲](docs/maintenance/waapi-game-stage1-20261025.md)。
+
+### Menu / Coin 観察モード（Stage 2A）
+対象2カードの「観察モードを開く」で、本体とは独立したプレビューを操作します。再生／再開は停止位置から、最初から再生は0msから。一時停止、前後1000/60msの仮想ステップ、時間スライダーで途中・終了後の巻戻しを観察できます。これは実ディスプレイの60Hz保証ではありません。表示は0〜durationに制限した観察位置、取得したnative currentTime（小数2桁、nullは未取得）、controller状態と実Animation.playStateを分けます。一時停止は入力時のnative時刻を固定し、pending中の進行で停止位置が変わらないようにします。状態確定後のcontroller finishedは観察位置の終端を表すため、native playStateがpausedでも両者は矛盾しません。
+
+Menuは独立CONTINUE→SETTINGS移動をease-out／linearで比較。本体の選択は変わりません。Coinの終点到達は加点ではなく、通常COLLECTだけがResetごと1回100点を確定します。獲得済み状態はモード往復でも維持します。「観察位置を先頭へ」は観察だけを戻し、本体のResetとは別です。
+
+画面外・タブ非表示・閉室・モード終了では観察演出を取消します。画面外・タブ非表示からの復帰は停止した位置で待機し、自動再開しません。観察モード終了・閉室・検索による除去は観察を破棄し、次の観察は0msから停止状態で始まります。動き低減中は連続再生を無効化し、手動seek／コマ送りで確認できます。幅や文字寸法変更でも保持時間で再構成・停止します。WAAPI非対応は利用不能と表示します。[設計と検証範囲](docs/maintenance/waapi-game-stage2a-20261025.md)。
+
+
+2026-10-26 追加検証による補足：一度観察した通常Coinは、そのカードが閉室などで破棄されるまで自動デモを再開せず、Replay/COLLECTで再生します。Resetも自動再生を復活させません。閉室再開は従来どおり選択・得点を初期化します。追加検証時点では、観察から通常へ戻った後のCoinで、Replay/COLLECT途中の動き低減ONが旧Animationを取消さない問題を独立再現しました（得点は維持）。当時の未修正判定は、[追加検証・マージ判断](docs/maintenance/stage2a-verification-20261026/README.md)を参照してください。
+
+2026-10-26 N2修復：通常Coinの低減ON取消を自動デモの許可条件から分離しました。観察後の自動再生抑止、Replay無加点、COLLECTのResetごと1回100点、明示操作の低減用表示は保持します。Q1のgallery試験は問い合わせ範囲と独立した検証責務を整理し、5000ms・既存期待値を維持しています。ただし反復全checkでtimeoutが残るためQ1は未解決P2、総合PARTIAL・マージ推奨NOです。[修復の証拠・品質ゲート・保証範囲](docs/maintenance/stage2a-repair-20261026/README.md)。
+
+### Stage 2A Q1追加調査の回収範囲（2026-10-27）
+
+[回収できた全check集計と未提出資料の境界](docs/maintenance/stage2a-q1-recovery-20261027/README.md)を追記しました。旧調査は既定3回・worker1 2回すべてFAILでQ1未解決です。クラウド作業領域消失後に旧集計1件のみハッシュ一致で回収し、未提出テスト改善は反映していません。今回の文書提出を製品修正・GUI成功と扱わず、PARTIAL／マージNOを維持します。
+
+### Stage 2A-Q1 現行コードの再検証（2026-10-27）
+
+[新規baseline・限定診断・最終反復・PR品質CI](docs/maintenance/stage2a-q1-reestablish-20261027/README.md)を追加しました。現行179件のbaselineと最終各5回は全成功ですが、旧timeoutの共通根因は未特定です。製品・正式テストを推測修正せず、専用PR CIを整備しました。非再現を根治とはせず、保証境界を残してPARTIAL／マージNO／Stage2B HOLDを維持します。
+
+Stage 2A受入の先行判定と検証記録: [2026-10-29 品質ゲート](docs/maintenance/stage2a-acceptance-20261029/README.md)（HOLD、現行ブラウザ経路の証拠不足）。
+
+Stage 2Aの後続検証: [修正・新条件と証拠](docs/maintenance/stage2a-final-acceptance-20261029/README.md)（対象条件の受入はGO候補。最終HEADのCIと人間の判断は [PR #36](https://github.com/tetsujisugimori-coder/Loading-museum/pull/36) を参照）。

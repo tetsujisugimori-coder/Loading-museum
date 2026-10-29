@@ -1,0 +1,65 @@
+import { afterEach, __clock, __mark } from './runtime-profile';
+// @vitest-environment jsdom
+
+import { cleanup, render, screen } from "./runtime-profile";
+import userEvent from "@testing-library/user-event";
+import { describe, expect, it } from "vitest";
+
+import { ChoiceDemo } from "../app/components/MacintoshBirthExhibitRoom";
+import { SYSTEM_1_TO_6_CHOICES } from "../app/components/macintosh-interaction-state";
+
+const labels = SYSTEM_1_TO_6_CHOICES.map((choice) => choice.label);
+const notes = SYSTEM_1_TO_6_CHOICES.map((choice) => choice.note);
+
+afterEach(cleanup);
+
+function expectSystem(number: 1 | 5 | 6) {
+  const choice = SYSTEM_1_TO_6_CHOICES[number - 1];
+  expect(screen.getByRole("button", { name: choice.label }).getAttribute("aria-pressed")).toBe("true");
+  const output = screen.getByRole("status");
+  expect(output.textContent).toContain(choice.label);
+  expect(output.textContent).toContain(choice.year);
+  expect(output.textContent).toContain(choice.note);
+  expect(screen.getByRole("img", { name: `${choice.label}の簡略プレビュー` }).getAttribute("data-system")).toBe(choice.label);
+}
+
+describe("System 1〜6の操作回帰", () => {
+  it("クリックでSystem 1→5→6→1→6を連続して切り替える", async () => {
+    const user = userEvent.setup();
+    render(<ChoiceDemo labels={labels} note={notes} />);
+
+    expectSystem(1);
+    for (const number of [5, 6, 1, 6] as const) {
+const __start32 = __clock();
+      await user.click(screen.getByRole("button", { name: `System ${number}` }));
+__mark("existing-await-line:32", __start32);
+      expectSystem(number);
+    }
+  });
+
+  it("Tab→EnterとTab→SpaceでSystem 5／6を切り替える", async () => {
+    const user = userEvent.setup();
+    render(<ChoiceDemo labels={labels} note={notes} />);
+
+const __start41 = __clock();
+    await user.click(screen.getByRole("button", { name: "System 4" }));
+__mark("existing-await-line:41", __start41);
+const __start42 = __clock();
+    await user.tab();
+__mark("existing-await-line:42", __start42);
+    expect(document.activeElement).toBe(screen.getByRole("button", { name: "System 5" }));
+const __start44 = __clock();
+    await user.keyboard("{Enter}");
+__mark("existing-await-line:44", __start44);
+    expectSystem(5);
+
+const __start47 = __clock();
+    await user.tab();
+__mark("existing-await-line:47", __start47);
+    expect(document.activeElement).toBe(screen.getByRole("button", { name: "System 6" }));
+const __start49 = __clock();
+    await user.keyboard(" ");
+__mark("existing-await-line:49", __start49);
+    expectSystem(6);
+  });
+});

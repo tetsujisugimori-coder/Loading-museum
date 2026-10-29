@@ -1,0 +1,67 @@
+[
+  {
+    "path": "docs/maintenance/stage2a-repair-20261026/native/baseline.json.gz",
+    "gzip_sha256": "77b2b48975cc7d3a3033dc12c55626ffe0c2847897911705d15af2d00a192b01",
+    "raw_sha256": "9be89afe5feaf9214a5046ab7ac397f0e407759838e769a3219cf81fb98b19c6",
+    "raw_bytes": 2952830,
+    "top_level_keys": [
+      "startedAt",
+      "mode",
+      "source",
+      "build",
+      "conditions",
+      "negativeControls",
+      "finishedAt"
+    ],
+    "conditions": 6,
+    "secret_pattern_matches": 0,
+    "sensitive_keys": [],
+    "url_values": []
+  },
+  {
+    "path": "docs/maintenance/stage2a-repair-20261026/native/baseline-v3.json.gz",
+    "gzip_sha256": "a92a86304ae8d3ba302b7d38cded2b0852e5ab5f726a3899854f4fc83cba8f1f",
+    "raw_sha256": "e917ebfbaf00575706d610a74acfb2466dabd1306c5c50b5b4693d138cfc3849",
+    "raw_bytes": 4882547,
+    "top_level_keys": [
+      "startedAt",
+      "mode",
+      "source",
+      "build",
+      "conditions",
+      "scriptSha256",
+      "sourceHead",
+      "playwrightVersion",
+      "positiveControl",
+      "negativeControls",
+      "finishedAt"
+    ],
+    "conditions": 6,
+    "secret_pattern_matches": 0,
+    "sensitive_keys": [],
+    "url_values": []
+  },
+  {
+    "path": "docs/maintenance/stage2a-repair-20261026/native/repaired.json.gz",
+    "gzip_sha256": "9f2483f8dc4505bed5958bd0ac3010e34fc2ee6c528e83be1d37143272851593",
+    "raw_sha256": "beb30221a8ffe9f87b65fe07fc73674f2ddbe98980f52a35686181902084e2d8",
+    "raw_bytes": 4823946,
+    "top_level_keys": [
+      "startedAt",
+      "mode",
+      "source",
+      "build",
+      "conditions",
+      "scriptSha256",
+      "sourceHead",
+      "playwrightVersion",
+      "positiveControl",
+      "negativeControls",
+      "finishedAt"
+    ],
+    "conditions": 6,
+    "secret_pattern_matches": 0,
+    "sensitive_keys": [],
+    "url_values": []
+  }
+]

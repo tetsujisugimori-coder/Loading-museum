@@ -1,0 +1,4304 @@
+[
+  {
+    "repeat": 0,
+    "preScrollWaitMs": 0,
+    "samples": [
+      {
+        "label": "before scroll",
+        "clock": 10983,
+        "old": {
+          "time": 0,
+          "state": "running",
+          "pending": true
+        },
+        "dom": [
+          {
+            "time": 0,
+            "state": "running",
+            "pending": true
+          }
+        ],
+        "selection": "▶COLLECTION",
+        "io": [
+          {
+            "clock": 3720,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 3721,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 3721,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 5401,
+            "entries": [
+              {
+                "id": "fade-in",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3690
+              },
+              {
+                "id": "fade-out",
+                "intersecting": false,
+                "top": 3703,
+                "bottom": 4201
+              },
+              {
+                "id": "slide-in-left",
+                "intersecting": false,
+                "top": 4214,
+                "bottom": 4699
+              },
+              {
+                "id": "slide-out-right",
+                "intersecting": false,
+                "top": 4712,
+                "bottom": 5197
+              },
+              {
+                "id": "scale-pop",
+                "intersecting": false,
+                "top": 5210,
+                "bottom": 5695
+              },
+              {
+                "id": "bounce",
+                "intersecting": false,
+                "top": 5708,
+                "bottom": 6193
+              },
+              {
+                "id": "shake",
+                "intersecting": false,
+                "top": 6206,
+                "bottom": 6691
+              },
+              {
+                "id": "button-press",
+                "intersecting": false,
+                "top": 6704,
+                "bottom": 7177
+              },
+              {
+                "id": "modal-open-close",
+                "intersecting": false,
+                "top": 7190,
+                "bottom": 7675
+              },
+              {
+                "id": "toast-enter-exit",
+                "intersecting": false,
+                "top": 7688,
+                "bottom": 8173
+              },
+              {
+                "id": "toggle-switch",
+                "intersecting": false,
+                "top": 8186,
+                "bottom": 8657
+              },
+              {
+                "id": "typewriter",
+                "intersecting": false,
+                "top": 8670,
+                "bottom": 9170
+              },
+              {
+                "id": "character-by-character",
+                "intersecting": false,
+                "top": 9183,
+                "bottom": 9668
+              },
+              {
+                "id": "counter-roll",
+                "intersecting": false,
+                "top": 9681,
+                "bottom": 10166
+              },
+              {
+                "id": "cursor-blink",
+                "intersecting": false,
+                "top": 10179,
+                "bottom": 10664
+              },
+              {
+                "id": "classic-mac-watch",
+                "intersecting": false,
+                "top": 10677,
+                "bottom": 11162
+              },
+              {
+                "id": "dock-bounce",
+                "intersecting": false,
+                "top": 11175,
+                "bottom": 11660
+              },
+              {
+                "id": "geometric-formation",
+                "intersecting": false,
+                "top": 11673,
+                "bottom": 12158
+              },
+              {
+                "id": "web-1990s-marquee",
+                "intersecting": false,
+                "top": 12171,
+                "bottom": 12656
+              },
+              {
+                "id": "treasure-chest-open",
+                "intersecting": false,
+                "top": 12669,
+                "bottom": 13154
+              },
+              {
+                "id": "rhythm-judgement",
+                "intersecting": false,
+                "top": 13167,
+                "bottom": 13698
+              },
+              {
+                "id": "coin-pickup-arc",
+                "intersecting": false,
+                "top": 13711,
+                "bottom": 14418
+              },
+              {
+                "id": "combo-counter",
+                "intersecting": false,
+                "top": 14431,
+                "bottom": 14916
+              },
+              {
+                "id": "hp-damage-heal",
+                "intersecting": false,
+                "top": 14929,
+                "bottom": 15429
+              },
+              {
+                "id": "boss-entrance",
+                "intersecting": false,
+                "top": 15442,
+                "bottom": 15927
+              },
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 15940,
+                "bottom": 16472
+              },
+              {
+                "id": "card-deal-shuffle",
+                "intersecting": false,
+                "top": 16485,
+                "bottom": 17077
+              },
+              {
+                "id": "combat-damage-feedback",
+                "intersecting": false,
+                "top": 17090,
+                "bottom": 17676
+              },
+              {
+                "id": "reward-reveal-lab",
+                "intersecting": false,
+                "top": 17689,
+                "bottom": 18263
+              },
+              {
+                "id": "hit-stop-knockback",
+                "intersecting": false,
+                "top": 18276,
+                "bottom": 18804
+              },
+              {
+                "id": "perfect-parry",
+                "intersecting": false,
+                "top": 18817,
+                "bottom": 19492
+              },
+              {
+                "id": "dodge-afterimage",
+                "intersecting": false,
+                "top": 19505,
+                "bottom": 20226
+              },
+              {
+                "id": "falling-block-line-clear",
+                "intersecting": false,
+                "top": 20239,
+                "bottom": 20916
+              },
+              {
+                "id": "match-3-cascade",
+                "intersecting": false,
+                "top": 20929,
+                "bottom": 21816
+              },
+              {
+                "id": "pinball-bumper-hit",
+                "intersecting": false,
+                "top": 21829,
+                "bottom": 22357
+              },
+              {
+                "id": "lock-on-reticle",
+                "intersecting": false,
+                "top": 22370,
+                "bottom": 22898
+              },
+              {
+                "id": "inventory-equip-snap",
+                "intersecting": false,
+                "top": 22911,
+                "bottom": 23439
+              },
+              {
+                "id": "status-effect-lab",
+                "intersecting": false,
+                "top": 23452,
+                "bottom": 24038
+              },
+              {
+                "id": "turn-order-reflow",
+                "intersecting": false,
+                "top": 24051,
+                "bottom": 24625
+              },
+              {
+                "id": "battle-transition",
+                "intersecting": false,
+                "top": 24638,
+                "bottom": 25317
+              },
+              {
+                "id": "race-countdown-launch",
+                "intersecting": false,
+                "top": 25330,
+                "bottom": 25870
+              },
+              {
+                "id": "ai-modular-thought-blocks",
+                "intersecting": false,
+                "top": 25883,
+                "bottom": 26481
+              },
+              {
+                "id": "ai-ribbon-assembly",
+                "intersecting": false,
+                "top": 26494,
+                "bottom": 27077
+              },
+              {
+                "id": "ai-code-companion",
+                "intersecting": false,
+                "top": 27090,
+                "bottom": 27688
+              },
+              {
+                "id": "ai-sparkle-reasoning",
+                "intersecting": false,
+                "top": 27701,
+                "bottom": 28314
+              },
+              {
+                "id": "ai-warm-thought-pulse",
+                "intersecting": false,
+                "top": 28327,
+                "bottom": 28940
+              },
+              {
+                "id": "ai-answer-weave",
+                "intersecting": false,
+                "top": 28953,
+                "bottom": 29566
+              }
+            ]
+          },
+          {
+            "clock": 6590,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3737
+              }
+            ]
+          },
+          {
+            "clock": 7813,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": true,
+                "top": 184,
+                "bottom": 716
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "100ms after scroll",
+        "clock": 11089,
+        "old": {
+          "time": null,
+          "state": "idle",
+          "pending": false
+        },
+        "dom": [],
+        "selection": "▶COLLECTION",
+        "io": [
+          {
+            "clock": 3721,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 3721,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 5401,
+            "entries": [
+              {
+                "id": "fade-in",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3690
+              },
+              {
+                "id": "fade-out",
+                "intersecting": false,
+                "top": 3703,
+                "bottom": 4201
+              },
+              {
+                "id": "slide-in-left",
+                "intersecting": false,
+                "top": 4214,
+                "bottom": 4699
+              },
+              {
+                "id": "slide-out-right",
+                "intersecting": false,
+                "top": 4712,
+                "bottom": 5197
+              },
+              {
+                "id": "scale-pop",
+                "intersecting": false,
+                "top": 5210,
+                "bottom": 5695
+              },
+              {
+                "id": "bounce",
+                "intersecting": false,
+                "top": 5708,
+                "bottom": 6193
+              },
+              {
+                "id": "shake",
+                "intersecting": false,
+                "top": 6206,
+                "bottom": 6691
+              },
+              {
+                "id": "button-press",
+                "intersecting": false,
+                "top": 6704,
+                "bottom": 7177
+              },
+              {
+                "id": "modal-open-close",
+                "intersecting": false,
+                "top": 7190,
+                "bottom": 7675
+              },
+              {
+                "id": "toast-enter-exit",
+                "intersecting": false,
+                "top": 7688,
+                "bottom": 8173
+              },
+              {
+                "id": "toggle-switch",
+                "intersecting": false,
+                "top": 8186,
+                "bottom": 8657
+              },
+              {
+                "id": "typewriter",
+                "intersecting": false,
+                "top": 8670,
+                "bottom": 9170
+              },
+              {
+                "id": "character-by-character",
+                "intersecting": false,
+                "top": 9183,
+                "bottom": 9668
+              },
+              {
+                "id": "counter-roll",
+                "intersecting": false,
+                "top": 9681,
+                "bottom": 10166
+              },
+              {
+                "id": "cursor-blink",
+                "intersecting": false,
+                "top": 10179,
+                "bottom": 10664
+              },
+              {
+                "id": "classic-mac-watch",
+                "intersecting": false,
+                "top": 10677,
+                "bottom": 11162
+              },
+              {
+                "id": "dock-bounce",
+                "intersecting": false,
+                "top": 11175,
+                "bottom": 11660
+              },
+              {
+                "id": "geometric-formation",
+                "intersecting": false,
+                "top": 11673,
+                "bottom": 12158
+              },
+              {
+                "id": "web-1990s-marquee",
+                "intersecting": false,
+                "top": 12171,
+                "bottom": 12656
+              },
+              {
+                "id": "treasure-chest-open",
+                "intersecting": false,
+                "top": 12669,
+                "bottom": 13154
+              },
+              {
+                "id": "rhythm-judgement",
+                "intersecting": false,
+                "top": 13167,
+                "bottom": 13698
+              },
+              {
+                "id": "coin-pickup-arc",
+                "intersecting": false,
+                "top": 13711,
+                "bottom": 14418
+              },
+              {
+                "id": "combo-counter",
+                "intersecting": false,
+                "top": 14431,
+                "bottom": 14916
+              },
+              {
+                "id": "hp-damage-heal",
+                "intersecting": false,
+                "top": 14929,
+                "bottom": 15429
+              },
+              {
+                "id": "boss-entrance",
+                "intersecting": false,
+                "top": 15442,
+                "bottom": 15927
+              },
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 15940,
+                "bottom": 16472
+              },
+              {
+                "id": "card-deal-shuffle",
+                "intersecting": false,
+                "top": 16485,
+                "bottom": 17077
+              },
+              {
+                "id": "combat-damage-feedback",
+                "intersecting": false,
+                "top": 17090,
+                "bottom": 17676
+              },
+              {
+                "id": "reward-reveal-lab",
+                "intersecting": false,
+                "top": 17689,
+                "bottom": 18263
+              },
+              {
+                "id": "hit-stop-knockback",
+                "intersecting": false,
+                "top": 18276,
+                "bottom": 18804
+              },
+              {
+                "id": "perfect-parry",
+                "intersecting": false,
+                "top": 18817,
+                "bottom": 19492
+              },
+              {
+                "id": "dodge-afterimage",
+                "intersecting": false,
+                "top": 19505,
+                "bottom": 20226
+              },
+              {
+                "id": "falling-block-line-clear",
+                "intersecting": false,
+                "top": 20239,
+                "bottom": 20916
+              },
+              {
+                "id": "match-3-cascade",
+                "intersecting": false,
+                "top": 20929,
+                "bottom": 21816
+              },
+              {
+                "id": "pinball-bumper-hit",
+                "intersecting": false,
+                "top": 21829,
+                "bottom": 22357
+              },
+              {
+                "id": "lock-on-reticle",
+                "intersecting": false,
+                "top": 22370,
+                "bottom": 22898
+              },
+              {
+                "id": "inventory-equip-snap",
+                "intersecting": false,
+                "top": 22911,
+                "bottom": 23439
+              },
+              {
+                "id": "status-effect-lab",
+                "intersecting": false,
+                "top": 23452,
+                "bottom": 24038
+              },
+              {
+                "id": "turn-order-reflow",
+                "intersecting": false,
+                "top": 24051,
+                "bottom": 24625
+              },
+              {
+                "id": "battle-transition",
+                "intersecting": false,
+                "top": 24638,
+                "bottom": 25317
+              },
+              {
+                "id": "race-countdown-launch",
+                "intersecting": false,
+                "top": 25330,
+                "bottom": 25870
+              },
+              {
+                "id": "ai-modular-thought-blocks",
+                "intersecting": false,
+                "top": 25883,
+                "bottom": 26481
+              },
+              {
+                "id": "ai-ribbon-assembly",
+                "intersecting": false,
+                "top": 26494,
+                "bottom": 27077
+              },
+              {
+                "id": "ai-code-companion",
+                "intersecting": false,
+                "top": 27090,
+                "bottom": 27688
+              },
+              {
+                "id": "ai-sparkle-reasoning",
+                "intersecting": false,
+                "top": 27701,
+                "bottom": 28314
+              },
+              {
+                "id": "ai-warm-thought-pulse",
+                "intersecting": false,
+                "top": 28327,
+                "bottom": 28940
+              },
+              {
+                "id": "ai-answer-weave",
+                "intersecting": false,
+                "top": 28953,
+                "bottom": 29566
+              }
+            ]
+          },
+          {
+            "clock": 6590,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3737
+              }
+            ]
+          },
+          {
+            "clock": 7813,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": true,
+                "top": 184,
+                "bottom": 716
+              }
+            ]
+          },
+          {
+            "clock": 11025,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 5287,
+                "bottom": 5819
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "300ms after scroll",
+        "clock": 11310,
+        "old": {
+          "time": null,
+          "state": "idle",
+          "pending": false
+        },
+        "dom": [],
+        "selection": "▶COLLECTION",
+        "io": [
+          {
+            "clock": 3721,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 3721,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 5401,
+            "entries": [
+              {
+                "id": "fade-in",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3690
+              },
+              {
+                "id": "fade-out",
+                "intersecting": false,
+                "top": 3703,
+                "bottom": 4201
+              },
+              {
+                "id": "slide-in-left",
+                "intersecting": false,
+                "top": 4214,
+                "bottom": 4699
+              },
+              {
+                "id": "slide-out-right",
+                "intersecting": false,
+                "top": 4712,
+                "bottom": 5197
+              },
+              {
+                "id": "scale-pop",
+                "intersecting": false,
+                "top": 5210,
+                "bottom": 5695
+              },
+              {
+                "id": "bounce",
+                "intersecting": false,
+                "top": 5708,
+                "bottom": 6193
+              },
+              {
+                "id": "shake",
+                "intersecting": false,
+                "top": 6206,
+                "bottom": 6691
+              },
+              {
+                "id": "button-press",
+                "intersecting": false,
+                "top": 6704,
+                "bottom": 7177
+              },
+              {
+                "id": "modal-open-close",
+                "intersecting": false,
+                "top": 7190,
+                "bottom": 7675
+              },
+              {
+                "id": "toast-enter-exit",
+                "intersecting": false,
+                "top": 7688,
+                "bottom": 8173
+              },
+              {
+                "id": "toggle-switch",
+                "intersecting": false,
+                "top": 8186,
+                "bottom": 8657
+              },
+              {
+                "id": "typewriter",
+                "intersecting": false,
+                "top": 8670,
+                "bottom": 9170
+              },
+              {
+                "id": "character-by-character",
+                "intersecting": false,
+                "top": 9183,
+                "bottom": 9668
+              },
+              {
+                "id": "counter-roll",
+                "intersecting": false,
+                "top": 9681,
+                "bottom": 10166
+              },
+              {
+                "id": "cursor-blink",
+                "intersecting": false,
+                "top": 10179,
+                "bottom": 10664
+              },
+              {
+                "id": "classic-mac-watch",
+                "intersecting": false,
+                "top": 10677,
+                "bottom": 11162
+              },
+              {
+                "id": "dock-bounce",
+                "intersecting": false,
+                "top": 11175,
+                "bottom": 11660
+              },
+              {
+                "id": "geometric-formation",
+                "intersecting": false,
+                "top": 11673,
+                "bottom": 12158
+              },
+              {
+                "id": "web-1990s-marquee",
+                "intersecting": false,
+                "top": 12171,
+                "bottom": 12656
+              },
+              {
+                "id": "treasure-chest-open",
+                "intersecting": false,
+                "top": 12669,
+                "bottom": 13154
+              },
+              {
+                "id": "rhythm-judgement",
+                "intersecting": false,
+                "top": 13167,
+                "bottom": 13698
+              },
+              {
+                "id": "coin-pickup-arc",
+                "intersecting": false,
+                "top": 13711,
+                "bottom": 14418
+              },
+              {
+                "id": "combo-counter",
+                "intersecting": false,
+                "top": 14431,
+                "bottom": 14916
+              },
+              {
+                "id": "hp-damage-heal",
+                "intersecting": false,
+                "top": 14929,
+                "bottom": 15429
+              },
+              {
+                "id": "boss-entrance",
+                "intersecting": false,
+                "top": 15442,
+                "bottom": 15927
+              },
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 15940,
+                "bottom": 16472
+              },
+              {
+                "id": "card-deal-shuffle",
+                "intersecting": false,
+                "top": 16485,
+                "bottom": 17077
+              },
+              {
+                "id": "combat-damage-feedback",
+                "intersecting": false,
+                "top": 17090,
+                "bottom": 17676
+              },
+              {
+                "id": "reward-reveal-lab",
+                "intersecting": false,
+                "top": 17689,
+                "bottom": 18263
+              },
+              {
+                "id": "hit-stop-knockback",
+                "intersecting": false,
+                "top": 18276,
+                "bottom": 18804
+              },
+              {
+                "id": "perfect-parry",
+                "intersecting": false,
+                "top": 18817,
+                "bottom": 19492
+              },
+              {
+                "id": "dodge-afterimage",
+                "intersecting": false,
+                "top": 19505,
+                "bottom": 20226
+              },
+              {
+                "id": "falling-block-line-clear",
+                "intersecting": false,
+                "top": 20239,
+                "bottom": 20916
+              },
+              {
+                "id": "match-3-cascade",
+                "intersecting": false,
+                "top": 20929,
+                "bottom": 21816
+              },
+              {
+                "id": "pinball-bumper-hit",
+                "intersecting": false,
+                "top": 21829,
+                "bottom": 22357
+              },
+              {
+                "id": "lock-on-reticle",
+                "intersecting": false,
+                "top": 22370,
+                "bottom": 22898
+              },
+              {
+                "id": "inventory-equip-snap",
+                "intersecting": false,
+                "top": 22911,
+                "bottom": 23439
+              },
+              {
+                "id": "status-effect-lab",
+                "intersecting": false,
+                "top": 23452,
+                "bottom": 24038
+              },
+              {
+                "id": "turn-order-reflow",
+                "intersecting": false,
+                "top": 24051,
+                "bottom": 24625
+              },
+              {
+                "id": "battle-transition",
+                "intersecting": false,
+                "top": 24638,
+                "bottom": 25317
+              },
+              {
+                "id": "race-countdown-launch",
+                "intersecting": false,
+                "top": 25330,
+                "bottom": 25870
+              },
+              {
+                "id": "ai-modular-thought-blocks",
+                "intersecting": false,
+                "top": 25883,
+                "bottom": 26481
+              },
+              {
+                "id": "ai-ribbon-assembly",
+                "intersecting": false,
+                "top": 26494,
+                "bottom": 27077
+              },
+              {
+                "id": "ai-code-companion",
+                "intersecting": false,
+                "top": 27090,
+                "bottom": 27688
+              },
+              {
+                "id": "ai-sparkle-reasoning",
+                "intersecting": false,
+                "top": 27701,
+                "bottom": 28314
+              },
+              {
+                "id": "ai-warm-thought-pulse",
+                "intersecting": false,
+                "top": 28327,
+                "bottom": 28940
+              },
+              {
+                "id": "ai-answer-weave",
+                "intersecting": false,
+                "top": 28953,
+                "bottom": 29566
+              }
+            ]
+          },
+          {
+            "clock": 6590,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3737
+              }
+            ]
+          },
+          {
+            "clock": 7813,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": true,
+                "top": 184,
+                "bottom": 716
+              }
+            ]
+          },
+          {
+            "clock": 11025,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 5287,
+                "bottom": 5819
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "1000ms after scroll",
+        "clock": 11995.000000000002,
+        "old": {
+          "time": null,
+          "state": "idle",
+          "pending": false
+        },
+        "dom": [],
+        "selection": "▶COLLECTION",
+        "io": [
+          {
+            "clock": 3721,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 3721,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 5401,
+            "entries": [
+              {
+                "id": "fade-in",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3690
+              },
+              {
+                "id": "fade-out",
+                "intersecting": false,
+                "top": 3703,
+                "bottom": 4201
+              },
+              {
+                "id": "slide-in-left",
+                "intersecting": false,
+                "top": 4214,
+                "bottom": 4699
+              },
+              {
+                "id": "slide-out-right",
+                "intersecting": false,
+                "top": 4712,
+                "bottom": 5197
+              },
+              {
+                "id": "scale-pop",
+                "intersecting": false,
+                "top": 5210,
+                "bottom": 5695
+              },
+              {
+                "id": "bounce",
+                "intersecting": false,
+                "top": 5708,
+                "bottom": 6193
+              },
+              {
+                "id": "shake",
+                "intersecting": false,
+                "top": 6206,
+                "bottom": 6691
+              },
+              {
+                "id": "button-press",
+                "intersecting": false,
+                "top": 6704,
+                "bottom": 7177
+              },
+              {
+                "id": "modal-open-close",
+                "intersecting": false,
+                "top": 7190,
+                "bottom": 7675
+              },
+              {
+                "id": "toast-enter-exit",
+                "intersecting": false,
+                "top": 7688,
+                "bottom": 8173
+              },
+              {
+                "id": "toggle-switch",
+                "intersecting": false,
+                "top": 8186,
+                "bottom": 8657
+              },
+              {
+                "id": "typewriter",
+                "intersecting": false,
+                "top": 8670,
+                "bottom": 9170
+              },
+              {
+                "id": "character-by-character",
+                "intersecting": false,
+                "top": 9183,
+                "bottom": 9668
+              },
+              {
+                "id": "counter-roll",
+                "intersecting": false,
+                "top": 9681,
+                "bottom": 10166
+              },
+              {
+                "id": "cursor-blink",
+                "intersecting": false,
+                "top": 10179,
+                "bottom": 10664
+              },
+              {
+                "id": "classic-mac-watch",
+                "intersecting": false,
+                "top": 10677,
+                "bottom": 11162
+              },
+              {
+                "id": "dock-bounce",
+                "intersecting": false,
+                "top": 11175,
+                "bottom": 11660
+              },
+              {
+                "id": "geometric-formation",
+                "intersecting": false,
+                "top": 11673,
+                "bottom": 12158
+              },
+              {
+                "id": "web-1990s-marquee",
+                "intersecting": false,
+                "top": 12171,
+                "bottom": 12656
+              },
+              {
+                "id": "treasure-chest-open",
+                "intersecting": false,
+                "top": 12669,
+                "bottom": 13154
+              },
+              {
+                "id": "rhythm-judgement",
+                "intersecting": false,
+                "top": 13167,
+                "bottom": 13698
+              },
+              {
+                "id": "coin-pickup-arc",
+                "intersecting": false,
+                "top": 13711,
+                "bottom": 14418
+              },
+              {
+                "id": "combo-counter",
+                "intersecting": false,
+                "top": 14431,
+                "bottom": 14916
+              },
+              {
+                "id": "hp-damage-heal",
+                "intersecting": false,
+                "top": 14929,
+                "bottom": 15429
+              },
+              {
+                "id": "boss-entrance",
+                "intersecting": false,
+                "top": 15442,
+                "bottom": 15927
+              },
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 15940,
+                "bottom": 16472
+              },
+              {
+                "id": "card-deal-shuffle",
+                "intersecting": false,
+                "top": 16485,
+                "bottom": 17077
+              },
+              {
+                "id": "combat-damage-feedback",
+                "intersecting": false,
+                "top": 17090,
+                "bottom": 17676
+              },
+              {
+                "id": "reward-reveal-lab",
+                "intersecting": false,
+                "top": 17689,
+                "bottom": 18263
+              },
+              {
+                "id": "hit-stop-knockback",
+                "intersecting": false,
+                "top": 18276,
+                "bottom": 18804
+              },
+              {
+                "id": "perfect-parry",
+                "intersecting": false,
+                "top": 18817,
+                "bottom": 19492
+              },
+              {
+                "id": "dodge-afterimage",
+                "intersecting": false,
+                "top": 19505,
+                "bottom": 20226
+              },
+              {
+                "id": "falling-block-line-clear",
+                "intersecting": false,
+                "top": 20239,
+                "bottom": 20916
+              },
+              {
+                "id": "match-3-cascade",
+                "intersecting": false,
+                "top": 20929,
+                "bottom": 21816
+              },
+              {
+                "id": "pinball-bumper-hit",
+                "intersecting": false,
+                "top": 21829,
+                "bottom": 22357
+              },
+              {
+                "id": "lock-on-reticle",
+                "intersecting": false,
+                "top": 22370,
+                "bottom": 22898
+              },
+              {
+                "id": "inventory-equip-snap",
+                "intersecting": false,
+                "top": 22911,
+                "bottom": 23439
+              },
+              {
+                "id": "status-effect-lab",
+                "intersecting": false,
+                "top": 23452,
+                "bottom": 24038
+              },
+              {
+                "id": "turn-order-reflow",
+                "intersecting": false,
+                "top": 24051,
+                "bottom": 24625
+              },
+              {
+                "id": "battle-transition",
+                "intersecting": false,
+                "top": 24638,
+                "bottom": 25317
+              },
+              {
+                "id": "race-countdown-launch",
+                "intersecting": false,
+                "top": 25330,
+                "bottom": 25870
+              },
+              {
+                "id": "ai-modular-thought-blocks",
+                "intersecting": false,
+                "top": 25883,
+                "bottom": 26481
+              },
+              {
+                "id": "ai-ribbon-assembly",
+                "intersecting": false,
+                "top": 26494,
+                "bottom": 27077
+              },
+              {
+                "id": "ai-code-companion",
+                "intersecting": false,
+                "top": 27090,
+                "bottom": 27688
+              },
+              {
+                "id": "ai-sparkle-reasoning",
+                "intersecting": false,
+                "top": 27701,
+                "bottom": 28314
+              },
+              {
+                "id": "ai-warm-thought-pulse",
+                "intersecting": false,
+                "top": 28327,
+                "bottom": 28940
+              },
+              {
+                "id": "ai-answer-weave",
+                "intersecting": false,
+                "top": 28953,
+                "bottom": 29566
+              }
+            ]
+          },
+          {
+            "clock": 6590,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3737
+              }
+            ]
+          },
+          {
+            "clock": 7813,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": true,
+                "top": 184,
+                "bottom": 716
+              }
+            ]
+          },
+          {
+            "clock": 11025,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 5287,
+                "bottom": 5819
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "repeat": 1,
+    "preScrollWaitMs": 0,
+    "samples": [
+      {
+        "label": "before scroll",
+        "clock": 14861,
+        "old": {
+          "time": 156,
+          "state": "running",
+          "pending": false
+        },
+        "dom": [
+          {
+            "time": 156,
+            "state": "running",
+            "pending": false
+          }
+        ],
+        "selection": "▶COLLECTION",
+        "io": [
+          {
+            "clock": 5370,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 5370,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 5370,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 8345,
+            "entries": [
+              {
+                "id": "fade-in",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3690
+              },
+              {
+                "id": "fade-out",
+                "intersecting": false,
+                "top": 3703,
+                "bottom": 4201
+              },
+              {
+                "id": "slide-in-left",
+                "intersecting": false,
+                "top": 4214,
+                "bottom": 4699
+              },
+              {
+                "id": "slide-out-right",
+                "intersecting": false,
+                "top": 4712,
+                "bottom": 5197
+              },
+              {
+                "id": "scale-pop",
+                "intersecting": false,
+                "top": 5210,
+                "bottom": 5695
+              },
+              {
+                "id": "bounce",
+                "intersecting": false,
+                "top": 5708,
+                "bottom": 6193
+              },
+              {
+                "id": "shake",
+                "intersecting": false,
+                "top": 6206,
+                "bottom": 6691
+              },
+              {
+                "id": "button-press",
+                "intersecting": false,
+                "top": 6704,
+                "bottom": 7177
+              },
+              {
+                "id": "modal-open-close",
+                "intersecting": false,
+                "top": 7190,
+                "bottom": 7675
+              },
+              {
+                "id": "toast-enter-exit",
+                "intersecting": false,
+                "top": 7688,
+                "bottom": 8173
+              },
+              {
+                "id": "toggle-switch",
+                "intersecting": false,
+                "top": 8186,
+                "bottom": 8657
+              },
+              {
+                "id": "typewriter",
+                "intersecting": false,
+                "top": 8670,
+                "bottom": 9170
+              },
+              {
+                "id": "character-by-character",
+                "intersecting": false,
+                "top": 9183,
+                "bottom": 9668
+              },
+              {
+                "id": "counter-roll",
+                "intersecting": false,
+                "top": 9681,
+                "bottom": 10166
+              },
+              {
+                "id": "cursor-blink",
+                "intersecting": false,
+                "top": 10179,
+                "bottom": 10664
+              },
+              {
+                "id": "classic-mac-watch",
+                "intersecting": false,
+                "top": 10677,
+                "bottom": 11162
+              },
+              {
+                "id": "dock-bounce",
+                "intersecting": false,
+                "top": 11175,
+                "bottom": 11660
+              },
+              {
+                "id": "geometric-formation",
+                "intersecting": false,
+                "top": 11673,
+                "bottom": 12158
+              },
+              {
+                "id": "web-1990s-marquee",
+                "intersecting": false,
+                "top": 12171,
+                "bottom": 12656
+              },
+              {
+                "id": "treasure-chest-open",
+                "intersecting": false,
+                "top": 12669,
+                "bottom": 13154
+              },
+              {
+                "id": "rhythm-judgement",
+                "intersecting": false,
+                "top": 13167,
+                "bottom": 13698
+              },
+              {
+                "id": "coin-pickup-arc",
+                "intersecting": false,
+                "top": 13711,
+                "bottom": 14418
+              },
+              {
+                "id": "combo-counter",
+                "intersecting": false,
+                "top": 14431,
+                "bottom": 14916
+              },
+              {
+                "id": "hp-damage-heal",
+                "intersecting": false,
+                "top": 14929,
+                "bottom": 15429
+              },
+              {
+                "id": "boss-entrance",
+                "intersecting": false,
+                "top": 15442,
+                "bottom": 15927
+              },
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 15940,
+                "bottom": 16472
+              },
+              {
+                "id": "card-deal-shuffle",
+                "intersecting": false,
+                "top": 16485,
+                "bottom": 17077
+              },
+              {
+                "id": "combat-damage-feedback",
+                "intersecting": false,
+                "top": 17090,
+                "bottom": 17676
+              },
+              {
+                "id": "reward-reveal-lab",
+                "intersecting": false,
+                "top": 17689,
+                "bottom": 18263
+              },
+              {
+                "id": "hit-stop-knockback",
+                "intersecting": false,
+                "top": 18276,
+                "bottom": 18804
+              },
+              {
+                "id": "perfect-parry",
+                "intersecting": false,
+                "top": 18817,
+                "bottom": 19492
+              },
+              {
+                "id": "dodge-afterimage",
+                "intersecting": false,
+                "top": 19505,
+                "bottom": 20226
+              },
+              {
+                "id": "falling-block-line-clear",
+                "intersecting": false,
+                "top": 20239,
+                "bottom": 20916
+              },
+              {
+                "id": "match-3-cascade",
+                "intersecting": false,
+                "top": 20929,
+                "bottom": 21816
+              },
+              {
+                "id": "pinball-bumper-hit",
+                "intersecting": false,
+                "top": 21829,
+                "bottom": 22357
+              },
+              {
+                "id": "lock-on-reticle",
+                "intersecting": false,
+                "top": 22370,
+                "bottom": 22898
+              },
+              {
+                "id": "inventory-equip-snap",
+                "intersecting": false,
+                "top": 22911,
+                "bottom": 23439
+              },
+              {
+                "id": "status-effect-lab",
+                "intersecting": false,
+                "top": 23452,
+                "bottom": 24038
+              },
+              {
+                "id": "turn-order-reflow",
+                "intersecting": false,
+                "top": 24051,
+                "bottom": 24625
+              },
+              {
+                "id": "battle-transition",
+                "intersecting": false,
+                "top": 24638,
+                "bottom": 25317
+              },
+              {
+                "id": "race-countdown-launch",
+                "intersecting": false,
+                "top": 25330,
+                "bottom": 25870
+              },
+              {
+                "id": "ai-modular-thought-blocks",
+                "intersecting": false,
+                "top": 25883,
+                "bottom": 26481
+              },
+              {
+                "id": "ai-ribbon-assembly",
+                "intersecting": false,
+                "top": 26494,
+                "bottom": 27077
+              },
+              {
+                "id": "ai-code-companion",
+                "intersecting": false,
+                "top": 27090,
+                "bottom": 27688
+              },
+              {
+                "id": "ai-sparkle-reasoning",
+                "intersecting": false,
+                "top": 27701,
+                "bottom": 28314
+              },
+              {
+                "id": "ai-warm-thought-pulse",
+                "intersecting": false,
+                "top": 28327,
+                "bottom": 28940
+              },
+              {
+                "id": "ai-answer-weave",
+                "intersecting": false,
+                "top": 28953,
+                "bottom": 29566
+              }
+            ]
+          },
+          {
+            "clock": 9329,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3737
+              }
+            ]
+          },
+          {
+            "clock": 11151,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": true,
+                "top": 184,
+                "bottom": 716
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "100ms after scroll",
+        "clock": 14967,
+        "old": {
+          "time": null,
+          "state": "idle",
+          "pending": false
+        },
+        "dom": [],
+        "selection": "▶COLLECTION",
+        "io": [
+          {
+            "clock": 5370,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 5370,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 8345,
+            "entries": [
+              {
+                "id": "fade-in",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3690
+              },
+              {
+                "id": "fade-out",
+                "intersecting": false,
+                "top": 3703,
+                "bottom": 4201
+              },
+              {
+                "id": "slide-in-left",
+                "intersecting": false,
+                "top": 4214,
+                "bottom": 4699
+              },
+              {
+                "id": "slide-out-right",
+                "intersecting": false,
+                "top": 4712,
+                "bottom": 5197
+              },
+              {
+                "id": "scale-pop",
+                "intersecting": false,
+                "top": 5210,
+                "bottom": 5695
+              },
+              {
+                "id": "bounce",
+                "intersecting": false,
+                "top": 5708,
+                "bottom": 6193
+              },
+              {
+                "id": "shake",
+                "intersecting": false,
+                "top": 6206,
+                "bottom": 6691
+              },
+              {
+                "id": "button-press",
+                "intersecting": false,
+                "top": 6704,
+                "bottom": 7177
+              },
+              {
+                "id": "modal-open-close",
+                "intersecting": false,
+                "top": 7190,
+                "bottom": 7675
+              },
+              {
+                "id": "toast-enter-exit",
+                "intersecting": false,
+                "top": 7688,
+                "bottom": 8173
+              },
+              {
+                "id": "toggle-switch",
+                "intersecting": false,
+                "top": 8186,
+                "bottom": 8657
+              },
+              {
+                "id": "typewriter",
+                "intersecting": false,
+                "top": 8670,
+                "bottom": 9170
+              },
+              {
+                "id": "character-by-character",
+                "intersecting": false,
+                "top": 9183,
+                "bottom": 9668
+              },
+              {
+                "id": "counter-roll",
+                "intersecting": false,
+                "top": 9681,
+                "bottom": 10166
+              },
+              {
+                "id": "cursor-blink",
+                "intersecting": false,
+                "top": 10179,
+                "bottom": 10664
+              },
+              {
+                "id": "classic-mac-watch",
+                "intersecting": false,
+                "top": 10677,
+                "bottom": 11162
+              },
+              {
+                "id": "dock-bounce",
+                "intersecting": false,
+                "top": 11175,
+                "bottom": 11660
+              },
+              {
+                "id": "geometric-formation",
+                "intersecting": false,
+                "top": 11673,
+                "bottom": 12158
+              },
+              {
+                "id": "web-1990s-marquee",
+                "intersecting": false,
+                "top": 12171,
+                "bottom": 12656
+              },
+              {
+                "id": "treasure-chest-open",
+                "intersecting": false,
+                "top": 12669,
+                "bottom": 13154
+              },
+              {
+                "id": "rhythm-judgement",
+                "intersecting": false,
+                "top": 13167,
+                "bottom": 13698
+              },
+              {
+                "id": "coin-pickup-arc",
+                "intersecting": false,
+                "top": 13711,
+                "bottom": 14418
+              },
+              {
+                "id": "combo-counter",
+                "intersecting": false,
+                "top": 14431,
+                "bottom": 14916
+              },
+              {
+                "id": "hp-damage-heal",
+                "intersecting": false,
+                "top": 14929,
+                "bottom": 15429
+              },
+              {
+                "id": "boss-entrance",
+                "intersecting": false,
+                "top": 15442,
+                "bottom": 15927
+              },
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 15940,
+                "bottom": 16472
+              },
+              {
+                "id": "card-deal-shuffle",
+                "intersecting": false,
+                "top": 16485,
+                "bottom": 17077
+              },
+              {
+                "id": "combat-damage-feedback",
+                "intersecting": false,
+                "top": 17090,
+                "bottom": 17676
+              },
+              {
+                "id": "reward-reveal-lab",
+                "intersecting": false,
+                "top": 17689,
+                "bottom": 18263
+              },
+              {
+                "id": "hit-stop-knockback",
+                "intersecting": false,
+                "top": 18276,
+                "bottom": 18804
+              },
+              {
+                "id": "perfect-parry",
+                "intersecting": false,
+                "top": 18817,
+                "bottom": 19492
+              },
+              {
+                "id": "dodge-afterimage",
+                "intersecting": false,
+                "top": 19505,
+                "bottom": 20226
+              },
+              {
+                "id": "falling-block-line-clear",
+                "intersecting": false,
+                "top": 20239,
+                "bottom": 20916
+              },
+              {
+                "id": "match-3-cascade",
+                "intersecting": false,
+                "top": 20929,
+                "bottom": 21816
+              },
+              {
+                "id": "pinball-bumper-hit",
+                "intersecting": false,
+                "top": 21829,
+                "bottom": 22357
+              },
+              {
+                "id": "lock-on-reticle",
+                "intersecting": false,
+                "top": 22370,
+                "bottom": 22898
+              },
+              {
+                "id": "inventory-equip-snap",
+                "intersecting": false,
+                "top": 22911,
+                "bottom": 23439
+              },
+              {
+                "id": "status-effect-lab",
+                "intersecting": false,
+                "top": 23452,
+                "bottom": 24038
+              },
+              {
+                "id": "turn-order-reflow",
+                "intersecting": false,
+                "top": 24051,
+                "bottom": 24625
+              },
+              {
+                "id": "battle-transition",
+                "intersecting": false,
+                "top": 24638,
+                "bottom": 25317
+              },
+              {
+                "id": "race-countdown-launch",
+                "intersecting": false,
+                "top": 25330,
+                "bottom": 25870
+              },
+              {
+                "id": "ai-modular-thought-blocks",
+                "intersecting": false,
+                "top": 25883,
+                "bottom": 26481
+              },
+              {
+                "id": "ai-ribbon-assembly",
+                "intersecting": false,
+                "top": 26494,
+                "bottom": 27077
+              },
+              {
+                "id": "ai-code-companion",
+                "intersecting": false,
+                "top": 27090,
+                "bottom": 27688
+              },
+              {
+                "id": "ai-sparkle-reasoning",
+                "intersecting": false,
+                "top": 27701,
+                "bottom": 28314
+              },
+              {
+                "id": "ai-warm-thought-pulse",
+                "intersecting": false,
+                "top": 28327,
+                "bottom": 28940
+              },
+              {
+                "id": "ai-answer-weave",
+                "intersecting": false,
+                "top": 28953,
+                "bottom": 29566
+              }
+            ]
+          },
+          {
+            "clock": 9329,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3737
+              }
+            ]
+          },
+          {
+            "clock": 11151,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": true,
+                "top": 184,
+                "bottom": 716
+              }
+            ]
+          },
+          {
+            "clock": 14894,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 5287,
+                "bottom": 5819
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "300ms after scroll",
+        "clock": 15167,
+        "old": {
+          "time": null,
+          "state": "idle",
+          "pending": false
+        },
+        "dom": [],
+        "selection": "▶COLLECTION",
+        "io": [
+          {
+            "clock": 5370,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 5370,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 8345,
+            "entries": [
+              {
+                "id": "fade-in",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3690
+              },
+              {
+                "id": "fade-out",
+                "intersecting": false,
+                "top": 3703,
+                "bottom": 4201
+              },
+              {
+                "id": "slide-in-left",
+                "intersecting": false,
+                "top": 4214,
+                "bottom": 4699
+              },
+              {
+                "id": "slide-out-right",
+                "intersecting": false,
+                "top": 4712,
+                "bottom": 5197
+              },
+              {
+                "id": "scale-pop",
+                "intersecting": false,
+                "top": 5210,
+                "bottom": 5695
+              },
+              {
+                "id": "bounce",
+                "intersecting": false,
+                "top": 5708,
+                "bottom": 6193
+              },
+              {
+                "id": "shake",
+                "intersecting": false,
+                "top": 6206,
+                "bottom": 6691
+              },
+              {
+                "id": "button-press",
+                "intersecting": false,
+                "top": 6704,
+                "bottom": 7177
+              },
+              {
+                "id": "modal-open-close",
+                "intersecting": false,
+                "top": 7190,
+                "bottom": 7675
+              },
+              {
+                "id": "toast-enter-exit",
+                "intersecting": false,
+                "top": 7688,
+                "bottom": 8173
+              },
+              {
+                "id": "toggle-switch",
+                "intersecting": false,
+                "top": 8186,
+                "bottom": 8657
+              },
+              {
+                "id": "typewriter",
+                "intersecting": false,
+                "top": 8670,
+                "bottom": 9170
+              },
+              {
+                "id": "character-by-character",
+                "intersecting": false,
+                "top": 9183,
+                "bottom": 9668
+              },
+              {
+                "id": "counter-roll",
+                "intersecting": false,
+                "top": 9681,
+                "bottom": 10166
+              },
+              {
+                "id": "cursor-blink",
+                "intersecting": false,
+                "top": 10179,
+                "bottom": 10664
+              },
+              {
+                "id": "classic-mac-watch",
+                "intersecting": false,
+                "top": 10677,
+                "bottom": 11162
+              },
+              {
+                "id": "dock-bounce",
+                "intersecting": false,
+                "top": 11175,
+                "bottom": 11660
+              },
+              {
+                "id": "geometric-formation",
+                "intersecting": false,
+                "top": 11673,
+                "bottom": 12158
+              },
+              {
+                "id": "web-1990s-marquee",
+                "intersecting": false,
+                "top": 12171,
+                "bottom": 12656
+              },
+              {
+                "id": "treasure-chest-open",
+                "intersecting": false,
+                "top": 12669,
+                "bottom": 13154
+              },
+              {
+                "id": "rhythm-judgement",
+                "intersecting": false,
+                "top": 13167,
+                "bottom": 13698
+              },
+              {
+                "id": "coin-pickup-arc",
+                "intersecting": false,
+                "top": 13711,
+                "bottom": 14418
+              },
+              {
+                "id": "combo-counter",
+                "intersecting": false,
+                "top": 14431,
+                "bottom": 14916
+              },
+              {
+                "id": "hp-damage-heal",
+                "intersecting": false,
+                "top": 14929,
+                "bottom": 15429
+              },
+              {
+                "id": "boss-entrance",
+                "intersecting": false,
+                "top": 15442,
+                "bottom": 15927
+              },
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 15940,
+                "bottom": 16472
+              },
+              {
+                "id": "card-deal-shuffle",
+                "intersecting": false,
+                "top": 16485,
+                "bottom": 17077
+              },
+              {
+                "id": "combat-damage-feedback",
+                "intersecting": false,
+                "top": 17090,
+                "bottom": 17676
+              },
+              {
+                "id": "reward-reveal-lab",
+                "intersecting": false,
+                "top": 17689,
+                "bottom": 18263
+              },
+              {
+                "id": "hit-stop-knockback",
+                "intersecting": false,
+                "top": 18276,
+                "bottom": 18804
+              },
+              {
+                "id": "perfect-parry",
+                "intersecting": false,
+                "top": 18817,
+                "bottom": 19492
+              },
+              {
+                "id": "dodge-afterimage",
+                "intersecting": false,
+                "top": 19505,
+                "bottom": 20226
+              },
+              {
+                "id": "falling-block-line-clear",
+                "intersecting": false,
+                "top": 20239,
+                "bottom": 20916
+              },
+              {
+                "id": "match-3-cascade",
+                "intersecting": false,
+                "top": 20929,
+                "bottom": 21816
+              },
+              {
+                "id": "pinball-bumper-hit",
+                "intersecting": false,
+                "top": 21829,
+                "bottom": 22357
+              },
+              {
+                "id": "lock-on-reticle",
+                "intersecting": false,
+                "top": 22370,
+                "bottom": 22898
+              },
+              {
+                "id": "inventory-equip-snap",
+                "intersecting": false,
+                "top": 22911,
+                "bottom": 23439
+              },
+              {
+                "id": "status-effect-lab",
+                "intersecting": false,
+                "top": 23452,
+                "bottom": 24038
+              },
+              {
+                "id": "turn-order-reflow",
+                "intersecting": false,
+                "top": 24051,
+                "bottom": 24625
+              },
+              {
+                "id": "battle-transition",
+                "intersecting": false,
+                "top": 24638,
+                "bottom": 25317
+              },
+              {
+                "id": "race-countdown-launch",
+                "intersecting": false,
+                "top": 25330,
+                "bottom": 25870
+              },
+              {
+                "id": "ai-modular-thought-blocks",
+                "intersecting": false,
+                "top": 25883,
+                "bottom": 26481
+              },
+              {
+                "id": "ai-ribbon-assembly",
+                "intersecting": false,
+                "top": 26494,
+                "bottom": 27077
+              },
+              {
+                "id": "ai-code-companion",
+                "intersecting": false,
+                "top": 27090,
+                "bottom": 27688
+              },
+              {
+                "id": "ai-sparkle-reasoning",
+                "intersecting": false,
+                "top": 27701,
+                "bottom": 28314
+              },
+              {
+                "id": "ai-warm-thought-pulse",
+                "intersecting": false,
+                "top": 28327,
+                "bottom": 28940
+              },
+              {
+                "id": "ai-answer-weave",
+                "intersecting": false,
+                "top": 28953,
+                "bottom": 29566
+              }
+            ]
+          },
+          {
+            "clock": 9329,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3737
+              }
+            ]
+          },
+          {
+            "clock": 11151,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": true,
+                "top": 184,
+                "bottom": 716
+              }
+            ]
+          },
+          {
+            "clock": 14894,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 5287,
+                "bottom": 5819
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "1000ms after scroll",
+        "clock": 15867,
+        "old": {
+          "time": null,
+          "state": "idle",
+          "pending": false
+        },
+        "dom": [],
+        "selection": "▶COLLECTION",
+        "io": [
+          {
+            "clock": 5370,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 5370,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 8345,
+            "entries": [
+              {
+                "id": "fade-in",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3690
+              },
+              {
+                "id": "fade-out",
+                "intersecting": false,
+                "top": 3703,
+                "bottom": 4201
+              },
+              {
+                "id": "slide-in-left",
+                "intersecting": false,
+                "top": 4214,
+                "bottom": 4699
+              },
+              {
+                "id": "slide-out-right",
+                "intersecting": false,
+                "top": 4712,
+                "bottom": 5197
+              },
+              {
+                "id": "scale-pop",
+                "intersecting": false,
+                "top": 5210,
+                "bottom": 5695
+              },
+              {
+                "id": "bounce",
+                "intersecting": false,
+                "top": 5708,
+                "bottom": 6193
+              },
+              {
+                "id": "shake",
+                "intersecting": false,
+                "top": 6206,
+                "bottom": 6691
+              },
+              {
+                "id": "button-press",
+                "intersecting": false,
+                "top": 6704,
+                "bottom": 7177
+              },
+              {
+                "id": "modal-open-close",
+                "intersecting": false,
+                "top": 7190,
+                "bottom": 7675
+              },
+              {
+                "id": "toast-enter-exit",
+                "intersecting": false,
+                "top": 7688,
+                "bottom": 8173
+              },
+              {
+                "id": "toggle-switch",
+                "intersecting": false,
+                "top": 8186,
+                "bottom": 8657
+              },
+              {
+                "id": "typewriter",
+                "intersecting": false,
+                "top": 8670,
+                "bottom": 9170
+              },
+              {
+                "id": "character-by-character",
+                "intersecting": false,
+                "top": 9183,
+                "bottom": 9668
+              },
+              {
+                "id": "counter-roll",
+                "intersecting": false,
+                "top": 9681,
+                "bottom": 10166
+              },
+              {
+                "id": "cursor-blink",
+                "intersecting": false,
+                "top": 10179,
+                "bottom": 10664
+              },
+              {
+                "id": "classic-mac-watch",
+                "intersecting": false,
+                "top": 10677,
+                "bottom": 11162
+              },
+              {
+                "id": "dock-bounce",
+                "intersecting": false,
+                "top": 11175,
+                "bottom": 11660
+              },
+              {
+                "id": "geometric-formation",
+                "intersecting": false,
+                "top": 11673,
+                "bottom": 12158
+              },
+              {
+                "id": "web-1990s-marquee",
+                "intersecting": false,
+                "top": 12171,
+                "bottom": 12656
+              },
+              {
+                "id": "treasure-chest-open",
+                "intersecting": false,
+                "top": 12669,
+                "bottom": 13154
+              },
+              {
+                "id": "rhythm-judgement",
+                "intersecting": false,
+                "top": 13167,
+                "bottom": 13698
+              },
+              {
+                "id": "coin-pickup-arc",
+                "intersecting": false,
+                "top": 13711,
+                "bottom": 14418
+              },
+              {
+                "id": "combo-counter",
+                "intersecting": false,
+                "top": 14431,
+                "bottom": 14916
+              },
+              {
+                "id": "hp-damage-heal",
+                "intersecting": false,
+                "top": 14929,
+                "bottom": 15429
+              },
+              {
+                "id": "boss-entrance",
+                "intersecting": false,
+                "top": 15442,
+                "bottom": 15927
+              },
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 15940,
+                "bottom": 16472
+              },
+              {
+                "id": "card-deal-shuffle",
+                "intersecting": false,
+                "top": 16485,
+                "bottom": 17077
+              },
+              {
+                "id": "combat-damage-feedback",
+                "intersecting": false,
+                "top": 17090,
+                "bottom": 17676
+              },
+              {
+                "id": "reward-reveal-lab",
+                "intersecting": false,
+                "top": 17689,
+                "bottom": 18263
+              },
+              {
+                "id": "hit-stop-knockback",
+                "intersecting": false,
+                "top": 18276,
+                "bottom": 18804
+              },
+              {
+                "id": "perfect-parry",
+                "intersecting": false,
+                "top": 18817,
+                "bottom": 19492
+              },
+              {
+                "id": "dodge-afterimage",
+                "intersecting": false,
+                "top": 19505,
+                "bottom": 20226
+              },
+              {
+                "id": "falling-block-line-clear",
+                "intersecting": false,
+                "top": 20239,
+                "bottom": 20916
+              },
+              {
+                "id": "match-3-cascade",
+                "intersecting": false,
+                "top": 20929,
+                "bottom": 21816
+              },
+              {
+                "id": "pinball-bumper-hit",
+                "intersecting": false,
+                "top": 21829,
+                "bottom": 22357
+              },
+              {
+                "id": "lock-on-reticle",
+                "intersecting": false,
+                "top": 22370,
+                "bottom": 22898
+              },
+              {
+                "id": "inventory-equip-snap",
+                "intersecting": false,
+                "top": 22911,
+                "bottom": 23439
+              },
+              {
+                "id": "status-effect-lab",
+                "intersecting": false,
+                "top": 23452,
+                "bottom": 24038
+              },
+              {
+                "id": "turn-order-reflow",
+                "intersecting": false,
+                "top": 24051,
+                "bottom": 24625
+              },
+              {
+                "id": "battle-transition",
+                "intersecting": false,
+                "top": 24638,
+                "bottom": 25317
+              },
+              {
+                "id": "race-countdown-launch",
+                "intersecting": false,
+                "top": 25330,
+                "bottom": 25870
+              },
+              {
+                "id": "ai-modular-thought-blocks",
+                "intersecting": false,
+                "top": 25883,
+                "bottom": 26481
+              },
+              {
+                "id": "ai-ribbon-assembly",
+                "intersecting": false,
+                "top": 26494,
+                "bottom": 27077
+              },
+              {
+                "id": "ai-code-companion",
+                "intersecting": false,
+                "top": 27090,
+                "bottom": 27688
+              },
+              {
+                "id": "ai-sparkle-reasoning",
+                "intersecting": false,
+                "top": 27701,
+                "bottom": 28314
+              },
+              {
+                "id": "ai-warm-thought-pulse",
+                "intersecting": false,
+                "top": 28327,
+                "bottom": 28940
+              },
+              {
+                "id": "ai-answer-weave",
+                "intersecting": false,
+                "top": 28953,
+                "bottom": 29566
+              }
+            ]
+          },
+          {
+            "clock": 9329,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3737
+              }
+            ]
+          },
+          {
+            "clock": 11151,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": true,
+                "top": 184,
+                "bottom": 716
+              }
+            ]
+          },
+          {
+            "clock": 14894,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 5287,
+                "bottom": 5819
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "repeat": 2,
+    "preScrollWaitMs": 0,
+    "samples": [
+      {
+        "label": "before scroll",
+        "clock": 15334,
+        "old": {
+          "time": 0,
+          "state": "running",
+          "pending": true
+        },
+        "dom": [
+          {
+            "time": 0,
+            "state": "running",
+            "pending": true
+          }
+        ],
+        "selection": "▶COLLECTION",
+        "io": [
+          {
+            "clock": 4834.000000000001,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 4835,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 4835,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 8246,
+            "entries": [
+              {
+                "id": "fade-in",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3690
+              },
+              {
+                "id": "fade-out",
+                "intersecting": false,
+                "top": 3703,
+                "bottom": 4201
+              },
+              {
+                "id": "slide-in-left",
+                "intersecting": false,
+                "top": 4214,
+                "bottom": 4699
+              },
+              {
+                "id": "slide-out-right",
+                "intersecting": false,
+                "top": 4712,
+                "bottom": 5197
+              },
+              {
+                "id": "scale-pop",
+                "intersecting": false,
+                "top": 5210,
+                "bottom": 5695
+              },
+              {
+                "id": "bounce",
+                "intersecting": false,
+                "top": 5708,
+                "bottom": 6193
+              },
+              {
+                "id": "shake",
+                "intersecting": false,
+                "top": 6206,
+                "bottom": 6691
+              },
+              {
+                "id": "button-press",
+                "intersecting": false,
+                "top": 6704,
+                "bottom": 7177
+              },
+              {
+                "id": "modal-open-close",
+                "intersecting": false,
+                "top": 7190,
+                "bottom": 7675
+              },
+              {
+                "id": "toast-enter-exit",
+                "intersecting": false,
+                "top": 7688,
+                "bottom": 8173
+              },
+              {
+                "id": "toggle-switch",
+                "intersecting": false,
+                "top": 8186,
+                "bottom": 8657
+              },
+              {
+                "id": "typewriter",
+                "intersecting": false,
+                "top": 8670,
+                "bottom": 9170
+              },
+              {
+                "id": "character-by-character",
+                "intersecting": false,
+                "top": 9183,
+                "bottom": 9668
+              },
+              {
+                "id": "counter-roll",
+                "intersecting": false,
+                "top": 9681,
+                "bottom": 10166
+              },
+              {
+                "id": "cursor-blink",
+                "intersecting": false,
+                "top": 10179,
+                "bottom": 10664
+              },
+              {
+                "id": "classic-mac-watch",
+                "intersecting": false,
+                "top": 10677,
+                "bottom": 11162
+              },
+              {
+                "id": "dock-bounce",
+                "intersecting": false,
+                "top": 11175,
+                "bottom": 11660
+              },
+              {
+                "id": "geometric-formation",
+                "intersecting": false,
+                "top": 11673,
+                "bottom": 12158
+              },
+              {
+                "id": "web-1990s-marquee",
+                "intersecting": false,
+                "top": 12171,
+                "bottom": 12656
+              },
+              {
+                "id": "treasure-chest-open",
+                "intersecting": false,
+                "top": 12669,
+                "bottom": 13154
+              },
+              {
+                "id": "rhythm-judgement",
+                "intersecting": false,
+                "top": 13167,
+                "bottom": 13698
+              },
+              {
+                "id": "coin-pickup-arc",
+                "intersecting": false,
+                "top": 13711,
+                "bottom": 14418
+              },
+              {
+                "id": "combo-counter",
+                "intersecting": false,
+                "top": 14431,
+                "bottom": 14916
+              },
+              {
+                "id": "hp-damage-heal",
+                "intersecting": false,
+                "top": 14929,
+                "bottom": 15429
+              },
+              {
+                "id": "boss-entrance",
+                "intersecting": false,
+                "top": 15442,
+                "bottom": 15927
+              },
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 15940,
+                "bottom": 16472
+              },
+              {
+                "id": "card-deal-shuffle",
+                "intersecting": false,
+                "top": 16485,
+                "bottom": 17077
+              },
+              {
+                "id": "combat-damage-feedback",
+                "intersecting": false,
+                "top": 17090,
+                "bottom": 17676
+              },
+              {
+                "id": "reward-reveal-lab",
+                "intersecting": false,
+                "top": 17689,
+                "bottom": 18263
+              },
+              {
+                "id": "hit-stop-knockback",
+                "intersecting": false,
+                "top": 18276,
+                "bottom": 18804
+              },
+              {
+                "id": "perfect-parry",
+                "intersecting": false,
+                "top": 18817,
+                "bottom": 19492
+              },
+              {
+                "id": "dodge-afterimage",
+                "intersecting": false,
+                "top": 19505,
+                "bottom": 20226
+              },
+              {
+                "id": "falling-block-line-clear",
+                "intersecting": false,
+                "top": 20239,
+                "bottom": 20916
+              },
+              {
+                "id": "match-3-cascade",
+                "intersecting": false,
+                "top": 20929,
+                "bottom": 21816
+              },
+              {
+                "id": "pinball-bumper-hit",
+                "intersecting": false,
+                "top": 21829,
+                "bottom": 22357
+              },
+              {
+                "id": "lock-on-reticle",
+                "intersecting": false,
+                "top": 22370,
+                "bottom": 22898
+              },
+              {
+                "id": "inventory-equip-snap",
+                "intersecting": false,
+                "top": 22911,
+                "bottom": 23439
+              },
+              {
+                "id": "status-effect-lab",
+                "intersecting": false,
+                "top": 23452,
+                "bottom": 24038
+              },
+              {
+                "id": "turn-order-reflow",
+                "intersecting": false,
+                "top": 24051,
+                "bottom": 24625
+              },
+              {
+                "id": "battle-transition",
+                "intersecting": false,
+                "top": 24638,
+                "bottom": 25317
+              },
+              {
+                "id": "race-countdown-launch",
+                "intersecting": false,
+                "top": 25330,
+                "bottom": 25870
+              },
+              {
+                "id": "ai-modular-thought-blocks",
+                "intersecting": false,
+                "top": 25883,
+                "bottom": 26481
+              },
+              {
+                "id": "ai-ribbon-assembly",
+                "intersecting": false,
+                "top": 26494,
+                "bottom": 27077
+              },
+              {
+                "id": "ai-code-companion",
+                "intersecting": false,
+                "top": 27090,
+                "bottom": 27688
+              },
+              {
+                "id": "ai-sparkle-reasoning",
+                "intersecting": false,
+                "top": 27701,
+                "bottom": 28314
+              },
+              {
+                "id": "ai-warm-thought-pulse",
+                "intersecting": false,
+                "top": 28327,
+                "bottom": 28940
+              },
+              {
+                "id": "ai-answer-weave",
+                "intersecting": false,
+                "top": 28953,
+                "bottom": 29566
+              }
+            ]
+          },
+          {
+            "clock": 11460,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3737
+              }
+            ]
+          },
+          {
+            "clock": 13363,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": true,
+                "top": 184,
+                "bottom": 716
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "100ms after scroll",
+        "clock": 15442,
+        "old": {
+          "time": 0,
+          "state": "running",
+          "pending": true
+        },
+        "dom": [
+          {
+            "time": 0,
+            "state": "running",
+            "pending": true
+          }
+        ],
+        "selection": "▶COLLECTION",
+        "io": [
+          {
+            "clock": 4834.000000000001,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 4835,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 4835,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 8246,
+            "entries": [
+              {
+                "id": "fade-in",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3690
+              },
+              {
+                "id": "fade-out",
+                "intersecting": false,
+                "top": 3703,
+                "bottom": 4201
+              },
+              {
+                "id": "slide-in-left",
+                "intersecting": false,
+                "top": 4214,
+                "bottom": 4699
+              },
+              {
+                "id": "slide-out-right",
+                "intersecting": false,
+                "top": 4712,
+                "bottom": 5197
+              },
+              {
+                "id": "scale-pop",
+                "intersecting": false,
+                "top": 5210,
+                "bottom": 5695
+              },
+              {
+                "id": "bounce",
+                "intersecting": false,
+                "top": 5708,
+                "bottom": 6193
+              },
+              {
+                "id": "shake",
+                "intersecting": false,
+                "top": 6206,
+                "bottom": 6691
+              },
+              {
+                "id": "button-press",
+                "intersecting": false,
+                "top": 6704,
+                "bottom": 7177
+              },
+              {
+                "id": "modal-open-close",
+                "intersecting": false,
+                "top": 7190,
+                "bottom": 7675
+              },
+              {
+                "id": "toast-enter-exit",
+                "intersecting": false,
+                "top": 7688,
+                "bottom": 8173
+              },
+              {
+                "id": "toggle-switch",
+                "intersecting": false,
+                "top": 8186,
+                "bottom": 8657
+              },
+              {
+                "id": "typewriter",
+                "intersecting": false,
+                "top": 8670,
+                "bottom": 9170
+              },
+              {
+                "id": "character-by-character",
+                "intersecting": false,
+                "top": 9183,
+                "bottom": 9668
+              },
+              {
+                "id": "counter-roll",
+                "intersecting": false,
+                "top": 9681,
+                "bottom": 10166
+              },
+              {
+                "id": "cursor-blink",
+                "intersecting": false,
+                "top": 10179,
+                "bottom": 10664
+              },
+              {
+                "id": "classic-mac-watch",
+                "intersecting": false,
+                "top": 10677,
+                "bottom": 11162
+              },
+              {
+                "id": "dock-bounce",
+                "intersecting": false,
+                "top": 11175,
+                "bottom": 11660
+              },
+              {
+                "id": "geometric-formation",
+                "intersecting": false,
+                "top": 11673,
+                "bottom": 12158
+              },
+              {
+                "id": "web-1990s-marquee",
+                "intersecting": false,
+                "top": 12171,
+                "bottom": 12656
+              },
+              {
+                "id": "treasure-chest-open",
+                "intersecting": false,
+                "top": 12669,
+                "bottom": 13154
+              },
+              {
+                "id": "rhythm-judgement",
+                "intersecting": false,
+                "top": 13167,
+                "bottom": 13698
+              },
+              {
+                "id": "coin-pickup-arc",
+                "intersecting": false,
+                "top": 13711,
+                "bottom": 14418
+              },
+              {
+                "id": "combo-counter",
+                "intersecting": false,
+                "top": 14431,
+                "bottom": 14916
+              },
+              {
+                "id": "hp-damage-heal",
+                "intersecting": false,
+                "top": 14929,
+                "bottom": 15429
+              },
+              {
+                "id": "boss-entrance",
+                "intersecting": false,
+                "top": 15442,
+                "bottom": 15927
+              },
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 15940,
+                "bottom": 16472
+              },
+              {
+                "id": "card-deal-shuffle",
+                "intersecting": false,
+                "top": 16485,
+                "bottom": 17077
+              },
+              {
+                "id": "combat-damage-feedback",
+                "intersecting": false,
+                "top": 17090,
+                "bottom": 17676
+              },
+              {
+                "id": "reward-reveal-lab",
+                "intersecting": false,
+                "top": 17689,
+                "bottom": 18263
+              },
+              {
+                "id": "hit-stop-knockback",
+                "intersecting": false,
+                "top": 18276,
+                "bottom": 18804
+              },
+              {
+                "id": "perfect-parry",
+                "intersecting": false,
+                "top": 18817,
+                "bottom": 19492
+              },
+              {
+                "id": "dodge-afterimage",
+                "intersecting": false,
+                "top": 19505,
+                "bottom": 20226
+              },
+              {
+                "id": "falling-block-line-clear",
+                "intersecting": false,
+                "top": 20239,
+                "bottom": 20916
+              },
+              {
+                "id": "match-3-cascade",
+                "intersecting": false,
+                "top": 20929,
+                "bottom": 21816
+              },
+              {
+                "id": "pinball-bumper-hit",
+                "intersecting": false,
+                "top": 21829,
+                "bottom": 22357
+              },
+              {
+                "id": "lock-on-reticle",
+                "intersecting": false,
+                "top": 22370,
+                "bottom": 22898
+              },
+              {
+                "id": "inventory-equip-snap",
+                "intersecting": false,
+                "top": 22911,
+                "bottom": 23439
+              },
+              {
+                "id": "status-effect-lab",
+                "intersecting": false,
+                "top": 23452,
+                "bottom": 24038
+              },
+              {
+                "id": "turn-order-reflow",
+                "intersecting": false,
+                "top": 24051,
+                "bottom": 24625
+              },
+              {
+                "id": "battle-transition",
+                "intersecting": false,
+                "top": 24638,
+                "bottom": 25317
+              },
+              {
+                "id": "race-countdown-launch",
+                "intersecting": false,
+                "top": 25330,
+                "bottom": 25870
+              },
+              {
+                "id": "ai-modular-thought-blocks",
+                "intersecting": false,
+                "top": 25883,
+                "bottom": 26481
+              },
+              {
+                "id": "ai-ribbon-assembly",
+                "intersecting": false,
+                "top": 26494,
+                "bottom": 27077
+              },
+              {
+                "id": "ai-code-companion",
+                "intersecting": false,
+                "top": 27090,
+                "bottom": 27688
+              },
+              {
+                "id": "ai-sparkle-reasoning",
+                "intersecting": false,
+                "top": 27701,
+                "bottom": 28314
+              },
+              {
+                "id": "ai-warm-thought-pulse",
+                "intersecting": false,
+                "top": 28327,
+                "bottom": 28940
+              },
+              {
+                "id": "ai-answer-weave",
+                "intersecting": false,
+                "top": 28953,
+                "bottom": 29566
+              }
+            ]
+          },
+          {
+            "clock": 11460,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3737
+              }
+            ]
+          },
+          {
+            "clock": 13363,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": true,
+                "top": 184,
+                "bottom": 716
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "300ms after scroll",
+        "clock": 15674,
+        "old": {
+          "time": 220,
+          "state": "finished",
+          "pending": false
+        },
+        "dom": [],
+        "selection": "▶COLLECTION",
+        "io": [
+          {
+            "clock": 4835,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 4835,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 8246,
+            "entries": [
+              {
+                "id": "fade-in",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3690
+              },
+              {
+                "id": "fade-out",
+                "intersecting": false,
+                "top": 3703,
+                "bottom": 4201
+              },
+              {
+                "id": "slide-in-left",
+                "intersecting": false,
+                "top": 4214,
+                "bottom": 4699
+              },
+              {
+                "id": "slide-out-right",
+                "intersecting": false,
+                "top": 4712,
+                "bottom": 5197
+              },
+              {
+                "id": "scale-pop",
+                "intersecting": false,
+                "top": 5210,
+                "bottom": 5695
+              },
+              {
+                "id": "bounce",
+                "intersecting": false,
+                "top": 5708,
+                "bottom": 6193
+              },
+              {
+                "id": "shake",
+                "intersecting": false,
+                "top": 6206,
+                "bottom": 6691
+              },
+              {
+                "id": "button-press",
+                "intersecting": false,
+                "top": 6704,
+                "bottom": 7177
+              },
+              {
+                "id": "modal-open-close",
+                "intersecting": false,
+                "top": 7190,
+                "bottom": 7675
+              },
+              {
+                "id": "toast-enter-exit",
+                "intersecting": false,
+                "top": 7688,
+                "bottom": 8173
+              },
+              {
+                "id": "toggle-switch",
+                "intersecting": false,
+                "top": 8186,
+                "bottom": 8657
+              },
+              {
+                "id": "typewriter",
+                "intersecting": false,
+                "top": 8670,
+                "bottom": 9170
+              },
+              {
+                "id": "character-by-character",
+                "intersecting": false,
+                "top": 9183,
+                "bottom": 9668
+              },
+              {
+                "id": "counter-roll",
+                "intersecting": false,
+                "top": 9681,
+                "bottom": 10166
+              },
+              {
+                "id": "cursor-blink",
+                "intersecting": false,
+                "top": 10179,
+                "bottom": 10664
+              },
+              {
+                "id": "classic-mac-watch",
+                "intersecting": false,
+                "top": 10677,
+                "bottom": 11162
+              },
+              {
+                "id": "dock-bounce",
+                "intersecting": false,
+                "top": 11175,
+                "bottom": 11660
+              },
+              {
+                "id": "geometric-formation",
+                "intersecting": false,
+                "top": 11673,
+                "bottom": 12158
+              },
+              {
+                "id": "web-1990s-marquee",
+                "intersecting": false,
+                "top": 12171,
+                "bottom": 12656
+              },
+              {
+                "id": "treasure-chest-open",
+                "intersecting": false,
+                "top": 12669,
+                "bottom": 13154
+              },
+              {
+                "id": "rhythm-judgement",
+                "intersecting": false,
+                "top": 13167,
+                "bottom": 13698
+              },
+              {
+                "id": "coin-pickup-arc",
+                "intersecting": false,
+                "top": 13711,
+                "bottom": 14418
+              },
+              {
+                "id": "combo-counter",
+                "intersecting": false,
+                "top": 14431,
+                "bottom": 14916
+              },
+              {
+                "id": "hp-damage-heal",
+                "intersecting": false,
+                "top": 14929,
+                "bottom": 15429
+              },
+              {
+                "id": "boss-entrance",
+                "intersecting": false,
+                "top": 15442,
+                "bottom": 15927
+              },
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 15940,
+                "bottom": 16472
+              },
+              {
+                "id": "card-deal-shuffle",
+                "intersecting": false,
+                "top": 16485,
+                "bottom": 17077
+              },
+              {
+                "id": "combat-damage-feedback",
+                "intersecting": false,
+                "top": 17090,
+                "bottom": 17676
+              },
+              {
+                "id": "reward-reveal-lab",
+                "intersecting": false,
+                "top": 17689,
+                "bottom": 18263
+              },
+              {
+                "id": "hit-stop-knockback",
+                "intersecting": false,
+                "top": 18276,
+                "bottom": 18804
+              },
+              {
+                "id": "perfect-parry",
+                "intersecting": false,
+                "top": 18817,
+                "bottom": 19492
+              },
+              {
+                "id": "dodge-afterimage",
+                "intersecting": false,
+                "top": 19505,
+                "bottom": 20226
+              },
+              {
+                "id": "falling-block-line-clear",
+                "intersecting": false,
+                "top": 20239,
+                "bottom": 20916
+              },
+              {
+                "id": "match-3-cascade",
+                "intersecting": false,
+                "top": 20929,
+                "bottom": 21816
+              },
+              {
+                "id": "pinball-bumper-hit",
+                "intersecting": false,
+                "top": 21829,
+                "bottom": 22357
+              },
+              {
+                "id": "lock-on-reticle",
+                "intersecting": false,
+                "top": 22370,
+                "bottom": 22898
+              },
+              {
+                "id": "inventory-equip-snap",
+                "intersecting": false,
+                "top": 22911,
+                "bottom": 23439
+              },
+              {
+                "id": "status-effect-lab",
+                "intersecting": false,
+                "top": 23452,
+                "bottom": 24038
+              },
+              {
+                "id": "turn-order-reflow",
+                "intersecting": false,
+                "top": 24051,
+                "bottom": 24625
+              },
+              {
+                "id": "battle-transition",
+                "intersecting": false,
+                "top": 24638,
+                "bottom": 25317
+              },
+              {
+                "id": "race-countdown-launch",
+                "intersecting": false,
+                "top": 25330,
+                "bottom": 25870
+              },
+              {
+                "id": "ai-modular-thought-blocks",
+                "intersecting": false,
+                "top": 25883,
+                "bottom": 26481
+              },
+              {
+                "id": "ai-ribbon-assembly",
+                "intersecting": false,
+                "top": 26494,
+                "bottom": 27077
+              },
+              {
+                "id": "ai-code-companion",
+                "intersecting": false,
+                "top": 27090,
+                "bottom": 27688
+              },
+              {
+                "id": "ai-sparkle-reasoning",
+                "intersecting": false,
+                "top": 27701,
+                "bottom": 28314
+              },
+              {
+                "id": "ai-warm-thought-pulse",
+                "intersecting": false,
+                "top": 28327,
+                "bottom": 28940
+              },
+              {
+                "id": "ai-answer-weave",
+                "intersecting": false,
+                "top": 28953,
+                "bottom": 29566
+              }
+            ]
+          },
+          {
+            "clock": 11460,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3737
+              }
+            ]
+          },
+          {
+            "clock": 13363,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": true,
+                "top": 184,
+                "bottom": 716
+              }
+            ]
+          },
+          {
+            "clock": 15630,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 5287,
+                "bottom": 5819
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "1000ms after scroll",
+        "clock": 16341.999999999998,
+        "old": {
+          "time": null,
+          "state": "idle",
+          "pending": false
+        },
+        "dom": [],
+        "selection": "▶COLLECTION",
+        "io": [
+          {
+            "clock": 4835,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 4835,
+            "entries": [
+              {
+                "id": null,
+                "intersecting": false,
+                "top": 0,
+                "bottom": 0
+              }
+            ]
+          },
+          {
+            "clock": 8246,
+            "entries": [
+              {
+                "id": "fade-in",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3690
+              },
+              {
+                "id": "fade-out",
+                "intersecting": false,
+                "top": 3703,
+                "bottom": 4201
+              },
+              {
+                "id": "slide-in-left",
+                "intersecting": false,
+                "top": 4214,
+                "bottom": 4699
+              },
+              {
+                "id": "slide-out-right",
+                "intersecting": false,
+                "top": 4712,
+                "bottom": 5197
+              },
+              {
+                "id": "scale-pop",
+                "intersecting": false,
+                "top": 5210,
+                "bottom": 5695
+              },
+              {
+                "id": "bounce",
+                "intersecting": false,
+                "top": 5708,
+                "bottom": 6193
+              },
+              {
+                "id": "shake",
+                "intersecting": false,
+                "top": 6206,
+                "bottom": 6691
+              },
+              {
+                "id": "button-press",
+                "intersecting": false,
+                "top": 6704,
+                "bottom": 7177
+              },
+              {
+                "id": "modal-open-close",
+                "intersecting": false,
+                "top": 7190,
+                "bottom": 7675
+              },
+              {
+                "id": "toast-enter-exit",
+                "intersecting": false,
+                "top": 7688,
+                "bottom": 8173
+              },
+              {
+                "id": "toggle-switch",
+                "intersecting": false,
+                "top": 8186,
+                "bottom": 8657
+              },
+              {
+                "id": "typewriter",
+                "intersecting": false,
+                "top": 8670,
+                "bottom": 9170
+              },
+              {
+                "id": "character-by-character",
+                "intersecting": false,
+                "top": 9183,
+                "bottom": 9668
+              },
+              {
+                "id": "counter-roll",
+                "intersecting": false,
+                "top": 9681,
+                "bottom": 10166
+              },
+              {
+                "id": "cursor-blink",
+                "intersecting": false,
+                "top": 10179,
+                "bottom": 10664
+              },
+              {
+                "id": "classic-mac-watch",
+                "intersecting": false,
+                "top": 10677,
+                "bottom": 11162
+              },
+              {
+                "id": "dock-bounce",
+                "intersecting": false,
+                "top": 11175,
+                "bottom": 11660
+              },
+              {
+                "id": "geometric-formation",
+                "intersecting": false,
+                "top": 11673,
+                "bottom": 12158
+              },
+              {
+                "id": "web-1990s-marquee",
+                "intersecting": false,
+                "top": 12171,
+                "bottom": 12656
+              },
+              {
+                "id": "treasure-chest-open",
+                "intersecting": false,
+                "top": 12669,
+                "bottom": 13154
+              },
+              {
+                "id": "rhythm-judgement",
+                "intersecting": false,
+                "top": 13167,
+                "bottom": 13698
+              },
+              {
+                "id": "coin-pickup-arc",
+                "intersecting": false,
+                "top": 13711,
+                "bottom": 14418
+              },
+              {
+                "id": "combo-counter",
+                "intersecting": false,
+                "top": 14431,
+                "bottom": 14916
+              },
+              {
+                "id": "hp-damage-heal",
+                "intersecting": false,
+                "top": 14929,
+                "bottom": 15429
+              },
+              {
+                "id": "boss-entrance",
+                "intersecting": false,
+                "top": 15442,
+                "bottom": 15927
+              },
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 15940,
+                "bottom": 16472
+              },
+              {
+                "id": "card-deal-shuffle",
+                "intersecting": false,
+                "top": 16485,
+                "bottom": 17077
+              },
+              {
+                "id": "combat-damage-feedback",
+                "intersecting": false,
+                "top": 17090,
+                "bottom": 17676
+              },
+              {
+                "id": "reward-reveal-lab",
+                "intersecting": false,
+                "top": 17689,
+                "bottom": 18263
+              },
+              {
+                "id": "hit-stop-knockback",
+                "intersecting": false,
+                "top": 18276,
+                "bottom": 18804
+              },
+              {
+                "id": "perfect-parry",
+                "intersecting": false,
+                "top": 18817,
+                "bottom": 19492
+              },
+              {
+                "id": "dodge-afterimage",
+                "intersecting": false,
+                "top": 19505,
+                "bottom": 20226
+              },
+              {
+                "id": "falling-block-line-clear",
+                "intersecting": false,
+                "top": 20239,
+                "bottom": 20916
+              },
+              {
+                "id": "match-3-cascade",
+                "intersecting": false,
+                "top": 20929,
+                "bottom": 21816
+              },
+              {
+                "id": "pinball-bumper-hit",
+                "intersecting": false,
+                "top": 21829,
+                "bottom": 22357
+              },
+              {
+                "id": "lock-on-reticle",
+                "intersecting": false,
+                "top": 22370,
+                "bottom": 22898
+              },
+              {
+                "id": "inventory-equip-snap",
+                "intersecting": false,
+                "top": 22911,
+                "bottom": 23439
+              },
+              {
+                "id": "status-effect-lab",
+                "intersecting": false,
+                "top": 23452,
+                "bottom": 24038
+              },
+              {
+                "id": "turn-order-reflow",
+                "intersecting": false,
+                "top": 24051,
+                "bottom": 24625
+              },
+              {
+                "id": "battle-transition",
+                "intersecting": false,
+                "top": 24638,
+                "bottom": 25317
+              },
+              {
+                "id": "race-countdown-launch",
+                "intersecting": false,
+                "top": 25330,
+                "bottom": 25870
+              },
+              {
+                "id": "ai-modular-thought-blocks",
+                "intersecting": false,
+                "top": 25883,
+                "bottom": 26481
+              },
+              {
+                "id": "ai-ribbon-assembly",
+                "intersecting": false,
+                "top": 26494,
+                "bottom": 27077
+              },
+              {
+                "id": "ai-code-companion",
+                "intersecting": false,
+                "top": 27090,
+                "bottom": 27688
+              },
+              {
+                "id": "ai-sparkle-reasoning",
+                "intersecting": false,
+                "top": 27701,
+                "bottom": 28314
+              },
+              {
+                "id": "ai-warm-thought-pulse",
+                "intersecting": false,
+                "top": 28327,
+                "bottom": 28940
+              },
+              {
+                "id": "ai-answer-weave",
+                "intersecting": false,
+                "top": 28953,
+                "bottom": 29566
+              }
+            ]
+          },
+          {
+            "clock": 11460,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 3205,
+                "bottom": 3737
+              }
+            ]
+          },
+          {
+            "clock": 13363,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": true,
+                "top": 184,
+                "bottom": 716
+              }
+            ]
+          },
+          {
+            "clock": 15630,
+            "entries": [
+              {
+                "id": "menu-selection-cursor",
+                "intersecting": false,
+                "top": 5287,
+                "bottom": 5819
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

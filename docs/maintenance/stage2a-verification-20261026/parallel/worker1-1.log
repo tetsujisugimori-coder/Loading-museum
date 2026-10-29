@@ -1,0 +1,198 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 check
+> npm run lint && npm run typecheck && npm test
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 lint
+> eslint .
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 typecheck
+> tsc --noEmit
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 test
+> npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run tests/macintosh-system-choice.test.tsx tests/waapi-samples.test.ts tests/waapi-gallery.test.tsx tests/waapi-interaction-state.test.ts tests/waapi-game-regressions.test.tsx tests/waapi-hp-regression.test.tsx tests/waapi-cascade-motion.test.tsx tests/dom11-selection.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-stage1-menu-coin.test.tsx tests/waapi-observation.test.tsx tests/waapi-observation-independent.test.tsx
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 8.7s
+  Running TypeScript ...
+  Finished TypeScript in 20.7s ...
+  Collecting page data using 4 workers ...
+  Generating static pages using 4 workers (0/3) ...
+✓ Generating static pages using 4 workers (3/3) in 966ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+✔ Read Meの実矩形はゴミ箱へ四方向から重なる (5.128801ms)
+✔ System 1→5→6→1→6をクリック相当の操作で連続選択する (6.203952ms)
+✔ System 5をEnter、System 6をSpace相当の操作で選択する (1.646423ms)
+✔ loadingから最初の年代へ移行する (19.890427ms)
+✔ 年代ごとにeraIndexが進む (0.231391ms)
+✔ 通常年代は共通の待機時間を使う (0.135708ms)
+✔ 最後の年代だけ長い待機時間を使う (0.154951ms)
+✔ 最後の年代後にindex-completeへ移行する (0.936915ms)
+✔ index-complete後にtypingへ移行する (0.978283ms)
+✔ タイトル文字数が1文字ずつ増える (8.343823ms)
+✔ タイトル全文をtyping状態で保持する (0.192808ms)
+✔ タイトル全文表示後にtyping-holdへ移行する (1.223604ms)
+✔ typing-hold後にsignal-lockのbrightenへ移行する (0.295609ms)
+✔ signal-lockはbrightenからnoiseへ進む (0.993041ms)
+✔ signal-lockはnoiseからlockedへ進む (0.26532ms)
+✔ signal-lockのlocked後にcompleteへ進む (0.817095ms)
+✔ complete以降は状態が進まない (0.160717ms)
+✔ complete状態は最後の年代とタイトル全文を保持する (0.354143ms)
+✔ ReplayはrunIdを増やす (0.222832ms)
+✔ Replayは初期状態へ戻す (1.541037ms)
+✔ 古いrunIdによるタイマー更新を無視する (0.152062ms)
+✔ reduced motionは即時completeになる (0.141454ms)
+✔ 年代走査中の点灯数とノード状態をeraIndexから算出する (1.343126ms)
+✔ 年代走査完了後は全タイムラインノードが点灯する (0.235747ms)
+✔ タイムライン進捗率を年代件数と現在位置から算出する (2.070476ms)
+✔ 年代が1件でも安全な進捗率を返し、完了数を件数内へ制限する (1.3752ms)
+✔ 全年代と全時間定数を一か所で管理する (0.184305ms)
+✔ GitHub Pages用の静的HTMLへ9種類の展示を書き出す (23.17273ms)
+✔ 正式名称のタイトル導入、年代テーマ、確定演出、軽減モーションと再生操作を実装する (7.724465ms)
+✔ 既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き出す (6.188991ms)
+✔ カーソル展示室と8種類の体験展示を書き出す (8.614507ms)
+✔ カーソル展示のデータ、Pointer Events、性能とアクセシビリティ対応を実装する (13.931371ms)
+✔ Macintosh誕生展示室を加えた展示室・展示件数を表示する (4.265584ms)
+✔ Macintosh誕生展示室へ18種類の操作展示を書き出す (13.181708ms)
+✔ Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する (14.594656ms)
+✔ Flash特別展示室へ18カテゴリ・54展示と優先デモを実装する (10.274173ms)
+✔ 再検討した9展示と現代Web継承比較を専用実装にする (13.189731ms)
+✔ FlashバナーのCTAを安全に2回強調し、価格とreduced motionを調整する (7.522892ms)
+✔ Flash専用展示の状態遷移、停止制御、操作可能なARIA構造を実装する (5.807715ms)
+✔ MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモを書き出す (6.250014ms)
+✔ 独立した消えたOS展示室へ6 OS・18種類のLoading再構成を書き出す (9.411115ms)
+✔ 展示室のデータ定義とタイマー停止・フォーカス復帰を実装する (1.453974ms)
+✔ 消えたOS展示のデータ・起動・停止・reduced motionを実装する (2.852746ms)
+✔ Linux / UNIXデモの再実行・速度切替・安全な停止を実装する (3.508203ms)
+✔ CSSとJavaScriptをLoading-museumサブパスから参照する (4.337083ms)
+✔ 静的export設定と既存レスポンシブ・reduced-motion対応を維持する (11.198082ms)
+✔ System 1〜6のbutton構造と非スクロールgridを静的に維持する (2.036296ms)
+✔ DOM ANIMATION ROOM を静的HTMLへ出力し、17操作のAPI体験を確認する (9.454435ms)
+✔ 既存ローディング標本の直下に、遅延生成するWAAPI標本ギャラリーを追加する (4.586078ms)
+ℹ tests 49
+ℹ suites 0
+ℹ pass 49
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 793.39972
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-stage2a-verification
+
+ ❯ tests/waapi-gallery.test.tsx (11 tests | 1 failed) 20586ms
+   × WAAPI標本ギャラリー操作 > 初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う 5381ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ✓ WAAPI標本ギャラリー操作 > Replay、コード解説、ModalとToastの両方向を操作する  886ms
+   ✓ WAAPI標本ギャラリー操作 > Consoleの全操作、速度、Seek、実playStateを安全に反映する  1120ms
+   ✓ WAAPI標本ギャラリー操作 > Reduced motion時は自動ループを残さず、代替表示を説明する  683ms
+   ✓ WAAPI標本ギャラリー操作 > Fade/Slideは手動再生、Button/Toggleは直接操作だけを提供する  880ms
+   ✓ WAAPI標本ギャラリー操作 > ゲーム標本を直接操作し、Resetで意味のある初期状態へ戻す  998ms
+   ✓ WAAPI標本ギャラリー操作 > 新しいゲーム標本、5軸フィルター、AI共通状態を操作できる  1938ms
+   ✓ WAAPI標本ギャラリー操作 > AI比較モードは一括フェーズを進め、閉じるとループを停止する  2726ms
+   ✓ WAAPI標本ギャラリー操作 > 追加ゲーム14件は固有DOM・状態・操作結果を提供する  4549ms
+   ✓ WAAPI標本ギャラリー操作 > Card Dealの全工程とAIの完了・エラー・リセットを操作できる  1343ms
+   ✓ WAAPI標本ギャラリー操作 > AI作業ループはSTART連打で増殖せず、画面外化でcancelされる 79ms
+ ✓ tests/waapi-stage1-menu-coin.test.tsx (5 tests) 4817ms
+   ✓ Menu cursor belongs to the current row for buttons, keyboard, limits and Reset  964ms
+   ✓ Coin entry, Replay and re-entry never grant points, including late completion after Reset  776ms
+   ✓ Coin explicit COLLECT awards once per Reset and rapid input cannot duplicate it  776ms
+   ✓ Coin has an explicit explanation separating demonstration, award and Reset  842ms
+   ✓ Menu detail metadata describes actual no-fill decoration rather than generic sample defaults  1456ms
+ ✓ tests/waapi-observation.test.tsx (30 tests) 12469ms
+   ✓ independent observation controller contract (WAAPI double) > initial preview is paused at zero and has actual native labels rather than simulated success  355ms
+   ✓ independent observation controller contract (WAAPI double) > rapid play/pause and slider changes do not allocate competing animations  367ms
+   ✓ actual gallery integration: observation never owns game state > Menu selection survives observation seek, finish, reverse, mode exit, and ordinary Reset still works  1564ms
+   ✓ actual gallery integration: observation never owns game state > Coin preview repeatedly finishes and rewinds with zero points; normal COLLECT awards once  1952ms
+   ✓ actual gallery integration: observation never owns game state > collected Coin retains its score and collected guard through observation and return  1047ms
+   ✓ actual gallery integration: observation never owns game state > observation reset does not reset collected game state and old callback cannot revive playback  823ms
+   ✓ actual gallery integration: observation never owns game state > mode exit cancels observation and reopening cannot resurrect the old running instance  1753ms
+   ✓ actual gallery integration: observation never owns game state > gallery closure cancels observation; reopening has no old callback or auto-score  2178ms
+   ✓ actual gallery integration: observation never owns game state > gallery media notification reaches observation without changing Coin collected state  830ms
+ ✓ tests/waapi-hp-regression.test.tsx (4 tests) 4718ms
+   ✓ Damage直後Reset後、旧追従更新の予定時刻を過ぎても72を保つ  1400ms
+   ✓ Damage連打とHealは最新HPに収束し、Reset連打も不変  983ms
+   ✓ Damage中のアンマウントは遅延更新を解除する  1172ms
+   ✓ 画面外停止と再表示は現在HPを保持し古い追従更新を残さない  1162ms
+ ✓ tests/waapi-stage1-expanded.test.tsx (23 tests) 1745ms
+ ✓ tests/dom11-selection.test.tsx (4 tests) 747ms
+   ✓ DOM11 表示番号の偶数選択 > P1〜P6を生成し、P2/P4/P6だけを強調して結果説明と一致する  306ms
+ ✓ tests/waapi-observation-independent.test.tsx (7 tests) 1495ms
+   ✓ running 1ステップ進む samples the current native time, not the previous rendered frame  845ms
+ ✓ tests/waapi-cascade-motion.test.tsx (14 tests) 1682ms
+   ✓ cascade replay uses per-token trace, no fill or delayed state writes, reset cancels all  391ms
+   ✓ match3 retains state across on/off, visibility, reset and unmount  420ms
+ ✓ tests/waapi-game-regressions.test.tsx (13 tests) 542ms
+ ✓ tests/macintosh-system-choice.test.tsx (2 tests) 764ms
+   ✓ System 1〜6の操作回帰 > クリックでSystem 1→5→6→1→6を連続して切り替える  596ms
+ ✓ tests/waapi-samples.test.ts (7 tests) 33ms
+ ✓ tests/waapi-interaction-state.test.ts (2 tests) 17ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > 初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/waapi-gallery.test.tsx:64:3
+     62| 
+     63| describe("WAAPI標本ギャラリー操作", () => {
+     64|   it("初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う", () => {
+       |   ^
+     65|     render(<WaapiSampleGallery />);
+     66|     expect(screen.queryByText("Fade In")).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 11 passed (12)
+      Tests  1 failed | 121 passed (122)
+   Start at  08:15:14
+   Duration  76.96s (transform 1.51s, setup 0ms, collect 5.54s, tests 49.61s, environment 11.76s, prepare 3.33s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

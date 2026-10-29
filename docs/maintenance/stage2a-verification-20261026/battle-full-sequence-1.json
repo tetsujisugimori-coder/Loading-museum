@@ -1,0 +1,48 @@
+[
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "width": 765,
+    "checks": [],
+    "errors": [],
+    "status": "FAIL",
+    "failure": "Locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"button\", name=\"サンプル一覧を見る\")\n    - locator resolved to <button type=\"button\" aria-expanded=\"false\" class=\"waapiGalleryToggle\" aria-controls=\"waapi-gallery-panel\">…</button>\n  - attempting click action\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - performing click action\n",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/scratch/e622c1e9421e/loading-stage2a-verification/docs/maintenance/stage2a-verification-20261026/verify-battle-full-sequence-instrumented.py\", line 15, in <module>\n    q.get_by_role('button',name='サンプル一覧を見る',exact=False).click()\n  File \"/tmp/loading-pw156/playwright/sync_api/_generated.py\", line 15573, in click\n    self._sync(\n  File \"/tmp/loading-pw156/playwright/_impl/_sync_base.py\", line 115, in _sync\n    return task.result()\n           ^^^^^^^^^^^^^\n  File \"/tmp/loading-pw156/playwright/_impl/_locator.py\", line 160, in click\n    return await self._frame.click(self._selector, strict=True, **params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/loading-pw156/playwright/_impl/_frame.py\", line 549, in click\n    await self._channel.send(\"click\", self._timeout, locals_to_params(locals()))\n  File \"/tmp/loading-pw156/playwright/_impl/_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/loading-pw156/playwright/_impl/_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"button\", name=\"サンプル一覧を見る\")\n    - locator resolved to <button type=\"button\" aria-expanded=\"false\" class=\"waapiGalleryToggle\" aria-controls=\"waapi-gallery-panel\">…</button>\n  - attempting click action\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - performing click action\n\n",
+    "timerEvents": [
+      {
+        "kind": "set",
+        "id": 1,
+        "delay": null,
+        "clock": 6874.000000000001
+      },
+      {
+        "kind": "fire",
+        "id": 1,
+        "delay": null,
+        "clock": 7217.000000000001
+      },
+      {
+        "kind": "set",
+        "id": 2,
+        "delay": 650,
+        "clock": 8283
+      }
+    ],
+    "failureState": {
+      "clock": 24280,
+      "class": "waapiPreviewStage gameScene gameBattle sceneFIELD",
+      "text": "FIELD · PATH◆VS♜BATTLEFIELD",
+      "animations": [],
+      "rect": {
+        "x": 403,
+        "y": 12875,
+        "width": 307,
+        "height": 126,
+        "top": 12875,
+        "right": 710,
+        "bottom": 13001,
+        "left": 403
+      }
+    }
+  }
+]

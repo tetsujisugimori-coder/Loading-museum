@@ -1,0 +1,249 @@
+{
+  "overall": "PARTIAL",
+  "sourceHeadAtStart": "e258b7b08fca6d7a4b5d91d5c7fb0f0a56d5cabd",
+  "sourceHeadAtEnd": "95555da7190a760a232fd2d31cf10196d0bd7c61",
+  "sourceUnchangedDuringRun": true,
+  "servedFiles": 15,
+  "servedAllEqual": true,
+  "n2": {
+    "strictStatus": "PASS",
+    "conditions": 6,
+    "passedConditions": 6,
+    "behavioralChecks": 228,
+    "naturalCancellationPaths": 12,
+    "predicateControls": 12
+  },
+  "observation": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "status": "PASS",
+      "groups": 8,
+      "pathFailures": [],
+      "pageerror": []
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "status": "PASS",
+      "groups": 8,
+      "pathFailures": [],
+      "pageerror": []
+    },
+    {
+      "engine": "chromium",
+      "width": 765,
+      "status": "PASS",
+      "groups": 8,
+      "pathFailures": [],
+      "pageerror": []
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "status": "PASS",
+      "groups": 8,
+      "pathFailures": [],
+      "pageerror": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "status": "PASS",
+      "groups": 8,
+      "pathFailures": [],
+      "pageerror": []
+    },
+    {
+      "engine": "webkit",
+      "width": 765,
+      "status": "PARTIAL",
+      "groups": 8,
+      "pathFailures": [
+        {
+          "path": "Menu Selection Cursor: mid-flight pause",
+          "expected": "0 < native currentTime < duration",
+          "observed": {
+            "relative": {
+              "x": 71.5,
+              "y": 79,
+              "endCenter": 85
+            },
+            "time": 220,
+            "native": "paused",
+            "pending": false,
+            "controller": "finished",
+            "reading": "観察位置 220.00 / 220 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 220.00 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 207,
+              "w": 6.03125,
+              "h": 12
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "duration": 220
+          }
+        }
+      ],
+      "pageerror": []
+    }
+  ],
+  "stage1": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "status": "PASS",
+      "groups": 5,
+      "failure": null,
+      "pageerror": []
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "status": "PASS",
+      "groups": 5,
+      "failure": null,
+      "pageerror": []
+    },
+    {
+      "engine": "chromium",
+      "width": 765,
+      "status": "PASS",
+      "groups": 5,
+      "failure": null,
+      "pageerror": []
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "status": "PASS",
+      "groups": 5,
+      "failure": null,
+      "pageerror": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "status": "PASS",
+      "groups": 5,
+      "failure": null,
+      "pageerror": []
+    },
+    {
+      "engine": "webkit",
+      "width": 765,
+      "status": "PASS",
+      "groups": 5,
+      "failure": null,
+      "pageerror": []
+    }
+  ],
+  "supplementalMenu765": {
+    "status": "PARTIAL",
+    "samples": [
+      {
+        "requested": 20,
+        "input": {
+          "clock": 3005,
+          "currentTime": 147,
+          "playState": "running",
+          "pending": false,
+          "controller": "running",
+          "reading": "観察位置 4.00 / 220 ms · 1.8% · 移動途中 · controller: running · native currentTime: 4.00 ms · native playState: running",
+          "transform": "matrix(1, 0, 0, 1, 0, -0.72564)"
+        },
+        "settled": {
+          "clock": 3006,
+          "currentTime": 147,
+          "playState": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 147.00 / 220 ms · 66.8% · 移動途中 · controller: paused · native currentTime: 147.00 ms · native playState: paused",
+          "transform": "matrix(1, 0, 0, 1, 0, -0.777956)"
+        },
+        "held": {
+          "clock": 3108,
+          "currentTime": 147,
+          "playState": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 147.00 / 220 ms · 66.8% · 移動途中 · controller: paused · native currentTime: 147.00 ms · native playState: paused",
+          "transform": "matrix(1, 0, 0, 1, 0, -0.777956)"
+        },
+        "verdict": "PASS"
+      },
+      {
+        "requested": 110,
+        "input": {
+          "clock": 3136,
+          "currentTime": 132,
+          "playState": "running",
+          "pending": false,
+          "controller": "running",
+          "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: running · native currentTime: 0.00 ms · native playState: running（pending）",
+          "transform": "matrix(1, 0, 0, 1, 0, -1.225116)"
+        },
+        "settled": {
+          "clock": 3136,
+          "currentTime": 132,
+          "playState": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 132.00 / 220 ms · 60.0% · 移動途中 · controller: paused · native currentTime: 132.00 ms · native playState: paused",
+          "transform": "matrix(1, 0, 0, 1, 0, -1.263159)"
+        },
+        "held": {
+          "clock": 3238,
+          "currentTime": 132,
+          "playState": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 132.00 / 220 ms · 60.0% · 移動途中 · controller: paused · native currentTime: 132.00 ms · native playState: paused",
+          "transform": "matrix(1, 0, 0, 1, 0, -1.263159)"
+        },
+        "verdict": "PASS"
+      },
+      {
+        "requested": 190,
+        "input": {
+          "clock": 3360,
+          "currentTime": 220,
+          "playState": "finished",
+          "pending": false,
+          "controller": "running",
+          "reading": "観察位置 130.00 / 220 ms · 59.1% · 移動途中 · controller: running · native currentTime: 130.00 ms · native playState: running",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)"
+        },
+        "settled": {
+          "clock": 3363,
+          "currentTime": 220,
+          "playState": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 220.00 / 220 ms · 100.0% · 終了位置 · controller: paused · native currentTime: 220.00 ms · native playState: paused",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)"
+        },
+        "held": {
+          "clock": 3464,
+          "currentTime": 220,
+          "playState": "paused",
+          "pending": false,
+          "controller": "finished",
+          "reading": "観察位置 220.00 / 220 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 220.00 ms · native playState: paused",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)"
+        },
+        "verdict": "INPUT_MISSED"
+      }
+    ],
+    "doesNotReplaceOriginalPartial": true
+  },
+  "durationsSeconds": {
+    "n2": 76.98569652399965,
+    "n2-strict": 0.11484555700008059,
+    "observation": 102.40643186099987,
+    "stage1": 152.55345558399858
+  },
+  "browserServerStopAt": "2026-10-27T00:38:02.421497+00:00",
+  "original153EvidenceUsed": false
+}

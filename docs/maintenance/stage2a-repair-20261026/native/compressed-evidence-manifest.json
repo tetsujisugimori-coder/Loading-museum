@@ -1,0 +1,42 @@
+{
+  "createdAt": "2026-10-26T04:13:44.476214+00:00",
+  "backup": "/tmp/stage2a-native-original-20261026",
+  "entries": [
+    {
+      "original": "baseline.json",
+      "gzip": "baseline.json.gz",
+      "originalBytes": 2952830,
+      "gzipBytes": 102632,
+      "originalSha256": "9be89afe5feaf9214a5046ab7ac397f0e407759838e769a3219cf81fb98b19c6",
+      "gzipSha256": "77b2b48975cc7d3a3033dc12c55626ffe0c2847897911705d15af2d00a192b01",
+      "roundtripEqual": true
+    },
+    {
+      "original": "baseline-v2.json",
+      "gzip": "baseline-v2.json.gz",
+      "originalBytes": 19467,
+      "gzipBytes": 2559,
+      "originalSha256": "a6af24c791f39e418ec304101cbd1d6d8be861b205021cabf0ab208cdc82e3fe",
+      "gzipSha256": "6ae548ccbd9fa608a1fb745f259c7b43a6c75d228ef6479fe1e0c6eb7c630b1c",
+      "roundtripEqual": true
+    },
+    {
+      "original": "baseline-v3.json",
+      "gzip": "baseline-v3.json.gz",
+      "originalBytes": 4882547,
+      "gzipBytes": 154167,
+      "originalSha256": "e917ebfbaf00575706d610a74acfb2466dabd1306c5c50b5b4693d138cfc3849",
+      "gzipSha256": "a92a86304ae8d3ba302b7d38cded2b0852e5ab5f726a3899854f4fc83cba8f1f",
+      "roundtripEqual": true
+    },
+    {
+      "original": "repaired.json",
+      "gzip": "repaired.json.gz",
+      "originalBytes": 4823946,
+      "gzipBytes": 151077,
+      "originalSha256": "beb30221a8ffe9f87b65fe07fc73674f2ddbe98980f52a35686181902084e2d8",
+      "gzipSha256": "9f2483f8dc4505bed5958bd0ac3010e34fc2ee6c528e83be1d37143272851593",
+      "roundtripEqual": true
+    }
+  ]
+}

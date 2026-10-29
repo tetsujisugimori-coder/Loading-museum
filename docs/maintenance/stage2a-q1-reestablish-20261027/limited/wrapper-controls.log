@@ -1,0 +1,14 @@
+
+ RUN  v3.2.4 /tmp/q1-limited-20261027/instrumented
+
+stdout | tests/wrapper-controls.test.tsx > captured real monotonic clock does not follow fake 10000 ms advance
+CLOCK_CONTROL {"fakeDeltaMs":10000,"realDeltaMs":0.268524}
+
+ ✓ tests/wrapper-controls.test.tsx (4 tests) 16ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  09:20:21
+   Duration  574ms (transform 42ms, setup 0ms, collect 101ms, tests 16ms, environment 270ms, prepare 61ms)
+
+JSON report written to /tmp/q1-limited-20261027/wrapper-controls-results.json

@@ -1,0 +1,181 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 check
+> npm run lint && npm run typecheck && npm test
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 lint
+> eslint .
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 typecheck
+> tsc --noEmit
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 test
+> npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run tests/macintosh-system-choice.test.tsx tests/waapi-samples.test.ts tests/waapi-gallery.test.tsx tests/waapi-interaction-state.test.ts tests/waapi-game-regressions.test.tsx tests/waapi-hp-regression.test.tsx tests/waapi-cascade-motion.test.tsx tests/dom11-selection.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-stage1-menu-coin.test.tsx tests/waapi-observation.test.tsx tests/waapi-observation-independent.test.tsx
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 10.5s
+  Running TypeScript ...
+  Finished TypeScript in 13.2s ...
+  Collecting page data using 4 workers ...
+  Generating static pages using 4 workers (0/3) ...
+✓ Generating static pages using 4 workers (3/3) in 827ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+✔ Read Meの実矩形はゴミ箱へ四方向から重なる (1.109689ms)
+✔ System 1→5→6→1→6をクリック相当の操作で連続選択する (0.94963ms)
+✔ System 5をEnter、System 6をSpace相当の操作で選択する (0.623874ms)
+✔ loadingから最初の年代へ移行する (6.38407ms)
+✔ 年代ごとにeraIndexが進む (0.372817ms)
+✔ 通常年代は共通の待機時間を使う (1.127612ms)
+✔ 最後の年代だけ長い待機時間を使う (1.678422ms)
+✔ 最後の年代後にindex-completeへ移行する (1.682396ms)
+✔ index-complete後にtypingへ移行する (0.923567ms)
+✔ タイトル文字数が1文字ずつ増える (0.343146ms)
+✔ タイトル全文をtyping状態で保持する (3.389711ms)
+✔ タイトル全文表示後にtyping-holdへ移行する (1.173472ms)
+✔ typing-hold後にsignal-lockのbrightenへ移行する (1.862108ms)
+✔ signal-lockはbrightenからnoiseへ進む (0.198874ms)
+✔ signal-lockはnoiseからlockedへ進む (1.995797ms)
+✔ signal-lockのlocked後にcompleteへ進む (1.345816ms)
+✔ complete以降は状態が進まない (0.644834ms)
+✔ complete状態は最後の年代とタイトル全文を保持する (0.152567ms)
+✔ ReplayはrunIdを増やす (1.711529ms)
+✔ Replayは初期状態へ戻す (3.596158ms)
+✔ 古いrunIdによるタイマー更新を無視する (0.1619ms)
+✔ reduced motionは即時completeになる (1.569152ms)
+✔ 年代走査中の点灯数とノード状態をeraIndexから算出する (0.338148ms)
+✔ 年代走査完了後は全タイムラインノードが点灯する (0.16176ms)
+✔ タイムライン進捗率を年代件数と現在位置から算出する (1.778816ms)
+✔ 年代が1件でも安全な進捗率を返し、完了数を件数内へ制限する (0.730498ms)
+✔ 全年代と全時間定数を一か所で管理する (0.72313ms)
+✔ GitHub Pages用の静的HTMLへ9種類の展示を書き出す (27.386428ms)
+✔ 正式名称のタイトル導入、年代テーマ、確定演出、軽減モーションと再生操作を実装する (5.325815ms)
+✔ 既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き出す (10.637895ms)
+✔ カーソル展示室と8種類の体験展示を書き出す (6.246443ms)
+✔ カーソル展示のデータ、Pointer Events、性能とアクセシビリティ対応を実装する (56.055019ms)
+✔ Macintosh誕生展示室を加えた展示室・展示件数を表示する (13.330909ms)
+✔ Macintosh誕生展示室へ18種類の操作展示を書き出す (30.190382ms)
+✔ Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する (32.192912ms)
+✔ Flash特別展示室へ18カテゴリ・54展示と優先デモを実装する (17.706651ms)
+✔ 再検討した9展示と現代Web継承比較を専用実装にする (25.130836ms)
+✔ FlashバナーのCTAを安全に2回強調し、価格とreduced motionを調整する (20.500828ms)
+✔ Flash専用展示の状態遷移、停止制御、操作可能なARIA構造を実装する (42.008622ms)
+✔ MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモを書き出す (27.301319ms)
+✔ 独立した消えたOS展示室へ6 OS・18種類のLoading再構成を書き出す (36.233788ms)
+✔ 展示室のデータ定義とタイマー停止・フォーカス復帰を実装する (6.405457ms)
+✔ 消えたOS展示のデータ・起動・停止・reduced motionを実装する (14.155153ms)
+✔ Linux / UNIXデモの再実行・速度切替・安全な停止を実装する (12.422196ms)
+✔ CSSとJavaScriptをLoading-museumサブパスから参照する (18.441114ms)
+✔ 静的export設定と既存レスポンシブ・reduced-motion対応を維持する (28.717164ms)
+✔ System 1〜6のbutton構造と非スクロールgridを静的に維持する (7.370435ms)
+✔ DOM ANIMATION ROOM を静的HTMLへ出力し、17操作のAPI体験を確認する (18.084484ms)
+✔ 既存ローディング標本の直下に、遅延生成するWAAPI標本ギャラリーを追加する (18.976127ms)
+ℹ tests 49
+ℹ suites 0
+ℹ pass 49
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 780.094556
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-stage2a-verification
+
+ ✓ tests/waapi-game-regressions.test.tsx (13 tests) 847ms
+ ✓ tests/waapi-cascade-motion.test.tsx (14 tests) 1007ms
+   ✓ cascade replay uses per-token trace, no fill or delayed state writes, reset cancels all  317ms
+ ✓ tests/dom11-selection.test.tsx (4 tests) 2097ms
+   ✓ DOM11 表示番号の偶数選択 > P1〜P6を生成し、P2/P4/P6だけを強調して結果説明と一致する  832ms
+   ✓ DOM11 表示番号の偶数選択 > resetで選択とノードを除き、再実行と連続再生でも同じ6件と選択集合を保つ  660ms
+   ✓ DOM11 表示番号の偶数選択 > 表示コード例を実DOMへ適用しても同じ番号だけを強調する  317ms
+ ✓ tests/waapi-samples.test.ts (7 tests) 88ms
+ ✓ tests/waapi-interaction-state.test.ts (2 tests) 13ms
+ ✓ tests/waapi-observation-independent.test.tsx (7 tests) 1565ms
+   ✓ running 1ステップ進む samples the current native time, not the previous rendered frame  502ms
+ ✓ tests/waapi-stage1-expanded.test.tsx (23 tests) 6045ms
+   ✓ parry reduced-motion labels agree with early and active judgment  951ms
+   ✓ battle offscreen interruption returns FIELD and stays retryable  339ms
+   ✓ parry exact boundaries and adjacent times, reduced=false  1017ms
+   ✓ parry exact boundaries and adjacent times, reduced=true  563ms
+   ✓ dodge exact boundaries and adjacent times, reduced=false  465ms
+   ✓ dodge exact boundaries and adjacent times, reduced=true  575ms
+ ✓ tests/waapi-hp-regression.test.tsx (4 tests) 7208ms
+   ✓ Damage直後Reset後、旧追従更新の予定時刻を過ぎても72を保つ  3951ms
+   ✓ Damage連打とHealは最新HPに収束し、Reset連打も不変  1548ms
+   ✓ Damage中のアンマウントは遅延更新を解除する  762ms
+   ✓ 画面外停止と再表示は現在HPを保持し古い追従更新を残さない  940ms
+ ✓ tests/macintosh-system-choice.test.tsx (2 tests) 589ms
+   ✓ System 1〜6の操作回帰 > クリックでSystem 1→5→6→1→6を連続して切り替える  454ms
+ ✓ tests/waapi-stage1-menu-coin.test.tsx (5 tests) 10499ms
+   ✓ Menu cursor belongs to the current row for buttons, keyboard, limits and Reset  2550ms
+   ✓ Coin entry, Replay and re-entry never grant points, including late completion after Reset  3451ms
+   ✓ Coin explicit COLLECT awards once per Reset and rapid input cannot duplicate it  1878ms
+   ✓ Coin has an explicit explanation separating demonstration, award and Reset  1755ms
+   ✓ Menu detail metadata describes actual no-fill decoration rather than generic sample defaults  856ms
+ ✓ tests/waapi-observation.test.tsx (30 tests) 10094ms
+   ✓ independent observation controller contract (WAAPI double) > forward and backward steps use 1000/60 ms, not a rounded frame count  301ms
+   ✓ independent observation controller contract (WAAPI double) > rapid play/pause and slider changes do not allocate competing animations  482ms
+   ✓ actual gallery integration: observation never owns game state > Menu selection survives observation seek, finish, reverse, mode exit, and ordinary Reset still works  1642ms
+   ✓ actual gallery integration: observation never owns game state > Coin preview repeatedly finishes and rewinds with zero points; normal COLLECT awards once  1274ms
+   ✓ actual gallery integration: observation never owns game state > collected Coin retains its score and collected guard through observation and return  956ms
+   ✓ actual gallery integration: observation never owns game state > observation reset does not reset collected game state and old callback cannot revive playback  758ms
+   ✓ actual gallery integration: observation never owns game state > mode exit cancels observation and reopening cannot resurrect the old running instance  779ms
+   ✓ actual gallery integration: observation never owns game state > gallery closure cancels observation; reopening has no old callback or auto-score  799ms
+   ✓ actual gallery integration: observation never owns game state > gallery media notification reaches observation without changing Coin collected state  1206ms
+ ✓ tests/waapi-gallery.test.tsx (11 tests) 13225ms
+   ✓ WAAPI標本ギャラリー操作 > 初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う  4148ms
+   ✓ WAAPI標本ギャラリー操作 > Replay、コード解説、ModalとToastの両方向を操作する  556ms
+   ✓ WAAPI標本ギャラリー操作 > Consoleの全操作、速度、Seek、実playStateを安全に反映する  496ms
+   ✓ WAAPI標本ギャラリー操作 > Reduced motion時は自動ループを残さず、代替表示を説明する  412ms
+   ✓ WAAPI標本ギャラリー操作 > Fade/Slideは手動再生、Button/Toggleは直接操作だけを提供する  583ms
+   ✓ WAAPI標本ギャラリー操作 > ゲーム標本を直接操作し、Resetで意味のある初期状態へ戻す  906ms
+   ✓ WAAPI標本ギャラリー操作 > 新しいゲーム標本、5軸フィルター、AI共通状態を操作できる  1339ms
+   ✓ WAAPI標本ギャラリー操作 > AI比較モードは一括フェーズを進め、閉じるとループを停止する  2580ms
+   ✓ WAAPI標本ギャラリー操作 > 追加ゲーム14件は固有DOM・状態・操作結果を提供する  1663ms
+   ✓ WAAPI標本ギャラリー操作 > Card Dealの全工程とAIの完了・エラー・リセットを操作できる  508ms
+
+ Test Files  12 passed (12)
+      Tests  122 passed (122)
+   Start at  08:13:35
+   Duration  18.61s (transform 2.32s, setup 0ms, collect 9.82s, tests 53.28s, environment 23.08s, prepare 3.33s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

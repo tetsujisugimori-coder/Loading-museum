@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "baseline_head": "b2d921182de7a92acc9227b0f767f1f555de2a16",
+  "baseline_tree": "a433cf09a7f27fe47d5fc383e85a2c029422b51e",
+  "source_hashes": {
+    "app/components/AppleEarlyBeginnerGuide.tsx": "8d0816c420849431da0eeecc5adafdb1d63e1ec83ef810456929595b744c1dfb",
+    "app/components/AppleEarlyDemoControls.tsx": "b70baf0c8d31f4067d6c3cd9e75940d1df4e28ca521a9ed3913130dd35b3d8f1",
+    "app/components/AppleEarlyEraExhibitRoom.tsx": "a4dcaa30c592a3b06c4ad00334159189ba2310258d12bfc084761fa026cdb0eb",
+    "app/components/AppleEarlyGraphicsDemos.tsx": "034786798313cefe9bb172f019acf74210f73a6c266359e3508b3d43a16440b1",
+    "app/components/AppleEarlyMediaDemos.tsx": "99fbae3d607473022b97383af79d5b414e6c3fb22750073a4181377ff5a2c4b1",
+    "app/components/AppleEarlyTerminalDemos.tsx": "5c494b566dddbfee741caea6165ab9cb39f84013c54d901684da9d2d5f22bf2b",
+    "app/components/AppleInteractionFlow.tsx": "56b1cad169aae38e38e5306562b2ca708edab1cb4600c90e80b056870c65d6d1",
+    "app/components/CursorExhibitRoom.tsx": "75af87aca2d78e3db79fbf42bd53ab69a54b2c630c6e583c19a4f42c4e0047ba",
+    "app/components/DomAnimationRoom.tsx": "6df9716c19a8dbd13b8f6be48e248fca11c392d87594accc721994d819847132",
+    "app/components/ExhibitRoomAccordion.tsx": "bb229dba140d63e7e214ddfe750a3e50156b3de0d4e1821cd539be1cdb5f03d2",
+    "app/components/FlashRefinedVisuals.tsx": "f033bb6782cd14053b55524dd089db6d2c3ce09bc7c4be048e53112c9f2e1bec",
+    "app/components/FlashSpecialExhibitRoom.tsx": "c8c201ddeff6cc0f4cd1bbb40c5e3b54a85442e90c98fdd00f8e49492d2b4b4c",
+    "app/components/FlashVisuals.tsx": "f7b31dbb33c6d9206de07305d33d2165a0b376387316db263653e40b8de4fb65",
+    "app/components/MacintoshBirthExhibitRoom.tsx": "30177e6d98016f87b9e607085f7ed9d98d79899001aea64315152486877b91f8",
+    "app/components/MuseumTitleSequence.tsx": "f53a69d03e97f6b662b963033d99f77e932ed54b9dae57c3a64304dc1cb16926",
+    "app/components/TerminalDemoPlayer.tsx": "f872664b0deea822d49bf5420860919015d08b573bff0e5cb805ee7e825f67b3",
+    "app/components/VanishedOsPlayer.tsx": "5859fe5c6b25da256ff31e71c1a0bfb345aa10842541a8701f97cf4da2ce5490",
+    "app/components/WaapiExpandedPreviews.tsx": "da69278fa30f705fa8f5c4886812ef51c2ffca002bed4382de4d4280ae44204d",
+    "app/components/WaapiGameObservation.tsx": "443ef345a3389ec748d94d3a546c3c428071760773544bb0844895030c4e1b27",
+    "app/components/WaapiSampleGallery.tsx": "0292e0340f1e5e854777a9d342bfa83b60a26e42ff0b66b9fdf343098ca3f365",
+    "app/components/macintosh-interaction-state.ts": "ad68a5e867bfeea05fade291555e6fa065e459c6a9f25be317924dd1dc9fb596",
+    "app/components/museum-title-sequence-state.ts": "3085030acff4aafa9954815866af66dd81840d5970d1d6723275ac578f17e2e2",
+    "app/components/waapi-board-state.ts": "9d4da1c02874e6034b8dab7682892dc308582e62f7e7e9c549c493355e523bcb",
+    "app/components/waapi-interaction-state.ts": "424d8fd6b142098341857ff66b0c976d95fdf26da98642faeab9ee58ce799a18",
+    "app/data/appleEarlyBeginnerGuide.ts": "374995301c907a25525807b66f42ba481cc5060af149365cf9453c4e444e7202",
+    "app/data/appleEarlyExhibits.ts": "904426e76eaa3614db3ef3fda475e08875664c9c30d5758a9228dde1794c9443",
+    "app/data/cursorExhibits.ts": "e2a7c340906c9b7c45fb695785f4ac3247908fffc3bd86ff1ae9b1757944c94a",
+    "app/data/exhibitRooms.ts": "5f781c2d56603b44681dcf81c1973827c0187e7bc90a996846b62703a5a8b962",
+    "app/data/flashExhibits.ts": "04ad1a2b00f7b3ddbfb10c5c5a40cd8f18a96d8bbbaca94effc0eff1f80d93af",
+    "app/data/macintoshBirthExhibits.ts": "4576d347287b3a982102ff3ae431231061caf03941202f25d19a93fccdbe6910",
+    "app/data/vanishedOperatingSystems.ts": "6f8e24e38b2774485c3990c38cca032668b2b60257e5b0db59b88dc4a183e0c1",
+    "app/data/waapiAdditionalSamples.ts": "c8c0dd02cc3bdcf321043426819c6b2d5441619b513c272cc7740d4ca8fdb4f5",
+    "app/data/waapiSamples.ts": "9192ea98459f9f818ed264fd40a9e4aaf61ec9bfd4f59799cb56602805922697",
+    "app/globals.css": "7907ac4cb2aa05e0639617728a7b79e9e14da00e75724f97c4fcab7fbc9e7a68",
+    "app/layout.tsx": "a2e0dbed02330a5e8d3250dcfaeac66f65e1be85d544430073db2fbf976d21f3",
+    "app/page.tsx": "3976429bfd045acd8ac4e9ebe3bcaaf2622ac704a2875946ae96ef9a291f4590",
+    "next.config.ts": "87dd5aee7fb32afb181bcdb08248c09ed78a816439c45bd60882e1bf323ef113",
+    "package-lock.json": "8052a2a9f829b9f926cc2664ddf4125cc1fba676299ce32c6aa92eed0474c0df",
+    "package.json": "e2f22df877eb045fc38a5c1548a158d2b1dcfd45b6780d4ba935008bce1cfb30",
+    "tests/dom11-selection.test.tsx": "23485b9e207e3a111e2c177c5fd61e87228e01eda317eb236f0a77b8c7a2ac58",
+    "tests/macintosh-interaction-state.test.mjs": "3c775e7f94d92c821fba62b8150db8ec179ce44bfc58b33e34d60bdc97be9e7c",
+    "tests/macintosh-system-choice.test.tsx": "8e64b2e86579003e77acbd2a1c625a8aec2b326d238e0ab32a090dd189c8454a",
+    "tests/museum-title-sequence-state.test.mjs": "b7bbcb78ec96c66cf5ed29ce967e442864c3a09f59814bffe43fe6c297ad8f6d",
+    "tests/rendered-html.test.mjs": "faff11be2bacc8bf797b3e7bbb3efbd85a99df527e2338a706d990b6a0fa2500",
+    "tests/waapi-cascade-motion.test.tsx": "39cda0fcbb1da6836ff607dfc8ba50371a827ddf807533b8e95dd7b96bf4c0af",
+    "tests/waapi-gallery.test.tsx": "8f453caf5b331b287f5241c4649896eb82bd5281cb1cc2b1b73f5e9ff719aa9c",
+    "tests/waapi-game-regressions.test.tsx": "c8fbfa275c7d0c3c0a98e4e16bc98238ddc64c25228636f653d7600c05dde5b4",
+    "tests/waapi-hp-regression.test.tsx": "c51ae38681cbc64c7730215e847f8e4c813d420c8672914d481c2e23887615c5",
+    "tests/waapi-interaction-state.test.ts": "a75b71b7024c4cc82e22bdf46b92c9dd6b238b9cae4fe97f38d867a73d9e3573",
+    "tests/waapi-observation-independent.test.tsx": "c869e848c1f008036d2cfc2752c38eefbbffeab95e718a78b4da92ca7da0e02e",
+    "tests/waapi-observation.test.tsx": "d9ea62d2c128e8fe416bd42911f1bd435b24cc4581f3766ee73e6fab0d015f22",
+    "tests/waapi-samples.test.ts": "00583dae4d738a7ddede7c20ba2b0900c5ff8147714196cf14c3aa0b766d0f53",
+    "tests/waapi-stage1-expanded.test.tsx": "d169d7d5b5982d7e706a8e36a3d73c114cf8f50bebf1bfca035eea368401917b",
+    "tests/waapi-stage1-menu-coin.test.tsx": "5c724188144a54b284a473110be7b15226079c9dcef6d31168f347ab9a07223b",
+    "tsconfig.json": "be18523b23b78b6e1a876ddd107d330f0168bddf09d751b57e0b5edce69c66f3"
+  },
+  "evidence": {
+    "worker1-1.log": {
+      "bytes": 9767,
+      "sha256": "49ddbdd3036b39b1a774a82474c243d6fcc9ad8fa1d0cc8a4cc5eeefc95ecf4f"
+    },
+    "default-1.log": {
+      "bytes": 11116,
+      "sha256": "63963ea21efd8ea7ad8c254f83b6d2ada3dcf61fff2e44f5186de77d8cfa7c37"
+    },
+    "results.json": {
+      "bytes": 77395,
+      "sha256": "88ac99b5bfbb3eae947ef382c751fcef059fea6e439631953ff1fda769378403"
+    },
+    "worker1-2.log": {
+      "bytes": 10052,
+      "sha256": "d01e149b23a0e6a99cf9beabf253dbdf984514044f88ea92b04dfb9f8fb5da8b"
+    },
+    "measure_checks.py": {
+      "bytes": 4685,
+      "sha256": "47488add8831f2d9052931d49646808917fb4f3aa629a655c19f814cb4947160"
+    },
+    "loading-q1-20261027-install.log": {
+      "bytes": 295754,
+      "sha256": "b694c4d00c091807547d12932d806abd70f618f700cbe971c42747566d01970d"
+    },
+    "loading-q1-20261027-install-cache.log": {
+      "bytes": 456,
+      "sha256": "6c7d5a748d205cea3cb0c4274b9a0060fd250f129680dbacfd12fe9acc1d9db1"
+    },
+    "default-3.log": {
+      "bytes": 10590,
+      "sha256": "585d00b7c92483607b9cc27b3b80d38355866b176ed2e5b609a472253d4d39de"
+    },
+    "default-2.log": {
+      "bytes": 11276,
+      "sha256": "551e7d2fa29845fb5fc4fd00a5c0b88a2ab2d81d7e627f19f39f10dee97f8d23"
+    },
+    "build.log": {
+      "bytes": 595,
+      "sha256": "e8772172738a7b25e7f010f3e40583f74bfa5ca76b6ffb4dab95e6b0804ddf19"
+    }
+  }
+}
