@@ -1,3 +1,5 @@
+import { modernExhibits } from "./data/modernExhibits";
+import ModernAnimationRoom from "./components/ModernAnimationRoom";
 import { ExhibitRoomAccordion } from "./components/ExhibitRoomAccordion";
 import { CursorExhibitRoom } from "./components/CursorExhibitRoom";
 import { FlashSpecialExhibitRoom } from "./components/FlashSpecialExhibitRoom";
@@ -61,7 +63,7 @@ export default function Home() {
           <br />
           COLLECTION 1976—NOW
           <br />
-          {periodRoomCount} ROOMS / {totalExhibitCount} OBJECTS
+          {periodRoomCount + 1} ROOMS / {totalExhibitCount + modernExhibits.length} OBJECTS
         </p>
       </header>
 
@@ -169,6 +171,8 @@ export default function Home() {
           <p className="caption">空白ではなく「これから現れる構造」を先に見せる。</p>
         </article>
       </section>
+
+      <ModernAnimationRoom />
 
       <WaapiSampleGallery />
 

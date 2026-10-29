@@ -1454,3 +1454,7 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 - 独立P3 2件（実時間/fillメタ、Battle RETURN教材）を修正し再レビュー。197/47、ID/名称/順序、旧5主要処理、Pages設定を維持。第2/3段階・新展示追加・公開なし。
 - 最終GUI/品質判定は設計記録へ追記。全197全操作、実機Safari/VoiceOverの合格を宣言しない。既存title200%横超過/typewriter重複は別負債。
 - 最終check: Node49＋Vitest85＝134成功/0失敗/0skip。新対象native6条件PASS・Menu矩形36測定差0px・pageerror0。旧主要6条件×9群も機能失敗なし。WebKitのmedia change配送を記録し、paused取消を条件待ちで実測。初回80ms観測失敗は原因未確定のまま証跡保持、最終成功で消去しない。
+
+## 2026-10-30 現代アニメーション第1期（Issue #37）
+
+原典6件から着想した独自の操作実験、共通ID・タグ検索、原典リンクを追加。紙・レンズ・ガラス等は概念近似であり、原典の3D物理やシェーダーの再現ではない。未完成点と出典は docs/modern-animation-phase1.md に記録。iPhone実機未検証。
