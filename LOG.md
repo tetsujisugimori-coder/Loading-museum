@@ -1517,3 +1517,7 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 ## 2026-10-29 JST — Stage 2A 後続の実装修正と受入検証
 
 Turn OrderのReset旧callback・低減時取消を局所修正。181件×5回と条件別browser証拠は [後続記録](docs/maintenance/stage2a-final-acceptance-20261029/README.md) に保存。最終HEADのCI確認前はHOLD。旧FAIL/PARTIAL、HTTP制約と対象外の文字200%横超過を保持。
+
+## 2026-10-29 20:05 JST — Stage 2A 受入判定更新
+
+コードHEAD `745a485` のPR CI 40862133914は181件と独立build成功。必要な現行表示・操作と検証は記録条件で合格し、歴史原因UNKNOWNは単独阻害としない。Stage 2Aマージ推奨YES、Stage 2B着手推奨GO候補。文書追補後の最終HEAD CIと人間の判断はPR本文を参照。旧HOLD・失敗・HTTP制約・既知対象外問題を維持。

@@ -2,6 +2,10 @@
 
 **CI確認前の判定: HOLD。** A現行製品とB現行検証の必要経路は以下の条件で確認できた。最終commitのPR専用CIと独立最終照合が成功した場合はGO候補とする。C過去障害の根本原因UNKNOWNのみを阻害条件にしない。履歴中のFAIL/PARTIAL、未検証と制約は保持する。Draft・未マージ、人間の最終判断を維持し、Stage 2Bの実装・自動マージ・Pages公開は行わない。
 
+## 20:05 JST 判定更新
+
+コードHEAD `745a4851802cf034f47887c30d176645f665f36b` の [PR専用CI 40862133914 / attempt 1](https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/40862133914) は正式181件・独立buildとも成功。現行の必要条件に基づき **GO候補、Stage 2Aマージ推奨YES、Stage 2B着手推奨GO** とする。旧Q1/B1/M1はHISTORICAL / NOT REPRODUCED、根本原因UNKNOWN。以下の記録時HOLDと先行FAILは履歴として保持する。この追補を含む最終HEADのCI結果および人間の判断はPR本文を参照し、最終HEAD CI失敗時はHOLDとする。
+
 ## 対象、修正、来歴
 
 開始HEAD `997c6927cfa51af7ff3e002a46f7019a03654da4`、base main `1d0d7eeac4e6fcbe2dfb792dd69250e65af302b7`。旧187件と179件との差8件は未commit query対照という保存記録があるが、8件全文・未commit内の移動/改名詳細はUNKNOWN。コミット済みテストがその差分8件分削除された証拠はなく、現行必須範囲を別途検証した。詳細は [test-scope-audit](../stage2a-acceptance-20261027/test-scope-audit.md)。
