@@ -1,0 +1,81 @@
+name: Temporary WAAPI baseline comparison
+on:
+  push:
+    branches:
+      - feat/interactive-collection-phase2
+
+permissions:
+  contents: read
+
+jobs:
+  compare:
+    name: "${{ matrix.label }}"
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - label: main-baseline
+            sha: d7bc7ef1047ea8506f3b515c348062762c99b321
+          - label: pr40-baseline
+            sha: 7c70d2e5381bb718e33c0d84a69b9c0774e8a379
+    steps:
+      - name: Checkout pinned revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.sha }}
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Record environment and settings
+        run: |
+          echo "label=${{ matrix.label }} pinned-sha=${{ matrix.sha }}"
+          echo "runner=${{ runner.os }} arch=${{ runner.arch }}"
+          uname -a
+          node --version
+          npm --version
+          nproc
+          sha256sum package-lock.json
+          node -e "const p=require('./package.json');console.log('test script:',p.scripts.test);console.log('vitest specification:',p.devDependencies.vitest)"
+      - name: Install pinned dependencies
+        id: deps
+        run: npm ci --no-audit --no-fund
+      - name: Record installed versions
+        run: |
+          npx vitest --version
+          npm ls vitest jsdom --depth=0
+      - name: Standard npm test (includes normal build and Vitest file parallelism)
+        id: normal
+        shell: bash
+        run: |
+          set +e
+          start=$(date +%s)
+          npm test 2>&1 | tee default-test.log
+          result=${PIPESTATUS[0]}
+          end=$(date +%s)
+          echo "NORMAL_RESULT=${result} ELAPSED_SECONDS=$((end-start)) HEAD=${{ matrix.sha }}" | tee -a default-test.log
+          exit "${result}"
+      - name: All common WAAPI tests with single worker
+        if: always() && steps.deps.outcome == 'success'
+        id: single
+        shell: bash
+        run: |
+          set +e
+          start=$(date +%s)
+          npx vitest run tests/waapi-*.test.ts* --maxWorkers=1 --no-file-parallelism 2>&1 | tee single-waapi.log
+          result=${PIPESTATUS[0]}
+          end=$(date +%s)
+          echo "SINGLE_RESULT=${result} ELAPSED_SECONDS=$((end-start)) HEAD=${{ matrix.sha }}" | tee -a single-waapi.log
+          exit "${result}"
+      - name: Save diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: waapi-comparison-${{ matrix.label }}
+          path: |
+            default-test.log
+            single-waapi.log
+          if-no-files-found: warn
