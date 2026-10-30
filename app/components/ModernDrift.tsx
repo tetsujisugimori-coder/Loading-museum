@@ -2,6 +2,21 @@
 
 import { useEffect, useRef, useState } from "react";
 
+/** Keep the full trail in the 600×280 drawing area for every supported control value. */
+export function driftGlyphPosition(index: number, count: number, trail: number, ghosts: number, progress: number, wave: number, phase: number) {
+  const size = Math.min(82, 490 / Math.max(count, 1) * 1.35);
+  const width = Math.min(420, count * size * .65);
+  const spacing = width / Math.max(count, 1);
+  const span = 12 + progress * .7;
+  const distance = trail / Math.max(ghosts, 1) * span;
+  return {
+    size,
+    x: 300 - width / 2 + (index + .5) * spacing - span / 2 + distance,
+    y: 100 + Math.sin(phase) * wave * .35 + distance * .55,
+    angle: Math.sin(phase) * wave * .003,
+  };
+}
+
 /** 塗り文字と輪郭文字の時間差を、文字単位の波とともに観察する。 */
 export default function ModernDrift() {
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -37,16 +52,13 @@ export default function ModernDrift() {
       const time = reduced || !playing ? 0 : (stamp - start) / 1000;
       ctx.fillStyle = "#12202b"; ctx.fillRect(0, 0, 600, 280);
       const chars = Array.from(word.slice(0, 12));
-      const size = Math.min(82, 490 / Math.max(chars.length, 1) * 1.35);
+      const size = driftGlyphPosition(0, chars.length, 0, ghosts, progress, wave, 0).size;
       ctx.font = `900 ${size}px sans-serif`; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-      const width = Math.min(480, chars.length * size * .65), spacing = width / Math.max(chars.length, 1);
       for (let trail = ghosts; trail >= 0; trail--) {
         for (let i = 0; i < chars.length; i++) {
           const phase = i * .75 + time * 1.3 - trail * .18;
-          const distance = trail * (3 + progress * 2.2);
-          const y = 110 + Math.sin(phase) * wave * .35 + distance * .58;
-          const x = 300 - width / 2 + (i + .5) * spacing + distance;
-          ctx.save(); ctx.translate(x, y); ctx.rotate(Math.sin(phase) * wave * .003);
+          const { x, y, angle } = driftGlyphPosition(i, chars.length, trail, ghosts, progress, wave, phase);
+          ctx.save(); ctx.translate(x, y); ctx.rotate(angle);
           if (trail === 0) { ctx.fillStyle = "#f5e9cd"; ctx.fillText(chars[i], 0, 0); }
           else { ctx.strokeStyle = `rgba(120, 226, 220, ${.75 * (1 - trail / (ghosts + 1))})`; ctx.lineWidth = 1.4; ctx.strokeText(chars[i], 0, 0); }
           ctx.restore();

@@ -2,13 +2,14 @@
 
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import "./glass-exhibit.css";
+import glassMesh from "../data/glass-bar.json";
 
 type Hit = { x: number; y: number; w: number; h: number; index: number };
 type Point = { x: number; y: number; z: number };
 const NOTES = [261.63, 293.66, 329.63, 349.23, 392, 440, 493.88, 523.25];
 
-/** Independent, procedural cuboids: the canvas projects their 3D vertices to 2D.
- * There are no imported models, images, sounds, or shader code. */
+/** Original Blender bevel mesh, transformed and projected into Canvas.
+ * Sounds are synthesized; no external textures or shader code are used. */
 export default function GlassExhibit() {
   const canvas = useRef<HTMLCanvasElement>(null);
   const hits = useRef<Hit[]>([]);
@@ -53,18 +54,13 @@ export default function GlassExhibit() {
       const bg = ctx.createLinearGradient(0, 0, width, height);
       bg.addColorStop(0, "#182d42"); bg.addColorStop(.55, "#314b5a"); bg.addColorStop(1, "#122635");
       ctx.fillStyle = bg; ctx.fillRect(0, 0, width, height);
-      // Back-to-front depth ordering keeps each independent cuboid legible.
+      // Back-to-front depth ordering keeps each independent bar legible.
       const now = performance.now();
       const geometry = NOTES.map((_, index) => {
         const angle = (index / NOTES.length * Math.PI * 2) + offset / 100 * Math.PI * 2;
         return { index, angle, z: Math.cos(angle) * 42 };
       }).sort((a, b) => b.z - a.z);
       const nextHits: Hit[] = [];
-      const polygon = (points: {x:number;y:number}[], color: string, line = "rgba(255,255,255,.45)") => {
-        ctx.beginPath(); ctx.moveTo(points[0].x, points[0].y);
-        for (const p of points.slice(1)) ctx.lineTo(p.x, p.y);
-        ctx.closePath(); ctx.fillStyle = color; ctx.fill(); ctx.strokeStyle = line; ctx.lineWidth = 1; ctx.stroke();
-      };
       for (const {index, angle, z} of geometry) {
         const elapsed = (now - strikes.current[index]) / 1000;
         const bounce = running && !reduced && elapsed >= 0 && elapsed < 1.4 ? Math.sin(elapsed * 18) * Math.exp(-elapsed * 3) * .12 : 0;
@@ -72,14 +68,30 @@ export default function GlassExhibit() {
         const cx = Math.sin(angle) * 46;
         const cy = (index - 3.5) * 37;
         const length = 225 - index * 10;
-        const vertex = (x:number, y:number, depth:number): Point => ({x: cx + x * Math.cos(bounce) - y * Math.sin(bounce), y: cy + x * Math.sin(bounce) + y * Math.cos(bounce), z: z + depth});
-        const verts = [vertex(-length/2,-10,-12), vertex(length/2,-10,-12), vertex(length/2,10,-12), vertex(-length/2,10,-12), vertex(-length/2,-10,12), vertex(length/2,-10,12), vertex(length/2,10,12), vertex(-length/2,10,12)].map(p => project(p,width,height));
+        // Blender exports Z-up; map Z to screen height and Y to camera depth.
+        // The same 96 original vertices and 188 triangles are reused for each note.
+        const vertices3d = glassMesh.vertices.map(([mx, my, mz]): Point => {
+          const x = mx * length / 1.8, y = -mz * 110, depth = my * 110;
+          return {x: cx + x * Math.cos(bounce) - y * Math.sin(bounce),
+            y: cy + x * Math.sin(bounce) + y * Math.cos(bounce), z: z + depth};
+        });
+        const verts = vertices3d.map(p => project(p,width,height));
         const hue = 180 + index * 17;
-        polygon([verts[4],verts[5],verts[6],verts[7]], `hsla(${hue},80%,70%,.12)`);
-        polygon([verts[0],verts[1],verts[5],verts[4]], `hsla(${hue},90%,${72 + glow * 15}%,.55)`);
-        polygon([verts[1],verts[2],verts[6],verts[5]], `hsla(${hue},70%,${42 + glow * 20}%,.63)`);
-        polygon([verts[0],verts[1],verts[2],verts[3]], `hsla(${hue},75%,${60 + glow * 25}%,.7)`);
-        ctx.beginPath(); ctx.moveTo(verts[0].x + 4, verts[0].y + 3); ctx.lineTo(verts[1].x - 4, verts[1].y + 3); ctx.strokeStyle = "rgba(255,255,255,.8)"; ctx.lineWidth = 1.5; ctx.stroke();
+        const faces = glassMesh.triangles.map(([a,b,c]) => {
+          const p = glassMesh.vertices[a], q = glassMesh.vertices[b], r = glassMesh.vertices[c];
+          const ux=q[0]-p[0], uy=q[1]-p[1], uz=q[2]-p[2];
+          const vx=r[0]-p[0], vy=r[1]-p[1], vz=r[2]-p[2];
+          const nx=uy*vz-uz*vy, ny=uz*vx-ux*vz, nz=ux*vy-uy*vx;
+          const magnitude=Math.hypot(nx,ny,nz) || 1;
+          // A soft directional light makes the rounded bevel facets visible.
+          const light=Math.max(0, (nx*.15-ny*.55+nz*.82)/magnitude);
+          return {a,b,c, light, depth:(vertices3d[a].z+vertices3d[b].z+vertices3d[c].z)/3};
+        }).sort((a,b) => b.depth-a.depth);
+        for (const face of faces) {
+          const a=verts[face.a], b=verts[face.b], c=verts[face.c];
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.lineTo(c.x,c.y); ctx.closePath();
+          ctx.fillStyle=`hsla(${hue}, 74%, ${48 + face.light*35 + glow*12}%, .9)`; ctx.fill();
+        }
         const xs = verts.map(p => p.x), ys = verts.map(p => p.y);
         const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
         nextHits.push({x: minX, y: minY - 5, w: maxX - minX, h: maxY - minY + 10, index});

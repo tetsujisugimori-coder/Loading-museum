@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import "./paper-exhibit.css";
+import paperMesh from "../data/paper.json";
 
 type Point = { x: number; y: number; z: number };
 type Model = {
@@ -11,13 +12,14 @@ type Model = {
 const initialModel = (): Model => ({ x: 0, y: 0, vx: 0, vy: 0, angle: -0.13, spin: 0, fold: 0.55, dragging: false, lastX: 0, lastY: 0, lastTime: 0 });
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 
-/** A deterministic procedural sheet: every grid vertex is ours, with no imported mesh or textures. */
-function vertex(u: number, v: number, fold: number, angle: number): Point {
-  const shrink = 1 - fold * 0.48;
-  const ridge = (t: number) => Math.abs(((t + 0.25) % 0.5 + 0.5) % 0.5 - 0.25) - 0.125;
-  let x = u * shrink + fold * 0.08 * Math.sin(v * 12 + u * 4);
-  let y = v * shrink + fold * 0.07 * Math.sin(u * 10 - v * 5);
-  let z = fold * (0.75 * ridge(u + v * 0.25) + 0.55 * ridge(v - u * 0.3) + 0.11 * Math.sin(u * 13) * Math.cos(v * 11));
+/** Corresponding Blender vertices are interpolated without changing their topology. */
+function vertex(index: number, fold: number, angle: number): Point {
+  const flat = paperMesh.flat[index];
+  const crumpled = paperMesh.crumpled[index];
+  let x = (flat[0] + (crumpled[0] - flat[0]) * fold) * .5;
+  let y = (flat[1] + (crumpled[1] - flat[1]) * fold) * .5;
+  let z = (flat[2] + (crumpled[2] - flat[2]) * fold) * .5;
+  // Blender is Z-up. Tilt its XY sheet towards the viewer before projection.
   const tilt = 0.48 + fold * 0.35;
   const yy = y * Math.cos(tilt) - z * Math.sin(tilt);
   z = y * Math.sin(tilt) + z * Math.cos(tilt);
@@ -45,22 +47,17 @@ function paint(canvas: HTMLCanvasElement, model: Model) {
   const centerY = height / 2 + model.y * height * 0.29;
   context.fillStyle = "#0005";
   context.beginPath(); context.ellipse(centerX + 10, centerY + scale * .31, scale * .38, scale * .10, 0, 0, Math.PI * 2); context.fill();
-  const cols = 20, rows = 16;
+  const vertices = paperMesh.flat.map((_, index) => vertex(index, model.fold, model.angle));
   const triangles: { points: Point[]; shade: number; depth: number }[] = [];
-  for (let row = 0; row < rows; row++) {
-    for (let col = 0; col < cols; col++) {
-      const point = (cx: number, cy: number) => vertex(cx / cols - .5, (cy / rows - .5) * .72, model.fold, model.angle);
-      const a = point(col,row), b = point(col+1,row), c = point(col,row+1), d = point(col+1,row+1);
-      for (const points of [[a,b,c], [b,d,c]]) {
-        const [p, q, r] = points;
-        const ux = q.x-p.x, uy = q.y-p.y, uz = q.z-p.z;
-        const vx = r.x-p.x, vy = r.y-p.y, vz = r.z-p.z;
-        const nx = uy*vz-uz*vy, ny = uz*vx-ux*vz, nz = ux*vy-uy*vx;
-        const length = Math.hypot(nx,ny,nz) || 1;
-        const light = Math.abs((nx * -.35 + ny * -.45 + nz * .82) / length);
-        triangles.push({ points, shade: clamp(0.50 + light * .48, .48, .98), depth: (p.z+q.z+r.z)/3 });
-      }
-    }
+  for (const [i, j, k] of paperMesh.triangles) {
+    const points = [vertices[i], vertices[j], vertices[k]];
+    const [p, q, r] = points;
+    const ux = q.x-p.x, uy = q.y-p.y, uz = q.z-p.z;
+    const vx = r.x-p.x, vy = r.y-p.y, vz = r.z-p.z;
+    const nx = uy*vz-uz*vy, ny = uz*vx-ux*vz, nz = ux*vy-uy*vx;
+    const length = Math.hypot(nx,ny,nz) || 1;
+    const light = Math.abs((nx * -.35 + ny * -.45 + nz * .82) / length);
+    triangles.push({ points, shade: clamp(0.50 + light * .48, .48, .98), depth: (p.z+q.z+r.z)/3 });
   }
   triangles.sort((a,b) => a.depth-b.depth);
   for (const tri of triangles) {
@@ -74,7 +71,7 @@ function paint(canvas: HTMLCanvasElement, model: Model) {
     const s = tri.shade;
     context.fillStyle = `rgb(${Math.round(247*s)} ${Math.round(235*s)} ${Math.round(210*s)})`;
     context.fill();
-    context.strokeStyle = "#5a503b22"; context.lineWidth = .45; context.stroke();
+    context.strokeStyle = context.fillStyle; context.lineWidth = .5; context.stroke();
   }
 }
 
@@ -173,6 +170,6 @@ export default function PaperExhibit() {
       <button type="button" onClick={reset}>紙をリセット</button>
     </div>
     <p>紙をドラッグして離すか、投げるボタンを押すと投げられます。スライダーで折り目を観察できます。端に当たると跳ね返ります。動きを減らす設定では投擲後の慣性を止めます。</p>
-    <p>三角形の頂点を数式で折り曲げ、遠近投影と面の明暗で立体感を描く独自の近似です。実際の紙の自己衝突やHoudiniのシミュレーションは使っていません。</p>
+    <p>Blenderで独自制作した平らな紙と折り目のある紙の対応頂点を補間し、遠近投影と面の明暗で立体感を描きます。完全に丸まった球や、実際の紙の自己衝突・Houdiniのシミュレーションではありません。</p>
   </div>;
 }

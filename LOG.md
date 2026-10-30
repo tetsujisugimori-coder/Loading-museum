@@ -1460,3 +1460,5 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 原典6件から着想した独自の操作実験、共通ID・タグ検索、原典リンクを追加。紙・レンズ・ガラス等は概念近似であり、原典の3D物理やシェーダーの再現ではない。未完成点と出典は docs/modern-animation-phase1.md に記録。iPhone実機未検証。
 
 2026-10-30追記：第1段階を拡張し、紙とガラスに手続き3D投影、帯の分解、文字の波とスクロール軌跡、画素レンズ、速度と緩急を操作できるClip Menuを追加。詳細と原典との差、検証範囲は docs/modern-animation-phase1.md を参照。
+
+同日追記：親側クラウドのBlender 4.3.2で独自制作した紙・ガラスのメッシュをCanvas表示へ統合。配信はJSONのみで、制作証拠のLibrary ZIP、各ハッシュ、形状の限界を調査文書に記録。A Driftの長い残像が画面外へ消える問題を修正し、残像数・スクロール位置の境界テストを追加。
