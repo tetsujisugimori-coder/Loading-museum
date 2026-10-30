@@ -77,3 +77,9 @@ Menu照準は選択行へ追従。Parry/Dodgeの成功窓は開始後420〜680ms
 ## 現代アニメーション常設展（第1期）
 
 6作品を原典から着想した独自の操作実験として収録。作品名・タグで絞り込み、選択した作品だけを表示します。独自のCanvas描画、手続き3D投影、CSSとWeb Audioの合成音を使い、外部画像・音素材・原典コードは含みません。音は利用者が有効化するまで無音です。紙・レンズ・ガラスは原典の物理・シェーダーを独自の近似へ置き換え、、作品ごとの説明に差を記載しています。詳細は [調査と限界](docs/modern-animation-phase1.md) を参照してください。
+
+## 第2期A：表現実験
+
+独立した展示室にStarfield Warp、Plasma Dream、Liquid Metaballs、Flocking Life、Pixel Dissolve、Tile Flipを収録。Canvasで描画し、図柄もコードから独自生成します。星の透視、波の重ね合わせ、陰関数、群れの近傍則、画素・タイル遷移を操作できます。原典のコード・素材を使用しません。動き低減時は自動再生を止めます。
+
+第2期BではInfinite Tunnel、Raster Bars、Elastic Space、Kaleidoscope、Ink Bloom、Glitch Laboratoryを追加。Canvasによる独自の近似です。インクは流体計算ではなく半透明粒子、グリッチは強い点滅を伴わない画素ずれです。作品ごとの操作・原理・着想は展示内に記載しています。
