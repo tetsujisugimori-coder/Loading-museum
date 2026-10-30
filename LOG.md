@@ -1477,3 +1477,4 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 
 - 第2期の独立指摘に対応し、位相維持、群れ速度、色順リセットと弾性の実効操作を修正。回帰テスト追加。lint・build・静的49件成功、全体 Vitest 114成功/既存WAAPI 1件タイムアウト、同ファイル単独11件成功。詳細と未検証は docs/phase2-studies.md。
 - メタボールの停止時スナップを修正し、描画画像配列を使う回帰テストで修正前RED・修正後GREENを確認。詳細と390px実画面検証の限界は docs/phase2-studies.md。
+- Ink Bloom の見え方を調整し、不透明度操作を「重ねの濃さ」に改名。描画モックの即時反応・拡大テスト追加。実画面検証は接続断で未了。checkは静的49成功、Vitest114成功・既存WAAPI3件タイムアウト。詳細は docs/phase2-studies.md。
