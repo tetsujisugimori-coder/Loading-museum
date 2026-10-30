@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useRef, useState, type PointerEvent } from 'react';
 import { phase2Studies, type StudyId } from '../data/phase2Studies';
+import { phase2BStudies, type Phase2BId } from '../data/phase2BStudies';
+import Phase2BPlayer from './Phase2BPlayer';
 import './phase2.css';
 const W=480,H=300;
 type Particle={x:number;y:number;z:number;vx:number;vy:number};
@@ -34,4 +36,4 @@ function Player({id}:{id:StudyId}) {
  {(id==='tile'||id==='dissolve')&&<button onClick={()=>{goal.current=target?0:1;setTarget(!target);setGeneration(n=>n+1)}}>画像を切替</button>}
  <button onClick={()=>setPlaying(!playing)}>{playing?'動きを止める':'動きを再開'}</button><button onClick={reset}>リセット</button></div>{reduced&&<p>動きを減らす設定です。自動再生を止め、切替は即時表示します。</p>}</div>;
 }
-export default function Phase2Room(){const [open,setOpen]=useState(false),[query,setQuery]=useState(''),[selected,setSelected]=useState<StudyId|null>(null);const list=phase2Studies.filter(x=>`${x.title} ${x.tags.join(' ')}`.toLowerCase().includes(query.toLowerCase()));const item=list.find(x=>x.id===selected);return <section className="studyRoom"><h2>インタラクティブ作品・表現実験</h2><p>第2期：動かして仕組みを学ぶ独自作品。</p><button onClick={()=>setOpen(!open)} aria-expanded={open}>{open?'展示室を閉じる':'展示室を開く'}</button>{open&&<><label>作品名・タグで探す <input value={query} onChange={e=>setQuery(e.target.value)}/></label><div className="studyList">{list.map(x=><button key={x.id} onClick={()=>setSelected(x.id)} aria-pressed={selected===x.id}>{x.title}</button>)}</div>{item&&<article><p>OBJECT {item.id} / {item.category}</p><h3>{item.title}</h3><Player key={item.id} id={item.id}/><p>{item.instruction}</p><p>{item.description}</p><p>{item.origin}</p><p>タグ：{item.tags.join(' / ')}</p></article>}</>}</section>}
+export default function Phase2Room(){const [open,setOpen]=useState(false),[query,setQuery]=useState(''),[selected,setSelected]=useState<StudyId|Phase2BId|null>(null);const list=[...phase2Studies,...phase2BStudies].filter(x=>`${x.title} ${x.tags.join(' ')}`.toLowerCase().includes(query.toLowerCase()));const item=list.find(x=>x.id===selected);return <section className="studyRoom"><h2>インタラクティブ作品・表現実験</h2><p>第2期：動かして仕組みを学ぶ独自作品。</p><button onClick={()=>setOpen(!open)} aria-expanded={open}>{open?'展示室を閉じる':'展示室を開く'}</button>{open&&<><label>作品名・タグで探す <input value={query} onChange={e=>setQuery(e.target.value)}/></label><div className="studyList">{list.map(x=><button key={x.id} onClick={()=>setSelected(x.id)} aria-pressed={selected===x.id}>{x.title}</button>)}</div>{item&&<article><p>OBJECT {item.id} / {item.category}</p><h3>{item.title}</h3>{phase2Studies.some(x=>x.id===item.id)?<Player key={item.id} id={item.id as StudyId}/>:<Phase2BPlayer key={item.id} id={item.id as Phase2BId}/>}<p>{item.instruction}</p><p>{item.description}</p><p>{item.origin}</p><p>タグ：{item.tags.join(' / ')}</p></article>}</>}</section>}

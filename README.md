@@ -81,3 +81,5 @@ Menu照準は選択行へ追従。Parry/Dodgeの成功窓は開始後420〜680ms
 ## 第2期A：表現実験
 
 独立した展示室にStarfield Warp、Plasma Dream、Liquid Metaballs、Flocking Life、Pixel Dissolve、Tile Flipを収録。Canvasで描画し、図柄もコードから独自生成します。星の透視、波の重ね合わせ、陰関数、群れの近傍則、画素・タイル遷移を操作できます。原典のコード・素材を使用しません。動き低減時は自動再生を止めます。
+
+第2期BではInfinite Tunnel、Raster Bars、Elastic Space、Kaleidoscope、Ink Bloom、Glitch Laboratoryを追加。Canvasによる独自の近似です。インクは流体計算ではなく半透明粒子、グリッチは強い点滅を伴わない画素ずれです。作品ごとの操作・原理・着想は展示内に記載しています。

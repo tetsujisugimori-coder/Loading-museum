@@ -64,7 +64,7 @@ export default function Home() {
           <br />
           COLLECTION 1976—NOW
           <br />
-          {periodRoomCount + 2} ROOMS / {totalExhibitCount + modernExhibits.length + 6} OBJECTS
+          {periodRoomCount + 2} ROOMS / {totalExhibitCount + modernExhibits.length + 12} OBJECTS
         </p>
       </header>
 

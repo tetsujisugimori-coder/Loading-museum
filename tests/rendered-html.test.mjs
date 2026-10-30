@@ -251,7 +251,7 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /11 ROOMS \/ 209 OBJECTS/);
+  assert.match(normalizedHtml, /11 ROOMS \/ 215 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
   assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 7);
   assert.ok((html.match(/aria-expanded="false"/g) ?? []).length >= 8);
