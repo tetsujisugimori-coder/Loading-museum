@@ -1458,3 +1458,5 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 ## 2026-10-30 現代アニメーション第1期（Issue #37）
 
 原典6件から着想した独自の操作実験、共通ID・タグ検索、原典リンクを追加。紙・レンズ・ガラス等は概念近似であり、原典の3D物理やシェーダーの再現ではない。未完成点と出典は docs/modern-animation-phase1.md に記録。iPhone実機未検証。
+
+2026-10-30追記：第1段階を拡張し、紙とガラスに手続き3D投影、帯の分解、文字の波とスクロール軌跡、画素レンズ、速度と緩急を操作できるClip Menuを追加。詳細と原典との差、検証範囲は docs/modern-animation-phase1.md を参照。

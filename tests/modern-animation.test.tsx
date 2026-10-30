@@ -1,11 +1,11 @@
 // @vitest-environment jsdom
 import React from 'react';
-import { afterEach, beforeAll, describe, expect, it } from 'vitest';
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import ModernAnimationRoom from '../app/components/ModernAnimationRoom';
 import { modernExhibits } from '../app/data/modernExhibits';
 
-beforeAll(() => { globalThis.IntersectionObserver = class { observe() {} disconnect() {} unobserve() {} takeRecords() { return []; } root = null; rootMargin = ''; thresholds = []; } as unknown as typeof IntersectionObserver; });
+beforeAll(() => { vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(null); globalThis.IntersectionObserver = class { observe() {} disconnect() {} unobserve() {} takeRecords() { return []; } root = null; rootMargin = ''; thresholds = []; } as unknown as typeof IntersectionObserver; });
 afterEach(cleanup);
 describe('modern collection', () => {
   it('has six unique, attributed and tagged objects', () => {
