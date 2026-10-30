@@ -1,3 +1,4 @@
+import Phase2Room from "./components/Phase2Room";
 import { modernExhibits } from "./data/modernExhibits";
 import ModernAnimationRoom from "./components/ModernAnimationRoom";
 import { ExhibitRoomAccordion } from "./components/ExhibitRoomAccordion";
@@ -63,7 +64,7 @@ export default function Home() {
           <br />
           COLLECTION 1976—NOW
           <br />
-          {periodRoomCount + 1} ROOMS / {totalExhibitCount + modernExhibits.length} OBJECTS
+          {periodRoomCount + 2} ROOMS / {totalExhibitCount + modernExhibits.length + 6} OBJECTS
         </p>
       </header>
 
@@ -173,6 +174,7 @@ export default function Home() {
       </section>
 
       <ModernAnimationRoom />
+      <Phase2Room />
 
       <WaapiSampleGallery />
 
