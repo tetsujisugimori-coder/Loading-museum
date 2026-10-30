@@ -1,0 +1,6 @@
+.paperCanvas { display: block; width: 100%; height: clamp(240px, 60vw, 380px); touch-action: none; cursor: grab; background: #17242c; }
+.paperCanvas:active { cursor: grabbing; }
+.paperControls { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-top: .8rem; }
+.paperControls label { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; }
+.paperControls button { min-height: 44px; }
+.paperExhibit p { line-height: 1.6; }

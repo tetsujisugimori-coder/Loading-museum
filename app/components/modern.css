@@ -1,0 +1,28 @@
+.modernRoom { margin: 3rem auto; padding: clamp(1rem,4vw,2.5rem); max-width: 1100px; background: #16212a; color: #f6f4eb; border-radius: 1rem; }
+.modernRoom button, .modernRoom input { font: inherit; }
+.modernRoom button { min-height: 44px; padding: .6rem .9rem; border: 1px solid #9cb1b5; border-radius: .4rem; background: #273b43; color: white; cursor: pointer; }
+.modernRoom button:focus-visible, .modernRoom input:focus-visible { outline: 3px solid #fbd775; outline-offset: 3px; }
+.modernSearch { display: grid; gap: .4rem; margin: 1rem 0; max-width: 30rem; }
+.modernSearch input, .modernControls input:not([type=range]) { min-width: 0; padding: .6rem; }
+.modernList, .modernControls { display: flex; flex-wrap: wrap; gap: .5rem; }
+.modernList button[aria-pressed=true] { background: #735b29; }
+.modernExhibit { margin-top: 1.5rem; } .modernExhibit a { color: #9de6ec; overflow-wrap: anywhere; }
+.modernPlayer { margin: 1rem 0; } .modernControls { padding: 1rem 0; align-items: center; } .modernControls label { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.modernStage { height: clamp(220px, 55vw, 360px); position: relative; overflow: hidden; display: grid; place-items: center; background: #10181d; touch-action: pan-y; }
+.modernStage.unwoven, .modernStage.paper, .modernStage.lens { touch-action: none; }
+.weave { width: 45%; height: 70%; display: flex; flex-direction: column; }
+.thread { flex: 1; background-image: linear-gradient(135deg,#ffd169,#e25178 38%,#2749a4 65%,#6ff2d0); background-size: 100% 1600%; transition: transform .2s; }
+.paperShape { width: 40%; aspect-ratio: 1.3; display: grid; place-items: center; color: #29343b; font-weight: 900; letter-spacing: .1em; box-shadow: 10px 22px 25px #0007; background: repeating-conic-gradient(from 22deg at 50% 40%, #f3ead1 0 15deg,#a89e87 20deg,#fff9e8 30deg,#ded1b6 45deg); transition: transform .25s; }
+.lensArt { position: absolute; inset: 0; background: repeating-radial-gradient(ellipse at 35% 55%, #edb451 0 12px,#bf4e75 13px 25px,#4266ad 26px 40px,#62bba5 41px 55px); } .lensArt.muted { filter: grayscale(1); } .lensArt.colored { filter: saturate(1.5); } .lensFrame { position: absolute; aspect-ratio: 1; max-width: 100%; border: 2px solid white; transform: translate(-50%,-50%); pointer-events: none; box-shadow: 2px 2px #fa5d77,-2px -2px #55d4ff; }
+.driftStack { position: relative; width: 80%; height: 45%; } .driftStack span { position: absolute; font-size: clamp(2rem, 9vw, 5rem); font-weight: 900; color: transparent; -webkit-text-stroke: 1px #a9eee5; white-space: nowrap; } .driftStack span:first-child { color: #f6e9cb; }
+.glassKeys { width: 88%; overflow-x: auto; justify-content: flex-start; height: 80%; display: flex; justify-content: center; align-items: center; gap: 1%; perspective: 500px; } .glassKeys button { flex: 1 0 44px; min-width: 44px; padding: 0; background: linear-gradient(110deg,#ffffffcc,hsla(var(--hue),80%,70%,.65),#ffffff66); box-shadow: 4px 7px 0 #ffffff33, 8px 14px 14px #0007; transform: rotateY(-16deg); } .glassKeys .struck { animation: modern-strike .6s ease-out; } @keyframes modern-strike { 30% { transform: rotateY(-16deg) rotateZ(12deg); filter: brightness(1.7); } 70% { transform: rotateY(-16deg) rotateZ(-5deg); } }
+.clipPanel { position: absolute; inset: 10%; display: grid; place-items: center; background: #d4e77e; color: #18221d; font-size: 1.2rem; font-weight: bold; clip-path: inset(50% 0 50% 0); transition: clip-path .8s cubic-bezier(.7,0,.2,1); } .clipPanel.isOpen { clip-path: inset(0); transition-timing-function: cubic-bezier(.12,.8,.25,1); }
+.modernStage[data-running=true] .thread { animation: modern-float 2s ease-in-out infinite alternate; } @keyframes modern-float { to { filter: brightness(1.25); } }
+@media (prefers-reduced-motion: reduce) { .modernRoom *, .modernRoom *::before, .modernRoom *::after { animation: none !important; transition-duration: 0s !important; } }
+.modernStage[data-running=true] .thread { animation: modern-float 2s ease-in-out infinite alternate; }
+.modernStage[data-running=true] .thread:nth-child(3n) { animation-delay: -.8s; }
+.modernStage[data-running=true] .driftStack span { animation: modern-drift 2.5s ease-in-out infinite alternate; }
+@keyframes modern-float { to { translate: 6% 0; filter: brightness(1.25); } }
+@keyframes modern-drift { to { translate: 0 -8px; } }
+
+.modernStage[data-running=false] * { animation-play-state: paused !important; transition-duration: 0s !important; }

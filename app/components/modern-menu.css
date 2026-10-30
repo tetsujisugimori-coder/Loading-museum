@@ -1,0 +1,5 @@
+.modernClipStage { position:relative; height:clamp(220px,55vw,360px); background:#10181d; overflow:hidden; }
+.modernClipPanel { position:absolute; inset:10%; display:grid; place-items:center; background:#d4e77e; color:#18221d; font-size:1.2rem; font-weight:bold; clip-path:inset(50% 0 50%); transition-property:clip-path; }
+.modernClipPanel.open { clip-path:inset(0); }
+.modernClipExperiment select { font:inherit; min-height:44px; max-width:100%; }
+@media(prefers-reduced-motion:reduce) { .modernClipPanel { transition-duration:0s !important; } }
