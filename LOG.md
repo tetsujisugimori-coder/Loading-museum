@@ -1480,3 +1480,5 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 - Ink Bloom の見え方を調整し、不透明度操作を「重ねの濃さ」に改名。描画モックの即時反応・拡大テスト追加。実画面検証は接続断で未了。checkは静的49成功、Vitest114成功・既存WAAPI3件タイムアウト。詳細は docs/phase2-studies.md。
 - Edgeの390pxで12作品の代表操作前後のCanvas画像差を確認。Inkを追加調整し、375・390・1280pxの比較画像を保存。操作全組合せ、最終版の動き低減・実機は未検証。詳細は docs/phase2-studies.md。
 - 追確認でCanvas画素差12件、Starfield停止・再開・閉室と動き低減を確認。最終checkは静的49成功、Vitest111成功・既存WAAPI6件タイムアウトで失敗。詳細は docs/phase2-studies.md。
+
+- Edge 390pxで作品固有操作を追加確認。星・紙状タイル・粒・格子・鏡・グリッチ等の画像を確認し、群れの追従・回避は短時間の差が小さく未確定として記録。375pxで12作品の幅とボタン高さを測定。詳細は docs/phase2-studies.md。
