@@ -1486,3 +1486,7 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 ## 2026-10-31 第3期A（Issue #41）
 
 Windows接続断後にクラウド隔離cloneで再開。既存mainとIssueを保持し、実用部品6件・分類・タグ・出典を追加。Rangeアクセシブル名の欠落と390pxの2px溢れを検出して修正。新規モック16件、lint・型・build、Chromium390px代表6操作成功。全体試験・他幅・WebKit・実機は途中未完了。詳細と初回失敗証拠を docs/phase3-studies.md に保持。後半6件より先にcheckpoint保存。
+
+## 2026-10-31 第3期B（Issue #41 / Draft PR #42）
+
+Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・状態遷移ボタン、実用一覧stagger、共有要素、内容Crossfadeの6件を追加。既存215＋12＝227展示。既定checkはNode49/Vitest147、lint・型・build成功。独立レビューで検出した受入harness空集合の偽PASSを是正。新規PR CIは全体checkとCh/WebKit実描画を分離、公開なし。実機/複数指等の未検証は docs/phase3-studies.md。

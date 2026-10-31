@@ -1,0 +1,370 @@
+{
+  "head": "50c15a6ed1bb8a112d30d799816415e3eff24aee",
+  "dirty": true,
+  "checked_at": "2026-10-31T04:14:31.264Z",
+  "cases": [
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "name": "Step Progress / 工程の待機",
+      "status": "PASS",
+      "observations": [
+        "completed/current/error/retry visuals",
+        "offscreen RAF stops"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "name": "Buffered Progress / 先読みと再生",
+      "status": "PASS",
+      "observations": [
+        "two painted widths 90/60"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "name": "Pull to Refresh / 引いて更新",
+      "status": "PASS",
+      "observations": [
+        "mouse drag below threshold cancels; above threshold rotates then completes"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "name": "Pointer Spotlight / 注目位置",
+      "status": "PASS",
+      "observations": [
+        "light center moved by arrows"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "name": "Magnetic Target / 吸着する対象",
+      "status": "PASS",
+      "observations": [
+        "target translation"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "name": "Sortable Drop / 挿入位置の予告",
+      "status": "PASS",
+      "observations": [
+        "button cancel preserves; mouse drop reorders"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "name": "Hold to Confirm / 長押しの確認",
+      "status": "PASS",
+      "observations": [
+        "short hold cancels; filled progress and release confirms mock only"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "name": "Elastic Button / 押下と弾性",
+      "status": "PASS",
+      "observations": [
+        "pressed shrink/offset and release settles"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "name": "State Button / 処理結果の遷移",
+      "status": "PASS",
+      "observations": [
+        "cancel rejects late result; failure painted"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "name": "Staggered List / 順序と同時表示",
+      "status": "PASS",
+      "observations": [
+        "staggered first/last opacity differs; all complete"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "name": "Shared Element / 一覧から詳細へ",
+      "status": "PASS",
+      "observations": [
+        "cancel restores list; same card expands to detail"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "name": "Crossfade UI / 内容状態の補間",
+      "status": "PASS",
+      "observations": [
+        "overlapping UI states and changing boundary; night terminal"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "name": "Step Progress / 工程の待機",
+      "status": "PASS",
+      "observations": [
+        "completed/current/error/retry visuals",
+        "offscreen RAF stops"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "name": "Buffered Progress / 先読みと再生",
+      "status": "PASS",
+      "observations": [
+        "two painted widths 90/60"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "name": "Pull to Refresh / 引いて更新",
+      "status": "PASS",
+      "observations": [
+        "mouse drag below threshold cancels; above threshold rotates then completes"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "name": "Pointer Spotlight / 注目位置",
+      "status": "PASS",
+      "observations": [
+        "light center moved by arrows"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "name": "Magnetic Target / 吸着する対象",
+      "status": "PASS",
+      "observations": [
+        "target translation"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "name": "Sortable Drop / 挿入位置の予告",
+      "status": "PASS",
+      "observations": [
+        "button cancel preserves; mouse drop reorders"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "name": "Hold to Confirm / 長押しの確認",
+      "status": "PASS",
+      "observations": [
+        "short hold cancels; filled progress and release confirms mock only"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "name": "Elastic Button / 押下と弾性",
+      "status": "PASS",
+      "observations": [
+        "pressed shrink/offset and release settles"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "name": "State Button / 処理結果の遷移",
+      "status": "PASS",
+      "observations": [
+        "cancel rejects late result; failure painted"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "name": "Staggered List / 順序と同時表示",
+      "status": "PASS",
+      "observations": [
+        "staggered first/last opacity differs; all complete"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "name": "Shared Element / 一覧から詳細へ",
+      "status": "PASS",
+      "observations": [
+        "cancel restores list; same card expands to detail"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "name": "Crossfade UI / 内容状態の補間",
+      "status": "PASS",
+      "observations": [
+        "overlapping UI states and changing boundary; night terminal"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "name": "Step Progress / 工程の待機",
+      "status": "PASS",
+      "observations": [
+        "completed/current/error/retry visuals",
+        "offscreen RAF stops"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "name": "Buffered Progress / 先読みと再生",
+      "status": "PASS",
+      "observations": [
+        "two painted widths 90/60"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "name": "Pull to Refresh / 引いて更新",
+      "status": "PASS",
+      "observations": [
+        "mouse drag below threshold cancels; above threshold rotates then completes"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "name": "Pointer Spotlight / 注目位置",
+      "status": "PASS",
+      "observations": [
+        "light center moved by arrows"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "name": "Magnetic Target / 吸着する対象",
+      "status": "PASS",
+      "observations": [
+        "target translation"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "name": "Sortable Drop / 挿入位置の予告",
+      "status": "PASS",
+      "observations": [
+        "button cancel preserves; mouse drop reorders"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "name": "Hold to Confirm / 長押しの確認",
+      "status": "PASS",
+      "observations": [
+        "short hold cancels; filled progress and release confirms mock only"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "name": "Elastic Button / 押下と弾性",
+      "status": "PASS",
+      "observations": [
+        "pressed shrink/offset and release settles"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "name": "State Button / 処理結果の遷移",
+      "status": "PASS",
+      "observations": [
+        "cancel rejects late result; failure painted"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "name": "Staggered List / 順序と同時表示",
+      "status": "PASS",
+      "observations": [
+        "staggered first/last opacity differs; all complete"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "name": "Shared Element / 一覧から詳細へ",
+      "status": "PASS",
+      "observations": [
+        "cancel restores list; same card expands to detail"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "name": "Crossfade UI / 内容状態の補間",
+      "status": "PASS",
+      "observations": [
+        "overlapping UI states and changing boundary; night terminal"
+      ]
+    }
+  ]
+}
