@@ -1,12 +1,42 @@
 {
-  "created_at": "2026-10-31T23:04:33.769Z",
+  "created_at": "2026-10-31T23:18:56.569Z",
   "timezone": "Asia/Tokyo",
   "baseline": "2de159a9a7534c8af32c8ebcda6c247947b9057c",
   "evidence": [
     {
       "path": "docs/phase4a-evidence/README.md",
-      "size": 2971,
-      "sha256": "46246e740acb36966e2cdfe42904f6e9f5746abd34061eb5f904e76f60755dca"
+      "size": 3416,
+      "sha256": "0c7d20b9fd560789ed1b57238dd0ee3e3cfeab6c1ad054c0583fc7641a3a8232"
+    },
+    {
+      "path": "docs/phase4a-evidence/accordion-frame-observed.log",
+      "size": 97,
+      "sha256": "b1013e72a77b7aa881c4f0fc06c8f864177e5d842aaf68de5fab12e0fc2bd402"
+    },
+    {
+      "path": "docs/phase4a-evidence/accordion-frame-observed/results.json",
+      "size": 17179,
+      "sha256": "96e5f5f3fc22e3f26545939541901220c6298bfc807e46f188919b9c61f00e87"
+    },
+    {
+      "path": "docs/phase4a-evidence/accordion-frame-observed/webkit-1280-animated-accordion-after.png",
+      "size": 57410,
+      "sha256": "4d9d5181662ecf2261f5b0295034e703e59dba7c8de6e08c3b0bd557c1972014"
+    },
+    {
+      "path": "docs/phase4a-evidence/accordion-frame-observed/webkit-1280-animated-accordion-before.png",
+      "size": 37657,
+      "sha256": "001aeef27ca06578faec9c74cdcc3b07cebc64cee37b3d76f6d37c3edaa6a2d1"
+    },
+    {
+      "path": "docs/phase4a-evidence/accordion-frame-observed/webkit-765-animated-accordion-after.png",
+      "size": 54820,
+      "sha256": "0bd3b2c5e1021b530b7e5140a27887206d38f17dc53e76b82d6a34d6aa778cb1"
+    },
+    {
+      "path": "docs/phase4a-evidence/accordion-frame-observed/webkit-765-animated-accordion-before.png",
+      "size": 36164,
+      "sha256": "d3ecc106063ffa6faf952e2b70164bc7f79f433c9b7e94ad57b40f44914992d3"
     },
     {
       "path": "docs/phase4a-evidence/audit.json",
@@ -1024,6 +1054,51 @@
       "sha256": "9e8e0a126005cd90272905597df24758aff0795febb7a2cfdb2d4d4baf5d66e0"
     },
     {
+      "path": "docs/phase4a-evidence/ci-first/chromium-annotations.json",
+      "size": 2114,
+      "sha256": "721b01a2ae0037bf5f3f284c73ece738d5afda6accc3aff76e467328fa915998"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/chromium-job.log",
+      "size": 35784,
+      "sha256": "f3ffdf19d6e36137fb7efc549597260d69dfe55caa202aa7e4cb8bab421ece36"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/failure.png",
+      "size": 141533,
+      "sha256": "ecca73b09d2354e47a5de73c8404a8c19bc6f9eefdae1fda620439ee3cbb1ccb"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/jobs-metadata-final.json",
+      "size": 8592,
+      "sha256": "afb12bfb8912fd5b3876f9af8e8de39f5aa59aece49b784a777ab4b9af5fb6e2"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/phase4a-browser.log",
+      "size": 777,
+      "sha256": "f51673d8545c0c3c38e2ddd7e21fed24d1c14d7302788536aaf9904d3bd3ead6"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/phase4a-results.json",
+      "size": 47779,
+      "sha256": "2b17b167b1c8b62ac1fa3c185ca2c5b93510d0f925e4f28b2080a227fa17620f"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/practical-results.json",
+      "size": 9192,
+      "sha256": "4dbcf473edf17fecd5d970aa7809c083128716fd62a1dbd7641bc40cb97953c6"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/run-metadata-final.json",
+      "size": 14937,
+      "sha256": "d24c19235e7c9807e8bbeb06b895ebe33a23e60a76be9f1de728092527c3e59a"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/webkit-job.log",
+      "size": 361865,
+      "sha256": "a6ef5e11be3daf239d599aa5b4c5adb558cbbb19f52728c0bfbeaea25ddb479e"
+    },
+    {
       "path": "docs/phase4a-evidence/inventory-main.json",
       "size": 378,
       "sha256": "f29986b59b9c6d62d4b11d3841787e3e6534b1a91d867eb19eb898a79027c51f"
@@ -1059,9 +1134,54 @@
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
+      "path": "docs/phase4a-evidence/lint-observed-harness.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
       "path": "docs/phase4a-evidence/lint.log",
       "size": 342,
       "sha256": "4aaa656fd66b831d450299331eb268ab4fe3a70de63fcabe984bb8fb17ef283e"
+    },
+    {
+      "path": "docs/phase4a-evidence/media-diagnostic.log",
+      "size": 249,
+      "sha256": "955a1db764b79f8d57d92e5e64c26b5a65d7b2078e156798de8c136bda0842a8"
+    },
+    {
+      "path": "docs/phase4a-evidence/media-diagnostic/failure.png",
+      "size": 98613,
+      "sha256": "712ce0e0d893b5df3ec7000281976626b4dc557f57f24a6e683ce93721e368d2"
+    },
+    {
+      "path": "docs/phase4a-evidence/media-diagnostic/results.json",
+      "size": 3281,
+      "sha256": "97e5793718da227cd337a4e32f7988b1e21d4e639cd10d5faf5eb855fc4a0548"
+    },
+    {
+      "path": "docs/phase4a-evidence/media-observed.log",
+      "size": 320,
+      "sha256": "670968b6a89cbdb54bc776b48b7724a072e19851ee8e02da71869daba3303c9f"
+    },
+    {
+      "path": "docs/phase4a-evidence/media-observed/failure.png",
+      "size": 95593,
+      "sha256": "5098b509400a4cbf64fbf28d46c7d7515b802979e5e6662a7d42dbb7cf9c10f7"
+    },
+    {
+      "path": "docs/phase4a-evidence/media-observed/results.json",
+      "size": 6729,
+      "sha256": "073c4b4cd518dad104550d9876ddb29bffe71dc488a75b7c4c82f0077ebf3344"
+    },
+    {
+      "path": "docs/phase4a-evidence/media-observed/webkit-765-animated-accordion-after.png",
+      "size": 42828,
+      "sha256": "62aa2deccd9e30c3bf5a08dcf609c6e6546c713678c54c48f42a73261900666e"
+    },
+    {
+      "path": "docs/phase4a-evidence/media-observed/webkit-765-animated-accordion-before.png",
+      "size": 36164,
+      "sha256": "d3ecc106063ffa6faf952e2b70164bc7f79f433c9b7e94ad57b40f44914992d3"
     },
     {
       "path": "docs/phase4a-evidence/search-touch-green.log",
@@ -1189,6 +1309,11 @@
       "sha256": "9707c03842d93f26a8d3b1e17fc557d10a4ecdd631c5a258a7eea72822b3c0f3"
     },
     {
+      "path": "docs/phase4a-evidence/unit-resubmission.json",
+      "size": 8890,
+      "sha256": "4bc58d6eef42bda8c5d3f46259b9e251e6bc8c133a053d2f95df10af8b96bedc"
+    },
+    {
       "path": "docs/phase4a-evidence/unit-touch-fix.json",
       "size": 8261,
       "sha256": "0b8d5697b16a6a0b7c0c5d7e160ca93ebf2a106de55aac5a27955d3aebcb652b"
@@ -1212,9 +1337,9 @@
   "sources": [
     {
       "path": ".github/workflows/verify-practical.yml",
-      "size": 2879,
-      "sha256": "5504cc288f9a4044ec1d801ebbc969bedfc4cda35b8ba7dd5d712f416314de57",
-      "git_blob": "4c4a17f9eeae9f969b0964e75112772fe7f840a4"
+      "size": 3421,
+      "sha256": "a08c62b45987ca0b073f999ffe952c036a3f107d7f2f50b898f6b3c0d2dd546b",
+      "git_blob": "a83d1ff3e8a5be2f245eea634649b0aad4c912f7"
     },
     {
       "path": "app/components/AppleEarlyBeginnerGuide.tsx",
@@ -1650,9 +1775,9 @@
     },
     {
       "path": "scripts/verify-phase4a-browser.mjs",
-      "size": 17350,
-      "sha256": "e0d63fff32b1127d1e4d099477a59c57292d3529738fa965fb3a5dd4ff68d7da",
-      "git_blob": "ecab33c58708cc615eb422355a5db4aa536586bb"
+      "size": 19873,
+      "sha256": "00e5db2edfff947af1e0ae5c5c656cffdd1d2c3e229fb393e725c7733c2d5166",
+      "git_blob": "5bb8d3d044a5335ae01e62a5583c765080fe345a"
     },
     {
       "path": "scripts/verify-practical-browser.mjs",

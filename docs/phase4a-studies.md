@@ -44,6 +44,14 @@ mainの既定check全体はnode_modules junctionがTurbopackのfilesystem root�
 
 ローカルは全48成功を宣言しない。最終HEAD CIの全48と旧72条件（両engine各36）の結果をPR本文・通常コメントへ追記する。未完了をPASSとしない。ソースがdirtyなローカル実行は結果JSONのdirty=trueに明示し、最終CIの固定HEAD実行と混同しない。`browser-final`/`browser-submission`等はローカルの試行名で、最終提出HEADを表すものではない。ハーネス/証拠生成scriptの追加lintは成功。
 
+## 初回提出CIの失敗と局所的な検査/取得修正
+
+HEAD `a718067265a501f2f1d0ab8d813d1600429e66ba`、run `41251023959` attempt1。contracts成功（49+147+32）、WebKit既存36/36、新規17/24で765px Accordionの低減切替100ms後にopening≠open。ChromiumはGUIを一切開始せず、APT取得中に10分上限でcancelled。annotationに `The job has exceeded the maximum execution time of 10m0s` があり、新規runによる取消ではない。jobs/API/annotations/job logs/失敗PNG/両結果JSONを `ci-first` に保存。ZIP原本はrepo外にも保全し、GitHub公表digestとの一致を確認：WebKit `781b0220731c153ca600765cdf073f4b8cb802137f1b414de57c3de51d2ad2fa`、contracts `ea4e520de3b00ce3ecc389e870f22cc4f711c89091f86c352e927f2ff15c3301`。未完走をPASS/製品FAILへ置換しない。
+
+WebKit765診断では旧1700ms待機で閉高1≠0も検出し保存した。固定時間の後に終端を推測するharnessを修正。5秒の有限上限内で実DOMのdata-phaseと開閉aria状態一致を待ち、低減はdata-reduced=trueを実際に観測してから終端を検査する。765の観測まで418msを記録。1280では固定300ms観測で中間高さを捉えられなかった失敗も保持。最終診断はブラウザ内RAFで実中間高さに達した時に反転し、閉高0/phase=closedを厳密確認する。測定RAF/タイマー/observerも片付ける。`accordion-frame-observed` のWebKit765/1280は2/2成功。低減native change/DOM属性の時刻列を保存。初回CI当時のnative配信時刻は未採取なので、直接原因の全断定はしない。検査を削らず、任意のsleepで結果を推定する方式を明示状態の観測へ変更したもので、製品コード/アニメ時間/期待終端は変えていない。
+
+Chromiumログは08:06:30〜APT依存取得、azure.archive.ubuntu.comのHTTP mirrorへの反復Ignを記録し、08:15:37取消、08:15:39終了。API注記で10分上限を確認した。GitHubのcheck-run annotationsは連携fetch対象外のため、認証済みgh APIを正規の読取り経路として使用した。runner-imagesの[ミラー定義](https://github.com/actions/runner-images/blob/main/images/ubuntu/scripts/build/configure-apt-sources.sh)も確認し、今回使用したUbuntu24.04へrunnerを固定、公式HTTPS archive/securityを優先ミラーに指定、APT通信30秒/再試行1回に制限。署名/TLS検証とPlaywright1.56.1/lockfile、job10分上限は維持。ブラウザ取得量の削減やバージョン変更はしない。これはOS取得の停止対策で、GUIや製品の成功を代替しない。最終HEADの全CIを再実行して別途判定する。
+
 ## 依存警告：未解決
 
 2026-11-01 JSTのnpm auditは29件（critical3/high8/moderate17/low1）、exit1。原本 `phase4a-evidence/audit.json`。Next16.2.6/Vitest3.2.4/Tinypool1.1.1が影響範囲。Windows Next server RCEは16.3.3、AVIF16.3.3、next/og16.3.6、SVG Image/use cache16.4.1、Vitest UI3.2.6（4系4.1.0）、Tinypool worker2.1.1/run2.1.2に修正。npm auditのNext集約候補は16.4.3。他のmoderate/highも原本へ保存し、これらの版だけで全件解消を断定しない。

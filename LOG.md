@@ -1500,3 +1500,5 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 新規32件の状態遷移試験を追加。WebKit375で検索候補tapが互換clickへ届かないP2を実測し、押下対象/idと同一候補内のpointerupで確定する最小修正、cancel/領域外解放は無選択。同じharnessでWebKit/Chromium×375/390の4/4成功。focus確認・期限退避と無変位FLIPも局所是正。失敗・成功・PNG・監査原本はdocs/phase4a-evidenceへ保存し、検査削減/skip/timeout緩和なし。
 
 全館checkでは既存WAAPIの5000ms timeoutを保持しmain対照/単独試験で調査、根因UNKNOWN。依存auditは29件/critical3のまま、#44へ分離（依存/lock無変更、安全性PASSではない）。独立レビューは別担当へ返し、実iPhone/実IME/VoiceOverはUNVERIFIED。詳細・最終CIはdocs/phase4a-studies.md。Draft/未mergeを維持、公開なし。
+
+- Draft PR #45 / 初回HEAD a718067のCIは契約228成功、WebKit既存36成功・新規17/24で低減100ms判定失敗、ChromiumはAPT中10分取消（注記確認、GUI未実施）。失敗原本保持。WebKit765/1280を実中間フレーム反転・実終端/低減属性観測へ修正し2/2成功、製品/期待終端は不変。OS取得はUbuntu24.04/公式HTTPS mirror/有限通信へ限定、job上限延長なし。最終HEADでCI再照合し、初回を成功へ読み替えない。

@@ -17,6 +17,9 @@
 | browser-final | 30/48後に通知期限中の厳密4件仮定で停止。製品の上限違反ではない |
 | browser-submission | Ch24/24後にWebKit375の中間位置一点観測で停止。全体24/48、全成功ではない |
 | toast-frame-diagnostic | WebKit375/390＝2/2。234→117px間の12実フレームを時刻付き保存 |
+| ci-first | a718067の初回CI：契約成功、WebKit既存36/新規17で停止、ChromiumはAPT中10分取消。API/注記/ログ/失敗PNG保持 |
+| media-diagnostic / media-observed | WebKit765の固定1700ms閉高1≠0、明示終端待ち765成功後1280の一点中間観測失敗。全履歴を保持 |
+| accordion-frame-observed | WebKit765/1280の実中間高さで反転、閉高0・phase・低減属性の明示確認、2/2成功 |
 | search-touch-negative-control.patch | 局所revertの再現用資料。適用・再実行済みとは称さない |
 
 ローカル結果のheadは基準mainでdirty=true。これを提出HEADの合格と読み替えない。最終CIはDraft PRの固定HEADをcheckoutし、旧36×2、新6×4幅×2を別結果JSONへ出す。CI artifactとHEAD/tree・件数の照合はPR本文・通常コメントを正本とする。
