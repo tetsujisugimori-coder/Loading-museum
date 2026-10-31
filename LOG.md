@@ -1482,3 +1482,7 @@ Detailed records: [catalog](./docs/waapi-sample-catalog.md), [AI references](./d
 - 追確認でCanvas画素差12件、Starfield停止・再開・閉室と動き低減を確認。最終checkは静的49成功、Vitest111成功・既存WAAPI6件タイムアウトで失敗。詳細は docs/phase2-studies.md。
 
 - Edge 390pxで作品固有操作を追加確認。星・紙状タイル・粒・格子・鏡・グリッチ等の画像を確認し、群れの追従・回避は短時間の差が小さく未確定として記録。375pxで12作品の幅とボタン高さを測定。詳細は docs/phase2-studies.md。
+
+## 2026-10-31 第3期A（Issue #41）
+
+Windows接続断後にクラウド隔離cloneで再開。既存mainとIssueを保持し、実用部品6件・分類・タグ・出典を追加。Rangeアクセシブル名の欠落と390pxの2px溢れを検出して修正。新規モック16件、lint・型・build、Chromium390px代表6操作成功。全体試験・他幅・WebKit・実機は途中未完了。詳細と初回失敗証拠を docs/phase3-studies.md に保持。後半6件より先にcheckpoint保存。

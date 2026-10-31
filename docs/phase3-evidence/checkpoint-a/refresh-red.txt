@@ -1,0 +1,201 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-phase3-20261031
+
+ ❯ tests/practical-a.test.tsx (8 tests | 1 failed) 339ms
+   ✓ step failure prevents next, retry retains current stage, reset restores defaults 114ms
+   ✓ received amount bounds played amount 16ms
+   ✓ reduced-motion refresh finishes immediately and cancel restores idle 16ms
+   ✓ sort cancel leaves order; only drop changes it; reset restores 68ms
+   ✓ sort escape never commits movement 18ms
+   ✓ spotlight arrows move its actual paint center 77ms
+   ✓ magnetic reduced motion keeps target stationary 8ms
+   × completed reduced-motion refresh never resurrects when motion preference changes 19ms
+     → Unable to find an element with the text: 更新完了. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"practicalA"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"practicalAStage practicalStage"[39m
+        [33mdata-active[39m=[32m"false"[39m
+        [33mdata-playing[39m=[32m"true"[39m
+        [33mdata-reduced[39m=[32m"false"[39m
+        [33mdata-testid[39m=[32m"practical-stage"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"下へ引く更新領域"[39m
+          [33mclass[39m=[32m"practicalAPull"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"practicalAPullIndicator"[39m
+            [33mstyle[39m=[32m"transform: translateY(0px) rotate(0deg);"[39m
+          [36m>[39m
+            [0m↻[0m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mrole[39m=[32m"status"[39m
+          [36m>[39m
+            [0m模擬読込み中[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"practicalAPullCard"[39m
+            [33mstyle[39m=[32m"transform: translateY(0px);"[39m
+          [36m>[39m
+            [0mARCHIVE LIST[0m
+            [36m<br />[39m
+            [0m現在の表示[0m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"practicalAControls"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0mボタンで更新[0m
+        [36m</button>[39m
+        [36m<button>[39m
+          [0m更新を取消[0m
+        [36m</button>[39m
+        [36m<label>[39m
+          [0m速度[0m
+          [0m [0m
+          [36m<output>[39m
+            [0m100[0m
+          [36m</output>[39m
+          [36m<input[39m
+            [33maria-label[39m=[32m"速度"[39m
+            [33mmax[39m=[32m"200"[39m
+            [33mmin[39m=[32m"25"[39m
+            [33mtype[39m=[32m"range"[39m
+            [33mvalue[39m=[32m"100"[39m
+          [36m/>[39m
+        [36m</label>[39m
+        [36m<button>[39m
+          [0m停止[0m
+        [36m</button>[39m
+        [36m<button>[39m
+          [0mReset[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"practicalANotice"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [0m模擬更新を開始[0m
+      [36m</p>[39m
+      [36m<p>[39m
+        [0mこの領域内だけ縦スクロールを捕捉します。外側でページをスクロールできます。実際の保存・通信処理はありません。[0m
+      [36m</p>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/practical-a.test.tsx > completed reduced-motion refresh never resurrects when motion preference changes
+TestingLibraryElementError: Unable to find an element with the text: 更新完了. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"practicalA"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"practicalAStage practicalStage"[39m
+        [33mdata-active[39m=[32m"false"[39m
+        [33mdata-playing[39m=[32m"true"[39m
+        [33mdata-reduced[39m=[32m"false"[39m
+        [33mdata-testid[39m=[32m"practical-stage"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"下へ引く更新領域"[39m
+          [33mclass[39m=[32m"practicalAPull"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"practicalAPullIndicator"[39m
+            [33mstyle[39m=[32m"transform: translateY(0px) rotate(0deg);"[39m
+          [36m>[39m
+            [0m↻[0m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mrole[39m=[32m"status"[39m
+          [36m>[39m
+            [0m模擬読込み中[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"practicalAPullCard"[39m
+            [33mstyle[39m=[32m"transform: translateY(0px);"[39m
+          [36m>[39m
+            [0mARCHIVE LIST[0m
+            [36m<br />[39m
+            [0m現在の表示[0m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"practicalAControls"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0mボタンで更新[0m
+        [36m</button>[39m
+        [36m<button>[39m
+          [0m更新を取消[0m
+        [36m</button>[39m
+        [36m<label>[39m
+          [0m速度[0m
+          [0m [0m
+          [36m<output>[39m
+            [0m100[0m
+          [36m</output>[39m
+          [36m<input[39m
+            [33maria-label[39m=[32m"速度"[39m
+            [33mmax[39m=[32m"200"[39m
+            [33mmin[39m=[32m"25"[39m
+            [33mtype[39m=[32m"range"[39m
+            [33mvalue[39m=[32m"100"[39m
+          [36m/>[39m
+        [36m</label>[39m
+        [36m<button>[39m
+          [0m停止[0m
+        [36m</button>[39m
+        [36m<button>[39m
+          [0mReset[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"practicalANotice"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [0m模擬更新を開始[0m
+      [36m</p>[39m
+      [36m<p>[39m
+        [0mこの領域内だけ縦スクロールを捕捉します。外側でページをスクロールできます。実際の保存・通信処理はありません。[0m
+      [36m</p>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/practical-a.test.tsx:15:445
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  13:03:33
+   Duration  1.04s (transform 88ms, setup 0ms, collect 177ms, tests 339ms, environment 270ms, prepare 89ms)

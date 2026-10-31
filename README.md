@@ -83,3 +83,7 @@ Menu照準は選択行へ追従。Parry/Dodgeの成功窓は開始後420〜680ms
 独立した展示室にStarfield Warp、Plasma Dream、Liquid Metaballs、Flocking Life、Pixel Dissolve、Tile Flipを収録。Canvasで描画し、図柄もコードから独自生成します。星の透視、波の重ね合わせ、陰関数、群れの近傍則、画素・タイル遷移を操作できます。原典のコード・素材を使用しません。動き低減時は自動再生を止めます。
 
 第2期BではInfinite Tunnel、Raster Bars、Elastic Space、Kaleidoscope、Ink Bloom、Glitch Laboratoryを追加。Canvasによる独自の近似です。インクは流体計算ではなく半透明粒子、グリッチは強い点滅を伴わない画素ずれです。作品ごとの操作・原理・着想は展示内に記載しています。
+
+## 第3期：実用UI部品の観察室
+
+Issue #41。既存215展示に、工程進捗・先読み進捗・引いて更新・注目位置・吸着対象・挿入予告付き並替の先行6部品を追加（221件）。同名待機部品を重複登録せず、用途・技術・性質を分けて検索できます。独自再構成と確認範囲は [第3期記録](docs/phase3-studies.md) を参照。後半6部品は次checkpointで追加します。
