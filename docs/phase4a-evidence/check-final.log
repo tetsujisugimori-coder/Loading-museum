@@ -1,0 +1,242 @@
+
+> loading-museum@0.1.0 check
+> npm run lint && npm run typecheck && npm test
+
+
+> loading-museum@0.1.0 lint
+> eslint .
+
+
+> loading-museum@0.1.0 typecheck
+> tsc --noEmit
+
+
+> loading-museum@0.1.0 test
+> npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run tests/phase4a.test.tsx tests/practical-b.test.tsx tests/practical-runtime.test.tsx tests/practical-a.test.tsx tests/practical-room.test.tsx tests/phase2-elastic.test.ts tests/phase2-regression.test.tsx tests/phase2-b.test.tsx tests/phase2-room.test.tsx tests/modern-mesh.test.ts tests/modern-drift-geometry.test.ts tests/modern-lens.test.tsx tests/modern-menu.test.tsx tests/paper-exhibit.test.tsx tests/glass-exhibit.test.tsx tests/modern-animation.test.tsx tests/macintosh-system-choice.test.tsx tests/waapi-samples.test.ts tests/waapi-gallery.test.tsx tests/waapi-interaction-state.test.ts tests/waapi-game-regressions.test.tsx tests/waapi-hp-regression.test.tsx tests/waapi-cascade-motion.test.tsx tests/dom11-selection.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-stage1-menu-coin.test.tsx
+
+
+> loading-museum@0.1.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1081ms
+  Running TypeScript ...
+  Finished TypeScript in 4.5s ...
+  Collecting page data using 4 workers ...
+  Generating static pages using 4 workers (0/3) ...
+✓ Generating static pages using 4 workers (3/3) in 349ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+✔ Read Meの実矩形はゴミ箱へ四方向から重なる (0.506ms)
+✔ System 1→5→6→1→6をクリック相当の操作で連続選択する (0.4834ms)
+✔ System 5をEnter、System 6をSpace相当の操作で選択する (0.1662ms)
+✔ loadingから最初の年代へ移行する (0.7614ms)
+✔ 年代ごとにeraIndexが進む (0.1035ms)
+✔ 通常年代は共通の待機時間を使う (0.695ms)
+✔ 最後の年代だけ長い待機時間を使う (0.0918ms)
+✔ 最後の年代後にindex-completeへ移行する (0.087ms)
+✔ index-complete後にtypingへ移行する (0.0747ms)
+✔ タイトル文字数が1文字ずつ増える (0.0628ms)
+✔ タイトル全文をtyping状態で保持する (0.0632ms)
+✔ タイトル全文表示後にtyping-holdへ移行する (0.0727ms)
+✔ typing-hold後にsignal-lockのbrightenへ移行する (0.1304ms)
+✔ signal-lockはbrightenからnoiseへ進む (0.0742ms)
+✔ signal-lockはnoiseからlockedへ進む (0.0544ms)
+✔ signal-lockのlocked後にcompleteへ進む (0.0948ms)
+✔ complete以降は状態が進まない (0.0604ms)
+✔ complete状態は最後の年代とタイトル全文を保持する (0.1888ms)
+✔ ReplayはrunIdを増やす (0.0793ms)
+✔ Replayは初期状態へ戻す (0.454ms)
+✔ 古いrunIdによるタイマー更新を無視する (0.0627ms)
+✔ reduced motionは即時completeになる (0.0505ms)
+✔ 年代走査中の点灯数とノード状態をeraIndexから算出する (0.0958ms)
+✔ 年代走査完了後は全タイムラインノードが点灯する (0.0811ms)
+✔ タイムライン進捗率を年代件数と現在位置から算出する (0.0686ms)
+✔ 年代が1件でも安全な進捗率を返し、完了数を件数内へ制限する (0.0349ms)
+✔ 全年代と全時間定数を一か所で管理する (0.0732ms)
+✔ GitHub Pages用の静的HTMLへ9種類の展示を書き出す (10.2438ms)
+✔ 正式名称のタイトル導入、年代テーマ、確定演出、軽減モーションと再生操作を実装する (2.421ms)
+✔ 既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き出す (1.6153ms)
+✔ カーソル展示室と8種類の体験展示を書き出す (2.006ms)
+✔ カーソル展示のデータ、Pointer Events、性能とアクセシビリティ対応を実装する (3.2629ms)
+✔ Macintosh誕生展示室を加えた展示室・展示件数を表示する (2.076ms)
+✔ Macintosh誕生展示室へ18種類の操作展示を書き出す (4.2759ms)
+✔ Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する (4.7169ms)
+✔ Flash特別展示室へ18カテゴリ・54展示と優先デモを実装する (2.8495ms)
+✔ 再検討した9展示と現代Web継承比較を専用実装にする (2.6512ms)
+✔ FlashバナーのCTAを安全に2回強調し、価格とreduced motionを調整する (1.8272ms)
+✔ Flash専用展示の状態遷移、停止制御、操作可能なARIA構造を実装する (1.6725ms)
+✔ MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモを書き出す (1.9879ms)
+✔ 独立した消えたOS展示室へ6 OS・18種類のLoading再構成を書き出す (3.166ms)
+✔ 展示室のデータ定義とタイマー停止・フォーカス復帰を実装する (0.9779ms)
+✔ 消えたOS展示のデータ・起動・停止・reduced motionを実装する (0.9818ms)
+✔ Linux / UNIXデモの再実行・速度切替・安全な停止を実装する (0.8646ms)
+✔ CSSとJavaScriptをLoading-museumサブパスから参照する (1.5719ms)
+✔ 静的export設定と既存レスポンシブ・reduced-motion対応を維持する (2.0282ms)
+✔ System 1〜6のbutton構造と非スクロールgridを静的に維持する (0.7185ms)
+✔ DOM ANIMATION ROOM を静的HTMLへ出力し、17操作のAPI体験を確認する (3.0718ms)
+✔ 既存ローディング標本の直下に、遅延生成するWAAPI標本ギャラリーを追加する (1.2631ms)
+ℹ tests 49
+ℹ suites 0
+ℹ pass 49
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 217.085
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-01/task-2/loading-museum-phase4a
+
+ ✓ tests/modern-mesh.test.ts (2 tests) 40ms
+ ✓ tests/modern-drift-geometry.test.ts (2 tests) 103ms
+ ✓ tests/waapi-interaction-state.test.ts (2 tests) 3ms
+ ✓ tests/waapi-samples.test.ts (7 tests) 18ms
+ ✓ tests/phase2-elastic.test.ts (2 tests) 2ms
+ ✓ tests/practical-runtime.test.tsx (1 test) 12ms
+ ✓ tests/modern-menu.test.tsx (1 test) 80ms
+ ✓ tests/modern-lens.test.tsx (1 test) 78ms
+ ✓ tests/paper-exhibit.test.tsx (3 tests) 161ms
+ ✓ tests/glass-exhibit.test.tsx (3 tests) 439ms
+ ✓ tests/practical-a.test.tsx (8 tests) 1307ms
+   ✓ spotlight arrows move its actual paint center  752ms
+ ✓ tests/waapi-game-regressions.test.tsx (13 tests) 1730ms
+ ✓ tests/modern-animation.test.tsx (3 tests) 1986ms
+   ✓ modern collection > filters, opens exhibits and reverses the clip menu  1269ms
+   ✓ modern collection > starts the instrument muted and exposes keys  712ms
+ ✓ tests/macintosh-system-choice.test.tsx (2 tests) 3061ms
+   ✓ System 1〜6の操作回帰 > クリックでSystem 1→5→6→1→6を連続して切り替える  2242ms
+   ✓ System 1〜6の操作回帰 > Tab→EnterとTab→SpaceでSystem 5／6を切り替える  817ms
+ ✓ tests/phase2-room.test.tsx (4 tests) 2992ms
+   ✓ phase 2 A collection > selects, filters, resets and closes without retaining a player  1556ms
+   ✓ phase 2 A collection > exposes independent ball parameters and flip direction  572ms
+   ✓ phase 2 A collection > exposes independent flock rules and allows reversal of a tile transition  860ms
+ ✓ tests/phase2-b.test.tsx (4 tests) 3036ms
+   ✓ phase 2 B collection > allows elastic controls to reset and closes the player  1515ms
+   ✓ phase 2 B collection > offers clearing and reset for kaleidoscope marks  866ms
+   ✓ phase 2 B collection > restores all glitch effects and can be reset  653ms
+ ✓ tests/practical-b.test.tsx (6 tests) 3909ms
+   ✓ state cancel/reset reject old results; retry can fail; reduced completion remains terminal  657ms
+   ✓ stagger changes painted per-card opacity but preserves DOM read order  873ms
+   ✓ shared element cancellation restores original bounds and reset rejects old transition  1167ms
+   ✓ crossfade reverses in-flight without reviving a reset transition  988ms
+ ✓ tests/waapi-cascade-motion.test.tsx (14 tests) 4082ms
+   ✓ cascade replay uses per-token trace, no fill or delayed state writes, reset cancels all  1435ms
+   ✓ match3 retains state across on/off, visibility, reset and unmount  915ms
+ ✓ tests/dom11-selection.test.tsx (4 tests) 4637ms
+   ✓ DOM11 表示番号の偶数選択 > P1〜P6を生成し、P2/P4/P6だけを強調して結果説明と一致する  526ms
+   ✓ DOM11 表示番号の偶数選択 > resetで選択とノードを除き、再実行と連続再生でも同じ6件と選択集合を保つ  2007ms
+   ✓ DOM11 表示番号の偶数選択 > 表示コード例を実DOMへ適用しても同じ番号だけを強調する  1221ms
+   ✓ DOM11 表示番号の偶数選択 > DOM17展示の表示順とIDを維持する  877ms
+ ✓ tests/waapi-stage1-expanded.test.tsx (23 tests) 6084ms
+   ✓ parry reduced-motion labels agree with early and active judgment  939ms
+   ✓ dodge reduced-motion labels agree with early and active judgment  304ms
+   ✓ battle offscreen interruption returns FIELD and stays retryable  305ms
+   ✓ parry exact boundaries and adjacent times, reduced=false  656ms
+   ✓ parry exact boundaries and adjacent times, reduced=true  601ms
+   ✓ dodge exact boundaries and adjacent times, reduced=false  638ms
+   ✓ dodge exact boundaries and adjacent times, reduced=true  447ms
+ ✓ tests/phase2-regression.test.tsx (7 tests) 7022ms
+   ✓ phase and reset regression > cancels scheduled frames when the selected canvas leaves view and when the room closes  1274ms
+   ✓ phase and reset regression > retains plasma phase while changing speed or pausing  3514ms
+   ✓ phase and reset regression > changes the metaball field and keeps viscosity independent  317ms
+   ✓ phase and reset regression > keeps metaballs in place when paused  1403ms
+ ✓ tests/practical-room.test.tsx (15 tests) 6689ms
+   ✓ practical collection registration and lifecycle > mounts only chosen player and unmounts on close  1097ms
+   ✓ practical collection registration and lifecycle > renders steps with reset and source  657ms
+   ✓ practical collection registration and lifecycle > renders buffer with reset and source  723ms
+   ✓ practical collection registration and lifecycle > renders refresh with reset and source  501ms
+   ✓ practical collection registration and lifecycle > renders spotlight with reset and source  749ms
+   ✓ practical collection registration and lifecycle > renders magnetic with reset and source  410ms
+   ✓ practical collection registration and lifecycle > renders sort with reset and source  442ms
+   ✓ practical collection registration and lifecycle > renders hold with reset and source  397ms
+   ✓ practical collection registration and lifecycle > renders elastic-button with reset and source  389ms
+ ✓ tests/phase4a.test.tsx (30 tests) 7587ms
+   ✓ toast-stack: close unmounts and reset permits another operation  1503ms
+   ✓ undo-snackbar: close unmounts and reset permits another operation  905ms
+   ✓ inline-validation: close unmounts and reset permits another operation  607ms
+   ✓ search-suggestions: close unmounts and reset permits another operation  457ms
+   ✓ sliding-tabs: close unmounts and reset permits another operation  412ms
+   ✓ animated-accordion: close unmounts and reset permits another operation  515ms
+   ✓ toast cap removes oldest and preserves type and individual dismiss  601ms
+ ❯ tests/waapi-hp-regression.test.tsx (4 tests | 1 failed) 10804ms
+   × Damage直後Reset後、旧追従更新の予定時刻を過ぎても72を保つ 5439ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ✓ Damage連打とHealは最新HPに収束し、Reset連打も不変  2497ms
+   ✓ Damage中のアンマウントは遅延更新を解除する  1480ms
+   ✓ 画面外停止と再表示は現在HPを保持し古い追従更新を残さない  1386ms
+ ❯ tests/waapi-stage1-menu-coin.test.tsx (5 tests | 1 failed) 12097ms
+   × Menu cursor belongs to the current row for buttons, keyboard, limits and Reset 5500ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ✓ Coin entry, Replay and re-entry never grant points, including late completion after Reset  2436ms
+   ✓ Coin explicit COLLECT awards once per Reset and rapid input cannot duplicate it  1589ms
+   ✓ Coin has an explicit explanation separating demonstration, award and Reset  1305ms
+   ✓ Menu detail metadata describes actual no-fill decoration rather than generic sample defaults  1265ms
+ ❯ tests/waapi-gallery.test.tsx (11 tests | 1 failed) 26805ms
+   × WAAPI標本ギャラリー操作 > 初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う 10007ms
+     → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ✓ WAAPI標本ギャラリー操作 > Replay、コード解説、ModalとToastの両方向を操作する  1354ms
+   ✓ WAAPI標本ギャラリー操作 > Consoleの全操作、速度、Seek、実playStateを安全に反映する  1021ms
+   ✓ WAAPI標本ギャラリー操作 > Reduced motion時は自動ループを残さず、代替表示を説明する  924ms
+   ✓ WAAPI標本ギャラリー操作 > Fade/Slideは手動再生、Button/Toggleは直接操作だけを提供する  1330ms
+   ✓ WAAPI標本ギャラリー操作 > ゲーム標本を直接操作し、Resetで意味のある初期状態へ戻す  1743ms
+   ✓ WAAPI標本ギャラリー操作 > 新しいゲーム標本、5軸フィルター、AI共通状態を操作できる  2272ms
+   ✓ WAAPI標本ギャラリー操作 > AI比較モードは一括フェーズを進め、閉じるとループを停止する  2957ms
+   ✓ WAAPI標本ギャラリー操作 > 追加ゲーム14件は固有DOM・状態・操作結果を提供する  3959ms
+   ✓ WAAPI標本ギャラリー操作 > Card Dealの全工程とAIの完了・エラー・リセットを操作できる  1183ms
+   ✓ WAAPI標本ギャラリー操作 > AI作業ループはSTART連打で増殖せず、画面外化でcancelされる 51ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/waapi-gallery.test.tsx > WAAPI標本ギャラリー操作 > 初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/waapi-gallery.test.tsx:64:3
+     62| 
+     63| describe("WAAPI標本ギャラリー操作", () => {
+     64|   it("初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う", () => {
+       |   ^
+     65|     render(<WaapiSampleGallery />);
+     66|     expect(screen.queryByText("Fade In")).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/waapi-hp-regression.test.tsx > Damage直後Reset後、旧追従更新の予定時刻を過ぎても72を保つ
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/waapi-hp-regression.test.tsx:31:1
+     29|   expect((card.querySelector(".gameHp i") as HTMLElement).style.width)…
+     30| }
+     31| it("Damage直後Reset後、旧追従更新の予定時刻を過ぎても72を保つ", () => {
+       | ^
+     32|   const { card, controls } = openHp();
+     33|   fireEvent.click(controls.getByRole("button", { name: "Damage" }));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/waapi-stage1-menu-coin.test.tsx > Menu cursor belongs to the current row for buttons, keyboard, limits and Reset
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/waapi-stage1-menu-coin.test.tsx:20:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  3 failed | 23 passed (26)
+      Tests  3 failed | 174 passed (177)
+   Start at  07:51:20
+   Duration  30.17s (transform 5.26s, setup 0ms, collect 24.76s, tests 104.76s, environment 31.53s, prepare 4.25s)
+
+exit=1

@@ -1,0 +1,297 @@
+{
+  "head": "2de159a9a7534c8af32c8ebcda6c247947b9057c",
+  "tree": "e0fe1028ad0824f36d296d3362e605493f0d4065",
+  "dirty": true,
+  "started": "2026-10-31T23:01:43.390Z",
+  "expected": 2,
+  "cases": [
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 375,
+      "id": "toast-stack",
+      "status": "PASS",
+      "started": "2026-10-31T23:01:43.957Z",
+      "ended": "2026-10-31T23:02:08.102Z",
+      "geometry": {
+        "width": 325,
+        "scrollWidth": 325,
+        "stage": {
+          "x": 25,
+          "y": 246.4375,
+          "width": 325,
+          "height": 506.71875,
+          "top": 246.4375,
+          "right": 350,
+          "bottom": 753.15625,
+          "left": 25
+        }
+      },
+      "observations": [
+        {
+          "reflow": {
+            "oldTop": 234,
+            "newTop": 117,
+            "samples": [
+              {
+                "ms": 108,
+                "top": 234
+              },
+              {
+                "ms": 228,
+                "top": 219.748046875
+              },
+              {
+                "ms": 357,
+                "top": 205.43310546875
+              },
+              {
+                "ms": 481,
+                "top": 192.4775390625
+              },
+              {
+                "ms": 606,
+                "top": 180.1923828125
+              },
+              {
+                "ms": 717,
+                "top": 169.951171875
+              },
+              {
+                "ms": 843,
+                "top": 159.126953125
+              },
+              {
+                "ms": 960,
+                "top": 149.8955078125
+              },
+              {
+                "ms": 1082,
+                "top": 141.1904296875
+              },
+              {
+                "ms": 1203,
+                "top": 133.59033203125
+              },
+              {
+                "ms": 1327,
+                "top": 127.0146484375
+              },
+              {
+                "ms": 1459,
+                "top": 121.58349609375
+              },
+              {
+                "ms": 1584,
+                "top": 118.22314453125
+              },
+              {
+                "ms": 1709,
+                "top": 117
+              },
+              {
+                "ms": 1834,
+                "top": 117
+              }
+            ]
+          }
+        },
+        "cap4/oldest dismissal; middle removal/reflow; types; independent finite lifetime; pause/offscreen; reduced expiry; reset then reoperate"
+      ]
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 390,
+      "id": "toast-stack",
+      "status": "PASS",
+      "started": "2026-10-31T23:02:09.174Z",
+      "ended": "2026-10-31T23:02:43.009Z",
+      "geometry": {
+        "width": 340,
+        "scrollWidth": 340,
+        "stage": {
+          "x": 25,
+          "y": 258.4375,
+          "width": 340,
+          "height": 481.71875,
+          "top": 258.4375,
+          "right": 365,
+          "bottom": 740.15625,
+          "left": 25
+        }
+      },
+      "observations": [
+        {
+          "reflow": {
+            "oldTop": 234,
+            "newTop": 117,
+            "samples": [
+              {
+                "ms": 105,
+                "top": 234
+              },
+              {
+                "ms": 225,
+                "top": 219.748046875
+              },
+              {
+                "ms": 344,
+                "top": 206.51123046875
+              },
+              {
+                "ms": 469,
+                "top": 193.39208984375
+              },
+              {
+                "ms": 595,
+                "top": 180.955078125
+              },
+              {
+                "ms": 735,
+                "top": 168.08642578125
+              },
+              {
+                "ms": 860,
+                "top": 157.4912109375
+              },
+              {
+                "ms": 975,
+                "top": 148.5498046875
+              },
+              {
+                "ms": 1093,
+                "top": 140.25634765625
+              },
+              {
+                "ms": 1205,
+                "top": 133.30029296875
+              },
+              {
+                "ms": 1320,
+                "top": 127.20556640625
+              },
+              {
+                "ms": 1435,
+                "top": 122.32763671875
+              },
+              {
+                "ms": 1565,
+                "top": 118.5439453125
+              },
+              {
+                "ms": 1689,
+                "top": 117.02197265625
+              },
+              {
+                "ms": 1817,
+                "top": 117
+              }
+            ]
+          }
+        },
+        "cap4/oldest dismissal; middle removal/reflow; types; independent finite lifetime; pause/offscreen; reduced expiry; reset then reoperate"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "name": "webkit-375-toast-stack-before.png",
+      "size": 25188,
+      "sha256": "0ab69763f2345ac5402f2dd36779404608ce8cae90ae7fd4d5e63c281760058f"
+    },
+    {
+      "name": "webkit-375-toast-stack-after.png",
+      "size": 52604,
+      "sha256": "7a21cf1545c6d1d2958cd7000419febb381a0e00ca79df4283fefc29a62bcdbe"
+    },
+    {
+      "name": "webkit-390-toast-stack-before.png",
+      "size": 24997,
+      "sha256": "c2c5076d39d244257fa4661fa98551c48a482019c4e66eaa0a6dae5efb98fe8a"
+    },
+    {
+      "name": "webkit-390-toast-stack-after.png",
+      "size": 52834,
+      "sha256": "96033867094e7ad16d01d2b2f9f6f840c3da0ce539074f5e7202287427650617"
+    }
+  ],
+  "errors": [],
+  "currentCase": {
+    "engine": "webkit",
+    "width": 390,
+    "id": "toast-stack",
+    "observations": [
+      {
+        "reflow": {
+          "oldTop": 234,
+          "newTop": 117,
+          "samples": [
+            {
+              "ms": 105,
+              "top": 234
+            },
+            {
+              "ms": 225,
+              "top": 219.748046875
+            },
+            {
+              "ms": 344,
+              "top": 206.51123046875
+            },
+            {
+              "ms": 469,
+              "top": 193.39208984375
+            },
+            {
+              "ms": 595,
+              "top": 180.955078125
+            },
+            {
+              "ms": 735,
+              "top": 168.08642578125
+            },
+            {
+              "ms": 860,
+              "top": 157.4912109375
+            },
+            {
+              "ms": 975,
+              "top": 148.5498046875
+            },
+            {
+              "ms": 1093,
+              "top": 140.25634765625
+            },
+            {
+              "ms": 1205,
+              "top": 133.30029296875
+            },
+            {
+              "ms": 1320,
+              "top": 127.20556640625
+            },
+            {
+              "ms": 1435,
+              "top": 122.32763671875
+            },
+            {
+              "ms": 1565,
+              "top": 118.5439453125
+            },
+            {
+              "ms": 1689,
+              "top": 117.02197265625
+            },
+            {
+              "ms": 1817,
+              "top": 117
+            }
+          ]
+        }
+      },
+      "cap4/oldest dismissal; middle removal/reflow; types; independent finite lifetime; pause/offscreen; reduced expiry; reset then reoperate"
+    ]
+  },
+  "ended": "2026-10-31T23:02:43.107Z"
+}
