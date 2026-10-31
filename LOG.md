@@ -1490,3 +1490,5 @@ Windows接続断後にクラウド隔離cloneで再開。既存mainとIssueを�
 ## 2026-10-31 第3期B（Issue #41 / Draft PR #42）
 
 Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・状態遷移ボタン、実用一覧stagger、共有要素、内容Crossfadeの6件を追加。既存215＋12＝227展示。既定checkはNode49/Vitest147、lint・型・build成功。独立レビューで検出した受入harness空集合の偽PASSを是正。新規PR CIは全体checkとCh/WebKit実描画を分離、公開なし。実機/複数指等の未検証は docs/phase3-studies.md。
+
+- 初回PR CI e17e10bは契約49/147とChromium36成功、WebKit26/36でdesktop更新完了待ち失敗。長フレーム経過を40msへ捨てる時計を実active時間へ局所是正（100ms→40msのRED、修正後全体49/147成功）。timeoutや期待値は不変、停止区間除外も維持。初回失敗と後続判定を分離する。既存critical依存3パッケージは静的配信/開発CIの到達前提を分離して記録し、別途優先点検へ引継ぎ（lock無変更、無害認定なし）。

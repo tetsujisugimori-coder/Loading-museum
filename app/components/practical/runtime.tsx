@@ -22,7 +22,7 @@ export function useExhibitClock(playing: boolean, speed: number, resetKey: numbe
   useEffect(() => {
     if (!active) return;
     let frame = 0, last = 0;
-    const tick = (stamp: number) => { const dt = last ? Math.min(40, stamp - last) : 0; last = stamp; setClock(c => ({ ...c, time: c.time + dt * speed })); frame = requestAnimationFrame(tick); };
+    const tick = (stamp: number) => { const dt = last ? Math.max(0, stamp - last) : 0; last = stamp; setClock(c => ({ ...c, time: c.time + dt * speed })); frame = requestAnimationFrame(tick); };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
   }, [active, speed]);

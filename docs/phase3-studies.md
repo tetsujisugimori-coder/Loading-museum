@@ -79,3 +79,19 @@ COMPLETEは上記代表経路と単体回帰の有限な受入範囲。全パラ
 
 ### 最終ローカル実ブラウザ
 2026-10-31 13:14–13:16 JST、Playwright1.56.1 / Chromium141.0.7390.37で390・375・1280pxの各12件＝36ケース成功。各caseは固有操作・描画差・横溢れなし・Resetを検査。各幅で工程の画面外停止、Refresh低減中完了→低減解除後も完了保持、Shared途中停止時の幅保持→再生完了→Reset、閉室unmount、pageerrorなしを確認。375/390のResetはtap模擬。代表14PNGと全36結果を `phase3-evidence/final-local/` に保存。HoldとStateの最終色を画像で目視確認。結果JSONのHEADはA checkpoint＋dirty変更であり、最終ソース同定は同ディレクトリのSHA-256一覧による。
+
+### 初回PR CIと低フレームレート時計の是正
+最終候補 `e17e10b3289f0cc37b9492de9456e1a296b99a2b` のrun `41168140476`：contracts成功（49/147）、Chromium36/36成功。WebKit26.0は390/375px全24件とdesktop先頭2件を成功後、desktop Pull-to-Refreshが1800ms後もloadingで失敗。残り10件を成功扱いしない。ログ・artifactは当該runに保持。
+
+限定切分けで共通時計の`Math.min(40, Δt)`が長いRAF間隔を捨てる設計を確認。100ms間隔を100ms計上する回帰は修正前40msでRED。利用側は物理積分でなくUI進捗と閉形式補間なので、独立静的点検の上で非負の実active経過へ変更。停止・画面外・非表示のcleanupと再開時last=0を保ち、停止区間は加算しない。timeout・待機値・期待値を変更しない。初回RAFまでの時間は従来どおり除外。WebKit初回失敗との直接因果は未確定であり、同条件CIの再確認で判断する。失敗時の画面・表示状態・visibility・indicator値もharnessへ追加した。
+
+### 既存依存関係の監査留保（軽微UIとは別）
+`package-lock.json`と依存版は基準mainから無変更。CI npm ciは29件（critical3）、ローカルnpm auditは36件（critical3）を報告。総数差の原因はUNKNOWN。criticalのパッケージはNext16.2.6、Vitest3.2.4、Tinypool1.1.1。これらが修正済みとは扱わない。
+
+- NextのWindows server RCE：GHSA-p293-qw3h-jr36、16系<16.3.3→16.3.3。Windows上のNext serverが前提。
+- ImageOptimization/AVIF：GHSA-2xp9-vwfh-vxw4、16系<16.3.3→16.3.3。next/og：GHSA-vcvr-r3jv-pc5j、>=16.2.0<16.3.6→16.3.6、Node ImageResponseへの攻撃者制御SVGが前提。
+- ImageOptimization/SVG：GHSA-2464-fhr4-w9xw、16系<=16.4.0→16.4.1、glibc Linux API処理。use cache：GHSA-673q-mjm6-r5xr、16系<=16.4.0→16.4.1、Cache Componentsが複数typed arrayを返す条件。公式は該当関数がなくても更新を勧告。
+- Vitest UI：GHSA-5xrq-8626-4rwp、<3.2.6→3.2.6（4系は<4.1.0→4.1.0）。UI/APIをネットワークへ公開、またはWindows UI/Browser Modeが前提。
+- Tinypool：GHSA-5gmw-xhrv-c9v3、<=2.1.0→2.1.1。別件GHSA-85c8-ppgw-ccprは<2.1.2→2.1.2。先行prototype pollution＋Worker/run options経路が前提。
+
+一次情報は各 `https://github.com/advisories/<上記ID>` 本文を2026-10-31 JSTに確認。repoは`output:export`＋Pagesのout配信で、該当Next Node APIを配信しない。app/scripts/tests/.githubにnext/og・ImageResponse・use cache・next/image・sharp・tinypoolの直接利用なし。CIはLinuxのvitest runでUI serverを開かない。ただしVitest経由Tinypoolの実利用はあり、先行pollutionや攻撃者入力の到達はUNKNOWN。開発serverの外部公開状況もUNKNOWN。静的配信と開発/CIを分離し、critical全部無害とは言わない。悪用再現はNOT_RUN。今回の新作が導入した依存リスクではなく、別の優先的な依存更新・到達性点検として引き継ぐ。依存更新を勝手に本PRへ混在させない。

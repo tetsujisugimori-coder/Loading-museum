@@ -8,8 +8,8 @@ it('clock preserves phase on pause, stops offscreen/hidden/reduced, resets and c
  vi.stubGlobal('IntersectionObserver',class{constructor(fn:typeof intersection){intersection=fn}observe(){}disconnect=disconnect});vi.stubGlobal('matchMedia',()=>media);vi.stubGlobal('requestAnimationFrame',(fn:FrameRequestCallback)=>{frames.set(++seq,fn);return seq});vi.stubGlobal('cancelAnimationFrame',(id:number)=>frames.delete(id));
  const tick=(stamp:number)=>act(()=>{const pending=[...frames.values()];frames.clear();pending.forEach(fn=>fn(stamp))});
  const {result,rerender,unmount}=renderHook(({playing,key})=>useExhibitClock(playing,1,key),{initialProps:{playing:true,key:0}});
- act(()=>intersection([{isIntersecting:true}]));tick(100);tick(120);expect(result.current.time).toBe(20);rerender({playing:false,key:0});expect(frames.size).toBe(0);expect(result.current.time).toBe(20);
- rerender({playing:true,key:0});tick(200);tick(220);expect(result.current.time).toBe(40);
+ act(()=>intersection([{isIntersecting:true}]));tick(100);tick(200);expect(result.current.time).toBe(100);rerender({playing:false,key:0});expect(frames.size).toBe(0);expect(result.current.time).toBe(100);
+ rerender({playing:true,key:0});tick(300);tick(320);expect(result.current.time).toBe(120);
  act(()=>intersection([{isIntersecting:false}]));expect(frames.size).toBe(0);act(()=>intersection([{isIntersecting:true}]));expect(frames.size).toBe(1);
  act(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'))});expect(frames.size).toBe(0);
  act(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:false});document.dispatchEvent(new Event('visibilitychange'));media.matches=true;mediaChange()});expect(frames.size).toBe(0);
