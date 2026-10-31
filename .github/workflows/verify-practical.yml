@@ -1,0 +1,69 @@
+name: Verify museum and practical UI
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: practical-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Existing full contract (lint, types, build, all tests)
+        run: |
+          set -o pipefail
+          git rev-parse HEAD
+          npm run check 2>&1 | tee contract-results.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: contracts-${{ github.event.pull_request.head.sha }}
+          path: contract-results.log
+  practical-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Fixed browser harness outside application dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/practical-playwright" --no-save playwright@1.56.1
+          "$RUNNER_TEMP/practical-playwright/node_modules/.bin/playwright" install --with-deps ${{ matrix.browser }}
+      - name: Actual interaction and rendering
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          WIDTHS: 390,375,1280
+          EVIDENCE_DIR: practical-browser-evidence
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/practical-playwright/node_modules/playwright"
+          node scripts/verify-practical-browser.mjs 2>&1 | tee practical-browser.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: practical-${{ matrix.browser }}-${{ github.event.pull_request.head.sha }}
+          path: |
+            practical-browser-evidence/
+            practical-browser.log

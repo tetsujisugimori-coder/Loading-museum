@@ -1,0 +1,30 @@
+.practicalA { min-width: 0; }
+.practicalAStage { width: 100%; min-width: 0; min-height: 220px; padding: 12px; border: 1px solid #60758a; border-radius: 14px; background: #101d2d; color: #eef7ff; box-sizing: border-box; overflow: hidden; }
+.practicalAStage svg { width: 100%; display: block; min-height: 195px; }
+.practicalAStage p { line-height: 1.6; overflow-wrap: anywhere; }
+.practicalAControls { display: flex; flex-wrap: wrap; gap: 10px; margin-block: 14px; min-width: 0; }
+.practicalAControls > label { display: flex; flex: 1 1 150px; flex-wrap: wrap; gap: 6px; min-width: 0; align-items: center; }
+.practicalAControls output { font-variant-numeric: tabular-nums; }
+.practicalAControls input[type=range] { width: 100%; min-width: 0; min-height: 44px; accent-color: #438bb2; }
+.practicalAControls button, .practicalAStage button { min-height: 44px; min-width: 44px; max-width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #69849d; font: inherit; overflow-wrap: anywhere; cursor: pointer; }
+.practicalAControls button { background: #1d3850; color: #fff; }
+.practicalAControls button:disabled { opacity: .45; cursor: default; }
+.practicalA button:focus-visible, .practicalAPointer:focus-visible { outline: 3px solid #d67d16; outline-offset: 3px; }
+.practicalABuffer { padding: 12px 6px; }
+.practicalABufferTrack { height: 28px; position: relative; background: #20354d; border-radius: 8px; overflow: hidden; border: 1px solid #7892ad; }
+.practicalABufferTrack span { position: absolute; inset: 0 auto 0 0; }
+.practicalABufferLoaded { background: #69869c; }
+.practicalABufferUsed { background: #6ce3c4; }
+.practicalAPull { min-height: 210px; text-align: center; touch-action: none; user-select: none; }
+.practicalAPullIndicator { display: inline-block; font-size: 34px; line-height: 1; color: #7de0c9; }
+.practicalAPullCard { background: #e1edf7; color: #15334a; padding: 18px 10px; border-radius: 10px; line-height: 1.7; }
+.practicalAPointer { position: relative; min-height: 215px; display: grid; place-items: center; border-radius: 10px; overflow: hidden; touch-action: pan-y; }
+.practicalASpotlight { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; font-weight: 750; letter-spacing: .12em; text-shadow: 0 1px 4px #00162b; }
+.practicalAMagnetic { background: #8cdbc6; color: #092d2a; width: 138px; z-index: 1; }
+.practicalASort { display: grid; gap: 8px; }
+.practicalASortRow { background: #23415a; color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 6px; width: 100%; touch-action: none; user-select: none; box-sizing: border-box; }
+.practicalASortRow small { font-size: .75em; }
+.practicalASortRow[data-ghost=true] { opacity: .55; border-style: dashed; box-shadow: 0 4px 12px #0008; }
+.practicalASortRow[data-drop=true] { border-block-start: 4px solid #ffd37e; background: #354a61; }
+.practicalANotice { overflow-wrap: anywhere; min-height: 1.5em; }
+@media (prefers-reduced-motion: reduce) { .practicalAMagnetic { transition: none !important; } }

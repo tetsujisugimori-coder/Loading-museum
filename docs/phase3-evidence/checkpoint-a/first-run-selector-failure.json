@@ -1,0 +1,17 @@
+{
+  "head": "3895d6afd900a2e9458c1f04a431963944cea8d8",
+  "dirty": true,
+  "checked_at": "2026-10-31T03:57:41.544Z",
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "Step Progress / 工程の待機",
+      "status": "PASS",
+      "observations": [
+        "completed/current/error/retry visuals"
+      ]
+    }
+  ],
+  "error": "Error: locator.fill: Error: strict mode violation: locator('.practicalRoom').locator('article').getByLabel('取得済み') resolved to 2 elements:\n    1) <div role=\"img\" class=\"practicalABufferTrack\" aria-label=\"取得済み 65パーセント、再生済み 25パーセント\">…</div> aka getByRole('img', { name: '取得済み 65パーセント、再生済み 25パーセント' })\n    2) <output>65</output> aka getByRole('status', { name: '取得済み' })\n\nCall log:\n\u001b[2m  - waiting for locator('.practicalRoom').locator('article').getByLabel('取得済み')\u001b[22m\n"
+}

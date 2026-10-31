@@ -1,0 +1,29 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-phase3-20261031
+
+ ❯ tests/practical-runtime.test.tsx (1 test | 1 failed) 22ms
+   × clock preserves phase on pause, stops offscreen/hidden/reduced, resets and cleans up 21ms
+     → expected 40 to be 100 // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/practical-runtime.test.tsx > clock preserves phase on pause, stops offscreen/hidden/reduced, resets and cleans up
+AssertionError: expected 40 to be 100 // Object.is equality
+
+- Expected
++ Received
+
+- 100
++ 40
+
+ ❯ tests/practical-runtime.test.tsx:11:97
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  13:24:48
+   Duration  713ms (transform 49ms, setup 0ms, collect 128ms, tests 22ms, environment 294ms, prepare 62ms)

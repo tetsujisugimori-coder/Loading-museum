@@ -1,0 +1,174 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 check
+> npm run lint && npm run typecheck && npm test
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 lint
+> eslint .
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 typecheck
+> tsc --noEmit
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 test
+> npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run tests/practical-b.test.tsx tests/practical-runtime.test.tsx tests/practical-a.test.tsx tests/practical-room.test.tsx tests/phase2-elastic.test.ts tests/phase2-regression.test.tsx tests/phase2-b.test.tsx tests/phase2-room.test.tsx tests/modern-mesh.test.ts tests/modern-drift-geometry.test.ts tests/modern-lens.test.tsx tests/modern-menu.test.tsx tests/paper-exhibit.test.tsx tests/glass-exhibit.test.tsx tests/modern-animation.test.tsx tests/macintosh-system-choice.test.tsx tests/waapi-samples.test.ts tests/waapi-gallery.test.tsx tests/waapi-interaction-state.test.ts tests/waapi-game-regressions.test.tsx tests/waapi-hp-regression.test.tsx tests/waapi-cascade-motion.test.tsx tests/dom11-selection.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-stage1-menu-coin.test.tsx
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1976ms
+  Running TypeScript ...
+  Finished TypeScript in 5.4s ...
+  Collecting page data using 4 workers ...
+  Generating static pages using 4 workers (0/3) ...
+✓ Generating static pages using 4 workers (3/3) in 346ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+✔ Read Meの実矩形はゴミ箱へ四方向から重なる (0.971987ms)
+✔ System 1→5→6→1→6をクリック相当の操作で連続選択する (0.675959ms)
+✔ System 5をEnter、System 6をSpace相当の操作で選択する (0.226065ms)
+✔ loadingから最初の年代へ移行する (1.328995ms)
+✔ 年代ごとにeraIndexが進む (0.211433ms)
+✔ 通常年代は共通の待機時間を使う (0.222679ms)
+✔ 最後の年代だけ長い待機時間を使う (0.160497ms)
+✔ 最後の年代後にindex-completeへ移行する (0.25687ms)
+✔ index-complete後にtypingへ移行する (0.158945ms)
+✔ タイトル文字数が1文字ずつ増える (0.186095ms)
+✔ タイトル全文をtyping状態で保持する (0.965848ms)
+✔ タイトル全文表示後にtyping-holdへ移行する (0.248087ms)
+✔ typing-hold後にsignal-lockのbrightenへ移行する (0.268337ms)
+✔ signal-lockはbrightenからnoiseへ進む (0.176831ms)
+✔ signal-lockはnoiseからlockedへ進む (0.160597ms)
+✔ signal-lockのlocked後にcompleteへ進む (0.167127ms)
+✔ complete以降は状態が進まない (0.147498ms)
+✔ complete状態は最後の年代とタイトル全文を保持する (0.157362ms)
+✔ ReplayはrunIdを増やす (0.136702ms)
+✔ Replayは初期状態へ戻す (0.975503ms)
+✔ 古いrunIdによるタイマー更新を無視する (0.167377ms)
+✔ reduced motionは即時completeになる (0.153898ms)
+✔ 年代走査中の点灯数とノード状態をeraIndexから算出する (0.188429ms)
+✔ 年代走査完了後は全タイムラインノードが点灯する (0.184102ms)
+✔ タイムライン進捗率を年代件数と現在位置から算出する (0.146206ms)
+✔ 年代が1件でも安全な進捗率を返し、完了数を件数内へ制限する (0.091816ms)
+✔ 全年代と全時間定数を一か所で管理する (0.193316ms)
+✔ GitHub Pages用の静的HTMLへ9種類の展示を書き出す (10.049398ms)
+✔ 正式名称のタイトル導入、年代テーマ、確定演出、軽減モーションと再生操作を実装する (4.810061ms)
+✔ 既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き出す (3.046434ms)
+✔ カーソル展示室と8種類の体験展示を書き出す (8.882193ms)
+✔ カーソル展示のデータ、Pointer Events、性能とアクセシビリティ対応を実装する (8.712561ms)
+✔ Macintosh誕生展示室を加えた展示室・展示件数を表示する (2.913147ms)
+✔ Macintosh誕生展示室へ18種類の操作展示を書き出す (5.032581ms)
+✔ Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する (7.481432ms)
+✔ Flash特別展示室へ18カテゴリ・54展示と優先デモを実装する (4.208312ms)
+✔ 再検討した9展示と現代Web継承比較を専用実装にする (4.948717ms)
+✔ FlashバナーのCTAを安全に2回強調し、価格とreduced motionを調整する (3.786128ms)
+✔ Flash専用展示の状態遷移、停止制御、操作可能なARIA構造を実装する (2.973676ms)
+✔ MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモを書き出す (5.676463ms)
+✔ 独立した消えたOS展示室へ6 OS・18種類のLoading再構成を書き出す (4.523037ms)
+✔ 展示室のデータ定義とタイマー停止・フォーカス復帰を実装する (0.898368ms)
+✔ 消えたOS展示のデータ・起動・停止・reduced motionを実装する (1.031946ms)
+✔ Linux / UNIXデモの再実行・速度切替・安全な停止を実装する (0.946289ms)
+✔ CSSとJavaScriptをLoading-museumサブパスから参照する (1.549961ms)
+✔ 静的export設定と既存レスポンシブ・reduced-motion対応を維持する (3.917192ms)
+✔ System 1〜6のbutton構造と非スクロールgridを静的に維持する (1.016172ms)
+✔ DOM ANIMATION ROOM を静的HTMLへ出力し、17操作のAPI体験を確認する (3.689545ms)
+✔ 既存ローディング標本の直下に、遅延生成するWAAPI標本ギャラリーを追加する (1.383335ms)
+ℹ tests 49
+ℹ suites 0
+ℹ pass 49
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 178.693177
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-phase3-20261031
+
+ ✓ tests/glass-exhibit.test.tsx (3 tests) 313ms
+ ✓ tests/waapi-game-regressions.test.tsx (13 tests) 342ms
+ ✓ tests/waapi-cascade-motion.test.tsx (14 tests) 757ms
+ ✓ tests/practical-b.test.tsx (6 tests) 869ms
+ ✓ tests/waapi-stage1-expanded.test.tsx (23 tests) 905ms
+ ✓ tests/phase2-regression.test.tsx (7 tests) 1563ms
+   ✓ phase and reset regression > retains plasma phase while changing speed or pausing  703ms
+   ✓ phase and reset regression > keeps metaballs in place when paused  356ms
+ ✓ tests/practical-a.test.tsx (8 tests) 538ms
+ ✓ tests/paper-exhibit.test.tsx (3 tests) 345ms
+ ✓ tests/phase2-room.test.tsx (4 tests) 456ms
+ ✓ tests/waapi-stage1-menu-coin.test.tsx (5 tests) 2676ms
+   ✓ Menu cursor belongs to the current row for buttons, keyboard, limits and Reset  905ms
+   ✓ Coin entry, Replay and re-entry never grant points, including late completion after Reset  557ms
+   ✓ Coin explicit COLLECT awards once per Reset and rapid input cannot duplicate it  446ms
+   ✓ Coin has an explicit explanation separating demonstration, award and Reset  407ms
+   ✓ Menu detail metadata describes actual no-fill decoration rather than generic sample defaults  359ms
+ ✓ tests/dom11-selection.test.tsx (4 tests) 858ms
+   ✓ DOM11 表示番号の偶数選択 > P1〜P6を生成し、P2/P4/P6だけを強調して結果説明と一致する  326ms
+ ✓ tests/modern-animation.test.tsx (3 tests) 307ms
+ ✓ tests/phase2-b.test.tsx (4 tests) 325ms
+ ✓ tests/modern-lens.test.tsx (1 test) 116ms
+ ✓ tests/waapi-hp-regression.test.tsx (4 tests) 2148ms
+   ✓ Damage直後Reset後、旧追従更新の予定時刻を過ぎても72を保つ  769ms
+   ✓ Damage連打とHealは最新HPに収束し、Reset連打も不変  503ms
+   ✓ Damage中のアンマウントは遅延更新を解除する  465ms
+   ✓ 画面外停止と再表示は現在HPを保持し古い追従更新を残さない  409ms
+ ✓ tests/waapi-samples.test.ts (7 tests) 30ms
+ ✓ tests/modern-drift-geometry.test.ts (2 tests) 116ms
+ ✓ tests/practical-runtime.test.tsx (1 test) 29ms
+ ✓ tests/modern-menu.test.tsx (1 test) 157ms
+ ✓ tests/waapi-interaction-state.test.ts (2 tests) 6ms
+ ✓ tests/modern-mesh.test.ts (2 tests) 41ms
+ ✓ tests/phase2-elastic.test.ts (2 tests) 3ms
+ ✓ tests/practical-room.test.tsx (15 tests) 1012ms
+ ✓ tests/macintosh-system-choice.test.tsx (2 tests) 304ms
+ ✓ tests/waapi-gallery.test.tsx (11 tests) 6050ms
+   ✓ WAAPI標本ギャラリー操作 > 初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う  2338ms
+   ✓ WAAPI標本ギャラリー操作 > Replay、コード解説、ModalとToastの両方向を操作する  329ms
+   ✓ WAAPI標本ギャラリー操作 > Consoleの全操作、速度、Seek、実playStateを安全に反映する  341ms
+   ✓ WAAPI標本ギャラリー操作 > Fade/Slideは手動再生、Button/Toggleは直接操作だけを提供する  348ms
+   ✓ WAAPI標本ギャラリー操作 > ゲーム標本を直接操作し、Resetで意味のある初期状態へ戻す  395ms
+   ✓ WAAPI標本ギャラリー操作 > 新しいゲーム標本、5軸フィルター、AI共通状態を操作できる  412ms
+   ✓ WAAPI標本ギャラリー操作 > AI比較モードは一括フェーズを進め、閉じるとループを停止する  570ms
+   ✓ WAAPI標本ギャラリー操作 > 追加ゲーム14件は固有DOM・状態・操作結果を提供する  829ms
+
+ Test Files  25 passed (25)
+      Tests  147 passed (147)
+   Start at  13:13:55
+   Duration  7.27s (transform 1.74s, setup 0ms, collect 5.94s, tests 20.26s, environment 9.17s, prepare 2.13s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

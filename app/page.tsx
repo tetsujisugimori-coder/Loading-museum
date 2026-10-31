@@ -1,3 +1,5 @@
+import PracticalRoom from "./components/PracticalRoom";
+import { practicalExhibits } from "./data/practicalExhibits";
 import Phase2Room from "./components/Phase2Room";
 import { modernExhibits } from "./data/modernExhibits";
 import ModernAnimationRoom from "./components/ModernAnimationRoom";
@@ -64,7 +66,7 @@ export default function Home() {
           <br />
           COLLECTION 1976—NOW
           <br />
-          {periodRoomCount + 2} ROOMS / {totalExhibitCount + modernExhibits.length + 12} OBJECTS
+          {periodRoomCount + 3} ROOMS / {totalExhibitCount + modernExhibits.length + 12 + practicalExhibits.length} OBJECTS
         </p>
       </header>
 
@@ -175,6 +177,7 @@ export default function Home() {
 
       <ModernAnimationRoom />
       <Phase2Room />
+      <PracticalRoom />
 
       <WaapiSampleGallery />
 
