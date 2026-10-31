@@ -1502,3 +1502,5 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 全館checkでは既存WAAPIの5000ms timeoutを保持しmain対照/単独試験で調査、根因UNKNOWN。依存auditは29件/critical3のまま、#44へ分離（依存/lock無変更、安全性PASSではない）。独立レビューは別担当へ返し、実iPhone/実IME/VoiceOverはUNVERIFIED。詳細・最終CIはdocs/phase4a-studies.md。Draft/未mergeを維持、公開なし。
 
 - Draft PR #45 / 初回HEAD a718067のCIは契約228成功、WebKit既存36成功・新規17/24で低減100ms判定失敗、ChromiumはAPT中10分取消（注記確認、GUI未実施）。失敗原本保持。WebKit765/1280を実中間フレーム反転・実終端/低減属性観測へ修正し2/2成功、製品/期待終端は不変。OS取得はUbuntu24.04/公式HTTPS mirror/有限通信へ限定、job上限延長なし。最終HEADでCI再照合し、初回を成功へ読み替えない。
+
+- 532f333のCIは3job成功、契約228、新規48/既存72、144 PNGとZIP/画像ハッシュを照合。独立レビューでnative select暗字/暗背景のP2-1を返却（自己仮評価P3を改める）。新規selectだけcolor-scheme:lightを指定。Ch/WK×4幅×2 selectの16条件を追加し、WebKit実画素比1.23〜1.30→12.02〜14.70、Ch15.15、選択/focus保持。正式check228成功。元の48/72は削らず最終CIと独立差分再レビューを依頼する。状態/保存/依存は変更なし。

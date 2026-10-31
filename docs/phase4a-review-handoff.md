@@ -1,6 +1,8 @@
-# 第4期A：独立レビュー依頼（未実施）
+# 第4期A：独立レビュー・P2修正後の差分再確認依頼
 
 実装・自己検証は八兵衛が実施。本ファイルは独立レビュー結果ではない。独立担当はPR本文に記録した最終HEAD/treeをGitHubから再取得し、今回の変更・試験・保存証拠・最終CIを点検してください。Draft解除、APPROVE、merge、auto-merge、公開は行わず、通常コメントで評価を返す。
+
+初回独立レビューは[通常コメント](https://github.com/tetsujisugimori-coder/Loading-museum/pull/45#issuecomment-6550579686)に保存。返却P2-1を受け新規selectだけcolor-scheme:lightで実描画を修正し、追加の画素/選択/focus GUIを両engine×4幅×2 selectで実行、RED→GREENと原本を保持した。最新HEADの差分と最終CIでP2再確認を依頼する。自己検証16/16から独立閉鎖を自称しない。
 
 ## 重点点検
 
@@ -22,4 +24,4 @@
 
 自己検証履歴と未検証は `phase4a-studies.md`。最終ローカルは `browser-submission`、最終CIはPR本文・通常コメントから辿る。`browser-final` は途中失敗した旧試行名で、最終HEADの保証ではない。manifestはバイトSHA-256/サイズを記録するが、生成時点前後でsourceが同一と推定する代用にはしない。最終CIのHEAD/treeとcheckoutを別途照合する。
 
-実iPhone Safari・実タッチ・OS IME・VoiceOver・文字拡大・全館全操作はUNVERIFIED。現時点の総合PARTIAL、マージ推奨NO（独立レビュー待ち）。本レビュー依頼は正式承認を生成しない。
+実iPhone Safari・実タッチ・OS IME・VoiceOver・文字拡大・全館全操作はUNVERIFIED。現時点の総合PARTIAL、マージ推奨NO（P2修正後の独立差分レビュー待ち）。本レビュー依頼は正式承認を生成しない。

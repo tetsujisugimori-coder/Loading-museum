@@ -1,12 +1,12 @@
 {
-  "created_at": "2026-10-31T23:18:56.569Z",
+  "created_at": "2026-10-31T23:36:40.353Z",
   "timezone": "Asia/Tokyo",
   "baseline": "2de159a9a7534c8af32c8ebcda6c247947b9057c",
   "evidence": [
     {
       "path": "docs/phase4a-evidence/README.md",
-      "size": 3416,
-      "sha256": "0c7d20b9fd560789ed1b57238dd0ee3e3cfeab6c1ad054c0583fc7641a3a8232"
+      "size": 3711,
+      "sha256": "c7964be51a6ee8e8c1d3d3988de44859164b8d75f4fe3d1a4f529d4db6a2defc"
     },
     {
       "path": "docs/phase4a-evidence/accordion-frame-observed.log",
@@ -1044,6 +1044,11 @@
       "sha256": "98f65321c69fd83efaba3e8460591c0fefd69cde7a9bc5f1e56461c33cea8da9"
     },
     {
+      "path": "docs/phase4a-evidence/check-select-fix.log",
+      "size": 10589,
+      "sha256": "33fbfd5d123a54dcdf2da3d010a82699422faa426bdd55aa2785f4f1de0a9a54"
+    },
+    {
       "path": "docs/phase4a-evidence/check-submission.log",
       "size": 9716,
       "sha256": "7c5bad9baa80644c6369c78e4283cbf3951f58361da1456a36dfc21adda90c14"
@@ -1239,6 +1244,186 @@
       "sha256": "fe42d71d1ae2605e39c677d2c30aa39179d3a93ecc62108d6c195a998e083865"
     },
     {
+      "path": "docs/phase4a-evidence/select-green.log",
+      "size": 792,
+      "sha256": "81f4f9f0d55f57a71b640a98bc200fd8c786b5922c6362470f4bc1f45686e23b"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/chromium-1280-animated-accordion-select.png",
+      "size": 1702,
+      "sha256": "d4a8f9321f0fb1f9763c7f980f79a9fd0c072183370fde038dec505fd4f67795"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/chromium-1280-toast-stack-select.png",
+      "size": 1432,
+      "sha256": "cdbe826d54f8eac0367fa92d098c1529b4b8171d872de0e8322c1cea21127474"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/chromium-375-animated-accordion-select.png",
+      "size": 1508,
+      "sha256": "13b1b862f6194c4878ddc508c95e228d3344cc654a692c9423202b3e3b97d072"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/chromium-375-toast-stack-select.png",
+      "size": 1219,
+      "sha256": "781911bf62210707bc0ae12e295362b98f75ee80dfc9b43c3b71fa2e514de4b4"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/chromium-390-animated-accordion-select.png",
+      "size": 1480,
+      "sha256": "cafc3f8ef13265e9cfc2d8a2e8da38dbe8d4d046ed4ec7285d84d885c065c303"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/chromium-390-toast-stack-select.png",
+      "size": 1263,
+      "sha256": "f707d10f1fc6e010f9fcdc06183917751ba0fdb279a774768456c9e6d00a39c5"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/chromium-765-animated-accordion-select.png",
+      "size": 1723,
+      "sha256": "5acef0dccbbf520c3ae8a8c682ca1b1690109e6971e846ad2f5d66aaa9ea35ca"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/chromium-765-toast-stack-select.png",
+      "size": 1419,
+      "sha256": "34dafbc7a1e7783d0852a3dff85f709b6fb5431c0fb2e2b6fa6b58ea6e658a2c"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/results.json",
+      "size": 18624,
+      "sha256": "9d8c2c9cc723667281d767e50eef693ecf091049d2feecd376f3b0a2d207374a"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/webkit-1280-animated-accordion-select.png",
+      "size": 3039,
+      "sha256": "c2c1315f76762cef17b728520e47d9a4f81e43913ca8ed1c4ba2f092907e2176"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/webkit-1280-toast-stack-select.png",
+      "size": 2185,
+      "sha256": "053e9acadeeddf8274dd28aaec856adc8580ed427104e04bfa3bf536eb38b7ea"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/webkit-375-animated-accordion-select.png",
+      "size": 2709,
+      "sha256": "1da1d211d3027de67c3a9cd0e3ff0f5f540d903cbc1b067bb2f20f854ac53b98"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/webkit-375-toast-stack-select.png",
+      "size": 1929,
+      "sha256": "87a08f13c6a85927c5c46b3b1c59b972a2e177265560fb8c077b15b84699ab59"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/webkit-390-animated-accordion-select.png",
+      "size": 2703,
+      "sha256": "d26c347fe306d05f93551645f1b529165e5e4840294943d927e3d4de212936f7"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/webkit-390-toast-stack-select.png",
+      "size": 1919,
+      "sha256": "000440ea545f9f2f5d913e0ac4057910f4133db515e713914a1267cda83cbf50"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/webkit-765-animated-accordion-select.png",
+      "size": 2945,
+      "sha256": "67729efd2da7ccf004ae2239748b86ba48bf85c30b2dec82509fc656e39d7eb5"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/webkit-765-toast-stack-select.png",
+      "size": 2094,
+      "sha256": "2d1ef1a30dcc70d51d6f80d774180b1f838eb066a3d0f5a11cb31c5dcdf08280"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red.log",
+      "size": 1019,
+      "sha256": "68813304759ce7b30c95bf4209eee86877cf694f7056cdd3e944cb1d7e0a29c1"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/chromium-1280-animated-accordion-select.png",
+      "size": 1580,
+      "sha256": "399fa24a2d9c76f0bd7cbdb6737d838470bcd43b62dc95df6e3f2b1a53505630"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/chromium-1280-toast-stack-select.png",
+      "size": 1340,
+      "sha256": "804222babea2a7b13d15fdf171ba52bda21e529b86e7174bf5f86dbe00cd6820"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/chromium-375-animated-accordion-select.png",
+      "size": 1392,
+      "sha256": "842dce684de3e0fea15629d49e9a7f074b356360df606f8c370c796a30487082"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/chromium-375-toast-stack-select.png",
+      "size": 1161,
+      "sha256": "9aa7b3006d55dcc75977b2d99f0a2c939183da412fbf590e7fbf65acd6d25215"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/chromium-390-animated-accordion-select.png",
+      "size": 1387,
+      "sha256": "2cc4c601913663cd14a0a301e99e64e551969bf08c84b14fcad240c232b9390e"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/chromium-390-toast-stack-select.png",
+      "size": 1167,
+      "sha256": "99afafd4ebafccc4138481104934d8249630c1c81a018a7d9fc4d44921169137"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/chromium-765-animated-accordion-select.png",
+      "size": 1627,
+      "sha256": "73b12958cc6a4fece098b4eb96ea6c6cba4bbb1f93c46de3bf66ea599c965347"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/chromium-765-toast-stack-select.png",
+      "size": 1326,
+      "sha256": "1e00785c6a913d526fd14eac71e5900adea1c58612b52f7339ed5b257a4833f2"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/results.json",
+      "size": 18808,
+      "sha256": "d3786a18e2bbec36b4ab4ac43808d98e261f93346875d91a2cd5a49464a5b9fb"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/webkit-1280-animated-accordion-select.png",
+      "size": 2725,
+      "sha256": "1d55ae5b1602dd91649c211bad2603e98cabface90b8b1784b9ae638428ee994"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/webkit-1280-toast-stack-select.png",
+      "size": 2017,
+      "sha256": "99cfbaddfe42f7b21aff3743e8b07851efd01b1f3cd5796f72bf8c9fd126d7e7"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/webkit-375-animated-accordion-select.png",
+      "size": 2392,
+      "sha256": "4f56a9b4087dd699dd8276aa2e629e0a641bd61bee7ef3e044e04d295144ea41"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/webkit-375-toast-stack-select.png",
+      "size": 1739,
+      "sha256": "5b2a700dab8ca19f24564f599ecac399c18ef3dbce618a671cba194185e04e7b"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/webkit-390-animated-accordion-select.png",
+      "size": 2397,
+      "sha256": "bd8d22adb9e798663eeaabd6d35dfe8f47d00bb5710da4fd0d3de494ffebb209"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/webkit-390-toast-stack-select.png",
+      "size": 1732,
+      "sha256": "57821c532790b743965076775d2eb706f1be30029dd685f49794cd89e16a9cb9"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/webkit-765-animated-accordion-select.png",
+      "size": 2627,
+      "sha256": "1c9190a3023f16d9205278d623c63544e6ddedf7409a3a730a44c00ab3c3666e"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/webkit-765-toast-stack-select.png",
+      "size": 1880,
+      "sha256": "8db9593f54f88125d4f6b04701a384220230f1099637c9d86c27a705c92b3bd2"
+    },
+    {
       "path": "docs/phase4a-evidence/toast-frame-diagnostic.log",
       "size": 85,
       "sha256": "ec2edd77019f1b890eb7b48fbf7435d6120b3b0dfbcb2fad2fcac290dccae51f"
@@ -1337,9 +1522,9 @@
   "sources": [
     {
       "path": ".github/workflows/verify-practical.yml",
-      "size": 3421,
-      "sha256": "a08c62b45987ca0b073f999ffe952c036a3f107d7f2f50b898f6b3c0d2dd546b",
-      "git_blob": "a83d1ff3e8a5be2f245eea634649b0aad4c912f7"
+      "size": 3623,
+      "sha256": "cfe50338cd32e7799c853c1ac7d94a63f1f6fa96ba7c4911ef0d440480debf3f",
+      "git_blob": "268edc19c3d4408260c05a9411459e237d575752"
     },
     {
       "path": "app/components/AppleEarlyBeginnerGuide.tsx",
@@ -1607,9 +1792,9 @@
     },
     {
       "path": "app/components/practical/phase4.css",
-      "size": 3073,
-      "sha256": "edbbce4e0851edbb8642f3a924bcca93dc78f856e5394883d1d9096499d75cb1",
-      "git_blob": "0b4f45289ae927a1e61fdf8f62e7285957b5735d"
+      "size": 3193,
+      "sha256": "4fa96dad21f2cccd3d1fd7abc0acf46f95220f613d4813288787456f6b8cb780",
+      "git_blob": "2d8b2d0de7e110a38f03bbf2d132a0ef5ace8ac2"
     },
     {
       "path": "app/components/practical/practical-a.css",
@@ -1778,6 +1963,12 @@
       "size": 19873,
       "sha256": "00e5db2edfff947af1e0ae5c5c656cffdd1d2c3e229fb393e725c7733c2d5166",
       "git_blob": "5bb8d3d044a5335ae01e62a5583c765080fe345a"
+    },
+    {
+      "path": "scripts/verify-phase4a-select-browser.mjs",
+      "size": 5498,
+      "sha256": "f87e9ede726323eb3e4f7c2f20cd443591fdb2ecd5626c2c08a646999b98dc1d",
+      "git_blob": "f4fe9f28cb658f14991ba293ba603aea1de5bed3"
     },
     {
       "path": "scripts/verify-practical-browser.mjs",

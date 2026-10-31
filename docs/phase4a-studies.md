@@ -52,6 +52,18 @@ WebKit765診断では旧1700ms待機で閉高1≠0も検出し保存した。固
 
 Chromiumログは08:06:30〜APT依存取得、azure.archive.ubuntu.comのHTTP mirrorへの反復Ignを記録し、08:15:37取消、08:15:39終了。API注記で10分上限を確認した。GitHubのcheck-run annotationsは連携fetch対象外のため、認証済みgh APIを正規の読取り経路として使用した。runner-imagesの[ミラー定義](https://github.com/actions/runner-images/blob/main/images/ubuntu/scripts/build/configure-apt-sources.sh)も確認し、今回使用したUbuntu24.04へrunnerを固定、公式HTTPS archive/securityを優先ミラーに指定、APT通信30秒/再試行1回に制限。署名/TLS検証とPlaywright1.56.1/lockfile、job10分上限は維持。ブラウザ取得量の削減やバージョン変更はしない。これはOS取得の停止対策で、GUIや製品の成功を代替しない。最終HEADの全CIを再実行して別途判定する。
 
+## 独立レビューP2-1：native selectの実描画配色
+
+[独立レビュー](https://github.com/tetsujisugimori-coder/Loading-museum/pull/45#issuecomment-6550579686)は532f333までの同一製品を確認し、Windows WebKit26のselect現在値が暗いnative背景と暗字になり判読困難なP2を検出した。私の代表PNG確認時はP3と仮置きしていたが、現在値が主要操作に関わることと約1.3:1の実測を受け、P2として修正する。computed backgroundは明色でも実描画が異なる点が原因で、computed styleのみの判定をしない。
+
+製品修正は `.phase4Stage select { color-scheme: light }` の1ルールだけ。新規Toastの種類・Accordionの展開方式に限定し、入力や既存select、native appearance/矢印/選択/focusの仕組みは保持する。[MDN color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme) のnative form controlsの配色に関する説明も確認。[通常文字4.5:1](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html)を今回の画素対照の基準とする（全体のWCAG適合認定ではない）。独立担当の一時DOM対照・原本はレビュー側に保全し、私の再実行と混同しない。
+
+自己REDはCSS追加後まだbuildしていない532f333時点の既存outに対して同一scriptで採取。Ch/WK×375/390/765/1280×2 selectの16件を最後まで測定し、全件選択/focus経路は成功。Chの画素比は8/8で約15.15、WebKitは8/8が約1.23〜1.30で4.5未満。明示light paletteの追加条件も含むscript全体は0/16・exit1で、Chまで低コントラストだったという意味ではない。
+
+同じscript/期待値/操作/表示条件で新CSSをbuildしGREENを採取。16/16成功、WebKitの実背景画素はmobileで244/244/244、desktopで222/222/222、比は約12.02〜14.70、Chは約15.15。全16の選択結果とTabでのfocus移動を保持。PNGをcanvasで復号して文字外の内部3画素とCSS前景色の比を算出し、実画像も目視した。境界・文字アンチエイリアスの完全な分析や全a11yの適合判定ではない。`select-red` / `select-green` に各16 PNG・JSON・SHA-256/サイズを保存。
+
+修正後の正式local checkもlint/type/build/49+147+32＝228成功、exit0。CIには従来の新規48・既存72を削らず、独立したselect16条件・16 PNGを追加する。修正後の最終HEAD CIと独立差分再レビューを待ち、自己判断でP2閉鎖・総合PASSにしない。
+
 ## 依存警告：未解決
 
 2026-11-01 JSTのnpm auditは29件（critical3/high8/moderate17/low1）、exit1。原本 `phase4a-evidence/audit.json`。Next16.2.6/Vitest3.2.4/Tinypool1.1.1が影響範囲。Windows Next server RCEは16.3.3、AVIF16.3.3、next/og16.3.6、SVG Image/use cache16.4.1、Vitest UI3.2.6（4系4.1.0）、Tinypool worker2.1.1/run2.1.2に修正。npm auditのNext集約候補は16.4.3。他のmoderate/highも原本へ保存し、これらの版だけで全件解消を断定しない。
@@ -70,6 +82,6 @@ repoはstatic export + Pages out配信。今回Next server/dev、Vitest UI/API�
 
 ## 制限と引継ぎ
 
-独立レビュー未実施、実iPhone Safari/実Touch/OS日本語IME/VoiceOver/文字拡大はUNVERIFIED。Playwrightのtapと合成compositionイベントは実機検証の代用ではない。全館227展示の全操作・全パラメータは今回対象外。Undoは架空データの最後1操作だけで永続履歴ではない。期限時のfocus退避はunitで確認したが実支援技術評価は残る。保存データ・ネットワーク・承認を扱う実用本番部品として無条件の安全性保証をしない。
+初回独立レビューは実施済みでP2-1を返却、修正後の差分再確認待ち。実iPhone Safari/実Touch/OS日本語IME/VoiceOver/文字拡大はUNVERIFIED。Playwrightのtapと合成compositionイベントは実機検証の代用ではない。全館227展示の全操作・全パラメータは今回対象外。Undoは架空データの最後1操作だけで永続履歴ではない。期限時のfocus退避はunitで確認したが実支援技術評価は残る。保存データ・ネットワーク・承認を扱う実用本番部品として無条件の安全性保証をしない。
 
 第4期Bは別6展示の採用・重複調査から開始。今回の分類・期限/取消境界・finite Animation cleanup・全幅ブラウザharnessを再利用できる。新規6展示や空枠は追加しない。main/公開workflowは変更せず、Draftを維持して人間の判断へ返す。

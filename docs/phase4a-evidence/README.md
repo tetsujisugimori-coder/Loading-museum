@@ -20,6 +20,8 @@
 | ci-first | a718067の初回CI：契約成功、WebKit既存36/新規17で停止、ChromiumはAPT中10分取消。API/注記/ログ/失敗PNG保持 |
 | media-diagnostic / media-observed | WebKit765の固定1700ms閉高1≠0、明示終端待ち765成功後1280の一点中間観測失敗。全履歴を保持 |
 | accordion-frame-observed | WebKit765/1280の実中間高さで反転、閉高0・phase・低減属性の明示確認、2/2成功 |
+| select-red / select-green | 独立P2を自己再試験。各16条件を全測定。WebKit画素比8件が1.23〜1.30から12.02〜14.70へ改善、Chは15.15を保持。両者の選択/focus成功 |
+| check-select-fix.log | select限定CSS修正後のlint/type/build/49+147+32成功、exit0 |
 | search-touch-negative-control.patch | 局所revertの再現用資料。適用・再実行済みとは称さない |
 
 ローカル結果のheadは基準mainでdirty=true。これを提出HEADの合格と読み替えない。最終CIはDraft PRの固定HEADをcheckoutし、旧36×2、新6×4幅×2を別結果JSONへ出す。CI artifactとHEAD/tree・件数の照合はPR本文・通常コメントを正本とする。

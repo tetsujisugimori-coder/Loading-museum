@@ -1,0 +1,17 @@
+chromium 375 toast-stack FAIL contrast=15.15
+chromium 375 animated-accordion FAIL contrast=15.15
+chromium 390 toast-stack FAIL contrast=15.15
+chromium 390 animated-accordion FAIL contrast=15.15
+chromium 765 toast-stack FAIL contrast=15.15
+chromium 765 animated-accordion FAIL contrast=15.15
+chromium 1280 toast-stack FAIL contrast=15.15
+chromium 1280 animated-accordion FAIL contrast=15.15
+webkit 375 toast-stack FAIL contrast=1.30
+webkit 375 animated-accordion FAIL contrast=1.30
+webkit 390 toast-stack FAIL contrast=1.30
+webkit 390 animated-accordion FAIL contrast=1.30
+webkit 765 toast-stack FAIL contrast=1.23
+webkit 765 animated-accordion FAIL contrast=1.23
+webkit 1280 toast-stack FAIL contrast=1.23
+webkit 1280 animated-accordion FAIL contrast=1.23
+{"expected":16,"passed":0,"error":"AssertionError [ERR_ASSERTION]: all native select pixels and explicit palettes must pass\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-01/task-2/loading-museum-phase4a/scripts/verify-phase4a-select-browser.mjs:28:162"}
