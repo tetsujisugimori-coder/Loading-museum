@@ -1,0 +1,43 @@
+{
+  "head": "67419e7b6c0245a058e61bb302d9123d549d3482",
+  "tree": "b41dabbada27a4b695a55e09209f37982eb1f0bb",
+  "sourceBlobs": [
+    {
+      "path": "app/components/practical/Phase5Data.tsx",
+      "sha256": "487e499f1488065d830204366bfecbd63e4ec591f33260261d168550ed61b91c"
+    },
+    {
+      "path": "app/components/practical/Phase5DateTree.tsx",
+      "sha256": "d38b6427d4d21af5e3ba970511c439de520ab110d77a4775c5f19410e799e421"
+    },
+    {
+      "path": "app/components/practical/Phase5Lists.tsx",
+      "sha256": "ca079fe5b551da4a56da95c2e1b88b538857553346ce8830584fe90d8352d4ce"
+    },
+    {
+      "path": "scripts/verify-phase5a-focus.mjs",
+      "sha256": "c9707a669892ca25f897a9d569758826845c82ffae21855686704a0b6157593c"
+    },
+    {
+      "path": "tests/phase5-focus-revision.test.tsx",
+      "sha256": "82101bbd5eb8103de6c142b6ecac4bccd20c38a1e548f4d7b221489c9e2e5e1a"
+    }
+  ],
+  "changedPaths": [
+    ".github/workflows/verify-practical.yml",
+    "app/components/practical/Phase5Data.tsx",
+    "app/components/practical/Phase5DateTree.tsx",
+    "app/components/practical/Phase5Lists.tsx",
+    "docs/phase5a-evidence/focus-revision/check-type-helper-failed.log",
+    "docs/phase5a-evidence/focus-revision/red-chromium/results.json",
+    "docs/phase5a-evidence/focus-revision/red-ready/results.json",
+    "docs/phase5a-evidence/focus-revision/red/results.json",
+    "docs/phase5a-evidence/focus-revision/unit-green-initial.log",
+    "docs/phase5a-evidence/focus-revision/unit-red.log",
+    "docs/phase5a-focus-revision.md",
+    "package.json",
+    "scripts/verify-phase5a-focus.mjs",
+    "tests/phase5-focus-revision.test.tsx"
+  ],
+  "protectedPathChanges": ""
+}

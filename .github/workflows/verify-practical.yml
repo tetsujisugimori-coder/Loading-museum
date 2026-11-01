@@ -100,3 +100,57 @@ jobs:
             phase4a-select.log
             phase4b-browser-evidence/
             phase4b-browser.log
+  phase5a-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Fixed browser harness outside application dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/practical-playwright" --no-save playwright@1.56.1
+          # The tested runner's Azure HTTP mirror stalled before any GUI test.
+          # Keep signed Ubuntu repositories and TLS; bound network acquisition.
+          if [ -f /etc/apt/apt-mirrors.txt ]; then
+            printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt
+          fi
+          printf 'Acquire::http::Timeout "30";\nAcquire::https::Timeout "30";\nAcquire::Retries "1";\n' | sudo tee /etc/apt/apt.conf.d/99-museum-network-bounds
+          "$RUNNER_TEMP/practical-playwright/node_modules/.bin/playwright" install --with-deps ${{ matrix.browser }}
+      - name: Phase 5A data selection and exploration
+        if: ${{ !cancelled() }}
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          WIDTHS: 320,375,390,1280
+          EVIDENCE_DIR: phase5a-browser-evidence
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/practical-playwright/node_modules/playwright"
+          node scripts/verify-phase5a-browser.mjs 2>&1 | tee phase5a-browser.log
+      - name: Phase 5A focused deletion, date and chips regressions
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          EVIDENCE_DIR: phase5a-focus-evidence
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/practical-playwright/node_modules/playwright"
+          node scripts/verify-phase5a-focus.mjs 2>&1 | tee phase5a-focus.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: phase5a-${{ matrix.browser }}-${{ github.event.pull_request.head.sha }}
+          path: |
+            phase5a-browser-evidence/
+            phase5a-browser.log
+            phase5a-focus-evidence/
+            phase5a-focus.log

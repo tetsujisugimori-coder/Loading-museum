@@ -1,0 +1,227 @@
+{
+  "reviewed_head": "86713c39740943415ee75c524aeb38398c3fad91",
+  "reviewed_tree": "2f15751c9c5a8cc1364c9a0c0aa880b1770d7ae1",
+  "created": "2026-11-01T20:43:42.858989+00:00",
+  "judgment": "PARTIAL",
+  "scope_pass": true,
+  "R1_P2_close": "YES",
+  "merge_recommendation": "YES: six Phase5A exhibits and localized correction only",
+  "independent_runs": [
+    {
+      "id": "focus-before",
+      "head": "909b23dedc379d929c06b4f57f98899e930b5454",
+      "tree": "119ebe2aa9bb165615026c40ba845b0edb28b908",
+      "expected": 14,
+      "counts": {
+        "RED": 10,
+        "PASS": 4
+      },
+      "errors": [],
+      "complete": true,
+      "exit_code": 0,
+      "started": "2026-11-01T20:36:04.749Z",
+      "finished": "2026-11-01T20:36:24.158Z"
+    },
+    {
+      "id": "focus-current",
+      "head": "86713c39740943415ee75c524aeb38398c3fad91",
+      "tree": "2f15751c9c5a8cc1364c9a0c0aa880b1770d7ae1",
+      "expected": 18,
+      "counts": {
+        "PASS": 18
+      },
+      "errors": [],
+      "complete": true,
+      "exit_code": 0,
+      "started": "2026-11-01T20:35:31.495Z",
+      "finished": "2026-11-01T20:35:54.433Z"
+    },
+    {
+      "id": "independent",
+      "head": "86713c39740943415ee75c524aeb38398c3fad91",
+      "tree": "2f15751c9c5a8cc1364c9a0c0aa880b1770d7ae1",
+      "expected": 68,
+      "counts": {
+        "PASS": 7
+      },
+      "errors": [
+        "locator.focus: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.phase4Room').getByTestId('phase5-stage').getByLabel('比較', { exact: true })\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task\\loading-review-scratch\\independent-probe.mjs:51:73"
+      ],
+      "complete": false,
+      "exit_code": 1,
+      "started": "2026-11-01T20:36:36.217Z",
+      "finished": "2026-11-01T20:36:48.019Z"
+    },
+    {
+      "id": "independent-v2",
+      "head": "86713c39740943415ee75c524aeb38398c3fad91",
+      "tree": "2f15751c9c5a8cc1364c9a0c0aa880b1770d7ae1",
+      "expected": 68,
+      "counts": {
+        "PASS": 12
+      },
+      "errors": [
+        "locator.fill: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.phase4Room').getByTestId('phase5-stage').getByLabel('資料名で絞込')\u001b[22m\n\n    at mutate (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task\\loading-review-scratch\\independent-probe.mjs:80:166)\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task\\loading-review-scratch\\independent-probe.mjs:81:10"
+      ],
+      "complete": false,
+      "exit_code": 1,
+      "started": "2026-11-01T20:37:12.261Z",
+      "finished": "2026-11-01T20:37:27.466Z"
+    },
+    {
+      "id": "independent-v3",
+      "head": "86713c39740943415ee75c524aeb38398c3fad91",
+      "tree": "2f15751c9c5a8cc1364c9a0c0aa880b1770d7ae1",
+      "expected": 68,
+      "counts": {
+        "PASS": 68
+      },
+      "errors": [],
+      "complete": true,
+      "exit_code": 0,
+      "started": "2026-11-01T20:37:58.050Z",
+      "finished": "2026-11-01T20:39:00.514Z"
+    },
+    {
+      "id": "representative24",
+      "head": "86713c39740943415ee75c524aeb38398c3fad91",
+      "tree": null,
+      "expected": 24,
+      "counts": {
+        "PASS": 24
+      },
+      "errors": [],
+      "complete": true,
+      "exit_code": 0,
+      "started": "2026-11-01T20:39:04.049Z",
+      "finished": "2026-11-01T20:39:58.305Z"
+    }
+  ],
+  "native_contract": {
+    "command": "npm run check",
+    "exit_code": 0,
+    "pass": [
+      49,
+      147,
+      32,
+      25,
+      20,
+      8
+    ],
+    "total": 281,
+    "failure": 0,
+    "error": 0,
+    "skip": 0,
+    "lint": "PASS",
+    "types": "PASS",
+    "production_static_export_build": "PASS"
+  },
+  "ci_observation": {
+    "run_id": 41317056714,
+    "head": "86713c39740943415ee75c524aeb38398c3fad91",
+    "jobs_success": 5,
+    "contracts_pass": 281,
+    "phase5a_original": 48,
+    "phase5a_added": 18,
+    "legacy": [
+      {
+        "file": "ci-legacy-124879287081.log",
+        "practical_json_pass": 36,
+        "phase4a_select_summaries": [
+          "{\"expected\":24,\"passed\":24}",
+          "{\"expected\":8,\"passed\":8}"
+        ],
+        "phase4b_pass_lines": 24
+      },
+      {
+        "file": "ci-legacy-124879287103.log",
+        "practical_json_pass": 36,
+        "phase4a_select_summaries": [
+          "{\"expected\":24,\"passed\":24}",
+          "{\"expected\":8,\"passed\":8}"
+        ],
+        "phase4b_pass_lines": 24
+      }
+    ],
+    "is_independent_rerun": false
+  },
+  "limits": {
+    "real_iPhone_Safari": "NOT_TESTED",
+    "VoiceOver_or_screen_reader_audio": "NOT_TESTED",
+    "physical_touch": "NOT_TESTED",
+    "physical_OS_IME": "NOT_TESTED",
+    "Issue44_critical": "3 existing; not resolved",
+    "existing_Windows_WAAPI_timeout_cause": "UNKNOWN",
+    "prior_Windows_initial_load_timeout_cause": "UNKNOWN",
+    "independent_current_native_browser_load_timeout": 0
+  },
+  "failed_attempts": [
+    {
+      "id": "normal-network-clone",
+      "exit": 1,
+      "cause": "getaddrinfo thread failed; elevated network clone subsequently succeeded",
+      "phase": "setup"
+    },
+    {
+      "id": "npm-ci-restricted",
+      "exit": 1,
+      "cause": "cancelled before completion; retained partial log",
+      "phase": "setup"
+    },
+    {
+      "id": "npm-ci-certificate",
+      "exit": 1,
+      "cause": "UNABLE_TO_VERIFY_LEAF_SIGNATURE; TLS maintained and system CA used in subsequent setup",
+      "phase": "setup"
+    },
+    {
+      "id": "npm-ci-system-ca",
+      "exit": 0,
+      "cause": "435 packages installed using fixed lockfile; no dependency edits",
+      "phase": "setup"
+    },
+    {
+      "id": "check-restricted",
+      "exit": 1,
+      "cause": "cancelled before full completion; captured lint/type/build and 49 Node passes, Vitest unfinished; native check completed",
+      "phase": "setup"
+    },
+    {
+      "id": "old-relative-junction",
+      "exit": 1,
+      "cause": "junction target must be absolute; next unavailable",
+      "phase": "setup"
+    },
+    {
+      "id": "old-restricted-junction",
+      "exit": 1,
+      "cause": "access denied; next unavailable",
+      "phase": "setup"
+    },
+    {
+      "id": "old-native-junction-build",
+      "exit": 1,
+      "cause": "Turbopack rejects node_modules link outside project root",
+      "phase": "setup"
+    },
+    {
+      "id": "old-normal-dependency-copy-build",
+      "copy_exit": 1,
+      "exit": 0,
+      "cause": "robocopy exit1 means files copied; ordinary-copy build succeeded",
+      "phase": "setup"
+    },
+    {
+      "id": "independent-v1",
+      "exit": 1,
+      "pass": 7,
+      "cause": "probe selector 比較 exact label mismatch; no product assertion failure"
+    },
+    {
+      "id": "independent-v2",
+      "exit": 1,
+      "pass": 12,
+      "cause": "probe label typo 資料名で絞込 instead of 資料を絞り込む; no product assertion failure"
+    }
+  ]
+}

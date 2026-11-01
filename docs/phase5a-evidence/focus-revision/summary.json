@@ -1,0 +1,53 @@
+{
+  "productHead": "67419e7b6c0245a058e61bb302d9123d549d3482",
+  "productTree": "b41dabbada27a4b695a55e09209f37982eb1f0bb",
+  "baseline": {
+    "head": "909b23dedc379d929c06b4f57f98899e930b5454",
+    "tree": "119ebe2aa9bb165615026c40ba845b0edb28b908",
+    "cases": 14,
+    "red": 10,
+    "pass": 4,
+    "trackedChanges": ""
+  },
+  "localContract": {
+    "status": "PASS",
+    "existing": 273,
+    "added": 8,
+    "total": 281,
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "build": "PASS",
+    "failed": 0,
+    "skipped": 0
+  },
+  "focused": {
+    "expected": 18,
+    "pass": 18,
+    "complete": true,
+    "trackedChanges": "",
+    "errors": []
+  },
+  "browser48": {
+    "distinctPass": 48,
+    "firstInvocation": {
+      "passed": 36,
+      "complete": false,
+      "errors": [
+        "page.goto: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:64600/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-01\\task-8\\Loading-museum\\scripts\\verify-phase5a-browser.mjs:15:619"
+      ]
+    },
+    "remainingInvocation": {
+      "passed": 12,
+      "complete": true,
+      "errors": []
+    },
+    "note": "First Windows invocation did not complete: WebKit page load timed out before 390px. Separate single run filled the 12 previously unexecuted cases without changing harness, timeouts, or assertions. Do not describe the first invocation as 48/48 success."
+  },
+  "limits": [
+    "Independent re-review NOT_TESTED",
+    "Real Safari / VoiceOver / OS IME / physical touch NOT_TESTED",
+    "Issue #44 three critical findings unchanged",
+    "Previous Windows WAAPI timeout cause UNKNOWN unchanged",
+    "Two new Windows page-load timeouts recorded; root cause UNKNOWN, later serial runs passed"
+  ]
+}

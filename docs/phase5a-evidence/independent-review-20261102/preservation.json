@@ -1,0 +1,80 @@
+{
+  "old": "909b23dedc379d929c06b4f57f98899e930b5454",
+  "old_tree": "119ebe2aa9bb165615026c40ba845b0edb28b908",
+  "new": "86713c39740943415ee75c524aeb38398c3fad91",
+  "new_tree": "2f15751c9c5a8cc1364c9a0c0aa880b1770d7ae1",
+  "old_path_count": 618,
+  "unchanged": 613,
+  "changed_existing": [
+    ".github/workflows/verify-practical.yml",
+    "app/components/practical/Phase5Data.tsx",
+    "app/components/practical/Phase5DateTree.tsx",
+    "app/components/practical/Phase5Lists.tsx",
+    "package.json"
+  ],
+  "added": [
+    "docs/phase5a-evidence/focus-revision/browser48-remaining/results.json",
+    "docs/phase5a-evidence/focus-revision/browser48/chromium-375-date-range-picker.png",
+    "docs/phase5a-evidence/focus-revision/browser48/chromium-375-editable-data-table.png",
+    "docs/phase5a-evidence/focus-revision/browser48/chromium-375-filter-builder.png",
+    "docs/phase5a-evidence/focus-revision/browser48/chromium-375-multi-select-chips.png",
+    "docs/phase5a-evidence/focus-revision/browser48/chromium-375-tree-view.png",
+    "docs/phase5a-evidence/focus-revision/browser48/chromium-375-virtualized-list.png",
+    "docs/phase5a-evidence/focus-revision/browser48/results.json",
+    "docs/phase5a-evidence/focus-revision/browser48/webkit-375-date-range-picker.png",
+    "docs/phase5a-evidence/focus-revision/browser48/webkit-375-editable-data-table.png",
+    "docs/phase5a-evidence/focus-revision/browser48/webkit-375-filter-builder.png",
+    "docs/phase5a-evidence/focus-revision/browser48/webkit-375-multi-select-chips.png",
+    "docs/phase5a-evidence/focus-revision/browser48/webkit-375-tree-view.png",
+    "docs/phase5a-evidence/focus-revision/browser48/webkit-375-virtualized-list.png",
+    "docs/phase5a-evidence/focus-revision/check-final.log",
+    "docs/phase5a-evidence/focus-revision/check-type-helper-failed.log",
+    "docs/phase5a-evidence/focus-revision/green-serial/chromium-390-chips.png",
+    "docs/phase5a-evidence/focus-revision/green-serial/results.json",
+    "docs/phase5a-evidence/focus-revision/green-serial/webkit-390-chips.png",
+    "docs/phase5a-evidence/focus-revision/green/chromium-390-chips.png",
+    "docs/phase5a-evidence/focus-revision/green/results.json",
+    "docs/phase5a-evidence/focus-revision/manifest.json",
+    "docs/phase5a-evidence/focus-revision/preservation.json",
+    "docs/phase5a-evidence/focus-revision/red-chromium/results.json",
+    "docs/phase5a-evidence/focus-revision/red-ready/results.json",
+    "docs/phase5a-evidence/focus-revision/red/results.json",
+    "docs/phase5a-evidence/focus-revision/summary.json",
+    "docs/phase5a-evidence/focus-revision/unit-green-initial.log",
+    "docs/phase5a-evidence/focus-revision/unit-red.log",
+    "docs/phase5a-focus-revision.md",
+    "scripts/verify-phase5a-focus.mjs",
+    "tests/phase5-focus-revision.test.tsx"
+  ],
+  "groups": {
+    "data": {
+      "count": 18,
+      "changed": []
+    },
+    "past_docs": {
+      "count": 480,
+      "changed": []
+    },
+    "prior_tests": {
+      "count": 33,
+      "changed": []
+    },
+    "prior_harness": {
+      "count": 9,
+      "changed": []
+    },
+    "lockfile": {
+      "count": 1,
+      "changed": []
+    }
+  },
+  "tracked_changes": "",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.14.7",
+  "node": "v24.20.0",
+  "source_sha256": {
+    "app/components/practical/Phase5Data.tsx": "e92c3fa84eb2c5b3d91f83d3c843eb67f29beaf31e2b1781cfdb205da4d01d00",
+    "app/components/practical/Phase5DateTree.tsx": "f36b4ff621e5547bab91d0a7920abfba78127abd88740e3f15a6cf39e173c43d",
+    "app/components/practical/Phase5Lists.tsx": "1d928aadc31a2ec51c6c05ab15764da4113bfe0fe9b78544f00bf0d6a7ed1a86"
+  }
+}

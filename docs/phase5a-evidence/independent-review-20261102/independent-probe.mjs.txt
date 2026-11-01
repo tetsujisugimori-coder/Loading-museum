@@ -1,0 +1,89 @@
+import {createRequire} from 'node:module';
+import {createServer} from 'node:http';
+import {readFile,realpath,mkdir,writeFile} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const {chromium,webkit}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE);
+const root=await realpath('out'),dest=path.resolve(process.env.EVIDENCE_DIR);
+await mkdir(dest,{recursive:true});
+const server=createServer(async(req,res)=>{try{let p=decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/^\/Loading-museum/,'');if(p.endsWith('/'))p+='index.html';const file=await realpath(path.resolve(root,'.'+p));assert.ok(file.startsWith(root+path.sep));res.setHeader('Content-Type',file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':file.endsWith('.html')?'text/html':'application/octet-stream');res.end(await readFile(file));}catch{res.statusCode=404;res.end('missing');}});
+await new Promise(r=>server.listen(0,'127.0.0.1',r));
+const result={head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),tree:execFileSync('git',['rev-parse','HEAD^{tree}'],{encoding:'utf8'}).trim(),platform:process.platform,node:process.version,started:new Date().toISOString(),cases:[],errors:[],pageerrors:[],retry:0,sleep:0};
+let browser,page;
+function record(engine,width,id,data={}){result.cases.push({engine,width,id,status:'PASS',...data});console.log('PASS',engine,width,id);}
+try{
+for(const engine of ['chromium','webkit']){
+ browser=await({chromium,webkit}[engine]).launch({headless:true});result[engine]=browser.version();
+ for(const width of [375,390]){
+  page=await browser.newPage({viewport:{width,height:900}});page.setDefaultTimeout(8000);page.on('pageerror',e=>result.pageerrors.push(String(e)));
+  await page.addInitScript(()=>sessionStorage.setItem('digital-motion-archive-title-seen-v1','seen'));
+  await page.goto(`http://127.0.0.1:${server.address().port}/Loading-museum/`);
+  const room=page.locator('.phase4Room');await room.getByRole('button',{name:'部品展示室を開く',exact:true}).click();
+  assert.equal(await room.locator('nav button').count(),18);
+  const stage=room.getByTestId('phase5-stage'),reset=room.locator('article').getByRole('button',{name:'Reset',exact:true});
+  const nav=async n=>{await room.locator('nav button').nth(n+12).click();await stage.waitFor();};
+  await nav(3);
+  const add=stage.getByRole('button',{name:'条件を追加',exact:true});
+  const snap=()=>stage.evaluate(el=>({count:el.querySelectorAll('fieldset').length,disabled:[...el.querySelectorAll('button')].find(b=>b.textContent==='条件を追加').disabled,active:{tag:document.activeElement.tagName,text:document.activeElement.tagName==='BODY'?null:document.activeElement.textContent,label:document.activeElement.getAttribute('aria-label')}}));
+  for(const s of [{id:'six-first',count:6,index:0},{id:'six-middle',count:6,index:2},{id:'six-last',count:6,index:5},{id:'three-two',count:3,index:1},{id:'one-zero',count:1,index:0},{id:'or-six',count:6,index:2,or:true},{id:'reduced-reset-six',count:6,index:2,reduce:true}]){
+   await page.emulateMedia({reducedMotion:s.reduce?'reduce':'no-preference'});await reset.click();
+   if(s.or)await stage.getByLabel('条件の結合').selectOption('OR');
+   await add.focus();for(let i=1;i<s.count;i++)await page.keyboard.press('Enter');
+   assert.equal(await stage.locator('fieldset').count(),s.count);assert.equal(await add.isDisabled(),s.count===6);
+   // Reach the delete button exclusively by Tab from the mode select.
+   await stage.getByLabel('条件の結合').focus();for(let i=0;i<(s.index+1)*4;i++)await page.keyboard.press('Tab');
+   assert.equal(await stage.locator('fieldset').nth(s.index).getByRole('button').evaluate(e=>e===document.activeElement),true);
+   const before=await snap();
+   await stage.evaluate(el=>{window.independentEvents=[];window.independentAbort=new AbortController();document.addEventListener('focusin',()=>window.independentEvents.push({active:document.activeElement.textContent,disabled:[...el.querySelectorAll('button')].find(b=>b.textContent==='条件を追加').disabled,count:el.querySelectorAll('fieldset').length}),{signal:window.independentAbort.signal});});
+   await page.keyboard.press('Enter');assert.equal(await stage.locator('fieldset').count(),s.count-1);assert.equal(await add.isEnabled(),true);
+   assert.equal(await add.evaluate(e=>e===document.activeElement),true);const after=await snap();
+   await page.keyboard.press('Shift+Tab');const backward=await snap();
+   if(s.count===1)assert.equal(await stage.getByLabel('条件の結合').evaluate(e=>e===document.activeElement),true);
+   else assert.equal(await stage.locator('fieldset').last().getByRole('button').evaluate(e=>e===document.activeElement),true);
+   await page.keyboard.press('Tab');assert.equal(await add.evaluate(e=>e===document.activeElement),true);
+   await page.keyboard.press('Enter');assert.equal(await stage.locator('fieldset').count(),s.count);
+   const events=await page.evaluate(()=>{window.independentAbort.abort();return window.independentEvents;});
+   assert.ok(events.some(e=>e.active==='条件を追加'&&!e.disabled&&e.count===s.count-1));
+   record(engine,width,'R1-'+s.id,{before,after,backward,events,readded:s.count});
+  }
+  await reset.click();const value=stage.getByLabel('条件値',{exact:true});await value.focus();await page.keyboard.press('ControlOrMeta+A');await page.keyboard.type('96');assert.equal(await value.evaluate(e=>e===document.activeElement),true);
+  const comparison=stage.locator('fieldset').first().getByRole('combobox').nth(1);await comparison.focus();await comparison.selectOption('lte');assert.equal(await comparison.evaluate(e=>e===document.activeElement),true);
+  record(engine,width,'R1-ordinary-edit-keeps-focus');
+  await nav(5);const search=stage.getByLabel('候補を検索'),candidate=stage.locator('p[role=status]').first(),buttons=stage.getByRole('group',{name:'複数選択候補'}).getByRole('button');
+  await search.focus();
+  const refs=(await search.getAttribute('aria-describedby')).split(' ');assert.equal(refs.length,2);
+  for(const id of refs)assert.equal(await page.locator('[id]').evaluateAll((els,id)=>els.filter(e=>e.id===id).length,id),1);
+  assert.equal(refs[1],await candidate.getAttribute('id'));assert.equal(await candidate.getAttribute('aria-atomic'),'true');assert.match(await page.locator('[id]').evaluateAll((els,id)=>els.find(e=>e.id===id).textContent,refs[0]),/各候補はTab/);
+  const states=[];
+  for(const key of ['ArrowDown','ArrowDown','ArrowUp']){await page.keyboard.press(key);assert.equal(await search.evaluate(e=>e===document.activeElement),true);const hi=buttons.locator('[data-highlight=true]');const highlight=stage.locator('.phase5ChipOptions button[data-highlight=true]');assert.equal(await highlight.count(),1);const name=await highlight.textContent();const names=await buttons.allTextContents();const status=await candidate.textContent();assert.ok(status.includes(name));assert.ok(status.includes(`${names.indexOf(name)+1} / ${names.length}`));assert.equal(await highlight.evaluate(e=>getComputedStyle(e).outlineStyle),'solid');states.push({key,status,name});}
+  await page.keyboard.press('Enter');assert.equal(await buttons.nth(1).getAttribute('aria-pressed'),'true');assert.match(await stage.locator('[data-chip]').textContent(),/アクセシビリティ/);assert.match(await candidate.textContent(),/選択済み/);
+  await page.keyboard.press('Enter');assert.equal(await buttons.nth(1).getAttribute('aria-pressed'),'false');assert.equal(await stage.locator('[data-chip]').count(),0);
+  await search.fill('入力');await search.dispatchEvent('keydown',{key:'Enter',code:'Enter',isComposing:true});assert.equal(await stage.locator('[data-chip]').count(),0);await search.press('Enter');
+  await stage.getByLabel('選択上限').selectOption('1');await search.fill('通知');assert.match(await candidate.textContent(),/通知（1 \/ 1）、未選択、上限のため追加不可/);assert.equal(await buttons.first().getAttribute('aria-disabled'),'true');await search.press('Enter');assert.equal(await stage.locator('[data-chip]').count(),1);assert.match(await stage.locator('[data-chip]').textContent(),/入力/);
+  await search.fill('no-match');assert.equal(await buttons.count(),0);assert.equal(await candidate.textContent(),'現在の候補: 候補なし');await search.press('Enter');assert.equal(await stage.locator('[data-chip]').count(),1);await search.press('Escape');assert.match(await candidate.textContent(),/アニメーション（1 \/ 8）/);
+  await reset.click();await search.focus();const tabbed=[];for(let i=0;i<8;i++){await page.keyboard.press('Tab');assert.equal(await buttons.nth(i).evaluate(e=>e===document.activeElement),true);assert.equal(await buttons.nth(i).getAttribute('data-highlight'),'true');assert.ok((await candidate.textContent()).includes(await buttons.nth(i).textContent()));tabbed.push(await buttons.nth(i).textContent());}
+  await page.keyboard.press('Enter');assert.equal(await buttons.nth(7).getAttribute('aria-pressed'),'true');await page.keyboard.press('Enter');assert.equal(await stage.locator('[data-chip]').count(),0);
+  await reset.click();assert.equal(await stage.locator('[data-chip]').count(),0);assert.equal(await search.inputValue(),'');assert.match(await candidate.textContent(),/アニメーション（1 \/ 8）、未選択/);
+  await stage.screenshot({path:path.join(dest,`${engine}-${width}-chips.png`)});record(engine,width,'R2-candidate-toggle-cap-search-tab-reset',{states,refs,tabbed,syntheticIME:'PASS',physicalIME:'NOT_TESTED',screenReader:'NOT_TESTED'});
+  await nav(1);const day=d=>stage.getByRole('button',{name:d,exact:true});const status=stage.locator('p[role=status]');
+  assert.match(await stage.textContent(),/開始・終了の端点には選べませんが、範囲の内部には含められます/);
+  const ranges=[];for(const pair of [['2026-11-12','2026-11-14'],['2026-11-14','2026-11-12']]){await reset.click();for(const d of pair)await day(d).press('Enter');assert.equal(await status.textContent(),'開始: 2026-11-12 ／ 終了: 2026-11-14');const closed=day('2026-11-13 休館日');assert.equal(await closed.isDisabled(),true);assert.equal(await closed.getAttribute('data-range'),'true');assert.equal(await closed.getAttribute('aria-pressed'),'false');ranges.push({pair,status:await status.textContent(),closedInterior:true});}
+  await reset.click();await day('2026-11-12').focus();await page.keyboard.press('ArrowRight');assert.equal(await day('2026-11-14').evaluate(e=>e===document.activeElement),true);await page.keyboard.press('Enter');await page.keyboard.press('Escape');assert.equal(await status.textContent(),'開始: 未選択 ／ 終了: 未選択');
+  await day('2026-11-30').press('Enter');await day('翌月').click();await day('2026-12-02').press('Enter');assert.equal(await status.textContent(),'開始: 2026-11-30 ／ 終了: 2026-12-02');ranges.push({status:await status.textContent()});
+  await reset.click();await day('翌月').click();await day('翌月').click();await day('2027-01-02').press('Enter');await day('前月').click();await day('2026-12-30').press('Enter');assert.equal(await status.textContent(),'開始: 2026-12-30 ／ 終了: 2027-01-02');ranges.push({status:await status.textContent()});await day('期間を再指定').click();assert.equal(await status.textContent(),'開始: 未選択 ／ 終了: 未選択');
+  await stage.screenshot({path:path.join(dest,`${engine}-${width}-dates.png`)});record(engine,width,'R3-specA-reverse-month-year-key-cancel',{ranges});
+  // Independently exercise state destruction for each new exhibit.
+  for(let n=0;n<6;n++){
+   await nav(n);
+   const initial=async()=>{if(n===0)assert.equal(await stage.getByLabel('r1を選択').isChecked(),false);if(n===1)assert.equal(await stage.locator('p[role=status]').textContent(),'開始: 未選択 ／ 終了: 未選択');if(n===2){assert.equal(await stage.getByLabel('資料を絞り込む').inputValue(),'');assert.equal(await stage.locator('[data-scroll-top]').textContent(),'0');}if(n===3){assert.equal(await stage.locator('fieldset').count(),1);assert.equal(await stage.getByLabel('条件値',{exact:true}).inputValue(),'70');}if(n===4)assert.match(await stage.locator('p[role=status]').textContent(),/美術館（museum）/);if(n===5)assert.equal(await stage.locator('[data-chip]').count(),0);};
+   const mutate=async()=>{if(n===0)await stage.getByLabel('r1を選択').check();if(n===1)await day('2026-11-10').press('Enter');if(n===2)await stage.getByLabel('資料を絞り込む').fill('10000');if(n===3)await stage.getByLabel('条件値',{exact:true}).fill('96');if(n===4)await stage.locator('[data-node=archive]').press('Enter');if(n===5)await stage.getByRole('button',{name:'入力',exact:true}).press('Enter');};
+   await mutate();await reset.click();await initial();await mutate();await nav((n+1)%6);await nav(n);await initial();await mutate();await room.getByRole('button',{name:'閉室して一覧へ戻る',exact:true}).click();assert.equal(await stage.count(),0);await room.getByRole('button',{name:'部品展示室を開く',exact:true}).click();await nav(n);await initial();
+   record(engine,width,'preservation-reset-switch-close-'+n);
+  }
+  const geometry=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));assert.ok(geometry.scroll<=width);assert.deepEqual(result.pageerrors,[]);record(engine,width,'pageerror-overflow',{geometry,pageerrors:[]});
+  await page.close();page=null;
+ }
+ await browser.close();browser=null;
+}
+}catch(e){result.errors.push(String(e.stack||e));process.exitCode=1;console.error(e);}finally{if(page)await page.close().catch(()=>{});if(browser)await browser.close().catch(()=>{});await new Promise(r=>server.close(r));result.finished=new Date().toISOString();result.complete=!result.errors.length&&result.cases.length===68;await writeFile(path.join(dest,'results.json'),JSON.stringify(result,null,2));if(!result.complete)process.exitCode=1;}

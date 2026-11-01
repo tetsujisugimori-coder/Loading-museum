@@ -1,0 +1,27 @@
+PASS chromium 320 editable-data-table
+PASS chromium 320 date-range-picker
+PASS chromium 320 virtualized-list
+PASS chromium 320 filter-builder
+PASS chromium 320 tree-view
+locator.click: Timeout 8000ms exceeded.
+Call log:
+[2m  - waiting for locator('.phase4Room').getByTestId('phase5-stage').getByRole('button', { name: 'データ', exact: true })[22m
+[2m    - locator resolved to <button aria-pressed="false" aria-disabled="true" data-highlight="false">データ</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is not enabled[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is not enabled[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    15 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is not enabled[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+    at click (/workspace/scratch/e622c1e9421e/loading-phase5a/scripts/verify-phase5a-browser.mjs:16:347)
+    at /workspace/scratch/e622c1e9421e/loading-phase5a/scripts/verify-phase5a-browser.mjs:22:330 {
+  name: 'TimeoutError'
+}

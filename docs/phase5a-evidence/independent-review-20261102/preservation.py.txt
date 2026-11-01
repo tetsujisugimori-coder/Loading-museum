@@ -1,0 +1,15 @@
+import subprocess,json,hashlib,platform,pathlib
+old='909b23dedc379d929c06b4f57f98899e930b5454'
+new='86713c39740943415ee75c524aeb38398c3fad91'
+def git(*args): return subprocess.check_output(['git',*args]).decode('utf-8').strip()
+def tree(ref):
+    rows=git('ls-tree','-r',ref).splitlines()
+    return {line.split('\t',1)[1]:line.split('\t',1)[0].split()[2] for line in rows}
+a,b=tree(old),tree(new)
+changed=[p for p in a if a[p]!=b.get(p)]
+groups={}
+for name,pred in {'data':lambda p:p.startswith('app/data/'),'past_docs':lambda p:p.startswith('docs/'),'prior_tests':lambda p:p.startswith('tests/'),'prior_harness':lambda p:p.startswith('scripts/'),'lockfile':lambda p:p=='package-lock.json'}.items():
+    paths=[p for p in a if pred(p)];groups[name]={'count':len(paths),'changed':[p for p in paths if a[p]!=b.get(p)]}
+r={'old':old,'old_tree':git('rev-parse',old+'^{tree}'),'new':new,'new_tree':git('rev-parse',new+'^{tree}'),'old_path_count':len(a),'unchanged':sum(a[p]==b.get(p) for p in a),'changed_existing':changed,'added':sorted(set(b)-set(a)),'groups':groups,'tracked_changes':git('diff','--name-only'),'platform':platform.platform(),'python':platform.python_version(),'node':subprocess.check_output(['node','--version']).decode().strip(),'source_sha256':{p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest() for p in changed if p.startswith('app/')}}
+pathlib.Path('../loading-review-scratch/preservation.json').write_text(json.dumps(r,ensure_ascii=False,indent=2),encoding='utf-8')
+print(json.dumps({k:v for k,v in r.items() if k!='added'},ensure_ascii=True,indent=2))

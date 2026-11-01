@@ -1,0 +1,30 @@
+{
+  "issue": {
+    "url": "https://github.com/tetsujisugimori-coder/Loading-museum/issues/48",
+    "title": "第5期A：データ操作・選択・探索UI部品6展示の追加",
+    "issue_number": 48,
+    "body": "## 目的\nLoading Museum 第5期を開始する。テーマは **「データを探す・選ぶ・編集するUI部品」**。\n第4期A/Bまでの全館239展示・13室（PR #45 / #47 merged）を基準とし、既存展示を失わず、見た目だけではなく操作結果と内部状態が観察できる実用品を収集する。\n\n## 第5期A：まず6展示（優先実装）\n1. **Editable Data Table**：架空データの列別ソート／行選択／セル編集／取消。選択行IDと表示順を別管理し、並べ替え後も編集対象を失わない。\n2. **Date Range Picker**：開始日・終了日の二点選択、前後月移動、期間プレビュー、逆順選択、無効日、キーボード操作。日付とタイムゾーンの扱いを明示。\n3. **Virtualized List**：多数の架空行を、可視範囲だけDOM描画する。スクロール位置・描画行数・総件数を表示し、フィルタやReset後の位置を整合させる。\n4. **Filter Builder**：複数条件の追加・削除、AND/OR切替、件数のリアルタイム変化、無効な組合せの扱い。検索候補の単純補完との差を明示。\n5. **Tree View**：親子ノード展開／折り畳み／現在選択／キーボード移動／フォーカス復帰。折り畳みで非表示になった選択・フォーカスを安全に整理。\n6. **Multi-Select Chips**：複数選択、検索絞込、タグの除去・上限・キーボード操作。第4期A Search Suggestions（単一候補の選択）との学習差を見せる。\n\n※登録前に既存全館の名前・ID・用途・動作を再集計し、実質重複があれば別の候補へ差し替える。部品名や採用技術、仕様詳細は実装者が比較表とともに確定する。第5期BはAの実績を見て別途候補選定、空枠を先行登録しない。\n\n## 展示ごとの受入条件\n- その部品に固有の入力があり、**操作 → 状態変化 → 画面の結果**が再現できる。静止した見本だけでは完成としない。\n- 入力・キーボード・狭幅端末・Reset・閉室・reduced motionの代表操作で、観察可能な結果を確認する。\n- 第4期の検索、ソート／ドラッグ操作、Inline Validation、Undo等と何が違うかを展示説明と採用比較に記録する。\n- 学習ポイントは「用途」「操作して観察すること」「なぜそう動くか」「限界」の順に説明。大量の架空データを使うが外部送信・実保存・実削除は行わない。\n- 追加前後で登録展示数をスクリプト等により実測。期待値は**239 → 245**（重複差し替えや数え方変更がない場合）。13室は既存部品室に収納する場合の期待値であり、実計数を優先。\n- 既存履歴・展示の一意ID・検索・タグ・トップ表示を維持する。第4期Bで保留中の証拠転送を承認なしで迂回しない。\n\n## 実装・検証・提出\n- 作業開始時にmain/origin/mainと基準HEAD/全館件数を確認。Issue→branch→commit→push→Draft PRの順に記録する。\n- React/TypeScript/CSS/WAAPIなど現行基盤を優先し、無関係の依存更新を避ける。\n- lint、typecheck、build、既存テストと新規代表動作テスト、Chromium/WebKitの代表幅で結果を記録。失敗/未実施をPASSと扱わない。\n- 重大な操作不良/P1/P2は修正。軽微なP3、既存Windows WAAPI timeout、未検証実機、依存audit Issue #44などは区別して記録し、展示追加を止めるだけの形式ゲートを増やさない。\n- 最終提出時には実装展示の完成度、登録実測、URL、HEAD、CI、独立レビューの範囲とマージ推奨を明記。マージは別指示で行う。\n\n## 既存の根拠\n- [第4期B PR #47](https://github.com/tetsujisugimori-coder/Loading-museum/pull/47)（239展示、マージ済み）\n- [第4期B 採用比較](https://github.com/tetsujisugimori-coder/Loading-museum/blob/main/docs/phase4b-inventory.md)（次期候補：データ表行操作、日付範囲、仮想スクロール）\n- [依存監査 Issue #44](https://github.com/tetsujisugimori-coder/Loading-museum/issues/44)\n",
+    "state": "open",
+    "user": {
+      "login": "tetsujisugimori-coder",
+      "name": "tetsujisugimori-coder",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/265440097?v=4",
+      "id": 265440097
+    },
+    "assignees": null,
+    "labels": null,
+    "milestone": null,
+    "state_reason": null,
+    "comments": 0,
+    "created_at": "2026-11-01T09:01:16Z",
+    "updated_at": "2026-11-01T09:01:16Z",
+    "closed_at": null,
+    "display_url": "https://github.com/tetsujisugimori-coder/Loading-museum/issues/48",
+    "display_title": "第5期A：データ操作・選択・探索UI部品6展示の追加"
+  },
+  "url": "https://github.com/tetsujisugimori-coder/Loading-museum/issues/48",
+  "title": "第5期A：データ操作・選択・探索UI部品6展示の追加",
+  "display_url": "https://github.com/tetsujisugimori-coder/Loading-museum/issues/48",
+  "display_title": "第5期A：データ操作・選択・探索UI部品6展示の追加"
+}

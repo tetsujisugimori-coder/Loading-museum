@@ -36,4 +36,6 @@ let hasPhase4=false;try{read('app/data/phase4aExhibits.ts');hasPhase4=true;}catc
 if(hasPhase4) counts.phase4a=data('phase4aExhibits').phase4aExhibits.length;
 let hasPhase4b=false;try{read('app/data/phase4bExhibits.ts');hasPhase4b=true;}catch{}
 if(hasPhase4b) counts.phase4b=data('phase4bExhibits').phase4bExhibits.length;
+let hasPhase5a=false;try{read('app/data/phase5aExhibits.ts');hasPhase5a=true;}catch{}
+if(hasPhase5a) counts.phase5a=data('phase5aExhibits').phase5aExhibits.length;
 console.log(JSON.stringify({ref:ref||'working-tree',counts,total:Object.values(counts).reduce((a,b)=>a+b,0)},null,2));
