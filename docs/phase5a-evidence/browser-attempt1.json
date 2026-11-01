@@ -1,0 +1,53 @@
+{
+  "head": "b355db856688b3cc8c3c627ddc10625bbaa45bd0",
+  "dirty": true,
+  "started": "2026-11-01T10:26:34.260Z",
+  "expected": 48,
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 320,
+      "id": "editable-data-table",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "reducedReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 320,
+      "id": "date-range-picker",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "reducedReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 320,
+      "id": "virtualized-list",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "reducedReset": true
+    }
+  ],
+  "files": [],
+  "errors": [
+    "locator.textContent: Error: strict mode violation: locator('.phase4Room').getByTestId('phase5-stage').getByRole('status') resolved to 2 elements:\n    1) <p role=\"status\">…</p> aka getByText('有効条件 1 / 1 ／ 結果 3 / 5件')\n    2) <output class=\"phase5Count\">結果 3 / 5件</output> aka getByText('結果 3 / 5件')\n\nCall log:\n\u001b[2m  - waiting for locator('.phase4Room').getByTestId('phase5-stage').getByRole('status')\u001b[22m\n\n    at /workspace/scratch/e622c1e9421e/loading-phase5a/scripts/verify-phase5a-browser.mjs:20:56"
+  ],
+  "chromium": "141.0.7390.37",
+  "current": {
+    "engine": "chromium",
+    "width": 320,
+    "id": "filter-builder"
+  },
+  "finished": "2026-11-01T10:26:37.756Z",
+  "complete": false
+}

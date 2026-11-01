@@ -1,0 +1,10 @@
+PASS chromium 320 editable-data-table
+PASS chromium 320 date-range-picker
+PASS chromium 320 virtualized-list
+locator.selectOption: Timeout 8000ms exceeded.
+Call log:
+[2m  - waiting for locator('.phase4Room').getByTestId('phase5-stage').getByLabel('比較', { exact: true }).nth(1)[22m
+
+    at /workspace/scratch/e622c1e9421e/loading-phase5a/scripts/verify-phase5a-browser.mjs:20:160 {
+  name: 'TimeoutError'
+}

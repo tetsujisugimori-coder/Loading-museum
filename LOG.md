@@ -1511,3 +1511,11 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - 現物233展示に操作・非同期・画面構成の6展示を追加、239展示／13室。同じ第4期室へ統合。採用差分・一次資料・制約は docs/phase4b-inventory.md。
 - Command Palette / Form Wizard / Context Menu と Optimistic Action / Upload Queue / Split Pane を分割commit。外部通信・保存なし、古い応答失効、有限時計とReset remount、focus・低減対応。
 - 既存登録増に連動する件数期待のみ更新、旧操作試験の除外なし。試験途中失敗、再実行と最終結果は docs/phase4b-studies.md に分離記録する。
+
+
+## 2026-11-01 JST 第5期A（Issue #48）
+
+- 最新main `b355db856688b3cc8c3c627ddc10625bbaa45bd0` とPR #47 mergedを照合。専用clean cloneから `feat/practical-ui-phase5a`。他の未コミット作業は保全。
+- 現物239 → 245展示、13室。表編集・期間選択・仮想一覧・条件式・Tree・複数Chipsを既存部品室へ統合。全登録の採用比較は docs/phase5a-inventory.md。
+- 新規単体20件PASS/FAIL0/SKIP0。初回JSX誤り・試験selector誤りと再実行は docs/phase5a-evidence/unit-controls-attempts.md に区別。単体と実ブラウザ、自己試験と独立レビューを混同しない。
+- 全体check・ブラウザ・CI・最終HEADは docs/phase5a-studies.md に結果を追記。第4期Bの保留証拠は触れず別経路転送なし。Issue #44、Windows timeout UNKNOWN、実機未検証を保持。Draft維持、公開・merge・auto-mergeなし。

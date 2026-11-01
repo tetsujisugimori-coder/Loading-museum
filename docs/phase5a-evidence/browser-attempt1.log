@@ -1,0 +1,11 @@
+PASS chromium 320 editable-data-table
+PASS chromium 320 date-range-picker
+PASS chromium 320 virtualized-list
+locator.textContent: Error: strict mode violation: locator('.phase4Room').getByTestId('phase5-stage').getByRole('status') resolved to 2 elements:
+    1) <p role="status">…</p> aka getByText('有効条件 1 / 1 ／ 結果 3 / 5件')
+    2) <output class="phase5Count">結果 3 / 5件</output> aka getByText('結果 3 / 5件')
+
+Call log:
+[2m  - waiting for locator('.phase4Room').getByTestId('phase5-stage').getByRole('status')[22m
+
+    at /workspace/scratch/e622c1e9421e/loading-phase5a/scripts/verify-phase5a-browser.mjs:20:56

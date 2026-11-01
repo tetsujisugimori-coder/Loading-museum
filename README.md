@@ -1,5 +1,11 @@
 # DIGITAL MOTION ARCHIVE
 
+## 第5期A：データ操作・選択・探索（Issue #48）
+
+既存239展示を保全し、Editable Data Table / Date Range Picker / Virtualized List / Filter Builder / Tree View / Multi-Select Chips の6展示を同じ部品室へ追加。現物集計は **245展示・13室**。架空データの編集・範囲・仮想化・条件式・階層・複数選択を実際に操作し、結果と内部状態を比較できます。実通信・外部保存はありません。
+
+[採用差分・設計と制約](docs/phase5a-inventory.md) / [試験・未検証・独立レビューへの引継ぎ](docs/phase5a-studies.md)。以下の第4期以前の数字は各増築時点の記録として保持します。独立レビュー前の総合PASSやマージ承認を意味しません。
+
 ## 第4期B：操作・非同期・画面構成
 
 Command Palette / Optimistic Action / Upload Queue / Form Wizard / Resizable Split Pane / Context Menu を既存の第4期部品室へ統合。登録現物は233＋6＝239展示、13室です。模擬操作だけを使い、外部アップロード・保存・送信は行いません。
