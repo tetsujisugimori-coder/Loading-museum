@@ -34,4 +34,6 @@ const counts = {
 };
 let hasPhase4=false;try{read('app/data/phase4aExhibits.ts');hasPhase4=true;}catch{}
 if(hasPhase4) counts.phase4a=data('phase4aExhibits').phase4aExhibits.length;
+let hasPhase4b=false;try{read('app/data/phase4bExhibits.ts');hasPhase4b=true;}catch{}
+if(hasPhase4b) counts.phase4b=data('phase4bExhibits').phase4bExhibits.length;
 console.log(JSON.stringify({ref:ref||'working-tree',counts,total:Object.values(counts).reduce((a,b)=>a+b,0)},null,2));

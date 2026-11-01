@@ -1504,3 +1504,10 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - Draft PR #45 / 初回HEAD a718067のCIは契約228成功、WebKit既存36成功・新規17/24で低減100ms判定失敗、ChromiumはAPT中10分取消（注記確認、GUI未実施）。失敗原本保持。WebKit765/1280を実中間フレーム反転・実終端/低減属性観測へ修正し2/2成功、製品/期待終端は不変。OS取得はUbuntu24.04/公式HTTPS mirror/有限通信へ限定、job上限延長なし。最終HEADでCI再照合し、初回を成功へ読み替えない。
 
 - 532f333のCIは3job成功、契約228、新規48/既存72、144 PNGとZIP/画像ハッシュを照合。独立レビューでnative select暗字/暗背景のP2-1を返却（自己仮評価P3を改める）。新規selectだけcolor-scheme:lightを指定。Ch/WK×4幅×2 selectの16条件を追加し、WebKit実画素比1.23〜1.30→12.02〜14.70、Ch15.15、選択/focus保持。正式check228成功。元の48/72は削らず最終CIと独立差分再レビューを依頼する。状態/保存/依存は変更なし。
+
+## 2026-11-01 JST 第4期B（Issue #46）
+
+- main da1d9d92 / 第4期A PR #45 merged をGitHubとgitで照合。専用clone、branch feat/practical-ui-phase4b、既存変更の破棄なし。
+- 現物233展示に操作・非同期・画面構成の6展示を追加、239展示／13室。同じ第4期室へ統合。採用差分・一次資料・制約は docs/phase4b-inventory.md。
+- Command Palette / Form Wizard / Context Menu と Optimistic Action / Upload Queue / Split Pane を分割commit。外部通信・保存なし、古い応答失効、有限時計とReset remount、focus・低減対応。
+- 既存登録増に連動する件数期待のみ更新、旧操作試験の除外なし。試験途中失敗、再実行と最終結果は docs/phase4b-studies.md に分離記録する。
