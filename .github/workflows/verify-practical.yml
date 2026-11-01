@@ -77,6 +77,16 @@ jobs:
           export PLAYWRIGHT_MODULE="$RUNNER_TEMP/practical-playwright/node_modules/playwright"
           node scripts/verify-phase4a-browser.mjs 2>&1 | tee phase4a-browser.log
           SELECT_EVIDENCE_DIR=phase4a-select-evidence node scripts/verify-phase4a-select-browser.mjs 2>&1 | tee phase4a-select.log
+      - name: Phase 4B operations and stale response protection
+        if: ${{ !cancelled() }}
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          WIDTHS: 375,390,765,1280
+          EVIDENCE_DIR: phase4b-browser-evidence
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/practical-playwright/node_modules/playwright"
+          node scripts/verify-phase4b-browser.mjs 2>&1 | tee phase4b-browser.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -88,3 +98,5 @@ jobs:
             phase4a-browser.log
             phase4a-select-evidence/
             phase4a-select.log
+            phase4b-browser-evidence/
+            phase4b-browser.log

@@ -1,5 +1,11 @@
 # DIGITAL MOTION ARCHIVE
 
+## 第4期B：操作・非同期・画面構成
+
+Command Palette / Optimistic Action / Upload Queue / Form Wizard / Resizable Split Pane / Context Menu を既存の第4期部品室へ統合。登録現物は233＋6＝239展示、13室です。模擬操作だけを使い、外部アップロード・保存・送信は行いません。
+
+[採用比較・参考資料](docs/phase4b-inventory.md) / [検証記録](docs/phase4b-studies.md)。先行更新と巻戻し、同時実行枠、取消と古い応答の失効、画面端補正、キーボード・focusの関係を操作して観察できます。実機未検証とIssue #44の依存警告は継続します。
+
 ## 第4期A：通知・入力・検索・画面切替
 
 常設展に Toast Stack / Undo Snackbar / Inline Validation / Search Suggestions / Sliding Tabs / Animated Accordion の6部品を追加。基準mainの登録227展示を再集計し、今回で233展示・13室です。第4期Bの空展示は含みません。
