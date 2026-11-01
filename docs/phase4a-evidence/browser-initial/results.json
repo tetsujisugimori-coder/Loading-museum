@@ -1,0 +1,131 @@
+{
+  "head": "2de159a9a7534c8af32c8ebcda6c247947b9057c",
+  "tree": "e0fe1028ad0824f36d296d3362e605493f0d4065",
+  "dirty": true,
+  "started": "2026-10-31T22:43:21.559Z",
+  "expected": 6,
+  "cases": [
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "id": "toast-stack",
+      "status": "PASS",
+      "started": "2026-10-31T22:43:23.619Z",
+      "ended": "2026-10-31T22:43:32.348Z",
+      "geometry": {
+        "width": 340,
+        "scrollWidth": 340,
+        "stage": {
+          "x": 25,
+          "y": 254.828125,
+          "width": 340,
+          "height": 489.765625,
+          "top": 254.828125,
+          "right": 365,
+          "bottom": 744.59375,
+          "left": 25
+        }
+      },
+      "observations": [
+        "cap4/oldest dismissal; middle removal/reflow; types; independent finite lifetime; pause/offscreen; reduced expiry; reset then reoperate"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "id": "undo-snackbar",
+      "status": "PASS",
+      "started": "2026-10-31T22:43:32.348Z",
+      "ended": "2026-10-31T22:43:40.456Z",
+      "geometry": {
+        "width": 340,
+        "scrollWidth": 340,
+        "stage": {
+          "x": 25,
+          "y": 285.828125,
+          "width": 340,
+          "height": 598.78125,
+          "top": 285.828125,
+          "right": 365,
+          "bottom": 884.609375,
+          "left": 25
+        }
+      },
+      "observations": [
+        "remove/restore original position and focus; consecutive deletion commits older pending; expiry; explicit commit; reset restores three"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "id": "inline-validation",
+      "status": "PASS",
+      "started": "2026-10-31T22:43:40.456Z",
+      "ended": "2026-10-31T22:43:42.158Z",
+      "geometry": {
+        "width": 340,
+        "scrollWidth": 340,
+        "stage": {
+          "x": 25,
+          "y": 298.828125,
+          "width": 340,
+          "height": 428.484375,
+          "top": 298.828125,
+          "right": 365,
+          "bottom": 727.3125,
+          "left": 25
+        }
+      },
+      "observations": [
+        "untouched/editing/error/valid; message measured height; focus retained; synthetic composition suppresses Enter; reset and reduced reoperation"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "name": "chromium-390-toast-stack-before.png",
+      "size": 11394,
+      "sha256": "755e4a48b301b404c830bd428e542d414c082eda4830f5a864de3195a8ec2c3d"
+    },
+    {
+      "name": "chromium-390-toast-stack-after.png",
+      "size": 28037,
+      "sha256": "6d1738e57cf4ff589c54be53e9f4f4bb467d73d4c4419fd329e9ad7f30fc3da0"
+    },
+    {
+      "name": "chromium-390-undo-snackbar-before.png",
+      "size": 18158,
+      "sha256": "0c583bc7b511231a38f51a0736b70daf7b1515e8d8673967d281a18e48a8ad7b"
+    },
+    {
+      "name": "chromium-390-undo-snackbar-after.png",
+      "size": 14759,
+      "sha256": "38a19472deb99f8cb71e8ea4e64de42307bf973feb33beb567b3cb2edfdf4d48"
+    },
+    {
+      "name": "chromium-390-inline-validation-before.png",
+      "size": 11480,
+      "sha256": "75329209df06ff2ad5bba6f3cbb054ced65ebe49cc3aab9b19afb552d5391123"
+    },
+    {
+      "name": "chromium-390-inline-validation-after.png",
+      "size": 14290,
+      "sha256": "37a49a41804f8f4c13348d9f047cbc56b0a5d2cbfd799e02ee7ceae56543176d"
+    },
+    {
+      "name": "failure.png",
+      "size": 57761,
+      "sha256": "d3ab9e10f9f22a26866ce07679192cc55178150f1fc2f766b445b747e6d41e29"
+    }
+  ],
+  "errors": [],
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    'Motion Atlas',\n    'Search Atlas',\n+   'Animation Basics'\n  ]\n\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-01/task-2/loading-museum-phase4a/scripts/verify-phase4a-browser.mjs:56:189",
+  "failure": {
+    "url": "http://127.0.0.1:54552/Loading-museum/",
+    "text": "Search Suggestions / 検索候補停止Reset動きの速さ速い / 250ms標準 / 600msゆっくり / 1600ms資料を検索Motion AtlasSearch AtlasAnimation BasicsAccordion NotesToast GuideTabs Guide決定：未選択例：a → at → ta と連続入力すると、候補が入れ替わり先頭一致が上へ移動。上下矢印で選びEnter、Escapeで閉じます。候補のタップでも決定できます。同期検索なので古い応答は復活しません。動き低減：大きな移動を省略し、入力・選択・取消と結果は保持します。停止時にも直接操作できます。Resetは保留・選択・古い処理を破棄し初期状態へ戻します。原理ローカル候補を同期で絞込み、先頭一致を優先して並べ替え。上下/Enter/Escape、タッチ・クリックで候補を決定します。使用例館内資料の検索候補。外部API・遅延応答なし。歴史・位置付け初出・発明者 UNKNOWN。APG操作パターンを参考に独自再構成。既存展示との差既存の館内フィルターと異なり、入力focusを保つ候補選択と候補入替・並替を観察。用途検索 入力 search技術React / WAAPI / ARIA combobox性質検索 / 入力 / 候補 / 第4期A技術・アクセシビリティ参考資料コード・図形は独自制作。参照先のコード・画像を転載していません。製品名・商標の権利は各権利者に帰属し、公式製品の再現を保証しません。"
+  },
+  "ended": "2026-10-31T22:43:43.822Z"
+}

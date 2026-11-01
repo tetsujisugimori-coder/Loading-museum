@@ -1,0 +1,157 @@
+{
+  "head": "2de159a9a7534c8af32c8ebcda6c247947b9057c",
+  "tree": "e0fe1028ad0824f36d296d3362e605493f0d4065",
+  "dirty": true,
+  "started": "2026-10-31T22:50:23.267Z",
+  "expected": 4,
+  "cases": [
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 375,
+      "id": "search-suggestions",
+      "status": "PASS",
+      "started": "2026-10-31T22:50:23.932Z",
+      "ended": "2026-10-31T22:50:28.753Z",
+      "geometry": {
+        "width": 325,
+        "scrollWidth": 325,
+        "stage": {
+          "x": 25,
+          "y": 688.4375,
+          "width": 325,
+          "height": 310.71875,
+          "top": 688.4375,
+          "right": 350,
+          "bottom": 999.15625,
+          "left": 25
+        }
+      },
+      "observations": [
+        "filter/add/remove/reorder; active descendant; keyboard and click/tap choose; no results; Escape; rapid edits; reset and reduced"
+      ]
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 390,
+      "id": "search-suggestions",
+      "status": "PASS",
+      "started": "2026-10-31T22:50:29.683Z",
+      "ended": "2026-10-31T22:50:39.246Z",
+      "geometry": {
+        "width": 340,
+        "scrollWidth": 340,
+        "stage": {
+          "x": 25,
+          "y": 356.4375,
+          "width": 340,
+          "height": 285.71875,
+          "top": 356.4375,
+          "right": 365,
+          "bottom": 642.15625,
+          "left": 25
+        }
+      },
+      "observations": [
+        "filter/add/remove/reorder; active descendant; keyboard and click/tap choose; no results; Escape; rapid edits; reset and reduced"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "id": "search-suggestions",
+      "status": "PASS",
+      "started": "2026-10-31T22:50:41.319Z",
+      "ended": "2026-10-31T22:50:43.734Z",
+      "geometry": {
+        "width": 325,
+        "scrollWidth": 325,
+        "stage": {
+          "x": 25,
+          "y": 692.21875,
+          "width": 325,
+          "height": 308.796875,
+          "top": 692.21875,
+          "right": 350,
+          "bottom": 1001.015625,
+          "left": 25
+        }
+      },
+      "observations": [
+        "filter/add/remove/reorder; active descendant; keyboard and click/tap choose; no results; Escape; rapid edits; reset and reduced"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "id": "search-suggestions",
+      "status": "PASS",
+      "started": "2026-10-31T22:50:44.158Z",
+      "ended": "2026-10-31T22:50:45.906Z",
+      "geometry": {
+        "width": 340,
+        "scrollWidth": 340,
+        "stage": {
+          "x": 25,
+          "y": 691.828125,
+          "width": 340,
+          "height": 308.796875,
+          "top": 691.828125,
+          "right": 365,
+          "bottom": 1000.625,
+          "left": 25
+        }
+      },
+      "observations": [
+        "filter/add/remove/reorder; active descendant; keyboard and click/tap choose; no results; Escape; rapid edits; reset and reduced"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "name": "webkit-375-search-suggestions-before.png",
+      "size": 21637,
+      "sha256": "360fdbb75c8faf16d39cd31032b3adc7876d9c4796702de1f5274322dd7a0789"
+    },
+    {
+      "name": "webkit-375-search-suggestions-after.png",
+      "size": 24186,
+      "sha256": "ff9d90ced54d836b8ba18e4120d0ef2e8359d29352f0fcde87b2125a807e7e56"
+    },
+    {
+      "name": "webkit-390-search-suggestions-before.png",
+      "size": 21587,
+      "sha256": "7ae9f1a9567968a324e5fe0bd300b7e106657f00276d955c63a4bec0537d8014"
+    },
+    {
+      "name": "webkit-390-search-suggestions-after.png",
+      "size": 24118,
+      "sha256": "6c6cc2f3713b091f2596fc40ed34ed29d6efb5fc938c37740f1366b48f2c8f85"
+    },
+    {
+      "name": "chromium-375-search-suggestions-before.png",
+      "size": 10654,
+      "sha256": "b81d684754fa41ce1ffc9d6c22e6dd4b9243c8f1820c4b56f34657867772bb49"
+    },
+    {
+      "name": "chromium-375-search-suggestions-after.png",
+      "size": 14781,
+      "sha256": "e5bbe11a177b7a41eb0c490dbd6c3755633f07eb95d26cdf12888dfac9e3d613"
+    },
+    {
+      "name": "chromium-390-search-suggestions-before.png",
+      "size": 10557,
+      "sha256": "66819b75778fa83f61438d510d46c18d7c5da0d984c422911ea5bdce59f0e293"
+    },
+    {
+      "name": "chromium-390-search-suggestions-after.png",
+      "size": 14650,
+      "sha256": "9ca74785e3a813ced77beba336806b9ac7f497c9cb6b0545669d740eb1ff6a31"
+    }
+  ],
+  "errors": [],
+  "ended": "2026-10-31T22:50:46.706Z"
+}

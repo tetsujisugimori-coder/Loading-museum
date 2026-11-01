@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   contracts:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
@@ -31,7 +31,7 @@ jobs:
           name: contracts-${{ github.event.pull_request.head.sha }}
           path: contract-results.log
   practical-browser:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     strategy:
       fail-fast: false
@@ -50,6 +50,12 @@ jobs:
       - name: Fixed browser harness outside application dependencies
         run: |
           npm install --prefix "$RUNNER_TEMP/practical-playwright" --no-save playwright@1.56.1
+          # The tested runner's Azure HTTP mirror stalled before any GUI test.
+          # Keep signed Ubuntu repositories and TLS; bound network acquisition.
+          if [ -f /etc/apt/apt-mirrors.txt ]; then
+            printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt
+          fi
+          printf 'Acquire::http::Timeout "30";\nAcquire::https::Timeout "30";\nAcquire::Retries "1";\n' | sudo tee /etc/apt/apt.conf.d/99-museum-network-bounds
           "$RUNNER_TEMP/practical-playwright/node_modules/.bin/playwright" install --with-deps ${{ matrix.browser }}
       - name: Actual interaction and rendering
         env:
@@ -60,6 +66,17 @@ jobs:
           set -o pipefail
           export PLAYWRIGHT_MODULE="$RUNNER_TEMP/practical-playwright/node_modules/playwright"
           node scripts/verify-practical-browser.mjs 2>&1 | tee practical-browser.log
+      - name: Phase 4A actual states, intermediate geometry and rendering
+        if: ${{ !cancelled() }}
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          WIDTHS: 375,390,765,1280
+          EVIDENCE_DIR: phase4a-browser-evidence
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/practical-playwright/node_modules/playwright"
+          node scripts/verify-phase4a-browser.mjs 2>&1 | tee phase4a-browser.log
+          SELECT_EVIDENCE_DIR=phase4a-select-evidence node scripts/verify-phase4a-select-browser.mjs 2>&1 | tee phase4a-select.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -67,3 +84,7 @@ jobs:
           path: |
             practical-browser-evidence/
             practical-browser.log
+            phase4a-browser-evidence/
+            phase4a-browser.log
+            phase4a-select-evidence/
+            phase4a-select.log

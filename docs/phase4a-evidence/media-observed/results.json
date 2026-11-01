@@ -1,0 +1,175 @@
+{
+  "head": "a718067265a501f2f1d0ab8d813d1600429e66ba",
+  "tree": "d6f4c9f64dcb46ecdac394a7681cb636b8967ff8",
+  "dirty": true,
+  "started": "2026-10-31T23:14:00.202Z",
+  "expected": 2,
+  "cases": [
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 765,
+      "id": "animated-accordion",
+      "status": "PASS",
+      "started": "2026-10-31T23:14:00.911Z",
+      "ended": "2026-10-31T23:14:25.433Z",
+      "geometry": {
+        "width": 681,
+        "scrollWidth": 681,
+        "stage": {
+          "x": 41.9375,
+          "y": 459.625,
+          "width": 681.125,
+          "height": 464.71875,
+          "top": 459.625,
+          "right": 723.0625,
+          "bottom": 924.34375,
+          "left": 41.9375
+        }
+      },
+      "observations": [
+        {
+          "height": {
+            "partial": 3.703125,
+            "target": 75
+          }
+        },
+        {
+          "reducedPreferenceObservedMs": 418
+        },
+        {
+          "mediaObserved": {
+            "matches": true,
+            "reduced": "true",
+            "trace": [
+              {
+                "type": "before",
+                "stamp": 16735,
+                "matches": false,
+                "reduced": "false",
+                "phases": [
+                  "opening",
+                  "open",
+                  "closed"
+                ]
+              },
+              {
+                "type": "dom-change",
+                "stamp": 17148,
+                "matches": true,
+                "reduced": "true",
+                "phases": [
+                  "open",
+                  "open",
+                  "closed"
+                ]
+              },
+              {
+                "type": "native-change",
+                "stamp": 17149,
+                "matches": true,
+                "reduced": "true",
+                "phases": [
+                  "open",
+                  "open",
+                  "closed"
+                ]
+              },
+              {
+                "type": "dom-change",
+                "stamp": 17159,
+                "matches": true,
+                "reduced": "true",
+                "phases": [
+                  "open",
+                  "open",
+                  "closed"
+                ]
+              },
+              {
+                "type": "dom-change",
+                "stamp": 17160,
+                "matches": true,
+                "reduced": "true",
+                "phases": [
+                  "open",
+                  "open",
+                  "closed"
+                ]
+              },
+              {
+                "type": "dom-change",
+                "stamp": 17161,
+                "matches": true,
+                "reduced": "true",
+                "phases": [
+                  "open",
+                  "open",
+                  "closed"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "height": {
+            "partial": 3.703125,
+            "target": 75
+          }
+        },
+        "midflight reversal from current height; variable content; single/multiple; adjacent layout; reduced finish; heading keyboard; reset"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "name": "webkit-765-animated-accordion-before.png",
+      "size": 36164,
+      "sha256": "d3ecc106063ffa6faf952e2b70164bc7f79f433c9b7e94ad57b40f44914992d3"
+    },
+    {
+      "name": "webkit-765-animated-accordion-after.png",
+      "size": 42828,
+      "sha256": "62aa2deccd9e30c3bf5a08dcf609c6e6546c713678c54c48f42a73261900666e"
+    },
+    {
+      "name": "failure.png",
+      "size": 95593,
+      "sha256": "5098b509400a4cbf64fbf28d46c7d7515b802979e5e6662a7d42dbb7cf9c10f7"
+    }
+  ],
+  "errors": [],
+  "currentCase": {
+    "engine": "webkit",
+    "width": 1280,
+    "id": "animated-accordion",
+    "observations": [
+      {
+        "height": {
+          "partial": 0,
+          "target": 75
+        }
+      }
+    ]
+  },
+  "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(partial>0&&partial<target)\n\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-01/task-2/loading-museum-phase4a/scripts/verify-phase4a-browser.mjs:77:294",
+  "failure": {
+    "url": "http://127.0.0.1:58873/Loading-museum/",
+    "text": "Animated Accordion / 高さと途中反転停止Reset動きの速さ速い / 250ms標準 / 600msゆっくり / 1600ms展開方式単一展開複数展開短い説明−ひとつの段落を持つ短い内容。開いたときの高さを覚えてください。現在 0px / 目標 75px操作と観察＋この節は内容が多く、必要な高さが異なります。途中で見出しを押すと、その瞬間の高さから逆方向へ動きます。後続の見出しも一緒に移動します。内容の量と動きの距離を比較できます。現在 0px / 目標 0px資料と補足＋単一展開では他の節を閉じ、複数展開ではそれぞれを保持します。Resetは方式・速度・開閉を初期化します。現在 0px / 目標 0px単一展開 / 開いている節 1件ゆっくり表示にして開閉途中でもう一度見出しを押すと反転します。現在/目標pxを比較。矢印/Home/Endで見出し移動、Enter/Spaceで開閉。動き低減・停止時は選択した最終状態をすぐ表示します。動き低減：大きな移動を省略し、入力・選択・取消と結果は保持します。停止時にも直接操作できます。Resetは保留・選択・古い処理を破棄し初期状態へ戻します。原理現在の描画高さから内容の実測高さへ補間。途中反転は現在値から再出発し、単一/複数展開で隣接項目の移動を比較します。使用例内容量が異なる資料3節。速度を落として現在/目標pxを観察できます。歴史・位置付け初出・発明者 UNKNOWN。APG操作パターンを参考に独自再構成。既存展示との差展示室の単純開閉に対し、実測高さ・途中反転・展開方式を独立して比較。用途ナビゲーション 展開 折りたたみ accordion技術React / CSS / WAAPI / ResizeObserver性質ナビゲーション / 展開 / 第4期A技術・アクセシビリティ参考資料コード・図形は独自制作。参照先のコード・画像を転載していません。製品名・商標の権利は各権利者に帰属し、公式製品の再現を保証しません。",
+    "state": {
+      "matches": false,
+      "stage": [
+        {
+          "active": "true",
+          "reduced": "false",
+          "phases": [
+            "opening",
+            "closed",
+            "closed"
+          ]
+        }
+      ]
+    }
+  },
+  "ended": "2026-10-31T23:14:39.095Z"
+}

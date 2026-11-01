@@ -1,5 +1,13 @@
 # DIGITAL MOTION ARCHIVE
 
+## 第4期A：通知・入力・検索・画面切替
+
+常設展に Toast Stack / Undo Snackbar / Inline Validation / Search Suggestions / Sliding Tabs / Animated Accordion の6部品を追加。基準mainの登録227展示を再集計し、今回で233展示・13室です。第4期Bの空展示は含みません。
+
+各部品は操作結果と途中の位置・幅・高さを観察する独自再構成です。通知は最大4件、Undoは最後の1操作を5秒保留。停止・画面外・タブ非表示では期限を停止し、動き低減でも操作結果は保持します。入力は日本語IME変換中の警告を抑え、候補・タブ・見出しにキーボード操作を用意。Resetと閉室は古い処理を破棄します。実保存・通信・データ削除はしません。
+
+[採用理由・既存展示との比較・一次資料](docs/phase4a-inventory.md) / [検証・限界・証拠](docs/phase4a-studies.md)。依存関係のcritical警告は[Issue #44](https://github.com/tetsujisugimori-coder/Loading-museum/issues/44)へ分離し、解消済み・安全性PASSとは扱っていません。
+
 ## WAAPI標本ギャラリー
 
 ページ内の「SPECIMEN CABINET / WAAPI」から47件の標本を開けます。Fade / Slideは手動再生、Button / Toggleは対象を直接操作、ゲーム14件は個別の入力と状態遷移、AI 6件は作業中だけ動く固有グリフとして実装しています。OSの `prefers-reduced-motion` 設定では反復や大きな移動を止め、文字・色・静的配置で同じ意味を残します。

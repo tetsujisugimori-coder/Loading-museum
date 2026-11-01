@@ -1,0 +1,660 @@
+{
+  "head": "a718067265a501f2f1d0ab8d813d1600429e66ba",
+  "tree": "d6f4c9f64dcb46ecdac394a7681cb636b8967ff8",
+  "dirty": true,
+  "started": "2026-10-31T23:15:43.783Z",
+  "expected": 2,
+  "cases": [
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 765,
+      "id": "animated-accordion",
+      "status": "PASS",
+      "started": "2026-10-31T23:15:44.474Z",
+      "ended": "2026-10-31T23:16:07.367Z",
+      "geometry": {
+        "width": 681,
+        "scrollWidth": 681,
+        "stage": {
+          "x": 41.9375,
+          "y": 373.625,
+          "width": 681.125,
+          "height": 464.71875,
+          "top": 373.625,
+          "right": 723.0625,
+          "bottom": 838.34375,
+          "left": 41.9375
+        }
+      },
+      "observations": [
+        {
+          "reversal": {
+            "target": 75,
+            "reversed": true,
+            "reversalHeight": 3.125,
+            "timedOut": false,
+            "samples": [
+              {
+                "ms": 32,
+                "height": 0.0625,
+                "phase": "opening"
+              },
+              {
+                "ms": 68,
+                "height": 0.125,
+                "phase": "opening"
+              },
+              {
+                "ms": 105,
+                "height": 0.359375,
+                "phase": "opening"
+              },
+              {
+                "ms": 140,
+                "height": 0.71875,
+                "phase": "opening"
+              },
+              {
+                "ms": 176,
+                "height": 1.25,
+                "phase": "opening"
+              },
+              {
+                "ms": 213,
+                "height": 1.953125,
+                "phase": "opening"
+              },
+              {
+                "ms": 261,
+                "height": 3.125,
+                "phase": "opening"
+              },
+              {
+                "ms": 297,
+                "height": 3.109375,
+                "phase": "closing"
+              },
+              {
+                "ms": 331,
+                "height": 3.109375,
+                "phase": "closing"
+              },
+              {
+                "ms": 365,
+                "height": 3.09375,
+                "phase": "closing"
+              },
+              {
+                "ms": 398,
+                "height": 3.078125,
+                "phase": "closing"
+              },
+              {
+                "ms": 432,
+                "height": 3.046875,
+                "phase": "closing"
+              },
+              {
+                "ms": 467,
+                "height": 3.015625,
+                "phase": "closing"
+              },
+              {
+                "ms": 511,
+                "height": 2.96875,
+                "phase": "closing"
+              },
+              {
+                "ms": 547,
+                "height": 2.921875,
+                "phase": "closing"
+              },
+              {
+                "ms": 583,
+                "height": 2.859375,
+                "phase": "closing"
+              },
+              {
+                "ms": 618,
+                "height": 2.796875,
+                "phase": "closing"
+              },
+              {
+                "ms": 653,
+                "height": 2.734375,
+                "phase": "closing"
+              },
+              {
+                "ms": 690,
+                "height": 2.65625,
+                "phase": "closing"
+              },
+              {
+                "ms": 725,
+                "height": 2.578125,
+                "phase": "closing"
+              },
+              {
+                "ms": 774,
+                "height": 2.453125,
+                "phase": "closing"
+              },
+              {
+                "ms": 810,
+                "height": 2.34375,
+                "phase": "closing"
+              },
+              {
+                "ms": 845,
+                "height": 2.25,
+                "phase": "closing"
+              },
+              {
+                "ms": 880,
+                "height": 2.140625,
+                "phase": "closing"
+              },
+              {
+                "ms": 915,
+                "height": 2.03125,
+                "phase": "closing"
+              },
+              {
+                "ms": 951,
+                "height": 1.921875,
+                "phase": "closing"
+              },
+              {
+                "ms": 986,
+                "height": 1.8125,
+                "phase": "closing"
+              },
+              {
+                "ms": 1022,
+                "height": 1.6875,
+                "phase": "closing"
+              },
+              {
+                "ms": 1058,
+                "height": 1.5625,
+                "phase": "closing"
+              },
+              {
+                "ms": 1093,
+                "height": 1.453125,
+                "phase": "closing"
+              },
+              {
+                "ms": 1129,
+                "height": 1.328125,
+                "phase": "closing"
+              },
+              {
+                "ms": 1165,
+                "height": 1.203125,
+                "phase": "closing"
+              },
+              {
+                "ms": 1212,
+                "height": 1.0625,
+                "phase": "closing"
+              },
+              {
+                "ms": 1249,
+                "height": 0.9375,
+                "phase": "closing"
+              },
+              {
+                "ms": 1284,
+                "height": 0.84375,
+                "phase": "closing"
+              },
+              {
+                "ms": 1319,
+                "height": 0.734375,
+                "phase": "closing"
+              },
+              {
+                "ms": 1354,
+                "height": 0.640625,
+                "phase": "closing"
+              },
+              {
+                "ms": 1390,
+                "height": 0.5625,
+                "phase": "closing"
+              },
+              {
+                "ms": 1425,
+                "height": 0.46875,
+                "phase": "closing"
+              },
+              {
+                "ms": 1463,
+                "height": 0.390625,
+                "phase": "closing"
+              },
+              {
+                "ms": 1499,
+                "height": 0.328125,
+                "phase": "closing"
+              },
+              {
+                "ms": 1540,
+                "height": 0.25,
+                "phase": "closing"
+              },
+              {
+                "ms": 1578,
+                "height": 0.1875,
+                "phase": "closing"
+              },
+              {
+                "ms": 1617,
+                "height": 0.140625,
+                "phase": "closing"
+              },
+              {
+                "ms": 1679,
+                "height": 0.078125,
+                "phase": "closing"
+              },
+              {
+                "ms": 1964,
+                "height": 0,
+                "phase": "closed"
+              }
+            ],
+            "finalHeight": 0,
+            "phase": "closed"
+          }
+        },
+        {
+          "reducedPreferenceObservedMs": 454
+        },
+        {
+          "mediaObserved": {
+            "matches": true,
+            "reduced": "true",
+            "trace": [
+              {
+                "type": "before",
+                "stamp": 14964,
+                "matches": false,
+                "reduced": "false",
+                "phases": [
+                  "opening",
+                  "open",
+                  "closed"
+                ]
+              },
+              {
+                "type": "dom-change",
+                "stamp": 15415.000000000002,
+                "matches": true,
+                "reduced": "true",
+                "phases": [
+                  "open",
+                  "open",
+                  "closed"
+                ]
+              },
+              {
+                "type": "native-change",
+                "stamp": 15415.000000000002,
+                "matches": true,
+                "reduced": "true",
+                "phases": [
+                  "open",
+                  "open",
+                  "closed"
+                ]
+              },
+              {
+                "type": "dom-change",
+                "stamp": 15424,
+                "matches": true,
+                "reduced": "true",
+                "phases": [
+                  "open",
+                  "open",
+                  "closed"
+                ]
+              },
+              {
+                "type": "dom-change",
+                "stamp": 15426,
+                "matches": true,
+                "reduced": "true",
+                "phases": [
+                  "open",
+                  "open",
+                  "closed"
+                ]
+              },
+              {
+                "type": "dom-change",
+                "stamp": 15428,
+                "matches": true,
+                "reduced": "true",
+                "phases": [
+                  "open",
+                  "open",
+                  "closed"
+                ]
+              }
+            ]
+          }
+        },
+        "midflight reversal from current height; variable content; single/multiple; adjacent layout; reduced finish; heading keyboard; reset"
+      ]
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 1280,
+      "id": "animated-accordion",
+      "status": "PASS",
+      "started": "2026-10-31T23:16:10.625Z",
+      "ended": "2026-10-31T23:16:44.662Z",
+      "geometry": {
+        "width": 1158,
+        "scrollWidth": 1158,
+        "stage": {
+          "x": 61,
+          "y": 373.4375,
+          "width": 1158,
+          "height": 464.71875,
+          "top": 373.4375,
+          "right": 1219,
+          "bottom": 838.15625,
+          "left": 61
+        }
+      },
+      "observations": [
+        {
+          "reversal": {
+            "target": 75,
+            "reversed": true,
+            "reversalHeight": 6.890625,
+            "timedOut": false,
+            "samples": [
+              {
+                "ms": 321,
+                "height": 0,
+                "phase": "opening"
+              },
+              {
+                "ms": 660,
+                "height": 6.890625,
+                "phase": "opening"
+              },
+              {
+                "ms": 1022,
+                "height": 6.15625,
+                "phase": "closing"
+              },
+              {
+                "ms": 1381,
+                "height": 4.015625,
+                "phase": "closing"
+              },
+              {
+                "ms": 1749,
+                "height": 1.453125,
+                "phase": "closing"
+              },
+              {
+                "ms": 2101,
+                "height": 0.125,
+                "phase": "closing"
+              },
+              {
+                "ms": 2451,
+                "height": 0,
+                "phase": "closed"
+              }
+            ],
+            "finalHeight": 0,
+            "phase": "closed"
+          }
+        },
+        {
+          "reducedPreferenceObservedMs": 220
+        },
+        {
+          "mediaObserved": {
+            "matches": true,
+            "reduced": "true",
+            "trace": [
+              {
+                "type": "before",
+                "stamp": 25114,
+                "matches": false,
+                "reduced": "false",
+                "phases": [
+                  "opening",
+                  "open",
+                  "closed"
+                ]
+              },
+              {
+                "type": "dom-change",
+                "stamp": 25329,
+                "matches": true,
+                "reduced": "true",
+                "phases": [
+                  "open",
+                  "open",
+                  "closed"
+                ]
+              },
+              {
+                "type": "native-change",
+                "stamp": 25330.000000000004,
+                "matches": true,
+                "reduced": "true",
+                "phases": [
+                  "open",
+                  "open",
+                  "closed"
+                ]
+              },
+              {
+                "type": "dom-change",
+                "stamp": 25338,
+                "matches": true,
+                "reduced": "true",
+                "phases": [
+                  "open",
+                  "open",
+                  "closed"
+                ]
+              },
+              {
+                "type": "dom-change",
+                "stamp": 25339.000000000004,
+                "matches": true,
+                "reduced": "true",
+                "phases": [
+                  "open",
+                  "open",
+                  "closed"
+                ]
+              },
+              {
+                "type": "dom-change",
+                "stamp": 25340,
+                "matches": true,
+                "reduced": "true",
+                "phases": [
+                  "open",
+                  "open",
+                  "closed"
+                ]
+              }
+            ]
+          }
+        },
+        "midflight reversal from current height; variable content; single/multiple; adjacent layout; reduced finish; heading keyboard; reset"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "name": "webkit-765-animated-accordion-before.png",
+      "size": 36164,
+      "sha256": "d3ecc106063ffa6faf952e2b70164bc7f79f433c9b7e94ad57b40f44914992d3"
+    },
+    {
+      "name": "webkit-765-animated-accordion-after.png",
+      "size": 54820,
+      "sha256": "0bd3b2c5e1021b530b7e5140a27887206d38f17dc53e76b82d6a34d6aa778cb1"
+    },
+    {
+      "name": "webkit-1280-animated-accordion-before.png",
+      "size": 37657,
+      "sha256": "001aeef27ca06578faec9c74cdcc3b07cebc64cee37b3d76f6d37c3edaa6a2d1"
+    },
+    {
+      "name": "webkit-1280-animated-accordion-after.png",
+      "size": 57410,
+      "sha256": "4d9d5181662ecf2261f5b0295034e703e59dba7c8de6e08c3b0bd557c1972014"
+    }
+  ],
+  "errors": [],
+  "currentCase": {
+    "engine": "webkit",
+    "width": 1280,
+    "id": "animated-accordion",
+    "observations": [
+      {
+        "reversal": {
+          "target": 75,
+          "reversed": true,
+          "reversalHeight": 6.890625,
+          "timedOut": false,
+          "samples": [
+            {
+              "ms": 321,
+              "height": 0,
+              "phase": "opening"
+            },
+            {
+              "ms": 660,
+              "height": 6.890625,
+              "phase": "opening"
+            },
+            {
+              "ms": 1022,
+              "height": 6.15625,
+              "phase": "closing"
+            },
+            {
+              "ms": 1381,
+              "height": 4.015625,
+              "phase": "closing"
+            },
+            {
+              "ms": 1749,
+              "height": 1.453125,
+              "phase": "closing"
+            },
+            {
+              "ms": 2101,
+              "height": 0.125,
+              "phase": "closing"
+            },
+            {
+              "ms": 2451,
+              "height": 0,
+              "phase": "closed"
+            }
+          ],
+          "finalHeight": 0,
+          "phase": "closed"
+        }
+      },
+      {
+        "reducedPreferenceObservedMs": 220
+      },
+      {
+        "mediaObserved": {
+          "matches": true,
+          "reduced": "true",
+          "trace": [
+            {
+              "type": "before",
+              "stamp": 25114,
+              "matches": false,
+              "reduced": "false",
+              "phases": [
+                "opening",
+                "open",
+                "closed"
+              ]
+            },
+            {
+              "type": "dom-change",
+              "stamp": 25329,
+              "matches": true,
+              "reduced": "true",
+              "phases": [
+                "open",
+                "open",
+                "closed"
+              ]
+            },
+            {
+              "type": "native-change",
+              "stamp": 25330.000000000004,
+              "matches": true,
+              "reduced": "true",
+              "phases": [
+                "open",
+                "open",
+                "closed"
+              ]
+            },
+            {
+              "type": "dom-change",
+              "stamp": 25338,
+              "matches": true,
+              "reduced": "true",
+              "phases": [
+                "open",
+                "open",
+                "closed"
+              ]
+            },
+            {
+              "type": "dom-change",
+              "stamp": 25339.000000000004,
+              "matches": true,
+              "reduced": "true",
+              "phases": [
+                "open",
+                "open",
+                "closed"
+              ]
+            },
+            {
+              "type": "dom-change",
+              "stamp": 25340,
+              "matches": true,
+              "reduced": "true",
+              "phases": [
+                "open",
+                "open",
+                "closed"
+              ]
+            }
+          ]
+        }
+      },
+      "midflight reversal from current height; variable content; single/multiple; adjacent layout; reduced finish; heading keyboard; reset"
+    ]
+  },
+  "ended": "2026-10-31T23:16:45.032Z"
+}

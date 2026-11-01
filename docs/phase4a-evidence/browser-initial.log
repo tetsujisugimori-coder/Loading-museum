@@ -1,0 +1,4 @@
+chromium 390 toast-stack PASS
+chromium 390 undo-snackbar PASS
+chromium 390 inline-validation PASS
+{"expected":6,"passed":3,"error":"AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    'Motion Atlas',\n    'Search Atlas',\n+   'Animation Basics'\n  ]\n\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-01/task-2/loading-museum-phase4a/scripts/verify-phase4a-browser.mjs:56:189"}

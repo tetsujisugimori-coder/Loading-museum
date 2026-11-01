@@ -1492,3 +1492,15 @@ Windows接続断後にクラウド隔離cloneで再開。既存mainとIssueを�
 Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・状態遷移ボタン、実用一覧stagger、共有要素、内容Crossfadeの6件を追加。既存215＋12＝227展示。既定checkはNode49/Vitest147、lint・型・build成功。独立レビューで検出した受入harness空集合の偽PASSを是正。新規PR CIは全体checkとCh/WebKit実描画を分離、公開なし。実機/複数指等の未検証は docs/phase3-studies.md。
 
 - 初回PR CI e17e10bは契約49/147とChromium36成功、WebKit26/36でdesktop更新完了待ち失敗。長フレーム経過を40msへ捨てる時計を実active時間へ局所是正（100ms→40msのRED、修正後全体49/147成功）。timeoutや期待値は不変、停止区間除外も維持。初回失敗と後続判定を分離する。既存critical依存3パッケージは静的配信/開発CIの到達前提を分離して記録し、別途優先点検へ引継ぎ（lock無変更、無害認定なし）。
+
+## 2026-11-01 第4期A（Issue #43）
+
+専用clone/branch feat/practical-ui-phase4aで最新main 2de159a9と#42 mergeを照合。登録を現物再集計し227＋6＝233展示・13室。通知Stack、期限付きUndo、IME対応Inline Validation、検索候補、異幅Sliding Tabs、可逆高さAccordionを追加。既存PracticalRoomのphase/検索/説明/開閉を再利用し、第1〜3期と既存データを保全。第4期Bは未実装。
+
+新規32件の状態遷移試験を追加。WebKit375で検索候補tapが互換clickへ届かないP2を実測し、押下対象/idと同一候補内のpointerupで確定する最小修正、cancel/領域外解放は無選択。同じharnessでWebKit/Chromium×375/390の4/4成功。focus確認・期限退避と無変位FLIPも局所是正。失敗・成功・PNG・監査原本はdocs/phase4a-evidenceへ保存し、検査削減/skip/timeout緩和なし。
+
+全館checkでは既存WAAPIの5000ms timeoutを保持しmain対照/単独試験で調査、根因UNKNOWN。依存auditは29件/critical3のまま、#44へ分離（依存/lock無変更、安全性PASSではない）。独立レビューは別担当へ返し、実iPhone/実IME/VoiceOverはUNVERIFIED。詳細・最終CIはdocs/phase4a-studies.md。Draft/未mergeを維持、公開なし。
+
+- Draft PR #45 / 初回HEAD a718067のCIは契約228成功、WebKit既存36成功・新規17/24で低減100ms判定失敗、ChromiumはAPT中10分取消（注記確認、GUI未実施）。失敗原本保持。WebKit765/1280を実中間フレーム反転・実終端/低減属性観測へ修正し2/2成功、製品/期待終端は不変。OS取得はUbuntu24.04/公式HTTPS mirror/有限通信へ限定、job上限延長なし。最終HEADでCI再照合し、初回を成功へ読み替えない。
+
+- 532f333のCIは3job成功、契約228、新規48/既存72、144 PNGとZIP/画像ハッシュを照合。独立レビューでnative select暗字/暗背景のP2-1を返却（自己仮評価P3を改める）。新規selectだけcolor-scheme:lightを指定。Ch/WK×4幅×2 selectの16条件を追加し、WebKit実画素比1.23〜1.30→12.02〜14.70、Ch15.15、選択/focus保持。正式check228成功。元の48/72は削らず最終CIと独立差分再レビューを依頼する。状態/保存/依存は変更なし。

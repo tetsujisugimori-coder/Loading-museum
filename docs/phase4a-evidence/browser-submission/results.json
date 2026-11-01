@@ -1,0 +1,1051 @@
+{
+  "head": "2de159a9a7534c8af32c8ebcda6c247947b9057c",
+  "tree": "e0fe1028ad0824f36d296d3362e605493f0d4065",
+  "dirty": true,
+  "started": "2026-10-31T22:57:42.614Z",
+  "expected": 48,
+  "cases": [
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "id": "toast-stack",
+      "status": "PASS",
+      "started": "2026-10-31T22:57:44.297Z",
+      "ended": "2026-10-31T22:57:53.349Z",
+      "geometry": {
+        "width": 325,
+        "scrollWidth": 325,
+        "stage": {
+          "x": 25,
+          "y": 255.21875,
+          "width": 325,
+          "height": 489.765625,
+          "top": 255.21875,
+          "right": 350,
+          "bottom": 744.984375,
+          "left": 25
+        }
+      },
+      "observations": [
+        {
+          "reflow": {
+            "oldTop": 226,
+            "midTop": 192.03338623046875,
+            "newTop": 113
+          }
+        },
+        "cap4/oldest dismissal; middle removal/reflow; types; independent finite lifetime; pause/offscreen; reduced expiry; reset then reoperate"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "id": "undo-snackbar",
+      "status": "PASS",
+      "started": "2026-10-31T22:57:53.349Z",
+      "ended": "2026-10-31T22:58:02.793Z",
+      "geometry": {
+        "width": 325,
+        "scrollWidth": 325,
+        "stage": {
+          "x": 25,
+          "y": 286.21875,
+          "width": 325,
+          "height": 623.796875,
+          "top": 286.21875,
+          "right": 350,
+          "bottom": 910.015625,
+          "left": 25
+        }
+      },
+      "observations": [
+        "remove/restore original position and focus; consecutive deletion commits older pending; expiry; explicit commit; reset restores three"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "id": "inline-validation",
+      "status": "PASS",
+      "started": "2026-10-31T22:58:02.794Z",
+      "ended": "2026-10-31T22:58:05.799Z",
+      "geometry": {
+        "width": 325,
+        "scrollWidth": 325,
+        "stage": {
+          "x": 25,
+          "y": 299.21875,
+          "width": 325,
+          "height": 428.484375,
+          "top": 299.21875,
+          "right": 350,
+          "bottom": 727.703125,
+          "left": 25
+        }
+      },
+      "observations": [
+        "untouched/editing/error/valid; message measured height; focus retained; synthetic composition suppresses Enter; reset and reduced reoperation"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "id": "search-suggestions",
+      "status": "PASS",
+      "started": "2026-10-31T22:58:05.799Z",
+      "ended": "2026-10-31T22:58:08.399Z",
+      "geometry": {
+        "width": 325,
+        "scrollWidth": 325,
+        "stage": {
+          "x": 25,
+          "y": 345.21875,
+          "width": 325,
+          "height": 308.796875,
+          "top": 345.21875,
+          "right": 350,
+          "bottom": 654.015625,
+          "left": 25
+        }
+      },
+      "observations": [
+        "filter/add/remove/reorder; active descendant; keyboard and click/tap choose; no results; Escape; rapid edits; reset and reduced"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "id": "sliding-tabs",
+      "status": "PASS",
+      "started": "2026-10-31T22:58:08.400Z",
+      "ended": "2026-10-31T22:58:11.733Z",
+      "geometry": {
+        "width": 325,
+        "scrollWidth": 325,
+        "stage": {
+          "x": 25,
+          "y": 323.21875,
+          "width": 325,
+          "height": 353.765625,
+          "top": 323.21875,
+          "right": 350,
+          "bottom": 676.984375,
+          "left": 25
+        }
+      },
+      "observations": [
+        {
+          "indicator": {
+            "initial": {
+              "x": 38,
+              "y": 384.21875,
+              "width": 58,
+              "height": 4
+            },
+            "middle": {
+              "x": 72.56297302246094,
+              "y": 384.21875,
+              "width": 94.859375,
+              "height": 4
+            },
+            "final": {
+              "x": 98,
+              "y": 384.21875,
+              "width": 122,
+              "height": 4
+            },
+            "target": {
+              "x": 98,
+              "y": 336.21875,
+              "width": 122,
+              "height": 44
+            }
+          }
+        },
+        "width/position/content; roving keyboard wrap; rapid changes; reduced snap; reset"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "id": "animated-accordion",
+      "status": "PASS",
+      "started": "2026-10-31T22:58:11.733Z",
+      "ended": "2026-10-31T22:58:21.338Z",
+      "geometry": {
+        "width": 325,
+        "scrollWidth": 325,
+        "stage": {
+          "x": 25,
+          "y": 237.21875,
+          "width": 325,
+          "height": 524.796875,
+          "top": 237.21875,
+          "right": 350,
+          "bottom": 762.015625,
+          "left": 25
+        }
+      },
+      "observations": [
+        {
+          "height": {
+            "partial": 6.5,
+            "target": 102
+          }
+        },
+        "midflight reversal from current height; variable content; single/multiple; adjacent layout; reduced finish; heading keyboard; reset"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "id": "toast-stack",
+      "status": "PASS",
+      "started": "2026-10-31T22:58:21.726Z",
+      "ended": "2026-10-31T22:58:30.532Z",
+      "geometry": {
+        "width": 340,
+        "scrollWidth": 340,
+        "stage": {
+          "x": 25,
+          "y": 254.828125,
+          "width": 340,
+          "height": 489.765625,
+          "top": 254.828125,
+          "right": 365,
+          "bottom": 744.59375,
+          "left": 25
+        }
+      },
+      "observations": [
+        {
+          "reflow": {
+            "oldTop": 226,
+            "midTop": 187.59906005859375,
+            "newTop": 113
+          }
+        },
+        "cap4/oldest dismissal; middle removal/reflow; types; independent finite lifetime; pause/offscreen; reduced expiry; reset then reoperate"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "id": "undo-snackbar",
+      "status": "PASS",
+      "started": "2026-10-31T22:58:30.532Z",
+      "ended": "2026-10-31T22:58:40.041Z",
+      "geometry": {
+        "width": 340,
+        "scrollWidth": 340,
+        "stage": {
+          "x": 25,
+          "y": 285.828125,
+          "width": 340,
+          "height": 598.78125,
+          "top": 285.828125,
+          "right": 365,
+          "bottom": 884.609375,
+          "left": 25
+        }
+      },
+      "observations": [
+        "remove/restore original position and focus; consecutive deletion commits older pending; expiry; explicit commit; reset restores three"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "id": "inline-validation",
+      "status": "PASS",
+      "started": "2026-10-31T22:58:40.042Z",
+      "ended": "2026-10-31T22:58:42.621Z",
+      "geometry": {
+        "width": 340,
+        "scrollWidth": 340,
+        "stage": {
+          "x": 25,
+          "y": 298.828125,
+          "width": 340,
+          "height": 428.484375,
+          "top": 298.828125,
+          "right": 365,
+          "bottom": 727.3125,
+          "left": 25
+        }
+      },
+      "observations": [
+        "untouched/editing/error/valid; message measured height; focus retained; synthetic composition suppresses Enter; reset and reduced reoperation"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "id": "search-suggestions",
+      "status": "PASS",
+      "started": "2026-10-31T22:58:42.621Z",
+      "ended": "2026-10-31T22:58:45.671Z",
+      "geometry": {
+        "width": 340,
+        "scrollWidth": 340,
+        "stage": {
+          "x": 25,
+          "y": 691.828125,
+          "width": 340,
+          "height": 308.796875,
+          "top": 691.828125,
+          "right": 365,
+          "bottom": 1000.625,
+          "left": 25
+        }
+      },
+      "observations": [
+        "filter/add/remove/reorder; active descendant; keyboard and click/tap choose; no results; Escape; rapid edits; reset and reduced"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "id": "sliding-tabs",
+      "status": "PASS",
+      "started": "2026-10-31T22:58:45.671Z",
+      "ended": "2026-10-31T22:58:49.207Z",
+      "geometry": {
+        "width": 340,
+        "scrollWidth": 340,
+        "stage": {
+          "x": 25,
+          "y": 646.828125,
+          "width": 340,
+          "height": 353.765625,
+          "top": 646.828125,
+          "right": 365,
+          "bottom": 1000.59375,
+          "left": 25
+        }
+      },
+      "observations": [
+        {
+          "indicator": {
+            "initial": {
+              "x": 38,
+              "y": 707.828125,
+              "width": 58,
+              "height": 4
+            },
+            "middle": {
+              "x": 77.99462127685547,
+              "y": 707.828125,
+              "width": 100.65625762939453,
+              "height": 4
+            },
+            "final": {
+              "x": 98,
+              "y": 707.828125,
+              "width": 122,
+              "height": 4
+            },
+            "target": {
+              "x": 98,
+              "y": 659.828125,
+              "width": 122,
+              "height": 44
+            }
+          }
+        },
+        "width/position/content; roving keyboard wrap; rapid changes; reduced snap; reset"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "id": "animated-accordion",
+      "status": "PASS",
+      "started": "2026-10-31T22:58:49.207Z",
+      "ended": "2026-10-31T22:58:58.729Z",
+      "geometry": {
+        "width": 340,
+        "scrollWidth": 340,
+        "stage": {
+          "x": 25,
+          "y": 364.828125,
+          "width": 340,
+          "height": 524.796875,
+          "top": 364.828125,
+          "right": 365,
+          "bottom": 889.625,
+          "left": 25
+        }
+      },
+      "observations": [
+        {
+          "height": {
+            "partial": 7.3125,
+            "target": 102
+          }
+        },
+        "midflight reversal from current height; variable content; single/multiple; adjacent layout; reduced finish; heading keyboard; reset"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 765,
+      "id": "toast-stack",
+      "status": "PASS",
+      "started": "2026-10-31T22:58:59.293Z",
+      "ended": "2026-10-31T22:59:08.387Z",
+      "geometry": {
+        "width": 681,
+        "scrollWidth": 681,
+        "stage": {
+          "x": 41.9375,
+          "y": 302.625,
+          "width": 681.125,
+          "height": 393.75,
+          "top": 302.625,
+          "right": 723.0625,
+          "bottom": 696.375,
+          "left": 41.9375
+        }
+      },
+      "observations": [
+        {
+          "reflow": {
+            "oldTop": 226,
+            "midTop": 192.0279541015625,
+            "newTop": 113
+          }
+        },
+        "cap4/oldest dismissal; middle removal/reflow; types; independent finite lifetime; pause/offscreen; reduced expiry; reset then reoperate"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 765,
+      "id": "undo-snackbar",
+      "status": "PASS",
+      "started": "2026-10-31T22:59:08.387Z",
+      "ended": "2026-10-31T22:59:18.812Z",
+      "geometry": {
+        "width": 681,
+        "scrollWidth": 681,
+        "stage": {
+          "x": 41.9375,
+          "y": 400.625,
+          "width": 681.125,
+          "height": 548.75,
+          "top": 400.625,
+          "right": 723.0625,
+          "bottom": 949.375,
+          "left": 41.9375
+        }
+      },
+      "observations": [
+        "remove/restore original position and focus; consecutive deletion commits older pending; expiry; explicit commit; reset restores three"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 765,
+      "id": "inline-validation",
+      "status": "PASS",
+      "started": "2026-10-31T22:59:18.812Z",
+      "ended": "2026-10-31T22:59:21.838Z",
+      "geometry": {
+        "width": 681,
+        "scrollWidth": 681,
+        "stage": {
+          "x": 41.9375,
+          "y": 616.625,
+          "width": 681.125,
+          "height": 384.46875,
+          "top": 616.625,
+          "right": 723.0625,
+          "bottom": 1001.09375,
+          "left": 41.9375
+        }
+      },
+      "observations": [
+        "untouched/editing/error/valid; message measured height; focus retained; synthetic composition suppresses Enter; reset and reduced reoperation"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 765,
+      "id": "search-suggestions",
+      "status": "PASS",
+      "started": "2026-10-31T22:59:21.838Z",
+      "ended": "2026-10-31T22:59:24.869Z",
+      "geometry": {
+        "width": 681,
+        "scrollWidth": 681,
+        "stage": {
+          "x": 41.9375,
+          "y": 616.625,
+          "width": 681.125,
+          "height": 258.765625,
+          "top": 616.625,
+          "right": 723.0625,
+          "bottom": 875.390625,
+          "left": 41.9375
+        }
+      },
+      "observations": [
+        "filter/add/remove/reorder; active descendant; keyboard and click/tap choose; no results; Escape; rapid edits; reset and reduced"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 765,
+      "id": "sliding-tabs",
+      "status": "PASS",
+      "started": "2026-10-31T22:59:24.869Z",
+      "ended": "2026-10-31T22:59:28.638Z",
+      "geometry": {
+        "width": 681,
+        "scrollWidth": 681,
+        "stage": {
+          "x": 41.9375,
+          "y": 616.625,
+          "width": 681.125,
+          "height": 328.75,
+          "top": 616.625,
+          "right": 723.0625,
+          "bottom": 945.375,
+          "left": 41.9375
+        }
+      },
+      "observations": [
+        {
+          "indicator": {
+            "initial": {
+              "x": 54.9375,
+              "y": 677.625,
+              "width": 58,
+              "height": 4
+            },
+            "middle": {
+              "x": 94.9306411743164,
+              "y": 677.625,
+              "width": 100.65624237060547,
+              "height": 4
+            },
+            "final": {
+              "x": 114.9375,
+              "y": 677.625,
+              "width": 122,
+              "height": 4
+            },
+            "target": {
+              "x": 114.9375,
+              "y": 629.625,
+              "width": 122,
+              "height": 44
+            }
+          }
+        },
+        "width/position/content; roving keyboard wrap; rapid changes; reduced snap; reset"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 765,
+      "id": "animated-accordion",
+      "status": "PASS",
+      "started": "2026-10-31T22:59:28.638Z",
+      "ended": "2026-10-31T22:59:38.993Z",
+      "geometry": {
+        "width": 681,
+        "scrollWidth": 681,
+        "stage": {
+          "x": 41.9375,
+          "y": 450.625,
+          "width": 681.125,
+          "height": 474.765625,
+          "top": 450.625,
+          "right": 723.0625,
+          "bottom": 925.390625,
+          "left": 41.9375
+        }
+      },
+      "observations": [
+        {
+          "height": {
+            "partial": 12.34375,
+            "target": 75
+          }
+        },
+        "midflight reversal from current height; variable content; single/multiple; adjacent layout; reduced finish; heading keyboard; reset"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "id": "toast-stack",
+      "status": "PASS",
+      "started": "2026-10-31T22:59:39.376Z",
+      "ended": "2026-10-31T22:59:48.431Z",
+      "geometry": {
+        "width": 1158,
+        "scrollWidth": 1158,
+        "stage": {
+          "x": 61,
+          "y": 315.4375,
+          "width": 1158,
+          "height": 368.734375,
+          "top": 315.4375,
+          "right": 1219,
+          "bottom": 684.171875,
+          "left": 61
+        }
+      },
+      "observations": [
+        {
+          "reflow": {
+            "oldTop": 226,
+            "midTop": 192.0277099609375,
+            "newTop": 113
+          }
+        },
+        "cap4/oldest dismissal; middle removal/reflow; types; independent finite lifetime; pause/offscreen; reduced expiry; reset then reoperate"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "id": "undo-snackbar",
+      "status": "PASS",
+      "started": "2026-10-31T22:59:48.431Z",
+      "ended": "2026-10-31T22:59:59.331Z",
+      "geometry": {
+        "width": 1158,
+        "scrollWidth": 1158,
+        "stage": {
+          "x": 61,
+          "y": 313.4375,
+          "width": 1158,
+          "height": 548.75,
+          "top": 313.4375,
+          "right": 1219,
+          "bottom": 862.1875,
+          "left": 61
+        }
+      },
+      "observations": [
+        "remove/restore original position and focus; consecutive deletion commits older pending; expiry; explicit commit; reset restores three"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "id": "inline-validation",
+      "status": "PASS",
+      "started": "2026-10-31T22:59:59.331Z",
+      "ended": "2026-10-31T23:00:03.405Z",
+      "geometry": {
+        "width": 1158,
+        "scrollWidth": 1158,
+        "stage": {
+          "x": 61,
+          "y": 660.4375,
+          "width": 1158,
+          "height": 340.453125,
+          "top": 660.4375,
+          "right": 1219,
+          "bottom": 1000.890625,
+          "left": 61
+        }
+      },
+      "observations": [
+        "untouched/editing/error/valid; message measured height; focus retained; synthetic composition suppresses Enter; reset and reduced reoperation"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "id": "search-suggestions",
+      "status": "PASS",
+      "started": "2026-10-31T23:00:03.405Z",
+      "ended": "2026-10-31T23:00:07.308Z",
+      "geometry": {
+        "width": 1158,
+        "scrollWidth": 1158,
+        "stage": {
+          "x": 61,
+          "y": 660.4375,
+          "width": 1158,
+          "height": 233.75,
+          "top": 660.4375,
+          "right": 1219,
+          "bottom": 894.1875,
+          "left": 61
+        }
+      },
+      "observations": [
+        "filter/add/remove/reorder; active descendant; keyboard and click/tap choose; no results; Escape; rapid edits; reset and reduced"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "id": "sliding-tabs",
+      "status": "PASS",
+      "started": "2026-10-31T23:00:07.308Z",
+      "ended": "2026-10-31T23:00:10.947Z",
+      "geometry": {
+        "width": 1158,
+        "scrollWidth": 1158,
+        "stage": {
+          "x": 61,
+          "y": 660.4375,
+          "width": 1158,
+          "height": 303.734375,
+          "top": 660.4375,
+          "right": 1219,
+          "bottom": 964.171875,
+          "left": 61
+        }
+      },
+      "observations": [
+        {
+          "indicator": {
+            "initial": {
+              "x": 74,
+              "y": 721.4375,
+              "width": 58,
+              "height": 4
+            },
+            "middle": {
+              "x": 113.98884582519531,
+              "y": 721.4375,
+              "width": 100.640625,
+              "height": 4
+            },
+            "final": {
+              "x": 134,
+              "y": 721.4375,
+              "width": 122,
+              "height": 4
+            },
+            "target": {
+              "x": 134,
+              "y": 673.4375,
+              "width": 122,
+              "height": 44
+            }
+          }
+        },
+        "width/position/content; roving keyboard wrap; rapid changes; reduced snap; reset"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "id": "animated-accordion",
+      "status": "PASS",
+      "started": "2026-10-31T23:00:10.947Z",
+      "ended": "2026-10-31T23:00:21.630Z",
+      "geometry": {
+        "width": 1158,
+        "scrollWidth": 1158,
+        "stage": {
+          "x": 61,
+          "y": 473.4375,
+          "width": 1158,
+          "height": 449.75,
+          "top": 473.4375,
+          "right": 1219,
+          "bottom": 923.1875,
+          "left": 61
+        }
+      },
+      "observations": [
+        {
+          "height": {
+            "partial": 2.328125,
+            "target": 75
+          }
+        },
+        "midflight reversal from current height; variable content; single/multiple; adjacent layout; reduced finish; heading keyboard; reset"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "name": "chromium-375-toast-stack-before.png",
+      "size": 11285,
+      "sha256": "a24baf39584f9f2661961507bbd02ff5617cddd8f9ce74d677036dcb858ad67e"
+    },
+    {
+      "name": "chromium-375-toast-stack-after.png",
+      "size": 27950,
+      "sha256": "66943234f75948bdc76a8bb6f69949fa9e47e4c7c6270bf8e2aab108b711c4be"
+    },
+    {
+      "name": "chromium-375-undo-snackbar-before.png",
+      "size": 18378,
+      "sha256": "4d2213f69c749155b44548f4dc43981cae0103c5558b8757b096a5a647db3c54"
+    },
+    {
+      "name": "chromium-375-undo-snackbar-after.png",
+      "size": 14828,
+      "sha256": "2c0ad885fcc80aa5f208f9ef38d444ad642686e9f20ec110fa6bb5a6ffe8603e"
+    },
+    {
+      "name": "chromium-375-inline-validation-before.png",
+      "size": 11423,
+      "sha256": "488fb7b2b62ecad406f335c6f5f424bb91ab2ac61d618aeb09b463945c0bb98f"
+    },
+    {
+      "name": "chromium-375-inline-validation-after.png",
+      "size": 14151,
+      "sha256": "adaf880304fd0045d433a6692aff6a574a8498aac86d76b830d373dcc55b494e"
+    },
+    {
+      "name": "chromium-375-search-suggestions-before.png",
+      "size": 10654,
+      "sha256": "b81d684754fa41ce1ffc9d6c22e6dd4b9243c8f1820c4b56f34657867772bb49"
+    },
+    {
+      "name": "chromium-375-search-suggestions-after.png",
+      "size": 14781,
+      "sha256": "e5bbe11a177b7a41eb0c490dbd6c3755633f07eb95d26cdf12888dfac9e3d613"
+    },
+    {
+      "name": "chromium-375-sliding-tabs-before.png",
+      "size": 9661,
+      "sha256": "0fc5474ea1fbe883455f83bddee09f5f624a3326714b2bea50fc2dbc769a0e9a"
+    },
+    {
+      "name": "chromium-375-sliding-tabs-after.png",
+      "size": 11156,
+      "sha256": "c5c82b4e1c6f5113e5d29c253998c5eaaaa93c81e4ff22a67e9a92d2fe69b12e"
+    },
+    {
+      "name": "chromium-375-animated-accordion-before.png",
+      "size": 21603,
+      "sha256": "34fcc5f4a8bd72442e380485d42e4fe21d09afd48f32a13f7c296eb422b23816"
+    },
+    {
+      "name": "chromium-375-animated-accordion-after.png",
+      "size": 24368,
+      "sha256": "26bee9a57deac54d26d2c047611c413e25468f9917bbdd3c7b0a4d896c1bbb84"
+    },
+    {
+      "name": "chromium-390-toast-stack-before.png",
+      "size": 11394,
+      "sha256": "755e4a48b301b404c830bd428e542d414c082eda4830f5a864de3195a8ec2c3d"
+    },
+    {
+      "name": "chromium-390-toast-stack-after.png",
+      "size": 28138,
+      "sha256": "a23f0792efa2c1d4be16442aa0f117348040bee0fefd06bd6bfd953f4f953dc9"
+    },
+    {
+      "name": "chromium-390-undo-snackbar-before.png",
+      "size": 18188,
+      "sha256": "2c7388a32ec1d4fed06f490cb54bca0008ae2f67924c0dcbaee51704c2184045"
+    },
+    {
+      "name": "chromium-390-undo-snackbar-after.png",
+      "size": 15312,
+      "sha256": "254da93e17cdeafaed60bd5c3d71b9aa299da8c24b02704793ef46f89118c668"
+    },
+    {
+      "name": "chromium-390-inline-validation-before.png",
+      "size": 11480,
+      "sha256": "75329209df06ff2ad5bba6f3cbb054ced65ebe49cc3aab9b19afb552d5391123"
+    },
+    {
+      "name": "chromium-390-inline-validation-after.png",
+      "size": 14290,
+      "sha256": "37a49a41804f8f4c13348d9f047cbc56b0a5d2cbfd799e02ee7ceae56543176d"
+    },
+    {
+      "name": "chromium-390-search-suggestions-before.png",
+      "size": 10557,
+      "sha256": "66819b75778fa83f61438d510d46c18d7c5da0d984c422911ea5bdce59f0e293"
+    },
+    {
+      "name": "chromium-390-search-suggestions-after.png",
+      "size": 14650,
+      "sha256": "9ca74785e3a813ced77beba336806b9ac7f497c9cb6b0545669d740eb1ff6a31"
+    },
+    {
+      "name": "chromium-390-sliding-tabs-before.png",
+      "size": 9634,
+      "sha256": "5cae86e702aed130cd80495e1c784a3ca246331b37395c838293fd5df6759096"
+    },
+    {
+      "name": "chromium-390-sliding-tabs-after.png",
+      "size": 11104,
+      "sha256": "9fdae6a4a5513f8e8dcb59ce2dfea616f6a81224e077c758b262e52264572728"
+    },
+    {
+      "name": "chromium-390-animated-accordion-before.png",
+      "size": 21750,
+      "sha256": "7e66b02fe0dc85facc32ae2823a615e15cb41ca3cf34145b82beba14a5862504"
+    },
+    {
+      "name": "chromium-390-animated-accordion-after.png",
+      "size": 24339,
+      "sha256": "177a7c1b7b37528ade0106611ca298381f48fec0b343bcf8dc0d182d75ae3f4e"
+    },
+    {
+      "name": "chromium-765-toast-stack-before.png",
+      "size": 11508,
+      "sha256": "3f5d9a4b8eeb9d9187b46705b815dcb29a89c379e93293e7a7d4d471400a4e17"
+    },
+    {
+      "name": "chromium-765-toast-stack-after.png",
+      "size": 29562,
+      "sha256": "12aceeeeb6394b0d447c4eadf5131425f49717578ccce4e6a9218fac8e5fa8ac"
+    },
+    {
+      "name": "chromium-765-undo-snackbar-before.png",
+      "size": 19258,
+      "sha256": "212799e1e9cf1d5bb9efe64e7f1210f957f858bd302372e076661fd3bd2a752c"
+    },
+    {
+      "name": "chromium-765-undo-snackbar-after.png",
+      "size": 15842,
+      "sha256": "a990bffe89b0465f6c9aa37f95d4dd611ed1f6655205a87f636ca9cc8f91ca9d"
+    },
+    {
+      "name": "chromium-765-inline-validation-before.png",
+      "size": 12045,
+      "sha256": "59688f8c7fe4dd4bf0582cbf431a33a919afe9db4b4f8afcfc3f22f540d56648"
+    },
+    {
+      "name": "chromium-765-inline-validation-after.png",
+      "size": 14826,
+      "sha256": "120986fdf136110d2e1c131349fd4100c80a4d351e59c48d0050298544593f49"
+    },
+    {
+      "name": "chromium-765-search-suggestions-before.png",
+      "size": 10923,
+      "sha256": "3c919c1450bedc6d003f2fcd7ab75bc73dbdbe6cc46806325c728d4c191e40fd"
+    },
+    {
+      "name": "chromium-765-search-suggestions-after.png",
+      "size": 15141,
+      "sha256": "ea1c31e71e780e06938fdf34286235ecb59ca0e9e8256f5eac1c773f3e8be390"
+    },
+    {
+      "name": "chromium-765-sliding-tabs-before.png",
+      "size": 10176,
+      "sha256": "c91a022c39734f0f22369156fff607e57ed14d4e57050aeaea132fdb5bd77201"
+    },
+    {
+      "name": "chromium-765-sliding-tabs-after.png",
+      "size": 11698,
+      "sha256": "41a20228d6a05fc295be976154ad538dbc0532d0cdce2218ced36ba4902145ad"
+    },
+    {
+      "name": "chromium-765-animated-accordion-before.png",
+      "size": 22568,
+      "sha256": "b2c6b2b505fb7704ac023dd86bea0e12e8ebcfb6067d5da00a8937bfb4d72882"
+    },
+    {
+      "name": "chromium-765-animated-accordion-after.png",
+      "size": 24263,
+      "sha256": "4f4066b6b50021465d45ab703f67990fb1ad9781a5590b7b8bb21b73a8463f0b"
+    },
+    {
+      "name": "chromium-1280-toast-stack-before.png",
+      "size": 11730,
+      "sha256": "5af2263d66b9df523a66e4f9ff538216d12ce04f5045238a45ef1c616c6c8146"
+    },
+    {
+      "name": "chromium-1280-toast-stack-after.png",
+      "size": 30769,
+      "sha256": "4f495e784de7de8a1da0ecfd7c7c2a73d87decad125794c6df69238574b80519"
+    },
+    {
+      "name": "chromium-1280-undo-snackbar-before.png",
+      "size": 20069,
+      "sha256": "ea302415b5c98fedb10315f7d7bd098ec0ce3945e62d73970637f0f162148fa0"
+    },
+    {
+      "name": "chromium-1280-undo-snackbar-after.png",
+      "size": 16436,
+      "sha256": "a49244f382e48009ca1145345a4491bdb57f6f00404315cee0f9dde558674691"
+    },
+    {
+      "name": "chromium-1280-inline-validation-before.png",
+      "size": 12225,
+      "sha256": "cd9bc6fa02c5a2f4de2021614d426e39f5e3c758aab0564adf29bc73b47c31df"
+    },
+    {
+      "name": "chromium-1280-inline-validation-after.png",
+      "size": 15094,
+      "sha256": "49217b95c869d1f0c2956795e3b00c1f7e065dbe2235bf859bd3413bae5ea925"
+    },
+    {
+      "name": "chromium-1280-search-suggestions-before.png",
+      "size": 10832,
+      "sha256": "4887d87fd0104cf895d4f1bba201376d6b0ad3b62505ce86f177017a45ac7f1c"
+    },
+    {
+      "name": "chromium-1280-search-suggestions-after.png",
+      "size": 15125,
+      "sha256": "4af0ee4640f118a59567ee7581d7f4e0a5b1ad76f25ec8daeab4706679f4ce8a"
+    },
+    {
+      "name": "chromium-1280-sliding-tabs-before.png",
+      "size": 10561,
+      "sha256": "9a25c06dcdf9318d17f92710c9b0ba096c7bc9d23722d400a40543a8c93e8db1"
+    },
+    {
+      "name": "chromium-1280-sliding-tabs-after.png",
+      "size": 11827,
+      "sha256": "b0323dd95e26eddc0a819b6ff2034999f453a8266e00a8a96e3e53090ad15bcb"
+    },
+    {
+      "name": "chromium-1280-animated-accordion-before.png",
+      "size": 22875,
+      "sha256": "26a0f04430fc55dc0503ade492c869beee92bb873b6f312583029e94a87e038d"
+    },
+    {
+      "name": "chromium-1280-animated-accordion-after.png",
+      "size": 24789,
+      "sha256": "d9294dba2b8635a902cf6098844e2aabb9d401c94b5b55595d466a2931692e8b"
+    },
+    {
+      "name": "failure.png",
+      "size": 70942,
+      "sha256": "186e82a87f76972d787451410ce2853bb7ea396bc262e0b2fa09e84ac5885d4d"
+    }
+  ],
+  "errors": [],
+  "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(midTop>newTop&&midTop<oldTop)\n\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-01/task-2/loading-museum-phase4a/scripts/verify-phase4a-browser.mjs:39:452",
+  "failure": {
+    "url": "http://127.0.0.1:52052/Loading-museum/",
+    "text": "Toast Stack / 通知の積み重ね停止Reset動きの速さ速い / 250ms標準 / 600msゆっくり / 1600ms通知の種類情報成功注意通知を追加すべて解除上限4件 / 現在 3件。寿命5秒（観察中の有効時間）。i情報 #2模擬通知の内容残り 3秒×i情報 #5模擬通知の内容残り 3秒×✓成功 #6模擬通知の内容残り 3秒×通知 4 を個別解除新着は下へ。中間を消すと後続が移動します。種類を変えて連続追加し、位置と残り時間を比べてください。動き低減：大きな移動を省略し、入力・選択・取消と結果は保持します。停止時にも直接操作できます。Resetは保留・選択・古い処理を破棄し初期状態へ戻します。原理独立した寿命を持つ最大4通知。追加・中間解除で位置差を測り、既存通知を再配置します。使用例保存完了・接続状態などの複数通知。実通信なし。歴史・位置付け初出・発明者 UNKNOWN。一般的な通知パターンの独自再構成。既存展示との差既存WAAPI単体toastに、複数寿命・上限・個別解除・再配置を追加した別用途。用途通知 notification技術React / CSS / WAAPI性質通知 / feedback / 第4期A技術・アクセシビリティ参考資料コード・図形は独自制作。参照先のコード・画像を転載していません。製品名・商標の権利は各権利者に帰属し、公式製品の再現を保証しません。"
+  },
+  "ended": "2026-10-31T23:00:33.408Z"
+}

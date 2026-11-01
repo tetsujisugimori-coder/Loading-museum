@@ -1,0 +1,272 @@
+practical-browser (chromium)	Set up job	﻿2026-10-31T23:05:25.7671134Z Current runner version: '2.338.2'
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7707171Z ##[group]Runner Image Provisioner
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7708638Z Hosted Compute Agent
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7709655Z Version: 20261021.618
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7710778Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7712003Z Build Date: 2026-10-21T00:45:21Z
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7713211Z Worker ID: {21a7681a-096a-468c-8f11-a8b14374e0d5}
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7714760Z Region: eastus
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7715747Z Cloud: Azure
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7716774Z ##[endgroup]
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7719765Z ##[group]Operating System
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7721046Z Ubuntu
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7721914Z 24.04.5
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7722791Z LTS
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7723754Z ##[endgroup]
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7724971Z ##[group]Runner Image
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7726029Z Image: ubuntu-24.04
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7727020Z Version: 20261025.353.1
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7728841Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7731985Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7733816Z ##[endgroup]
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7736080Z ##[group]GITHUB_TOKEN Permissions
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7739137Z Contents: read
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7740109Z Metadata: read
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7741030Z ##[endgroup]
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7744071Z Secret source: Actions
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7746066Z Cache mode: write
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.7747677Z Prepare workflow directory
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.8235932Z Prepare all required actions
+practical-browser (chromium)	Set up job	2026-10-31T23:05:25.8307805Z Getting action download info
+practical-browser (chromium)	Set up job	2026-10-31T23:05:26.0360714Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+practical-browser (chromium)	Set up job	2026-10-31T23:05:26.1651841Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+practical-browser (chromium)	Set up job	2026-10-31T23:05:26.2706561Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+practical-browser (chromium)	Set up job	2026-10-31T23:05:26.5201556Z Complete job name: practical-browser (chromium)
+practical-browser (chromium)	Run actions/checkout@v4	﻿2026-10-31T23:05:26.6108298Z ##[group]Run actions/checkout@v4
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6109224Z with:
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6109726Z   ref: a718067265a501f2f1d0ab8d813d1600429e66ba
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6110424Z   repository: tetsujisugimori-coder/Loading-museum
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6114101Z   token: ***
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6114766Z   ssh-strict: true
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6115227Z   ssh-user: git
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6115697Z   persist-credentials: true
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6116201Z   clean: true
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6116663Z   sparse-checkout-cone-mode: true
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6117203Z   fetch-depth: 1
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6117654Z   fetch-tags: false
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6118117Z   show-progress: true
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6118585Z   lfs: false
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6119013Z   submodules: false
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6119475Z   set-safe-directory: true
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6119994Z   allow-unsafe-pr-checkout: false
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:26.6120807Z ##[endgroup]
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3085820Z Syncing repository: tetsujisugimori-coder/Loading-museum
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3088971Z ##[group]Getting Git version info
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3090420Z Working directory is '/home/runner/work/Loading-museum/Loading-museum'
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3092139Z [command]/usr/bin/git version
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3200119Z git version 2.56.0
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3234012Z ##[endgroup]
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3242280Z Temporarily overriding HOME='/home/runner/work/_temp/d40e3235-b094-499d-81e6-aec8203c40c2' before making global git config changes
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3247335Z Adding repository directory to the temporary git global config as a safe directory
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3249603Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Loading-museum/Loading-museum
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3477235Z Deleting the contents of '/home/runner/work/Loading-museum/Loading-museum'
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3487966Z ##[group]Initializing the repository
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3489032Z [command]/usr/bin/git init /home/runner/work/Loading-museum/Loading-museum
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3599679Z hint: Using 'master' as the name for the initial branch. This default branch name
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3601795Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3603588Z hint: to use in all of your new repositories, which will suppress this warning,
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3605265Z hint: call:
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3606039Z hint:
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3606985Z hint: 	git config --global init.defaultBranch <name>
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3608149Z hint:
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3609235Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3610988Z hint: 'development'. The just-created branch can be renamed via this command:
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3612411Z hint:
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3613196Z hint: 	git branch -m <name>
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3614081Z hint:
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3615460Z hint: Disable this message with "git config set advice.defaultBranchName false"
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3617520Z Initialized empty Git repository in /home/runner/work/Loading-museum/Loading-museum/.git/
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3628401Z [command]/usr/bin/git remote add origin https://github.com/tetsujisugimori-coder/Loading-museum
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3680525Z ##[endgroup]
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3682121Z ##[group]Disabling automatic garbage collection
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3685167Z [command]/usr/bin/git config --local gc.auto 0
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3730029Z ##[endgroup]
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3731744Z ##[group]Setting up auth
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3739643Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.3965220Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.4340979Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.4386112Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.4636545Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.4683058Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.4939316Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.4990694Z ##[endgroup]
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.4992336Z ##[group]Fetching the repository
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.5004658Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin a718067265a501f2f1d0ab8d813d1600429e66ba
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:27.9998642Z From https://github.com/tetsujisugimori-coder/Loading-museum
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0002381Z  * branch            a718067265a501f2f1d0ab8d813d1600429e66ba -> FETCH_HEAD
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0008616Z ##[endgroup]
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0010649Z ##[group]Determining the checkout info
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0012903Z ##[endgroup]
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0024021Z [command]/usr/bin/git sparse-checkout disable
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0088088Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0129432Z ##[group]Checking out the ref
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0133588Z [command]/usr/bin/git checkout --progress --force a718067265a501f2f1d0ab8d813d1600429e66ba
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0828505Z Note: switching to 'a718067265a501f2f1d0ab8d813d1600429e66ba'.
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0829802Z 
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0830578Z You are in 'detached HEAD' state. You can look around, make experimental
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0832456Z changes and commit them, and you can discard any commits you make in this
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0834245Z state without impacting any branches by switching back to a branch.
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0835954Z 
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0836760Z If you want to create a new branch to retain commits you create, you may
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0838426Z do so (now or later) by using -c with the switch command. Example:
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0839397Z 
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0839799Z   git switch -c <new-branch-name>
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0840527Z 
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0841070Z Or undo this operation with:
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0841823Z 
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0842312Z   git switch -
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0842946Z 
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0843874Z Turn off this advice by setting config variable advice.detachedHead to false
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0845489Z 
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0846399Z HEAD is now at a718067 feat: add phase 4A practical UI observation exhibits
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0963384Z ##[endgroup]
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0968055Z [command]/usr/bin/git log -1 --format=%H
+practical-browser (chromium)	Run actions/checkout@v4	2026-10-31T23:05:28.0975456Z a718067265a501f2f1d0ab8d813d1600429e66ba
+practical-browser (chromium)	Run actions/setup-node@v4	﻿2026-10-31T23:05:28.1373120Z ##[group]Run actions/setup-node@v4
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:28.1374491Z with:
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:28.1375397Z   node-version: 22
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:28.1376299Z   cache: npm
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:28.1377173Z   always-auth: false
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:28.1378123Z   check-latest: false
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:28.1386953Z   token: ***
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:28.1387880Z ##[endgroup]
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:28.3052354Z Found in cache @ /opt/hostedtoolcache/node/22.23.4/x64
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:28.3056318Z ##[group]Environment details
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:28.3059795Z (node:2277) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:28.3064067Z (Use `node --trace-deprecation ...` to show where the warning was created)
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:28.9821879Z node: v22.23.4
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:28.9822332Z npm: 10.9.9
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:28.9822582Z yarn: 1.22.22
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:28.9823282Z ##[endgroup]
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:28.9846208Z [command]/opt/hostedtoolcache/node/22.23.4/x64/bin/npm config get cache
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:29.1101987Z /home/runner/.npm
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:29.2006662Z Cache hit for: node-cache-Linux-x64-npm-bdf7676ac3c73d012e84037285c700072175be4631684dbc433a5ae75338da79
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:29.2109687Z (node:2277) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:30.1027420Z Received 123734185 of 123734185 (100.0%), 136.9 MBs/sec
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:30.1028767Z Cache Size: ~118 MB (123734185 B)
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:30.1056097Z [command]/usr/bin/tar -xf /home/runner/work/_temp/e64e4268-9206-419c-b21c-0ee13e3de530/cache.tzst -P -C /home/runner/work/Loading-museum/Loading-museum --use-compress-program unzstd
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:30.4542969Z Cache restored successfully
+practical-browser (chromium)	Run actions/setup-node@v4	2026-10-31T23:05:30.4598698Z Cache restored from key: node-cache-Linux-x64-npm-bdf7676ac3c73d012e84037285c700072175be4631684dbc433a5ae75338da79
+practical-browser (chromium)	Run npm ci	﻿2026-10-31T23:05:30.4948144Z ##[group]Run npm ci
+practical-browser (chromium)	Run npm ci	2026-10-31T23:05:30.4948487Z ^[[36;1mnpm ci^[[0m
+practical-browser (chromium)	Run npm ci	2026-10-31T23:05:30.4979524Z shell: /usr/bin/bash -e {0}
+practical-browser (chromium)	Run npm ci	2026-10-31T23:05:30.4979818Z ##[endgroup]
+practical-browser (chromium)	Run npm ci	2026-10-31T23:05:33.8412361Z npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+practical-browser (chromium)	Run npm ci	2026-10-31T23:06:16.7248612Z 
+practical-browser (chromium)	Run npm ci	2026-10-31T23:06:16.7249468Z added 437 packages, and audited 438 packages in 46s
+practical-browser (chromium)	Run npm ci	2026-10-31T23:06:16.7252518Z 
+practical-browser (chromium)	Run npm ci	2026-10-31T23:06:16.7252979Z 160 packages are looking for funding
+practical-browser (chromium)	Run npm ci	2026-10-31T23:06:16.7253935Z   run `npm fund` for details
+practical-browser (chromium)	Run npm ci	2026-10-31T23:06:17.1010815Z 
+practical-browser (chromium)	Run npm ci	2026-10-31T23:06:17.1011961Z 29 vulnerabilities (1 low, 17 moderate, 8 high, 3 critical)
+practical-browser (chromium)	Run npm ci	2026-10-31T23:06:17.1012409Z 
+practical-browser (chromium)	Run npm ci	2026-10-31T23:06:17.1012750Z To address issues that do not require attention, run:
+practical-browser (chromium)	Run npm ci	2026-10-31T23:06:17.1013242Z   npm audit fix
+practical-browser (chromium)	Run npm ci	2026-10-31T23:06:17.1013433Z 
+practical-browser (chromium)	Run npm ci	2026-10-31T23:06:17.1013756Z To address all issues (including breaking changes), run:
+practical-browser (chromium)	Run npm ci	2026-10-31T23:06:17.1014547Z   npm audit fix --force
+practical-browser (chromium)	Run npm ci	2026-10-31T23:06:17.1014920Z 
+practical-browser (chromium)	Run npm ci	2026-10-31T23:06:17.1015122Z Run `npm audit` for details.
+practical-browser (chromium)	Run npm run build	﻿2026-10-31T23:06:17.2429130Z ##[group]Run npm run build
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:17.2429451Z ^[[36;1mnpm run build^[[0m
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:17.2450013Z shell: /usr/bin/bash -e {0}
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:17.2450280Z ##[endgroup]
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:17.3429766Z 
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:17.3430548Z > loading-museum@0.1.0 build
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:17.3431163Z > next build
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:17.3431394Z 
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:17.7370342Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:17.7483512Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:17.7485241Z This information is used to shape Next.js' roadmap and prioritize features.
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:17.7487051Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:17.7488597Z https://nextjs.org/telemetry
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:17.7489140Z 
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:17.7692121Z ▲ Next.js 16.2.6 (Turbopack)
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:17.7693263Z 
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:17.8210076Z   Creating an optimized production build ...
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:20.8354609Z ✓ Compiled successfully in 2.8s
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:20.8435349Z   Running TypeScript ...
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:27.7186515Z   Finished TypeScript in 6.9s ...
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:27.7230369Z   Collecting page data using 3 workers ...
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:28.1507067Z   Generating static pages using 3 workers (0/3) ...
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:28.4312811Z ✓ Generating static pages using 3 workers (3/3) in 281ms
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:28.4353069Z   Finalizing page optimization ...
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:28.5848054Z 
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:28.5867076Z Route (app)
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:28.5867796Z ┌ ○ /
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:28.5888856Z └ ○ /_not-found
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:28.5889099Z 
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:28.5889109Z 
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:28.5889380Z ○  (Static)  prerendered as static content
+practical-browser (chromium)	Run npm run build	2026-10-31T23:06:28.5889616Z 
+practical-browser (chromium)	Fixed browser harness outside application dependencies	﻿2026-10-31T23:06:28.6304771Z ##[group]Run npm install --prefix "$RUNNER_TEMP/practical-playwright" --no-save playwright@1.56.1
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:28.6305617Z ^[[36;1mnpm install --prefix "$RUNNER_TEMP/practical-playwright" --no-save playwright@1.56.1^[[0m
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:28.6306351Z ^[[36;1m"$RUNNER_TEMP/practical-playwright/node_modules/.bin/playwright" install --with-deps chromium^[[0m
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:28.6327015Z shell: /usr/bin/bash -e {0}
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:28.6327296Z ##[endgroup]
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:30.2494243Z 
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:30.2495187Z added 2 packages in 2s
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:30.8239942Z Installing dependencies...
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:30.8308264Z Switching to root user to install dependencies...
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:30.9109085Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:30.9359972Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:31.0176544Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [617 kB]
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:31.0313194Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [682 kB]
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:46.1919454Z Ign:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:46.1920791Z Ign:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:46.1921574Z Ign:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:46.1922352Z Ign:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:47.1928213Z Ign:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:47.1979324Z Ign:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:47.1980481Z Ign:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:47.1981594Z Ign:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:47.9175056Z Hit:2 https://archive.ubuntu.com/ubuntu noble InRelease
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:48.0187911Z Get:3 https://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:48.3296531Z Ign:9 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:48.3298249Z Ign:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:48.3299448Z Ign:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:48.3300625Z Ign:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:48.3301803Z Ign:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:48.3302991Z Ign:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:48.3304086Z Ign:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:48.3738921Z Get:4 https://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:06:48.5307909Z Get:5 https://archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+practical-browser (chromium)	Fixed browser harness outside application dependencies	2026-10-31T23:15:37.8667201Z ##[error]The operation was canceled.
+practical-browser (chromium)	Run actions/upload-artifact@v4	﻿2026-10-31T23:15:37.8767442Z ##[group]Run actions/upload-artifact@v4
+practical-browser (chromium)	Run actions/upload-artifact@v4	2026-10-31T23:15:37.8767760Z with:
+practical-browser (chromium)	Run actions/upload-artifact@v4	2026-10-31T23:15:37.8768070Z   name: practical-chromium-a718067265a501f2f1d0ab8d813d1600429e66ba
+practical-browser (chromium)	Run actions/upload-artifact@v4	2026-10-31T23:15:37.8768698Z   path: practical-browser-evidence/
+practical-browser (chromium)	Run actions/upload-artifact@v4	practical-browser.log
+practical-browser (chromium)	Run actions/upload-artifact@v4	phase4a-browser-evidence/
+practical-browser (chromium)	Run actions/upload-artifact@v4	phase4a-browser.log
+practical-browser (chromium)	Run actions/upload-artifact@v4	
+practical-browser (chromium)	Run actions/upload-artifact@v4	2026-10-31T23:15:37.8769230Z   if-no-files-found: warn
+practical-browser (chromium)	Run actions/upload-artifact@v4	2026-10-31T23:15:37.8769474Z   compression-level: 6
+practical-browser (chromium)	Run actions/upload-artifact@v4	2026-10-31T23:15:37.8769696Z   overwrite: false
+practical-browser (chromium)	Run actions/upload-artifact@v4	2026-10-31T23:15:37.8769914Z   include-hidden-files: false
+practical-browser (chromium)	Run actions/upload-artifact@v4	2026-10-31T23:15:37.8770169Z ##[endgroup]
+practical-browser (chromium)	Run actions/upload-artifact@v4	2026-10-31T23:15:38.0508347Z (node:2990) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+practical-browser (chromium)	Run actions/upload-artifact@v4	2026-10-31T23:15:38.0509983Z (Use `node --trace-deprecation ...` to show where the warning was created)
+practical-browser (chromium)	Run actions/upload-artifact@v4	2026-10-31T23:15:38.0560619Z Multiple search paths detected. Calculating the least common ancestor of all paths
+practical-browser (chromium)	Run actions/upload-artifact@v4	2026-10-31T23:15:38.0569348Z The least common ancestor is /home/runner/work/Loading-museum/Loading-museum. This will be the root directory of the artifact
+practical-browser (chromium)	Run actions/upload-artifact@v4	2026-10-31T23:15:38.0602056Z ##[warning]No files were found with the provided path: practical-browser-evidence/
+practical-browser (chromium)	Run actions/upload-artifact@v4	practical-browser.log
+practical-browser (chromium)	Run actions/upload-artifact@v4	phase4a-browser-evidence/
+practical-browser (chromium)	Run actions/upload-artifact@v4	phase4a-browser.log. No artifacts will be uploaded.
+practical-browser (chromium)	Post Run actions/checkout@v4	﻿2026-10-31T23:15:38.0842942Z Post job cleanup.
+practical-browser (chromium)	Post Run actions/checkout@v4	2026-10-31T23:15:38.1802228Z [command]/usr/bin/git version
+practical-browser (chromium)	Post Run actions/checkout@v4	2026-10-31T23:15:38.1849463Z git version 2.56.0
+practical-browser (chromium)	Post Run actions/checkout@v4	2026-10-31T23:15:38.1893653Z Temporarily overriding HOME='/home/runner/work/_temp/792534ae-a31d-486c-b93e-b8bbd0f7645d' before making global git config changes
+practical-browser (chromium)	Post Run actions/checkout@v4	2026-10-31T23:15:38.1895530Z Adding repository directory to the temporary git global config as a safe directory
+practical-browser (chromium)	Post Run actions/checkout@v4	2026-10-31T23:15:38.1900564Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Loading-museum/Loading-museum
+practical-browser (chromium)	Post Run actions/checkout@v4	2026-10-31T23:15:38.1944500Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+practical-browser (chromium)	Post Run actions/checkout@v4	2026-10-31T23:15:38.1984726Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+practical-browser (chromium)	Post Run actions/checkout@v4	2026-10-31T23:15:38.2362442Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+practical-browser (chromium)	Post Run actions/checkout@v4	2026-10-31T23:15:38.2397845Z http.https://github.com/.extraheader
+practical-browser (chromium)	Post Run actions/checkout@v4	2026-10-31T23:15:38.2411683Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+practical-browser (chromium)	Post Run actions/checkout@v4	2026-10-31T23:15:38.2415725Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+practical-browser (chromium)	Post Run actions/checkout@v4	2026-10-31T23:15:38.3160872Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+practical-browser (chromium)	Post Run actions/checkout@v4	2026-10-31T23:15:38.3163450Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+practical-browser (chromium)	Complete job	﻿2026-10-31T23:15:38.3261802Z Cleaning up orphan processes
+practical-browser (chromium)	Complete job	2026-10-31T23:15:38.3649546Z Terminate orphan process: pid (2530) (node)
+practical-browser (chromium)	Complete job	2026-10-31T23:15:38.3854946Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

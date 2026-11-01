@@ -1,0 +1,2166 @@
+{
+  "created_at": "2026-10-31T23:36:40.353Z",
+  "timezone": "Asia/Tokyo",
+  "baseline": "2de159a9a7534c8af32c8ebcda6c247947b9057c",
+  "evidence": [
+    {
+      "path": "docs/phase4a-evidence/README.md",
+      "size": 3711,
+      "sha256": "c7964be51a6ee8e8c1d3d3988de44859164b8d75f4fe3d1a4f529d4db6a2defc"
+    },
+    {
+      "path": "docs/phase4a-evidence/accordion-frame-observed.log",
+      "size": 97,
+      "sha256": "b1013e72a77b7aa881c4f0fc06c8f864177e5d842aaf68de5fab12e0fc2bd402"
+    },
+    {
+      "path": "docs/phase4a-evidence/accordion-frame-observed/results.json",
+      "size": 17179,
+      "sha256": "96e5f5f3fc22e3f26545939541901220c6298bfc807e46f188919b9c61f00e87"
+    },
+    {
+      "path": "docs/phase4a-evidence/accordion-frame-observed/webkit-1280-animated-accordion-after.png",
+      "size": 57410,
+      "sha256": "4d9d5181662ecf2261f5b0295034e703e59dba7c8de6e08c3b0bd557c1972014"
+    },
+    {
+      "path": "docs/phase4a-evidence/accordion-frame-observed/webkit-1280-animated-accordion-before.png",
+      "size": 37657,
+      "sha256": "001aeef27ca06578faec9c74cdcc3b07cebc64cee37b3d76f6d37c3edaa6a2d1"
+    },
+    {
+      "path": "docs/phase4a-evidence/accordion-frame-observed/webkit-765-animated-accordion-after.png",
+      "size": 54820,
+      "sha256": "0bd3b2c5e1021b530b7e5140a27887206d38f17dc53e76b82d6a34d6aa778cb1"
+    },
+    {
+      "path": "docs/phase4a-evidence/accordion-frame-observed/webkit-765-animated-accordion-before.png",
+      "size": 36164,
+      "sha256": "d3ecc106063ffa6faf952e2b70164bc7f79f433c9b7e94ad57b40f44914992d3"
+    },
+    {
+      "path": "docs/phase4a-evidence/audit.json",
+      "size": 46901,
+      "sha256": "18db116efda87969d4547fdac3ddbf3c934af95d90ce37607184bd3e50d78e94"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final.log",
+      "size": 1290,
+      "sha256": "89337db9fed74e7edfc7bda277d70816b63f9ff5a41eef91803a452a41886173"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-1280-animated-accordion-after.png",
+      "size": 24789,
+      "sha256": "d9294dba2b8635a902cf6098844e2aabb9d401c94b5b55595d466a2931692e8b"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-1280-animated-accordion-before.png",
+      "size": 22875,
+      "sha256": "26a0f04430fc55dc0503ade492c869beee92bb873b6f312583029e94a87e038d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-1280-inline-validation-after.png",
+      "size": 15094,
+      "sha256": "49217b95c869d1f0c2956795e3b00c1f7e065dbe2235bf859bd3413bae5ea925"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-1280-inline-validation-before.png",
+      "size": 12225,
+      "sha256": "cd9bc6fa02c5a2f4de2021614d426e39f5e3c758aab0564adf29bc73b47c31df"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-1280-search-suggestions-after.png",
+      "size": 15125,
+      "sha256": "4af0ee4640f118a59567ee7581d7f4e0a5b1ad76f25ec8daeab4706679f4ce8a"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-1280-search-suggestions-before.png",
+      "size": 10832,
+      "sha256": "4887d87fd0104cf895d4f1bba201376d6b0ad3b62505ce86f177017a45ac7f1c"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-1280-sliding-tabs-after.png",
+      "size": 11829,
+      "sha256": "2984bc8581333dcdf25370a77ffb891cbdf36863ec3fce17631385cb2d65faf4"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-1280-sliding-tabs-before.png",
+      "size": 10561,
+      "sha256": "9a25c06dcdf9318d17f92710c9b0ba096c7bc9d23722d400a40543a8c93e8db1"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-1280-toast-stack-after.png",
+      "size": 30830,
+      "sha256": "485fc49013dffc0a5936aa3f35945f7f364735ef67b11d9ee66702434502bc77"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-1280-toast-stack-before.png",
+      "size": 11730,
+      "sha256": "5af2263d66b9df523a66e4f9ff538216d12ce04f5045238a45ef1c616c6c8146"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-1280-undo-snackbar-after.png",
+      "size": 16304,
+      "sha256": "d75dcd7365c4b726aac5a16916c02f550280aff36270e6d7e069ccab7d30c862"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-1280-undo-snackbar-before.png",
+      "size": 20057,
+      "sha256": "9e89f2d701075bef4f884f337312ed91d90704e8e9c9c6b05589c1f8094621be"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-375-animated-accordion-after.png",
+      "size": 24368,
+      "sha256": "26bee9a57deac54d26d2c047611c413e25468f9917bbdd3c7b0a4d896c1bbb84"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-375-animated-accordion-before.png",
+      "size": 21603,
+      "sha256": "34fcc5f4a8bd72442e380485d42e4fe21d09afd48f32a13f7c296eb422b23816"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-375-inline-validation-after.png",
+      "size": 14151,
+      "sha256": "adaf880304fd0045d433a6692aff6a574a8498aac86d76b830d373dcc55b494e"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-375-inline-validation-before.png",
+      "size": 11423,
+      "sha256": "488fb7b2b62ecad406f335c6f5f424bb91ab2ac61d618aeb09b463945c0bb98f"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-375-search-suggestions-after.png",
+      "size": 14781,
+      "sha256": "e5bbe11a177b7a41eb0c490dbd6c3755633f07eb95d26cdf12888dfac9e3d613"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-375-search-suggestions-before.png",
+      "size": 10654,
+      "sha256": "b81d684754fa41ce1ffc9d6c22e6dd4b9243c8f1820c4b56f34657867772bb49"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-375-sliding-tabs-after.png",
+      "size": 11156,
+      "sha256": "b409488175a614a4230b48800aafb1e9e6b931289bec461922b3a864b6d62b83"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-375-sliding-tabs-before.png",
+      "size": 9661,
+      "sha256": "0fc5474ea1fbe883455f83bddee09f5f624a3326714b2bea50fc2dbc769a0e9a"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-375-toast-stack-after.png",
+      "size": 27839,
+      "sha256": "4121ba2b7c2b2a1347621d46603167ae7d51e7efa5eb9b14c0f2fa292a20b31c"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-375-toast-stack-before.png",
+      "size": 11285,
+      "sha256": "a24baf39584f9f2661961507bbd02ff5617cddd8f9ce74d677036dcb858ad67e"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-375-undo-snackbar-after.png",
+      "size": 14828,
+      "sha256": "2c0ad885fcc80aa5f208f9ef38d444ad642686e9f20ec110fa6bb5a6ffe8603e"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-375-undo-snackbar-before.png",
+      "size": 18374,
+      "sha256": "a7f8537abb74c9b76ede178597d84c981b015e60e94c64a2b0c54e2e0c88e205"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-390-animated-accordion-after.png",
+      "size": 24377,
+      "sha256": "53bb1749a3cd09b85e23fe2092f520a8168fe522c79a4feefcc25b74750520a6"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-390-animated-accordion-before.png",
+      "size": 21614,
+      "sha256": "deeec47bd7c8ab62da2ffb6679220ce436dbcb3339278fd9e04c84d008aa1376"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-390-inline-validation-after.png",
+      "size": 14290,
+      "sha256": "37a49a41804f8f4c13348d9f047cbc56b0a5d2cbfd799e02ee7ceae56543176d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-390-inline-validation-before.png",
+      "size": 11480,
+      "sha256": "75329209df06ff2ad5bba6f3cbb054ced65ebe49cc3aab9b19afb552d5391123"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-390-search-suggestions-after.png",
+      "size": 14650,
+      "sha256": "9ca74785e3a813ced77beba336806b9ac7f497c9cb6b0545669d740eb1ff6a31"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-390-search-suggestions-before.png",
+      "size": 10557,
+      "sha256": "66819b75778fa83f61438d510d46c18d7c5da0d984c422911ea5bdce59f0e293"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-390-sliding-tabs-after.png",
+      "size": 11141,
+      "sha256": "cde707546ab09867ddc006c7d0b5f63305f2767c0e5accc41309d573259ad16f"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-390-sliding-tabs-before.png",
+      "size": 9671,
+      "sha256": "19084a3a53ab573e13374b3cbe09ebee73d676821bdb000c9279c912cc0f7564"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-390-toast-stack-after.png",
+      "size": 28068,
+      "sha256": "5d058a9c2e3815a9ab32b1d234e286ee72252deb56c15442081b919012f1d2d3"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-390-toast-stack-before.png",
+      "size": 11394,
+      "sha256": "755e4a48b301b404c830bd428e542d414c082eda4830f5a864de3195a8ec2c3d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-390-undo-snackbar-after.png",
+      "size": 15312,
+      "sha256": "254da93e17cdeafaed60bd5c3d71b9aa299da8c24b02704793ef46f89118c668"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-390-undo-snackbar-before.png",
+      "size": 18158,
+      "sha256": "0c583bc7b511231a38f51a0736b70daf7b1515e8d8673967d281a18e48a8ad7b"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-765-animated-accordion-after.png",
+      "size": 24263,
+      "sha256": "4f4066b6b50021465d45ab703f67990fb1ad9781a5590b7b8bb21b73a8463f0b"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-765-animated-accordion-before.png",
+      "size": 22568,
+      "sha256": "b2c6b2b505fb7704ac023dd86bea0e12e8ebcfb6067d5da00a8937bfb4d72882"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-765-inline-validation-after.png",
+      "size": 14826,
+      "sha256": "120986fdf136110d2e1c131349fd4100c80a4d351e59c48d0050298544593f49"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-765-inline-validation-before.png",
+      "size": 12045,
+      "sha256": "59688f8c7fe4dd4bf0582cbf431a33a919afe9db4b4f8afcfc3f22f540d56648"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-765-search-suggestions-after.png",
+      "size": 15141,
+      "sha256": "ea1c31e71e780e06938fdf34286235ecb59ca0e9e8256f5eac1c773f3e8be390"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-765-search-suggestions-before.png",
+      "size": 10923,
+      "sha256": "3c919c1450bedc6d003f2fcd7ab75bc73dbdbe6cc46806325c728d4c191e40fd"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-765-sliding-tabs-after.png",
+      "size": 11659,
+      "sha256": "4fe65540b559246d68de1d4f5452c92cd23e4754d5a4f84eaf0dd37c401ceb0e"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-765-sliding-tabs-before.png",
+      "size": 10130,
+      "sha256": "f11b77aa087a4de92f9d40b4bf28b2f0299368f809a67d2530f350c9baae14ff"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-765-toast-stack-after.png",
+      "size": 29583,
+      "sha256": "006520fd68f54474c3b1bb496c911347ea9e94c203cb4f819ac7b1c6148659c2"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-765-toast-stack-before.png",
+      "size": 11508,
+      "sha256": "3f5d9a4b8eeb9d9187b46705b815dcb29a89c379e93293e7a7d4d471400a4e17"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-765-undo-snackbar-after.png",
+      "size": 16032,
+      "sha256": "2cacbc918459a89d0d2d29629fa862bacc0b0efbfb1a1a6bfe82b1a7c345f5ef"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/chromium-765-undo-snackbar-before.png",
+      "size": 19244,
+      "sha256": "40b9c5fe38e047dcbd06cca2c690a444d72822ae3daac07b20c342c7fc5093cf"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/failure.png",
+      "size": 69336,
+      "sha256": "d9269d0fe5350206709c524f3b6eb783cc8512c782970e9b79fbd662e94456e6"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/results.json",
+      "size": 38089,
+      "sha256": "6c6203287d54d8f787aaed1cd165d8f6b5212775c4b07f1cd4fc120ebb35ff45"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/webkit-375-animated-accordion-after.png",
+      "size": 42755,
+      "sha256": "8ef875f9a5f00da2a2fda767ea1b65083df09f7434968e3989c56f61411365ec"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/webkit-375-animated-accordion-before.png",
+      "size": 35829,
+      "sha256": "81f50d8d6cae9e20e43421cf8181a6d4293dd2fa2111c22538ff794b804b4c40"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/webkit-375-inline-validation-after.png",
+      "size": 27931,
+      "sha256": "8ba355548a0292c4f10825278860158532715bf952e59cc08fdcfe440fb13d56"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/webkit-375-inline-validation-before.png",
+      "size": 24524,
+      "sha256": "4ab765b3fc7dad539269ebbc843f068055429f4bd7e05979d97bb626d54f796c"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/webkit-375-search-suggestions-after.png",
+      "size": 24186,
+      "sha256": "ff9d90ced54d836b8ba18e4120d0ef2e8359d29352f0fcde87b2125a807e7e56"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/webkit-375-search-suggestions-before.png",
+      "size": 21637,
+      "sha256": "360fdbb75c8faf16d39cd31032b3adc7876d9c4796702de1f5274322dd7a0789"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/webkit-375-sliding-tabs-after.png",
+      "size": 25401,
+      "sha256": "7bdcd94e47b7a7c7c3b5eff0633b75190097f5035edbda2703113c72dc04f772"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/webkit-375-sliding-tabs-before.png",
+      "size": 23724,
+      "sha256": "1e8932d5c041bdc7c2ba4cb077b5ac1c73c3bac5bda7c678ae56af1bf66c7d59"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/webkit-375-toast-stack-after.png",
+      "size": 32592,
+      "sha256": "9da6385d34d563e1697b99b20e35c30a5320ca87dc114af8f53fd3611e009f93"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/webkit-375-toast-stack-before.png",
+      "size": 25188,
+      "sha256": "0ab69763f2345ac5402f2dd36779404608ce8cae90ae7fd4d5e63c281760058f"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/webkit-375-undo-snackbar-after.png",
+      "size": 32686,
+      "sha256": "16d7e786a92b9dcf9cf7a00d1c9cbeabf83885e855bc34f7ee19e01d218e1e94"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-final/webkit-375-undo-snackbar-before.png",
+      "size": 38556,
+      "sha256": "7fdd453ccaf7891ff3813a6720d0971c47ca4ec3b24e75312effe4be5568c7c7"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full.log",
+      "size": 1229,
+      "sha256": "10e0c5828aa8e1bf36532ca8bc0ea69663596ef1956ce81ca9318b18c87b2eb7"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-1280-animated-accordion-after.png",
+      "size": 24789,
+      "sha256": "d9294dba2b8635a902cf6098844e2aabb9d401c94b5b55595d466a2931692e8b"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-1280-animated-accordion-before.png",
+      "size": 22875,
+      "sha256": "26a0f04430fc55dc0503ade492c869beee92bb873b6f312583029e94a87e038d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-1280-inline-validation-after.png",
+      "size": 15094,
+      "sha256": "49217b95c869d1f0c2956795e3b00c1f7e065dbe2235bf859bd3413bae5ea925"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-1280-inline-validation-before.png",
+      "size": 12225,
+      "sha256": "cd9bc6fa02c5a2f4de2021614d426e39f5e3c758aab0564adf29bc73b47c31df"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-1280-search-suggestions-after.png",
+      "size": 15125,
+      "sha256": "4af0ee4640f118a59567ee7581d7f4e0a5b1ad76f25ec8daeab4706679f4ce8a"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-1280-search-suggestions-before.png",
+      "size": 10832,
+      "sha256": "4887d87fd0104cf895d4f1bba201376d6b0ad3b62505ce86f177017a45ac7f1c"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-1280-sliding-tabs-after.png",
+      "size": 11834,
+      "sha256": "577064c13710bc57d5b98e26df320b30e9fb98ddfc1c55463ebcae44c9051c4b"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-1280-sliding-tabs-before.png",
+      "size": 10561,
+      "sha256": "9a25c06dcdf9318d17f92710c9b0ba096c7bc9d23722d400a40543a8c93e8db1"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-1280-toast-stack-after.png",
+      "size": 30795,
+      "sha256": "3a16a61196b26a9af06507d8e11e4a805ada3a6cf445232f3a06af802fd5efc2"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-1280-toast-stack-before.png",
+      "size": 11730,
+      "sha256": "5af2263d66b9df523a66e4f9ff538216d12ce04f5045238a45ef1c616c6c8146"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-1280-undo-snackbar-after.png",
+      "size": 15979,
+      "sha256": "2293838df86abf40302cbe76ffa2711bdbb40c658e0311a5916b97dd9cf97874"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-1280-undo-snackbar-before.png",
+      "size": 20057,
+      "sha256": "9e89f2d701075bef4f884f337312ed91d90704e8e9c9c6b05589c1f8094621be"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-375-animated-accordion-after.png",
+      "size": 24368,
+      "sha256": "26bee9a57deac54d26d2c047611c413e25468f9917bbdd3c7b0a4d896c1bbb84"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-375-animated-accordion-before.png",
+      "size": 21603,
+      "sha256": "34fcc5f4a8bd72442e380485d42e4fe21d09afd48f32a13f7c296eb422b23816"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-375-inline-validation-after.png",
+      "size": 14151,
+      "sha256": "adaf880304fd0045d433a6692aff6a574a8498aac86d76b830d373dcc55b494e"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-375-inline-validation-before.png",
+      "size": 11423,
+      "sha256": "488fb7b2b62ecad406f335c6f5f424bb91ab2ac61d618aeb09b463945c0bb98f"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-375-search-suggestions-after.png",
+      "size": 14781,
+      "sha256": "e5bbe11a177b7a41eb0c490dbd6c3755633f07eb95d26cdf12888dfac9e3d613"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-375-search-suggestions-before.png",
+      "size": 10654,
+      "sha256": "b81d684754fa41ce1ffc9d6c22e6dd4b9243c8f1820c4b56f34657867772bb49"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-375-sliding-tabs-after.png",
+      "size": 11154,
+      "sha256": "e96f3da77e431b2d1813175d6878b6215b9b77ffd12276a9e4b93b31f5eaa91b"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-375-sliding-tabs-before.png",
+      "size": 9661,
+      "sha256": "0fc5474ea1fbe883455f83bddee09f5f624a3326714b2bea50fc2dbc769a0e9a"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-375-toast-stack-after.png",
+      "size": 27906,
+      "sha256": "b72ed71d4fdfe6e781f4ad0546200f6d9a5d23ce2b8f1f577a6548fa3ffb264b"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-375-toast-stack-before.png",
+      "size": 11285,
+      "sha256": "a24baf39584f9f2661961507bbd02ff5617cddd8f9ce74d677036dcb858ad67e"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-375-undo-snackbar-after.png",
+      "size": 15377,
+      "sha256": "a25c355c6aa5175c7856497e59fa2892aac9e30eacdade74c2bac456b3f691d1"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-375-undo-snackbar-before.png",
+      "size": 18374,
+      "sha256": "a7f8537abb74c9b76ede178597d84c981b015e60e94c64a2b0c54e2e0c88e205"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-390-animated-accordion-after.png",
+      "size": 24339,
+      "sha256": "177a7c1b7b37528ade0106611ca298381f48fec0b343bcf8dc0d182d75ae3f4e"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-390-animated-accordion-before.png",
+      "size": 21750,
+      "sha256": "7e66b02fe0dc85facc32ae2823a615e15cb41ca3cf34145b82beba14a5862504"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-390-inline-validation-after.png",
+      "size": 14290,
+      "sha256": "37a49a41804f8f4c13348d9f047cbc56b0a5d2cbfd799e02ee7ceae56543176d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-390-inline-validation-before.png",
+      "size": 11480,
+      "sha256": "75329209df06ff2ad5bba6f3cbb054ced65ebe49cc3aab9b19afb552d5391123"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-390-search-suggestions-after.png",
+      "size": 14650,
+      "sha256": "9ca74785e3a813ced77beba336806b9ac7f497c9cb6b0545669d740eb1ff6a31"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-390-search-suggestions-before.png",
+      "size": 10557,
+      "sha256": "66819b75778fa83f61438d510d46c18d7c5da0d984c422911ea5bdce59f0e293"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-390-sliding-tabs-after.png",
+      "size": 11104,
+      "sha256": "9fdae6a4a5513f8e8dcb59ce2dfea616f6a81224e077c758b262e52264572728"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-390-sliding-tabs-before.png",
+      "size": 9634,
+      "sha256": "5cae86e702aed130cd80495e1c784a3ca246331b37395c838293fd5df6759096"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-390-toast-stack-after.png",
+      "size": 28037,
+      "sha256": "6cae11bbff503baf543e4a21bb7273722c8ad4916441562ace6df62ae5958207"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-390-toast-stack-before.png",
+      "size": 11394,
+      "sha256": "755e4a48b301b404c830bd428e542d414c082eda4830f5a864de3195a8ec2c3d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-390-undo-snackbar-after.png",
+      "size": 14759,
+      "sha256": "38a19472deb99f8cb71e8ea4e64de42307bf973feb33beb567b3cb2edfdf4d48"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-390-undo-snackbar-before.png",
+      "size": 18158,
+      "sha256": "0c583bc7b511231a38f51a0736b70daf7b1515e8d8673967d281a18e48a8ad7b"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-765-animated-accordion-after.png",
+      "size": 24263,
+      "sha256": "4f4066b6b50021465d45ab703f67990fb1ad9781a5590b7b8bb21b73a8463f0b"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-765-animated-accordion-before.png",
+      "size": 22568,
+      "sha256": "b2c6b2b505fb7704ac023dd86bea0e12e8ebcfb6067d5da00a8937bfb4d72882"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-765-inline-validation-after.png",
+      "size": 14826,
+      "sha256": "120986fdf136110d2e1c131349fd4100c80a4d351e59c48d0050298544593f49"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-765-inline-validation-before.png",
+      "size": 12045,
+      "sha256": "59688f8c7fe4dd4bf0582cbf431a33a919afe9db4b4f8afcfc3f22f540d56648"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-765-search-suggestions-after.png",
+      "size": 15141,
+      "sha256": "ea1c31e71e780e06938fdf34286235ecb59ca0e9e8256f5eac1c773f3e8be390"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-765-search-suggestions-before.png",
+      "size": 10923,
+      "sha256": "3c919c1450bedc6d003f2fcd7ab75bc73dbdbe6cc46806325c728d4c191e40fd"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-765-sliding-tabs-after.png",
+      "size": 11698,
+      "sha256": "ac1018dd5d3452a29598541e3a9f3ef57a6e872142100da131d6f6d5230b870d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-765-sliding-tabs-before.png",
+      "size": 10176,
+      "sha256": "c91a022c39734f0f22369156fff607e57ed14d4e57050aeaea132fdb5bd77201"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-765-toast-stack-after.png",
+      "size": 29581,
+      "sha256": "b6ddca96b7a4709ab2244374889efba79dd0ba851957acdc5bf9ddd220077b8d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-765-toast-stack-before.png",
+      "size": 11508,
+      "sha256": "3f5d9a4b8eeb9d9187b46705b815dcb29a89c379e93293e7a7d4d471400a4e17"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-765-undo-snackbar-after.png",
+      "size": 16032,
+      "sha256": "2cacbc918459a89d0d2d29629fa862bacc0b0efbfb1a1a6bfe82b1a7c345f5ef"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/chromium-765-undo-snackbar-before.png",
+      "size": 19244,
+      "sha256": "40b9c5fe38e047dcbd06cca2c690a444d72822ae3daac07b20c342c7fc5093cf"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/failure.png",
+      "size": 99672,
+      "sha256": "82192d2f49ec39635d1133ebfc13ca0f805af4c64958cb7cee095d77224ef338"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/results.json",
+      "size": 34197,
+      "sha256": "7690d6f83903f5bd674a60f64747cc351fd5497957709cb0a5f8b9ec9faaa524"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/webkit-375-inline-validation-after.png",
+      "size": 27931,
+      "sha256": "8ba355548a0292c4f10825278860158532715bf952e59cc08fdcfe440fb13d56"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/webkit-375-inline-validation-before.png",
+      "size": 24524,
+      "sha256": "4ab765b3fc7dad539269ebbc843f068055429f4bd7e05979d97bb626d54f796c"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/webkit-375-toast-stack-after.png",
+      "size": 32585,
+      "sha256": "7de5f95e93544d1ed15e19cc27b6eb7f431a586f2bf9ef01bbfa7c52c326ea85"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/webkit-375-toast-stack-before.png",
+      "size": 25188,
+      "sha256": "0ab69763f2345ac5402f2dd36779404608ce8cae90ae7fd4d5e63c281760058f"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/webkit-375-undo-snackbar-after.png",
+      "size": 32686,
+      "sha256": "16d7e786a92b9dcf9cf7a00d1c9cbeabf83885e855bc34f7ee19e01d218e1e94"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-full/webkit-375-undo-snackbar-before.png",
+      "size": 38556,
+      "sha256": "7fdd453ccaf7891ff3813a6720d0971c47ca4ec3b24e75312effe4be5568c7c7"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-initial.log",
+      "size": 444,
+      "sha256": "a69b498884eb78bc21714d9684d9276b2e332c4373648dfb9b3eb923450f20aa"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-initial/chromium-390-inline-validation-after.png",
+      "size": 14290,
+      "sha256": "37a49a41804f8f4c13348d9f047cbc56b0a5d2cbfd799e02ee7ceae56543176d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-initial/chromium-390-inline-validation-before.png",
+      "size": 11480,
+      "sha256": "75329209df06ff2ad5bba6f3cbb054ced65ebe49cc3aab9b19afb552d5391123"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-initial/chromium-390-toast-stack-after.png",
+      "size": 28037,
+      "sha256": "6d1738e57cf4ff589c54be53e9f4f4bb467d73d4c4419fd329e9ad7f30fc3da0"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-initial/chromium-390-toast-stack-before.png",
+      "size": 11394,
+      "sha256": "755e4a48b301b404c830bd428e542d414c082eda4830f5a864de3195a8ec2c3d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-initial/chromium-390-undo-snackbar-after.png",
+      "size": 14759,
+      "sha256": "38a19472deb99f8cb71e8ea4e64de42307bf973feb33beb567b3cb2edfdf4d48"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-initial/chromium-390-undo-snackbar-before.png",
+      "size": 18158,
+      "sha256": "0c583bc7b511231a38f51a0736b70daf7b1515e8d8673967d281a18e48a8ad7b"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-initial/failure.png",
+      "size": 57761,
+      "sha256": "d3ab9e10f9f22a26866ce07679192cc55178150f1fc2f766b445b747e6d41e29"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-initial/results.json",
+      "size": 5568,
+      "sha256": "e4be5fee350750a9ab0ce0a8235909644369bc0b08a426af216a7677e7782135"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-next.log",
+      "size": 236,
+      "sha256": "12a74b7f03efb04f124e17f098bb3fb700f3d33243398692120ffa9f25d5d06a"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-next/chromium-390-animated-accordion-after.png",
+      "size": 24339,
+      "sha256": "177a7c1b7b37528ade0106611ca298381f48fec0b343bcf8dc0d182d75ae3f4e"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-next/chromium-390-animated-accordion-before.png",
+      "size": 21750,
+      "sha256": "7e66b02fe0dc85facc32ae2823a615e15cb41ca3cf34145b82beba14a5862504"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-next/chromium-390-inline-validation-after.png",
+      "size": 14290,
+      "sha256": "37a49a41804f8f4c13348d9f047cbc56b0a5d2cbfd799e02ee7ceae56543176d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-next/chromium-390-inline-validation-before.png",
+      "size": 11480,
+      "sha256": "75329209df06ff2ad5bba6f3cbb054ced65ebe49cc3aab9b19afb552d5391123"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-next/chromium-390-search-suggestions-after.png",
+      "size": 14650,
+      "sha256": "9ca74785e3a813ced77beba336806b9ac7f497c9cb6b0545669d740eb1ff6a31"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-next/chromium-390-search-suggestions-before.png",
+      "size": 10557,
+      "sha256": "66819b75778fa83f61438d510d46c18d7c5da0d984c422911ea5bdce59f0e293"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-next/chromium-390-sliding-tabs-after.png",
+      "size": 11104,
+      "sha256": "9fdae6a4a5513f8e8dcb59ce2dfea616f6a81224e077c758b262e52264572728"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-next/chromium-390-sliding-tabs-before.png",
+      "size": 9634,
+      "sha256": "5cae86e702aed130cd80495e1c784a3ca246331b37395c838293fd5df6759096"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-next/chromium-390-toast-stack-after.png",
+      "size": 28065,
+      "sha256": "705941ba7c3fbc9851b8b697d94365a4ba056353f23642b09590b02229fde0d4"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-next/chromium-390-toast-stack-before.png",
+      "size": 11394,
+      "sha256": "755e4a48b301b404c830bd428e542d414c082eda4830f5a864de3195a8ec2c3d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-next/chromium-390-undo-snackbar-after.png",
+      "size": 14759,
+      "sha256": "38a19472deb99f8cb71e8ea4e64de42307bf973feb33beb567b3cb2edfdf4d48"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-next/chromium-390-undo-snackbar-before.png",
+      "size": 18158,
+      "sha256": "0c583bc7b511231a38f51a0736b70daf7b1515e8d8673967d281a18e48a8ad7b"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-next/results.json",
+      "size": 7461,
+      "sha256": "33736ff0caee03c9a2daaf0314e29d7ada2ec2109f5ccb8515855dcb8c9fab78"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission.log",
+      "size": 1133,
+      "sha256": "3392c35f3ce214c49f94afb8b311eaab85957376decd7d8e7ad595100c046c25"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-1280-animated-accordion-after.png",
+      "size": 24789,
+      "sha256": "d9294dba2b8635a902cf6098844e2aabb9d401c94b5b55595d466a2931692e8b"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-1280-animated-accordion-before.png",
+      "size": 22875,
+      "sha256": "26a0f04430fc55dc0503ade492c869beee92bb873b6f312583029e94a87e038d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-1280-inline-validation-after.png",
+      "size": 15094,
+      "sha256": "49217b95c869d1f0c2956795e3b00c1f7e065dbe2235bf859bd3413bae5ea925"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-1280-inline-validation-before.png",
+      "size": 12225,
+      "sha256": "cd9bc6fa02c5a2f4de2021614d426e39f5e3c758aab0564adf29bc73b47c31df"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-1280-search-suggestions-after.png",
+      "size": 15125,
+      "sha256": "4af0ee4640f118a59567ee7581d7f4e0a5b1ad76f25ec8daeab4706679f4ce8a"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-1280-search-suggestions-before.png",
+      "size": 10832,
+      "sha256": "4887d87fd0104cf895d4f1bba201376d6b0ad3b62505ce86f177017a45ac7f1c"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-1280-sliding-tabs-after.png",
+      "size": 11827,
+      "sha256": "b0323dd95e26eddc0a819b6ff2034999f453a8266e00a8a96e3e53090ad15bcb"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-1280-sliding-tabs-before.png",
+      "size": 10561,
+      "sha256": "9a25c06dcdf9318d17f92710c9b0ba096c7bc9d23722d400a40543a8c93e8db1"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-1280-toast-stack-after.png",
+      "size": 30769,
+      "sha256": "4f495e784de7de8a1da0ecfd7c7c2a73d87decad125794c6df69238574b80519"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-1280-toast-stack-before.png",
+      "size": 11730,
+      "sha256": "5af2263d66b9df523a66e4f9ff538216d12ce04f5045238a45ef1c616c6c8146"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-1280-undo-snackbar-after.png",
+      "size": 16436,
+      "sha256": "a49244f382e48009ca1145345a4491bdb57f6f00404315cee0f9dde558674691"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-1280-undo-snackbar-before.png",
+      "size": 20069,
+      "sha256": "ea302415b5c98fedb10315f7d7bd098ec0ce3945e62d73970637f0f162148fa0"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-375-animated-accordion-after.png",
+      "size": 24368,
+      "sha256": "26bee9a57deac54d26d2c047611c413e25468f9917bbdd3c7b0a4d896c1bbb84"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-375-animated-accordion-before.png",
+      "size": 21603,
+      "sha256": "34fcc5f4a8bd72442e380485d42e4fe21d09afd48f32a13f7c296eb422b23816"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-375-inline-validation-after.png",
+      "size": 14151,
+      "sha256": "adaf880304fd0045d433a6692aff6a574a8498aac86d76b830d373dcc55b494e"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-375-inline-validation-before.png",
+      "size": 11423,
+      "sha256": "488fb7b2b62ecad406f335c6f5f424bb91ab2ac61d618aeb09b463945c0bb98f"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-375-search-suggestions-after.png",
+      "size": 14781,
+      "sha256": "e5bbe11a177b7a41eb0c490dbd6c3755633f07eb95d26cdf12888dfac9e3d613"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-375-search-suggestions-before.png",
+      "size": 10654,
+      "sha256": "b81d684754fa41ce1ffc9d6c22e6dd4b9243c8f1820c4b56f34657867772bb49"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-375-sliding-tabs-after.png",
+      "size": 11156,
+      "sha256": "c5c82b4e1c6f5113e5d29c253998c5eaaaa93c81e4ff22a67e9a92d2fe69b12e"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-375-sliding-tabs-before.png",
+      "size": 9661,
+      "sha256": "0fc5474ea1fbe883455f83bddee09f5f624a3326714b2bea50fc2dbc769a0e9a"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-375-toast-stack-after.png",
+      "size": 27950,
+      "sha256": "66943234f75948bdc76a8bb6f69949fa9e47e4c7c6270bf8e2aab108b711c4be"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-375-toast-stack-before.png",
+      "size": 11285,
+      "sha256": "a24baf39584f9f2661961507bbd02ff5617cddd8f9ce74d677036dcb858ad67e"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-375-undo-snackbar-after.png",
+      "size": 14828,
+      "sha256": "2c0ad885fcc80aa5f208f9ef38d444ad642686e9f20ec110fa6bb5a6ffe8603e"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-375-undo-snackbar-before.png",
+      "size": 18378,
+      "sha256": "4d2213f69c749155b44548f4dc43981cae0103c5558b8757b096a5a647db3c54"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-390-animated-accordion-after.png",
+      "size": 24339,
+      "sha256": "177a7c1b7b37528ade0106611ca298381f48fec0b343bcf8dc0d182d75ae3f4e"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-390-animated-accordion-before.png",
+      "size": 21750,
+      "sha256": "7e66b02fe0dc85facc32ae2823a615e15cb41ca3cf34145b82beba14a5862504"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-390-inline-validation-after.png",
+      "size": 14290,
+      "sha256": "37a49a41804f8f4c13348d9f047cbc56b0a5d2cbfd799e02ee7ceae56543176d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-390-inline-validation-before.png",
+      "size": 11480,
+      "sha256": "75329209df06ff2ad5bba6f3cbb054ced65ebe49cc3aab9b19afb552d5391123"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-390-search-suggestions-after.png",
+      "size": 14650,
+      "sha256": "9ca74785e3a813ced77beba336806b9ac7f497c9cb6b0545669d740eb1ff6a31"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-390-search-suggestions-before.png",
+      "size": 10557,
+      "sha256": "66819b75778fa83f61438d510d46c18d7c5da0d984c422911ea5bdce59f0e293"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-390-sliding-tabs-after.png",
+      "size": 11104,
+      "sha256": "9fdae6a4a5513f8e8dcb59ce2dfea616f6a81224e077c758b262e52264572728"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-390-sliding-tabs-before.png",
+      "size": 9634,
+      "sha256": "5cae86e702aed130cd80495e1c784a3ca246331b37395c838293fd5df6759096"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-390-toast-stack-after.png",
+      "size": 28138,
+      "sha256": "a23f0792efa2c1d4be16442aa0f117348040bee0fefd06bd6bfd953f4f953dc9"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-390-toast-stack-before.png",
+      "size": 11394,
+      "sha256": "755e4a48b301b404c830bd428e542d414c082eda4830f5a864de3195a8ec2c3d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-390-undo-snackbar-after.png",
+      "size": 15312,
+      "sha256": "254da93e17cdeafaed60bd5c3d71b9aa299da8c24b02704793ef46f89118c668"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-390-undo-snackbar-before.png",
+      "size": 18188,
+      "sha256": "2c7388a32ec1d4fed06f490cb54bca0008ae2f67924c0dcbaee51704c2184045"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-765-animated-accordion-after.png",
+      "size": 24263,
+      "sha256": "4f4066b6b50021465d45ab703f67990fb1ad9781a5590b7b8bb21b73a8463f0b"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-765-animated-accordion-before.png",
+      "size": 22568,
+      "sha256": "b2c6b2b505fb7704ac023dd86bea0e12e8ebcfb6067d5da00a8937bfb4d72882"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-765-inline-validation-after.png",
+      "size": 14826,
+      "sha256": "120986fdf136110d2e1c131349fd4100c80a4d351e59c48d0050298544593f49"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-765-inline-validation-before.png",
+      "size": 12045,
+      "sha256": "59688f8c7fe4dd4bf0582cbf431a33a919afe9db4b4f8afcfc3f22f540d56648"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-765-search-suggestions-after.png",
+      "size": 15141,
+      "sha256": "ea1c31e71e780e06938fdf34286235ecb59ca0e9e8256f5eac1c773f3e8be390"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-765-search-suggestions-before.png",
+      "size": 10923,
+      "sha256": "3c919c1450bedc6d003f2fcd7ab75bc73dbdbe6cc46806325c728d4c191e40fd"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-765-sliding-tabs-after.png",
+      "size": 11698,
+      "sha256": "41a20228d6a05fc295be976154ad538dbc0532d0cdce2218ced36ba4902145ad"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-765-sliding-tabs-before.png",
+      "size": 10176,
+      "sha256": "c91a022c39734f0f22369156fff607e57ed14d4e57050aeaea132fdb5bd77201"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-765-toast-stack-after.png",
+      "size": 29562,
+      "sha256": "12aceeeeb6394b0d447c4eadf5131425f49717578ccce4e6a9218fac8e5fa8ac"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-765-toast-stack-before.png",
+      "size": 11508,
+      "sha256": "3f5d9a4b8eeb9d9187b46705b815dcb29a89c379e93293e7a7d4d471400a4e17"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-765-undo-snackbar-after.png",
+      "size": 15842,
+      "sha256": "a990bffe89b0465f6c9aa37f95d4dd611ed1f6655205a87f636ca9cc8f91ca9d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/chromium-765-undo-snackbar-before.png",
+      "size": 19258,
+      "sha256": "212799e1e9cf1d5bb9efe64e7f1210f957f858bd302372e076661fd3bd2a752c"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/failure.png",
+      "size": 70942,
+      "sha256": "186e82a87f76972d787451410ce2853bb7ea396bc262e0b2fa09e84ac5885d4d"
+    },
+    {
+      "path": "docs/phase4a-evidence/browser-submission/results.json",
+      "size": 31694,
+      "sha256": "35b91bef22d562df512d5ffae6437bc58ba38361746176dec806a99bd38dc3a6"
+    },
+    {
+      "path": "docs/phase4a-evidence/build-next.log",
+      "size": 535,
+      "sha256": "6297bdab6c88731b525e622e4a609b1ee88e69038d9d055d1f70ca18275de530"
+    },
+    {
+      "path": "docs/phase4a-evidence/build-pointer-guard.log",
+      "size": 517,
+      "sha256": "570d65fb9179acdc107e7430629720bbbb48c31f20483755d5359708cf93cb99"
+    },
+    {
+      "path": "docs/phase4a-evidence/build-touch-fix.log",
+      "size": 518,
+      "sha256": "15a6d0dc7952a143cacd0b8d784b9ca9d78b4d1237df9f98fb88606778f6fb01"
+    },
+    {
+      "path": "docs/phase4a-evidence/build.log",
+      "size": 535,
+      "sha256": "6e7d33de3c5a73985f08199a44709ce855e1a9480c37f8852cec659e89c4c89f"
+    },
+    {
+      "path": "docs/phase4a-evidence/check-final.log",
+      "size": 16895,
+      "sha256": "a1a4401e71de486014ec914f7e0c3191097e839813f6ef56ba97cbd212116a42"
+    },
+    {
+      "path": "docs/phase4a-evidence/check-main.log",
+      "size": 4170,
+      "sha256": "98f65321c69fd83efaba3e8460591c0fefd69cde7a9bc5f1e56461c33cea8da9"
+    },
+    {
+      "path": "docs/phase4a-evidence/check-select-fix.log",
+      "size": 10589,
+      "sha256": "33fbfd5d123a54dcdf2da3d010a82699422faa426bdd55aa2785f4f1de0a9a54"
+    },
+    {
+      "path": "docs/phase4a-evidence/check-submission.log",
+      "size": 9716,
+      "sha256": "7c5bad9baa80644c6369c78e4283cbf3951f58361da1456a36dfc21adda90c14"
+    },
+    {
+      "path": "docs/phase4a-evidence/check.log",
+      "size": 16526,
+      "sha256": "9e8e0a126005cd90272905597df24758aff0795febb7a2cfdb2d4d4baf5d66e0"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/chromium-annotations.json",
+      "size": 2114,
+      "sha256": "721b01a2ae0037bf5f3f284c73ece738d5afda6accc3aff76e467328fa915998"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/chromium-job.log",
+      "size": 35784,
+      "sha256": "f3ffdf19d6e36137fb7efc549597260d69dfe55caa202aa7e4cb8bab421ece36"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/failure.png",
+      "size": 141533,
+      "sha256": "ecca73b09d2354e47a5de73c8404a8c19bc6f9eefdae1fda620439ee3cbb1ccb"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/jobs-metadata-final.json",
+      "size": 8592,
+      "sha256": "afb12bfb8912fd5b3876f9af8e8de39f5aa59aece49b784a777ab4b9af5fb6e2"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/phase4a-browser.log",
+      "size": 777,
+      "sha256": "f51673d8545c0c3c38e2ddd7e21fed24d1c14d7302788536aaf9904d3bd3ead6"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/phase4a-results.json",
+      "size": 47779,
+      "sha256": "2b17b167b1c8b62ac1fa3c185ca2c5b93510d0f925e4f28b2080a227fa17620f"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/practical-results.json",
+      "size": 9192,
+      "sha256": "4dbcf473edf17fecd5d970aa7809c083128716fd62a1dbd7641bc40cb97953c6"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/run-metadata-final.json",
+      "size": 14937,
+      "sha256": "d24c19235e7c9807e8bbeb06b895ebe33a23e60a76be9f1de728092527c3e59a"
+    },
+    {
+      "path": "docs/phase4a-evidence/ci-first/webkit-job.log",
+      "size": 361865,
+      "sha256": "a6ef5e11be3daf239d599aa5b4c5adb558cbbb19f52728c0bfbeaea25ddb479e"
+    },
+    {
+      "path": "docs/phase4a-evidence/inventory-main.json",
+      "size": 378,
+      "sha256": "f29986b59b9c6d62d4b11d3841787e3e6534b1a91d867eb19eb898a79027c51f"
+    },
+    {
+      "path": "docs/phase4a-evidence/inventory.json",
+      "size": 369,
+      "sha256": "41ec5d25f73f8a9edde75a573917a5e7ae042402fc8e6e52532031a0e28d975b"
+    },
+    {
+      "path": "docs/phase4a-evidence/lint-final.log",
+      "size": 45,
+      "sha256": "e027d94fd06881b52f4ee0e2a38d3264e84a32b5eeab49c5651131c0460175d1"
+    },
+    {
+      "path": "docs/phase4a-evidence/lint-harness-final.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/phase4a-evidence/lint-harness.log",
+      "size": 8,
+      "sha256": "2095d5302e465922147e220c0389f7a923ea0c1509a23097f04b3c220798aef8"
+    },
+    {
+      "path": "docs/phase4a-evidence/lint-initial.json",
+      "size": 1513,
+      "sha256": "30efe93aa6007a4a6bdab8499659d6b5f7fff966e41b549027191454f7e990d4"
+    },
+    {
+      "path": "docs/phase4a-evidence/lint-new-final.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/phase4a-evidence/lint-observed-harness.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/phase4a-evidence/lint.log",
+      "size": 342,
+      "sha256": "4aaa656fd66b831d450299331eb268ab4fe3a70de63fcabe984bb8fb17ef283e"
+    },
+    {
+      "path": "docs/phase4a-evidence/media-diagnostic.log",
+      "size": 249,
+      "sha256": "955a1db764b79f8d57d92e5e64c26b5a65d7b2078e156798de8c136bda0842a8"
+    },
+    {
+      "path": "docs/phase4a-evidence/media-diagnostic/failure.png",
+      "size": 98613,
+      "sha256": "712ce0e0d893b5df3ec7000281976626b4dc557f57f24a6e683ce93721e368d2"
+    },
+    {
+      "path": "docs/phase4a-evidence/media-diagnostic/results.json",
+      "size": 3281,
+      "sha256": "97e5793718da227cd337a4e32f7988b1e21d4e639cd10d5faf5eb855fc4a0548"
+    },
+    {
+      "path": "docs/phase4a-evidence/media-observed.log",
+      "size": 320,
+      "sha256": "670968b6a89cbdb54bc776b48b7724a072e19851ee8e02da71869daba3303c9f"
+    },
+    {
+      "path": "docs/phase4a-evidence/media-observed/failure.png",
+      "size": 95593,
+      "sha256": "5098b509400a4cbf64fbf28d46c7d7515b802979e5e6662a7d42dbb7cf9c10f7"
+    },
+    {
+      "path": "docs/phase4a-evidence/media-observed/results.json",
+      "size": 6729,
+      "sha256": "073c4b4cd518dad104550d9876ddb29bffe71dc488a75b7c4c82f0077ebf3344"
+    },
+    {
+      "path": "docs/phase4a-evidence/media-observed/webkit-765-animated-accordion-after.png",
+      "size": 42828,
+      "sha256": "62aa2deccd9e30c3bf5a08dcf609c6e6546c713678c54c48f42a73261900666e"
+    },
+    {
+      "path": "docs/phase4a-evidence/media-observed/webkit-765-animated-accordion-before.png",
+      "size": 36164,
+      "sha256": "d3ecc106063ffa6faf952e2b70164bc7f79f433c9b7e94ad57b40f44914992d3"
+    },
+    {
+      "path": "docs/phase4a-evidence/search-touch-green.log",
+      "size": 175,
+      "sha256": "8ec28c07731d04a5dd4250b53ddfe96fabd51c374672815bcc13386197308930"
+    },
+    {
+      "path": "docs/phase4a-evidence/search-touch-green/chromium-375-search-suggestions-after.png",
+      "size": 14781,
+      "sha256": "e5bbe11a177b7a41eb0c490dbd6c3755633f07eb95d26cdf12888dfac9e3d613"
+    },
+    {
+      "path": "docs/phase4a-evidence/search-touch-green/chromium-375-search-suggestions-before.png",
+      "size": 10654,
+      "sha256": "b81d684754fa41ce1ffc9d6c22e6dd4b9243c8f1820c4b56f34657867772bb49"
+    },
+    {
+      "path": "docs/phase4a-evidence/search-touch-green/chromium-390-search-suggestions-after.png",
+      "size": 14650,
+      "sha256": "9ca74785e3a813ced77beba336806b9ac7f497c9cb6b0545669d740eb1ff6a31"
+    },
+    {
+      "path": "docs/phase4a-evidence/search-touch-green/chromium-390-search-suggestions-before.png",
+      "size": 10557,
+      "sha256": "66819b75778fa83f61438d510d46c18d7c5da0d984c422911ea5bdce59f0e293"
+    },
+    {
+      "path": "docs/phase4a-evidence/search-touch-green/results.json",
+      "size": 4550,
+      "sha256": "a0382feb16f836f2b2b21871c628f1a46410a883fb04f4d256eb2f15cf8390d4"
+    },
+    {
+      "path": "docs/phase4a-evidence/search-touch-green/webkit-375-search-suggestions-after.png",
+      "size": 24186,
+      "sha256": "ff9d90ced54d836b8ba18e4120d0ef2e8359d29352f0fcde87b2125a807e7e56"
+    },
+    {
+      "path": "docs/phase4a-evidence/search-touch-green/webkit-375-search-suggestions-before.png",
+      "size": 21637,
+      "sha256": "360fdbb75c8faf16d39cd31032b3adc7876d9c4796702de1f5274322dd7a0789"
+    },
+    {
+      "path": "docs/phase4a-evidence/search-touch-green/webkit-390-search-suggestions-after.png",
+      "size": 24118,
+      "sha256": "6c6cc2f3713b091f2596fc40ed34ed29d6efb5fc938c37740f1366b48f2c8f85"
+    },
+    {
+      "path": "docs/phase4a-evidence/search-touch-green/webkit-390-search-suggestions-before.png",
+      "size": 21587,
+      "sha256": "7ae9f1a9567968a324e5fe0bd300b7e106657f00276d955c63a4bec0537d8014"
+    },
+    {
+      "path": "docs/phase4a-evidence/search-touch-negative-control.patch",
+      "size": 1340,
+      "sha256": "fe42d71d1ae2605e39c677d2c30aa39179d3a93ecc62108d6c195a998e083865"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green.log",
+      "size": 792,
+      "sha256": "81f4f9f0d55f57a71b640a98bc200fd8c786b5922c6362470f4bc1f45686e23b"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/chromium-1280-animated-accordion-select.png",
+      "size": 1702,
+      "sha256": "d4a8f9321f0fb1f9763c7f980f79a9fd0c072183370fde038dec505fd4f67795"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/chromium-1280-toast-stack-select.png",
+      "size": 1432,
+      "sha256": "cdbe826d54f8eac0367fa92d098c1529b4b8171d872de0e8322c1cea21127474"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/chromium-375-animated-accordion-select.png",
+      "size": 1508,
+      "sha256": "13b1b862f6194c4878ddc508c95e228d3344cc654a692c9423202b3e3b97d072"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/chromium-375-toast-stack-select.png",
+      "size": 1219,
+      "sha256": "781911bf62210707bc0ae12e295362b98f75ee80dfc9b43c3b71fa2e514de4b4"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/chromium-390-animated-accordion-select.png",
+      "size": 1480,
+      "sha256": "cafc3f8ef13265e9cfc2d8a2e8da38dbe8d4d046ed4ec7285d84d885c065c303"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/chromium-390-toast-stack-select.png",
+      "size": 1263,
+      "sha256": "f707d10f1fc6e010f9fcdc06183917751ba0fdb279a774768456c9e6d00a39c5"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/chromium-765-animated-accordion-select.png",
+      "size": 1723,
+      "sha256": "5acef0dccbbf520c3ae8a8c682ca1b1690109e6971e846ad2f5d66aaa9ea35ca"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/chromium-765-toast-stack-select.png",
+      "size": 1419,
+      "sha256": "34dafbc7a1e7783d0852a3dff85f709b6fb5431c0fb2e2b6fa6b58ea6e658a2c"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/results.json",
+      "size": 18624,
+      "sha256": "9d8c2c9cc723667281d767e50eef693ecf091049d2feecd376f3b0a2d207374a"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/webkit-1280-animated-accordion-select.png",
+      "size": 3039,
+      "sha256": "c2c1315f76762cef17b728520e47d9a4f81e43913ca8ed1c4ba2f092907e2176"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/webkit-1280-toast-stack-select.png",
+      "size": 2185,
+      "sha256": "053e9acadeeddf8274dd28aaec856adc8580ed427104e04bfa3bf536eb38b7ea"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/webkit-375-animated-accordion-select.png",
+      "size": 2709,
+      "sha256": "1da1d211d3027de67c3a9cd0e3ff0f5f540d903cbc1b067bb2f20f854ac53b98"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/webkit-375-toast-stack-select.png",
+      "size": 1929,
+      "sha256": "87a08f13c6a85927c5c46b3b1c59b972a2e177265560fb8c077b15b84699ab59"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/webkit-390-animated-accordion-select.png",
+      "size": 2703,
+      "sha256": "d26c347fe306d05f93551645f1b529165e5e4840294943d927e3d4de212936f7"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/webkit-390-toast-stack-select.png",
+      "size": 1919,
+      "sha256": "000440ea545f9f2f5d913e0ac4057910f4133db515e713914a1267cda83cbf50"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/webkit-765-animated-accordion-select.png",
+      "size": 2945,
+      "sha256": "67729efd2da7ccf004ae2239748b86ba48bf85c30b2dec82509fc656e39d7eb5"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-green/webkit-765-toast-stack-select.png",
+      "size": 2094,
+      "sha256": "2d1ef1a30dcc70d51d6f80d774180b1f838eb066a3d0f5a11cb31c5dcdf08280"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red.log",
+      "size": 1019,
+      "sha256": "68813304759ce7b30c95bf4209eee86877cf694f7056cdd3e944cb1d7e0a29c1"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/chromium-1280-animated-accordion-select.png",
+      "size": 1580,
+      "sha256": "399fa24a2d9c76f0bd7cbdb6737d838470bcd43b62dc95df6e3f2b1a53505630"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/chromium-1280-toast-stack-select.png",
+      "size": 1340,
+      "sha256": "804222babea2a7b13d15fdf171ba52bda21e529b86e7174bf5f86dbe00cd6820"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/chromium-375-animated-accordion-select.png",
+      "size": 1392,
+      "sha256": "842dce684de3e0fea15629d49e9a7f074b356360df606f8c370c796a30487082"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/chromium-375-toast-stack-select.png",
+      "size": 1161,
+      "sha256": "9aa7b3006d55dcc75977b2d99f0a2c939183da412fbf590e7fbf65acd6d25215"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/chromium-390-animated-accordion-select.png",
+      "size": 1387,
+      "sha256": "2cc4c601913663cd14a0a301e99e64e551969bf08c84b14fcad240c232b9390e"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/chromium-390-toast-stack-select.png",
+      "size": 1167,
+      "sha256": "99afafd4ebafccc4138481104934d8249630c1c81a018a7d9fc4d44921169137"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/chromium-765-animated-accordion-select.png",
+      "size": 1627,
+      "sha256": "73b12958cc6a4fece098b4eb96ea6c6cba4bbb1f93c46de3bf66ea599c965347"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/chromium-765-toast-stack-select.png",
+      "size": 1326,
+      "sha256": "1e00785c6a913d526fd14eac71e5900adea1c58612b52f7339ed5b257a4833f2"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/results.json",
+      "size": 18808,
+      "sha256": "d3786a18e2bbec36b4ab4ac43808d98e261f93346875d91a2cd5a49464a5b9fb"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/webkit-1280-animated-accordion-select.png",
+      "size": 2725,
+      "sha256": "1d55ae5b1602dd91649c211bad2603e98cabface90b8b1784b9ae638428ee994"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/webkit-1280-toast-stack-select.png",
+      "size": 2017,
+      "sha256": "99cfbaddfe42f7b21aff3743e8b07851efd01b1f3cd5796f72bf8c9fd126d7e7"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/webkit-375-animated-accordion-select.png",
+      "size": 2392,
+      "sha256": "4f56a9b4087dd699dd8276aa2e629e0a641bd61bee7ef3e044e04d295144ea41"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/webkit-375-toast-stack-select.png",
+      "size": 1739,
+      "sha256": "5b2a700dab8ca19f24564f599ecac399c18ef3dbce618a671cba194185e04e7b"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/webkit-390-animated-accordion-select.png",
+      "size": 2397,
+      "sha256": "bd8d22adb9e798663eeaabd6d35dfe8f47d00bb5710da4fd0d3de494ffebb209"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/webkit-390-toast-stack-select.png",
+      "size": 1732,
+      "sha256": "57821c532790b743965076775d2eb706f1be30029dd685f49794cd89e16a9cb9"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/webkit-765-animated-accordion-select.png",
+      "size": 2627,
+      "sha256": "1c9190a3023f16d9205278d623c63544e6ddedf7409a3a730a44c00ab3c3666e"
+    },
+    {
+      "path": "docs/phase4a-evidence/select-red/webkit-765-toast-stack-select.png",
+      "size": 1880,
+      "sha256": "8db9593f54f88125d4f6b04701a384220230f1099637c9d86c27a705c92b3bd2"
+    },
+    {
+      "path": "docs/phase4a-evidence/toast-frame-diagnostic.log",
+      "size": 85,
+      "sha256": "ec2edd77019f1b890eb7b48fbf7435d6120b3b0dfbcb2fad2fcac290dccae51f"
+    },
+    {
+      "path": "docs/phase4a-evidence/toast-frame-diagnostic/results.json",
+      "size": 7302,
+      "sha256": "4b204c7b4059521a12f840afe833e67b696476cbad6c7af07a1648d7eb0fd94b"
+    },
+    {
+      "path": "docs/phase4a-evidence/toast-frame-diagnostic/webkit-375-toast-stack-after.png",
+      "size": 52604,
+      "sha256": "7a21cf1545c6d1d2958cd7000419febb381a0e00ca79df4283fefc29a62bcdbe"
+    },
+    {
+      "path": "docs/phase4a-evidence/toast-frame-diagnostic/webkit-375-toast-stack-before.png",
+      "size": 25188,
+      "sha256": "0ab69763f2345ac5402f2dd36779404608ce8cae90ae7fd4d5e63c281760058f"
+    },
+    {
+      "path": "docs/phase4a-evidence/toast-frame-diagnostic/webkit-390-toast-stack-after.png",
+      "size": 52834,
+      "sha256": "96033867094e7ad16d01d2b2f9f6f840c3da0ce539074f5e7202287427650617"
+    },
+    {
+      "path": "docs/phase4a-evidence/toast-frame-diagnostic/webkit-390-toast-stack-before.png",
+      "size": 24997,
+      "sha256": "c2c5076d39d244257fa4661fa98551c48a482019c4e66eaa0a6dae5efb98fe8a"
+    },
+    {
+      "path": "docs/phase4a-evidence/typecheck-final.log",
+      "size": 54,
+      "sha256": "be8c1beaa3ab1a67240b73ddeb2e7fdfd0d7105d3b1f7482924eaf17336dc0e2"
+    },
+    {
+      "path": "docs/phase4a-evidence/typecheck.log",
+      "size": 587,
+      "sha256": "ef2697a153b260aab75878ae3f3604003a9af3200b6ba62e30114a8cfef70c6c"
+    },
+    {
+      "path": "docs/phase4a-evidence/unit-final.json",
+      "size": 7667,
+      "sha256": "2557d3db749c62678d677055eb6e11fff963681359d0e3464059a99d3562ccfd"
+    },
+    {
+      "path": "docs/phase4a-evidence/unit-focus-context.json",
+      "size": 8878,
+      "sha256": "ae12ea2b09a0d9781fcfe4dd70901c7af3789498123fb3f8cafaf754ef603e3a"
+    },
+    {
+      "path": "docs/phase4a-evidence/unit-focus-fix.json",
+      "size": 7940,
+      "sha256": "f62bfc8f3901018fe777af09838ab3af1b09b90c96210a2206c1703d6fed2fae"
+    },
+    {
+      "path": "docs/phase4a-evidence/unit-initial.json",
+      "size": 42439,
+      "sha256": "f6a1df8d822fb60248528e63ecb4a47f29ddbfc80e352c909ed7e82e83a5e8c0"
+    },
+    {
+      "path": "docs/phase4a-evidence/unit-next.json",
+      "size": 10482,
+      "sha256": "7bbedc9838b1aa711e321ce354bcccc9e53f4ba36fc6c60a32e7731bfad26c61"
+    },
+    {
+      "path": "docs/phase4a-evidence/unit-pointer-guard.json",
+      "size": 8262,
+      "sha256": "9707c03842d93f26a8d3b1e17fc557d10a4ecdd631c5a258a7eea72822b3c0f3"
+    },
+    {
+      "path": "docs/phase4a-evidence/unit-resubmission.json",
+      "size": 8890,
+      "sha256": "4bc58d6eef42bda8c5d3f46259b9e251e6bc8c133a053d2f95df10af8b96bedc"
+    },
+    {
+      "path": "docs/phase4a-evidence/unit-touch-fix.json",
+      "size": 8261,
+      "sha256": "0b8d5697b16a6a0b7c0c5d7e160ca93ebf2a106de55aac5a27955d3aebcb652b"
+    },
+    {
+      "path": "docs/phase4a-evidence/vitest-main.log",
+      "size": 4380,
+      "sha256": "6edd35c3535b3364865f9487e3c8f2564cd5a9a4d1e29a49bec928a129e36708"
+    },
+    {
+      "path": "docs/phase4a-evidence/waapi-other-isolated.json",
+      "size": 3452,
+      "sha256": "8bcc2db7c445c936b63251f3f3a7f88a7b60f1e303acd1e05bfeb5fa6e062299"
+    },
+    {
+      "path": "docs/phase4a-evidence/waapi-pr-isolated.json",
+      "size": 4523,
+      "sha256": "31249bb6f66484a1c730ec970cbed43137a79da7a47b2357a5c4aa7b72f6c8ce"
+    }
+  ],
+  "sources": [
+    {
+      "path": ".github/workflows/verify-practical.yml",
+      "size": 3623,
+      "sha256": "cfe50338cd32e7799c853c1ac7d94a63f1f6fa96ba7c4911ef0d440480debf3f",
+      "git_blob": "268edc19c3d4408260c05a9411459e237d575752"
+    },
+    {
+      "path": "app/components/AppleEarlyBeginnerGuide.tsx",
+      "size": 10048,
+      "sha256": "7a7b14cb85a8afff8b84019b29cf514d5dcb52ca4014f7b6015e094e441dc211",
+      "git_blob": "1c0f99d067e6b7370398b88da8d5f2080c192d17"
+    },
+    {
+      "path": "app/components/AppleEarlyDemoControls.tsx",
+      "size": 5745,
+      "sha256": "c1cd4cbfda1604a86a49d37660aa1e04a2a4b39a66ee0baec930307f6f53cd58",
+      "git_blob": "97a070ed21b107d075cefafb96f2bf7a1149c744"
+    },
+    {
+      "path": "app/components/AppleEarlyEraExhibitRoom.tsx",
+      "size": 9087,
+      "sha256": "2c817e128122e30eccdb0fecef5bf60ae2424c49a54a1045948455a943489be0",
+      "git_blob": "4fc2513a4db4e0c60de42c53e6b9b32e42314b3b"
+    },
+    {
+      "path": "app/components/AppleEarlyGraphicsDemos.tsx",
+      "size": 8921,
+      "sha256": "43159241c1584a1e2d357756a3251b3508a7ff77d09dcd6c22ea8a48c1e8ee4f",
+      "git_blob": "5036be0c792287fae4c59014f0bd3678c0e4fd8a"
+    },
+    {
+      "path": "app/components/AppleEarlyMediaDemos.tsx",
+      "size": 28247,
+      "sha256": "6085c487b0d94e7ad01115c3b1e42a66374c79d8671292012727584918ab2113",
+      "git_blob": "53ffe1cbe9fc5c4d1b7fc08c21e40d807ca53f2a"
+    },
+    {
+      "path": "app/components/AppleEarlyTerminalDemos.tsx",
+      "size": 11289,
+      "sha256": "54a0cbdb5fcbaf1738a3d252b3756c59fcf1fe8d6ee04057663a42962d598baf",
+      "git_blob": "24e358a059054054451f50a0f03a2416fe81d19a"
+    },
+    {
+      "path": "app/components/AppleInteractionFlow.tsx",
+      "size": 915,
+      "sha256": "cf8174ee371b141f2abcb11df878b9c9be28099cfa5c10f68acf80372a91eece",
+      "git_blob": "4d846c102e3ab962518cf8480627155b78f8de84"
+    },
+    {
+      "path": "app/components/CursorExhibitRoom.tsx",
+      "size": 13834,
+      "sha256": "0aa495bbb9628e2be1ebff1996b0bb6317537f7cc25699bfa4e918e08eeea411",
+      "git_blob": "81eef16a4005068c8be78ecaed43f565776273e6"
+    },
+    {
+      "path": "app/components/DomAnimationRoom.tsx",
+      "size": 24223,
+      "sha256": "b8c97af214d7c6094fcb3c8b5a0dcf2efd82e27e6cab8aeb02c23c482111ded8",
+      "git_blob": "42f5f2355d4b1f9c67ffe4bb27914bb4b2bdd55f"
+    },
+    {
+      "path": "app/components/ExhibitRoomAccordion.tsx",
+      "size": 14297,
+      "sha256": "f71e0df4b46bd555d4fdc5dc02c61a151eca8377920400486eb973c3c20f39b0",
+      "git_blob": "45e220c955e1f7f305978be50b51ab54e2c94979"
+    },
+    {
+      "path": "app/components/FlashRefinedVisuals.tsx",
+      "size": 29267,
+      "sha256": "9c517a78f5f5aeffa66c8573300f2a95ec73660781034e79af336959fb694e47",
+      "git_blob": "8d40dbfba950efa941a852ef95797df5374826ee"
+    },
+    {
+      "path": "app/components/FlashSpecialExhibitRoom.tsx",
+      "size": 8486,
+      "sha256": "93127984764e2a2964cb79299941b0f0267611f6745987a567ab53ba4e178b5b",
+      "git_blob": "b061392dcfae1b7364e3f3828932dddf0ce8acd4"
+    },
+    {
+      "path": "app/components/FlashVisuals.tsx",
+      "size": 28084,
+      "sha256": "56cbfcc32e0f8d1e950b34defcb7548048fdf37f71e4db511ac5aee5df3735ca",
+      "git_blob": "cd4af87e31e625f9a4e83356b7422b1b222f1d6f"
+    },
+    {
+      "path": "app/components/GlassExhibit.tsx",
+      "size": 10398,
+      "sha256": "3488aec8e1ce67385756c5580d01814dc95eeca09a42bc9f9144807917be7adc",
+      "git_blob": "0368e7e1e37c7ffd83c087298fe5c4fcedb1bdb5"
+    },
+    {
+      "path": "app/components/MacintoshBirthExhibitRoom.tsx",
+      "size": 38672,
+      "sha256": "d65a88894c1793ede70b8023c1e1eaaa7a957a772ef786cd467055243b73b6e8",
+      "git_blob": "73fa3b5e000522ed63b72e558d50400604d8fc74"
+    },
+    {
+      "path": "app/components/ModernAnimationRoom.tsx",
+      "size": 2322,
+      "sha256": "6cc0ac29daf29a9c7286d020907f65cb4eb735ae7857bb77829af681b49f70e2",
+      "git_blob": "1d247f935b06d3763433df81367b490c3255d899"
+    },
+    {
+      "path": "app/components/ModernClipMenu.tsx",
+      "size": 1905,
+      "sha256": "3dc771270a789b0517c278a603c74a15750f646ce79367eec610758661c13547",
+      "git_blob": "433188774cd0ad5b6bacaa5cf6fb88594539309e"
+    },
+    {
+      "path": "app/components/ModernDrift.tsx",
+      "size": 5711,
+      "sha256": "825d0f83083b54c4e5335f0b764477ff333c2a9ecc93fb6d77d1edc6fb85228f",
+      "git_blob": "e0ad71b6657d43e96682d47963cd62af8791d681"
+    },
+    {
+      "path": "app/components/ModernLens.tsx",
+      "size": 5066,
+      "sha256": "f0c4e2715fb692f79c63f7dd06ff2981541bf6741f43cafc60a52f3ddf2cb91c",
+      "git_blob": "f1f51833aaa5451c57cd392a5ea3fc8fbdee2ef8"
+    },
+    {
+      "path": "app/components/ModernWeave.tsx",
+      "size": 5246,
+      "sha256": "327c59042fac770b4ee792fd6d371ab44a44dda8eb3fb3c8c26d56fb570604e2",
+      "git_blob": "25d9e85d633f89973746666a58b38271a14aca14"
+    },
+    {
+      "path": "app/components/MuseumTitleSequence.tsx",
+      "size": 8491,
+      "sha256": "6a4d236c112b2bcefc7538cee93b30d019c35435f6eb467977aab52b0184b644",
+      "git_blob": "7058bdaa843f4f57ea0661b9a70852cf807c3d12"
+    },
+    {
+      "path": "app/components/PaperExhibit.tsx",
+      "size": 10229,
+      "sha256": "a0fc63fd8236f977564c5fd884a3adb7c3477cc2b4308111ab2f270405cc6147",
+      "git_blob": "112f4650407a11048b6ea3f043f70b2855f1fd2c"
+    },
+    {
+      "path": "app/components/Phase2BPlayer.tsx",
+      "size": 9942,
+      "sha256": "02dae79fceec8ad323a76208cdc629bde959115dd3a660bf1f815e7c8e4968bc",
+      "git_blob": "35047e43c79f61aa6da2c3422f96ad6c973620b6"
+    },
+    {
+      "path": "app/components/Phase2Room.tsx",
+      "size": 13503,
+      "sha256": "dad191f99ed5871c8797a31ddfe567fadef87404c13dbbfc009ac0875097915d",
+      "git_blob": "0231dffa9f4ac48c029f9ec3095e87d789ea7153"
+    },
+    {
+      "path": "app/components/PracticalRoom.tsx",
+      "size": 3080,
+      "sha256": "157c35315a6570d32b642b38a2b12e7d26ed597b482a5e0c1b46e2966a0e6b75",
+      "git_blob": "7a1b5bbe7b5bf1c30ba49b193d9c69a2f2f9f03b"
+    },
+    {
+      "path": "app/components/TerminalDemoPlayer.tsx",
+      "size": 17858,
+      "sha256": "d0287fb10abc88d221fe2a01b8a19408873a32a9fb3b3861c9ea88d1400e2cf4",
+      "git_blob": "44f594d2332213e4fda6306d24be874ecb6c3938"
+    },
+    {
+      "path": "app/components/VanishedOsPlayer.tsx",
+      "size": 20970,
+      "sha256": "529b21a69c123944ccec4ffa50841eb99377d7a5f5a150a02ceb535dffea35bc",
+      "git_blob": "5453957fc11846a705d35cd3f2c28745c5a0732d"
+    },
+    {
+      "path": "app/components/WaapiExpandedPreviews.tsx",
+      "size": 35562,
+      "sha256": "17e5da66c5d65e6dc1d95f227e787ec5fd743334d479ee5da5c70eb631e10502",
+      "git_blob": "607dbed4c19e03b9bd957d7bf3e82a3efe8e7e3f"
+    },
+    {
+      "path": "app/components/WaapiSampleGallery.tsx",
+      "size": 41018,
+      "sha256": "c136ab827102ac328ead9c19c5701232a13dbd2aba7b505dacbccf6ed5988cac",
+      "git_blob": "9e1ae3f72e4b2cc208bb055c9ed8e68b19f8c0df"
+    },
+    {
+      "path": "app/components/glass-exhibit.css",
+      "size": 456,
+      "sha256": "0695facfa316d301880158dfc928e5c2c837b43903297ec5d07e8a519acd3e28",
+      "git_blob": "a473fc5cc5dc9e63b02caf92023956568646761d"
+    },
+    {
+      "path": "app/components/macintosh-interaction-state.ts",
+      "size": 1541,
+      "sha256": "e793ca94a88191493d46f45590efb9ee39de600177588089db91e8f2a81aa047",
+      "git_blob": "3386aff353836373b8fa9ab99a20567aa38ee79b"
+    },
+    {
+      "path": "app/components/modern-lens.css",
+      "size": 186,
+      "sha256": "04464c3bd9580a12078bd7aca94fc34e23efb4d93959c6e70e7318cf60a65167",
+      "git_blob": "70cd731b8348d474addfb50c7d180ea6c5f38cb9"
+    },
+    {
+      "path": "app/components/modern-menu.css",
+      "size": 553,
+      "sha256": "80f68c15a9d11c64be4efb04cf5a8b2c1bb4d5dbb7d3190946f8f6f7c857c466",
+      "git_blob": "e2223bc94ca02f91c9af7c2ae6701ea477e72785"
+    },
+    {
+      "path": "app/components/modern.css",
+      "size": 4502,
+      "sha256": "2315e3d9662c10e95638e12be623aa26220dd429409d7bdd4b518569998d7866",
+      "git_blob": "920c582d6e9a67294a2a91564d9cbbc9953ab1eb"
+    },
+    {
+      "path": "app/components/museum-title-sequence-state.ts",
+      "size": 5121,
+      "sha256": "8b09e35224cd11b792f483ba23e488b31c958e688d68a7b44c116d2cbe3e9487",
+      "git_blob": "900cb8829cfee7fb19dccb87533548b01c337839"
+    },
+    {
+      "path": "app/components/paper-exhibit.css",
+      "size": 459,
+      "sha256": "043e9017be19710638177ad245604cb18e707eb86e992b7807a421d83cda00a5",
+      "git_blob": "94013e76ff0f7717682b2c37c0cf15feee79ff6e"
+    },
+    {
+      "path": "app/components/phase2.css",
+      "size": 1074,
+      "sha256": "44df334204b7bb24db9e23a72687383cc78ec6bbe05c3b49921cb85068a7899b",
+      "git_blob": "106d526810454dcf707379d7e773b0ffd6fdd00c"
+    },
+    {
+      "path": "app/components/practical/Phase4Inputs.tsx",
+      "size": 6527,
+      "sha256": "f909bc1f21eecbafa9f959d7f612cd1828b5e2da8d081de1977150eff7be3c21",
+      "git_blob": "efdd4c1d5ef8bfd7491a29c8081b99e861654e8a"
+    },
+    {
+      "path": "app/components/practical/Phase4Navigation.tsx",
+      "size": 7879,
+      "sha256": "8f426898bc7ae701894b9faf1230c558ae7284ab34a6c2ff9613a31a34c118cc",
+      "git_blob": "98c2c21081c2b3c06ff41c7bb3defa5569995bbb"
+    },
+    {
+      "path": "app/components/practical/Phase4Notices.tsx",
+      "size": 6631,
+      "sha256": "e19aaa30b14564f5fcfe8df7e90a3c3d552349d4161bbddcda03cf6a9ec8071a",
+      "git_blob": "2a8d58e17c4a69d528c35ad97a3c43323a484eb5"
+    },
+    {
+      "path": "app/components/practical/Phase4Player.tsx",
+      "size": 1580,
+      "sha256": "b59aa8eb4a6019bffecb0062201bc9e1404e202416f148e97e9ca4e4e8120bff",
+      "git_blob": "7920308fc7850787a6c3161fd40f205f3fd8f731"
+    },
+    {
+      "path": "app/components/practical/PracticalA.tsx",
+      "size": 13249,
+      "sha256": "0f8ee84061e5199b616862869aebbb30f91afd1d39e1aa42956fac8d8df91ae0",
+      "git_blob": "a15987983ecbc2907c49abc8dc4be8b69aef5f0f"
+    },
+    {
+      "path": "app/components/practical/PracticalB.tsx",
+      "size": 11478,
+      "sha256": "050cb975cbceabdec6cf733b14a54ef5d014ffaca76786799b53c4e738777931",
+      "git_blob": "aa76dae963f01b3c771f92da71ecc7687ccaa81e"
+    },
+    {
+      "path": "app/components/practical/phase4-runtime.tsx",
+      "size": 4153,
+      "sha256": "35696007fdacc9a53ef92ead1924d69b06450aa3cd408518bcdafafa573cc82a",
+      "git_blob": "03e2a071d63f7defdf6b5f2aa9e1cb13fb0747d1"
+    },
+    {
+      "path": "app/components/practical/phase4.css",
+      "size": 3193,
+      "sha256": "4fa96dad21f2cccd3d1fd7abc0acf46f95220f613d4813288787456f6b8cb780",
+      "git_blob": "2d8b2d0de7e110a38f03bbf2d132a0ef5ace8ac2"
+    },
+    {
+      "path": "app/components/practical/practical-a.css",
+      "size": 3076,
+      "sha256": "b1570cfe33ff096bf0718fbd10c90c1a93e63e07b6acdeb35e6c5bb527487e73",
+      "git_blob": "b6f614a5744e624b842f6282cb7c4a8ec0e5f31a"
+    },
+    {
+      "path": "app/components/practical/practical-b.css",
+      "size": 3164,
+      "sha256": "d0e2822c59bcf24db30685c2ba055950f8fb40e57ece645c3719eae159ac0530",
+      "git_blob": "4a46f73267c9fa0e340b7bc2042aedd14bb81bff"
+    },
+    {
+      "path": "app/components/practical/practical.css",
+      "size": 1563,
+      "sha256": "8ce04032e6f809c2c921cc1e0bc4eeaa5a2a8b1c73e11b339db43d012c22e7fa",
+      "git_blob": "713c69039282564ac85c695334a3241861883b46"
+    },
+    {
+      "path": "app/components/practical/runtime.tsx",
+      "size": 2096,
+      "sha256": "c08d3fad8f881709ca392b45b244d6e61904e7a7a761cf5d8cdccbe40c5b8079",
+      "git_blob": "85535b16471d05a5c62a4f8541a040553c4fa844"
+    },
+    {
+      "path": "app/components/waapi-board-state.ts",
+      "size": 4405,
+      "sha256": "d6ca1953bf7a52cc8a37f5a1a37c17bb191d6d3682d258a253c7957345f7cb7b",
+      "git_blob": "5efca213257b972102b836c82b5d7e8cffd05ba6"
+    },
+    {
+      "path": "app/components/waapi-interaction-state.ts",
+      "size": 810,
+      "sha256": "139af3923accfb19e0cfc13218efddfb39475a9315b66277e0c30be386ab9f83",
+      "git_blob": "58ddd4a4e19727d67d1fd965ecd2994a0ecbfd96"
+    },
+    {
+      "path": "app/data/appleEarlyBeginnerGuide.ts",
+      "size": 7110,
+      "sha256": "fd4711499d631409048635822c27eb1419e97df79819ecc7b106b60adf8d46ca",
+      "git_blob": "1695ca5101658ec67c4e3358453ce1fb3c72b47a"
+    },
+    {
+      "path": "app/data/appleEarlyExhibits.ts",
+      "size": 18649,
+      "sha256": "1b994e9c7ed00bca07b77c30aeb8eea61ee329b5372f2d06db4fa7f37022625c",
+      "git_blob": "54467180643d1f0dc9ab6e4d2dde65e808754ab4"
+    },
+    {
+      "path": "app/data/cursorExhibits.ts",
+      "size": 6174,
+      "sha256": "be5c4420301d2ccb59d8cb41af1c341b389a4484941ecd4bd254380bd4575b6b",
+      "git_blob": "4cb5449901d86ff3964eb37c8dfdff1ff34b1e62"
+    },
+    {
+      "path": "app/data/exhibitRooms.ts",
+      "size": 12904,
+      "sha256": "526dc3f07cdf8dec88349a2dc9b938bbcb9088d558d835f93ef015d417be26df",
+      "git_blob": "a7a5743c1eb0e5f86e2c6b9d498420e5382d21b5"
+    },
+    {
+      "path": "app/data/flashExhibits.ts",
+      "size": 27414,
+      "sha256": "0716994d3897ccba9c81e9be9607507566461f050ead03d9d4c4e1350883bd7c",
+      "git_blob": "5cb8ae836d14241b6835332b57f8619bd113ad24"
+    },
+    {
+      "path": "app/data/macintoshBirthExhibits.ts",
+      "size": 6344,
+      "sha256": "702155196ddb00604a1304c64e9a1f967c24e4bfbbdc956eb6286291da90f01d",
+      "git_blob": "a38f960a2907ecec46b72987a9ca269b40bc1a29"
+    },
+    {
+      "path": "app/data/modernExhibits.ts",
+      "size": 2681,
+      "sha256": "b20f6375e9124af7275cd803bc62720557b12dd5290bcb59e26dcc5226761935",
+      "git_blob": "59975a4f9d8d10631880a7dabf1716b476efe24b"
+    },
+    {
+      "path": "app/data/phase2BStudies.ts",
+      "size": 2813,
+      "sha256": "1340f22488af8c3c6ff57d11c4d57d13675443527abf5692f6562c2a1513b458",
+      "git_blob": "771d9557af0d521fbd85b8644260a93f2f22f66d"
+    },
+    {
+      "path": "app/data/phase2Studies.ts",
+      "size": 3092,
+      "sha256": "a5764a766b833e2ddf286bdb5af6781e002b8aba48fb061563909a6eded9a043",
+      "git_blob": "1de9a7955177d107e2937a18c653ed6f88eec610"
+    },
+    {
+      "path": "app/data/phase4aExhibits.ts",
+      "size": 4811,
+      "sha256": "e32cbc5d3a1726d64ffd1ca01240f02c08ac6b33cc1c8ce2642e0971b0da2672",
+      "git_blob": "841c37db911f6ab9bd338b053d57e1f8dc0c00cb"
+    },
+    {
+      "path": "app/data/practicalExhibits.ts",
+      "size": 8014,
+      "sha256": "89d4a9594c656e61955337b16db437b4f21557cb75d1266b51f4908a13f42517",
+      "git_blob": "e7ac5c5456cf3db6bc5db4765fa2b24575b0af57"
+    },
+    {
+      "path": "app/data/vanishedOperatingSystems.ts",
+      "size": 22152,
+      "sha256": "ace6593d060d3b3511970526f2784dd4b96b7a1facfcf91de4254b747d6fa76e",
+      "git_blob": "a1d8050c9ef3ebbbd8c2720cda3fc06eff59d768"
+    },
+    {
+      "path": "app/data/waapiAdditionalSamples.ts",
+      "size": 21873,
+      "sha256": "5dd5e077946fb9a8f853cdb74f6a0f2edb30b3b2c94891f5d48fb44fa05afbaf",
+      "git_blob": "17aae13f960af16b46fee46c6777ab4a0eca6c9a"
+    },
+    {
+      "path": "app/data/waapiSamples.ts",
+      "size": 34951,
+      "sha256": "0909aeff26c9f0c457457bb4b4f35889d183a6c170b5b5e20446dbc9e9760ea2",
+      "git_blob": "e330c6903fb51b315385f0a8405e1351c010bff0"
+    },
+    {
+      "path": "app/globals.css",
+      "size": 264173,
+      "sha256": "ad4796d9a5c09ba6e6c420c2f9706b970f0787515638289cfb172d82557f2b8b",
+      "git_blob": "eba5799419cda7d910496ca6d0c3d9913125c704"
+    },
+    {
+      "path": "app/layout.tsx",
+      "size": 621,
+      "sha256": "cd38278de894ebb01454a7b7ac855124efd91211f179ec119497dc193a2a84c4",
+      "git_blob": "43cbafd3ccf4ba80a3439907c2826837ccd6bebb"
+    },
+    {
+      "path": "app/page.tsx",
+      "size": 9601,
+      "sha256": "4b5bfce535da006aae3c94b2783b9360b305675a9b8b635a188110be7a75df71",
+      "git_blob": "8ba2e3ab2d2e6b4364a44934a11a90b823b95955"
+    },
+    {
+      "path": "package-lock.json",
+      "size": 291149,
+      "sha256": "8af00f13b6e24b441999bab971200cc5a5a1e4e5e6fde5cfd0b616eb04dbb1a2",
+      "git_blob": "e7d325a6a993ecfde4f1e6f246386cbcf08653ba"
+    },
+    {
+      "path": "package.json",
+      "size": 1787,
+      "sha256": "5d8be7d56e2a5ad745efbfd1d4070b952619ebf40ae28f06272f3ef16bf1e6ea",
+      "git_blob": "a022d848d5ee3f340db2e5353b7e5a5d4c7f4859"
+    },
+    {
+      "path": "scripts/inventory.mjs",
+      "size": 2473,
+      "sha256": "3b626ff658322d51c89b9c21d7b7ffe8e4c51caf10c72a1018e10d461ae64cb8",
+      "git_blob": "f2d9fa22711f48a2ed76e97580344f6a09666397"
+    },
+    {
+      "path": "scripts/verify-dom11-integration-browser.py",
+      "size": 5406,
+      "sha256": "1b7c05a2c56c47a7b629a8be9a41c4151cb56eacf710e27f481f9ec49c1e62f4",
+      "git_blob": "77eff71a2fd14a28b0ad1350dd3280ae8bcb4ac5"
+    },
+    {
+      "path": "scripts/verify-phase4a-browser.mjs",
+      "size": 19873,
+      "sha256": "00e5db2edfff947af1e0ae5c5c656cffdd1d2c3e229fb393e725c7733c2d5166",
+      "git_blob": "5bb8d3d044a5335ae01e62a5583c765080fe345a"
+    },
+    {
+      "path": "scripts/verify-phase4a-select-browser.mjs",
+      "size": 5498,
+      "sha256": "f87e9ede726323eb3e4f7c2f20cd443591fdb2ecd5626c2c08a646999b98dc1d",
+      "git_blob": "f4fe9f28cb658f14991ba293ba603aea1de5bed3"
+    },
+    {
+      "path": "scripts/verify-practical-browser.mjs",
+      "size": 12750,
+      "sha256": "ab9a40a9598f2c65d7451f8d01558e92c902fd59d2c20fdd21065b3d20a4efee",
+      "git_blob": "9c242edd9cb14217476e05cbf7045fa812e34141"
+    },
+    {
+      "path": "scripts/verify-waapi-browser.py",
+      "size": 15578,
+      "sha256": "7c0ab414fd9ecd78216edcceb47ab8e73cc1e03e39a13b99ee4071f62dbcc5cc",
+      "git_blob": "900b7c4a5ac47ec0aecf329cfc776de32b3168f3"
+    },
+    {
+      "path": "scripts/verify-waapi-stage1.py",
+      "size": 8442,
+      "sha256": "5bf754a416aedfbf3c4e57bca902d4aa0a707a94d1b297058fad240457dec5c9",
+      "git_blob": "9d65499e46ff9d33fd3ad8f2b70803b5b83cee81"
+    },
+    {
+      "path": "tests/dom11-selection.test.tsx",
+      "size": 4230,
+      "sha256": "66daf8af4f236965121e6a1cab8437fedeea6f79863d7bd2a037c98e65380e91",
+      "git_blob": "b86c113f23479a241be8d1bdba6a763f1edc183c"
+    },
+    {
+      "path": "tests/glass-exhibit.test.tsx",
+      "size": 4766,
+      "sha256": "ece59da4d4fbc429f6be615208a1439c881aa4fd26693bf3e636f06760c8ef32",
+      "git_blob": "7f6a51963962deceab10ce5c4fcd3ed2cb6286e5"
+    },
+    {
+      "path": "tests/macintosh-interaction-state.test.mjs",
+      "size": 2206,
+      "sha256": "7c70a4ca046470903c08bea1a9e15f9fd2a99e28ee366bc90449558f8666de71",
+      "git_blob": "07ff4e5947377d9b44a6a45ee4c7c74183967e8b"
+    },
+    {
+      "path": "tests/macintosh-system-choice.test.tsx",
+      "size": 2140,
+      "sha256": "d98010ee8bd03b9c07f0d8342b5549fdb074cb8a6bf8aa12582f7c337d79f3f9",
+      "git_blob": "2a3b4ec05eb7ac00fc62110b5b306a616c3d9694"
+    },
+    {
+      "path": "tests/modern-animation.test.tsx",
+      "size": 2457,
+      "sha256": "1b165afdded60dfc4f158d208e1386aecd0b143852af3d74b89838eb071d68d9",
+      "git_blob": "b094b73338ae1ecb761f4498cb425a7c247da490"
+    },
+    {
+      "path": "tests/modern-drift-geometry.test.ts",
+      "size": 1388,
+      "sha256": "df27453a06c029e352f14785b7bee62776fe3a9a1805975e023ba882889a4ac6",
+      "git_blob": "4264afd1afa9d37f1b0ffcf48fd66db420a4cea4"
+    },
+    {
+      "path": "tests/modern-lens.test.tsx",
+      "size": 2289,
+      "sha256": "12aafad3b3bfbdbd19b633f4cab1cf32d8757e4cd782f71a791a9e7705e79a17",
+      "git_blob": "5e0d44edf539268839c3e79624aa7486c1262ad2"
+    },
+    {
+      "path": "tests/modern-menu.test.tsx",
+      "size": 1278,
+      "sha256": "f62421fd5a10ab60f85050d48a36a3eaa1e77b67125328ec2322a105a3c0a215",
+      "git_blob": "629808470cc206d8d385a3fac8dc4e778a3daba0"
+    },
+    {
+      "path": "tests/modern-mesh.test.ts",
+      "size": 1069,
+      "sha256": "94ce6c9696f0671568f0b45a408d83b3e5f89fbcfc38ba46ec6318e5e4b88ecf",
+      "git_blob": "e2cf5839a5dbbf11164dd8a17958abb8ff2d7acb"
+    },
+    {
+      "path": "tests/museum-title-sequence-state.test.mjs",
+      "size": 7652,
+      "sha256": "6718564ae6c0788d5d6f12ea16ed4c8952a587f2d7806ffac07156a13c9e594f",
+      "git_blob": "e9fcc6015f9ff5cb4a897f096c8c16afe5c0f8a8"
+    },
+    {
+      "path": "tests/paper-exhibit.test.tsx",
+      "size": 3782,
+      "sha256": "42d53c33d26ff8bcbae3e8c4daef7745280d1bfe2c6d461422b77115e849adbe",
+      "git_blob": "c2a445daa3d0fb817c4f03980299c8c6987372d5"
+    },
+    {
+      "path": "tests/phase2-b.test.tsx",
+      "size": 2424,
+      "sha256": "70590416cb2f746b4582cf80f37495192a36c73961bf2c3b5cd5cf59efe3a76f",
+      "git_blob": "d76a167daf7dba58eca72cc19def404e722bae3f"
+    },
+    {
+      "path": "tests/phase2-elastic.test.ts",
+      "size": 509,
+      "sha256": "f5426249fdec6d649b8245f6d96bce287159f40ff23bb4d06aa3de5483391a4c",
+      "git_blob": "1d75175fe702c367b4014dd4fcd6e49c2817877c"
+    },
+    {
+      "path": "tests/phase2-regression.test.tsx",
+      "size": 5650,
+      "sha256": "fc13f942997c50710ae8c4ce3655698d66a7ccc0a06a37dff6a4f32f86b9ba1b",
+      "git_blob": "f546fa7a9e4fe51806e2bca3f2cf7a42a7f021f3"
+    },
+    {
+      "path": "tests/phase2-room.test.tsx",
+      "size": 2600,
+      "sha256": "394acd19581c82097043b8748e195907447b51e55db41fbfd16e470521eca2bb",
+      "git_blob": "80210a5a1a132e93a90184092f035c9e80b7e2da"
+    },
+    {
+      "path": "tests/phase4a.test.tsx",
+      "size": 15792,
+      "sha256": "adc9a4def18545503b5930c0a15274e50d652b42e1e3abb7de666b4ab3ad41e0",
+      "git_blob": "de35a807a0851c12a93a7472a75c445ed676ebd5"
+    },
+    {
+      "path": "tests/practical-a.test.tsx",
+      "size": 4260,
+      "sha256": "0c488bc68a0c498ab976551b4add3e3827c1f602ebbbc0d6259343fa22b14e38",
+      "git_blob": "a2d3e02b5634f9209d5f67c59ebf51f14318cc1a"
+    },
+    {
+      "path": "tests/practical-b.test.tsx",
+      "size": 5007,
+      "sha256": "fcba180a90d10586f67586db0ac30c17cf04d254cbf69fb2c8578cbd9b2d26e6",
+      "git_blob": "1490012708761b41709be55a212615e2e04108c1"
+    },
+    {
+      "path": "tests/practical-room.test.tsx",
+      "size": 2259,
+      "sha256": "a6a19b4d21b0737ed0e09dadc134fe5e26248c52f590d57be6237bd604446f82",
+      "git_blob": "cc8349ce770c2117a1fa3528842d93eae1f26185"
+    },
+    {
+      "path": "tests/practical-runtime.test.tsx",
+      "size": 2326,
+      "sha256": "3408a12fde66e49a67f92b5727622bf721858de679c3c8d69dc0f8e07d293d60",
+      "git_blob": "9cf4675a2d86f1f6fd2c7acfb2e899c67f0ddbe4"
+    },
+    {
+      "path": "tests/rendered-html.test.mjs",
+      "size": 68606,
+      "sha256": "0a20158e9225054e443565fecc95f42e5cf013fa029fc644a1b86453deb4cc6c",
+      "git_blob": "00f03ee49bdbed74a5da411214df840893764801"
+    },
+    {
+      "path": "tests/waapi-cascade-motion.test.tsx",
+      "size": 7547,
+      "sha256": "fc0e0161a7cb9874ba66ac3aa393f91abbba248764b1407c61f1fa59ec230d5a",
+      "git_blob": "3b24a352666d929670b3a8308a14c22caa599097"
+    },
+    {
+      "path": "tests/waapi-gallery.test.tsx",
+      "size": 20675,
+      "sha256": "1af644b3b17330ca106419fa3a1b333c9476a00092ed39ef651fafeded78fd88",
+      "git_blob": "6ad619996ce2f6231084a738c0e9c6dd3f2412bf"
+    },
+    {
+      "path": "tests/waapi-game-regressions.test.tsx",
+      "size": 6857,
+      "sha256": "d28b1cdc5d18a2bed2bd7de587ea6fedd6e30aeb6f2fda4a704c12ce49fdf86e",
+      "git_blob": "48c67d8c5df737dc4dd86c08b0ac41fb69076012"
+    },
+    {
+      "path": "tests/waapi-hp-regression.test.tsx",
+      "size": 4233,
+      "sha256": "c240c13ec490de450e8f3eeaa3e9310414609ca41fa64ac8e9e74bb52764f41b",
+      "git_blob": "bb35628c783935aec1a68d23b362db48b3ecce70"
+    },
+    {
+      "path": "tests/waapi-interaction-state.test.ts",
+      "size": 1042,
+      "sha256": "ae824a1b4b8a986a72b4fa59ae69f5a9adac31ecb7466ee14c11eaab10070ee7",
+      "git_blob": "3829a88f4b94dc9f48b3e6c2a87bf88d5c58344d"
+    },
+    {
+      "path": "tests/waapi-samples.test.ts",
+      "size": 7029,
+      "sha256": "fa4e1d7b1a623abe624ea4c6fd6b3c77688a9fb9f3c6c649b2461032b79299ef",
+      "git_blob": "5aefc8c182ed680c5ea499538f61baa9ecc0682b"
+    },
+    {
+      "path": "tests/waapi-stage1-expanded.test.tsx",
+      "size": 7346,
+      "sha256": "7887a954b6adec83c62b7e5c7c4e0b36456c94c6b8e269b8d9d494be8e1f2c08",
+      "git_blob": "c98c128e09206c6df63033e63014ff72239974e5"
+    },
+    {
+      "path": "tests/waapi-stage1-menu-coin.test.tsx",
+      "size": 4858,
+      "sha256": "8cf233bf4c5c7092c38d3a82ac64238a3d6894e45260d51122943c1d30df737c",
+      "git_blob": "e5323cb1b74058d2aab79c0fb757a74c71058fde"
+    }
+  ]
+}
