@@ -87,6 +87,16 @@ jobs:
           set -o pipefail
           export PLAYWRIGHT_MODULE="$RUNNER_TEMP/practical-playwright/node_modules/playwright"
           node scripts/verify-phase4b-browser.mjs 2>&1 | tee phase4b-browser.log
+      - name: Phase 5A data selection and exploration
+        if: ${{ !cancelled() }}
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          WIDTHS: 320,375,390,1280
+          EVIDENCE_DIR: phase5a-browser-evidence
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/practical-playwright/node_modules/playwright"
+          node scripts/verify-phase5a-browser.mjs 2>&1 | tee phase5a-browser.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -100,3 +110,5 @@ jobs:
             phase4a-select.log
             phase4b-browser-evidence/
             phase4b-browser.log
+            phase5a-browser-evidence/
+            phase5a-browser.log
