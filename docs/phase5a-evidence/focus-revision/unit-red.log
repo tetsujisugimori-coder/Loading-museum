@@ -1,0 +1,404 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-01/task-8/Loading-museum
+
+ 笶ｯ tests/phase5-focus-revision.test.tsx (8 tests | 5 failed) 2429ms
+   ﾃ・six conditions: keyboard deletes position 1 and returns to enabled add 402ms
+     竊・expected <body><div>窶ｦ(1)</div></body> to be <button></button> // Object.is equality
+   ﾃ・six conditions: keyboard deletes position 3 and returns to enabled add 418ms
+     竊・expected <body><div>窶ｦ(1)</div></body> to be <button></button> // Object.is equality
+   ﾃ・six conditions: keyboard deletes position 6 and returns to enabled add 472ms
+     竊・expected <body><div>窶ｦ(1)</div></body> to be <button></button> // Object.is equality
+   笨・one to zero keeps a keyboard path to add and survives OR and remount Reset 274ms
+   笨・closed day is an invalid endpoint but remains inside a reverse selected range 292ms
+   笨・zero-padded date-only comparison handles reverse year crossing  463ms
+   ﾃ・chips announce the highlighted candidate while real focus stays on search 59ms
+     竊・expected null to be 'status' // Object.is equality
+   ﾃ・chips clamp search position, announce empty and capped states, and ignore composing Enter 48ms
+     竊・expected '荳贋ｸ九〒蛟呵｣應ｽ咲ｽｮ縲・nter縺ｧ驕ｸ謚槭・隗｣髯､縲・scape縺ｧ讀懃ｴ｢繧偵け繝ｪ繧｢縲ょ推蛟呵｣懌ｦ' to contain '蜈･蜉・
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ Failed Tests 5 竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ
+
+ FAIL  tests/phase5-focus-revision.test.tsx > six conditions: keyboard deletes position 1 and returns to enabled add
+ FAIL  tests/phase5-focus-revision.test.tsx > six conditions: keyboard deletes position 3 and returns to enabled add
+ FAIL  tests/phase5-focus-revision.test.tsx > six conditions: keyboard deletes position 6 and returns to enabled add
+AssertionError: expected <body><div>窶ｦ(1)</div></body> to be <button></button> // Object.is equality
+
+- Expected
++ Received
+
++ <body>
++   <div>
++     <div
++       class="phase5Data"
++       data-testid="filter-builder"
++     >
++       <p>
++         蜷・擅莉ｶ繧呈楔遨ｺ縺ｮ5莉ｶ縺ｸ蜊ｳ譎りｩ穂ｾ｡縺励∪縺吶らｩｺ谺・・謨ｰ蛟､縺ｧ縺ｪ縺・擅莉ｶ縺ｯ髯､螟悶＠縲∵怏蜉ｹ譚｡莉ｶ縺・莉ｶ縺ｪ繧牙・莉ｶ陦ｨ遉ｺ縲よ怙螟ｧ6譚｡莉ｶ縺ｧ縺吶・+       </p>
++       <label>
++         譚｡莉ｶ縺ｮ邨仙粋
++         <select>
++           <option
++             value="AND"
++           >
++             AND・壹☆縺ｹ縺ｦ荳閾ｴ
++           </option>
++           <option
++             value="OR"
++           >
++             OR・壹←繧後°荳閾ｴ
++           </option>
++         </select>
++       </label>
++       <div
++         class="phase5Conditions"
++       >
++         <fieldset>
++           <legend>
++             譚｡莉ｶ 
++             1
++           </legend>
++           <label>
++             蟇ｾ雎｡
++             <select>
++               <option
++                 value="score"
++               >
++                 轤ｹ謨ｰ
++               </option>
++               <option
++                 value="name"
++               >
++                 蜷咲ｧｰ
++               </option>
++             </select>
++           </label>
++           <label>
++             豈碑ｼ・+             <select>
++               <option
++                 value="gte"
++               >
++                 莉･荳・+               </option>
++               <option
++                 value="lte"
++               >
++                 莉･荳・+               </option>
++             </select>
++           </label>
++           <label>
++             譚｡莉ｶ蛟､
++             <input
++               aria-invalid="true"
++               inputmode="decimal"
++               maxlength="40"
++               value=""
++             />
++           </label>
++           <button>
++             譚｡莉ｶ 
++             1
++              繧貞炎髯､
++           </button>
++           <small>
++             譛ｪ蜈･蜉帙∪縺溘・辟｡蜉ｹ・壹％縺ｮ譚｡莉ｶ縺ｯ隧穂ｾ｡縺励∪縺帙ｓ縲・+           </small>
++         </fieldset>
++         <fieldset>
++           <legend>
++             譚｡莉ｶ 
++             2
++           </legend>
++           <label>
++             蟇ｾ雎｡
++             <select>
++               <option
++                 value="score"
++               >
++                 轤ｹ謨ｰ
++               </option>
++               <option
++                 value="name"
++               >
++                 蜷咲ｧｰ
++               </option>
++             </select>
++           </label>
++           <label>
++             豈碑ｼ・+             <select>
++               <option
++                 value="gte"
++               >
++                 莉･荳・+               </option>
++               <option
++                 value="lte"
++               >
++                 莉･荳・+               </option>
++             </select>
++           </label>
++           <label>
++             譚｡莉ｶ蛟､
++             <input
++               aria-invalid="true"
++               inputmode="decimal"
++               maxlength="40"
++               value=""
++             />
++           </label>
++           <button>
++             譚｡莉ｶ 
++             2
++              繧貞炎髯､
++           </button>
++           <small>
++             譛ｪ蜈･蜉帙∪縺溘・辟｡蜉ｹ・壹％縺ｮ譚｡莉ｶ縺ｯ隧穂ｾ｡縺励∪縺帙ｓ縲・+           </small>
++         </fieldset>
++         <fieldset>
++           <legend>
++             譚｡莉ｶ 
++             3
++           </legend>
++           <label>
++             蟇ｾ雎｡
++             <select>
++               <option
++                 value="score"
++               >
++                 轤ｹ謨ｰ
++               </option>
++               <option
++                 value="name"
++               >
++                 蜷咲ｧｰ
++               </option>
++             </select>
++           </label>
++           <label>
++             豈碑ｼ・+             <select>
++               <option
++                 value="gte"
++               >
++                 莉･荳・+               </option>
++               <option
++                 value="lte"
++               >
++                 莉･荳・+               </option>
++             </select>
++           </label>
++           <label>
++             譚｡莉ｶ蛟､
++             <input
++               aria-invalid="true"
++               inputmode="decimal"
++               maxlength="40"
++               value=""
++             />
++           </label>
++           <button>
++             譚｡莉ｶ 
++             3
++              繧貞炎髯､
++           </button>
++           <small>
++             譛ｪ蜈･蜉帙∪縺溘・辟｡蜉ｹ・壹％縺ｮ譚｡莉ｶ縺ｯ隧穂ｾ｡縺励∪縺帙ｓ縲・+           </small>
++         </fieldset>
++         <fieldset>
++           <legend>
++             譚｡莉ｶ 
++             4
++           </legend>
++           <label>
++             蟇ｾ雎｡
++             <select>
++               <option
++                 value="score"
++               >
++                 轤ｹ謨ｰ
++               </option>
++               <option
++                 value="name"
++               >
++                 蜷咲ｧｰ
++               </option>
++             </select>
++           </label>
++           <label>
++             豈碑ｼ・+             <select>
++               <option
++                 value="gte"
++               >
++                 莉･荳・+               </option>
++               <option
++                 value="lte"
++               >
++                 莉･荳・+               </option>
++             </select>
++           </label>
++           <label>
++             譚｡莉ｶ蛟､
++             <input
++               aria-invalid="true"
++               inputmode="decimal"
++               maxlength="40"
++               value=""
++             />
++           </label>
++           <button>
++             譚｡莉ｶ 
++             4
++              繧貞炎髯､
++           </button>
++           <small>
++             譛ｪ蜈･蜉帙∪縺溘・辟｡蜉ｹ・壹％縺ｮ譚｡莉ｶ縺ｯ隧穂ｾ｡縺励∪縺帙ｓ縲・+           </small>
++         </fieldset>
++         <fieldset>
++           <legend>
++             譚｡莉ｶ 
++             5
++           </legend>
++           <label>
++             蟇ｾ雎｡
++             <select>
++               <option
++                 value="score"
++               >
++                 轤ｹ謨ｰ
++               </option>
++               <option
++                 value="name"
++               >
++                 蜷咲ｧｰ
++               </option>
++             </select>
++           </label>
++           <label>
++             豈碑ｼ・+             <select>
++               <option
++                 value="gte"
++               >
++                 莉･荳・+               </option>
++               <option
++                 value="lte"
++               >
++                 莉･荳・+               </option>
++             </select>
++           </label>
++           <label>
++             譚｡莉ｶ蛟､
++             <input
++               aria-invalid="true"
++               inputmode="decimal"
++               maxlength="40"
++               value=""
++             />
++           </label>
++           <button>
++             譚｡莉ｶ 
++             5
++              繧貞炎髯､
++           </button>
++           <small>
++             譛ｪ蜈･蜉帙∪縺溘・辟｡蜉ｹ・壹％縺ｮ譚｡莉ｶ縺ｯ隧穂ｾ｡縺励∪縺帙ｓ縲・+           </small>
++         </fieldset>
++       </div>
+        <button>
+          譚｡莉ｶ繧定ｿｽ蜉
+        </button>
++       <p
++         role="status"
++       >
++         譛牙柑譚｡莉ｶ 
++         0
++          / 
++         5
++          ・・
++         <output
++           class="phase5Count"
++         >
++           邨先棡 
++           5
++            / 
++           5
++           莉ｶ
++         </output>
++       </p>
++       <ul
++         class="phase5Results"
++       >
++         <li>
++           r1
++           ・・+           譏溘・蝨ｰ蝗ｳ
++           ・・+           72
++           轤ｹ・・+         </li>
++         <li>
++           r2
++           ・・+           豕｢縺ｮ險倬鹸
++           ・・+           40
++           轤ｹ・・+         </li>
++         <li>
++           r3
++           ・・+           蜈峨・讓呎悽
++           ・・+           95
++           轤ｹ・・+         </li>
++         <li>
++           r4
++           ・・+           髻ｳ縺ｮ謇句ｸｳ
++           ・・+           58
++           轤ｹ・・+         </li>
++         <li>
++           r5
++           ・・+           鬚ｨ縺ｮ讓｡蝙・+           ・・+           84
++           轤ｹ・・+         </li>
++       </ul>
++     </div>
++   </div>
++ </body>
+
+ 笶ｯ tests/phase5-focus-revision.test.tsx:16:142
+     14|  expect((add as HTMLButtonElement).disabled).toBe(true);
+     15|  button(`譚｡莉ｶ ${position} 繧貞炎髯､`).focus();await user.keyboard('{Enter}');
+     16|  expect(screen.getAllByRole('group')).toHaveLength(5);expect((add as H窶ｦ
+       |                                                                                                                                              ^
+     17|  await user.tab({shift:true});expect(document.activeElement).toBe(butt窶ｦ
+     18|  await user.keyboard('{Enter}');expect(screen.getAllByRole('group')).t窶ｦ
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[1/5]竡ｯ
+
+ FAIL  tests/phase5-focus-revision.test.tsx > chips announce the highlighted candidate while real focus stays on search
+AssertionError: expected null to be 'status' // Object.is equality
+
+- Expected: 
+"status"
+
++ Received: 
+null
+
+ 笶ｯ tests/phase5-focus-revision.test.tsx:40:44
+     38|  await user.keyboard('{ArrowDown}');expect(document.activeElement).toB窶ｦ
+     39|  const description=document.getElementById(input.getAttribute('aria-de窶ｦ
+     40|  expect(description?.getAttribute('role')).toBe('status');expect(descr窶ｦ
+       |                                            ^
+     41|  await user.keyboard('{Enter}');expect(description?.textContent).toCon窶ｦ
+     42|  await user.keyboard('{Enter}');expect(description?.textContent).toCon窶ｦ
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[2/5]竡ｯ
+
+ FAIL  tests/phase5-focus-revision.test.tsx > chips clamp search position, announce empty and capped states, and ignore composing Enter
+AssertionError: expected '荳贋ｸ九〒蛟呵｣應ｽ咲ｽｮ縲・nter縺ｧ驕ｸ謚槭・隗｣髯､縲・scape縺ｧ讀懃ｴ｢繧偵け繝ｪ繧｢縲ょ推蛟呵｣懌ｦ' to contain '蜈･蜉・
+
+Expected: "蜈･蜉・
+Received: "荳贋ｸ九〒蛟呵｣應ｽ咲ｽｮ縲・nter縺ｧ驕ｸ謚槭・隗｣髯､縲・scape縺ｧ讀懃ｴ｢繧偵け繝ｪ繧｢縲ょ推蛟呵｣懊・Tab縺ｧ繧よ桃菴懊〒縺阪∪縺吶・
+
+ 笶ｯ tests/phase5-focus-revision.test.tsx:48:35
+     46|  for(let i=0;i<7;i++)fireEvent.keyDown(input,{key:'ArrowDown'});
+     47|  fireEvent.change(input,{target:{value:'蜈･蜉・}});const description=docum窶ｦ
+     48|  expect(description?.textContent).toContain('蜈･蜉・);expect(description?.窶ｦ
+       |                                   ^
+     49|  fireEvent.keyDown(input,{key:'Enter',isComposing:true});expect(docume窶ｦ
+     50|  fireEvent.keyDown(input,{key:'Enter'});fireEvent.change(screen.getByL窶ｦ
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[3/5]竡ｯ
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 3 passed (8)
+   Start at  23:27:54
+   Duration  5.07s (transform 164ms, setup 0ms, collect 754ms, tests 2.43s, environment 1.31s, prepare 187ms)
+

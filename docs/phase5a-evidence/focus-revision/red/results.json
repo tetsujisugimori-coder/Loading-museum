@@ -1,0 +1,13 @@
+{
+  "head": "909b23dedc379d929c06b4f57f98899e930b5454",
+  "tree": "119ebe2aa9bb165615026c40ba845b0edb28b908",
+  "platform": "win32",
+  "node": "v24.20.0",
+  "trackedChanges": "",
+  "started": "2026-11-01T14:27:04.091Z",
+  "cases": [],
+  "errors": [
+    "browserType.launch: Executable doesn't exist at C:\\Users\\tetsu\\AppData\\Local\\Temp\\loading-49-browsers\\chromium_headless_shell-1194\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-01\\task-8\\Loading-museum\\scripts\\verify-phase5a-focus.mjs:16:45"
+  ],
+  "finished": "2026-11-01T14:27:04.096Z"
+}

@@ -137,6 +137,14 @@ jobs:
           set -o pipefail
           export PLAYWRIGHT_MODULE="$RUNNER_TEMP/practical-playwright/node_modules/playwright"
           node scripts/verify-phase5a-browser.mjs 2>&1 | tee phase5a-browser.log
+      - name: Phase 5A focused deletion, date and chips regressions
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          EVIDENCE_DIR: phase5a-focus-evidence
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/practical-playwright/node_modules/playwright"
+          node scripts/verify-phase5a-focus.mjs 2>&1 | tee phase5a-focus.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -144,3 +152,5 @@ jobs:
           path: |
             phase5a-browser-evidence/
             phase5a-browser.log
+            phase5a-focus-evidence/
+            phase5a-focus.log
