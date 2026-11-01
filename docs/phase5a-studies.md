@@ -54,3 +54,11 @@
 - 最終実行開始時HEADは基準でdirty=true。実行中に同一実装を69b0965/a212cafへコミットし、製品・harnessは追加変更なし。提出HEADとの一致はCIのclean checkoutで再確認する。
 - 旧559path中548blob不変、変更11pathは統合・台帳/件数期待値・CI・README/LOGのみ。旧app/data全件と過去証拠、lockfile不変。
 - 本文/画像目視は自己検証。独立レビューは未実施、Draftで引渡し。
+
+## 初回CIと時間配分の局所修正（2026-11-01 19:56 JST）
+- [run 41298829713](https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/41298829713)、HEAD51ddffebd8b8a838ced12b94c200af618dbb23f5。
+- contracts273成功、Ch新旧全完走。WK旧practical/A/B/selectは成功、5Aは18/24成功後取消。未実施6件をPASSと扱わない。
+- WK jobログ開始19:45:02、5A開始19:54:49、取消19:55:14 JST。job上限10分。同HEADの別runなし。時間枠末尾に追加試験を置いた構成で完走時間が不足。取消実行主体のAPI annotationは未確認で、製品異常とは断定しない。
+- 修正はCI構成のみ：5Aを独立Chromium/WebKit job（各8分上限）へ分離。旧job上限10分/全条件/全assert保持。timeout延長やskip追加なし。
+- 5A結果JSONのdirty=trueは生成済み証拠も含むため、trackedChangesを追加し空であることを必須assert。提出HEADと追跡対象コードの一致を独立記録する。
+- 初回の証拠はrun artifactsに保持。最終CI結果はPRへ追記し、初回取消を消さない。

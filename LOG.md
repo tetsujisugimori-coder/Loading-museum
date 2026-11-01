@@ -1519,3 +1519,5 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - 現物239 → 245展示、13室。表編集・期間選択・仮想一覧・条件式・Tree・複数Chipsを既存部品室へ統合。全登録の採用比較は docs/phase5a-inventory.md。
 - 新規単体20件PASS/FAIL0/SKIP0。初回JSX誤り・試験selector誤りと再実行は docs/phase5a-evidence/unit-controls-attempts.md に区別。単体と実ブラウザ、自己試験と独立レビューを混同しない。
 - 全体check・ブラウザ・CI・最終HEADは docs/phase5a-studies.md に結果を追記。第4期Bの保留証拠は触れず別経路転送なし。Issue #44、Windows timeout UNKNOWN、実機未検証を保持。Draft維持、公開・merge・auto-mergeなし。
+
+- 第5期A初回CI: WKは旧範囲成功・追加18/24後取消。追加範囲を独立8分jobへ分離し旧10分上限/条件保持。取消原因のAPI注釈は未確認、時間枠不足と製品FAILを区別。詳細phase5a-studies。
