@@ -1,0 +1,20 @@
+PASS chromium 375 R1-six-first
+PASS chromium 375 R1-six-middle
+PASS chromium 375 R1-six-last
+PASS chromium 375 R1-three-two
+PASS chromium 375 R1-one-zero
+PASS chromium 375 R1-or-six
+PASS chromium 375 R1-reduced-reset-six
+PASS chromium 375 R1-ordinary-edit-keeps-focus
+PASS chromium 375 R2-candidate-toggle-cap-search-tab-reset
+PASS chromium 375 R3-specA-reverse-month-year-key-cancel
+PASS chromium 375 preservation-reset-switch-close-0
+PASS chromium 375 preservation-reset-switch-close-1
+locator.fill: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator('.phase4Room').getByTestId('phase5-stage').getByLabel('資料名で絞込')
+
+    at mutate (C:\Users\tetsu\Documents\Codex\2026-11-02\task\loading-review-scratch\independent-probe.mjs:80:166)
+    at C:\Users\tetsu\Documents\Codex\2026-11-02\task\loading-review-scratch\independent-probe.mjs:81:10 {
+  name: 'TimeoutError'
+}

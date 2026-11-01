@@ -1,0 +1,941 @@
+﻿2026-11-01T14:37:05.3128955Z Current runner version: '2.338.2'
+2026-11-01T14:37:05.3153800Z ##[group]Runner Image Provisioner
+2026-11-01T14:37:05.3154672Z Hosted Compute Agent
+2026-11-01T14:37:05.3155436Z Version: 20261021.618
+2026-11-01T14:37:05.3156084Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-11-01T14:37:05.3156853Z Build Date: 2026-10-21T00:45:21Z
+2026-11-01T14:37:05.3157571Z Worker ID: {b8533440-8c33-4696-b7f8-20044de148b2}
+2026-11-01T14:37:05.3158278Z Region: westus
+2026-11-01T14:37:05.3158953Z Cloud: Azure
+2026-11-01T14:37:05.3159501Z ##[endgroup]
+2026-11-01T14:37:05.3161656Z ##[group]Operating System
+2026-11-01T14:37:05.3162356Z Ubuntu
+2026-11-01T14:37:05.3162930Z 24.04.5
+2026-11-01T14:37:05.3163512Z LTS
+2026-11-01T14:37:05.3164045Z ##[endgroup]
+2026-11-01T14:37:05.3164596Z ##[group]Runner Image
+2026-11-01T14:37:05.3165299Z Image: ubuntu-24.04
+2026-11-01T14:37:05.3166044Z Version: 20261025.353.1
+2026-11-01T14:37:05.3167440Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-01T14:37:05.3169174Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+2026-11-01T14:37:05.3170261Z ##[endgroup]
+2026-11-01T14:37:05.3171898Z ##[group]GITHUB_TOKEN Permissions
+2026-11-01T14:37:05.3174003Z Contents: read
+2026-11-01T14:37:05.3174639Z Metadata: read
+2026-11-01T14:37:05.3175302Z ##[endgroup]
+2026-11-01T14:37:05.3177394Z Secret source: Actions
+2026-11-01T14:37:05.3178451Z Cache mode: write
+2026-11-01T14:37:05.3179232Z Prepare workflow directory
+2026-11-01T14:37:05.3522185Z Prepare all required actions
+2026-11-01T14:37:05.3570408Z Getting action download info
+2026-11-01T14:37:05.7298354Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-01T14:37:05.8455605Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-11-01T14:37:05.9410224Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-01T14:37:06.1479609Z Complete job name: practical-browser (chromium)
+2026-11-01T14:37:06.2383828Z ##[group]Run actions/checkout@v4
+2026-11-01T14:37:06.2384698Z with:
+2026-11-01T14:37:06.2385185Z   ref: 86713c39740943415ee75c524aeb38398c3fad91
+2026-11-01T14:37:06.2385861Z   repository: tetsujisugimori-coder/Loading-museum
+2026-11-01T14:37:06.2389880Z   token: ***
+2026-11-01T14:37:06.2390318Z   ssh-strict: true
+2026-11-01T14:37:06.2390761Z   ssh-user: git
+2026-11-01T14:37:06.2391416Z   persist-credentials: true
+2026-11-01T14:37:06.2391911Z   clean: true
+2026-11-01T14:37:06.2392356Z   sparse-checkout-cone-mode: true
+2026-11-01T14:37:06.2392902Z   fetch-depth: 1
+2026-11-01T14:37:06.2393335Z   fetch-tags: false
+2026-11-01T14:37:06.2393789Z   show-progress: true
+2026-11-01T14:37:06.2394248Z   lfs: false
+2026-11-01T14:37:06.2394674Z   submodules: false
+2026-11-01T14:37:06.2395139Z   set-safe-directory: true
+2026-11-01T14:37:06.2395648Z   allow-unsafe-pr-checkout: false
+2026-11-01T14:37:06.2396453Z ##[endgroup]
+2026-11-01T14:37:06.5123951Z Syncing repository: tetsujisugimori-coder/Loading-museum
+2026-11-01T14:37:06.5125953Z ##[group]Getting Git version info
+2026-11-01T14:37:06.5127426Z Working directory is '/home/runner/work/Loading-museum/Loading-museum'
+2026-11-01T14:37:06.5128645Z [command]/usr/bin/git version
+2026-11-01T14:37:06.5225278Z git version 2.56.0
+2026-11-01T14:37:06.5250574Z ##[endgroup]
+2026-11-01T14:37:06.5267148Z Temporarily overriding HOME='/home/runner/work/_temp/087dc2e8-c157-455e-a374-50546a958b72' before making global git config changes
+2026-11-01T14:37:06.5270025Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-01T14:37:06.5273591Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Loading-museum/Loading-museum
+2026-11-01T14:37:06.5329935Z Deleting the contents of '/home/runner/work/Loading-museum/Loading-museum'
+2026-11-01T14:37:06.5340523Z ##[group]Initializing the repository
+2026-11-01T14:37:06.5362378Z [command]/usr/bin/git init /home/runner/work/Loading-museum/Loading-museum
+2026-11-01T14:37:06.5460075Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-01T14:37:06.5461959Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-01T14:37:06.5463530Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-01T14:37:06.5464705Z hint: call:
+2026-11-01T14:37:06.5465327Z hint:
+2026-11-01T14:37:06.5466198Z hint: 	git config --global init.defaultBranch <name>
+2026-11-01T14:37:06.5467234Z hint:
+2026-11-01T14:37:06.5468140Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-01T14:37:06.5469667Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-01T14:37:06.5471171Z hint:
+2026-11-01T14:37:06.5471840Z hint: 	git branch -m <name>
+2026-11-01T14:37:06.5472706Z hint:
+2026-11-01T14:37:06.5473771Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-01T14:37:06.5475679Z Initialized empty Git repository in /home/runner/work/Loading-museum/Loading-museum/.git/
+2026-11-01T14:37:06.5488320Z [command]/usr/bin/git remote add origin https://github.com/tetsujisugimori-coder/Loading-museum
+2026-11-01T14:37:06.5562123Z ##[endgroup]
+2026-11-01T14:37:06.5563591Z ##[group]Disabling automatic garbage collection
+2026-11-01T14:37:06.5565567Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-01T14:37:06.5602593Z ##[endgroup]
+2026-11-01T14:37:06.5603852Z ##[group]Setting up auth
+2026-11-01T14:37:06.5609472Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T14:37:06.5652327Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T14:37:06.6059224Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T14:37:06.6109537Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T14:37:06.6361857Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T14:37:06.6415980Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T14:37:06.6657133Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-01T14:37:06.6706572Z ##[endgroup]
+2026-11-01T14:37:06.6707616Z ##[group]Fetching the repository
+2026-11-01T14:37:06.6719582Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 86713c39740943415ee75c524aeb38398c3fad91
+2026-11-01T14:37:07.5060194Z From https://github.com/tetsujisugimori-coder/Loading-museum
+2026-11-01T14:37:07.5063431Z  * branch            86713c39740943415ee75c524aeb38398c3fad91 -> FETCH_HEAD
+2026-11-01T14:37:07.5069641Z ##[endgroup]
+2026-11-01T14:37:07.5072125Z ##[group]Determining the checkout info
+2026-11-01T14:37:07.5075078Z ##[endgroup]
+2026-11-01T14:37:07.5076743Z [command]/usr/bin/git sparse-checkout disable
+2026-11-01T14:37:07.5176026Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-01T14:37:07.5199817Z ##[group]Checking out the ref
+2026-11-01T14:37:07.5204076Z [command]/usr/bin/git checkout --progress --force 86713c39740943415ee75c524aeb38398c3fad91
+2026-11-01T14:37:07.6050646Z Note: switching to '86713c39740943415ee75c524aeb38398c3fad91'.
+2026-11-01T14:37:07.6052506Z 
+2026-11-01T14:37:07.6053502Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-01T14:37:07.6055715Z changes and commit them, and you can discard any commits you make in this
+2026-11-01T14:37:07.6058155Z state without impacting any branches by switching back to a branch.
+2026-11-01T14:37:07.6060567Z 
+2026-11-01T14:37:07.6062101Z If you want to create a new branch to retain commits you create, you may
+2026-11-01T14:37:07.6064718Z do so (now or later) by using -c with the switch command. Example:
+2026-11-01T14:37:07.6066188Z 
+2026-11-01T14:37:07.6066831Z   git switch -c <new-branch-name>
+2026-11-01T14:37:07.6067836Z 
+2026-11-01T14:37:07.6068577Z Or undo this operation with:
+2026-11-01T14:37:07.6069879Z 
+2026-11-01T14:37:07.6070754Z   git switch -
+2026-11-01T14:37:07.6072036Z 
+2026-11-01T14:37:07.6073454Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-01T14:37:07.6075477Z 
+2026-11-01T14:37:07.6076766Z HEAD is now at 86713c3 docs: record phase5a focus red green verification
+2026-11-01T14:37:07.6083189Z ##[endgroup]
+2026-11-01T14:37:07.6126188Z [command]/usr/bin/git log -1 --format=%H
+2026-11-01T14:37:07.6160705Z 86713c39740943415ee75c524aeb38398c3fad91
+2026-11-01T14:37:07.6562891Z ##[group]Run actions/setup-node@v4
+2026-11-01T14:37:07.6564143Z with:
+2026-11-01T14:37:07.6565077Z   node-version: 22
+2026-11-01T14:37:07.6566043Z   cache: npm
+2026-11-01T14:37:07.6566988Z   always-auth: false
+2026-11-01T14:37:07.6568021Z   check-latest: false
+2026-11-01T14:37:07.6579335Z   token: ***
+2026-11-01T14:37:07.6580305Z ##[endgroup]
+2026-11-01T14:37:07.8119838Z (node:2312) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-01T14:37:07.8125631Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-01T14:37:07.8130281Z Found in cache @ /opt/hostedtoolcache/node/22.23.4/x64
+2026-11-01T14:37:07.8134465Z ##[group]Environment details
+2026-11-01T14:37:08.2251389Z node: v22.23.4
+2026-11-01T14:37:08.2252004Z npm: 10.9.9
+2026-11-01T14:37:08.2252795Z yarn: 1.22.22
+2026-11-01T14:37:08.2253741Z ##[endgroup]
+2026-11-01T14:37:08.2276165Z [command]/opt/hostedtoolcache/node/22.23.4/x64/bin/npm config get cache
+2026-11-01T14:37:08.3397390Z /home/runner/.npm
+2026-11-01T14:37:08.6848636Z Cache hit for: node-cache-Linux-x64-npm-bdf7676ac3c73d012e84037285c700072175be4631684dbc433a5ae75338da79
+2026-11-01T14:37:08.7009940Z (node:2312) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-01T14:37:09.9800552Z Received 25165824 of 123734185 (20.3%), 24.0 MBs/sec
+2026-11-01T14:37:10.7065944Z Received 123734185 of 123734185 (100.0%), 68.3 MBs/sec
+2026-11-01T14:37:10.7067003Z Cache Size: ~118 MB (123734185 B)
+2026-11-01T14:37:10.7193122Z [command]/usr/bin/tar -xf /home/runner/work/_temp/16aca3c1-ba71-432a-b24c-afccf9afb3da/cache.tzst -P -C /home/runner/work/Loading-museum/Loading-museum --use-compress-program unzstd
+2026-11-01T14:37:11.0393964Z Cache restored successfully
+2026-11-01T14:37:11.0454201Z Cache restored from key: node-cache-Linux-x64-npm-bdf7676ac3c73d012e84037285c700072175be4631684dbc433a5ae75338da79
+2026-11-01T14:37:11.0704162Z ##[group]Run npm ci
+2026-11-01T14:37:11.0704570Z [36;1mnpm ci[0m
+2026-11-01T14:37:11.0735047Z shell: /usr/bin/bash -e {0}
+2026-11-01T14:37:11.0735394Z ##[endgroup]
+2026-11-01T14:37:14.2938097Z npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+2026-11-01T14:37:57.2575751Z 
+2026-11-01T14:37:57.2578368Z added 437 packages, and audited 438 packages in 46s
+2026-11-01T14:37:57.2579019Z 
+2026-11-01T14:37:57.2579368Z 160 packages are looking for funding
+2026-11-01T14:37:57.2580019Z   run `npm fund` for details
+2026-11-01T14:37:57.6213412Z 
+2026-11-01T14:37:57.6214533Z 29 vulnerabilities (1 low, 17 moderate, 8 high, 3 critical)
+2026-11-01T14:37:57.6215047Z 
+2026-11-01T14:37:57.6215426Z To address issues that do not require attention, run:
+2026-11-01T14:37:57.6215977Z   npm audit fix
+2026-11-01T14:37:57.6216210Z 
+2026-11-01T14:37:57.6216592Z To address all issues (including breaking changes), run:
+2026-11-01T14:37:57.6217225Z   npm audit fix --force
+2026-11-01T14:37:57.6218396Z 
+2026-11-01T14:37:57.6218673Z Run `npm audit` for details.
+2026-11-01T14:37:57.7666739Z ##[group]Run npm run build
+2026-11-01T14:37:57.7667047Z [36;1mnpm run build[0m
+2026-11-01T14:37:57.7700047Z shell: /usr/bin/bash -e {0}
+2026-11-01T14:37:57.7700322Z ##[endgroup]
+2026-11-01T14:37:57.8660724Z 
+2026-11-01T14:37:57.8661522Z > loading-museum@0.1.0 build
+2026-11-01T14:37:57.8661999Z > next build
+2026-11-01T14:37:57.8662163Z 
+2026-11-01T14:37:58.2496299Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2026-11-01T14:37:58.2609788Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2026-11-01T14:37:58.2622208Z This information is used to shape Next.js' roadmap and prioritize features.
+2026-11-01T14:37:58.2624331Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2026-11-01T14:37:58.2625925Z https://nextjs.org/telemetry
+2026-11-01T14:37:58.2626520Z 
+2026-11-01T14:37:58.2783211Z ▲ Next.js 16.2.6 (Turbopack)
+2026-11-01T14:37:58.2784286Z 
+2026-11-01T14:37:58.3364073Z   Creating an optimized production build ...
+2026-11-01T14:38:01.4572762Z ✓ Compiled successfully in 2.9s
+2026-11-01T14:38:01.4591691Z   Running TypeScript ...
+2026-11-01T14:38:08.7515652Z   Finished TypeScript in 7.3s ...
+2026-11-01T14:38:08.7561775Z   Collecting page data using 3 workers ...
+2026-11-01T14:38:09.1732586Z   Generating static pages using 3 workers (0/3) ...
+2026-11-01T14:38:09.4447239Z ✓ Generating static pages using 3 workers (3/3) in 271ms
+2026-11-01T14:38:09.4488854Z   Finalizing page optimization ...
+2026-11-01T14:38:09.5262326Z 
+2026-11-01T14:38:09.5281042Z Route (app)
+2026-11-01T14:38:09.5281853Z ┌ ○ /
+2026-11-01T14:38:09.5282295Z └ ○ /_not-found
+2026-11-01T14:38:09.5282543Z 
+2026-11-01T14:38:09.5282562Z 
+2026-11-01T14:38:09.5288317Z ○  (Static)  prerendered as static content
+2026-11-01T14:38:09.5288732Z 
+2026-11-01T14:38:09.5730040Z ##[group]Run npm install --prefix "$RUNNER_TEMP/practical-playwright" --no-save playwright@1.56.1
+2026-11-01T14:38:09.5730788Z [36;1mnpm install --prefix "$RUNNER_TEMP/practical-playwright" --no-save playwright@1.56.1[0m
+2026-11-01T14:38:09.5731998Z [36;1m# The tested runner's Azure HTTP mirror stalled before any GUI test.[0m
+2026-11-01T14:38:09.5732522Z [36;1m# Keep signed Ubuntu repositories and TLS; bound network acquisition.[0m
+2026-11-01T14:38:09.5732965Z [36;1mif [ -f /etc/apt/apt-mirrors.txt ]; then[0m
+2026-11-01T14:38:09.5733696Z [36;1m  printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt[0m
+2026-11-01T14:38:09.5734381Z [36;1mfi[0m
+2026-11-01T14:38:09.5734942Z [36;1mprintf 'Acquire::http::Timeout "30";\nAcquire::https::Timeout "30";\nAcquire::Retries "1";\n' | sudo tee /etc/apt/apt.conf.d/99-museum-network-bounds[0m
+2026-11-01T14:38:09.5735827Z [36;1m"$RUNNER_TEMP/practical-playwright/node_modules/.bin/playwright" install --with-deps chromium[0m
+2026-11-01T14:38:09.5756700Z shell: /usr/bin/bash -e {0}
+2026-11-01T14:38:09.5756968Z ##[endgroup]
+2026-11-01T14:38:11.0478527Z 
+2026-11-01T14:38:11.0479328Z added 2 packages in 1s
+2026-11-01T14:38:11.0810227Z https://archive.ubuntu.com/ubuntu/	priority:1
+2026-11-01T14:38:11.0811300Z https://security.ubuntu.com/ubuntu/	priority:2
+2026-11-01T14:38:11.0887665Z Acquire::http::Timeout "30";
+2026-11-01T14:38:11.0888298Z Acquire::https::Timeout "30";
+2026-11-01T14:38:11.0888683Z Acquire::Retries "1";
+2026-11-01T14:38:11.6320346Z Installing dependencies...
+2026-11-01T14:38:11.6384257Z Switching to root user to install dependencies...
+2026-11-01T14:38:11.7054500Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [93 B]
+2026-11-01T14:38:11.7302162Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2026-11-01T14:38:11.7911637Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [617 kB]
+2026-11-01T14:38:11.8122789Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [682 kB]
+2026-11-01T14:38:12.6649995Z Hit:2 https://archive.ubuntu.com/ubuntu noble InRelease
+2026-11-01T14:38:12.8323541Z Get:3 https://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-11-01T14:38:13.4226183Z Get:4 https://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-11-01T14:38:13.6825285Z Get:5 https://archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-11-01T14:38:13.9292928Z Get:9 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1408 kB]
+2026-11-01T14:38:14.6041906Z Get:10 https://archive.ubuntu.com/ubuntu noble-updates/main Translation-en [311 kB]
+2026-11-01T14:38:14.7834762Z Get:11 https://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1708 kB]
+2026-11-01T14:38:15.0717786Z Get:12 https://archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [343 kB]
+2026-11-01T14:38:15.2476011Z Get:13 https://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1813 kB]
+2026-11-01T14:38:15.5100652Z Get:14 https://archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [412 kB]
+2026-11-01T14:38:15.6862672Z Get:15 https://archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [14.3 kB]
+2026-11-01T14:38:15.8423293Z Get:16 https://archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1146 kB]
+2026-11-01T14:38:16.0552128Z Get:17 https://archive.ubuntu.com/ubuntu noble-security/main Translation-en [231 kB]
+2026-11-01T14:38:16.5412899Z Get:18 https://archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1223 kB]
+2026-11-01T14:38:17.0583242Z Get:19 https://archive.ubuntu.com/ubuntu noble-security/universe Translation-en [246 kB]
+2026-11-01T14:38:19.3712750Z Fetched 10.5 MB in 5s (1940 kB/s)
+2026-11-01T14:38:20.4392292Z Reading package lists...
+2026-11-01T14:38:20.4710676Z Reading package lists...
+2026-11-01T14:38:20.6692312Z Building dependency tree...
+2026-11-01T14:38:20.6704020Z Reading state information...
+2026-11-01T14:38:20.8086821Z libasound2t64 is already the newest version (1.2.11-1ubuntu0.3).
+2026-11-01T14:38:20.8087815Z libasound2t64 set to manually installed.
+2026-11-01T14:38:20.8088464Z libatk-bridge2.0-0t64 is already the newest version (2.52.0-1build1).
+2026-11-01T14:38:20.8089192Z libatk-bridge2.0-0t64 set to manually installed.
+2026-11-01T14:38:20.8089737Z libatk1.0-0t64 is already the newest version (2.52.0-1build1).
+2026-11-01T14:38:20.8090233Z libatk1.0-0t64 set to manually installed.
+2026-11-01T14:38:20.8090752Z libatspi2.0-0t64 is already the newest version (2.52.0-1build1).
+2026-11-01T14:38:20.8091737Z libatspi2.0-0t64 set to manually installed.
+2026-11-01T14:38:20.8092261Z libcairo2 is already the newest version (1.18.0-3build1).
+2026-11-01T14:38:20.8092742Z libcairo2 set to manually installed.
+2026-11-01T14:38:20.8093252Z libcups2t64 is already the newest version (2.4.7-1.2ubuntu7.14).
+2026-11-01T14:38:20.8093791Z libcups2t64 set to manually installed.
+2026-11-01T14:38:20.8094310Z libdbus-1-3 is already the newest version (1.14.10-4ubuntu4.1).
+2026-11-01T14:38:20.8094910Z libdbus-1-3 set to manually installed.
+2026-11-01T14:38:20.8095425Z libdrm2 is already the newest version (2.4.125-1ubuntu0.1~24.04.2).
+2026-11-01T14:38:20.8095921Z libdrm2 set to manually installed.
+2026-11-01T14:38:20.8096439Z libgbm1 is already the newest version (25.2.8-0ubuntu0.24.04.4).
+2026-11-01T14:38:20.8096919Z libgbm1 set to manually installed.
+2026-11-01T14:38:20.8097424Z libglib2.0-0t64 is already the newest version (2.80.0-6ubuntu3.10).
+2026-11-01T14:38:20.8097935Z libglib2.0-0t64 set to manually installed.
+2026-11-01T14:38:20.8098539Z libnspr4 is already the newest version (2:4.35-1.1build1).
+2026-11-01T14:38:20.8099012Z libnspr4 set to manually installed.
+2026-11-01T14:38:20.8099496Z libnss3 is already the newest version (2:3.98-1ubuntu0.3).
+2026-11-01T14:38:20.8099953Z libnss3 set to manually installed.
+2026-11-01T14:38:20.8100422Z libpango-1.0-0 is already the newest version (1.52.1+ds-1build1).
+2026-11-01T14:38:20.8101521Z libpango-1.0-0 set to manually installed.
+2026-11-01T14:38:20.8101954Z libx11-6 is already the newest version (2:1.8.7-1ubuntu0.1).
+2026-11-01T14:38:20.8102345Z libx11-6 set to manually installed.
+2026-11-01T14:38:20.8102713Z libxcb1 is already the newest version (1.15-1ubuntu2).
+2026-11-01T14:38:20.8103074Z libxcb1 set to manually installed.
+2026-11-01T14:38:20.8103483Z libxcomposite1 is already the newest version (1:0.4.5-1build3).
+2026-11-01T14:38:20.8124774Z libxcomposite1 set to manually installed.
+2026-11-01T14:38:20.8125515Z libxdamage1 is already the newest version (1:1.1.6-1build1).
+2026-11-01T14:38:20.8126172Z libxdamage1 set to manually installed.
+2026-11-01T14:38:20.8126819Z libxext6 is already the newest version (2:1.3.4-1build2).
+2026-11-01T14:38:20.8127408Z libxext6 set to manually installed.
+2026-11-01T14:38:20.8127854Z libxfixes3 is already the newest version (1:6.0.0-2build1).
+2026-11-01T14:38:20.8128274Z libxfixes3 set to manually installed.
+2026-11-01T14:38:20.8128706Z libxkbcommon0 is already the newest version (1.6.0-1build1).
+2026-11-01T14:38:20.8129111Z libxkbcommon0 set to manually installed.
+2026-11-01T14:38:20.8129536Z libxrandr2 is already the newest version (2:1.5.2-2build1).
+2026-11-01T14:38:20.8129948Z libxrandr2 set to manually installed.
+2026-11-01T14:38:20.8130364Z xvfb is already the newest version (2:21.1.12-1ubuntu1.9).
+2026-11-01T14:38:20.8131172Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+2026-11-01T14:38:20.8131840Z libfontconfig1 is already the newest version (2.15.0-1.1ubuntu2).
+2026-11-01T14:38:20.8132265Z libfontconfig1 set to manually installed.
+2026-11-01T14:38:20.8132718Z libfreetype6 is already the newest version (2.13.2+dfsg-1ubuntu0.2).
+2026-11-01T14:38:20.8133146Z libfreetype6 set to manually installed.
+2026-11-01T14:38:20.8133574Z fonts-liberation is already the newest version (1:2.1.5-3).
+2026-11-01T14:38:20.8133988Z fonts-liberation set to manually installed.
+2026-11-01T14:38:20.8134632Z The following additional packages will be installed:
+2026-11-01T14:38:20.8135260Z   xfonts-encodings xfonts-utils
+2026-11-01T14:38:20.8135573Z Recommended packages:
+2026-11-01T14:38:20.8135860Z   fonts-ipafont-mincho fonts-tlwg-loma
+2026-11-01T14:38:20.8284952Z The following NEW packages will be installed:
+2026-11-01T14:38:20.8285818Z   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+2026-11-01T14:38:20.8290866Z   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
+2026-11-01T14:38:20.8291509Z   xfonts-utils
+2026-11-01T14:38:20.8487073Z 0 upgraded, 9 newly installed, 0 to remove and 6 not upgraded.
+2026-11-01T14:38:20.8487536Z Need to get 21.1 MB of archives.
+2026-11-01T14:38:20.8487997Z After this operation, 79.5 MB of additional disk space will be used.
+2026-11-01T14:38:20.8488542Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [93 B]
+2026-11-01T14:38:21.1988207Z Get:2 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1 [3513 kB]
+2026-11-01T14:38:21.7934135Z Get:3 https://archive.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2 [5641 kB]
+2026-11-01T14:38:21.9609319Z Get:4 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1 [107 kB]
+2026-11-01T14:38:22.0310250Z Get:5 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1 [2993 kB]
+2026-11-01T14:38:22.1206664Z Get:6 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8 [7472 kB]
+2026-11-01T14:38:22.2405989Z Get:7 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2 [578 kB]
+2026-11-01T14:38:22.3142243Z Get:8 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
+2026-11-01T14:38:22.3845982Z Get:9 https://archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
+2026-11-01T14:38:22.4567673Z Get:10 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
+2026-11-01T14:38:22.7297143Z Fetched 21.1 MB in 2s (13.0 MB/s)
+2026-11-01T14:38:22.7552815Z Selecting previously unselected package fonts-ipafont-gothic.
+2026-11-01T14:38:22.7850330Z (Reading database ... 
+2026-11-01T14:38:22.7851224Z (Reading database ... 5%
+2026-11-01T14:38:22.7851729Z (Reading database ... 10%
+2026-11-01T14:38:22.7852178Z (Reading database ... 15%
+2026-11-01T14:38:22.7852845Z (Reading database ... 20%
+2026-11-01T14:38:22.7853341Z (Reading database ... 25%
+2026-11-01T14:38:22.7853620Z (Reading database ... 30%
+2026-11-01T14:38:22.7853866Z (Reading database ... 35%
+2026-11-01T14:38:22.7854110Z (Reading database ... 40%
+2026-11-01T14:38:22.7854531Z (Reading database ... 45%
+2026-11-01T14:38:22.7854982Z (Reading database ... 50%
+2026-11-01T14:38:22.7889372Z (Reading database ... 55%
+2026-11-01T14:38:22.9387091Z (Reading database ... 60%
+2026-11-01T14:38:23.1066472Z (Reading database ... 65%
+2026-11-01T14:38:23.3341151Z (Reading database ... 70%
+2026-11-01T14:38:23.5415752Z (Reading database ... 75%
+2026-11-01T14:38:23.6996795Z (Reading database ... 80%
+2026-11-01T14:38:23.8425345Z (Reading database ... 85%
+2026-11-01T14:38:23.9941982Z (Reading database ... 90%
+2026-11-01T14:38:24.1965258Z (Reading database ... 95%
+2026-11-01T14:38:24.1965863Z (Reading database ... 100%
+2026-11-01T14:38:24.1966737Z (Reading database ... 215504 files and directories currently installed.)
+2026-11-01T14:38:24.2010898Z Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
+2026-11-01T14:38:24.2115219Z Unpacking fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-11-01T14:38:24.4545656Z Selecting previously unselected package fonts-freefont-ttf.
+2026-11-01T14:38:24.4686517Z Preparing to unpack .../1-fonts-freefont-ttf_20211204+svn4273-2_all.deb ...
+2026-11-01T14:38:24.4694376Z Unpacking fonts-freefont-ttf (20211204+svn4273-2) ...
+2026-11-01T14:38:24.5536201Z Selecting previously unselected package fonts-tlwg-loma-otf.
+2026-11-01T14:38:24.5683294Z Preparing to unpack .../2-fonts-tlwg-loma-otf_1%3a0.7.3-1_all.deb ...
+2026-11-01T14:38:24.5691760Z Unpacking fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-11-01T14:38:24.5935648Z Selecting previously unselected package fonts-unifont.
+2026-11-01T14:38:24.6078275Z Preparing to unpack .../3-fonts-unifont_1%3a15.1.01-1build1_all.deb ...
+2026-11-01T14:38:24.6087126Z Unpacking fonts-unifont (1:15.1.01-1build1) ...
+2026-11-01T14:38:24.7228009Z Selecting previously unselected package fonts-wqy-zenhei.
+2026-11-01T14:38:24.7369678Z Preparing to unpack .../4-fonts-wqy-zenhei_0.9.45-8_all.deb ...
+2026-11-01T14:38:24.7482392Z Unpacking fonts-wqy-zenhei (0.9.45-8) ...
+2026-11-01T14:38:25.2283619Z Selecting previously unselected package xfonts-encodings.
+2026-11-01T14:38:25.2423965Z Preparing to unpack .../5-xfonts-encodings_1%3a1.0.5-0ubuntu2_all.deb ...
+2026-11-01T14:38:25.2431830Z Unpacking xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-11-01T14:38:25.2740092Z Selecting previously unselected package xfonts-utils.
+2026-11-01T14:38:25.2879646Z Preparing to unpack .../6-xfonts-utils_1%3a7.7+6build3_amd64.deb ...
+2026-11-01T14:38:25.2887717Z Unpacking xfonts-utils (1:7.7+6build3) ...
+2026-11-01T14:38:25.3251676Z Selecting previously unselected package xfonts-cyrillic.
+2026-11-01T14:38:25.3391582Z Preparing to unpack .../7-xfonts-cyrillic_1%3a1.0.5+nmu1_all.deb ...
+2026-11-01T14:38:25.3399355Z Unpacking xfonts-cyrillic (1:1.0.5+nmu1) ...
+2026-11-01T14:38:25.3774202Z Selecting previously unselected package xfonts-scalable.
+2026-11-01T14:38:25.3915459Z Preparing to unpack .../8-xfonts-scalable_1%3a1.0.3-1.3_all.deb ...
+2026-11-01T14:38:25.3923936Z Unpacking xfonts-scalable (1:1.0.3-1.3) ...
+2026-11-01T14:38:25.4388200Z Setting up fonts-wqy-zenhei (0.9.45-8) ...
+2026-11-01T14:38:25.4517503Z Setting up fonts-freefont-ttf (20211204+svn4273-2) ...
+2026-11-01T14:38:25.4536973Z Setting up fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-11-01T14:38:25.4551838Z Setting up xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-11-01T14:38:25.4566778Z Setting up fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-11-01T14:38:25.4627751Z update-alternatives: using /usr/share/fonts/opentype/ipafont-gothic/ipag.ttf to provide /usr/share/fonts/truetype/fonts-japanese-gothic.ttf (fonts-japanese-gothic.ttf) in auto mode
+2026-11-01T14:38:25.4642248Z Setting up fonts-unifont (1:15.1.01-1build1) ...
+2026-11-01T14:38:25.4661874Z Setting up xfonts-utils (1:7.7+6build3) ...
+2026-11-01T14:38:25.4703242Z Setting up xfonts-cyrillic (1:1.0.5+nmu1) ...
+2026-11-01T14:38:25.4997579Z Setting up xfonts-scalable (1:1.0.3-1.3) ...
+2026-11-01T14:38:25.5271717Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-11-01T14:38:25.5292199Z Not building database; man-db/auto-update is not 'true'.
+2026-11-01T14:38:25.5306833Z Processing triggers for fontconfig (2.15.0-1.1ubuntu2) ...
+2026-11-01T14:38:26.2869837Z 
+2026-11-01T14:38:26.2870699Z Running kernel seems to be up-to-date.
+2026-11-01T14:38:26.2871470Z 
+2026-11-01T14:38:26.2871745Z No services need to be restarted.
+2026-11-01T14:38:26.2872102Z 
+2026-11-01T14:38:26.2872378Z No containers need to be restarted.
+2026-11-01T14:38:26.2872688Z 
+2026-11-01T14:38:26.2873002Z No user sessions are running outdated binaries.
+2026-11-01T14:38:26.2873380Z 
+2026-11-01T14:38:26.2873872Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-11-01T14:38:27.1925909Z Downloading Chromium 141.0.7390.37 (playwright build v1194) from https://cdn.playwright.dev/dbazure/download/playwright/builds/chromium/1194/chromium-linux.zip
+2026-11-01T14:38:27.3173720Z |                                                                                |   0% of 173.9 MiB
+2026-11-01T14:38:27.4373529Z |■■■■■■■■                                                                        |  10% of 173.9 MiB
+2026-11-01T14:38:27.5223049Z |■■■■■■■■■■■■■■■■                                                                |  20% of 173.9 MiB
+2026-11-01T14:38:27.6011517Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 173.9 MiB
+2026-11-01T14:38:27.6653637Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 173.9 MiB
+2026-11-01T14:38:27.7430806Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 173.9 MiB
+2026-11-01T14:38:27.8081957Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 173.9 MiB
+2026-11-01T14:38:27.8868864Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 173.9 MiB
+2026-11-01T14:38:27.9540257Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 173.9 MiB
+2026-11-01T14:38:28.0159849Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 173.9 MiB
+2026-11-01T14:38:28.0822394Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 173.9 MiB
+2026-11-01T14:38:31.3009557Z Chromium 141.0.7390.37 (playwright build v1194) downloaded to /home/runner/.cache/ms-playwright/chromium-1194
+2026-11-01T14:38:31.3012253Z Downloading FFMPEG playwright build v1011 from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-linux.zip
+2026-11-01T14:38:31.4250910Z |                                                                                |   0% of 2.3 MiB
+2026-11-01T14:38:31.4295948Z |■■■■■■■■                                                                        |  10% of 2.3 MiB
+2026-11-01T14:38:31.4318329Z |■■■■■■■■■■■■■■■■                                                                |  20% of 2.3 MiB
+2026-11-01T14:38:31.4339993Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.3 MiB
+2026-11-01T14:38:31.4356001Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.3 MiB
+2026-11-01T14:38:31.4374331Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.3 MiB
+2026-11-01T14:38:31.4388863Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.3 MiB
+2026-11-01T14:38:31.4410363Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.3 MiB
+2026-11-01T14:38:31.4426079Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.3 MiB
+2026-11-01T14:38:31.4440455Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.3 MiB
+2026-11-01T14:38:31.4452207Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.3 MiB
+2026-11-01T14:38:31.5024282Z FFMPEG playwright build v1011 downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1011
+2026-11-01T14:38:31.5028411Z Downloading Chromium Headless Shell 141.0.7390.37 (playwright build v1194) from https://cdn.playwright.dev/dbazure/download/playwright/builds/chromium/1194/chromium-headless-shell-linux.zip
+2026-11-01T14:38:31.6245201Z |                                                                                |   0% of 104.3 MiB
+2026-11-01T14:38:31.7098148Z |■■■■■■■■                                                                        |  10% of 104.3 MiB
+2026-11-01T14:38:31.7723405Z |■■■■■■■■■■■■■■■■                                                                |  20% of 104.3 MiB
+2026-11-01T14:38:31.8237714Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 104.3 MiB
+2026-11-01T14:38:31.8772060Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 104.3 MiB
+2026-11-01T14:38:31.9160459Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 104.3 MiB
+2026-11-01T14:38:31.9525220Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 104.3 MiB
+2026-11-01T14:38:31.9894715Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 104.3 MiB
+2026-11-01T14:38:32.0258339Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 104.3 MiB
+2026-11-01T14:38:32.0664917Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 104.3 MiB
+2026-11-01T14:38:32.0992507Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 104.3 MiB
+2026-11-01T14:38:33.8015567Z Chromium Headless Shell 141.0.7390.37 (playwright build v1194) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1194
+2026-11-01T14:38:33.8858847Z ##[group]Run set -o pipefail
+2026-11-01T14:38:33.8859193Z [36;1mset -o pipefail[0m
+2026-11-01T14:38:33.8859661Z [36;1mexport PLAYWRIGHT_MODULE="$RUNNER_TEMP/practical-playwright/node_modules/playwright"[0m
+2026-11-01T14:38:33.8860294Z [36;1mnode scripts/verify-practical-browser.mjs 2>&1 | tee practical-browser.log[0m
+2026-11-01T14:38:33.8881348Z shell: /usr/bin/bash -e {0}
+2026-11-01T14:38:33.8881623Z env:
+2026-11-01T14:38:33.8881824Z   BROWSERS: chromium
+2026-11-01T14:38:33.8882047Z   WIDTHS: 390,375,1280
+2026-11-01T14:38:33.8882330Z   EVIDENCE_DIR: practical-browser-evidence
+2026-11-01T14:38:33.8882629Z ##[endgroup]
+2026-11-01T14:39:50.5962781Z {
+2026-11-01T14:39:50.5963718Z   "head": "86713c39740943415ee75c524aeb38398c3fad91",
+2026-11-01T14:39:50.5964426Z   "dirty": true,
+2026-11-01T14:39:50.5964889Z   "checked_at": "2026-11-01T14:38:34.235Z",
+2026-11-01T14:39:50.5965393Z   "cases": [
+2026-11-01T14:39:50.5965732Z     {
+2026-11-01T14:39:50.5966201Z       "engine": "chromium",
+2026-11-01T14:39:50.5966682Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.5967097Z       "width": 390,
+2026-11-01T14:39:50.5967867Z       "name": "Step Progress / 工程の待機",
+2026-11-01T14:39:50.5968371Z       "status": "PASS",
+2026-11-01T14:39:50.5968767Z       "observations": [
+2026-11-01T14:39:50.5969319Z         "completed/current/error/retry visuals",
+2026-11-01T14:39:50.5969887Z         "offscreen RAF stops"
+2026-11-01T14:39:50.5970340Z       ]
+2026-11-01T14:39:50.5970682Z     },
+2026-11-01T14:39:50.5971237Z     {
+2026-11-01T14:39:50.5971621Z       "engine": "chromium",
+2026-11-01T14:39:50.5972134Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.5972576Z       "width": 390,
+2026-11-01T14:39:50.5972983Z       "name": "Buffered Progress / 先読みと再生",
+2026-11-01T14:39:50.5973373Z       "status": "PASS",
+2026-11-01T14:39:50.5973638Z       "observations": [
+2026-11-01T14:39:50.5974062Z         "two painted widths 90/60"
+2026-11-01T14:39:50.5974539Z       ]
+2026-11-01T14:39:50.5974886Z     },
+2026-11-01T14:39:50.5975255Z     {
+2026-11-01T14:39:50.5975618Z       "engine": "chromium",
+2026-11-01T14:39:50.5976154Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.5976624Z       "width": 390,
+2026-11-01T14:39:50.5977259Z       "name": "Pull to Refresh / 引いて更新",
+2026-11-01T14:39:50.5977800Z       "status": "PASS",
+2026-11-01T14:39:50.5978224Z       "observations": [
+2026-11-01T14:39:50.5979026Z         "mouse drag below threshold cancels; above threshold rotates then completes"
+2026-11-01T14:39:50.5979775Z       ]
+2026-11-01T14:39:50.5980118Z     },
+2026-11-01T14:39:50.5980491Z     {
+2026-11-01T14:39:50.5980853Z       "engine": "chromium",
+2026-11-01T14:39:50.5981601Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.5982099Z       "width": 390,
+2026-11-01T14:39:50.5982705Z       "name": "Pointer Spotlight / 注目位置",
+2026-11-01T14:39:50.5983269Z       "status": "PASS",
+2026-11-01T14:39:50.5983659Z       "observations": [
+2026-11-01T14:39:50.5984189Z         "light center moved by arrows"
+2026-11-01T14:39:50.5984728Z       ]
+2026-11-01T14:39:50.5984987Z     },
+2026-11-01T14:39:50.5985360Z     {
+2026-11-01T14:39:50.5985732Z       "engine": "chromium",
+2026-11-01T14:39:50.5986242Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.5986741Z       "width": 390,
+2026-11-01T14:39:50.5987365Z       "name": "Magnetic Target / 吸着する対象",
+2026-11-01T14:39:50.5987924Z       "status": "PASS",
+2026-11-01T14:39:50.5988362Z       "observations": [
+2026-11-01T14:39:50.5988795Z         "target translation"
+2026-11-01T14:39:50.5989217Z       ]
+2026-11-01T14:39:50.5989578Z     },
+2026-11-01T14:39:50.5990257Z     {
+2026-11-01T14:39:50.5990628Z       "engine": "chromium",
+2026-11-01T14:39:50.5991372Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.5991840Z       "width": 390,
+2026-11-01T14:39:50.5992474Z       "name": "Sortable Drop / 挿入位置の予告",
+2026-11-01T14:39:50.5993035Z       "status": "PASS",
+2026-11-01T14:39:50.5993467Z       "observations": [
+2026-11-01T14:39:50.5994329Z         "button cancel preserves; mouse drop reorders"
+2026-11-01T14:39:50.5994899Z       ]
+2026-11-01T14:39:50.5995288Z     },
+2026-11-01T14:39:50.5995791Z     {
+2026-11-01T14:39:50.5996176Z       "engine": "chromium",
+2026-11-01T14:39:50.5996657Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.5997115Z       "width": 390,
+2026-11-01T14:39:50.5997747Z       "name": "Hold to Confirm / 長押しの確認",
+2026-11-01T14:39:50.5998291Z       "status": "PASS",
+2026-11-01T14:39:50.5998740Z       "observations": [
+2026-11-01T14:39:50.5999438Z         "short hold cancels; filled progress and release confirms mock only"
+2026-11-01T14:39:50.6000185Z       ]
+2026-11-01T14:39:50.6000525Z     },
+2026-11-01T14:39:50.6000866Z     {
+2026-11-01T14:39:50.6001669Z       "engine": "chromium",
+2026-11-01T14:39:50.6002242Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6002684Z       "width": 390,
+2026-11-01T14:39:50.6003455Z       "name": "Elastic Button / 押下と弾性",
+2026-11-01T14:39:50.6004023Z       "status": "PASS",
+2026-11-01T14:39:50.6004466Z       "observations": [
+2026-11-01T14:39:50.6004983Z         "pressed shrink/offset and release settles"
+2026-11-01T14:39:50.6005571Z       ]
+2026-11-01T14:39:50.6005918Z     },
+2026-11-01T14:39:50.6006253Z     {
+2026-11-01T14:39:50.6006637Z       "engine": "chromium",
+2026-11-01T14:39:50.6007128Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6007611Z       "width": 390,
+2026-11-01T14:39:50.6008147Z       "name": "State Button / 処理結果の遷移",
+2026-11-01T14:39:50.6008648Z       "status": "PASS",
+2026-11-01T14:39:50.6009091Z       "observations": [
+2026-11-01T14:39:50.6009614Z         "cancel rejects late result; failure painted"
+2026-11-01T14:39:50.6010164Z       ]
+2026-11-01T14:39:50.6010529Z     },
+2026-11-01T14:39:50.6010863Z     {
+2026-11-01T14:39:50.6011448Z       "engine": "chromium",
+2026-11-01T14:39:50.6011961Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6012414Z       "width": 390,
+2026-11-01T14:39:50.6013046Z       "name": "Staggered List / 順序と同時表示",
+2026-11-01T14:39:50.6013561Z       "status": "PASS",
+2026-11-01T14:39:50.6013971Z       "observations": [
+2026-11-01T14:39:50.6014592Z         "staggered first/last opacity differs; all complete"
+2026-11-01T14:39:50.6015196Z       ]
+2026-11-01T14:39:50.6015550Z     },
+2026-11-01T14:39:50.6015864Z     {
+2026-11-01T14:39:50.6016239Z       "engine": "chromium",
+2026-11-01T14:39:50.6016742Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6017194Z       "width": 390,
+2026-11-01T14:39:50.6017831Z       "name": "Shared Element / 一覧から詳細へ",
+2026-11-01T14:39:50.6018316Z       "status": "PASS",
+2026-11-01T14:39:50.6018763Z       "observations": [
+2026-11-01T14:39:50.6019374Z         "cancel restores list; same card expands to detail"
+2026-11-01T14:39:50.6019959Z       ]
+2026-11-01T14:39:50.6020364Z     },
+2026-11-01T14:39:50.6020716Z     {
+2026-11-01T14:39:50.6021292Z       "engine": "chromium",
+2026-11-01T14:39:50.6021829Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6022378Z       "width": 390,
+2026-11-01T14:39:50.6023043Z       "name": "Crossfade UI / 内容状態の補間",
+2026-11-01T14:39:50.6023594Z       "status": "PASS",
+2026-11-01T14:39:50.6024023Z       "observations": [
+2026-11-01T14:39:50.6024708Z         "overlapping UI states and changing boundary; night terminal"
+2026-11-01T14:39:50.6025350Z       ]
+2026-11-01T14:39:50.6025703Z     },
+2026-11-01T14:39:50.6026022Z     {
+2026-11-01T14:39:50.6026385Z       "engine": "chromium",
+2026-11-01T14:39:50.6026917Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6027524Z       "width": 375,
+2026-11-01T14:39:50.6028252Z       "name": "Step Progress / 工程の待機",
+2026-11-01T14:39:50.6029092Z       "status": "PASS",
+2026-11-01T14:39:50.6029574Z       "observations": [
+2026-11-01T14:39:50.6030109Z         "completed/current/error/retry visuals",
+2026-11-01T14:39:50.6030696Z         "offscreen RAF stops"
+2026-11-01T14:39:50.6031331Z       ]
+2026-11-01T14:39:50.6031690Z     },
+2026-11-01T14:39:50.6032024Z     {
+2026-11-01T14:39:50.6032390Z       "engine": "chromium",
+2026-11-01T14:39:50.6032824Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6033654Z       "width": 375,
+2026-11-01T14:39:50.6034309Z       "name": "Buffered Progress / 先読みと再生",
+2026-11-01T14:39:50.6034846Z       "status": "PASS",
+2026-11-01T14:39:50.6035283Z       "observations": [
+2026-11-01T14:39:50.6035761Z         "two painted widths 90/60"
+2026-11-01T14:39:50.6036262Z       ]
+2026-11-01T14:39:50.6036593Z     },
+2026-11-01T14:39:50.6036954Z     {
+2026-11-01T14:39:50.6037290Z       "engine": "chromium",
+2026-11-01T14:39:50.6037795Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6038307Z       "width": 375,
+2026-11-01T14:39:50.6038869Z       "name": "Pull to Refresh / 引いて更新",
+2026-11-01T14:39:50.6039437Z       "status": "PASS",
+2026-11-01T14:39:50.6039841Z       "observations": [
+2026-11-01T14:39:50.6040617Z         "mouse drag below threshold cancels; above threshold rotates then completes"
+2026-11-01T14:39:50.6041571Z       ]
+2026-11-01T14:39:50.6041892Z     },
+2026-11-01T14:39:50.6042193Z     {
+2026-11-01T14:39:50.6042586Z       "engine": "chromium",
+2026-11-01T14:39:50.6043221Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6043727Z       "width": 375,
+2026-11-01T14:39:50.6044409Z       "name": "Pointer Spotlight / 注目位置",
+2026-11-01T14:39:50.6044898Z       "status": "PASS",
+2026-11-01T14:39:50.6045358Z       "observations": [
+2026-11-01T14:39:50.6045864Z         "light center moved by arrows"
+2026-11-01T14:39:50.6046306Z       ]
+2026-11-01T14:39:50.6046670Z     },
+2026-11-01T14:39:50.6047005Z     {
+2026-11-01T14:39:50.6047335Z       "engine": "chromium",
+2026-11-01T14:39:50.6047925Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6048553Z       "width": 375,
+2026-11-01T14:39:50.6049134Z       "name": "Magnetic Target / 吸着する対象",
+2026-11-01T14:39:50.6049627Z       "status": "PASS",
+2026-11-01T14:39:50.6050032Z       "observations": [
+2026-11-01T14:39:50.6050454Z         "target translation"
+2026-11-01T14:39:50.6050855Z       ]
+2026-11-01T14:39:50.6051653Z     },
+2026-11-01T14:39:50.6051943Z     {
+2026-11-01T14:39:50.6052299Z       "engine": "chromium",
+2026-11-01T14:39:50.6052749Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6053152Z       "width": 375,
+2026-11-01T14:39:50.6053722Z       "name": "Sortable Drop / 挿入位置の予告",
+2026-11-01T14:39:50.6054277Z       "status": "PASS",
+2026-11-01T14:39:50.6054634Z       "observations": [
+2026-11-01T14:39:50.6055195Z         "button cancel preserves; mouse drop reorders"
+2026-11-01T14:39:50.6055740Z       ]
+2026-11-01T14:39:50.6056016Z     },
+2026-11-01T14:39:50.6056323Z     {
+2026-11-01T14:39:50.6056670Z       "engine": "chromium",
+2026-11-01T14:39:50.6057178Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6057611Z       "width": 375,
+2026-11-01T14:39:50.6058267Z       "name": "Hold to Confirm / 長押しの確認",
+2026-11-01T14:39:50.6058733Z       "status": "PASS",
+2026-11-01T14:39:50.6059280Z       "observations": [
+2026-11-01T14:39:50.6059939Z         "short hold cancels; filled progress and release confirms mock only"
+2026-11-01T14:39:50.6060580Z       ]
+2026-11-01T14:39:50.6061142Z     },
+2026-11-01T14:39:50.6061490Z     {
+2026-11-01T14:39:50.6061810Z       "engine": "chromium",
+2026-11-01T14:39:50.6062269Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6062710Z       "width": 375,
+2026-11-01T14:39:50.6063244Z       "name": "Elastic Button / 押下と弾性",
+2026-11-01T14:39:50.6063710Z       "status": "PASS",
+2026-11-01T14:39:50.6064111Z       "observations": [
+2026-11-01T14:39:50.6064601Z         "pressed shrink/offset and release settles"
+2026-11-01T14:39:50.6065099Z       ]
+2026-11-01T14:39:50.6065399Z     },
+2026-11-01T14:39:50.6065689Z     {
+2026-11-01T14:39:50.6066471Z       "engine": "chromium",
+2026-11-01T14:39:50.6066947Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6067385Z       "width": 375,
+2026-11-01T14:39:50.6068012Z       "name": "State Button / 処理結果の遷移",
+2026-11-01T14:39:50.6068489Z       "status": "PASS",
+2026-11-01T14:39:50.6068880Z       "observations": [
+2026-11-01T14:39:50.6069367Z         "cancel rejects late result; failure painted"
+2026-11-01T14:39:50.6069923Z       ]
+2026-11-01T14:39:50.6070455Z     },
+2026-11-01T14:39:50.6070804Z     {
+2026-11-01T14:39:50.6071357Z       "engine": "chromium",
+2026-11-01T14:39:50.6071813Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6072253Z       "width": 375,
+2026-11-01T14:39:50.6072807Z       "name": "Staggered List / 順序と同時表示",
+2026-11-01T14:39:50.6073290Z       "status": "PASS",
+2026-11-01T14:39:50.6073679Z       "observations": [
+2026-11-01T14:39:50.6074221Z         "staggered first/last opacity differs; all complete"
+2026-11-01T14:39:50.6074730Z       ]
+2026-11-01T14:39:50.6075096Z     },
+2026-11-01T14:39:50.6075431Z     {
+2026-11-01T14:39:50.6075807Z       "engine": "chromium",
+2026-11-01T14:39:50.6076242Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6076716Z       "width": 375,
+2026-11-01T14:39:50.6077244Z       "name": "Shared Element / 一覧から詳細へ",
+2026-11-01T14:39:50.6077863Z       "status": "PASS",
+2026-11-01T14:39:50.6078288Z       "observations": [
+2026-11-01T14:39:50.6078828Z         "cancel restores list; same card expands to detail"
+2026-11-01T14:39:50.6079371Z       ]
+2026-11-01T14:39:50.6079701Z     },
+2026-11-01T14:39:50.6080014Z     {
+2026-11-01T14:39:50.6080343Z       "engine": "chromium",
+2026-11-01T14:39:50.6080811Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6081450Z       "width": 375,
+2026-11-01T14:39:50.6082005Z       "name": "Crossfade UI / 内容状態の補間",
+2026-11-01T14:39:50.6082456Z       "status": "PASS",
+2026-11-01T14:39:50.6082881Z       "observations": [
+2026-11-01T14:39:50.6083505Z         "overlapping UI states and changing boundary; night terminal"
+2026-11-01T14:39:50.6084138Z       ]
+2026-11-01T14:39:50.6084430Z     },
+2026-11-01T14:39:50.6084823Z     {
+2026-11-01T14:39:50.6085154Z       "engine": "chromium",
+2026-11-01T14:39:50.6085622Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6086058Z       "width": 1280,
+2026-11-01T14:39:50.6086624Z       "name": "Step Progress / 工程の待機",
+2026-11-01T14:39:50.6087096Z       "status": "PASS",
+2026-11-01T14:39:50.6087507Z       "observations": [
+2026-11-01T14:39:50.6088017Z         "completed/current/error/retry visuals",
+2026-11-01T14:39:50.6088543Z         "offscreen RAF stops"
+2026-11-01T14:39:50.6088962Z       ]
+2026-11-01T14:39:50.6089271Z     },
+2026-11-01T14:39:50.6089591Z     {
+2026-11-01T14:39:50.6089914Z       "engine": "chromium",
+2026-11-01T14:39:50.6090347Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6090771Z       "width": 1280,
+2026-11-01T14:39:50.6091557Z       "name": "Buffered Progress / 先読みと再生",
+2026-11-01T14:39:50.6092062Z       "status": "PASS",
+2026-11-01T14:39:50.6092470Z       "observations": [
+2026-11-01T14:39:50.6092911Z         "two painted widths 90/60"
+2026-11-01T14:39:50.6093368Z       ]
+2026-11-01T14:39:50.6093675Z     },
+2026-11-01T14:39:50.6093974Z     {
+2026-11-01T14:39:50.6094281Z       "engine": "chromium",
+2026-11-01T14:39:50.6094770Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6095192Z       "width": 1280,
+2026-11-01T14:39:50.6095810Z       "name": "Pull to Refresh / 引いて更新",
+2026-11-01T14:39:50.6096328Z       "status": "PASS",
+2026-11-01T14:39:50.6096700Z       "observations": [
+2026-11-01T14:39:50.6097424Z         "mouse drag below threshold cancels; above threshold rotates then completes"
+2026-11-01T14:39:50.6098137Z       ]
+2026-11-01T14:39:50.6098457Z     },
+2026-11-01T14:39:50.6098754Z     {
+2026-11-01T14:39:50.6099099Z       "engine": "chromium",
+2026-11-01T14:39:50.6099502Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6099926Z       "width": 1280,
+2026-11-01T14:39:50.6100483Z       "name": "Pointer Spotlight / 注目位置",
+2026-11-01T14:39:50.6101459Z       "status": "PASS",
+2026-11-01T14:39:50.6101849Z       "observations": [
+2026-11-01T14:39:50.6102319Z         "light center moved by arrows"
+2026-11-01T14:39:50.6102782Z       ]
+2026-11-01T14:39:50.6103083Z     },
+2026-11-01T14:39:50.6103380Z     {
+2026-11-01T14:39:50.6103753Z       "engine": "chromium",
+2026-11-01T14:39:50.6104197Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6104678Z       "width": 1280,
+2026-11-01T14:39:50.6105460Z       "name": "Magnetic Target / 吸着する対象",
+2026-11-01T14:39:50.6105973Z       "status": "PASS",
+2026-11-01T14:39:50.6106473Z       "observations": [
+2026-11-01T14:39:50.6106873Z         "target translation"
+2026-11-01T14:39:50.6107302Z       ]
+2026-11-01T14:39:50.6107613Z     },
+2026-11-01T14:39:50.6107909Z     {
+2026-11-01T14:39:50.6108259Z       "engine": "chromium",
+2026-11-01T14:39:50.6108727Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6109135Z       "width": 1280,
+2026-11-01T14:39:50.6109667Z       "name": "Sortable Drop / 挿入位置の予告",
+2026-11-01T14:39:50.6110197Z       "status": "PASS",
+2026-11-01T14:39:50.6110571Z       "observations": [
+2026-11-01T14:39:50.6111297Z         "button cancel preserves; mouse drop reorders"
+2026-11-01T14:39:50.6111835Z       ]
+2026-11-01T14:39:50.6112141Z     },
+2026-11-01T14:39:50.6112516Z     {
+2026-11-01T14:39:50.6112884Z       "engine": "chromium",
+2026-11-01T14:39:50.6113382Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6113834Z       "width": 1280,
+2026-11-01T14:39:50.6114446Z       "name": "Hold to Confirm / 長押しの確認",
+2026-11-01T14:39:50.6114932Z       "status": "PASS",
+2026-11-01T14:39:50.6115304Z       "observations": [
+2026-11-01T14:39:50.6115935Z         "short hold cancels; filled progress and release confirms mock only"
+2026-11-01T14:39:50.6116744Z       ]
+2026-11-01T14:39:50.6117244Z     },
+2026-11-01T14:39:50.6117913Z     {
+2026-11-01T14:39:50.6118444Z       "engine": "chromium",
+2026-11-01T14:39:50.6119051Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6119795Z       "width": 1280,
+2026-11-01T14:39:50.6120570Z       "name": "Elastic Button / 押下と弾性",
+2026-11-01T14:39:50.6121600Z       "status": "PASS",
+2026-11-01T14:39:50.6122182Z       "observations": [
+2026-11-01T14:39:50.6123038Z         "pressed shrink/offset and release settles"
+2026-11-01T14:39:50.6123697Z       ]
+2026-11-01T14:39:50.6124288Z     },
+2026-11-01T14:39:50.6136017Z     {
+2026-11-01T14:39:50.6136404Z       "engine": "chromium",
+2026-11-01T14:39:50.6136923Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6137391Z       "width": 1280,
+2026-11-01T14:39:50.6138028Z       "name": "State Button / 処理結果の遷移",
+2026-11-01T14:39:50.6138537Z       "status": "PASS",
+2026-11-01T14:39:50.6138970Z       "observations": [
+2026-11-01T14:39:50.6139535Z         "cancel rejects late result; failure painted"
+2026-11-01T14:39:50.6140084Z       ]
+2026-11-01T14:39:50.6140416Z     },
+2026-11-01T14:39:50.6140741Z     {
+2026-11-01T14:39:50.6141376Z       "engine": "chromium",
+2026-11-01T14:39:50.6141863Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6142347Z       "width": 1280,
+2026-11-01T14:39:50.6142989Z       "name": "Staggered List / 順序と同時表示",
+2026-11-01T14:39:50.6143571Z       "status": "PASS",
+2026-11-01T14:39:50.6143990Z       "observations": [
+2026-11-01T14:39:50.6144583Z         "staggered first/last opacity differs; all complete"
+2026-11-01T14:39:50.6145168Z       ]
+2026-11-01T14:39:50.6145494Z     },
+2026-11-01T14:39:50.6145809Z     {
+2026-11-01T14:39:50.6146180Z       "engine": "chromium",
+2026-11-01T14:39:50.6146671Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6147130Z       "width": 1280,
+2026-11-01T14:39:50.6147766Z       "name": "Shared Element / 一覧から詳細へ",
+2026-11-01T14:39:50.6148278Z       "status": "PASS",
+2026-11-01T14:39:50.6148676Z       "observations": [
+2026-11-01T14:39:50.6149212Z         "cancel restores list; same card expands to detail"
+2026-11-01T14:39:50.6149596Z       ]
+2026-11-01T14:39:50.6149780Z     },
+2026-11-01T14:39:50.6149962Z     {
+2026-11-01T14:39:50.6150174Z       "engine": "chromium",
+2026-11-01T14:39:50.6150664Z       "version": "141.0.7390.37",
+2026-11-01T14:39:50.6150925Z       "width": 1280,
+2026-11-01T14:39:50.6151776Z       "name": "Crossfade UI / 内容状態の補間",
+2026-11-01T14:39:50.6152259Z       "status": "PASS",
+2026-11-01T14:39:50.6152680Z       "observations": [
+2026-11-01T14:39:50.6153255Z         "overlapping UI states and changing boundary; night terminal"
+2026-11-01T14:39:50.6153900Z       ]
+2026-11-01T14:39:50.6154413Z     }
+2026-11-01T14:39:50.6154746Z   ]
+2026-11-01T14:39:50.6155048Z }
+2026-11-01T14:39:50.6198648Z ##[group]Run set -o pipefail
+2026-11-01T14:39:50.6198986Z [36;1mset -o pipefail[0m
+2026-11-01T14:39:50.6199426Z [36;1mexport PLAYWRIGHT_MODULE="$RUNNER_TEMP/practical-playwright/node_modules/playwright"[0m
+2026-11-01T14:39:50.6200034Z [36;1mnode scripts/verify-phase4a-browser.mjs 2>&1 | tee phase4a-browser.log[0m
+2026-11-01T14:39:50.6200776Z [36;1mSELECT_EVIDENCE_DIR=phase4a-select-evidence node scripts/verify-phase4a-select-browser.mjs 2>&1 | tee phase4a-select.log[0m
+2026-11-01T14:39:50.6220883Z shell: /usr/bin/bash -e {0}
+2026-11-01T14:39:50.6221431Z env:
+2026-11-01T14:39:50.6221633Z   BROWSERS: chromium
+2026-11-01T14:39:50.6221849Z   WIDTHS: 375,390,765,1280
+2026-11-01T14:39:50.6222101Z   EVIDENCE_DIR: phase4a-browser-evidence
+2026-11-01T14:39:50.6222379Z ##[endgroup]
+2026-11-01T14:40:01.7720120Z chromium 375 toast-stack PASS
+2026-11-01T14:40:10.8741254Z chromium 375 undo-snackbar PASS
+2026-11-01T14:40:12.9711723Z chromium 375 inline-validation PASS
+2026-11-01T14:40:15.5545533Z chromium 375 search-suggestions PASS
+2026-11-01T14:40:18.6064158Z chromium 375 sliding-tabs PASS
+2026-11-01T14:40:25.8058208Z chromium 375 animated-accordion PASS
+2026-11-01T14:40:36.4885396Z chromium 390 toast-stack PASS
+2026-11-01T14:40:45.5862530Z chromium 390 undo-snackbar PASS
+2026-11-01T14:40:47.7546310Z chromium 390 inline-validation PASS
+2026-11-01T14:40:49.6853501Z chromium 390 search-suggestions PASS
+2026-11-01T14:40:52.7525753Z chromium 390 sliding-tabs PASS
+2026-11-01T14:40:59.9539295Z chromium 390 animated-accordion PASS
+2026-11-01T14:41:10.5642323Z chromium 765 toast-stack PASS
+2026-11-01T14:41:19.7882541Z chromium 765 undo-snackbar PASS
+2026-11-01T14:41:22.0337135Z chromium 765 inline-validation PASS
+2026-11-01T14:41:24.6655056Z chromium 765 search-suggestions PASS
+2026-11-01T14:41:27.7182199Z chromium 765 sliding-tabs PASS
+2026-11-01T14:41:35.1593403Z chromium 765 animated-accordion PASS
+2026-11-01T14:41:46.1812317Z chromium 1280 toast-stack PASS
+2026-11-01T14:41:55.6022525Z chromium 1280 undo-snackbar PASS
+2026-11-01T14:41:58.0162305Z chromium 1280 inline-validation PASS
+2026-11-01T14:42:00.9339215Z chromium 1280 search-suggestions PASS
+2026-11-01T14:42:03.9762410Z chromium 1280 sliding-tabs PASS
+2026-11-01T14:42:11.4972303Z chromium 1280 animated-accordion PASS
+2026-11-01T14:42:11.5342846Z {"expected":24,"passed":24}
+2026-11-01T14:42:12.7815221Z chromium 375 toast-stack PASS contrast=15.15
+2026-11-01T14:42:13.0165516Z chromium 375 animated-accordion PASS contrast=15.15
+2026-11-01T14:42:13.7646020Z chromium 390 toast-stack PASS contrast=15.15
+2026-11-01T14:42:14.0290409Z chromium 390 animated-accordion PASS contrast=15.15
+2026-11-01T14:42:14.7638133Z chromium 765 toast-stack PASS contrast=15.15
+2026-11-01T14:42:14.9807355Z chromium 765 animated-accordion PASS contrast=12.33
+2026-11-01T14:42:15.9037694Z chromium 1280 toast-stack PASS contrast=15.15
+2026-11-01T14:42:16.2287483Z chromium 1280 animated-accordion PASS contrast=12.33
+2026-11-01T14:42:16.2591701Z {"expected":8,"passed":8}
+2026-11-01T14:42:16.2759089Z ##[group]Run set -o pipefail
+2026-11-01T14:42:16.2759601Z [36;1mset -o pipefail[0m
+2026-11-01T14:42:16.2760323Z [36;1mexport PLAYWRIGHT_MODULE="$RUNNER_TEMP/practical-playwright/node_modules/playwright"[0m
+2026-11-01T14:42:16.2761579Z [36;1mnode scripts/verify-phase4b-browser.mjs 2>&1 | tee phase4b-browser.log[0m
+2026-11-01T14:42:16.2783208Z shell: /usr/bin/bash -e {0}
+2026-11-01T14:42:16.2783473Z env:
+2026-11-01T14:42:16.2783671Z   BROWSERS: chromium
+2026-11-01T14:42:16.2783909Z   WIDTHS: 375,390,765,1280
+2026-11-01T14:42:16.2784172Z   EVIDENCE_DIR: phase4b-browser-evidence
+2026-11-01T14:42:16.2784456Z ##[endgroup]
+2026-11-01T14:42:18.0388313Z PASS chromium 375 command-palette
+2026-11-01T14:42:24.6378983Z PASS chromium 375 optimistic-action
+2026-11-01T14:42:42.5560660Z PASS chromium 375 upload-queue
+2026-11-01T14:42:43.4706942Z PASS chromium 375 form-wizard
+2026-11-01T14:42:44.6532433Z PASS chromium 375 resizable-split-pane
+2026-11-01T14:42:46.1194755Z PASS chromium 375 context-menu
+2026-11-01T14:42:47.2527305Z PASS chromium 390 command-palette
+2026-11-01T14:42:53.8206221Z PASS chromium 390 optimistic-action
+2026-11-01T14:43:11.5707626Z PASS chromium 390 upload-queue
+2026-11-01T14:43:12.4363617Z PASS chromium 390 form-wizard
+2026-11-01T14:43:13.0852827Z PASS chromium 390 resizable-split-pane
+2026-11-01T14:43:14.5519497Z PASS chromium 390 context-menu
+2026-11-01T14:43:15.8849349Z PASS chromium 765 command-palette
+2026-11-01T14:43:22.6686760Z PASS chromium 765 optimistic-action
+2026-11-01T14:43:40.5020482Z PASS chromium 765 upload-queue
+2026-11-01T14:43:41.5005186Z PASS chromium 765 form-wizard
+2026-11-01T14:43:42.1003124Z PASS chromium 765 resizable-split-pane
+2026-11-01T14:43:43.5337677Z PASS chromium 765 context-menu
+2026-11-01T14:43:44.9670910Z PASS chromium 1280 command-palette
+2026-11-01T14:43:51.8691535Z PASS chromium 1280 optimistic-action
+2026-11-01T14:44:09.8205064Z PASS chromium 1280 upload-queue
+2026-11-01T14:44:10.7355483Z PASS chromium 1280 form-wizard
+2026-11-01T14:44:11.7692453Z PASS chromium 1280 resizable-split-pane
+2026-11-01T14:44:13.2322078Z PASS chromium 1280 context-menu
+2026-11-01T14:44:13.3223664Z ##[group]Run actions/upload-artifact@v4
+2026-11-01T14:44:13.3223972Z with:
+2026-11-01T14:44:13.3224284Z   name: practical-chromium-86713c39740943415ee75c524aeb38398c3fad91
+2026-11-01T14:44:13.3225259Z   path: practical-browser-evidence/
+practical-browser.log
+phase4a-browser-evidence/
+phase4a-browser.log
+phase4a-select-evidence/
+phase4a-select.log
+phase4b-browser-evidence/
+phase4b-browser.log
+
+2026-11-01T14:44:13.3226135Z   if-no-files-found: warn
+2026-11-01T14:44:13.3226375Z   compression-level: 6
+2026-11-01T14:44:13.3226596Z   overwrite: false
+2026-11-01T14:44:13.3226817Z   include-hidden-files: false
+2026-11-01T14:44:13.3227064Z ##[endgroup]
+2026-11-01T14:44:13.5001182Z (node:3870) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-01T14:44:13.5002596Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-01T14:44:13.5460850Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-11-01T14:44:13.5466456Z The least common ancestor is /home/runner/work/Loading-museum/Loading-museum. This will be the root directory of the artifact
+2026-11-01T14:44:13.5467937Z With the provided path, there will be 112 files uploaded
+2026-11-01T14:44:13.5469198Z Artifact name is valid!
+2026-11-01T14:44:13.5469923Z Root directory input is valid!
+2026-11-01T14:44:13.9198508Z Beginning upload of artifact content to blob storage
+2026-11-01T14:44:14.1494552Z (node:3870) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-01T14:44:15.0302286Z Uploaded bytes 3870485
+2026-11-01T14:44:15.1086876Z Finished uploading artifact content to blob storage!
+2026-11-01T14:44:15.1088327Z SHA256 digest of uploaded artifact zip is 83ad4a49d266dac23524ca831600fb199a7840737635a286b9452d3f1656a0d5
+2026-11-01T14:44:15.1089439Z Finalizing artifact upload
+2026-11-01T14:44:15.5784365Z Artifact practical-chromium-86713c39740943415ee75c524aeb38398c3fad91.zip successfully finalized. Artifact ID 13088246175
+2026-11-01T14:44:15.5786983Z Artifact practical-chromium-86713c39740943415ee75c524aeb38398c3fad91 has been successfully uploaded! Final size is 3870485 bytes. Artifact ID is 13088246175
+2026-11-01T14:44:15.5791976Z Artifact download URL: https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/41317056714/artifacts/13088246175
+2026-11-01T14:44:15.6006100Z Post job cleanup.
+2026-11-01T14:44:15.7294342Z (node:3883) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-01T14:44:15.7296102Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-01T14:44:15.7298224Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-bdf7676ac3c73d012e84037285c700072175be4631684dbc433a5ae75338da79, not saving cache.
+2026-11-01T14:44:15.7444629Z Post job cleanup.
+2026-11-01T14:44:15.8479932Z [command]/usr/bin/git version
+2026-11-01T14:44:15.8560899Z git version 2.56.0
+2026-11-01T14:44:15.8608188Z Temporarily overriding HOME='/home/runner/work/_temp/b85e8e1a-18ee-4483-af28-94292c3af102' before making global git config changes
+2026-11-01T14:44:15.8610099Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-01T14:44:15.8614783Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Loading-museum/Loading-museum
+2026-11-01T14:44:15.8676802Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-01T14:44:15.8722138Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-01T14:44:15.9025186Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-01T14:44:15.9056026Z http.https://github.com/.extraheader
+2026-11-01T14:44:15.9071443Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-01T14:44:15.9125949Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-01T14:44:15.9402919Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-01T14:44:15.9460594Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-01T14:44:15.9887276Z Cleaning up orphan processes
+2026-11-01T14:44:16.0272976Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

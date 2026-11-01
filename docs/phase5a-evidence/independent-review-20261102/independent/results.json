@@ -1,0 +1,375 @@
+{
+  "head": "86713c39740943415ee75c524aeb38398c3fad91",
+  "tree": "2f15751c9c5a8cc1364c9a0c0aa880b1770d7ae1",
+  "platform": "win32",
+  "node": "v24.20.0",
+  "started": "2026-11-01T20:36:36.217Z",
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "R1-six-first",
+      "status": "PASS",
+      "before": {
+        "count": 6,
+        "disabled": true,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 1 を削除",
+          "label": null
+        }
+      },
+      "after": {
+        "count": 5,
+        "disabled": false,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件を追加",
+          "label": null
+        }
+      },
+      "backward": {
+        "count": 5,
+        "disabled": false,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 5 を削除",
+          "label": null
+        }
+      },
+      "events": [
+        {
+          "active": "条件を追加",
+          "disabled": false,
+          "count": 5
+        },
+        {
+          "active": "条件 5 を削除",
+          "disabled": false,
+          "count": 5
+        },
+        {
+          "active": "条件を追加",
+          "disabled": false,
+          "count": 5
+        }
+      ],
+      "readded": 6
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "R1-six-middle",
+      "status": "PASS",
+      "before": {
+        "count": 6,
+        "disabled": true,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 3 を削除",
+          "label": null
+        }
+      },
+      "after": {
+        "count": 5,
+        "disabled": false,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件を追加",
+          "label": null
+        }
+      },
+      "backward": {
+        "count": 5,
+        "disabled": false,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 5 を削除",
+          "label": null
+        }
+      },
+      "events": [
+        {
+          "active": "条件を追加",
+          "disabled": false,
+          "count": 5
+        },
+        {
+          "active": "条件 5 を削除",
+          "disabled": false,
+          "count": 5
+        },
+        {
+          "active": "条件を追加",
+          "disabled": false,
+          "count": 5
+        }
+      ],
+      "readded": 6
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "R1-six-last",
+      "status": "PASS",
+      "before": {
+        "count": 6,
+        "disabled": true,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 6 を削除",
+          "label": null
+        }
+      },
+      "after": {
+        "count": 5,
+        "disabled": false,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件を追加",
+          "label": null
+        }
+      },
+      "backward": {
+        "count": 5,
+        "disabled": false,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 5 を削除",
+          "label": null
+        }
+      },
+      "events": [
+        {
+          "active": "条件を追加",
+          "disabled": false,
+          "count": 5
+        },
+        {
+          "active": "条件 5 を削除",
+          "disabled": false,
+          "count": 5
+        },
+        {
+          "active": "条件を追加",
+          "disabled": false,
+          "count": 5
+        }
+      ],
+      "readded": 6
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "R1-three-two",
+      "status": "PASS",
+      "before": {
+        "count": 3,
+        "disabled": false,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 2 を削除",
+          "label": null
+        }
+      },
+      "after": {
+        "count": 2,
+        "disabled": false,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件を追加",
+          "label": null
+        }
+      },
+      "backward": {
+        "count": 2,
+        "disabled": false,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 2 を削除",
+          "label": null
+        }
+      },
+      "events": [
+        {
+          "active": "条件を追加",
+          "disabled": false,
+          "count": 2
+        },
+        {
+          "active": "条件 2 を削除",
+          "disabled": false,
+          "count": 2
+        },
+        {
+          "active": "条件を追加",
+          "disabled": false,
+          "count": 2
+        }
+      ],
+      "readded": 3
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "R1-one-zero",
+      "status": "PASS",
+      "before": {
+        "count": 1,
+        "disabled": false,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 1 を削除",
+          "label": null
+        }
+      },
+      "after": {
+        "count": 0,
+        "disabled": false,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件を追加",
+          "label": null
+        }
+      },
+      "backward": {
+        "count": 0,
+        "disabled": false,
+        "active": {
+          "tag": "SELECT",
+          "text": "AND：すべて一致OR：どれか一致",
+          "label": null
+        }
+      },
+      "events": [
+        {
+          "active": "条件を追加",
+          "disabled": false,
+          "count": 0
+        },
+        {
+          "active": "AND：すべて一致OR：どれか一致",
+          "disabled": false,
+          "count": 0
+        },
+        {
+          "active": "条件を追加",
+          "disabled": false,
+          "count": 0
+        }
+      ],
+      "readded": 1
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "R1-or-six",
+      "status": "PASS",
+      "before": {
+        "count": 6,
+        "disabled": true,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 3 を削除",
+          "label": null
+        }
+      },
+      "after": {
+        "count": 5,
+        "disabled": false,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件を追加",
+          "label": null
+        }
+      },
+      "backward": {
+        "count": 5,
+        "disabled": false,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 5 を削除",
+          "label": null
+        }
+      },
+      "events": [
+        {
+          "active": "条件を追加",
+          "disabled": false,
+          "count": 5
+        },
+        {
+          "active": "条件 5 を削除",
+          "disabled": false,
+          "count": 5
+        },
+        {
+          "active": "条件を追加",
+          "disabled": false,
+          "count": 5
+        }
+      ],
+      "readded": 6
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "R1-reduced-reset-six",
+      "status": "PASS",
+      "before": {
+        "count": 6,
+        "disabled": true,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 3 を削除",
+          "label": null
+        }
+      },
+      "after": {
+        "count": 5,
+        "disabled": false,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件を追加",
+          "label": null
+        }
+      },
+      "backward": {
+        "count": 5,
+        "disabled": false,
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 5 を削除",
+          "label": null
+        }
+      },
+      "events": [
+        {
+          "active": "条件を追加",
+          "disabled": false,
+          "count": 5
+        },
+        {
+          "active": "条件 5 を削除",
+          "disabled": false,
+          "count": 5
+        },
+        {
+          "active": "条件を追加",
+          "disabled": false,
+          "count": 5
+        }
+      ],
+      "readded": 6
+    }
+  ],
+  "errors": [
+    "locator.focus: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.phase4Room').getByTestId('phase5-stage').getByLabel('比較', { exact: true })\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task\\loading-review-scratch\\independent-probe.mjs:51:73"
+  ],
+  "pageerrors": [],
+  "retry": 0,
+  "sleep": 0,
+  "chromium": "141.0.7390.37",
+  "finished": "2026-11-01T20:36:48.019Z",
+  "complete": false
+}

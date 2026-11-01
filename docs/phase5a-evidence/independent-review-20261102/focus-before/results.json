@@ -1,0 +1,1738 @@
+{
+  "head": "909b23dedc379d929c06b4f57f98899e930b5454",
+  "tree": "119ebe2aa9bb165615026c40ba845b0edb28b908",
+  "platform": "win32",
+  "node": "v24.20.0",
+  "trackedChanges": "",
+  "started": "2026-11-01T20:36:04.749Z",
+  "cases": [
+    {
+      "engine": "chromium",
+      "scenario": "six-middle",
+      "before": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 3 を削除",
+          "label": null
+        },
+        "addDisabled": true,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          },
+          {
+            "legend": "条件 6",
+            "value": ""
+          }
+        ]
+      },
+      "after": {
+        "active": {
+          "tag": "BODY",
+          "text": null,
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "mutation",
+          "active": "BODY",
+          "disabled": false,
+          "count": 5
+        }
+      ],
+      "shiftTab": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 2 を削除",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "tab": {
+        "active": {
+          "tag": "SELECT",
+          "text": "点数名称",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "readded": true,
+      "focusRestored": false,
+      "keyboardReturn": false,
+      "status": "RED"
+    },
+    {
+      "engine": "chromium",
+      "scenario": "six-first",
+      "before": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 1 を削除",
+          "label": null
+        },
+        "addDisabled": true,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          },
+          {
+            "legend": "条件 6",
+            "value": ""
+          }
+        ]
+      },
+      "after": {
+        "active": {
+          "tag": "BODY",
+          "text": null,
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": ""
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "mutation",
+          "active": "BODY",
+          "disabled": false,
+          "count": 5
+        }
+      ],
+      "shiftTab": {
+        "active": {
+          "tag": "SELECT",
+          "text": "AND：すべて一致OR：どれか一致",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": ""
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "tab": {
+        "active": {
+          "tag": "SELECT",
+          "text": "点数名称",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": ""
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "readded": true,
+      "focusRestored": false,
+      "keyboardReturn": false,
+      "status": "RED"
+    },
+    {
+      "engine": "chromium",
+      "scenario": "six-last",
+      "before": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 6 を削除",
+          "label": null
+        },
+        "addDisabled": true,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          },
+          {
+            "legend": "条件 6",
+            "value": ""
+          }
+        ]
+      },
+      "after": {
+        "active": {
+          "tag": "BODY",
+          "text": null,
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "mutation",
+          "active": "BODY",
+          "disabled": false,
+          "count": 5
+        }
+      ],
+      "shiftTab": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 5 を削除",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "tab": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件を追加",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "readded": true,
+      "focusRestored": false,
+      "keyboardReturn": true,
+      "status": "RED"
+    },
+    {
+      "engine": "chromium",
+      "scenario": "middle",
+      "before": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 2 を削除",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          }
+        ]
+      },
+      "after": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件を追加",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "focusin",
+          "active": "BUTTON",
+          "disabled": false,
+          "count": 3
+        },
+        {
+          "kind": "mutation",
+          "active": "BUTTON",
+          "disabled": false,
+          "count": 2
+        }
+      ],
+      "shiftTab": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 2 を削除",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          }
+        ]
+      },
+      "tab": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件を追加",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          }
+        ]
+      },
+      "readded": true,
+      "focusRestored": true,
+      "keyboardReturn": true,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "scenario": "one-zero",
+      "before": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 1 を削除",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          }
+        ]
+      },
+      "after": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件を追加",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": []
+      },
+      "events": [
+        {
+          "kind": "focusin",
+          "active": "BUTTON",
+          "disabled": false,
+          "count": 1
+        },
+        {
+          "kind": "mutation",
+          "active": "BUTTON",
+          "disabled": false,
+          "count": 0
+        }
+      ],
+      "shiftTab": {
+        "active": {
+          "tag": "SELECT",
+          "text": "AND：すべて一致OR：どれか一致",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": []
+      },
+      "tab": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件を追加",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": []
+      },
+      "readded": true,
+      "focusRestored": true,
+      "keyboardReturn": true,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "scenario": "or-delete",
+      "before": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 3 を削除",
+          "label": null
+        },
+        "addDisabled": true,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          },
+          {
+            "legend": "条件 6",
+            "value": ""
+          }
+        ]
+      },
+      "after": {
+        "active": {
+          "tag": "BODY",
+          "text": null,
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "mutation",
+          "active": "BODY",
+          "disabled": false,
+          "count": 5
+        }
+      ],
+      "shiftTab": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 2 を削除",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "tab": {
+        "active": {
+          "tag": "SELECT",
+          "text": "点数名称",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "readded": true,
+      "focusRestored": false,
+      "keyboardReturn": false,
+      "status": "RED"
+    },
+    {
+      "engine": "chromium",
+      "scenario": "reduced-reset",
+      "before": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 3 を削除",
+          "label": null
+        },
+        "addDisabled": true,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          },
+          {
+            "legend": "条件 6",
+            "value": ""
+          }
+        ]
+      },
+      "after": {
+        "active": {
+          "tag": "BODY",
+          "text": null,
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "mutation",
+          "active": "BODY",
+          "disabled": false,
+          "count": 5
+        }
+      ],
+      "shiftTab": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 2 を削除",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "tab": {
+        "active": {
+          "tag": "SELECT",
+          "text": "点数名称",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "readded": true,
+      "focusRestored": false,
+      "keyboardReturn": false,
+      "status": "RED"
+    },
+    {
+      "engine": "webkit",
+      "scenario": "six-middle",
+      "before": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 3 を削除",
+          "label": null
+        },
+        "addDisabled": true,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          },
+          {
+            "legend": "条件 6",
+            "value": ""
+          }
+        ]
+      },
+      "after": {
+        "active": {
+          "tag": "BODY",
+          "text": null,
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "mutation",
+          "active": "BODY",
+          "disabled": false,
+          "count": 5
+        }
+      ],
+      "shiftTab": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 1 を削除",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "tab": {
+        "active": {
+          "tag": "SELECT",
+          "text": "点数名称",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "readded": true,
+      "focusRestored": false,
+      "keyboardReturn": false,
+      "status": "RED"
+    },
+    {
+      "engine": "webkit",
+      "scenario": "six-first",
+      "before": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 1 を削除",
+          "label": null
+        },
+        "addDisabled": true,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          },
+          {
+            "legend": "条件 6",
+            "value": ""
+          }
+        ]
+      },
+      "after": {
+        "active": {
+          "tag": "BODY",
+          "text": null,
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": ""
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "mutation",
+          "active": "BODY",
+          "disabled": false,
+          "count": 5
+        }
+      ],
+      "shiftTab": {
+        "active": {
+          "tag": "SELECT",
+          "text": "AND：すべて一致OR：どれか一致",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": ""
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "tab": {
+        "active": {
+          "tag": "SELECT",
+          "text": "点数名称",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": ""
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "readded": true,
+      "focusRestored": false,
+      "keyboardReturn": false,
+      "status": "RED"
+    },
+    {
+      "engine": "webkit",
+      "scenario": "six-last",
+      "before": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 6 を削除",
+          "label": null
+        },
+        "addDisabled": true,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          },
+          {
+            "legend": "条件 6",
+            "value": ""
+          }
+        ]
+      },
+      "after": {
+        "active": {
+          "tag": "BODY",
+          "text": null,
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "mutation",
+          "active": "BODY",
+          "disabled": false,
+          "count": 5
+        }
+      ],
+      "shiftTab": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 4 を削除",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "tab": {
+        "active": {
+          "tag": "SELECT",
+          "text": "点数名称",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "readded": true,
+      "focusRestored": false,
+      "keyboardReturn": false,
+      "status": "RED"
+    },
+    {
+      "engine": "webkit",
+      "scenario": "middle",
+      "before": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 2 を削除",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          }
+        ]
+      },
+      "after": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件を追加",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "focusin",
+          "active": "BUTTON",
+          "disabled": false,
+          "count": 3
+        },
+        {
+          "kind": "mutation",
+          "active": "BUTTON",
+          "disabled": false,
+          "count": 2
+        }
+      ],
+      "shiftTab": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 2 を削除",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          }
+        ]
+      },
+      "tab": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件を追加",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          }
+        ]
+      },
+      "readded": true,
+      "focusRestored": true,
+      "keyboardReturn": true,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "scenario": "one-zero",
+      "before": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 1 を削除",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          }
+        ]
+      },
+      "after": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件を追加",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": []
+      },
+      "events": [
+        {
+          "kind": "focusin",
+          "active": "BUTTON",
+          "disabled": false,
+          "count": 1
+        },
+        {
+          "kind": "mutation",
+          "active": "BUTTON",
+          "disabled": false,
+          "count": 0
+        }
+      ],
+      "shiftTab": {
+        "active": {
+          "tag": "SELECT",
+          "text": "AND：すべて一致OR：どれか一致",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": []
+      },
+      "tab": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件を追加",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": []
+      },
+      "readded": true,
+      "focusRestored": true,
+      "keyboardReturn": true,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "scenario": "or-delete",
+      "before": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 3 を削除",
+          "label": null
+        },
+        "addDisabled": true,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          },
+          {
+            "legend": "条件 6",
+            "value": ""
+          }
+        ]
+      },
+      "after": {
+        "active": {
+          "tag": "BODY",
+          "text": null,
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "mutation",
+          "active": "BODY",
+          "disabled": false,
+          "count": 5
+        }
+      ],
+      "shiftTab": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 1 を削除",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "tab": {
+        "active": {
+          "tag": "SELECT",
+          "text": "点数名称",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "readded": true,
+      "focusRestored": false,
+      "keyboardReturn": false,
+      "status": "RED"
+    },
+    {
+      "engine": "webkit",
+      "scenario": "reduced-reset",
+      "before": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 3 を削除",
+          "label": null
+        },
+        "addDisabled": true,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          },
+          {
+            "legend": "条件 6",
+            "value": ""
+          }
+        ]
+      },
+      "after": {
+        "active": {
+          "tag": "BODY",
+          "text": null,
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "mutation",
+          "active": "BODY",
+          "disabled": false,
+          "count": 5
+        }
+      ],
+      "shiftTab": {
+        "active": {
+          "tag": "BUTTON",
+          "text": "条件 1 を削除",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "tab": {
+        "active": {
+          "tag": "SELECT",
+          "text": "点数名称",
+          "label": null
+        },
+        "addDisabled": false,
+        "conditions": [
+          {
+            "legend": "条件 1",
+            "value": "70"
+          },
+          {
+            "legend": "条件 2",
+            "value": ""
+          },
+          {
+            "legend": "条件 3",
+            "value": ""
+          },
+          {
+            "legend": "条件 4",
+            "value": ""
+          },
+          {
+            "legend": "条件 5",
+            "value": ""
+          }
+        ]
+      },
+      "readded": true,
+      "focusRestored": false,
+      "keyboardReturn": false,
+      "status": "RED"
+    }
+  ],
+  "errors": [],
+  "expected": 14,
+  "chromium": "141.0.7390.37",
+  "webkit": "26.0",
+  "finished": "2026-11-01T20:36:24.158Z",
+  "complete": true
+}
