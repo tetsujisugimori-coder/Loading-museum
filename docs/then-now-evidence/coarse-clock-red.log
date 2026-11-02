@@ -1,0 +1,230 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-02/task-2/loading-museum
+
+ ❯ tests/then-now-second.test.tsx (10 tests | 1 failed | 9 skipped) 35ms
+   ↓ gravity accelerates and friction reduces physical velocity
+   ↓ wall collision reflects and bounded integration never loses bodies
+   ↓ equal-mass collision exchanges normal velocities, held body stays placed
+   ↓ physics keyboard, single step and local reset remain available with motion reduction
+   ↓ intro has bounded terminal state and preserves route through skip and replay
+   ↓ intro user-driven path reaches explicit main without clocks
+   ↓ audio absent and stopped paths never report successful analysis
+   ↓ audio pause closes graph and resume does not automatically restart sound
+   ↓ late audio resume cannot resurrect an old graph after replacement or unmount
+   × timeline intro reaches the branch under coarse frames while bounding long-frame catch-up 34ms
+     → Unable to find an element with the text: /構図を選ぶ ／/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<svg[39m
+      [33maria-label[39m=[32m"線を開く / lines"[39m
+      [33mclass[39m=[32m"tnSurface"[39m
+      [33mrole[39m=[32m"img"[39m
+      [33mviewBox[39m=[32m"0 0 320 220"[39m
+    [36m>[39m
+      [36m<path[39m
+        [33mclass[39m=[32m"tnGrid"[39m
+        [33md[39m=[32m"M0 55H320M0 110H320M0 165H320M80 0V220M160 0V220M240 0V220"[39m
+      [36m/>[39m
+      [36m<path[39m
+        [33md[39m=[32m"M24 171.92307692307693V195"[39m
+        [33mstroke[39m=[32m"var(--tn-accent)"[39m
+        [33mstroke-width[39m=[32m"2"[39m
+      [36m/>[39m
+      [36m<path[39m
+        [33md[39m=[32m"M68 171.92307692307693V195"[39m
+        [33mstroke[39m=[32m"var(--tn-accent)"[39m
+        [33mstroke-width[39m=[32m"2"[39m
+      [36m/>[39m
+      [36m<rect[39m
+        [33mfill[39m=[32m"#14101eee"[39m
+        [33mheight[39m=[32m"58"[39m
+        [33mwidth[39m=[32m"320"[39m
+        [33mx[39m=[32m"0"[39m
+        [33my[39m=[32m"78"[39m
+      [36m/>[39m
+      [36m<text[39m
+        [33mclass[39m=[32m"tnIntroTitle"[39m
+        [33mtext-anchor[39m=[32m"middle"[39m
+        [33mx[39m=[32m"160"[39m
+        [33my[39m=[32m"112"[39m
+      [36m>[39m
+        [0mDRAW A PATH[0m
+      [36m</text>[39m
+      [36m<text[39m
+        [33mclass[39m=[32m"tnSvgLabel"[39m
+        [33mx[39m=[32m"12"[39m
+        [33my[39m=[32m"22"[39m
+      [36m>[39m
+        [0mSCENE [0m
+        [0m1[0m
+        [0m / 4 [0m
+        [0mTIMELINE[0m
+      [36m</text>[39m
+    [36m</svg>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"tnControls"[39m
+    [36m>[39m
+      [36m<button>[39m
+        [0m次のシーン[0m
+      [36m</button>[39m
+      [36m<button>[39m
+        [0mSkip Intro[0m
+      [36m</button>[39m
+      [36m<button>[39m
+        [0mReplay[0m
+      [36m</button>[39m
+    [36m</div>[39m
+    [36m<div[39m
+      [33maria-label[39m=[32m"途中分岐"[39m
+      [33mclass[39m=[32m"tnControls"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-pressed[39m=[32m"true"[39m
+      [36m>[39m
+        [0m線の道[0m
+      [36m</button>[39m
+      [36m<button[39m
+        [33maria-pressed[39m=[32m"false"[39m
+      [36m>[39m
+        [0m点の道[0m
+      [36m</button>[39m
+    [36m</div>[39m
+    [36m<p[39m
+      [33mclass[39m=[32m"tnReadout"[39m
+      [33mdata-route[39m=[32m"lines"[39m
+      [33mdata-scene[39m=[32m"1"[39m
+    [36m>[39m
+      [0m線を開く[0m
+      [0m ／ 選択 [0m
+      [0mlines[0m
+      [0m ／ [0m
+      [0m共通再生で定時進行・次のシーンで手動送り[0m
+    [36m</p>[39m
+    [36m<p>[39m
+      [0m短い定時シーンの間と、分岐で待つ間を組み合わせる。[0m
+      [0m Skipは今の選択を本編へ持ち越し、Replayは入口へ戻る。[0m
+    [36m</p>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/then-now-second.test.tsx > timeline intro reaches the branch under coarse frames while bounding long-frame catch-up
+TestingLibraryElementError: Unable to find an element with the text: /構図を選ぶ ／/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <svg
+      aria-label="線を開く / lines"
+      class="tnSurface"
+      role="img"
+      viewBox="0 0 320 220"
+    >
+      <path
+        class="tnGrid"
+        d="M0 55H320M0 110H320M0 165H320M80 0V220M160 0V220M240 0V220"
+      />
+      <path
+        d="M24 171.92307692307693V195"
+        stroke="var(--tn-accent)"
+        stroke-width="2"
+      />
+      <path
+        d="M68 171.92307692307693V195"
+        stroke="var(--tn-accent)"
+        stroke-width="2"
+      />
+      <rect
+        fill="#14101eee"
+        height="58"
+        width="320"
+        x="0"
+        y="78"
+      />
+      <text
+        class="tnIntroTitle"
+        text-anchor="middle"
+        x="160"
+        y="112"
+      >
+        DRAW A PATH
+      </text>
+      <text
+        class="tnSvgLabel"
+        x="12"
+        y="22"
+      >
+        SCENE 
+        1
+         / 4 
+        TIMELINE
+      </text>
+    </svg>
+    <div
+      class="tnControls"
+    >
+      <button>
+        次のシーン
+      </button>
+      <button>
+        Skip Intro
+      </button>
+      <button>
+        Replay
+      </button>
+    </div>
+    <div
+      aria-label="途中分岐"
+      class="tnControls"
+    >
+      <button
+        aria-pressed="true"
+      >
+        線の道
+      </button>
+      <button
+        aria-pressed="false"
+      >
+        点の道
+      </button>
+    </div>
+    <p
+      class="tnReadout"
+      data-route="lines"
+      data-scene="1"
+    >
+      線を開く
+       ／ 選択 
+      lines
+       ／ 
+      共通再生で定時進行・次のシーンで手動送り
+    </p>
+    <p>
+      短い定時シーンの間と、分岐で待つ間を組み合わせる。
+       Skipは今の選択を本編へ持ち越し、Replayは入口へ戻る。
+    </p>
+  </div>
+</body>
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/then-now-second.test.tsx:62:17
+     60|   render(<InteractiveIntro {...props} now={false} active reduced={fals…
+     61|   for(const time of [100,600,1100,1600,2100,2600,3100])act(()=>next(ti…
+     62|   expect(screen.getByText(/構図を選ぶ ／/)).toBeTruthy();
+       |                 ^
+     63| });
+     64| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 skipped (10)
+   Start at  09:19:28
+   Duration  1.08s (transform 82ms, setup 0ms, collect 260ms, tests 35ms, environment 514ms, prepare 118ms)
+

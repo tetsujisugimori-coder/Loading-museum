@@ -1,0 +1,55 @@
+{
+  "method": "one bounded CSS diagnostic; injected CSS is not an unmodified-product PASS",
+  "states": [
+    {
+      "label": "original",
+      "box": {
+        "x": 269,
+        "y": 3690.421875,
+        "width": 26,
+        "height": 25,
+        "top": 3690.421875,
+        "right": 295,
+        "bottom": 3715.421875,
+        "left": 269
+      },
+      "hit": false,
+      "contentVisibility": "auto"
+    },
+    {
+      "label": "visible-injection",
+      "box": {
+        "x": 269,
+        "y": 437.71875,
+        "width": 26,
+        "height": 25,
+        "top": 437.71875,
+        "right": 295,
+        "bottom": 462.71875,
+        "left": 269
+      },
+      "hit": true,
+      "hitTag": "BUTTON",
+      "hitText": "集合",
+      "contentVisibility": "visible"
+    },
+    {
+      "label": "restored-original",
+      "box": {
+        "x": 269,
+        "y": 437.71875,
+        "width": 26,
+        "height": 25,
+        "top": 437.71875,
+        "right": 295,
+        "bottom": 462.71875,
+        "left": 269
+      },
+      "hit": true,
+      "hitTag": "BUTTON",
+      "hitText": "集合",
+      "contentVisibility": "auto"
+    }
+  ],
+  "injectedNativeClickAssembled": true
+}

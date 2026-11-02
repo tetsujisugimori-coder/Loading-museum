@@ -1,0 +1,26 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-02/task-2/loading-museum
+
+ ❯ tests/then-now-visibility.test.tsx (1 test | 1 failed) 109ms
+   × visible new study remains operable after a stale false observer entry and stops outside the viewport 109ms
+     → expected 'false' to be 'true' // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/then-now-visibility.test.tsx > visible new study remains operable after a stale false observer entry and stops outside the viewport
+AssertionError: expected 'false' to be 'true' // Object.is equality
+
+Expected: "true"
+Received: "false"
+
+ ❯ tests/then-now-visibility.test.tsx:14:118
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  09:50:50
+   Duration  1.16s (transform 140ms, setup 0ms, collect 342ms, tests 109ms, environment 475ms, prepare 94ms)
+

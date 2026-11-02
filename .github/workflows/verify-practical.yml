@@ -8,6 +8,73 @@ concurrency:
   group: practical-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 jobs:
+  then-now-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Fixed browser harness outside application dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/then-now-playwright" --no-save playwright@1.56.1
+          if [ -f /etc/apt/apt-mirrors.txt ]; then
+            printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt
+          fi
+          printf 'Acquire::http::Timeout "30";\nAcquire::https::Timeout "30";\nAcquire::Retries "1";\n' | sudo tee /etc/apt/apt.conf.d/99-museum-network-bounds
+          "$RUNNER_TEMP/then-now-playwright/node_modules/.bin/playwright" install --with-deps ${{ matrix.browser }}
+      - name: Six interactive pairs, actual audio required, three widths
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          WIDTHS: 375,390,1280
+          EVIDENCE_DIR: then-now-browser-evidence
+          REQUIRE_CLEAN: 1
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/then-now-playwright/node_modules/playwright"
+          node scripts/verify-then-now-browser.mjs 2>&1 | tee then-now-browser.log
+      - name: Supplemental actual pointer speed and distance
+        if: ${{ !cancelled() }}
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          EVIDENCE_DIR: then-now-dynamics-evidence
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/then-now-playwright/node_modules/playwright"
+          node scripts/verify-then-now-dynamics.mjs 2>&1 | tee then-now-dynamics.log
+      - name: Existing Flash interactions and inheritance comparison
+        if: ${{ !cancelled() }}
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          WIDTHS: 375
+          EVIDENCE_DIR: flash-legacy-evidence
+          LEGACY: 1
+          REQUIRE_CLEAN: 1
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/then-now-playwright/node_modules/playwright"
+          node scripts/verify-then-now-browser.mjs 2>&1 | tee flash-legacy.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: then-now-${{ matrix.browser }}-${{ github.event.pull_request.head.sha }}
+          path: |
+            then-now-browser-evidence/
+            then-now-browser.log
+            then-now-dynamics-evidence/
+            then-now-dynamics.log
+            flash-legacy-evidence/
+            flash-legacy.log
   contracts:
     runs-on: ubuntu-24.04
     timeout-minutes: 15

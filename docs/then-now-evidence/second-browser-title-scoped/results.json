@@ -1,0 +1,283 @@
+{
+  "head": "02f3976dd584c58c75138cc5a3077688a52a7b17",
+  "started": "2026-11-02T00:13:29.423Z",
+  "expected": 12,
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "tn-physics",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      }
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "tn-intro",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      }
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "tn-sound",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [
+          "closed",
+          "closed",
+          "closed"
+        ],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      }
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "id": "tn-physics",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 1280,
+        "pageWidth": 1280,
+        "cardWidth": 1153.984375,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      }
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "id": "tn-intro",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 1280,
+        "pageWidth": 1280,
+        "cardWidth": 1153.984375,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      }
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "id": "tn-sound",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 1280,
+        "pageWidth": 1280,
+        "cardWidth": 1153.984375,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [
+          "closed",
+          "closed",
+          "closed"
+        ],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      }
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "id": "tn-physics",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      }
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "id": "tn-intro",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      }
+    }
+  ],
+  "errors": [
+    "page.waitForFunction: Timeout 8000ms exceeded.\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-2\\loading-museum\\scripts\\verify-then-now-browser.mjs:44:86"
+  ],
+  "chromium": "141.0.7390.37",
+  "current": {
+    "engine": "webkit",
+    "width": 375,
+    "id": "tn-sound"
+  },
+  "webkit": "26.0",
+  "diagnostic": {
+    "scrollY": 6642,
+    "viewport": 900,
+    "card": [
+      {
+        "tag": "tnMount",
+        "attributes": [
+          [
+            "class",
+            "tnMount"
+          ],
+          [
+            "data-visible",
+            "true"
+          ]
+        ],
+        "box": {
+          "x": 25,
+          "y": -785,
+          "width": 325,
+          "height": 1853.125,
+          "top": -785,
+          "right": 350,
+          "bottom": 1068.125,
+          "left": 25
+        }
+      },
+      {
+        "tag": "tnCard",
+        "attributes": [
+          [
+            "class",
+            "tnCard"
+          ],
+          [
+            "data-study",
+            "tn-sound"
+          ],
+          [
+            "data-playing",
+            "true"
+          ],
+          [
+            "data-reduced",
+            "false"
+          ]
+        ],
+        "box": {
+          "x": 25,
+          "y": -785,
+          "width": 325,
+          "height": 1853.125,
+          "top": -785,
+          "right": 350,
+          "bottom": 1068.125,
+          "left": 25
+        }
+      }
+    ],
+    "state": [
+      "停止・無音 ／ 220Hz ／ RMS 0.0000 ／ 帯域 1",
+      "音声を利用できません：Web Audio APIなし ／ 220Hz ／ RMS 0.0000 ／ 帯域 1"
+    ]
+  },
+  "finished": "2026-11-02T00:14:32.838Z",
+  "complete": false
+}

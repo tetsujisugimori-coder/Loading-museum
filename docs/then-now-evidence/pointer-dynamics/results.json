@@ -1,0 +1,25 @@
+{
+  "head": "9518729df2f8870efb92aa0603d074a52872a2f5",
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "nowFar": "WATCH ／ 距離 148px ／ 入力速度 600px/s ／ 合図 0",
+      "nowNear": "RETREAT ／ 距離 14px ／ 入力速度 2000px/s ／ 合図 0",
+      "thenFar": "WATCH ／ 距離 148px ／ 入力速度 600px/s ／ 合図 0",
+      "thenNear": "WATCH ／ 距離 14px ／ 入力速度 2000px/s ／ 合図 0",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "nowFar": "WATCH ／ 距離 148px ／ 入力速度 590px/s ／ 合図 0",
+      "nowNear": "RETREAT ／ 距離 14px ／ 入力速度 2000px/s ／ 合図 0",
+      "thenFar": "WATCH ／ 距離 148px ／ 入力速度 590px/s ／ 合図 0",
+      "thenNear": "WATCH ／ 距離 14px ／ 入力速度 2000px/s ／ 合図 0",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "complete": true
+}

@@ -8,6 +8,7 @@ import {
   type FlashExhibit,
 } from "../data/flashExhibits";
 import { FlashVisual } from "./FlashVisuals";
+import { ThenNowMount } from "./then-now/ThenNowCard";
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const EXHIBIT_COUNTS = new Map(
@@ -62,11 +63,13 @@ function FlashExhibitCard({
   categoryActive,
   globalPlaying,
   reduced,
+  speed,
 }: {
   exhibit: FlashExhibit;
   categoryActive: boolean;
   globalPlaying: boolean;
   reduced: boolean;
+  speed: number;
 }) {
   const { ref, visible } = useInView<HTMLElement>();
   const [localPlaying, setLocalPlaying] = useState(true);
@@ -75,6 +78,7 @@ function FlashExhibitCard({
     || exhibit.interactionType === "audio"
     || CONTINUOUS_INTERACTIVE_VISUALS.has(exhibit.visualType);
   const active = categoryActive && visible && globalPlaying && localPlaying && !reduced;
+  if (exhibit.visualType === "then-now") return <ThenNowMount exhibit={exhibit} categoryActive={categoryActive} globalPlaying={globalPlaying} reduced={reduced} speed={speed} />;
   return (
     <article ref={ref} className="flashExhibitCard" data-visible={visible} data-active={active}>
       <div className="flashCardTopline">
@@ -114,7 +118,8 @@ export function FlashSpecialExhibitRoom() {
   const reduced = useReducedMotion();
   const pageVisible = usePageVisible();
   const categoryExhibits = useMemo(
-    () => flashExhibits.filter((exhibit) => exhibit.categoryId === activeCategory),
+    () => flashExhibits.filter((exhibit) => exhibit.categoryId === activeCategory)
+      .sort((a, b) => Number(b.visualType === "then-now") - Number(a.visualType === "then-now")),
     [activeCategory],
   );
   const category = flashCategories.find((item) => item.id === activeCategory) ?? flashCategories[0];
@@ -169,7 +174,7 @@ export function FlashSpecialExhibitRoom() {
           </header>
           <div className="flashExhibitGrid">
             {categoryExhibits.map((exhibit) => (
-              <FlashExhibitCard key={exhibit.id} exhibit={exhibit} categoryActive={open && pageVisible} globalPlaying={playing} reduced={reduced} />
+              <FlashExhibitCard key={exhibit.id} exhibit={exhibit} categoryActive={open && pageVisible} globalPlaying={playing} reduced={reduced} speed={speed === "slow" ? .6 : speed === "fast" ? 1.6 : 1} />
             ))}
           </div>
         </section>

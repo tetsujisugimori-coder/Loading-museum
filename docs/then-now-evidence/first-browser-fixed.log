@@ -1,0 +1,10 @@
+PASS chromium 375 tn-vector-morph
+PASS chromium 375 tn-cursor-creature
+PASS chromium 375 tn-kinetic-type
+PASS chromium 1280 tn-vector-morph
+PASS chromium 1280 tn-cursor-creature
+PASS chromium 1280 tn-kinetic-type
+page.waitForFunction: Timeout 8000ms exceeded.
+    at C:\Users\tetsu\Documents\Codex\2026-11-02\task-2\loading-museum\scripts\verify-then-now-browser.mjs:23:12 {
+  name: 'TimeoutError'
+}

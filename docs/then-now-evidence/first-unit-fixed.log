@@ -1,0 +1,1109 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-02/task-2/loading-museum
+
+ 笶ｯ tests/then-now-first.test.tsx (6 tests | 2 failed) 77ms
+   笨・morph preserves source/end shapes and correspondence changes intermediate geometry 2ms
+   ﾃ・morph supports manual intermediate, shape and mapping in reduced motion 29ms
+     竊・Found multiple elements with the text of: /荳ｭ髢灘ｽ｢迥ｶ/
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<output>[39m
+  [0m0[0m
+[36m</output>[39m
+
+Ignored nodes: comments, script, style
+[36m<input[39m
+  [33maria-label[39m=[32m"荳ｭ髢灘ｽ｢迥ｶ %"[39m
+  [33mid[39m=[32m"_r_0_"[39m
+  [33mmax[39m=[32m"100"[39m
+  [33mmin[39m=[32m"0"[39m
+  [33mstep[39m=[32m"1"[39m
+  [33mtype[39m=[32m"range"[39m
+  [33mvalue[39m=[32m"0"[39m
+[36m/>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<svg[39m
+      [33maria-label[39m=[32m"蝗幄ｧ偵°繧画弌縺ｸ 0%繝ｻ蟇ｾ蠢懊★繧・"[39m
+      [33mclass[39m=[32m"tnSurface"[39m
+      [33mrole[39m=[32m"img"[39m
+      [33mviewBox[39m=[32m"0 0 320 220"[39m
+    [36m>[39m
+      [36m<path[39m
+        [33mclass[39m=[32m"tnGrid"[39m
+        [33md[39m=[32m"M0 55H320M0 110H320M0 165H320M80 0V220M160 0V220M240 0V220"[39m
+      [36m/>[39m
+      [36m<g[39m
+        [33mtransform[39m=[32m"translate(160 110)"[39m
+      [36m>[39m
+        [36m<polygon[39m
+          [33mclass[39m=[32m"tnGhost"[39m
+          [33mpoints[39m=[32m"0.00,-64.00 64.00,-64.00 64.00,0.00 64.00,64.00 0.00,64.00 -64.00,64.00 -64.00,0.00 -64.00,-64.00"[39m
+        [36m/>[39m
+        [36m<polygon[39m
+          [33mclass[39m=[32m"tnGhost"[39m
+          [33mpoints[39m=[32m"0.00,-80.00 24.04,-24.04 80.00,0.00 24.04,24.04 0.00,80.00 -24.04,24.04 -80.00,0.00 -24.04,-24.04"[39m
+        [36m/>[39m
+        [36m<line[39m
+          [33mclass[39m=[32m"tnCorrespondence"[39m
+          [33mx1[39m=[32m"3.91886975727153e-15"[39m
+          [33mx2[39m=[32m"4.898587196589413e-15"[39m
+          [33my1[39m=[32m"-64"[39m
+          [33my2[39m=[32m"-80"[39m
+        [36m/>[39m
+        [36m<line[39m
+          [33mclass[39m=[32m"tnCorrespondence"[39m
+          [33mx1[39m=[32m"64"[39m
+          [33mx2[39m=[32m"24.041630560342618"[39m
+          [33my1[39m=[32m"-63.999999999999986"[39m
+          [33my2[39m=[32m"-24.041630560342615"[39m
+        [36m/>[39m
+        [36m<line[39m
+          [33mclass[39m=[32m"tnCorrespondence"[39m
+          [33mx1[39m=[32m"64"[39m
+          [33mx2[39m=[32m"80"[39m
+          [33my1[39m=[32m"0"[39m
+          [33my2[39m=[32m"0"[39m
+        [36m/>[39m
+        [36m<line[39m
+          [33mclass[39m=[32m"tnCorrespondence"[39m
+          [33mx1[39m=[32m"64"[39m
+          [33mx2[39m=[32m"24.041630560342618"[39m
+          [33my1[39m=[32m"63.999999999999986"[39m
+          [33my2[39m=[32m"24.041630560342615"[39m
+        [36m/>[39m
+        [36m<line[39m
+          [33mclass[39m=[32m"tnCorrespondence"[39m
+          [33mx1[39m=[32m"3.91886975727153e-15"[39m
+          [33mx2[39m=[32m"4.898587196589413e-15"[39m
+          [33my1[39m=[32m"64"[39m
+          [33my2[39m=[32m"80"[39m
+        [36m/>[39m
+        [36m<line[39m
+          [33mclass[39m=[32m"tnCorrespondence"[39m
+          [33mx1[39m=[32m"-63.999999999999986"[39m
+          [33mx2[39m=[32m"-24.041630560342615"[39m
+          [33my1[39m=[32m"64"[39m
+          [33my2[39m=[32m"24.041630560342618"[39m
+        [36m/>[39m
+        [36m<line[39m
+          [33mclass[39m=[32m"tnCorrespondence"[39m
+          [33mx1[39m=[32m"-64"[39m
+          [33mx2[39m=[32m"-80"[39m
+          [33my1[39m=[32m"7.83773951454306e-15"[39m
+          [33my2[39m=[32m"9.797174393178826e-15"[39m
+        [36m/>[39m
+        [36m<line[39m
+          [33mclass[39m=[32m"tnCorrespondence"[39m
+          [33mx1[39m=[32m"-64"[39m
+          [33mx2[39m=[32m"-24.04163056034262"[39m
+          [33my1[39m=[32m"-63.99999999999998"[39m
+          [33my2[39m=[32m"-24.041630560342615"[39m
+        [36m/>[39m
+        [36m<polygon[39m
+          [33mclass[39m=[32m"tnShape"[39m
+          [33mpoints[39m=[32m"0.00,-64.00 64.00,-64.00 64.00,0.00 64.00,64.00 0.00,64.00 -64.00,64.00 -64.00,0.00 -64.00,-64.00"[39m
+        [36m/>[39m
+        [36m<g>[39m
+          [36m<circle[39m
+            [33mcx[39m=[32m"3.91886975727153e-15"[39m
+            [33mcy[39m=[32m"-64"[39m
+            [33mfill[39m=[32m"var(--tn-ink)"[39m
+            [33mr[39m=[32m"3"[39m
+          [36m/>[39m
+          [36m<text[39m
+            [33mclass[39m=[32m"tnPointLabel"[39m
+            [33mx[39m=[32m"7.0000000000000036"[39m
+            [33my[39m=[32m"-69"[39m
+          [36m>[39m
+            [0m0[0m
+          [36m</text>[39m
+        [36m</g>[39m
+        [36m<g>[39m
+          [36m<circle[39m
+            [33mcx[39m=[32m"64"[39m
+            [33mcy[39m=[32m"-63.999999999999986"[39m
+            [33mfill[39m=[32m"var(--tn-ink)"[39m
+            [33mr[39m=[32m"3"[39m
+          [36m/>[39m
+          [36m<text[39m
+            [33mclass[39m=[32m"tnPointLabel"[39m
+            [33mx[39m=[32m"71"[39m
+            [33my[39m=[32m"-68.99999999999999"[39m
+          [36m>[39m
+            [0m1[0m
+          [36m</text>[39m
+        [36m</g>[39m
+        [36m<g>[39m
+          [36m<circle[39m
+            [33mcx[39m=[32m"64"[39m
+            [33mcy[39m=[32m"0"[39m
+            [33mfill[39m=[32m"var(--tn-ink)"[39m
+            [33mr[39m=[32m"3"[39m
+          [36m/>[39m
+          [36m<text[39m
+            [33mclass[39m=[32m"tnPointLabel"[39m
+            [33mx[39m=[32m"71"[39m
+            [33my[39m=[32m"-5"[39m
+          [36m>[39m
+            [0m2[0m
+          [36m</text>[39m
+        [36m</g>[39m
+        [36m<g>[39m
+          [36m<circle[39m
+            [33mcx[39m=[32m"64"[39m
+            [33mcy[39m=[32m"63.999999999999986"[39m
+            [33mfill[39m=[32m"var(--tn-ink)"[39m
+            [33mr[39m=[32m"3"[39m
+          [36m/>[39m
+          [36m<text[39m
+            [33mclass[39m=[32m"tnPointLabel"[39m
+            [33mx[39m=[32m"71"[39m
+            [33my[39m=[32m"58.999999999999986"[39m
+          [36m>[39m
+            [0m3[0m
+          [36m</text>[39m
+        [36m</g>[39m
+        [36m<g>[39m
+          [36m<circle[39m
+            [33mcx[39m=[32m"3.91886975727153e-15"[39m
+            [33mcy[39m=[32m"64"[39m
+            [33mfill[39m=[32m"var(--tn-ink)"[39m
+            [33mr[39m=[32m"3"[39m
+          [36m/>[39m
+          [36m<text[39m
+            [33mclass[39m=[32m"tnPointLabel"[39m
+            [33mx[39m=[32m"7.0000000000000036"[39m
+            [33my[39m=[32m"59"[39m
+          [36m>[39m
+            [0m4[0m
+          [36m</text>[39m
+        [36m</g>[39m
+        [36m<g>[39m
+          [36m<circle[39m
+            [33mcx[39m=[32m"-63.999999999999986"[39m
+            [33mcy[39m=[32m"64"[39m
+            [33mfill[39m=[32m"var(--tn-ink)"[39m
+            [33mr[39m=[32m"3"[39m
+          [36m/>[39m
+          [36m<text[39m
+            [33mclass[39m=[32m"tnPointLabel"[39m
+            [33mx[39m=[32m"-56.999999999999986"[39m
+            [33my[39m=[32m"59"[39m
+          [36m>[39m
+            [0m5[0m
+          [36m</text>[39m
+        [36m</g>[39m
+        [36m<g>[39m
+          [36m<circle[39m
+            [33mcx[39m=[32m"-64"[39m
+            [33mcy[39m=[32m"7.83773951454306e-15"[39m
+            [33mfill[39m=[32m"var(--tn-ink)"[39m
+            [33mr[39m=[32m"3"[39m
+          [36m/>[39m
+          [36m<text[39m
+            [33mclass[39m=[32m"tnPointLabel"[39m
+            [33mx[39m=[32m"-57"[39m
+            [33my[39m=[32m"-4.999999999999992"[39m
+          [36m>[39m
+            [0m6[0m
+          [36m</text>[39m
+        [36m</g>[39m
+        [36m<g>[39m
+          [36m<circle[39m
+            [33mcx[39m=[32m"-64"[39m
+            [33mcy[39m=[32m"-63.99999999999998"[39m
+            [33mfill[39m=[32m"var(--tn-ink)"[39m
+            [33mr[39m=[32m"3"[39m
+          [36m/>[39m
+          [36m<text[39m
+            [33mclass[39m=[32m"tnPointLabel"[39m
+            [33mx[39m=[32m"-57"[39m
+            [33my[39m=[32m"-68.99999999999997"[39m
+          [36m>[39m
+            [0m7[0m
+          [36m</text>[39m
+        [36m</g>[39m
+      [36m</g>[39m
+    [36m</svg>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"tnControls"[39m
+    [36m>[39m
+      [36m<button>[39m
+        [0m蠖｢繧貞・譖ｿ[0m
+      [36m</button>[39m
+      [36m<button>[39m
+        [0m蜈磯ｭ縺九ｉ[0m
+      [36m</button>[39m
+      [36m<button[39m
+        [33maria-pressed[39m=[32m"true"[39m
+      [36m>[39m
+        [0m蟇ｾ蠢懃ｷ・[0m
+      [36m</button>[39m
+    [36m</div>[39m
+    [36m<label[39m
+      [33mclass[39m=[32m"tnRange"[39m
+      [33mfor[39m=[32m"_r_0_"[39m
+    [36m>[39m
+      [36m<span>[39m
+        [0m荳ｭ髢灘ｽ｢迥ｶ %[0m
+        [0m [0m
+        [36m<output>[39m
+          [0m0[0m
+        [36m</output>[39m
+      [36m</span>[39m
+      [36m<input[39m
+        [33maria-label[39m=[32m"荳ｭ髢灘ｽ｢迥ｶ %"[39m
+        [33mid[39m=[32m"_r_0_"[39m
+        [33mmax[39m=[32m"100"[39m
+        [33mmin[39m=[32m"0"[39m
+        [33mstep[39m=[32m"1"[39m
+        [33mtype[39m=[32m"range"[39m
+        [33mvalue[39m=[32m"0"[39m
+      [36m/>[39m
+    [36m</label>[39m
+    [36m<label[39m
+      [33mclass[39m=[32m"tnRange"[39m
+      [33mfor[39m=[32m"_r_1_"[39m
+    [36m>[39m
+      [36m<span>[39m
+        [0m蟇ｾ蠢懃せ縺ｮ縺壹ｌ[0m
+        [0m [0m
+        [36m<output>[39m
+          [0m0[0m
+        [36m</output>[39m
+      [36m</span>[39m
+      [36m<input[39m
+        [33maria-label[39m=[32m"蟇ｾ蠢懃せ縺ｮ縺壹ｌ"[39m
+        [33mid[39m=[32m"_r_1_"[39m
+        [33mmax[39m=[32m"7"[39m
+        [33mmin[39m=[32m"0"[39m
+        [33mstep[39m=[32m"1"[39m
+        [33mtype[39m=[32m"range"[39m
+        [33mvalue[39m=[32m"0"[39m
+      [36m/>[39m
+    [36m</label>[39m
+    [36m<p[39m
+      [33mclass[39m=[32m"tnReadout"[39m
+      [33mdata-progress[39m=[32m"0.000"[39m
+    [36m>[39m
+      [0m蝗幄ｧ・竊・[0m
+      [0m譏・[0m
+      [0m ・・t=[0m
+      [0m0.00[0m
+      [0m ・・[0m
+      [0m轤ｹ i 竊・(i+0) mod 8[0m
+    [36m</p>[39m
+    [36m<p>[39m
+      [0m蟋狗せ縺ｮ蝗幄ｧ偵→邨らせ縺ｮ霈ｪ驛ｭ繧堤ｴｰ邱壹〒陦ｨ遉ｺ縲・[0m
+      [0m蟇ｾ蠢懷・繧偵★繧峨☆縺ｨ縲∝酔縺倡ｵらせ縺ｧ繧る比ｸｭ縺ｮ莠､蟾ｮ繧・ｸｮ縺ｿ譁ｹ縺悟､峨ｏ繧九・[0m
+    [36m</p>[39m
+  [36m</div>[39m
+[36m</body>[39m
+   笨・bird keyboard target and signals work without pointer, escape clears input 27ms
+   笨・bird leave and cancellation clear reaction even after repeated signals 15ms
+   笨・typography letters have independent phase and two compositions 0ms
+   ﾃ・typography meaning composition and time remain editable while stopped 5ms
+     竊・Found multiple elements with the text of: /譎る俣菴咲ｽｮ/
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<output>[39m
+  [0m0[0m
+[36m</output>[39m
+
+Ignored nodes: comments, script, style
+[36m<input[39m
+  [33maria-label[39m=[32m"譎る俣菴咲ｽｮ %"[39m
+  [33mid[39m=[32m"_r_2_"[39m
+  [33mmax[39m=[32m"100"[39m
+  [33mmin[39m=[32m"0"[39m
+  [33mstep[39m=[32m"1"[39m
+  [33mtype[39m=[32m"range"[39m
+  [33mvalue[39m=[32m"0"[39m
+[36m/>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<svg[39m
+      [33maria-label[39m=[32m"LISTEN縲〉ise讒区・縲・ｲ陦・%"[39m
+      [33mclass[39m=[32m"tnSurface"[39m
+      [33mrole[39m=[32m"img"[39m
+      [33mviewBox[39m=[32m"0 0 320 220"[39m
+    [36m>[39m
+      [36m<path[39m
+        [33mclass[39m=[32m"tnGrid"[39m
+        [33md[39m=[32m"M0 55H320M0 110H320M0 165H320M80 0V220M160 0V220M240 0V220"[39m
+      [36m/>[39m
+      [36m<path[39m
+        [33mclass[39m=[32m"tnGhost"[39m
+        [33md[39m=[32m"M20 145H300"[39m
+      [36m/>[39m
+      [36m<g[39m
+        [33mdata-letter[39m=[32m"0"[39m
+        [33mtransform[39m=[32m"translate(42 122) rotate(-15)"[39m
+      [36m>[39m
+        [36m<text[39m
+          [33mclass[39m=[32m"tnLetter"[39m
+          [33mtext-anchor[39m=[32m"middle"[39m
+        [36m>[39m
+          [0mL[0m
+        [36m</text>[39m
+        [36m<rect[39m
+          [33mfill[39m=[32m"var(--tn-accent)"[39m
+          [33mheight[39m=[32m"3"[39m
+          [33mwidth[39m=[32m"0"[39m
+          [33mx[39m=[32m"-10"[39m
+          [33my[39m=[32m"26"[39m
+        [36m/>[39m
+      [36m</g>[39m
+      [36m<g[39m
+        [33mdata-letter[39m=[32m"1"[39m
+        [33mtransform[39m=[32m"translate(76 122) rotate(-15)"[39m
+      [36m>[39m
+        [36m<text[39m
+          [33mclass[39m=[32m"tnLetter"[39m
+          [33mtext-anchor[39m=[32m"middle"[39m
+        [36m>[39m
+          [0mI[0m
+        [36m</text>[39m
+        [36m<rect[39m
+          [33mfill[39m=[32m"var(--tn-accent)"[39m
+          [33mheight[39m=[32m"3"[39m
+          [33mwidth[39m=[32m"0"[39m
+          [33mx[39m=[32m"-10"[39m
+          [33my[39m=[32m"26"[39m
+        [36m/>[39m
+      [36m</g>[39m
+      [36m<g[39m
+        [33mdata-letter[39m=[32m"2"[39m
+        [33mtransform[39m=[32m"translate(110 122) rotate(-15)"[39m
+      [36m>[39m
+        [36m<text[39m
+          [33mclass[39m=[32m"tnLetter"[39m
+          [33mtext-anchor[39m=[32m"middle"[39m
+        [36m>[39m
+          [0mS[0m
+        [36m</text>[39m
+        [36m<rect[39m
+          [33mfill[39m=[32m"var(--tn-accent)"[39m
+          [33mheight[39m=[32m"3"[39m
+          [33mwidth[39m=[32m"0"[39m
+          [33mx[39m=[32m"-10"[39m
+          [33my[39m=[32m"26"[39m
+        [36m/>[39m
+      [36m</g>[39m
+      [36m<g[39m
+        [33mdata-letter[39m=[32m"3"[39m
+        [33mtransform[39m=[32m"translate(144 122) rotate(-15)"[39m
+      [36m>[39m
+        [36m<text[39m
+          [33mclass[39m=[32m"tnLetter"[39m
+          [33mtext-anchor[39m=[32m"middle"[39m
+        [36m>[39m
+          [0mT[0m
+        [36m</text>[39m
+        [36m<rect[39m
+          [33mfill[39m=[32m"var(--tn-accent)"[39m
+          [33mheight[39m=[32m"3"[39m
+          [33mwidth[39m=[32m"0"[39m
+          [33mx[39m=[32m"-10"[39m
+          [33my[39m=[32m"26"[39m
+        [36m/>[39m
+      [36m</g>[39m
+      [36m<g[39m
+        [33mdata-letter[39m=[32m"4"[39m
+        [33mtransform[39m=[32m"translate(178 122) rotate(-15)"[39m
+      [36m>[39m
+        [36m<text[39m
+          [33mclass[39m=[32m"tnLetter"[39m
+          [33mtext-anchor[39m=[32m"middle"[39m
+        [36m>[39m
+          [0mE[0m
+        [36m</text>[39m
+        [36m<rect[39m
+          [33mfill[39m=[32m"var(--tn-accent)"[39m
+          [33mheight[39m=[32m"3"[39m
+          [33mwidth[39m=[32m"0"[39m
+          [33mx[39m=[32m"-10"[39m
+          [33my[39m=[32m"26"[39m
+        [36m/>[39m
+      [36m</g>[39m
+      [36m<g[39m
+        [33mdata-letter[39m=[32m"5"[39m
+        [33mtransform[39m=[32m"translate(212 122) rotate(-15)"[39m
+      [36m>[39m
+        [36m<text[39m
+          [33mclass[39m=[32m"tnLetter"[39m
+          [33mtext-anchor[39m=[32m"middle"[39m
+        [36m>[39m
+          [0mN[0m
+        [36m</text>[39m
+        [36m<rect[39m
+          [33mfill[39m=[32m"var(--tn-accent)"[39m
+          [33mheight[39m=[32m"3"[39m
+          [33mwidth[39m=[32m"0"[39m
+          [33mx[39m=[32m"-10"[39m
+          [33my[39m=[32m"26"[39m
+        [36m/>[39m
+      [36m</g>[39m
+      [36m<text[39m
+        [33mclass[39m=[32m"tnSvgLabel"[39m
+        [33mx[39m=[32m"12"[39m
+        [33my[39m=[32m"22"[39m
+      [36m>[39m
+        [0mLISTEN / 譎る俣蟾ｮ[0m
+      [36m</text>[39m
+    [36m</svg>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"tnControls"[39m
+    [36m>[39m
+      [36m<button>[39m
+        [0m蜈磯ｭ縺九ｉ[0m
+      [36m</button>[39m
+      [36m<button>[39m
+        [0m貍泌・繧貞・譖ｿ[0m
+      [36m</button>[39m
+      [36m<button>[39m
+        [0m險闡峨ｒ蛻・崛[0m
+      [36m</button>[39m
+    [36m</div>[39m
+    [36m<label[39m
+      [33mclass[39m=[32m"tnRange"[39m
+      [33mfor[39m=[32m"_r_2_"[39m
+    [36m>[39m
+      [36m<span>[39m
+        [0m譎る俣菴咲ｽｮ %[0m
+        [0m [0m
+        [36m<output>[39m
+          [0m0[0m
+        [36m</output>[39m
+      [36m</span>[39m
+      [36m<input[39m
+        [33maria-label[39m=[32m"譎る俣菴咲ｽｮ %"[39m
+        [33mid[39m=[32m"_r_2_"[39m
+        [33mmax[39m=[32m"100"[39m
+        [33mmin[39m=[32m"0"[39m
+        [33mstep[39m=[32m"1"[39m
+        [33mtype[39m=[32m"range"[39m
+        [33mvalue[39m=[32m"0"[39m
+      [36m/>[39m
+    [36m</label>[39m
+    [36m<label[39m
+      [33mclass[39m=[32m"tnRange"[39m
+      [33mfor[39m=[32m"_r_3_"[39m
+    [36m>[39m
+      [36m<span>[39m
+        [0m譁・ｭ励・髢馴囈[0m
+        [0m [0m
+        [36m<output>[39m
+          [0m0[0m
+        [36m</output>[39m
+      [36m</span>[39m
+      [36m<input[39m
+        [33maria-label[39m=[32m"譁・ｭ励・髢馴囈"[39m
+        [33mid[39m=[32m"_r_3_"[39m
+        [33mmax[39m=[32m"8"[39m
+        [33mmin[39m=[32m"-4"[39m
+        [33mstep[39m=[32m"1"[39m
+        [33mtype[39m=[32m"range"[39m
+        [33mvalue[39m=[32m"0"[39m
+      [36m/>[39m
+    [36m</label>[39m
+    [36m<p[39m
+      [33mclass[39m=[32m"tnReadout"[39m
+      [33mdata-progress[39m=[32m"0.000"[39m
+    [36m>[39m
+      [0mLISTEN[0m
+      [0m ・・[0m
+      [0mrise[0m
+      [0m ・・蜷・枚蟄励・髢句ｧ句ｷｮ 6.5% ・・騾ｲ陦・[0m
+      [0m0[0m
+      [0m%[0m
+    [36m</p>[39m
+    [36m<p>[39m
+      [0mLISTEN縺ｯ蟆上＆縺ｪ譎る俣蟾ｮ縺ｸ閠ｳ繧呈ｾ・∪縺呎ｧ区・縲・XPAND縺ｯ蟄鈴俣縺ｮ諡｡螟ｧ繧呈э蜻ｳ縺ｨ邨舌・縲・[0m
+      [0m 蜈ｱ騾夐溷ｺｦ縺ｨ譎る俣菴咲ｽｮ縺ｧ騾比ｸｭ縺ｮ譁・ｭ励ｒ隕ｳ蟇溘〒縺阪ｋ縲・[0m
+    [36m</p>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ Failed Tests 2 竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ
+
+ FAIL  tests/then-now-first.test.tsx > morph supports manual intermediate, shape and mapping in reduced motion
+TestingLibraryElementError: Found multiple elements with the text of: /荳ｭ髢灘ｽ｢迥ｶ/
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+<output>
+  0
+</output>
+
+Ignored nodes: comments, script, style
+<input
+  aria-label="荳ｭ髢灘ｽ｢迥ｶ %"
+  id="_r_0_"
+  max="100"
+  min="0"
+  step="1"
+  type="range"
+  value="0"
+/>
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <svg
+      aria-label="蝗幄ｧ偵°繧画弌縺ｸ 0%繝ｻ蟇ｾ蠢懊★繧・"
+      class="tnSurface"
+      role="img"
+      viewBox="0 0 320 220"
+    >
+      <path
+        class="tnGrid"
+        d="M0 55H320M0 110H320M0 165H320M80 0V220M160 0V220M240 0V220"
+      />
+      <g
+        transform="translate(160 110)"
+      >
+        <polygon
+          class="tnGhost"
+          points="0.00,-64.00 64.00,-64.00 64.00,0.00 64.00,64.00 0.00,64.00 -64.00,64.00 -64.00,0.00 -64.00,-64.00"
+        />
+        <polygon
+          class="tnGhost"
+          points="0.00,-80.00 24.04,-24.04 80.00,0.00 24.04,24.04 0.00,80.00 -24.04,24.04 -80.00,0.00 -24.04,-24.04"
+        />
+        <line
+          class="tnCorrespondence"
+          x1="3.91886975727153e-15"
+          x2="4.898587196589413e-15"
+          y1="-64"
+          y2="-80"
+        />
+        <line
+          class="tnCorrespondence"
+          x1="64"
+          x2="24.041630560342618"
+          y1="-63.999999999999986"
+          y2="-24.041630560342615"
+        />
+        <line
+          class="tnCorrespondence"
+          x1="64"
+          x2="80"
+          y1="0"
+          y2="0"
+        />
+        <line
+          class="tnCorrespondence"
+          x1="64"
+          x2="24.041630560342618"
+          y1="63.999999999999986"
+          y2="24.041630560342615"
+        />
+        <line
+          class="tnCorrespondence"
+          x1="3.91886975727153e-15"
+          x2="4.898587196589413e-15"
+          y1="64"
+          y2="80"
+        />
+        <line
+          class="tnCorrespondence"
+          x1="-63.999999999999986"
+          x2="-24.041630560342615"
+          y1="64"
+          y2="24.041630560342618"
+        />
+        <line
+          class="tnCorrespondence"
+          x1="-64"
+          x2="-80"
+          y1="7.83773951454306e-15"
+          y2="9.797174393178826e-15"
+        />
+        <line
+          class="tnCorrespondence"
+          x1="-64"
+          x2="-24.04163056034262"
+          y1="-63.99999999999998"
+          y2="-24.041630560342615"
+        />
+        <polygon
+          class="tnShape"
+          points="0.00,-64.00 64.00,-64.00 64.00,0.00 64.00,64.00 0.00,64.00 -64.00,64.00 -64.00,0.00 -64.00,-64.00"
+        />
+        <g>
+          <circle
+            cx="3.91886975727153e-15"
+            cy="-64"
+            fill="var(--tn-ink)"
+            r="3"
+          />
+          <text
+            class="tnPointLabel"
+            x="7.0000000000000036"
+            y="-69"
+          >
+            0
+          </text>
+        </g>
+        <g>
+          <circle
+            cx="64"
+            cy="-63.999999999999986"
+            fill="var(--tn-ink)"
+            r="3"
+          />
+          <text
+            class="tnPointLabel"
+            x="71"
+            y="-68.99999999999999"
+          >
+            1
+          </text>
+        </g>
+        <g>
+          <circle
+            cx="64"
+            cy="0"
+            fill="var(--tn-ink)"
+            r="3"
+          />
+          <text
+            class="tnPointLabel"
+            x="71"
+            y="-5"
+          >
+            2
+          </text>
+        </g>
+        <g>
+          <circle
+            cx="64"
+            cy="63.999999999999986"
+            fill="var(--tn-ink)"
+            r="3"
+          />
+          <text
+            class="tnPointLabel"
+            x="71"
+            y="58.999999999999986"
+          >
+            3
+          </text>
+        </g>
+        <g>
+          <circle
+            cx="3.91886975727153e-15"
+            cy="64"
+            fill="var(--tn-ink)"
+            r="3"
+          />
+          <text
+            class="tnPointLabel"
+            x="7.0000000000000036"
+            y="59"
+          >
+            4
+          </text>
+        </g>
+        <g>
+          <circle
+            cx="-63.999999999999986"
+            cy="64"
+            fill="var(--tn-ink)"
+            r="3"
+          />
+          <text
+            class="tnPointLabel"
+            x="-56.999999999999986"
+            y="59"
+          >
+            5
+          </text>
+        </g>
+        <g>
+          <circle
+            cx="-64"
+            cy="7.83773951454306e-15"
+            fill="var(--tn-ink)"
+            r="3"
+          />
+          <text
+            class="tnPointLabel"
+            x="-57"
+            y="-4.999999999999992"
+          >
+            6
+          </text>
+        </g>
+        <g>
+          <circle
+            cx="-64"
+            cy="-63.99999999999998"
+            fill="var(--tn-ink)"
+            r="3"
+          />
+          <text
+            class="tnPointLabel"
+            x="-57"
+            y="-68.99999999999997"
+          >
+            7
+          </text>
+        </g>
+      </g>
+    </svg>
+    <div
+      class="tnControls"
+    >
+      <button>
+        蠖｢繧貞・譖ｿ
+      </button>
+      <button>
+        蜈磯ｭ縺九ｉ
+      </button>
+      <button
+        aria-pressed="true"
+      >
+        蟇ｾ蠢懃ｷ・[0m
+      </button>
+    </div>
+    <label
+      class="tnRange"
+      for="_r_0_"
+    >
+      <span>
+        荳ｭ髢灘ｽ｢迥ｶ %
+         
+        <output>
+          0
+        </output>
+      </span>
+      <input
+        aria-label="荳ｭ髢灘ｽ｢迥ｶ %"
+        id="_r_0_"
+        max="100"
+        min="0"
+        step="1"
+        type="range"
+        value="0"
+      />
+    </label>
+    <label
+      class="tnRange"
+      for="_r_1_"
+    >
+      <span>
+        蟇ｾ蠢懃せ縺ｮ縺壹ｌ
+         
+        <output>
+          0
+        </output>
+      </span>
+      <input
+        aria-label="蟇ｾ蠢懃せ縺ｮ縺壹ｌ"
+        id="_r_1_"
+        max="7"
+        min="0"
+        step="1"
+        type="range"
+        value="0"
+      />
+    </label>
+    <p
+      class="tnReadout"
+      data-progress="0.000"
+    >
+      蝗幄ｧ・竊・
+      譏・[0m
+       ・・t=
+      0.00
+       ・・
+      轤ｹ i 竊・(i+0) mod 8
+    </p>
+    <p>
+      蟋狗せ縺ｮ蝗幄ｧ偵→邨らせ縺ｮ霈ｪ驛ｭ繧堤ｴｰ邱壹〒陦ｨ遉ｺ縲・[0m
+      蟇ｾ蠢懷・繧偵★繧峨☆縺ｨ縲∝酔縺倡ｵらせ縺ｧ繧る比ｸｭ縺ｮ莠､蟾ｮ繧・ｸｮ縺ｿ譁ｹ縺悟､峨ｏ繧九・[0m
+    </p>
+  </div>
+</body>
+ 笶ｯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ 笶ｯ getElementError node_modules/@testing-library/dom/dist/query-helpers.js:20:35
+ 笶ｯ getMultipleElementsFoundError node_modules/@testing-library/dom/dist/query-helpers.js:23:10
+ 笶ｯ node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+ 笶ｯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ 笶ｯ tests/then-now-first.test.tsx:15:62
+     13| });
+     14| it('morph supports manual intermediate, shape and mapping in reduced m窶ｦ
+     15|   render(<VectorMorph {...props}/>); fireEvent.change(screen.getByLabe窶ｦ
+       |                                                              ^
+     16|   expect(screen.getByText(/t=0.50/)).toBeTruthy(); fireEvent.change(sc窶ｦ
+     17|   expect(screen.getByText(/i\+3/)).toBeTruthy(); fireEvent.click(scree窶ｦ
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[1/2]竡ｯ
+
+ FAIL  tests/then-now-first.test.tsx > typography meaning composition and time remain editable while stopped
+TestingLibraryElementError: Found multiple elements with the text of: /譎る俣菴咲ｽｮ/
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+<output>
+  0
+</output>
+
+Ignored nodes: comments, script, style
+<input
+  aria-label="譎る俣菴咲ｽｮ %"
+  id="_r_2_"
+  max="100"
+  min="0"
+  step="1"
+  type="range"
+  value="0"
+/>
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <svg
+      aria-label="LISTEN縲〉ise讒区・縲・ｲ陦・%"
+      class="tnSurface"
+      role="img"
+      viewBox="0 0 320 220"
+    >
+      <path
+        class="tnGrid"
+        d="M0 55H320M0 110H320M0 165H320M80 0V220M160 0V220M240 0V220"
+      />
+      <path
+        class="tnGhost"
+        d="M20 145H300"
+      />
+      <g
+        data-letter="0"
+        transform="translate(42 122) rotate(-15)"
+      >
+        <text
+          class="tnLetter"
+          text-anchor="middle"
+        >
+          L
+        </text>
+        <rect
+          fill="var(--tn-accent)"
+          height="3"
+          width="0"
+          x="-10"
+          y="26"
+        />
+      </g>
+      <g
+        data-letter="1"
+        transform="translate(76 122) rotate(-15)"
+      >
+        <text
+          class="tnLetter"
+          text-anchor="middle"
+        >
+          I
+        </text>
+        <rect
+          fill="var(--tn-accent)"
+          height="3"
+          width="0"
+          x="-10"
+          y="26"
+        />
+      </g>
+      <g
+        data-letter="2"
+        transform="translate(110 122) rotate(-15)"
+      >
+        <text
+          class="tnLetter"
+          text-anchor="middle"
+        >
+          S
+        </text>
+        <rect
+          fill="var(--tn-accent)"
+          height="3"
+          width="0"
+          x="-10"
+          y="26"
+        />
+      </g>
+      <g
+        data-letter="3"
+        transform="translate(144 122) rotate(-15)"
+      >
+        <text
+          class="tnLetter"
+          text-anchor="middle"
+        >
+          T
+        </text>
+        <rect
+          fill="var(--tn-accent)"
+          height="3"
+          width="0"
+          x="-10"
+          y="26"
+        />
+      </g>
+      <g
+        data-letter="4"
+        transform="translate(178 122) rotate(-15)"
+      >
+        <text
+          class="tnLetter"
+          text-anchor="middle"
+        >
+          E
+        </text>
+        <rect
+          fill="var(--tn-accent)"
+          height="3"
+          width="0"
+          x="-10"
+          y="26"
+        />
+      </g>
+      <g
+        data-letter="5"
+        transform="translate(212 122) rotate(-15)"
+      >
+        <text
+          class="tnLetter"
+          text-anchor="middle"
+        >
+          N
+        </text>
+        <rect
+          fill="var(--tn-accent)"
+          height="3"
+          width="0"
+          x="-10"
+          y="26"
+        />
+      </g>
+      <text
+        class="tnSvgLabel"
+        x="12"
+        y="22"
+      >
+        LISTEN / 譎る俣蟾ｮ
+      </text>
+    </svg>
+    <div
+      class="tnControls"
+    >
+      <button>
+        蜈磯ｭ縺九ｉ
+      </button>
+      <button>
+        貍泌・繧貞・譖ｿ
+      </button>
+      <button>
+        險闡峨ｒ蛻・崛
+      </button>
+    </div>
+    <label
+      class="tnRange"
+      for="_r_2_"
+    >
+      <span>
+        譎る俣菴咲ｽｮ %
+         
+        <output>
+          0
+        </output>
+      </span>
+      <input
+        aria-label="譎る俣菴咲ｽｮ %"
+        id="_r_2_"
+        max="100"
+        min="0"
+        step="1"
+        type="range"
+        value="0"
+      />
+    </label>
+    <label
+      class="tnRange"
+      for="_r_3_"
+    >
+      <span>
+        譁・ｭ励・髢馴囈
+         
+        <output>
+          0
+        </output>
+      </span>
+      <input
+        aria-label="譁・ｭ励・髢馴囈"
+        id="_r_3_"
+        max="8"
+        min="-4"
+        step="1"
+        type="range"
+        value="0"
+      />
+    </label>
+    <p
+      class="tnReadout"
+      data-progress="0.000"
+    >
+      LISTEN
+       ・・
+      rise
+       ・・蜷・枚蟄励・髢句ｧ句ｷｮ 6.5% ・・騾ｲ陦・
+      0
+      %
+    </p>
+    <p>
+      LISTEN縺ｯ蟆上＆縺ｪ譎る俣蟾ｮ縺ｸ閠ｳ繧呈ｾ・∪縺呎ｧ区・縲・XPAND縺ｯ蟄鈴俣縺ｮ諡｡螟ｧ繧呈э蜻ｳ縺ｨ邨舌・縲・[0m
+       蜈ｱ騾夐溷ｺｦ縺ｨ譎る俣菴咲ｽｮ縺ｧ騾比ｸｭ縺ｮ譁・ｭ励ｒ隕ｳ蟇溘〒縺阪ｋ縲・[0m
+    </p>
+  </div>
+</body>
+ 笶ｯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ 笶ｯ getElementError node_modules/@testing-library/dom/dist/query-helpers.js:20:35
+ 笶ｯ getMultipleElementsFoundError node_modules/@testing-library/dom/dist/query-helpers.js:23:10
+ 笶ｯ node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+ 笶ｯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ 笶ｯ tests/then-now-first.test.tsx:34:68
+     32| });
+     33| it('typography meaning composition and time remain editable while stop窶ｦ
+     34|   render(<KineticTypography {...props}/>); fireEvent.change(screen.get窶ｦ
+       |                                                                    ^
+     35|   fireEvent.click(screen.getByText('險闡峨ｒ蛻・崛')); expect(screen.getByText(窶ｦ
+     36| });
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[2/2]竡ｯ
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  09:03:06
+   Duration  1.03s (transform 63ms, setup 0ms, collect 236ms, tests 77ms, environment 476ms, prepare 89ms)
+

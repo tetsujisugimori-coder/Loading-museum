@@ -1,0 +1,81 @@
+{
+  "head": "e75e74be3d6b3620c785c4b60c6823bf2080cb7f",
+  "started": "2026-11-02T00:06:04.538Z",
+  "expected": 3,
+  "cases": [],
+  "errors": [
+    "page.waitForFunction: Timeout 8000ms exceeded.\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-2\\loading-museum\\scripts\\verify-then-now-browser.mjs:23:12"
+  ],
+  "webkit": "26.0",
+  "current": {
+    "engine": "webkit",
+    "width": 375,
+    "id": "tn-vector-morph"
+  },
+  "diagnostic": {
+    "scrollY": 7372,
+    "viewport": 900,
+    "card": [
+      {
+        "tag": "tnMount",
+        "attributes": [
+          [
+            "class",
+            "tnMount"
+          ],
+          [
+            "data-visible",
+            "true"
+          ]
+        ],
+        "box": {
+          "x": 25,
+          "y": 180.296875,
+          "width": 325,
+          "height": 1679.125,
+          "top": 180.296875,
+          "right": 350,
+          "bottom": 1859.421875,
+          "left": 25
+        }
+      },
+      {
+        "tag": "tnCard",
+        "attributes": [
+          [
+            "class",
+            "tnCard"
+          ],
+          [
+            "data-study",
+            "tn-vector-morph"
+          ],
+          [
+            "data-playing",
+            "false"
+          ],
+          [
+            "data-reduced",
+            "false"
+          ]
+        ],
+        "box": {
+          "x": 25,
+          "y": 180.296875,
+          "width": 325,
+          "height": 1679.125,
+          "top": 180.296875,
+          "right": 350,
+          "bottom": 1859.421875,
+          "left": 25
+        }
+      }
+    ],
+    "state": [
+      "四角 → 星 ／ t=0.00 ／ 24段階の輪郭補間",
+      "四角 → 星 ／ t=0.00 ／ 点 i → (i+0) mod 8"
+    ]
+  },
+  "finished": "2026-11-02T00:06:14.034Z",
+  "complete": false
+}

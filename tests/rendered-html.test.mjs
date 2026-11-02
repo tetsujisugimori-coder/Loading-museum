@@ -251,7 +251,7 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /13 ROOMS \/ 245 OBJECTS/);
+  assert.match(normalizedHtml, /13 ROOMS \/ 251 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
   assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 7);
   assert.ok((html.match(/aria-expanded="false"/g) ?? []).length >= 8);
@@ -487,7 +487,7 @@ test("Apple I / Apple II 展示室へ因果関係が分かる13展示を実装�
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
 });
 
-test("Flash特別展示室へ18カテゴリ・54展示と優先デモを実装する", async () => {
+test("Flash特別展示室へ18カテゴリ・60展示と優先デモを実装する", async () => {
   const [html, data, component, visuals, refinedVisuals, css] = await Promise.all([
     readFile(new URL("index.html", outputRoot), "utf8"),
     readFile(new URL("app/data/flashExhibits.ts", projectRoot), "utf8"),
@@ -499,10 +499,10 @@ test("Flash特別展示室へ18カテゴリ・54展示と優先デモを実装�
 
   assert.match(html, /Flash特別展示室/);
   assert.match(html, /Flashは何を、どのように動かしたのか/);
-  assert.match(html.replaceAll("<!-- -->", ""), /18 CATEGORIES \/ 54 EXHIBITS/);
+  assert.match(html.replaceAll("<!-- -->", ""), /18 CATEGORIES \/ 60 EXHIBITS/);
   assert.match(html, /aria-controls="flash-special-exhibit-panel"/);
   assert.match(html, /id="flash-special-exhibit-panel"[^>]*aria-hidden="true"[^>]*inert=""/);
-  assert.equal((data.match(/^  \{ \.\.\.common, id:/gm) ?? []).length, 54);
+  assert.equal((data.match(/^  \{ \.\.\.common, id:/gm) ?? []).length, 60);
   assert.equal((data.match(/^  \{ id: /gm) ?? []).length, 18);
 
   for (const category of [

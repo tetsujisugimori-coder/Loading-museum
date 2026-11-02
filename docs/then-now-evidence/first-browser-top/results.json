@@ -1,0 +1,223 @@
+{
+  "head": "e75e74be3d6b3620c785c4b60c6823bf2080cb7f",
+  "started": "2026-11-02T00:07:03.702Z",
+  "expected": 12,
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "tn-vector-morph",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "tn-cursor-creature",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "tn-kinetic-type",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "id": "tn-vector-morph",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 1280,
+        "pageWidth": 1280,
+        "cardWidth": 1153.984375,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "id": "tn-cursor-creature",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 1280,
+        "pageWidth": 1280,
+        "cardWidth": 1153.984375,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "id": "tn-kinetic-type",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 1280,
+        "pageWidth": 1280,
+        "cardWidth": 1153.984375,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "id": "tn-vector-morph",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "id": "tn-cursor-creature",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "id": "tn-kinetic-type",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "id": "tn-vector-morph",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 1280,
+        "pageWidth": 1280,
+        "cardWidth": 1154,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true
+    }
+  ],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'WATCH' !== 'REST'\n\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-02/task-2/loading-museum/scripts/verify-then-now-browser.mjs:26:656"
+  ],
+  "chromium": "141.0.7390.37",
+  "current": {
+    "engine": "webkit",
+    "width": 1280,
+    "id": "tn-cursor-creature"
+  },
+  "webkit": "26.0",
+  "diagnostic": {
+    "scrollY": 3809,
+    "viewport": 900,
+    "card": [
+      {
+        "tag": "tnMount",
+        "attributes": [
+          [
+            "class",
+            "tnMount"
+          ],
+          [
+            "data-visible",
+            "true"
+          ]
+        ],
+        "box": {
+          "x": 63,
+          "y": 0,
+          "width": 1154,
+          "height": 995.625,
+          "top": 0,
+          "right": 1217,
+          "bottom": 995.625,
+          "left": 63
+        }
+      },
+      {
+        "tag": "tnCard",
+        "attributes": [
+          [
+            "class",
+            "tnCard"
+          ],
+          [
+            "data-study",
+            "tn-cursor-creature"
+          ],
+          [
+            "data-playing",
+            "true"
+          ],
+          [
+            "data-reduced",
+            "false"
+          ]
+        ],
+        "box": {
+          "x": 63,
+          "y": 0,
+          "width": 1154,
+          "height": 995.625,
+          "top": 0,
+          "right": 1217,
+          "bottom": 995.625,
+          "left": 63
+        }
+      }
+    ],
+    "state": [
+      "REST ／ 距離 134px ／ 入力速度 0px/s ／ 合図 0",
+      "WATCH ／ 距離 21px ／ 入力速度 0px/s ／ 合図 1"
+    ]
+  },
+  "finished": "2026-11-02T00:08:32.688Z",
+  "complete": false
+}

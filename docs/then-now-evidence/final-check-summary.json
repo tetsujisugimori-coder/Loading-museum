@@ -1,0 +1,23 @@
+{
+  "productHead": "e24aa79c28259863b8d6d1b0bc2df32b79b84af9",
+  "browserHarnessHead": "f26dfb73783c3561857a64fffc3e9555ce298066",
+  "nodeTests": 49,
+  "vitestGroups": [
+    147,
+    32,
+    25,
+    20,
+    8,
+    21
+  ],
+  "total": 302,
+  "workerEnvironment": {
+    "VITEST_MAX_THREADS": 1,
+    "VITEST_MIN_THREADS": 1,
+    "VITEST_MAX_FORKS": 1,
+    "VITEST_MIN_FORKS": 1
+  },
+  "defaultParallelInitial": "failed: unchanged WAAPI gallery initial DOM timeout 5000ms",
+  "productDiffSinceCheck": "",
+  "exit": 0
+}

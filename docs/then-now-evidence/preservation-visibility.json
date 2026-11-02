@@ -1,0 +1,21 @@
+{
+  "base": "e75e74be3d6b3620c785c4b60c6823bf2080cb7f",
+  "head": "8b38cbd324fb3425ced7a7e2ffe24589c0cf8cd9",
+  "baseBlobs": 718,
+  "unchanged": 707,
+  "changedOldPaths": [
+    ".gitattributes",
+    ".github/workflows/verify-practical.yml",
+    "LOG.md",
+    "README.md",
+    "app/components/FlashSpecialExhibitRoom.tsx",
+    "app/data/flashExhibits.ts",
+    "package.json",
+    "scripts/verify-phase4a-browser.mjs",
+    "scripts/verify-phase4b-browser.mjs",
+    "scripts/verify-phase5a-browser.mjs",
+    "tests/rendered-html.test.mjs"
+  ],
+  "oldFlashRenderersAndCssUnchanged": true,
+  "method": "Git metadata only for historical paths"
+}

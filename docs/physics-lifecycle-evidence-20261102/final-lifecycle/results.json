@@ -1,0 +1,634 @@
+{
+  "head": "7ccb51f158a564327a5b900b5210cd6cd57d81bf",
+  "tree": "48497434a97f6b535e63802e4cb9ab3aa1da0942",
+  "sourceSHA256": "c699bea0690fc43f4e502f86a2a4543e398e0d994e2ffd795c4211309577da30",
+  "harnessSHA256": "eb36c73a54c4f903b95396a7929c2c7433863779aa8e6f3ad18628835f63707f",
+  "input": "Playwright trusted mouse/keyboard; cancellation/stale pointer and stop-without-blur are explicitly artificial DOM events; reduced motion freezes RAF, exact SVG velocity oracle, 8000ms per wait",
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "cancel-independent",
+      "kind": "trusted keyboard/mouse + artificial pointercancel",
+      "pointer": {
+        "pointerId": 1,
+        "pointerType": "mouse",
+        "trusted": true
+      },
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -395.898259349,
+          "vy": -185.945734519,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "stepped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 91.66666666666669,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "normal-release",
+      "kind": "trusted mouse pointerup",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -388.828647577,
+          "vy": -182.625274975,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -388.828647577,
+          "vy": -182.625274975,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "stop-held",
+      "kind": "trusted mouse + artificial common-stop click without blur",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -347.463897832,
+          "vy": -163.197054232,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "stopped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "offscreen-held",
+      "kind": "trusted mouse and browser scroll (no injected lifecycle event)",
+      "stopped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "stale-events",
+      "kind": "trusted mouse + artificial old/different pointer events",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -11.582487726,
+          "vy": -5.791486876,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -11.582487726,
+          "vy": -5.791486876,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "close-reset",
+      "kind": "trusted mouse + artificial close click without blur",
+      "raf": 0,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "cancel-independent",
+      "kind": "trusted keyboard/mouse + artificial pointercancel",
+      "pointer": {
+        "pointerId": 1,
+        "pointerType": "mouse",
+        "trusted": true
+      },
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -397.926556947,
+          "vy": -186.881171596,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "stepped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 91.66666666666669,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "normal-release",
+      "kind": "trusted mouse pointerup",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -372.914030511,
+          "vy": -175.134355096,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -372.914030511,
+          "vy": -175.134355096,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "stop-held",
+      "kind": "trusted mouse + artificial common-stop click without blur",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -400,
+          "vy": -191.553200886,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "stopped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "offscreen-held",
+      "kind": "trusted mouse and browser scroll (no injected lifecycle event)",
+      "stopped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "stale-events",
+      "kind": "trusted mouse + artificial old/different pointer events",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -10.588016805,
+          "vy": -5.294230551,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -10.588016805,
+          "vy": -5.294230551,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "close-reset",
+      "kind": "trusted mouse + artificial close click without blur",
+      "raf": 0,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "cancel-independent",
+      "kind": "trusted keyboard/mouse + artificial pointercancel",
+      "pointer": {
+        "pointerId": 1,
+        "pointerType": "mouse",
+        "trusted": true
+      },
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -400,
+          "vy": -189.848614795,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "stepped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 91.66666666666669,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "normal-release",
+      "kind": "trusted mouse pointerup",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -387.604058489,
+          "vy": -181.890888427,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -387.604058489,
+          "vy": -181.890888427,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "stop-held",
+      "kind": "trusted mouse + artificial common-stop click without blur",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -374.161143164,
+          "vy": -175.582533914,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "stopped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "offscreen-held",
+      "kind": "trusted mouse and browser scroll (no injected lifecycle event)",
+      "stopped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "stale-events",
+      "kind": "trusted mouse + artificial old/different pointer events",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -6.626531109,
+          "vy": -3.313265555,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -6.626531109,
+          "vy": -3.313265555,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "close-reset",
+      "kind": "trusted mouse + artificial close click without blur",
+      "raf": 0,
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

@@ -1,0 +1,150 @@
+{
+  "head": "f26dfb73783c3561857a64fffc3e9555ce298066",
+  "started": "2026-11-02T00:37:07.914Z",
+  "expected": 12,
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "legacy-logo",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "legacy-shape",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "legacy-spring",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "legacy-intro",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "legacy-poem",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "legacy-comparison",
+      "status": "PASS"
+    }
+  ],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'false' !== 'true'\n\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-02/task-2/loading-museum/scripts/verify-then-now-browser.mjs:25:135"
+  ],
+  "unverified": [],
+  "tree": "c066e2be143065aac074c6ecff19c861aa702594",
+  "trackedChanges": "",
+  "sourceHashes": {
+    "app/components/FlashSpecialExhibitRoom.tsx": "e820b0d0a7423ed391365c1a8f593c8bb8657312030322d98f3aa44dc38b9a24",
+    "app/data/flashExhibits.ts": "2b542327dd43c4d6656d2448665fbfd36b3c01e4ec43be6427ed52f5c0cb21d3",
+    "app/data/thenNowStudies.ts": "31b5000a586f93d4ef4f688722039b4eab1f74e597126938ad7e64f3c4a59608",
+    "app/components/then-now/runtime.tsx": "eb6ee5381be9d7800e8130e4a6dc99b5e7ba45a88127068064e0c93c92bbed1e",
+    "app/components/then-now/FirstStudies.tsx": "ed6cb4ba1444ffe2853033a96cb9688895be00a28b268753cab6624697dfa510",
+    "app/components/then-now/SecondStudies.tsx": "95c37ff9e487382f01598444daa937970d717843b292c36af360f4911c5382a8",
+    "app/components/then-now/ThenNowCard.tsx": "faf08f4573488a4791864a7657321419aa0e3ea618477c3c48d1cd3cb9e83d4e",
+    "app/components/then-now/then-now.css": "a28b45c620ffffd6339bce14150376b8462a1aeb3ad4940ce8cb53385cec8dd8",
+    "package-lock.json": "8af00f13b6e24b441999bab971200cc5a5a1e4e5e6fde5cfd0b616eb04dbb1a2"
+  },
+  "chromium": "141.0.7390.37",
+  "capabilities": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "audioContext": "function",
+      "webkitAudioContext": "undefined",
+      "secure": true
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "audioContext": "undefined",
+      "webkitAudioContext": "undefined",
+      "secure": true
+    }
+  ],
+  "current": {
+    "engine": "webkit",
+    "width": 375,
+    "id": "legacy-logo"
+  },
+  "webkit": "26.0",
+  "diagnostic": {
+    "scrollY": 7586,
+    "viewport": 900,
+    "card": [
+      {
+        "tag": "tnMount",
+        "attributes": [
+          [
+            "class",
+            "tnMount"
+          ],
+          [
+            "data-visible",
+            "true"
+          ]
+        ],
+        "box": {
+          "x": 25,
+          "y": -1729,
+          "width": 325,
+          "height": 1734.125,
+          "top": -1729,
+          "right": 350,
+          "bottom": 5.125,
+          "left": 25
+        }
+      },
+      {
+        "tag": "tnCard",
+        "attributes": [
+          [
+            "class",
+            "tnCard"
+          ],
+          [
+            "data-study",
+            "tn-kinetic-type"
+          ],
+          [
+            "data-playing",
+            "false"
+          ],
+          [
+            "data-reduced",
+            "false"
+          ]
+        ],
+        "box": {
+          "x": 25,
+          "y": -1729,
+          "width": 325,
+          "height": 1734.125,
+          "top": -1729,
+          "right": 350,
+          "bottom": 5.125,
+          "left": 25
+        }
+      }
+    ],
+    "state": [
+      "MOTION ／ rise ／ 各文字の開始差 6.5% ／ 進行 0%",
+      "LISTEN ／ rise ／ 各文字の開始差 6.5% ／ 進行 0%"
+    ]
+  },
+  "finished": "2026-11-02T00:37:12.091Z",
+  "status": "FAIL",
+  "complete": false
+}

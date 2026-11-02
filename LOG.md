@@ -1521,3 +1521,64 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - 全体check・ブラウザ・CI・最終HEADは docs/phase5a-studies.md に結果を追記。第4期Bの保留証拠は触れず別経路転送なし。Issue #44、Windows timeout UNKNOWN、実機未検証を保持。Draft維持、公開・merge・auto-mergeなし。
 
 - 第5期A初回CI: WKは旧範囲成功・追加18/24後取消。追加範囲を独立8分jobへ分離し旧10分上限/条件保持。取消原因のAPI注釈は未確認、時間枠不足と製品FAILを区別。詳細phase5a-studies。
+
+## 2026-11-02 — Flash Then & Now 第1期（Issue #50）
+
+- branch `feat/flash-then-now-phase1`。main e75e74be / tree7cc586b6を専用sparse checkoutで開始。#14/#49 merged、#36 open/unmerged。保留4B証拠原本/ZIPはアクセス・転送・再パッケージ化なし。
+- 現物54 Flash/18カテゴリ/245全館/13室を再集計。既存54件の全フィールドと18カテゴリをdigestで保護し、旧描画2ファイル・globals・他室data・lockfileを保全。
+- 前半Vector Morph（対応点編集）、Cursor Creature（独自紙鳥の距離/速度/反応）、Kinetic Typography（意味/字間/時差）を12実browser条件で確認し02f3976へcommit。初回失敗と修正確認を別記録。
+- 後半Physics Playground（単体/二体の有界物理）、Interactive Intro（定時/入力進行・分岐/本編）、Sound Reactor（独自三角波・実FFT/RMS）を追加。Then/Now一組一展示、既存6カテゴリ内で計60 Flash・全館251・13室。継承比較3作と旧54作を削除しない。
+- React/TS/SVG/RAF/Pointer Events/Web Audio、外部素材/新規依存/SWFなし。既存配色と分類を踏襲し、PC二列/狭幅上下、初期停止、共通停止/Reset、固有操作/状態/意図/限界、motion低減の手動観察。閉室unmount、画面外RAF停止、音は再開時に明示操作。
+- `docs/then-now-phase1-design.md` と54件現物表へ調査/重複/一次資料/UNKNOWN/著作権/制作判断を記録。初出・発明者・特定原作品はUNKNOWN。歴史を優劣の一本道にしない。
+- 追加単体20件成功。低頻度frameの新作時計を同条件RED→GREENで是正。後半のCh狭幅/desktop実音解析とWK物理/導入を確認。Windows WebKit26は音API未提供で音正常系はPARTIAL。不可時表示は検査済み。Linux CIは実音解析を必須とする。
+- 初回既定並列checkは旧WAAPI gallery1件5000ms timeout（他146成功、Node49成功）。原11試験単独成功。単worker診断ではその時点の全299件成功。旧Windows timeout根因UNKNOWNを維持し、期待/5秒/CI既定並列を変えない。Issue #44の依存警告未解消。
+- 既存browser試験3本と静的件数assertは245→251/54→60の登録仕様だけ更新。操作条件/期限の緩和なし。新規CI jobは新作36条件・旧Flash12操作を別集計し、既存jobを維持。
+- 履歴は `docs/then-now-evidence/README.md`。最終のclean HEAD実行、全check、CI、独立レビュー引継ぎは後続記録へ追記する。実機iPhone/Mac Safari/VoiceOver/物理touch dragはNOT_TESTED。Draft未マージ/未公開を維持。
+
+### 同日・最終自己検証と提出準備
+
+- 製品最終e24aa79、単体302成功（既存281＋追加21）、lint/type/Pages静的build成功。Windows単worker診断と既定並列の旧timeoutは分離。
+- clean f26dfb7で最終36ブラウザ条件を完走。33成功、WK音正常系3 PARTIAL、exit2。不可時表示は正しい。pageerror/横超過/閉室後RAF残留/新作保存差分0、作成音contextは閉鎖。音量/RMS/実音高/発音中mute・低減時操作・Reset・高速切替・閉室再表示を確認。
+- 実ポインター速度/距離の補助2条件はCh/WKとも成功。近接約2000px/sでThen注視/Now後退、外部で休息。紙鳥は低減中も一歩進む操作で追従/回避を観察。
+- 旧Flash独自補助はCh6成功、Windows WKの最初のロゴ操作前geometry/hit待ち8秒timeout、当該click未送信/後続5未実施。初回の同期読取失敗・隣ボタンfocus画像・診断を別保全。原製品/原テスト/期待/期限を変えず、根因UNKNOWNとしてLinux CI/独立レビューへ渡す。旧12成功とは呼ばない。
+- 最終報告は `docs/then-now-phase1-verification.md`。新規P1/P2の未解消は自己検証範囲で未確認。総合PARTIAL、マージ推奨NO（独立レビュー待ち）。CIと提出の最終HEAD/treeはPR本文/通常コメントで照合し、Draft・未マージ・未公開を維持する。
+
+### 同日・初回CI後の局所修正
+
+- 初回41368801486は5/7job成功で完走。既存5job/契約302成功。新作内訳Ch17/18、WK18/18（Linux実音含む）成功、速度対照2成功。Ch1280低減後の音再開とWK旧Flash補助で新2jobが失敗。原JSON/PNG/summaryを first-ci-41368801486 へ保全。
+- 新規P2：画面内のカードに古いIO falseが残り音開始できない。新作だけのThenNowMountへ現在の矩形による可視判定を分離（2ac96a3）。旧54の可視hook/描画/CSSは不変。独自単体1 RED→同条件1 GREEN、画面外停止/再入場も確認。
+- 追加単体型の初回停止を保全し、型だけ是正942a7da。lint/type/Pages build/303（原281＋追加22）成功、Windows単worker診断。CI並列/原期限は不変。
+- 旧補助は未描画content-visibility内の子へ直接scrollすると矩形が画面外に残る検証側の手順。CSS注入の限定診断を製品PASSにせず保全。外側cardを先に表示し、同じnative click/期待/8秒/hit確認でCh6、WK6を各runで確認。旧CSS・原試験変更/force/sleep/期限延長なし。
+- 修正後重点GUI：375両engine12条件は11成功・Windows WK音1 PARTIAL、Ch1280後半3条件成功。旧36の結果は新HEADへ自動適用しない。第2提出CIの36＋補助2＋旧12と本文/コメントの読戻しを引続き確認する。
+
+## 2026-11-02 — PR51 Physics局所修正・最小証拠提出
+
+- 旧HEAD `7ccb51f158a564327a5b900b5210cd6cd57d81bf` / tree `48497434a97f6b535e63802e4cb9ab3aa1da0942`を隔離clone、PR状態/レビュー/Issue50/差分確認。取消が球2の速度を消すP2-A、停止でheldが残るP2-BをChromium実browser内で再現。PointerCancel等人工イベントと信頼されたdrag/up/scrollを区別する。
+- 製品変更はPhysics状態管理だけ。index/pointerId/target所有、対象限定release、正常up速度保持、cancel/停止/blur/unmountのheld/capture同期、別球/別pointer/遅いcaptureの保護。積分/衝突/反射/初期値と他5作品、旧54/18カテゴリ、他室/WAAPI、lock、元の両workflow、既存証拠は不変。全館251/13室、Flash60を維持。
+- 同一probe/入力/期待/8秒で12 RED+6正常対照→18 GREEN。cancel-independentは球2の全状態不変と次1/30秒を数値検査。追加単体旧4失敗→成功、全check309成功（原281+前回22+今回6）。Ch3幅で力学3/原6作品18/旧Flash6操作成功。自己検証であり独立PASSではない。
+- 検証用local2commit `8fbb15a07d598a727feb7138cb43d6e5892a1ba9` / `4dc404ce554194f8637bdc7eb6cc8fc8c4d7f67b`、tree `cc58f6a8f26454db8dfde329b9c467f3da5e8524`は保全しpushしない。旧提出HEAD直接parentで最小treeを再構成。製品SHA256 `c699bea0690fc43f4e502f86a2a4543e398e0d994e2ffd795c4211309577da30`をbyte一致で維持。不要長ログ・重複途中証拠・他作品PNGを提出履歴から除外しローカル保全。最終提出HEAD/tree/CIはPR本文・通常コメント・Issue50で確定値を読戻し照合する。
+- 当初GitHub PNG/tree作成はauto-review拒否・未実行で停止。本人の2026-11-02 10:45:47Z明示再承認で最小提出を再開。65PNG全数目視/原hash検証、26log点検済、代表8PNGと確定数値結果を共有。第4期B保留原本/ZIPの読取・転送なし。原証拠/途中失敗を削除・上書きしない。
+- 正確な環境制約: Playwright Chromium導入403、1コマンド内の標準fallback5回、WebKit取得/起動未到達。手動再試行/別host指定なし。local Chromium154とGitHub固定Ch/WKを別証拠とする。Issue44/Windows WAAPI timeout UNKNOWN、実機Safari/VoiceOver/物理touch/実スピーカー等未検証を維持。
+- [証拠・原因・条件・保全・独立再レビュー引継ぎ](docs/physics-lifecycle-evidence-20261102/README.md)。総合PARTIAL・マージ推奨NO。Draft/未マージ/未公開を維持する。
+
+### 最小提出0d88e822のCIと診断追加
+
+- 提出HEAD `0d88e8223c3648306a0a6895a0a2e110ecf62cb5` / tree `977d67dcfd1dd9cf8da91435b875220ef582ebcb`。旧7ccb51f直接parentで最小28ファイル提出、製品SHA256は上記と同じ。PR本文・通常コメント・Issue50を全文読戻し照合し、Draft/未マージを確認。
+- Physics CI 41432253225はCh成功、WKの更新版GREENでcancel-independentが3幅失敗、他15条件成功。WKの力学/旧版REDステップは先行失敗のため未実施。原失敗artifact/ログを保全しPASSへ読み替えない。Ubuntu24.04.5、Node22.23.4、Playwright1.56.1/WebKit26.0。詳細数値を持つartifactのローカル取得は403となった。
+- 製品/入力/期待/期限を変更せず、検証器の失敗時数値・assertionをCIログへ出す診断だけを追加する。現在は原因UNKNOWN。既存CI 41432253049は契約309・新作Ch/WK・5A双方成功、他jobの終端を追跡中。最終確定結果は追記とPRコメントで区別する。
+- 初回今回CI終端: 41432253049は7/7成功、41432253225はCh成功/WK失敗（1/2成功）で全job完走。取消・timeoutではない。ci-0d88e822-summary.jsonへ原状態を記録し、期待/入力/期限不変の診断版で原因を追う。
+
+### WebKit診断と検証器の入力終了
+
+- 1324ba5a / tree a1be78975708201116f8281bbd57e76d9480f502のPhysics CI41433808777でもWK3条件が失敗したが、診断値で取消前後の球2 x/y/vx/vy/heldは完全一致（y100/vy-250）し、その後の1刻みclickが物理状態を更新していないことを確認。人工PointerCancelはPlaywrightの押下中mouse状態を終了しないため、次clickが成立しない試験手順の問題と判定した。製品再発として扱わず、原失敗を保持する。
+- 製品/物理期待/8秒を変更せず、人工cancel後に実mouse.upで入力を終了し、その古いupが解除後状態を変えないことを追加assert。続く1刻みボタンへisTrusted=true/正しいtargetのclickが届くこともassertする。旧固定版と更新版へ同じ新probeを適用し、元の球2状態不変・次1/30秒の数値検査を保持する。最終CI結果は終端後に別記する。
+- 診断版1324ba5aの既存CI41433808140は7/7成功、Physics41433808777はCh成功/WK失敗で全job終端。途中取消なし。原数値診断をci-41433808777-webkit-diagnostics.log、全job状態をci-1324ba5a-summary.jsonに保持する。入力終了を補ったローカルCh3幅18条件は成功。最終CIでは同じ是正probeを旧新へ適用する。
+
+### 是正probeのCh/WK RED→GREEN確定
+
+- 検査HEAD `b85f8a0672e9e4d8575d7eaf83b2a512b9e7cdac` / tree `5e747e233f57a6d613f580779ceb04691c290995`、Physics CI41435401801はCh/WK両job成功完走。Ch141.0.7390.37 / WK26.0、375/390/1280。旧7ccb51fは各12 RED+6正常対照成功、新版は各18 GREEN（計24 RED+12対照→36 GREEN）。力学は各3成功。旧/新同じprobe hash `eef26d9bd7d8790e470ec1fc30ef5022bd2b2a786790adb77ee5e3e63e07b289`、入力・物理期待・8秒を維持。
+- CIログPHYSICS_RESULTの旧/新HEAD/tree/clean/source/probe/browser版を照合。製品新SHA256 `c699bea0690fc43f4e502f86a2a4543e398e0d994e2ffd795c4211309577da30`、旧SHA256 `95c37ff9e487382f01598444daa937970d717843b292c36af360f4911c5382a8`。全6条件の球2は取消前後でx228/y100/vx0/vy-250/heldfalse不変、古い実up後も不変、trusted step click後y91.66666666666669/vy-250。これが取消独立性の直接証拠。
+- 初回/診断CIのWK失敗は物理変更で解決したものではなく、人工cancel後のnative mouse押下終了を欠いた試験手順の是正によるもの。元の球2不変/1刻み数値期待を保持し、native up不変とtrusted click到達を追加して両engineの旧新へ適用。原失敗・未実施を保全。local WebKit未実施とGitHub WebKit成功を区別する。
+- 本追記は記録のみで製品/試験/検証器を変更しない。記録後の最終HEAD/treeと全job終端はPR本文・通常コメント・Issue50で最終読戻し確認する。
+- b85f8a06の全館CI41435401781は7/7成功、Physics41435401801は2/2成功、全9job終端。契約309、Physics旧24 RED+正常対照12→新36 GREEN、力学6、6作品36、実速度対照2、旧Flash12を別群で確認。他室/実用UI/4A/4B/5A/フォーカス回帰の全stepも成功。ci-b85f8a06/summary.jsonと原ログ由来数値/件数抜粋に記録。初回2回のWK失敗は保持。今回の確定記録だけをcommitし、その最終HEADのCIも全job終端まで追跡する。
+- 総合PARTIAL/マージ推奨NO（独立再レビュー待ち）。局所安定化の自己検証は完了。実機Safari/VoiceOver/物理touch/実OS低減切替/実スピーカー/全館全操作は未検証、Issue44と旧Windows WAAPI timeout根因UNKNOWNを維持。Draft/未マージ/未公開。UI付随添付の成功は主張しない。

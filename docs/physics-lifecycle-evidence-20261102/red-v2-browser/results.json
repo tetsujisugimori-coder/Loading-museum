@@ -1,0 +1,790 @@
+{
+  "head": "7ccb51f158a564327a5b900b5210cd6cd57d81bf",
+  "tree": "48497434a97f6b535e63802e4cb9ab3aa1da0942",
+  "sourceSHA256": "95c37ff9e487382f01598444daa937970d717843b292c36af360f4911c5382a8",
+  "harnessSHA256": "eb36c73a54c4f903b95396a7929c2c7433863779aa8e6f3ad18628835f63707f",
+  "input": "Playwright trusted mouse/keyboard; cancellation/stale pointer and stop-without-blur are explicitly artificial DOM events; reduced motion freezes RAF, exact SVG velocity oracle, 8000ms per wait",
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "cancel-independent",
+      "kind": "trusted keyboard/mouse + artificial pointercancel",
+      "pointer": {
+        "pointerId": 1,
+        "pointerType": "mouse",
+        "trusted": true
+      },
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -371.154618141,
+          "vy": -174.324126112,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: P2-A: cancellation must not mutate ball 2\n+ actual - expected\n\n  {\n    held: 'false',\n    vx: 0,\n+   vy: 0,\n-   vy: -250,\n    x: 228,\n    y: 100\n  }\n\n    at file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:20:246\n    at async run (file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:19:84)\n    at async file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:20:1",
+      "state": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "normal-release",
+      "kind": "trusted mouse pointerup",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -336.717591715,
+          "vy": -158.149722658,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -336.717591715,
+          "vy": -158.149722658,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "stop-held",
+      "kind": "trusted mouse + artificial common-stop click without blur",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -400,
+          "vy": -191.756538723,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "stopped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -400,
+          "vy": -191.756538723,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: P2-B: stop synchronizes held before any physics step\n\n'true' !== 'false'\n\n    at file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:22:248\n    at async run (file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:19:84)\n    at async file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:22:1",
+      "state": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -400,
+          "vy": -191.756538723,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "offscreen-held",
+      "kind": "trusted mouse and browser scroll (no injected lifecycle event)",
+      "stopped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -382.007092355,
+          "vy": -179.421322782,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'true' !== 'false'\n\n    at file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:23:298\n    at async run (file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:19:84)\n    at async file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:23:1",
+      "state": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -382.007092355,
+          "vy": -179.421322782,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "stale-events",
+      "kind": "trusted mouse + artificial old/different pointer events",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -12.161612112,
+          "vy": -6.08106122,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 20,
+          "y": 46,
+          "vx": -400,
+          "vy": -400,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: unrelated pointer cannot release or move current drag\n+ actual - expected\n\n  [\n    {\n+     held: 'false',\n+     vx: -400,\n+     vy: -400,\n+     x: 20,\n+     y: 46\n-     held: 'true',\n-     vx: -12.161612112,\n-     vy: -6.08106122,\n-     x: 60,\n-     y: 59.99999999999999\n    },\n    {\n      held: 'false',\n      vx: 0,\n      vy: 0,\n\n    at file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:24:423\n    at async run (file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:19:84)\n    at async file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:24:1",
+      "state": [
+        {
+          "x": 20,
+          "y": 46,
+          "vx": -400,
+          "vy": -400,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "close-reset",
+      "kind": "trusted mouse + artificial close click without blur",
+      "raf": 0,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "cancel-independent",
+      "kind": "trusted keyboard/mouse + artificial pointercancel",
+      "pointer": {
+        "pointerId": 1,
+        "pointerType": "mouse",
+        "trusted": true
+      },
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -343.473449155,
+          "vy": -161.307958641,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: P2-A: cancellation must not mutate ball 2\n+ actual - expected\n\n  {\n    held: 'false',\n    vx: 0,\n+   vy: 0,\n-   vy: -250,\n    x: 228,\n    y: 100\n  }\n\n    at file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:20:246\n    at async run (file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:19:84)\n    at async file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:20:1",
+      "state": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "normal-release",
+      "kind": "trusted mouse pointerup",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -386.15358189,
+          "vy": -181.35214285,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -386.15358189,
+          "vy": -181.35214285,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "stop-held",
+      "kind": "trusted mouse + artificial common-stop click without blur",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -341.675158845,
+          "vy": -160.463414355,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "stopped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -341.675158845,
+          "vy": -160.463414355,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: P2-B: stop synchronizes held before any physics step\n\n'true' !== 'false'\n\n    at file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:22:248\n    at async run (file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:19:84)\n    at async file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:22:1",
+      "state": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -341.675158845,
+          "vy": -160.463414355,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "offscreen-held",
+      "kind": "trusted mouse and browser scroll (no injected lifecycle event)",
+      "stopped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -395.514880845,
+          "vy": -185.748558435,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'true' !== 'false'\n\n    at file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:23:298\n    at async run (file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:19:84)\n    at async file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:23:1",
+      "state": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -395.514880845,
+          "vy": -185.748558435,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "stale-events",
+      "kind": "trusted mouse + artificial old/different pointer events",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -11.095227191,
+          "vy": -5.547846385,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 20,
+          "y": 46,
+          "vx": -400,
+          "vy": -400,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: unrelated pointer cannot release or move current drag\n+ actual - expected\n\n  [\n    {\n+     held: 'false',\n+     vx: -400,\n+     vy: -400,\n+     x: 20,\n+     y: 46\n-     held: 'true',\n-     vx: -11.095227191,\n-     vy: -5.547846385,\n-     x: 60,\n-     y: 59.99999999999999\n    },\n    {\n      held: 'false',\n      vx: 0,\n      vy: 0,\n\n    at file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:24:423\n    at async run (file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:19:84)\n    at async file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:24:1",
+      "state": [
+        {
+          "x": 20,
+          "y": 46,
+          "vx": -400,
+          "vy": -400,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "close-reset",
+      "kind": "trusted mouse + artificial close click without blur",
+      "raf": 0,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "cancel-independent",
+      "kind": "trusted keyboard/mouse + artificial pointercancel",
+      "pointer": {
+        "pointerId": 1,
+        "pointerType": "mouse",
+        "trusted": true
+      },
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -400,
+          "vy": -188.669430852,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: P2-A: cancellation must not mutate ball 2\n+ actual - expected\n\n  {\n    held: 'false',\n    vx: 0,\n+   vy: 0,\n-   vy: -250,\n    x: 228,\n    y: 100\n  }\n\n    at file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:20:246\n    at async run (file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:19:84)\n    at async file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:20:1",
+      "state": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "normal-release",
+      "kind": "trusted mouse pointerup",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -400,
+          "vy": -188.669430852,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -400,
+          "vy": -188.669430852,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "stop-held",
+      "kind": "trusted mouse + artificial common-stop click without blur",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -400,
+          "vy": -189.848614795,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "stopped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -400,
+          "vy": -189.848614795,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: P2-B: stop synchronizes held before any physics step\n\n'true' !== 'false'\n\n    at file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:22:248\n    at async run (file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:19:84)\n    at async file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:22:1",
+      "state": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -400,
+          "vy": -189.848614795,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "offscreen-held",
+      "kind": "trusted mouse and browser scroll (no injected lifecycle event)",
+      "stopped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -369.885015814,
+          "vy": -173.575876384,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'true' !== 'false'\n\n    at file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:23:298\n    at async run (file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:19:84)\n    at async file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:23:1",
+      "state": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -369.885015814,
+          "vy": -173.575876384,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": -65,
+          "vy": 0,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "stale-events",
+      "kind": "trusted mouse + artificial old/different pointer events",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -6.241267672,
+          "vy": -3.12168138,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 20,
+          "y": 46,
+          "vx": -400,
+          "vy": -400,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ],
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: unrelated pointer cannot release or move current drag\n+ actual - expected\n\n  [\n    {\n+     held: 'false',\n+     vx: -400,\n+     vy: -400,\n+     x: 20,\n+     y: 46\n-     held: 'true',\n-     vx: -6.241267672,\n-     vy: -3.12168138,\n-     x: 60,\n-     y: 59.99999999999999\n    },\n    {\n      held: 'false',\n      vx: 0,\n      vy: 0,\n\n    at file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:24:423\n    at async run (file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:19:84)\n    at async file:///workspace/loading-physics-20261102/scripts/verify-physics-lifecycle.mjs:24:1",
+      "state": [
+        {
+          "x": 20,
+          "y": 46,
+          "vx": -400,
+          "vy": -400,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "close-reset",
+      "kind": "trusted mouse + artificial close click without blur",
+      "raf": 0,
+      "status": "PASS"
+    }
+  ],
+  "status": "FAIL"
+}

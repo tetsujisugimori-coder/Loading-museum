@@ -7,6 +7,7 @@ export type FlashInteractionType =
   | "audio";
 
 export type FlashVisualType =
+  | "then-now"
   | "motion"
   | "shape"
   | "frames"
@@ -166,4 +167,12 @@ export const flashExhibits: FlashExhibit[] = [
   { ...common, id: "audio-modern-map", title: "統合環境から標準APIの組み合わせへ", categoryId: "modern", description: "Flash内部でまとまっていた音と描画が、Web Audio、Canvas、SVGなど複数の標準へ分かれた構成を比べる。", flashTechnique: "SoundMixer＋BitmapData", modernTechnique: ["Web Audio API", "Canvas / SVG", "DOM accessibility"], interactionType: "click", visualType: "comparison-media", instruction: "左右の構成と、Flash・現代Webそれぞれの強みを見る" },
 ];
 
+flashExhibits.push(
+  { ...common, id: "tn-vector-morph", title: "Vector Morph — 対応点の工房", categoryId: "vector", description: "輪郭を変える楽しさと、対応順を変える発見。四角から星や円へ、同じ終点に至る別の道を編む。", flashTechnique: "シェイプトゥイーンに着想", modernTechnique: ["SVG polygon", "線形補間", "requestAnimationFrame"], interactionType: "click", visualType: "then-now", instruction: "開始・停止、形、時間位置、対応点を操作" },
+  { ...common, id: "tn-cursor-creature", title: "Cursor Creature — 紙鳥の間合い", categoryId: "character", description: "折り目のある小さな紙鳥。目を合わせ、誘い、驚かせて、ポインターとの距離を会話にする。", flashTechnique: "ムービークリップと入力反応に着想", modernTechnique: ["SVG", "Pointer Events", "距離・入力速度"], interactionType: "pointer", visualType: "then-now", instruction: "開始後にポインター・矢印・左右ボタンで誘い、タップで合図" },
+  { ...common, id: "tn-kinetic-type", title: "Kinetic Typography — 文字の振付", categoryId: "type-logo", description: "文字は読まれるだけでなく、間合いを持って入場する。MOTIONのリズム、LISTENとEXPANDの意味を配置へ翻訳する。", flashTechnique: "文字単位のタイムライン演出に着想", modernTechnique: ["SVG text", "独立した時差補間", "React state"], interactionType: "click", visualType: "then-now", instruction: "速度・構成・時間位置・字間・言葉を操作" },
+  { ...common, id: "tn-physics", title: "Physics Playground — 反発の庭", categoryId: "physics", description: "つまんで放す、ぶつかって返る。単体の弾みと二体の衝突を、手と数値で観察する小さな遊具。", flashTechnique: "速度積分・衝突の玩具に着想", modernTechnique: ["SVG", "Pointer capture", "有界の小刻み物理積分"], interactionType: "drag", visualType: "then-now", instruction: "球をドラッグ/矢印で移動、解放、重力・反発・摩擦を調整" },
+  { ...common, id: "tn-intro", title: "Interactive Intro — 観測室への道", categoryId: "site", description: "入口から本編までの短い舞台。定時進行の間と、操作が次の構図を決める間を比べる。", flashTechnique: "シーン・フレームラベル・Skip Introに着想", modernTechnique: ["React state machine", "SVG", "有限シーン時計"], interactionType: "click", visualType: "then-now", instruction: "Introを始め、線/点へ分岐、Skipまたは本編へ進みReplay" },
+  { ...common, id: "tn-sound", title: "Sound Reactor — 周波数の建築", categoryId: "audio", description: "独自の三角波を鳴らし、音高と音量を分けて操作。実波形と、帯域ごとに組み上がる硬質な屋根を比べる。", flashTechnique: "波形・周波数解析の視覚表現に着想", modernTechnique: ["Web Audio API", "AnalyserNode FFT/RMS", "SVG"], interactionType: "audio", visualType: "then-now", instruction: "共通開始後に音を開始、音高/音量を調整、ミュート/停止" },
+);
 export const flashExhibitCount = flashExhibits.length;

@@ -1,0 +1,16 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-02/task-2/loading-museum
+
+ ✓ tests/waapi-gallery.test.tsx (11 tests) 11567ms
+   ✓ WAAPI標本ギャラリー操作 > 初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う  611ms
+   ✓ WAAPI標本ギャラリー操作 > ゲーム標本を直接操作し、Resetで意味のある初期状態へ戻す  653ms
+   ✓ WAAPI標本ギャラリー操作 > 新しいゲーム標本、5軸フィルター、AI共通状態を操作できる  2231ms
+   ✓ WAAPI標本ギャラリー操作 > AI比較モードは一括フェーズを進め、閉じるとループを停止する  2816ms
+   ✓ WAAPI標本ギャラリー操作 > 追加ゲーム14件は固有DOM・状態・操作結果を提供する  3704ms
+   ✓ WAAPI標本ギャラリー操作 > Card Dealの全工程とAIの完了・エラー・リセットを操作できる  1137ms
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  09:16:12
+   Duration  13.74s (transform 141ms, setup 0ms, collect 329ms, tests 11.57s, environment 477ms, prepare 132ms)
+

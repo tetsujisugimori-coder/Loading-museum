@@ -1,0 +1,325 @@
+{
+  "head": "b85f8a0672e9e4d8575d7eaf83b2a512b9e7cdac",
+  "tree": "5e747e233f57a6d613f580779ceb04691c290995",
+  "trackedChanges": "",
+  "sourceSHA256": "c699bea0690fc43f4e502f86a2a4543e398e0d994e2ffd795c4211309577da30",
+  "harnessSHA256": "eef26d9bd7d8790e470ec1fc30ef5022bd2b2a786790adb77ee5e3e63e07b289",
+  "browserVersions": {
+    "chromium": "141.0.7390.37"
+  },
+  "status": "PASS",
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "cancel-independent",
+      "status": "PASS",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -391.15696283,
+          "vy": -183.718839495,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "afterNativeUp": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "nativeStepClick": {
+        "trusted": true,
+        "target": true
+      },
+      "stepped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 91.66666666666669,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "normal-release",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "stop-held",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "offscreen-held",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "stale-events",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "name": "close-reset",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "cancel-independent",
+      "status": "PASS",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -388.452115115,
+          "vy": -182.431619891,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "afterNativeUp": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "nativeStepClick": {
+        "trusted": true,
+        "target": true
+      },
+      "stepped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 91.66666666666669,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "normal-release",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "stop-held",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "offscreen-held",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "stale-events",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "close-reset",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "cancel-independent",
+      "status": "PASS",
+      "before": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": -392.3022895,
+          "vy": -184.095626468,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "afterNativeUp": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "nativeStepClick": {
+        "trusted": true,
+        "target": true
+      },
+      "stepped": [
+        {
+          "x": 60,
+          "y": 59.99999999999999,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 91.66666666666669,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "normal-release",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "stop-held",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "offscreen-held",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "stale-events",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "name": "close-reset",
+      "status": "PASS"
+    }
+  ]
+}

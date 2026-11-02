@@ -1,0 +1,10 @@
+PASS chromium 375 legacy-logo
+PASS chromium 375 legacy-shape
+PASS chromium 375 legacy-spring
+PASS chromium 375 legacy-intro
+PASS chromium 375 legacy-poem
+PASS chromium 375 legacy-comparison
+page.waitForFunction: Timeout 8000ms exceeded.
+    at C:\Users\tetsu\Documents\Codex\2026-11-02\task-2\loading-museum\scripts\verify-then-now-browser.mjs:25:139 {
+  name: 'TimeoutError'
+}

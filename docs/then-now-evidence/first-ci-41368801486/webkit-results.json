@@ -1,0 +1,540 @@
+{
+  "head": "6245bcb2c136e5120c3219563f5dc9ec43ee8c62",
+  "started": "2026-11-02T00:47:03.921Z",
+  "expected": 18,
+  "cases": [
+    {
+      "engine": "webkit",
+      "width": 375,
+      "id": "tn-vector-morph",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {}
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "id": "tn-cursor-creature",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {}
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "id": "tn-kinetic-type",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {}
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "id": "tn-physics",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {}
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "id": "tn-intro",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {}
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "id": "tn-sound",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [
+          "closed",
+          "closed",
+          "closed"
+        ],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {
+        "lowPeak": "1",
+        "highPeak": "0",
+        "strongRms": 0.0231,
+        "weakRms": 0.0073,
+        "mutedRms": 0,
+        "nowLive": "合成音を解析中 ／ 880Hz ／ RMS 0.0233 ／ 帯域 5",
+        "thenLive": "合成音を解析中 ／ 220Hz ／ RMS 0.0234 ／ 帯域 2"
+      }
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "id": "tn-vector-morph",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "cardWidth": 340,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {}
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "id": "tn-cursor-creature",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "cardWidth": 340,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {}
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "id": "tn-kinetic-type",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "cardWidth": 340,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {}
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "id": "tn-physics",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "cardWidth": 340,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {}
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "id": "tn-intro",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "cardWidth": 340,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {}
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "id": "tn-sound",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "cardWidth": 340,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [
+          "closed",
+          "closed",
+          "closed"
+        ],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {
+        "lowPeak": "1",
+        "highPeak": "3",
+        "strongRms": 0.0235,
+        "weakRms": 0.0124,
+        "mutedRms": 0,
+        "nowLive": "合成音を解析中 ／ 880Hz ／ RMS 0.0234 ／ 帯域 5",
+        "thenLive": "合成音を解析中 ／ 220Hz ／ RMS 0.0233 ／ 帯域 2"
+      }
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "id": "tn-vector-morph",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 1280,
+        "pageWidth": 1280,
+        "cardWidth": 1154,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {}
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "id": "tn-cursor-creature",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 1280,
+        "pageWidth": 1280,
+        "cardWidth": 1154,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {}
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "id": "tn-kinetic-type",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 1280,
+        "pageWidth": 1280,
+        "cardWidth": 1154,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {}
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "id": "tn-physics",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 1280,
+        "pageWidth": 1280,
+        "cardWidth": 1154,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {}
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "id": "tn-intro",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 1280,
+        "pageWidth": 1280,
+        "cardWidth": 1154,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {}
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "id": "tn-sound",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 1280,
+        "pageWidth": 1280,
+        "cardWidth": 1154,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true,
+      "resources": {
+        "audio": [
+          "closed",
+          "closed",
+          "closed"
+        ],
+        "storage": {
+          "setItem": 1,
+          "removeItem": 0,
+          "clear": 0
+        },
+        "legacyTitleWrites": 1,
+        "pendingRaf": 0
+      },
+      "observations": {
+        "lowPeak": "1",
+        "highPeak": "4",
+        "strongRms": 0.0234,
+        "weakRms": 0.0076,
+        "mutedRms": 0,
+        "nowLive": "合成音を解析中 ／ 880Hz ／ RMS 0.0234 ／ 帯域 5",
+        "thenLive": "合成音を解析中 ／ 220Hz ／ RMS 0.0234 ／ 帯域 2"
+      }
+    }
+  ],
+  "errors": [],
+  "unverified": [],
+  "tree": "1b36da3ed918ac6ef11bdbaf78d56f2cb75cdb1a",
+  "trackedChanges": "",
+  "sourceHashes": {
+    "app/components/FlashSpecialExhibitRoom.tsx": "c2485ee2de39c8a5aaf785b77a0e966d9d0ea9f5efc5bbc7589339cd9f0211b1",
+    "app/data/flashExhibits.ts": "9d794cc2d11fd4a71b39878ed22dbb3aafe6d48c32712974db437c6744a6112d",
+    "app/data/thenNowStudies.ts": "31b5000a586f93d4ef4f688722039b4eab1f74e597126938ad7e64f3c4a59608",
+    "app/components/then-now/runtime.tsx": "eb6ee5381be9d7800e8130e4a6dc99b5e7ba45a88127068064e0c93c92bbed1e",
+    "app/components/then-now/FirstStudies.tsx": "ed6cb4ba1444ffe2853033a96cb9688895be00a28b268753cab6624697dfa510",
+    "app/components/then-now/SecondStudies.tsx": "95c37ff9e487382f01598444daa937970d717843b292c36af360f4911c5382a8",
+    "app/components/then-now/ThenNowCard.tsx": "faf08f4573488a4791864a7657321419aa0e3ea618477c3c48d1cd3cb9e83d4e",
+    "app/components/then-now/then-now.css": "9e0a1c38f36b7f4dcbe6417c780999e9ff00e10a4d6730f68481610af484103e",
+    "package-lock.json": "8052a2a9f829b9f926cc2664ddf4125cc1fba676299ce32c6aa92eed0474c0df"
+  },
+  "webkit": "26.0",
+  "capabilities": [
+    {
+      "engine": "webkit",
+      "width": 375,
+      "audioContext": "function",
+      "webkitAudioContext": "undefined",
+      "secure": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "audioContext": "function",
+      "webkitAudioContext": "undefined",
+      "secure": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "audioContext": "function",
+      "webkitAudioContext": "undefined",
+      "secure": true
+    }
+  ],
+  "current": {
+    "engine": "webkit",
+    "width": 1280,
+    "id": "tn-sound"
+  },
+  "finished": "2026-11-02T00:48:26.536Z",
+  "status": "PASS",
+  "complete": true
+}

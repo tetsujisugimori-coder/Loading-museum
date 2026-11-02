@@ -1,0 +1,37 @@
+
+C:\Users\tetsu\Documents\Codex\2026-11-02\task-2\loading-museum\app\components\then-now\SecondStudies.tsx
+  48:63  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\tetsu\Documents\Codex\2026-11-02\task-2\loading-museum\app\components\then-now\SecondStudies.tsx:48:63
+  46 |   };
+  47 |   const release = (cancel = false) => { if (drag.current) { drag.current = null; setBalls(b => b.map(v => ({ ...v, held: false, vx: cancel ? 0 : v.vx, vy: cancel ? 0 : v.vy }))); } };
+> 48 |   useEffect(() => { if (!props.active) { drag.current = null; setBalls(v => v.some(b => b.held) ? v.map(b => ({ ...b, held: false, vx: 0, vy: 0 })) : v); } }, [props.active]);
+     |                                                               ^^^^^^^^ Avoid calling setState() directly within an effect
+  49 |   const energy = balls.reduce((sum, b) => sum + (b.vx * b.vx + b.vy * b.vy) / 2 + gravity * (188 - b.y), 0);
+  50 |   return <>
+  51 |     <svg className="tnSurface tnPointer" viewBox="0:0 320 220" role="group" aria-label="譛臥阜縺ｮ迚ｩ逅・♀蜈ｷ縲ら帥縺ｯ繝峨Λ繝・げ縲∫泙蜊ｰ縺ｧ遘ｻ蜍輔ヾpace縺ｧ謇薙■荳翫￡" onPointerCancel={() => release(true)}>                        react-hooks/set-state-in-effect
+  94:53  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\tetsu\Documents\Codex\2026-11-02\task-2\loading-museum\app\components\then-now\SecondStudies.tsx:94:53
+  92 |   const dispose = useCallback(() => { generation.current++; const e = engine.current; engine.current = null; if (e) { try { e.oscillator.stop(); } catch {} e.oscillator.disconnect(); e.gain.disconnect(); e.analyser.disconnect(); void e.context.close().catch(() => {}); } }, []);
+  93 |   const stop = () => { dispose(); setStatus("蛛懈ｭ｢繝ｻ辟｡髻ｳ"); setReading(emptyReading); };
+> 94 |   useEffect(() => { if (!props.active) { dispose(); setStatus("蛛懈ｭ｢繝ｻ辟｡髻ｳ"); setReading(emptyReading); } return dispose; }, [props.active, dispose]);
+     |                                                     ^^^^^^^^^ Avoid calling setState() directly within an effect
+  95 |   const start = async () => {
+  96 |     dispose(); setReading(emptyReading); setStatus("髻ｳ螢ｰ髢句ｧ九ｒ遒ｺ隱堺ｸｭ");
+  97 |     if (!props.active) { setStatus("蜈ｱ騾壹・縲御ｸ｡譁ｹ繧帝幕蟋九阪ｒ謚ｼ縺励※縺九ｉ髻ｳ繧帝幕蟋九＠縺ｦ縺上□縺輔＞"); return; }  react-hooks/set-state-in-effect
+
+笨・2 problems (2 errors, 0 warnings)
+

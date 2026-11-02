@@ -1,0 +1,187 @@
+{
+  "head": "f26dfb73783c3561857a64fffc3e9555ce298066",
+  "tree": "c066e2be143065aac074c6ecff19c861aa702594",
+  "status": "PARTIAL",
+  "complete": true,
+  "expected": 36,
+  "actual": 36,
+  "pass": 33,
+  "partial": 3,
+  "fail": 0,
+  "overflow": 0,
+  "rafAfterClose": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "newStorageWrites": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "audioLive": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "lowPeak": "1",
+      "highPeak": "2",
+      "strongRms": 0.0239,
+      "weakRms": 0.0076,
+      "mutedRms": 0,
+      "nowLive": "合成音を解析中 ／ 880Hz ／ RMS 0.0235 ／ 帯域 5",
+      "thenLive": "合成音を解析中 ／ 220Hz ／ RMS 0.0237 ／ 帯域 2"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "lowPeak": "1",
+      "highPeak": "3",
+      "strongRms": 0.0235,
+      "weakRms": 0.0117,
+      "mutedRms": 0,
+      "nowLive": "合成音を解析中 ／ 880Hz ／ RMS 0.0235 ／ 帯域 5",
+      "thenLive": "合成音を解析中 ／ 220Hz ／ RMS 0.0234 ／ 帯域 2"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "lowPeak": "1",
+      "highPeak": "3",
+      "strongRms": 0.0234,
+      "weakRms": 0.0053,
+      "mutedRms": 0,
+      "nowLive": "合成音を解析中 ／ 880Hz ／ RMS 0.0235 ／ 帯域 5",
+      "thenLive": "合成音を解析中 ／ 220Hz ／ RMS 0.0234 ／ 帯域 2"
+    }
+  ],
+  "unverified": [
+    {
+      "engine": "webkit",
+      "width": 375,
+      "id": "tn-sound",
+      "reason": "Native Web Audio API unavailable; only unavailable UI tested"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "id": "tn-sound",
+      "reason": "Native Web Audio API unavailable; only unavailable UI tested"
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "id": "tn-sound",
+      "reason": "Native Web Audio API unavailable; only unavailable UI tested"
+    }
+  ],
+  "capabilities": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "audioContext": "function",
+      "webkitAudioContext": "undefined",
+      "secure": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "audioContext": "function",
+      "webkitAudioContext": "undefined",
+      "secure": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "audioContext": "function",
+      "webkitAudioContext": "undefined",
+      "secure": true
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "audioContext": "undefined",
+      "webkitAudioContext": "undefined",
+      "secure": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "audioContext": "undefined",
+      "webkitAudioContext": "undefined",
+      "secure": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "audioContext": "undefined",
+      "webkitAudioContext": "undefined",
+      "secure": true
+    }
+  ]
+}

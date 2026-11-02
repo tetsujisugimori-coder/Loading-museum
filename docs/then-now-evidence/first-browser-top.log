@@ -1,0 +1,22 @@
+PASS chromium 375 tn-vector-morph
+PASS chromium 375 tn-cursor-creature
+PASS chromium 375 tn-kinetic-type
+PASS chromium 1280 tn-vector-morph
+PASS chromium 1280 tn-cursor-creature
+PASS chromium 1280 tn-kinetic-type
+PASS webkit 375 tn-vector-morph
+PASS webkit 375 tn-cursor-creature
+PASS webkit 375 tn-kinetic-type
+PASS webkit 1280 tn-vector-morph
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'WATCH' !== 'REST'
+
+    at file:///C:/Users/tetsu/Documents/Codex/2026-11-02/task-2/loading-museum/scripts/verify-then-now-browser.mjs:26:656 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'WATCH',
+  expected: 'REST',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

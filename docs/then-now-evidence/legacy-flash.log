@@ -1,0 +1,17 @@
+PASS chromium 375 legacy-logo
+PASS chromium 375 legacy-shape
+PASS chromium 375 legacy-spring
+PASS chromium 375 legacy-intro
+PASS chromium 375 legacy-poem
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok((await v.getAttribute('style')).includes('--mx'))
+
+    at file:///C:/Users/tetsu/Documents/Codex/2026-11-02/task-2/loading-museum/scripts/verify-then-now-browser.mjs:30:356 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

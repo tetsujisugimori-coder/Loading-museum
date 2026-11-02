@@ -1,0 +1,83 @@
+name: Physics lifecycle RED to GREEN
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  physics:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Fixed browser tool outside application dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/physics-playwright" --no-save playwright@1.56.1
+          if [ -f /etc/apt/apt-mirrors.txt ]; then
+            printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt
+          fi
+          printf 'Acquire::http::Timeout "30";\nAcquire::https::Timeout "30";\nAcquire::Retries "1";\n' | sudo tee /etc/apt/apt.conf.d/99-museum-network-bounds
+          "$RUNNER_TEMP/physics-playwright/node_modules/.bin/playwright" install --with-deps ${{ matrix.browser }}
+          cp scripts/verify-physics-lifecycle.mjs "$RUNNER_TEMP/physics-probe.mjs"
+      - name: Updated HEAD GREEN (same probe, inputs, oracle and 8 second limit)
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          EVIDENCE_DIR: physics-green-evidence
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/physics-playwright/node_modules/playwright"
+          node "$RUNNER_TEMP/physics-probe.mjs" 2>&1 | tee physics-green.log
+      - name: Native pointer throw, wall/floor reflection and two-body collision
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          EVIDENCE_DIR: physics-dynamics-evidence
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/physics-playwright/node_modules/playwright"
+          node scripts/verify-physics-dynamics.mjs 2>&1 | tee physics-dynamics.log
+      - uses: actions/checkout@v4
+        with:
+          ref: 7ccb51f158a564327a5b900b5210cd6cd57d81bf
+          path: physics-baseline
+      - name: Build the exact original submission without changing it
+        working-directory: physics-baseline
+        run: |
+          test "$(git rev-parse HEAD^{tree})" = 48497434a97f6b535e63802e4cb9ab3aa1da0942
+          npm ci
+          npm run build
+      - name: Original submission RED (explicit expected-failure oracle)
+        env:
+          BROWSERS: ${{ matrix.browser }}
+        run: |
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/physics-playwright/node_modules/playwright"
+          export EVIDENCE_DIR="$GITHUB_WORKSPACE/physics-red-evidence"
+          set +e
+          (cd physics-baseline && node "$RUNNER_TEMP/physics-probe.mjs") > physics-red.log 2>&1
+          result=$?
+          set -e
+          cat physics-red.log
+          test "$result" = 1
+          node scripts/verify-physics-red-result.mjs physics-red-evidence/results.json physics-green-evidence/results.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: physics-${{ matrix.browser }}-${{ github.event.pull_request.head.sha }}
+          path: |
+            physics-red-evidence/results.json
+            physics-green-evidence/results.json
+            physics-red.log
+            physics-green.log
+            physics-dynamics-evidence/results.json
+            physics-dynamics.log

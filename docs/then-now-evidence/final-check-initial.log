@@ -1,0 +1,203 @@
+
+> loading-museum@0.1.0 check
+> npm run lint && npm run typecheck && npm test
+
+
+> loading-museum@0.1.0 lint
+> eslint .
+
+
+> loading-museum@0.1.0 typecheck
+> tsc --noEmit
+
+
+> loading-museum@0.1.0 test
+> npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run tests/practical-b.test.tsx tests/practical-runtime.test.tsx tests/practical-a.test.tsx tests/practical-room.test.tsx tests/phase2-elastic.test.ts tests/phase2-regression.test.tsx tests/phase2-b.test.tsx tests/phase2-room.test.tsx tests/modern-mesh.test.ts tests/modern-drift-geometry.test.ts tests/modern-lens.test.tsx tests/modern-menu.test.tsx tests/paper-exhibit.test.tsx tests/glass-exhibit.test.tsx tests/modern-animation.test.tsx tests/macintosh-system-choice.test.tsx tests/waapi-samples.test.ts tests/waapi-gallery.test.tsx tests/waapi-interaction-state.test.ts tests/waapi-game-regressions.test.tsx tests/waapi-hp-regression.test.tsx tests/waapi-cascade-motion.test.tsx tests/dom11-selection.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-stage1-menu-coin.test.tsx && vitest run tests/phase4a.test.tsx && vitest run tests/phase4b-interactions.test.tsx tests/phase4b-async.test.tsx && vitest run tests/phase5-data.test.tsx tests/phase5-navigation.test.tsx && vitest run tests/phase5-focus-revision.test.tsx && vitest run tests/then-now-first.test.tsx tests/then-now-second.test.tsx tests/then-now-registration.test.ts
+
+
+> loading-museum@0.1.0 build
+> next build
+
+笆ｲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+笨・Compiled successfully in 1128ms
+  Running TypeScript ...
+  Finished TypeScript in 7.2s ...
+  Collecting page data using 4 workers ...
+  Generating static pages using 4 workers (0/3) ...
+笨・Generating static pages using 4 workers (3/3) in 499ms
+  Finalizing page optimization ...
+
+Route (app)
+笏・笳・/
+笏・笳・/_not-found
+
+
+笳・ (Static)  prerendered as static content
+
+笨・Read Me縺ｮ螳溽洸蠖｢縺ｯ繧ｴ繝溽ｮｱ縺ｸ蝗帶婿蜷代°繧蛾㍾縺ｪ繧・(0.5547ms)
+笨・System 1竊・竊・竊・竊・繧偵け繝ｪ繝・け逶ｸ蠖薙・謫堺ｽ懊〒騾｣邯夐∈謚槭☆繧・(0.5387ms)
+笨・System 5繧脱nter縲ヾystem 6繧担pace逶ｸ蠖薙・謫堺ｽ懊〒驕ｸ謚槭☆繧・(0.1809ms)
+笨・loading縺九ｉ譛蛻昴・蟷ｴ莉｣縺ｸ遘ｻ陦後☆繧・(0.8242ms)
+笨・蟷ｴ莉｣縺斐→縺ｫeraIndex縺碁ｲ繧 (0.1069ms)
+笨・騾壼ｸｸ蟷ｴ莉｣縺ｯ蜈ｱ騾壹・蠕・ｩ滓凾髢薙ｒ菴ｿ縺・(0.5993ms)
+笨・譛蠕後・蟷ｴ莉｣縺縺鷹聞縺・ｾ・ｩ滓凾髢薙ｒ菴ｿ縺・(0.1203ms)
+笨・譛蠕後・蟷ｴ莉｣蠕後↓index-complete縺ｸ遘ｻ陦後☆繧・(0.1017ms)
+笨・index-complete蠕後↓typing縺ｸ遘ｻ陦後☆繧・(0.0778ms)
+笨・繧ｿ繧､繝医Ν譁・ｭ玲焚縺・譁・ｭ励★縺､蠅励∴繧・(0.0638ms)
+笨・繧ｿ繧､繝医Ν蜈ｨ譁・ｒtyping迥ｶ諷九〒菫晄戟縺吶ｋ (0.0567ms)
+笨・繧ｿ繧､繝医Ν蜈ｨ譁・｡ｨ遉ｺ蠕後↓typing-hold縺ｸ遘ｻ陦後☆繧・(0.0757ms)
+笨・typing-hold蠕後↓signal-lock縺ｮbrighten縺ｸ遘ｻ陦後☆繧・(0.1266ms)
+笨・signal-lock縺ｯbrighten縺九ｉnoise縺ｸ騾ｲ繧 (0.0954ms)
+笨・signal-lock縺ｯnoise縺九ｉlocked縺ｸ騾ｲ繧 (0.0647ms)
+笨・signal-lock縺ｮlocked蠕後↓complete縺ｸ騾ｲ繧 (0.0725ms)
+笨・complete莉･髯阪・迥ｶ諷九′騾ｲ縺ｾ縺ｪ縺・(0.0446ms)
+笨・complete迥ｶ諷九・譛蠕後・蟷ｴ莉｣縺ｨ繧ｿ繧､繝医Ν蜈ｨ譁・ｒ菫晄戟縺吶ｋ (0.0689ms)
+笨・Replay縺ｯrunId繧貞｢励ｄ縺・(0.0516ms)
+笨・Replay縺ｯ蛻晄悄迥ｶ諷九∈謌ｻ縺・(0.6103ms)
+笨・蜿､縺вunId縺ｫ繧医ｋ繧ｿ繧､繝槭・譖ｴ譁ｰ繧堤┌隕悶☆繧・(0.0736ms)
+笨・reduced motion縺ｯ蜊ｳ譎Ｄomplete縺ｫ縺ｪ繧・(0.0663ms)
+笨・蟷ｴ莉｣襍ｰ譟ｻ荳ｭ縺ｮ轤ｹ轣ｯ謨ｰ縺ｨ繝弱・繝臥憾諷九ｒeraIndex縺九ｉ邂怜・縺吶ｋ (0.1049ms)
+笨・蟷ｴ莉｣襍ｰ譟ｻ螳御ｺ・ｾ後・蜈ｨ繧ｿ繧､繝繝ｩ繧､繝ｳ繝弱・繝峨′轤ｹ轣ｯ縺吶ｋ (0.0885ms)
+笨・繧ｿ繧､繝繝ｩ繧､繝ｳ騾ｲ謐礼紫繧貞ｹｴ莉｣莉ｶ謨ｰ縺ｨ迴ｾ蝨ｨ菴咲ｽｮ縺九ｉ邂怜・縺吶ｋ (0.0814ms)
+笨・蟷ｴ莉｣縺・莉ｶ縺ｧ繧ょｮ牙・縺ｪ騾ｲ謐礼紫繧定ｿ斐＠縲∝ｮ御ｺ・焚繧剃ｻｶ謨ｰ蜀・∈蛻ｶ髯舌☆繧・(0.0381ms)
+笨・蜈ｨ蟷ｴ莉｣縺ｨ蜈ｨ譎る俣螳壽焚繧剃ｸ縺区園縺ｧ邂｡逅・☆繧・(0.0754ms)
+笨・GitHub Pages逕ｨ縺ｮ髱咏噪HTML縺ｸ9遞ｮ鬘槭・螻慕､ｺ繧呈嶌縺榊・縺・(11.2711ms)
+笨・豁｣蠑丞錐遘ｰ縺ｮ繧ｿ繧､繝医Ν蟆主・縲∝ｹｴ莉｣繝・・繝槭∫｢ｺ螳壽ｼ泌・縲∬ｻｽ貂帙Δ繝ｼ繧ｷ繝ｧ繝ｳ縺ｨ蜀咲函謫堺ｽ懊ｒ螳溯｣・☆繧・(2.4573ms)
+笨・譌｢蟄・螻慕､ｺ縺ｮ荳九∈髢峨§縺櫪S-DOS螻慕､ｺ螳､縺ｨ8遞ｮ鬘槭・螻慕､ｺ繧呈嶌縺榊・縺・(1.8233ms)
+笨・繧ｫ繝ｼ繧ｽ繝ｫ螻慕､ｺ螳､縺ｨ8遞ｮ鬘槭・菴馴ｨ灘ｱ慕､ｺ繧呈嶌縺榊・縺・(2.5029ms)
+笨・繧ｫ繝ｼ繧ｽ繝ｫ螻慕､ｺ縺ｮ繝・・繧ｿ縲￣ointer Events縲∵ｧ閭ｽ縺ｨ繧｢繧ｯ繧ｻ繧ｷ繝薙Μ繝・ぅ蟇ｾ蠢懊ｒ螳溯｣・☆繧・(3.6421ms)
+笨・Macintosh隱慕函螻慕､ｺ螳､繧貞刈縺医◆螻慕､ｺ螳､繝ｻ螻慕､ｺ莉ｶ謨ｰ繧定｡ｨ遉ｺ縺吶ｋ (2.7305ms)
+笨・Macintosh隱慕函螻慕､ｺ螳､縺ｸ18遞ｮ鬘槭・謫堺ｽ懷ｱ慕､ｺ繧呈嶌縺榊・縺・(4.2818ms)
+笨・Apple I / Apple II 螻慕､ｺ螳､縺ｸ蝗譫憺未菫ゅ′蛻・°繧・3螻慕､ｺ繧貞ｮ溯｣・☆繧・(4.8385ms)
+笨・Flash迚ｹ蛻･螻慕､ｺ螳､縺ｸ18繧ｫ繝・ざ繝ｪ繝ｻ60螻慕､ｺ縺ｨ蜆ｪ蜈医ョ繝｢繧貞ｮ溯｣・☆繧・(3.2234ms)
+笨・蜀肴､懆ｨ弱＠縺・螻慕､ｺ縺ｨ迴ｾ莉｣Web邯呎価豈碑ｼ・ｒ蟆ら畑螳溯｣・↓縺吶ｋ (2.8064ms)
+笨・Flash繝舌リ繝ｼ縺ｮCTA繧貞ｮ牙・縺ｫ2蝗槫ｼｷ隱ｿ縺励∽ｾ｡譬ｼ縺ｨreduced motion繧定ｪｿ謨ｴ縺吶ｋ (1.9408ms)
+笨・Flash蟆ら畑螻慕､ｺ縺ｮ迥ｶ諷矩・遘ｻ縲∝●豁｢蛻ｶ蠕｡縲∵桃菴懷庄閭ｽ縺ｪARIA讒矩繧貞ｮ溯｣・☆繧・(2.0316ms)
+笨・MS-DOS螻慕､ｺ螳､縺ｮ荳九∈髢峨§縺櫚inux / UNIX螻慕､ｺ螳､縺ｨ5遞ｮ鬘槭・繝・Δ繧呈嶌縺榊・縺・(1.941ms)
+笨・迢ｬ遶九＠縺滓ｶ医∴縺欅S螻慕､ｺ螳､縺ｸ6 OS繝ｻ18遞ｮ鬘槭・Loading蜀肴ｧ区・繧呈嶌縺榊・縺・(3.8248ms)
+笨・螻慕､ｺ螳､縺ｮ繝・・繧ｿ螳夂ｾｩ縺ｨ繧ｿ繧､繝槭・蛛懈ｭ｢繝ｻ繝輔か繝ｼ繧ｫ繧ｹ蠕ｩ蟶ｰ繧貞ｮ溯｣・☆繧・(0.8847ms)
+笨・豸医∴縺欅S螻慕､ｺ縺ｮ繝・・繧ｿ繝ｻ襍ｷ蜍輔・蛛懈ｭ｢繝ｻreduced motion繧貞ｮ溯｣・☆繧・(1.2223ms)
+笨・Linux / UNIX繝・Δ縺ｮ蜀榊ｮ溯｡後・騾溷ｺｦ蛻・崛繝ｻ螳牙・縺ｪ蛛懈ｭ｢繧貞ｮ溯｣・☆繧・(0.9495ms)
+笨・CSS縺ｨJavaScript繧鱈oading-museum繧ｵ繝悶ヱ繧ｹ縺九ｉ蜿ら・縺吶ｋ (1.9474ms)
+笨・髱咏噪export險ｭ螳壹→譌｢蟄倥Ξ繧ｹ繝昴Φ繧ｷ繝悶・reduced-motion蟇ｾ蠢懊ｒ邯ｭ謖√☆繧・(2.2529ms)
+笨・System 1縲・縺ｮbutton讒矩縺ｨ髱槭せ繧ｯ繝ｭ繝ｼ繝ｫgrid繧帝撕逧・↓邯ｭ謖√☆繧・(0.9634ms)
+笨・DOM ANIMATION ROOM 繧帝撕逧ЗTML縺ｸ蜃ｺ蜉帙＠縲・7謫堺ｽ懊・API菴馴ｨ薙ｒ遒ｺ隱阪☆繧・(3.1052ms)
+笨・譌｢蟄倥Ο繝ｼ繝・ぅ繝ｳ繧ｰ讓呎悽縺ｮ逶ｴ荳九↓縲・≦蟒ｶ逕滓・縺吶ｋWAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ繧定ｿｽ蜉縺吶ｋ (1.2777ms)
+邃ｹ tests 49
+邃ｹ suites 0
+邃ｹ pass 49
+邃ｹ fail 0
+邃ｹ cancelled 0
+邃ｹ skipped 0
+邃ｹ todo 0
+邃ｹ duration_ms 206.7853
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-02/task-2/loading-museum
+
+ 笨・tests/waapi-samples.test.ts (7 tests) 20ms
+ 笨・tests/modern-mesh.test.ts (2 tests) 34ms
+ 笨・tests/modern-drift-geometry.test.ts (2 tests) 129ms
+ 笨・tests/waapi-interaction-state.test.ts (2 tests) 3ms
+ 笨・tests/phase2-elastic.test.ts (2 tests) 2ms
+ 笨・tests/waapi-game-regressions.test.tsx (13 tests) 1148ms
+ 笨・tests/waapi-stage1-expanded.test.tsx (23 tests) 1928ms
+ 笨・tests/modern-lens.test.tsx (1 test) 620ms
+   笨・lens > coalesces position changes and draws only a bounded color region, then resets  618ms
+ 笨・tests/practical-runtime.test.tsx (1 test) 13ms
+ 笨・tests/modern-menu.test.tsx (1 test) 1205ms
+   笨・clip timing controls > changes duration and easing, reverses and resets  1201ms
+ 笨・tests/glass-exhibit.test.tsx (3 tests) 1780ms
+   笨・GlassExhibit > starts silent and exposes all eight notes to keyboard users  796ms
+   笨・GlassExhibit > draws once while idle and schedules frames only during a strike  804ms
+ 笨・tests/paper-exhibit.test.tsx (3 tests) 1334ms
+   笨・procedural paper > renders a mesh and the fold slider changes its geometry; reset restores it  820ms
+ 笨・tests/phase2-b.test.tsx (4 tests) 2455ms
+   笨・phase 2 B collection > allows elastic controls to reset and closes the player  1118ms
+   笨・phase 2 B collection > offers clearing and reset for kaleidoscope marks  723ms
+   笨・phase 2 B collection > restores all glitch effects and can be reset  606ms
+ 笨・tests/modern-animation.test.tsx (3 tests) 1486ms
+   笨・modern collection > filters, opens exhibits and reverses the clip menu  1067ms
+   笨・modern collection > starts the instrument muted and exposes keys  416ms
+ 笨・tests/practical-a.test.tsx (8 tests) 3305ms
+   笨・step failure prevents next, retry retains current stage, reset restores defaults  937ms
+   笨・sort cancel leaves order; only drop changes it; reset restores  875ms
+   笨・spotlight arrows move its actual paint center  729ms
+ 笨・tests/phase2-room.test.tsx (4 tests) 2240ms
+   笨・phase 2 A collection > selects, filters, resets and closes without retaining a player  1388ms
+   笨・phase 2 A collection > exposes independent ball parameters and flip direction  333ms
+   笨・phase 2 A collection > exposes independent flock rules and allows reversal of a tile transition  515ms
+ 笨・tests/macintosh-system-choice.test.tsx (2 tests) 1638ms
+   笨・System 1縲・縺ｮ謫堺ｽ懷屓蟶ｰ > 繧ｯ繝ｪ繝・け縺ｧSystem 1竊・竊・竊・竊・繧帝｣邯壹＠縺ｦ蛻・ｊ譖ｿ縺医ｋ  1144ms
+   笨・System 1縲・縺ｮ謫堺ｽ懷屓蟶ｰ > Tab竊脱nter縺ｨTab竊担pace縺ｧSystem 5・・繧貞・繧頑崛縺医ｋ  491ms
+ 笨・tests/waapi-cascade-motion.test.tsx (14 tests) 2314ms
+   笨・cascade replay uses per-token trace, no fill or delayed state writes, reset cancels all  787ms
+   笨・match3 retains state across on/off, visibility, reset and unmount  548ms
+ 笨・tests/practical-b.test.tsx (6 tests) 4072ms
+   笨・hold early release and Escape do not confirm; completed hold confirms only on release  1428ms
+   笨・elastic press changes transform and release settles without endless frames  376ms
+   笨・state cancel/reset reject old results; retry can fail; reduced completion remains terminal  493ms
+   笨・stagger changes painted per-card opacity but preserves DOM read order  466ms
+   笨・shared element cancellation restores original bounds and reset rejects old transition  741ms
+   笨・crossfade reverses in-flight without reviving a reset transition  547ms
+ 笨・tests/dom11-selection.test.tsx (4 tests) 3661ms
+   笨・DOM11 陦ｨ遉ｺ逡ｪ蜿ｷ縺ｮ蛛ｶ謨ｰ驕ｸ謚・> P1縲弃6繧堤函謌舌＠縲￣2/P4/P6縺縺代ｒ蠑ｷ隱ｿ縺励※邨先棡隱ｬ譏弱→荳閾ｴ縺吶ｋ  1495ms
+   笨・DOM11 陦ｨ遉ｺ逡ｪ蜿ｷ縺ｮ蛛ｶ謨ｰ驕ｸ謚・> reset縺ｧ驕ｸ謚槭→繝弱・繝峨ｒ髯､縺阪∝・螳溯｡後→騾｣邯壼・逕溘〒繧ょ酔縺・莉ｶ縺ｨ驕ｸ謚樣寔蜷医ｒ菫昴▽  1062ms
+   笨・DOM11 陦ｨ遉ｺ逡ｪ蜿ｷ縺ｮ蛛ｶ謨ｰ驕ｸ謚・> 陦ｨ遉ｺ繧ｳ繝ｼ繝我ｾ九ｒ螳櫂OM縺ｸ驕ｩ逕ｨ縺励※繧ょ酔縺倡分蜿ｷ縺縺代ｒ蠑ｷ隱ｿ縺吶ｋ  581ms
+   笨・DOM11 陦ｨ遉ｺ逡ｪ蜿ｷ縺ｮ蛛ｶ謨ｰ驕ｸ謚・> DOM17螻慕､ｺ縺ｮ陦ｨ遉ｺ鬆・→ID繧堤ｶｭ謖√☆繧・ 520ms
+ 笨・tests/phase2-regression.test.tsx (7 tests) 4857ms
+   笨・phase and reset regression > cancels scheduled frames when the selected canvas leaves view and when the room closes  636ms
+   笨・phase and reset regression > retains plasma phase while changing speed or pausing  2427ms
+   笨・phase and reset regression > keeps metaballs in place when paused  1029ms
+ 笨・tests/practical-room.test.tsx (15 tests) 4367ms
+   笨・practical collection registration and lifecycle > mounts only chosen player and unmounts on close  701ms
+   笨・practical collection registration and lifecycle > renders steps with reset and source  347ms
+   笨・practical collection registration and lifecycle > renders buffer with reset and source  380ms
+   笨・practical collection registration and lifecycle > renders spotlight with reset and source  565ms
+ 笨・tests/waapi-hp-regression.test.tsx (4 tests) 9936ms
+   笨・Damage逶ｴ蠕軍eset蠕後∵立霑ｽ蠕捺峩譁ｰ縺ｮ莠亥ｮ壽凾蛻ｻ繧帝℃縺弱※繧・2繧剃ｿ昴▽  4338ms
+   笨・Damage騾｣謇薙→Heal縺ｯ譛譁ｰHP縺ｫ蜿取據縺励ヽeset騾｣謇薙ｂ荳榊､・ 2558ms
+   笨・Damage荳ｭ縺ｮ繧｢繝ｳ繝槭え繝ｳ繝医・驕・ｻｶ譖ｴ譁ｰ繧定ｧ｣髯､縺吶ｋ  1615ms
+   笨・逕ｻ髱｢螟門●豁｢縺ｨ蜀崎｡ｨ遉ｺ縺ｯ迴ｾ蝨ｨHP繧剃ｿ晄戟縺怜商縺・ｿｽ蠕捺峩譁ｰ繧呈ｮ九＆縺ｪ縺・ 1423ms
+ 笨・tests/waapi-stage1-menu-coin.test.tsx (5 tests) 10430ms
+   笨・Menu cursor belongs to the current row for buttons, keyboard, limits and Reset  4353ms
+   笨・Coin entry, Replay and re-entry never grant points, including late completion after Reset  2027ms
+   笨・Coin explicit COLLECT awards once per Reset and rapid input cannot duplicate it  1503ms
+   笨・Coin has an explicit explanation separating demonstration, award and Reset  1276ms
+   笨・Menu detail metadata describes actual no-fill decoration rather than generic sample defaults  1268ms
+ 笶ｯ tests/waapi-gallery.test.tsx (11 tests | 1 failed) 25312ms
+   ﾃ・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> 蛻晄悄DOM繧帝≦蟒ｶ縺励・幕髢峨・讀懃ｴ｢繝ｻ隍・粋繝輔ぅ繝ｫ繧ｿ繝ｼ繝ｻ0莉ｶ繝ｻ隗｣髯､繧呈桶縺・9235ms
+     竊・Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> Replay縲√さ繝ｼ繝芽ｧ｣隱ｬ縲｀odal縺ｨToast縺ｮ荳｡譁ｹ蜷代ｒ謫堺ｽ懊☆繧・ 1267ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> Console縺ｮ蜈ｨ謫堺ｽ懊・溷ｺｦ縲ヾeek縲∝ｮ殫layState繧貞ｮ牙・縺ｫ蜿肴丐縺吶ｋ  1088ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> Reduced motion譎ゅ・閾ｪ蜍輔Ν繝ｼ繝励ｒ谿九＆縺壹∽ｻ｣譖ｿ陦ｨ遉ｺ繧定ｪｬ譏弱☆繧・ 929ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> Fade/Slide縺ｯ謇句虚蜀咲函縲。utton/Toggle縺ｯ逶ｴ謗･謫堺ｽ懊□縺代ｒ謠蝉ｾ帙☆繧・ 1170ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> 繧ｲ繝ｼ繝讓呎悽繧堤峩謗･謫堺ｽ懊＠縲ヽeset縺ｧ諢丞袖縺ｮ縺ゅｋ蛻晄悄迥ｶ諷九∈謌ｻ縺・ 1550ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> 譁ｰ縺励＞繧ｲ繝ｼ繝讓呎悽縲・霆ｸ繝輔ぅ繝ｫ繧ｿ繝ｼ縲、I蜈ｱ騾夂憾諷九ｒ謫堺ｽ懊〒縺阪ｋ  2373ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> AI豈碑ｼ・Δ繝ｼ繝峨・荳諡ｬ繝輔ぉ繝ｼ繧ｺ繧帝ｲ繧√・哩縺倥ｋ縺ｨ繝ｫ繝ｼ繝励ｒ蛛懈ｭ｢縺吶ｋ  2791ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> 霑ｽ蜉繧ｲ繝ｼ繝14莉ｶ縺ｯ蝗ｺ譛吋OM繝ｻ迥ｶ諷九・謫堺ｽ懃ｵ先棡繧呈署萓帙☆繧・ 3734ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> Card Deal縺ｮ蜈ｨ蟾･遞九→AI縺ｮ螳御ｺ・・繧ｨ繝ｩ繝ｼ繝ｻ繝ｪ繧ｻ繝・ヨ繧呈桃菴懊〒縺阪ｋ  1110ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> AI菴懈･ｭ繝ｫ繝ｼ繝励・START騾｣謇薙〒蠅玲ｮ悶○縺壹∫判髱｢螟門喧縺ｧcancel縺輔ｌ繧・62ms
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ Failed Tests 1 竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ
+
+ FAIL  tests/waapi-gallery.test.tsx > WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> 蛻晄悄DOM繧帝≦蟒ｶ縺励・幕髢峨・讀懃ｴ｢繝ｻ隍・粋繝輔ぅ繝ｫ繧ｿ繝ｼ繝ｻ0莉ｶ繝ｻ隗｣髯､繧呈桶縺・Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ 笶ｯ tests/waapi-gallery.test.tsx:64:3
+     62| 
+     63| describe("WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・, () => {
+     64|   it("蛻晄悄DOM繧帝≦蟒ｶ縺励・幕髢峨・讀懃ｴ｢繝ｻ隍・粋繝輔ぅ繝ｫ繧ｿ繝ｼ繝ｻ0莉ｶ繝ｻ隗｣髯､繧呈桶縺・, () => {
+       |   ^
+     65|     render(<WaapiSampleGallery />);
+     66|     expect(screen.queryByText("Fade In")).toBeNull();
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[1/1]竡ｯ
+
+
+ Test Files  1 failed | 24 passed (25)
+      Tests  1 failed | 146 passed (147)
+   Start at  09:15:06
+   Duration  30.51s (transform 8.72s, setup 0ms, collect 60.58s, tests 84.29s, environment 45.24s, prepare 8.27s)
+
