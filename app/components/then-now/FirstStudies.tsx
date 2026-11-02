@@ -43,18 +43,21 @@ export function CursorCreature(props: StudyProps) {
   const last = useRef({ x: 160, y: 110, time: 0 });
   const distance = Math.hypot(target.x - body.x, target.y - body.y);
   const reaction = !target.inside ? "REST" : (mode === "avoid" || (props.now && target.speed > 650)) && distance < 120 ? "RETREAT" : mode === "watch" ? "WATCH" : "FOLLOW";
-  useFrame(props.active && !props.reduced && target.inside && reaction !== "WATCH", dt => {
+  const step = (dt: number) => {
+    if (!target.inside || reaction === "WATCH") return;
     setBody(b => {
       const dx = target.x - b.x, dy = target.y - b.y, factor = reaction === "RETREAT" ? -2.4 : props.now ? 3.2 : 1.8;
       return { x: clamp(b.x + dx * dt * factor * props.speed, 42, 278), y: clamp(b.y + dy * dt * factor * props.speed, 65, 168) };
     });
+  };
+  useFrame(props.active && !props.reduced && target.inside && reaction !== "WATCH", dt => {
+    step(dt);
     if (target.speed > 0) setTarget(t => ({ ...t, speed: t.speed * .91 }));
   });
   const move = (e: PointerEvent<SVGSVGElement>) => {
     const box = e.currentTarget.getBoundingClientRect(), x = clamp((e.clientX - box.left) / box.width * 320, 0, 320), y = clamp((e.clientY - box.top) / box.height * 220, 0, 220);
     const time = e.timeStamp, speed = last.current.time ? Math.min(2000, Math.hypot(x - last.current.x, y - last.current.y) / Math.max(.016, (time - last.current.time) / 1000)) : 0;
     last.current = { x, y, time }; setTarget({ x, y, speed, inside: true });
-    if (props.reduced) setBody({ x: clamp(x, 42, 278), y: clamp(y, 65, 168) });
   };
   const leave = () => { setTarget(t => ({ ...t, inside: false, speed: 0 })); last.current.time = 0; };
   const gift = () => { setGifts(v => v + 1); setMode("follow"); };
@@ -68,7 +71,7 @@ export function CursorCreature(props: StudyProps) {
     <svg className="tnSurface tnPointer" viewBox="0 0 320 220" role="application" aria-label="紙鳥を操作：矢印で目標、Enterで合図、Escapeで休息" tabIndex={0} onKeyDown={key} onPointerMove={move} onPointerLeave={leave} onPointerCancel={leave} onBlur={leave} onClick={gift}>
       <path className="tnGrid" d="M0 180H320M80 0V220M160 0V220M240 0V220" />
       {target.inside && <g className="tnTarget"><path d={`M${target.x - 8} ${target.y}h16M${target.x} ${target.y - 8}v16`} /></g>}
-      <g transform={`translate(${body.x} ${body.y})`} data-reaction={reaction}>
+      <g transform={`translate(${body.x} ${body.y})`} data-creature data-x={body.x.toFixed(2)} data-reaction={reaction}>
         <ellipse cy="47" rx="34" ry="4" fill="#0007" />
         <path d={props.now ? "M-36 8L-9-24L29-15L40 19L5 38Z" : "M-33 12L-25-23L13-29L35 6L17 37L-16 37Z"} className="tnCreature" />
         <path d={reaction === "RETREAT" ? "M-26 12L-58-25L-46 27ZM20 13L52-28L48 25Z" : gifts % 2 ? "M-26 12L-52-9L-45 28ZM20 13L48-10L44 29Z" : "M-26 12L-47 35L-28 30ZM20 13L40 36L25 28Z"} className="tnWing" />
@@ -77,9 +80,9 @@ export function CursorCreature(props: StudyProps) {
       </g>
       <text x="12" y="22" className="tnSvgLabel">{props.now ? "PAPER SCOUT / 02" : "PAPER SCOUT / 01"}</text>
     </svg>
-    <div className="tnControls"><button onClick={() => setMode("watch")} aria-pressed={mode === "watch"}>注視</button><button onClick={() => setMode("follow")} aria-pressed={mode === "follow"}>追従</button><button onClick={() => setMode("avoid")} aria-pressed={mode === "avoid"}>回避</button><button onClick={gift}>合図を送る</button><button onClick={() => setTarget({ x: 80, y: 90, speed: 0, inside: true })}>左へ誘う</button><button onClick={() => setTarget({ x: 240, y: 130, speed: 0, inside: true })}>右へ誘う</button></div>
+    <div className="tnControls"><button onClick={() => setMode("watch")} aria-pressed={mode === "watch"}>注視</button><button onClick={() => setMode("follow")} aria-pressed={mode === "follow"}>追従</button><button onClick={() => setMode("avoid")} aria-pressed={mode === "avoid"}>回避</button><button onClick={gift}>合図を送る</button><button onClick={() => setTarget({ x: 80, y: 90, speed: 0, inside: true })}>左へ誘う</button><button onClick={() => setTarget({ x: 240, y: 130, speed: 0, inside: true })}>右へ誘う</button><button onClick={() => step(.08)}>一歩進む</button></div>
     <p className="tnReadout" data-reaction={reaction}>{reaction} ／ 距離 {distance.toFixed(0)}px ／ 入力速度 {target.speed.toFixed(0)}px/s ／ 合図 {gifts}</p>
-    <p>{props.now ? "速く近づくと後ずさり。ゆっくりなら注視や追従。" : "目と翼で応える、ゆったりした一対一の追従。回避ボタンでは距離を空ける。"} タップで翼を切替。矢印・Enter、左右へ誘うボタンでも操作できる。</p>
+    <p>{props.now ? "速く近づくと後ずさり。ゆっくりなら注視や追従。" : "目と翼で応える、ゆったりした一対一の追従。回避ボタンでは距離を空ける。"} タップで翼を切替。矢印・Enter、左右へ誘うボタンでも操作できる。動き低減・停止中は「一歩進む」で追従と回避を観察。</p>
   </>;
 }
 

@@ -63,7 +63,7 @@ const geometry=await card.evaluate(e=>({viewport:innerWidth,pageWidth:document.d
 if(width===375||width===1280)await card.screenshot({path:path.join(dest,`${engine}-${width}-${id}.png`)});
 await page.emulateMedia({reducedMotion:'reduce'});await click(card,'Reset');assert.equal(await card.getAttribute('data-reduced'),'true');
 if(id==='tn-vector-morph'){await range(now,'中間形状 %',50);assert.match(await now.locator('.tnReadout').textContent(),/t=0.50/);}
-if(id==='tn-cursor-creature'){await click(card,'両方を開始');await click(now,'合図を送る');assert.match(await now.locator('.tnReadout').textContent(),/合図 1/);}
+if(id==='tn-cursor-creature'){await click(card,'両方を開始');await click(now,'合図を送る');assert.match(await now.locator('.tnReadout').textContent(),/合図 1/);await click(now,'左へ誘う');await click(now,'一歩進む');assert.ok(Number(await now.locator('[data-creature]').getAttribute('data-x'))<160);}
 if(id==='tn-kinetic-type'){await range(now,'時間位置 %',50);assert.match(await now.locator('.tnReadout').textContent(),/進行 50%/);}
 if(id==='tn-physics'){await now.getByRole('button',{name:'球1を操作'}).press('ArrowRight');await click(now,'1刻み進む');assert.ok(Number(await now.locator('[data-ball="0"]').getAttribute('data-x'))>=104);}
 if(id==='tn-intro'){await click(now,'Introを始める');await click(now,'点の道');await click(now,'Skip Intro');assert.equal(await now.locator('.tnReadout').getAttribute('data-scene'),'4');}

@@ -25,6 +25,11 @@ it('bird leave and cancellation clear reaction even after repeated signals', () 
   render(<CursorCreature {...props} active/>); for(let i=0;i<12;i++)fireEvent.click(screen.getByText('合図を送る'));
   fireEvent.click(screen.getByText('左へ誘う')); fireEvent.pointerLeave(screen.getByRole('application')); expect(screen.getByText(/REST ／/)).toBeTruthy(); expect(screen.getByText(/合図 12/)).toBeTruthy();
 });
+it('bird preserves follow and retreat as discrete steps without motion or a pointer', () => {
+  const view=render(<CursorCreature {...props}/>);fireEvent.click(screen.getByText('追従'));fireEvent.click(screen.getByText('左へ誘う'));fireEvent.click(screen.getByText('一歩進む'));
+  expect(Number(view.container.querySelector('[data-creature]')!.getAttribute('data-x'))).toBeLessThan(160);
+  view.unmount();const second=render(<CursorCreature {...props}/>);fireEvent.click(screen.getByText('回避'));fireEvent.click(screen.getByText('左へ誘う'));fireEvent.click(screen.getByText('一歩進む'));expect(Number(second.container.querySelector('[data-creature]')!.getAttribute('data-x'))).toBeGreaterThan(160);
+});
 it('typography letters have independent phase and two compositions', () => {
   expect(letterPose(0,.3,'rise',true,0).q).toBeGreaterThan(letterPose(5,.3,'rise',true,0).q);
   expect(letterPose(2,.3,'rise',false,0)).not.toEqual(letterPose(2,.3,'spread',false,0));
