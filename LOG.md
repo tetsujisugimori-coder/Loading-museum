@@ -1521,3 +1521,16 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - 全体check・ブラウザ・CI・最終HEADは docs/phase5a-studies.md に結果を追記。第4期Bの保留証拠は触れず別経路転送なし。Issue #44、Windows timeout UNKNOWN、実機未検証を保持。Draft維持、公開・merge・auto-mergeなし。
 
 - 第5期A初回CI: WKは旧範囲成功・追加18/24後取消。追加範囲を独立8分jobへ分離し旧10分上限/条件保持。取消原因のAPI注釈は未確認、時間枠不足と製品FAILを区別。詳細phase5a-studies。
+
+## 2026-11-02 — Flash Then & Now 第1期（Issue #50）
+
+- branch `feat/flash-then-now-phase1`。main e75e74be / tree7cc586b6を専用sparse checkoutで開始。#14/#49 merged、#36 open/unmerged。保留4B証拠原本/ZIPはアクセス・転送・再パッケージ化なし。
+- 現物54 Flash/18カテゴリ/245全館/13室を再集計。既存54件の全フィールドと18カテゴリをdigestで保護し、旧描画2ファイル・globals・他室data・lockfileを保全。
+- 前半Vector Morph（対応点編集）、Cursor Creature（独自紙鳥の距離/速度/反応）、Kinetic Typography（意味/字間/時差）を12実browser条件で確認し02f3976へcommit。初回失敗と修正確認を別記録。
+- 後半Physics Playground（単体/二体の有界物理）、Interactive Intro（定時/入力進行・分岐/本編）、Sound Reactor（独自三角波・実FFT/RMS）を追加。Then/Now一組一展示、既存6カテゴリ内で計60 Flash・全館251・13室。継承比較3作と旧54作を削除しない。
+- React/TS/SVG/RAF/Pointer Events/Web Audio、外部素材/新規依存/SWFなし。既存配色と分類を踏襲し、PC二列/狭幅上下、初期停止、共通停止/Reset、固有操作/状態/意図/限界、motion低減の手動観察。閉室unmount、画面外RAF停止、音は再開時に明示操作。
+- `docs/then-now-phase1-design.md` と54件現物表へ調査/重複/一次資料/UNKNOWN/著作権/制作判断を記録。初出・発明者・特定原作品はUNKNOWN。歴史を優劣の一本道にしない。
+- 追加単体20件成功。低頻度frameの新作時計を同条件RED→GREENで是正。後半のCh狭幅/desktop実音解析とWK物理/導入を確認。Windows WebKit26は音API未提供で音正常系はPARTIAL。不可時表示は検査済み。Linux CIは実音解析を必須とする。
+- 初回既定並列checkは旧WAAPI gallery1件5000ms timeout（他146成功、Node49成功）。原11試験単独成功。単worker診断ではその時点の全299件成功。旧Windows timeout根因UNKNOWNを維持し、期待/5秒/CI既定並列を変えない。Issue #44の依存警告未解消。
+- 既存browser試験3本と静的件数assertは245→251/54→60の登録仕様だけ更新。操作条件/期限の緩和なし。新規CI jobは新作36条件・旧Flash12操作を別集計し、既存jobを維持。
+- 履歴は `docs/then-now-evidence/README.md`。最終のclean HEAD実行、全check、CI、独立レビュー引継ぎは後続記録へ追記する。実機iPhone/Mac Safari/VoiceOver/物理touch dragはNOT_TESTED。Draft未マージ/未公開を維持。

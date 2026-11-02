@@ -29,7 +29,7 @@
 .tnCommon span { font-size:12px; flex:1 1 200px; line-height:1.6; }
 .tnRange { display:grid; gap:6px; margin:12px 0; font-size:12px; }
 .tnRange span { display:flex; justify-content:space-between; gap:8px; }
-.tnRange output { color:var(--tn-accent); font-variant-numeric:tabular-nums; }
+.tnRange .tnValue { color:var(--tn-accent); font-variant-numeric:tabular-nums; }
 .tnRange input { display:block; width:100%; min-width:0; min-height:32px; accent-color:var(--tn-accent); cursor:pointer; }
 .tnReadout { min-height:3.5em; padding:10px; border-left:2px solid var(--tn-accent); background:#ffffff07; font:12px/1.6 ui-monospace,monospace!important; font-variant-numeric:tabular-nums; }
 .tnNotes { border-top:1px solid #3f334a; margin-top:16px; }
@@ -40,3 +40,9 @@
 @media(max-width:700px) { .tnCard { padding:16px 12px; } .tnPair { grid-template-columns:1fr; gap:28px; } .tnPanel { border-bottom:1px solid #3f334a; padding-bottom:16px; } .tnCard p { font-size:13px; } }
 @media(prefers-reduced-motion:reduce) { .tnCard *, .tnCard *::before,.tnCard *::after { animation:none!important; transition:none!important; } }
 .tnMount { grid-column:1/-1; min-width:0; }
+.tnBall { fill:var(--tn-accent); stroke:var(--tn-ink); stroke-width:2; cursor:grab; }
+.tnBall[data-held=true] { cursor:grabbing; stroke:#ffe45c; stroke-width:3; }
+.tnBallOther { fill:#f3efdc; stroke:var(--tn-accent); }
+.tnBallNumber { fill:#14101e; font:bold 11px ui-monospace,monospace; }
+.tnVelocity { stroke:#ffe45c; stroke-width:2; }
+.tnIntroTitle { fill:var(--tn-ink); font:bold 24px ui-monospace,monospace; letter-spacing:1px; }

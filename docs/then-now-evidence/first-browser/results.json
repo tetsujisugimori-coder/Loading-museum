@@ -1,0 +1,74 @@
+{
+  "head": "e75e74be3d6b3620c785c4b60c6823bf2080cb7f",
+  "started": "2026-11-02T00:03:32.776Z",
+  "expected": 12,
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "tn-vector-morph",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "tn-cursor-creature",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "tn-kinetic-type",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "pageWidth": 375,
+        "cardWidth": 325,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "id": "tn-vector-morph",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 1280,
+        "pageWidth": 1280,
+        "cardWidth": 1153.984375,
+        "overflow": 0
+      },
+      "reduced": true,
+      "closeReset": true
+    }
+  ],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /合図 1/. Input:\n\n'REST ／ 距離 14px ／ 入力速度 0px/s ／ 合図 0'\n\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-02/task-2/loading-museum/scripts/verify-then-now-browser.mjs:38:89"
+  ],
+  "chromium": "141.0.7390.37",
+  "current": {
+    "engine": "chromium",
+    "width": 1280,
+    "id": "tn-cursor-creature"
+  },
+  "finished": "2026-11-02T00:03:44.389Z",
+  "complete": false
+}

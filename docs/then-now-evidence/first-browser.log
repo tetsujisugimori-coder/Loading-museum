@@ -1,0 +1,16 @@
+PASS chromium 375 tn-vector-morph
+PASS chromium 375 tn-cursor-creature
+PASS chromium 375 tn-kinetic-type
+PASS chromium 1280 tn-vector-morph
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /蜷亥峙 1/. Input:
+
+'REST ・・霍晞屬 14px ・・蜈･蜉幃溷ｺｦ 0px/s ・・蜷亥峙 0'
+
+    at file:///C:/Users/tetsu/Documents/Codex/2026-11-02/task-2/loading-museum/scripts/verify-then-now-browser.mjs:38:89 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'REST ・・霍晞屬 14px ・・蜈･蜉幃溷ｺｦ 0px/s ・・蜷亥峙 0',
+  expected: /蜷亥峙 1/,
+  operator: 'match',
+  diff: 'simple'
+}

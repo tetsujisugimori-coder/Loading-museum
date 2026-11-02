@@ -13,7 +13,9 @@ export function useFrame(active: boolean, tick: (seconds: number) => void) {
     if (!active) return;
     let id = 0, previous = 0;
     const frame = (time: number) => {
-      if (previous) callback.current(Math.min((time - previous) / 1000, 1 / 30));
+      // Preserve elapsed-time meaning at low frame rates; cap hidden/long-frame catch-up.
+      // Physics performs its own smaller bounded substeps.
+      if (previous) callback.current(Math.min((time - previous) / 1000, .25));
       previous = time; id = requestAnimationFrame(frame);
     };
     id = requestAnimationFrame(frame);

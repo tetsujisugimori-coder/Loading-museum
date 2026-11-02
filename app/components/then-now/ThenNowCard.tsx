@@ -4,19 +4,24 @@ import { useState, type ComponentType } from "react";
 import type { FlashExhibit } from "../../data/flashExhibits";
 import { thenNowNotes, type ThenNowId } from "../../data/thenNowStudies";
 import { VectorMorph, CursorCreature, KineticTypography } from "./FirstStudies";
+import { PhysicsPlayground, InteractiveIntro, SoundReactor } from "./SecondStudies";
 import type { StudyProps } from "./runtime";
 import "./then-now.css";
 
 const studies: Partial<Record<ThenNowId, ComponentType<StudyProps>>> = {
   "tn-vector-morph": VectorMorph, "tn-cursor-creature": CursorCreature, "tn-kinetic-type": KineticTypography,
+  "tn-physics": PhysicsPlayground, "tn-intro": InteractiveIntro, "tn-sound": SoundReactor,
 };
 export function ThenNowCard({ exhibit, active, reduced, speed }: { exhibit: FlashExhibit; active: boolean; reduced: boolean; speed: number }) {
   const [playing, setPlaying] = useState(false), [generation, setGeneration] = useState(0);
   const id = exhibit.id as ThenNowId, note = thenNowNotes[id], Study = studies[id];
+  const controlNote = id === "tn-sound"
+    ? reduced ? "動き低減：音は各面で明示開始。移動・点滅なしで計測図を更新。" : "共通開始後、音は各面で明示開始。共通停止は音も解放。音高・音量は個別操作。"
+    : reduced ? "動き低減：自動進行なし・スライダー/手動操作で観察" : id === "tn-intro" ? "定時進行の速度は展示室の共通設定。Nowは入力を待ちます。" : "速度は展示室の共通設定。停止して中間状態を観察できます。";
   if (!Study) return null;
   return <article className="tnCard" data-study={id} data-playing={active && playing} data-reduced={reduced}>
     <header><span className="tnKicker">FLASH THEN & NOW / PHASE 01</span><h4>{exhibit.title}</h4><p>{exhibit.description}</p></header>
-    <div className="tnControls tnCommon" aria-label={`${exhibit.title} 共通操作`}><button aria-pressed={playing} onClick={() => setPlaying(v => !v)}>{playing ? "両方を停止" : "両方を開始"}</button><button onClick={() => { setPlaying(false); setGeneration(v => v + 1); }}>Reset</button><span>{reduced ? "動き低減：自動進行なし・スライダー/手動操作で観察" : "速度は展示室の共通設定。停止して中間状態を観察できます。"}</span></div>
+    <div className="tnControls tnCommon" aria-label={`${exhibit.title} 共通操作`}><button aria-pressed={playing} onClick={() => setPlaying(v => !v)}>{playing ? "両方を停止" : "両方を開始"}</button><button onClick={() => { setPlaying(false); setGeneration(v => v + 1); }}>Reset</button><span>{controlNote}</span></div>
     <div className="tnPair" key={generation}>{[false, true].map(now => <section key={String(now)} className="tnPanel" data-era={now ? "now" : "then"} aria-label={now ? "Now" : "Then"}>
       <h5><b>{now ? "NOW" : "THEN"}</b><span>{now ? note.now : note.then}</span></h5>
       <Study now={now} active={active && playing} reduced={reduced} speed={speed} />

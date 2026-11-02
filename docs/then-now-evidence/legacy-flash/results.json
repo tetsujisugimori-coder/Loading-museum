@@ -1,0 +1,78 @@
+{
+  "head": "02f3976dd584c58c75138cc5a3077688a52a7b17",
+  "started": "2026-11-02T00:17:28.427Z",
+  "expected": 12,
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "legacy-logo",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "legacy-shape",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "legacy-spring",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "legacy-intro",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "legacy-poem",
+      "status": "PASS"
+    }
+  ],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok((await v.getAttribute('style')).includes('--mx'))\n\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-02/task-2/loading-museum/scripts/verify-then-now-browser.mjs:30:356"
+  ],
+  "unverified": [],
+  "tree": "274287481e3cad3bd3d3ad6eab64d07e7af07fdd",
+  "trackedChanges": "M .github/workflows/verify-practical.yml\n M app/components/then-now/ThenNowCard.tsx\n M app/components/then-now/then-now.css\n M app/data/flashExhibits.ts\n M package.json\n M scripts/verify-phase4a-browser.mjs\n M scripts/verify-phase4b-browser.mjs\n M scripts/verify-phase5a-browser.mjs\n M scripts/verify-then-now-browser.mjs\n M tests/rendered-html.test.mjs",
+  "sourceHashes": {
+    "app/components/FlashSpecialExhibitRoom.tsx": "e820b0d0a7423ed391365c1a8f593c8bb8657312030322d98f3aa44dc38b9a24",
+    "app/data/flashExhibits.ts": "2b542327dd43c4d6656d2448665fbfd36b3c01e4ec43be6427ed52f5c0cb21d3",
+    "app/data/thenNowStudies.ts": "31b5000a586f93d4ef4f688722039b4eab1f74e597126938ad7e64f3c4a59608",
+    "app/components/then-now/runtime.tsx": "e7accda4f4930b245a52b4bb156f3dd27920f6f4bd0b8228e62e438ba86d3a68",
+    "app/components/then-now/FirstStudies.tsx": "d50e5be3d92019ea61ca49d46a320fdd8c9c01163f0df42c58010b9c6b7eef28",
+    "app/components/then-now/SecondStudies.tsx": "67be5c3e874824da1406d5704a684347df91820f32fac588b2d599d9fb3a6322",
+    "app/components/then-now/ThenNowCard.tsx": "bf5e11e386cfdbb9d7e286c6be568736e80a115622a90e598b942d0208e14a6b",
+    "app/components/then-now/then-now.css": "a28b45c620ffffd6339bce14150376b8462a1aeb3ad4940ce8cb53385cec8dd8",
+    "package-lock.json": "8af00f13b6e24b441999bab971200cc5a5a1e4e5e6fde5cfd0b616eb04dbb1a2"
+  },
+  "chromium": "141.0.7390.37",
+  "capabilities": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "audioContext": "function",
+      "webkitAudioContext": "undefined",
+      "secure": true
+    }
+  ],
+  "current": {
+    "engine": "chromium",
+    "width": 375,
+    "id": "legacy-comparison"
+  },
+  "diagnostic": {
+    "scrollY": 6559,
+    "viewport": 900,
+    "card": [],
+    "state": []
+  },
+  "finished": "2026-11-02T00:17:30.922Z",
+  "status": "FAIL",
+  "complete": false
+}

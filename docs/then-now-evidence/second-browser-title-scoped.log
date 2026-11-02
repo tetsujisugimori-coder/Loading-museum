@@ -1,0 +1,12 @@
+PASS chromium 375 tn-physics
+PASS chromium 375 tn-intro
+PASS chromium 375 tn-sound
+PASS chromium 1280 tn-physics
+PASS chromium 1280 tn-intro
+PASS chromium 1280 tn-sound
+PASS webkit 375 tn-physics
+PASS webkit 375 tn-intro
+page.waitForFunction: Timeout 8000ms exceeded.
+    at C:\Users\tetsu\Documents\Codex\2026-11-02\task-2\loading-museum\scripts\verify-then-now-browser.mjs:44:86 {
+  name: 'TimeoutError'
+}
