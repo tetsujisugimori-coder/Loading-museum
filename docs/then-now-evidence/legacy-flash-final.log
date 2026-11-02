@@ -1,0 +1,18 @@
+PASS chromium 375 legacy-logo
+PASS chromium 375 legacy-shape
+PASS chromium 375 legacy-spring
+PASS chromium 375 legacy-intro
+PASS chromium 375 legacy-poem
+PASS chromium 375 legacy-comparison
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'false' !== 'true'
+
+    at file:///C:/Users/tetsu/Documents/Codex/2026-11-02/task-2/loading-museum/scripts/verify-then-now-browser.mjs:25:135 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'false',
+  expected: 'true',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

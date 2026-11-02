@@ -1,0 +1,798 @@
+{
+  "created": "2026-11-02T00:43:38.478Z",
+  "scope": "new evidence only, historical evidence not opened",
+  "files": 158,
+  "pngs": 96,
+  "entries": [
+    {
+      "file": "docs/then-now-evidence/browser-exits.json",
+      "size": 49,
+      "sha256": "c48463f6216ba94df8c8a4c0662bcd6c232c8a14fe7fed1002a1f628669ac248"
+    },
+    {
+      "file": "docs/then-now-evidence/coarse-clock-green.log",
+      "size": 350,
+      "sha256": "9e4a2d8efc45586a240af3b9cce2e102086c076cc7e62350d324d2f3850252db"
+    },
+    {
+      "file": "docs/then-now-evidence/coarse-clock-red.log",
+      "size": 7620,
+      "sha256": "b50cef7492ac85f73aeab7bd4d7860b77f614247b692e17d77142f822f00ea8e"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser-summary.json",
+      "size": 3317,
+      "sha256": "6fbc4ce03cbf3dbcc2e25853470547e9ead02db1603c2538b895b426928e2d51"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser.log",
+      "size": 1149,
+      "sha256": "d69bb3a6256717db1572bc9cb8392c19f64d4c4079c66e7aa07c927a3b74837d"
+    },
+    {
+      "file": "docs/then-now-evidence/final-check-freeze.log",
+      "size": 10850,
+      "sha256": "fed6471b29a3639f2bd43940bc205e021d7cfb66618c1de5a6411a2b02d632e7"
+    },
+    {
+      "file": "docs/then-now-evidence/final-check-initial.log",
+      "size": 18693,
+      "sha256": "2abb88bf7a746046b2618b6367537e153d9e5a2f7e6c7d3b793467c518065114"
+    },
+    {
+      "file": "docs/then-now-evidence/final-check-serial-diagnostic.log",
+      "size": 10883,
+      "sha256": "130a2736ab0b1dd37540c736d654d0afd768920595f494b115bb679c8030a1f5"
+    },
+    {
+      "file": "docs/then-now-evidence/final-check-source-head.log",
+      "size": 10851,
+      "sha256": "b90bb991149a885d0d7ecb491bcb35806a4ead82cd5cf49a10dfc467db906eb1"
+    },
+    {
+      "file": "docs/then-now-evidence/final-check-summary.json",
+      "size": 513,
+      "sha256": "ea1fe18246b2379c3ec250ba6c9bbc1c90400ab6e27c6824c846d738f533c79c"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-final.log",
+      "size": 426,
+      "sha256": "abbd6b84b53fb1a182a7a4c98c23d79437dadc288c3adc851edcce2a94f1cdcf"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-fixed.log",
+      "size": 410,
+      "sha256": "4a9008b4ff82629251242f86fa7945c55b6cd414aa1c02a380ce12a530c1268a"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-top.log",
+      "size": 718,
+      "sha256": "2ecdd615dbacf36dc1f4b1da387a48bd84e22265c75ba24e2189311e5cd4cd30"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser.log",
+      "size": 675,
+      "sha256": "ac353ea0bf39dd517b424784e8080180abfe06fc638875c4e682cd2a79365b97"
+    },
+    {
+      "file": "docs/then-now-evidence/first-build.log",
+      "size": 534,
+      "sha256": "40e8c56e251ffb6dd4b57673533129c06c59c3c60eb15a318eaa1972171b6b15"
+    },
+    {
+      "file": "docs/then-now-evidence/first-lint.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/then-now-evidence/first-order-build.log",
+      "size": 534,
+      "sha256": "316d52eec6b4cc6ed819f26a5cbdd231b30dffd41568aa8ddca71a35ba506755"
+    },
+    {
+      "file": "docs/then-now-evidence/first-second-unit.log",
+      "size": 382,
+      "sha256": "53762c7f2c2e4b14bb494de1c2b307defd9b234a2cb78791c0b1d535d100885d"
+    },
+    {
+      "file": "docs/then-now-evidence/first-unit-fixed.log",
+      "size": 34221,
+      "sha256": "d6902bc66818d15ab444d3c69b54878c1cf6e462bcd691ccc6355ac0830d49be"
+    },
+    {
+      "file": "docs/then-now-evidence/first-unit-green.log",
+      "size": 324,
+      "sha256": "312815fb4be096c60197843da01ad8fe5c84d954761d42b2790d26dee79c28fe"
+    },
+    {
+      "file": "docs/then-now-evidence/first-wk-diagnostic.log",
+      "size": 191,
+      "sha256": "f7a69df63d1d438617038968dca4c543d9c02c2e0c70ba8faf6a137583235927"
+    },
+    {
+      "file": "docs/then-now-evidence/inventory-final.json",
+      "size": 385,
+      "sha256": "c4229fce4b02699b5ae5f6f623c8a61c5051c8718ddb4cb17afcfbb4596c4cd3"
+    },
+    {
+      "file": "docs/then-now-evidence/legacy-flash-final.log",
+      "size": 559,
+      "sha256": "1c9cb0abaa9e5d99dc40cdadaa159c6ceff556a28822eddbd26e1d9e5224ba0f"
+    },
+    {
+      "file": "docs/then-now-evidence/legacy-flash-hit-confirmed.log",
+      "size": 530,
+      "sha256": "bc9f23367bacdc8c5e8618d038c95c6345f4ac6c33d4d3055b8cb9c3d9ecaed7"
+    },
+    {
+      "file": "docs/then-now-evidence/legacy-flash-statewait.log",
+      "size": 388,
+      "sha256": "deb6f90f23fea0a3ce6405250e80dddc933b28e03bdca0977a41c49358ec2b28"
+    },
+    {
+      "file": "docs/then-now-evidence/legacy-flash.log",
+      "size": 557,
+      "sha256": "8d290289498e5f528242e6f02dc609e4f8bdb83455f94ec077daf274e728b124"
+    },
+    {
+      "file": "docs/then-now-evidence/new-lint.log",
+      "size": 3860,
+      "sha256": "37a66a908ec4c6ac8099c5f7d6ae83839068f3e7159139760013f89e07023e5d"
+    },
+    {
+      "file": "docs/then-now-evidence/pointer-dynamics.log",
+      "size": 94,
+      "sha256": "f9b00ff0c4cbdfc5749d5fb221328792d8d89bc3da780d0b769c75ebdbda2c26"
+    },
+    {
+      "file": "docs/then-now-evidence/preservation-final-source.json",
+      "size": 642,
+      "sha256": "98650af3bf2d8adf50d15d196b6d197ae06a63a6a926dc2606c9ee89f3c18b0b"
+    },
+    {
+      "file": "docs/then-now-evidence/preservation.json",
+      "size": 1863,
+      "sha256": "7ba5faaed1567b6f7c9d6a47ff739502752b7b082593e4b417607904ebb7fd32"
+    },
+    {
+      "file": "docs/then-now-evidence/probe-lint-final.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/then-now-evidence/probe-lint.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/then-now-evidence/README.md",
+      "size": 7117,
+      "sha256": "070d87bb7c98e0e4c8488970093b39ed7d4c7ac86dd997c1b5fcf6f903feec8a"
+    },
+    {
+      "file": "docs/then-now-evidence/reduced-bird-step.log",
+      "size": 437,
+      "sha256": "f42a7fd89c94498e2b2d093e11a14f8b59661b4cbe6e22e0a92aac4440ba697b"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-platform.log",
+      "size": 478,
+      "sha256": "13eac656c1c5d5bacb28fa1a23fa723c83366589efd8f8d552a714ef9857e72f"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-title-scoped.log",
+      "size": 420,
+      "sha256": "d75457274139ea61856fa00ad4933a7275fe475fb301134288db5ce69b5126f0"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser.log",
+      "size": 453,
+      "sha256": "0859c54c63d60327970238d7e3c6843b22744efc5113c55831076c8f6c67b259"
+    },
+    {
+      "file": "docs/then-now-evidence/second-build-boundary.log",
+      "size": 518,
+      "sha256": "31af29bab8b18568f891a6b48f5a65367446f8b37b98fd2dfc76e223b0519af9"
+    },
+    {
+      "file": "docs/then-now-evidence/second-build-clock.log",
+      "size": 518,
+      "sha256": "c9a89d91c65a25202cbbc2480c3b7ba7de58307900395a3f759b11e0931772dd"
+    },
+    {
+      "file": "docs/then-now-evidence/second-build.log",
+      "size": 534,
+      "sha256": "68aa205f4533d228a548228daa357ee9eb8263f30000d9575d2dd3dd6ba62d14"
+    },
+    {
+      "file": "docs/then-now-evidence/second-clock-wk1280.log",
+      "size": 86,
+      "sha256": "f299ceb16c676565952fdafa73cf1dae8f077a475cb062c1f35bc757f416522a"
+    },
+    {
+      "file": "docs/then-now-evidence/second-lint-fixed.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/then-now-evidence/second-unit-final.log",
+      "size": 437,
+      "sha256": "4b739021de6f70ee248f0b98d26cab1e515e77971867439e68ff53639f2ebb4a"
+    },
+    {
+      "file": "docs/then-now-evidence/second-unit-freeze.log",
+      "size": 437,
+      "sha256": "c7ed83360748a3550ef5145b1656cbfdd60eb264c6c1c5f018a5df0ec42ce91e"
+    },
+    {
+      "file": "docs/then-now-evidence/second-unit.log",
+      "size": 383,
+      "sha256": "82326085e75bdb4407931d9887ac9be9da8528ab734cfcd77b7954f333a26a58"
+    },
+    {
+      "file": "docs/then-now-evidence/supplement-exits.json",
+      "size": 46,
+      "sha256": "81dc0a11e6242a5f5bd81b2ae0042fe211bb6b3959fe3d3b9b153d5a48f52bf3"
+    },
+    {
+      "file": "docs/then-now-evidence/waapi-gallery-isolated.log",
+      "size": 1128,
+      "sha256": "b92f8c1eb3221802853a770ec30bbffb484588a11f861a06848510c3f51bff75"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/chromium-1280-sound-live-now.png",
+      "size": 10722,
+      "sha256": "2330072666ef5be891b115ee57790c8d83e632a231b4ba25567669aacc468aae"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/chromium-1280-sound-live-then.png",
+      "size": 19350,
+      "sha256": "5fdfa884339b9f4e0b5815c4d5327182f73ca1f0be4a562f6667c845c837340f"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/chromium-1280-tn-cursor-creature.png",
+      "size": 71500,
+      "sha256": "5eb6ab200c6384415b4ca89d5c2b65decf37c0d113968a7b9e65263ced547f28"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/chromium-1280-tn-intro.png",
+      "size": 73110,
+      "sha256": "5f283f6260af2ce4aad7be74498b612f115a3d413a6b4a81e8fc85ad4451795f"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/chromium-1280-tn-kinetic-type.png",
+      "size": 73209,
+      "sha256": "c007fada737903f99e2ed359f2c5065820d815ea617a04a08da0a68795d67a54"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/chromium-1280-tn-physics.png",
+      "size": 78991,
+      "sha256": "a015391f73c0b83c6c1b8dbf0bc908dd29938daa9d07e1bd2f458ad109275391"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/chromium-1280-tn-sound.png",
+      "size": 67057,
+      "sha256": "5ed0cd58b5f13cae752026a5329989af09e42e02fe46802336993c6cd79ad02a"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/chromium-1280-tn-vector-morph.png",
+      "size": 85686,
+      "sha256": "aced57eebefcca64ceaebd0db6d5ed429c8b17ff88b67ec495ffb1f31c9349b5"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/chromium-375-sound-live-now.png",
+      "size": 5068,
+      "sha256": "4796a31810e381bccd505d9dc772f73a907e1b3033f51b1cbb6b5b602a2ea4c6"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/chromium-375-sound-live-then.png",
+      "size": 9336,
+      "sha256": "ed5de567fb707cf320ca96a752fc58cb378538d4744f49b2d4b6646b13cf211a"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/chromium-375-tn-cursor-creature.png",
+      "size": 53609,
+      "sha256": "e8edcdfc2427b3f417c6fcc3ab3dc4a43a08f7bbd83893a842a30efbad5fd80d"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/chromium-375-tn-intro.png",
+      "size": 54317,
+      "sha256": "fca438fc2deb42d0766e960612cc4292e1bd714862097645be5489b6979db261"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/chromium-375-tn-kinetic-type.png",
+      "size": 54404,
+      "sha256": "ecb163998ceaecee3ba62853838a93dcecc70bcdfcfeeca1772fc354193102db"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/chromium-375-tn-physics.png",
+      "size": 64131,
+      "sha256": "3b8072c7d02cde25e36b1d4f992af050ff1ea1ce5eaf2577376880616ffaba59"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/chromium-375-tn-sound.png",
+      "size": 55415,
+      "sha256": "46789f82610f0cf3e35bd88d90d6cb6918cd03e962a9dce8acdb9fce08ae560c"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/chromium-375-tn-vector-morph.png",
+      "size": 57790,
+      "sha256": "ebe19ef50f703df5229524bb8c79c67516636176ae7cbbeadb41292ec8af6283"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/results.json",
+      "size": 23041,
+      "sha256": "729f803fa86af07f3b232a459e77903a81b30029d0342b11b59d7f70d62101b3"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/webkit-1280-tn-cursor-creature.png",
+      "size": 117301,
+      "sha256": "d6b05d384db523487fda26825efc5bbcc7bd6718f95e2039a624f22dc2c4499e"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/webkit-1280-tn-intro.png",
+      "size": 108356,
+      "sha256": "c11b76309a1d6ec0101b9187956d7eee5a347ffacb4af6411f4e3fa01d0cf5ae"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/webkit-1280-tn-kinetic-type.png",
+      "size": 110151,
+      "sha256": "490437724b92225b5f0a37e8269ee06ac3c083c6a9e859907f49a33b780d3f33"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/webkit-1280-tn-physics.png",
+      "size": 109018,
+      "sha256": "e28089fccf22b631ed2462675d94384e15ae13c53df1f5b65c47d29acd3523ec"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/webkit-1280-tn-sound.png",
+      "size": 99607,
+      "sha256": "794e1cd6851cdd2616859bef6222fc819f14ebd4176793b26467a1bed2928112"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/webkit-1280-tn-vector-morph.png",
+      "size": 126594,
+      "sha256": "ffe390f54240121a9e08c25a40351c9124e175bde523fe40db3ec5ce8af2ff28"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/webkit-375-tn-cursor-creature.png",
+      "size": 98551,
+      "sha256": "9c046520937435af64423652a79b2a73bf555a8e94f69a0eb01b1c776c619f72"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/webkit-375-tn-intro.png",
+      "size": 93204,
+      "sha256": "e2412acf809bcae6fdba3474390de12a9f6f876621ba0dec7c99322a33e43396"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/webkit-375-tn-kinetic-type.png",
+      "size": 91468,
+      "sha256": "23a9d1ba5cb46e3313ff787eaf776d00d37f1615f057d0bc7e95e0bc645f2ddc"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/webkit-375-tn-physics.png",
+      "size": 103341,
+      "sha256": "01b269d2502aff20f2c7963bf01a3deb9a139a3c1f9d5ea09872e3f7b4afd683"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/webkit-375-tn-sound.png",
+      "size": 96333,
+      "sha256": "95e000d80a649eebf7180079304a4ba1cb60cb270c52b11744eb52ceb602d015"
+    },
+    {
+      "file": "docs/then-now-evidence/final-browser/webkit-375-tn-vector-morph.png",
+      "size": 95344,
+      "sha256": "3de94771258c973014abaf28c8d3a22a843d338a047e9bfcb5ab805d4feaf0c4"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser/chromium-1280-tn-cursor-creature.png",
+      "size": 71479,
+      "sha256": "47917ad6e2a942b9449c07ec1c964558a77c039e873960b898f1f668f36932e6"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser/chromium-1280-tn-vector-morph.png",
+      "size": 87380,
+      "sha256": "9243487350bc01208fcc8867e4ca785d9134ccac6c7888eee6a22912d8251784"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser/chromium-375-tn-cursor-creature.png",
+      "size": 51996,
+      "sha256": "408de499364256024a5fbc32bb69fa2be2fb325d4d6cb05f34b333329f4a6232"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser/chromium-375-tn-kinetic-type.png",
+      "size": 54892,
+      "sha256": "3c02bb9f69d02c8ba13281ebbca3c21b53fc47f27a876400959f2a6eecd0249e"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser/chromium-375-tn-vector-morph.png",
+      "size": 58092,
+      "sha256": "81b27533b2eed6648d4c12bf33c696852c600f3d22649429e9f5269a50c7b54c"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser/results.json",
+      "size": 1813,
+      "sha256": "205a15583f82558cd19e152d132e377b568e210c62b11817e6580617825ce0d4"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-final/chromium-1280-tn-cursor-creature.png",
+      "size": 69696,
+      "sha256": "5a0a3c5f4c9e20f7b5207bfaa2d1a49ff0f9fb6c6e034c425e27311d603ed9c6"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-final/chromium-1280-tn-kinetic-type.png",
+      "size": 73003,
+      "sha256": "cd4585117c1df8d1233f10621dafc1c38edda8a0f4dcbf59edd25204563a7760"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-final/chromium-1280-tn-vector-morph.png",
+      "size": 85527,
+      "sha256": "054f82167f4cd92832396ca7aa2cb533eb3777f51ca343f997ee0cbd63e84cb5"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-final/chromium-375-tn-cursor-creature.png",
+      "size": 51002,
+      "sha256": "7310b720ec5bf79999698e3551de761cfec8af310b6469a5b87c94440c02cebd"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-final/chromium-375-tn-kinetic-type.png",
+      "size": 54401,
+      "sha256": "cf4a27761b839ada5b876096037de52eb7cbd084569906302535d733e7722021"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-final/chromium-375-tn-vector-morph.png",
+      "size": 57817,
+      "sha256": "96031697482b7ff14c97f60e07954ed54185047e39867a4c609289ce99943dba"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-final/results.json",
+      "size": 3901,
+      "sha256": "44e1b74004d420222399da2ab066455ec77d2a888032ad042ab03c86e519d145"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-final/webkit-1280-tn-cursor-creature.png",
+      "size": 110657,
+      "sha256": "3e10713d547a86dfcb39bd75f4e2d1c58dbb963e96d863006ea3a5ac31626898"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-final/webkit-1280-tn-kinetic-type.png",
+      "size": 109880,
+      "sha256": "2721e62a03efd55a93aa4594039e2d5c1327ceed96f47b2f52d33af0ebd5c1a8"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-final/webkit-1280-tn-vector-morph.png",
+      "size": 126367,
+      "sha256": "eb14a5d14d33cc41d6c92c05619c67d20a49a13101adc296b2c493ab3459640e"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-final/webkit-375-tn-cursor-creature.png",
+      "size": 91541,
+      "sha256": "d55f771ededaf8fbb1e4f220a7afa418a9073d2117c9ae3ebb46b05dc748b9ae"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-final/webkit-375-tn-kinetic-type.png",
+      "size": 91319,
+      "sha256": "b232968071a63171a2be141507f08e52f4c48826e0919b074b4f389c0fb0e80e"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-final/webkit-375-tn-vector-morph.png",
+      "size": 95196,
+      "sha256": "48b56f1843db125060528598a14821d4963c82d45c31dbfe16e592b615e72193"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-fixed/chromium-1280-tn-cursor-creature.png",
+      "size": 71359,
+      "sha256": "d79addf46ad01a8942882e634266e0e328c7995048d04422eebf914cf57ba792"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-fixed/chromium-1280-tn-kinetic-type.png",
+      "size": 72761,
+      "sha256": "0c2dc24bf7c11a5e2ef0336d9a9743976eebccb66cf91144291bd586a2d568ea"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-fixed/chromium-1280-tn-vector-morph.png",
+      "size": 87231,
+      "sha256": "004d9ef1fa1bbe282e89b02101b97a7924c2391581951d0f95cbe4a41b895558"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-fixed/chromium-375-tn-cursor-creature.png",
+      "size": 51985,
+      "sha256": "25a65156fb6bea17dd173f08c69533242e1c8323fc116f60593efce01f48fc9e"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-fixed/chromium-375-tn-kinetic-type.png",
+      "size": 54889,
+      "sha256": "9ccdbebb787276d01bb060ba71b0d285649f3387c0db6d3ec01ee50a57c1a227"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-fixed/chromium-375-tn-vector-morph.png",
+      "size": 58105,
+      "sha256": "3b9241d7e38d4414d3507fc19d9a72ee8af0d07821f8eaba465d8680444f8193"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-fixed/results.json",
+      "size": 2322,
+      "sha256": "94a879d1efe162068ca26e9867717cc968c574300786b9a8c56b74fe7163505a"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-top/chromium-1280-tn-cursor-creature.png",
+      "size": 69673,
+      "sha256": "8d277a5eba5693d020d3516cbf0e4b9dd8e6ce9df6b53e6e6d7f20e1b36f965b"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-top/chromium-1280-tn-kinetic-type.png",
+      "size": 73146,
+      "sha256": "c4e3c3942d6a9a8e4e999c425d01a4054068d5f577aa8cc301b3e2e5ff1e801c"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-top/chromium-1280-tn-vector-morph.png",
+      "size": 85527,
+      "sha256": "054f82167f4cd92832396ca7aa2cb533eb3777f51ca343f997ee0cbd63e84cb5"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-top/chromium-375-tn-cursor-creature.png",
+      "size": 51589,
+      "sha256": "317c91dcf31f0409f078fe26b88dcb39a8ef3e906e92ea706ad6d66b9f333211"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-top/chromium-375-tn-kinetic-type.png",
+      "size": 54402,
+      "sha256": "9c90523ea47fbbb891e9ad2dcdc179a0c66c7ee393c4d1b33f5087bfe1fb471b"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-top/chromium-375-tn-vector-morph.png",
+      "size": 57819,
+      "sha256": "ada9afe2415f4f9008ba4cf28bcf49eb84abb9026f430a92b4c0106bf8c7c56f"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-top/failure.png",
+      "size": 104076,
+      "sha256": "b76d1a824c285bb0e481ceed02568f800861a72a0ac30fd1d93a7d6f0004aa51"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-top/results.json",
+      "size": 4794,
+      "sha256": "d4244cdc3e2b3feaf18ab5aaae84639c20c7d063f101c0d18ba04c91c32c0545"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-top/webkit-1280-tn-vector-morph.png",
+      "size": 126367,
+      "sha256": "eb14a5d14d33cc41d6c92c05619c67d20a49a13101adc296b2c493ab3459640e"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-top/webkit-375-tn-cursor-creature.png",
+      "size": 91510,
+      "sha256": "094596b403a9f2f18c6e90f75efa1ad47ee72965abf5936907517527ec1fa971"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-top/webkit-375-tn-kinetic-type.png",
+      "size": 91322,
+      "sha256": "dc5147154c00d002944becfa94c0f15e8643d6471debafa3757018b960002e4b"
+    },
+    {
+      "file": "docs/then-now-evidence/first-browser-top/webkit-375-tn-vector-morph.png",
+      "size": 95196,
+      "sha256": "48b56f1843db125060528598a14821d4963c82d45c31dbfe16e592b615e72193"
+    },
+    {
+      "file": "docs/then-now-evidence/first-wk-diagnostic/failure.png",
+      "size": 53327,
+      "sha256": "809876d4d9eb401a124186244817da472ebfb95f7706e43101e3d3b3aae87b1b"
+    },
+    {
+      "file": "docs/then-now-evidence/first-wk-diagnostic/results.json",
+      "size": 1781,
+      "sha256": "f4637baee40c9b941a53d63bfe7ef37a8d25eabf8800579d296024c33690ab7b"
+    },
+    {
+      "file": "docs/then-now-evidence/legacy-flash/failure.png",
+      "size": 111533,
+      "sha256": "f0704863c045ba64ba13bb46c5088aba134059bac9bab9791ad9611b28fc971a"
+    },
+    {
+      "file": "docs/then-now-evidence/legacy-flash/results.json",
+      "size": 2936,
+      "sha256": "18159bf379390ed42edb114ea7065e9f55ae7cf471e78d198d798824660171d1"
+    },
+    {
+      "file": "docs/then-now-evidence/legacy-flash-final/failure.png",
+      "size": 75344,
+      "sha256": "490916eafaa9c00445380012d5357872a9c49b5e093a41089a01bab3c6e0fe56"
+    },
+    {
+      "file": "docs/then-now-evidence/legacy-flash-final/results.json",
+      "size": 3982,
+      "sha256": "3365f50ba091ec667d02d019e4f5864904806f94bbea76cce4d049d9cb5905f7"
+    },
+    {
+      "file": "docs/then-now-evidence/legacy-flash-hit-confirmed/failure.png",
+      "size": 70619,
+      "sha256": "af7e6eca831037bfff72e6710d664de6b47e4ec6c7ffbf3e0c019f3c718f39e1"
+    },
+    {
+      "file": "docs/then-now-evidence/legacy-flash-hit-confirmed/results.json",
+      "size": 4081,
+      "sha256": "5f6d9c21825680af7de00d7729ed1c46181497e57a3d9f415c09473a67796507"
+    },
+    {
+      "file": "docs/then-now-evidence/legacy-flash-statewait/failure.png",
+      "size": 77686,
+      "sha256": "b954b12d24ee7e70320475c697d57bfff02ffb175bed925a3591f77869c1bd13"
+    },
+    {
+      "file": "docs/then-now-evidence/legacy-flash-statewait/results.json",
+      "size": 3936,
+      "sha256": "e5739ae07c4f36d646a27ddabaf145fdf33f61d21aa36451911c4381b425eb16"
+    },
+    {
+      "file": "docs/then-now-evidence/pointer-dynamics/chromium-now-fast-pointer.png",
+      "size": 14473,
+      "sha256": "afbe321822bae59620990b5e7a8b25e29317ae6b2a8a62ac5110888210377ff1"
+    },
+    {
+      "file": "docs/then-now-evidence/pointer-dynamics/chromium-then-fast-pointer.png",
+      "size": 11528,
+      "sha256": "e42918f7be7e7fef9835d94c59bdc9aeb535889b60e059e6547f796d595ceef6"
+    },
+    {
+      "file": "docs/then-now-evidence/pointer-dynamics/results.json",
+      "size": 929,
+      "sha256": "0987d6ae461f9af1b265d473229940dc216abeb6418c283047d886817ee8d116"
+    },
+    {
+      "file": "docs/then-now-evidence/pointer-dynamics/webkit-now-fast-pointer.png",
+      "size": 17427,
+      "sha256": "13e00648de6d5f643341a093ce4c1771ef08b2098521cc5e6a0bb3d50f865481"
+    },
+    {
+      "file": "docs/then-now-evidence/pointer-dynamics/webkit-then-fast-pointer.png",
+      "size": 13973,
+      "sha256": "0ed914406b8d74685135ba05c3fa64f79ebd6591d5b8e8660134185fddcdc4fd"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser/chromium-375-tn-physics.png",
+      "size": 64146,
+      "sha256": "c21ac08645a295e79b44beb57ed17b7e957d05e1613151e756cedab336cf9a21"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser/failure.png",
+      "size": 128542,
+      "sha256": "c74902e3c435f91dd0b3077cf4e58f50b2134f1644c32af9b5a6ff94956d06c0"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser/results.json",
+      "size": 1148,
+      "sha256": "ed22baa8aa42217744a68d81e1e16aec702a86b1fe9f7b61026f9756451bd045"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-platform/chromium-1280-tn-intro.png",
+      "size": 72830,
+      "sha256": "6d74d538d36c265e2489e5060cdda0989a82ccbdc4e6827d86f3330546d44044"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-platform/chromium-1280-tn-physics.png",
+      "size": 78998,
+      "sha256": "44e156aa6ac60665e05b667af37ebdf90f0e69f1cce7c3ff4e135b1f804d2c32"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-platform/chromium-1280-tn-sound.png",
+      "size": 65374,
+      "sha256": "47ca91200a66c2796aa4ce3c182561fe6313e40627bb0913490e74d039202dd6"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-platform/chromium-375-tn-intro.png",
+      "size": 54051,
+      "sha256": "8097e001f0fcee707b321ad2e51f288ec05a46813b10aea311eae4f3a18e369d"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-platform/chromium-375-tn-physics.png",
+      "size": 64088,
+      "sha256": "88f629888fa3f4a82127321946cb44d162fc273957c2b5edcb0d1fc3380a5baa"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-platform/chromium-375-tn-sound.png",
+      "size": 55203,
+      "sha256": "039f874ccedd2ea3afc0e91976e6117783292ea157f2124bfe5a80fa8a37a204"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-platform/failure.png",
+      "size": 87946,
+      "sha256": "dda9194ab2a9e0fd84b93a4a4c895ec86e7e7139498f7a58b6bd9101bfdce581"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-platform/results.json",
+      "size": 9243,
+      "sha256": "b00a2981c1f0165de298a8226ccf48a7cd1a564510f11fc231d2bf1a5fa77bc3"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-platform/webkit-1280-tn-physics.png",
+      "size": 109431,
+      "sha256": "ad76050f17a9b32c478e3d771269744e274992b9a652b31d25f7634538abdb89"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-platform/webkit-375-tn-intro.png",
+      "size": 93313,
+      "sha256": "a41b2e845acb50687d1353b184a4cd71e2bdeba5b872f3637af7194ee7e0affd"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-platform/webkit-375-tn-physics.png",
+      "size": 103638,
+      "sha256": "7ea95e6147d3727b1d74dd534127ae2d02150a67a539bdabf3e07de68cd36656"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-platform/webkit-375-tn-sound.png",
+      "size": 95708,
+      "sha256": "ebca932d892efbf984d3915868292168f4b52abd188aa8d5796a5fd9430744dd"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-title-scoped/chromium-1280-tn-intro.png",
+      "size": 72830,
+      "sha256": "6d74d538d36c265e2489e5060cdda0989a82ccbdc4e6827d86f3330546d44044"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-title-scoped/chromium-1280-tn-physics.png",
+      "size": 79039,
+      "sha256": "56d8d96ec6617ad59937e589811713a95b9dde69c10c2cd59cb79f3ecd86e7bd"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-title-scoped/chromium-1280-tn-sound.png",
+      "size": 65374,
+      "sha256": "47ca91200a66c2796aa4ce3c182561fe6313e40627bb0913490e74d039202dd6"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-title-scoped/chromium-375-tn-intro.png",
+      "size": 54051,
+      "sha256": "8097e001f0fcee707b321ad2e51f288ec05a46813b10aea311eae4f3a18e369d"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-title-scoped/chromium-375-tn-physics.png",
+      "size": 64255,
+      "sha256": "131226fd061770763351c28af26bcad20e3a07c963d7d68be6d86bb92ec9e5f9"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-title-scoped/chromium-375-tn-sound.png",
+      "size": 55212,
+      "sha256": "b0cf449198318703155fb0ae965bafbb8b3aebe5afa338334930fdd18e4be343"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-title-scoped/failure.png",
+      "size": 63336,
+      "sha256": "49cfc619d6c2279bb4a9d58b8b9b906ee7baa40323f590d242e9614a7ada2e0d"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-title-scoped/results.json",
+      "size": 5948,
+      "sha256": "f72aaf1247f0539ceaa8df72053bc4391e51953694209856945952c13d3cb6b7"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-title-scoped/webkit-375-tn-intro.png",
+      "size": 93299,
+      "sha256": "a0be1ccac787c53b92c6a934d9e82dbbd0c6f07de87d1ec828a2afb553dcb733"
+    },
+    {
+      "file": "docs/then-now-evidence/second-browser-title-scoped/webkit-375-tn-physics.png",
+      "size": 103663,
+      "sha256": "cc9018d8cb171160e12b5c23de819fa8e26a5d52b925a321f8889116653e4570"
+    },
+    {
+      "file": "docs/then-now-evidence/second-clock-wk1280/results.json",
+      "size": 3787,
+      "sha256": "05b24216e76b44ea5d68f88d6213e817f474f880fc9a3718540d6a47b2c12ae7"
+    },
+    {
+      "file": "docs/then-now-evidence/second-clock-wk1280/webkit-1280-tn-intro.png",
+      "size": 108637,
+      "sha256": "28a60d39dfaec4dd26b3d1e43f2fdc5e690b6453026830e01a4f5c9d1f3aeb36"
+    },
+    {
+      "file": "docs/then-now-evidence/second-clock-wk1280/webkit-1280-tn-physics.png",
+      "size": 109180,
+      "sha256": "c8f188e09d36d02c55010df020588a2c2de8c3a5337cef6a481197a2e5d57bd5"
+    },
+    {
+      "file": "docs/then-now-evidence/second-clock-wk1280/webkit-1280-tn-sound.png",
+      "size": 98964,
+      "sha256": "ebce059b14d9d13469418daf67491cc1a5dcde13be751eb35334ea32c67c7e9b"
+    }
+  ]
+}

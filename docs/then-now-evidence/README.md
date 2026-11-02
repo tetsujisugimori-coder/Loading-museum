@@ -25,3 +25,12 @@
 Windows版WebKit26.0はAudioContext/webkitAudioContextとも未提供。音不可表示は検査できるが、実FFT/発音はNOT_TESTED。Chromiumの音正常系と、Linux CIの結果は別集計。実スピーカーの聴取/実iPhone/Mac Safari/VoiceOver/物理タッチドラッグは未実施。Playwrightの狭幅tap/マウスdrag/キーと実機を混同しない。
 
 初回の一部PowerShellログは非ASCII文字のencodingが崩れている。原ファイルを保全し、ASCIIの件数・終了状態とJSON/PNGを主証拠とする。後続は明示UTF-8設定。既存Windows WAAPI timeout根因UNKNOWN、Issue #44依存警告を今回の成功で補完しない。
+
+## 最終ローカル結果（製品ファイルはe24aa79以後不変）
+
+- `final-check-source-head.log`：lint/type/build/全302（既存281＋追加21）成功。Windowsのworker環境変数4種を1にした診断。`final-check-summary.json` の算術と製品差分空を確認。先の301成功は `final-check-freeze.log` に別保存。
+- `reduced-bird-step.log`：紙鳥の低減/停止中の追従・回避を手送りで観察する追加1件を含み、新規21成功。
+- `final-browser/`：clean f26dfb7、36完走・33成功/3 PARTIAL/失敗0、exit2。部分はWindows WebKit音正常系だけ（secure contextでもAPI未提供）。不可時UIは確認。旧12/前半/後半をこの36へ合算しない。全36でgeometry超過0、pageerror0、閉室後pending RAF0、総storage書込と既存title marker書込の差0、remove/clear0。全生成AudioContext閉鎖。
+- `legacy-flash-final/`：Ch6成功後、WKロゴの同期読取false。`legacy-flash-statewait/` は同じ期待/8秒で待っても未成立。画像では隣の分解にfocusがあり、安定時のhit確認を追加。`legacy-flash-hit-confirmed/` はCh6成功、WKの最初の操作前geometry/hit待ちが8秒timeout（その操作未送信/後続5未実施）。旧製品/原テストは変更しない。環境/描画/試験座標の根因UNKNOWN。これ以上旧展示を追わず、Linux CIと独立レビューへ引継ぐ。旧12 PASSとは称さない。
+- `pointer-dynamics/`：Ch/WK1280の補助2条件成功。実mouse moveの遠方WATCH・近接約2000px/s（Then WATCH、Now RETREAT）・領域外REST。強制clickやCSS故障注入ではない。
+- `probe-lint.log` は補助probe/runnerのlint成功。CIの最終結果はPRの通常コメントへ追記し、LinuxとこのWindows結果を別記録にする。

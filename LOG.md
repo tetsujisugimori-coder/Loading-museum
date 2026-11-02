@@ -1534,3 +1534,11 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - 初回既定並列checkは旧WAAPI gallery1件5000ms timeout（他146成功、Node49成功）。原11試験単独成功。単worker診断ではその時点の全299件成功。旧Windows timeout根因UNKNOWNを維持し、期待/5秒/CI既定並列を変えない。Issue #44の依存警告未解消。
 - 既存browser試験3本と静的件数assertは245→251/54→60の登録仕様だけ更新。操作条件/期限の緩和なし。新規CI jobは新作36条件・旧Flash12操作を別集計し、既存jobを維持。
 - 履歴は `docs/then-now-evidence/README.md`。最終のclean HEAD実行、全check、CI、独立レビュー引継ぎは後続記録へ追記する。実機iPhone/Mac Safari/VoiceOver/物理touch dragはNOT_TESTED。Draft未マージ/未公開を維持。
+
+### 同日・最終自己検証と提出準備
+
+- 製品最終e24aa79、単体302成功（既存281＋追加21）、lint/type/Pages静的build成功。Windows単worker診断と既定並列の旧timeoutは分離。
+- clean f26dfb7で最終36ブラウザ条件を完走。33成功、WK音正常系3 PARTIAL、exit2。不可時表示は正しい。pageerror/横超過/閉室後RAF残留/新作保存差分0、作成音contextは閉鎖。音量/RMS/実音高/発音中mute・低減時操作・Reset・高速切替・閉室再表示を確認。
+- 実ポインター速度/距離の補助2条件はCh/WKとも成功。近接約2000px/sでThen注視/Now後退、外部で休息。紙鳥は低減中も一歩進む操作で追従/回避を観察。
+- 旧Flash独自補助はCh6成功、Windows WKの最初のロゴ操作前geometry/hit待ち8秒timeout、当該click未送信/後続5未実施。初回の同期読取失敗・隣ボタンfocus画像・診断を別保全。原製品/原テスト/期待/期限を変えず、根因UNKNOWNとしてLinux CI/独立レビューへ渡す。旧12成功とは呼ばない。
+- 最終報告は `docs/then-now-phase1-verification.md`。新規P1/P2の未解消は自己検証範囲で未確認。総合PARTIAL、マージ推奨NO（独立レビュー待ち）。CIと提出の最終HEAD/treeはPR本文/通常コメントで照合し、Draft・未マージ・未公開を維持する。

@@ -1,0 +1,60 @@
+{
+  "base": "e75e74be3d6b3620c785c4b60c6823bf2080cb7f",
+  "head": "d69ae563721b5d0937bb07066d88ca74534b37f7",
+  "baseBlobs": 718,
+  "unchangedBaseBlobs": 707,
+  "changedOldPaths": [
+    ".gitattributes",
+    ".github/workflows/verify-practical.yml",
+    "LOG.md",
+    "README.md",
+    "app/components/FlashSpecialExhibitRoom.tsx",
+    "app/data/flashExhibits.ts",
+    "package.json",
+    "scripts/verify-phase4a-browser.mjs",
+    "scripts/verify-phase4b-browser.mjs",
+    "scripts/verify-phase5a-browser.mjs",
+    "tests/rendered-html.test.mjs"
+  ],
+  "unexpected": [],
+  "protected": [
+    {
+      "path": "app/components/FlashVisuals.tsx",
+      "base": "cd4af87e31e625f9a4e83356b7422b1b222f1d6f",
+      "head": "cd4af87e31e625f9a4e83356b7422b1b222f1d6f",
+      "same": true
+    },
+    {
+      "path": "app/components/FlashRefinedVisuals.tsx",
+      "base": "8d40dbfba950efa941a852ef95797df5374826ee",
+      "head": "8d40dbfba950efa941a852ef95797df5374826ee",
+      "same": true
+    },
+    {
+      "path": "app/globals.css",
+      "base": "eba5799419cda7d910496ca6d0c3d9913125c704",
+      "head": "eba5799419cda7d910496ca6d0c3d9913125c704",
+      "same": true
+    },
+    {
+      "path": "app/page.tsx",
+      "base": "6fa195cc894793e6cf074af02e84378e29f02ee4",
+      "head": "6fa195cc894793e6cf074af02e84378e29f02ee4",
+      "same": true
+    },
+    {
+      "path": "package-lock.json",
+      "base": "e7d325a6a993ecfde4f1e6f246386cbcf08653ba",
+      "head": "e7d325a6a993ecfde4f1e6f246386cbcf08653ba",
+      "same": true
+    },
+    {
+      "path": ".github/workflows/deploy-pages.yml",
+      "base": "fc45805502569ad3624fe209fd44cf0c5c24ce32",
+      "head": "fc45805502569ad3624fe209fd44cf0c5c24ce32",
+      "same": true
+    }
+  ],
+  "method": "Git tree metadata only for historical evidence; no evidence blob or ZIP read",
+  "pastEvidencePathsUnchanged": 578
+}
