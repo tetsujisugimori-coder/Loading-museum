@@ -1,0 +1,22 @@
+2026-11-02T10:52:31.3845543Z 24.04.5
+2026-11-02T10:52:34.9670761Z node: v22.23.4
+2026-11-02T10:54:31.8979296Z Downloading Webkit 26.0 (playwright build v2215) from https://cdn.playwright.dev/dbazure/download/playwright/builds/webkit/2215/webkit-ubuntu-24.04.zip
+2026-11-02T10:54:42.8767576Z FAIL webkit 375 cancel-independent
+2026-11-02T10:54:43.3982648Z PASS webkit 375 normal-release
+2026-11-02T10:54:44.1924601Z PASS webkit 375 stop-held
+2026-11-02T10:54:45.2051394Z PASS webkit 375 offscreen-held
+2026-11-02T10:54:45.7602073Z PASS webkit 375 stale-events
+2026-11-02T10:54:46.4612131Z PASS webkit 375 close-reset
+2026-11-02T10:54:49.3390442Z FAIL webkit 390 cancel-independent
+2026-11-02T10:54:49.8129256Z PASS webkit 390 normal-release
+2026-11-02T10:54:50.4594225Z PASS webkit 390 stop-held
+2026-11-02T10:54:51.2059466Z PASS webkit 390 offscreen-held
+2026-11-02T10:54:51.6902595Z PASS webkit 390 stale-events
+2026-11-02T10:54:52.3784393Z PASS webkit 390 close-reset
+2026-11-02T10:54:56.6144405Z FAIL webkit 1280 cancel-independent
+2026-11-02T10:54:57.5708928Z PASS webkit 1280 normal-release
+2026-11-02T10:54:58.8698829Z PASS webkit 1280 stop-held
+2026-11-02T10:55:00.2473269Z PASS webkit 1280 offscreen-held
+2026-11-02T10:55:01.0099584Z PASS webkit 1280 stale-events
+2026-11-02T10:55:02.2809362Z PASS webkit 1280 close-reset
+2026-11-02T10:55:02.6121283Z ##[error]Process completed with exit code 1.

@@ -1560,3 +1560,10 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - 当初GitHub PNG/tree作成はauto-review拒否・未実行で停止。本人の2026-11-02 10:45:47Z明示再承認で最小提出を再開。65PNG全数目視/原hash検証、26log点検済、代表8PNGと確定数値結果を共有。第4期B保留原本/ZIPの読取・転送なし。原証拠/途中失敗を削除・上書きしない。
 - 正確な環境制約: Playwright Chromium導入403、1コマンド内の標準fallback5回、WebKit取得/起動未到達。手動再試行/別host指定なし。local Chromium154とGitHub固定Ch/WKを別証拠とする。Issue44/Windows WAAPI timeout UNKNOWN、実機Safari/VoiceOver/物理touch/実スピーカー等未検証を維持。
 - [証拠・原因・条件・保全・独立再レビュー引継ぎ](docs/physics-lifecycle-evidence-20261102/README.md)。総合PARTIAL・マージ推奨NO。Draft/未マージ/未公開を維持する。
+
+### 最小提出0d88e822のCIと診断追加
+
+- 提出HEAD `0d88e8223c3648306a0a6895a0a2e110ecf62cb5` / tree `977d67dcfd1dd9cf8da91435b875220ef582ebcb`。旧7ccb51f直接parentで最小28ファイル提出、製品SHA256は上記と同じ。PR本文・通常コメント・Issue50を全文読戻し照合し、Draft/未マージを確認。
+- Physics CI 41432253225はCh成功、WKの更新版GREENでcancel-independentが3幅失敗、他15条件成功。WKの力学/旧版REDステップは先行失敗のため未実施。原失敗artifact/ログを保全しPASSへ読み替えない。Ubuntu24.04.5、Node22.23.4、Playwright1.56.1/WebKit26.0。詳細数値を持つartifactのローカル取得は403となった。
+- 製品/入力/期待/期限を変更せず、検証器の失敗時数値・assertionをCIログへ出す診断だけを追加する。現在は原因UNKNOWN。既存CI 41432253049は契約309・新作Ch/WK・5A双方成功、他jobの終端を追跡中。最終確定結果は追記とPRコメントで区別する。
+- 初回今回CI終端: 41432253049は7/7成功、41432253225はCh成功/WK失敗（1/2成功）で全job完走。取消・timeoutではない。ci-0d88e822-summary.jsonへ原状態を記録し、期待/入力/期限不変の診断版で原因を追う。

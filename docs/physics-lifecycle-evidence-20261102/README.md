@@ -37,3 +37,7 @@ mouse drag/up/keyboardは信頼されたPlaywright入力。PointerCancel・別/�
 GitHubのPNG/create_treeは最初auto-review拒否で未実行となり停止。本人が2026-11-02 10:45:47Zに当該repo/branchへの修正コード・合成検証log/画像共有、PR51更新・CI実行を明示再承認したため最小提出を再開。以前の拒否を成功へ読み替えず、再拒否ならその操作を停止する。
 
 残件は独立再レビュー、実機Safari/VoiceOver/物理touch/実OS低減切替/実スピーカー/全館全操作のNOT_TESTED。Issue44既存依存警告、旧Windows WAAPI5000ms timeout根因UNKNOWNを維持する。Ready/正式APPROVE/merge/auto-merge/公開は実行しない。
+
+## 今回初回CIの失敗保全
+
+最小提出0d88e822 / tree977d67dcのPhysics CI41432253225はCh成功、WKでcancel-independentが3幅失敗・他15条件成功。後続の力学/旧版REDは先行失敗で未実施。製品/入力/期待/8秒を変えず、失敗の数値とassertionをログへ出す診断だけを追加する。原因は現時点UNKNOWN。既存全館CI41432253049の進行と別集計する。原artifact/ログはGitHubとローカルに保持し、旧失敗を新成功へ上書きしない。
