@@ -1,0 +1,49 @@
+name: WAAPI Stage 2A integration
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  stage2a:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: npm run build
+      - name: Fixed native browser driver
+        run: |
+          python -m pip install playwright==1.56.0
+          if [ -f /etc/apt/apt-mirrors.txt ]; then
+            printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt
+          fi
+          printf 'Acquire::http::Timeout "30";\nAcquire::https::Timeout "30";\nAcquire::Retries "1";\n' | sudo tee /etc/apt/apt.conf.d/99-museum-network-bounds
+          python -m playwright install --with-deps ${{ matrix.browser }}
+      - name: Exact HEAD native observation, layout, lifecycle and Stage 1 contracts
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          WIDTHS: 375,390,765
+          EVIDENCE_DIR: work/stage2a-browser
+          PYTHONUTF8: '1'
+          REQUIRE_CLEAN: '1'
+        run: python scripts/run-waapi-stage2a.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage2a-${{ matrix.browser }}-${{ github.event.pull_request.head.sha }}
+          path: work/stage2a-browser/

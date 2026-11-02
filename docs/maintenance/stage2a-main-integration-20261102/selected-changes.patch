@@ -1,0 +1,1591 @@
+diff --git a/.gitattributes b/.gitattributes
+index e9c615f..0be6862 100644
+--- a/.gitattributes
++++ b/.gitattributes
+@@ -1,3 +1,4 @@
+ # Preserve recorded evidence bytes (SHA-256, original log newlines and PNGs).
+ docs/phase4a-evidence/** -text
+ docs/then-now-evidence/** -text
++docs/maintenance/stage2a-main-integration-20261102/** -text
+diff --git a/.github/workflows/verify-stage2a.yml b/.github/workflows/verify-stage2a.yml
+new file mode 100644
+index 0000000..e1b44c2
+--- /dev/null
++++ b/.github/workflows/verify-stage2a.yml
+@@ -0,0 +1,49 @@
++name: WAAPI Stage 2A integration
++on:
++  pull_request:
++    branches: [main]
++permissions:
++  contents: read
++jobs:
++  stage2a:
++    runs-on: ubuntu-24.04
++    timeout-minutes: 20
++    strategy:
++      fail-fast: false
++      matrix:
++        browser: [chromium, webkit]
++    steps:
++      - uses: actions/checkout@v4
++        with:
++          ref: ${{ github.event.pull_request.head.sha }}
++          persist-credentials: false
++      - uses: actions/setup-node@v4
++        with:
++          node-version: 22
++          cache: npm
++      - uses: actions/setup-python@v5
++        with:
++          python-version: '3.12'
++      - run: npm ci
++      - run: npm run build
++      - name: Fixed native browser driver
++        run: |
++          python -m pip install playwright==1.56.0
++          if [ -f /etc/apt/apt-mirrors.txt ]; then
++            printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt
++          fi
++          printf 'Acquire::http::Timeout "30";\nAcquire::https::Timeout "30";\nAcquire::Retries "1";\n' | sudo tee /etc/apt/apt.conf.d/99-museum-network-bounds
++          python -m playwright install --with-deps ${{ matrix.browser }}
++      - name: Exact HEAD native observation, layout, lifecycle and Stage 1 contracts
++        env:
++          BROWSERS: ${{ matrix.browser }}
++          WIDTHS: 375,390,765
++          EVIDENCE_DIR: work/stage2a-browser
++          PYTHONUTF8: '1'
++          REQUIRE_CLEAN: '1'
++        run: python scripts/run-waapi-stage2a.py
++      - uses: actions/upload-artifact@v4
++        if: always()
++        with:
++          name: stage2a-${{ matrix.browser }}-${{ github.event.pull_request.head.sha }}
++          path: work/stage2a-browser/
+diff --git a/LOG.md b/LOG.md
+index 3539499..b07186d 100644
+--- a/LOG.md
++++ b/LOG.md
+@@ -1582,3 +1582,14 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・
+ - 本追記は記録のみで製品/試験/検証器を変更しない。記録後の最終HEAD/treeと全job終端はPR本文・通常コメント・Issue50で最終読戻し確認する。
+ - b85f8a06の全館CI41435401781は7/7成功、Physics41435401801は2/2成功、全9job終端。契約309、Physics旧24 RED+正常対照12→新36 GREEN、力学6、6作品36、実速度対照2、旧Flash12を別群で確認。他室/実用UI/4A/4B/5A/フォーカス回帰の全stepも成功。ci-b85f8a06/summary.jsonと原ログ由来数値/件数抜粋に記録。初回2回のWK失敗は保持。今回の確定記録だけをcommitし、その最終HEADのCIも全job終端まで追跡する。
+ - 総合PARTIAL/マージ推奨NO（独立再レビュー待ち）。局所安定化の自己検証は完了。実機Safari/VoiceOver/物理touch/実OS低減切替/実スピーカー/全館全操作は未検証、Issue44と旧Windows WAAPI timeout根因UNKNOWNを維持。Draft/未マージ/未公開。UI付随添付の成功は主張しない。
++
++
++## 2026-11-02 — WAAPI Stage 2A 現main統合（Issue #35 / PR #36）
++
++- 基準mainは 91615365f5001c4e73b3a0f8d282bff0ed29a6d0。PR #51 / Physics修正 5d83129 を含む現物を確認し、既存checkoutの旧mainはcleanのまま保全した。
++- 方式Aの仮想mergeで README.md・LOG.md・package.json が競合。方式Bで現mainから新ブランチを作り、Menu/Coin観察モード、Turn Reset/旧callback失効、N2/reduced-motion取消と正式試験を局所移植した。元PR #36は閉じず、旧証拠を固定HEAD 74a15e9 に保全する。
++- 元差分609ファイルを7種に分類し、[統合記録](docs/maintenance/stage2a-main-integration-20261102/README.md)へ判断表・差分・自己検証証拠を保存。後続の製品・登録・試験・CI 125ファイルは改行正規化後にmainと同一、既存38試験登録の欠落なし。251展示・13室、WAAPI47、Flash60/18分類を維持。旧第4期B保留原本・ZIPには新規アクセスしなかった。
++- 初回の既定並列checkはNode49成功、Vitest147成功/3 timeoutで失敗し、後続群は未実行。別条件としてpackage.jsonに2workerを明示後、全check356成功/失敗0/skip0、重点89成功（重複加算なし）。既存assertion・5秒制限・試験は維持し、正式CIを重点試験で代用しない。
++- 探索実測ではChromium 141.0.7390.37 / WebKit 26.0 × 375/390/765pxの観察・focus/touch・layout・N2・Stage 1計30条件が成功。探索中の検証器強化を含むdirty記録のため、最終受入はcommit後のcleanな最終HEAD再実行とCIで確定し、PR本文/Issue #35へ記録する。
++- 初回Python配信のload timeout、Node配信対照、初回check失敗証拠を保持。これらの現行実行条件の観測をQ1/B1/M1根因解明と同一視しない。Q1/B1/M1は原因UNKNOWN、実機iPhone Safari/VoiceOver/実OS文字拡大は未検証、既存文字200%横超過の履歴は保持。
++- 新規P1/P2は実装担当の自己検証では未検出。独立再レビューは未実施で、マージ推奨NO。Draft PRまで提出し、merge/auto-merge/公開/Draft解除は行わない。
+diff --git a/README.md b/README.md
+index 82aefc1..099922f 100644
+--- a/README.md
++++ b/README.md
+@@ -1,5 +1,11 @@
+ # DIGITAL MOTION ARCHIVE
+ 
++## WAAPI Stage 2A 現main統合（Issue #35）
++
++Menu Selection Cursor／Coin Pickup Arcに、通常の選択・得点から独立した観察プレビューを追加。再生・一時停止・再開・seek・前後1ステップを操作できます。Coinは通常モードの明示COLLECTだけがResetごとに100点を確定します。現mainの251展示・13室と後続展示を保持しています。
++
++[統合方針・ファイル別判断・検証と引継ぎ](docs/maintenance/stage2a-main-integration-20261102/README.md)。PR #36の過去の限定GOは当時の条件の履歴です。今回の自己検証と独立再レビューを区別し、独立再レビュー前のマージ推奨はNOです。
++
+ ## Flash Then & Now 第1期（Issue #50）
+ 
+ 既存Flash展示室の6カテゴリ内へ、Then/Nowを一組とする6作品を追加。現物登録は **Flash60展示・18カテゴリ、全館251展示・13室**。新しい展示室は作りません。過去と現在を優劣で並べず、異なる制作判断を操作して比べます。両方とも現代ブラウザによる独自制作です。
+diff --git a/app/components/WaapiExpandedPreviews.tsx b/app/components/WaapiExpandedPreviews.tsx
+index 607dbed..1ae8757 100644
+--- a/app/components/WaapiExpandedPreviews.tsx
++++ b/app/components/WaapiExpandedPreviews.tsx
+@@ -204,9 +204,10 @@ function StatusPreview({ active, reducedMotion }: PreviewProps) {
+ 
+ const orders = { NORMALIZE: ["KNIGHT", "MAGE", "ROGUE"], HASTE: ["MAGE", "KNIGHT", "ROGUE"], STUN: ["KNIGHT", "ROGUE", "MAGE ⊘"] } as const;
+ function TurnPreview({ active, reducedMotion }: PreviewProps) {
+-  const list = useRef<HTMLOListElement>(null); const { stop, animate } = useRuntime(active); const [mode, setMode] = useState<keyof typeof orders>("NORMALIZE");
+-  const reorder = (value: keyof typeof orders) => { stop(); const before = new Map(Array.from(list.current?.children ?? []).map((node) => [(node as HTMLElement).dataset.unit, node.getBoundingClientRect().top])); setMode(value); requestAnimationFrame(() => Array.from(list.current?.children ?? []).forEach((node) => { const el = node as HTMLElement; const dy = (before.get(el.dataset.unit) ?? el.getBoundingClientRect().top) - el.getBoundingClientRect().top; animate(el, [{ transform: `translateY(${dy}px)` }, { transform: "translateY(0)" }], { duration: reducedMotion ? 1 : 420 }); })); };
+-  const reset = () => reorder("NORMALIZE");
++  const list = useRef<HTMLOListElement>(null); const generation = useRef(0); const { stop, animate } = useRuntime(active, reducedMotion); const [mode, setMode] = useState<keyof typeof orders>("NORMALIZE");
++  useLayoutEffect(() => () => { generation.current++; }, [active, reducedMotion]);
++  const reorder = (value: keyof typeof orders) => { const run = ++generation.current; stop(); const before = new Map(Array.from(list.current?.children ?? []).map((node) => [(node as HTMLElement).dataset.unit, node.getBoundingClientRect().top])); setMode(value); requestAnimationFrame(() => { if (run !== generation.current || !active) return; Array.from(list.current?.children ?? []).forEach((node) => { const el = node as HTMLElement; const dy = (before.get(el.dataset.unit) ?? el.getBoundingClientRect().top) - el.getBoundingClientRect().top; animate(el, [{ transform: `translateY(${dy}px)` }, { transform: "translateY(0)" }], { duration: reducedMotion ? 1 : 420 }); }); }); };
++  const reset = () => { generation.current++; stop(); setMode("NORMALIZE"); };
+   return <div className="waapiPreviewGroup"><div className="waapiPreviewStage gameScene gameTurn" data-scene="turn-order"><ol ref={list}>{orders[mode].map((unit, i) => <li key={unit.replace(" ⊘", "")} data-unit={unit.replace(" ⊘", "")}><b>{i + 1}</b>{unit}</li>)}</ol><output>{mode} · DOM ORDER UPDATED</output></div><Controls reset={reset}>{(["HASTE", "STUN", "NORMALIZE"] as const).map((value) => <button type="button" key={value} onClick={() => reorder(value)}>{value}</button>)}</Controls></div>;
+ }
+ 
+diff --git a/app/components/WaapiGameObservation.tsx b/app/components/WaapiGameObservation.tsx
+new file mode 100644
+index 0000000..281104b
+--- /dev/null
++++ b/app/components/WaapiGameObservation.tsx
+@@ -0,0 +1,179 @@
++"use client";
++
++import { useCallback, useLayoutEffect, useRef, useState } from "react";
++import type { WaapiSample } from "../data/waapiSamples";
++
++export const OBSERVATION_STEP_MS = 1000 / 60;
++export function clampObservationTime(value: number, duration: number) {
++  return Number.isFinite(value) ? Math.max(0, Math.min(duration, value)) : 0;
++}
++
++type ControllerState = "paused" | "running" | "finished" | "inactive" | "unavailable";
++type Reading = { rawTime: number | null; time: number; controller: ControllerState; native: AnimationPlayState | "unavailable"; pending: boolean };
++
++/** Isolated presentation only: no game state or award callbacks are accepted. */
++export function WaapiGameObservation({ sample, active, reducedMotion }: { sample: WaapiSample; active: boolean; reducedMotion: boolean }) {
++  const root = useRef<HTMLDivElement>(null);
++  const animation = useRef<Animation | null>(null);
++  const raf = useRef<number | null>(null);
++  const generation = useRef(0);
++  const time = useRef(0);
++  const duration = Number(sample.normal.options.duration);
++  const [reading, setReading] = useState<Reading>({ rawTime: null, time: 0, controller: "paused", native: "idle", pending: false });
++  const [easing, setEasing] = useState("cubic-bezier(.2,.8,.2,1)");
++  const [hidden, setHidden] = useState(false);
++  const enabled = active && !hidden;
++  const enabledRef = useRef(enabled);
++  const reducedRef = useRef(reducedMotion);
++  const [revision, setRevision] = useState(0);
++
++  const stopPolling = useCallback(() => {
++    generation.current += 1;
++    if (raf.current !== null) cancelAnimationFrame(raf.current);
++    raf.current = null;
++  }, []);
++  const read = useCallback((controller?: ControllerState) => {
++    const a = animation.current;
++    if (!a) return;
++    const nativeTime = a.currentTime;
++    const rawTime = typeof nativeTime === "number" && Number.isFinite(nativeTime) ? nativeTime : null;
++    const current = rawTime === null ? time.current : clampObservationTime(rawTime, duration);
++    time.current = current;
++    setReading({ rawTime, time: current, controller: controller ?? (a.playState === "running" ? "running" : current >= duration ? "finished" : "paused"), native: a.playState, pending: a.pending });
++  }, [duration]);
++  const readWhenReady = useCallback((a: Animation) => {
++    const token = generation.current;
++    void a.ready?.then(() => {
++      if (token === generation.current && animation.current === a) read();
++    }, () => { /* cancel rejects ready; it is not completion */ });
++  }, [read]);
++  const release = useCallback(() => {
++    stopPolling();
++    const a = animation.current;
++    if (a && typeof a.currentTime === "number") time.current = clampObservationTime(a.currentTime, duration);
++    animation.current = null;
++    a?.cancel();
++  }, [duration, stopPolling]);
++
++  useLayoutEffect(() => {
++    const update = () => setHidden(document.hidden);
++    update();
++    document.addEventListener("visibilitychange", update);
++    return () => document.removeEventListener("visibilitychange", update);
++  }, []);
++
++  useLayoutEffect(() => {
++    enabledRef.current = enabled;
++    reducedRef.current = reducedMotion;
++    release();
++    if (!enabled) {
++      setReading({ rawTime: null, time: time.current, controller: "inactive", native: "idle", pending: false });
++      return;
++    }
++    const stage = root.current;
++    const target = stage?.querySelector<HTMLElement>("[data-observation-target]");
++    if (!stage || !target || typeof target.animate !== "function") {
++      setReading({ rawTime: null, time: time.current, controller: "unavailable", native: "unavailable", pending: false });
++      return;
++    }
++    // Base DOM is the destination. Measurement never includes an old WAAPI transform.
++    let frames = sample.normal.keyframes;
++    if (sample.render === "menu") {
++      const first = stage.querySelector<HTMLElement>("[data-observation-start]")!;
++      const last = stage.querySelector<HTMLElement>("[data-observation-end]")!;
++      const delta = first.getBoundingClientRect().top - last.getBoundingClientRect().top;
++      frames = [{ transform: `translateY(${delta}px)` }, { transform: "translateY(0px)" }];
++    } else {
++      const goal = stage.querySelector<HTMLElement>("[data-observation-goal]")!;
++      const from = target.getBoundingClientRect();
++      const to = goal.getBoundingClientRect();
++      target.style.setProperty("--coin-x", `${to.left - from.left}px`);
++      target.style.setProperty("--coin-y", `${to.top - from.top}px`);
++    }
++    const a = target.animate(frames, { ...sample.normal.options, duration, delay: 0, iterations: 1, fill: "both", easing: sample.render === "menu" ? easing : sample.normal.options.easing });
++    animation.current = a;
++    a.pause();
++    a.currentTime = time.current;
++    read();
++    readWhenReady(a);
++    // Resize/font/CSS text expansion changes the measured scenario, not game state.
++    // Ignore the observer's initial delivery; otherwise re-creation would loop.
++    let initial = true;
++    const measuredResize = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(() => {
++      if (initial) { initial = false; return; }
++      setRevision((n) => n + 1);
++    });
++    stage.querySelectorAll<HTMLElement>("[data-observation-measure]").forEach((node) => measuredResize?.observe(node));
++    const fontChange = () => setRevision((n) => n + 1);
++    document.fonts?.addEventListener("loadingdone", fontChange);
++    return () => { measuredResize?.disconnect(); document.fonts?.removeEventListener("loadingdone", fontChange); release(); };
++  }, [duration, easing, enabled, read, readWhenReady, reducedMotion, release, revision, sample]);
++
++  const seek = (value: number) => {
++    stopPolling();
++    const a = animation.current;
++    if (!a || !enabledRef.current) return;
++    a.pause();
++    a.currentTime = clampObservationTime(value, duration);
++    read();
++    readWhenReady(a);
++  };
++  const step = (delta: number) => {
++    const current = animation.current?.currentTime;
++    seek((typeof current === "number" ? clampObservationTime(current, duration) : time.current) + delta);
++  };
++  const pause = () => {
++    stopPolling();
++    const a = animation.current;
++    if (!a) return;
++    // Native pause may be pending until a later rendering opportunity.
++    // Pin the time sampled at input, not a later frame or the last display sample.
++    const atInput = a.currentTime;
++    a.pause();
++    if (typeof atInput === "number" && Number.isFinite(atInput)) a.currentTime = atInput;
++    read("paused");
++    readWhenReady(a);
++  };
++  const play = (restart = false) => {
++    const a = animation.current;
++    if (!a || !enabledRef.current || reducedRef.current || document.hidden) return;
++    stopPolling();
++    if (restart || time.current >= duration) a.currentTime = 0;
++    a.play();
++    read("running");
++    readWhenReady(a);
++    const token = generation.current;
++    const tick = () => {
++      if (token !== generation.current || animation.current !== a) return;
++      read();
++      if (a.playState === "running" || a.pending) raf.current = requestAnimationFrame(tick);
++      else raf.current = null;
++    };
++    raf.current = requestAnimationFrame(tick);
++  };
++  const disabled = !enabled || reading.controller === "unavailable";
++  const progress = duration ? reading.time / duration * 100 : 0;
++  const position = reading.time === 0 ? "開始位置" : reading.time >= duration ? "終了位置" : "移動途中";
++  return <section className="waapiObservation" aria-label={`${sample.name} 観察モード`} data-controller={reading.controller}>
++    <p>観察専用プレビュー。本体の選択・得点は変えません。まず中間位置を予想し、停止・コマ送りで確かめよう。</p>
++    <div ref={root} className="waapiPreviewStage waapiObservationStage" data-observation-stage>
++      {sample.render === "menu" ? <div className="gameMenu" data-observation-measure>{["CONTINUE", "COLLECTION", "SETTINGS"].map((label, i) => <span key={label} data-observation-measure data-observation-start={i === 0 ? "" : undefined} data-observation-end={i === 2 ? "" : undefined}>{i === 2 && <i data-observation-target aria-hidden="true">▶</i>}{label}</span>)}</div> : <div className="gameCoinScene" data-observation-measure><span className="observationCoin" data-observation-target aria-hidden="true">¢</span><span className="observationGoal" data-observation-goal data-observation-measure>GOAL（加点なし）</span></div>}
++    </div>
++    {sample.render === "menu" && <label>観察のeasing<select aria-label="観察のeasing" value={easing} onChange={(e) => setEasing(e.target.value)}><option value="cubic-bezier(.2,.8,.2,1)">ease-out</option><option value="linear">linear</option></select></label>}
++    <div className="waapiPreviewControls">
++      <button type="button" disabled={disabled || reducedMotion} onClick={() => play()}>再生 / 再開</button>
++      <button type="button" disabled={disabled} onClick={pause}>一時停止</button>
++      <button type="button" disabled={disabled || reducedMotion} onClick={() => play(true)}>最初から再生</button>
++      <button type="button" disabled={disabled} onClick={() => seek(0)}>観察位置を先頭へ</button>
++      <button type="button" disabled={disabled || reading.time <= 0} onClick={() => step(-OBSERVATION_STEP_MS)}>1ステップ戻る</button>
++      <button type="button" disabled={disabled || reading.time >= duration} onClick={() => step(OBSERVATION_STEP_MS)}>1ステップ進む</button>
++    </div>
++    <label>観察時間（ms）<input aria-label="観察時間（ms）" type="range" min={0} max={duration} step="any" value={reading.time} disabled={disabled} onChange={(e) => seek(Number(e.target.value))} /></label>
++    <output data-observation-reading>観察位置 {reading.time.toFixed(2)} / {duration} ms · {progress.toFixed(1)}% · {position} · controller: {reading.controller} · native currentTime: {reading.rawTime === null ? "未取得（null）" : `${reading.rawTime.toFixed(2)} ms`} · native playState: {reading.native}{reading.pending ? "（pending）" : ""}</output>
++    {reducedMotion && <p>動き低減中：連続再生はしません。コマ送り・時間指定は利用できます。解除だけでは再開しません。</p>}
++    {reading.controller === "unavailable" && <p>この環境ではWAAPIを取得できず観察操作は利用できません。模擬値を実測として表示しません。</p>}
++    <p>観察位置と進捗は0〜duration内に制限し、native currentTimeは取得した実値を小数2桁で別表示します。再生は時間が進み、一時停止はその位置を保持。1ステップは仮想60fps相当の1000/60msで、ディスプレイの更新周波数ではありません。先頭へ戻す操作は観察だけをリセットします。</p>
++    <p>{sample.render === "menu" ? "CONTINUE → SETTINGSの独立シナリオ。ease-outは通常と同じ減速、linearは等速。easingは途中の速さを変え、終了位置はSETTINGS行へのDOM所属で決まります。通常の選択は別の状態です。" : "弧の高さ・透明度を時間指定で確認。終点に到達しても得点は増えません。通常モードのCOLLECTだけが得点を確定します。"}</p>
++    <details><summary>観察コードの要点</summary><pre>{`// 独立したプレビューDOMだけを操作\nconst a = preview.animate(frames, { duration: ${duration}, iterations: 1, fill: 'both' });\na.pause(); a.currentTime = ms; // 0〜durationに制限\n// 再開: a.play()\n// 一時停止: 入力時のnative時刻を固定する\nconst t = a.currentTime; a.pause();\nif (typeof t === 'number' && Number.isFinite(t)) a.currentTime = t;\n// 終了位置からもpause→currentTimeで戻れる\n// 取消: a.cancel()。ゲームの状態更新は呼ばない。`}</pre></details>
++  </section>;
++}
+diff --git a/app/components/WaapiSampleGallery.tsx b/app/components/WaapiSampleGallery.tsx
+index 9e1ae3f..afbe7b6 100644
+--- a/app/components/WaapiSampleGallery.tsx
++++ b/app/components/WaapiSampleGallery.tsx
+@@ -10,6 +10,8 @@ import {
+ } from "../data/waapiSamples";
+ import { AiComparisonLab, AiWorkingPreview, ExpandedGamePreview, aiKinds, expandedGameKinds } from "./WaapiExpandedPreviews";
+ 
++import { WaapiGameObservation } from "./WaapiGameObservation";
++
+ const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
+ const filterKeys = ["category", "interactionTypes", "visualElements", "stateKinds", "inspirationType", "usage", "sourceType", "era", "intensity", "difficulty"] as const;
+ type FilterKey = (typeof filterKeys)[number];
+@@ -186,6 +188,10 @@ function StandardSamplePreview({ sample, active, reducedMotion }: { sample: Waap
+ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSample; active: boolean; reducedMotion: boolean }) {
+   const stageRef = useRef<HTMLDivElement>(null);
+   const animations = useRef<Animation[]>([]);
++  const [observing, setObserving] = useState(false);
++  const observed = useRef(false);
++  const supportsObservation = sample.render === "menu" || sample.render === "coin";
++  const normalActive = active && !observing;
+   const [rhythm, setRhythm] = useState("READY");
+   const [score, setScore] = useState(0);
+   const collected = useRef(false);
+@@ -226,17 +232,21 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
+   }, [reducedMotion, sample, stop]);
+   const collectCoin = () => { if (collected.current) return; collected.current = true; setScore(100); run(); };
+   const reset = useCallback(() => { stop(); collected.current = false; menuFrom.current = null; setRhythm("READY"); setScore(0); setComboIndex(0); hpValue.current = 72; setHp(72); setTrailHp(72); setMenuIndex(0); setCardStatus("READY"); }, [stop]);
++  useEffect(() => {
++    // Safety cancellation must not depend on permission to autoplay after observation.
++    if (sample.render === "coin" && reducedMotion) stop();
++  }, [reducedMotion, sample.render, stop]);
+   useEffect(() => {
+     // HP is driven by interaction state, never by the generic entry animation.
+     if (sample.render === "hp") return;
+-    if (!active) return;
++    if (!normalActive || observed.current) return;
+     const frame = window.requestAnimationFrame(run);
+     return () => window.cancelAnimationFrame(frame);
+-  }, [active, run, sample.render]);
++  }, [normalActive, run, sample.render]);
+   useEffect(() => {
+-    if (!["hp", "coin", "menu"].includes(sample.render) || active) return;
++    if (!["hp", "coin", "menu"].includes(sample.render) || normalActive) return;
+     stop();
+-  }, [active, sample.render, stop]);
++  }, [normalActive, sample.render, stop]);
+   useEffect(() => stop, [stop]);
+ 
+   const judge = (value: "PERFECT" | "GOOD" | "MISS") => {
+@@ -268,7 +278,7 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
+   useLayoutEffect(() => {
+     if (sample.render !== "menu") return;
+     if (reducedMotion) stop();
+-    if (menuFrom.current && menuCursor.current && !reducedMotion && active) {
++    if (menuFrom.current && menuCursor.current && !reducedMotion && normalActive) {
+       const to = menuCursor.current.getBoundingClientRect();
+       animations.current.push(menuCursor.current.animate([
+         { transform: `translate(${menuFrom.current.left - to.left}px, ${menuFrom.current.top - to.top}px)` },
+@@ -276,7 +286,7 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
+       ], { duration: 220, easing: "cubic-bezier(.2,.8,.2,1)" }));
+     }
+     menuFrom.current = null;
+-  }, [menuIndex, reducedMotion, active, sample.render, stop]);
++  }, [menuIndex, reducedMotion, normalActive, sample.render, stop]);
+   const moveMenu = (delta: number) => {
+     menuFrom.current = menuCursor.current?.getBoundingClientRect() ?? null;
+     stop();
+@@ -294,6 +304,8 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
+   };
+ 
+   return <div className="waapiPreviewGroup">
++    {supportsObservation && <button type="button" className="waapiObservationToggle" aria-pressed={observing} onClick={() => { stop(); observed.current = true; setObserving((value) => !value); }}>{observing ? "通常モードへ戻る" : "観察モードを開く"}</button>}
++    <div hidden={observing} data-normal-game>
+     <div ref={stageRef} className={`waapiPreviewStage waapiPreviewStage--game waapiPreviewStage--${sample.render}`} tabIndex={sample.render === "menu" ? 0 : undefined} onKeyDown={sample.render === "menu" ? (event) => { if (event.key === "ArrowDown") { event.preventDefault(); moveMenu(1); } if (event.key === "ArrowUp") { event.preventDefault(); moveMenu(-1); } } : undefined}>
+       {sample.render === "treasure" && <button type="button" className="gameChest" onClick={run} aria-label="宝箱を開く"><i data-chest-glow /><b data-motion-target /><span /><em data-chest-item>◆</em></button>}
+       {sample.render === "rhythm" && <div className={`gameRhythm gameRhythm--${rhythm.toLowerCase()}`}><strong data-motion-target>{rhythm}</strong></div>}
+@@ -314,6 +326,9 @@ function GameSamplePreview({ sample, active, reducedMotion }: { sample: WaapiSam
+       {sample.render === "cards" && <>{(["shuffle", "deal", "select", "drag", "play", "resolve", "discard"] as const).map((action) => <button type="button" key={action} onClick={() => cardAction(action)}>{action.toUpperCase()}</button>)}</>}
+       <button type="button" onClick={reset}>Reset</button>
+     </div>
++    </div>
++    {observing && <p data-held-game-state>通常ゲームの保持状態：{sample.render === "coin" ? `SCORE ${score}（${score > 0 ? "獲得済み" : "未獲得"}）` : ["CONTINUE", "COLLECTION", "SETTINGS"][menuIndex]}</p>}
++    {observing && <WaapiGameObservation sample={sample} active={active} reducedMotion={reducedMotion} />}
+     {sample.render === "coin" && <p>自動デモ・Replayは加点しません。COLLECT（またはコイン）で1回100点を即時確定し、獲得の弧を再生。Resetで0点と未獲得に戻します。</p>}
+   </div>;
+ }
+diff --git a/app/globals.css b/app/globals.css
+index eba5799..5bd7657 100644
+--- a/app/globals.css
++++ b/app/globals.css
+@@ -5875,6 +5875,7 @@ footer {
+ .waapiConsoleButtons button,
+ .waapiPreviewControls button,
+ .waapiDetailsToggle,
++.waapiObservationToggle,
+ .waapiComparisonHeading button {
+   min-height: 40px;
+   padding: 6px 10px;
+@@ -5893,7 +5894,9 @@ footer {
+ .waapiPreviewControls button:hover,
+ .waapiPreviewControls button:focus-visible,
+ .waapiDetailsToggle:hover,
++.waapiObservationToggle:hover,
+ .waapiDetailsToggle:focus-visible,
++.waapiObservationToggle:focus-visible,
+ .waapiComparisonHeading button:hover,
+ .waapiComparisonHeading button:focus-visible {
+   border-color: var(--green);
+@@ -6207,6 +6210,13 @@ footer {
+   flex: 1 1 90px;
+ }
+ 
++/* Keep fixed action labels readable at enlarged text sizes; the controls wrap. */
++.waapiPreviewStage--coin + .waapiPreviewControls button,
++.gameTurn + .waapiPreviewControls button,
++.gameBattle + .waapiPreviewControls button {
++  min-width: max-content;
++}
++
+ .waapiBoxObject {
+   width: 46px;
+   height: 46px;
+@@ -6605,3 +6615,18 @@ footer {
+ .matchBoard { position: relative; }
+ .matchGhost { position: absolute; width: 36px; height: 36px; display: grid; place-items: center; opacity: 0; pointer-events: none; color: #79dfff; background: #15281f; border: 1px solid #436153; border-radius: 4px; }
+ .matchSteps { text-align: center; }
++
++/* Stage 2A: isolated presentation controls, not another game state owner. */
++.waapiObservation { min-width: 0; display: grid; gap: 12px; }
++.waapiObservation p, .waapiObservation output { overflow-wrap: anywhere; }
++.waapiObservation label { display: grid; gap: 6px; min-width: 0; }
++.waapiObservation input, .waapiObservation select { width: 100%; min-width: 0; max-width: 100%; margin: 0; box-sizing: border-box; }
++.waapiObservation button, .waapiObservationToggle { white-space: normal; overflow-wrap: anywhere; }
++.waapiObservation :focus-visible, .waapiObservationToggle:focus-visible { outline: 3px solid #3199d6; outline-offset: 3px; }
++.waapiObservation pre { max-width: 100%; white-space: pre-wrap; overflow-wrap: anywhere; }
++.waapiObservationStage { overflow: hidden; }
++.waapiObservation .gameMenu { width: min(170px, 100%); max-width: 100%; overflow-wrap: anywhere; }
++.observationCoin { position: absolute; left: 10px; bottom: 8px; width: 42px; height: 42px; display: grid; place-items: center; border: 3px double #8b6300; border-radius: 50%; background: #ffe36e; color: #684600; font: 900 22px var(--serif); }
++.observationGoal { position: absolute; right: 0; top: 4px; max-width: 75%; padding: 7px 9px; border: 1px solid #5379a7; background: #0b1930; color: #fff; font: 700 10px var(--mono); overflow-wrap: anywhere; }
++[data-normal-game][hidden] { display: none; }
++[data-normal-game]:not([hidden]) { display: contents; }
+diff --git a/package.json b/package.json
+index ed7cd0d..52c3bb6 100644
+--- a/package.json
++++ b/package.json
+@@ -9,9 +9,10 @@
+     "dev": "next dev",
+     "build": "next build",
+     "check": "npm run lint && npm run typecheck && npm test",
+-    "test": "npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run tests/practical-b.test.tsx tests/practical-runtime.test.tsx tests/practical-a.test.tsx tests/practical-room.test.tsx tests/phase2-elastic.test.ts tests/phase2-regression.test.tsx tests/phase2-b.test.tsx tests/phase2-room.test.tsx tests/modern-mesh.test.ts tests/modern-drift-geometry.test.ts tests/modern-lens.test.tsx tests/modern-menu.test.tsx tests/paper-exhibit.test.tsx tests/glass-exhibit.test.tsx tests/modern-animation.test.tsx tests/macintosh-system-choice.test.tsx tests/waapi-samples.test.ts tests/waapi-gallery.test.tsx tests/waapi-interaction-state.test.ts tests/waapi-game-regressions.test.tsx tests/waapi-hp-regression.test.tsx tests/waapi-cascade-motion.test.tsx tests/dom11-selection.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-stage1-menu-coin.test.tsx && vitest run tests/phase4a.test.tsx && vitest run tests/phase4b-interactions.test.tsx tests/phase4b-async.test.tsx && vitest run tests/phase5-data.test.tsx tests/phase5-navigation.test.tsx && vitest run tests/phase5-focus-revision.test.tsx && vitest run tests/then-now-first.test.tsx tests/then-now-second.test.tsx tests/then-now-registration.test.ts tests/then-now-visibility.test.tsx",
++    "test": "npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run --maxWorkers=2 tests/practical-b.test.tsx tests/practical-runtime.test.tsx tests/practical-a.test.tsx tests/practical-room.test.tsx tests/phase2-elastic.test.ts tests/phase2-regression.test.tsx tests/phase2-b.test.tsx tests/phase2-room.test.tsx tests/modern-mesh.test.ts tests/modern-drift-geometry.test.ts tests/modern-lens.test.tsx tests/modern-menu.test.tsx tests/paper-exhibit.test.tsx tests/glass-exhibit.test.tsx tests/modern-animation.test.tsx tests/macintosh-system-choice.test.tsx tests/waapi-samples.test.ts tests/waapi-gallery.test.tsx tests/waapi-interaction-state.test.ts tests/waapi-game-regressions.test.tsx tests/waapi-hp-regression.test.tsx tests/waapi-cascade-motion.test.tsx tests/dom11-selection.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-stage1-menu-coin.test.tsx && vitest run --maxWorkers=2 tests/phase4a.test.tsx && vitest run --maxWorkers=2 tests/phase4b-interactions.test.tsx tests/phase4b-async.test.tsx && vitest run --maxWorkers=2 tests/phase5-data.test.tsx tests/phase5-navigation.test.tsx && vitest run --maxWorkers=2 tests/phase5-focus-revision.test.tsx && vitest run --maxWorkers=2 tests/then-now-first.test.tsx tests/then-now-second.test.tsx tests/then-now-registration.test.ts tests/then-now-visibility.test.tsx && vitest run --maxWorkers=2 tests/waapi-observation.test.tsx tests/waapi-observation-independent.test.tsx",
+     "lint": "eslint .",
+-    "typecheck": "tsc --noEmit"
++    "typecheck": "tsc --noEmit",
++    "test:stage2a": "vitest run --maxWorkers=2 tests/waapi-observation.test.tsx tests/waapi-observation-independent.test.tsx tests/waapi-stage1-menu-coin.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-game-regressions.test.tsx tests/waapi-interaction-state.test.ts"
+   },
+   "dependencies": {
+     "next": "16.2.6",
+diff --git a/scripts/run-waapi-stage2a.py b/scripts/run-waapi-stage2a.py
+new file mode 100644
+index 0000000..5ea35fd
+--- /dev/null
++++ b/scripts/run-waapi-stage2a.py
+@@ -0,0 +1,94 @@
++"""Run native acceptance against the local export; no publishing or remote server.
++
++Uses the installed Playwright driver's matched browser executables. Evidence records
++actual source/build/script hashes. A failed suite stays failed; no automatic retries.
++"""
++import datetime
++import hashlib
++import importlib.metadata
++import json
++import os
++from pathlib import Path
++import subprocess
++import sys
++from playwright.sync_api import sync_playwright
++
++ROOT = Path(__file__).resolve().parents[1]
++DEST = Path(os.environ.get("EVIDENCE_DIR", ROOT / "work/stage2a-browser")).resolve()
++DEST.mkdir(parents=True, exist_ok=True)
++ENGINES = os.environ.get("BROWSERS", "chromium,webkit")
++WIDTHS = os.environ.get("WIDTHS", "375,390,765")
++SUITES = os.environ.get("SUITES", "observation,style,layout,n2,stage1").split(",")
++scripts = {
++    "observation": "verify-waapi-observation.py",
++    "style": "verify-waapi-observation-style.py",
++    "layout": "verify-waapi-acceptance-layout.py",
++    "n2": "verify-waapi-n2-event.py",
++    "stage1": "verify-waapi-stage1.py",
++}
++
++def git(*args):
++    return subprocess.check_output(["git", "-C", str(ROOT), *args], text=True).strip()
++
++server = subprocess.Popen(["node", str(ROOT / "scripts/serve-static-export.mjs"), str(ROOT / "out")],
++                          cwd=ROOT, stdout=subprocess.PIPE, text=True,
++                          creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
++url = server.stdout.readline().strip()
++server.stdout.close()
++if not url.startswith("http://127.0.0.1:"):
++    server.terminate()
++    raise RuntimeError("Local export server failed to supply its loopback URL")
++env = os.environ.copy()
++env.update(PYTHONUTF8="1", WAAPI_URL=url,
++           WAAPI_BROWSERS=ENGINES, WAAPI_WIDTHS=WIDTHS, VERIFY_ENGINES=ENGINES,
++           VERIFY_WIDTHS=WIDTHS, VERIFY_ROOT=str(ROOT), VERIFY_PHASE="current-main-integration")
++with sync_playwright() as playwright:
++    for engine in ["chromium", "webkit"]:
++        env["WAAPI_" + engine.upper() + "_PATH"] = getattr(playwright, engine).executable_path
++
++def hashes(paths):
++    return {str(p.relative_to(ROOT)).replace("\\", "/"): hashlib.sha256(p.read_bytes()).hexdigest()
++            for p in paths if p.is_file()}
++
++def source_hashes():
++    return hashes([ROOT/p for p in git("ls-files", "--cached", "--others", "--exclude-standard", "--", "app", "scripts", "tests", "package.json").splitlines()])
++
++report = {"started": datetime.datetime.now(datetime.timezone.utc).isoformat(),
++          "head": git("rev-parse", "HEAD"), "tree": git("rev-parse", "HEAD^{tree}"),
++          "trackedChanges": git("status", "--porcelain", "--untracked-files=no"),
++          "playwright": importlib.metadata.version("playwright"), "python": sys.version,
++          "requireClean": os.environ.get("REQUIRE_CLEAN") == "1",
++          "engines": ENGINES, "widths": WIDTHS, "suites": [],
++          "sourceSHA256": source_hashes(),
++          "buildSHA256": hashes(sorted((ROOT / "out").rglob("*")))}
++try:
++    for suite in SUITES:
++        result = DEST / (suite + ".json")
++        env.update(WAAPI_RESULT=str(result), VERIFY_OUT=str(result), WAAPI_PARTIAL=str(result),
++                   WAAPI_SCREENSHOTS=str(DEST / "screenshots"))
++        started = datetime.datetime.now(datetime.timezone.utc).isoformat()
++        script_hash = hashlib.sha256((ROOT / "scripts" / scripts[suite]).read_bytes()).hexdigest()
++        with (DEST / (suite + ".log")).open("wb") as log:
++            code = subprocess.call([sys.executable, str(ROOT / "scripts" / scripts[suite])],
++                                   env=env, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
++        report["suites"].append({"name": suite, "exitCode": code, "started": started, "scriptSHA256": script_hash})
++        print(suite, "PASS" if code == 0 else "FAIL", flush=True)
++finally:
++    server.terminate()
++    server.wait(timeout=10)
++    report["finished"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
++    report["headAfter"] = git("rev-parse", "HEAD")
++    report["treeAfter"] = git("rev-parse", "HEAD^{tree}")
++    report["trackedChangesAfter"] = git("status", "--porcelain", "--untracked-files=no")
++    report["sourceSHA256After"] = source_hashes()
++    report["sourceUnchanged"] = (report["sourceSHA256After"] == report["sourceSHA256"]
++                                  and report["headAfter"] == report["head"]
++                                  and report["treeAfter"] == report["tree"])
++    report["cleanRequirementMet"] = not report["requireClean"] or not (report["trackedChanges"] or report["trackedChangesAfter"])
++    report["status"] = "PASS" if (len(report["suites"]) == len(SUITES)
++                                  and all(s["exitCode"] == 0 for s in report["suites"])
++                                  and report["sourceUnchanged"] and report["cleanRequirementMet"]) else "FAIL"
++    (DEST / "provenance.json").write_text(json.dumps(report, indent=2), encoding="utf8")
++    print("overall", report["status"], "sourceUnchanged", report["sourceUnchanged"],
++          "cleanRequirementMet", report["cleanRequirementMet"], flush=True)
++sys.exit(0 if report["status"] == "PASS" else 1)
+diff --git a/scripts/serve-static-export.mjs b/scripts/serve-static-export.mjs
+new file mode 100644
+index 0000000..d9e2120
+--- /dev/null
++++ b/scripts/serve-static-export.mjs
+@@ -0,0 +1,25 @@
++// Local acceptance server, using the same buffered response strategy as the
++// current main's practical/Then & Now probes. Prints one URL for its caller.
++import {createServer} from 'node:http';
++import {readFile, realpath} from 'node:fs/promises';
++import path from 'node:path';
++const root = await realpath(process.argv[2] || 'out');
++const types = {'.js':'text/javascript', '.css':'text/css', '.html':'text/html',
++  '.json':'application/json', '.png':'image/png', '.svg':'image/svg+xml',
++  '.woff2':'font/woff2', '.ico':'image/x-icon'};
++const server = createServer(async (request, response) => {
++  try {
++    let relative = decodeURIComponent(new URL(request.url, 'http://localhost').pathname)
++      .replace(/^\/Loading-museum(?=\/)/, '');
++    if (relative.endsWith('/')) relative += 'index.html';
++    const file = await realpath(path.resolve(root, '.' + relative));
++    if (!file.startsWith(root + path.sep)) throw Error('outside export');
++    response.setHeader('Content-Type', types[path.extname(file)] || 'application/octet-stream');
++    response.end(await readFile(file));
++  } catch {
++    response.statusCode = 404;
++    response.end('missing');
++  }
++});
++await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
++console.log(`http://127.0.0.1:${server.address().port}/Loading-museum/`);
+diff --git a/scripts/verify-waapi-acceptance-layout.py b/scripts/verify-waapi-acceptance-layout.py
+new file mode 100644
+index 0000000..0008382
+--- /dev/null
++++ b/scripts/verify-waapi-acceptance-layout.py
+@@ -0,0 +1,90 @@
++"""Stage 2A acceptance: native target-card layout, real input and Turn Order.
++CSS text expansion/media emulation are not physical OS/device accessibility tests.
++"""
++import json,os,datetime,traceback
++from playwright.sync_api import sync_playwright
++OUT=os.environ['WAAPI_RESULT'];results=[]
++names=['Menu Selection Cursor','Coin Pickup Arc','Match-3 Cascade','HP Bar Damage / Heal','Turn Order Reflow','Battle Transition']
++geometry="""n=>{const rect=e=>{const r=e.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height}};const bounds=rect(n);const es=[...n.querySelectorAll('h4,p,output,label,button')].filter(e=>!e.closest('details:not([open])'));const elements=es.map(e=>{const cs=getComputedStyle(e),box=rect(e),range=document.createRange();range.selectNodeContents(e);const textRects=[...range.getClientRects()].map(r=>({left:r.left,right:r.right,top:r.top,bottom:r.bottom}));const clips=[];for(let a=e;a;a=a.parentElement){const st=getComputedStyle(a);if(['hidden','clip','auto','scroll'].includes(st.overflowY))clips.push(rect(a));if(a===n)break;}return {clips,overflowY:cs.overflowY,tag:e.tagName,text:e.textContent,box,scroll:e.scrollWidth,client:e.clientWidth,scrollHeight:e.scrollHeight,clientHeight:e.clientHeight,visible:e.getClientRects().length>0&&cs.visibility!=='hidden'&&[e,...(function*(x){while(x.parentElement){x=x.parentElement;yield x}})(e)].every(x=>getComputedStyle(x).opacity!=='0'&&!x.hidden),color:cs.color,background:cs.backgroundColor,textRects}});const collisions=[];for(let i=0;i<elements.length;i++)for(let j=i+1;j<elements.length;j++){if(es[i].contains(es[j])||es[j].contains(es[i]))continue;const a=elements[i].box,b=elements[j].box;if(Math.min(a.right,b.right)-Math.max(a.left,b.left)>1&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>1)collisions.push([elements[i].text,elements[j].text]);}return {bounds,viewport:innerWidth,scroll:n.scrollWidth,client:n.clientWidth,elements,collisions,heading:n.querySelector('h4')?.textContent,background:getComputedStyle(n).backgroundColor,descriptionCount:n.querySelectorAll('.waapiDescription').length,reducedCount:n.querySelectorAll('.waapiReduced').length}}"""
++def layout_valid(g):
++ inventory=all(any(e['tag']=='BUTTON' and e['text']==label for e in g['elements']) for label in g.get('requiredButtons',[])) and (not g.get('requireLabel') or any(e['tag']=='LABEL' for e in g['elements']))
++ return (inventory and bool(g['elements']) and g['bounds']['left']>=-1 and g['bounds']['right']<=g['viewport']+1 and g['scroll']<=g['client']+1 and not g['collisions'] and all(e['visible'] and e['box']['width']>0 and e['box']['height']>0 and e['text'].strip() and e['scroll']<=e['client']+1 and all(t['top']>=clip['top']-1 and t['bottom']<=clip['bottom']+1 for clip in e['clips'] for t in e['textRects']) and e['box']['left']>=g['bounds']['left']-1 and e['box']['right']<=g['bounds']['right']+1 and all(t['left']>=e['box']['left']-1 and t['right']<=e['box']['right']+1  for t in e['textRects']) for e in g['elements']))
++
++with sync_playwright() as p:
++ for engine in os.environ.get('WAAPI_BROWSERS','chromium,webkit').split(','):
++  browser=getattr(p,engine).launch(headless=True,executable_path=os.environ['WAAPI_'+engine.upper()+'_PATH'])
++  for width in map(int,os.environ.get('WAAPI_WIDTHS','375,390,765').split(',')):
++   context=browser.new_context(viewport={'width':width,'height':900},has_touch=True);q=context.new_page();q.set_default_timeout(10000)
++   r={'engine':engine,'width':width,'version':browser.version,'startedAt':datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(),'checks':[],'geometry':[],'errors':[]};results.append(r);q.on('pageerror',lambda e:r['errors'].append(str(e)))
++   try:
++    # Actual DOM negative controls use the same geometry and predicate as product checks.
++    r['layoutControls']=[]
++    for variant,expected in [('baseline',True),('overflow',False),('overlap',False),('hidden-label',False),('remove-button',False),('remove-label',False),('clipped-text',False)]:
++     q.set_content('<style>body{margin:0}article{width:300px;padding:8px;box-sizing:border-box}h4,p,label,button{display:block;margin:8px 0;line-height:24px}button{width:120px;height:32px}</style><article><h4>Fixture</h4><p>Explanation</p><label>Required label</label><button>Action</button></article>')
++     if variant=='overflow':q.locator('p').evaluate("e=>e.style.width='400px'")
++     if variant=='overlap':q.locator('button').evaluate("e=>{e.style.position='absolute';e.style.top=document.querySelector('label').getBoundingClientRect().top+'px'}")
++     if variant=='hidden-label':q.locator('label').evaluate("e=>e.style.display='none'")
++     if variant=='clipped-text':q.locator('p').evaluate("e=>{e.style.height='1px';e.style.lineHeight='1px';e.style.fontSize='24px';e.style.overflow='hidden'}")
++     if variant=='remove-button':q.locator('button').evaluate('e=>e.remove()')
++     if variant=='remove-label':q.locator('label').evaluate('e=>e.remove()')
++     control=q.locator('article').evaluate(geometry);control.update(requiredButtons=['Action'],requireLabel=True);actual=layout_valid(control);r['layoutControls'].append({'variant':variant,'expected':expected,'actual':actual});assert actual==expected,(variant,control)
++    q.goto(os.environ['WAAPI_URL'],wait_until='networkidle');q.get_by_role('button',name='サンプル一覧を見る',exact=False).click()
++    def card(name):
++     q.get_by_label('検索',exact=True).fill(name);c=q.locator('.waapiSampleCard').filter(has=q.get_by_role('heading',name=name,exact=True));c.scroll_into_view_if_needed();return c
++    required={'Menu Selection Cursor':['観察モードを開く','↑ Up','↓ Down','Reset'],'Coin Pickup Arc':['観察モードを開く','Replay','COLLECT','Reset'],'Match-3 Cascade':['SWAP','RESET'],'HP Bar Damage / Heal':['Damage','Heal','Reset'],'Turn Order Reflow':['HASTE','STUN','NORMALIZE','RESET'],'Battle Transition':['ENCOUNTER','RETURN','RESET']}
++    for name in names:
++     try:
++      c=card(name)
++      for motion in ['no-preference','reduce']:
++       q.emulate_media(reduced_motion=motion)
++       for scale in [1,2]:
++        c.evaluate('''(n,s)=>{const es=[n,...n.querySelectorAll('*')];for(const e of es)if(!e.dataset.acceptanceFont)e.dataset.acceptanceFont=getComputedStyle(e).fontSize;for(const e of es)e.style.fontSize=parseFloat(e.dataset.acceptanceFont)*s+'px'}''',scale)
++        for theme in ['light','dark']:
++         c.get_by_role('button',name='Reset' if name in names[:2] or name=='HP Bar Damage / Heal' else 'RESET',exact=True).click()
++         q.emulate_media(color_scheme=theme);g=c.evaluate(geometry);g.update(name=name,motion=motion,scale=scale,theme=theme);g['requiredButtons']=required[name];g['schemeReached']=q.evaluate('(t)=>matchMedia(`(prefers-color-scheme: ${t})`).matches',theme);g['motionReached']=q.evaluate('(t)=>matchMedia(`(prefers-reduced-motion: ${t})`).matches',motion);assert g['schemeReached'] and g['motionReached'];r['geometry'].append(g)
++         assert g['heading']==name and any(e['tag']=='BUTTON' for e in g['elements']) and any(e['tag']=='P' for e in g['elements']),g
++         assert g['descriptionCount']==1 and g['reducedCount']==1,g
++         assert layout_valid(g),g
++        # Real hit-tested tap and keyboard Enter on Reset; no DOM invocation substitution.
++        reset=c.get_by_role('button',name='Reset' if name in names[:2] or name=='HP Bar Damage / Heal' else 'RESET',exact=True)
++        reset.tap();reset.focus();assert reset.evaluate('e=>document.activeElement===e');q.keyboard.press('Enter')
++      c.evaluate("n=>{for(const e of [n,...n.querySelectorAll('*')])if(e.dataset.acceptanceFont)e.style.fontSize=e.dataset.acceptanceFont}")
++      r['checks'].append(name+': normal/reduced x CSS100/200 x light/dark target geometry; real Reset tap/focus/Enter')
++     except Exception as e:
++      r.setdefault('cardFailures',[]).append({'name':name,'failure':str(e),'traceback':traceback.format_exc()})
++      if width==390:
++       try:c.screenshot(path=OUT.replace('.json','-'+engine+'-'+name.split()[0]+'-failure.png'))
++       except Exception as capture:r['cardFailures'][-1]['screenshotError']=str(capture)
++      # Restore font styles before the next independent card; no failed path is reclassified.
++      c.evaluate("n=>{for(const e of [n,...n.querySelectorAll('*')])if(e.dataset.acceptanceFont)e.style.fontSize=e.dataset.acceptanceFont}")
++    c=card('Turn Order Reflow');r['turn']=[]
++    c.evaluate('''n=>{window.acceptTurnAnimations=[];window.acceptTurnAnimate=Element.prototype.animate;Element.prototype.animate=function(...args){const a=window.acceptTurnAnimate.apply(this,args);if(n.contains(this))window.acceptTurnAnimations.push(a);return a}}''')
++    for motion in ['no-preference','reduce']:
++     q.emulate_media(reduced_motion=motion)
++     for action,expected in [('HASTE',['MAGE','KNIGHT','ROGUE']),('STUN',['KNIGHT','ROGUE','MAGE']),('NORMALIZE',['KNIGHT','MAGE','ROGUE'])]:
++      q.evaluate('window.acceptTurnAnimations=[]');button=c.get_by_role('button',name=action,exact=True);button.tap();actual=c.locator('[data-unit]').evaluate_all('(es)=>es.map(e=>e.dataset.unit)');assert actual==expected,(actual,expected)
++      native=q.evaluate('''async()=>{await new Promise(resolve=>requestAnimationFrame(resolve));await new Promise(resolve=>requestAnimationFrame(resolve));const created=window.acceptTurnAnimations.map(a=>({time:a.currentTime,state:a.playState,pending:a.pending,duration:a.effect.getTiming().duration}));await Promise.all(window.acceptTurnAnimations.map(a=>a.finished));return {created,settled:window.acceptTurnAnimations.map(a=>({time:a.currentTime,state:a.playState,pending:a.pending}))}}''');assert len(native['created'])==3,native
++      positions=c.locator('[data-unit]').evaluate_all('(es)=>es.map(e=>({unit:e.dataset.unit,top:e.getBoundingClientRect().top,bottom:e.getBoundingClientRect().bottom}))')
++      assert all(a['bottom']<=b['top']+1 for a,b in zip(positions,positions[1:])),positions
++      r['turn'].append({'motion':motion,'action':action,'order':actual,'positions':positions,'native':native})
++     for _ in range(3):c.get_by_role('button',name='HASTE',exact=True).click();c.get_by_role('button',name='RESET',exact=True).click()
++     q.wait_for_timeout(500);assert c.locator('[data-unit]').evaluate_all('(es)=>es.map(e=>e.dataset.unit)')==['KNIGHT','MAGE','ROGUE']
++     assert c.locator('output').inner_text()=='NORMALIZE · DOM ORDER UPDATED'
++     # FLIP duration is 420ms; original 500ms observation remains, then inspect residual native state.
++     final=c.locator('.gameTurn ol').evaluate("n=>({animations:n.getAnimations({subtree:true}).map(a=>({state:a.playState,time:a.currentTime,pending:a.pending})),positions:[...n.children].map(e=>({top:e.getBoundingClientRect().top,bottom:e.getBoundingClientRect().bottom,transform:getComputedStyle(e).transform}))})")
++     assert not any(a['state']=='running' or a['pending'] for a in final['animations']),final
++     assert all(a['bottom']<=b['top']+1 for a,b in zip(final['positions'],final['positions'][1:])),final
++     q.evaluate('scrollTo(0,0)');c.scroll_into_view_if_needed();assert c.locator('[data-unit]').evaluate_all('(es)=>es.map(e=>e.dataset.unit)')==['KNIGHT','MAGE','ROGUE']
++     r['turn'].append({'motion':motion,'afterRapidResetAndReentry':final})
++    q.evaluate('()=>{Element.prototype.animate=window.acceptTurnAnimate;}')
++    r['checks'].append('Turn Order real tap FLIP final geometry normal/reduced; rapid HASTE/Reset no delayed reversal')
++    assert not r['errors'];r['status']='FAIL' if r.get('cardFailures') else 'PASS'
++   except Exception as e:
++    r.update(status='FAIL',failure=str(e),traceback=traceback.format_exc())
++    if width==390:
++     try:q.screenshot(path=OUT.replace('.json','-'+engine+'-failure.png'),full_page=False)
++     except Exception as capture:r['screenshotError']=str(capture)
++   finally:
++    r['finishedAt']=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat();open(OUT,'w').write(json.dumps(results,ensure_ascii=False,indent=2));context.close();print(engine,width,r['status'],flush=True)
++  browser.close()
++raise SystemExit(0 if all(r['status']=='PASS' for r in results) else 1)
+diff --git a/scripts/verify-waapi-n2-event.py b/scripts/verify-waapi-n2-event.py
+new file mode 100644
+index 0000000..31dd8c2
+--- /dev/null
++++ b/scripts/verify-waapi-n2-event.py
+@@ -0,0 +1,124 @@
++"""Native WAAPI repair evidence. Browser-local button clicks are synthetic UI input.
++Animation wrappers forward to native methods; no replacement Animation/timing mocks.
++Browser media emulation and synthetic visibility are not physical OS/device evidence.
++"""
++import os, json, time, hashlib, traceback, subprocess, importlib.metadata, re
++from pathlib import Path
++from playwright.sync_api import sync_playwright
++ROOT=Path(os.environ.get('VERIFY_ROOT','.')).resolve()
++OUT=Path(os.environ['VERIFY_OUT']).resolve()
++BUILD=Path(os.environ.get('VERIFY_BUILD',str(ROOT/'out'))).resolve()
++OUT.parent.mkdir(parents=True,exist_ok=True)
++report={'startedAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'mode':os.environ.get('VERIFY_PHASE','unspecified'),'source':{},'build':{},'conditions':[]}
++report['scriptSha256']=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
++report['sourceHead']=subprocess.check_output(['git','-C',str(ROOT),'rev-parse','HEAD'],text=True).strip()
++report['playwrightVersion']=importlib.metadata.version('playwright')
++for file in ['app/components/WaapiSampleGallery.tsx','app/components/WaapiGameObservation.tsx','app/globals.css']:
++ report['source'][file]=hashlib.sha256((ROOT/file).read_bytes()).hexdigest()
++for file in sorted(BUILD.rglob('*')):
++ if file.is_file() and file.suffix in ['.html','.js','.css']:
++  report['build'][str(file.relative_to(BUILD))]=hashlib.sha256(file.read_bytes()).hexdigest()
++def save(): OUT.write_text(json.dumps(report,ensure_ascii=False,indent=2))
++INIT=r'''(()=>{
++const records=[],events=[];let next=0;
++const snap=a=>({clock:performance.now(),currentTime:a?.currentTime??null,playState:a?.playState??null,pending:a?.pending??null,duration:a?.effect?.getTiming().duration??null});
++const normal=()=>records.filter(r=>r.target.matches('[data-motion-target],[data-score]')&&r.target.closest('[data-normal-game] .gameCoinScene'));
++const originalAnimate=Element.prototype.animate;
++Element.prototype.animate=function(...args){const a=originalAnimate.apply(this,args);records.push({id:++next,a,target:this,created:performance.now(),initial:snap(a)});return a};
++const originalCancel=Animation.prototype.cancel;
++Animation.prototype.cancel=function(...args){const r=records.find(r=>r.a===this),before=snap(this);const value=originalCancel.apply(this,args);events.push({kind:'cancel',id:r?.id,before,after:snap(this)});return value};
++const m=matchMedia('(prefers-reduced-motion: reduce)');m.addEventListener('change',()=>events.push({kind:'media',matches:m.matches,clock:performance.now(),animations:normal().map(r=>({id:r.id,...snap(r.a)}))}));
++const IO=window.IntersectionObserver;
++window.IntersectionObserver=class extends IO{constructor(cb,opts){super((entries,observer)=>{events.push({kind:'intersection',clock:performance.now(),entries:entries.map(e=>({sampleId:e.target.dataset.sampleId,intersecting:e.isIntersecting}))});cb(entries,observer)},opts)}};
++window.__n2={records,events,snap,normal,last:()=>normal().findLast(r=>r.target.matches('[data-motion-target]')),serial:()=>normal().map(r=>({id:r.id,created:r.created,...snap(r.a)})),score:()=>document.querySelector('[data-normal-game] output')?.textContent,collected:()=>[...document.querySelectorAll('[data-normal-game] button')].find(b=>b.textContent==='COLLECT')?.disabled};
++})();'''
++CLICK=r'''async label=>{const n=document.querySelector('.waapiSampleCard');const b=[...n.querySelectorAll('button')].find(b=>b.textContent===label);if(!b)throw Error('Missing button '+label);const input=performance.now();b.click();await new Promise(r=>requestAnimationFrame(()=>r()));return {label,input,clock:performance.now(),score:__n2.score(),collected:__n2.collected(),last:__n2.last()?{id:__n2.last().id,...__n2.snap(__n2.last().a)}:null,ownedIds:__n2.normal().slice(-2).map(r=>r.id),normalCount:__n2.normal().length}}'''
++SNAP=r'''()=>({clock:performance.now(),score:__n2.score(),collected:__n2.collected(),normal:__n2.serial(),events:__n2.events})'''
++
++def cancel_pass(case):
++ x=case.get('mediaInput');a=case.get('after',{});cancel=case.get('cancel',[])
++ return bool(x and x.get('playState')=='running' and x.get('currentTime') is not None and x['currentTime']<x['duration'] and a.get('playState')=='idle' and a.get('currentTime') is None and cancel and case.get('ownedAfter') and all(z['playState']=='idle' and z['currentTime'] is None and any(c['id']==z['id'] for c in case.get('ownedCancels',[])) for z in case['ownedAfter']))
++# Predicate controls are harness checks, not native cancellation successes.
++import copy
++positive={'mediaInput':{'playState':'running','currentTime':50,'duration':650},'after':{'playState':'idle','currentTime':None},'cancel':[{'id':1}],'ownedAfter':[{'id':1,'playState':'idle','currentTime':None},{'id':2,'playState':'idle','currentTime':None}],'ownedCancels':[{'id':1},{'id':2}]}
++report['positiveControl']={'name':'both native references cancelled (predicate fixture)','accepted':cancel_pass(positive)}
++report['negativeControls']=[]
++for name,patch in [('running without cancel',{'after':{'playState':'running','currentTime':90},'cancel':[]}),('natural finish without cancel',{'after':{'playState':'finished','currentTime':650},'cancel':[]}),('already ended at media input',{'mediaInput':{'playState':'finished','currentTime':650,'duration':650}}),('score pulse not cancelled',{'ownedCancels':[{'id':1}]})]:
++ case=copy.deepcopy(positive);case.update(patch);report['negativeControls'].append({'name':name,'rejected':not cancel_pass(case)})
++with sync_playwright() as p:
++ for engine in os.environ.get('VERIFY_ENGINES','chromium,webkit').split(','):
++  browser=getattr(p,engine).launch(headless=True,executable_path=os.environ['WAAPI_'+engine.upper()+'_PATH'])
++  for width in map(int,os.environ.get('VERIFY_WIDTHS','375,390,765').split(',')):
++   r={'engine':engine,'version':browser.version,'width':width,'checks':[],'cancellation':[],'snapshots':[],'pageerror':[],'status':'RUNNING'};report['conditions'].append(r);save()
++   context=browser.new_context(viewport={'width':width,'height':900},has_touch=True,reduced_motion='no-preference');context.add_init_script(INIT);q=context.new_page();q.set_default_timeout(15000);q.on('pageerror',lambda e,r=r:r['pageerror'].append(str(e)))
++   def check(name,value,detail=None):r['checks'].append({'name':name,'pass':bool(value),'detail':detail});save()
++   def click(label):return q.evaluate(CLICK,label)
++   def snap(label):x=q.evaluate(SNAP);x['label']=label;r['snapshots'].append(x);save();return x
++   try:
++    q.goto(os.environ['WAAPI_URL'])
++    check('Q1 initial Fade absent',q.get_by_text('Fade In',exact=True).count()==0);check('Q1 initial WAAPI region absent',q.get_by_role('region',name=re.compile('WAAPI')).count()==0)
++    q.get_by_role('button',name='サンプル一覧を見る',exact=False).evaluate('b=>b.click()');q.get_by_text('47 / 47 samples',exact=True).wait_for()
++    check('Q1 open all47 articles',q.get_by_role('article').count()>=47 and q.get_by_text('47 / 47 samples',exact=True).count()==1)
++    q.get_by_label('検索',exact=True).fill('  FADE IN  ');q.get_by_text('1 / 47 samples',exact=True).wait_for();check('Q1 normalized search Fade',q.get_by_text('Fade In',exact=True).count()==1)
++    q.get_by_role('button',name='絞り込みを解除',exact=True).evaluate('b=>b.click()');r['filterLabelTexts']=q.locator('.waapiFilters label').all_text_contents();r['filterOwnLabels']=q.locator('.waapiFilters label').evaluate_all('ns=>ns.map(n=>[...n.childNodes].filter(x=>x.nodeType===Node.TEXT_NODE).map(x=>x.textContent).join("").trim())');check('Q1 category and usage label identity',r['filterOwnLabels'].count('カテゴリ')==1 and r['filterOwnLabels'].count('用途')==1);q.locator('.waapiFilters label').filter(has_text=re.compile('^カテゴリ')).locator('select').select_option('UI Feedback');q.locator('.waapiFilters label').filter(has_text=re.compile('^用途')).locator('select').select_option('Modal');q.get_by_text('1 / 47 samples',exact=True).wait_for();check('Q1 composite Modal filter',q.get_by_text('Modal Open / Close',exact=True).count()==1)
++    q.get_by_label('検索',exact=True).fill('一致しない文字列');q.get_by_text(re.compile('条件に一致する標本はありません')).wait_for();check('Q1 no results notice',q.get_by_text(re.compile('条件に一致する標本はありません')).count()==1)
++    q.get_by_role('button',name='絞り込みを解除',exact=True).evaluate('b=>b.click()');q.get_by_text('47 / 47 samples',exact=True).wait_for();check('Q1 clear restores all47',q.get_by_role('article').count()>=47)
++    q1before=q.evaluate('()=>({clock:performance.now(),cancelCount:__n2.events.filter(e=>e.kind==="cancel").length,live:__n2.records.filter(r=>["running","paused"].includes(r.a.playState)).map(r=>({id:r.id,...__n2.snap(r.a)}))})')
++    q.get_by_role('button',name='サンプル一覧を閉じる',exact=False).evaluate('b=>b.click()');q.wait_for_function('()=>!document.querySelector(".waapiSampleCard")')
++    q1after=q.evaluate('()=>({clock:performance.now(),cancelCount:__n2.events.filter(e=>e.kind==="cancel").length,records:__n2.records.map(r=>({id:r.id,...__n2.snap(r.a)}))})');r['q1Journey']={'beforeClose':q1before,'afterClose':q1after};check('Q1 close Fade absent and cancel increases',q.get_by_text('Fade In',exact=True).count()==0 and q1after['cancelCount']>q1before['cancelCount']);check('Q1 close cancels previously live refs',bool(q1before['live']) and all(next(a for a in q1after['records'] if a['id']==z['id'])['playState']=='idle' for z in q1before['live']))
++    q.get_by_role('button',name='サンプル一覧を見る',exact=False).evaluate('b=>b.click()');q.get_by_label('検索',exact=True).fill('Coin Pickup Arc');c=q.locator('.waapiSampleCard');c.scroll_into_view_if_needed();q.wait_for_timeout(50)
++    click('観察モードを開く');click('通常モードへ戻る');x=snap('first observation return');check('no autoplay after observation',not any(a['playState']=='running' for a in x['normal']));check('observation initially retains score 0',x['score']=='SCORE 0')
++    for action in ['Replay','COLLECT']:
++     q.emulate_media(reduced_motion='no-preference');q.wait_for_timeout(50);click('Reset')
++     before=click(action);old_id=before['last']['id'];event_start=q.evaluate('__n2.events.length');q.emulate_media(reduced_motion='reduce')
++     q.wait_for_function('start=>__n2.events.slice(start).some(e=>e.kind==="media"&&e.matches)',arg=event_start,timeout=5000)
++     # Deadline watches cancellation, not a fixed delay that assumes React's scheduling.
++     try:q.wait_for_function('id=>__n2.normal().find(r=>r.id===id)?.a.playState==="idle"',arg=old_id,timeout=1500)
++     except Exception:pass
++     data=q.evaluate('''({id,start,ownedIds})=>{const r=__n2.normal().find(r=>r.id===id);const ev=__n2.events.slice(start);return {ownedAfter:__n2.normal().filter(r=>ownedIds.includes(r.id)).map(r=>({id:r.id,...__n2.snap(r.a)})),ownedCancels:ev.filter(e=>e.kind==='cancel'&&ownedIds.includes(e.id)),mediaInput:ev.find(e=>e.kind==='media'&&e.matches)?.animations.find(a=>a.id===id),after:__n2.snap(r.a),cancel:ev.filter(e=>e.kind==='cancel'&&e.id===id),score:__n2.score(),collected:__n2.collected()}}''',{'id':old_id,'start':event_start,'ownedIds':before['ownedIds']})
++     data.update(action=action,input=before,animationId=old_id);data['eligible']=bool(data.get('mediaInput') and data['mediaInput']['playState']=='running' and data['mediaInput']['currentTime'] is not None and data['mediaInput']['currentTime']<data['mediaInput']['duration']);data['verdict']='PASS' if cancel_pass(data) else 'FAIL' if data['eligible'] else 'INPUT_MISSED';r['cancellation'].append(data);save()
++     check(action+' score retained after reduction',data['score']==('SCORE 100' if action=='COLLECT' else 'SCORE 0'));check(action+' acquisition retained',data['collected']==(action=='COLLECT'))
++     count=q.evaluate('__n2.normal().length');q.emulate_media(reduced_motion='no-preference');q.wait_for_timeout(100);check('reduction OFF no autoplay '+action,q.evaluate('__n2.normal().length')==count)
++    # Native pause is a diagnostic operation, not a normal Coin UI control.
++    q.emulate_media(reduced_motion='no-preference');q.wait_for_timeout(50);click('Reset');click('Replay')
++    paused=q.evaluate('async()=>{const r=__n2.last();r.a.pause();await r.a.ready;return {id:r.id,...__n2.snap(r.a)}}');event_start=q.evaluate('__n2.events.length');r['pausedDiagnostic']={'before':paused,'pass':False,'status':'RUNNING'};save();q.emulate_media(reduced_motion='reduce')
++    # Wait for the actual notification and same-ID cancellation before any Reset.
++    try:
++     q.wait_for_function('start=>__n2.events.slice(start).some(e=>e.kind==="media"&&e.matches)',arg=event_start,timeout=5000)
++     media=q.evaluate('({start,id})=>__n2.events.slice(start).find(e=>e.kind==="media"&&e.matches)?.animations.find(a=>a.id===id)',{'start':event_start,'id':paused['id']})
++     r['pausedDiagnostic']['mediaInput']=media;save()
++     assert media and media['playState']=='paused' and media['currentTime'] is not None, {'pausedAtMedia':media}
++     q.wait_for_function('({start,id})=>__n2.events.slice(start).some(e=>e.kind==="cancel"&&e.id===id)&&__n2.normal().find(r=>r.id===id)?.a.playState==="idle"',arg={'start':event_start,'id':paused['id']},timeout=1500)
++     paused_after=q.evaluate('({start,id})=>({after:__n2.snap(__n2.normal().find(r=>r.id===id).a),cancel:__n2.events.slice(start).filter(e=>e.kind==="cancel"&&e.id===id)})',{'start':event_start,'id':paused['id']});r['pausedDiagnostic'].update(paused_after);r['pausedDiagnostic']['pass']=paused_after['after']['playState']=='idle' and paused_after['after']['currentTime'] is None and bool(paused_after['cancel']);r['pausedDiagnostic']['status']='PASS' if r['pausedDiagnostic']['pass'] else 'FAIL'
++    finally:
++     try:r['pausedDiagnostic']['events']=q.evaluate('start=>__n2.events.slice(start)',event_start);r['pausedDiagnostic']['lastSnapshot']=q.evaluate('id=>__n2.snap(__n2.normal().find(r=>r.id===id)?.a)',paused['id'])
++     except Exception as capture:r['pausedDiagnostic']['captureError']=str(capture)
++     save()
++    click('Reset');q.emulate_media(reduced_motion='reduce');q.wait_for_timeout(50);x=click('Replay');timing=q.evaluate('__n2.normal().slice(-2).map(r=>({target:r.target.hasAttribute("data-score")?"score":"coin",duration:r.a.effect.getTiming().duration,delay:r.a.effect.getTiming().delay}))');check('explicit reduced Replay exact coin 1ms score 180ms no delay',timing==[{'target':'coin','duration':1,'delay':0},{'target':'score','duration':180,'delay':0}],timing);check('reduced Replay no award',x['score']=='SCORE 0');click('COLLECT');check('reduced COLLECT awards once',q.evaluate('__n2.score()')=='SCORE 100' and q.evaluate('__n2.collected()'));click('COLLECT');check('repeat COLLECT cannot duplicate score',q.evaluate('__n2.score()')=='SCORE 100')
++    for i in range(3):
++     q.emulate_media(reduced_motion='no-preference');q.wait_for_timeout(30);click('Replay');q.emulate_media(reduced_motion='reduce');q.wait_for_timeout(100)
++
++    try:q.wait_for_function('()=>__n2.normal().every(r=>r.a.playState==="idle")',timeout=1500)
++    except Exception:pass
++    x=snap('repeated media changes');check('repeated ON OFF preserves acquired score',x['score']=='SCORE 100' and x['collected']);check('repeated ON OFF old motion idle',all(a['playState']=='idle' for a in x['normal']))
++    q.emulate_media(reduced_motion='no-preference');q.wait_for_timeout(30)
++    for i in range(3):click('観察モードを開く');click('通常モードへ戻る');click('Replay')
++    click('Reset');q.wait_for_timeout(750);x=snap('rapid modes Replay then Reset');check('Reset score and acquired clear',x['score']=='SCORE 0' and not x['collected']);check('Reset old animations idle and no old callbacks',all(a['playState']=='idle' for a in x['normal']))
++    click('COLLECT');check('Reset permits new acquisition',q.evaluate('__n2.score()')=='SCORE 100' and q.evaluate('__n2.collected()'))
++    # Actual scroll and IO timestamps retained. Natural finishing before IO is not live cancellation proof.
++    before=click('Replay');q.evaluate('scrollTo(0,0)');q.wait_for_timeout(1000);outside=c.evaluate('n=>{let r=n.getBoundingClientRect();return {top:r.top,bottom:r.bottom,outside:r.top>innerHeight+160||r.bottom< -160}}');x=snap('actual offscreen');check('actual root-margin exit reached',outside['outside'],outside);check('offscreen cancels owned animations',all(a['playState']=='idle' for a in x['normal']));c.scroll_into_view_if_needed();q.wait_for_timeout(100);x=snap('actual reentry');check('reentry preserves score no autoplay',x['score']=='SCORE 100' and not any(a['playState']=='running' for a in x['normal']))
++    click('観察モードを開く');q.evaluate("[...document.querySelector('.waapiObservation').querySelectorAll('button')].find(b=>b.textContent==='再生 / 再開').click()");q.evaluate("Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'))");q.wait_for_timeout(100);x=snap('synthetic hidden');check('synthetic hidden cancels observation motion',c.locator('.waapiObservation').evaluate('n=>!n.getAnimations({subtree:true}).some(a=>a.playState===\"running\")'));q.evaluate("delete document.hidden;document.dispatchEvent(new Event('visibilitychange'))");q.wait_for_timeout(100);check('synthetic visible observation no autoplay',c.locator('.waapiObservation').evaluate('n=>!n.getAnimations({subtree:true}).some(a=>a.playState===\"running\")'));click('通常モードへ戻る')
++    click('Replay');q.get_by_role('button',name='サンプル一覧を閉じる',exact=False).evaluate('b=>b.click()');q.wait_for_timeout(750);x=snap('gallery unmount');check('unmount cancels all owned animations',all(a['playState']=='idle' for a in x['normal']));check('unmount removes card',q.locator('.waapiSampleCard').count()==0)
++    q.get_by_role('button',name='サンプル一覧を見る',exact=False).evaluate('b=>b.click()');q.get_by_label('検索',exact=True).fill('Menu Selection Cursor');c=q.locator('.waapiSampleCard');c.scroll_into_view_if_needed();click('観察モードを開く');click('通常モードへ戻る');click('↓ Down');check('Menu selection after observation',c.locator('.isSelected').inner_text().endswith('COLLECTION'));menu_before=q.evaluate('()=>{window.__menuOld=__n2.records.filter(r=>r.target.closest(".gameMenu"));return __menuOld.map(r=>({id:r.id,...__n2.snap(r.a)}))}');q.emulate_media(reduced_motion='reduce')
++    try:q.wait_for_function('()=>__menuOld.every(r=>r.a.playState==="idle")',timeout=1500)
++    except Exception:pass
++    menu_after=q.evaluate('()=>({old:__menuOld.map(r=>({id:r.id,...__n2.snap(r.a)})),cancels:__n2.events.filter(e=>e.kind==="cancel"&&__menuOld.some(r=>r.id===e.id))})');r['menuCancellation']={'before':menu_before,**menu_after};check('Menu reduced selection preserved',c.locator('.isSelected').inner_text().endswith('COLLECTION'));check('Menu old animations cancelled after reduction',bool(menu_before) and all(a['playState']=='idle' for a in menu_after['old']) and bool(menu_after['cancels']))
++    q.screenshot(path=str(OUT.parent/(OUT.stem+'-'+engine+'-'+str(width)+'.png')),full_page=False)
++    check('no pageerror',not r['pageerror']);r['status']='FAIL' if any(not x['pass'] for x in r['checks']) or any(x['verdict']=='FAIL' for x in r['cancellation']) or not r.get('pausedDiagnostic',{}).get('pass',False) else 'PARTIAL' if any(x['verdict']=='INPUT_MISSED' for x in r['cancellation']) else 'PASS'
++   except Exception as e:r.update(status='EXCEPTION',error=str(e),traceback=traceback.format_exc())
++   finally:save();context.close();print(engine,width,r['status'],flush=True)
++  browser.close()
++report['finishedAt']=time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime());save()
++
++# A process exit of zero requires every requested condition to pass.
++raise SystemExit(0 if report['positiveControl']['accepted'] and all(c['rejected'] for c in report['negativeControls']) and report['conditions'] and all(c['status']=='PASS' for c in report['conditions']) else 1)
+diff --git a/scripts/verify-waapi-observation-style.py b/scripts/verify-waapi-observation-style.py
+new file mode 100644
+index 0000000..e781feb
+--- /dev/null
++++ b/scripts/verify-waapi-observation-style.py
+@@ -0,0 +1,45 @@
++"""Final CSS-only follow-up; distinct from the complete native observation run."""
++import hashlib,json,os,traceback
++from pathlib import Path
++from playwright.sync_api import sync_playwright
++ROOT=Path(__file__).resolve().parents[1]
++OUT=os.environ.get('WAAPI_RESULT','/tmp/observation-style.json')
++results=[]
++artifacts={str(p):hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in [Path('app/components/WaapiGameObservation.tsx'),Path('app/globals.css'),Path('out/index.html')]}
++with sync_playwright() as p:
++ for engine in os.environ.get('WAAPI_BROWSERS','chromium,webkit').split(','):
++  b=getattr(p,engine).launch(headless=True,executable_path=os.environ['WAAPI_'+engine.upper()+'_PATH'])
++  for width in map(int,os.environ.get('WAAPI_WIDTHS','375,390,765').split(',')):
++   context=b.new_context(viewport={'width':width,'height':900},has_touch=True,reduced_motion='no-preference');q=context.new_page();q.set_default_timeout(10000)
++   r={'engine':engine,'version':b.version,'width':width,'artifactSHA256':artifacts,'checks':[],'measurements':[],'pageErrors':[]};results.append(r);q.on('pageerror',lambda e:r['pageErrors'].append(str(e)))
++   try:
++    q.goto(os.environ.get('WAAPI_URL','http://127.0.0.1:4201/Loading-museum/'),wait_until='networkidle');q.get_by_role('button',name='サンプル一覧を見る',exact=False).click()
++    for name in ['Menu Selection Cursor','Coin Pickup Arc']:
++     q.get_by_label('検索',exact=True).fill(name);c=q.locator('.waapiSampleCard');c.scroll_into_view_if_needed();normal=c.locator('[data-normal-game]')
++     if name.startswith('Menu'):
++      c.get_by_role('button',name='↓ Down',exact=True).click();assert 'COLLECTION' in normal.locator('.isSelected').inner_text()
++     else:
++      c.get_by_role('button',name='Reset',exact=True).click();assert normal.locator('output').inner_text()=='SCORE 0'
++     toggle=c.locator('.waapiObservationToggle');toggle.focus();q.keyboard.press('Shift+Tab');q.keyboard.press('Tab');g=toggle.evaluate('n=>{const r=n.getBoundingClientRect(),s=getComputedStyle(n);return {height:r.height,width:r.width,outline:s.outline,outlineWidth:parseFloat(s.outlineWidth),color:s.color,background:s.backgroundColor,focused:document.activeElement===n,focusVisible:n.matches(":focus-visible")}}')
++     assert g['height']>=40 and g['outlineWidth']>0 and g['focused'] and g['focusVisible'],g
++     q.keyboard.press('Space');o=c.locator('.waapiObservation');q.wait_for_function('(n)=>n.dataset.controller!=="inactive"',arg=o.element_handle());assert toggle.get_attribute('aria-pressed')=='true'
++     step=o.get_by_role('button',name='1ステップ進む',exact=True);step.focus();q.keyboard.press('Enter')
++     q.wait_for_function('(n)=>{const a=n.querySelector("[data-observation-target]").getAnimations()[0];return a && !a.pending && Math.abs(a.currentTime-1000/60)<.1}',arg=o.element_handle())
++     toggle.focus();q.keyboard.press('Space');assert toggle.get_attribute('aria-pressed')=='false'
++     if name.startswith('Menu'):assert 'COLLECTION' in normal.locator('.isSelected').inner_text()
++     else:assert normal.locator('output').inner_text()=='SCORE 0'
++     toggle.tap();o=c.locator('.waapiObservation');o.scroll_into_view_if_needed()
++     c.evaluate('n=>{const es=[...n.querySelectorAll("*")],sizes=es.map(e=>parseFloat(getComputedStyle(e).fontSize));es.forEach((e,i)=>e.style.fontSize=sizes[i]*2+"px")}')
++     for theme in ['light','dark']:
++      q.emulate_media(color_scheme=theme);assert o.evaluate('n=>n.scrollWidth<=n.clientWidth+1')
++     g200=toggle.bounding_box();assert g200['height']>=40,g200
++     r['measurements'].append({'name':name,'toggle':g,'text200Toggle':g200,'observationSize':o.evaluate('n=>({client:n.clientWidth,scroll:n.scrollWidth})')})
++     r['checks'].append(name+': toggle >=40px/focus/keyboard Space mode toggle/Enter step/native time/normal state preserved/touch toggle/CSS200/both media no observation overflow')
++     if (engine,width,name) in [('chromium',375,'Coin Pickup Arc'),('webkit',390,'Menu Selection Cursor')]:
++      folder=Path(os.environ.get('WAAPI_SCREENSHOTS','/tmp/loading-observe-style-shots'));folder.mkdir(parents=True,exist_ok=True);c.screenshot(path=str(folder/f'{engine}-{width}-{name.split()[0]}-text200.png'))
++    assert not r['pageErrors'];r['status']='PASS'
++   except Exception as e:r['status']='FAIL';r['failure']=str(e);r['traceback']=traceback.format_exc()
++   finally:
++    Path(OUT).write_text(json.dumps(results,ensure_ascii=False,indent=2));print(engine,width,r['status'],r.get('failure',''),flush=True);context.close()
++  b.close()
++raise SystemExit(0 if all(r['status']=='PASS' for r in results) else 1)
+diff --git a/scripts/verify-waapi-observation.py b/scripts/verify-waapi-observation.py
+new file mode 100644
+index 0000000..b432824
+--- /dev/null
++++ b/scripts/verify-waapi-observation.py
+@@ -0,0 +1,196 @@
++"""Stage 2A native WAAPI checks. Serve a local static export; never publish.
++Requires Python Playwright and installed browsers. Each engine/width can run separately.
++The hidden-tab case dispatches a synthetic visibilitychange; it is NOT real OS backgrounding.
++"""
++import hashlib, json, os, time, traceback
++from pathlib import Path
++from playwright.sync_api import sync_playwright
++URL=os.environ.get('WAAPI_URL','http://127.0.0.1:4201/Loading-museum/')
++OUT=os.environ.get('WAAPI_RESULT','/tmp/observation-result.json')
++results=[]
++ROOT=Path(__file__).resolve().parents[1]
++artifacts={str(path):hashlib.sha256((ROOT/path).read_bytes()).hexdigest() for path in [Path("app/components/WaapiGameObservation.tsx"),Path("app/globals.css"),Path("out/index.html")] if (ROOT/path).is_file()}
++
++def live_pause_reached(before,settled,duration):
++ return before['native']=='running' and settled['native']=='paused' and 0<before['time']<duration and 0<settled['time']<duration and abs(before['time']-settled['time'])<.1
++pause_controls=[]
++for label,before,after,expected in [
++ ('live-held',{'time':50,'native':'running'},{'time':50,'native':'paused'},True),
++ ('natural-endpoint',{'time':220,'native':'finished'},{'time':220,'native':'paused'},False),
++ ('seek-only-not-live',{'time':50,'native':'paused'},{'time':50,'native':'paused'},False),
++ ('pause-drift',{'time':50,'native':'running'},{'time':60,'native':'paused'},False)]:
++ actual=live_pause_reached(before,after,220);assert actual==expected;pause_controls.append({'name':label,'expected':expected,'actual':actual})
++
++def save(): Path(OUT).write_text(json.dumps(results,ensure_ascii=False,indent=2))
++with sync_playwright() as p:
++ for engine in os.environ.get('WAAPI_BROWSERS','chromium,webkit').split(','):
++  for width in map(int,os.environ.get('WAAPI_WIDTHS','375,390,765').split(',')):
++   r={'engine':engine,'width':width,'checks':[],'measurements':[],'errors':[],'status':'RUNNING','artifactSHA256':artifacts,'pausePredicateControls':pause_controls};results.append(r)
++   browser=None
++   try:
++    path=os.environ.get('WAAPI_'+engine.upper()+'_PATH')
++    browser=getattr(p,engine).launch(headless=True,**({'executable_path':path} if path else {}))
++    r['version']=browser.version
++    context=browser.new_context(viewport={'width':width,'height':900},reduced_motion='no-preference',has_touch=True)
++    q=context.new_page();q.set_default_timeout(10000);q.on('pageerror',lambda e:r['errors'].append(str(e)))
++    q.goto(URL,wait_until='networkidle');q.get_by_role('button',name='サンプル一覧を見る',exact=False).click()
++    assert q.locator('.waapiSampleCard').count()==47
++    # Current main after PR #51, checked independently by rendered-html.test.mjs.
++    assert '13 ROOMS / 251 OBJECTS' in q.locator('.archiveMeta').inner_text()
++    assert sum(map(int,q.locator('.waapiCategoryCounts b').all_text_contents()))==47
++    r['pageGeometry100']=q.evaluate('()=>({viewport:innerWidth,scroll:document.documentElement.scrollWidth})')
++    assert r['pageGeometry100']['scroll']<=width,r['pageGeometry100']
++    def card(name):
++     q.get_by_label('検索',exact=True).fill(name)
++     c=q.locator('.waapiSampleCard').filter(has=q.get_by_role('heading',name=name,exact=True));c.scroll_into_view_if_needed();return c
++    def snapshot(o):
++     return o.evaluate('''o=>{const t=o.querySelector('[data-observation-target]'),a=t.getAnimations()[0],rect=t.getBoundingClientRect(),stage=o.querySelector("[data-observation-stage]").getBoundingClientRect(),end=o.querySelector("[data-observation-end]")?.getBoundingClientRect();return {relative:{x:rect.x-stage.x,y:rect.y-stage.y,endCenter:end?(end.top+end.bottom)/2-stage.top:null},time:a?.currentTime,native:a?.playState,pending:a?.pending,controller:o.dataset.controller,reading:o.querySelector('[data-observation-reading]').textContent,rect:{x:rect.x,y:rect.y,w:rect.width,h:rect.height},opacity:getComputedStyle(t).opacity,transform:getComputedStyle(t).transform,duration:a?.effect.getTiming().duration}}''')
++    def stable(o):
++     q.wait_for_function('(n)=>n.dataset.controller!=="inactive" && n.querySelector("[data-observation-target]").getAnimations().length>0',arg=o.element_handle(),timeout=1000)
++     o.locator('[data-observation-target]').evaluate('async t=>{const a=t.getAnimations()[0];if(a)await a.ready;}')
++    def seek(o,value):
++     slider=o.get_by_role('slider',name='観察時間（ms）')
++     slider.evaluate('''(n,v)=>{Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(n,String(v));n.dispatchEvent(new Event('input',{bubbles:true}));n.dispatchEvent(new Event('change',{bubbles:true}));}''',value)
++     stable(o);q.wait_for_timeout(35)
++     x=snapshot(o);assert abs(x['time']-value)<.1,x;assert f'{value:.2f}' in x['reading'],x;assert f"native currentTime: {x['time']:.2f} ms" in x['reading'],x;return x
++    def begin(c):
++     c.get_by_role('button',name='観察モードを開く',exact=True).click();o=c.locator('.waapiObservation');o.scroll_into_view_if_needed();stable(o);return o
++    def button(o,name):return o.get_by_role('button',name=name,exact=True)
++    for name in ['Menu Selection Cursor','Coin Pickup Arc']:
++     c=card(name);normal=c.locator('[data-normal-game]')
++     if name.startswith('Menu'):
++      c.get_by_role('button',name='↓ Down',exact=True).click();q.wait_for_timeout(260)
++      assert 'COLLECTION' in normal.locator('.isSelected').inner_text()
++     else:
++      c.get_by_role('button',name='Reset',exact=True).click();q.wait_for_timeout(900)
++      assert normal.locator('output').inner_text()=='SCORE 0'
++     o=begin(c);x=snapshot(o);duration=x['duration'];assert duration>0 and x['time']==0 and x['native']=='paused',x
++     r['measurements'].append({'name':name,'initial':x})
++     # Native playback and pause are driven through actual buttons, not a mocked Animation.
++     pause_input=o.evaluate('''async n=>{
++      const b=t=>[...n.querySelectorAll('button')].find(b=>b.textContent===t);
++      // Settle fonts and two rendering frames before the timed input; do not alter playback or assertions.
++      const preflightStart=performance.now();await document.fonts.ready;const fontsReady=performance.now();await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));const preflightDone=performance.now();
++      const started=performance.now();b('再生 / 再開').click();
++      const a=n.querySelector('[data-observation-target]').getAnimations()[0];
++      await a.ready;const readyAt=performance.now();let frames=0;
++      while(!(a.currentTime>0)&&performance.now()-started<1000){await new Promise(resolve=>requestAnimationFrame(resolve));frames++;}
++      const before={time:a.currentTime,clock:performance.now(),native:a.playState,pending:a.pending};
++      b('一時停止').click();const immediate={time:a.currentTime,clock:performance.now(),native:a.playState,pending:a.pending};
++      await a.ready;return {preflightStart,fontsReady,preflightDone,started,readyAt,frames,before,immediate,readyAfterPause:performance.now()};
++     }''');stable(o);a=snapshot(o)
++     r['measurements'].append({'name':name,'pauseInput':pause_input,'settledPause':a})
++     assert f"native currentTime: {a['time']:.2f} ms" in a['reading'],a
++     if 0<pause_input['before']['time']<duration:
++      assert abs(a['time']-pause_input['before']['time'])<.1, {'pauseTimeDrift':{'input':pause_input,'settled':a}}
++     if not live_pause_reached(pause_input['before'],a,duration):
++      r.setdefault('pathFailures',[]).append({'path':name+': mid-flight pause','expected':'0 < native currentTime < duration','observed':a})
++      # Continue independent seek/step/cleanup cases; this does not pass the failed pause path.
++      a=seek(o,duration/3)
++     q.wait_for_timeout(100);b=snapshot(o);assert abs(a['time']-b['time'])<.1 and a['transform']==b['transform'],(a,b)
++     button(o,'再生 / 再開').click();q.wait_for_timeout(30);button(o,'一時停止').click();stable(o);b=snapshot(o);assert b['time']>=a['time'],(a,b)
++     seek(o,duration/2)
++     seek_pause=o.evaluate('''n=>{const b=t=>[...n.querySelectorAll('button')].find(b=>b.textContent===t);b('再生 / 再開').click();const a=n.querySelector('[data-observation-target]').getAnimations()[0];const input=a.currentTime;b('一時停止').click();return input;}''')
++     stable(o);assert abs(snapshot(o)['time']-seek_pause)<.1,{'seekResumePauseInput':seek_pause,'settled':snapshot(o)}
++     r['measurements'].append({'name':name,'explicitSeekResumePause':{'input':seek_pause,'settled':snapshot(o)}})
++     button(o,'観察位置を先頭へ').click();stable(o);assert snapshot(o)['time']==0
++     button(o,'1ステップ進む').tap();stable(o);assert abs(snapshot(o)['time']-1000/60)<.1
++     button(o,'1ステップ戻る').focus();q.keyboard.press('Enter');stable(o);assert snapshot(o)['time']==0
++     assert button(o,'1ステップ戻る').is_disabled()
++     positions=[seek(o,v) for v in [0,duration/2,duration-0.01,duration]]
++     assert button(o,'1ステップ進む').is_disabled()
++     button(o,'1ステップ戻る').click();stable(o);assert abs(snapshot(o)['time']-(duration-1000/60))<.1
++     button(o,'最初から再生').click();q.wait_for_function('(n)=>n.dataset.controller==="finished"',arg=o.element_handle())
++     assert snapshot(o)['native']=='finished',snapshot(o)
++     seek(o,duration/2);button(o,'再生 / 再開').click();q.wait_for_function('(n)=>n.dataset.controller==="finished"',arg=o.element_handle())
++     r['measurements'].append({'name':name,'pause':a,'positions':positions})
++     if name.startswith('Menu'):
++      assert positions[0]['relative']['y']<positions[1]['relative']['y']<positions[-1]['relative']['y'],positions
++      assert abs(positions[-1]['relative']['y']+positions[-1]['rect']['h']/2-positions[-1]['relative']['endCenter'])<1
++      seek(o,duration/2);ease=snapshot(o);o.get_by_label('観察のeasing',exact=True).select_option('linear');stable(o);linear=snapshot(o)
++      assert linear['time']==ease['time'] and abs(linear['relative']['y']-ease['relative']['y'])>1,(ease,linear)
++      assert 'COLLECTION' in normal.locator('.isSelected').inner_text()
++     else:
++      assert positions[0]['rect']['x']!=positions[1]['rect']['x'] and float(positions[-1]['opacity'])<float(positions[0]['opacity']),positions
++      assert normal.locator('output').inner_text()=='SCORE 0'
++     # Keyboard slider and focus, rapid alternating seeks and controls.
++     slider=o.get_by_role('slider',name='観察時間（ms）');slider.focus();q.keyboard.press('Home');stable(o);assert snapshot(o)['time']==0
++     q.keyboard.press('End');stable(o);assert snapshot(o)['time']==duration
++     assert slider.evaluate('n=>document.activeElement===n')
++     focus=slider.evaluate('n=>({active:document.activeElement===n,visible:n.matches(":focus-visible"),outline:getComputedStyle(n).outlineStyle,width:parseFloat(getComputedStyle(n).outlineWidth)})')
++     assert focus['active'] and focus['visible'] and focus['outline']!='none' and focus['width']>0,focus
++     r['measurements'].append({'name':name,'keyboardRangeFocus':focus})
++     box=slider.bounding_box();slider.tap(position={'x':box['width']/2,'y':box['height']/2});stable(o)
++     pointer_value=float(slider.input_value());pointer_state=snapshot(o)
++     assert 0<pointer_value<duration and abs(pointer_state['time']-pointer_value)<.1,{'rangeValue':pointer_value,'native':pointer_state}
++     r['measurements'].append({'name':name,'nativeTouchRange':{'value':pointer_value,'snapshot':pointer_state}})
++     for value in [duration*.9,duration*.1,duration*.8,0]:seek(o,value)
++     for _ in range(3):button(o,'再生 / 再開').click();button(o,'一時停止').click()
++     stable(o);assert o.locator('[data-observation-target]').evaluate('n=>n.getAnimations().length')==1
++     # Cancel on offscreen, restore at preserved time without automatic restart.
++     seek(o,duration/3);o.evaluate('n=>window.oldObservation=n.querySelector("[data-observation-target]").getAnimations()[0]')
++     q.evaluate('scrollTo(0,0)');q.wait_for_function('oldObservation.playState==="idle"',timeout=1000)
++     assert q.evaluate('oldObservation.playState')=='idle'
++     q.wait_for_function('(n)=>n.dataset.controller==="inactive"',arg=o.element_handle(),timeout=1000)
++     inactive=snapshot(o);assert 'native currentTime: 未取得（null）' in inactive['reading'],inactive
++     r['measurements'].append({'name':name,'offscreenNullReading':inactive})
++     o.scroll_into_view_if_needed();q.wait_for_timeout(100);stable(o);assert snapshot(o)['native']=='paused';assert abs(snapshot(o)['time']-duration/3)<.1
++     # Synthetic visibility is expressly separate from true browser/OS backgrounding.
++     button(o,'最初から再生').click();q.evaluate("Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'))")
++     q.wait_for_timeout(50);assert snapshot(o)['controller']=='inactive'
++     q.evaluate("delete document.hidden;document.dispatchEvent(new Event('visibilitychange'))");q.wait_for_timeout(60);stable(o);assert snapshot(o)['native']=='paused'
++     # Mid-flight reduced motion cancels old native Animation and recreates a static preview.
++     o.evaluate('n=>window.preReduce=n.querySelector("[data-observation-target]").getAnimations()[0]');button(o,'最初から再生').click()
++     q.emulate_media(reduced_motion='reduce');q.wait_for_function('preReduce.playState==="idle"')
++     assert button(o,'再生 / 再開').is_disabled();stable(o);assert snapshot(o)['native']=='paused'
++     seek(o,duration/2);button(o,'1ステップ戻る').click();stable(o);assert abs(snapshot(o)['time']-(duration/2-1000/60))<.1
++     q.emulate_media(reduced_motion='no-preference');q.wait_for_function('(n)=>!n.disabled',arg=button(o,'再生 / 再開').element_handle());stable(o);assert snapshot(o)['native']=='paused'
++     button(o,'最初から再生').click();q.wait_for_timeout(35);button(o,'一時停止').click();stable(o);assert snapshot(o)['time']>0
++     r['checks'].append(name+': native time/play/pause/resume/steps/seek/boundaries/finished rewind/easing/keyboard/rapid/offscreen/synthetic visibility/media change; excludes any separately recorded pathFailures')
++     c.get_by_role('button',name='通常モードへ戻る',exact=True).click()
++     if name.startswith('Menu'):
++      assert 'COLLECTION' in normal.locator('.isSelected').inner_text()
++      c.get_by_role('button',name='↓ Down',exact=True).click();q.wait_for_timeout(300)
++      normal.evaluate('async n=>{const animations=n.getAnimations({subtree:true});await Promise.race([Promise.all(animations.map(a=>a.finished.catch(()=>{}))),new Promise((_,reject)=>setTimeout(()=>reject(Error("normal menu animation did not settle")),1000))])}')
++      g=normal.locator('.isSelected').evaluate('n=>{let a=n.querySelector("i").getBoundingClientRect(),b=n.getBoundingClientRect();return (a.top+a.bottom-b.top-b.bottom)/2}')
++      assert abs(g)<1,g
++     else:
++      assert normal.locator('output').inner_text()=='SCORE 0';c.get_by_role('button',name='COLLECT',exact=True).click();assert normal.locator('output').inner_text()=='SCORE 100'
++      o=begin(c);seek(o,duration);seek(o,0);c.get_by_role('button',name='通常モードへ戻る',exact=True).click();assert normal.locator('output').inner_text()=='SCORE 100';assert c.get_by_role('button',name='COLLECT',exact=True).is_disabled()
++      c.get_by_role('button',name='Replay',exact=True).click();q.wait_for_timeout(850);assert normal.locator('output').inner_text()=='SCORE 100'
++      c.get_by_role('button',name='Reset',exact=True).click();assert normal.locator('output').inner_text()=='SCORE 0'
++     r['checks'].append(name+': normal state retained; original input and Reset contract')
++     if name.startswith('Menu'):
++      o=begin(c);seek(o,duration/2)
++      q.set_viewport_size({'width':375 if width!=375 else 390,'height':900});o.evaluate('n=>n.scrollIntoView({block:"center",behavior:"instant"})');q.wait_for_timeout(100);stable(o)
++      before=snapshot(o);assert abs(before['time']-duration/2)<.1 and before['native']=='paused',before
++      o.locator('.gameMenu').evaluate("n=>n.style.fontFamily='serif'");q.wait_for_timeout(100);stable(o)
++      after=snapshot(o);assert abs(after['time']-duration/2)<.1 and after['native']=='paused',after
++      q.set_viewport_size({'width':width,'height':900});o.evaluate('n=>n.scrollIntoView({block:"center",behavior:"instant"})');q.wait_for_timeout(100);stable(o)
++      r['measurements'].append({'resizeAndFontAtHeldTime':{'before':before,'after':after}})
++      c.get_by_role('button',name='通常モードへ戻る',exact=True).click()
++     # Narrow layout, CSS text-only expansion and light/dark media are not actual zoom.
++     o=begin(c)
++     for theme in ['light','dark']:
++      q.emulate_media(color_scheme=theme);assert o.evaluate('n=>n.scrollWidth<=n.clientWidth+1')
++     c.evaluate('n=>{const es=[...n.querySelectorAll("*")];const fs=es.map(e=>parseFloat(getComputedStyle(e).fontSize));es.forEach((e,i)=>e.style.fontSize=fs[i]*2+"px")}')
++     q.wait_for_timeout(100);o.scroll_into_view_if_needed();stable(o);seek(o,duration)
++     overflow=o.evaluate('n=>({scroll:n.scrollWidth,width:n.clientWidth,overflow:[...n.querySelectorAll("*")].filter(e=>e.getBoundingClientRect().right>n.getBoundingClientRect().right+1).map(e=>({tag:e.tagName,cls:e.className,text:e.textContent.slice(0,100),right:e.getBoundingClientRect().right,width:e.getBoundingClientRect().width}))})');assert overflow['scroll']<=overflow['width']+1,overflow
++     if name.startswith('Menu'):
++      g=o.evaluate('n=>{let a=n.querySelector("[data-observation-target]").getBoundingClientRect(),b=n.querySelector("[data-observation-end]").getBoundingClientRect();return (a.top+a.bottom-b.top-b.bottom)/2}');assert abs(g)<1,g
++     shot=os.environ.get('WAAPI_SCREENSHOTS')
++     if shot:
++      Path(shot).mkdir(parents=True,exist_ok=True);o.screenshot(path=f'{shot}/{engine}-{width}-{name.split()[0]}-text200.png')
++     r['checks'].append(name+': both color media/CSS text200 no observation overflow/end geometry')
++     # Closing gallery unmounts preview and cancels old native animation.
++     o.evaluate('n=>window.closedAnimation=n.querySelector("[data-observation-target]").getAnimations()[0]')
++     q.get_by_role('button',name='サンプル一覧を閉じる',exact=False).click();assert q.evaluate('closedAnimation.playState')=='idle'
++     q.get_by_role('button',name='サンプル一覧を見る',exact=False).click()
++     r['checks'].append(name+': close/unmount cancellation')
++    assert not r['errors'];r['status']='PARTIAL' if r.get('pathFailures') else 'PASS'
++   except Exception as e:r['status']='FAIL';r['failure']=str(e);r['traceback']=traceback.format_exc()
++   finally:
++    save();print(engine,width,r['status'],r.get('failure',''),flush=True)
++    if browser:browser.close()
++save()
++raise SystemExit(0 if all(x['status']=='PASS' for x in results) else 1)
+diff --git a/tests/waapi-gallery.test.tsx b/tests/waapi-gallery.test.tsx
+index 6ad6199..a735f20 100644
+--- a/tests/waapi-gallery.test.tsx
++++ b/tests/waapi-gallery.test.tsx
+@@ -61,31 +61,51 @@ function openGallery() {
+ }
+ 
+ describe("WAAPI標本ギャラリー操作", () => {
+-  it("初期DOMを遅延し、開閉・検索・複合フィルター・0件・解除を扱う", () => {
++  it("初期DOMを遅延し、正規化検索・解除・開閉を扱う", () => {
+     render(<WaapiSampleGallery />);
+     expect(screen.queryByText("Fade In")).toBeNull();
+     expect(screen.queryByRole("region", { name: /WAAPI/ })).toBeNull();
+     openGallery();
+     expect(screen.getAllByRole("article").length).toBeGreaterThanOrEqual(47);
+     expect(screen.getByText("47 / 47 samples")).not.toBeNull();
++    // Scope controls so labels in all 47 specimens are not traversed on each input.
++    const filtersRoot = document.querySelector(".waapiFilters");
++    expect(filtersRoot).not.toBeNull();
++    const filters = within(filtersRoot as HTMLElement);
+ 
+-    fireEvent.change(screen.getByLabelText("検索"), { target: { value: "  FADE IN  " } });
++    fireEvent.change(filters.getByLabelText("検索"), { target: { value: "  FADE IN  " } });
+     expect(screen.getByText("1 / 47 samples")).not.toBeNull();
+     expect(screen.getByText("Fade In")).not.toBeNull();
++    fireEvent.click(filters.getByRole("button", { name: "絞り込みを解除" }));
++    expect(screen.getByText("47 / 47 samples")).not.toBeNull();
+ 
+-    fireEvent.click(screen.getByRole("button", { name: "絞り込みを解除" }));
+-    fireEvent.change(screen.getByLabelText("カテゴリ"), { target: { value: "UI Feedback" } });
+-    fireEvent.change(screen.getByLabelText("用途"), { target: { value: "Modal" } });
++    const cancelCount = animations.reduce((total, item) => total + item.animation.cancel.mock.calls.length, 0);
++    // Expanded narrows candidates before accessible-name calculation while
++    // preserving role, accessible name, visibility and uniqueness checks.
++    fireEvent.click(screen.getByRole("button", { name: /サンプル一覧を閉じる/, expanded: true }));
++    expect(screen.queryByText("Fade In")).toBeNull();
++    expect(animations.reduce((total, item) => total + item.animation.cancel.mock.calls.length, 0)).toBeGreaterThan(cancelCount);
++  });
++
++  it("複合フィルター・0件・解除後の全件表示と閉鎖取消を扱う", () => {
++    render(<WaapiSampleGallery />);
++    openGallery();
++    expect(screen.getByText("47 / 47 samples")).not.toBeNull();
++    const filtersRoot = document.querySelector(".waapiFilters");
++    expect(filtersRoot).not.toBeNull();
++    const filters = within(filtersRoot as HTMLElement);
++
++    fireEvent.change(filters.getByLabelText("カテゴリ"), { target: { value: "UI Feedback" } });
++    fireEvent.change(filters.getByLabelText("用途"), { target: { value: "Modal" } });
+     expect(screen.getByText("1 / 47 samples")).not.toBeNull();
+     expect(screen.getByText("Modal Open / Close")).not.toBeNull();
+-
+-    fireEvent.change(screen.getByLabelText("検索"), { target: { value: "一致しない文字列" } });
++    fireEvent.change(filters.getByLabelText("検索"), { target: { value: "一致しない文字列" } });
+     expect(screen.getByText(/条件に一致する標本はありません/)).not.toBeNull();
+-    fireEvent.click(screen.getByRole("button", { name: "絞り込みを解除" }));
++    fireEvent.click(filters.getByRole("button", { name: "絞り込みを解除" }));
+     expect(screen.getByText("47 / 47 samples")).not.toBeNull();
+ 
+     const cancelCount = animations.reduce((total, item) => total + item.animation.cancel.mock.calls.length, 0);
+-    fireEvent.click(screen.getByRole("button", { name: /サンプル一覧を閉じる/ }));
++    fireEvent.click(screen.getByRole("button", { name: /サンプル一覧を閉じる/, expanded: true }));
+     expect(screen.queryByText("Fade In")).toBeNull();
+     expect(animations.reduce((total, item) => total + item.animation.cancel.mock.calls.length, 0)).toBeGreaterThan(cancelCount);
+   });
+diff --git a/tests/waapi-game-regressions.test.tsx b/tests/waapi-game-regressions.test.tsx
+index 48c67d8..d0c2e3d 100644
+--- a/tests/waapi-game-regressions.test.tsx
++++ b/tests/waapi-game-regressions.test.tsx
+@@ -1,5 +1,5 @@
+ // @vitest-environment jsdom
+-import { cleanup, fireEvent, render } from '@testing-library/react';
++import { act, cleanup, fireEvent, render } from '@testing-library/react';
+ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
+ import { ExpandedGamePreview } from '../app/components/WaapiExpandedPreviews';
+ import { waapiSamples } from '../app/data/waapiSamples';
+@@ -43,3 +43,50 @@ it('Reset during finite movement cancels old animations without delayed board re
+  expect(animations.every(animation=>animation.cancel.mock.calls.length>0)).toBe(true);
+  expect(state()).toEqual(initial); expect(vi.getTimerCount()).toBe(0);
+ });
++
++
++it('Turn RESET restores DOM immediately and invalidates queued FLIP callbacks', () => {
++ const sample=waapiSamples.find(s=>s.render==='turn-order')!;
++ const r=render(<ExpandedGamePreview sample={sample} active reducedMotion={false} />);
++ const order=()=>Array.from(r.container.querySelectorAll('[data-unit]'),e=>e.getAttribute('data-unit'));
++ fireEvent.click(r.getByText('HASTE'));
++ expect(order()).toEqual(['MAGE','KNIGHT','ROGUE']);
++ fireEvent.click(r.getByText('RESET'));
++ expect(order()).toEqual(['KNIGHT','MAGE','ROGUE']);
++ expect(r.container.querySelector('output')!.textContent).toContain('NORMALIZE');
++ act(()=>vi.runAllTimers());
++ expect(HTMLElement.prototype.animate).not.toHaveBeenCalled();
++ fireEvent.click(r.getByText('HASTE'));
++ act(()=>vi.runAllTimers());
++ expect(HTMLElement.prototype.animate).toHaveBeenCalledTimes(3);
++ const running=vi.mocked(HTMLElement.prototype.animate).mock.results.map(result=>result.value);
++ fireEvent.click(r.getByText('RESET'));
++ expect(order()).toEqual(['KNIGHT','MAGE','ROGUE']);
++ expect(running.every(animation=>vi.mocked(animation.cancel).mock.calls.length===1)).toBe(true);
++ fireEvent.click(r.getByText('HASTE'));
++ r.rerender(<ExpandedGamePreview sample={sample} active={false} reducedMotion={false} />);
++ act(()=>vi.runAllTimers());
++ expect(HTMLElement.prototype.animate).toHaveBeenCalledTimes(3);
++ r.rerender(<ExpandedGamePreview sample={sample} active reducedMotion={false} />);
++ fireEvent.click(r.getByText('STUN'));
++ r.unmount();
++ act(()=>vi.runAllTimers());
++ expect(HTMLElement.prototype.animate).toHaveBeenCalledTimes(3);
++});
++
++
++it('Turn motion reduction cancels running FLIP animations', () => {
++ const sample=waapiSamples.find(s=>s.render==='turn-order')!;
++ const r=render(<ExpandedGamePreview sample={sample} active reducedMotion={false} />);
++ fireEvent.click(r.getByText('HASTE'));
++ act(()=>vi.runAllTimers());
++ const running=vi.mocked(HTMLElement.prototype.animate).mock.results.map(result=>result.value);
++ expect(running).toHaveLength(3);
++ r.rerender(<ExpandedGamePreview sample={sample} active reducedMotion />);
++ expect(running.every(animation=>vi.mocked(animation.cancel).mock.calls.length===1)).toBe(true);
++ r.rerender(<ExpandedGamePreview sample={sample} active reducedMotion={false} />);
++ fireEvent.click(r.getByText('STUN'));
++ r.rerender(<ExpandedGamePreview sample={sample} active reducedMotion />);
++ act(()=>vi.runAllTimers());
++ expect(HTMLElement.prototype.animate).toHaveBeenCalledTimes(3);
++});
+diff --git a/tests/waapi-observation-independent.test.tsx b/tests/waapi-observation-independent.test.tsx
+new file mode 100644
+index 0000000..e4134db
+--- /dev/null
++++ b/tests/waapi-observation-independent.test.tsx
+@@ -0,0 +1,73 @@
++// @vitest-environment jsdom
++// Independent reviewer contracts. WAAPI double, not a native-browser claim.
++import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
++import { afterEach, beforeEach, expect, it, vi } from 'vitest';
++import { WaapiGameObservation } from '../app/components/WaapiGameObservation';
++import { waapiSamples } from '../app/data/waapiSamples';
++const coin = waapiSamples.find(s => s.render === 'coin')!;
++let a: { currentTime: number | null; playState: AnimationPlayState; pending: boolean; pause: () => void; play: () => void; cancel: () => void };
++beforeEach(() => {
++  vi.useFakeTimers();
++  Object.defineProperty(document, 'hidden', {configurable:true,value:false});
++  vi.stubGlobal('ResizeObserver', class { observe() {} disconnect() {} });
++  vi.stubGlobal('requestAnimationFrame', (f:FrameRequestCallback) => window.setTimeout(() => f(Date.now()),16));
++  vi.stubGlobal('cancelAnimationFrame', (id:number) => clearTimeout(id));
++  Object.defineProperty(HTMLElement.prototype,'animate',{configurable:true,value:vi.fn(() => {
++    a = {currentTime:0,playState:'running',pending:false,pause(){a.playState='paused';},play(){a.playState='running';},cancel(){a.playState='idle';}};
++    return a;
++  })});
++});
++afterEach(() => {cleanup();vi.useRealTimers();vi.unstubAllGlobals();vi.restoreAllMocks();});
++it.each([['1ステップ進む',1],['1ステップ戻る',-1]] as const)('running %s samples the current native time, not the previous rendered frame', (label,direction) => {
++  render(<WaapiGameObservation sample={coin} active reducedMotion={false}/>);
++  fireEvent.click(screen.getByRole('button',{name:'再生 / 再開'}));
++  a.currentTime=64;act(()=>vi.advanceTimersByTime(16));
++  // The native animation advances between rendered RAF and input delivery.
++  a.currentTime=73;
++  fireEvent.click(screen.getByRole('button',{name:label}));
++  expect(a.currentTime).toBeCloseTo(73+direction*1000/60,8);
++  expect(Number((screen.getByRole('slider') as HTMLInputElement).value)).toBeCloseTo(a.currentTime,8);
++  expect(a.playState).toBe('paused');
++});
++it('pause samples the native currentTime between frames without rewinding',()=>{
++ render(<WaapiGameObservation sample={coin} active reducedMotion={false}/>);
++ fireEvent.click(screen.getByRole('button',{name:'再生 / 再開'}));a.currentTime=73;
++ fireEvent.click(screen.getByRole('button',{name:'一時停止'}));
++ expect(Number((screen.getByRole('slider') as HTMLInputElement).value)).toBe(73);
++});
++
++it('labels native overshoot separately from the bounded observation position',()=>{
++ const menu=waapiSamples.find(s=>s.render==='menu')!;
++ render(<WaapiGameObservation sample={menu} active reducedMotion={false}/>);
++ a.currentTime=224;
++ fireEvent.click(screen.getByRole('button',{name:'一時停止'}));
++ expect(Number((screen.getByRole('slider') as HTMLInputElement).value)).toBe(220);
++ expect(screen.getByText(/native currentTime: 224.00 ms/)).toBeTruthy();
++ expect(document.querySelector('[data-observation-reading]')?.textContent).toContain('観察位置');
++});
++it('represents unresolved native time explicitly instead of claiming zero',()=>{
++ render(<WaapiGameObservation sample={coin} active reducedMotion={false}/>);
++ a.currentTime=null;
++ fireEvent.click(screen.getByRole('button',{name:'一時停止'}));
++ expect(screen.getByText(/native currentTime: 未取得/)).toBeTruthy();
++});
++
++it('pause pins the native time captured at input even when pause processing advances the native clock',()=>{
++ render(<WaapiGameObservation sample={coin} active reducedMotion={false}/>);
++ fireEvent.click(screen.getByRole('button',{name:'再生 / 再開'}));
++ a.currentTime=73;
++ a.pause=()=>{a.currentTime=120;a.playState='paused';};
++ fireEvent.click(screen.getByRole('button',{name:'一時停止'}));
++ expect(a.currentTime).toBe(73);
++ expect(Number((screen.getByRole('slider') as HTMLInputElement).value)).toBe(73);
++});
++it('steps backward from the bounded end position when native time overshoots duration',()=>{
++ const menu=waapiSamples.find(s=>s.render==='menu')!;
++ render(<WaapiGameObservation sample={menu} active reducedMotion={false}/>);
++ a.currentTime=224;
++ fireEvent.click(screen.getByRole('button',{name:'一時停止'}));
++ expect(Number((screen.getByRole('slider') as HTMLInputElement).value)).toBe(220);
++ fireEvent.click(screen.getByRole('button',{name:'1ステップ戻る'}));
++ expect(a.currentTime).toBeCloseTo(220-1000/60,8);
++ expect(Number((screen.getByRole('slider') as HTMLInputElement).value)).toBeCloseTo(220-1000/60,8);
++});
+diff --git a/tests/waapi-observation.test.tsx b/tests/waapi-observation.test.tsx
+new file mode 100644
+index 0000000..0d7b59e
+--- /dev/null
++++ b/tests/waapi-observation.test.tsx
+@@ -0,0 +1,308 @@
++// @vitest-environment jsdom
++// Contract tests with a controllable WAAPI test double, NOT native rendering evidence.
++// Time progresses independently of component RAF. Pending pause/play resolve separately.
++import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
++import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
++import { WaapiGameObservation, clampObservationTime } from '../app/components/WaapiGameObservation';
++import { WaapiSampleGallery } from '../app/components/WaapiSampleGallery';
++import { waapiSamples } from '../app/data/waapiSamples';
++
++let animations: AnimationDouble[];
++let observers: ResizeObserverDouble[];
++let intersections: Array<{ callback: IntersectionObserverCallback; target: Element }>;
++let rafHistory: FrameRequestCallback[];
++let delayedPause: boolean;
++let mediaListeners: Array<() => void>;
++let mediaReduced: boolean;
++const menu = waapiSamples.find(s => s.render === 'menu')!;
++const coin = waapiSamples.find(s => s.render === 'coin')!;
++
++class AnimationDouble {
++  target: HTMLElement;
++  frames: Keyframe[];
++  options: KeyframeAnimationOptions;
++  private held: number | null = 0;
++  private started = Date.now();
++  private state: AnimationPlayState = 'running';
++  private request = 0;
++  pending = false;
++  ready: Promise<AnimationDouble> = Promise.resolve(this);
++  cancel = vi.fn(() => { this.request++; this.held = null; this.state = 'idle'; this.pending = false; });
++  finished = new Promise<AnimationDouble>(() => {});
++  constructor(target: HTMLElement, frames: Keyframe[], options: KeyframeAnimationOptions) {
++    this.target = target; this.frames = frames; this.options = options;
++  }
++  get currentTime() {
++    if (this.held === null) return null;
++    return this.state === 'running' ? Math.min(Number(this.options.duration), this.held + (Date.now() - this.started)) : this.held;
++  }
++  set currentTime(value: number | null) { this.held = value; this.started = Date.now(); }
++  get playState(): AnimationPlayState { return this.state === 'running' && this.currentTime! >= Number(this.options.duration) ? 'finished' : this.state; }
++  pause = vi.fn(() => {
++    const at = this.currentTime;
++    this.held = at; this.state = 'paused';
++    if (delayedPause) {
++      const token = ++this.request; this.pending = true;
++      this.ready = new Promise(resolve => setTimeout(() => { if (token === this.request) this.pending = false; resolve(this); }, 5));
++    }
++  });
++  play = vi.fn(() => {
++    if (this.currentTime === null || this.currentTime! >= Number(this.options.duration)) this.held = 0;
++    this.started = Date.now(); this.state = 'running'; this.pending = false;
++  });
++}
++class ResizeObserverDouble {
++  callback: ResizeObserverCallback;
++  disconnected = false;
++  observe = vi.fn();
++  disconnect = vi.fn(() => { this.disconnected = true; });
++  constructor(callback: ResizeObserverCallback) { this.callback = callback; observers.push(this); }
++  deliver() { this.callback([], this as unknown as ResizeObserver); }
++}
++function advance(ms: number) { act(() => vi.advanceTimersByTime(ms)); }
++function button(name: string) { return screen.getByRole('button', { name }); }
++function click(name: string) { fireEvent.click(button(name)); }
++function reading() { return screen.getByText(/native playState:/).textContent!; }
++function targetAnimation() { return animations.findLast(a => a.target.hasAttribute('data-observation-target'))!; }
++function slider() { return screen.getByRole('slider', { name: '観察時間（ms）' }) as HTMLInputElement; }
++function seek(value: number) { fireEvent.change(slider(), { target: { value: String(value) } }); }
++function time() { return Number(slider().value); }
++function openGallery(name: string) {
++  const mounted = render(<WaapiSampleGallery />);
++  fireEvent.click(screen.getByRole('button', { name: /サンプル一覧を見る/ }));
++  fireEvent.change(screen.getByLabelText('検索'), { target: { value: name } });
++  advance(20);
++  const card = screen.getByRole('heading', { name }).closest('article')!;
++  return { ...mounted, card, controls: within(card) };
++}
++function visibility(hidden: boolean) {
++  Object.defineProperty(document, 'hidden', { configurable: true, value: hidden });
++  act(() => document.dispatchEvent(new Event('visibilitychange')));
++}
++
++beforeEach(() => {
++  vi.useFakeTimers(); animations = []; observers = []; intersections = []; rafHistory = []; delayedPause = false; mediaListeners = []; mediaReduced = false;
++  Object.defineProperty(document, 'hidden', { configurable: true, value: false });
++  vi.stubGlobal('matchMedia', () => ({ get matches() { return mediaReduced; }, addEventListener(_event: string, callback: () => void) { mediaListeners.push(callback); }, removeEventListener() {} }));
++  vi.stubGlobal('IntersectionObserver', class {
++    constructor(private callback: IntersectionObserverCallback) {}
++    observe(target: Element) { intersections.push({ callback: this.callback, target }); this.callback([{ target, isIntersecting: true } as IntersectionObserverEntry], this as unknown as IntersectionObserver); }
++    disconnect() {}
++  });
++  vi.stubGlobal('ResizeObserver', ResizeObserverDouble);
++  vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => { rafHistory.push(callback); return window.setTimeout(() => callback(Date.now()), 16); });
++  vi.stubGlobal('cancelAnimationFrame', (id: number) => window.clearTimeout(id));
++  Object.defineProperty(HTMLElement.prototype, 'animate', { configurable: true, value: vi.fn(function(this: HTMLElement, frames: Keyframe[], options: KeyframeAnimationOptions) { const a = new AnimationDouble(this, frames, options); animations.push(a); return a; }) });
++});
++afterEach(() => { cleanup(); vi.useRealTimers(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
++
++describe('independent observation controller contract (WAAPI double)', () => {
++  it('initial preview is paused at zero and has actual native labels rather than simulated success', () => {
++    render(<WaapiGameObservation sample={menu} active reducedMotion={false} />);
++    expect(time()).toBe(0); expect(targetAnimation().playState).toBe('paused'); expect(reading()).toContain('controller: paused'); expect(reading()).toContain('native playState: paused');
++  });
++  it('play advances time from the animation, not a second game clock', () => {
++    render(<WaapiGameObservation sample={coin} active reducedMotion={false} />); click('再生 / 再開'); advance(64);
++    expect(time()).toBe(64); expect(targetAnimation().currentTime).toBe(64); expect(reading()).toContain('controller: running');
++  });
++  it('pause keeps the exact position and resume continues from that point', () => {
++    render(<WaapiGameObservation sample={coin} active reducedMotion={false} />); click('再生 / 再開'); advance(73); click('一時停止');
++    expect(time()).toBe(73); advance(500); expect(time()).toBe(73); expect(targetAnimation().currentTime).toBe(73);
++    click('再生 / 再開'); advance(32); expect(time()).toBe(105);
++  });
++  it('restart deliberately starts at zero while the start control remains paused', () => {
++    render(<WaapiGameObservation sample={coin} active reducedMotion={false} />); seek(250); click('最初から再生'); expect(time()).toBe(0); advance(32); expect(time()).toBe(32);
++    click('観察位置を先頭へ'); expect(time()).toBe(0); advance(80); expect(time()).toBe(0); expect(targetAnimation().playState).toBe('paused');
++  });
++  it('forward and backward steps use 1000/60 ms, not a rounded frame count', () => {
++    render(<WaapiGameObservation sample={menu} active reducedMotion={false} />); click('1ステップ進む'); expect(time()).toBeCloseTo(1000 / 60, 10);
++    click('1ステップ進む'); expect(time()).toBeCloseTo(2000 / 60, 10); click('1ステップ戻る'); expect(time()).toBeCloseTo(1000 / 60, 10);
++  });
++  it('seek selects a fractional time and stops an active playback', () => {
++    render(<WaapiGameObservation sample={coin} active reducedMotion={false} />); click('再生 / 再開'); advance(30); seek(237.25); advance(100);
++    expect(time()).toBe(237.25); expect(targetAnimation().currentTime).toBe(237.25); expect(reading()).toContain('paused');
++  });
++  it('steps clamp both boundaries without crossing them', () => {
++    render(<WaapiGameObservation sample={menu} active reducedMotion={false} />); click('1ステップ戻る'); expect(time()).toBe(0);
++    seek(215); click('1ステップ進む'); expect(time()).toBe(220); expect((button('1ステップ進む') as HTMLButtonElement).disabled).toBe(true);
++    seek(5); click('1ステップ戻る'); expect(time()).toBe(0);
++  });
++  it('finished playback can rewind and resume from a selected position', () => {
++    render(<WaapiGameObservation sample={menu} active reducedMotion={false} />); click('再生 / 再開'); advance(240);
++    expect(time()).toBe(220); expect(reading()).toContain('native playState: finished'); click('1ステップ戻る'); expect(time()).toBeCloseTo(220 - 1000 / 60, 10);
++    seek(50); click('再生 / 再開'); advance(32); expect(time()).toBe(82);
++  });
++  it('rapid play/pause and slider changes do not allocate competing animations', () => {
++    render(<WaapiGameObservation sample={coin} active reducedMotion={false} />);
++    for (let i = 0; i < 10; i++) { click('再生 / 再開'); click('一時停止'); seek(i * 3); }
++    expect(animations).toHaveLength(1); expect(time()).toBe(27); advance(100); expect(time()).toBe(27);
++  });
++  it('stale RAF callbacks after seek do not overwrite the newer position', () => {
++    render(<WaapiGameObservation sample={menu} active reducedMotion={false} />); click('再生 / 再開'); const old = rafHistory.at(-1)!; seek(101);
++    act(() => old(900)); expect(time()).toBe(101); expect(reading()).toContain('controller: paused');
++  });
++  it('offscreen cancels native animation and returns paused at the preserved time', () => {
++    const view = render(<WaapiGameObservation sample={coin} active reducedMotion={false} />); click('再生 / 再開'); advance(80); const old = targetAnimation();
++    view.rerender(<WaapiGameObservation sample={coin} active={false} reducedMotion={false} />); expect(old.cancel).toHaveBeenCalled(); expect(reading()).toContain('controller: inactive');
++    advance(100); view.rerender(<WaapiGameObservation sample={coin} active reducedMotion={false} />); expect(time()).toBe(80); expect(targetAnimation().playState).toBe('paused'); advance(100); expect(time()).toBe(80);
++  });
++  it('tab visibility cancels and restores static preview without automatic play', () => {
++    render(<WaapiGameObservation sample={coin} active reducedMotion={false} />); click('再生 / 再開'); advance(48); const old = targetAnimation(); visibility(true); expect(old.cancel).toHaveBeenCalled();
++    visibility(false); expect(time()).toBe(48); expect(targetAnimation().playState).toBe('paused'); advance(100); expect(time()).toBe(48);
++  });
++  it('reduced motion cancels running animation, allows manual stepping, and does not auto-resume on OFF', () => {
++    const view = render(<WaapiGameObservation sample={coin} active reducedMotion={false} />); click('再生 / 再開'); advance(64); const old = targetAnimation();
++    view.rerender(<WaapiGameObservation sample={coin} active reducedMotion />); expect(old.cancel).toHaveBeenCalled(); expect((button('再生 / 再開') as HTMLButtonElement).disabled).toBe(true);
++    click('1ステップ進む'); const at = 64 + 1000 / 60; expect(time()).toBeCloseTo(at, 10); advance(100); expect(time()).toBeCloseTo(at, 10);
++    view.rerender(<WaapiGameObservation sample={coin} active reducedMotion={false} />); advance(100); expect(time()).toBeCloseTo(at, 10); click('再生 / 再開'); advance(32); expect(time()).toBeCloseTo(at + 32, 10);
++  });
++  it('unmount cancels owner animations and makes old RAF callbacks inert', () => {
++    const view = render(<WaapiGameObservation sample={coin} active reducedMotion={false} />); click('再生 / 再開'); const old = targetAnimation(), stale = rafHistory.at(-1)!;
++    view.unmount(); expect(old.cancel).toHaveBeenCalled(); const count = rafHistory.length; act(() => stale(999)); expect(rafHistory).toHaveLength(count);
++  });
++  it('easing changes cancel the old scenario, preserve position, and do not continue play', () => {
++    render(<WaapiGameObservation sample={menu} active reducedMotion={false} />); seek(110); const old = targetAnimation();
++    fireEvent.change(screen.getByLabelText('観察のeasing'), { target: { value: 'linear' } }); expect(old.cancel).toHaveBeenCalled(); expect(time()).toBe(110); expect(targetAnimation().options.easing).toBe('linear'); expect(targetAnimation().playState).toBe('paused');
++  });
++  it('resize remeasures after initial observer delivery and preserves observation time', () => {
++    render(<WaapiGameObservation sample={menu} active reducedMotion={false} />); seek(93); const resize = observers.at(-1)!; act(() => resize.deliver()); const old = targetAnimation(); act(() => resize.deliver());
++    expect(old.cancel).toHaveBeenCalled(); expect(resize.disconnect).toHaveBeenCalled(); expect(time()).toBe(93); expect(targetAnimation().playState).toBe('paused');
++  });
++  it('missing WAAPI is labelled unavailable and cannot produce successful play', () => {
++    Object.defineProperty(HTMLElement.prototype, 'animate', { configurable: true, value: undefined }); render(<WaapiGameObservation sample={coin} active reducedMotion={false} />);
++    expect(reading()).toContain('unavailable'); expect((button('再生 / 再開') as HTMLButtonElement).disabled).toBe(true); expect(animations).toHaveLength(0);
++  });
++  it('clamps malformed and out-of-range time input without producing NaN', () => {
++    expect(clampObservationTime(-10, 220)).toBe(0); expect(clampObservationTime(999, 220)).toBe(220); expect(clampObservationTime(NaN, 220)).toBe(0); expect(clampObservationTime(Infinity, 220)).toBe(0); expect(clampObservationTime(0.25, 220)).toBe(0.25);
++  });
++  it('pending pause completion is reflected in native status rather than remaining pending forever', async () => {
++    delayedPause = true; render(<WaapiGameObservation sample={coin} active reducedMotion={false} />);
++    await act(async () => { vi.advanceTimersByTime(6); await Promise.resolve(); });
++    click('再生 / 再開'); advance(32); click('一時停止');
++    await act(async () => { vi.advanceTimersByTime(20); await Promise.resolve(); });
++    expect(targetAnimation().pending).toBe(false); expect(reading()).not.toContain('（pending）'); expect(reading()).toContain('native playState: paused');
++  });
++});
++
++describe('actual gallery integration: observation never owns game state', () => {
++  it('Menu selection survives observation seek, finish, reverse, mode exit, and ordinary Reset still works', () => {
++    const { card } = openGallery('Menu Selection Cursor'); click('↓ Down');
++    const normal = card.querySelector('[data-normal-game]')!;
++    expect(normal.querySelector('.isSelected')!.textContent).toContain('COLLECTION'); click('観察モードを開く');
++    seek(220); click('1ステップ戻る'); click('最初から再生'); advance(250);
++    expect(normal.querySelector('.isSelected')!.textContent).toContain('COLLECTION'); click('通常モードへ戻る');
++    expect(normal.querySelector('.isSelected')!.textContent).toContain('COLLECTION'); click('Reset'); expect(normal.querySelector('.isSelected')!.textContent).toContain('CONTINUE');
++  });
++  it('Coin preview repeatedly finishes and rewinds with zero points; normal COLLECT awards once', () => {
++    const { card } = openGallery('Coin Pickup Arc'); const normal = card.querySelector('[data-normal-game]')!; click('観察モードを開く');
++    for (let i = 0; i < 3; i++) { seek(Number(coin.normal.options.duration)); click('1ステップ戻る'); click('最初から再生'); advance(Number(coin.normal.options.duration) + 40); }
++    expect(normal.querySelector('output')!.textContent).toBe('SCORE 0'); click('通常モードへ戻る'); click('COLLECT'); click('COLLECT'); expect(normal.querySelector('output')!.textContent).toBe('SCORE 100');
++  });
++  it('collected Coin retains its score and collected guard through observation and return', () => {
++    const { card } = openGallery('Coin Pickup Arc'); click('COLLECT'); click('観察モードを開く'); seek(300); click('観察位置を先頭へ'); click('通常モードへ戻る');
++    expect(card.querySelector('[data-normal-game] output')!.textContent).toBe('SCORE 100'); expect((button('COLLECT') as HTMLButtonElement).disabled).toBe(true);
++    click('Reset'); expect(card.querySelector('[data-normal-game] output')!.textContent).toBe('SCORE 0'); click('COLLECT'); expect(card.querySelector('[data-normal-game] output')!.textContent).toBe('SCORE 100');
++  });
++  it('observation reset does not reset collected game state and old callback cannot revive playback', () => {
++    const { card } = openGallery('Coin Pickup Arc'); click('COLLECT'); click('観察モードを開く'); click('再生 / 再開'); const stale = rafHistory.at(-1)!;
++    click('観察位置を先頭へ'); act(() => stale(900)); expect(time()).toBe(0); expect(card.querySelector('[data-normal-game] output')!.textContent).toBe('SCORE 100');
++  });
++  it('mode exit cancels observation and reopening cannot resurrect the old running instance', () => {
++    openGallery('Coin Pickup Arc'); click('観察モードを開く'); click('再生 / 再開'); advance(32); const old = targetAnimation(), stale = rafHistory.at(-1)!;
++    click('通常モードへ戻る'); expect(old.cancel).toHaveBeenCalled(); click('観察モードを開く'); act(() => stale(900)); expect(time()).toBe(0); expect(targetAnimation().playState).toBe('paused');
++  });
++  it('gallery closure cancels observation; reopening has no old callback or auto-score', () => {
++    openGallery('Coin Pickup Arc'); click('観察モードを開く'); click('再生 / 再開'); const old = targetAnimation(), stale = rafHistory.at(-1)!;
++    fireEvent.click(screen.getByRole('button', { name: /サンプル一覧を閉じる/ })); expect(old.cancel).toHaveBeenCalled(); act(() => stale(900)); expect(screen.queryByRole('slider')).toBeNull();
++    fireEvent.click(screen.getByRole('button', { name: /サンプル一覧を見る/ })); expect(screen.getByRole('button', { name: 'COLLECT' })).toBeTruthy(); expect(screen.getByText('SCORE 0')).toBeTruthy();
++  });
++  it('gallery media notification reaches observation without changing Coin collected state', () => {
++    const { card } = openGallery('Coin Pickup Arc'); click('COLLECT'); click('観察モードを開く'); click('再生 / 再開'); advance(32); const old = targetAnimation();
++    act(() => { mediaReduced = true; mediaListeners.forEach(f => f()); }); expect(old.cancel).toHaveBeenCalled(); expect((button('再生 / 再開') as HTMLButtonElement).disabled).toBe(true); expect(card.querySelector('[data-normal-game] output')!.textContent).toBe('SCORE 100');
++    act(() => { mediaReduced = false; mediaListeners.forEach(f => f()); }); expect(targetAnimation().playState).toBe('paused');
++  });
++});
++
++describe('asynchronous ready settlement and measurement data', () => {
++  it('old ready completion after replacement cannot restore an earlier observation state', async () => {
++    delayedPause = true;
++    const view = render(<WaapiGameObservation sample={menu} active reducedMotion={false} />);
++    seek(87); const old = targetAnimation();
++    view.rerender(<WaapiGameObservation sample={menu} active={false} reducedMotion={false} />);
++    view.rerender(<WaapiGameObservation sample={menu} active reducedMotion={false} />);
++    seek(142);
++    await act(async () => { vi.advanceTimersByTime(50); await Promise.resolve(); });
++    expect(old.cancel).toHaveBeenCalled(); expect(time()).toBe(142); expect(reading()).toContain('controller: paused'); expect(reading()).not.toContain('（pending）');
++  });
++  it('Menu preview uses actual row measurements and retains destination DOM ownership', () => {
++    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function(this: HTMLElement) {
++      const top = this.hasAttribute('data-observation-start') ? 31 : this.hasAttribute('data-observation-end') ? 102 : 0;
++      return { top, left: 0, right: 50, bottom: top + 22, width: 50, height: 22, x: 0, y: top, toJSON() {} };
++    });
++    render(<WaapiGameObservation sample={menu} active reducedMotion={false} />);
++    expect(targetAnimation().frames).toEqual([{ transform: 'translateY(-71px)' }, { transform: 'translateY(0px)' }]);
++    expect(targetAnimation().target.parentElement!.hasAttribute('data-observation-end')).toBe(true);
++    expect(targetAnimation().options.fill).toBe('both');
++  });
++  it('Coin preview computes destination variables from separate preview DOM, never score DOM', () => {
++    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function(this: HTMLElement) {
++      const x = this.hasAttribute('data-observation-target') ? 12 : 96;
++      const y = this.hasAttribute('data-observation-target') ? 105 : 24;
++      return { top: y, left: x, right: x + 42, bottom: y + 42, width: 42, height: 42, x, y, toJSON() {} };
++    });
++    render(<WaapiGameObservation sample={coin} active reducedMotion={false} />);
++    const a = targetAnimation(); expect(a.target.style.getPropertyValue('--coin-x')).toBe('84px'); expect(a.target.style.getPropertyValue('--coin-y')).toBe('-81px'); expect(a.frames).toEqual(coin.normal.keyframes);
++  });
++});
++
++it('step during playback starts from current native time, not the last RAF display sample', () => {
++  render(<WaapiGameObservation sample={coin} active reducedMotion={false} />);
++  click('再生 / 再開'); advance(25); // Last display sample is 16 ms; native clock is already at 25 ms.
++  expect(time()).toBe(16); click('1ステップ進む'); expect(time()).toBeCloseTo(25 + 1000 / 60, 10);
++});
++
++// N2: cancellation is independent from the observed auto-demonstration guard.
++describe('observed Coin normal motion cancellation', () => {
++  function media(value: boolean) { act(() => { mediaReduced = value; mediaListeners.forEach(f => f()); }); advance(20); }
++  function normalAnimations() { return animations.filter(a => a.target.hasAttribute('data-motion-target') && a.target.closest('[data-normal-game]')); }
++  function observedCoin() { const view = openGallery('Coin Pickup Arc'); click('観察モードを開く'); click('通常モードへ戻る'); return view; }
++  for (const operation of ['Replay', 'COLLECT']) {
++    for (const paused of [false, true]) {
++      it(`${operation} after observation cancels ${paused ? 'paused' : 'running'} normal motion on reduced ON without changing score`, () => {
++        const { card } = observedCoin(); click(operation); const old = normalAnimations().at(-1)!;
++        const owned = animations.filter(a => a.target.closest('[data-normal-game] .gameCoinScene') && a.playState === 'running');
++        expect(owned).toHaveLength(2);
++        if (paused) old.pause();
++        expect(old.playState).toBe(paused ? 'paused' : 'running'); media(true);
++        expect(old.cancel).toHaveBeenCalled(); expect(old.playState).toBe('idle'); expect(old.currentTime).toBeNull();
++        expect(owned.every(a => a.cancel.mock.calls.length > 0 && a.playState === 'idle' && a.currentTime === null)).toBe(true);
++        expect(card.querySelector('[data-normal-game] output')!.textContent).toBe(operation === 'COLLECT' ? 'SCORE 100' : 'SCORE 0');
++        expect((button('COLLECT') as HTMLButtonElement).disabled).toBe(operation === 'COLLECT');
++        const count = normalAnimations().length; media(false); advance(1000); expect(normalAnimations()).toHaveLength(count);
++      });
++    }
++  }
++  it('reduced explicit Replay uses reduced definition and repeated ON/OFF does not award or autoplay', () => {
++    const { card } = observedCoin(); media(true); click('Replay');
++    expect(normalAnimations().at(-1)!.frames).toEqual(coin.reduced.keyframes);
++    expect(normalAnimations().at(-1)!.options.duration).toBe(coin.reduced.options.duration);
++    for (let i = 0; i < 3; i++) { media(false); click('Replay'); const old = normalAnimations().at(-1)!; media(true); expect(old.playState).toBe('idle'); }
++    expect(card.querySelector('[data-normal-game] output')!.textContent).toBe('SCORE 0');
++  });
++  it('rapid mode switches retain collected state and Reset permits exactly one new acquisition', () => {
++    const { card } = observedCoin(); click('COLLECT');
++    for (let i = 0; i < 3; i++) { click('観察モードを開く'); click('通常モードへ戻る'); click('Replay'); media(true); media(false); }
++    expect(card.querySelector('[data-normal-game] output')!.textContent).toBe('SCORE 100'); expect((button('COLLECT') as HTMLButtonElement).disabled).toBe(true);
++    click('Reset'); advance(1000); expect(card.querySelector('[data-normal-game] output')!.textContent).toBe('SCORE 0');
++    click('COLLECT'); click('COLLECT'); expect(card.querySelector('[data-normal-game] output')!.textContent).toBe('SCORE 100');
++  });
++  it('observed normal Coin leaving the viewport cancels, re-entry stays stopped, and unmount clears old instances', () => {
++    const view = observedCoin(); click('Replay'); const old = normalAnimations().at(-1)!;
++    const entry = intersections.findLast(x => x.target === view.card.parentElement)!;
++    act(() => entry.callback([{ target: entry.target, isIntersecting: false } as IntersectionObserverEntry], {} as IntersectionObserver));
++    expect(old.playState).toBe('idle'); const count = normalAnimations().length;
++    act(() => entry.callback([{ target: entry.target, isIntersecting: true } as IntersectionObserverEntry], {} as IntersectionObserver)); advance(1000);
++    expect(normalAnimations()).toHaveLength(count); click('Replay'); const recent = normalAnimations().at(-1)!; view.unmount();
++    expect(recent.cancel).toHaveBeenCalled(); expect(recent.playState).toBe('idle'); advance(1000); expect(normalAnimations()).toHaveLength(count + 1);
++  });
++});

@@ -1,0 +1,18 @@
+chromium 375 FAIL Page.goto: Timeout 10000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:59524/Loading-museum/", waiting until "networkidle"
+
+chromium 390 FAIL Page.goto: Timeout 10000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:59524/Loading-museum/", waiting until "networkidle"
+
+chromium 765 PASS 
+webkit 375 FAIL Page.goto: Timeout 10000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:59524/Loading-museum/", waiting until "networkidle"
+
+webkit 390 FAIL Page.goto: Timeout 10000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:59524/Loading-museum/", waiting until "networkidle"
+
+webkit 765 PASS 

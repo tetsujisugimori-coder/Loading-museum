@@ -1582,3 +1582,14 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - 本追記は記録のみで製品/試験/検証器を変更しない。記録後の最終HEAD/treeと全job終端はPR本文・通常コメント・Issue50で最終読戻し確認する。
 - b85f8a06の全館CI41435401781は7/7成功、Physics41435401801は2/2成功、全9job終端。契約309、Physics旧24 RED+正常対照12→新36 GREEN、力学6、6作品36、実速度対照2、旧Flash12を別群で確認。他室/実用UI/4A/4B/5A/フォーカス回帰の全stepも成功。ci-b85f8a06/summary.jsonと原ログ由来数値/件数抜粋に記録。初回2回のWK失敗は保持。今回の確定記録だけをcommitし、その最終HEADのCIも全job終端まで追跡する。
 - 総合PARTIAL/マージ推奨NO（独立再レビュー待ち）。局所安定化の自己検証は完了。実機Safari/VoiceOver/物理touch/実OS低減切替/実スピーカー/全館全操作は未検証、Issue44と旧Windows WAAPI timeout根因UNKNOWNを維持。Draft/未マージ/未公開。UI付随添付の成功は主張しない。
+
+
+## 2026-11-02 — WAAPI Stage 2A 現main統合（Issue #35 / PR #36）
+
+- 基準mainは 91615365f5001c4e73b3a0f8d282bff0ed29a6d0。PR #51 / Physics修正 5d83129 を含む現物を確認し、既存checkoutの旧mainはcleanのまま保全した。
+- 方式Aの仮想mergeで README.md・LOG.md・package.json が競合。方式Bで現mainから新ブランチを作り、Menu/Coin観察モード、Turn Reset/旧callback失効、N2/reduced-motion取消と正式試験を局所移植した。元PR #36は閉じず、旧証拠を固定HEAD 74a15e9 に保全する。
+- 元差分609ファイルを7種に分類し、[統合記録](docs/maintenance/stage2a-main-integration-20261102/README.md)へ判断表・差分・自己検証証拠を保存。後続の製品・登録・試験・CI 125ファイルは改行正規化後にmainと同一、既存38試験登録の欠落なし。251展示・13室、WAAPI47、Flash60/18分類を維持。旧第4期B保留原本・ZIPには新規アクセスしなかった。
+- 初回の既定並列checkはNode49成功、Vitest147成功/3 timeoutで失敗し、後続群は未実行。別条件としてpackage.jsonに2workerを明示後、全check356成功/失敗0/skip0、重点89成功（重複加算なし）。既存assertion・5秒制限・試験は維持し、正式CIを重点試験で代用しない。
+- 探索実測ではChromium 141.0.7390.37 / WebKit 26.0 × 375/390/765pxの観察・focus/touch・layout・N2・Stage 1計30条件が成功。探索中の検証器強化を含むdirty記録のため、最終受入はcommit後のcleanな最終HEAD再実行とCIで確定し、PR本文/Issue #35へ記録する。
+- 初回Python配信のload timeout、Node配信対照、初回check失敗証拠を保持。これらの現行実行条件の観測をQ1/B1/M1根因解明と同一視しない。Q1/B1/M1は原因UNKNOWN、実機iPhone Safari/VoiceOver/実OS文字拡大は未検証、既存文字200%横超過の履歴は保持。
+- 新規P1/P2は実装担当の自己検証では未検出。独立再レビューは未実施で、マージ推奨NO。Draft PRまで提出し、merge/auto-merge/公開/Draft解除は行わない。

@@ -1,0 +1,194 @@
+[
+  {
+    "engine": "chromium",
+    "version": "141.0.7390.37",
+    "width": 375,
+    "artifactSHA256": {
+      "app\\components\\WaapiGameObservation.tsx": "45f50201128b959e69d9fddd8a95b432440fb0a7b145b0bfc89128eb254da12f",
+      "app\\globals.css": "15283b9c572c93b3cc5bfab11ebb7ecd00911df0cddd10a9eb469ae4ea2b70ff",
+      "out\\index.html": "5bf512e1f0eca9d5577dba08cec3be3fd70ef16dd4777694d9b884e7c04bc3d4"
+    },
+    "checks": [],
+    "measurements": [],
+    "pageErrors": [],
+    "status": "FAIL",
+    "failure": "Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\integration\\scripts\\verify-waapi-observation-style.py\", line 16, in <module>\n    q.goto(os.environ.get('WAAPI_URL','http://127.0.0.1:4201/Loading-museum/'),wait_until='networkidle');q.get_by_role('button',name='サンプル一覧を見る',exact=False).click()\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\sync_api\\_generated.py\", line 9019, in goto\n    self._sync(\n    ~~~~~~~~~~^\n        self._impl_obj.goto(\n        ^^^^^^^^^^^^^^^^^^^^\n            url=url, timeout=timeout, waitUntil=wait_until, referer=referer\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        )\n        ^\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_sync_base.py\", line 115, in _sync\n    return task.result()\n           ~~~~~~~~~~~^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_page.py\", line 555, in goto\n    return await self._main_frame.goto(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_frame.py\", line 153, in goto\n    await self._channel.send(\n        \"goto\", self._navigation_timeout, locals_to_params(locals())\n    )\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n\n"
+  },
+  {
+    "engine": "chromium",
+    "version": "141.0.7390.37",
+    "width": 390,
+    "artifactSHA256": {
+      "app\\components\\WaapiGameObservation.tsx": "45f50201128b959e69d9fddd8a95b432440fb0a7b145b0bfc89128eb254da12f",
+      "app\\globals.css": "15283b9c572c93b3cc5bfab11ebb7ecd00911df0cddd10a9eb469ae4ea2b70ff",
+      "out\\index.html": "5bf512e1f0eca9d5577dba08cec3be3fd70ef16dd4777694d9b884e7c04bc3d4"
+    },
+    "checks": [],
+    "measurements": [],
+    "pageErrors": [],
+    "status": "FAIL",
+    "failure": "Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\integration\\scripts\\verify-waapi-observation-style.py\", line 16, in <module>\n    q.goto(os.environ.get('WAAPI_URL','http://127.0.0.1:4201/Loading-museum/'),wait_until='networkidle');q.get_by_role('button',name='サンプル一覧を見る',exact=False).click()\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\sync_api\\_generated.py\", line 9019, in goto\n    self._sync(\n    ~~~~~~~~~~^\n        self._impl_obj.goto(\n        ^^^^^^^^^^^^^^^^^^^^\n            url=url, timeout=timeout, waitUntil=wait_until, referer=referer\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        )\n        ^\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_sync_base.py\", line 115, in _sync\n    return task.result()\n           ~~~~~~~~~~~^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_page.py\", line 555, in goto\n    return await self._main_frame.goto(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_frame.py\", line 153, in goto\n    await self._channel.send(\n        \"goto\", self._navigation_timeout, locals_to_params(locals())\n    )\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n\n"
+  },
+  {
+    "engine": "chromium",
+    "version": "141.0.7390.37",
+    "width": 765,
+    "artifactSHA256": {
+      "app\\components\\WaapiGameObservation.tsx": "45f50201128b959e69d9fddd8a95b432440fb0a7b145b0bfc89128eb254da12f",
+      "app\\globals.css": "15283b9c572c93b3cc5bfab11ebb7ecd00911df0cddd10a9eb469ae4ea2b70ff",
+      "out\\index.html": "5bf512e1f0eca9d5577dba08cec3be3fd70ef16dd4777694d9b884e7c04bc3d4"
+    },
+    "checks": [
+      "Menu Selection Cursor: toggle >=40px/focus/keyboard Space mode toggle/Enter step/native time/normal state preserved/touch toggle/CSS200/both media no observation overflow",
+      "Coin Pickup Arc: toggle >=40px/focus/keyboard Space mode toggle/Enter step/native time/normal state preserved/touch toggle/CSS200/both media no observation overflow"
+    ],
+    "measurements": [
+      {
+        "name": "Menu Selection Cursor",
+        "toggle": {
+          "height": 40,
+          "width": 307,
+          "outline": "rgb(49, 153, 214) solid 3px",
+          "outlineWidth": 3,
+          "color": "rgb(57, 231, 125)",
+          "background": "rgb(11, 23, 17)",
+          "focused": true,
+          "focusVisible": true
+        },
+        "text200Toggle": {
+          "x": 55,
+          "y": -48.765625,
+          "width": 307,
+          "height": 40
+        },
+        "observationSize": {
+          "client": 307,
+          "scroll": 307
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "toggle": {
+          "height": 40,
+          "width": 307,
+          "outline": "rgb(49, 153, 214) solid 3px",
+          "outlineWidth": 3,
+          "color": "rgb(57, 231, 125)",
+          "background": "rgb(11, 23, 17)",
+          "focused": true,
+          "focusVisible": true
+        },
+        "text200Toggle": {
+          "x": 55,
+          "y": -11.265625,
+          "width": 307,
+          "height": 40
+        },
+        "observationSize": {
+          "client": 307,
+          "scroll": 307
+        }
+      }
+    ],
+    "pageErrors": [],
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "width": 375,
+    "artifactSHA256": {
+      "app\\components\\WaapiGameObservation.tsx": "45f50201128b959e69d9fddd8a95b432440fb0a7b145b0bfc89128eb254da12f",
+      "app\\globals.css": "15283b9c572c93b3cc5bfab11ebb7ecd00911df0cddd10a9eb469ae4ea2b70ff",
+      "out\\index.html": "5bf512e1f0eca9d5577dba08cec3be3fd70ef16dd4777694d9b884e7c04bc3d4"
+    },
+    "checks": [],
+    "measurements": [],
+    "pageErrors": [],
+    "status": "FAIL",
+    "failure": "Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\integration\\scripts\\verify-waapi-observation-style.py\", line 16, in <module>\n    q.goto(os.environ.get('WAAPI_URL','http://127.0.0.1:4201/Loading-museum/'),wait_until='networkidle');q.get_by_role('button',name='サンプル一覧を見る',exact=False).click()\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\sync_api\\_generated.py\", line 9019, in goto\n    self._sync(\n    ~~~~~~~~~~^\n        self._impl_obj.goto(\n        ^^^^^^^^^^^^^^^^^^^^\n            url=url, timeout=timeout, waitUntil=wait_until, referer=referer\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        )\n        ^\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_sync_base.py\", line 115, in _sync\n    return task.result()\n           ~~~~~~~~~~~^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_page.py\", line 555, in goto\n    return await self._main_frame.goto(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_frame.py\", line 153, in goto\n    await self._channel.send(\n        \"goto\", self._navigation_timeout, locals_to_params(locals())\n    )\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n\n"
+  },
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "width": 390,
+    "artifactSHA256": {
+      "app\\components\\WaapiGameObservation.tsx": "45f50201128b959e69d9fddd8a95b432440fb0a7b145b0bfc89128eb254da12f",
+      "app\\globals.css": "15283b9c572c93b3cc5bfab11ebb7ecd00911df0cddd10a9eb469ae4ea2b70ff",
+      "out\\index.html": "5bf512e1f0eca9d5577dba08cec3be3fd70ef16dd4777694d9b884e7c04bc3d4"
+    },
+    "checks": [],
+    "measurements": [],
+    "pageErrors": [],
+    "status": "FAIL",
+    "failure": "Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\integration\\scripts\\verify-waapi-observation-style.py\", line 16, in <module>\n    q.goto(os.environ.get('WAAPI_URL','http://127.0.0.1:4201/Loading-museum/'),wait_until='networkidle');q.get_by_role('button',name='サンプル一覧を見る',exact=False).click()\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\sync_api\\_generated.py\", line 9019, in goto\n    self._sync(\n    ~~~~~~~~~~^\n        self._impl_obj.goto(\n        ^^^^^^^^^^^^^^^^^^^^\n            url=url, timeout=timeout, waitUntil=wait_until, referer=referer\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        )\n        ^\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_sync_base.py\", line 115, in _sync\n    return task.result()\n           ~~~~~~~~~~~^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_page.py\", line 555, in goto\n    return await self._main_frame.goto(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_frame.py\", line 153, in goto\n    await self._channel.send(\n        \"goto\", self._navigation_timeout, locals_to_params(locals())\n    )\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n\n"
+  },
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "width": 765,
+    "artifactSHA256": {
+      "app\\components\\WaapiGameObservation.tsx": "45f50201128b959e69d9fddd8a95b432440fb0a7b145b0bfc89128eb254da12f",
+      "app\\globals.css": "15283b9c572c93b3cc5bfab11ebb7ecd00911df0cddd10a9eb469ae4ea2b70ff",
+      "out\\index.html": "5bf512e1f0eca9d5577dba08cec3be3fd70ef16dd4777694d9b884e7c04bc3d4"
+    },
+    "checks": [
+      "Menu Selection Cursor: toggle >=40px/focus/keyboard Space mode toggle/Enter step/native time/normal state preserved/touch toggle/CSS200/both media no observation overflow",
+      "Coin Pickup Arc: toggle >=40px/focus/keyboard Space mode toggle/Enter step/native time/normal state preserved/touch toggle/CSS200/both media no observation overflow"
+    ],
+    "measurements": [
+      {
+        "name": "Menu Selection Cursor",
+        "toggle": {
+          "height": 40,
+          "width": 307,
+          "outline": "rgb(49, 153, 214) solid 3px",
+          "outlineWidth": 3,
+          "color": "rgb(57, 231, 125)",
+          "background": "rgb(11, 23, 17)",
+          "focused": true,
+          "focusVisible": true
+        },
+        "text200Toggle": {
+          "x": 55,
+          "y": -63.875,
+          "width": 307,
+          "height": 41
+        },
+        "observationSize": {
+          "client": 307,
+          "scroll": 307
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "toggle": {
+          "height": 40,
+          "width": 307,
+          "outline": "rgb(49, 153, 214) solid 3px",
+          "outlineWidth": 3,
+          "color": "rgb(57, 231, 125)",
+          "background": "rgb(11, 23, 17)",
+          "focused": true,
+          "focusVisible": true
+        },
+        "text200Toggle": {
+          "x": 55,
+          "y": -11.875,
+          "width": 307,
+          "height": 41
+        },
+        "observationSize": {
+          "client": 307,
+          "scroll": 307
+        }
+      }
+    ],
+    "pageErrors": [],
+    "status": "PASS"
+  }
+]

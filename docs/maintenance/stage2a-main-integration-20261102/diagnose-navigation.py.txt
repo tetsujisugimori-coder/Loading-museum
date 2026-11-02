@@ -1,0 +1,23 @@
+import http.server, threading, time, json, os
+from functools import partial
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+root=Path(__file__).parent/'integration'/'out'
+class Handler(http.server.SimpleHTTPRequestHandler):
+ def __init__(self,*args,**kw):super().__init__(*args,directory=str(root),**kw)
+ def do_GET(self):
+  if self.path.startswith('/Loading-museum/'):self.path=self.path[len('/Loading-museum'):]
+  start=time.monotonic();super().do_GET();elapsed=time.monotonic()-start
+  if elapsed>.1:print('slow',self.path,elapsed,flush=True)
+ def log_message(self,*args):pass
+server=http.server.ThreadingHTTPServer(('127.0.0.1',0),Handler)
+threading.Thread(target=server.serve_forever,daemon=True).start()
+with sync_playwright() as p:
+ for engine in ['chromium','webkit']:
+  b=getattr(p,engine).launch();q=b.new_page(viewport={'width':375,'height':900});pending=set();failed=[]
+  q.on('request',lambda r:pending.add(r.url));q.on('requestfinished',lambda r:pending.discard(r.url));q.on('requestfailed',lambda r:(pending.discard(r.url),failed.append((r.url,r.failure))))
+  start=time.monotonic()
+  try:q.goto(os.environ.get('WAAPI_URL',f'http://127.0.0.1:{server.server_port}/Loading-museum/'),wait_until='networkidle',timeout=10000);print(engine,'PASS',time.monotonic()-start,flush=True)
+  except Exception as e:print(engine,'FAIL',str(e),flush=True)
+  print(json.dumps({'pending':list(pending),'failed':failed,'page':q.title(),'cards':q.locator('.archiveMeta').inner_text()},ensure_ascii=False),flush=True);b.close()
+server.shutdown()
