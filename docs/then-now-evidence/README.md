@@ -34,3 +34,17 @@ Windows版WebKit26.0はAudioContext/webkitAudioContextとも未提供。音不�
 - `legacy-flash-final/`：Ch6成功後、WKロゴの同期読取false。`legacy-flash-statewait/` は同じ期待/8秒で待っても未成立。画像では隣の分解にfocusがあり、安定時のhit確認を追加。`legacy-flash-hit-confirmed/` はCh6成功、WKの最初の操作前geometry/hit待ちが8秒timeout（その操作未送信/後続5未実施）。旧製品/原テストは変更しない。環境/描画/試験座標の根因UNKNOWN。これ以上旧展示を追わず、Linux CIと独立レビューへ引継ぐ。旧12 PASSとは称さない。
 - `pointer-dynamics/`：Ch/WK1280の補助2条件成功。実mouse moveの遠方WATCH・近接約2000px/s（Then WATCH、Now RETREAT）・領域外REST。強制clickやCSS故障注入ではない。
 - `probe-lint.log` は補助probe/runnerのlint成功。CIの最終結果はPRの通常コメントへ追記し、LinuxとこのWindows結果を別記録にする。
+
+## 初回CI後の局所修正・第2提出
+
+初回CI [41368801486](https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/41368801486) は5/7成功・新規2job失敗で完走。原5jobは全成功、契約302成功。新作の実際の内訳はCh17/18（1280低減後の音再開待ち失敗）、WK18/18（Linuxネイティブ音正常系を含む）成功、実速度対照2成功。新作WK jobの失敗理由は旧Flash補助の最初のhit待ち。jobの失敗を全18作品条件の失敗と混同しない。原JSON/PNGとsummaryを first-ci-41368801486 に保全。取消・再試行で置換しない。
+
+新規P2：Ch原JSON/PNGでカードが画面内にあるのにdata-visible=false、音開始が無効。古いIO通知だけを採用した可視状態を、**新作専用ThenNowMount**へ分離し、IO/Resize/scroll/resize/実入力から現在の矩形を測る。旧54作のuseInView/描画/CSSは変更しない。閉室はobserver/listener破棄、画面外は停止、音の再開は明示操作を維持。`visibility-red.log` 対象1失敗→同じ試験/期待/期限で `visibility-green.log` 1成功。画面外false/再入場trueも保護。
+
+全checkの最初の試行は追加単体のTesting Libraryオプション型（exact）で停止し、`visibility-full-check.log` に保持。文字列名の既定完全一致を変えず型を是正。`visibility-full-check-fixed.log` はlint/type/build/**303成功・失敗0・skip0**（原281＋追加22、Node49＋Vitest147/32/25/20/8/22）、Windowsのworker環境4種=1。前の302/301/299と別の対象。製品修正2ac96a3、型修正942a7da。
+
+旧Flash補助は別原因。限定CSS診断で、子へのscroll後もボタン矩形y3690がviewport外、content-visibility可視化時にhit/集合成立、CSS復帰後も描画済みの状態は継続した。この注入結果は製品PASSとしない。検証側で**外側articleを先に表示**してから、同じnative click/期待状態/8秒/安定・hit確認を実施。旧CSS/原試験の変更、force click、sleep、timeout延長なし。`legacy-flash-container-scroll/` はCh6＋WK5成功後、比較ステージの同様の子scroll待ち失敗。同じ外側カード表示を比較へ適用した `legacy-webkit-container-final/` はWK6成功。原12の初回失敗や旧未実施を置換せず、新CIで同じ12を確認する。
+
+局所修正後 `visibility-gui-375/` はCh/WK×6＝12完走・11成功/Windows WK音正常系1 PARTIAL/exit2。`visibility-gui-ch1280/` はCI失敗と同じ1280後半3条件すべて成功/exit0。pageerror/横超過/閉室RAF残留/新作保存差分0、作成音context閉鎖。旧提出の36条件結果をこのHEADへ自動継承しない。最新提出HEADのCIでは36＋補助2＋旧12を既定のまま実行し、最終結果はPR本文/通常コメントへ記録する。
+
+manifest.jsonは**第1提出6245bcbの証拠スナップショット**。README等の報告追記を除き原JSON/PNG/logは上書きしない。第2提出の新規証拠一覧はmanifest-visibility.jsonを参照。実機未検証、Windows音API欠如、旧WAAPI timeout UNKNOWN、Issue44依存警告は維持する。

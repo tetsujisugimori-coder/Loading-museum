@@ -1,0 +1,35 @@
+{
+  "run": 41368801486,
+  "url": "https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/41368801486",
+  "head": "6245bcb2c136e5120c3219563f5dc9ec43ee8c62",
+  "status": "completed",
+  "conclusion": "failure",
+  "jobs": {
+    "contracts": "success",
+    "phase5aChromium": "success",
+    "phase5aWebkit": "success",
+    "practicalChromium": "success",
+    "practicalWebkit": "success",
+    "thenNowChromium": "failure",
+    "thenNowWebkit": "failure"
+  },
+  "contracts": 302,
+  "newMatrix": {
+    "chromium": {
+      "passed": 17,
+      "expected": 18,
+      "reason": "reduced motion audio restart: stale visible=false while current bounds and PNG visible"
+    },
+    "webkit": {
+      "passed": 18,
+      "expected": 18,
+      "nativeAudio": "PASS"
+    }
+  },
+  "supplementPointer": 2,
+  "legacy": {
+    "chromium": 6,
+    "webkit": "blocked before first click; 5 later cases not executed"
+  },
+  "superseded": false
+}

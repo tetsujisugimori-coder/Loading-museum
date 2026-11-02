@@ -1,0 +1,30 @@
+{
+  method: 'one bounded CSS diagnostic; injected CSS is not an unmodified-product PASS',
+  states: [
+    {
+      label: 'original',
+      box: [Object],
+      hit: false,
+      hitTag: undefined,
+      hitText: undefined,
+      contentVisibility: 'auto'
+    },
+    {
+      label: 'visible-injection',
+      box: [Object],
+      hit: true,
+      hitTag: 'BUTTON',
+      hitText: '集合',
+      contentVisibility: 'visible'
+    },
+    {
+      label: 'restored-original',
+      box: [Object],
+      hit: true,
+      hitTag: 'BUTTON',
+      hitText: '集合',
+      contentVisibility: 'auto'
+    }
+  ],
+  injectedNativeClickAssembled: true
+}

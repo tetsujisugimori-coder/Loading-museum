@@ -1542,3 +1542,11 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - 実ポインター速度/距離の補助2条件はCh/WKとも成功。近接約2000px/sでThen注視/Now後退、外部で休息。紙鳥は低減中も一歩進む操作で追従/回避を観察。
 - 旧Flash独自補助はCh6成功、Windows WKの最初のロゴ操作前geometry/hit待ち8秒timeout、当該click未送信/後続5未実施。初回の同期読取失敗・隣ボタンfocus画像・診断を別保全。原製品/原テスト/期待/期限を変えず、根因UNKNOWNとしてLinux CI/独立レビューへ渡す。旧12成功とは呼ばない。
 - 最終報告は `docs/then-now-phase1-verification.md`。新規P1/P2の未解消は自己検証範囲で未確認。総合PARTIAL、マージ推奨NO（独立レビュー待ち）。CIと提出の最終HEAD/treeはPR本文/通常コメントで照合し、Draft・未マージ・未公開を維持する。
+
+### 同日・初回CI後の局所修正
+
+- 初回41368801486は5/7job成功で完走。既存5job/契約302成功。新作内訳Ch17/18、WK18/18（Linux実音含む）成功、速度対照2成功。Ch1280低減後の音再開とWK旧Flash補助で新2jobが失敗。原JSON/PNG/summaryを first-ci-41368801486 へ保全。
+- 新規P2：画面内のカードに古いIO falseが残り音開始できない。新作だけのThenNowMountへ現在の矩形による可視判定を分離（2ac96a3）。旧54の可視hook/描画/CSSは不変。独自単体1 RED→同条件1 GREEN、画面外停止/再入場も確認。
+- 追加単体型の初回停止を保全し、型だけ是正942a7da。lint/type/Pages build/303（原281＋追加22）成功、Windows単worker診断。CI並列/原期限は不変。
+- 旧補助は未描画content-visibility内の子へ直接scrollすると矩形が画面外に残る検証側の手順。CSS注入の限定診断を製品PASSにせず保全。外側cardを先に表示し、同じnative click/期待/8秒/hit確認でCh6、WK6を各runで確認。旧CSS・原試験変更/force/sleep/期限延長なし。
+- 修正後重点GUI：375両engine12条件は11成功・Windows WK音1 PARTIAL、Ch1280後半3条件成功。旧36の結果は新HEADへ自動適用しない。第2提出CIの36＋補助2＋旧12と本文/コメントの読戻しを引続き確認する。

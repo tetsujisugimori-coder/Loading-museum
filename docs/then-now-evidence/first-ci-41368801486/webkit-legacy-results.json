@@ -1,0 +1,105 @@
+{
+  "head": "6245bcb2c136e5120c3219563f5dc9ec43ee8c62",
+  "started": "2026-11-02T00:48:31.465Z",
+  "expected": 6,
+  "cases": [],
+  "errors": [
+    "page.waitForFunction: Timeout 8000ms exceeded.\n    at legacyClick (/home/runner/work/Loading-museum/Loading-museum/scripts/verify-then-now-browser.mjs:25:183)\n    at async file:///home/runner/work/Loading-museum/Loading-museum/scripts/verify-then-now-browser.mjs:26:69"
+  ],
+  "unverified": [],
+  "tree": "1b36da3ed918ac6ef11bdbaf78d56f2cb75cdb1a",
+  "trackedChanges": "",
+  "sourceHashes": {
+    "app/components/FlashSpecialExhibitRoom.tsx": "c2485ee2de39c8a5aaf785b77a0e966d9d0ea9f5efc5bbc7589339cd9f0211b1",
+    "app/data/flashExhibits.ts": "9d794cc2d11fd4a71b39878ed22dbb3aafe6d48c32712974db437c6744a6112d",
+    "app/data/thenNowStudies.ts": "31b5000a586f93d4ef4f688722039b4eab1f74e597126938ad7e64f3c4a59608",
+    "app/components/then-now/runtime.tsx": "eb6ee5381be9d7800e8130e4a6dc99b5e7ba45a88127068064e0c93c92bbed1e",
+    "app/components/then-now/FirstStudies.tsx": "ed6cb4ba1444ffe2853033a96cb9688895be00a28b268753cab6624697dfa510",
+    "app/components/then-now/SecondStudies.tsx": "95c37ff9e487382f01598444daa937970d717843b292c36af360f4911c5382a8",
+    "app/components/then-now/ThenNowCard.tsx": "faf08f4573488a4791864a7657321419aa0e3ea618477c3c48d1cd3cb9e83d4e",
+    "app/components/then-now/then-now.css": "9e0a1c38f36b7f4dcbe6417c780999e9ff00e10a4d6730f68481610af484103e",
+    "package-lock.json": "8052a2a9f829b9f926cc2664ddf4125cc1fba676299ce32c6aa92eed0474c0df"
+  },
+  "webkit": "26.0",
+  "capabilities": [
+    {
+      "engine": "webkit",
+      "width": 375,
+      "audioContext": "function",
+      "webkitAudioContext": "undefined",
+      "secure": true
+    }
+  ],
+  "current": {
+    "engine": "webkit",
+    "width": 375,
+    "id": "legacy-logo"
+  },
+  "diagnostic": {
+    "scrollY": 4854,
+    "viewport": 900,
+    "card": [
+      {
+        "tag": "tnMount",
+        "attributes": [
+          [
+            "class",
+            "tnMount"
+          ],
+          [
+            "data-visible",
+            "false"
+          ]
+        ],
+        "box": {
+          "x": 25,
+          "y": 1085,
+          "width": 325,
+          "height": 1755.125,
+          "top": 1085,
+          "right": 350,
+          "bottom": 2840.125,
+          "left": 25
+        }
+      },
+      {
+        "tag": "tnCard",
+        "attributes": [
+          [
+            "class",
+            "tnCard"
+          ],
+          [
+            "data-study",
+            "tn-kinetic-type"
+          ],
+          [
+            "data-playing",
+            "false"
+          ],
+          [
+            "data-reduced",
+            "false"
+          ]
+        ],
+        "box": {
+          "x": 25,
+          "y": 1085,
+          "width": 325,
+          "height": 1755.125,
+          "top": 1085,
+          "right": 350,
+          "bottom": 2840.125,
+          "left": 25
+        }
+      }
+    ],
+    "state": [
+      "MOTION ／ rise ／ 各文字の開始差 6.5% ／ 進行 0%",
+      "LISTEN ／ rise ／ 各文字の開始差 6.5% ／ 進行 0%"
+    ]
+  },
+  "finished": "2026-11-02T00:48:41.225Z",
+  "status": "FAIL",
+  "complete": false
+}
