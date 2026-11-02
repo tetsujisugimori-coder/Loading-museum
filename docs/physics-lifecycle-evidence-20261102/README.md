@@ -41,3 +41,7 @@ GitHubのPNG/create_treeは最初auto-review拒否で未実行となり停止。
 ## 今回初回CIの失敗保全
 
 最小提出0d88e822 / tree977d67dcのPhysics CI41432253225はCh成功、WKでcancel-independentが3幅失敗・他15条件成功。後続の力学/旧版REDは先行失敗で未実施。製品/入力/期待/8秒を変えず、失敗の数値とassertionをログへ出す診断だけを追加する。原因は現時点UNKNOWN。既存全館CI41432253049の進行と別集計する。原artifact/ログはGitHubとローカルに保持し、旧失敗を新成功へ上書きしない。
+
+## WebKit数値診断と入力手順の是正
+
+診断版1324ba5aのCI41433808777でもWK3幅のcancel-independentが失敗。詳細値では取消前後の球2がy100/vy-250で全状態不変、その後のsteppedも同じままだった。人工PointerCancelではPlaywrightのmouse押下状態は終了せず、続く1刻みclickが成立していない手順の問題だった。製品を変更せず、人工cancel後に実mouse.upを追加し、古いupが状態を変えないこともassert。続くstepのisTrusted/targetを検査する。旧/新へ同じprobeを使い、元の数値期待と8秒は維持する。最終CIのRED/GREENを当該probe hashで区別する。元v2のローカル結果と今回CI失敗ログを最終版の成功へ読み替えない。

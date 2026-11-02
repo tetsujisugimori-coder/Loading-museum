@@ -21,5 +21,12 @@
     "tests/then-now-second.test.tsx"
   ],
   "evidenceSelection": "8 manually reviewed PNGs, 5 definitive result JSONs, 3 selected logs, preservation, audit and manifest; no npm long logs or duplicate source snapshots",
-  "note": "Local results retain parent HEAD metadata plus tested dirty source hashes; exact submitted HEAD CI recorded separately in PR and subsequent LOG entry"
+  "note": "Local results retain parent HEAD metadata plus tested dirty source hashes; exact submitted HEAD CI recorded separately in PR and subsequent LOG entry",
+  "recordedForInitialSubmissionHead": "0d88e8223c3648306a0a6895a0a2e110ecf62cb5",
+  "laterVerifierOnlyChanges": [
+    "Failure assertion/numeric diagnostics at1324ba5a; no input/oracle/deadline change",
+    "Native mouse.up after artificial cancel; assert old up inert and trusted step click; same updated probe applied to exact old/current versions",
+    "Emit clean-status/head/tree/product/probe hashes and actual browser versions for CI log verification"
+  ],
+  "productUnchangedAfterFirstFix": true
 }

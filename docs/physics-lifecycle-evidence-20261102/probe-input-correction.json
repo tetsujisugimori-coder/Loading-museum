@@ -1,0 +1,20 @@
+{
+  "previousLocalProbeSHA256": "eb36c73a54c4f903b95396a7929c2c7433863779aa8e6f3ad18628835f63707f",
+  "currentProbeSHA256": "eef26d9bd7d8790e470ec1fc30ef5022bd2b2a786790adb77ee5e3e63e07b289",
+  "productSHA256": "c699bea0690fc43f4e502f86a2a4543e398e0d994e2ffd795c4211309577da30",
+  "inputCorrection": "After artificial pointercancel, release the still-down native Playwright mouse before trusted click; assert late up inert",
+  "originalOraclesPreserved": [
+    "ball2 full state unchanged across cancel",
+    "target cancel velocity zero",
+    "ball2 y=100-250/30 and vy=-250 after 1/30s",
+    "held/capture/pause/resume/reset/stale-event controls"
+  ],
+  "additionalOracle": "intended trusted native step click delivered",
+  "waitLimitMs": 8000,
+  "comparison": "exact same updated probe copied into old fixed checkout and current checkout in CI",
+  "initialCIFailuresRetained": [
+    "41432253225",
+    "41433808777"
+  ],
+  "originalLocalProbeInputCorrectionCheck": "Chromium 3 widths x6=18 successful; local archive only; final CI hashes distinguish added logging"
+}

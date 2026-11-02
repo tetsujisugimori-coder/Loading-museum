@@ -1567,3 +1567,9 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - Physics CI 41432253225はCh成功、WKの更新版GREENでcancel-independentが3幅失敗、他15条件成功。WKの力学/旧版REDステップは先行失敗のため未実施。原失敗artifact/ログを保全しPASSへ読み替えない。Ubuntu24.04.5、Node22.23.4、Playwright1.56.1/WebKit26.0。詳細数値を持つartifactのローカル取得は403となった。
 - 製品/入力/期待/期限を変更せず、検証器の失敗時数値・assertionをCIログへ出す診断だけを追加する。現在は原因UNKNOWN。既存CI 41432253049は契約309・新作Ch/WK・5A双方成功、他jobの終端を追跡中。最終確定結果は追記とPRコメントで区別する。
 - 初回今回CI終端: 41432253049は7/7成功、41432253225はCh成功/WK失敗（1/2成功）で全job完走。取消・timeoutではない。ci-0d88e822-summary.jsonへ原状態を記録し、期待/入力/期限不変の診断版で原因を追う。
+
+### WebKit診断と検証器の入力終了
+
+- 1324ba5a / tree a1be78975708201116f8281bbd57e76d9480f502のPhysics CI41433808777でもWK3条件が失敗したが、診断値で取消前後の球2 x/y/vx/vy/heldは完全一致（y100/vy-250）し、その後の1刻みclickが物理状態を更新していないことを確認。人工PointerCancelはPlaywrightの押下中mouse状態を終了しないため、次clickが成立しない試験手順の問題と判定した。製品再発として扱わず、原失敗を保持する。
+- 製品/物理期待/8秒を変更せず、人工cancel後に実mouse.upで入力を終了し、その古いupが解除後状態を変えないことを追加assert。続く1刻みボタンへisTrusted=true/正しいtargetのclickが届くこともassertする。旧固定版と更新版へ同じ新probeを適用し、元の球2状態不変・次1/30秒の数値検査を保持する。最終CI結果は終端後に別記する。
+- 診断版1324ba5aの既存CI41433808140は7/7成功、Physics41433808777はCh成功/WK失敗で全job終端。途中取消なし。原数値診断をci-41433808777-webkit-diagnostics.log、全job状態をci-1324ba5a-summary.jsonに保持する。入力終了を補ったローカルCh3幅18条件は成功。最終CIでは同じ是正probeを旧新へ適用する。
