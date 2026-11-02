@@ -1,5 +1,11 @@
 # DIGITAL MOTION ARCHIVE
 
+## WAAPI Stage 2A 現main統合（Issue #35）
+
+Menu Selection Cursor／Coin Pickup Arcに、通常の選択・得点から独立した観察プレビューを追加。再生・一時停止・再開・seek・前後1ステップを操作できます。Coinは通常モードの明示COLLECTだけがResetごとに100点を確定します。現mainの251展示・13室と後続展示を保持しています。
+
+[統合方針・ファイル別判断・検証と引継ぎ](docs/maintenance/stage2a-main-integration-20261102/README.md)。PR #36の過去の限定GOは当時の条件の履歴です。今回の自己検証と独立再レビューを区別し、独立再レビュー前のマージ推奨はNOです。
+
 ## Flash Then & Now 第1期（Issue #50）
 
 既存Flash展示室の6カテゴリ内へ、Then/Nowを一組とする6作品を追加。現物登録は **Flash60展示・18カテゴリ、全館251展示・13室**。新しい展示室は作りません。過去と現在を優劣で並べず、異なる制作判断を操作して比べます。両方とも現代ブラウザによる独自制作です。

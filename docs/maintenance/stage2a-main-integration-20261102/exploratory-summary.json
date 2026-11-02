@@ -1,0 +1,168 @@
+{
+  "scope": "Precommit exploratory only; dirty checkout and verifier hardening during exploration. Final acceptance requires exact final HEAD, REQUIRE_CLEAN=1, source unchanged before/after and terminal CI.",
+  "automatic": {
+    "initialDefault": {
+      "nodePass": 49,
+      "vitestPass": 147,
+      "vitestTimeout": 3,
+      "laterGroups": "not executed"
+    },
+    "twoWorkers": {
+      "pass": 356,
+      "fail": 0,
+      "skip": 0
+    },
+    "focusedTwoWorkers": {
+      "pass": 89,
+      "fail": 0,
+      "skip": 0,
+      "overlapsFull": true
+    }
+  },
+  "suites": {
+    "observation": {
+      "conditions": 6,
+      "statuses": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+      ],
+      "engines": [
+        "chromium",
+        "webkit"
+      ],
+      "versions": [
+        "141.0.7390.37",
+        "26.0"
+      ],
+      "widths": [
+        375,
+        390,
+        765
+      ],
+      "pageErrors": []
+    },
+    "style": {
+      "conditions": 6,
+      "statuses": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+      ],
+      "engines": [
+        "chromium",
+        "webkit"
+      ],
+      "versions": [
+        "141.0.7390.37",
+        "26.0"
+      ],
+      "widths": [
+        375,
+        390,
+        765
+      ],
+      "pageErrors": []
+    },
+    "layout": {
+      "conditions": 6,
+      "statuses": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+      ],
+      "engines": [
+        "chromium",
+        "webkit"
+      ],
+      "versions": [
+        "141.0.7390.37",
+        "26.0"
+      ],
+      "widths": [
+        375,
+        390,
+        765
+      ],
+      "pageErrors": [],
+      "geometrySamples": 288
+    },
+    "n2": {
+      "conditions": 6,
+      "statuses": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+      ],
+      "engines": [
+        "chromium",
+        "webkit"
+      ],
+      "versions": [
+        "141.0.7390.37",
+        "26.0"
+      ],
+      "widths": [
+        375,
+        390,
+        765
+      ],
+      "pageErrors": [],
+      "negativeControls": [
+        {
+          "name": "running without cancel",
+          "rejected": true
+        },
+        {
+          "name": "natural finish without cancel",
+          "rejected": true
+        },
+        {
+          "name": "already ended at media input",
+          "rejected": true
+        },
+        {
+          "name": "score pulse not cancelled",
+          "rejected": true
+        }
+      ]
+    },
+    "stage1": {
+      "conditions": 6,
+      "statuses": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+      ],
+      "engines": [
+        "chromium",
+        "webkit"
+      ],
+      "versions": [
+        "141.0.7390.37",
+        "26.0"
+      ],
+      "widths": [
+        375,
+        390,
+        765
+      ],
+      "pageErrors": []
+    }
+  }
+}

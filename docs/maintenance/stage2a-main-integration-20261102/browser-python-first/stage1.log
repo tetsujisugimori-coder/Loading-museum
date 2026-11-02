@@ -1,0 +1,492 @@
+chromium 375 FAIL Page.goto: Timeout 10000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:59524/Loading-museum/", waiting until "networkidle"
+
+closed chromium 375
+chromium 390 FAIL Page.goto: Timeout 10000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:59524/Loading-museum/", waiting until "networkidle"
+
+closed chromium 390
+chromium 765 checkpoint 0
+chromium 765 checkpoint 1
+chromium 765 checkpoint 2
+chromium 765 checkpoint 3
+chromium 765 checkpoint 4
+chromium 765 PASS 
+closed chromium 765
+webkit 375 FAIL Page.goto: Timeout 10000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:59524/Loading-museum/", waiting until "networkidle"
+
+closed webkit 375
+webkit 390 checkpoint 0
+webkit 390 checkpoint 1
+webkit 390 checkpoint 2
+webkit 390 checkpoint 3
+webkit 390 checkpoint 4
+webkit 390 PASS 
+closed webkit 390
+webkit 765 FAIL Page.goto: Timeout 10000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:59524/Loading-museum/", waiting until "networkidle"
+
+closed webkit 765
+[
+  {
+    "engine": "chromium",
+    "version": "141.0.7390.37",
+    "width": 375,
+    "checks": [],
+    "errors": [],
+    "status": "FAIL",
+    "failure": "Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n"
+  },
+  {
+    "engine": "chromium",
+    "version": "141.0.7390.37",
+    "width": 390,
+    "checks": [],
+    "errors": [],
+    "status": "FAIL",
+    "failure": "Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n"
+  },
+  {
+    "engine": "chromium",
+    "version": "141.0.7390.37",
+    "width": 765,
+    "checks": [
+      "menu all3 positions normal/CSS200 geometry keyboard reset",
+      "parry/dodge early success late both motion modes and reset during toggle",
+      "battle completion offscreen interruption reset repeat motion toggle",
+      "combat paused native animations cancelled by motion ON and logical result retained",
+      "coin demo/reentry no award explicit keyboard collect once rapid replay reset"
+    ],
+    "errors": [],
+    "menu": [
+      {
+        "cursor": {
+          "top": 250.546875,
+          "bottom": 261.546875
+        },
+        "target": {
+          "top": 250.546875,
+          "bottom": 261.546875
+        },
+        "dy": 0,
+        "scale": 1,
+        "index": 0
+      },
+      {
+        "cursor": {
+          "top": 271.546875,
+          "bottom": 282.546875
+        },
+        "target": {
+          "top": 271.546875,
+          "bottom": 282.546875
+        },
+        "dy": 0,
+        "scale": 1,
+        "index": 1
+      },
+      {
+        "cursor": {
+          "top": 292.546875,
+          "bottom": 303.546875
+        },
+        "target": {
+          "top": 292.546875,
+          "bottom": 303.546875
+        },
+        "dy": 0,
+        "scale": 1,
+        "index": 2
+      },
+      {
+        "cursor": {
+          "top": 275.046875,
+          "bottom": 299.046875
+        },
+        "target": {
+          "top": 275.046875,
+          "bottom": 299.046875
+        },
+        "dy": 0,
+        "scale": 2,
+        "index": 0
+      },
+      {
+        "cursor": {
+          "top": 309.046875,
+          "bottom": 333.046875
+        },
+        "target": {
+          "top": 309.046875,
+          "bottom": 333.046875
+        },
+        "dy": 0,
+        "scale": 2,
+        "index": 1
+      },
+      {
+        "cursor": {
+          "top": 343.046875,
+          "bottom": 367.046875
+        },
+        "target": {
+          "top": 343.046875,
+          "bottom": 367.046875
+        },
+        "dy": 0,
+        "scale": 2,
+        "index": 2
+      }
+    ],
+    "timing": [
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 31.700000002980232,
+        "name": "Perfect Parry",
+        "motion": "no-preference",
+        "requested": 30
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "PERFECT PARRY",
+        "elapsed": 509.5,
+        "name": "Perfect Parry",
+        "motion": "no-preference",
+        "requested": 500
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 751,
+        "name": "Perfect Parry",
+        "motion": "no-preference",
+        "requested": 750
+      },
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 35.5,
+        "name": "Dodge Afterimage",
+        "motion": "no-preference",
+        "requested": 30
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "LEFT · S-RANK",
+        "elapsed": 500.3999999985099,
+        "name": "Dodge Afterimage",
+        "motion": "no-preference",
+        "requested": 500
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 750.6000000014901,
+        "name": "Dodge Afterimage",
+        "motion": "no-preference",
+        "requested": 750
+      },
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 30.5,
+        "name": "Perfect Parry",
+        "motion": "reduce",
+        "requested": 30
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "PERFECT PARRY",
+        "elapsed": 501.69999999552965,
+        "name": "Perfect Parry",
+        "motion": "reduce",
+        "requested": 500
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 750.7000000029802,
+        "name": "Perfect Parry",
+        "motion": "reduce",
+        "requested": 750
+      },
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 30.600000001490116,
+        "name": "Dodge Afterimage",
+        "motion": "reduce",
+        "requested": 30
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "LEFT · S-RANK",
+        "elapsed": 500.5,
+        "name": "Dodge Afterimage",
+        "motion": "reduce",
+        "requested": 500
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 751.1000000014901,
+        "name": "Dodge Afterimage",
+        "motion": "reduce",
+        "requested": 750
+      }
+    ],
+    "battleOffscreen": {
+      "text": "FIELD · INTERRUPTED",
+      "class": "waapiPreviewStage gameScene gameBattle sceneFIELD"
+    },
+    "combat": [
+      "idle",
+      "idle",
+      "idle"
+    ],
+    "combatMediaEvents": {
+      "events": [
+        {
+          "time": 217.89999999850988,
+          "matches": true
+        }
+      ],
+      "observedAfter": 261.79999999701977
+    },
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "width": 375,
+    "checks": [],
+    "errors": [],
+    "status": "FAIL",
+    "failure": "Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n"
+  },
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "width": 390,
+    "checks": [
+      "menu all3 positions normal/CSS200 geometry keyboard reset",
+      "parry/dodge early success late both motion modes and reset during toggle",
+      "battle completion offscreen interruption reset repeat motion toggle",
+      "combat paused native animations cancelled by motion ON and logical result retained",
+      "coin demo/reentry no award explicit keyboard collect once rapid replay reset"
+    ],
+    "errors": [],
+    "menu": [
+      {
+        "cursor": {
+          "top": 259.5,
+          "bottom": 270.5
+        },
+        "target": {
+          "top": 259.5,
+          "bottom": 270.5
+        },
+        "dy": 0,
+        "scale": 1,
+        "index": 0
+      },
+      {
+        "cursor": {
+          "top": 280.5,
+          "bottom": 291.5
+        },
+        "target": {
+          "top": 280.5,
+          "bottom": 291.5
+        },
+        "dy": 0,
+        "scale": 1,
+        "index": 1
+      },
+      {
+        "cursor": {
+          "top": 301.5,
+          "bottom": 312.5
+        },
+        "target": {
+          "top": 301.5,
+          "bottom": 312.5
+        },
+        "dy": 0,
+        "scale": 1,
+        "index": 2
+      },
+      {
+        "cursor": {
+          "top": 242,
+          "bottom": 266
+        },
+        "target": {
+          "top": 242,
+          "bottom": 266
+        },
+        "dy": 0,
+        "scale": 2,
+        "index": 0
+      },
+      {
+        "cursor": {
+          "top": 276,
+          "bottom": 300
+        },
+        "target": {
+          "top": 276,
+          "bottom": 300
+        },
+        "dy": 0,
+        "scale": 2,
+        "index": 1
+      },
+      {
+        "cursor": {
+          "top": 310,
+          "bottom": 334
+        },
+        "target": {
+          "top": 310,
+          "bottom": 334
+        },
+        "dy": 0,
+        "scale": 2,
+        "index": 2
+      }
+    ],
+    "timing": [
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 36,
+        "name": "Perfect Parry",
+        "motion": "no-preference",
+        "requested": 30
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "PERFECT PARRY",
+        "elapsed": 512,
+        "name": "Perfect Parry",
+        "motion": "no-preference",
+        "requested": 500
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 758,
+        "name": "Perfect Parry",
+        "motion": "no-preference",
+        "requested": 750
+      },
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 39,
+        "name": "Dodge Afterimage",
+        "motion": "no-preference",
+        "requested": 30
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "LEFT · S-RANK",
+        "elapsed": 500.0000000000018,
+        "name": "Dodge Afterimage",
+        "motion": "no-preference",
+        "requested": 500
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 758,
+        "name": "Dodge Afterimage",
+        "motion": "no-preference",
+        "requested": 750
+      },
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 34,
+        "name": "Perfect Parry",
+        "motion": "reduce",
+        "requested": 30
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "PERFECT PARRY",
+        "elapsed": 510,
+        "name": "Perfect Parry",
+        "motion": "reduce",
+        "requested": 500
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 754,
+        "name": "Perfect Parry",
+        "motion": "reduce",
+        "requested": 750
+      },
+      {
+        "before": "WARNING",
+        "after": "EARLY · HIT",
+        "elapsed": 35.00000000000364,
+        "name": "Dodge Afterimage",
+        "motion": "reduce",
+        "requested": 30
+      },
+      {
+        "before": "ACTIVE WINDOW",
+        "after": "LEFT · S-RANK",
+        "elapsed": 507.99999999999636,
+        "name": "Dodge Afterimage",
+        "motion": "reduce",
+        "requested": 500
+      },
+      {
+        "before": "LATE · WINDOW CLOSED",
+        "after": "LATE · HIT",
+        "elapsed": 759.9999999999964,
+        "name": "Dodge Afterimage",
+        "motion": "reduce",
+        "requested": 750
+      }
+    ],
+    "battleOffscreen": {
+      "text": "FIELD · INTERRUPTED",
+      "class": "waapiPreviewStage gameScene gameBattle sceneFIELD"
+    },
+    "combat": [
+      "idle",
+      "idle",
+      "idle"
+    ],
+    "combatMediaEvents": {
+      "events": [
+        {
+          "time": 502,
+          "matches": true
+        }
+      ],
+      "observedAfter": 524
+    },
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "width": 765,
+    "checks": [],
+    "errors": [],
+    "status": "FAIL",
+    "failure": "Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n"
+  }
+]

@@ -1,0 +1,111 @@
+{
+  "observedAt": "2026-11-02T12:38:40.148Z",
+  "existingCheckout": {
+    "path": "C:/Users/tetsu/Documents/Codex/Loading-museum",
+    "head": "1d0d7eeac4e6fcbe2dfb792dd69250e65af302b7",
+    "branch": "main",
+    "status": "",
+    "worktrees": "worktree C:/Users/tetsu/Documents/Codex/Loading-museum\nHEAD 1d0d7eeac4e6fcbe2dfb792dd69250e65af302b7\nbranch refs/heads/main"
+  },
+  "integrationCheckout": {
+    "branch": "fix/waapi-stage2a-main-integration",
+    "head": "91615365f5001c4e73b3a0f8d282bff0ed29a6d0",
+    "baseline": "91615365f5001c4e73b3a0f8d282bff0ed29a6d0"
+  },
+  "remoteHeads": [
+    {
+      "sha": "f695ec689311e1226618627a857e7f7e9da3c35b",
+      "ref": "refs/heads/agent/digital-motion-archive-title"
+    },
+    {
+      "sha": "6c1685f9a2ce6a0295946c9d1e7d839776938bb1",
+      "ref": "refs/heads/agent/dom-animation-room"
+    },
+    {
+      "sha": "c6586f55febecb48767ab752aaa8ff520b3d3e09",
+      "ref": "refs/heads/agent/macintosh-authentic-ui"
+    },
+    {
+      "sha": "92b312aa116141ff39d5f8e7205d25203f5f34f3",
+      "ref": "refs/heads/agent/vanished-os-exhibit-room"
+    },
+    {
+      "sha": "5d83129c3527f9474a6132f035d38ccc9c6f95b2",
+      "ref": "refs/heads/feat/flash-then-now-phase1"
+    },
+    {
+      "sha": "271df8b399fd1abd37bda68cd79fff225741d65a",
+      "ref": "refs/heads/feat/interactive-collection-phase2"
+    },
+    {
+      "sha": "db902eae0f91023276e0feec6f03e61ca244c650",
+      "ref": "refs/heads/feat/modern-animation-phase1"
+    },
+    {
+      "sha": "98a97d52917137adce7958dfd60842164e0378f6",
+      "ref": "refs/heads/feat/practical-ui-phase3"
+    },
+    {
+      "sha": "0b7bbb666e0e5fd2f27545836ea9443179f7c7ba",
+      "ref": "refs/heads/feat/practical-ui-phase4a"
+    },
+    {
+      "sha": "30e8a170924e933a82a5e660f8a4332da2cf4b7b",
+      "ref": "refs/heads/feat/practical-ui-phase4b"
+    },
+    {
+      "sha": "953cc49c539e4742f0cfd2e10e073d96c957d703",
+      "ref": "refs/heads/feat/practical-ui-phase5a"
+    },
+    {
+      "sha": "74a15e9ee19830756c4043bd9041eed37d922c5d",
+      "ref": "refs/heads/feat/waapi-game-observation-stage2a"
+    },
+    {
+      "sha": "86d1fc36eae8ba62d9d88178518281646e8f6231",
+      "ref": "refs/heads/feature/macintosh-birth-exhibit"
+    },
+    {
+      "sha": "ccefffcbbf09006cafe3145e43dd249beb19e98d",
+      "ref": "refs/heads/feature/waapi-sample-gallery"
+    },
+    {
+      "sha": "c9f18479660cd86c331a32e05fbd538579641dfe",
+      "ref": "refs/heads/fix/waapi-state-consistency"
+    },
+    {
+      "sha": "91615365f5001c4e73b3a0f8d282bff0ed29a6d0",
+      "ref": "refs/heads/main"
+    }
+  ],
+  "openPRs": [
+    {
+      "headRefName": "feat/waapi-game-observation-stage2a",
+      "headRefOid": "74a15e9ee19830756c4043bd9041eed37d922c5d",
+      "isDraft": false,
+      "number": 36,
+      "title": "feat: Menu / Coinの独立観察モード（Stage 2A）"
+    }
+  ],
+  "originalPR": {
+    "baseRefOid": "1d0d7eeac4e6fcbe2dfb792dd69250e65af302b7",
+    "headRefName": "feat/waapi-game-observation-stage2a",
+    "headRefOid": "74a15e9ee19830756c4043bd9041eed37d922c5d",
+    "isDraft": false,
+    "mergeStateStatus": "DIRTY",
+    "mergeable": "CONFLICTING",
+    "number": 36,
+    "state": "OPEN",
+    "url": "https://github.com/tetsujisugimori-coder/Loading-museum/pull/36"
+  },
+  "physicsPR": {
+    "headRefOid": "5d83129c3527f9474a6132f035d38ccc9c6f95b2",
+    "mergeCommit": {
+      "oid": "91615365f5001c4e73b3a0f8d282bff0ed29a6d0"
+    },
+    "mergedAt": "2026-11-02T11:54:04Z",
+    "number": 51,
+    "state": "MERGED",
+    "url": "https://github.com/tetsujisugimori-coder/Loading-museum/pull/51"
+  }
+}

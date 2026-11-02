@@ -204,9 +204,10 @@ function StatusPreview({ active, reducedMotion }: PreviewProps) {
 
 const orders = { NORMALIZE: ["KNIGHT", "MAGE", "ROGUE"], HASTE: ["MAGE", "KNIGHT", "ROGUE"], STUN: ["KNIGHT", "ROGUE", "MAGE ⊘"] } as const;
 function TurnPreview({ active, reducedMotion }: PreviewProps) {
-  const list = useRef<HTMLOListElement>(null); const { stop, animate } = useRuntime(active); const [mode, setMode] = useState<keyof typeof orders>("NORMALIZE");
-  const reorder = (value: keyof typeof orders) => { stop(); const before = new Map(Array.from(list.current?.children ?? []).map((node) => [(node as HTMLElement).dataset.unit, node.getBoundingClientRect().top])); setMode(value); requestAnimationFrame(() => Array.from(list.current?.children ?? []).forEach((node) => { const el = node as HTMLElement; const dy = (before.get(el.dataset.unit) ?? el.getBoundingClientRect().top) - el.getBoundingClientRect().top; animate(el, [{ transform: `translateY(${dy}px)` }, { transform: "translateY(0)" }], { duration: reducedMotion ? 1 : 420 }); })); };
-  const reset = () => reorder("NORMALIZE");
+  const list = useRef<HTMLOListElement>(null); const generation = useRef(0); const { stop, animate } = useRuntime(active, reducedMotion); const [mode, setMode] = useState<keyof typeof orders>("NORMALIZE");
+  useLayoutEffect(() => () => { generation.current++; }, [active, reducedMotion]);
+  const reorder = (value: keyof typeof orders) => { const run = ++generation.current; stop(); const before = new Map(Array.from(list.current?.children ?? []).map((node) => [(node as HTMLElement).dataset.unit, node.getBoundingClientRect().top])); setMode(value); requestAnimationFrame(() => { if (run !== generation.current || !active) return; Array.from(list.current?.children ?? []).forEach((node) => { const el = node as HTMLElement; const dy = (before.get(el.dataset.unit) ?? el.getBoundingClientRect().top) - el.getBoundingClientRect().top; animate(el, [{ transform: `translateY(${dy}px)` }, { transform: "translateY(0)" }], { duration: reducedMotion ? 1 : 420 }); }); }); };
+  const reset = () => { generation.current++; stop(); setMode("NORMALIZE"); };
   return <div className="waapiPreviewGroup"><div className="waapiPreviewStage gameScene gameTurn" data-scene="turn-order"><ol ref={list}>{orders[mode].map((unit, i) => <li key={unit.replace(" ⊘", "")} data-unit={unit.replace(" ⊘", "")}><b>{i + 1}</b>{unit}</li>)}</ol><output>{mode} · DOM ORDER UPDATED</output></div><Controls reset={reset}>{(["HASTE", "STUN", "NORMALIZE"] as const).map((value) => <button type="button" key={value} onClick={() => reorder(value)}>{value}</button>)}</Controls></div>;
 }
 

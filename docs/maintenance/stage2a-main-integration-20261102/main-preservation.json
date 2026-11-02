@@ -1,0 +1,1010 @@
+{
+  "main": "91615365f5001c4e73b3a0f8d282bff0ed29a6d0",
+  "hashNormalization": "UTF-8 text with checkout CRLF normalized to LF; Git diff also confirms no changes",
+  "sourceFiles": 125,
+  "unchanged": true,
+  "priorTestFiles": 38,
+  "missingTests": [],
+  "files": [
+    {
+      "path": ".github/workflows/verify-physics.yml",
+      "baselineSHA256": "aea06e68de723fe79e5a647a124d75dbca4fa142327b5b14c3a3c55b40e6c77a",
+      "currentSHA256": "aea06e68de723fe79e5a647a124d75dbca4fa142327b5b14c3a3c55b40e6c77a",
+      "unchanged": true
+    },
+    {
+      "path": ".github/workflows/verify-practical.yml",
+      "baselineSHA256": "519cdd48683ca59a6b194c53a41313774008bccf300c00afbd7fc95e89ef2dc7",
+      "currentSHA256": "519cdd48683ca59a6b194c53a41313774008bccf300c00afbd7fc95e89ef2dc7",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/AppleEarlyBeginnerGuide.tsx",
+      "baselineSHA256": "8d0816c420849431da0eeecc5adafdb1d63e1ec83ef810456929595b744c1dfb",
+      "currentSHA256": "8d0816c420849431da0eeecc5adafdb1d63e1ec83ef810456929595b744c1dfb",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/AppleEarlyDemoControls.tsx",
+      "baselineSHA256": "b70baf0c8d31f4067d6c3cd9e75940d1df4e28ca521a9ed3913130dd35b3d8f1",
+      "currentSHA256": "b70baf0c8d31f4067d6c3cd9e75940d1df4e28ca521a9ed3913130dd35b3d8f1",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/AppleEarlyEraExhibitRoom.tsx",
+      "baselineSHA256": "a4dcaa30c592a3b06c4ad00334159189ba2310258d12bfc084761fa026cdb0eb",
+      "currentSHA256": "a4dcaa30c592a3b06c4ad00334159189ba2310258d12bfc084761fa026cdb0eb",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/AppleEarlyGraphicsDemos.tsx",
+      "baselineSHA256": "034786798313cefe9bb172f019acf74210f73a6c266359e3508b3d43a16440b1",
+      "currentSHA256": "034786798313cefe9bb172f019acf74210f73a6c266359e3508b3d43a16440b1",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/AppleEarlyMediaDemos.tsx",
+      "baselineSHA256": "99fbae3d607473022b97383af79d5b414e6c3fb22750073a4181377ff5a2c4b1",
+      "currentSHA256": "99fbae3d607473022b97383af79d5b414e6c3fb22750073a4181377ff5a2c4b1",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/AppleEarlyTerminalDemos.tsx",
+      "baselineSHA256": "5c494b566dddbfee741caea6165ab9cb39f84013c54d901684da9d2d5f22bf2b",
+      "currentSHA256": "5c494b566dddbfee741caea6165ab9cb39f84013c54d901684da9d2d5f22bf2b",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/AppleInteractionFlow.tsx",
+      "baselineSHA256": "56b1cad169aae38e38e5306562b2ca708edab1cb4600c90e80b056870c65d6d1",
+      "currentSHA256": "56b1cad169aae38e38e5306562b2ca708edab1cb4600c90e80b056870c65d6d1",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/CursorExhibitRoom.tsx",
+      "baselineSHA256": "75af87aca2d78e3db79fbf42bd53ab69a54b2c630c6e583c19a4f42c4e0047ba",
+      "currentSHA256": "75af87aca2d78e3db79fbf42bd53ab69a54b2c630c6e583c19a4f42c4e0047ba",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/DomAnimationRoom.tsx",
+      "baselineSHA256": "6df9716c19a8dbd13b8f6be48e248fca11c392d87594accc721994d819847132",
+      "currentSHA256": "6df9716c19a8dbd13b8f6be48e248fca11c392d87594accc721994d819847132",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/ExhibitRoomAccordion.tsx",
+      "baselineSHA256": "bb229dba140d63e7e214ddfe750a3e50156b3de0d4e1821cd539be1cdb5f03d2",
+      "currentSHA256": "bb229dba140d63e7e214ddfe750a3e50156b3de0d4e1821cd539be1cdb5f03d2",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/FlashRefinedVisuals.tsx",
+      "baselineSHA256": "f033bb6782cd14053b55524dd089db6d2c3ce09bc7c4be048e53112c9f2e1bec",
+      "currentSHA256": "f033bb6782cd14053b55524dd089db6d2c3ce09bc7c4be048e53112c9f2e1bec",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/FlashSpecialExhibitRoom.tsx",
+      "baselineSHA256": "3e1d6ac705922e60e31e8ce83eddf8a18b553f9ee94ea5bc22871d273e6b3189",
+      "currentSHA256": "3e1d6ac705922e60e31e8ce83eddf8a18b553f9ee94ea5bc22871d273e6b3189",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/FlashVisuals.tsx",
+      "baselineSHA256": "f7b31dbb33c6d9206de07305d33d2165a0b376387316db263653e40b8de4fb65",
+      "currentSHA256": "f7b31dbb33c6d9206de07305d33d2165a0b376387316db263653e40b8de4fb65",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/GlassExhibit.tsx",
+      "baselineSHA256": "ba2bbebd3e0974850b34aee7ebf19b3ab60bca5046b313f7d6b5007004630ac2",
+      "currentSHA256": "ba2bbebd3e0974850b34aee7ebf19b3ab60bca5046b313f7d6b5007004630ac2",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/MacintoshBirthExhibitRoom.tsx",
+      "baselineSHA256": "30177e6d98016f87b9e607085f7ed9d98d79899001aea64315152486877b91f8",
+      "currentSHA256": "30177e6d98016f87b9e607085f7ed9d98d79899001aea64315152486877b91f8",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/ModernAnimationRoom.tsx",
+      "baselineSHA256": "a8a6273fbcdbd9e13335b7f9e23aab8df79fe11856445b0807d6abb2369a0cba",
+      "currentSHA256": "a8a6273fbcdbd9e13335b7f9e23aab8df79fe11856445b0807d6abb2369a0cba",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/ModernClipMenu.tsx",
+      "baselineSHA256": "15dc2aec6a8366ed26ed89d3a7de7ccaa601928b026812bddd2f8a7f88a7522f",
+      "currentSHA256": "15dc2aec6a8366ed26ed89d3a7de7ccaa601928b026812bddd2f8a7f88a7522f",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/ModernDrift.tsx",
+      "baselineSHA256": "86606fd86846d8bfc9dfb96e5fcc9bc4f060598b4af300fa3d67a531534e1179",
+      "currentSHA256": "86606fd86846d8bfc9dfb96e5fcc9bc4f060598b4af300fa3d67a531534e1179",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/ModernLens.tsx",
+      "baselineSHA256": "3b9003d7c4bfaf3e4f20a24c69154ab0a9a378a1151f37a5879f23ec18f44826",
+      "currentSHA256": "3b9003d7c4bfaf3e4f20a24c69154ab0a9a378a1151f37a5879f23ec18f44826",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/ModernWeave.tsx",
+      "baselineSHA256": "652d290514a44fd1a4fce97c75b58ef49d5c71b97accb616625bae88c76e2149",
+      "currentSHA256": "652d290514a44fd1a4fce97c75b58ef49d5c71b97accb616625bae88c76e2149",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/MuseumTitleSequence.tsx",
+      "baselineSHA256": "f53a69d03e97f6b662b963033d99f77e932ed54b9dae57c3a64304dc1cb16926",
+      "currentSHA256": "f53a69d03e97f6b662b963033d99f77e932ed54b9dae57c3a64304dc1cb16926",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/PaperExhibit.tsx",
+      "baselineSHA256": "cc3dd2806c498ad34c899378361164e6f24750d08416c4c13c6807b0570fa2b8",
+      "currentSHA256": "cc3dd2806c498ad34c899378361164e6f24750d08416c4c13c6807b0570fa2b8",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/Phase2BPlayer.tsx",
+      "baselineSHA256": "cf5d35d1baafbc501d04a355a4b6b4083ed499c581719adacc48c4bed4bdb2df",
+      "currentSHA256": "cf5d35d1baafbc501d04a355a4b6b4083ed499c581719adacc48c4bed4bdb2df",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/Phase2Room.tsx",
+      "baselineSHA256": "d38216728ef481a5ad9147de3b2f5b3313bd60120e2ad1dfafa3abbd74cf6d8f",
+      "currentSHA256": "d38216728ef481a5ad9147de3b2f5b3313bd60120e2ad1dfafa3abbd74cf6d8f",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/PracticalRoom.tsx",
+      "baselineSHA256": "4171ba43b7e375c48d1a09ae0f0b1ae458d6713a36ceb347d1c018857b38749d",
+      "currentSHA256": "4171ba43b7e375c48d1a09ae0f0b1ae458d6713a36ceb347d1c018857b38749d",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/TerminalDemoPlayer.tsx",
+      "baselineSHA256": "f872664b0deea822d49bf5420860919015d08b573bff0e5cb805ee7e825f67b3",
+      "currentSHA256": "f872664b0deea822d49bf5420860919015d08b573bff0e5cb805ee7e825f67b3",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/VanishedOsPlayer.tsx",
+      "baselineSHA256": "5859fe5c6b25da256ff31e71c1a0bfb345aa10842541a8701f97cf4da2ce5490",
+      "currentSHA256": "5859fe5c6b25da256ff31e71c1a0bfb345aa10842541a8701f97cf4da2ce5490",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/glass-exhibit.css",
+      "baselineSHA256": "a8b8afc5a051907e47af5201fbcde7cc7ed5746d4cf8e31fa4249ee2bdd6aa3f",
+      "currentSHA256": "a8b8afc5a051907e47af5201fbcde7cc7ed5746d4cf8e31fa4249ee2bdd6aa3f",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/macintosh-interaction-state.ts",
+      "baselineSHA256": "ad68a5e867bfeea05fade291555e6fa065e459c6a9f25be317924dd1dc9fb596",
+      "currentSHA256": "ad68a5e867bfeea05fade291555e6fa065e459c6a9f25be317924dd1dc9fb596",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/modern-lens.css",
+      "baselineSHA256": "4918e5067ba71cc9f5348cd93f493f11ca28507019f269be22c552eb108476ac",
+      "currentSHA256": "4918e5067ba71cc9f5348cd93f493f11ca28507019f269be22c552eb108476ac",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/modern-menu.css",
+      "baselineSHA256": "d2289b40c805c30ba278908d04845101bbec04f450259c8009ca7e9128c1ee64",
+      "currentSHA256": "d2289b40c805c30ba278908d04845101bbec04f450259c8009ca7e9128c1ee64",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/modern.css",
+      "baselineSHA256": "33487b52f36b4c68480e1a6545c1bf184ac98731c70be8225e6d297b95a56c9d",
+      "currentSHA256": "33487b52f36b4c68480e1a6545c1bf184ac98731c70be8225e6d297b95a56c9d",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/museum-title-sequence-state.ts",
+      "baselineSHA256": "3085030acff4aafa9954815866af66dd81840d5970d1d6723275ac578f17e2e2",
+      "currentSHA256": "3085030acff4aafa9954815866af66dd81840d5970d1d6723275ac578f17e2e2",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/paper-exhibit.css",
+      "baselineSHA256": "061bb1aaea7df85cda81b5ab435bbeb2e8f9e8fdaa997a632b25d22a9dffc02f",
+      "currentSHA256": "061bb1aaea7df85cda81b5ab435bbeb2e8f9e8fdaa997a632b25d22a9dffc02f",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/phase2.css",
+      "baselineSHA256": "68adcfce90d8fd4551d63d4ff72a9075ccdfccc14d231aad302761f6fd05a862",
+      "currentSHA256": "68adcfce90d8fd4551d63d4ff72a9075ccdfccc14d231aad302761f6fd05a862",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/Phase4BAsync.tsx",
+      "baselineSHA256": "d89e3a5ce7a8f660e6e47e345ed59442358b6eb78ac4699b0567785a494b445d",
+      "currentSHA256": "d89e3a5ce7a8f660e6e47e345ed59442358b6eb78ac4699b0567785a494b445d",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/Phase4BInteractions.tsx",
+      "baselineSHA256": "6761cf70cccd97ff78c94edc1ee9727f8dcc5cb565e4692d8c892ee14c7dc962",
+      "currentSHA256": "6761cf70cccd97ff78c94edc1ee9727f8dcc5cb565e4692d8c892ee14c7dc962",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/Phase4BPlayer.tsx",
+      "baselineSHA256": "25388953716e81894b8c1311df1f1356e79b377f8c0614eafdcdb483150a7195",
+      "currentSHA256": "25388953716e81894b8c1311df1f1356e79b377f8c0614eafdcdb483150a7195",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/Phase4Inputs.tsx",
+      "baselineSHA256": "f909bc1f21eecbafa9f959d7f612cd1828b5e2da8d081de1977150eff7be3c21",
+      "currentSHA256": "f909bc1f21eecbafa9f959d7f612cd1828b5e2da8d081de1977150eff7be3c21",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/Phase4Navigation.tsx",
+      "baselineSHA256": "8f426898bc7ae701894b9faf1230c558ae7284ab34a6c2ff9613a31a34c118cc",
+      "currentSHA256": "8f426898bc7ae701894b9faf1230c558ae7284ab34a6c2ff9613a31a34c118cc",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/Phase4Notices.tsx",
+      "baselineSHA256": "e19aaa30b14564f5fcfe8df7e90a3c3d552349d4161bbddcda03cf6a9ec8071a",
+      "currentSHA256": "e19aaa30b14564f5fcfe8df7e90a3c3d552349d4161bbddcda03cf6a9ec8071a",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/Phase4Player.tsx",
+      "baselineSHA256": "b59aa8eb4a6019bffecb0062201bc9e1404e202416f148e97e9ca4e4e8120bff",
+      "currentSHA256": "b59aa8eb4a6019bffecb0062201bc9e1404e202416f148e97e9ca4e4e8120bff",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/Phase5Data.tsx",
+      "baselineSHA256": "487e499f1488065d830204366bfecbd63e4ec591f33260261d168550ed61b91c",
+      "currentSHA256": "487e499f1488065d830204366bfecbd63e4ec591f33260261d168550ed61b91c",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/Phase5DateTree.tsx",
+      "baselineSHA256": "d38b6427d4d21af5e3ba970511c439de520ab110d77a4775c5f19410e799e421",
+      "currentSHA256": "d38b6427d4d21af5e3ba970511c439de520ab110d77a4775c5f19410e799e421",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/Phase5Lists.tsx",
+      "baselineSHA256": "ca079fe5b551da4a56da95c2e1b88b538857553346ce8830584fe90d8352d4ce",
+      "currentSHA256": "ca079fe5b551da4a56da95c2e1b88b538857553346ce8830584fe90d8352d4ce",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/Phase5Player.tsx",
+      "baselineSHA256": "53f3867d7cc50cd8c4213042b02698a98ed4b50f2faa06b2f6cdb668e84d11e7",
+      "currentSHA256": "53f3867d7cc50cd8c4213042b02698a98ed4b50f2faa06b2f6cdb668e84d11e7",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/PracticalA.tsx",
+      "baselineSHA256": "40a082670ab54e9425be0e6486f7b63e8c9c04ff125768962a2de0749222f45a",
+      "currentSHA256": "40a082670ab54e9425be0e6486f7b63e8c9c04ff125768962a2de0749222f45a",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/PracticalB.tsx",
+      "baselineSHA256": "0a75bce89fab023c2655eb44adf148fc0a539e640f5f79d5fa1f88e48299e4b8",
+      "currentSHA256": "0a75bce89fab023c2655eb44adf148fc0a539e640f5f79d5fa1f88e48299e4b8",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/phase4-runtime.tsx",
+      "baselineSHA256": "35696007fdacc9a53ef92ead1924d69b06450aa3cd408518bcdafafa573cc82a",
+      "currentSHA256": "35696007fdacc9a53ef92ead1924d69b06450aa3cd408518bcdafafa573cc82a",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/phase4.css",
+      "baselineSHA256": "4fa96dad21f2cccd3d1fd7abc0acf46f95220f613d4813288787456f6b8cb780",
+      "currentSHA256": "4fa96dad21f2cccd3d1fd7abc0acf46f95220f613d4813288787456f6b8cb780",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/phase4b-async.css",
+      "baselineSHA256": "a932835d032869ed95900efb4bdc100a93fa66cf9f0b351277875c2b18a995c5",
+      "currentSHA256": "a932835d032869ed95900efb4bdc100a93fa66cf9f0b351277875c2b18a995c5",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/phase4b-interactions.css",
+      "baselineSHA256": "82efc54e109e066b35c595687ccbd629523cc7ddf4c82a32caec7d13500ed668",
+      "currentSHA256": "82efc54e109e066b35c595687ccbd629523cc7ddf4c82a32caec7d13500ed668",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/phase5-data.css",
+      "baselineSHA256": "cff1e125aa65521afb61ceb55d94aea05c3e1915c2745a02772d126cbc78478a",
+      "currentSHA256": "cff1e125aa65521afb61ceb55d94aea05c3e1915c2745a02772d126cbc78478a",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/phase5-date-tree.css",
+      "baselineSHA256": "1eb0f4cc535be37b3932cce3d958158f64e862b309c658ea07c3ca719b3c9f1e",
+      "currentSHA256": "1eb0f4cc535be37b3932cce3d958158f64e862b309c658ea07c3ca719b3c9f1e",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/phase5-lists.css",
+      "baselineSHA256": "09a782d2c4292485ae3148306da58c28fd0bd348f9e5a2a9b624fec979fe1b7c",
+      "currentSHA256": "09a782d2c4292485ae3148306da58c28fd0bd348f9e5a2a9b624fec979fe1b7c",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/practical-a.css",
+      "baselineSHA256": "7be14b8af6cb3889ce4da2a1d1e89c312fe876eb109a286c713ed11c0df332db",
+      "currentSHA256": "7be14b8af6cb3889ce4da2a1d1e89c312fe876eb109a286c713ed11c0df332db",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/practical-b.css",
+      "baselineSHA256": "39e3f36081d33f6e17d5e1516e8ea5cd06458d591556a8018607de4e90d4d031",
+      "currentSHA256": "39e3f36081d33f6e17d5e1516e8ea5cd06458d591556a8018607de4e90d4d031",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/practical.css",
+      "baselineSHA256": "aa1acbdf240c49fa28a5546a9704b63cf4d28faf771cc7743873eab21e79dc93",
+      "currentSHA256": "aa1acbdf240c49fa28a5546a9704b63cf4d28faf771cc7743873eab21e79dc93",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/practical/runtime.tsx",
+      "baselineSHA256": "2c43aca4cd6d9292f949dde195fde60a56b1e3612457625c303044bb20820981",
+      "currentSHA256": "2c43aca4cd6d9292f949dde195fde60a56b1e3612457625c303044bb20820981",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/then-now/FirstStudies.tsx",
+      "baselineSHA256": "ed6cb4ba1444ffe2853033a96cb9688895be00a28b268753cab6624697dfa510",
+      "currentSHA256": "ed6cb4ba1444ffe2853033a96cb9688895be00a28b268753cab6624697dfa510",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/then-now/SecondStudies.tsx",
+      "baselineSHA256": "c699bea0690fc43f4e502f86a2a4543e398e0d994e2ffd795c4211309577da30",
+      "currentSHA256": "c699bea0690fc43f4e502f86a2a4543e398e0d994e2ffd795c4211309577da30",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/then-now/ThenNowCard.tsx",
+      "baselineSHA256": "8d30ad1b5a5e20beb47f044b3725939ae476d3c3133cb862183e0435001cbb25",
+      "currentSHA256": "8d30ad1b5a5e20beb47f044b3725939ae476d3c3133cb862183e0435001cbb25",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/then-now/runtime.tsx",
+      "baselineSHA256": "eb6ee5381be9d7800e8130e4a6dc99b5e7ba45a88127068064e0c93c92bbed1e",
+      "currentSHA256": "eb6ee5381be9d7800e8130e4a6dc99b5e7ba45a88127068064e0c93c92bbed1e",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/then-now/then-now.css",
+      "baselineSHA256": "9e0a1c38f36b7f4dcbe6417c780999e9ff00e10a4d6730f68481610af484103e",
+      "currentSHA256": "9e0a1c38f36b7f4dcbe6417c780999e9ff00e10a4d6730f68481610af484103e",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/waapi-board-state.ts",
+      "baselineSHA256": "9d4da1c02874e6034b8dab7682892dc308582e62f7e7e9c549c493355e523bcb",
+      "currentSHA256": "9d4da1c02874e6034b8dab7682892dc308582e62f7e7e9c549c493355e523bcb",
+      "unchanged": true
+    },
+    {
+      "path": "app/components/waapi-interaction-state.ts",
+      "baselineSHA256": "424d8fd6b142098341857ff66b0c976d95fdf26da98642faeab9ee58ce799a18",
+      "currentSHA256": "424d8fd6b142098341857ff66b0c976d95fdf26da98642faeab9ee58ce799a18",
+      "unchanged": true
+    },
+    {
+      "path": "app/data/appleEarlyBeginnerGuide.ts",
+      "baselineSHA256": "374995301c907a25525807b66f42ba481cc5060af149365cf9453c4e444e7202",
+      "currentSHA256": "374995301c907a25525807b66f42ba481cc5060af149365cf9453c4e444e7202",
+      "unchanged": true,
+      "literalIds": [
+        "apple-one-setup",
+        "apple-one-monitor",
+        "apple-comparison",
+        "apple-two-basic",
+        "cassette-conversion",
+        "media-comparison",
+        "keyboard",
+        "display",
+        "power",
+        "recorder",
+        "interface"
+      ]
+    },
+    {
+      "path": "app/data/appleEarlyExhibits.ts",
+      "baselineSHA256": "904426e76eaa3614db3ef3fda475e08875664c9c30d5758a9228dde1794c9443",
+      "currentSHA256": "904426e76eaa3614db3ef3fda475e08875664c9c30d5758a9228dde1794c9443",
+      "unchanged": true,
+      "literalIds": [
+        "apple-one-setup",
+        "apple-one-monitor",
+        "apple-one-cassette",
+        "apple-text-scroll",
+        "apple-two-power-on",
+        "apple-two-basic",
+        "apple-two-cassette-storage",
+        "apple-two-low-resolution",
+        "apple-two-high-resolution",
+        "disk-two-boot",
+        "disk-two-access-patterns",
+        "early-game-loading",
+        "early-errors-retry"
+      ]
+    },
+    {
+      "path": "app/data/cursorExhibits.ts",
+      "baselineSHA256": "e2a7c340906c9b7c45fb695785f4ac3247908fffc3bd86ff1ae9b1757944c94a",
+      "currentSHA256": "e2a7c340906c9b7c45fb695785f4ac3247908fffc3bd86ff1ae9b1757944c94a",
+      "unchanged": true,
+      "literalIds": [
+        "standard-arrow",
+        "link-hand",
+        "text-ibeam",
+        "waiting-pointer",
+        "forbidden-pointer",
+        "drag-pointer",
+        "click-effect",
+        "cursor-trail"
+      ]
+    },
+    {
+      "path": "app/data/exhibitRooms.ts",
+      "baselineSHA256": "5f781c2d56603b44681dcf81c1973827c0187e7bc90a996846b62703a5a8b962",
+      "currentSHA256": "5f781c2d56603b44681dcf81c1973827c0187e7bc90a996846b62703a5a8b962",
+      "unchanged": true,
+      "literalIds": []
+    },
+    {
+      "path": "app/data/flashExhibits.ts",
+      "baselineSHA256": "9d794cc2d11fd4a71b39878ed22dbb3aafe6d48c32712974db437c6744a6112d",
+      "currentSHA256": "9d794cc2d11fd4a71b39878ed22dbb3aafe6d48c32712974db437c6744a6112d",
+      "unchanged": true,
+      "literalIds": [
+        "basics",
+        "type-logo",
+        "vector",
+        "masks",
+        "ui",
+        "pointer",
+        "character",
+        "physics",
+        "particles",
+        "space",
+        "pseudo-3d",
+        "audio",
+        "site",
+        "banner",
+        "game",
+        "art",
+        "craft",
+        "modern",
+        "motion-tween",
+        "shape-tween",
+        "frame-by-frame",
+        "typewriter",
+        "logo-assembly",
+        "glow-wave-type",
+        "vector-morph",
+        "liquid-rubber",
+        "tile-break",
+        "circle-mask",
+        "venetian-blinds",
+        "spotlight",
+        "rollover-button",
+        "radial-menu",
+        "percent-loader",
+        "cursor-follow",
+        "watching-eyes",
+        "paint-trail",
+        "mascot-idle",
+        "part-animation",
+        "edge-peek",
+        "gravity-bounce",
+        "spring-drag",
+        "rain-fire",
+        "spark-particles",
+        "logo-burst",
+        "magic-constellation",
+        "layered-scroll",
+        "starfield",
+        "horizon-grid",
+        "rotating-cube",
+        "photo-carousel",
+        "wireframe-tunnel",
+        "spectrum",
+        "audio-wave",
+        "beat-flash",
+        "fullscreen-intro",
+        "moving-portfolio",
+        "room-navigation",
+        "flashing-cta",
+        "banner-slot",
+        "safe-escape-close",
+        "sprite-run",
+        "mini-shooter",
+        "combo-score",
+        "generative-lines",
+        "kaleidoscope",
+        "interactive-poem",
+        "keyframe-timeline",
+        "onion-skin",
+        "fps-compare",
+        "tween-modern-map",
+        "mouse-modern-map",
+        "audio-modern-map",
+        "tn-vector-morph",
+        "tn-cursor-creature",
+        "tn-kinetic-type",
+        "tn-physics",
+        "tn-intro",
+        "tn-sound"
+      ]
+    },
+    {
+      "path": "app/data/glass-bar.json",
+      "baselineSHA256": "2fdf775a316b2e8592f9f0a0b7c2c547fc763f0cfe3ff0e504da461bedf823b1",
+      "currentSHA256": "2fdf775a316b2e8592f9f0a0b7c2c547fc763f0cfe3ff0e504da461bedf823b1",
+      "unchanged": true,
+      "literalIds": []
+    },
+    {
+      "path": "app/data/macintoshBirthExhibits.ts",
+      "baselineSHA256": "4576d347287b3a982102ff3ae431231061caf03941202f25d19a93fccdbe6910",
+      "currentSHA256": "4576d347287b3a982102ff3ae431231061caf03941202f25d19a93fccdbe6910",
+      "unchanged": true,
+      "literalIds": [
+        "macintosh-boot",
+        "finder",
+        "window-controls",
+        "mouse-pointer",
+        "scroll-bar",
+        "desk-accessories",
+        "macpaint",
+        "macwrite",
+        "mac-fonts",
+        "susan-kare",
+        "system-1-6",
+        "multifinder",
+        "system-7",
+        "balloon-help",
+        "models",
+        "macintosh-ii-color",
+        "mac-sound",
+        "apple-ii-to-mac"
+      ]
+    },
+    {
+      "path": "app/data/modernExhibits.ts",
+      "baselineSHA256": "520c15703a659fcb14e88117232e1cc78267b3d91070eddd38e99947a7c5865a",
+      "currentSHA256": "520c15703a659fcb14e88117232e1cc78267b3d91070eddd38e99947a7c5865a",
+      "unchanged": true,
+      "literalIds": [
+        "unwoven",
+        "paper",
+        "lens",
+        "drift",
+        "glass",
+        "clip"
+      ]
+    },
+    {
+      "path": "app/data/paper.json",
+      "baselineSHA256": "4cc78f1f508880f1b8932b534affeeed2230811d03a5bc8c102f42654b167472",
+      "currentSHA256": "4cc78f1f508880f1b8932b534affeeed2230811d03a5bc8c102f42654b167472",
+      "unchanged": true,
+      "literalIds": []
+    },
+    {
+      "path": "app/data/phase2BStudies.ts",
+      "baselineSHA256": "f925ab1fd7e8e694ddbf6b075ec8f804d108e6e34cb49b32ade004ff7cb1397e",
+      "currentSHA256": "f925ab1fd7e8e694ddbf6b075ec8f804d108e6e34cb49b32ade004ff7cb1397e",
+      "unchanged": true,
+      "literalIds": [
+        "tunnel",
+        "raster",
+        "elastic",
+        "kaleidoscope",
+        "ink",
+        "glitch"
+      ]
+    },
+    {
+      "path": "app/data/phase2Studies.ts",
+      "baselineSHA256": "dc14178b9cf9a80930c48c5cafe097c9df66cd58b0b7883cde2ab2d2adc92330",
+      "currentSHA256": "dc14178b9cf9a80930c48c5cafe097c9df66cd58b0b7883cde2ab2d2adc92330",
+      "unchanged": true,
+      "literalIds": [
+        "starfield",
+        "plasma",
+        "metaballs",
+        "flock",
+        "dissolve",
+        "tile"
+      ]
+    },
+    {
+      "path": "app/data/phase4aExhibits.ts",
+      "baselineSHA256": "e32cbc5d3a1726d64ffd1ca01240f02c08ac6b33cc1c8ce2642e0971b0da2672",
+      "currentSHA256": "e32cbc5d3a1726d64ffd1ca01240f02c08ac6b33cc1c8ce2642e0971b0da2672",
+      "unchanged": true,
+      "literalIds": [
+        "toast-stack",
+        "undo-snackbar",
+        "inline-validation",
+        "search-suggestions",
+        "sliding-tabs",
+        "animated-accordion"
+      ]
+    },
+    {
+      "path": "app/data/phase4bExhibits.ts",
+      "baselineSHA256": "ee12c47730aa5b98577500c247ce1268a9ab99d1575a2be7669554a4d0abd631",
+      "currentSHA256": "ee12c47730aa5b98577500c247ce1268a9ab99d1575a2be7669554a4d0abd631",
+      "unchanged": true,
+      "literalIds": [
+        "command-palette",
+        "optimistic-action",
+        "upload-queue",
+        "form-wizard",
+        "resizable-split-pane",
+        "context-menu"
+      ]
+    },
+    {
+      "path": "app/data/phase5aExhibits.ts",
+      "baselineSHA256": "5a0915d6b2de659554b073e07e74ca220702b74513e7fc7ea0896bbcc41d61c3",
+      "currentSHA256": "5a0915d6b2de659554b073e07e74ca220702b74513e7fc7ea0896bbcc41d61c3",
+      "unchanged": true,
+      "literalIds": [
+        "editable-data-table",
+        "date-range-picker",
+        "virtualized-list",
+        "filter-builder",
+        "tree-view",
+        "multi-select-chips"
+      ]
+    },
+    {
+      "path": "app/data/practicalExhibits.ts",
+      "baselineSHA256": "eb0598449dbef3b520a2e7351c03895139e0fea4b9419636b0bf9b6400a593d2",
+      "currentSHA256": "eb0598449dbef3b520a2e7351c03895139e0fea4b9419636b0bf9b6400a593d2",
+      "unchanged": true,
+      "literalIds": [
+        "steps",
+        "buffer",
+        "refresh",
+        "spotlight",
+        "magnetic",
+        "sort",
+        "hold",
+        "elastic-button",
+        "state-button",
+        "stagger",
+        "shared",
+        "crossfade"
+      ]
+    },
+    {
+      "path": "app/data/thenNowStudies.ts",
+      "baselineSHA256": "31b5000a586f93d4ef4f688722039b4eab1f74e597126938ad7e64f3c4a59608",
+      "currentSHA256": "31b5000a586f93d4ef4f688722039b4eab1f74e597126938ad7e64f3c4a59608",
+      "unchanged": true,
+      "literalIds": []
+    },
+    {
+      "path": "app/data/vanishedOperatingSystems.ts",
+      "baselineSHA256": "6f8e24e38b2774485c3990c38cca032668b2b60257e5b0db59b88dc4a183e0c1",
+      "currentSHA256": "6f8e24e38b2774485c3990c38cca032668b2b60257e5b0db59b88dc4a183e0c1",
+      "unchanged": true,
+      "literalIds": []
+    },
+    {
+      "path": "app/data/waapiAdditionalSamples.ts",
+      "baselineSHA256": "c8c0dd02cc3bdcf321043426819c6b2d5441619b513c272cc7740d4ca8fdb4f5",
+      "currentSHA256": "c8c0dd02cc3bdcf321043426819c6b2d5441619b513c272cc7740d4ca8fdb4f5",
+      "unchanged": true,
+      "literalIds": [
+        "combat-damage-feedback",
+        "reward-reveal-lab",
+        "hit-stop-knockback",
+        "perfect-parry",
+        "dodge-afterimage",
+        "falling-block-line-clear",
+        "match-3-cascade",
+        "pinball-bumper-hit",
+        "lock-on-reticle",
+        "inventory-equip-snap",
+        "status-effect-lab",
+        "turn-order-reflow",
+        "battle-transition",
+        "race-countdown-launch"
+      ]
+    },
+    {
+      "path": "app/data/waapiSamples.ts",
+      "baselineSHA256": "9192ea98459f9f818ed264fd40a9e4aaf61ec9bfd4f59799cb56602805922697",
+      "currentSHA256": "9192ea98459f9f818ed264fd40a9e4aaf61ec9bfd4f59799cb56602805922697",
+      "unchanged": true,
+      "literalIds": [
+        "fade-in",
+        "fade-out",
+        "slide-in-left",
+        "slide-out-right",
+        "scale-pop",
+        "bounce",
+        "shake",
+        "button-press",
+        "modal-open-close",
+        "toast-enter-exit",
+        "toggle-switch",
+        "typewriter",
+        "character-by-character",
+        "counter-roll",
+        "cursor-blink",
+        "classic-mac-watch",
+        "dock-bounce",
+        "geometric-formation",
+        "web-1990s-marquee",
+        "treasure-chest-open",
+        "rhythm-judgement",
+        "coin-pickup-arc",
+        "combo-counter",
+        "hp-damage-heal",
+        "boss-entrance",
+        "menu-selection-cursor",
+        "card-deal-shuffle"
+      ]
+    },
+    {
+      "path": "app/layout.tsx",
+      "baselineSHA256": "a2e0dbed02330a5e8d3250dcfaeac66f65e1be85d544430073db2fbf976d21f3",
+      "currentSHA256": "a2e0dbed02330a5e8d3250dcfaeac66f65e1be85d544430073db2fbf976d21f3",
+      "unchanged": true
+    },
+    {
+      "path": "app/page.tsx",
+      "baselineSHA256": "1517a18b6d862fba22d9c061690ac2bfb978f8ed6b70c421bb0ef500ba33df73",
+      "currentSHA256": "1517a18b6d862fba22d9c061690ac2bfb978f8ed6b70c421bb0ef500ba33df73",
+      "unchanged": true
+    },
+    {
+      "path": "tests/dom11-selection.test.tsx",
+      "baselineSHA256": "23485b9e207e3a111e2c177c5fd61e87228e01eda317eb236f0a77b8c7a2ac58",
+      "currentSHA256": "23485b9e207e3a111e2c177c5fd61e87228e01eda317eb236f0a77b8c7a2ac58",
+      "unchanged": true
+    },
+    {
+      "path": "tests/glass-exhibit.test.tsx",
+      "baselineSHA256": "2d7dfbfeb5b47fe640607277b1a64a9965715b7aac82c5f342e89f28ddf576da",
+      "currentSHA256": "2d7dfbfeb5b47fe640607277b1a64a9965715b7aac82c5f342e89f28ddf576da",
+      "unchanged": true
+    },
+    {
+      "path": "tests/macintosh-interaction-state.test.mjs",
+      "baselineSHA256": "3c775e7f94d92c821fba62b8150db8ec179ce44bfc58b33e34d60bdc97be9e7c",
+      "currentSHA256": "3c775e7f94d92c821fba62b8150db8ec179ce44bfc58b33e34d60bdc97be9e7c",
+      "unchanged": true
+    },
+    {
+      "path": "tests/macintosh-system-choice.test.tsx",
+      "baselineSHA256": "8e64b2e86579003e77acbd2a1c625a8aec2b326d238e0ab32a090dd189c8454a",
+      "currentSHA256": "8e64b2e86579003e77acbd2a1c625a8aec2b326d238e0ab32a090dd189c8454a",
+      "unchanged": true
+    },
+    {
+      "path": "tests/modern-animation.test.tsx",
+      "baselineSHA256": "a48aa8934427e9a63a50660abb4072954564eb37ece9cdbf931b502211749996",
+      "currentSHA256": "a48aa8934427e9a63a50660abb4072954564eb37ece9cdbf931b502211749996",
+      "unchanged": true
+    },
+    {
+      "path": "tests/modern-drift-geometry.test.ts",
+      "baselineSHA256": "5d12bc929b3469fae9fde9ac04bb10b024636f34b423d8d79325add924c20c85",
+      "currentSHA256": "5d12bc929b3469fae9fde9ac04bb10b024636f34b423d8d79325add924c20c85",
+      "unchanged": true
+    },
+    {
+      "path": "tests/modern-lens.test.tsx",
+      "baselineSHA256": "18b76457fb87f445ce50eababaa2a6cb2ec01660a6dcb3fb3f9ae49d5af7836d",
+      "currentSHA256": "18b76457fb87f445ce50eababaa2a6cb2ec01660a6dcb3fb3f9ae49d5af7836d",
+      "unchanged": true
+    },
+    {
+      "path": "tests/modern-menu.test.tsx",
+      "baselineSHA256": "3fbd90c1ec232141a05edf5c90a6b7e144693c51d8facc0301f76870b8bfa42a",
+      "currentSHA256": "3fbd90c1ec232141a05edf5c90a6b7e144693c51d8facc0301f76870b8bfa42a",
+      "unchanged": true
+    },
+    {
+      "path": "tests/modern-mesh.test.ts",
+      "baselineSHA256": "8ea5fba6a25fcf743727d22375b9974765d8191be877b0f970e3c3e6f7e80152",
+      "currentSHA256": "8ea5fba6a25fcf743727d22375b9974765d8191be877b0f970e3c3e6f7e80152",
+      "unchanged": true
+    },
+    {
+      "path": "tests/museum-title-sequence-state.test.mjs",
+      "baselineSHA256": "b7bbcb78ec96c66cf5ed29ce967e442864c3a09f59814bffe43fe6c297ad8f6d",
+      "currentSHA256": "b7bbcb78ec96c66cf5ed29ce967e442864c3a09f59814bffe43fe6c297ad8f6d",
+      "unchanged": true
+    },
+    {
+      "path": "tests/paper-exhibit.test.tsx",
+      "baselineSHA256": "2376bb721e7fa62b6b19805009e4d4ff256b5ba593c880fd3af692014e8f2ff8",
+      "currentSHA256": "2376bb721e7fa62b6b19805009e4d4ff256b5ba593c880fd3af692014e8f2ff8",
+      "unchanged": true
+    },
+    {
+      "path": "tests/phase2-b.test.tsx",
+      "baselineSHA256": "f27c77fcd6942b083029538ea2de9925129b77a458d6c5cbc67d2860748248a1",
+      "currentSHA256": "f27c77fcd6942b083029538ea2de9925129b77a458d6c5cbc67d2860748248a1",
+      "unchanged": true
+    },
+    {
+      "path": "tests/phase2-elastic.test.ts",
+      "baselineSHA256": "7b088536563c5069e62960b65796ad4cbca8cd8dd6dc764e05f316f2edd1004e",
+      "currentSHA256": "7b088536563c5069e62960b65796ad4cbca8cd8dd6dc764e05f316f2edd1004e",
+      "unchanged": true
+    },
+    {
+      "path": "tests/phase2-regression.test.tsx",
+      "baselineSHA256": "a9546b5caeac578037e0c8d68206cf52a6689c21f677d5a507f7a42b69bbaeb3",
+      "currentSHA256": "a9546b5caeac578037e0c8d68206cf52a6689c21f677d5a507f7a42b69bbaeb3",
+      "unchanged": true
+    },
+    {
+      "path": "tests/phase2-room.test.tsx",
+      "baselineSHA256": "3b2805c35d5e84963ffd69cf735d7675fa1868b4c70481a458932118a539f368",
+      "currentSHA256": "3b2805c35d5e84963ffd69cf735d7675fa1868b4c70481a458932118a539f368",
+      "unchanged": true
+    },
+    {
+      "path": "tests/phase4a.test.tsx",
+      "baselineSHA256": "034f82880c46a4e99c64b39a0807567c1ea72383d715f41ada6b318f44ca178f",
+      "currentSHA256": "034f82880c46a4e99c64b39a0807567c1ea72383d715f41ada6b318f44ca178f",
+      "unchanged": true
+    },
+    {
+      "path": "tests/phase4b-async.test.tsx",
+      "baselineSHA256": "20cb16ee03de2a7d567451b2c4440826af7d110ddc5d283b13b26de0f2fdd4ac",
+      "currentSHA256": "20cb16ee03de2a7d567451b2c4440826af7d110ddc5d283b13b26de0f2fdd4ac",
+      "unchanged": true
+    },
+    {
+      "path": "tests/phase4b-interactions.test.tsx",
+      "baselineSHA256": "e7a42913e476032a9b582177d35d03fb6c3059200f586e54f1d6e588a310dcee",
+      "currentSHA256": "e7a42913e476032a9b582177d35d03fb6c3059200f586e54f1d6e588a310dcee",
+      "unchanged": true
+    },
+    {
+      "path": "tests/phase5-data.test.tsx",
+      "baselineSHA256": "af78f6458c2307e3401aa141f411ba1f112690bcb763b1ebd6642973aa1ff522",
+      "currentSHA256": "af78f6458c2307e3401aa141f411ba1f112690bcb763b1ebd6642973aa1ff522",
+      "unchanged": true
+    },
+    {
+      "path": "tests/phase5-focus-revision.test.tsx",
+      "baselineSHA256": "82101bbd5eb8103de6c142b6ecac4bccd20c38a1e548f4d7b221489c9e2e5e1a",
+      "currentSHA256": "82101bbd5eb8103de6c142b6ecac4bccd20c38a1e548f4d7b221489c9e2e5e1a",
+      "unchanged": true
+    },
+    {
+      "path": "tests/phase5-navigation.test.tsx",
+      "baselineSHA256": "43e45a0a8b73a2a8297145e7bff1c2779a4cfd8899be78c034e067138e664b4c",
+      "currentSHA256": "43e45a0a8b73a2a8297145e7bff1c2779a4cfd8899be78c034e067138e664b4c",
+      "unchanged": true
+    },
+    {
+      "path": "tests/practical-a.test.tsx",
+      "baselineSHA256": "4ef54c5461c4ab5b0742ed554c67e7e20de9d5d296b8f88867a3e719962898cd",
+      "currentSHA256": "4ef54c5461c4ab5b0742ed554c67e7e20de9d5d296b8f88867a3e719962898cd",
+      "unchanged": true
+    },
+    {
+      "path": "tests/practical-b.test.tsx",
+      "baselineSHA256": "331b8632b25a3036452dbb3de0be4405d2f6bb3330e8e1e378662ff52de2d4be",
+      "currentSHA256": "331b8632b25a3036452dbb3de0be4405d2f6bb3330e8e1e378662ff52de2d4be",
+      "unchanged": true
+    },
+    {
+      "path": "tests/practical-room.test.tsx",
+      "baselineSHA256": "cdd990578ef7c2e019dbfd285aff5e7bf56946819cb35bcda8eb713004cb906b",
+      "currentSHA256": "cdd990578ef7c2e019dbfd285aff5e7bf56946819cb35bcda8eb713004cb906b",
+      "unchanged": true
+    },
+    {
+      "path": "tests/practical-runtime.test.tsx",
+      "baselineSHA256": "78f19aca6eb91f7a5dcc3d5148355bbbfbcbf7aa93a0bfc5e60644c070fc5385",
+      "currentSHA256": "78f19aca6eb91f7a5dcc3d5148355bbbfbcbf7aa93a0bfc5e60644c070fc5385",
+      "unchanged": true
+    },
+    {
+      "path": "tests/rendered-html.test.mjs",
+      "baselineSHA256": "8295ba1d0306c951cf5b3cee54b2833a0b4c351939e5831449e2c746e6511278",
+      "currentSHA256": "8295ba1d0306c951cf5b3cee54b2833a0b4c351939e5831449e2c746e6511278",
+      "unchanged": true
+    },
+    {
+      "path": "tests/then-now-first.test.tsx",
+      "baselineSHA256": "51c2f42b54e9dbf0eb2e0b463d84dbe7e2c713d7760bf8f1f585c2a254a014f1",
+      "currentSHA256": "51c2f42b54e9dbf0eb2e0b463d84dbe7e2c713d7760bf8f1f585c2a254a014f1",
+      "unchanged": true
+    },
+    {
+      "path": "tests/then-now-registration.test.ts",
+      "baselineSHA256": "c83cf0927a252fac8ea038295203a993be79fcd39a3bcafe749aa1c42844e279",
+      "currentSHA256": "c83cf0927a252fac8ea038295203a993be79fcd39a3bcafe749aa1c42844e279",
+      "unchanged": true
+    },
+    {
+      "path": "tests/then-now-second.test.tsx",
+      "baselineSHA256": "c658728d619a0523ecd77249cf43e1a37e5838a6bac4c1721fab7e857cd8715d",
+      "currentSHA256": "c658728d619a0523ecd77249cf43e1a37e5838a6bac4c1721fab7e857cd8715d",
+      "unchanged": true
+    },
+    {
+      "path": "tests/then-now-visibility.test.tsx",
+      "baselineSHA256": "0e2dc86bc7cc3812d5277d95dcbc3f3a1a28ad5912e8eb42aacc0bb212b3e6c1",
+      "currentSHA256": "0e2dc86bc7cc3812d5277d95dcbc3f3a1a28ad5912e8eb42aacc0bb212b3e6c1",
+      "unchanged": true
+    },
+    {
+      "path": "tests/waapi-cascade-motion.test.tsx",
+      "baselineSHA256": "39cda0fcbb1da6836ff607dfc8ba50371a827ddf807533b8e95dd7b96bf4c0af",
+      "currentSHA256": "39cda0fcbb1da6836ff607dfc8ba50371a827ddf807533b8e95dd7b96bf4c0af",
+      "unchanged": true
+    },
+    {
+      "path": "tests/waapi-hp-regression.test.tsx",
+      "baselineSHA256": "c51ae38681cbc64c7730215e847f8e4c813d420c8672914d481c2e23887615c5",
+      "currentSHA256": "c51ae38681cbc64c7730215e847f8e4c813d420c8672914d481c2e23887615c5",
+      "unchanged": true
+    },
+    {
+      "path": "tests/waapi-interaction-state.test.ts",
+      "baselineSHA256": "a75b71b7024c4cc82e22bdf46b92c9dd6b238b9cae4fe97f38d867a73d9e3573",
+      "currentSHA256": "a75b71b7024c4cc82e22bdf46b92c9dd6b238b9cae4fe97f38d867a73d9e3573",
+      "unchanged": true
+    },
+    {
+      "path": "tests/waapi-samples.test.ts",
+      "baselineSHA256": "00583dae4d738a7ddede7c20ba2b0900c5ff8147714196cf14c3aa0b766d0f53",
+      "currentSHA256": "00583dae4d738a7ddede7c20ba2b0900c5ff8147714196cf14c3aa0b766d0f53",
+      "unchanged": true
+    },
+    {
+      "path": "tests/waapi-stage1-expanded.test.tsx",
+      "baselineSHA256": "d169d7d5b5982d7e706a8e36a3d73c114cf8f50bebf1bfca035eea368401917b",
+      "currentSHA256": "d169d7d5b5982d7e706a8e36a3d73c114cf8f50bebf1bfca035eea368401917b",
+      "unchanged": true
+    },
+    {
+      "path": "tests/waapi-stage1-menu-coin.test.tsx",
+      "baselineSHA256": "5c724188144a54b284a473110be7b15226079c9dcef6d31168f347ab9a07223b",
+      "currentSHA256": "5c724188144a54b284a473110be7b15226079c9dcef6d31168f347ab9a07223b",
+      "unchanged": true
+    }
+  ]
+}

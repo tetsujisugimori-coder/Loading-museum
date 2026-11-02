@@ -1,0 +1,798 @@
+[
+  {
+    "engine": "chromium",
+    "width": 375,
+    "checks": [],
+    "measurements": [],
+    "errors": [],
+    "status": "FAIL",
+    "artifactSHA256": {
+      "app\\components\\WaapiGameObservation.tsx": "45f50201128b959e69d9fddd8a95b432440fb0a7b145b0bfc89128eb254da12f",
+      "app\\globals.css": "15283b9c572c93b3cc5bfab11ebb7ecd00911df0cddd10a9eb469ae4ea2b70ff",
+      "out\\index.html": "5bf512e1f0eca9d5577dba08cec3be3fd70ef16dd4777694d9b884e7c04bc3d4"
+    },
+    "pausePredicateControls": [
+      {
+        "name": "live-held",
+        "expected": true,
+        "actual": true
+      },
+      {
+        "name": "natural-endpoint",
+        "expected": false,
+        "actual": false
+      },
+      {
+        "name": "seek-only-not-live",
+        "expected": false,
+        "actual": false
+      },
+      {
+        "name": "pause-drift",
+        "expected": false,
+        "actual": false
+      }
+    ],
+    "version": "141.0.7390.37",
+    "failure": "Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\integration\\scripts\\verify-waapi-observation.py\", line 36, in <module>\n    q.goto(URL,wait_until='networkidle');q.get_by_role('button',name='サンプル一覧を見る',exact=False).click()\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\sync_api\\_generated.py\", line 9019, in goto\n    self._sync(\n    ~~~~~~~~~~^\n        self._impl_obj.goto(\n        ^^^^^^^^^^^^^^^^^^^^\n            url=url, timeout=timeout, waitUntil=wait_until, referer=referer\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        )\n        ^\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_sync_base.py\", line 115, in _sync\n    return task.result()\n           ~~~~~~~~~~~^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_page.py\", line 555, in goto\n    return await self._main_frame.goto(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_frame.py\", line 153, in goto\n    await self._channel.send(\n        \"goto\", self._navigation_timeout, locals_to_params(locals())\n    )\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n\n"
+  },
+  {
+    "engine": "chromium",
+    "width": 390,
+    "checks": [],
+    "measurements": [],
+    "errors": [],
+    "status": "FAIL",
+    "artifactSHA256": {
+      "app\\components\\WaapiGameObservation.tsx": "45f50201128b959e69d9fddd8a95b432440fb0a7b145b0bfc89128eb254da12f",
+      "app\\globals.css": "15283b9c572c93b3cc5bfab11ebb7ecd00911df0cddd10a9eb469ae4ea2b70ff",
+      "out\\index.html": "5bf512e1f0eca9d5577dba08cec3be3fd70ef16dd4777694d9b884e7c04bc3d4"
+    },
+    "pausePredicateControls": [
+      {
+        "name": "live-held",
+        "expected": true,
+        "actual": true
+      },
+      {
+        "name": "natural-endpoint",
+        "expected": false,
+        "actual": false
+      },
+      {
+        "name": "seek-only-not-live",
+        "expected": false,
+        "actual": false
+      },
+      {
+        "name": "pause-drift",
+        "expected": false,
+        "actual": false
+      }
+    ],
+    "version": "141.0.7390.37",
+    "failure": "Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\integration\\scripts\\verify-waapi-observation.py\", line 36, in <module>\n    q.goto(URL,wait_until='networkidle');q.get_by_role('button',name='サンプル一覧を見る',exact=False).click()\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\sync_api\\_generated.py\", line 9019, in goto\n    self._sync(\n    ~~~~~~~~~~^\n        self._impl_obj.goto(\n        ^^^^^^^^^^^^^^^^^^^^\n            url=url, timeout=timeout, waitUntil=wait_until, referer=referer\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        )\n        ^\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_sync_base.py\", line 115, in _sync\n    return task.result()\n           ~~~~~~~~~~~^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_page.py\", line 555, in goto\n    return await self._main_frame.goto(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_frame.py\", line 153, in goto\n    await self._channel.send(\n        \"goto\", self._navigation_timeout, locals_to_params(locals())\n    )\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n\n"
+  },
+  {
+    "engine": "chromium",
+    "width": 765,
+    "checks": [
+      "Menu Selection Cursor: native time/play/pause/resume/steps/seek/boundaries/finished rewind/easing/keyboard/rapid/offscreen/synthetic visibility/media change; excludes any separately recorded pathFailures",
+      "Menu Selection Cursor: normal state retained; original input and Reset contract",
+      "Menu Selection Cursor: both color media/CSS text200 no observation overflow/end geometry",
+      "Menu Selection Cursor: close/unmount cancellation",
+      "Coin Pickup Arc: native time/play/pause/resume/steps/seek/boundaries/finished rewind/easing/keyboard/rapid/offscreen/synthetic visibility/media change; excludes any separately recorded pathFailures",
+      "Coin Pickup Arc: normal state retained; original input and Reset contract",
+      "Coin Pickup Arc: both color media/CSS text200 no observation overflow/end geometry",
+      "Coin Pickup Arc: close/unmount cancellation"
+    ],
+    "measurements": [
+      {
+        "name": "Menu Selection Cursor",
+        "initial": {
+          "relative": {
+            "x": 71.5,
+            "y": 36.5,
+            "endCenter": 84
+          },
+          "time": 0,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+          "rect": {
+            "x": 126.5,
+            "y": 149.734375,
+            "w": 5.859375,
+            "h": 11
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -42)",
+          "duration": 220
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "pauseInput": {
+          "preflightStart": 1554.8999999985099,
+          "fontsReady": 1554.8999999985099,
+          "preflightDone": 1563.2999999970198,
+          "started": 1563.2999999970198,
+          "readyAt": 1574.8999999985099,
+          "frames": 0,
+          "before": {
+            "time": 5.859000001673165,
+            "clock": 1574.8999999985099,
+            "native": "running",
+            "pending": false
+          },
+          "immediate": {
+            "time": 5.859000001673165,
+            "clock": 1575.1000000014901,
+            "native": "paused",
+            "pending": false
+          },
+          "readyAfterPause": 1575.3999999985099
+        },
+        "settledPause": {
+          "relative": {
+            "x": 71.5,
+            "y": 41.01325988769531,
+            "endCenter": 84
+          },
+          "time": 5.859000001673165,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 5.86 / 220 ms · 2.7% · 移動途中 · controller: paused · native currentTime: 5.86 ms · native playState: paused",
+          "rect": {
+            "x": 126.5,
+            "y": 154.2476348876953,
+            "w": 5.859375,
+            "h": 11
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -37.4867)",
+          "duration": 220
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "explicitSeekResumePause": {
+          "input": 110,
+          "settled": {
+            "relative": {
+              "x": 71.5,
+              "y": 76.23533630371094,
+              "endCenter": 84
+            },
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 189.46971130371094,
+              "w": 5.859375,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.26466)",
+            "duration": 220
+          }
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "pause": {
+          "relative": {
+            "x": 71.5,
+            "y": 41.01325988769531,
+            "endCenter": 84
+          },
+          "time": 5.859000001673165,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 5.86 / 220 ms · 2.7% · 移動途中 · controller: paused · native currentTime: 5.86 ms · native playState: paused",
+          "rect": {
+            "x": 126.5,
+            "y": 154.2476348876953,
+            "w": 5.859375,
+            "h": 11
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, -37.4867)",
+          "duration": 220
+        },
+        "positions": [
+          {
+            "relative": {
+              "x": 71.5,
+              "y": 36.5,
+              "endCenter": 84
+            },
+            "time": 0,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 0.00 / 220 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 149.734375,
+              "w": 5.859375,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -42)",
+            "duration": 220
+          },
+          {
+            "relative": {
+              "x": 71.5,
+              "y": 76.23533630371094,
+              "endCenter": 84
+            },
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 189.46971130371094,
+              "w": 5.859375,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.26466)",
+            "duration": 220
+          },
+          {
+            "relative": {
+              "x": 71.5,
+              "y": 78.5,
+              "endCenter": 84
+            },
+            "time": 219.99,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 219.99 / 220 ms · 100.0% · 移動途中 · controller: paused · native currentTime: 219.99 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 191.734375,
+              "w": 5.859375,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -9.03972e-09)",
+            "duration": 220
+          },
+          {
+            "relative": {
+              "x": 71.5,
+              "y": 78.5,
+              "endCenter": 84
+            },
+            "time": 220,
+            "native": "paused",
+            "pending": false,
+            "controller": "finished",
+            "reading": "観察位置 220.00 / 220 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 220.00 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 191.734375,
+              "w": 5.859375,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "duration": 220
+          }
+        ]
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "nativeTouchRange": {
+          "value": 110.0,
+          "snapshot": {
+            "relative": {
+              "x": 71.5,
+              "y": 57.5,
+              "endCenter": 84
+            },
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 126.5,
+              "y": 170.734375,
+              "w": 5.859375,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -21)",
+            "duration": 220
+          }
+        }
+      },
+      {
+        "name": "Menu Selection Cursor",
+        "offscreenNullReading": {
+          "relative": {
+            "x": 71.5,
+            "y": 78.5,
+            "endCenter": 84
+          },
+          "time": null,
+          "native": null,
+          "pending": null,
+          "controller": "inactive",
+          "reading": "観察位置 73.33 / 220 ms · 33.3% · 移動途中 · controller: inactive · native currentTime: 未取得（null） · native playState: idle",
+          "rect": {
+            "x": 126.5,
+            "y": 4401.734375,
+            "w": 5.859375,
+            "h": 11
+          },
+          "opacity": "1",
+          "transform": "none",
+          "duration": null
+        }
+      },
+      {
+        "resizeAndFontAtHeldTime": {
+          "before": {
+            "relative": {
+              "x": 65.5,
+              "y": 76.23533630371094,
+              "endCenter": 84
+            },
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 105.5,
+              "y": 164.32908630371094,
+              "w": 5.859375,
+              "h": 11
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.26466)",
+            "duration": 220
+          },
+          "after": {
+            "relative": {
+              "x": 65.5,
+              "y": 78.19613647460938,
+              "endCenter": 89
+            },
+            "time": 110,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 110.00 / 220 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 110.00 ms · native playState: paused",
+            "rect": {
+              "x": 105.5,
+              "y": 166.28988647460938,
+              "w": 10,
+              "h": 16
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -2.80387)",
+            "duration": 220
+          }
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "initial": {
+          "relative": {
+            "x": 48.5,
+            "y": 69,
+            "endCenter": null
+          },
+          "time": 0,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 0.00 / 650 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+          "rect": {
+            "x": 103.5,
+            "y": 276.234375,
+            "w": 42,
+            "h": 42
+          },
+          "opacity": "1",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "duration": 650
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "pauseInput": {
+          "preflightStart": 8902.60000000149,
+          "fontsReady": 8902.60000000149,
+          "preflightDone": 8914.20000000298,
+          "started": 8914.20000000298,
+          "readyAt": 8926.89999999851,
+          "frames": 0,
+          "before": {
+            "time": 6.761999998078139,
+            "clock": 8926.89999999851,
+            "native": "running",
+            "pending": false
+          },
+          "immediate": {
+            "time": 6.761999998078139,
+            "clock": 8927.10000000149,
+            "native": "paused",
+            "pending": false
+          },
+          "readyAfterPause": 8927.29999999702
+        },
+        "settledPause": {
+          "relative": {
+            "x": 51.332977294921875,
+            "y": 63.394500732421875,
+            "endCenter": null
+          },
+          "time": 6.761999998078139,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 6.76 / 650 ms · 1.0% · 移動途中 · controller: paused · native currentTime: 6.76 ms · native playState: paused",
+          "rect": {
+            "x": 106.33297729492188,
+            "y": 270.6288757324219,
+            "w": 42.34236145019531,
+            "h": 42.342376708984375
+          },
+          "opacity": "1",
+          "transform": "matrix(1.00815, 0, 0, 1.00815, 3.00416, -5.43432)",
+          "duration": 650
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "explicitSeekResumePause": {
+          "input": 325,
+          "settled": {
+            "relative": {
+              "x": 155.80731201171875,
+              "y": 10.554580688476562,
+              "endCenter": null
+            },
+            "time": 325,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 325.00 / 650 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 325.00 ms · native playState: paused",
+            "rect": {
+              "x": 210.80731201171875,
+              "y": 217.78895568847656,
+              "w": 25.119842529296875,
+              "h": 25.119842529296875
+            },
+            "opacity": "0.211559",
+            "transform": "matrix(0.598092, 0, 0, 0.598092, 98.8672, -66.8855)",
+            "duration": 650
+          }
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "pause": {
+          "relative": {
+            "x": 51.332977294921875,
+            "y": 63.394500732421875,
+            "endCenter": null
+          },
+          "time": 6.761999998078139,
+          "native": "paused",
+          "pending": false,
+          "controller": "paused",
+          "reading": "観察位置 6.76 / 650 ms · 1.0% · 移動途中 · controller: paused · native currentTime: 6.76 ms · native playState: paused",
+          "rect": {
+            "x": 106.33297729492188,
+            "y": 270.6288757324219,
+            "w": 42.34236145019531,
+            "h": 42.342376708984375
+          },
+          "opacity": "1",
+          "transform": "matrix(1.00815, 0, 0, 1.00815, 3.00416, -5.43432)",
+          "duration": 650
+        },
+        "positions": [
+          {
+            "relative": {
+              "x": 48.5,
+              "y": 69,
+              "endCenter": null
+            },
+            "time": 0,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 0.00 / 650 ms · 0.0% · 開始位置 · controller: paused · native currentTime: 0.00 ms · native playState: paused",
+            "rect": {
+              "x": 103.5,
+              "y": 276.234375,
+              "w": 42,
+              "h": 42
+            },
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)",
+            "duration": 650
+          },
+          {
+            "relative": {
+              "x": 155.80731201171875,
+              "y": 10.554580688476562,
+              "endCenter": null
+            },
+            "time": 325,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 325.00 / 650 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 325.00 ms · native playState: paused",
+            "rect": {
+              "x": 210.80731201171875,
+              "y": 217.78895568847656,
+              "w": 25.119842529296875,
+              "h": 25.119842529296875
+            },
+            "opacity": "0.211559",
+            "transform": "matrix(0.598092, 0, 0, 0.598092, 98.8672, -66.8855)",
+            "duration": 650
+          },
+          {
+            "relative": {
+              "x": 170.6125030517578,
+              "y": 22.550003051757812,
+              "endCenter": null
+            },
+            "time": 649.99,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 649.99 / 650 ms · 100.0% · 移動途中 · controller: paused · native currentTime: 649.99 ms · native playState: paused",
+            "rect": {
+              "x": 225.6125030517578,
+              "y": 229.7843780517578,
+              "w": 18.899993896484375,
+              "h": 18.899993896484375
+            },
+            "opacity": "1.12709e-10",
+            "transform": "matrix(0.45, 0, 0, 0.45, 110.562, -58)",
+            "duration": 650
+          },
+          {
+            "relative": {
+              "x": 170.6125030517578,
+              "y": 22.550003051757812,
+              "endCenter": null
+            },
+            "time": 650,
+            "native": "paused",
+            "pending": false,
+            "controller": "finished",
+            "reading": "観察位置 650.00 / 650 ms · 100.0% · 終了位置 · controller: finished · native currentTime: 650.00 ms · native playState: paused",
+            "rect": {
+              "x": 225.6125030517578,
+              "y": 229.7843780517578,
+              "w": 18.899993896484375,
+              "h": 18.899993896484375
+            },
+            "opacity": "0",
+            "transform": "matrix(0.45, 0, 0, 0.45, 110.562, -58)",
+            "duration": 650
+          }
+        ]
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "nativeTouchRange": {
+          "value": 325.0,
+          "snapshot": {
+            "relative": {
+              "x": 155.80731201171875,
+              "y": 10.554580688476562,
+              "endCenter": null
+            },
+            "time": 325,
+            "native": "paused",
+            "pending": false,
+            "controller": "paused",
+            "reading": "観察位置 325.00 / 650 ms · 50.0% · 移動途中 · controller: paused · native currentTime: 325.00 ms · native playState: paused",
+            "rect": {
+              "x": 210.80731201171875,
+              "y": 217.78895568847656,
+              "w": 25.119842529296875,
+              "h": 25.119842529296875
+            },
+            "opacity": "0.211559",
+            "transform": "matrix(0.598092, 0, 0, 0.598092, 98.8672, -66.8855)",
+            "duration": 650
+          }
+        }
+      },
+      {
+        "name": "Coin Pickup Arc",
+        "offscreenNullReading": {
+          "relative": {
+            "x": 48.5,
+            "y": 69,
+            "endCenter": null
+          },
+          "time": null,
+          "native": null,
+          "pending": null,
+          "controller": "inactive",
+          "reading": "観察位置 216.67 / 650 ms · 33.3% · 移動途中 · controller: inactive · native currentTime: 未取得（null） · native playState: idle",
+          "rect": {
+            "x": 103.5,
+            "y": 4411.234375,
+            "w": 42,
+            "h": 42
+          },
+          "opacity": "1",
+          "transform": "none",
+          "duration": null
+        }
+      }
+    ],
+    "errors": [],
+    "status": "PASS",
+    "artifactSHA256": {
+      "app\\components\\WaapiGameObservation.tsx": "45f50201128b959e69d9fddd8a95b432440fb0a7b145b0bfc89128eb254da12f",
+      "app\\globals.css": "15283b9c572c93b3cc5bfab11ebb7ecd00911df0cddd10a9eb469ae4ea2b70ff",
+      "out\\index.html": "5bf512e1f0eca9d5577dba08cec3be3fd70ef16dd4777694d9b884e7c04bc3d4"
+    },
+    "pausePredicateControls": [
+      {
+        "name": "live-held",
+        "expected": true,
+        "actual": true
+      },
+      {
+        "name": "natural-endpoint",
+        "expected": false,
+        "actual": false
+      },
+      {
+        "name": "seek-only-not-live",
+        "expected": false,
+        "actual": false
+      },
+      {
+        "name": "pause-drift",
+        "expected": false,
+        "actual": false
+      }
+    ],
+    "version": "141.0.7390.37"
+  },
+  {
+    "engine": "webkit",
+    "width": 375,
+    "checks": [],
+    "measurements": [],
+    "errors": [],
+    "status": "FAIL",
+    "artifactSHA256": {
+      "app\\components\\WaapiGameObservation.tsx": "45f50201128b959e69d9fddd8a95b432440fb0a7b145b0bfc89128eb254da12f",
+      "app\\globals.css": "15283b9c572c93b3cc5bfab11ebb7ecd00911df0cddd10a9eb469ae4ea2b70ff",
+      "out\\index.html": "5bf512e1f0eca9d5577dba08cec3be3fd70ef16dd4777694d9b884e7c04bc3d4"
+    },
+    "pausePredicateControls": [
+      {
+        "name": "live-held",
+        "expected": true,
+        "actual": true
+      },
+      {
+        "name": "natural-endpoint",
+        "expected": false,
+        "actual": false
+      },
+      {
+        "name": "seek-only-not-live",
+        "expected": false,
+        "actual": false
+      },
+      {
+        "name": "pause-drift",
+        "expected": false,
+        "actual": false
+      }
+    ],
+    "version": "26.0",
+    "failure": "Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\integration\\scripts\\verify-waapi-observation.py\", line 36, in <module>\n    q.goto(URL,wait_until='networkidle');q.get_by_role('button',name='サンプル一覧を見る',exact=False).click()\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\sync_api\\_generated.py\", line 9019, in goto\n    self._sync(\n    ~~~~~~~~~~^\n        self._impl_obj.goto(\n        ^^^^^^^^^^^^^^^^^^^^\n            url=url, timeout=timeout, waitUntil=wait_until, referer=referer\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        )\n        ^\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_sync_base.py\", line 115, in _sync\n    return task.result()\n           ~~~~~~~~~~~^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_page.py\", line 555, in goto\n    return await self._main_frame.goto(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_frame.py\", line 153, in goto\n    await self._channel.send(\n        \"goto\", self._navigation_timeout, locals_to_params(locals())\n    )\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n\n"
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "checks": [],
+    "measurements": [],
+    "errors": [],
+    "status": "FAIL",
+    "artifactSHA256": {
+      "app\\components\\WaapiGameObservation.tsx": "45f50201128b959e69d9fddd8a95b432440fb0a7b145b0bfc89128eb254da12f",
+      "app\\globals.css": "15283b9c572c93b3cc5bfab11ebb7ecd00911df0cddd10a9eb469ae4ea2b70ff",
+      "out\\index.html": "5bf512e1f0eca9d5577dba08cec3be3fd70ef16dd4777694d9b884e7c04bc3d4"
+    },
+    "pausePredicateControls": [
+      {
+        "name": "live-held",
+        "expected": true,
+        "actual": true
+      },
+      {
+        "name": "natural-endpoint",
+        "expected": false,
+        "actual": false
+      },
+      {
+        "name": "seek-only-not-live",
+        "expected": false,
+        "actual": false
+      },
+      {
+        "name": "pause-drift",
+        "expected": false,
+        "actual": false
+      }
+    ],
+    "version": "26.0",
+    "failure": "Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\integration\\scripts\\verify-waapi-observation.py\", line 36, in <module>\n    q.goto(URL,wait_until='networkidle');q.get_by_role('button',name='サンプル一覧を見る',exact=False).click()\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\sync_api\\_generated.py\", line 9019, in goto\n    self._sync(\n    ~~~~~~~~~~^\n        self._impl_obj.goto(\n        ^^^^^^^^^^^^^^^^^^^^\n            url=url, timeout=timeout, waitUntil=wait_until, referer=referer\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        )\n        ^\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_sync_base.py\", line 115, in _sync\n    return task.result()\n           ~~~~~~~~~~~^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_page.py\", line 555, in goto\n    return await self._main_frame.goto(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_frame.py\", line 153, in goto\n    await self._channel.send(\n        \"goto\", self._navigation_timeout, locals_to_params(locals())\n    )\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n\n"
+  },
+  {
+    "engine": "webkit",
+    "width": 765,
+    "checks": [],
+    "measurements": [],
+    "errors": [],
+    "status": "FAIL",
+    "artifactSHA256": {
+      "app\\components\\WaapiGameObservation.tsx": "45f50201128b959e69d9fddd8a95b432440fb0a7b145b0bfc89128eb254da12f",
+      "app\\globals.css": "15283b9c572c93b3cc5bfab11ebb7ecd00911df0cddd10a9eb469ae4ea2b70ff",
+      "out\\index.html": "5bf512e1f0eca9d5577dba08cec3be3fd70ef16dd4777694d9b884e7c04bc3d4"
+    },
+    "pausePredicateControls": [
+      {
+        "name": "live-held",
+        "expected": true,
+        "actual": true
+      },
+      {
+        "name": "natural-endpoint",
+        "expected": false,
+        "actual": false
+      },
+      {
+        "name": "seek-only-not-live",
+        "expected": false,
+        "actual": false
+      },
+      {
+        "name": "pause-drift",
+        "expected": false,
+        "actual": false
+      }
+    ],
+    "version": "26.0",
+    "failure": "Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\integration\\scripts\\verify-waapi-observation.py\", line 36, in <module>\n    q.goto(URL,wait_until='networkidle');q.get_by_role('button',name='サンプル一覧を見る',exact=False).click()\n    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\sync_api\\_generated.py\", line 9019, in goto\n    self._sync(\n    ~~~~~~~~~~^\n        self._impl_obj.goto(\n        ^^^^^^^^^^^^^^^^^^^^\n            url=url, timeout=timeout, waitUntil=wait_until, referer=referer\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        )\n        ^\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_sync_base.py\", line 115, in _sync\n    return task.result()\n           ~~~~~~~~~~~^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_page.py\", line 555, in goto\n    return await self._main_frame.goto(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_frame.py\", line 153, in goto\n    await self._channel.send(\n        \"goto\", self._navigation_timeout, locals_to_params(locals())\n    )\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n    )\n    ^\n  File \"C:\\Users\\tetsu\\Documents\\Codex\\2026-11-02\\task-4\\browser-venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Page.goto: Timeout 10000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:59524/Loading-museum/\", waiting until \"networkidle\"\n\n"
+  }
+]

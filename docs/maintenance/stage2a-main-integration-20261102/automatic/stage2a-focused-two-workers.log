@@ -1,0 +1,22 @@
+
+> loading-museum@0.1.0 test:stage2a
+> vitest run tests/waapi-observation.test.tsx tests/waapi-observation-independent.test.tsx tests/waapi-stage1-menu-coin.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-game-regressions.test.tsx tests/waapi-interaction-state.test.ts --maxWorkers=2
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-02/task-4/integration
+
+ 笨・tests/waapi-stage1-menu-coin.test.tsx (5 tests) 943ms
+ 笨・tests/waapi-stage1-expanded.test.tsx (23 tests) 300ms
+ 笨・tests/waapi-game-regressions.test.tsx (15 tests) 109ms
+ 笨・tests/waapi-observation-independent.test.tsx (7 tests) 120ms
+ 笨・tests/waapi-interaction-state.test.ts (2 tests) 1ms
+ 笨・tests/waapi-observation.test.tsx (37 tests) 8665ms
+   笨・observed Coin normal motion cancellation > reduced explicit Replay uses reduced definition and repeated ON/OFF does not award or autoplay  1967ms
+   笨・observed Coin normal motion cancellation > rapid mode switches retain collected state and Reset permits exactly one new acquisition  2610ms
+   笨・observed Coin normal motion cancellation > observed normal Coin leaving the viewport cancels, re-entry stays stopped, and unmount clears old instances  1697ms
+
+ Test Files  6 passed (6)
+      Tests  89 passed (89)
+   Start at  21:22:44
+   Duration  9.61s (transform 228ms, setup 0ms, collect 866ms, tests 10.14s, environment 1.54s, prepare 320ms)
+
