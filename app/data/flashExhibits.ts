@@ -7,6 +7,7 @@ export type FlashInteractionType =
   | "audio";
 
 export type FlashVisualType =
+  | "then-now"
   | "motion"
   | "shape"
   | "frames"
@@ -166,4 +167,9 @@ export const flashExhibits: FlashExhibit[] = [
   { ...common, id: "audio-modern-map", title: "統合環境から標準APIの組み合わせへ", categoryId: "modern", description: "Flash内部でまとまっていた音と描画が、Web Audio、Canvas、SVGなど複数の標準へ分かれた構成を比べる。", flashTechnique: "SoundMixer＋BitmapData", modernTechnique: ["Web Audio API", "Canvas / SVG", "DOM accessibility"], interactionType: "click", visualType: "comparison-media", instruction: "左右の構成と、Flash・現代Webそれぞれの強みを見る" },
 ];
 
+flashExhibits.push(
+  { ...common, id: "tn-vector-morph", title: "Vector Morph — 対応点の工房", categoryId: "vector", description: "輪郭を変える楽しさと、対応順を変える発見。四角から星や円へ、同じ終点に至る別の道を編む。", flashTechnique: "シェイプトゥイーンに着想", modernTechnique: ["SVG polygon", "線形補間", "requestAnimationFrame"], interactionType: "click", visualType: "then-now", instruction: "開始・停止、形、時間位置、対応点を操作" },
+  { ...common, id: "tn-cursor-creature", title: "Cursor Creature — 紙鳥の間合い", categoryId: "character", description: "折り目のある小さな紙鳥。目を合わせ、誘い、驚かせて、ポインターとの距離を会話にする。", flashTechnique: "ムービークリップと入力反応に着想", modernTechnique: ["SVG", "Pointer Events", "距離・入力速度"], interactionType: "pointer", visualType: "then-now", instruction: "開始後にポインター・矢印・左右ボタンで誘い、タップで合図" },
+  { ...common, id: "tn-kinetic-type", title: "Kinetic Typography — 文字の振付", categoryId: "type-logo", description: "文字は読まれるだけでなく、間合いを持って入場する。MOTIONのリズム、LISTENとEXPANDの意味を配置へ翻訳する。", flashTechnique: "文字単位のタイムライン演出に着想", modernTechnique: ["SVG text", "独立した時差補間", "React state"], interactionType: "click", visualType: "then-now", instruction: "速度・構成・時間位置・字間・言葉を操作" },
+);
 export const flashExhibitCount = flashExhibits.length;
