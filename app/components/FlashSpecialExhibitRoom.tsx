@@ -8,7 +8,7 @@ import {
   type FlashExhibit,
 } from "../data/flashExhibits";
 import { FlashVisual } from "./FlashVisuals";
-import { ThenNowCard } from "./then-now/ThenNowCard";
+import { ThenNowMount } from "./then-now/ThenNowCard";
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const EXHIBIT_COUNTS = new Map(
@@ -78,7 +78,7 @@ function FlashExhibitCard({
     || exhibit.interactionType === "audio"
     || CONTINUOUS_INTERACTIVE_VISUALS.has(exhibit.visualType);
   const active = categoryActive && visible && globalPlaying && localPlaying && !reduced;
-  if (exhibit.visualType === "then-now") return <article ref={ref} className="tnMount" data-visible={visible}>{categoryActive && <ThenNowCard exhibit={exhibit} active={visible && globalPlaying} reduced={reduced} speed={speed} />}</article>;
+  if (exhibit.visualType === "then-now") return <ThenNowMount exhibit={exhibit} categoryActive={categoryActive} globalPlaying={globalPlaying} reduced={reduced} speed={speed} />;
   return (
     <article ref={ref} className="flashExhibitCard" data-visible={visible} data-active={active}>
       <div className="flashCardTopline">

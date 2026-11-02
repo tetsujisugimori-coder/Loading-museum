@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ComponentType } from "react";
+import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
 import type { FlashExhibit } from "../../data/flashExhibits";
 import { thenNowNotes, type ThenNowId } from "../../data/thenNowStudies";
 import { VectorMorph, CursorCreature, KineticTypography } from "./FirstStudies";
@@ -12,6 +12,27 @@ const studies: Partial<Record<ThenNowId, ComponentType<StudyProps>>> = {
   "tn-vector-morph": VectorMorph, "tn-cursor-creature": CursorCreature, "tn-kinetic-type": KineticTypography,
   "tn-physics": PhysicsPlayground, "tn-intro": InteractiveIntro, "tn-sound": SoundReactor,
 };
+// A mounted comparison can change height on Reset/reopen. Observer entries can
+// describe the earlier layout; re-read current geometry at each notification/input.
+// Keep this owner separate from the unchanged legacy Flash runtime.
+export function ThenNowMount({ exhibit, categoryActive, globalPlaying, reduced, speed }: { exhibit: FlashExhibit; categoryActive: boolean; globalPlaying: boolean; reduced: boolean; speed: number }) {
+  const ref = useRef<HTMLElement>(null), [visible, setVisible] = useState(false);
+  const refresh = useCallback(() => {
+    const box = ref.current?.getBoundingClientRect();
+    setVisible(Boolean(box && box.width > 0 && box.height > 0 && box.bottom > 0 && box.top < innerHeight && box.right > 0 && box.left < innerWidth));
+  }, []);
+  useEffect(() => {
+    const node = ref.current;
+    if (!categoryActive || !node) return;
+    const observer = new IntersectionObserver(refresh);
+    const resize = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(refresh);
+    observer.observe(node); resize?.observe(node);
+    window.addEventListener("scroll", refresh, { passive: true, capture: true });
+    window.addEventListener("resize", refresh);
+    return () => { observer.disconnect(); resize?.disconnect(); window.removeEventListener("scroll", refresh, true); window.removeEventListener("resize", refresh); };
+  }, [categoryActive, refresh]);
+  return <article ref={ref} className="tnMount" data-visible={visible} onPointerDownCapture={refresh} onFocusCapture={refresh}>{categoryActive && <ThenNowCard exhibit={exhibit} active={visible && globalPlaying} reduced={reduced} speed={speed} />}</article>;
+}
 export function ThenNowCard({ exhibit, active, reduced, speed }: { exhibit: FlashExhibit; active: boolean; reduced: boolean; speed: number }) {
   const [playing, setPlaying] = useState(false), [generation, setGeneration] = useState(0);
   const id = exhibit.id as ThenNowId, note = thenNowNotes[id], Study = studies[id];
