@@ -1573,3 +1573,12 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - 1324ba5a / tree a1be78975708201116f8281bbd57e76d9480f502のPhysics CI41433808777でもWK3条件が失敗したが、診断値で取消前後の球2 x/y/vx/vy/heldは完全一致（y100/vy-250）し、その後の1刻みclickが物理状態を更新していないことを確認。人工PointerCancelはPlaywrightの押下中mouse状態を終了しないため、次clickが成立しない試験手順の問題と判定した。製品再発として扱わず、原失敗を保持する。
 - 製品/物理期待/8秒を変更せず、人工cancel後に実mouse.upで入力を終了し、その古いupが解除後状態を変えないことを追加assert。続く1刻みボタンへisTrusted=true/正しいtargetのclickが届くこともassertする。旧固定版と更新版へ同じ新probeを適用し、元の球2状態不変・次1/30秒の数値検査を保持する。最終CI結果は終端後に別記する。
 - 診断版1324ba5aの既存CI41433808140は7/7成功、Physics41433808777はCh成功/WK失敗で全job終端。途中取消なし。原数値診断をci-41433808777-webkit-diagnostics.log、全job状態をci-1324ba5a-summary.jsonに保持する。入力終了を補ったローカルCh3幅18条件は成功。最終CIでは同じ是正probeを旧新へ適用する。
+
+### 是正probeのCh/WK RED→GREEN確定
+
+- 検査HEAD `b85f8a0672e9e4d8575d7eaf83b2a512b9e7cdac` / tree `5e747e233f57a6d613f580779ceb04691c290995`、Physics CI41435401801はCh/WK両job成功完走。Ch141.0.7390.37 / WK26.0、375/390/1280。旧7ccb51fは各12 RED+6正常対照成功、新版は各18 GREEN（計24 RED+12対照→36 GREEN）。力学は各3成功。旧/新同じprobe hash `eef26d9bd7d8790e470ec1fc30ef5022bd2b2a786790adb77ee5e3e63e07b289`、入力・物理期待・8秒を維持。
+- CIログPHYSICS_RESULTの旧/新HEAD/tree/clean/source/probe/browser版を照合。製品新SHA256 `c699bea0690fc43f4e502f86a2a4543e398e0d994e2ffd795c4211309577da30`、旧SHA256 `95c37ff9e487382f01598444daa937970d717843b292c36af360f4911c5382a8`。全6条件の球2は取消前後でx228/y100/vx0/vy-250/heldfalse不変、古い実up後も不変、trusted step click後y91.66666666666669/vy-250。これが取消独立性の直接証拠。
+- 初回/診断CIのWK失敗は物理変更で解決したものではなく、人工cancel後のnative mouse押下終了を欠いた試験手順の是正によるもの。元の球2不変/1刻み数値期待を保持し、native up不変とtrusted click到達を追加して両engineの旧新へ適用。原失敗・未実施を保全。local WebKit未実施とGitHub WebKit成功を区別する。
+- 本追記は記録のみで製品/試験/検証器を変更しない。記録後の最終HEAD/treeと全job終端はPR本文・通常コメント・Issue50で最終読戻し確認する。
+- b85f8a06の全館CI41435401781は7/7成功、Physics41435401801は2/2成功、全9job終端。契約309、Physics旧24 RED+正常対照12→新36 GREEN、力学6、6作品36、実速度対照2、旧Flash12を別群で確認。他室/実用UI/4A/4B/5A/フォーカス回帰の全stepも成功。ci-b85f8a06/summary.jsonと原ログ由来数値/件数抜粋に記録。初回2回のWK失敗は保持。今回の確定記録だけをcommitし、その最終HEADのCIも全job終端まで追跡する。
+- 総合PARTIAL/マージ推奨NO（独立再レビュー待ち）。局所安定化の自己検証は完了。実機Safari/VoiceOver/物理touch/実OS低減切替/実スピーカー/全館全操作は未検証、Issue44と旧Windows WAAPI timeout根因UNKNOWNを維持。Draft/未マージ/未公開。UI付随添付の成功は主張しない。

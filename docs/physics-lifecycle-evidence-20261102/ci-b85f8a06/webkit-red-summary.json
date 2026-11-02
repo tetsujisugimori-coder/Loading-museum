@@ -1,0 +1,217 @@
+{
+  "head": "7ccb51f158a564327a5b900b5210cd6cd57d81bf",
+  "tree": "48497434a97f6b535e63802e4cb9ab3aa1da0942",
+  "trackedChanges": "",
+  "sourceSHA256": "95c37ff9e487382f01598444daa937970d717843b292c36af360f4911c5382a8",
+  "harnessSHA256": "eef26d9bd7d8790e470ec1fc30ef5022bd2b2a786790adb77ee5e3e63e07b289",
+  "browserVersions": {
+    "webkit": "26.0"
+  },
+  "status": "FAIL",
+  "cases": [
+    {
+      "engine": "webkit",
+      "width": 375,
+      "name": "cancel-independent",
+      "status": "FAIL",
+      "before": [
+        {
+          "x": 59.93311036789297,
+          "y": 59.33110367892977,
+          "vx": -400,
+          "vy": -200.668896321,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 59.93311036789297,
+          "y": 59.33110367892977,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "name": "normal-release",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "name": "stop-held",
+      "status": "FAIL"
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "name": "offscreen-held",
+      "status": "FAIL"
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "name": "stale-events",
+      "status": "FAIL"
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "name": "close-reset",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "name": "cancel-independent",
+      "status": "FAIL",
+      "before": [
+        {
+          "x": 59.108280254777064,
+          "y": 59.23566878980891,
+          "vx": -400,
+          "vy": -191.082802548,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 59.108280254777064,
+          "y": 59.23566878980891,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "name": "normal-release",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "name": "stop-held",
+      "status": "FAIL"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "name": "offscreen-held",
+      "status": "FAIL"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "name": "stale-events",
+      "status": "FAIL"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "name": "close-reset",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "name": "cancel-independent",
+      "status": "FAIL",
+      "before": [
+        {
+          "x": 59.6309963099631,
+          "y": 59.6309963099631,
+          "vx": -400,
+          "vy": -184.501845018,
+          "held": "true"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": -250,
+          "held": "false"
+        }
+      ],
+      "after": [
+        {
+          "x": 59.6309963099631,
+          "y": 59.6309963099631,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        },
+        {
+          "x": 228,
+          "y": 100,
+          "vx": 0,
+          "vy": 0,
+          "held": "false"
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "name": "normal-release",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "name": "stop-held",
+      "status": "FAIL"
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "name": "offscreen-held",
+      "status": "FAIL"
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "name": "stale-events",
+      "status": "FAIL"
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "name": "close-reset",
+      "status": "PASS"
+    }
+  ]
+}

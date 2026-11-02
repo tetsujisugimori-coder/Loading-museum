@@ -45,3 +45,9 @@ GitHubのPNG/create_treeは最初auto-review拒否で未実行となり停止。
 ## WebKit数値診断と入力手順の是正
 
 診断版1324ba5aのCI41433808777でもWK3幅のcancel-independentが失敗。詳細値では取消前後の球2がy100/vy-250で全状態不変、その後のsteppedも同じままだった。人工PointerCancelではPlaywrightのmouse押下状態は終了せず、続く1刻みclickが成立していない手順の問題だった。製品を変更せず、人工cancel後に実mouse.upを追加し、古いupが状態を変えないこともassert。続くstepのisTrusted/targetを検査する。旧/新へ同じprobeを使い、元の数値期待と8秒は維持する。最終CIのRED/GREENを当該probe hashで区別する。元v2のローカル結果と今回CI失敗ログを最終版の成功へ読み替えない。
+
+## 是正後Physics CIの確定証拠
+
+b85f8a06 / tree5e747e23のPhysics CI41435401801はCh141/WK26の両job成功。375/390/1280について旧各12 RED+6対照成功→新各18 GREEN、力学各3成功。両版同じ最終probe hash eef26d9bd7d8790e470ec1fc30ef5022bd2b2a786790adb77ee5e3e63e07b289。CIログから抽出したci-b85f8a06/*-summary.jsonでclean HEAD/tree・製品hash・probe hash・実browser版を照合できる。全6取消条件で球2の直前直後/古い実up後はx228/y100/vx0/vy-250/heldfalse、trusted step後y91.66666666666669/vy-250。最終記録commitの製品はこれと同じbytesである。
+
+全館CI41435401781も7/7成功し、b85f8a06の全9jobが成功完走。契約309、Physics旧24 RED+対照12→新36 GREEN、力学6、6作品36、速度対照2、旧Flash12を別集計。全館/4A/4B/5A/フォーカス回帰も成功。summary.jsonと原ログ抜粋を保存した。記録commit後の最終HEAD/tree/CIはPR本文・通常コメント・Issue50が正本であり、実装検査済commitと記録commitを混同しない。総合PARTIAL/マージ推奨NO、独立再レビュー待ち。

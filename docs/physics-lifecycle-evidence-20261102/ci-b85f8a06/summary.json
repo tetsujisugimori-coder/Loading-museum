@@ -1,0 +1,1103 @@
+{
+  "head": "b85f8a0672e9e4d8575d7eaf83b2a512b9e7cdac",
+  "tree": "5e747e233f57a6d613f580779ceb04691c290995",
+  "productSHA256": "c699bea0690fc43f4e502f86a2a4543e398e0d994e2ffd795c4211309577da30",
+  "harnessSHA256": "eef26d9bd7d8790e470ec1fc30ef5022bd2b2a786790adb77ee5e3e63e07b289",
+  "runs": [
+    {
+      "id": 41435401801,
+      "name": "Physics lifecycle RED to GREEN",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 3,
+      "jobs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/41435401801/jobs",
+      "logs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/41435401801/logs",
+      "workflow_id": 404410706
+    },
+    {
+      "id": 41435401781,
+      "name": "Verify museum and practical UI",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 17,
+      "jobs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/41435401781/jobs",
+      "logs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/41435401781/logs",
+      "workflow_id": 402468319
+    }
+  ],
+  "mainJobs": [
+    {
+      "id": 125243788484,
+      "name": "phase5a-browser (chromium)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 41435401781,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Fixed browser harness outside application dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Phase 5A data selection and exploration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Phase 5A focused deletion, date and chips regressions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        }
+      ]
+    },
+    {
+      "id": 125243788728,
+      "name": "then-now-browser (webkit)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 41435401781,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Fixed browser harness outside application dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Six interactive pairs, actual audio required, three widths",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Supplemental actual pointer speed and distance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Existing Flash interactions and inheritance comparison",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        }
+      ]
+    },
+    {
+      "id": 125243788756,
+      "name": "phase5a-browser (webkit)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 41435401781,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Fixed browser harness outside application dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Phase 5A data selection and exploration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Phase 5A focused deletion, date and chips regressions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        }
+      ]
+    },
+    {
+      "id": 125243788765,
+      "name": "contracts",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 41435401781,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Existing full contract (lint, types, build, all tests)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    },
+    {
+      "id": 125243788834,
+      "name": "practical-browser (webkit)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 41435401781,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Fixed browser harness outside application dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Actual interaction and rendering",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Phase 4A actual states, intermediate geometry and rendering",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Phase 4B operations and stale response protection",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        }
+      ]
+    },
+    {
+      "id": 125243788879,
+      "name": "practical-browser (chromium)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 41435401781,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Fixed browser harness outside application dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Actual interaction and rendering",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Phase 4A actual states, intermediate geometry and rendering",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Phase 4B operations and stale response protection",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        }
+      ]
+    },
+    {
+      "id": 125243788899,
+      "name": "then-now-browser (chromium)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 41435401781,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Fixed browser harness outside application dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Six interactive pairs, actual audio required, three widths",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Supplemental actual pointer speed and distance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Existing Flash interactions and inheritance comparison",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        }
+      ]
+    }
+  ],
+  "physicsJobs": [
+    {
+      "id": 125243788575,
+      "name": "physics (webkit)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 41435401801,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Fixed browser tool outside application dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Updated HEAD GREEN (same probe, inputs, oracle and 8 second limit)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Native pointer throw, wall/floor reflection and two-body collision",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Build the exact original submission without changing it",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Original submission RED (explicit expected-failure oracle)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        }
+      ]
+    },
+    {
+      "id": 125243789175,
+      "name": "physics (chromium)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 41435401801,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Fixed browser tool outside application dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Updated HEAD GREEN (same probe, inputs, oracle and 8 second limit)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Native pointer throw, wall/floor reflection and two-body collision",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Build the exact original submission without changing it",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Original submission RED (explicit expected-failure oracle)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        }
+      ]
+    }
+  ],
+  "physicsProof": [
+    {
+      "job": "physics (webkit)",
+      "conclusion": "success",
+      "versions": {
+        "webkit": "26.0"
+      },
+      "green": 18,
+      "redFailures": 12,
+      "redControls": 6,
+      "harness": "eef26d9bd7d8790e470ec1fc30ef5022bd2b2a786790adb77ee5e3e63e07b289",
+      "source": "c699bea0690fc43f4e502f86a2a4543e398e0d994e2ffd795c4211309577da30",
+      "clean": true,
+      "cancel": [
+        {
+          "width": 375,
+          "before": {
+            "x": 228,
+            "y": 100,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "after": {
+            "x": 228,
+            "y": 100,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "step": {
+            "x": 228,
+            "y": 91.66666666666669,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "nativeClick": {
+            "trusted": true,
+            "target": true
+          }
+        },
+        {
+          "width": 390,
+          "before": {
+            "x": 228,
+            "y": 100,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "after": {
+            "x": 228,
+            "y": 100,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "step": {
+            "x": 228,
+            "y": 91.66666666666669,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "nativeClick": {
+            "trusted": true,
+            "target": true
+          }
+        },
+        {
+          "width": 1280,
+          "before": {
+            "x": 228,
+            "y": 100,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "after": {
+            "x": 228,
+            "y": 100,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "step": {
+            "x": 228,
+            "y": 91.66666666666669,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "nativeClick": {
+            "trusted": true,
+            "target": true
+          }
+        }
+      ]
+    },
+    {
+      "job": "physics (chromium)",
+      "conclusion": "success",
+      "versions": {
+        "chromium": "141.0.7390.37"
+      },
+      "green": 18,
+      "redFailures": 12,
+      "redControls": 6,
+      "harness": "eef26d9bd7d8790e470ec1fc30ef5022bd2b2a786790adb77ee5e3e63e07b289",
+      "source": "c699bea0690fc43f4e502f86a2a4543e398e0d994e2ffd795c4211309577da30",
+      "clean": true,
+      "cancel": [
+        {
+          "width": 375,
+          "before": {
+            "x": 228,
+            "y": 100,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "after": {
+            "x": 228,
+            "y": 100,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "step": {
+            "x": 228,
+            "y": 91.66666666666669,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "nativeClick": {
+            "trusted": true,
+            "target": true
+          }
+        },
+        {
+          "width": 390,
+          "before": {
+            "x": 228,
+            "y": 100,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "after": {
+            "x": 228,
+            "y": 100,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "step": {
+            "x": 228,
+            "y": 91.66666666666669,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "nativeClick": {
+            "trusted": true,
+            "target": true
+          }
+        },
+        {
+          "width": 1280,
+          "before": {
+            "x": 228,
+            "y": 100,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "after": {
+            "x": 228,
+            "y": 100,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "step": {
+            "x": 228,
+            "y": 91.66666666666669,
+            "vx": 0,
+            "vy": -250,
+            "held": "false"
+          },
+          "nativeClick": {
+            "trusted": true,
+            "target": true
+          }
+        }
+      ]
+    }
+  ],
+  "thenNowProof": [
+    {
+      "job": "then-now-browser (webkit)",
+      "id": 125243788728,
+      "conclusion": "success",
+      "passLines": [
+        "2026-11-02T11:17:39.9004391Z PASS webkit 375 tn-vector-morph",
+        "2026-11-02T11:17:43.5149817Z PASS webkit 375 tn-cursor-creature",
+        "2026-11-02T11:17:46.6833908Z PASS webkit 375 tn-kinetic-type",
+        "2026-11-02T11:17:51.0919790Z PASS webkit 375 tn-physics",
+        "2026-11-02T11:17:55.8152268Z PASS webkit 375 tn-intro",
+        "2026-11-02T11:18:00.0135112Z PASS webkit 375 tn-sound",
+        "2026-11-02T11:18:04.0288453Z PASS webkit 390 tn-vector-morph",
+        "2026-11-02T11:18:06.9456941Z PASS webkit 390 tn-cursor-creature",
+        "2026-11-02T11:18:09.7793254Z PASS webkit 390 tn-kinetic-type",
+        "2026-11-02T11:18:13.7444410Z PASS webkit 390 tn-physics",
+        "2026-11-02T11:18:18.2204590Z PASS webkit 390 tn-intro",
+        "2026-11-02T11:18:23.0808415Z PASS webkit 390 tn-sound",
+        "2026-11-02T11:18:31.3362661Z PASS webkit 1280 tn-vector-morph",
+        "2026-11-02T11:18:37.1462920Z PASS webkit 1280 tn-cursor-creature",
+        "2026-11-02T11:18:43.2477491Z PASS webkit 1280 tn-kinetic-type",
+        "2026-11-02T11:18:52.4069845Z PASS webkit 1280 tn-physics",
+        "2026-11-02T11:19:00.5887751Z PASS webkit 1280 tn-intro",
+        "2026-11-02T11:19:10.0135295Z PASS webkit 1280 tn-sound",
+        "2026-11-02T11:19:15.1051876Z PASS webkit real pointer distance/speed pair",
+        "2026-11-02T11:19:18.3763284Z PASS webkit 375 legacy-logo",
+        "2026-11-02T11:19:19.0249646Z PASS webkit 375 legacy-shape",
+        "2026-11-02T11:19:19.9398694Z PASS webkit 375 legacy-spring",
+        "2026-11-02T11:19:20.7705648Z PASS webkit 375 legacy-intro",
+        "2026-11-02T11:19:20.8635616Z PASS webkit 375 legacy-poem",
+        "2026-11-02T11:19:21.5436091Z PASS webkit 375 legacy-comparison"
+      ],
+      "headAppears": true
+    },
+    {
+      "job": "then-now-browser (chromium)",
+      "id": 125243788899,
+      "conclusion": "success",
+      "passLines": [
+        "2026-11-02T11:17:23.5213964Z PASS chromium 375 tn-vector-morph",
+        "2026-11-02T11:17:25.0705655Z PASS chromium 375 tn-cursor-creature",
+        "2026-11-02T11:17:26.8080368Z PASS chromium 375 tn-kinetic-type",
+        "2026-11-02T11:17:29.2354030Z PASS chromium 375 tn-physics",
+        "2026-11-02T11:17:32.6290543Z PASS chromium 375 tn-intro",
+        "2026-11-02T11:17:35.0378879Z PASS chromium 375 tn-sound",
+        "2026-11-02T11:17:37.1625005Z PASS chromium 390 tn-vector-morph",
+        "2026-11-02T11:17:38.6301297Z PASS chromium 390 tn-cursor-creature",
+        "2026-11-02T11:17:40.3595008Z PASS chromium 390 tn-kinetic-type",
+        "2026-11-02T11:17:42.5301083Z PASS chromium 390 tn-physics",
+        "2026-11-02T11:17:45.4454268Z PASS chromium 390 tn-intro",
+        "2026-11-02T11:17:47.3791784Z PASS chromium 390 tn-sound",
+        "2026-11-02T11:17:49.5919533Z PASS chromium 1280 tn-vector-morph",
+        "2026-11-02T11:17:51.1043863Z PASS chromium 1280 tn-cursor-creature",
+        "2026-11-02T11:17:53.3607867Z PASS chromium 1280 tn-kinetic-type",
+        "2026-11-02T11:17:55.7919481Z PASS chromium 1280 tn-physics",
+        "2026-11-02T11:17:58.6804958Z PASS chromium 1280 tn-intro",
+        "2026-11-02T11:18:01.0518782Z PASS chromium 1280 tn-sound",
+        "2026-11-02T11:18:03.0701009Z PASS chromium real pointer distance/speed pair",
+        "2026-11-02T11:18:04.4727008Z PASS chromium 375 legacy-logo",
+        "2026-11-02T11:18:04.6850751Z PASS chromium 375 legacy-shape",
+        "2026-11-02T11:18:05.2331913Z PASS chromium 375 legacy-spring",
+        "2026-11-02T11:18:05.6651391Z PASS chromium 375 legacy-intro",
+        "2026-11-02T11:18:05.7852154Z PASS chromium 375 legacy-poem",
+        "2026-11-02T11:18:05.9955945Z PASS chromium 375 legacy-comparison"
+      ],
+      "headAppears": true
+    }
+  ],
+  "totalsByGroup": {
+    "contracts": 309,
+    "physicsOldRed": 24,
+    "physicsOldControlsPass": 12,
+    "physicsNewGreen": 36,
+    "physicsDynamics": 6,
+    "thenNowSixStudies": 36,
+    "pointerDynamics": 2,
+    "legacyFlash": 12
+  },
+  "interpretation": "All nine jobs completed successfully. Original failed runs retained. This is author self-verification, independent re-review pending; PARTIAL overall, merge recommendation NO."
+}
