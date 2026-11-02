@@ -64,3 +64,48 @@ it('timeline intro reaches the branch under coarse frames while bounding long-fr
   for(const time of [100,600,1100,1600,2100,2600,3100])act(()=>next(time));
   expect(screen.getByText(/構図を選ぶ ／/)).toBeTruthy();
 });
+
+// Artificial Pointer Events in jsdom; the browser lifecycle probe separately uses
+// trusted Playwright mouse input and labels injected cancellation/stale events.
+function pointerFixture(now=true) {
+  class TestPointerEvent extends MouseEvent {
+    pointerId: number;
+    constructor(type:string,init:PointerEventInit={}) { super(type,init); this.pointerId=init.pointerId??1; }
+  }
+  vi.stubGlobal('PointerEvent',TestPointerEvent);
+  const view=render(<PhysicsPlayground {...props} now={now} active/>);
+  const balls=screen.getAllByRole('button',{name:/球\dを操作/});
+  const captured=new Map<Element,number>();
+  for(const b of balls) {
+    Object.assign(b,{setPointerCapture:vi.fn((id:number)=>captured.set(b,id)),hasPointerCapture:(id:number)=>captured.get(b)===id,releasePointerCapture:vi.fn((id:number)=>{if(captured.get(b)===id)captured.delete(b);})});
+  }
+  const svg=balls[0].closest('svg')!;vi.spyOn(svg,'getBoundingClientRect').mockReturnValue({left:0,top:0,width:320,height:220} as DOMRect);
+  const read=(i:number)=>{const b=balls[i],l=b.parentElement!.querySelector('line')!;return {x:b.getAttribute('cx'),y:b.getAttribute('cy'),held:b.getAttribute('data-held'),vx:+((Number(l.getAttribute('x2'))-Number(l.getAttribute('x1')))*6).toFixed(9),vy:+((Number(l.getAttribute('y2'))-Number(l.getAttribute('y1')))*6).toFixed(9)};};
+  const start=(id=1)=>{fireEvent.pointerDown(balls[0],{pointerId:id});fireEvent.pointerMove(balls[0],{pointerId:id,clientX:60,clientY:60});};
+  return {view,balls,read,start,captured};
+}
+it('cancel affects only the dragged body; the other follows the unchanged physical step',()=>{
+  const {balls,read,start}=pointerFixture();for(const name of ['重力','摩擦'])fireEvent.change(screen.getByRole('slider',{name}),{target:{value:'0'}});fireEvent.keyDown(balls[1],{key:' '});start();const other=read(1);
+  fireEvent.pointerCancel(balls[0],{pointerId:1});expect(read(1)).toEqual(other);expect(read(0)).toMatchObject({held:'false',vx:0,vy:0});
+  fireEvent.click(screen.getByText('1刻み進む'));expect(read(1).vy).toBe(-250);expect(Number(read(1).y)).toBeCloseTo(100-250/30,8);
+});
+it('normal pointerup preserves target throw and leaves the independent body unchanged',()=>{
+  const {balls,read,start}=pointerFixture();start();const before=read(0),other=read(1);expect(before.vx).not.toBe(0);
+  fireEvent.pointerUp(balls[0],{pointerId:1});expect(read(0)).toEqual({...before,held:'false'});expect(read(1)).toEqual(other);expect(balls[0].releasePointerCapture).toHaveBeenCalledWith(1);
+});
+it('stop clears held and capture immediately, then resume, redrag and reset work',()=>{
+  const {view,balls,read,start,captured}=pointerFixture();start();const other=read(1);expect(read(0).held).toBe('true');
+  view.rerender(<PhysicsPlayground {...props} active={false}/>);expect(read(0)).toMatchObject({held:'false',vx:0,vy:0});expect(read(1)).toEqual(other);expect(captured.size).toBe(0);
+  view.rerender(<PhysicsPlayground {...props} active/>);start(2);fireEvent.pointerUp(balls[0],{pointerId:2});expect(read(0).held).toBe('false');fireEvent.click(screen.getByText('球を戻す'));expect(read(0)).toMatchObject({x:'92',y:'75',held:'false',vx:65,vy:0});
+});
+it('different pointers and stale lost-capture cannot cancel a newly captured operation',()=>{
+  const {balls,read,start}=pointerFixture();start();fireEvent.pointerCancel(balls[0],{pointerId:1});start(2);const before=read(0);
+  for(const type of ['pointermove','pointerup','pointercancel','lostpointercapture'])fireEvent(balls[0],new PointerEvent(type,{pointerId:1,bubbles:true,clientX:200,clientY:100}));
+  fireEvent.pointerCancel(balls[1],{pointerId:2});fireEvent(balls[0],new PointerEvent('lostpointercapture',{pointerId:2,bubbles:true}));expect(read(0)).toEqual(before);fireEvent.pointerUp(balls[0],{pointerId:2});expect(read(0).held).toBe('false');
+});
+it('actual capture loss, blur and unmount release only the owned pointer',()=>{
+  const {view,balls,read,start,captured}=pointerFixture();start(7);captured.delete(balls[0]);fireEvent.lostPointerCapture(balls[0],{pointerId:7});expect(read(0)).toMatchObject({held:'false',vx:0,vy:0});start(8);fireEvent.blur(balls[0]);expect(captured.size).toBe(0);start(9);view.unmount();expect(balls[0].releasePointerCapture).toHaveBeenLastCalledWith(9);
+});
+it('single body cancellation and reset use the same lifecycle',()=>{
+  const {balls,read,start}=pointerFixture(false);start();fireEvent.pointerCancel(balls[0],{pointerId:1});expect(read(0)).toMatchObject({held:'false',vx:0,vy:0});fireEvent.click(screen.getByText('球を戻す'));expect(read(0)).toMatchObject({x:'92',y:'75',held:'false',vx:65,vy:0});
+});

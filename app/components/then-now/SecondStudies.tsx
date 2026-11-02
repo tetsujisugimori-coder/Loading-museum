@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type PointerEvent } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from "react";
 import { clamp, Range, Surface, useFrame, type StudyProps } from "./runtime";
 
 export type Ball = { x: number; y: number; vx: number; vy: number; held: boolean };
@@ -35,27 +35,41 @@ export function stepPhysics(input: Ball[], seconds: number, rules: Rules) {
 
 export function PhysicsPlayground(props: StudyProps) {
   const [balls, setBalls] = useState(() => initialBalls(props.now)), [gravity, setGravity] = useState(240), [bounce, setBounce] = useState(.8), [friction, setFriction] = useState(.15);
-  const drag = useRef<{ index: number; x: number; y: number; time: number } | null>(null);
-  const advance = (dt: number) => setBalls(b => stepPhysics(b.map((v, i) => v.held && drag.current?.index !== i ? { ...v, held: false, vx: 0, vy: 0 } : v), dt, { gravity, bounce, friction }));
+  const drag = useRef<{ index: number; pointerId: number; target: SVGCircleElement; x: number; y: number; time: number } | null>(null);
+  const release = useCallback((cancel = true, pointerId?: number, index?: number) => {
+    const current = drag.current;
+    if (!current || (pointerId !== undefined && current.pointerId !== pointerId) || (index !== undefined && current.index !== index)) return;
+    // Invalidate ownership before releasePointerCapture can dispatch capture loss.
+    drag.current = null;
+    setBalls(b => b.map((v, i) => i === current.index ? { ...v, held: false, vx: cancel ? 0 : v.vx, vy: cancel ? 0 : v.vy } : v));
+    if (current.target.hasPointerCapture(current.pointerId)) current.target.releasePointerCapture(current.pointerId);
+  }, []);
+  // A pause/visibility transition and unmount finish both halves of ownership.
+  // Layout cleanup runs before paint and before any resumed frame can step.
+  useLayoutEffect(() => () => release(true), [props.active, release]);
+  useEffect(() => {
+    const blur = () => release(true);
+    window.addEventListener("blur", blur);
+    return () => window.removeEventListener("blur", blur);
+  }, [release]);
+  const advance = (dt: number) => setBalls(b => stepPhysics(b, dt, { gravity, bounce, friction }));
   useFrame(props.active && !props.reduced, dt => advance(dt * props.speed));
   const move = (e: PointerEvent<SVGCircleElement>, i: number) => {
-    if (drag.current?.index !== i) return;
+    if (drag.current?.index !== i || drag.current.pointerId !== e.pointerId || drag.current.target !== e.currentTarget) return;
     const box = e.currentTarget.ownerSVGElement!.getBoundingClientRect(), x = clamp((e.clientX - box.left) / box.width * 320, 20, 300), y = clamp((e.clientY - box.top) / box.height * 220, 46, 188);
     const dt = Math.max(.016, (e.timeStamp - drag.current.time) / 1000), vx = clamp((x - drag.current.x) / dt, -400, 400), vy = clamp((y - drag.current.y) / dt, -400, 400);
-    drag.current = { index: i, x, y, time: e.timeStamp }; setBalls(b => b.map((v, index) => index === i ? { x, y, vx, vy, held: true } : v));
+    drag.current = { ...drag.current, x, y, time: e.timeStamp }; setBalls(b => b.map((v, index) => index === i ? { x, y, vx, vy, held: true } : v));
   };
-  const release = (cancel = false) => { if (drag.current) { drag.current = null; setBalls(b => b.map(v => ({ ...v, held: false, vx: cancel ? 0 : v.vx, vy: cancel ? 0 : v.vy }))); } };
-  useEffect(() => { if (!props.active) drag.current = null; }, [props.active]);
   const energy = balls.reduce((sum, b) => sum + (b.vx * b.vx + b.vy * b.vy) / 2 + gravity * (188 - b.y), 0);
   return <>
-    <svg className="tnSurface tnPointer" viewBox="0 0 320 220" role="group" aria-label="有界の物理遊具。球はドラッグ、矢印で移動、Spaceで打ち上げ" onPointerCancel={() => release(true)}>
+    <svg className="tnSurface tnPointer" viewBox="0 0 320 220" role="group" aria-label="有界の物理遊具。球はドラッグ、矢印で移動、Spaceで打ち上げ">
       <path d="M2 28H318V207H2ZM2 207l16-14m0 14l16-14m0 14l16-14m0 14l16-14m0 14l16-14m0 14l16-14m0 14l16-14m0 14l16-14m0 14l16-14m0 14l16-14m0 14l16-14m0 14l16-14m0 14l16-14m0 14l16-14m0 14l16-14m0 14l16-14m0 14l16-14m0 14l16-14m0 14l16-14" className="tnGhost" />
-      {balls.map((b, i) => <g key={i}><line className="tnVelocity" x1={b.x} y1={b.y} x2={b.x + b.vx / 6} y2={b.y + b.vy / 6} /><circle data-ball={i} data-x={b.x.toFixed(2)} data-y={b.y.toFixed(2)} data-held={b.held} cx={b.x} cy={b.y} r="18" className={i ? "tnBall tnBallOther" : "tnBall"} tabIndex={0} role="button" aria-label={`球${i + 1}を操作`} onPointerDown={e => { e.preventDefault(); e.currentTarget.focus(); e.currentTarget.setPointerCapture(e.pointerId); drag.current = { index: i, x: b.x, y: b.y, time: e.timeStamp }; setBalls(v => v.map((ball, n) => n === i ? { ...ball, held: true, vx: 0, vy: 0 } : ball)); }} onPointerMove={e => move(e, i)} onPointerUp={e => { release(); if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId); }} onLostPointerCapture={() => release(true)} onBlur={() => release(true)} onKeyDown={e => {
-        if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", " ", "Enter"].includes(e.key)) { e.preventDefault(); setBalls(v => v.map((ball, n) => n === i ? { ...ball, x: clamp(ball.x + (e.key === "ArrowLeft" ? -12 : e.key === "ArrowRight" ? 12 : 0), 20, 300), y: clamp(ball.y + (e.key === "ArrowUp" ? -12 : e.key === "ArrowDown" ? 12 : 0), 46, 188), vx: 0, vy: e.key === " " || e.key === "Enter" ? -250 : 0, held: false } : ball)); }
+      {balls.map((b, i) => <g key={i}><line className="tnVelocity" x1={b.x} y1={b.y} x2={b.x + b.vx / 6} y2={b.y + b.vy / 6} /><circle data-ball={i} data-x={b.x.toFixed(2)} data-y={b.y.toFixed(2)} data-held={b.held} cx={b.x} cy={b.y} r="18" className={i ? "tnBall tnBallOther" : "tnBall"} tabIndex={0} role="button" aria-label={`球${i + 1}を操作`} onPointerDown={e => { e.preventDefault(); if (drag.current) return; e.currentTarget.focus(); e.currentTarget.setPointerCapture(e.pointerId); drag.current = { index: i, pointerId: e.pointerId, target: e.currentTarget, x: b.x, y: b.y, time: e.timeStamp }; setBalls(v => v.map((ball, n) => n === i ? { ...ball, held: true, vx: 0, vy: 0 } : ball)); }} onPointerMove={e => move(e, i)} onPointerCancel={e => release(true, e.pointerId, i)} onPointerUp={e => release(false, e.pointerId, i)} onLostPointerCapture={e => { if (!e.currentTarget.hasPointerCapture(e.pointerId)) release(true, e.pointerId, i); }} onBlur={() => release(true, undefined, i)} onKeyDown={e => {
+        if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", " ", "Enter"].includes(e.key)) { e.preventDefault(); release(true, undefined, i); setBalls(v => v.map((ball, n) => n === i ? { ...ball, x: clamp(ball.x + (e.key === "ArrowLeft" ? -12 : e.key === "ArrowRight" ? 12 : 0), 20, 300), y: clamp(ball.y + (e.key === "ArrowUp" ? -12 : e.key === "ArrowDown" ? 12 : 0), 46, 188), vx: 0, vy: e.key === " " || e.key === "Enter" ? -250 : 0, held: false } : ball)); }
       }} /><text x={b.x} y={b.y + 4} textAnchor="middle" className="tnBallNumber" pointerEvents="none">{i + 1}</text></g>)}
       <text x="12" y="19" className="tnSvgLabel">{props.now ? "TWO BODIES / COLLISION" : "ONE BODY / BOUNCE"}</text>
     </svg>
-    <div className="tnControls"><button onClick={() => advance(1 / 30)}>1刻み進む</button><button onClick={() => { drag.current = null; setBalls(initialBalls(props.now)); }}>球を戻す</button><button onClick={() => setBalls(v => v.map(b => ({ ...b, vx: -b.vx, vy: -250, held: false })))}>打ち上げ</button></div>
+    <div className="tnControls"><button onClick={() => advance(1 / 30)}>1刻み進む</button><button onClick={() => { release(true); setBalls(initialBalls(props.now)); }}>球を戻す</button><button onClick={() => { release(true); setBalls(v => v.map(b => ({ ...b, vx: -b.vx, vy: -250, held: false }))); }}>打ち上げ</button></div>
     <Range label="重力" max={600} step={20} value={gravity} onChange={setGravity} /><Range label="反発係数" max={1} step={.05} value={bounce} onChange={setBounce} /><Range label="摩擦" max={2} step={.05} value={friction} onChange={setFriction} />
     <p className="tnReadout" data-energy={energy.toFixed(0)}>速度 {balls.map(b => Math.hypot(b.vx, b.vy).toFixed(0)).join(" / ")} ／ E={energy.toFixed(0)}（任意単位）</p>
     <p>矢印で球を配置、Spaceで打上げ。線は速度ベクトル。{props.now ? "同質量の二体は、衝突方向の速度を交換する。" : "単体が壁と床で反発する、小さな運動の舞台。"} 停止・動き低減中も1刻みで追える。</p>

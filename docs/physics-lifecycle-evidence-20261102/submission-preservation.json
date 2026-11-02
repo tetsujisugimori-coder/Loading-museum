@@ -1,0 +1,25 @@
+{
+  "baseHead": "7ccb51f158a564327a5b900b5210cd6cd57d81bf",
+  "baseTree": "48497434a97f6b535e63802e4cb9ab3aa1da0942",
+  "previousLocalHead": "4dc404ce554194f8637bdc7eb6cc8fc8c4d7f67b",
+  "previousLocalTree": "cc58f6a8f26454db8dfde329b9c467f3da5e8524",
+  "oldLocalCommitsExcludedFromSubmissionAncestry": true,
+  "productTestVerifierWorkflowByteIdenticalToPreviousLocalHead": [
+    "app/components/then-now/SecondStudies.tsx",
+    "tests/then-now-second.test.tsx",
+    "scripts/verify-physics-lifecycle.mjs",
+    "scripts/verify-physics-dynamics.mjs",
+    "scripts/verify-physics-red-result.mjs",
+    ".github/workflows/verify-physics.yml"
+  ],
+  "productSHA256": "c699bea0690fc43f4e502f86a2a4543e398e0d994e2ffd795c4211309577da30",
+  "existingPaths": 940,
+  "unchangedExistingPaths": 937,
+  "modifiedExistingPaths": [
+    "LOG.md",
+    "app/components/then-now/SecondStudies.tsx",
+    "tests/then-now-second.test.tsx"
+  ],
+  "evidenceSelection": "8 manually reviewed PNGs, 5 definitive result JSONs, 3 selected logs, preservation, audit and manifest; no npm long logs or duplicate source snapshots",
+  "note": "Local results retain parent HEAD metadata plus tested dirty source hashes; exact submitted HEAD CI recorded separately in PR and subsequent LOG entry"
+}

@@ -1550,3 +1550,13 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - 追加単体型の初回停止を保全し、型だけ是正942a7da。lint/type/Pages build/303（原281＋追加22）成功、Windows単worker診断。CI並列/原期限は不変。
 - 旧補助は未描画content-visibility内の子へ直接scrollすると矩形が画面外に残る検証側の手順。CSS注入の限定診断を製品PASSにせず保全。外側cardを先に表示し、同じnative click/期待/8秒/hit確認でCh6、WK6を各runで確認。旧CSS・原試験変更/force/sleep/期限延長なし。
 - 修正後重点GUI：375両engine12条件は11成功・Windows WK音1 PARTIAL、Ch1280後半3条件成功。旧36の結果は新HEADへ自動適用しない。第2提出CIの36＋補助2＋旧12と本文/コメントの読戻しを引続き確認する。
+
+## 2026-11-02 — PR51 Physics局所修正・最小証拠提出
+
+- 旧HEAD `7ccb51f158a564327a5b900b5210cd6cd57d81bf` / tree `48497434a97f6b535e63802e4cb9ab3aa1da0942`を隔離clone、PR状態/レビュー/Issue50/差分確認。取消が球2の速度を消すP2-A、停止でheldが残るP2-BをChromium実browser内で再現。PointerCancel等人工イベントと信頼されたdrag/up/scrollを区別する。
+- 製品変更はPhysics状態管理だけ。index/pointerId/target所有、対象限定release、正常up速度保持、cancel/停止/blur/unmountのheld/capture同期、別球/別pointer/遅いcaptureの保護。積分/衝突/反射/初期値と他5作品、旧54/18カテゴリ、他室/WAAPI、lock、元の両workflow、既存証拠は不変。全館251/13室、Flash60を維持。
+- 同一probe/入力/期待/8秒で12 RED+6正常対照→18 GREEN。cancel-independentは球2の全状態不変と次1/30秒を数値検査。追加単体旧4失敗→成功、全check309成功（原281+前回22+今回6）。Ch3幅で力学3/原6作品18/旧Flash6操作成功。自己検証であり独立PASSではない。
+- 検証用local2commit `8fbb15a07d598a727feb7138cb43d6e5892a1ba9` / `4dc404ce554194f8637bdc7eb6cc8fc8c4d7f67b`、tree `cc58f6a8f26454db8dfde329b9c467f3da5e8524`は保全しpushしない。旧提出HEAD直接parentで最小treeを再構成。製品SHA256 `c699bea0690fc43f4e502f86a2a4543e398e0d994e2ffd795c4211309577da30`をbyte一致で維持。不要長ログ・重複途中証拠・他作品PNGを提出履歴から除外しローカル保全。最終提出HEAD/tree/CIはPR本文・通常コメント・Issue50で確定値を読戻し照合する。
+- 当初GitHub PNG/tree作成はauto-review拒否・未実行で停止。本人の2026-11-02 10:45:47Z明示再承認で最小提出を再開。65PNG全数目視/原hash検証、26log点検済、代表8PNGと確定数値結果を共有。第4期B保留原本/ZIPの読取・転送なし。原証拠/途中失敗を削除・上書きしない。
+- 正確な環境制約: Playwright Chromium導入403、1コマンド内の標準fallback5回、WebKit取得/起動未到達。手動再試行/別host指定なし。local Chromium154とGitHub固定Ch/WKを別証拠とする。Issue44/Windows WAAPI timeout UNKNOWN、実機Safari/VoiceOver/物理touch/実スピーカー等未検証を維持。
+- [証拠・原因・条件・保全・独立再レビュー引継ぎ](docs/physics-lifecycle-evidence-20261102/README.md)。総合PARTIAL・マージ推奨NO。Draft/未マージ/未公開を維持する。

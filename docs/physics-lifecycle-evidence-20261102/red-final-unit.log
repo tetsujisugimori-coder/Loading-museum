@@ -1,0 +1,119 @@
+
+ RUN  v3.2.4 /workspace/loading-physics-20261102
+
+ ❯ tests/then-now-second.test.tsx (17 tests | 4 failed) 319ms
+   ✓ gravity accelerates and friction reduces physical velocity 2ms
+   ✓ wall collision reflects and bounded integration never loses bodies 23ms
+   ✓ equal-mass collision exchanges normal velocities, held body stays placed 0ms
+   ✓ physics keyboard, single step and local reset remain available with motion reduction 90ms
+   ✓ intro has bounded terminal state and preserves route through skip and replay 20ms
+   ✓ intro user-driven path reaches explicit main without clocks 9ms
+   ✓ audio absent and stopped paths never report successful analysis 13ms
+   ✓ audio pause closes graph and resume does not automatically restart sound 21ms
+   ✓ late audio resume cannot resurrect an old graph after replacement or unmount 11ms
+   ✓ rejected native audio resume reports unavailable and releases the created graph 12ms
+   ✓ timeline intro reaches the branch under coarse frames while bounding long-frame catch-up 8ms
+   × cancel affects only the dragged body; the other follows the unchanged physical step 38ms
+     → expected { x: '228', y: '100', …(3) } to deeply equal { x: '228', y: '100', …(3) }
+   ✓ normal pointerup preserves target throw and leaves the independent body unchanged 14ms
+   × stop clears held and capture immediately, then resume, redrag and reset work 14ms
+     → expected { x: '60', …(4) } to match object { held: 'false', vx: +0, vy: +0 }
+(2 matching properties omitted from actual)
+   × different pointers and stale lost-capture cannot cancel a newly captured operation 16ms
+     → expected { x: '200', y: '100', …(3) } to deeply equal { x: '60', …(4) }
+   × actual capture loss, blur and unmount release only the owned pointer 16ms
+     → expected 1 to be +0 // Object.is equality
+   ✓ single body cancellation and reset use the same lifecycle 11ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/then-now-second.test.tsx > cancel affects only the dragged body; the other follows the unchanged physical step
+AssertionError: expected { x: '228', y: '100', …(3) } to deeply equal { x: '228', y: '100', …(3) }
+
+- Expected
++ Received
+
+  {
+    "held": "false",
+    "vx": 0,
+-   "vy": -250,
++   "vy": 0,
+    "x": "228",
+    "y": "100",
+  }
+
+ ❯ tests/then-now-second.test.tsx:89:67
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/then-now-second.test.tsx > stop clears held and capture immediately, then resume, redrag and reset work
+AssertionError: expected { x: '60', …(4) } to match object { held: 'false', vx: +0, vy: +0 }
+(2 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "held": "false",
+-   "vx": 0,
+-   "vy": 0,
++   "held": "true",
++   "vx": -400,
++   "vy": -400,
+  }
+
+ ❯ tests/then-now-second.test.tsx:98:81
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/then-now-second.test.tsx > different pointers and stale lost-capture cannot cancel a newly captured operation
+AssertionError: expected { x: '200', y: '100', …(3) } to deeply equal { x: '60', …(4) }
+
+- Expected
++ Received
+
+  {
+-   "held": "true",
+-   "vx": 0,
+-   "vy": 0,
+-   "x": "60",
+-   "y": "59.99999999999999",
++   "held": "false",
++   "vx": 400,
++   "vy": 400,
++   "x": "200",
++   "y": "100",
+  }
+
+ ❯ tests/then-now-second.test.tsx:104:153
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/then-now-second.test.tsx > actual capture loss, blur and unmount release only the owned pointer
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/then-now-second.test.tsx:107:259
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 13 passed (17)
+   Start at  10:02:12
+   Duration  953ms (transform 76ms, setup 0ms, collect 167ms, tests 319ms, environment 264ms, prepare 50ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
