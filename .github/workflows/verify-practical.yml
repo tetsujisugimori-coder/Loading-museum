@@ -43,6 +43,15 @@ jobs:
           set -o pipefail
           export PLAYWRIGHT_MODULE="$RUNNER_TEMP/then-now-playwright/node_modules/playwright"
           node scripts/verify-then-now-browser.mjs 2>&1 | tee then-now-browser.log
+      - name: Supplemental actual pointer speed and distance
+        if: ${{ !cancelled() }}
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          EVIDENCE_DIR: then-now-dynamics-evidence
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/then-now-playwright/node_modules/playwright"
+          node scripts/verify-then-now-dynamics.mjs 2>&1 | tee then-now-dynamics.log
       - name: Existing Flash interactions and inheritance comparison
         if: ${{ !cancelled() }}
         env:
@@ -62,6 +71,8 @@ jobs:
           path: |
             then-now-browser-evidence/
             then-now-browser.log
+            then-now-dynamics-evidence/
+            then-now-dynamics.log
             flash-legacy-evidence/
             flash-legacy.log
   contracts:
