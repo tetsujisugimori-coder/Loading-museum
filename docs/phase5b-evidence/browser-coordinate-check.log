@@ -1,0 +1,24 @@
+PASS chromium 375 no-preference kanban-board
+PASS chromium 375 no-preference node-flow-editor
+locator.tap: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator('.phase4Room').getByTestId('phase5b-stage').getByRole('button', { name: '予定削除', exact: true })
+    - locator resolved to <button disabled>予定削除</button>
+  - attempting tap action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying tap action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying tap action
+      - waiting 100ms
+    15 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying tap action
+       - waiting 500ms
+
+    at click (C:\Users\tetsu\Documents\Codex\2026-11-04\task-4\loading-museum\scripts\verify-phase5b-browser.mjs:28:102)
+    at C:\Users\tetsu\Documents\Codex\2026-11-04\task-4\loading-museum\scripts\verify-phase5b-browser.mjs:43:313 {
+  name: 'TimeoutError'
+}

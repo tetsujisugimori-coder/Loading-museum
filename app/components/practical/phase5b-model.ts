@@ -46,4 +46,3 @@ export function diffLines(oldText:string,newText:string):DiffRow[]{
  return result;
 }
 export function contrast(a:string,b:string){const lum=(hex:string)=>{const c=hex.match(/[a-f\d]{2}/gi)!.map(v=>parseInt(v,16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return c[0]*.2126+c[1]*.7152+c[2]*.0722};const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)}
-export function shortcutKey(key:string){return /^[a-z]$/i.test(key)?`Alt+Shift+${key.toUpperCase()}`:''}
