@@ -1,0 +1,17 @@
+PASS chromium 320 editable-data-table
+PASS chromium 320 date-range-picker
+PASS chromium 320 virtualized-list
+PASS chromium 320 filter-builder
+PASS chromium 320 tree-view
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'false' !== 'true'
+
+    at file:///workspace/scratch/e622c1e9421e/loading-ci-baseline/scripts/verify-phase5a-browser.mjs:22:331 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'false',
+  expected: 'true',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

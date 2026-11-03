@@ -1,5 +1,19 @@
 # Loading Museum 作業ログ
 
+## 2026-11-03 — PR #56 全館CI件数不一致
+
+- 旧mainと提出HEADの同条件比較で、進行中PageDownと直接scrollの重複、および別awaitによる13/12観測競合を再現。3568同時snapshotに件数不一致なし。製品コードを変更せず、同時snapshot・有界収束・行ID範囲検査へ修正。失敗を即時検出する負例3種も追加。
+- 修正HEAD7336のPhase5A/Stage2A/Stage2B/PhysicsはCI成功。全館practical WebKitの2回の10分境界cancelを保全し、既存Phase4Bを両browser独立jobへ移動。試験/個別timeout/10分job上限を維持し、新HEADで再検証する。
+- [根因・比較・初回失敗証拠](docs/maintenance/stage2b-ci-rootcause-20261103/README.md)を追加。確定HEAD試験/CIおよび別担当による独立再レビューはPRへ追記し、自己検証と区別する。#54/#44の残件を維持。
+
+## 2026-11-03 — WAAPI Stage 2B 判定時間軸（Issue #55）
+
+- 最新origin/main `26dae458be5df77bfc4f78f350996f3d375045ed`から専用ブランチで開始。作業開始時に未コミット変更なし。実集計は全館251展示・13室、WAAPI47件。
+- Parry/Dodgeの通常判定と演出レシピを共有する小さなモデルを抽出。通常判定の420/680ms包含境界、420ms演出、fill:none、左右移動量は維持。
+- 独立観察時計、入力候補と確定試行、時間窓／入力／演出の各レーン、停止・再開・seek・step・Resetを追加。通常ゲームの確定結果はモード切替でも保持し、進行中攻撃だけ明示中断する。
+- 残像を新しい発生器へ変更せず、3枚の常設輪郭という現物と教材を一致させた。reduced motionでは連続再生を抑え、手動観察を残す。
+- 詳細な検証結果・実行制約・証拠は[Stage 2B記録](docs/maintenance/stage2b-timing-20261103/README.md)へ記録。独立レビュー、マージ、公開はこの作業に含めない。
+
 ## 2026-08-22 — PR #28 WAAPI標本32件・ゲーム操作展示への再構成
 
 - 既存ローディング展示室と重複するProgress Bar、Windows XP風セグメント、Windows 8/10風ドット、macOS風インジケーターの4件をWAAPI一覧から削除し、非公開理由をbacklogへ記録した。

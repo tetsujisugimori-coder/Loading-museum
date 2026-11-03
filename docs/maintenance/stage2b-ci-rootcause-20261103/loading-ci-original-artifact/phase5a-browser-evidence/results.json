@@ -1,0 +1,120 @@
+{
+  "head": "7e5f2039e5fb894ffb9e01f40af63c9ad7c66782",
+  "dirty": true,
+  "started": "2026-11-03T03:55:02.016Z",
+  "expected": 24,
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 320,
+      "id": "editable-data-table",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "reducedReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 320,
+      "id": "date-range-picker",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "reducedReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 320,
+      "id": "virtualized-list",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "reducedReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 320,
+      "id": "filter-builder",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "reducedReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 320,
+      "id": "tree-view",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "reducedReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 320,
+      "id": "multi-select-chips",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 320,
+        "scroll": 320
+      },
+      "reducedReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "editable-data-table",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "scroll": 375
+      },
+      "reducedReset": true
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "id": "date-range-picker",
+      "status": "PASS",
+      "geometry": {
+        "viewport": 375,
+        "scroll": 375
+      },
+      "reducedReset": true
+    }
+  ],
+  "files": [
+    {
+      "file": "chromium-375-editable-data-table.png",
+      "size": 68728,
+      "sha256": "1111efd701dbf8925a064461b560e28b344cbf1c329ba7e356618634507d46a0"
+    },
+    {
+      "file": "chromium-375-date-range-picker.png",
+      "size": 74444,
+      "sha256": "ca210d203cc83838e7f59d41b7f15331c7ed5d40dba9595e7b7e0c110bccdf12"
+    }
+  ],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n13 !== 12\n\n    at file:///home/runner/work/Loading-museum/Loading-museum/scripts/verify-phase5a-browser.mjs:19:498"
+  ],
+  "trackedChanges": "",
+  "chromium": "141.0.7390.37",
+  "current": {
+    "engine": "chromium",
+    "width": 375,
+    "id": "virtualized-list"
+  },
+  "finished": "2026-11-03T03:55:10.851Z",
+  "complete": false
+}

@@ -1,0 +1,17 @@
+.waapiTimingObservation .timingAxis { display: block; width: 100%; min-width: 0; height: auto; overflow: visible; background: #101b24; border: 1px solid #52616d; }
+.timingAxis text { fill: #e4eef5; font: 36px sans-serif; }
+.timingAxisBase { fill: #34414c; }
+.timingAxisWindow { fill: #52bc85; }
+.timingAxisEffect { fill: #559ad0; }
+.timingAxisInput { stroke: white; stroke-width: 5; stroke-dasharray: 9 7; }
+.timingAxisCursor { stroke: #ffda63; stroke-width: 5; }
+.timingInputPlan { min-width: 0; margin: 0; padding: 12px; border: 1px solid #617584; display: grid; gap: 12px; }
+.timingInputPlan legend { max-width: 100%; overflow-wrap: anywhere; }
+.waapiTimingObservation .timingResult { padding: 10px; border-left: 4px solid #80aacc; background: #15222d; color: #eff6fb; }
+.waapiTimingObservation .timingLegend { font-size: .875rem; }
+.waapiTimingObservation .waapiPreviewControls { flex-wrap: wrap; }
+.waapiTimingObservation .waapiPreviewControls button { min-height: 44px; }
+
+/* Timing instruction needs one readable workspace, not a thumbnail column. */
+.waapiSampleGrid > div:has(.waapiTimingObservation) { grid-column: 1 / -1; }
+.waapiTimingObservation .timingAxis { max-height: 260px; }
