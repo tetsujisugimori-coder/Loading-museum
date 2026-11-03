@@ -1,0 +1,9 @@
+# WebKit390：観測順序の競合
+
+最初の全matrixは35条件PASS、WebKit390 PreloaderでFAIL、後続12条件NOT_RUN。読込量107→107は不変、readout末尾が「模擬読み込み中」から「停止・待機」へ変わった。
+
+検査器は合成hidden解除後、active=trueの復帰を確認せず画面外へscrollし、前のhidden由来のfalseを画面外停止の完了と誤認した。復帰trueを確認してからscroll→falseを確認する順序へ局所修正。数字や状態の一致条件、sleep/retry/timeoutは緩めない。製品のclockが停止中に進んだ証拠ではない。
+
+原resultsを保存。後続の同条件再試験と全matrix/正式CIは別記録。合成visibilitychangeは実OS背景化ではない。
+
+留保：この最初のmatrix中に同一製品sourceの再buildが重なり、index.html hashは前後で変化した。pageerrorはなかったが、旧runを単一buildの全面証拠とはしない。同条件WebKit390後半3作品は復帰barrier追加で成功。最終全matrixはoutを固定して別実行する。
