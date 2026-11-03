@@ -1,0 +1,220 @@
+{
+  "kind": "implementation self-verification; trusted mouse/keyboard, synthetic cancel explicitly labelled",
+  "head": "f21f0a8c17a04be02da327e82d6662ed51c54d6e",
+  "exportRoot": "C:\\Users\\tetsu\\Documents\\Codex\\2026-11-03\\task-2\\pr58-old-out",
+  "buildIndexHash": "4bcc582fa74f02f9501865ad1263c1c7e8b12abd7a147feb29d4041ce9e4e849",
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "era": "then",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [
+        {
+          "name": "source thumbnail equals stage ink",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   '40,45 54.00000326609532,45 67.99999836695234,45 82.00000163304766,45 95.9999967339047,45 110,45 110,52.99999836695234 110,60.99999673390469 110,69.00000326609532 110,77.00000163304766 110,85'\n- ]\n"
+        },
+        {
+          "name": "copy thumbnail equals copy stage ink",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   '230,40 230,59.00000326609532 230,77.99999836695234 230,96.99999346780936 230,115.99999673390468 230,135 238.0000065321906,135 246.00001306438128,135 253.99998693561872,135 261.99999346780936,135 270,135'\n- ]\n"
+        },
+        {
+          "name": "edited thumbnail visibly differs from blank",
+          "error": "AssertionError [ERR_ASSERTION]: changed pixels 0"
+        },
+        {
+          "name": "different drawings visibly distinguishable at native size",
+          "error": "AssertionError [ERR_ASSERTION]: changed pixels 0"
+        },
+        {
+          "name": "Undo during stroke prevents stale input changing earlier stroke",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    '30,140 40.99999673390468,141.99999346780936',\n+   '160,110 191.9999934678094,131.99999346780936'\n  ]\n"
+        }
+      ],
+      "source": [
+        "40,45 54.00000326609532,45 67.99999836695234,45 82.00000163304766,45 95.9999967339047,45 110,45 110,52.99999836695234 110,60.99999673390469 110,69.00000326609532 110,77.00000163304766 110,85"
+      ],
+      "sourceAfterCopy": [
+        "40,45 54.00000326609532,45 67.99999836695234,45 82.00000163304766,45 95.9999967339047,45 110,45 110,52.99999836695234 110,60.99999673390469 110,69.00000326609532 110,77.00000163304766 110,85"
+      ],
+      "thumbnailSource": [],
+      "thumbnailCopy": [],
+      "sourcePixels": 0,
+      "differentPixels": 0,
+      "status": "FAIL"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "era": "now",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [
+        {
+          "name": "source thumbnail equals stage ink",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   '40,45 54.00000326609532,45 67.99999836695234,45 82.00000163304766,45 95.9999967339047,45 110,45 110,52.99999836695234 110,60.99999673390469 110,69.00000326609532 110,77.00000163304766 110,85'\n- ]\n"
+        },
+        {
+          "name": "copy thumbnail equals copy stage ink",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   '230,40 230,59.00000326609532 230,77.99999836695234 230,96.99999346780936 230,115.99999673390468 230,135 238.0000065321906,135 246.00001306438128,135 253.99998693561872,135 261.99999346780936,135 270,135'\n- ]\n"
+        },
+        {
+          "name": "edited thumbnail visibly differs from blank",
+          "error": "AssertionError [ERR_ASSERTION]: changed pixels 0"
+        },
+        {
+          "name": "different drawings visibly distinguishable at native size",
+          "error": "AssertionError [ERR_ASSERTION]: changed pixels 0"
+        },
+        {
+          "name": "Undo during stroke prevents stale input changing earlier stroke",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n+   '30,140 40.99999673390468,141.99999346780936 52.00000163304765,144.00000326609532 62.99999836695235,145.99999673390468 74.00000326609532,148.00000653219064 85,150 256.0000130643813,154.00000326609532'\n-   '30,140 40.99999673390468,141.99999346780936 52.00000163304765,144.00000326609532 62.99999836695235,145.99999673390468 74.00000326609532,148.00000653219064 85,150'\n  ]\n"
+        }
+      ],
+      "source": [
+        "40,45 54.00000326609532,45 67.99999836695234,45 82.00000163304766,45 95.9999967339047,45 110,45 110,52.99999836695234 110,60.99999673390469 110,69.00000326609532 110,77.00000163304766 110,85"
+      ],
+      "sourceAfterCopy": [
+        "40,45 54.00000326609532,45 67.99999836695234,45 82.00000163304766,45 95.9999967339047,45 110,45 110,52.99999836695234 110,60.99999673390469 110,69.00000326609532 110,77.00000163304766 110,85"
+      ],
+      "thumbnailSource": [],
+      "thumbnailCopy": [],
+      "sourcePixels": 0,
+      "differentPixels": 0,
+      "status": "FAIL"
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "era": "then",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [
+        {
+          "name": "source thumbnail equals stage ink",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   '39.59866220735786,44.94983277591973 53.51170568561873,44.94983277591973 67.4247491638796,44.94983277591973 81.33779264214047,44.94983277591973 95.25083612040135,44.94983277591973 109.1638795986622,44.94983277591973 109.1638795986622,52.441471571906355 109.1638795986622,59.93311036789297 109.1638795986622,68.49498327759197 109.1638795986622,75.9866220735786 109.1638795986622,84.54849498327759'\n- ]\n"
+        },
+        {
+          "name": "copy thumbnail equals copy stage ink",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   '229.03010033444815,39.59866220735786 229.03010033444815,58.8628762541806 229.03010033444815,77.05685618729098 229.03010033444815,96.3210702341137 229.03010033444815,115.58528428093645 229.03010033444815,134.8494983277592 237.59197324414714,134.8494983277592 245.0836120401338,134.8494983277592 253.6454849498328,134.8494983277592 261.1371237458194,134.8494983277592 269.6989966555184,134.8494983277592'\n- ]\n"
+        },
+        {
+          "name": "edited thumbnail visibly differs from blank",
+          "error": "AssertionError [ERR_ASSERTION]: changed pixels 0"
+        },
+        {
+          "name": "different drawings visibly distinguishable at native size",
+          "error": "AssertionError [ERR_ASSERTION]: changed pixels 0"
+        },
+        {
+          "name": "Undo during stroke prevents stale input changing earlier stroke",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n+   '29.966555183946486,139.1304347826087 40.668896321070235,141.27090301003344 51.37123745819398,143.4113712374582 62.07357859531773,145.55183946488296 73.84615384615385,147.6923076923077 84.54849498327759,149.83277591973246 255.78595317725754,153.04347826086956'\n-   '29.966555183946486,139.1304347826087 40.668896321070235,141.27090301003344 51.37123745819398,143.4113712374582 62.07357859531773,145.55183946488296 73.84615384615385,147.6923076923077 84.54849498327759,149.83277591973246'\n  ]\n"
+        }
+      ],
+      "source": [
+        "39.59866220735786,44.94983277591973 53.51170568561873,44.94983277591973 67.4247491638796,44.94983277591973 81.33779264214047,44.94983277591973 95.25083612040135,44.94983277591973 109.1638795986622,44.94983277591973 109.1638795986622,52.441471571906355 109.1638795986622,59.93311036789297 109.1638795986622,68.49498327759197 109.1638795986622,75.9866220735786 109.1638795986622,84.54849498327759"
+      ],
+      "sourceAfterCopy": [
+        "39.59866220735786,44.94983277591973 53.51170568561873,44.94983277591973 67.4247491638796,44.94983277591973 81.33779264214047,44.94983277591973 95.25083612040135,44.94983277591973 109.1638795986622,44.94983277591973 109.1638795986622,52.441471571906355 109.1638795986622,59.93311036789297 109.1638795986622,68.49498327759197 109.1638795986622,75.9866220735786 109.1638795986622,84.54849498327759"
+      ],
+      "thumbnailSource": [],
+      "thumbnailCopy": [],
+      "sourcePixels": 0,
+      "differentPixels": 0,
+      "status": "FAIL"
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "era": "now",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [
+        {
+          "name": "source thumbnail equals stage ink",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   '39.59866220735786,44.34782608695652 53.51170568561873,44.34782608695652 67.4247491638796,44.34782608695652 81.33779264214047,44.34782608695652 95.25083612040135,44.34782608695652 109.1638795986622,44.34782608695652 109.1638795986622,52.909698996655514 109.1638795986622,60.40133779264213 109.1638795986622,68.96321070234113 109.1638795986622,76.45484949832776 109.1638795986622,83.94648829431438'\n- ]\n"
+        },
+        {
+          "name": "copy thumbnail equals copy stage ink",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   '229.03010033444815,38.99665551839465 229.03010033444815,58.2608695652174 229.03010033444815,77.52508361204013 229.03010033444815,96.78929765886288 229.03010033444815,114.98327759197323 229.03010033444815,134.247491638796 237.59197324414714,134.247491638796 245.0836120401338,134.247491638796 253.6454849498328,134.247491638796 261.1371237458194,134.247491638796 269.6989966555184,134.247491638796'\n- ]\n"
+        },
+        {
+          "name": "edited thumbnail visibly differs from blank",
+          "error": "AssertionError [ERR_ASSERTION]: changed pixels 0"
+        },
+        {
+          "name": "different drawings visibly distinguishable at native size",
+          "error": "AssertionError [ERR_ASSERTION]: changed pixels 0"
+        },
+        {
+          "name": "Undo during stroke prevents stale input changing earlier stroke",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n+   '29.966555183946486,139.59866220735788 40.668896321070235,141.73913043478262 51.37123745819398,143.87959866220734 62.07357859531773,144.94983277591973 73.84615384615385,147.09030100334448 84.54849498327759,149.23076923076923 255.78595317725754,153.51170568561872'\n-   '29.966555183946486,139.59866220735788 40.668896321070235,141.73913043478262 51.37123745819398,143.87959866220734 62.07357859531773,144.94983277591973 73.84615384615385,147.09030100334448 84.54849498327759,149.23076923076923'\n  ]\n"
+        }
+      ],
+      "source": [
+        "39.59866220735786,44.34782608695652 53.51170568561873,44.34782608695652 67.4247491638796,44.34782608695652 81.33779264214047,44.34782608695652 95.25083612040135,44.34782608695652 109.1638795986622,44.34782608695652 109.1638795986622,52.909698996655514 109.1638795986622,60.40133779264213 109.1638795986622,68.96321070234113 109.1638795986622,76.45484949832776 109.1638795986622,83.94648829431438"
+      ],
+      "sourceAfterCopy": [
+        "39.59866220735786,44.34782608695652 53.51170568561873,44.34782608695652 67.4247491638796,44.34782608695652 81.33779264214047,44.34782608695652 95.25083612040135,44.34782608695652 109.1638795986622,44.34782608695652 109.1638795986622,52.909698996655514 109.1638795986622,60.40133779264213 109.1638795986622,68.96321070234113 109.1638795986622,76.45484949832776 109.1638795986622,83.94648829431438"
+      ],
+      "thumbnailSource": [],
+      "thumbnailCopy": [],
+      "sourcePixels": 0,
+      "differentPixels": 0,
+      "status": "FAIL"
+    }
+  ],
+  "notTested": [
+    "Physical Safari",
+    "VoiceOver",
+    "OS backgrounding"
+  ],
+  "chromium": "141.0.7390.37",
+  "webkit": "26.0",
+  "status": "FAIL"
+}

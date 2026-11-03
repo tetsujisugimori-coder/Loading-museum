@@ -1607,3 +1607,15 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - 探索実測ではChromium 141.0.7390.37 / WebKit 26.0 × 375/390/765pxの観察・focus/touch・layout・N2・Stage 1計30条件が成功。探索中の検証器強化を含むdirty記録のため、最終受入はcommit後のcleanな最終HEAD再実行とCIで確定し、PR本文/Issue #35へ記録する。
 - 初回Python配信のload timeout、Node配信対照、初回check失敗証拠を保持。これらの現行実行条件の観測をQ1/B1/M1根因解明と同一視しない。Q1/B1/M1は原因UNKNOWN、実機iPhone Safari/VoiceOver/実OS文字拡大は未検証、既存文字200%横超過の履歴は保持。
 - 新規P1/P2は実装担当の自己検証では未検出。独立再レビューは未実施で、マージ推奨NO。Draft PRまで提出し、merge/auto-merge/公開/Draft解除は行わない。
+
+## 2026-11-03 — Flash Then & Now 第2期（Issue #57）
+
+- main d71411a0（PR #56統合済み）から専用branch。既存Flash60件・251展示・13室をデータ実評価で確認し、既存18カテゴリへ6組を追加。期待値257/66/13、既存60件の全フィールドdigestを固定。
+- 前半3作品：Mask Theatre（3種の窓、二風景、位置・時間）、Elastic Navigation（4施設、速度保持反転）、Parallax Stage（山・観測所・手前の木、層別視差）。後半3作品：Frame-by-Frame Lab（複製/編集/描線/オニオン）、Isometric Explorer（直接発見/移動調査）、Preloader Theatre（1000units→幕→操作可能な本編）。3+3の独立commit。
+- Then/Nowは対等な表現判断、素材は独自SVG/HTML。Phase1を大規模改修せずPhase2カードを追加、Thenだけ/Nowだけ/比較で非表示面の状態を保持して時計を止める。共通Resetは両面再生成。
+- 初回buildは作業環境のnode_modules外向きsymlinkをTurbopackが拒否。通常ローカルコピーで解消、依存lockやアプリ構成を変更しない。
+- 初回Chromium375の合成hidden検査でPhase2状態の消失を発見。既存roomはpageVisible false時に子をunmountする契約だったため、編集物を持つ新Phase2だけmount条件とplay gateを分離。旧Flash/Phase1の契約を維持し、hidden/visible値保持・閉室unmountの回帰試験を追加。元失敗証拠を保持。
+- 初回全checkは旧380＋新26件成功。hidden修正の追加1件も成功。提出HEADで最終試験/正式CIを照合し、結果は後続提出記録に記載する。自己検証と独立レビューは区別し、独立レビュー引渡しまで。
+- #29/#44/#54は継続、依存lock不変。実機iPhone Safari、VoiceOver、実OS背景化は未検証。公開・merge・auto-mergeなし。
+- 375px画像目視で、Frame Thenの茶色が暗い操作面へ継承する低コントラストと、Elastic Nowの温室が中央hubに重なる点を発見して局所修正。茶色をSVG内へ限定、Nowを二列二段＋実位置へ接続線、240px時の非重複単体検査を追加。自動PASSだけでは作品品質を認定しない。
+- ブラウザ検査器自身のfocus対象が完了後disabledボタンだった失敗も別保存。enabled操作へ正して再実行し、製品不具合と混同しない。

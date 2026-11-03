@@ -1,0 +1,32 @@
+{
+  "head": "842142bb46d6d26aed696736cb6fec7ea3a4918c",
+  "tree": "32afa597cbf1179b3154fc70458a3d559e8aa3b4",
+  "trackedChanges": "M scripts/verify-flash-phase2-touch.mjs",
+  "started": "2026-11-03T14:39:20.542Z",
+  "kind": "implementation self-verification",
+  "cases": [],
+  "errors": [
+    "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:50485/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-03\\task-2\\loading-museum\\scripts\\verify-flash-phase2-browser.mjs:50:659"
+  ],
+  "notTested": [
+    "Physical iPhone Safari",
+    "VoiceOver",
+    "Actual OS backgrounding"
+  ],
+  "sourceHashes": {
+    "app/components/FlashSpecialExhibitRoom.tsx": "152ab73ca8af6a6290588b250305d46403f2abb8371cbf85c1d19bde160dbc3e",
+    "app/components/then-now/ThenNowCard.tsx": "72aa8a8790d0b3be889551c0a03895425be8dded7510e69f8a695d31140ab20a",
+    "app/data/flashExhibits.ts": "58307b02e45732acdc7b7ca742d2ae59de24de46146882592f6032b566d3227e",
+    "app/data/thenNowPhaseTwo.ts": "fe9c8dff1818144132ee1ea3e653173c880f63196bd6a7aebebb197e22494f52",
+    "app/components/then-now/PhaseTwoCard.tsx": "c4e89e7ff0d357aaf44932d89f718f716bcba11797930feef064cc4414a39466",
+    "app/components/then-now/PhaseTwoFirst.tsx": "f6260686a00473d1da307bf26a22a6d191dda8def1d92a80822210e2ba4eb19d",
+    "app/components/then-now/PhaseTwoSecond.tsx": "dbca4faf3461132c9642acb5843986783ed8e945fb2ff4105b6a1d6e6cc24822",
+    "app/components/then-now/runtime.tsx": "4e0771b5e27da8d8be023f6a42022d12e2391ed64e7052f87cad97bbf76eae8a",
+    "scripts/verify-flash-phase2-browser.mjs": "3673e42e5f6b37211aca02b3f8f3344762a6c6f0d7488c1c60335093d79f9ddc",
+    "package-lock.json": "8af00f13b6e24b441999bab971200cc5a5a1e4e5e6fde5cfd0b616eb04dbb1a2"
+  },
+  "buildIndexHash": "8b2d6cd8bb0e6d625ebb976d2f05dd289f51526640478db3cbe69253893b81a8",
+  "chromium": "141.0.7390.37",
+  "status": "FAIL",
+  "finished": "2026-11-03T14:39:33.415Z"
+}

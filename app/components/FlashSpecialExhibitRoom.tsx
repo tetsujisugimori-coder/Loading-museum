@@ -8,6 +8,7 @@ import {
   type FlashExhibit,
 } from "../data/flashExhibits";
 import { FlashVisual } from "./FlashVisuals";
+import { phaseTwoNotes } from "../data/thenNowPhaseTwo";
 import { ThenNowMount } from "./then-now/ThenNowCard";
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
@@ -174,7 +175,7 @@ export function FlashSpecialExhibitRoom() {
           </header>
           <div className="flashExhibitGrid">
             {categoryExhibits.map((exhibit) => (
-              <FlashExhibitCard key={exhibit.id} exhibit={exhibit} categoryActive={open && pageVisible} globalPlaying={playing} reduced={reduced} speed={speed === "slow" ? .6 : speed === "fast" ? 1.6 : 1} />
+              <FlashExhibitCard key={exhibit.id} exhibit={exhibit} categoryActive={open && (exhibit.id in phaseTwoNotes || pageVisible)} globalPlaying={playing && pageVisible} reduced={reduced} speed={speed === "slow" ? .6 : speed === "fast" ? 1.6 : 1} />
             ))}
           </div>
         </section>

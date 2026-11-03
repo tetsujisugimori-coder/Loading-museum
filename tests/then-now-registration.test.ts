@@ -8,9 +8,9 @@ it('preserves every field of the original 54 exhibits and all 18 category defini
   expect(digest(flashExhibits.filter(e=>!e.id.startsWith('tn-')))).toBe('79937099bb71d7631029211365c11e704830bca01423b0cd8958691353d12831');
   expect(digest(flashCategories)).toBe('3fb7ebcebe39ddc9af1f7f371361267af37e30d7de6179cbb8ca338381d88488');
 });
-it('registers exactly six distinct pairs in existing categories, without new room or duplicate IDs',()=>{
-  expect(flashExhibitCount).toBe(60);expect(flashCategories).toHaveLength(18);expect(new Set(flashExhibits.map(e=>e.id)).size).toBe(60);
-  const added=flashExhibits.filter(e=>e.visualType==='then-now');expect(added.map(e=>e.id).sort()).toEqual(Object.keys(thenNowNotes).sort());expect(added).toHaveLength(6);
+it('preserves phase-one six pairs while extending the same room without duplicate IDs',()=>{
+  expect(flashExhibitCount).toBe(66);expect(flashCategories).toHaveLength(18);expect(new Set(flashExhibits.map(e=>e.id)).size).toBe(66);
+  const added=flashExhibits.filter(e=>e.id in thenNowNotes);expect(added.map(e=>e.id).sort()).toEqual(Object.keys(thenNowNotes).sort());expect(added).toHaveLength(6);
   for(const e of added)expect(flashCategories.some(c=>c.id===e.categoryId)).toBe(true);
 });
 it('each new pair supplies explicit differentiation, sources and reconstruction limits',()=>{

@@ -46,3 +46,7 @@
 .tnBallNumber { fill:#14101e; font:bold 11px ui-monospace,monospace; }
 .tnVelocity { stroke:#ffe45c; stroke-width:2; }
 .tnIntroTitle { fill:var(--tn-ink); font:bold 24px ui-monospace,monospace; letter-spacing:1px; }
+
+/* Phase 2 solo views retain both states but suspend the hidden clock. */
+.tnPhaseTwo .tnPanel[hidden] { display:none; }
+.tnPhaseTwo .tnPair:not([data-view=compare]) { grid-template-columns:minmax(0,1fr); }

@@ -1,5 +1,13 @@
 # DIGITAL MOTION ARCHIVE
 
+## Flash Then & Now 第2期（Issue #57）
+
+既存Flash室に6作品を追加。**全館257展示・Flash66展示・13室**。Mask Theatre、Elastic Navigation、Parallax Stage、Frame-by-Frame Lab、Isometric Explorer、Preloader TheatreをThen / Nowで操作・比較します。各組を1展示として数え、既存60作品は維持しています。
+
+Thenだけ／Nowだけ／比較、共通開始・停止・Resetと作品固有の編集・探索を用意。過去と現在を優劣で並べず、幕、メニュー、舞台、作画、箱庭、待ち時間の異なる美意識を楽しむ独自制作です。
+
+[設計・独立レビュー引渡し](docs/flash-phase2-design.md) / [重複と登録監査](docs/flash-phase2-inventory.md)。検証の実測は提出記録を参照。実機Safari・VoiceOver、既知#29/#44/#54を完了扱いしません。
+
 ## WAAPI Stage 2B 判定時間軸（Issue #55）
 
 Perfect Parry／Dodge Afterimageに、通常ゲームと独立した入力シミュレーションと観察時計を追加。420〜680msの両端を含む成功窓、確定入力・結果、入力後420msの演出を別々に表示し、再生・一時停止・再開・seek・前後ステップで比較できます。確定した判定は巻き戻しで変わりません。Dodgeの残像は現行どおり3枚の固定輪郭で、成功の根拠ではありません。
@@ -8,13 +16,13 @@ Perfect Parry／Dodge Afterimageに、通常ゲームと独立した入力シミ
 
 ## WAAPI Stage 2A 現main統合（Issue #35）
 
-Menu Selection Cursor／Coin Pickup Arcに、通常の選択・得点から独立した観察プレビューを追加。再生・一時停止・再開・seek・前後1ステップを操作できます。Coinは通常モードの明示COLLECTだけがResetごとに100点を確定します。現mainの251展示・13室と後続展示を保持しています。
+Menu Selection Cursor／Coin Pickup Arcに、通常の選択・得点から独立した観察プレビューを追加。再生・一時停止・再開・seek・前後1ステップを操作できます。Coinは通常モードの明示COLLECTだけがResetごとに100点を確定します。Stage 2A統合時の251展示・13室と後続展示を保持しています。
 
 [統合方針・ファイル別判断・検証と引継ぎ](docs/maintenance/stage2a-main-integration-20261102/README.md)。PR #36の過去の限定GOは当時の条件の履歴です。今回の自己検証と独立再レビューを区別し、独立再レビュー前のマージ推奨はNOです。
 
 ## Flash Then & Now 第1期（Issue #50）
 
-既存Flash展示室の6カテゴリ内へ、Then/Nowを一組とする6作品を追加。現物登録は **Flash60展示・18カテゴリ、全館251展示・13室**。新しい展示室は作りません。過去と現在を優劣で並べず、異なる制作判断を操作して比べます。両方とも現代ブラウザによる独自制作です。
+既存Flash展示室の6カテゴリ内へ、Then/Nowを一組とする6作品を追加。第1期完了時の登録は **Flash60展示・18カテゴリ、全館251展示・13室**。新しい展示室は作りません。過去と現在を優劣で並べず、異なる制作判断を操作して比べます。両方とも現代ブラウザによる独自制作です。
 
 | 作品 | Then / Nowと観察できること |
 |---|---|

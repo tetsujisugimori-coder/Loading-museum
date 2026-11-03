@@ -1,0 +1,15 @@
+{
+  "kind": "implementation self-verification; trusted mouse/keyboard, synthetic cancel explicitly labelled",
+  "head": "f21f0a8c17a04be02da327e82d6662ed51c54d6e",
+  "exportRoot": "C:\\Users\\tetsu\\Documents\\Codex\\2026-11-03\\task-2\\pr58-old-out",
+  "buildIndexHash": "4bcc582fa74f02f9501865ad1263c1c7e8b12abd7a147feb29d4041ce9e4e849",
+  "cases": [],
+  "notTested": [
+    "Physical Safari",
+    "VoiceOver",
+    "OS backgrounding"
+  ],
+  "chromium": "141.0.7390.37",
+  "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:51323/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:51323/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-03\\task-2\\loading-museum\\scripts\\verify-flash-phase2-editing.mjs:22:288",
+  "status": "FAIL"
+}

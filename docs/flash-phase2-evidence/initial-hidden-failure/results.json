@@ -1,0 +1,35 @@
+{
+  "head": "5b59eb0346c4bf10110a438d49e448dccfe89de9",
+  "tree": "a0cefbcf95cc440e496b94ff21351112958c2965",
+  "trackedChanges": "M README.md\n M app/components/then-now/ThenNowCard.tsx\n M app/components/then-now/then-now.css\n M app/data/flashExhibits.ts\n M package.json\n M tests/rendered-html.test.mjs\n M tests/then-now-registration.test.ts",
+  "started": "2026-11-03T09:46:26.078Z",
+  "kind": "implementation self-verification",
+  "cases": [],
+  "errors": [
+    "page.waitForFunction: Timeout 10000ms exceeded.\n    at /workspace/scratch/e622c1e9421e/loading-flash-phase2/scripts/verify-flash-phase2-browser.mjs:56:183"
+  ],
+  "notTested": [
+    "Physical iPhone Safari",
+    "VoiceOver",
+    "Actual OS backgrounding"
+  ],
+  "sourceHashes": {
+    "app/data/flashExhibits.ts": "71309b9b4439021cf161278c8ff3fba13557433d66cb104b8f0e8f95c40b966f",
+    "app/data/thenNowPhaseTwo.ts": "ccaad91e9eec8f2351cc0b2c67cf561450260fc98960777ee1146cef157c3216",
+    "app/components/then-now/PhaseTwoCard.tsx": "9542a7d7d6ca7a766afba503c63d2c2ce90eeef4266574dd1f2fdf8b56ed06ed",
+    "app/components/then-now/PhaseTwoFirst.tsx": "486a5b5b7a6f7e9c72a6a75b479ab3aebea8cae45ef3e0d50c75dea181af8435",
+    "app/components/then-now/PhaseTwoSecond.tsx": "3f4b72757f59b33c1286473ef6231d254fddddef6d987d71745e3cc257200d66",
+    "app/components/then-now/runtime.tsx": "eb6ee5381be9d7800e8130e4a6dc99b5e7ba45a88127068064e0c93c92bbed1e",
+    "scripts/verify-flash-phase2-browser.mjs": "70cb5f6cc731c947a111c050ce2905f9506934dd331142d1bee72b047c2ecc29",
+    "package-lock.json": "8052a2a9f829b9f926cc2664ddf4125cc1fba676299ce32c6aa92eed0474c0df"
+  },
+  "buildIndexHash": "48b7a864d436292c50b5980ce063225dab609430ed5fa0c97a0ba070245859ea",
+  "chromium": "141.0.7390.37",
+  "current": {
+    "engine": "chromium",
+    "width": 375,
+    "id": "tn-mask-theatre"
+  },
+  "status": "FAIL",
+  "finished": "2026-11-03T09:46:48.302Z"
+}
