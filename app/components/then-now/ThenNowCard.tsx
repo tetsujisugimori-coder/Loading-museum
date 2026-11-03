@@ -5,6 +5,8 @@ import type { FlashExhibit } from "../../data/flashExhibits";
 import { thenNowNotes, type ThenNowId } from "../../data/thenNowStudies";
 import { VectorMorph, CursorCreature, KineticTypography } from "./FirstStudies";
 import { PhysicsPlayground, InteractiveIntro, SoundReactor } from "./SecondStudies";
+import { PhaseTwoCard } from "./PhaseTwoCard";
+import { phaseTwoNotes } from "../../data/thenNowPhaseTwo";
 import type { StudyProps } from "./runtime";
 import "./then-now.css";
 
@@ -39,6 +41,7 @@ export function ThenNowCard({ exhibit, active, reduced, speed }: { exhibit: Flas
   const controlNote = id === "tn-sound"
     ? reduced ? "動き低減：音は各面で明示開始。移動・点滅なしで計測図を更新。" : "共通開始後、音は各面で明示開始。共通停止は音も解放。音高・音量は個別操作。"
     : reduced ? "動き低減：自動進行なし・スライダー/手動操作で観察" : id === "tn-intro" ? "定時進行の速度は展示室の共通設定。Nowは入力を待ちます。" : "速度は展示室の共通設定。停止して中間状態を観察できます。";
+  if (id in phaseTwoNotes) return <PhaseTwoCard exhibit={exhibit} active={active} reduced={reduced} speed={speed} />;
   if (!Study) return null;
   return <article className="tnCard" data-study={id} data-playing={active && playing} data-reduced={reduced}>
     <header><span className="tnKicker">FLASH THEN & NOW / PHASE 01</span><h4>{exhibit.title}</h4><p>{exhibit.description}</p></header>

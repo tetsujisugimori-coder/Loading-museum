@@ -27,7 +27,7 @@ export function MaskTheatre(props: StudyProps) {
     <path d={`M${x-7} ${y}h14M${x} ${y-7}v14`} stroke="#fff" strokeWidth="1"/>
   </svg><div className="tnControls">{[["circle","円"],["bands","帯"],["text","文字"]].map(([v,label])=><button key={v} aria-pressed={shape===v} onClick={()=>setShape(v)}>{label}マスク</button>)}<button aria-pressed={paused} onClick={()=>setPaused(p=>!p)}>{paused?"転換を再開":"転換を停止"}</button><button onClick={()=>setProgress(0)}>転換の先頭</button></div>
   <Range label="転換位置 %" value={Math.round(progress*100)} onChange={v=>setProgress(v/100)}/><Range label="マスクの大きさ" value={size} min={20} max={150} onChange={setSize}/><Range label="マスク横位置" value={x} max={320} onChange={setX}/><Range label="マスク縦位置" value={y} max={230} onChange={setY}/>
-  <p className="tnReadout" data-mask-progress={progress.toFixed(3)}>昼の舞台 → 夜の舞台 ／ {Math.round(q*100)}% ／ {shape} ／ 中心 {Math.round(x)},{Math.round(y)}</p><p>{props.now?"紙を斜めに裁つ帯と、連続する開口。":"36段階の幕のリズムと、水平に開く帯。"}窓の外は昼、内側は夜。同じ構図を切り取り方から変える。文字窓は書体により輪郭が異なります。</p></div>;
+  <p className="tnReadout" data-mask-progress={progress.toFixed(3)}>昼の舞台 → 夜の舞台 ／ {Math.round(q*100)}% ／ {shape} ／ 中心 {Math.round(x)},{Math.round(y)}</p><p>{props.now?"紙を斜めに裁つ帯と、連続する開口。":"36段階の幕のリズムと、水平に開く帯。"}自動転換は共通再生中のみ進みます。窓の外は昼、内側は夜。同じ構図を切り取り方から変える。文字窓は書体により輪郭が異なります。</p></div>;
 }
 
 export type SpringState={position:number;velocity:number};
@@ -36,6 +36,11 @@ export function advanceNavigation(state:SpringState,target:number,dt:number,boun
   for(let i=0;i<steps;i++){velocity+=(target-position)*75*h;velocity*=Math.exp(-(16-bounce*.11)*h);position+=velocity*h;position=clamp(position,-.12,1.15);}
   if(Math.abs(position-target)<.0005&&Math.abs(velocity)<.002)return {position:target,velocity:0};return {position,velocity};
 }
+export function navigationTarget(index:number,now:boolean) {
+  if(now)return {x:index<2?65:255,y:index%2?185:55};
+  const angle=index*Math.PI/2-Math.PI/2;
+  return {x:160+Math.cos(angle)*94,y:120+Math.sin(angle)*76};
+}
 const destinations=[{name:"月港",sub:"MOON PORT",color:"#efb75f",text:"灯台の信号が、遠い航路を結ぶ。"},{name:"温室",sub:"GLASS GARDEN",color:"#8dc9ad",text:"硝子屋根の下、夜にも葉がひらく。"},{name:"書庫",sub:"NIGHT ARCHIVE",color:"#b6a3dc",text:"星図の余白に、旅の記録を残す。"},{name:"劇場",sub:"SMALL THEATRE",color:"#ef9d9f",text:"四つの入口が、小さな町をつなぐ。"}];
 export function ElasticNavigation(props:StudyProps) {
  const [open,setOpen]=useState(false),[spring,setSpring]=useState<SpringState>({position:0,velocity:0}),[selected,setSelected]=useState(0),[bounce,setBounce]=useState(55),[paused,setPaused]=useState(false);
@@ -43,12 +48,12 @@ export function ElasticNavigation(props:StudyProps) {
  useFrame(props.active&&!props.reduced&&!paused&&(spring.position!==(open?1:0)||spring.velocity!==0),dt=>advance(dt*props.speed));
  const target=destinations[selected], p=spring.position;
  return <div className="tn2Navigation"><div className={`tn2MenuWorld ${props.now?"isNow":"isThen"}`} data-menu-position={p.toFixed(4)}>
- <svg viewBox="0 0 320 260" aria-hidden="true"><rect width="320" height="260" fill={props.now?"#182a32":"#302037"}/><circle cx="160" cy="120" r="100" fill="none" stroke="#6f607d" strokeDasharray={props.now?"1 8":"4 4"}/><path d="M30 220H290M45 228H275M65 236H255" stroke="#839b9c"/>{destinations.map((_,i)=>{const a=i*Math.PI/2-Math.PI/2;return <path key={i} d={`M160 120L${160+Math.cos(a)*88*p} ${120+Math.sin(a)*70*p}`} stroke="#a0b4b0"/>;})}</svg>
- {destinations.map((d,i)=>{const a=i*Math.PI/2-Math.PI/2;const px=props.now?55+70*i:160+Math.cos(a)*94,py=props.now?56+(i%2)*85:120+Math.sin(a)*76;return <button key={d.name} className="tn2Destination" style={{left:`${(160+(px-160)*p)/3.2}%`,top:`${(120+(py-120)*p)/2.6}%`,opacity:clamp(p*2),visibility:p<.03?"hidden":"visible",borderColor:d.color,zIndex:i+1}} disabled={!open} aria-pressed={selected===i} onClick={()=>setSelected(i)}>{d.name}</button>;})}
+ <svg viewBox="0 0 320 260" aria-hidden="true"><rect width="320" height="260" fill={props.now?"#182a32":"#302037"}/><circle cx="160" cy="120" r="100" fill="none" stroke="#6f607d" strokeDasharray={props.now?"1 8":"4 4"}/><path d="M30 220H290M45 228H275M65 236H255" stroke="#839b9c"/>{destinations.map((_,i)=>{const target=navigationTarget(i,props.now), x=160+(target.x-160)*p, y=120+(target.y-120)*p;return <path key={i} d={props.now?`M160 120H${x}V${y}`:`M160 120L${x} ${y}`} fill="none" stroke="#a0b4b0"/>;})}</svg>
+ {destinations.map((d,i)=>{const {x:px,y:py}=navigationTarget(i,props.now);return <button key={d.name} className="tn2Destination" style={{left:`${(160+(px-160)*p)/3.2}%`,top:`${(120+(py-120)*p)/2.6}%`,opacity:clamp(p*2),visibility:p<.03?"hidden":"visible",borderColor:d.color,zIndex:i+1}} disabled={!open} aria-pressed={selected===i} onClick={()=>setSelected(i)}>{d.name}</button>;})}
  <button className="tn2Hub" aria-expanded={open} onClick={()=>setOpen(v=>!v)}>{open?"収納":"展開"}</button></div>
  <div className="tn2DestinationDetail" style={{borderColor:target.color}}><strong>{target.sub}</strong><p>{target.text}</p><svg viewBox="0 0 280 55" aria-hidden="true"><path d={selected===0?"M10 50H270M30 49L65 30H130L155 49M210 49V5H227V49M204 12H232":selected===1?"M25 50V20L140 2L255 20V50ZM65 50V15M110 50V7M170 50V7M215 50V15":selected===2?"M20 50V5H260V50M30 25H250M50 5V25M80 5V25M150 25V50M190 25V50":"M20 50V5H260V50M45 5Q110 40 45 50M235 5Q170 40 235 50M90 50H190"} fill="none" stroke={target.color} strokeWidth="2"/></svg></div>
  <div className="tnControls"><button onClick={()=>setPaused(v=>!v)} aria-pressed={paused}>{paused?"動きを再開":"動きを停止"}</button><button onClick={()=>advance(1/12)}>1コマ進む</button><button onClick={()=>{setSpring({position:open?1:0,velocity:0});}}>目標位置へ</button></div><Range label="反発の強さ" value={bounce} onChange={setBounce}/>
- <p className="tnReadout">目標 {open?"展開":"収納"} ／ 位置 {p.toFixed(3)} ／ 速度 {spring.velocity.toFixed(2)} ／ 選択 {target.name}</p><p>{props.now?"折れた索引の列として四つの場所を並べる。":"中心から放射状に、四つの入口が飛び出す。"}途中で展開/収納を反転すると、その瞬間の速度を引き継ぐ。停止・動き低減中はコマ送りか「目標位置へ」で操作できます。</p></div>;
+ <p className="tnReadout">目標 {open?"展開":"収納"} ／ 位置 {p.toFixed(3)} ／ 速度 {spring.velocity.toFixed(2)} ／ 選択 {target.name}</p><p>{props.now?"折れた索引の列として四つの場所を並べる。":"中心から放射状に、四つの入口が飛び出す。"}自動移動は共通再生中のみ進みます。途中で展開/収納を反転すると、その瞬間の速度を引き継ぐ。停止・動き低減中はコマ送りか「目標位置へ」で操作できます。</p></div>;
 }
 
 export function parallaxPose(view:number,depth:number,layer:number,now:boolean) {return {x:-view*depth*layer*(now?30:38),y:now?Math.abs(view)*depth*layer*5:0};}
@@ -64,5 +69,5 @@ export function ParallaxStage(props:StudyProps) {
  {guides&&<><path d={`M-100 ${150+i*27}H420`} stroke="#ffe575" strokeDasharray="4 3"/><text x="65" y={145+i*27} fontSize="10" fill="#fff3a5">{["遠景","中景","手前"][i]} ×{layer}</text></>}</g>;})}<path d="M10 15H28M19 6V24" stroke={props.now?"#234749":"#f2d7aa"}/></svg>
  <div className="tnControls"><button aria-pressed={auto} onClick={()=>setAuto(v=>!v)}>{auto?"視点を停止":"視点を再開"}</button><button onClick={()=>{setAuto(false);setView(0);setPhase(0);}}>中央へ</button><button aria-pressed={guides} onClick={()=>setGuides(v=>!v)}>レイヤー線</button></div>
  <Range label="視点の左右" value={view} min={-1} max={1} step={.01} onChange={v=>{setAuto(false);setView(v);}}/><Range label="奥行きの強さ" value={depth} max={1} step={.01} onChange={setDepth}/>
- <p className="tnReadout">視点 {view.toFixed(2)} ／ 深さ {depth.toFixed(2)} ／ 遠景:中景:手前 = 0.25:0.60:1.00</p><p>{props.now?"切り絵の観測所。左右移動に少しの上下視差を添え、紙の重なりを見せる。":"夜の観測所。舞台の書割を横へ引き、大きな視点移動で森をすり抜ける。"}各層は独立した景物。中央へ戻せば同じ構図を比較できます。</p></div>;
+ <p className="tnReadout">視点 {view.toFixed(2)} ／ 深さ {depth.toFixed(2)} ／ 遠景:中景:手前 = 0.25:0.60:1.00</p><p>{props.now?"切り絵の観測所。左右移動に少しの上下視差を添え、紙の重なりを見せる。":"夜の観測所。舞台の書割を横へ引き、大きな視点移動で森をすり抜ける。"}自動視点は共通再生中のみ進みます。各層は独立した景物。中央へ戻せば同じ構図を比較できます。</p></div>;
 }

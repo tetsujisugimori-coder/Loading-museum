@@ -1,0 +1,12 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-flash-phase2
+
+ ✓ tests/then-now-phase2-card.test.tsx (3 tests) 532ms
+   ✓ page hidden suspends a phase-two editor without destroying its work; close still unmounts  343ms
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  18:48:12
+   Duration  1.27s (transform 237ms, setup 0ms, collect 251ms, tests 532ms, environment 279ms, prepare 58ms)
+

@@ -1,0 +1,9 @@
+export const phaseTwoNotes = {
+  'tn-mask-theatre': { then: '切り抜く舞台、色面の衝突', now: '窓の輪郭で風景を編む', difference: '既存の円形ワイプ・スポットライトは単一効果。本作は形・位置・大きさ・時間を選び、異なる二つの風景を同じ窓で編集する小さな舞台。', limit: 'ブラウザのSVGによる独自図案。Flashのマスク合成仕様や特定サイトの忠実な複製ではない。', url: 'https://developer.mozilla.org/en-US/docs/Web/SVG/Element/clipPath' },
+  'tn-elastic-navigation': { then: '勢いを蓄える軌道メニュー', now: '配置を読みながら切り返す', difference: '既存の単一ボタンや選択カーソルに対し、複数項目が展開・収納する全体構造と、途中の方向転換そのものを操作するナビゲーション作品。', limit: '館内ページを実際に遷移するリンクではなく、作品内の選択内容を切り替える架空のナビゲーション。', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame' },
+  'tn-parallax-stage': { then: '書き割りの奥行き', now: '層を読む観測舞台', difference: '既存の背景速度差や星屑に対し、前景・中景・遠景の固有物を持つ箱庭。視点と奥行きを変え、同じ世界の重なり方を比較する。', limit: '2.5Dの投影であり、完全な立体形状や物理カメラの再現ではない。図案はすべて独自制作。', url: 'https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform' },
+  'tn-frame-lab': { then: '一枚ずつ描く時間', now: '差分を重ねて組む時間', difference: '既存の固定姿勢8コマ・オニオン表示と異なり、利用者がフレームを追加・編集し、自分の絵の時間構造を再生する制作工房。文字の振付とは別の観察軸。', limit: '短い作品を作るための小規模エディタ。外部ファイル保存やFlash形式の読み書き、完全な描画ソフトではない。', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events' },
+  'tn-isometric-explorer': { then: 'クリックで開く斜めの箱庭', now: '歩いて見つける観測地図', difference: '既存のドア選択やシューターと異なり、位置・調査・発見の履歴を持つ小世界。探索順序と視点の違いから、風景の仕掛けを発見する。', limit: '小さな離散マップの独自作品。汎用ゲームエンジンや経路探索の完全実装ではない。', url: 'https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key' },
+  'tn-preloader-theatre': { then: '待つ間に組み上がる予告編', now: '進捗を読める入場装置', difference: '既存の単独パーセント表示と異なり、有限の模擬読込から本編へ移る一連の演出を制作。Introの時間経過とは区別し、読込量が完了条件を決める。', limit: '通信は行わず、有限量を速度に応じて加算する再現可能な模擬読み込み。実回線の性能値ではない。', url: 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/progressbar_role' },
+} as const;
+export type PhaseTwoId = keyof typeof phaseTwoNotes;

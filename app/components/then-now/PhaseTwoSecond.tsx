@@ -113,7 +113,7 @@ export function PreloaderTheatre(props: StudyProps) {
       </g>
       {finished && <text x="160" y="208" textAnchor="middle" className="tn2Caption">{props.now ? "OBSERVATORY OPEN" : "WELCOME TO THE FEATURE"}</text>}
     </svg>
-    <div className="tnControls"><button disabled={finished} onClick={()=>{setScene(s=>({...s,started:true}));setRunning(v=>!v);}}>{running ? "読み込みを一時停止" : scene.started ? "読み込みを再開" : "模擬読み込みを開始"}</button><button disabled={finished} onClick={step}>0.25秒進める</button>{finished && <button onClick={()=>setComposition(c=>(c+1)%3)}>本編の構図を変える</button>}</div>
+    <div className="tnControls"><button disabled={finished} onClick={()=>{setScene(s=>({...s,started:true}));setRunning(v=>!v);}}>{finished ? "読み込み完了" : running ? "読み込みを一時停止" : scene.started ? "読み込みを再開" : "模擬読み込みを開始"}</button><button disabled={finished} onClick={step}>0.25秒進める</button>{finished && <button onClick={()=>setComposition(c=>(c+1)%3)}>本編の構図を変える</button>}</div>
     <Range label="模擬速度 units/秒" value={rate} min={20} max={400} step={20} onChange={setRate}/>
     <progress aria-label="模擬読み込み進捗" value={scene.units} max={1000}/>
     <p className="tnReadout" aria-live="off">{scene.units.toFixed(0)} / 1000 units · {percent}% ／ {finished ? "完了・本編を操作できます" : scene.units>=1000 ? `読込完了・幕の転換 ${Math.round(scene.reveal*100)}%` : !scene.started ? "開始待ち" : props.reduced ? "動き低減：手動ステップ" : running && props.active ? "模擬読み込み中" : "停止・待機"}</p>

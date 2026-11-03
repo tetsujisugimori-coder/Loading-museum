@@ -2,7 +2,7 @@
 import React from 'react';
 import { cleanup,fireEvent,render,screen } from '@testing-library/react';
 import { afterEach,expect,it,vi } from 'vitest';
-import { MaskTheatre,ElasticNavigation,ParallaxStage,maskExtent,advanceNavigation,parallaxPose } from '../app/components/then-now/PhaseTwoFirst';
+import { MaskTheatre,ElasticNavigation,ParallaxStage,maskExtent,advanceNavigation,parallaxPose,navigationTarget } from '../app/components/then-now/PhaseTwoFirst';
 const props={active:false,reduced:true,speed:1,now:true};
 afterEach(()=>{cleanup();vi.unstubAllGlobals();});
 it('mask bounded progress scales opening and never goes negative',()=>{expect(maskExtent(-1,100)).toBe(0);expect(maskExtent(2,100)).toBe(380);expect(maskExtent(.5,100)).toBe(190);});
@@ -14,3 +14,12 @@ it('parallax independent layers differ and zero depth locks composition',()=>{ex
 it('parallax keyboard and sliders work while stopped, Home restores center',()=>{const v=render(<ParallaxStage {...props}/>);const stage=screen.getByRole('application');fireEvent.keyDown(stage,{key:'ArrowRight'});expect(screen.getByLabelText('視点の左右').getAttribute('value')).toBe('0.1');expect(v.container.querySelector('[data-layer="2"]')?.getAttribute('data-x')).toBe('-2.100');fireEvent.click(screen.getByText('レイヤー線'));expect(screen.getByText('遠景 ×0.25')).toBeTruthy();fireEvent.keyDown(stage,{key:'Home'});expect(screen.getByLabelText('視点の左右').getAttribute('value')).toBe('0');});
 it('inactive and reduced studies do not schedule animation frames',()=>{const raf=vi.fn();vi.stubGlobal('requestAnimationFrame',raf);render(<><MaskTheatre {...props} active/><ElasticNavigation {...props} active/><ParallaxStage {...props} active/></>);fireEvent.click(screen.getByText('展開'));expect(raf).not.toHaveBeenCalled();});
 it('active clock cancellation prevents continued scheduling after unmount',()=>{const cancel=vi.fn();vi.stubGlobal('requestAnimationFrame',vi.fn(()=>73));vi.stubGlobal('cancelAnimationFrame',cancel);const v=render(<ParallaxStage {...props} active reduced={false}/>);v.unmount();expect(cancel).toHaveBeenCalledWith(73);});
+
+it('navigation targets leave hub and each other clear at 240px stage width',()=>{
+ for(const now of [false,true]){
+  const targets=Array.from({length:4},(_,i)=>navigationTarget(i,now));
+  // At 240px, 44px destination and 52px hub occupy 58.7 and 69.3 SVG units.
+  for(const target of targets) expect(Math.abs(target.x-160)>64 || Math.abs(target.y-120)>64).toBe(true);
+  for(let i=0;i<4;i++)for(let j=i+1;j<4;j++)expect(Math.abs(targets[i].x-targets[j].x)>59 || Math.abs(targets[i].y-targets[j].y)>59).toBe(true);
+ }
+});
