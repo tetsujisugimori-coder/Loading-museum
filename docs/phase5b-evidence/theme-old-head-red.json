@@ -1,0 +1,43 @@
+{
+  "head": "7eadbf9f02d4a86d6d89bd22c0175287d639794a",
+  "tree": "bfd7ef9a21d376f1d45f8bfb485ad853d6549afa",
+  "trackedChanges": "",
+  "platform": "win32",
+  "node": "v24.20.0",
+  "started": "2026-11-03T17:08:59.208Z",
+  "expected": 1,
+  "cases": [],
+  "files": [],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: Preview button must reflect accent setting\n+ actual - expected\n\n+ 'rgb(36, 59, 81)'\n- 'rgb(158, 81, 48)'\n       ^\n\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum/scripts/verify-phase5b-browser.mjs:54:843"
+  ],
+  "notTested": [
+    "physical iPhone Safari",
+    "VoiceOver",
+    "OS capture loss",
+    "WebKit native touch drag"
+  ],
+  "sourceSHA256": {
+    "app/components/PracticalRoom.tsx": "5b3400a8c2f2ad4d9d4c65555dc445e036c62ecabb9c3de5b3f03c4bd182f227",
+    "app/components/practical/Phase5BCompare.tsx": "46c3c9b70e7c74404f16b2f13c3f8a44a4b4c4c593be573d8e9027c9f74fe12e",
+    "app/components/practical/Phase5BEditors.tsx": "caa1837ef62912d28a66b574c9d4ff413a6088c7836257dee1906f65817ece1e",
+    "app/components/practical/Phase5BPlayer.tsx": "bf8eb3d84a1a31175ca3c041cb7461d96ce013e7ef97553f79d18141f9e7912a",
+    "app/components/practical/Phase5BShared.tsx": "28da13353b63fd97f7afa8e6bbb6064d69bfdf7159089bbbe6527214392d4419",
+    "app/components/practical/Phase5BShortcuts.tsx": "1e54ceac296acdb4a1aa2cb4dc3d78bcd21687d139177bea8faf6d94e599728f",
+    "app/components/practical/phase5b-history.ts": "65f96610581271039bab0b215e863631016c39e38eb318f33f1f77a67f7fbb6a",
+    "app/components/practical/phase5b-model.ts": "9da8b293e1a320fc9eac6ea2f8cde2b3392d10962f4c331067993cd6d45d9077",
+    "app/components/practical/phase5b.css": "bdca673a192a52ae5bf87ddb089c3a9bbf348ad951b775a128cf8af1263ea30c",
+    "app/data/phase5bExhibits.ts": "fdffa300631d04caaa7e71d2f52c1db9e76bab18c5f00c73b74d0350a18ad244",
+    "app/page.tsx": "91d8f1aa4d5f7a2abc8d39e20d07f20e922b4257ffcbaaee2712f887e3338806"
+  },
+  "exportSHA256": "48ea14a9425612183a2e00266ee798b32b0b16508b243a67e785a82343f5e8b4",
+  "chromium": "141.0.7390.37",
+  "current": {
+    "engine": "chromium",
+    "width": 375,
+    "reducedMotion": "no-preference",
+    "id": "theme-studio"
+  },
+  "finished": "2026-11-03T17:09:00.731Z",
+  "complete": false
+}

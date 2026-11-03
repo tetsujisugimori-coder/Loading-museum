@@ -31,6 +31,12 @@ main `bc99d0617f5459e2bbe508b36575c8d8e4489d6e` を専用checkoutへ取得。実
 
 同じWebKit375pxの操作で取消後に確定データ不変、押下直後・Escape後ともBUTTONへfocus、終了コード0を確認。初回GREENは修正中のdirty実行として保存し、最終clean HEADの全matrixで再検証する。自己検証を独立レビューとは呼ばない。
 
+### Theme Studioの表示と設定の不一致（P2、修正済み）
+
+最初の操作matrixはpreviewのCSS変数とcontainerの計算値だけを検査しており、複数部品の描画を確認しきれていなかった。画像確認でサンプルボタンの配色が設定に追従しないことを発見。部品の計算済みbackground/font/paddingとbadgeを比較する検査を追加したclean HEAD `7eadbf9f02d4a86d6d89bd22c0175287d639794a` のChromium375pxで、accent `#9e5130`に対し実ボタンが`rgb(36,59,81)`のままで終了1となった。[RED](phase5b-evidence/theme-old-head-red.json)。
+
+原因は、展示previewのbuttonルールと館共通buttonルールが同じ詳細度であり、CSSの読込順で館の固定配色・余白が優先されたこと。previewの二重scopeで、色・文字・余白を明示的に設定値へ結び直した。Shadow DOM導入や館全体のbutton変更は不要で、局所の優先関係を固定する方式を採用。追加検査を緩めず両browserの最終matrixに含める。旧matrixの成功だけでこの指摘を閉じない。
+
 ### ラベルと試験経路
 
 初期ブラウザ検査では暗黙labelにselectの選択肢も含まれ、正確な操作名で到達できなかった。各selectへ明示ラベルを追加。初期Kanbanドラッグの失敗は、検査が移動先へscrollして移動元を画面外へ追い出した試験側の問題。両座標が画面内であることを明示検査し、同じ移動が成立した。ScheduleのUndo後は仮編集を解除する仕様のため、削除試験では復元した予定を再選択する。
@@ -43,6 +49,7 @@ main `bc99d0617f5459e2bbe508b36575c8d8e4489d6e` を専用checkoutへ取得。実
 - 実ソースへ移動no-op、別カードへの取り違え、循環の誤受入、diff逆順を順に導入する[負対照](../scripts/verify-phase5b-controls.mjs)。4改変すべてで試験が失敗し、元bytesを復元。最初の改変検査はCRLFの照合ミスで3件まで完了したため、complete=falseを保持。改変位置を正規化後に4/4を確認。
 - [ブラウザ検査](../scripts/verify-phase5b-browser.mjs)はローカル静的exportをserve。両engine×4幅×2motion×6作品=96条件、データ/表示・通常入力・touch tap・mouse drag・keyboard・Escape取消・focus・横超過・pageerror・Reset後を検査。Chromium375px通常でCDP native touchによる列移動・ノード配置/取消・予定移動/伸縮とページscroll不変を追加。
 - 実機iPhone Safari、VoiceOver、OSによるcapture喪失/背景化、WebKit native touch dragはNOT_TESTED。ブラウザエミュレーションと実機は別。既存Issue #29/#44/#54の残件も閉鎖しない。
+- 初回の全回帰は、変更していないWAAPI galleryの「追加ゲーム14件」試験が5秒timeoutで失敗し、後続groupは未実行。初期結果を保存し、GUIとの同時実行を避けた同条件の全回帰と正式CIで確認する。競合負荷の疑いはあるが原因はUNKNOWN。再実行成功だけで根本解消とはしない。timeout・期待・skipは変更しない。
 - 限定CIは固定PR HEAD、Chromium/WebKitの同じ4幅×2motion。既存回帰workflowも維持。総数に依存する既存assertだけ257→263、実用室18→24へ更新し、既存期待の操作内容は保全。
 
 ## 独立レビューの範囲
