@@ -1,0 +1,110 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum
+
+ ❯ tests/phase5b-compare.test.tsx (6 tests | 3 failed) 203ms
+   × diff identifies exact changed/add/remove rows and retains original line numbers 7ms
+     → expected [ { kind: 'add', …(5) }, …(3) ] to deeply equal [ …(4) ]
+   × diff reconstructs both inputs for duplicates, blank lines, swaps and all short binary sequences 2ms
+     → expected '\na' to be 'a\n' // Object.is equality
+   × diff enforces resource boundaries explicitly, and navigation focuses actual hunk 54ms
+     → expected '1' to be '2' // Object.is equality
+   ✓ theme uses standard contrast anchors and confines variables to preview, including undo/reset 47ms
+   ✓ shortcut records draft, rejects conflict, cancels change and executes only inside focused zone 70ms
+   ✓ shortcut reserves browser/OS combos and blur cancels capture without modifying bindings 23ms
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 3 passed (6)
+   Start at  01:46:30
+   Duration  1.21s (transform 88ms, setup 0ms, collect 268ms, tests 203ms, environment 479ms, prepare 98ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/phase5b-compare.test.tsx > diff identifies exact changed/add/remove rows and retains original line numbers
+AssertionError: expected [ { kind: 'add', …(5) }, …(3) ] to deeply equal [ …(4) ]
+
+- Expected
++ Received
+
+@@ -1,12 +1,20 @@
+  [
+    {
++     "hunk": 2,
++     "kind": "add",
++     "newLine": 4,
++     "newText": "E",
++     "oldLine": undefined,
++     "oldText": undefined,
++   },
++   {
+      "kind": "same",
+-     "newLine": 1,
+-     "newText": "A",
+-     "oldLine": 1,
+-     "oldText": "A",
++     "newLine": 3,
++     "newText": "C",
++     "oldLine": 3,
++     "oldText": "C",
+    },
+    {
+      "hunk": 1,
+      "kind": "change",
+      "newLine": 2,
+@@ -14,19 +22,11 @@
+      "oldLine": 2,
+      "oldText": "B",
+    },
+    {
+      "kind": "same",
+-     "newLine": 3,
+-     "newText": "C",
+-     "oldLine": 3,
+-     "oldText": "C",
+-   },
+-   {
+-     "hunk": 2,
+-     "kind": "add",
+-     "newLine": 4,
+-     "newText": "E",
+-     "oldLine": undefined,
+-     "oldText": undefined,
++     "newLine": 1,
++     "newText": "A",
++     "oldLine": 1,
++     "oldText": "A",
+    },
+  ]
+
+ ❯ tests/phase5b-compare.test.tsx:13:44
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/phase5b-compare.test.tsx > diff reconstructs both inputs for duplicates, blank lines, swaps and all short binary sequences
+AssertionError: expected '\na' to be 'a\n' // Object.is equality
+
+- Expected
++ Received
+
+- a
++
+-
++ a
+
+ ❯ tests/phase5b-compare.test.tsx:18:233
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/phase5b-compare.test.tsx > diff enforces resource boundaries explicitly, and navigation focuses actual hunk
+AssertionError: expected '1' to be '2' // Object.is equality
+
+Expected: "2"
+Received: "1"
+
+ ❯ tests/phase5b-compare.test.tsx:23:96
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+

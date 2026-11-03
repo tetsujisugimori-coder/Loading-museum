@@ -1,5 +1,12 @@
 # DIGITAL MOTION ARCHIVE
 
+## 実用UI 第5期B（Issue #59）
+
+Kanban Board / Node Flow Editor / Schedule Grid / Diff Viewer / Theme Studio / Shortcut Recorder を既存の実用UI室へ追加。**263展示・13室**。配置・履歴・関係・時間・版・設定を、データと表示の両方から観察できます。保存・実通信なし。
+
+[設計と独立レビューへの引継ぎ](docs/phase5b-studies.md)。自己検証と独立レビューは別に記録し、レビュー完了までDraft維持・マージ推奨NO。以下の過去の展示数は各期の記録です。
+
+
 ## Flash Then & Now 第2期（Issue #57）
 
 既存Flash室に6作品を追加。**全館257展示・Flash66展示・13室**。Mask Theatre、Elastic Navigation、Parallax Stage、Frame-by-Frame Lab、Isometric Explorer、Preloader TheatreをThen / Nowで操作・比較します。各組を1展示として数え、既存60作品は維持しています。
