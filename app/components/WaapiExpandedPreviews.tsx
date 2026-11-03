@@ -2,7 +2,10 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import type { SampleRenderKind, WaapiSample } from "../data/waapiSamples";
-import { aiPhases, judgeTiming, nextAiState, nextComparisonPhase, type AiComparisonPhase, type AiWorkingState } from "./waapi-interaction-state";
+import { aiPhases, nextAiState, nextComparisonPhase, type AiComparisonPhase, type AiWorkingState } from "./waapi-interaction-state";
+
+import { WaapiTimingObservation } from "./WaapiTimingObservation";
+import { judgeTiming, TIMING_WINDOW_START, TIMING_WINDOW_END, TIMING_EFFECT_DURATION, timingEffectFrames } from "./waapi-timing-model";
 
 import { initialGems, exchangeGems, initialBlocks, dropAndCompact, type GemExchange } from "./waapi-board-state";
 
@@ -58,39 +61,50 @@ function HitStopPreview({ active, reducedMotion }: PreviewProps) {
   return <div className="waapiPreviewGroup"><div className="waapiPreviewStage gameScene gameHitStop" data-scene="hit-stop"><div className="hitFighter">⚔</div><span ref={flash} /><div ref={enemy} className="hitEnemy">■</div><output>{phase}</output></div><Controls reset={reset}><button type="button" onClick={() => attack(false)}>ATTACK</button><button type="button" onClick={() => attack(true)}>HEAVY ATTACK</button></Controls></div>;
 }
 
-function TimingPreview({ active, reducedMotion, dodge }: PreviewProps & { dodge: boolean }) {
+function TimingPreview({ sample, active, reducedMotion, dodge }: PreviewProps & { dodge: boolean }) {
   const hero = useRef<HTMLDivElement>(null);
+  const [observing, setObserving] = useState(false);
+  const [lastInput, setLastInput] = useState<number | null>(null);
+  const normalActive = active && !observing;
   const warningAt = useRef<number | null>(null);
   const generation = useRef(0);
-  const { stop, stopAnimations, animate, later } = useRuntime(active);
+  const { stop, stopAnimations, animate, later } = useRuntime(normalActive);
   const [phase, setPhase] = useState("READY");
   // The judgment clock is independent of animation and reduced-motion preference.
   const cancel = useCallback((message: string) => {
     generation.current++; warningAt.current = null; stop(); setPhase(message);
   }, [stop]);
-  useEffect(() => { if (!active && warningAt.current !== null) cancel("INTERRUPTED · RETRY"); }, [active, cancel]);
+  useEffect(() => { if (!normalActive && warningAt.current !== null) cancel("INTERRUPTED · RETRY"); }, [normalActive, cancel]);
   useLayoutEffect(() => { if (reducedMotion) stopAnimations(); }, [reducedMotion, stopAnimations]);
   const warning = () => {
-    stop(); const run = ++generation.current; warningAt.current = performance.now(); setPhase("WARNING");
+    if (!normalActive) return;
+    stop(); setLastInput(null); const run = ++generation.current; warningAt.current = performance.now(); setPhase("WARNING");
     const refresh = () => {
       if (run !== generation.current || warningAt.current === null) return;
       const elapsed = performance.now() - warningAt.current;
-      const judgment = judgeTiming(elapsed, 420, 680);
+      const judgment = judgeTiming(elapsed, TIMING_WINDOW_START, TIMING_WINDOW_END);
       setPhase(judgment === "EARLY" ? "WARNING" : judgment === "PERFECT" ? "ACTIVE WINDOW" : "LATE · WINDOW CLOSED");
       // Recheck the same clock in case a timer fires early; 680ms itself is accepted.
-      if (elapsed <= 680) later(refresh, Math.max(0.1, (elapsed < 420 ? 420 : 680.1) - elapsed));
+      if (elapsed <= TIMING_WINDOW_END) later(refresh, Math.max(0.1, (elapsed < TIMING_WINDOW_START ? TIMING_WINDOW_START : TIMING_WINDOW_END + .1) - elapsed));
     };
-    later(refresh, 420);
+    later(refresh, TIMING_WINDOW_START);
   };
   const act = (side: -1 | 0 | 1) => {
-    if (warningAt.current === null) return setPhase("FAIL · NO ATTACK");
-    const result = judgeTiming(performance.now() - warningAt.current, 420, 680);
+    if (!normalActive) return;
+    if (warningAt.current === null) { setLastInput(null); return setPhase("FAIL · NO ATTACK"); }
+    const elapsed = performance.now() - warningAt.current;
+    setLastInput(elapsed);
+    const result = judgeTiming(elapsed, TIMING_WINDOW_START, TIMING_WINDOW_END);
     generation.current++; warningAt.current = null; stop(); const success = result === "PERFECT";
     setPhase(success ? dodge ? `${side < 0 ? "LEFT" : "RIGHT"} · S-RANK` : "PERFECT PARRY" : `${result} · HIT`);
-    if (!reducedMotion) animate(hero.current, dodge && success ? [{ transform: "translateX(0)", opacity: 1 }, { transform: `translateX(${side * 66}px)`, opacity: .55 }, { transform: `translateX(${side * 58}px)`, opacity: 1 }] : [{ transform: "scale(1)" }, { transform: `scale(${success ? 1.22 : .86})` }, { transform: "scale(1)" }], { duration: 420 });
+    if (!reducedMotion) animate(hero.current, timingEffectFrames(dodge, result, side), { duration: TIMING_EFFECT_DURATION });
   };
-  const reset = () => cancel("READY");
-  return <div className="waapiPreviewGroup"><div className={`waapiPreviewStage gameScene ${dodge ? "gameDodge" : "gameParry"}`} data-scene={dodge ? "dodge" : "parry"}><div ref={hero} className="timingHero">◆{dodge && <><i /><i /><i /></>}</div><div className="timingThreat">!</div><div className="timingWindow" /><output>{phase}</output></div><Controls reset={reset}><button type="button" onClick={warning}>{dodge ? "ATTACK START" : "ENEMY ATTACK"}</button>{dodge ? <><button type="button" onClick={() => act(-1)}>DODGE LEFT</button><button type="button" onClick={() => act(1)}>DODGE RIGHT</button></> : <button type="button" onClick={() => act(0)}>PARRY</button>}</Controls><p>開始から420〜680ms（両端を含む）が成功窓。動き軽減でも判定時間は同じです。画面外では中断し、開始操作から再試行します。</p></div>;
+  const reset = () => { setLastInput(null); cancel("READY"); };
+  return <div className="waapiPreviewGroup">
+    <button type="button" className="waapiObservationToggle" aria-pressed={observing} onClick={() => { stop(); if (warningAt.current !== null) cancel("INTERRUPTED · RETRY"); setObserving(value => !value); }}>{observing ? "通常モードへ戻る" : "観察モードを開く"}</button>
+    <div hidden={observing} data-normal-game><div className={`waapiPreviewStage gameScene ${dodge ? "gameDodge" : "gameParry"}`} data-scene={dodge ? "dodge" : "parry"}><div ref={hero} className="timingHero">◆{dodge && <><i /><i /><i /></>}</div><div className="timingThreat">!</div><div className="timingWindow" /><output>{phase}</output></div><Controls reset={reset}><button type="button" onClick={warning}>{dodge ? "ATTACK START" : "ENEMY ATTACK"}</button>{dodge ? <><button type="button" onClick={() => act(-1)}>DODGE LEFT</button><button type="button" onClick={() => act(1)}>DODGE RIGHT</button></> : <button type="button" onClick={() => act(0)}>PARRY</button>}</Controls><p>開始から420〜680ms（両端を含む）が成功窓。動き軽減でも判定時間は同じです。画面外では中断し、開始操作から再試行します。</p><p data-live-input>実ゲーム入力：{lastInput === null ? "未入力" : `${lastInput.toFixed(2)} ms（攻撃開始基準）`}。結果は入力時に確定し、演出完了では更新しません。</p></div>
+    {observing && <><p data-held-game-state>通常ゲームの保持状態：{phase}（進行中の攻撃は切替時に中断）</p><WaapiTimingObservation sample={sample} active={active} reducedMotion={reducedMotion} /></>}
+  </div>;
 }
 
 function LineClearPreview({ active, reducedMotion }: PreviewProps) {

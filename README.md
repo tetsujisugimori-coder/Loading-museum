@@ -1,5 +1,11 @@
 # DIGITAL MOTION ARCHIVE
 
+## WAAPI Stage 2B 判定時間軸（Issue #55）
+
+Perfect Parry／Dodge Afterimageに、通常ゲームと独立した入力シミュレーションと観察時計を追加。420〜680msの両端を含む成功窓、確定入力・結果、入力後420msの演出を別々に表示し、再生・一時停止・再開・seek・前後ステップで比較できます。確定した判定は巻き戻しで変わりません。Dodgeの残像は現行どおり3枚の固定輪郭で、成功の根拠ではありません。
+
+[設計・自己検証・独立レビューへの引継ぎ](docs/maintenance/stage2b-timing-20261103/README.md)。展示の追加はなく251展示・13室を維持。Issue #54の旧未検証とIssue #44の依存課題は未解決のままです。
+
 ## WAAPI Stage 2A 現main統合（Issue #35）
 
 Menu Selection Cursor／Coin Pickup Arcに、通常の選択・得点から独立した観察プレビューを追加。再生・一時停止・再開・seek・前後1ステップを操作できます。Coinは通常モードの明示COLLECTだけがResetごとに100点を確定します。現mainの251展示・13室と後続展示を保持しています。

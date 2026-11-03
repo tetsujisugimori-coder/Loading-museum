@@ -1,0 +1,44 @@
+name: WAAPI Stage 2B timing
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  timing:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: npm run lint && npm run typecheck && npm run test:stage2b && npm run build
+      - name: Fixed native browser driver
+        run: |
+          python -m pip install playwright==1.56.0
+          python -m playwright install --with-deps ${{ matrix.browser }}
+      - name: Exact HEAD timing, presentation and lifecycle acceptance
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          WIDTHS: 375,390,765,1280
+          EVIDENCE_DIR: work/stage2b-browser
+          PYTHONUTF8: '1'
+        run: python scripts/verify-waapi-stage2b.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage2b-${{ matrix.browser }}-${{ github.event.pull_request.head.sha }}
+          path: work/stage2b-browser/
