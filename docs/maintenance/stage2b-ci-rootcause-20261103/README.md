@@ -29,3 +29,18 @@ The new browser control script tests overlapping original gesture and separated 
 Local original all-museum probe on both revisions passed Virtualized List320 but failed the unchanged MultiSelectChips320 `aria-disabled` assertion (`false` vs`true`) before375. This is separate from the count investigation and not hidden. It may relate to local touch/scroll timing; root cause is not established. CI results and any later rerun must be reported separately. An initial optional npm Playwright acquisition failed because default npm cache could not be created; existing Playwright core1.56.1 and installed matching browsers were then used without dependency changes.
 
 Exact final HEAD regression/CI results and distinct independent Stage2B reviewer results will be linked in the PR comment after completion. Existing Issue54 UNKNOWN and real-device gaps, and Issue44 security residuals, remain unchanged.
+
+
+## Follow-on CI execution budget: split, not longer waits
+
+At HEAD7336e6b the corrected Phase5A Chromium/WebKit jobs both completed successfully (24 cases and5 observer controls each). Stage2A, Stage2B and Physics also completed. The remaining practical WebKit job ended cancelled in both attempts of run41600607003:
+
+- Attempt1 job125798181389 ran08:04:42–08:14:51UTC (10m09s). All test steps and cleanup reported success. Artifact13215020936 contains practical36,4A24,select8,4B24 cases; all HEAD/tree match;4Bcomplete=true. The final cancelled state is retained, not converted to success.
+- One diagnostic rerun of only that job was requested with no code/timeout/assertion changes. Attempt2 job125803067732 ran08:17:00–08:27:19UTC. Setup consumed2m13s, practical1m59s,4A/select3m36s, so4B started with only2m12s of the configured10-minute budget. It reached20/24 cases before `The operation was canceled` at08:27:13. Artifact13214634607 and the partial attempt remain evidence, not PASS.
+- The consistent10-minute boundary and lack of assertion failure strongly support job wall-clock budget exhaustion. The API does not name a cancellation actor/reason, so exact scheduler causation remains PROBABLE rather than invented CONFIRMED.
+
+Correction: move the existing Phase4B step, unchanged, into a separate `phase4b-browser` matrix job for BOTH Chromium and WebKit. It uses the same pinned driver1.56.1, exact PR HEAD checkout, build, four widths375/390/765/1280, script, assertions and timeout. Every job retains its original10-minute cap. No test is removed, no per-test timeout or retry is raised, and4B remains part of the same required workflow outcome. Its artifact becomes `phase4b-<browser>-<HEAD>`; practical/4A/select evidence stays in the prior artifact. This isolates a separately meaningful suite rather than extending a failing assertion's wait or retrying until green.
+
+Independent review of the Stage2B code and observer at7336e6b: https://github.com/tetsujisugimori-coder/Loading-museum/pull/56#issuecomment-6598649199 . The workflow-only follow-on HEAD requires fresh CI and reviewer confirmation; no success is claimed ahead of completion.
+
+Separate pre-existing local Chips event evidence: https://github.com/tetsujisugimori-coder/Loading-museum/pull/56#issuecomment-6598738185 . Both main and7336 produce the same first-tap click retarget to group; this remains UNKNOWN and was not fixed by the list observer.

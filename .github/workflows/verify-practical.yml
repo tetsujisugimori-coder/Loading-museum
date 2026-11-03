@@ -144,6 +144,44 @@ jobs:
           export PLAYWRIGHT_MODULE="$RUNNER_TEMP/practical-playwright/node_modules/playwright"
           node scripts/verify-phase4a-browser.mjs 2>&1 | tee phase4a-browser.log
           SELECT_EVIDENCE_DIR=phase4a-select-evidence node scripts/verify-phase4a-select-browser.mjs 2>&1 | tee phase4a-select.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: practical-${{ matrix.browser }}-${{ github.event.pull_request.head.sha }}
+          path: |
+            practical-browser-evidence/
+            practical-browser.log
+            phase4a-browser-evidence/
+            phase4a-browser.log
+            phase4a-select-evidence/
+            phase4a-select.log
+  phase4b-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Fixed browser harness outside application dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/practical-playwright" --no-save playwright@1.56.1
+          # The tested runner's Azure HTTP mirror stalled before any GUI test.
+          # Keep signed Ubuntu repositories and TLS; bound network acquisition.
+          if [ -f /etc/apt/apt-mirrors.txt ]; then
+            printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt
+          fi
+          printf 'Acquire::http::Timeout "30";\nAcquire::https::Timeout "30";\nAcquire::Retries "1";\n' | sudo tee /etc/apt/apt.conf.d/99-museum-network-bounds
+          "$RUNNER_TEMP/practical-playwright/node_modules/.bin/playwright" install --with-deps ${{ matrix.browser }}
       - name: Phase 4B operations and stale response protection
         if: ${{ !cancelled() }}
         env:
@@ -157,14 +195,8 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: practical-${{ matrix.browser }}-${{ github.event.pull_request.head.sha }}
+          name: phase4b-${{ matrix.browser }}-${{ github.event.pull_request.head.sha }}
           path: |
-            practical-browser-evidence/
-            practical-browser.log
-            phase4a-browser-evidence/
-            phase4a-browser.log
-            phase4a-select-evidence/
-            phase4a-select.log
             phase4b-browser-evidence/
             phase4b-browser.log
   phase5a-browser:
