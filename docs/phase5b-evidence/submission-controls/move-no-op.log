@@ -1,0 +1,58 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum
+
+ ❯ tests/phase5b-editors.test.tsx (9 tests | 2 failed) 318ms
+   × moves stable IDs across columns and within destination; invalid moves preserve data 5ms
+     → expected [ 'c3' ] to deeply equal [ 'c3', 'c1' ]
+   ✓ history forks after undo, ignores no-op, and reset discards future 0ms
+   × kanban CRUD, reorder then edit, draft cancellation and undo preserve identities 83ms
+     → expected { id: 'c1', title: '修正版', column: +0 } to deeply equal { id: 'c1', title: '修正版', column: 1 }
+   ✓ flow rejects self, duplicate, cycle and dangling relations; deletion cascades 0ms
+   ✓ flow UI keeps graph and layout in history, deletes focused target, supports empty/reset 70ms
+   ✓ time model rejects malformed, off-grid, reverse and boundary violations; touching is not overlap 0ms
+   ✓ schedule saves real times, overlap IDs, cancels draft and restores deletion/reset 63ms
+   ✓ kanban handles empty data and new stable IDs after reset without resurrecting deleted drafts 54ms
+   ✓ schedule handles all deletions, invalid off-grid edits, empty cancellation and fresh creation 40ms
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 7 passed (9)
+   Start at  02:20:29
+   Duration  998ms (transform 91ms, setup 0ms, collect 189ms, tests 318ms, environment 298ms, prepare 63ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/phase5b-editors.test.tsx > moves stable IDs across columns and within destination; invalid moves preserve data
+AssertionError: expected [ 'c3' ] to deeply equal [ 'c3', 'c1' ]
+
+- Expected
++ Received
+
+  [
+    "c3",
+-   "c1",
+  ]
+
+ ❯ tests/phase5b-editors.test.tsx:13:97
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/phase5b-editors.test.tsx > kanban CRUD, reorder then edit, draft cancellation and undo preserve identities
+AssertionError: expected { id: 'c1', title: '修正版', column: +0 } to deeply equal { id: 'c1', title: '修正版', column: 1 }
+
+- Expected
++ Received
+
+  {
+-   "column": 1,
++   "column": 0,
+    "id": "c1",
+    "title": "修正版",
+  }
+
+ ❯ tests/phase5b-editors.test.tsx:20:181
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+

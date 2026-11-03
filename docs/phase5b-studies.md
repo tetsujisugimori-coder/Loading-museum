@@ -59,3 +59,15 @@ main `bc99d0617f5459e2bbe508b36575c8d8e4489d6e` を専用checkoutへ取得。実
 実装・自己再実行の担当は同一で、独立再レビューはNOT_VERIFIED。引継ぎ先は最終HEAD/tree、mainとの差分、RED HEAD、GREEN matrixのmanifest、4負対照、CIを照合し、6作品の操作と画面も確認すること。レビュー完了まではマージ推奨NO、Draft維持。実機未検証は条件付き判断の材料として残す。
 
 最終の実行数・HEAD・CI URLはIssue #59とDraft PRの提出記録を正とし、途中の不完全な実行を成功へ合算しない。
+
+## 提出時のローカル検証
+
+製品・試験・workflowの最終変更HEADは `f3994f6eeeefb7beb875c6ba9f2b74958234ae84`、tree `0e6a1ed4ab98a6e6a815fdfcd124f63d9eecc47d`。以後の提出commitは証拠/説明だけとし、GitHub CIは提出HEAD自体で実行する。
+
+- [終了コード付き全検証](phase5b-evidence/local-final/results.json): lint 0、typecheck 0、npm test 0（build成功、Node49＋Vitest391＝440、失敗/skip 0）。新規22を含む。最初の既存WAAPI timeoutはUNKNOWNとして残す。
+- [最終の反例GREEN](phase5b-evidence/final-focused-browser/results.json): Windows、Playwright1.56.1、Chromium141.0.7390.37/WebKit26.0、375px通常、NodeとThemeの4条件成功。source SHA256、export SHA256、実部品の配色/文字/余白、focus、PNGのhashを含む。実装担当による自己検証。
+- [最終4負対照](phase5b-evidence/submission-controls/results.json): 全改変を終了1で拒否、元bytes復元。改変で失敗した試験は負対照の期待結果であり、通常試験の失敗へ混ぜない。
+- [初期matrix](phase5b-evidence/superseded-matrix-incomplete.json): 旧修正HEAD `9aa83f4` の90/96条件成功後、WebKit1280px reducedの新ページloadで8秒timeout。次ページの作品操作は0件で、current欄は直前完了作品を指す。complete=false、終了1。Themeの実部品検査追加前なので、これを最終96成功とも最終Themeの証拠とも扱わない。timeoutは原因UNKNOWNのまま保持。
+- 正式CIで最終HEADに対する2engine×4幅×2motion×6作品の96条件を確認し、結果をIssue/PRへ記録する。初期timeoutや未完了実行は再実行成功で原因解明済みにしない。実機と独立レビューはNOT_VERIFIED/NOT_TESTEDのまま。
+
+残存する確定P1/P2は自己検証で未検出。環境/性能に関する初期timeoutと中断したlintの原因はUNKNOWN。これらと実機未検証を引き渡し、独立レビュー前の限定マージ推奨はNO。

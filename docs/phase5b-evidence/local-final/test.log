@@ -1,0 +1,230 @@
+
+> loading-museum@0.1.0 test
+> npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run --maxWorkers=2 tests/practical-b.test.tsx tests/practical-runtime.test.tsx tests/practical-a.test.tsx tests/practical-room.test.tsx tests/phase2-elastic.test.ts tests/phase2-regression.test.tsx tests/phase2-b.test.tsx tests/phase2-room.test.tsx tests/modern-mesh.test.ts tests/modern-drift-geometry.test.ts tests/modern-lens.test.tsx tests/modern-menu.test.tsx tests/paper-exhibit.test.tsx tests/glass-exhibit.test.tsx tests/modern-animation.test.tsx tests/macintosh-system-choice.test.tsx tests/waapi-samples.test.ts tests/waapi-gallery.test.tsx tests/waapi-interaction-state.test.ts tests/waapi-game-regressions.test.tsx tests/waapi-hp-regression.test.tsx tests/waapi-cascade-motion.test.tsx tests/dom11-selection.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-stage1-menu-coin.test.tsx && vitest run --maxWorkers=2 tests/phase4a.test.tsx && vitest run --maxWorkers=2 tests/phase4b-interactions.test.tsx tests/phase4b-async.test.tsx && vitest run --maxWorkers=2 tests/phase5-data.test.tsx tests/phase5-navigation.test.tsx && vitest run --maxWorkers=2 tests/phase5-focus-revision.test.tsx && vitest run --maxWorkers=2 tests/then-now-first.test.tsx tests/then-now-second.test.tsx tests/then-now-registration.test.ts tests/then-now-visibility.test.tsx && vitest run --maxWorkers=2 tests/waapi-observation.test.tsx tests/waapi-observation-independent.test.tsx && vitest run --maxWorkers=2 tests/waapi-stage2b.test.tsx && vitest run --maxWorkers=2 tests/then-now-phase2-first.test.tsx tests/then-now-phase2-second.test.tsx tests/then-now-phase2-card.test.tsx tests/then-now-phase2-registration.test.ts && vitest run --maxWorkers=2 tests/phase5b-editors.test.tsx tests/phase5b-compare.test.tsx tests/phase5b-registration.test.tsx
+
+
+> loading-museum@0.1.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1106ms
+  Running TypeScript ...
+  Finished TypeScript in 10.7s ...
+  Collecting page data using 4 workers ...
+  Generating static pages using 4 workers (0/3) ...
+✓ Generating static pages using 4 workers (3/3) in 343ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+✔ Read Meの実矩形はゴミ箱へ四方向から重なる (0.6133ms)
+✔ System 1→5→6→1→6をクリック相当の操作で連続選択する (0.5365ms)
+✔ System 5をEnter、System 6をSpace相当の操作で選択する (0.1712ms)
+✔ loadingから最初の年代へ移行する (0.6806ms)
+✔ 年代ごとにeraIndexが進む (0.0922ms)
+✔ 通常年代は共通の待機時間を使う (0.0954ms)
+✔ 最後の年代だけ長い待機時間を使う (0.107ms)
+✔ 最後の年代後にindex-completeへ移行する (0.0873ms)
+✔ index-complete後にtypingへ移行する (0.0748ms)
+✔ タイトル文字数が1文字ずつ増える (0.0689ms)
+✔ タイトル全文をtyping状態で保持する (0.0567ms)
+✔ タイトル全文表示後にtyping-holdへ移行する (0.0664ms)
+✔ typing-hold後にsignal-lockのbrightenへ移行する (0.125ms)
+✔ signal-lockはbrightenからnoiseへ進む (0.0676ms)
+✔ signal-lockはnoiseからlockedへ進む (0.0609ms)
+✔ signal-lockのlocked後にcompleteへ進む (0.0956ms)
+✔ complete以降は状態が進まない (0.084ms)
+✔ complete状態は最後の年代とタイトル全文を保持する (0.0834ms)
+✔ ReplayはrunIdを増やす (0.0405ms)
+✔ Replayは初期状態へ戻す (0.4958ms)
+✔ 古いrunIdによるタイマー更新を無視する (0.0795ms)
+✔ reduced motionは即時completeになる (0.0565ms)
+✔ 年代走査中の点灯数とノード状態をeraIndexから算出する (0.1108ms)
+✔ 年代走査完了後は全タイムラインノードが点灯する (0.0729ms)
+✔ タイムライン進捗率を年代件数と現在位置から算出する (0.0602ms)
+✔ 年代が1件でも安全な進捗率を返し、完了数を件数内へ制限する (0.0452ms)
+✔ 全年代と全時間定数を一か所で管理する (0.0638ms)
+✔ GitHub Pages用の静的HTMLへ9種類の展示を書き出す (12.0337ms)
+✔ 正式名称のタイトル導入、年代テーマ、確定演出、軽減モーションと再生操作を実装する (2.0168ms)
+✔ 既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き出す (1.7049ms)
+✔ カーソル展示室と8種類の体験展示を書き出す (2.3893ms)
+✔ カーソル展示のデータ、Pointer Events、性能とアクセシビリティ対応を実装する (3.0955ms)
+✔ Macintosh誕生展示室を加えた展示室・展示件数を表示する (2.4313ms)
+✔ Macintosh誕生展示室へ18種類の操作展示を書き出す (4.5729ms)
+✔ Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する (4.9608ms)
+✔ Flash特別展示室へ18カテゴリ・66展示と優先デモを実装する (2.8886ms)
+✔ 再検討した9展示と現代Web継承比較を専用実装にする (2.7066ms)
+✔ FlashバナーのCTAを安全に2回強調し、価格とreduced motionを調整する (2.007ms)
+✔ Flash専用展示の状態遷移、停止制御、操作可能なARIA構造を実装する (1.7994ms)
+✔ MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモを書き出す (2.0831ms)
+✔ 独立した消えたOS展示室へ6 OS・18種類のLoading再構成を書き出す (3.749ms)
+✔ 展示室のデータ定義とタイマー停止・フォーカス復帰を実装する (0.7824ms)
+✔ 消えたOS展示のデータ・起動・停止・reduced motionを実装する (0.8337ms)
+✔ Linux / UNIXデモの再実行・速度切替・安全な停止を実装する (1.2438ms)
+✔ CSSとJavaScriptをLoading-museumサブパスから参照する (2.2791ms)
+✔ 静的export設定と既存レスポンシブ・reduced-motion対応を維持する (2.2338ms)
+✔ System 1〜6のbutton構造と非スクロールgridを静的に維持する (0.9127ms)
+✔ DOM ANIMATION ROOM を静的HTMLへ出力し、17操作のAPI体験を確認する (3.2629ms)
+✔ 既存ローディング標本の直下に、遅延生成するWAAPI標本ギャラリーを追加する (1.448ms)
+ℹ tests 49
+ℹ suites 0
+ℹ pass 49
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 212.105
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum
+
+ ✓ tests/waapi-stage1-menu-coin.test.tsx (5 tests) 848ms
+ ✓ tests/waapi-hp-regression.test.tsx (4 tests) 833ms
+ ✓ tests/dom11-selection.test.tsx (4 tests) 780ms
+   ✓ DOM11 表示番号の偶数選択 > resetで選択とノードを除き、再実行と連続再生でも同じ6件と選択集合を保つ  396ms
+ ✓ tests/waapi-gallery.test.tsx (12 tests) 4557ms
+   ✓ WAAPI標本ギャラリー操作 > 初期DOMを遅延し、正規化検索・解除・開閉を扱う  364ms
+   ✓ WAAPI標本ギャラリー操作 > 新しいゲーム標本、5軸フィルター、AI共通状態を操作できる  321ms
+   ✓ WAAPI標本ギャラリー操作 > AI比較モードは一括フェーズを進め、閉じるとループを停止する  355ms
+   ✓ WAAPI標本ギャラリー操作 > 追加ゲーム14件は固有DOM・状態・操作結果を提供する  1546ms
+   ✓ WAAPI標本ギャラリー操作 > Card Dealの全工程とAIの完了・エラー・リセットを操作できる  1198ms
+ ✓ tests/macintosh-system-choice.test.tsx (2 tests) 472ms
+ ✓ tests/phase2-regression.test.tsx (7 tests) 458ms
+ ✓ tests/practical-room.test.tsx (15 tests) 405ms
+ ✓ tests/waapi-stage1-expanded.test.tsx (23 tests) 326ms
+ ✓ tests/practical-a.test.tsx (8 tests) 200ms
+ ✓ tests/practical-b.test.tsx (6 tests) 277ms
+ ✓ tests/phase2-room.test.tsx (4 tests) 136ms
+ ✓ tests/waapi-cascade-motion.test.tsx (14 tests) 176ms
+ ✓ tests/phase2-b.test.tsx (4 tests) 128ms
+ ✓ tests/glass-exhibit.test.tsx (3 tests) 125ms
+ ✓ tests/waapi-game-regressions.test.tsx (15 tests) 113ms
+ ✓ tests/modern-animation.test.tsx (3 tests) 99ms
+ ✓ tests/paper-exhibit.test.tsx (3 tests) 92ms
+ ✓ tests/modern-menu.test.tsx (1 test) 61ms
+ ✓ tests/modern-lens.test.tsx (1 test) 55ms
+ ✓ tests/practical-runtime.test.tsx (1 test) 12ms
+ ✓ tests/modern-drift-geometry.test.ts (2 tests) 64ms
+ ✓ tests/modern-mesh.test.ts (2 tests) 21ms
+ ✓ tests/waapi-samples.test.ts (7 tests) 10ms
+ ✓ tests/phase2-elastic.test.ts (2 tests) 1ms
+ ✓ tests/waapi-interaction-state.test.ts (2 tests) 2ms
+
+ Test Files  25 passed (25)
+      Tests  150 passed (150)
+   Start at  02:18:11
+   Duration  12.70s (transform 1.36s, setup 0ms, collect 4.29s, tests 10.25s, environment 6.31s, prepare 1.26s)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum
+
+ ✓ tests/phase4a.test.tsx (32 tests) 580ms
+
+ Test Files  1 passed (1)
+      Tests  32 passed (32)
+   Start at  02:18:25
+   Duration  1.41s (transform 200ms, setup 0ms, collect 359ms, tests 580ms, environment 288ms, prepare 58ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum
+
+ ✓ tests/phase4b-interactions.test.tsx (11 tests) 197ms
+ ✓ tests/phase4b-async.test.tsx (14 tests) 217ms
+
+ Test Files  2 passed (2)
+      Tests  25 passed (25)
+   Start at  02:18:27
+   Duration  921ms (transform 153ms, setup 0ms, collect 382ms, tests 414ms, environment 608ms, prepare 127ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum
+
+ ✓ tests/phase5-data.test.tsx (8 tests) 267ms
+ ✓ tests/phase5-navigation.test.tsx (12 tests) 296ms
+
+ Test Files  2 passed (2)
+      Tests  20 passed (20)
+   Start at  02:18:29
+   Duration  956ms (transform 131ms, setup 0ms, collect 346ms, tests 562ms, environment 600ms, prepare 114ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum
+
+ ✓ tests/phase5-focus-revision.test.tsx (8 tests) 1976ms
+   ✓ six conditions: keyboard deletes position 1 and returns to enabled add  574ms
+   ✓ six conditions: keyboard deletes position 3 and returns to enabled add  498ms
+   ✓ six conditions: keyboard deletes position 6 and returns to enabled add  414ms
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  02:18:31
+   Duration  2.69s (transform 78ms, setup 0ms, collect 210ms, tests 1.98s, environment 295ms, prepare 63ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum
+
+ ✓ tests/then-now-second.test.tsx (17 tests) 204ms
+ ✓ tests/then-now-visibility.test.tsx (1 test) 119ms
+ ✓ tests/then-now-registration.test.ts (3 tests) 3ms
+ ✓ tests/then-now-first.test.tsx (7 tests) 90ms
+
+ Test Files  4 passed (4)
+      Tests  28 passed (28)
+   Start at  02:18:34
+   Duration  1.53s (transform 233ms, setup 0ms, collect 588ms, tests 416ms, environment 898ms, prepare 220ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum
+
+ ✓ tests/waapi-observation-independent.test.tsx (7 tests) 134ms
+ ✓ tests/waapi-observation.test.tsx (37 tests) 6496ms
+   ✓ observed Coin normal motion cancellation > reduced explicit Replay uses reduced definition and repeated ON/OFF does not award or autoplay  1412ms
+   ✓ observed Coin normal motion cancellation > rapid mode switches retain collected state and Reset permits exactly one new acquisition  1425ms
+   ✓ observed Coin normal motion cancellation > observed normal Coin leaving the viewport cancels, re-entry stays stopped, and unmount clears old instances  1394ms
+
+ Test Files  2 passed (2)
+      Tests  44 passed (44)
+   Start at  02:18:36
+   Duration  7.40s (transform 199ms, setup 0ms, collect 473ms, tests 6.63s, environment 629ms, prepare 125ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum
+
+ ✓ tests/waapi-stage2b.test.tsx (24 tests) 861ms
+
+ Test Files  1 passed (1)
+      Tests  24 passed (24)
+   Start at  02:18:45
+   Duration  1.65s (transform 124ms, setup 0ms, collect 244ms, tests 861ms, environment 317ms, prepare 67ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum
+
+ ✓ tests/then-now-phase2-card.test.tsx (3 tests) 325ms
+ ✓ tests/then-now-phase2-second.test.tsx (20 tests) 478ms
+ ✓ tests/then-now-phase2-registration.test.ts (2 tests) 3ms
+ ✓ tests/then-now-phase2-first.test.tsx (13 tests) 143ms
+
+ Test Files  4 passed (4)
+      Tests  38 passed (38)
+   Start at  02:18:47
+   Duration  1.75s (transform 232ms, setup 0ms, collect 511ms, tests 949ms, environment 936ms, prepare 225ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum
+
+ ✓ tests/phase5b-editors.test.tsx (9 tests) 371ms
+ ✓ tests/phase5b-registration.test.tsx (7 tests) 319ms
+ ✓ tests/phase5b-compare.test.tsx (6 tests) 236ms
+
+ Test Files  3 passed (3)
+      Tests  22 passed (22)
+   Start at  02:18:50
+   Duration  1.82s (transform 246ms, setup 0ms, collect 624ms, tests 925ms, environment 896ms, prepare 173ms)
+
