@@ -41,3 +41,19 @@ it('kanban handles empty data and new stable IDs after reset without resurrectin
 it('schedule handles all deletions, invalid off-grid edits, empty cancellation and fresh creation',()=>{
  render(<ScheduleGrid/>);click('予定削除');click('s2 制作 10:30–12:00');click('予定削除');expect(data()).toEqual([]);change('予定名','新規');change('開始時刻','08:01');expect((screen.getByRole('button',{name:'予定を保存'}) as HTMLButtonElement).disabled).toBe(true);click('編集取消');expect(data()).toEqual([]);change('予定名','再開');change('開始時刻','08:00');change('終了時刻','08:15');click('予定を保存');expect(data()).toEqual([{id:'s3',title:'再開',start:480,end:495}]);click('Reset');expect(data()).toHaveLength(2);
 });
+
+// Regression for PR #60 P3-01: internal cross-column order must not create ghost Undo steps.
+it('kanban same visible slot does not mutate data or consume Undo/Redo history',()=>{
+ const added=[...initialCards,{id:'c4',title:'追記',column:0}];
+ const result=moveCard(added,'c4',0,2);
+ expect(result).toBe(added); // old implementation returned a newly grouped array
+ const state={past:[initialCards],present:added,future:[] as (typeof added)[]};
+ expect(historyReducer(state,{type:'commit',value:result},initialCards)).toBe(state);
+ render(<KanbanBoard/>);
+ change('カード名','追記');click('カード追加');
+ const before=data();expect(before.map((c:{id:string})=>c.id)).toEqual(['c1','c2','c3','c4']);
+ change('挿入位置','2');click('移動を確定');
+ expect(data()).toEqual(before);
+ click('Undo');expect(data()).toEqual(initialCards);
+ click('Redo');expect(data()).toEqual(before);
+});

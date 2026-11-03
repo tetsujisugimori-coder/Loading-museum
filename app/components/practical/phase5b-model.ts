@@ -5,6 +5,9 @@ export function moveCard(cards:Card[],id:string,column:number,index:number):Card
  const card=cards.find(c=>c.id===id);if(!card||!Number.isInteger(column)||column<0||column>2||!Number.isInteger(index))return cards;
  const rest=cards.filter(c=>c.id!==id),target=rest.filter(c=>c.column===column);
  if(index<0||index>target.length)return cards;
+ // A move to the same visible position is not an action, even if the backing array
+ // interleaves cards from multiple columns (e.g. immediately after adding a card).
+ if(card.column===column&&cards.filter(c=>c.column===column).findIndex(c=>c.id===id)===index)return cards;
  target.splice(index,0,{...card,column});
  const result=[0,1,2].flatMap(col=>col===column?target:rest.filter(c=>c.column===col));
  return JSON.stringify(result)===JSON.stringify(cards)?cards:result;

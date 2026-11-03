@@ -35,3 +35,24 @@ it('shortcut reserves browser/OS combos and blur cancels capture without modifyi
  render(<ShortcutRecorder/>);const zone=screen.getByRole('region');click('キーを取得');for(const mods of [{ctrlKey:true},{metaKey:true},{altKey:true}]){const event=new KeyboardEvent('keydown',{key:'K',shiftKey:true,...mods,bubbles:true,cancelable:true});fireEvent(zone,event);expect(event.defaultPrevented).toBe(false);expect(data()).toEqual([{action:'count',key:'Shift+K'}])}
  fireEvent.keyDown(zone,{key:'K',shiftKey:true,isComposing:true});expect(screen.getByRole('status').textContent).toContain('キー取得中');fireEvent.blur(zone,{relatedTarget:screen.getByRole('button',{name:'登録取消'})});expect(screen.getByRole('status').textContent).toContain('取得取消');expect((screen.getByRole('button',{name:'登録を確定'}) as HTMLButtonElement).disabled).toBe(true);
 });
+
+// PR #60 P2-01: authorized contract is Shift+letter (without Alt), scoped to the execution region.
+it('shortcut Shift contract accepts Shift only, rejects Alt+Shift without preventing browser defaults',()=>{
+ render(<ShortcutRecorder/>);
+ const zone=screen.getByRole('region',{name:'ショートカット実行領域'});
+ click('キーを取得');
+ const altDuringCapture=new KeyboardEvent('keydown',{key:'L',shiftKey:true,altKey:true,bubbles:true,cancelable:true});
+ fireEvent(zone,altDuringCapture);
+ expect(altDuringCapture.defaultPrevented).toBe(false);
+ expect((screen.getByRole('button',{name:'登録を確定'}) as HTMLButtonElement).disabled).toBe(true);
+ expect(data()).toEqual([{action:'count',key:'Shift+K'}]);
+ fireEvent.keyDown(zone,{key:'L',shiftKey:true});
+ click('登録を確定');expect(data()).toEqual([{action:'count',key:'Shift+L'}]);
+ const altExecution=new KeyboardEvent('keydown',{key:'L',shiftKey:true,altKey:true,bubbles:true,cancelable:true});
+ fireEvent(zone,altExecution);expect(altExecution.defaultPrevented).toBe(false);
+ expect(screen.getByTestId('shortcut-result').textContent).toContain('カウント 0');
+ fireEvent.keyDown(document.body,{key:'L',shiftKey:true});
+ expect(screen.getByTestId('shortcut-result').textContent).toContain('カウント 0');
+ fireEvent.keyDown(zone,{key:'L',shiftKey:true});
+ expect(screen.getByTestId('shortcut-result').textContent).toContain('カウント 1');
+});
