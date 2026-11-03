@@ -1,0 +1,797 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum
+
+ 笶ｯ tests/phase5b-compare.test.tsx (6 tests | 2 failed) 319ms
+   笨・diff identifies exact changed/add/remove rows and retains original line numbers 2ms
+   笨・diff reconstructs both inputs for duplicates, blank lines, swaps and all short binary sequences 9ms
+   笨・diff enforces resource boundaries explicitly, and navigation focuses actual hunk 117ms
+   ﾃ・theme uses standard contrast anchors and confines variables to preview, including undo/reset 83ms
+     竊・Unable to find an accessible element with the role "button" and name "繧ｵ繝ｳ繝励Ν謫堺ｽ・1"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"p5bIntro"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Theme Studio":
+  [36m<h4 />[39m
+
+  Name "隕ｳ蟇溘・縺溘ａ縺ｮ蟆上＆縺ｪ驕灘・邂ｱ":
+  [36m<h5 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Undo":
+  [36m<button />[39m
+
+  Name "Redo":
+  [36m<button />[39m
+
+  Name "Reset":
+  [36m<button />[39m
+
+  Name "繧ｵ繝ｳ繝励Ν謫堺ｽ・0":
+  [36m<button />[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "繝・じ繧､繝ｳ險ｭ螳・:
+  [36m<fieldset />[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"p5bData"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  slider:
+
+  Name "譁・ｭ励し繧､繧ｺ":
+  [36m<input[39m
+    [33maria-label[39m=[32m"譁・ｭ励し繧､繧ｺ"[39m
+    [33mmax[39m=[32m"24"[39m
+    [33mmin[39m=[32m"14"[39m
+    [33mtype[39m=[32m"range"[39m
+    [33mvalue[39m=[32m"24"[39m
+  [36m/>[39m
+
+  Name "菴咏區":
+  [36m<input[39m
+    [33maria-label[39m=[32m"菴咏區"[39m
+    [33mmax[39m=[32m"28"[39m
+    [33mmin[39m=[32m"8"[39m
+    [33mtype[39m=[32m"range"[39m
+    [33mvalue[39m=[32m"28"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "譖ｸ菴・:
+  [36m<select[39m
+    [33maria-label[39m=[32m"譖ｸ菴・[39m
+  [36m/>[39m
+
+  Name "螟ｪ縺・:
+  [36m<select[39m
+    [33maria-label[39m=[32m"螟ｪ縺・[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "Sans serif":
+  [36m<option[39m
+    [33mvalue[39m=[32m"sans-serif"[39m
+  [36m/>[39m
+
+  Name "Serif":
+  [36m<option[39m
+    [33mvalue[39m=[32m"serif"[39m
+  [36m/>[39m
+
+  Name "Monospace":
+  [36m<option[39m
+    [33mvalue[39m=[32m"monospace"[39m
+  [36m/>[39m
+
+  Name "讓呎ｺ・400":
+  [36m<option[39m
+    [33mvalue[39m=[32m"400"[39m
+  [36m/>[39m
+
+  Name "螟ｪ蟄・700":
+  [36m<option[39m
+    [33mvalue[39m=[32m"700"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<p[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "繝・・繝槭・繝ｬ繝薙Η繝ｼ":
+  [36m<section[39m
+    [33maria-label[39m=[32m"繝・・繝槭・繝ｬ繝薙Η繝ｼ"[39m
+    [33mclass[39m=[32m"p5bThemePreview"[39m
+    [33mdata-testid[39m=[32m"theme-preview"[39m
+    [33mstyle[39m=[32m"--studio-bg: #000000; --studio-fg: #000000; --studio-accent: #1e6554; --studio-on-accent: #ffffff; --studio-size: 24px; --studio-space: 28px; --studio-font: monospace; font-weight: 400;"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"p5b"[39m
+      [33mdata-demo[39m=[32m"theme"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"p5bIntro"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0m05[0m
+          [0m / INTERACTION WORKSHOP[0m
+        [36m</span>[39m
+        [36m<h4>[39m
+          [0mTheme Studio[0m
+        [36m</h4>[39m
+        [36m<p>[39m
+          [0m蜷後§繝・・繧ｿ縺ｫ縲・＆縺・ｪｭ縺ｿ蠢・慍縲る・濶ｲ繝ｻ譁・ｭ励・蟇・ｺｦ繧偵き繝ｼ繝峨√・繧ｿ繝ｳ縲√Λ繝吶Ν縺ｸ蜷梧凾縺ｫ蜿肴丐縺励∪縺吶りｨｭ螳壹・縺薙・繝励Ξ繝薙Η繝ｼ縺ｮ荳ｭ縺縺代↓菴懃畑縺励∪縺吶・[0m
+        [36m</p>[39m
+      [36m</header>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"p5bToolbar"[39m
+      [36m>[39m
+        [36m<button>[39m
+          [0mUndo[0m
+        [36m</button>[39m
+        [36m<button>[39m
+          [0mRedo[0m
+        [36m</button>[39m
+        [36m<button>[39m
+          [0mReset[0m
+        [36m</button>[39m
+        [36m<small>[39m
+          [0m螻･豁ｴ縺ｯ逶ｴ霑・0謫堺ｽ懊ゆｿ晏ｭ倥・騾壻ｿ｡縺ｪ縺励・[0m
+        [36m</small>[39m
+      [36m</div>[39m
+      [36m<fieldset>[39m
+        [36m<legend>[39m
+          [0m繝・じ繧､繝ｳ險ｭ螳・[0m
+        [36m</legend>[39m
+        [36m<label>[39m
+          [0m閭梧勹濶ｲ[0m
+          [0m [0m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+          [36m>[39m
+            [0m#000000[0m
+          [36m</span>[39m
+          [36m<input[39m
+            [33maria-label[39m=[32m"閭梧勹濶ｲ"[39m
+            [33mtype[39m=[32m"color"[39m
+            [33mvalue[39m=[32m"#000000"[39m
+          [36m/>[39m
+        [36m</label>[39m
+        [36m<label>[39m
+          [0m譁・ｭ苓牡[0m
+          [0m [0m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+          [36m>[39m
+            [0m#000000[0m
+          [36m</span>[39m
+          [36m<input[39m
+            [33maria-label[39m=[32m"譁・ｭ苓牡"[39m
+            [33mtype[39m=[32m"color"[39m
+            [33mvalue[39m=[32m"#000000"[39m
+          [36m/>[39m
+        [36m</label>[39m
+        [36m<label>[39m
+          [0m繧｢繧ｯ繧ｻ繝ｳ繝郁牡[0m
+          [0m [0m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+          [36m>[39m
+            [0m#1e6554[0m
+          [36m</span>[39m
+          [36m<input[39m
+            [33maria-label[39m=[32m"繧｢繧ｯ繧ｻ繝ｳ繝郁牡"[39m
+            [33mtype[39m=[32m"color"[39m
+            [33mvalue[39m=[32m"#1e6554"[39m
+          [36m/>[39m
+        [36m</label>[39m
+        [36m<label>[39m
+          [0m譁・ｭ励し繧､繧ｺ[0m
+          [0m [0m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+          [36m>[39m
+            [0m24[0m
+            [0mpx[0m
+          [36m</span>[39m
+          [36m<input[39m
+            [33maria-label[39m=[32m"譁・ｭ励し繧､繧ｺ"[39m
+            [33mmax[39m=[32m"24"[39m
+            [33mmin[39m=[32m"14"[39m
+            [33mtype[39m=[32m"range"[39m
+            [33mvalue[39m=[32m"24"[39m
+          [36m/>[39m
+        [36m</label>[39m
+        [36m<label>[39m
+          [0m菴咏區[0m
+          [0m [0m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+          [36m>[39m
+            [0m28[0m
+            [0mpx[0m
+          [36m</span>[39m
+          [36m<input[39m
+            [33maria-label[39m=[32m"菴咏區"[39m
+            [33mmax[39m=[32m"28"[39m
+            [33mmin[39m=[32m"8"[39m
+            [33mtype[39m=[32m"range"[39m
+            [33mvalue[39m=[32m"28"[39m
+          [36m/>[39m
+        [36m</label>[39m
+        [36m<label>[39m
+          [0m譖ｸ菴・[0m
+          [36m<select[39m
+            [33maria-label[39m=[32m"譖ｸ菴・[39m
+          [36m>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"sans-serif"[39m
+            [36m>[39m
+              [0mSans serif[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"serif"[39m
+            [36m>[39m
+              [0mSerif[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"monospace"[39m
+            [36m>[39m
+              [0mMonospace[0m
+            [36m</option>[39m
+          [36m</select>[39m
+        [36m</label>[39m
+        [36m<label>[39m
+          [0m螟ｪ縺・[0m
+          [36m<select[39m
+            [33maria-label[39m=[32m"螟ｪ縺・[39m
+          [36m>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"400"[39m
+            [36m>[39m
+              [0m讓呎ｺ・400[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"700"[39m
+            [36m>[39m
+              [0m螟ｪ蟄・700[0m
+            [36m</option>[39m
+          [36m</select>[39m
+        [36m</label>[39m
+      [36m</fieldset>[39m
+      [36m<p[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [0m譛ｬ譁・・繧ｳ繝ｳ繝医Λ繧ｹ繝域ｯ・[0m
+        [0m1.00[0m
+        [0m:1 / [0m
+        [0m豕ｨ諢・ 騾壼ｸｸ譁・ｭ励・逶ｮ螳・.5譛ｪ貅[0m
+      [36m</p>[39m
+      [36m<p>[39m
+        [0m豈皮紫縺ｯ驕ｸ謚槭＠縺溯レ譎ｯ繝ｻ譁・ｭ苓牡縺ｮ險育ｮ怜､縺ｧ縺吶ゅ☆縺ｹ縺ｦ縺ｮ蛻ｩ逕ｨ迺ｰ蠅・〒縺ｮ隱ｭ縺ｿ繧・☆縺輔ｒ菫晁ｨｼ縺吶ｋ繧ゅ・縺ｧ縺ｯ縺ゅｊ縺ｾ縺帙ｓ縲ゅ・繧ｿ繝ｳ譁・ｭ励・鮟・逋ｽ縺ｮ縺・■鬮倥＞豈皮紫繧定・蜍墓治逕ｨ縺励∪縺吶・[0m
+      [36m</p>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"繝・・繝槭・繝ｬ繝薙Η繝ｼ"[39m
+        [33mclass[39m=[32m"p5bThemePreview"[39m
+        [33mdata-testid[39m=[32m"theme-preview"[39m
+        [33mstyle[39m=[32m"--studio-bg: #000000; --studio-fg: #000000; --studio-accent: #1e6554; --studio-on-accent: #ffffff; --studio-size: 24px; --studio-space: 28px; --studio-font: monospace; font-weight: 400;"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"studioBadge"[39m
+        [36m>[39m
+          [0mLIVE PREVIEW[0m
+        [36m</span>[39m
+        [36m<h5>[39m
+          [0m隕ｳ蟇溘・縺溘ａ縺ｮ蟆上＆縺ｪ驕灘・邂ｱ[0m
+        [36m</h5>[39m
+        [36m<p>[39m
+          [0m菴咏區縺ｯ諠・ｱ縺ｮ蜻ｼ蜷ｸ縲よ枚蟄励・隕也ｷ壹・驕鍋ｭ九りｨｭ螳壼､縺ｨ縲√＞縺ｾ縺ｮ隕九◆逶ｮ繧呈ｯ斐∋縺ｦ縺上□縺輔＞縲・[0m
+        [36m</p>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"studioCard"[39m
+        [36m>[39m
+          [36m<strong>[39m
+            [0m螻慕､ｺ繧ｫ繝ｼ繝・/ 06[0m
+          [36m</strong>[39m
+          [36m<p>[39m
+            [0m謫堺ｽ懊・邨先棡縺後ョ繝ｼ繧ｿ縺ｫ谿九ｋUI縲・[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"studioField"[39m
+          [36m>[39m
+            [0m陦ｨ遉ｺ繝輔ぅ繝ｼ繝ｫ繝・ 繝ｬ繝薙Η繝ｼ蠕・■[0m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<button>[39m
+          [0m繧ｵ繝ｳ繝励Ν謫堺ｽ・[0m
+          [0m0[0m
+        [36m</button>[39m
+      [36m</section>[39m
+      [36m<details[39m
+        [33mclass[39m=[32m"p5bData"[39m
+      [36m>[39m
+        [36m<summary>[39m
+          [0m遒ｺ螳壹ョ繝ｼ繧ｿ繧定ｦ九ｋ[0m
+        [36m</summary>[39m
+        [36m<pre[39m
+          [33mdata-testid[39m=[32m"committed-data"[39m
+        [36m>[39m
+          [0m{
+  "background": "#000000",
+  "foreground": "#000000",
+  "accent": "#1e6554",
+  "size": 24,
+  "space": 28,
+  "font": "monospace",
+  "weight": 400
+}[0m
+        [36m</pre>[39m
+      [36m</details>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+   ﾃ・shortcut records draft, rejects conflict, cancels change and executes only inside focused zone 66ms
+     竊・expected '繧ｫ繧ｦ繝ｳ繝・0 / 繝ｩ繝ｳ繝・OFF / 繝｡繝｢ 髱櫁｡ｨ遉ｺ' to contain '繧ｫ繧ｦ繝ｳ繝・1'
+   笨・shortcut reserves browser/OS combos and blur cancels capture without modifying bindings 41ms
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ Failed Tests 2 竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ
+
+ FAIL  tests/phase5b-compare.test.tsx > theme uses standard contrast anchors and confines variables to preview, including undo/reset
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "繧ｵ繝ｳ繝励Ν謫堺ｽ・1"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  <header
+    class="p5bIntro"
+  />
+
+  --------------------------------------------------
+  heading:
+
+  Name "Theme Studio":
+  <h4 />
+
+  Name "隕ｳ蟇溘・縺溘ａ縺ｮ蟆上＆縺ｪ驕灘・邂ｱ":
+  <h5 />
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  <p />
+
+  Name "":
+  <p />
+
+  Name "":
+  <p />
+
+  Name "":
+  <p />
+
+  --------------------------------------------------
+  button:
+
+  Name "Undo":
+  <button />
+
+  Name "Redo":
+  <button />
+
+  Name "Reset":
+  <button />
+
+  Name "繧ｵ繝ｳ繝励Ν謫堺ｽ・0":
+  <button />
+
+  --------------------------------------------------
+  group:
+
+  Name "繝・じ繧､繝ｳ險ｭ螳・:
+  <fieldset />
+
+  Name "":
+  <details
+    class="p5bData"
+  />
+
+  --------------------------------------------------
+  slider:
+
+  Name "譁・ｭ励し繧､繧ｺ":
+  <input
+    aria-label="譁・ｭ励し繧､繧ｺ"
+    max="24"
+    min="14"
+    type="range"
+    value="24"
+  />
+
+  Name "菴咏區":
+  <input
+    aria-label="菴咏區"
+    max="28"
+    min="8"
+    type="range"
+    value="28"
+  />
+
+  --------------------------------------------------
+  combobox:
+
+  Name "譖ｸ菴・:
+  <select
+    aria-label="譖ｸ菴・
+  />
+
+  Name "螟ｪ縺・:
+  <select
+    aria-label="螟ｪ縺・
+  />
+
+  --------------------------------------------------
+  option:
+
+  Name "Sans serif":
+  <option
+    value="sans-serif"
+  />
+
+  Name "Serif":
+  <option
+    value="serif"
+  />
+
+  Name "Monospace":
+  <option
+    value="monospace"
+  />
+
+  Name "讓呎ｺ・400":
+  <option
+    value="400"
+  />
+
+  Name "螟ｪ蟄・700":
+  <option
+    value="700"
+  />
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  <p
+    role="status"
+  />
+
+  --------------------------------------------------
+  region:
+
+  Name "繝・・繝槭・繝ｬ繝薙Η繝ｼ":
+  <section
+    aria-label="繝・・繝槭・繝ｬ繝薙Η繝ｼ"
+    class="p5bThemePreview"
+    data-testid="theme-preview"
+    style="--studio-bg: #000000; --studio-fg: #000000; --studio-accent: #1e6554; --studio-on-accent: #ffffff; --studio-size: 24px; --studio-space: 28px; --studio-font: monospace; font-weight: 400;"
+  />
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  <strong />
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      class="p5b"
+      data-demo="theme"
+    >
+      <header
+        class="p5bIntro"
+      >
+        <span>
+          05
+           / INTERACTION WORKSHOP
+        </span>
+        <h4>
+          Theme Studio
+        </h4>
+        <p>
+          蜷後§繝・・繧ｿ縺ｫ縲・＆縺・ｪｭ縺ｿ蠢・慍縲る・濶ｲ繝ｻ譁・ｭ励・蟇・ｺｦ繧偵き繝ｼ繝峨√・繧ｿ繝ｳ縲√Λ繝吶Ν縺ｸ蜷梧凾縺ｫ蜿肴丐縺励∪縺吶りｨｭ螳壹・縺薙・繝励Ξ繝薙Η繝ｼ縺ｮ荳ｭ縺縺代↓菴懃畑縺励∪縺吶・[0m
+        </p>
+      </header>
+      <div
+        class="p5bToolbar"
+      >
+        <button>
+          Undo
+        </button>
+        <button>
+          Redo
+        </button>
+        <button>
+          Reset
+        </button>
+        <small>
+          螻･豁ｴ縺ｯ逶ｴ霑・0謫堺ｽ懊ゆｿ晏ｭ倥・騾壻ｿ｡縺ｪ縺励・[0m
+        </small>
+      </div>
+      <fieldset>
+        <legend>
+          繝・じ繧､繝ｳ險ｭ螳・[0m
+        </legend>
+        <label>
+          閭梧勹濶ｲ
+           
+          <span
+            aria-hidden="true"
+          >
+            #000000
+          </span>
+          <input
+            aria-label="閭梧勹濶ｲ"
+            type="color"
+            value="#000000"
+          />
+        </label>
+        <label>
+          譁・ｭ苓牡
+           
+          <span
+            aria-hidden="true"
+          >
+            #000000
+          </span>
+          <input
+            aria-label="譁・ｭ苓牡"
+            type="color"
+            value="#000000"
+          />
+        </label>
+        <label>
+          繧｢繧ｯ繧ｻ繝ｳ繝郁牡
+           
+          <span
+            aria-hidden="true"
+          >
+            #1e6554
+          </span>
+          <input
+            aria-label="繧｢繧ｯ繧ｻ繝ｳ繝郁牡"
+            type="color"
+            value="#1e6554"
+          />
+        </label>
+        <label>
+          譁・ｭ励し繧､繧ｺ
+           
+          <span
+            aria-hidden="true"
+          >
+            24
+            px
+          </span>
+          <input
+            aria-label="譁・ｭ励し繧､繧ｺ"
+            max="24"
+            min="14"
+            type="range"
+            value="24"
+          />
+        </label>
+        <label>
+          菴咏區
+           
+          <span
+            aria-hidden="true"
+          >
+            28
+            px
+          </span>
+          <input
+            aria-label="菴咏區"
+            max="28"
+            min="8"
+            type="range"
+            value="28"
+          />
+        </label>
+        <label>
+          譖ｸ菴・[0m
+          <select
+            aria-label="譖ｸ菴・
+          >
+            <option
+              value="sans-serif"
+            >
+              Sans serif
+            </option>
+            <option
+              value="serif"
+            >
+              Serif
+            </option>
+            <option
+              value="monospace"
+            >
+              Monospace
+            </option>
+          </select>
+        </label>
+        <label>
+          螟ｪ縺・[0m
+          <select
+            aria-label="螟ｪ縺・
+          >
+            <option
+              value="400"
+            >
+              讓呎ｺ・400
+            </option>
+            <option
+              value="700"
+            >
+              螟ｪ蟄・700
+            </option>
+          </select>
+        </label>
+      </fieldset>
+      <p
+        role="status"
+      >
+        譛ｬ譁・・繧ｳ繝ｳ繝医Λ繧ｹ繝域ｯ・
+        1.00
+        :1 / 
+        豕ｨ諢・ 騾壼ｸｸ譁・ｭ励・逶ｮ螳・.5譛ｪ貅
+      </p>
+      <p>
+        豈皮紫縺ｯ驕ｸ謚槭＠縺溯レ譎ｯ繝ｻ譁・ｭ苓牡縺ｮ險育ｮ怜､縺ｧ縺吶ゅ☆縺ｹ縺ｦ縺ｮ蛻ｩ逕ｨ迺ｰ蠅・〒縺ｮ隱ｭ縺ｿ繧・☆縺輔ｒ菫晁ｨｼ縺吶ｋ繧ゅ・縺ｧ縺ｯ縺ゅｊ縺ｾ縺帙ｓ縲ゅ・繧ｿ繝ｳ譁・ｭ励・鮟・逋ｽ縺ｮ縺・■鬮倥＞豈皮紫繧定・蜍墓治逕ｨ縺励∪縺吶・[0m
+      </p>
+      <section
+        aria-label="繝・・繝槭・繝ｬ繝薙Η繝ｼ"
+        class="p5bThemePreview"
+        data-testid="theme-preview"
+        style="--studio-bg: #000000; --studio-fg: #000000; --studio-accent: #1e6554; --studio-on-accent: #ffffff; --studio-size: 24px; --studio-space: 28px; --studio-font: monospace; font-weight: 400;"
+      >
+        <span
+          class="studioBadge"
+        >
+          LIVE PREVIEW
+        </span>
+        <h5>
+          隕ｳ蟇溘・縺溘ａ縺ｮ蟆上＆縺ｪ驕灘・邂ｱ
+        </h5>
+        <p>
+          菴咏區縺ｯ諠・ｱ縺ｮ蜻ｼ蜷ｸ縲よ枚蟄励・隕也ｷ壹・驕鍋ｭ九りｨｭ螳壼､縺ｨ縲√＞縺ｾ縺ｮ隕九◆逶ｮ繧呈ｯ斐∋縺ｦ縺上□縺輔＞縲・[0m
+        </p>
+        <div
+          class="studioCard"
+        >
+          <strong>
+            螻慕､ｺ繧ｫ繝ｼ繝・/ 06
+          </strong>
+          <p>
+            謫堺ｽ懊・邨先棡縺後ョ繝ｼ繧ｿ縺ｫ谿九ｋUI縲・[0m
+          </p>
+          <div
+            class="studioField"
+          >
+            陦ｨ遉ｺ繝輔ぅ繝ｼ繝ｫ繝・ 繝ｬ繝薙Η繝ｼ蠕・■
+          </div>
+        </div>
+        <button>
+          繧ｵ繝ｳ繝励Ν謫堺ｽ・
+          0
+        </button>
+      </section>
+      <details
+        class="p5bData"
+      >
+        <summary>
+          遒ｺ螳壹ョ繝ｼ繧ｿ繧定ｦ九ｋ
+        </summary>
+        <pre
+          data-testid="committed-data"
+        >
+          {
+  "background": "#000000",
+  "foreground": "#000000",
+  "accent": "#1e6554",
+  "size": 24,
+  "space": 28,
+  "font": "monospace",
+  "weight": 400
+}
+        </pre>
+      </details>
+    </div>
+  </div>
+</body>
+ 笶ｯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ 笶ｯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ 笶ｯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ 笶ｯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ 笶ｯ tests/phase5b-compare.test.tsx:27:676
+
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[1/2]竡ｯ
+
+ FAIL  tests/phase5b-compare.test.tsx > shortcut records draft, rejects conflict, cancels change and executes only inside focused zone
+AssertionError: expected '繧ｫ繧ｦ繝ｳ繝・0 / 繝ｩ繝ｳ繝・OFF / 繝｡繝｢ 髱櫁｡ｨ遉ｺ' to contain '繧ｫ繧ｦ繝ｳ繝・1'
+
+Expected: "繧ｫ繧ｦ繝ｳ繝・1"
+Received: "繧ｫ繧ｦ繝ｳ繝・0 / 繝ｩ繝ｳ繝・OFF / 繝｡繝｢ 髱櫁｡ｨ遉ｺ"
+
+ 笶ｯ tests/phase5b-compare.test.tsx:32:755
+
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[2/2]竡ｯ
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  02:13:44
+   Duration  1.73s (transform 207ms, setup 0ms, collect 441ms, tests 319ms, environment 603ms, prepare 169ms)
+

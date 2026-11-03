@@ -30,8 +30,9 @@ export function parseTime(value:string){if(!/^\d{2}:\d{2}$/.test(value))return N
 export type DiffRow={kind:'same'|'add'|'remove'|'change';oldLine?:number;newLine?:number;oldText?:string;newText?:string;hunk?:number};
 // Empty input has zero lines; a trailing newline has an empty final line.
 export function diffLines(oldText:string,newText:string):DiffRow[]{
+ if(oldText.length>24000||newText.length>24000)throw Error('各版240行・24,000文字まで比較できます');
  const a=oldText===''?[]:oldText.split('\n'),b=newText===''?[]:newText.split('\n');
- if(a.length>240||b.length>240||oldText.length>24000||newText.length>24000)throw Error('各版240行・24,000文字まで比較できます');
+ if(a.length>240||b.length>240)throw Error('各版240行・24,000文字まで比較できます');
  const lcs=Array.from({length:a.length+1},()=>new Uint16Array(b.length+1));
  for(let i=a.length-1;i>=0;i--)for(let j=b.length-1;j>=0;j--)lcs[i][j]=a[i]===b[j]?lcs[i+1][j+1]+1:Math.max(lcs[i+1][j],lcs[i][j+1]);
  const result:DiffRow[]=[];let i=0,j=0,hunk=0;

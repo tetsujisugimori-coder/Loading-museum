@@ -43,6 +43,8 @@ main `bc99d0617f5459e2bbe508b36575c8d8e4489d6e` を専用checkoutへ取得。実
 
 上記と初回lint/type/単体失敗、ブラウザ探索パス/ローカルHTTPの環境失敗は[初期記録](phase5b-evidence/initial-failures.json)と各logへ保持。期待緩和、skip、timeout延長、無条件retryで隠していない。
 
+設定/登録のUndoが無関係なサンプル実行カウンタまで0へ戻す問題も、追加した2つのassertで旧FAILを確認。履歴の対象である確定設定/登録と実行例の状態を分離し、実行例の初期化はResetだけへ限定した（修正中の編集syntaxエラーも保存し、修正後6/6を確認）。Diffの文字数上限はsplitの前に検査し、超過入力から配列を作らない。
+
 ## 検証経路
 
 - 基準mainの既存 `npm test` を再現。[baseline log](phase5b-evidence/baseline-tests.log)。新規22試験はモデル・UI・登録/検索/閉室を確認。diffは既知結果に加えて256組の短い入力で両原文の復元・重複/空行/順序を検査。
