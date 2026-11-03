@@ -1,10 +1,52 @@
 // @vitest-environment jsdom
 import React from 'react';
-import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
 import { FrameByFrameLab, IsometricExplorer, PreloaderTheatre, initialDrawingFrames, duplicateDrawingFrame, moveExplorer, nearbyObject, advanceLoadingScene, initialLoadingScene } from '../app/components/then-now/PhaseTwoSecond';
 const props={now:true,active:false,reduced:true,speed:1};
 afterEach(()=>{cleanup();vi.unstubAllGlobals();});
+function pointerStage() {
+ class TestPointer extends MouseEvent { pointerId:number; isPrimary:boolean; constructor(type:string,init:PointerEventInit){super(type,init);this.pointerId=init.pointerId??1;this.isPrimary=init.isPrimary??true;} }
+ vi.stubGlobal('PointerEvent',TestPointer);
+ render(<FrameByFrameLab {...props}/>);const svg=screen.getByRole('application');
+ Object.assign(svg,{setPointerCapture:vi.fn(),getBoundingClientRect:()=>({left:0,top:0,width:320,height:220})});
+ return svg;
+}
+const currentInk=(svg:HTMLElement)=>Array.from(svg.querySelectorAll('[data-current-frame] polyline')).map(n=>n.getAttribute('points'));
+it('drawing suppresses native text-drag selection while keeping keyboard focus',()=>{
+ const svg=pointerStage();expect(fireEvent.pointerDown(svg,{pointerId:1,clientX:20,clientY:40})).toBe(false);expect(document.activeElement).toBe(svg);
+});
+it('filmstrip renders the actual independent drawing, including Undo and copied-frame edits',()=>{
+ const svg=pointerStage();fireEvent.pointerDown(svg,{pointerId:1,clientX:20,clientY:40});fireEvent.pointerMove(svg,{pointerId:1,clientX:60,clientY:40});fireEvent.pointerUp(svg,{pointerId:1});
+ const source=currentInk(svg);expect(source).toEqual(['20,40 60,40']);
+ fireEvent.click(screen.getByText('コマを複製して追加'));fireEvent.click(screen.getByText('最後の線を戻す'));fireEvent.keyDown(svg,{key:'Enter'});
+ expect(screen.getByRole('button',{name:'フレーム 1'}).querySelector('polyline')?.getAttribute('points')).toBe(source[0]);
+ expect(screen.getByRole('button',{name:'フレーム 2'}).querySelector('polyline')?.getAttribute('points')).toBe('150,65 160,50 170,65');
+ fireEvent.click(screen.getByRole('button',{name:'フレーム 1'}));expect(currentInk(svg)).toEqual(source);
+ fireEvent.click(screen.getByText('オニオンスキン'));expect(currentInk(svg)).toEqual(source);fireEvent.click(screen.getByText('最後の線を戻す'));
+ expect(currentInk(svg)).toEqual([]);expect(screen.getByRole('button',{name:'フレーム 1'}).querySelector('polyline')).toBeNull();
+});
+it.each(['pointerCancel','lostPointerCapture'] as const)('%s retains a partial stroke as one Undo and ignores unrelated pointers',event=>{
+ const svg=pointerStage();fireEvent.pointerDown(svg,{pointerId:1,clientX:10,clientY:20});fireEvent.pointerMove(svg,{pointerId:1,clientX:30,clientY:40});
+ fireEvent[event](svg,{pointerId:2});fireEvent.pointerMove(svg,{pointerId:1,clientX:50,clientY:80});expect(currentInk(svg)).toEqual(['10,20 30,40 50,80']);
+ fireEvent[event](svg,{pointerId:1});fireEvent.pointerMove(svg,{pointerId:1,clientX:90,clientY:100});expect(currentInk(svg)).toEqual(['10,20 30,40 50,80']);
+ fireEvent.click(screen.getByText('最後の線を戻す'));expect(currentInk(svg)).toEqual([]);expect(screen.getByRole('button',{name:'フレーム 1'}).querySelector('polyline')).toBeNull();
+});
+it('Undo during drawing cannot redirect stale input to the previous stroke',()=>{
+ const svg=pointerStage();fireEvent.keyDown(svg,{key:'Enter'});fireEvent.pointerDown(svg,{pointerId:1,clientX:10,clientY:20});fireEvent.pointerMove(svg,{pointerId:1,clientX:30,clientY:40});
+ fireEvent.click(screen.getByText('最後の線を戻す'));fireEvent.pointerMove(svg,{pointerId:1,clientX:90,clientY:100});expect(currentInk(svg)).toEqual(['150,65 160,50 170,65']);
+ expect(screen.getByRole('button',{name:'フレーム 1'}).querySelector('polyline')?.getAttribute('points')).toBe('150,65 160,50 170,65');
+});
+it('frame selection terminates the old drawing without appending to either frame',()=>{
+ const svg=pointerStage();fireEvent.keyDown(svg,{key:'Enter'});fireEvent.click(screen.getByText('次のコマ'));fireEvent.keyDown(svg,{key:'Enter'});fireEvent.click(screen.getByText('前のコマ'));
+ fireEvent.pointerDown(svg,{pointerId:1,clientX:10,clientY:20});fireEvent.pointerMove(svg,{pointerId:1,clientX:30,clientY:40});fireEvent.keyDown(svg,{key:'ArrowRight'});fireEvent.pointerMove(svg,{pointerId:1,clientX:90,clientY:100});
+ expect(currentInk(svg)).toEqual(['150,65 160,50 170,65']);fireEvent.click(screen.getByText('前のコマ'));expect(currentInk(svg)).toEqual(['150,65 160,50 170,65','10,20 30,40']);
+});
+it('Then and Now artwork and thumbnails remain separate',()=>{
+ const view=render(<><section aria-label="Then"><FrameByFrameLab {...props} now={false}/></section><section aria-label="Now"><FrameByFrameLab {...props}/></section></>);
+ const then=within(screen.getByRole('region',{name:'Then'})),now=within(screen.getByRole('region',{name:'Now'}));fireEvent.keyDown(then.getByRole('application'),{key:'Enter'});
+ expect(then.getByRole('button',{name:'フレーム 1'}).querySelector('polyline')).not.toBeNull();expect(now.getByRole('button',{name:'フレーム 1'}).querySelector('polyline')).toBeNull();view.unmount();
+});
 it('frame duplication is independent, bounded and preserves the original drawing',()=>{
  const frames=initialDrawingFrames();frames[0].ink=[[{x:12,y:13}]];const next=duplicateDrawingFrame(frames,0);next[1].ink[0][0].x=99;expect(frames[0].ink[0][0].x).toBe(12);expect(next).toHaveLength(7);
  let f=frames;for(let i=0;i<20;i++)f=duplicateDrawingFrame(f,0);expect(f).toHaveLength(16);expect(duplicateDrawingFrame(f,0)).toBe(f);

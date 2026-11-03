@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type PointerEvent, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, useState, type PointerEvent, type KeyboardEvent } from "react";
 import { clamp, Range, useFrame, type StudyProps } from "./runtime";
 import "./phase-two-first.css";
 
@@ -18,16 +18,19 @@ function Scene({ now, night = false }: { now: boolean; night?: boolean }) {
 export function maskExtent(progress: number, size: number) { return Math.max(0, size * clamp(progress) * 3.8); }
 export function MaskTheatre(props: StudyProps) {
   const clip = useId().replace(/:/g, ""), [shape,setShape]=useState("circle"), [progress,setProgress]=useState(.32), [x,setX]=useState(160),[y,setY]=useState(110),[size,setSize]=useState(100),[paused,setPaused]=useState(false);
+  const dragging = useRef<number | null>(null);
+  useEffect(() => { dragging.current = null; }, [props.active, props.reduced]);
   useFrame(props.active && !props.reduced && !paused && progress < 1,dt=>setProgress(p=>clamp(p+dt*props.speed/4)));
   const q=props.now?progress:Math.round(progress*36)/36, extent=maskExtent(q,size);
-  const move=(e:PointerEvent<SVGSVGElement>)=>{if(e.buttons!==1)return;const b=e.currentTarget.getBoundingClientRect();setX(clamp((e.clientX-b.left)/b.width*320,0,320));setY(clamp((e.clientY-b.top)/b.height*230,0,230));};
-  return <div className="tn2Mask"><svg className="tn2Surface tn2Drag" viewBox="0 0 320 230" role="img" aria-label={`マスクの劇場 ${shape} ${Math.round(q*100)}%`} onPointerDown={e=>{e.currentTarget.setPointerCapture?.(e.pointerId);move(e);}} onPointerMove={move}>
+  const move=(e:PointerEvent<SVGSVGElement>)=>{if(dragging.current!==e.pointerId)return;const b=e.currentTarget.getBoundingClientRect();setX(clamp((e.clientX-b.left)/b.width*320,0,320));setY(clamp((e.clientY-b.top)/b.height*230,0,230));};
+  const release=(e:PointerEvent<SVGSVGElement>)=>{if(dragging.current===e.pointerId)dragging.current=null;};
+  return <div className="tn2Mask"><svg className="tn2Surface tn2MaskDrag" viewBox="0 0 320 230" role="img" aria-label={`マスクの劇場 ${shape} ${Math.round(q*100)}%`} onPointerDown={e=>{if(e.button!==0||e.isPrimary===false||dragging.current!==null)return;e.preventDefault();dragging.current=e.pointerId;e.currentTarget.setPointerCapture?.(e.pointerId);move(e);}} onPointerMove={move} onPointerUp={release} onPointerCancel={release} onLostPointerCapture={release}>
     <defs><clipPath id={clip}>{shape==="circle"?<circle cx={x} cy={y} r={extent}/>:shape==="bands"?<g transform={`translate(${x-160} ${y-115})`}>{Array.from({length:6},(_,i)=><rect key={i} x={props.now?(i%2?320-extent*2:0):160-extent} y={i*40} width={extent*2} height="28" transform={props.now?`rotate(-12 160 115)`:undefined}/>)}</g>:<text x={x} y={y} textAnchor="middle" dominantBaseline="central" fontFamily="serif" fontWeight="900" fontSize={extent*1.5}>夢</text>}</clipPath></defs>
     <Scene now={props.now}/><g clipPath={`url(#${clip})`}><Scene now={props.now} night/></g>
     <path d={`M${x-7} ${y}h14M${x} ${y-7}v14`} stroke="#fff" strokeWidth="1"/>
   </svg><div className="tnControls">{[["circle","円"],["bands","帯"],["text","文字"]].map(([v,label])=><button key={v} aria-pressed={shape===v} onClick={()=>setShape(v)}>{label}マスク</button>)}<button aria-pressed={paused} onClick={()=>setPaused(p=>!p)}>{paused?"転換を再開":"転換を停止"}</button><button onClick={()=>setProgress(0)}>転換の先頭</button></div>
   <Range label="転換位置 %" value={Math.round(progress*100)} onChange={v=>setProgress(v/100)}/><Range label="マスクの大きさ" value={size} min={20} max={150} onChange={setSize}/><Range label="マスク横位置" value={x} max={320} onChange={setX}/><Range label="マスク縦位置" value={y} max={230} onChange={setY}/>
-  <p className="tnReadout" data-mask-progress={progress.toFixed(3)}>昼の舞台 → 夜の舞台 ／ {Math.round(q*100)}% ／ {shape} ／ 中心 {Math.round(x)},{Math.round(y)}</p><p>{props.now?"紙を斜めに裁つ帯と、連続する開口。":"36段階の幕のリズムと、水平に開く帯。"}自動転換は共通再生中のみ進みます。窓の外は昼、内側は夜。同じ構図を切り取り方から変える。文字窓は書体により輪郭が異なります。</p></div>;
+  <p className="tnReadout" data-mask-progress={progress.toFixed(3)}>昼の舞台 → 夜の舞台 ／ {Math.round(q*100)}% ／ {shape} ／ 中心 {Math.round(x)},{Math.round(y)}</p><p>{props.now?"紙を斜めに裁つ帯と、連続する開口。":"36段階の幕のリズムと、水平に開く帯。"}自動転換は共通再生中のみ進みます。窓の外は昼、内側は夜。同じ構図を切り取り方から変える。文字窓は書体により輪郭が異なります。絵の中は縦横にドラッグ、絵の外はページをスクロール。位置スライダーでも動かせます。</p></div>;
 }
 
 export type SpringState={position:number;velocity:number};

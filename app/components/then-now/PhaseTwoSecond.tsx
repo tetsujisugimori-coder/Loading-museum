@@ -17,12 +17,17 @@ function PaperBird({ frame, now, ghost = false }: { frame: DrawingFrame; now: bo
     {now ? <><path d="M-54 12L0-34 58 9 0 30Z" fill="none" stroke="currentColor" strokeWidth="2"/><path d="M-54 12L0 4 58 9M0-34V30" stroke="currentColor" fill="none"/><circle r="5" fill="currentColor"/><path d="M0 30Q-17 48 5 61T0 85" fill="none" stroke="currentColor" strokeWidth="1.5"/></> : <><path d="M-60 16L-8-31 1-4 58-16 20 20-8 11-36 34-28 12Z" fill="currentColor"/><path d="M-8-31L-7 11 20 20" fill="none" stroke="#fff0ce" strokeWidth="2"/><circle cx="23" cy="1" r="2" fill="#fff0ce"/></>}
   </g>;
 }
-function DrawingInk({ frame }: { frame: DrawingFrame }) {
-  return <>{frame.ink.map((stroke, i) => stroke.length === 1 ? <circle key={i} cx={stroke[0].x} cy={stroke[0].y} r="2" fill="currentColor"/> : <polyline key={i} points={stroke.map(p => `${p.x},${p.y}`).join(" ")} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>)}</>;
+function DrawingInk({ frame, thumbnail = false }: { frame: DrawingFrame; thumbnail?: boolean }) {
+  return <>{frame.ink.map((stroke, i) => stroke.length === 1 ? <circle key={i} cx={stroke[0].x} cy={stroke[0].y} r={thumbnail ? 6 : 2} fill="currentColor"/> : <polyline key={i} points={stroke.map(p => `${p.x},${p.y}`).join(" ")} stroke="currentColor" strokeWidth={thumbnail ? 1.5 : 2} vectorEffect={thumbnail ? "non-scaling-stroke" : undefined} fill="none" strokeLinecap="round"/>)}</>;
+}
+// Stage, onion skin and filmstrip share the same artwork. Only the ink's minimum
+// visual weight changes in thumbnails so a stroke remains legible at 80px wide.
+function FrameArtwork({ frame, now, thumbnail = false }: { frame: DrawingFrame; now: boolean; thumbnail?: boolean }) {
+  return <><PaperBird frame={frame} now={now}/><DrawingInk frame={frame} thumbnail={thumbnail}/></>;
 }
 export function FrameByFrameLab(props: StudyProps) {
   const [frames, setFrames] = useState(initialDrawingFrames), [index, setIndex] = useState(0), [fps, setFps] = useState(6), [playing, setPlaying] = useState(false), [onion, setOnion] = useState(true);
-  const remainder = useRef(0), drawing = useRef<number | null>(null);
+  const remainder = useRef(0), drawing = useRef<{ pointerId: number; frameIndex: number; strokeIndex: number } | null>(null);
   const frame = frames[index];
   useEffect(() => { drawing.current = null; }, [props.active, props.reduced]);
   useFrame(props.active && !props.reduced && playing, dt => {
@@ -31,11 +36,26 @@ export function FrameByFrameLab(props: StudyProps) {
     if (steps) { remainder.current -= steps; setIndex(i => (i + steps) % frames.length); }
   });
   const select = (i: number) => { setPlaying(false); remainder.current = 0; drawing.current = null; setIndex((i + frames.length) % frames.length); };
-  const edit = (patch: Partial<DrawingFrame>) => { setPlaying(false); setFrames(fs => fs.map((f, i) => i === index ? { ...f, ...patch } : f)); };
+  const edit = (patch: Partial<DrawingFrame>) => { drawing.current = null; setPlaying(false); setFrames(fs => fs.map((f, i) => i === index ? { ...f, ...patch } : f)); };
   const point = (e: PointerEvent<SVGSVGElement>) => { const b = e.currentTarget.getBoundingClientRect(); return { x: clamp((e.clientX - b.left) / b.width * 320, 0, 320), y: clamp((e.clientY - b.top) / b.height * 220, 0, 220) }; };
-  const down = (e: PointerEvent<SVGSVGElement>) => { if (frame.ink.length >= 12) return; setPlaying(false); drawing.current = e.pointerId; e.currentTarget.setPointerCapture(e.pointerId); edit({ ink: [...frame.ink, [point(e)]] }); };
-  const move = (e: PointerEvent<SVGSVGElement>) => { if (drawing.current !== e.pointerId) return; const p = point(e); setFrames(fs => fs.map((f, i) => i !== index ? f : { ...f, ink: f.ink.map((s, n) => n === f.ink.length - 1 && s.length < 120 ? [...s, p] : s) })); };
-  const release = () => { drawing.current = null; };
+  const down = (e: PointerEvent<SVGSVGElement>) => {
+    if (e.button !== 0 || e.isPrimary === false || drawing.current || frame.ink.length >= 12) return;
+    // Drawing owns this gesture: SVG text selection can otherwise start a native
+    // drag, cancel the pointer, and divert subsequent keyboard activation.
+    e.preventDefault(); e.currentTarget.focus({ preventScroll: true });
+    setPlaying(false); drawing.current = { pointerId: e.pointerId, frameIndex: index, strokeIndex: frame.ink.length };
+    e.currentTarget.setPointerCapture(e.pointerId); const p = point(e);
+    setFrames(fs => fs.map((f, i) => i === index ? { ...f, ink: [...f.ink, [p]] } : f));
+  };
+  const move = (e: PointerEvent<SVGSVGElement>) => {
+    const session = drawing.current;
+    if (!session || session.pointerId !== e.pointerId) return;
+    const p = point(e);
+    setFrames(fs => fs.map((f, i) => i !== session.frameIndex ? f : { ...f, ink: f.ink.map((s, n) => n === session.strokeIndex && s.length < 120 ? [...s, p] : s) }));
+  };
+  // Partial ink already shown on the stage remains one undoable stroke on up,
+  // cancel or capture loss. Only the owning pointer can finish that session.
+  const release = (e: PointerEvent<SVGSVGElement>) => { if (drawing.current?.pointerId === e.pointerId) drawing.current = null; };
   const key = (e: KeyboardEvent<SVGSVGElement>) => {
     if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); select(index + (e.key === "ArrowRight" ? 1 : -1)); }
     if (e.key === "Enter" && frame.ink.length < 12) { e.preventDefault(); edit({ ink: [...frame.ink, [{ x: 150, y: 65 }, { x: 160, y: 50 }, { x: 170, y: 65 }]] }); }
@@ -44,16 +64,15 @@ export function FrameByFrameLab(props: StudyProps) {
     <svg className="tnSurface tn2Draw" viewBox="0 0 320 220" role="application" aria-label="作画台。ドラッグで描く、左右キーでコマ送り、Enterで山形を描く" tabIndex={0} onPointerDown={down} onPointerMove={move} onPointerUp={release} onPointerCancel={release} onLostPointerCapture={release} onKeyDown={key}>
       <path d="M20 190H300M20 192v6m280-6v6" stroke="currentColor" fill="none" opacity=".3"/>
       <text x="17" y="22" className="tn2Caption">{props.now ? "WIND / CONSTRUCTION SHEET" : "PAPER FLIGHT / FLIPBOOK"}</text>
-      {onion && <>{[-1, 1].map(offset => <g key={offset} data-onion-frame={(index + frames.length + offset) % frames.length} opacity=".2"><PaperBird frame={frames[(index + frames.length + offset) % frames.length]} now={props.now}/><DrawingInk frame={frames[(index + frames.length + offset) % frames.length]}/></g>)}</>}
-      <PaperBird frame={frame} now={props.now}/>
-      <DrawingInk frame={frame}/>
+      {onion && <>{[-1, 1].map(offset => <g key={offset} data-onion-frame={(index + frames.length + offset) % frames.length} opacity=".2"><FrameArtwork frame={frames[(index + frames.length + offset) % frames.length]} now={props.now}/></g>)}</>}
+      <g data-current-frame={index}><FrameArtwork frame={frame} now={props.now}/></g>
       <text x="17" y="210" className="tn2Caption">FRAME {String(index + 1).padStart(2, "0")} / {frames.length} · {fps} FPS</text>
     </svg>
-    <div className="tn2Film" aria-label="作画フレーム">{frames.map((f, i) => <button key={i} aria-label={`フレーム ${i + 1}`} aria-pressed={index === i} onClick={() => select(i)}><svg viewBox="0 0 320 220" aria-hidden="true"><PaperBird frame={f} now={props.now}/></svg><span>{i + 1}</span></button>)}</div>
+    <div className="tn2Film" aria-label="作画フレーム">{frames.map((f, i) => <button key={i} aria-label={`フレーム ${i + 1}`} aria-pressed={index === i} onClick={() => select(i)}><svg viewBox="0 0 320 220" aria-hidden="true"><FrameArtwork frame={f} now={props.now} thumbnail/></svg><span>{i + 1}</span></button>)}</div>
     <div className="tnControls"><button onClick={() => { drawing.current = null; setPlaying(v => !v); }}>{playing ? "作画再生を停止" : "作画を再生"}</button><button onClick={() => select(index - 1)}>前のコマ</button><button onClick={() => select(index + 1)}>次のコマ</button><button disabled={frames.length >= 16} onClick={() => { drawing.current = null; setPlaying(false); setFrames(fs => duplicateDrawingFrame(fs, index)); setIndex(index + 1); }}>コマを複製して追加</button><button aria-pressed={onion} onClick={() => setOnion(v => !v)}>オニオンスキン</button><button disabled={!frame.ink.length} onClick={() => edit({ ink: frame.ink.slice(0, -1) })}>最後の線を戻す</button></div>
     <Range label="再生速度 fps" value={fps} min={1} max={12} onChange={setFps}/><Range label="このコマの高さ" value={frame.lift} min={-20} max={55} onChange={lift => edit({ lift })}/><Range label="このコマの傾き" value={frame.tilt} min={-40} max={40} onChange={tilt => edit({ tilt })}/>
     <p className="tnReadout">コマ {index + 1}/{frames.length} ／ 描線 {frame.ink.length}/12 ／ {props.reduced ? "動き低減：コマ送りで観察" : !props.active && playing ? "共通開始・画面内で再生" : playing ? "再生待機／再生中" : "編集・停止中"}</p>
-    <p>{props.now ? "凧の骨組みを一枚ずつ設計する青図。" : "紙鳥のシルエットを切り替える小さなパラパラ帳。"}高さ・傾き・手描き線は選択コマだけを編集。複製は独立した新しい絵。最大16コマ、各12筆・120点。両版の絵は個別編集できます。</p>
+    <p>{props.now ? "凧の骨組みを一枚ずつ設計する青図。" : "紙鳥のシルエットを切り替える小さなパラパラ帳。"}高さ・傾き・手描き線は選択コマだけを編集。複製は独立した新しい絵。最大16コマ、各12筆・120点。両版の絵は個別編集できます。入力が中断された線も残り、「最後の線を戻す」で取り消せます。</p>
   </div>;
 }
 

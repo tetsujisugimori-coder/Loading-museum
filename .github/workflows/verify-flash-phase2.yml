@@ -43,6 +43,8 @@ jobs:
           set -o pipefail
           export PLAYWRIGHT_MODULE="$RUNNER_TEMP/flash-phase2-playwright/node_modules/playwright"
           node scripts/verify-flash-phase2-browser.mjs 2>&1 | tee flash-phase2-browser.log
+          EVIDENCE_DIR=flash-phase2-evidence/editing node scripts/verify-flash-phase2-editing.mjs 2>&1 | tee flash-phase2-editing.log
+          EVIDENCE_DIR=flash-phase2-evidence/touch node scripts/verify-flash-phase2-touch.mjs 2>&1 | tee flash-phase2-touch.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -50,3 +52,5 @@ jobs:
           path: |
             flash-phase2-evidence/
             flash-phase2-browser.log
+            flash-phase2-editing.log
+            flash-phase2-touch.log

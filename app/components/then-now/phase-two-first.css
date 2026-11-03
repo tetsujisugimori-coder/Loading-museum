@@ -1,5 +1,6 @@
 .tn2Surface{display:block;width:100%;height:auto;aspect-ratio:320/230;border:1px solid #7b7185;overflow:hidden;background:#172432}
 .tn2Drag{touch-action:pan-y;cursor:ew-resize}
+.tn2MaskDrag{touch-action:none;user-select:none;cursor:move}
 .tn2MenuWorld{position:relative;width:100%;aspect-ratio:320/260;overflow:hidden;border:1px solid #7b7185;isolation:isolate}
 .tn2MenuWorld>svg{width:100%;height:100%;display:block}
 .tn2Destination,.tn2Hub{position:absolute;transform:translate(-50%,-50%);min-width:44px;min-height:44px;padding:6px;color:#fff1d4;background:#24333b;border:1px solid #bcae9a;font:600 12px/1.4 ui-monospace,monospace;cursor:pointer}
