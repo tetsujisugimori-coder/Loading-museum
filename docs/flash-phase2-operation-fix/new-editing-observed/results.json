@@ -1,0 +1,1051 @@
+{
+  "kind": "implementation self-verification; trusted mouse/keyboard, synthetic cancel explicitly labelled",
+  "head": "f21f0a8c17a04be02da327e82d6662ed51c54d6e",
+  "exportRoot": "C:\\Users\\tetsu\\Documents\\Codex\\2026-11-03\\task-2\\loading-museum\\out",
+  "buildIndexHash": "27618ccccabfcf8cb2a76b39034cc5f713ca8e97bd060ff4f4f2d09b5a05b2e9",
+  "trackedChanges": "M .github/workflows/verify-flash-phase2.yml\n M app/components/then-now/PhaseTwoFirst.tsx\n M app/components/then-now/PhaseTwoSecond.tsx\n M app/components/then-now/phase-two-first.css\n M app/components/then-now/phase-two-second.css\n M tests/then-now-phase2-first.test.tsx\n M tests/then-now-phase2-second.test.tsx",
+  "sourceHashes": {
+    "app/components/then-now/PhaseTwoSecond.tsx": "115fa8b24fa0ad6316943153eb3ae3e966f542581a2e6303229fb3dadb12f713",
+    "app/components/then-now/phase-two-second.css": "8183fe9a4359a490ffda2255edf9135fc798121f03d9bf30651706f98299d190"
+  },
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "era": "then",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "source thumbnail equals stage ink",
+        "copy thumbnail equals copy stage ink",
+        "edited thumbnail visibly differs from blank",
+        "different drawings visibly distinguishable at native size",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [
+        {
+          "name": "Undo receives a trusted keyboard activation",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n0 !== 1\n"
+        },
+        {
+          "name": "Undo during stroke prevents stale input changing earlier stroke",
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    '30,140 40.99999673390468,141.99999346780936',\n+   '160,110 191.9999934678094,131.99999346780936'\n  ]\n"
+        }
+      ],
+      "source": [
+        "40,45 54.00000326609532,45 67.99999836695234,45 82.00000163304766,45 95.9999967339047,45 110,45 110,52.99999836695234 110,60.99999673390469 110,69.00000326609532 110,77.00000163304766 110,85"
+      ],
+      "sourceAfterCopy": [
+        "40,45 54.00000326609532,45 67.99999836695234,45 82.00000163304766,45 95.9999967339047,45 110,45 110,52.99999836695234 110,60.99999673390469 110,69.00000326609532 110,77.00000163304766 110,85"
+      ],
+      "thumbnailSource": [
+        "40,45 54.00000326609532,45 67.99999836695234,45 82.00000163304766,45 95.9999967339047,45 110,45 110,52.99999836695234 110,60.99999673390469 110,69.00000326609532 110,77.00000163304766 110,85"
+      ],
+      "thumbnailCopy": [
+        "230,40 230,59.00000326609532 230,77.99999836695234 230,97.00000163304766 230,115.99999673390468 230,135 238.0000065321906,135 246.00001306438128,135 253.99998693561872,135 261.99999346780936,135 270,135"
+      ],
+      "sourcePixels": 70,
+      "differentPixels": 163,
+      "undoEvents": [],
+      "committedBeforeSecondStroke": [
+        "30,140 40.99999673390468,141.99999346780936"
+      ],
+      "afterUndoAndMove": [
+        "30,140 40.99999673390468,141.99999346780936",
+        "160,110 191.9999934678094,131.99999346780936"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "era": "now",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "source thumbnail equals stage ink",
+        "copy thumbnail equals copy stage ink",
+        "edited thumbnail visibly differs from blank",
+        "different drawings visibly distinguishable at native size",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Undo receives a trusted keyboard activation",
+        "Undo during stroke prevents stale input changing earlier stroke",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [],
+      "source": [
+        "40,45 54.00000326609532,45 67.99999836695234,45 82.00000163304766,45 95.9999967339047,45 110,45 110,52.99999836695234 110,60.99999673390469 110,69.00000326609532 110,77.00000163304766 110,85"
+      ],
+      "sourceAfterCopy": [
+        "40,45 54.00000326609532,45 67.99999836695234,45 82.00000163304766,45 95.9999967339047,45 110,45 110,52.99999836695234 110,60.99999673390469 110,69.00000326609532 110,77.00000163304766 110,85"
+      ],
+      "thumbnailSource": [
+        "40,45 54.00000326609532,45 67.99999836695234,45 82.00000163304766,45 95.9999967339047,45 110,45 110,52.99999836695234 110,60.99999673390469 110,69.00000326609532 110,77.00000163304766 110,85"
+      ],
+      "thumbnailCopy": [
+        "230,40 230,59.00000326609532 230,77.99999836695234 230,97.00000163304766 230,115.99999673390468 230,135 238.0000065321906,135 246.00001306438128,135 253.99998693561872,135 261.99999346780936,135 270,135"
+      ],
+      "sourcePixels": 70,
+      "differentPixels": 163,
+      "undoEvents": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "trusted": true,
+          "time": 5161.9000000059605
+        },
+        {
+          "type": "click",
+          "trusted": true,
+          "time": 5161.9000000059605
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "trusted": true,
+          "time": 5166.5999999940395
+        }
+      ],
+      "committedBeforeSecondStroke": [
+        "30,140 40.99999673390468,141.99999346780936 52.00000163304765,144.00000326609532 62.99999836695235,145.99999673390468 74.00000326609532,148.00000653219064 85,150"
+      ],
+      "afterUndoAndMove": [
+        "30,140 40.99999673390468,141.99999346780936 52.00000163304765,144.00000326609532 62.99999836695235,145.99999673390468 74.00000326609532,148.00000653219064 85,150"
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "era": "then",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "source thumbnail equals stage ink",
+        "copy thumbnail equals copy stage ink",
+        "edited thumbnail visibly differs from blank",
+        "different drawings visibly distinguishable at native size",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Undo receives a trusted keyboard activation",
+        "Undo during stroke prevents stale input changing earlier stroke",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [],
+      "source": [
+        "40,45 54.00000311007165,45 67.99999844496418,45 82.00000155503582,45 95.99999688992835,45 110,45 110,52.99999844496418 110,60.99999688992834 110,69.00000311007166 110,77.00000155503582 110,85"
+      ],
+      "sourceAfterCopy": [
+        "40,45 54.00000311007165,45 67.99999844496418,45 82.00000155503582,45 95.99999688992835,45 110,45 110,52.99999844496418 110,60.99999688992834 110,69.00000311007166 110,77.00000155503582 110,85"
+      ],
+      "thumbnailSource": [
+        "40,45 54.00000311007165,45 67.99999844496418,45 82.00000155503582,45 95.99999688992835,45 110,45 110,52.99999844496418 110,60.99999688992834 110,69.00000311007166 110,77.00000155503582 110,85"
+      ],
+      "thumbnailCopy": [
+        "230,40 230,59.00000311007165 230,77.99999844496418 230,97.00000155503584 230,115.99999688992835 230,135 238.0000062201433,135 246.0000124402866,135 253.9999875597134,135 261.9999937798567,135 270,135"
+      ],
+      "sourcePixels": 70,
+      "differentPixels": 163,
+      "undoEvents": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "trusted": true,
+          "time": 3447.0999999940395
+        },
+        {
+          "type": "click",
+          "trusted": true,
+          "time": 3447.0999999940395
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "trusted": true,
+          "time": 3451.0999999940395
+        }
+      ],
+      "committedBeforeSecondStroke": [
+        "30,140 40.99999688992835,141.99999377985668 52.00000155503582,144.00000311007167 62.99999844496418,145.99999688992835 74.00000311007165,148.0000062201433 85,150"
+      ],
+      "afterUndoAndMove": [
+        "30,140 40.99999688992835,141.99999377985668 52.00000155503582,144.00000311007167 62.99999844496418,145.99999688992835 74.00000311007165,148.0000062201433 85,150"
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "era": "now",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "source thumbnail equals stage ink",
+        "copy thumbnail equals copy stage ink",
+        "edited thumbnail visibly differs from blank",
+        "different drawings visibly distinguishable at native size",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Undo receives a trusted keyboard activation",
+        "Undo during stroke prevents stale input changing earlier stroke",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [],
+      "source": [
+        "40,45 54.00000311007165,45 67.99999844496418,45 82.00000155503582,45 95.99999688992835,45 110,45 110,52.99999844496418 110,60.99999688992834 110,69.00000311007166 110,77.00000155503582 110,85"
+      ],
+      "sourceAfterCopy": [
+        "40,45 54.00000311007165,45 67.99999844496418,45 82.00000155503582,45 95.99999688992835,45 110,45 110,52.99999844496418 110,60.99999688992834 110,69.00000311007166 110,77.00000155503582 110,85"
+      ],
+      "thumbnailSource": [
+        "40,45 54.00000311007165,45 67.99999844496418,45 82.00000155503582,45 95.99999688992835,45 110,45 110,52.99999844496418 110,60.99999688992834 110,69.00000311007166 110,77.00000155503582 110,85"
+      ],
+      "thumbnailCopy": [
+        "230,40 230,59.00000311007165 230,77.99999844496418 230,97.00000155503584 230,115.99999688992835 230,135 238.0000062201433,135 246.0000124402866,135 253.9999875597134,135 261.9999937798567,135 270,135"
+      ],
+      "sourcePixels": 70,
+      "differentPixels": 163,
+      "undoEvents": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "trusted": true,
+          "time": 7369.4000000059605
+        },
+        {
+          "type": "click",
+          "trusted": true,
+          "time": 7369.4000000059605
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "trusted": true,
+          "time": 7374.299999982119
+        }
+      ],
+      "committedBeforeSecondStroke": [
+        "30,140 40.99999688992835,141.99999377985668 52.00000155503582,144.00000311007167 62.99999844496418,145.99999688992835 74.00000311007165,148.0000062201433 85,150"
+      ],
+      "afterUndoAndMove": [
+        "30,140 40.99999688992835,141.99999377985668 52.00000155503582,144.00000311007167 62.99999844496418,145.99999688992835 74.00000311007165,148.0000062201433 85,150"
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 765,
+      "era": "then",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "source thumbnail equals stage ink",
+        "copy thumbnail equals copy stage ink",
+        "edited thumbnail visibly differs from blank",
+        "different drawings visibly distinguishable at native size",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Undo receives a trusted keyboard activation",
+        "Undo during stroke prevents stale input changing earlier stroke",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [],
+      "source": [
+        "40,45 53.99999672843384,45 67.99999345686767,45 82.00000654313232,45 96.00000327156616,45 110,45 110,53.00000163578308 110,61.000003271566165 110,68.99999672843384 110,76.9999983642169 110,85"
+      ],
+      "sourceAfterCopy": [
+        "40,45 53.99999672843384,45 67.99999345686767,45 82.00000654313232,45 96.00000327156616,45 110,45 110,53.00000163578308 110,61.000003271566165 110,68.99999672843384 110,76.9999983642169 110,85"
+      ],
+      "thumbnailSource": [
+        "40,45 53.99999672843384,45 67.99999345686767,45 82.00000654313232,45 96.00000327156616,45 110,45 110,53.00000163578308 110,61.000003271566165 110,68.99999672843384 110,76.9999983642169 110,85"
+      ],
+      "thumbnailCopy": [
+        "230,40 230,58.999996728433835 230,78.00000163578308 230,96.99999836421692 230,116.00000327156616 230,135 237.99999345686768,135 245.99998691373537,135 254.00001308626463,135 262.0000065431323,135 270,135"
+      ],
+      "sourcePixels": 70,
+      "differentPixels": 163,
+      "undoEvents": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "trusted": true,
+          "time": 2865.7000000178814
+        },
+        {
+          "type": "click",
+          "trusted": true,
+          "time": 2865.7000000178814
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "trusted": true,
+          "time": 2867.9000000059605
+        }
+      ],
+      "committedBeforeSecondStroke": [
+        "30,140 41.00000327156616,142.00000654313234 51.99999836421692,143.99999672843384 62.99999345686767,146.00000327156616 73.99999672843384,147.99999345686768 85,150"
+      ],
+      "afterUndoAndMove": [
+        "30,140 41.00000327156616,142.00000654313234 51.99999836421692,143.99999672843384 62.99999345686767,146.00000327156616 73.99999672843384,147.99999345686768 85,150"
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 765,
+      "era": "now",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "source thumbnail equals stage ink",
+        "copy thumbnail equals copy stage ink",
+        "edited thumbnail visibly differs from blank",
+        "different drawings visibly distinguishable at native size",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Undo receives a trusted keyboard activation",
+        "Undo during stroke prevents stale input changing earlier stroke",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [],
+      "source": [
+        "40,45 54.00001308626465,45 67.99999345686767,45 82.00000654313232,45 95.99998691373534,45 110,45 110,53.00000163578308 110,61.000003271566165 110,68.99999672843384 110,76.9999983642169 110,85"
+      ],
+      "sourceAfterCopy": [
+        "40,45 54.00001308626465,45 67.99999345686767,45 82.00000654313232,45 95.99998691373534,45 110,45 110,53.00000163578308 110,61.000003271566165 110,68.99999672843384 110,76.9999983642169 110,85"
+      ],
+      "thumbnailSource": [
+        "40,45 54.00001308626465,45 67.99999345686767,45 82.00000654313232,45 95.99998691373534,45 110,45 110,53.00000163578308 110,61.000003271566165 110,68.99999672843384 110,76.9999983642169 110,85"
+      ],
+      "thumbnailCopy": [
+        "230,40 230,58.999996728433835 230,78.00000163578308 230,96.99999836421692 230,116.00000327156616 230,135 238.00002617252932,135 245.99998691373537,135 254.00001308626463,135 261.9999738274707,135 270,135"
+      ],
+      "sourcePixels": 70,
+      "differentPixels": 163,
+      "undoEvents": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "trusted": true,
+          "time": 6697.9000000059605
+        },
+        {
+          "type": "click",
+          "trusted": true,
+          "time": 6697.9000000059605
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "trusted": true,
+          "time": 6703.9000000059605
+        }
+      ],
+      "committedBeforeSecondStroke": [
+        "30,140 40.99998691373535,142.00000654313234 52.00000654313233,143.99999672843384 62.99999345686767,146.00000327156616 74.00001308626466,147.99999345686768 85,150"
+      ],
+      "afterUndoAndMove": [
+        "30,140 40.99998691373535,142.00000654313234 52.00000654313233,143.99999672843384 62.99999345686767,146.00000327156616 74.00001308626466,147.99999345686768 85,150"
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "era": "then",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "source thumbnail equals stage ink",
+        "copy thumbnail equals copy stage ink",
+        "edited thumbnail visibly differs from blank",
+        "different drawings visibly distinguishable at native size",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Undo receives a trusted keyboard activation",
+        "Undo during stroke prevents stale input changing earlier stroke",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [],
+      "source": [
+        "40,44.99999959048832 54.00000360365554,44.99999959048832 67.99999819817222,44.99999959048832 82.00000180182778,44.99999959048832 95.99999639634446,44.99999959048832 110,44.99999959048832 110,52.99999901717197 110,60.999998443855624 110,68.99999787053927 110,77.00000180185138 110,84.99999672390656"
+      ],
+      "sourceAfterCopy": [
+        "40,44.99999959048832 54.00000360365554,44.99999959048832 67.99999819817222,44.99999959048832 82.00000180182778,44.99999959048832 95.99999639634446,44.99999959048832 110,44.99999959048832 110,52.99999901717197 110,60.999998443855624 110,68.99999787053927 110,77.00000180185138 110,84.99999672390656"
+      ],
+      "thumbnailSource": [
+        "40,44.99999959048832 54.00000360365554,44.99999959048832 67.99999819817222,44.99999959048832 82.00000180182778,44.99999959048832 95.99999639634446,44.99999959048832 110,44.99999959048832 110,52.99999901717197 110,60.999998443855624 110,68.99999787053927 110,77.00000180185138 110,84.99999672390656"
+      ],
+      "thumbnailCopy": [
+        "230,40.00000163804672 230,59.000001965656054 230,78.0000022932654 230,97.00000262087475 230,116.0000029484841 230,135.00000327609342 238.00000720731109,135.00000327609342 245.99999639634444,135.00000327609342 253.99998558537783,135.00000327609342 261.9999927926889,135.00000327609342 270,135.00000327609342"
+      ],
+      "sourcePixels": 70,
+      "differentPixels": 163,
+      "undoEvents": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "trusted": true,
+          "time": 3484
+        },
+        {
+          "type": "click",
+          "trusted": true,
+          "time": 3484
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "trusted": true,
+          "time": 3492.5
+        }
+      ],
+      "committedBeforeSecondStroke": [
+        "30,139.99999672390658 40.99999639634446,141.9999977067346 52.00000180182777,143.99999868956263 62.99999819817223,145.99999967239066 74.00000360365554,148.00000065521868 85,150.0000016380467"
+      ],
+      "afterUndoAndMove": [
+        "30,139.99999672390658 40.99999639634446,141.9999977067346 52.00000180182777,143.99999868956263 62.99999819817223,145.99999967239066 74.00000360365554,148.00000065521868 85,150.0000016380467"
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "era": "now",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "source thumbnail equals stage ink",
+        "copy thumbnail equals copy stage ink",
+        "edited thumbnail visibly differs from blank",
+        "different drawings visibly distinguishable at native size",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Undo receives a trusted keyboard activation",
+        "Undo during stroke prevents stale input changing earlier stroke",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [],
+      "source": [
+        "40,45 54.00001441420664,45 67.99999279289668,45 82.00000720710332,45 95.99998558579335,45 110,45 110,53.00000180177583 110,61.00000360355166 110,68.99999639644834 110,76.99999819822418 110,85"
+      ],
+      "sourceAfterCopy": [
+        "40,45 54.00001441420664,45 67.99999279289668,45 82.00000720710332,45 95.99998558579335,45 110,45 110,53.00000180177583 110,61.00000360355166 110,68.99999639644834 110,76.99999819822418 110,85"
+      ],
+      "thumbnailSource": [
+        "40,45 54.00001441420664,45 67.99999279289668,45 82.00000720710332,45 95.99998558579335,45 110,45 110,53.00000180177583 110,61.00000360355166 110,68.99999639644834 110,76.99999819822418 110,85"
+      ],
+      "thumbnailCopy": [
+        "230,40 230,58.999996396448346 230,78.00000180177584 230,96.99999819822416 230,116.00000360355166 230,135 238.0000288284133,135 245.99998558579335,135 254.00001441420665,135 261.9999711715867,135 270,135"
+      ],
+      "sourcePixels": 70,
+      "differentPixels": 163,
+      "undoEvents": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "trusted": true,
+          "time": 7804.700000017881
+        },
+        {
+          "type": "click",
+          "trusted": true,
+          "time": 7804.700000017881
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "trusted": true,
+          "time": 7810.200000017881
+        }
+      ],
+      "committedBeforeSecondStroke": [
+        "30,140 40.99998558579336,142.00000720710332 52.00000720710332,143.99999639644832 62.99999279289668,146.00000360355165 74.00001441420665,147.99999279289668 85,150"
+      ],
+      "afterUndoAndMove": [
+        "30,140 40.99998558579336,142.00000720710332 52.00000720710332,143.99999639644832 62.99999279289668,146.00000360355165 74.00001441420665,147.99999279289668 85,150"
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "era": "then",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "source thumbnail equals stage ink",
+        "copy thumbnail equals copy stage ink",
+        "edited thumbnail visibly differs from blank",
+        "different drawings visibly distinguishable at native size",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Undo receives a trusted keyboard activation",
+        "Undo during stroke prevents stale input changing earlier stroke",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [],
+      "source": [
+        "39.59866220735786,44.94983277591973 53.51170568561873,44.94983277591973 67.4247491638796,44.94983277591973 81.33779264214047,44.94983277591973 95.25083612040135,44.94983277591973 109.1638795986622,44.94983277591973 109.1638795986622,52.441471571906355 109.1638795986622,59.93311036789297 109.1638795986622,68.49498327759197 109.1638795986622,75.9866220735786 109.1638795986622,84.54849498327759"
+      ],
+      "sourceAfterCopy": [
+        "39.59866220735786,44.94983277591973 53.51170568561873,44.94983277591973 67.4247491638796,44.94983277591973 81.33779264214047,44.94983277591973 95.25083612040135,44.94983277591973 109.1638795986622,44.94983277591973 109.1638795986622,52.441471571906355 109.1638795986622,59.93311036789297 109.1638795986622,68.49498327759197 109.1638795986622,75.9866220735786 109.1638795986622,84.54849498327759"
+      ],
+      "thumbnailSource": [
+        "39.59866220735786,44.94983277591973 53.51170568561873,44.94983277591973 67.4247491638796,44.94983277591973 81.33779264214047,44.94983277591973 95.25083612040135,44.94983277591973 109.1638795986622,44.94983277591973 109.1638795986622,52.441471571906355 109.1638795986622,59.93311036789297 109.1638795986622,68.49498327759197 109.1638795986622,75.9866220735786 109.1638795986622,84.54849498327759"
+      ],
+      "thumbnailCopy": [
+        "229.03010033444815,39.59866220735786 229.03010033444815,58.8628762541806 229.03010033444815,77.05685618729098 229.03010033444815,96.3210702341137 229.03010033444815,115.58528428093645 229.03010033444815,134.8494983277592 237.59197324414714,134.8494983277592 245.0836120401338,134.8494983277592 253.6454849498328,134.8494983277592 261.1371237458194,134.8494983277592 269.6989966555184,134.8494983277592"
+      ],
+      "sourcePixels": 70,
+      "differentPixels": 142,
+      "undoEvents": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "trusted": true,
+          "time": 9387
+        },
+        {
+          "type": "click",
+          "trusted": true,
+          "time": 9387
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "trusted": true,
+          "time": 9398
+        }
+      ],
+      "committedBeforeSecondStroke": [
+        "29.966555183946486,139.1304347826087 40.668896321070235,141.27090301003344 51.37123745819398,143.4113712374582 62.07357859531773,145.55183946488296 73.84615384615385,147.6923076923077 84.54849498327759,149.83277591973246"
+      ],
+      "afterUndoAndMove": [
+        "29.966555183946486,139.1304347826087 40.668896321070235,141.27090301003344 51.37123745819398,143.4113712374582 62.07357859531773,145.55183946488296 73.84615384615385,147.6923076923077 84.54849498327759,149.83277591973246"
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "era": "now",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "source thumbnail equals stage ink",
+        "copy thumbnail equals copy stage ink",
+        "edited thumbnail visibly differs from blank",
+        "different drawings visibly distinguishable at native size",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Undo receives a trusted keyboard activation",
+        "Undo during stroke prevents stale input changing earlier stroke",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [],
+      "source": [
+        "39.59866220735786,44.34782608695652 53.51170568561873,44.34782608695652 67.4247491638796,44.34782608695652 81.33779264214047,44.34782608695652 95.25083612040135,44.34782608695652 109.1638795986622,44.34782608695652 109.1638795986622,52.909698996655514 109.1638795986622,60.40133779264213 109.1638795986622,68.96321070234113 109.1638795986622,76.45484949832776 109.1638795986622,83.94648829431438"
+      ],
+      "sourceAfterCopy": [
+        "39.59866220735786,44.34782608695652 53.51170568561873,44.34782608695652 67.4247491638796,44.34782608695652 81.33779264214047,44.34782608695652 95.25083612040135,44.34782608695652 109.1638795986622,44.34782608695652 109.1638795986622,52.909698996655514 109.1638795986622,60.40133779264213 109.1638795986622,68.96321070234113 109.1638795986622,76.45484949832776 109.1638795986622,83.94648829431438"
+      ],
+      "thumbnailSource": [
+        "39.59866220735786,44.34782608695652 53.51170568561873,44.34782608695652 67.4247491638796,44.34782608695652 81.33779264214047,44.34782608695652 95.25083612040135,44.34782608695652 109.1638795986622,44.34782608695652 109.1638795986622,52.909698996655514 109.1638795986622,60.40133779264213 109.1638795986622,68.96321070234113 109.1638795986622,76.45484949832776 109.1638795986622,83.94648829431438"
+      ],
+      "thumbnailCopy": [
+        "229.03010033444815,38.99665551839465 229.03010033444815,58.2608695652174 229.03010033444815,77.52508361204013 229.03010033444815,96.78929765886288 229.03010033444815,114.98327759197323 229.03010033444815,134.247491638796 237.59197324414714,134.247491638796 245.0836120401338,134.247491638796 253.6454849498328,134.247491638796 261.1371237458194,134.247491638796 269.6989966555184,134.247491638796"
+      ],
+      "sourcePixels": 69,
+      "differentPixels": 148,
+      "undoEvents": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "trusted": true,
+          "time": 30039
+        },
+        {
+          "type": "click",
+          "trusted": true,
+          "time": 30039
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "trusted": true,
+          "time": 30049
+        }
+      ],
+      "committedBeforeSecondStroke": [
+        "29.966555183946486,139.59866220735788 40.668896321070235,141.73913043478262 51.37123745819398,143.87959866220734 62.07357859531773,144.94983277591973 73.84615384615385,147.09030100334448 84.54849498327759,149.23076923076923"
+      ],
+      "afterUndoAndMove": [
+        "29.966555183946486,139.59866220735788 40.668896321070235,141.73913043478262 51.37123745819398,143.87959866220734 62.07357859531773,144.94983277591973 73.84615384615385,147.09030100334448 84.54849498327759,149.23076923076923"
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "era": "then",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "source thumbnail equals stage ink",
+        "copy thumbnail equals copy stage ink",
+        "edited thumbnail visibly differs from blank",
+        "different drawings visibly distinguishable at native size",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Undo receives a trusted keyboard activation",
+        "Undo during stroke prevents stale input changing earlier stroke",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [],
+      "source": [
+        "39.745222929936304,44.840764331210195 52.9936305732484,44.840764331210195 67.26114649681529,44.840764331210195 81.52866242038216,44.840764331210195 95.79617834394904,44.840764331210195 109.04458598726114,44.840764331210195 109.04458598726114,52.9936305732484 109.04458598726114,60.12738853503185 109.04458598726114,68.28025477707006 109.04458598726114,76.43312101910828 109.04458598726114,84.5859872611465"
+      ],
+      "sourceAfterCopy": [
+        "39.745222929936304,44.840764331210195 52.9936305732484,44.840764331210195 67.26114649681529,44.840764331210195 81.52866242038216,44.840764331210195 95.79617834394904,44.840764331210195 109.04458598726114,44.840764331210195 109.04458598726114,52.9936305732484 109.04458598726114,60.12738853503185 109.04458598726114,68.28025477707006 109.04458598726114,76.43312101910828 109.04458598726114,84.5859872611465"
+      ],
+      "thumbnailSource": [
+        "39.745222929936304,44.840764331210195 52.9936305732484,44.840764331210195 67.26114649681529,44.840764331210195 81.52866242038216,44.840764331210195 95.79617834394904,44.840764331210195 109.04458598726114,44.840764331210195 109.04458598726114,52.9936305732484 109.04458598726114,60.12738853503185 109.04458598726114,68.28025477707006 109.04458598726114,76.43312101910828 109.04458598726114,84.5859872611465"
+      ],
+      "thumbnailCopy": [
+        "229.29936305732483,39.745222929936304 229.29936305732483,58.089171974522294 229.29936305732483,77.45222929936305 229.29936305732483,96.81528662420382 229.29936305732483,115.1592356687898 229.29936305732483,134.52229299363057 237.45222929936304,134.52229299363057 245.60509554140128,134.52229299363057 253.7579617834395,134.52229299363057 261.9108280254777,134.52229299363057 269.04458598726114,134.52229299363057"
+      ],
+      "sourcePixels": 66,
+      "differentPixels": 137,
+      "undoEvents": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "trusted": true,
+          "time": 20683
+        },
+        {
+          "type": "click",
+          "trusted": true,
+          "time": 20683
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "trusted": true,
+          "time": 20695
+        }
+      ],
+      "committedBeforeSecondStroke": [
+        "29.554140127388532,139.61783439490446 40.76433121019108,141.656050955414 51.974522292993626,143.69426751592357 62.16560509554141,145.7324840764331 73.37579617834395,147.77070063694268 84.5859872611465,149.80891719745222"
+      ],
+      "afterUndoAndMove": [
+        "29.554140127388532,139.61783439490446 40.76433121019108,141.656050955414 51.974522292993626,143.69426751592357 62.16560509554141,145.7324840764331 73.37579617834395,147.77070063694268 84.5859872611465,149.80891719745222"
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "era": "now",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "source thumbnail equals stage ink",
+        "copy thumbnail equals copy stage ink",
+        "edited thumbnail visibly differs from blank",
+        "different drawings visibly distinguishable at native size",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Undo receives a trusted keyboard activation",
+        "Undo during stroke prevents stale input changing earlier stroke",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [],
+      "source": [
+        "39.745222929936304,44.968152866242036 52.9936305732484,44.968152866242036 67.26114649681529,44.968152866242036 81.52866242038216,44.968152866242036 95.79617834394904,44.968152866242036 109.04458598726114,44.968152866242036 109.04458598726114,52.101910828025474 109.04458598726114,60.254777070063696 109.04458598726114,68.40764331210191 109.04458598726114,76.56050955414013 109.04458598726114,84.71337579617834"
+      ],
+      "sourceAfterCopy": [
+        "39.745222929936304,44.968152866242036 52.9936305732484,44.968152866242036 67.26114649681529,44.968152866242036 81.52866242038216,44.968152866242036 95.79617834394904,44.968152866242036 109.04458598726114,44.968152866242036 109.04458598726114,52.101910828025474 109.04458598726114,60.254777070063696 109.04458598726114,68.40764331210191 109.04458598726114,76.56050955414013 109.04458598726114,84.71337579617834"
+      ],
+      "thumbnailSource": [
+        "39.745222929936304,44.968152866242036 52.9936305732484,44.968152866242036 67.26114649681529,44.968152866242036 81.52866242038216,44.968152866242036 95.79617834394904,44.968152866242036 109.04458598726114,44.968152866242036 109.04458598726114,52.101910828025474 109.04458598726114,60.254777070063696 109.04458598726114,68.40764331210191 109.04458598726114,76.56050955414013 109.04458598726114,84.71337579617834"
+      ],
+      "thumbnailCopy": [
+        "229.29936305732483,39.87261146496815 229.29936305732483,58.216560509554135 229.29936305732483,77.57961783439491 229.29936305732483,96.94267515923566 229.29936305732483,115.28662420382166 229.29936305732483,134.6496815286624 237.45222929936304,134.6496815286624 245.60509554140128,134.6496815286624 253.7579617834395,134.6496815286624 261.9108280254777,134.6496815286624 269.04458598726114,134.6496815286624"
+      ],
+      "sourcePixels": 65,
+      "differentPixels": 136,
+      "undoEvents": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "trusted": true,
+          "time": 41866
+        },
+        {
+          "type": "click",
+          "trusted": true,
+          "time": 41866
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "trusted": true,
+          "time": 41876
+        }
+      ],
+      "committedBeforeSecondStroke": [
+        "29.554140127388532,139.74522292993632 40.76433121019108,141.78343949044586 51.974522292993626,143.82165605095543 62.16560509554141,145.859872611465 73.37579617834395,147.8980891719745 84.5859872611465,149.93630573248407"
+      ],
+      "afterUndoAndMove": [
+        "29.554140127388532,139.74522292993632 40.76433121019108,141.78343949044586 51.974522292993626,143.82165605095543 62.16560509554141,145.859872611465 73.37579617834395,147.8980891719745 84.5859872611465,149.93630573248407"
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 765,
+      "era": "then",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "source thumbnail equals stage ink",
+        "copy thumbnail equals copy stage ink",
+        "edited thumbnail visibly differs from blank",
+        "different drawings visibly distinguishable at native size",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Undo receives a trusted keyboard activation",
+        "Undo during stroke prevents stale input changing earlier stroke",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [],
+      "source": [
+        "39.664991624790616,44.89112227805695 53.60134003350084,44.89112227805695 67.53768844221105,44.89112227805695 81.47403685092128,44.89112227805695 95.41038525963148,44.89112227805695 109.3467336683417,44.89112227805695 109.3467336683417,52.39530988274707 109.3467336683417,60.971524288107204 109.3467336683417,68.47571189279732 109.3467336683417,75.97989949748744 109.3467336683417,84.55611390284757"
+      ],
+      "sourceAfterCopy": [
+        "39.664991624790616,44.89112227805695 53.60134003350084,44.89112227805695 67.53768844221105,44.89112227805695 81.47403685092128,44.89112227805695 95.41038525963148,44.89112227805695 109.3467336683417,44.89112227805695 109.3467336683417,52.39530988274707 109.3467336683417,60.971524288107204 109.3467336683417,68.47571189279732 109.3467336683417,75.97989949748744 109.3467336683417,84.55611390284757"
+      ],
+      "thumbnailSource": [
+        "39.664991624790616,44.89112227805695 53.60134003350084,44.89112227805695 67.53768844221105,44.89112227805695 81.47403685092128,44.89112227805695 95.41038525963148,44.89112227805695 109.3467336683417,44.89112227805695 109.3467336683417,52.39530988274707 109.3467336683417,60.971524288107204 109.3467336683417,68.47571189279732 109.3467336683417,75.97989949748744 109.3467336683417,84.55611390284757"
+      ],
+      "thumbnailCopy": [
+        "229.41373534338356,39.530988274706864 229.41373534338356,58.82747068676717 229.41373534338356,77.05192629815745 229.41373534338356,96.34840871021775 229.41373534338356,115.64489112227805 229.41373534338356,134.94137353433837 237.98994974874373,134.94137353433837 245.4941373534338,134.94137353433837 252.99832495812396,134.94137353433837 261.57453936348406,134.94137353433837 269.07872696817424,134.94137353433837"
+      ],
+      "sourcePixels": 70,
+      "differentPixels": 141,
+      "undoEvents": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "trusted": true,
+          "time": 36257
+        },
+        {
+          "type": "click",
+          "trusted": true,
+          "time": 36257
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "trusted": true,
+          "time": 36269
+        }
+      ],
+      "committedBeforeSecondStroke": [
+        "28.944723618090453,139.2294807370184 40.73701842546064,141.37353433835844 51.45728643216081,143.5175879396985 62.17755443886097,145.66164154103853 73.96984924623115,147.80569514237857 84.69011725293132,149.94974874371857"
+      ],
+      "afterUndoAndMove": [
+        "28.944723618090453,139.2294807370184 40.73701842546064,141.37353433835844 51.45728643216081,143.5175879396985 62.17755443886097,145.66164154103853 73.96984924623115,147.80569514237857 84.69011725293132,149.94974874371857"
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 765,
+      "era": "now",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "source thumbnail equals stage ink",
+        "copy thumbnail equals copy stage ink",
+        "edited thumbnail visibly differs from blank",
+        "different drawings visibly distinguishable at native size",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Undo receives a trusted keyboard activation",
+        "Undo during stroke prevents stale input changing earlier stroke",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [],
+      "source": [
+        "39.12897822445561,44.89112227805695 53.065326633165824,44.89112227805695 67.00167504187606,44.89112227805695 80.93802345058627,44.89112227805695 95.94639865996649,44.89112227805695 109.88274706867672,44.89112227805695 109.88274706867672,52.39530988274707 109.88274706867672,60.971524288107204 109.88274706867672,68.47571189279732 109.88274706867672,75.97989949748744 109.88274706867672,84.55611390284757"
+      ],
+      "sourceAfterCopy": [
+        "39.12897822445561,44.89112227805695 53.065326633165824,44.89112227805695 67.00167504187606,44.89112227805695 80.93802345058627,44.89112227805695 95.94639865996649,44.89112227805695 109.88274706867672,44.89112227805695 109.88274706867672,52.39530988274707 109.88274706867672,60.971524288107204 109.88274706867672,68.47571189279732 109.88274706867672,75.97989949748744 109.88274706867672,84.55611390284757"
+      ],
+      "thumbnailSource": [
+        "39.12897822445561,44.89112227805695 53.065326633165824,44.89112227805695 67.00167504187606,44.89112227805695 80.93802345058627,44.89112227805695 95.94639865996649,44.89112227805695 109.88274706867672,44.89112227805695 109.88274706867672,52.39530988274707 109.88274706867672,60.971524288107204 109.88274706867672,68.47571189279732 109.88274706867672,75.97989949748744 109.88274706867672,84.55611390284757"
+      ],
+      "thumbnailCopy": [
+        "229.9497487437186,39.530988274706864 229.9497487437186,58.82747068676717 229.9497487437186,77.05192629815745 229.9497487437186,96.34840871021775 229.9497487437186,115.64489112227805 229.9497487437186,134.94137353433837 237.4539363484087,134.94137353433837 244.95812395309883,134.94137353433837 253.53433835845894,134.94137353433837 261.0385259631491,134.94137353433837 269.6147403685092,134.94137353433837"
+      ],
+      "sourcePixels": 70,
+      "differentPixels": 163,
+      "undoEvents": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "trusted": true,
+          "time": 72724
+        },
+        {
+          "type": "click",
+          "trusted": true,
+          "time": 72724
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "trusted": true,
+          "time": 72732
+        }
+      ],
+      "committedBeforeSecondStroke": [
+        "29.48073701842546,139.2294807370184 40.201005025125625,141.37353433835844 51.99329983249581,143.5175879396985 62.713567839195974,145.66164154103853 73.43383584589616,147.80569514237857 84.15410385259632,149.94974874371857"
+      ],
+      "afterUndoAndMove": [
+        "29.48073701842546,139.2294807370184 40.201005025125625,141.37353433835844 51.99329983249581,143.5175879396985 62.713567839195974,145.66164154103853 73.43383584589616,147.80569514237857 84.15410385259632,149.94974874371857"
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "era": "then",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "source thumbnail equals stage ink",
+        "copy thumbnail equals copy stage ink",
+        "edited thumbnail visibly differs from blank",
+        "different drawings visibly distinguishable at native size",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Undo receives a trusted keyboard activation",
+        "Undo during stroke prevents stale input changing earlier stroke",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [],
+      "source": [
+        "39.557195571955724,44.87084870848709 53.7269372693727,44.87084870848709 67.89667896678966,44.87084870848709 81.47601476014759,44.87084870848709 95.64575645756457,44.87084870848709 109.81549815498155,44.87084870848709 109.81549815498155,52.54612546125461 109.81549815498155,60.811808118081174 109.81549815498155,68.48708487084872 109.81549815498155,76.75276752767527 109.81549815498155,84.4280442804428"
+      ],
+      "sourceAfterCopy": [
+        "39.557195571955724,44.87084870848709 53.7269372693727,44.87084870848709 67.89667896678966,44.87084870848709 81.47601476014759,44.87084870848709 95.64575645756457,44.87084870848709 109.81549815498155,44.87084870848709 109.81549815498155,52.54612546125461 109.81549815498155,60.811808118081174 109.81549815498155,68.48708487084872 109.81549815498155,76.75276752767527 109.81549815498155,84.4280442804428"
+      ],
+      "thumbnailSource": [
+        "39.557195571955724,44.87084870848709 53.7269372693727,44.87084870848709 67.89667896678966,44.87084870848709 81.47601476014759,44.87084870848709 95.64575645756457,44.87084870848709 109.81549815498155,44.87084870848709 109.81549815498155,52.54612546125461 109.81549815498155,60.811808118081174 109.81549815498155,68.48708487084872 109.81549815498155,76.75276752767527 109.81549815498155,84.4280442804428"
+      ],
+      "thumbnailCopy": [
+        "229.6678966789668,39.557195571955724 229.6678966789668,58.45018450184502 229.6678966789668,77.93357933579335 229.6678966789668,96.82656826568265 229.6678966789668,115.71955719557197 229.6678966789668,134.61254612546125 237.93357933579335,134.61254612546125 245.6088560885609,134.61254612546125 253.87453874538747,134.61254612546125 261.549815498155,134.61254612546125 269.8154981549816,134.61254612546125"
+      ],
+      "sourcePixels": 70,
+      "differentPixels": 140,
+      "undoEvents": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "trusted": true,
+          "time": 59263
+        },
+        {
+          "type": "click",
+          "trusted": true,
+          "time": 59263
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "trusted": true,
+          "time": 59278
+        }
+      ],
+      "committedBeforeSecondStroke": [
+        "29.520295202952028,139.92619926199262 40.738007380073796,141.69741697416973 51.95571955719557,143.46863468634686 62.5830258302583,145.83025830258305 73.80073800738008,147.60147601476015 84.4280442804428,149.9630996309963"
+      ],
+      "afterUndoAndMove": [
+        "29.520295202952028,139.92619926199262 40.738007380073796,141.69741697416973 51.95571955719557,143.46863468634686 62.5830258302583,145.83025830258305 73.80073800738008,147.60147601476015 84.4280442804428,149.9630996309963"
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "era": "now",
+      "checks": [
+        "stage stores real mouse stroke",
+        "source unchanged after copy edit",
+        "source thumbnail equals stage ink",
+        "copy thumbnail equals copy stage ink",
+        "edited thumbnail visibly differs from blank",
+        "different drawings visibly distinguishable at native size",
+        "onion toggle preserves current artwork",
+        "onion off removes adjacent layers",
+        "other era remains unedited",
+        "Undo stage empty",
+        "Undo thumbnail empty",
+        "cancel retains exact partial ink",
+        "cancelled stroke undoable once",
+        "cancelled stroke Undo leaves empty stage and thumbnail",
+        "Undo receives a trusted keyboard activation",
+        "Undo during stroke prevents stale input changing earlier stroke",
+        "Reset restores initial artwork and list"
+      ],
+      "failures": [],
+      "source": [
+        "39.557195571955724,44.87084870848709 53.7269372693727,44.87084870848709 67.89667896678966,44.87084870848709 81.47601476014759,44.87084870848709 95.64575645756457,44.87084870848709 109.81549815498155,44.87084870848709 109.81549815498155,52.54612546125461 109.81549815498155,60.811808118081174 109.81549815498155,68.48708487084872 109.81549815498155,76.75276752767527 109.81549815498155,84.4280442804428"
+      ],
+      "sourceAfterCopy": [
+        "39.557195571955724,44.87084870848709 53.7269372693727,44.87084870848709 67.89667896678966,44.87084870848709 81.47601476014759,44.87084870848709 95.64575645756457,44.87084870848709 109.81549815498155,44.87084870848709 109.81549815498155,52.54612546125461 109.81549815498155,60.811808118081174 109.81549815498155,68.48708487084872 109.81549815498155,76.75276752767527 109.81549815498155,84.4280442804428"
+      ],
+      "thumbnailSource": [
+        "39.557195571955724,44.87084870848709 53.7269372693727,44.87084870848709 67.89667896678966,44.87084870848709 81.47601476014759,44.87084870848709 95.64575645756457,44.87084870848709 109.81549815498155,44.87084870848709 109.81549815498155,52.54612546125461 109.81549815498155,60.811808118081174 109.81549815498155,68.48708487084872 109.81549815498155,76.75276752767527 109.81549815498155,84.4280442804428"
+      ],
+      "thumbnailCopy": [
+        "229.6678966789668,39.557195571955724 229.6678966789668,58.45018450184502 229.6678966789668,77.93357933579335 229.6678966789668,96.82656826568265 229.6678966789668,115.71955719557197 229.6678966789668,134.61254612546125 237.93357933579335,134.61254612546125 245.6088560885609,134.61254612546125 253.87453874538747,134.61254612546125 261.549815498155,134.61254612546125 269.8154981549816,134.61254612546125"
+      ],
+      "sourcePixels": 70,
+      "differentPixels": 140,
+      "undoEvents": [
+        {
+          "type": "keydown",
+          "key": "Enter",
+          "trusted": true,
+          "time": 113850.00000000001
+        },
+        {
+          "type": "click",
+          "trusted": true,
+          "time": 113850.00000000001
+        },
+        {
+          "type": "keyup",
+          "key": "Enter",
+          "trusted": true,
+          "time": 113858
+        }
+      ],
+      "committedBeforeSecondStroke": [
+        "29.520295202952028,139.92619926199262 40.738007380073796,141.69741697416973 51.95571955719557,143.46863468634686 62.5830258302583,145.83025830258305 73.80073800738008,147.60147601476015 84.4280442804428,149.9630996309963"
+      ],
+      "afterUndoAndMove": [
+        "29.520295202952028,139.92619926199262 40.738007380073796,141.69741697416973 51.95571955719557,143.46863468634686 62.5830258302583,145.83025830258305 73.80073800738008,147.60147601476015 84.4280442804428,149.9630996309963"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "notTested": [
+    "Physical Safari",
+    "VoiceOver",
+    "OS backgrounding"
+  ],
+  "chromium": "141.0.7390.37",
+  "webkit": "26.0",
+  "status": "FAIL"
+}

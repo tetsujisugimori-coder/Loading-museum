@@ -1,0 +1,1547 @@
+{
+  "kind": "implementation self-verification",
+  "head": "842142bb46d6d26aed696736cb6fec7ea3a4918c",
+  "tree": "32afa597cbf1179b3154fc70458a3d559e8aa3b4",
+  "exportRoot": "C:\\Users\\tetsu\\Documents\\Codex\\2026-11-03\\task-2\\loading-museum\\out",
+  "buildIndexHash": "8b2d6cd8bb0e6d625ebb976d2f05dd289f51526640478db3cbe69253893b81a8",
+  "cases": [
+    {
+      "engine": "webkit",
+      "era": "then",
+      "name": "horizontal",
+      "input": "trusted mouse drag + synthetic cancel; native touch NOT_TESTED",
+      "failures": [],
+      "scrollBefore": 5807,
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 127,
+          "y": 507,
+          "time": 763
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 127,
+          "y": 507,
+          "time": 764
+        },
+        {
+          "type": "gotpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 774
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 142,
+          "y": 507,
+          "time": 772
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 507,
+          "time": 803
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 172,
+          "y": 507,
+          "time": 833
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 187,
+          "y": 507,
+          "time": 864
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 202,
+          "y": 507,
+          "time": 894
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 217,
+          "y": 507,
+          "time": 926
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 232,
+          "y": 507,
+          "time": 956.0000000000001
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 247,
+          "y": 507,
+          "time": 987
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 247,
+          "y": 507,
+          "time": 1018
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 1019.0000000000001
+        }
+      ],
+      "scrollAfter": 5807,
+      "expected": {
+        "x": 224,
+        "y": 92
+      },
+      "actual": {
+        "x": 224,
+        "y": 91
+      },
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "era": "then",
+      "name": "vertical",
+      "input": "trusted mouse drag + synthetic cancel; native touch NOT_TESTED",
+      "failures": [],
+      "scrollBefore": 5727,
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 157,
+          "y": 566,
+          "time": 1275.0000000000002
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 566,
+          "time": 1276
+        },
+        {
+          "type": "gotpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 1283
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 578,
+          "time": 1281
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 590,
+          "time": 1313
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 602,
+          "time": 1344
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 614,
+          "time": 1374
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 626,
+          "time": 1406.0000000000002
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 639,
+          "time": 1436
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 651,
+          "time": 1467
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 663,
+          "time": 1499
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 157,
+          "y": 663,
+          "time": 1531.0000000000002
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 1532
+        }
+      ],
+      "scrollAfter": 5727,
+      "expected": {
+        "x": 128,
+        "y": 172.5
+      },
+      "actual": {
+        "x": 127,
+        "y": 172
+      },
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "era": "then",
+      "name": "diagonal",
+      "input": "trusted mouse drag + synthetic cancel; native touch NOT_TESTED",
+      "failures": [],
+      "scrollBefore": 5647,
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 112,
+          "y": 646,
+          "time": 1764
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 112,
+          "y": 646,
+          "time": 1765.0000000000002
+        },
+        {
+          "type": "gotpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 1782
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 127,
+          "y": 657,
+          "time": 1780
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 142,
+          "y": 667,
+          "time": 1812
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 678,
+          "time": 1843
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 172,
+          "y": 689,
+          "time": 1875
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 187,
+          "y": 700,
+          "time": 1905
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 202,
+          "y": 710,
+          "time": 1936
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 217,
+          "y": 721,
+          "time": 1968
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 232,
+          "y": 732,
+          "time": 1999
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 232,
+          "y": 732,
+          "time": 2028
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 2029
+        }
+      ],
+      "scrollAfter": 5647,
+      "expected": {
+        "x": 208,
+        "y": 161
+      },
+      "actual": {
+        "x": 208,
+        "y": 161
+      },
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "era": "then",
+      "name": "reverse",
+      "input": "trusted mouse drag + synthetic cancel; native touch NOT_TESTED",
+      "failures": [],
+      "scrollBefore": 5567,
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 127,
+          "y": 726,
+          "time": 2261
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 127,
+          "y": 726,
+          "time": 2262
+        },
+        {
+          "type": "gotpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 2278
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 142,
+          "y": 737,
+          "time": 2277
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 747,
+          "time": 2309
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 172,
+          "y": 758,
+          "time": 2340
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 187,
+          "y": 769,
+          "time": 2371
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 202,
+          "y": 780,
+          "time": 2402
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 217,
+          "y": 790,
+          "time": 2433
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 232,
+          "y": 801,
+          "time": 2463
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 247,
+          "y": 812,
+          "time": 2493
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 236,
+          "y": 805,
+          "time": 2524
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 224,
+          "y": 799,
+          "time": 2555
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 213,
+          "y": 792,
+          "time": 2586
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 202,
+          "y": 785,
+          "time": 2617
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 191,
+          "y": 778,
+          "time": 2647.0000000000005
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 180,
+          "y": 772,
+          "time": 2679.0000000000005
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 168,
+          "y": 765,
+          "time": 2713
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 758,
+          "time": 2741
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 157,
+          "y": 758,
+          "time": 2772.0000000000005
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 2773
+        }
+      ],
+      "scrollAfter": 5567,
+      "expected": {
+        "x": 128,
+        "y": 103.5
+      },
+      "actual": {
+        "x": 127,
+        "y": 103
+      },
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "era": "then",
+      "name": "cancel",
+      "input": "trusted mouse drag + synthetic cancel; native touch NOT_TESTED",
+      "failures": [],
+      "scrollBefore": 5487,
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 127,
+          "y": 806,
+          "time": 3626
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 127,
+          "y": 806,
+          "time": 3632
+        },
+        {
+          "type": "gotpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 3704
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 138,
+          "y": 814,
+          "time": 3694
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 150,
+          "y": 822,
+          "time": 3833
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 161,
+          "y": 830,
+          "time": 3971
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 172,
+          "y": 838,
+          "time": 4111
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 183,
+          "y": 846,
+          "time": 4243
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 194,
+          "y": 854,
+          "time": 4388
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 206,
+          "y": 862,
+          "time": 4531
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 217,
+          "y": 870,
+          "time": 4673
+        },
+        {
+          "type": "pointercancel",
+          "id": 1,
+          "trusted": false,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 4830
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 217,
+          "y": 870,
+          "time": 4834.000000000001
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 4835
+        }
+      ],
+      "scrollAfter": 5487,
+      "expected": {
+        "x": 192,
+        "y": 138
+      },
+      "actual": {
+        "x": 192,
+        "y": 137
+      },
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "era": "now",
+      "name": "horizontal",
+      "input": "trusted mouse drag + synthetic cancel; native touch NOT_TESTED",
+      "failures": [],
+      "scrollBefore": 6687,
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 127,
+          "y": 508,
+          "time": 6135
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 127,
+          "y": 508,
+          "time": 6140.000000000001
+        },
+        {
+          "type": "gotpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 6212
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 142,
+          "y": 508,
+          "time": 6199
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 508,
+          "time": 6349
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 172,
+          "y": 508,
+          "time": 6501
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 187,
+          "y": 508,
+          "time": 6645.000000000001
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 202,
+          "y": 508,
+          "time": 6787
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 217,
+          "y": 508,
+          "time": 6935.000000000001
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 232,
+          "y": 508,
+          "time": 7084.000000000001
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 247,
+          "y": 508,
+          "time": 7225.000000000001
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 247,
+          "y": 508,
+          "time": 7363
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 7371
+        }
+      ],
+      "scrollAfter": 6687,
+      "expected": {
+        "x": 224,
+        "y": 92
+      },
+      "actual": {
+        "x": 224,
+        "y": 91
+      },
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "era": "now",
+      "name": "vertical",
+      "input": "trusted mouse drag + synthetic cancel; native touch NOT_TESTED",
+      "failures": [],
+      "scrollBefore": 6607,
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 157,
+          "y": 567,
+          "time": 8777.000000000002
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 567,
+          "time": 8783
+        },
+        {
+          "type": "gotpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 8857
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 579,
+          "time": 8853
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 591,
+          "time": 8992
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 603,
+          "time": 9140
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 615,
+          "time": 9283
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 627,
+          "time": 9426
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 639,
+          "time": 9582
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 651,
+          "time": 9730
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 664,
+          "time": 9873
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 157,
+          "y": 664,
+          "time": 10015
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 10021
+        }
+      ],
+      "scrollAfter": 6607,
+      "expected": {
+        "x": 128,
+        "y": 172.5
+      },
+      "actual": {
+        "x": 127,
+        "y": 172
+      },
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "era": "now",
+      "name": "diagonal",
+      "input": "trusted mouse drag + synthetic cancel; native touch NOT_TESTED",
+      "failures": [],
+      "scrollBefore": 6527,
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 112,
+          "y": 647,
+          "time": 11377
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 112,
+          "y": 647,
+          "time": 11383
+        },
+        {
+          "type": "gotpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 11448
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 127,
+          "y": 658,
+          "time": 11444
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 142,
+          "y": 668,
+          "time": 11583
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 679,
+          "time": 11734
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 172,
+          "y": 690,
+          "time": 11883
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 187,
+          "y": 701,
+          "time": 12026
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 202,
+          "y": 711,
+          "time": 12169
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 217,
+          "y": 722,
+          "time": 12325.000000000002
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 232,
+          "y": 733,
+          "time": 12476
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 232,
+          "y": 733,
+          "time": 12623.000000000002
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 12629
+        }
+      ],
+      "scrollAfter": 6527,
+      "expected": {
+        "x": 208,
+        "y": 161
+      },
+      "actual": {
+        "x": 208,
+        "y": 161
+      },
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "era": "now",
+      "name": "reverse",
+      "input": "trusted mouse drag + synthetic cancel; native touch NOT_TESTED",
+      "failures": [],
+      "scrollBefore": 6447,
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 127,
+          "y": 727,
+          "time": 14015
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 127,
+          "y": 727,
+          "time": 14020
+        },
+        {
+          "type": "gotpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 14095
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 142,
+          "y": 738,
+          "time": 14088.000000000002
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 748,
+          "time": 14231
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 172,
+          "y": 759,
+          "time": 14373.000000000002
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 187,
+          "y": 770,
+          "time": 14518
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 202,
+          "y": 781,
+          "time": 14663
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 217,
+          "y": 791,
+          "time": 14807
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 232,
+          "y": 802,
+          "time": 14947.000000000002
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 247,
+          "y": 813,
+          "time": 15097
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 236,
+          "y": 806,
+          "time": 15239
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 224,
+          "y": 799,
+          "time": 15378
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 213,
+          "y": 793,
+          "time": 15517
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 202,
+          "y": 786,
+          "time": 15662
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 191,
+          "y": 779,
+          "time": 15805
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 180,
+          "y": 773,
+          "time": 15958
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 168,
+          "y": 766,
+          "time": 16100.000000000002
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 157,
+          "y": 759,
+          "time": 16243.000000000002
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 157,
+          "y": 759,
+          "time": 16389
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 16396
+        }
+      ],
+      "scrollAfter": 6447,
+      "expected": {
+        "x": 128,
+        "y": 103.5
+      },
+      "actual": {
+        "x": 127,
+        "y": 103
+      },
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "era": "now",
+      "name": "cancel",
+      "input": "trusted mouse drag + synthetic cancel; native touch NOT_TESTED",
+      "failures": [],
+      "scrollBefore": 6367,
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 127,
+          "y": 807,
+          "time": 17754
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 127,
+          "y": 807,
+          "time": 17760
+        },
+        {
+          "type": "gotpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 17834
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 138,
+          "y": 815,
+          "time": 17828
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 150,
+          "y": 823,
+          "time": 17970
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 161,
+          "y": 831,
+          "time": 18121
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 172,
+          "y": 839,
+          "time": 18265
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 183,
+          "y": 847,
+          "time": 18420
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 194,
+          "y": 855,
+          "time": 18564
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 206,
+          "y": 863,
+          "time": 18709
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "buttons": 1,
+          "x": 217,
+          "y": 871,
+          "time": 18854
+        },
+        {
+          "type": "pointercancel",
+          "id": 1,
+          "trusted": false,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 19016
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 217,
+          "y": 871,
+          "time": 19019.000000000004
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "trusted": true,
+          "buttons": 0,
+          "x": 0,
+          "y": 0,
+          "time": 19021
+        }
+      ],
+      "scrollAfter": 6367,
+      "expected": {
+        "x": 192,
+        "y": 138
+      },
+      "actual": {
+        "x": 192,
+        "y": 137
+      },
+      "status": "PASS"
+    }
+  ],
+  "notTested": [
+    "Physical Safari",
+    "WebKit trusted touch drag / native scroll arbitration (Playwright tap only)"
+  ],
+  "webkit": "26.0",
+  "status": "PASS"
+}

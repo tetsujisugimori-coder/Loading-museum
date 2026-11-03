@@ -1,0 +1,8 @@
+FAIL chromium 375 then [
+  'edited thumbnail visibly differs from blank',
+  'different drawings visibly distinguishable at native size'
+]
+FAIL chromium 375 now [
+  'edited thumbnail visibly differs from blank',
+  'different drawings visibly distinguishable at native size'
+]
