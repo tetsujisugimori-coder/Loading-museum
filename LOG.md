@@ -1,5 +1,10 @@
 # Loading Museum 作業ログ
 
+## 2026-11-03 — PR #56 全館CI件数不一致
+
+- 旧mainと提出HEADの同条件比較で、進行中PageDownと直接scrollの重複、および別awaitによる13/12観測競合を再現。3568同時snapshotに件数不一致なし。製品コードを変更せず、同時snapshot・有界収束・行ID範囲検査へ修正。失敗を即時検出する負例3種も追加。
+- [根因・比較・初回失敗証拠](docs/maintenance/stage2b-ci-rootcause-20261103/README.md)を追加。確定HEAD試験/CIおよび別担当による独立再レビューはPRへ追記し、自己検証と区別する。#54/#44の残件を維持。
+
 ## 2026-11-03 — WAAPI Stage 2B 判定時間軸（Issue #55）
 
 - 最新origin/main `26dae458be5df77bfc4f78f350996f3d375045ed`から専用ブランチで開始。作業開始時に未コミット変更なし。実集計は全館251展示・13室、WAAPI47件。

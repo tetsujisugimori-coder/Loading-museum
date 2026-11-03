@@ -204,6 +204,7 @@ jobs:
           set -o pipefail
           export PLAYWRIGHT_MODULE="$RUNNER_TEMP/practical-playwright/node_modules/playwright"
           node scripts/verify-phase5a-browser.mjs 2>&1 | tee phase5a-browser.log
+          node scripts/verify-phase5a-observer-controls.mjs phase5a-browser-evidence/observer-controls.json 2>&1 | tee phase5a-observer-controls.log
       - name: Phase 5A focused deletion, date and chips regressions
         env:
           BROWSERS: ${{ matrix.browser }}
@@ -219,5 +220,6 @@ jobs:
           path: |
             phase5a-browser-evidence/
             phase5a-browser.log
+            phase5a-observer-controls.log
             phase5a-focus-evidence/
             phase5a-focus.log
