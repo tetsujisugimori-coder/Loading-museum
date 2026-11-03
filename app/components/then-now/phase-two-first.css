@@ -1,0 +1,12 @@
+.tn2Surface{display:block;width:100%;height:auto;aspect-ratio:320/230;border:1px solid #7b7185;overflow:hidden;background:#172432}
+.tn2Drag{touch-action:pan-y;cursor:ew-resize}
+.tn2MenuWorld{position:relative;width:100%;aspect-ratio:320/260;overflow:hidden;border:1px solid #7b7185;isolation:isolate}
+.tn2MenuWorld>svg{width:100%;height:100%;display:block}
+.tn2Destination,.tn2Hub{position:absolute;transform:translate(-50%,-50%);min-width:44px;min-height:44px;padding:6px;color:#fff1d4;background:#24333b;border:1px solid #bcae9a;font:600 12px/1.4 ui-monospace,monospace;cursor:pointer}
+.tn2Destination[aria-pressed=true]{background:#61494f;box-shadow:0 0 0 2px #ffe5a2}
+.tn2Destination:disabled{pointer-events:none}
+.tn2Hub{left:50%;top:46.1538%;z-index:8;border-radius:50%;width:52px;height:52px;background:#51374e;border:2px solid #f5d1a4}
+.isNow .tn2Hub{border-radius:0;background:#315c61}
+.tn2DestinationDetail{border-left:3px solid;padding:10px 12px;background:#ffffff08;min-height:126px}
+.tn2DestinationDetail strong{font:12px ui-monospace,monospace;letter-spacing:.12em;color:#f9e9d0}
+.tn2DestinationDetail svg{display:block;width:100%;max-height:55px}
