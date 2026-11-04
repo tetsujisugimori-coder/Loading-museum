@@ -1,0 +1,30 @@
+{
+  "results": [
+    {
+      "name": "move-no-op",
+      "exit": 1,
+      "status": "REJECTED",
+      "test": "tests/phase5b-editors.test.tsx"
+    },
+    {
+      "name": "wrong-card-identity",
+      "exit": 1,
+      "status": "REJECTED",
+      "test": "tests/phase5b-editors.test.tsx"
+    },
+    {
+      "name": "cycle-accepted",
+      "exit": 1,
+      "status": "REJECTED",
+      "test": "tests/phase5b-editors.test.tsx"
+    },
+    {
+      "name": "diff-order-reversed",
+      "exit": 1,
+      "status": "REJECTED",
+      "test": "tests/phase5b-compare.test.tsx"
+    }
+  ],
+  "restored": true,
+  "complete": true
+}

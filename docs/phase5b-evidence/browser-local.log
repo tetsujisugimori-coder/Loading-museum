@@ -1,0 +1,7 @@
+locator.selectOption: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator('.phase4Room').getByTestId('phase5b-stage').getByLabel('遘ｻ蜍募・', { exact: true })
+
+    at C:\Users\tetsu\Documents\Codex\2026-11-04\task-4\loading-museum\scripts\verify-phase5b-browser.mjs:32:24 {
+  name: 'TimeoutError'
+}

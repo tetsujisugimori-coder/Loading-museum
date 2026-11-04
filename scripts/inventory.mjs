@@ -38,4 +38,6 @@ let hasPhase4b=false;try{read('app/data/phase4bExhibits.ts');hasPhase4b=true;}ca
 if(hasPhase4b) counts.phase4b=data('phase4bExhibits').phase4bExhibits.length;
 let hasPhase5a=false;try{read('app/data/phase5aExhibits.ts');hasPhase5a=true;}catch{}
 if(hasPhase5a) counts.phase5a=data('phase5aExhibits').phase5aExhibits.length;
+let hasPhase5b=false;try{read('app/data/phase5bExhibits.ts');hasPhase5b=true;}catch{}
+if(hasPhase5b) counts.phase5b=data('phase5bExhibits').phase5bExhibits.length;
 console.log(JSON.stringify({ref:ref||'working-tree',counts,total:Object.values(counts).reduce((a,b)=>a+b,0)},null,2));

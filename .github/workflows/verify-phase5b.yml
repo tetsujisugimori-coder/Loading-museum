@@ -1,0 +1,49 @@
+name: Verify practical phase 5B
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  state-and-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint && npm run typecheck && npx vitest run --maxWorkers=2 tests/phase5b-editors.test.tsx tests/phase5b-compare.test.tsx tests/phase5b-registration.test.tsx && npm run build
+      - name: Fixed external browser harness
+        run: |
+          npm install --prefix "$RUNNER_TEMP/phase5b-playwright" --no-save playwright@1.56.1
+          if [ -f /etc/apt/apt-mirrors.txt ]; then
+            printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt
+          fi
+          printf 'Acquire::http::Timeout "30";\nAcquire::https::Timeout "30";\nAcquire::Retries "1";\n' | sudo tee /etc/apt/apt.conf.d/99-museum-network-bounds
+          "$RUNNER_TEMP/phase5b-playwright/node_modules/.bin/playwright" install --with-deps ${{ matrix.browser }}
+      - name: Four widths, both motion preferences, state and display
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          WIDTHS: 375,390,765,1280
+          EVIDENCE_DIR: work/phase5b-browser
+          REQUIRE_CLEAN: '1'
+        run: |
+          set -o pipefail
+          mkdir -p work
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/phase5b-playwright/node_modules/playwright"
+          node scripts/verify-phase5b-browser.mjs 2>&1 | tee work/phase5b-browser.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: phase5b-${{ matrix.browser }}-${{ github.event.pull_request.head.sha }}
+          path: work/

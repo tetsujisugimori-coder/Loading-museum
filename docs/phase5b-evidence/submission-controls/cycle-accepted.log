@@ -1,0 +1,51 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum
+
+ ❯ tests/phase5b-editors.test.tsx (9 tests | 2 failed) 324ms
+   ✓ moves stable IDs across columns and within destination; invalid moves preserve data 1ms
+   ✓ history forks after undo, ignores no-op, and reset discards future 0ms
+   ✓ kanban CRUD, reorder then edit, draft cancellation and undo preserve identities 129ms
+   × flow rejects self, duplicate, cycle and dangling relations; deletion cascades 4ms
+     → expected '' to contain '循環'
+   × flow UI keeps graph and layout in history, deletes focused target, supports empty/reset 28ms
+     → expected [ { from: 'n1', to: 'n2' }, …(1) ] to have a length of 1 but got 2
+   ✓ time model rejects malformed, off-grid, reverse and boundary violations; touching is not overlap 0ms
+   ✓ schedule saves real times, overlap IDs, cancels draft and restores deletion/reset 67ms
+   ✓ kanban handles empty data and new stable IDs after reset without resurrecting deleted drafts 54ms
+   ✓ schedule handles all deletions, invalid off-grid edits, empty cancellation and fresh creation 39ms
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 7 passed (9)
+   Start at  02:20:32
+   Duration  999ms (transform 88ms, setup 0ms, collect 188ms, tests 324ms, environment 293ms, prepare 60ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/phase5b-editors.test.tsx > flow rejects self, duplicate, cycle and dangling relations; deletion cascades
+AssertionError: expected '' to contain '循環'
+
+- Expected
++ Received
+
+- 循環
+
+ ❯ tests/phase5b-editors.test.tsx:24:175
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/phase5b-editors.test.tsx > flow UI keeps graph and layout in history, deletes focused target, supports empty/reset
+AssertionError: expected [ { from: 'n1', to: 'n2' }, …(1) ] to have a length of 1 but got 2
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ tests/phase5b-editors.test.tsx:27:180
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+

@@ -1,0 +1,54 @@
+PASS chromium 375 no-preference kanban-board
+PASS chromium 375 no-preference node-flow-editor
+PASS chromium 375 no-preference schedule-grid
+PASS chromium 375 no-preference diff-viewer
+PASS chromium 375 no-preference theme-studio
+PASS chromium 375 no-preference shortcut-recorder
+PASS webkit 375 no-preference kanban-board
+AssertionError [ERR_ASSERTION]: Cancelled pointer must not commit later
++ actual - expected
+
+  '{\n' +
+    '  "nodes": [\n' +
+    '    {\n' +
+    '      "id": "n1",\n' +
+    '      "title": "入力",\n' +
++   '      "x": 20,\n' +
++   '      "y": 28\n' +
+-   '      "x": 10,\n' +
+-   '      "y": 20\n' +
+    '    },\n' +
+    '    {\n' +
+    '      "id": "n2",\n' +
+    '      "title": "変換",\n' +
+    '      "x": 55,\n' +
+
+    at cancelDrag (file:///C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum/scripts/verify-phase5b-browser.mjs:19:536)
+    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum/scripts/verify-phase5b-browser.mjs:57:121 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '{\n' +
+    '  "nodes": [\n' +
+    '    {\n' +
+    '      "id": "n1",\n' +
+    '      "title": "入力",\n' +
+    '      "x": 20,\n' +
+    '      "y": 28\n' +
+    '    },\n' +
+    '    {\n' +
+    '      "id": "n2",\n' +
+    '...',
+  expected: '{\n' +
+    '  "nodes": [\n' +
+    '    {\n' +
+    '      "id": "n1",\n' +
+    '      "title": "入力",\n' +
+    '      "x": 10,\n' +
+    '      "y": 20\n' +
+    '    },\n' +
+    '    {\n' +
+    '      "id": "n2",\n' +
+    '...',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

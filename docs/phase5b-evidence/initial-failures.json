@@ -1,0 +1,10 @@
+{
+  "policy": "Initial failures are retained; no skip, retry or timeout extension used to conceal them.",
+  "baseline": {"main":"bc99d0617f5459e2bbe508b36575c8d8e4489d6e","existingTests":"PASS; baseline-tests.log"},
+  "failures": [
+    {"stage":"first editor tests","passed":6,"failed":1,"reason":"Test assumed a selected node after Reset although earlier deletion cleared selection","category":"test precondition","fix":"Explicitly select n1 before deleting it; no assertion removed","subsequent":"7/7 PASS"},
+    {"stage":"first lint","reason":"Kanban read drag.current.id while rendering insertion indices","category":"implementation","fix":"Use dragId state for rendered identity; pointer ownership remains in ref","subsequent":"lint PASS"},
+    {"stage":"first typecheck","reason":"Testing Library ByRoleOptions does not support exact property","category":"test implementation","fix":"Use its exact string name matching","subsequent":"typecheck PASS"},
+    {"stage":"first compare/registration tests","passed":5,"failed":8,"reasons":["Default comparison sample contained one contiguous hunk but test expected two","Label implicitly associated both output and input","Six registration cases lacked jsdom matchMedia/IntersectionObserver stubs for existing initial player"],"fixes":["Add actual common separator line between change intervals so navigation is demonstrable","Use non-labellable span for supplementary setting values","Provide existing browser APIs in test environment"],"subsequent":"all 20 new tests PASS"}
+  ]
+}

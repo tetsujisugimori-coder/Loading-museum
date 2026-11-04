@@ -1,0 +1,53 @@
+{
+  "head": "0d78da0c35cad2624ca047a0b7a980ca9473013c",
+  "tree": "c62eb72bb5cb78da8329bf22bcc136f4b3ea83b9",
+  "trackedChanges": "",
+  "platform": "win32",
+  "node": "v24.20.0",
+  "started": "2026-11-03T16:54:14.063Z",
+  "expected": 1,
+  "cases": [],
+  "files": [],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: Cancelled pointer must not commit later\n+ actual - expected\n\n  '{\\n' +\n    '  \"nodes\": [\\n' +\n    '    {\\n' +\n    '      \"id\": \"n1\",\\n' +\n    '      \"title\": \"入力\",\\n' +\n+   '      \"x\": 20,\\n' +\n+   '      \"y\": 27\\n' +\n-   '      \"x\": 10,\\n' +\n-   '      \"y\": 20\\n' +\n    '    },\\n' +\n    '    {\\n' +\n    '      \"id\": \"n2\",\\n' +\n    '      \"title\": \"変換\",\\n' +\n    '      \"x\": 55,\\n' +\n\n    at cancelDrag (file:///C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum/scripts/verify-phase5b-browser.mjs:20:797)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum/scripts/verify-phase5b-browser.mjs:58:121"
+  ],
+  "notTested": [
+    "physical iPhone Safari",
+    "VoiceOver",
+    "OS capture loss",
+    "WebKit native touch drag"
+  ],
+  "webkit": "26.0",
+  "current": {
+    "engine": "webkit",
+    "width": 375,
+    "reducedMotion": "no-preference",
+    "id": "node-flow-editor"
+  },
+  "cancelFocus": [
+    {
+      "case": {
+        "engine": "webkit",
+        "width": 375,
+        "reducedMotion": "no-preference",
+        "id": "node-flow-editor"
+      },
+      "phase": "down",
+      "focused": "omitted full body serialization; focusedTag preserves observed focus",
+      "focusedTag": "body"
+    },
+    {
+      "case": {
+        "engine": "webkit",
+        "width": 375,
+        "reducedMotion": "no-preference",
+        "id": "node-flow-editor"
+      },
+      "phase": "escape",
+      "focused": "omitted full body serialization; focusedTag preserves observed focus",
+      "focusedTag": "body"
+    }
+  ],
+  "finished": "2026-11-03T16:54:16.910Z",
+  "complete": false
+}

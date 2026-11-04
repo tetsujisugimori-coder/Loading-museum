@@ -1,3 +1,7 @@
+## 2026-11-04 実用UI 第5期B / Issue #59
+
+編集・配置・比較・設定の6作品を追加。257→263展示・13室。履歴管理、安定ID、実データ差分、preview限定テーマ、領域限定キー登録。WebKitのEscape取消不達をclean旧HEADで再現し、専用ハンドルの既定動作とfocus保持を根本修正。検証結果・途中失敗・未検証・独立引継ぎは docs/phase5b-studies.md とIssue/PRへ記録。Draft解除・マージ・デプロイなし。
+
 # Loading Museum 作業ログ
 
 ## 2026-11-03 — PR #56 全館CI件数不一致

@@ -1,0 +1,83 @@
+{
+  "head": "0d78da0c35cad2624ca047a0b7a980ca9473013c",
+  "tree": "c62eb72bb5cb78da8329bf22bcc136f4b3ea83b9",
+  "trackedChanges": "M app/components/practical/Phase5BEditors.tsx\n M scripts/verify-phase5b-browser.mjs",
+  "platform": "win32",
+  "node": "v24.20.0",
+  "started": "2026-11-03T16:56:01.480Z",
+  "expected": 1,
+  "cases": [
+    {
+      "engine": "webkit",
+      "width": 375,
+      "reducedMotion": "no-preference",
+      "id": "node-flow-editor",
+      "status": "PASS",
+      "input": "trusted touch tap + native mouse drag + keyboard",
+      "geometry": {
+        "viewport": 375,
+        "scroll": 375
+      },
+      "pageerrors": 0
+    }
+  ],
+  "files": [
+    {
+      "name": "webkit-375-no-preference-node-flow-editor.png",
+      "sha256": "67662c7319fe93b14c78c614f2f2f7ea606d26b6a80eeb59cc45aebba5afbc06",
+      "bytes": 67727
+    }
+  ],
+  "errors": [],
+  "notTested": [
+    "physical iPhone Safari",
+    "VoiceOver",
+    "OS capture loss",
+    "WebKit native touch drag"
+  ],
+  "sourceSHA256": {
+    "app/components/PracticalRoom.tsx": "5b3400a8c2f2ad4d9d4c65555dc445e036c62ecabb9c3de5b3f03c4bd182f227",
+    "app/components/practical/Phase5BCompare.tsx": "46c3c9b70e7c74404f16b2f13c3f8a44a4b4c4c593be573d8e9027c9f74fe12e",
+    "app/components/practical/Phase5BEditors.tsx": "04aec9e44d7ca8ee418b2d02b86f6ea036da7de85315da830b4c54bf03b2ebae",
+    "app/components/practical/Phase5BPlayer.tsx": "bf8eb3d84a1a31175ca3c041cb7461d96ce013e7ef97553f79d18141f9e7912a",
+    "app/components/practical/Phase5BShared.tsx": "28da13353b63fd97f7afa8e6bbb6064d69bfdf7159089bbbe6527214392d4419",
+    "app/components/practical/Phase5BShortcuts.tsx": "1e54ceac296acdb4a1aa2cb4dc3d78bcd21687d139177bea8faf6d94e599728f",
+    "app/components/practical/phase5b-history.ts": "65f96610581271039bab0b215e863631016c39e38eb318f33f1f77a67f7fbb6a",
+    "app/components/practical/phase5b-model.ts": "9da8b293e1a320fc9eac6ea2f8cde2b3392d10962f4c331067993cd6d45d9077",
+    "app/components/practical/phase5b.css": "d8a60aafd15fc07fafdacae16ddcb5edcdf6b7be55eb23bf15d83bfdfe812fd0",
+    "app/data/phase5bExhibits.ts": "fdffa300631d04caaa7e71d2f52c1db9e76bab18c5f00c73b74d0350a18ad244",
+    "app/page.tsx": "91d8f1aa4d5f7a2abc8d39e20d07f20e922b4257ffcbaaee2712f887e3338806"
+  },
+  "exportSHA256": "58e7458bbb0d53c4b9cf1c120483974229b6b7eacd4bc86ca6cc58ce173c19a6",
+  "webkit": "26.0",
+  "current": {
+    "engine": "webkit",
+    "width": 375,
+    "reducedMotion": "no-preference",
+    "id": "node-flow-editor"
+  },
+  "cancelFocus": [
+    {
+      "case": {
+        "engine": "webkit",
+        "width": 375,
+        "reducedMotion": "no-preference",
+        "id": "node-flow-editor"
+      },
+      "phase": "down",
+      "focused": "{\"tag\":\"BUTTON\",\"label\":\"n1をドラッグ\"}"
+    },
+    {
+      "case": {
+        "engine": "webkit",
+        "width": 375,
+        "reducedMotion": "no-preference",
+        "id": "node-flow-editor"
+      },
+      "phase": "escape",
+      "focused": "{\"tag\":\"BUTTON\",\"label\":\"n1をドラッグ\"}"
+    }
+  ],
+  "finished": "2026-11-03T16:56:06.339Z",
+  "complete": true
+}

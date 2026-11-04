@@ -1,0 +1,1066 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-4/loading-museum
+
+ ❯ tests/phase5b-editors.test.tsx (9 tests | 2 failed) 352ms
+   × moves stable IDs across columns and within destination; invalid moves preserve data 5ms
+     → expected [ 'c3', 'c2' ] to deeply equal [ 'c3', 'c1' ]
+   ✓ history forks after undo, ignores no-op, and reset discards future 0ms
+   × kanban CRUD, reorder then edit, draft cancellation and undo preserve identities 126ms
+     → Unable to find an accessible element with the role "button" and name "編集を保存"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"p5bIntro"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Kanban Board":
+  [36m<h4 />[39m
+
+  Name "カードの配置":
+  [36m<h5[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  Name "Plan 1":
+  [36m<h6 />[39m
+
+  Name "In progress 2":
+  [36m<h6 />[39m
+
+  Name "Done 0":
+  [36m<h6 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Undo":
+  [36m<button />[39m
+
+  Name "Redo":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Reset":
+  [36m<button />[39m
+
+  Name "設計を描く":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+  [36m/>[39m
+
+  Name "c2をドラッグ":
+  [36m<button[39m
+    [33maria-label[39m=[32m"c2をドラッグ"[39m
+    [33mclass[39m=[32m"p5bDrag"[39m
+  [36m/>[39m
+
+  Name "操作を試す":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+  [36m/>[39m
+
+  Name "c3をドラッグ":
+  [36m<button[39m
+    [33maria-label[39m=[32m"c3をドラッグ"[39m
+    [33mclass[39m=[32m"p5bDrag"[39m
+  [36m/>[39m
+
+  Name "設計を描く":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+  [36m/>[39m
+
+  Name "c2をドラッグ":
+  [36m<button[39m
+    [33maria-label[39m=[32m"c2をドラッグ"[39m
+    [33mclass[39m=[32m"p5bDrag"[39m
+  [36m/>[39m
+
+  Name "カード追加":
+  [36m<button />[39m
+
+  Name "選択カードを編集":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "選択カードを削除":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "移動を確定":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "Plan":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Plan"[39m
+  [36m/>[39m
+
+  Name "In progress":
+  [36m<section[39m
+    [33maria-label[39m=[32m"In progress"[39m
+  [36m/>[39m
+
+  Name "Done":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Done"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "カード名":
+  [36m<input[39m
+    [33maria-label[39m=[32m"カード名"[39m
+    [33mmaxlength[39m=[32m"80"[39m
+    [33mvalue[39m=[32m"修正版"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "移動代替操作 / 選択: なし":
+  [36m<fieldset />[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"p5bData"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "移動先":
+  [36m<select[39m
+    [33maria-label[39m=[32m"移動先"[39m
+  [36m/>[39m
+
+  Name "挿入位置":
+  [36m<select[39m
+    [33maria-label[39m=[32m"挿入位置"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "Plan":
+  [36m<option[39m
+    [33mvalue[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "In progress":
+  [36m<option[39m
+    [33mvalue[39m=[32m"1"[39m
+  [36m/>[39m
+
+  Name "Done":
+  [36m<option[39m
+    [33mvalue[39m=[32m"2"[39m
+  [36m/>[39m
+
+  Name "1番目":
+  [36m<option[39m
+    [33mvalue[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "2番目":
+  [36m<option[39m
+    [33mvalue[39m=[32m"1"[39m
+  [36m/>[39m
+
+  Name "3番目":
+  [36m<option[39m
+    [33mvalue[39m=[32m"2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<p[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"p5b"[39m
+      [33mdata-demo[39m=[32m"kanban"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"p5bIntro"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0m01[0m
+          [0m / INTERACTION WORKSHOP[0m
+        [36m</span>[39m
+        [36m<h4>[39m
+          [0mKanban Board[0m
+        [36m</h4>[39m
+        [36m<p>[39m
+          [0mカードの場所が、そのまま仕事の状態。専用ハンドルで運ぶか、下の移動フォームを使います。移動途中のEscape・指の取消は確定しません。[0m
+        [36m</p>[39m
+      [36m</header>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"p5bToolbar"[39m
+      [36m>[39m
+        [36m<button>[39m
+          [0mUndo[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0mRedo[0m
+        [36m</button>[39m
+        [36m<button>[39m
+          [0mReset[0m
+        [36m</button>[39m
+        [36m<small>[39m
+          [0m履歴は直近50操作。保存・通信なし。[0m
+        [36m</small>[39m
+      [36m</div>[39m
+      [36m<h5[39m
+        [33mtabindex[39m=[32m"-1"[39m
+      [36m>[39m
+        [0mカードの配置[0m
+      [36m</h5>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"p5bKanban"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Plan"[39m
+        [36m>[39m
+          [36m<h6>[39m
+            [0mPlan[0m
+            [0m [0m
+            [36m<span>[39m
+              [0m1[0m
+            [36m</span>[39m
+          [36m</h6>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bDrop"[39m
+            [33mdata-active[39m=[32m"false"[39m
+            [33mdata-drop-column[39m=[32m"0"[39m
+            [33mdata-drop-index[39m=[32m"0"[39m
+          [36m>[39m
+            [0m·[0m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bCard"[39m
+            [33mdata-card-id[39m=[32m"c2"[39m
+            [33mdata-selected[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<small>[39m
+              [0mc2[0m
+            [36m</small>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"false"[39m
+            [36m>[39m
+              [0m設計を描く[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"c2をドラッグ"[39m
+              [33mclass[39m=[32m"p5bDrag"[39m
+            [36m>[39m
+              [0m⠿ 移動[0m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bDrop"[39m
+            [33mdata-active[39m=[32m"false"[39m
+            [33mdata-drop-column[39m=[32m"0"[39m
+            [33mdata-drop-index[39m=[32m"1"[39m
+          [36m>[39m
+            [0m·[0m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"In progress"[39m
+        [36m>[39m
+          [36m<h6>[39m
+            [0mIn progress[0m
+            [0m [0m
+            [36m<span>[39m
+              [0m2[0m
+            [36m</span>[39m
+          [36m</h6>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bDrop"[39m
+            [33mdata-active[39m=[32m"false"[39m
+            [33mdata-drop-column[39m=[32m"1"[39m
+            [33mdata-drop-index[39m=[32m"0"[39m
+          [36m>[39m
+            [0m·[0m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bCard"[39m
+            [33mdata-card-id[39m=[32m"c3"[39m
+            [33mdata-selected[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<small>[39m
+              [0mc3[0m
+            [36m</small>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"false"[39m
+            [36m>[39m
+              [0m操作を試す[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"c3をドラッグ"[39m
+              [33mclass[39m=[32m"p5bDrag"[39m
+            [36m>[39m
+              [0m⠿ 移動[0m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bDrop"[39m
+            [33mdata-active[39m=[32m"false"[39m
+            [33mdata-drop-column[39m=[32m"1"[39m
+            [33mdata-drop-index[39m=[32m"1"[39m
+          [36m>[39m
+            [0m·[0m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bCard"[39m
+            [33mdata-card-id[39m=[32m"c2"[39m
+            [33mdata-selected[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<small>[39m
+              [0mc2[0m
+            [36m</small>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"false"[39m
+            [36m>[39m
+              [0m設計を描く[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"c2をドラッグ"[39m
+              [33mclass[39m=[32m"p5bDrag"[39m
+            [36m>[39m
+              [0m⠿ 移動[0m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bDrop"[39m
+            [33mdata-active[39m=[32m"false"[39m
+            [33mdata-drop-column[39m=[32m"1"[39m
+            [33mdata-drop-index[39m=[32m"2"[39m
+          [36m>[39m
+            [0m·[0m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Done"[39m
+        [36m>[39m
+          [36m<h6>[39m
+            [0mDone[0m
+            [0m [0m
+            [36m<span>[39m
+              [0m0[0m
+            [36m</span>[39m
+          [36m</h6>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bDrop"[39m
+            [33mdata-active[39m=[32m"false"[39m
+            [33mdata-drop-column[39m=[32m"2"[39m
+            [33mdata-drop-index[39m=[32m"0"[39m
+          [36m>[39m
+            [0m·[0m
+          [36m</div>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"p5bFields"[39m
+      [36m>[39m
+        [36m<label>[39m
+          [0mカード名[0m
+          [36m<input[39m
+            [33maria-label[39m=[32m"カード名"[39m
+            [33mmaxlength[39m=[32m"80"[39m
+            [33mvalue[39m=[32m"修正版"[39m
+          [36m/>[39m
+        [36m</label>[39m
+        [36m<button>[39m
+          [0mカード追加[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0m選択カードを編集[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0m選択カードを削除[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<fieldset>[39m
+        [36m<legend>[39m
+          [0m移動代替操作 / 選択: [0m
+          [0mなし[0m
+        [36m</legend>[39m
+        [36m<label>[39m
+          [0m移動先[0m
+          [36m<select[39m
+            [33maria-label[39m=[32m"移動先"[39m
+          [36m>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"0"[39m
+            [36m>[39m
+              [0mPlan[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"1"[39m
+            [36m>[39m
+              [0mIn progress[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"2"[39m
+            [36m>[39m
+              [0mDone[0m
+            [36m</option>[39m
+          [36m</select>[39m
+        [36m</label>[39m
+        [36m<label>[39m
+          [0m挿入位置[0m
+          [36m<select[39m
+            [33maria-label[39m=[32m"挿入位置"[39m
+          [36m>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"0"[39m
+            [36m>[39m
+              [0m1[0m
+              [0m番目[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"1"[39m
+            [36m>[39m
+              [0m2[0m
+              [0m番目[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"2"[39m
+            [36m>[39m
+              [0m3[0m
+              [0m番目[0m
+            [36m</option>[39m
+          [36m</select>[39m
+        [36m</label>[39m
+        [36m<button[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0m移動を確定[0m
+        [36m</button>[39m
+      [36m</fieldset>[39m
+      [36m<p[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [0mc1 → In progress の 2 番目[0m
+      [36m</p>[39m
+      [36m<details[39m
+        [33mclass[39m=[32m"p5bData"[39m
+      [36m>[39m
+        [36m<summary>[39m
+          [0m確定データを見る[0m
+        [36m</summary>[39m
+        [36m<pre[39m
+          [33mdata-testid[39m=[32m"committed-data"[39m
+        [36m>[39m
+          [0m[
+  {
+    "id": "c2",
+    "title": "設計を描く",
+    "column": 0
+  },
+  {
+    "id": "c3",
+    "title": "操作を試す",
+    "column": 1
+  },
+  {
+    "id": "c2",
+    "title": "設計を描く",
+    "column": 1
+  }
+][0m
+        [36m</pre>[39m
+      [36m</details>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+   ✓ flow rejects self, duplicate, cycle and dangling relations; deletion cascades 0ms
+   ✓ flow UI keeps graph and layout in history, deletes focused target, supports empty/reset 70ms
+   ✓ time model rejects malformed, off-grid, reverse and boundary violations; touching is not overlap 0ms
+   ✓ schedule saves real times, overlap IDs, cancels draft and restores deletion/reset 59ms
+   ✓ kanban handles empty data and new stable IDs after reset without resurrecting deleted drafts 49ms
+   ✓ schedule handles all deletions, invalid off-grid edits, empty cancellation and fresh creation 41ms
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 7 passed (9)
+   Start at  02:20:30
+   Duration  1.04s (transform 81ms, setup 0ms, collect 188ms, tests 352ms, environment 293ms, prepare 62ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/phase5b-editors.test.tsx > moves stable IDs across columns and within destination; invalid moves preserve data
+AssertionError: expected [ 'c3', 'c2' ] to deeply equal [ 'c3', 'c1' ]
+
+- Expected
++ Received
+
+  [
+    "c3",
+-   "c1",
++   "c2",
+  ]
+
+ ❯ tests/phase5b-editors.test.tsx:13:97
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/phase5b-editors.test.tsx > kanban CRUD, reorder then edit, draft cancellation and undo preserve identities
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "編集を保存"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"p5bIntro"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Kanban Board":
+  [36m<h4 />[39m
+
+  Name "カードの配置":
+  [36m<h5[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  Name "Plan 1":
+  [36m<h6 />[39m
+
+  Name "In progress 2":
+  [36m<h6 />[39m
+
+  Name "Done 0":
+  [36m<h6 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Undo":
+  [36m<button />[39m
+
+  Name "Redo":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Reset":
+  [36m<button />[39m
+
+  Name "設計を描く":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+  [36m/>[39m
+
+  Name "c2をドラッグ":
+  [36m<button[39m
+    [33maria-label[39m=[32m"c2をドラッグ"[39m
+    [33mclass[39m=[32m"p5bDrag"[39m
+  [36m/>[39m
+
+  Name "操作を試す":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+  [36m/>[39m
+
+  Name "c3をドラッグ":
+  [36m<button[39m
+    [33maria-label[39m=[32m"c3をドラッグ"[39m
+    [33mclass[39m=[32m"p5bDrag"[39m
+  [36m/>[39m
+
+  Name "設計を描く":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+  [36m/>[39m
+
+  Name "c2をドラッグ":
+  [36m<button[39m
+    [33maria-label[39m=[32m"c2をドラッグ"[39m
+    [33mclass[39m=[32m"p5bDrag"[39m
+  [36m/>[39m
+
+  Name "カード追加":
+  [36m<button />[39m
+
+  Name "選択カードを編集":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "選択カードを削除":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "移動を確定":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "Plan":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Plan"[39m
+  [36m/>[39m
+
+  Name "In progress":
+  [36m<section[39m
+    [33maria-label[39m=[32m"In progress"[39m
+  [36m/>[39m
+
+  Name "Done":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Done"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "カード名":
+  [36m<input[39m
+    [33maria-label[39m=[32m"カード名"[39m
+    [33mmaxlength[39m=[32m"80"[39m
+    [33mvalue[39m=[32m"修正版"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "移動代替操作 / 選択: なし":
+  [36m<fieldset />[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"p5bData"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "移動先":
+  [36m<select[39m
+    [33maria-label[39m=[32m"移動先"[39m
+  [36m/>[39m
+
+  Name "挿入位置":
+  [36m<select[39m
+    [33maria-label[39m=[32m"挿入位置"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "Plan":
+  [36m<option[39m
+    [33mvalue[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "In progress":
+  [36m<option[39m
+    [33mvalue[39m=[32m"1"[39m
+  [36m/>[39m
+
+  Name "Done":
+  [36m<option[39m
+    [33mvalue[39m=[32m"2"[39m
+  [36m/>[39m
+
+  Name "1番目":
+  [36m<option[39m
+    [33mvalue[39m=[32m"0"[39m
+  [36m/>[39m
+
+  Name "2番目":
+  [36m<option[39m
+    [33mvalue[39m=[32m"1"[39m
+  [36m/>[39m
+
+  Name "3番目":
+  [36m<option[39m
+    [33mvalue[39m=[32m"2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<p[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"p5b"[39m
+      [33mdata-demo[39m=[32m"kanban"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"p5bIntro"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0m01[0m
+          [0m / INTERACTION WORKSHOP[0m
+        [36m</span>[39m
+        [36m<h4>[39m
+          [0mKanban Board[0m
+        [36m</h4>[39m
+        [36m<p>[39m
+          [0mカードの場所が、そのまま仕事の状態。専用ハンドルで運ぶか、下の移動フォームを使います。移動途中のEscape・指の取消は確定しません。[0m
+        [36m</p>[39m
+      [36m</header>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"p5bToolbar"[39m
+      [36m>[39m
+        [36m<button>[39m
+          [0mUndo[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0mRedo[0m
+        [36m</button>[39m
+        [36m<button>[39m
+          [0mReset[0m
+        [36m</button>[39m
+        [36m<small>[39m
+          [0m履歴は直近50操作。保存・通信なし。[0m
+        [36m</small>[39m
+      [36m</div>[39m
+      [36m<h5[39m
+        [33mtabindex[39m=[32m"-1"[39m
+      [36m>[39m
+        [0mカードの配置[0m
+      [36m</h5>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"p5bKanban"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Plan"[39m
+        [36m>[39m
+          [36m<h6>[39m
+            [0mPlan[0m
+            [0m [0m
+            [36m<span>[39m
+              [0m1[0m
+            [36m</span>[39m
+          [36m</h6>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bDrop"[39m
+            [33mdata-active[39m=[32m"false"[39m
+            [33mdata-drop-column[39m=[32m"0"[39m
+            [33mdata-drop-index[39m=[32m"0"[39m
+          [36m>[39m
+            [0m·[0m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bCard"[39m
+            [33mdata-card-id[39m=[32m"c2"[39m
+            [33mdata-selected[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<small>[39m
+              [0mc2[0m
+            [36m</small>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"false"[39m
+            [36m>[39m
+              [0m設計を描く[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"c2をドラッグ"[39m
+              [33mclass[39m=[32m"p5bDrag"[39m
+            [36m>[39m
+              [0m⠿ 移動[0m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bDrop"[39m
+            [33mdata-active[39m=[32m"false"[39m
+            [33mdata-drop-column[39m=[32m"0"[39m
+            [33mdata-drop-index[39m=[32m"1"[39m
+          [36m>[39m
+            [0m·[0m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"In progress"[39m
+        [36m>[39m
+          [36m<h6>[39m
+            [0mIn progress[0m
+            [0m [0m
+            [36m<span>[39m
+              [0m2[0m
+            [36m</span>[39m
+          [36m</h6>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bDrop"[39m
+            [33mdata-active[39m=[32m"false"[39m
+            [33mdata-drop-column[39m=[32m"1"[39m
+            [33mdata-drop-index[39m=[32m"0"[39m
+          [36m>[39m
+            [0m·[0m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bCard"[39m
+            [33mdata-card-id[39m=[32m"c3"[39m
+            [33mdata-selected[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<small>[39m
+              [0mc3[0m
+            [36m</small>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"false"[39m
+            [36m>[39m
+              [0m操作を試す[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"c3をドラッグ"[39m
+              [33mclass[39m=[32m"p5bDrag"[39m
+            [36m>[39m
+              [0m⠿ 移動[0m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bDrop"[39m
+            [33mdata-active[39m=[32m"false"[39m
+            [33mdata-drop-column[39m=[32m"1"[39m
+            [33mdata-drop-index[39m=[32m"1"[39m
+          [36m>[39m
+            [0m·[0m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bCard"[39m
+            [33mdata-card-id[39m=[32m"c2"[39m
+            [33mdata-selected[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<small>[39m
+              [0mc2[0m
+            [36m</small>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"false"[39m
+            [36m>[39m
+              [0m設計を描く[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"c2をドラッグ"[39m
+              [33mclass[39m=[32m"p5bDrag"[39m
+            [36m>[39m
+              [0m⠿ 移動[0m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bDrop"[39m
+            [33mdata-active[39m=[32m"false"[39m
+            [33mdata-drop-column[39m=[32m"1"[39m
+            [33mdata-drop-index[39m=[32m"2"[39m
+          [36m>[39m
+            [0m·[0m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Done"[39m
+        [36m>[39m
+          [36m<h6>[39m
+            [0mDone[0m
+            [0m [0m
+            [36m<span>[39m
+              [0m0[0m
+            [36m</span>[39m
+          [36m</h6>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p5bDrop"[39m
+            [33mdata-active[39m=[32m"false"[39m
+            [33mdata-drop-column[39m=[32m"2"[39m
+            [33mdata-drop-index[39m=[32m"0"[39m
+          [36m>[39m
+            [0m·[0m
+          [36m</div>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"p5bFields"[39m
+      [36m>[39m
+        [36m<label>[39m
+          [0mカード名[0m
+          [36m<input[39m
+            [33maria-label[39m=[32m"カード名"[39m
+            [33mmaxlength[39m=[32m"80"[39m
+            [33mvalue[39m=[32m"修正版"[39m
+          [36m/>[39m
+        [36m</label>[39m
+        [36m<button>[39m
+          [0mカード追加[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0m選択カードを編集[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0m選択カードを削除[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<fieldset>[39m
+        [36m<legend>[39m
+          [0m移動代替操作 / 選択: [0m
+          [0mなし[0m
+        [36m</legend>[39m
+        [36m<label>[39m
+          [0m移動先[0m
+          [36m<select[39m
+            [33maria-label[39m=[32m"移動先"[39m
+          [36m>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"0"[39m
+            [36m>[39m
+              [0mPlan[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"1"[39m
+            [36m>[39m
+              [0mIn progress[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"2"[39m
+            [36m>[39m
+              [0mDone[0m
+            [36m</option>[39m
+          [36m</select>[39m
+        [36m</label>[39m
+        [36m<label>[39m
+          [0m挿入位置[0m
+          [36m<select[39m
+            [33maria-label[39m=[32m"挿入位置"[39m
+          [36m>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"0"[39m
+            [36m>[39m
+              [0m1[0m
+              [0m番目[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"1"[39m
+            [36m>[39m
+              [0m2[0m
+              [0m番目[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"2"[39m
+            [36m>[39m
+              [0m3[0m
+              [0m番目[0m
+            [36m</option>[39m
+          [36m</select>[39m
+        [36m</label>[39m
+        [36m<button[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0m移動を確定[0m
+        [36m</button>[39m
+      [36m</fieldset>[39m
+      [36m<p[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [0mc1 → In progress の 2 番目[0m
+      [36m</p>[39m
+      [36m<details[39m
+        [33mclass[39m=[32m"p5bData"[39m
+      [36m>[39m
+        [36m<summary>[39m
+          [0m確定データを見る[0m
+        [36m</summary>[39m
+        [36m<pre[39m
+          [33mdata-testid[39m=[32m"committed-data"[39m
+        [36m>[39m
+          [0m[
+  {
+    "id": "c2",
+    "title": "設計を描く",
+    "column": 0
+  },
+  {
+    "id": "c3",
+    "title": "操作を試す",
+    "column": 1
+  },
+  {
+    "id": "c2",
+    "title": "設計を描く",
+    "column": 1
+  }
+][0m
+        [36m</pre>[39m
+      [36m</details>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ click tests/phase5b-editors.test.tsx:9:51
+      7| import {historyReducer} from '../app/components/practical/phase5b-hist…
+      8| afterEach(cleanup);
+      9| const click=(name:string)=>fireEvent.click(screen.getByRole('button',{…
+       |                                                   ^
+     10| const change=(name:string,value:string)=>fireEvent.change(screen.getBy…
+     11| const data=()=>JSON.parse(screen.getByTestId('committed-data').textCon…
+ ❯ tests/phase5b-editors.test.tsx:20:116
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
