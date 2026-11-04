@@ -1,0 +1,348 @@
+
+> loading-museum@0.1.0 check
+> npm run lint && npm run typecheck && npm test
+
+
+> loading-museum@0.1.0 lint
+> eslint .
+
+
+> loading-museum@0.1.0 typecheck
+> tsc --noEmit
+
+
+> loading-museum@0.1.0 test
+> npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run --maxWorkers=2 tests/practical-b.test.tsx tests/practical-runtime.test.tsx tests/practical-a.test.tsx tests/practical-room.test.tsx tests/phase2-elastic.test.ts tests/phase2-regression.test.tsx tests/phase2-b.test.tsx tests/phase2-room.test.tsx tests/modern-mesh.test.ts tests/modern-drift-geometry.test.ts tests/modern-lens.test.tsx tests/modern-menu.test.tsx tests/paper-exhibit.test.tsx tests/glass-exhibit.test.tsx tests/modern-animation.test.tsx tests/macintosh-system-choice.test.tsx tests/waapi-samples.test.ts tests/waapi-gallery.test.tsx tests/waapi-interaction-state.test.ts tests/waapi-game-regressions.test.tsx tests/waapi-hp-regression.test.tsx tests/waapi-cascade-motion.test.tsx tests/dom11-selection.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-stage1-menu-coin.test.tsx && vitest run --maxWorkers=2 tests/phase4a.test.tsx && vitest run --maxWorkers=2 tests/phase4b-interactions.test.tsx tests/phase4b-async.test.tsx && vitest run --maxWorkers=2 tests/phase5-data.test.tsx tests/phase5-navigation.test.tsx && vitest run --maxWorkers=2 tests/phase5-focus-revision.test.tsx && vitest run --maxWorkers=2 tests/then-now-first.test.tsx tests/then-now-second.test.tsx tests/then-now-registration.test.ts tests/then-now-visibility.test.tsx && vitest run --maxWorkers=2 tests/waapi-observation.test.tsx tests/waapi-observation-independent.test.tsx && vitest run --maxWorkers=2 tests/waapi-stage2b.test.tsx && vitest run --maxWorkers=2 tests/then-now-phase2-first.test.tsx tests/then-now-phase2-second.test.tsx tests/then-now-phase2-card.test.tsx tests/then-now-phase2-registration.test.ts && vitest run --maxWorkers=2 tests/phase5b-editors.test.tsx tests/phase5b-compare.test.tsx tests/phase5b-registration.test.tsx && vitest run --maxWorkers=2 tests/pan-zoom.test.tsx
+
+
+> loading-museum@0.1.0 build
+> next build
+
+笆ｲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+笨・Compiled successfully in 1001ms
+  Running TypeScript ...
+  Finished TypeScript in 11.8s ...
+  Collecting page data using 4 workers ...
+  Generating static pages using 4 workers (0/3) ...
+笨・Generating static pages using 4 workers (3/3) in 485ms
+  Finalizing page optimization ...
+
+Route (app)
+笏・笳・/
+笏・笳・/_not-found
+
+
+笳・ (Static)  prerendered as static content
+
+笨・Read Me縺ｮ螳溽洸蠖｢縺ｯ繧ｴ繝溽ｮｱ縺ｸ蝗帶婿蜷代°繧蛾㍾縺ｪ繧・(0.5074ms)
+笨・System 1竊・竊・竊・竊・繧偵け繝ｪ繝・け逶ｸ蠖薙・謫堺ｽ懊〒騾｣邯夐∈謚槭☆繧・(0.4932ms)
+笨・System 5繧脱nter縲ヾystem 6繧担pace逶ｸ蠖薙・謫堺ｽ懊〒驕ｸ謚槭☆繧・(0.1675ms)
+笨・loading縺九ｉ譛蛻昴・蟷ｴ莉｣縺ｸ遘ｻ陦後☆繧・(0.6971ms)
+笨・蟷ｴ莉｣縺斐→縺ｫeraIndex縺碁ｲ繧 (0.0932ms)
+笨・騾壼ｸｸ蟷ｴ莉｣縺ｯ蜈ｱ騾壹・蠕・ｩ滓凾髢薙ｒ菴ｿ縺・(0.097ms)
+笨・譛蠕後・蟷ｴ莉｣縺縺鷹聞縺・ｾ・ｩ滓凾髢薙ｒ菴ｿ縺・(0.5235ms)
+笨・譛蠕後・蟷ｴ莉｣蠕後↓index-complete縺ｸ遘ｻ陦後☆繧・(0.1182ms)
+笨・index-complete蠕後↓typing縺ｸ遘ｻ陦後☆繧・(0.0768ms)
+笨・繧ｿ繧､繝医Ν譁・ｭ玲焚縺・譁・ｭ励★縺､蠅励∴繧・(0.0557ms)
+笨・繧ｿ繧､繝医Ν蜈ｨ譁・ｒtyping迥ｶ諷九〒菫晄戟縺吶ｋ (0.0538ms)
+笨・繧ｿ繧､繝医Ν蜈ｨ譁・｡ｨ遉ｺ蠕後↓typing-hold縺ｸ遘ｻ陦後☆繧・(0.0672ms)
+笨・typing-hold蠕後↓signal-lock縺ｮbrighten縺ｸ遘ｻ陦後☆繧・(0.12ms)
+笨・signal-lock縺ｯbrighten縺九ｉnoise縺ｸ騾ｲ繧 (0.0717ms)
+笨・signal-lock縺ｯnoise縺九ｉlocked縺ｸ騾ｲ繧 (0.0557ms)
+笨・signal-lock縺ｮlocked蠕後↓complete縺ｸ騾ｲ繧 (0.1042ms)
+笨・complete莉･髯阪・迥ｶ諷九′騾ｲ縺ｾ縺ｪ縺・(0.068ms)
+笨・complete迥ｶ諷九・譛蠕後・蟷ｴ莉｣縺ｨ繧ｿ繧､繝医Ν蜈ｨ譁・ｒ菫晄戟縺吶ｋ (0.1655ms)
+笨・Replay縺ｯrunId繧貞｢励ｄ縺・(0.092ms)
+笨・Replay縺ｯ蛻晄悄迥ｶ諷九∈謌ｻ縺・(0.5877ms)
+笨・蜿､縺вunId縺ｫ繧医ｋ繧ｿ繧､繝槭・譖ｴ譁ｰ繧堤┌隕悶☆繧・(0.0664ms)
+笨・reduced motion縺ｯ蜊ｳ譎Ｄomplete縺ｫ縺ｪ繧・(0.0457ms)
+笨・蟷ｴ莉｣襍ｰ譟ｻ荳ｭ縺ｮ轤ｹ轣ｯ謨ｰ縺ｨ繝弱・繝臥憾諷九ｒeraIndex縺九ｉ邂怜・縺吶ｋ (0.0853ms)
+笨・蟷ｴ莉｣襍ｰ譟ｻ螳御ｺ・ｾ後・蜈ｨ繧ｿ繧､繝繝ｩ繧､繝ｳ繝弱・繝峨′轤ｹ轣ｯ縺吶ｋ (0.0741ms)
+笨・繧ｿ繧､繝繝ｩ繧､繝ｳ騾ｲ謐礼紫繧貞ｹｴ莉｣莉ｶ謨ｰ縺ｨ迴ｾ蝨ｨ菴咲ｽｮ縺九ｉ邂怜・縺吶ｋ (0.0613ms)
+笨・蟷ｴ莉｣縺・莉ｶ縺ｧ繧ょｮ牙・縺ｪ騾ｲ謐礼紫繧定ｿ斐＠縲∝ｮ御ｺ・焚繧剃ｻｶ謨ｰ蜀・∈蛻ｶ髯舌☆繧・(0.0423ms)
+笨・蜈ｨ蟷ｴ莉｣縺ｨ蜈ｨ譎る俣螳壽焚繧剃ｸ縺区園縺ｧ邂｡逅・☆繧・(0.063ms)
+笨・GitHub Pages逕ｨ縺ｮ髱咏噪HTML縺ｸ9遞ｮ鬘槭・螻慕､ｺ繧呈嶌縺榊・縺・(20.8918ms)
+笨・豁｣蠑丞錐遘ｰ縺ｮ繧ｿ繧､繝医Ν蟆主・縲∝ｹｴ莉｣繝・・繝槭∫｢ｺ螳壽ｼ泌・縲∬ｻｽ貂帙Δ繝ｼ繧ｷ繝ｧ繝ｳ縺ｨ蜀咲函謫堺ｽ懊ｒ螳溯｣・☆繧・(2.1173ms)
+笨・譌｢蟄・螻慕､ｺ縺ｮ荳九∈髢峨§縺櫪S-DOS螻慕､ｺ螳､縺ｨ8遞ｮ鬘槭・螻慕､ｺ繧呈嶌縺榊・縺・(1.7305ms)
+笨・繧ｫ繝ｼ繧ｽ繝ｫ螻慕､ｺ螳､縺ｨ8遞ｮ鬘槭・菴馴ｨ灘ｱ慕､ｺ繧呈嶌縺榊・縺・(2.2825ms)
+笨・繧ｫ繝ｼ繧ｽ繝ｫ螻慕､ｺ縺ｮ繝・・繧ｿ縲￣ointer Events縲∵ｧ閭ｽ縺ｨ繧｢繧ｯ繧ｻ繧ｷ繝薙Μ繝・ぅ蟇ｾ蠢懊ｒ螳溯｣・☆繧・(3.233ms)
+笨・Macintosh隱慕函螻慕､ｺ螳､繧貞刈縺医◆螻慕､ｺ螳､繝ｻ螻慕､ｺ莉ｶ謨ｰ繧定｡ｨ遉ｺ縺吶ｋ (2.4538ms)
+笨・Macintosh隱慕函螻慕､ｺ螳､縺ｸ18遞ｮ鬘槭・謫堺ｽ懷ｱ慕､ｺ繧呈嶌縺榊・縺・(3.7362ms)
+笨・Apple I / Apple II 螻慕､ｺ螳､縺ｸ蝗譫憺未菫ゅ′蛻・°繧・3螻慕､ｺ繧貞ｮ溯｣・☆繧・(4.3821ms)
+笨・Flash迚ｹ蛻･螻慕､ｺ螳､縺ｸ18繧ｫ繝・ざ繝ｪ繝ｻ66螻慕､ｺ縺ｨ蜆ｪ蜈医ョ繝｢繧貞ｮ溯｣・☆繧・(2.608ms)
+笨・蜀肴､懆ｨ弱＠縺・螻慕､ｺ縺ｨ迴ｾ莉｣Web邯呎価豈碑ｼ・ｒ蟆ら畑螳溯｣・↓縺吶ｋ (2.6848ms)
+笨・Flash繝舌リ繝ｼ縺ｮCTA繧貞ｮ牙・縺ｫ2蝗槫ｼｷ隱ｿ縺励∽ｾ｡譬ｼ縺ｨreduced motion繧定ｪｿ謨ｴ縺吶ｋ (1.9483ms)
+笨・Flash蟆ら畑螻慕､ｺ縺ｮ迥ｶ諷矩・遘ｻ縲∝●豁｢蛻ｶ蠕｡縲∵桃菴懷庄閭ｽ縺ｪARIA讒矩繧貞ｮ溯｣・☆繧・(1.9208ms)
+笨・MS-DOS螻慕､ｺ螳､縺ｮ荳九∈髢峨§縺櫚inux / UNIX螻慕､ｺ螳､縺ｨ5遞ｮ鬘槭・繝・Δ繧呈嶌縺榊・縺・(1.923ms)
+笨・迢ｬ遶九＠縺滓ｶ医∴縺欅S螻慕､ｺ螳､縺ｸ6 OS繝ｻ18遞ｮ鬘槭・Loading蜀肴ｧ区・繧呈嶌縺榊・縺・(3.3287ms)
+笨・螻慕､ｺ螳､縺ｮ繝・・繧ｿ螳夂ｾｩ縺ｨ繧ｿ繧､繝槭・蛛懈ｭ｢繝ｻ繝輔か繝ｼ繧ｫ繧ｹ蠕ｩ蟶ｰ繧貞ｮ溯｣・☆繧・(0.6983ms)
+笨・豸医∴縺欅S螻慕､ｺ縺ｮ繝・・繧ｿ繝ｻ襍ｷ蜍輔・蛛懈ｭ｢繝ｻreduced motion繧貞ｮ溯｣・☆繧・(0.9546ms)
+笨・Linux / UNIX繝・Δ縺ｮ蜀榊ｮ溯｡後・騾溷ｺｦ蛻・崛繝ｻ螳牙・縺ｪ蛛懈ｭ｢繧貞ｮ溯｣・☆繧・(0.8063ms)
+笨・CSS縺ｨJavaScript繧鱈oading-museum繧ｵ繝悶ヱ繧ｹ縺九ｉ蜿ら・縺吶ｋ (1.7827ms)
+笨・髱咏噪export險ｭ螳壹→譌｢蟄倥Ξ繧ｹ繝昴Φ繧ｷ繝悶・reduced-motion蟇ｾ蠢懊ｒ邯ｭ謖√☆繧・(2.1421ms)
+笨・System 1縲・縺ｮbutton讒矩縺ｨ髱槭せ繧ｯ繝ｭ繝ｼ繝ｫgrid繧帝撕逧・↓邯ｭ謖√☆繧・(0.8797ms)
+笨・DOM ANIMATION ROOM 繧帝撕逧ЗTML縺ｸ蜃ｺ蜉帙＠縲・7謫堺ｽ懊・API菴馴ｨ薙ｒ遒ｺ隱阪☆繧・(2.9514ms)
+笨・譌｢蟄倥Ο繝ｼ繝・ぅ繝ｳ繧ｰ讓呎悽縺ｮ逶ｴ荳九↓縲・≦蟒ｶ逕滓・縺吶ｋWAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ繧定ｿｽ蜉縺吶ｋ (1.3395ms)
+邃ｹ tests 49
+邃ｹ suites 0
+邃ｹ pass 49
+邃ｹ fail 0
+邃ｹ cancelled 0
+邃ｹ skipped 0
+邃ｹ todo 0
+邃ｹ duration_ms 219.8053
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ 笨・tests/waapi-game-regressions.test.tsx (15 tests) 114ms
+ 笨・tests/waapi-cascade-motion.test.tsx (14 tests) 219ms
+ 笨・tests/waapi-stage1-expanded.test.tsx (23 tests) 310ms
+ 笨・tests/phase2-regression.test.tsx (7 tests) 451ms
+ 笨・tests/practical-b.test.tsx (6 tests) 268ms
+ 笨・tests/waapi-stage1-menu-coin.test.tsx (5 tests) 877ms
+ 笨・tests/waapi-gallery.test.tsx (12 tests) 8026ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> 蛻晄悄DOM繧帝≦蟒ｶ縺励∵ｭ｣隕丞喧讀懃ｴ｢繝ｻ隗｣髯､繝ｻ髢矩哩繧呈桶縺・ 367ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> 譁ｰ縺励＞繧ｲ繝ｼ繝讓呎悽縲・霆ｸ繝輔ぅ繝ｫ繧ｿ繝ｼ縲、I蜈ｱ騾夂憾諷九ｒ謫堺ｽ懊〒縺阪ｋ  372ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> AI豈碑ｼ・Δ繝ｼ繝峨・荳諡ｬ繝輔ぉ繝ｼ繧ｺ繧帝ｲ繧√・哩縺倥ｋ縺ｨ繝ｫ繝ｼ繝励ｒ蛛懈ｭ｢縺吶ｋ  1463ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> 霑ｽ蜉繧ｲ繝ｼ繝14莉ｶ縺ｯ蝗ｺ譛吋OM繝ｻ迥ｶ諷九・謫堺ｽ懃ｵ先棡繧呈署萓帙☆繧・ 3838ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> Card Deal縺ｮ蜈ｨ蟾･遞九→AI縺ｮ螳御ｺ・・繧ｨ繝ｩ繝ｼ繝ｻ繝ｪ繧ｻ繝・ヨ繧呈桃菴懊〒縺阪ｋ  1190ms
+ 笨・tests/glass-exhibit.test.tsx (3 tests) 126ms
+ 笨・tests/practical-a.test.tsx (8 tests) 207ms
+ 笨・tests/waapi-hp-regression.test.tsx (4 tests) 744ms
+ 笨・tests/paper-exhibit.test.tsx (3 tests) 87ms
+ 笨・tests/dom11-selection.test.tsx (4 tests) 801ms
+   笨・DOM11 陦ｨ遉ｺ逡ｪ蜿ｷ縺ｮ蛛ｶ謨ｰ驕ｸ謚・> reset縺ｧ驕ｸ謚槭→繝弱・繝峨ｒ髯､縺阪∝・螳溯｡後→騾｣邯壼・逕溘〒繧ょ酔縺・莉ｶ縺ｨ驕ｸ謚樣寔蜷医ｒ菫昴▽  386ms
+ 笨・tests/phase2-room.test.tsx (4 tests) 134ms
+ 笨・tests/modern-animation.test.tsx (3 tests) 100ms
+ 笨・tests/phase2-b.test.tsx (4 tests) 129ms
+ 笨・tests/practical-runtime.test.tsx (1 test) 12ms
+ 笨・tests/modern-lens.test.tsx (1 test) 54ms
+ 笨・tests/macintosh-system-choice.test.tsx (2 tests) 495ms
+ 笨・tests/practical-room.test.tsx (15 tests) 417ms
+ 笨・tests/waapi-samples.test.ts (7 tests) 10ms
+ 笨・tests/modern-menu.test.tsx (1 test) 62ms
+ 笨・tests/modern-drift-geometry.test.ts (2 tests) 63ms
+ 笨・tests/waapi-interaction-state.test.ts (2 tests) 2ms
+ 笨・tests/modern-mesh.test.ts (2 tests) 19ms
+ 笨・tests/phase2-elastic.test.ts (2 tests) 1ms
+
+ Test Files  25 passed (25)
+      Tests  150 passed (150)
+   Start at  17:21:48
+   Duration  18.99s (transform 1.82s, setup 0ms, collect 7.33s, tests 13.73s, environment 10.49s, prepare 2.21s)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ 笶ｯ tests/phase4a.test.tsx (32 tests | 1 failed) 619ms
+   笨・registers six unique complete exhibits with provenance and usage 3ms
+   笨・toast-stack: close unmounts and reset permits another operation 99ms
+   笨・undo-snackbar: close unmounts and reset permits another operation 46ms
+   笨・inline-validation: close unmounts and reset permits another operation 44ms
+   笨・search-suggestions: close unmounts and reset permits another operation 36ms
+   笨・sliding-tabs: close unmounts and reset permits another operation 41ms
+   笨・animated-accordion: close unmounts and reset permits another operation 45ms
+   ﾃ・searches phase4 usage and unmounts excluded player 20ms
+     竊・Unable to find an element with the text: 陦ｨ遉ｺ 4 / 24遞ｮ鬘・ This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-labelledby[39m=[32m"practical-heading-phase4"[39m
+      [33mclass[39m=[32m"practicalRoom phase4Room"[39m
+    [36m>[39m
+      [36m<h2[39m
+        [33mid[39m=[32m"practical-heading-phase4"[39m
+      [36m>[39m
+        [0m隨ｬ4繝ｻ5譛滂ｼ壼ｮ溽畑UI驛ｨ蜩√・隕ｳ蟇溷ｮ､[0m
+      [36m</h2>[39m
+      [36m<p>[39m
+        [0m隨ｬ4譛蘗繝ｻB・冗ｬｬ5譛蘗繝ｻB[0m
+        [0m・夂憾諷九ｒ莨昴∴縲∵桃菴懊ｒ譯亥・縺吶ｋ驛ｨ蜩√・[0m
+        [0m25[0m
+        [0m遞ｮ鬘槭・迢ｬ閾ｪ蜀肴ｧ区・縲・[0m
+      [36m</p>[39m
+      [36m<button[39m
+        [33maria-controls[39m=[32m"practical-panel-phase4"[39m
+        [33maria-expanded[39m=[32m"true"[39m
+      [36m>[39m
+        [0m驛ｨ蜩∝ｱ慕､ｺ螳､繧帝哩縺倥ｋ[0m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mid[39m=[32m"practical-panel-phase4"[39m
+      [36m>[39m
+        [36m<label>[39m
+          [0m驛ｨ蜩∝錐繝ｻ逕ｨ騾斐・謚陦薙〒讀懃ｴ｢[0m
+          [36m<input[39m
+            [33mvalue[39m=[32m"讀懃ｴ｢"[39m
+          [36m/>[39m
+        [36m</label>[39m
+        [36m<p[39m
+          [33mrole[39m=[32m"status"[39m
+        [36m>[39m
+          [0m陦ｨ遉ｺ [0m
+          [0m4[0m
+          [0m / [0m
+          [0m25[0m
+          [0m遞ｮ鬘・[0m
+        [36m</p>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"螳溽畑驛ｨ蜩√ｒ驕ｸ縺ｶ"[39m
+          [33mclass[39m=[32m"practicalList"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+          [36m>[39m
+            [0mSearch Suggestions / 讀懃ｴ｢蛟呵｣・[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+          [36m>[39m
+            [0mCommand Palette / 謫堺ｽ懊ｒ蜻ｼ縺ｳ蜃ｺ縺・[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+          [36m>[39m
+            [0mFilter Builder / 譚｡莉ｶ繧堤ｵ・∩遶九※繧・[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+          [36m>[39m
+            [0mMulti-Select Chips / 驕ｸ謚槭ｒ繧ｿ繧ｰ縺ｧ邂｡逅・[0m
+          [36m</button>[39m
+        [36m</nav>[39m
+        [36m<p>[39m
+          [0m荳閾ｴ縺吶ｋ驛ｨ蜩√ｒ驕ｸ繧薙〒縺上□縺輔＞縲・[0m
+        [36m</p>[39m
+        [36m<button>[39m
+          [0m髢牙ｮ､縺励※荳隕ｧ縺ｸ謌ｻ繧・[0m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+   笨・toast cap removes oldest and preserves type and individual dismiss 31ms
+   笨・toast deadlines are independent 10ms
+   笨・toast reset rejects old expiry and restarts serial/state 12ms
+   笨・pause and offscreen suspend deadlines, reduced motion does not disable functionality 13ms
+   笨・document hidden suspends undo clock and no catchup occurs 19ms
+   笨・undo restores original position and focus 11ms
+   笨・next delete commits previous and only latest is reversible 15ms
+   笨・undo expiry commits and reset restores all with no stale pending 15ms
+   笨・explicit commit cannot be undone 11ms
+   笨・toast dismissal and expiry return focus to the persistent stack only when focus was inside 14ms
+   笨・undo expiry preserves focus context but pending state never steals focus back from other controls 10ms
+   笨・validation suppresses warnings until confirm and supports editing recovery 6ms
+   笨・empty confirmed value differs from untouched empty 7ms
+   笨・IME composition cannot submit partial value or reveal error 5ms
+   笨・validation confirm retains focus and counts Unicode code points 7ms
+   笨・confirmation from another focus target remains confirmed when focus returns 5ms
+   笨・suggestions filter and prioritize prefix matches without changing source order 0ms
+   笨・combobox keyboard chooses from current results and escape closes 7ms
+   笨・candidate click, no results, rapid edit, reset do not resurrect old selection 15ms
+   笨・IME Enter never chooses a suggestion 6ms
+   笨・touch release chooses without needing a compatibility click; pointer cancellation does not choose 7ms
+   笨・tabs roving focus and selected content agree through rapid keyboard changes 12ms
+   笨・accordion switches between single/multiple and reduces multiple to last opened 29ms
+   笨・accordion reversal preserves last intent, keyboard navigation and reset 17ms
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ Failed Tests 1 竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ
+
+ FAIL  tests/phase4a.test.tsx > searches phase4 usage and unmounts excluded player
+TestingLibraryElementError: Unable to find an element with the text: 陦ｨ遉ｺ 4 / 24遞ｮ鬘・ This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-labelledby="practical-heading-phase4"
+      class="practicalRoom phase4Room"
+    >
+      <h2
+        id="practical-heading-phase4"
+      >
+        隨ｬ4繝ｻ5譛滂ｼ壼ｮ溽畑UI驛ｨ蜩√・隕ｳ蟇溷ｮ､
+      </h2>
+      <p>
+        隨ｬ4譛蘗繝ｻB・冗ｬｬ5譛蘗繝ｻB
+        ・夂憾諷九ｒ莨昴∴縲∵桃菴懊ｒ譯亥・縺吶ｋ驛ｨ蜩√・[0m
+        25
+        遞ｮ鬘槭・迢ｬ閾ｪ蜀肴ｧ区・縲・[0m
+      </p>
+      <button
+        aria-controls="practical-panel-phase4"
+        aria-expanded="true"
+      >
+        驛ｨ蜩∝ｱ慕､ｺ螳､繧帝哩縺倥ｋ
+      </button>
+      <div
+        id="practical-panel-phase4"
+      >
+        <label>
+          驛ｨ蜩∝錐繝ｻ逕ｨ騾斐・謚陦薙〒讀懃ｴ｢
+          <input
+            value="讀懃ｴ｢"
+          />
+        </label>
+        <p
+          role="status"
+        >
+          陦ｨ遉ｺ 
+          4
+           / 
+          25
+          遞ｮ鬘・[0m
+        </p>
+        <nav
+          aria-label="螳溽畑驛ｨ蜩√ｒ驕ｸ縺ｶ"
+          class="practicalList"
+        >
+          <button
+            aria-pressed="false"
+          >
+            Search Suggestions / 讀懃ｴ｢蛟呵｣・[0m
+          </button>
+          <button
+            aria-pressed="false"
+          >
+            Command Palette / 謫堺ｽ懊ｒ蜻ｼ縺ｳ蜃ｺ縺・[0m
+          </button>
+          <button
+            aria-pressed="false"
+          >
+            Filter Builder / 譚｡莉ｶ繧堤ｵ・∩遶九※繧・[0m
+          </button>
+          <button
+            aria-pressed="false"
+          >
+            Multi-Select Chips / 驕ｸ謚槭ｒ繧ｿ繧ｰ縺ｧ邂｡逅・[0m
+          </button>
+        </nav>
+        <p>
+          荳閾ｴ縺吶ｋ驛ｨ蜩√ｒ驕ｸ繧薙〒縺上□縺輔＞縲・[0m
+        </p>
+        <button>
+          髢牙ｮ､縺励※荳隕ｧ縺ｸ謌ｻ繧・[0m
+        </button>
+      </div>
+    </section>
+  </div>
+</body>
+ 笶ｯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ 笶ｯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ 笶ｯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ 笶ｯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ 笶ｯ tests/phase4a.test.tsx:28:352
+
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[1/1]竡ｯ
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 31 passed (32)
+   Start at  17:22:08
+   Duration  2.08s (transform 267ms, setup 0ms, collect 611ms, tests 619ms, environment 551ms, prepare 111ms)
+

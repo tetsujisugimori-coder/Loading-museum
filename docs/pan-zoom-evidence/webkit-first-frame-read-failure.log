@@ -1,0 +1,19 @@
+PASS chromium 375 no-preference
+PASS chromium 375 reduce
+PASS chromium 390 no-preference
+PASS chromium 390 reduce
+PASS chromium 765 no-preference
+PASS chromium 765 reduce
+PASS chromium 1280 no-preference
+PASS chromium 1280 reduce
+AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to:
+
+'translate(-454.48 -386.24) scale(1.196)'
+    at file:///C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum/scripts/verify-pan-zoom-browser.mjs:43:271 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'translate(-454.48 -386.24) scale(1.196)',
+  expected: 'translate(-454.48 -386.24) scale(1.196)',
+  operator: 'notStrictEqual',
+  diff: 'simple'
+}

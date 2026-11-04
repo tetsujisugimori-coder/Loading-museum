@@ -1,6 +1,7 @@
 import PracticalRoom from "./components/PracticalRoom";
 import { practicalExhibits } from "./data/practicalExhibits";
 import { phase4aExhibits } from "./data/phase4aExhibits";
+import {phase6aExhibits} from './data/phase6aExhibits';
 import {phase5bExhibits} from './data/phase5bExhibits';
 import { phase5aExhibits } from "./data/phase5aExhibits";
 import { phase4bExhibits } from "./data/phase4bExhibits";
@@ -70,7 +71,7 @@ export default function Home() {
           <br />
           COLLECTION 1976—NOW
           <br />
-          {periodRoomCount + 4} ROOMS / {totalExhibitCount + modernExhibits.length + 12 + practicalExhibits.length + phase4aExhibits.length + phase4bExhibits.length + phase5aExhibits.length + phase5bExhibits.length} OBJECTS
+          {periodRoomCount + 4} ROOMS / {totalExhibitCount + modernExhibits.length + 12 + practicalExhibits.length + phase4aExhibits.length + phase4bExhibits.length + phase5aExhibits.length + phase5bExhibits.length + phase6aExhibits.length} OBJECTS
         </p>
       </header>
 

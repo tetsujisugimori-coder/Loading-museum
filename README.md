@@ -1,5 +1,11 @@
 # DIGITAL MOTION ARCHIVE
 
+## 第6期A-1：Pan & Zoom（Issue #61）
+
+既存実用UI室へ「Pan & Zoom / 拡大して探す」を1展示追加。**264展示・13室**。観測所・庭・小道の独自SVGを、倍率・位置・ミニマップの窓を比べながら探索できます。＋/−、数値、ドラッグ、方向ボタン、専用領域の矢印、全体表示、Reset、5つの目印一覧。タッチはページscroll優先の初期OFFと明示的移動modeを切替。外部画像・実通信・保存・新規依存なし。
+
+[方式・取消・検証・独立レビュー引継ぎ](docs/pan-zoom-studies.md)。自己検証は独立レビューではありません。Draft維持・独立レビュー前のマージ推奨NO。実機Safari/VoiceOver/OS capture喪失と既存UNKNOWNは未解消。以下の展示数は各期時点の記録です。
+
 ## 実用UI 第5期B（Issue #59）
 
 Kanban Board / Node Flow Editor / Schedule Grid / Diff Viewer / Theme Studio / Shortcut Recorder を既存の実用UI室へ追加。**263展示・13室**。配置・履歴・関係・時間・版・設定を、データと表示の両方から観察できます。保存・実通信なし。

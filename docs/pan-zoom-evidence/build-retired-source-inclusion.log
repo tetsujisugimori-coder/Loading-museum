@@ -1,0 +1,22 @@
+
+> loading-museum@0.1.0 build
+> next build
+
+笆ｲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+笨・Compiled successfully in 1257ms
+  Running TypeScript ...
+Failed to type check.
+
+./work/PanZoom-before-zero-fix.tsx:4:107
+Type error: Cannot find module './pan-zoom-model' or its corresponding type declarations.
+
+  2 | ...
+  3 | ...;
+> 4 | ...ibleRect, worldAt, zoomAt, type View } from './pan-zoom-model';
+    |                                                ^
+  5 | ...
+  6 | ...
+  7 | ...
+Next.js build worker exited with code: 1 and signal: null

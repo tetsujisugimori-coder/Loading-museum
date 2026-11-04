@@ -1,0 +1,313 @@
+{
+  "head": "cf3370fa285a14cc6ec7c8330daab854fc7bd3b1",
+  "tree": "e3230e619d498db3f5fc292a9f18018bf05b5684",
+  "dirty": "M .gitattributes\n M LOG.md\n M README.md\n M app/components/PracticalRoom.tsx\n M app/page.tsx\n M package.json\n M scripts/inventory.mjs\n M scripts/verify-phase4a-browser.mjs\n M scripts/verify-phase4b-browser.mjs\n M scripts/verify-phase5a-browser.mjs\n M scripts/verify-phase5b-browser.mjs\n M tests/phase4a.test.tsx\n M tests/rendered-html.test.mjs\n?? .github/workflows/verify-pan-zoom.yml\n?? app/components/practical/PanZoom.tsx\n?? app/components/practical/PanZoomWorld.tsx\n?? app/components/practical/pan-zoom-model.ts\n?? app/components/practical/pan-zoom.css\n?? app/data/phase6aExhibits.ts\n?? docs/pan-zoom-evidence/\n?? docs/pan-zoom-studies.md\n?? scripts/verify-pan-zoom-browser.mjs\n?? scripts/verify-pan-zoom-controls.mjs\n?? tests/pan-zoom.test.tsx",
+  "node": "v24.20.0",
+  "platform": "win32",
+  "cases": [
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 375,
+      "motion": "no-preference",
+      "status": "PASS",
+      "overflow": {
+        "viewport": 375,
+        "scroll": 375
+      },
+      "anchorError": {
+        "x": 0.24997460842132568,
+        "y": 0.31247425079345703
+      },
+      "pageerrors": []
+    }
+  ],
+  "images": [
+    {
+      "name": "webkit-375-no-preference-overview.png",
+      "sha256": "31623f1a7e4bf2984950158f853c7805f39cadc2a30bcc84eaafaff4f6923aa7"
+    },
+    {
+      "name": "webkit-375-no-preference-exhibit.png",
+      "sha256": "9298a4c4254045c708f172700e0c2fac78fa360ed89182b617745f66c843d7d7"
+    },
+    {
+      "name": "webkit-375-no-preference-detail.png",
+      "sha256": "b19cf14fcbdd3f5a2b45e3d2e195d5df816a4bd9df19e724febbf38ab06a6434"
+    }
+  ],
+  "errors": [],
+  "started": "2026-11-04T08:37:59.432Z",
+  "notTested": [
+    "physical Safari",
+    "VoiceOver",
+    "real OS capture loss",
+    "WebKit native touch drag"
+  ],
+  "exportSHA256": "4035e455c5ef0d64a09103d3d1a865d1b536dca0683b076593fbadea352824ce",
+  "sourceSHA256": {
+    "app/components/practical/PanZoom.tsx": "4f8c67f48685a19c300e15f9ce8aabceaa630c589987d8fb7746cbd43c7054a0",
+    "app/components/practical/PanZoomWorld.tsx": "aad6e036dceea1aa462ff4c74d22e1410598cd711eb4fc39a286a2ae3d5d23c4",
+    "app/components/practical/pan-zoom-model.ts": "77416fd0dbdfec1028bea37de0bfcd3ec86687fc2164fec56a465cf295ea0aac",
+    "app/components/practical/pan-zoom.css": "cf76904d159c90688c67763222adbf4dc419d5bb4010d6f3f46d17e66326a491",
+    "app/components/PracticalRoom.tsx": "f6bb813bdb64b7a2d55665e100ffe9707a544401cad3c10afeda8c7e4f3dedbf",
+    "app/data/phase6aExhibits.ts": "86a13c21f8a9911f3d07694c4b641d8d1a99a25859b10779924968fdc28d45b6",
+    "app/page.tsx": "6e7716167dcf0ac3baba9df2724569b5978fe858056def58ead829aec56aaf2c"
+  },
+  "expected": 1,
+  "current": {
+    "engine": "webkit",
+    "version": "26.0",
+    "width": 375,
+    "motion": "no-preference"
+  },
+  "trace": [
+    {
+      "name": "三日月橋：この場所を見る",
+      "view": "translate(-454.48 -386.24) scale(1.196)",
+      "reading": "現在 400% / 中央 (505, 440) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "← 図版を左",
+      "view": "translate(-514.48 -386.24) scale(1.196)",
+      "reading": "現在 400% / 中央 (555, 440) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "縮小",
+      "view": "translate(-494.3133333333334 -386.03166666666664) scale(1.196)",
+      "reading": "現在 400% / 中央 (538, 440) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "倍率を適用",
+      "view": "translate(-655.2666666666668 -517.5395833333332) scale(1.4949999999999999)",
+      "reading": "現在 500% / 中央 (538, 440) / 見える範囲 200 × 187"
+    },
+    {
+      "name": "倍率を適用",
+      "view": "translate(-655.2666666666668 -517.5395833333332) scale(1.4949999999999999)",
+      "reading": "現在 500% / 中央 (538, 440) / 見える範囲 200 × 187"
+    },
+    {
+      "name": "倍率を適用",
+      "view": "translate(-655.2666666666668 -517.5395833333332) scale(1.4949999999999999)",
+      "reading": "現在 500% / 中央 (538, 440) / 見える範囲 200 × 187"
+    },
+    {
+      "name": "倍率を適用",
+      "view": "translate(-655.2666666666668 -517.5395833333332) scale(1.4949999999999999)",
+      "reading": "現在 500% / 中央 (538, 440) / 見える範囲 200 × 187"
+    },
+    {
+      "name": "倍率を適用",
+      "view": "translate(-1138.1266666666668 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (538, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-1078.1266666666668 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (513, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-1018.1266666666668 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (488, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-958.1266666666668 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (463, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-898.1266666666668 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (438, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-838.1266666666668 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (413, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-778.1266666666668 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (388, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-718.1266666666668 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (363, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-658.1266666666668 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (338, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-598.1266666666668 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (313, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-538.1266666666668 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (287, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-478.1266666666668 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (262, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-418.1266666666668 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (237, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-358.1266666666668 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (212, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-298.1266666666668 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (187, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-238.12666666666678 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (162, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-178.12666666666678 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (137, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-118.12666666666678 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (112, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(-58.12666666666678 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (87, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(0 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (63, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(0 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (63, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "→ 図版を右",
+      "view": "translate(0 -912.0633333333333) scale(2.392)",
+      "reading": "現在 800% / 中央 (63, 440) / 見える範囲 125 × 117"
+    },
+    {
+      "name": "全体表示",
+      "view": "translate(0 35.35000000000001) scale(0.299)",
+      "reading": "現在 100% / 中央 (500, 350) / 見える範囲 1000 × 700"
+    },
+    {
+      "name": "Reset",
+      "view": "translate(0 35.35000000000001) scale(0.299)",
+      "reading": "現在 100% / 中央 (500, 350) / 見える範囲 1000 × 700"
+    },
+    {
+      "name": "三日月橋：この場所を見る",
+      "view": "translate(-454.48 -386.24) scale(1.196)",
+      "reading": "現在 400% / 中央 (505, 440) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "三日月橋：この場所を見る",
+      "view": "translate(-454.48 -386.24) scale(1.196)",
+      "reading": "現在 400% / 中央 (505, 440) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "Reset",
+      "view": "translate(0 35.35000000000001) scale(0.299)",
+      "reading": "現在 100% / 中央 (500, 350) / 見える範囲 1000 × 700"
+    },
+    {
+      "name": "三日月橋：この場所を見る",
+      "view": "translate(-454.48 -386.24) scale(1.196)",
+      "reading": "現在 400% / 中央 (505, 440) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "拡大",
+      "view": "translate(-756.4700000000001 -649.36) scale(1.794)",
+      "reading": "現在 600% / 中央 (505, 440) / 見える範囲 167 × 156"
+    },
+    {
+      "name": "三日月橋：この場所を見る",
+      "view": "translate(-454.48 -386.24) scale(1.196)",
+      "reading": "現在 400% / 中央 (505, 440) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "全体表示",
+      "view": "translate(0 35.35000000000001) scale(0.299)",
+      "reading": "現在 100% / 中央 (500, 350) / 見える範囲 1000 × 700"
+    },
+    {
+      "name": "三日月橋：この場所を見る",
+      "view": "translate(-454.48 -386.24) scale(1.196)",
+      "reading": "現在 400% / 中央 (505, 440) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "三日月橋：この場所を見る",
+      "view": "translate(-454.48 -386.24) scale(1.196)",
+      "reading": "現在 400% / 中央 (505, 440) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "星見の観測所：この場所を見る",
+      "view": "translate(-173.41999999999996 -87.23999999999998) scale(1.196)",
+      "reading": "現在 400% / 中央 (270, 190) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "時計の庭：この場所を見る",
+      "view": "translate(-699.66 -135.07999999999998) scale(1.196)",
+      "reading": "現在 400% / 中央 (710, 230) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "三日月橋：この場所を見る",
+      "view": "translate(-454.48 -386.24) scale(1.196)",
+      "reading": "現在 400% / 中央 (505, 440) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "灯りの小屋：この場所を見る",
+      "view": "translate(-807.3 -535.74) scale(1.196)",
+      "reading": "現在 400% / 中央 (800, 565) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "風の木立：この場所を見る",
+      "view": "translate(-53.81999999999999 -505.8399999999999) scale(1.196)",
+      "reading": "現在 400% / 中央 (170, 540) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "三日月橋：この場所を見る",
+      "view": "translate(-454.48 -386.24) scale(1.196)",
+      "reading": "現在 400% / 中央 (505, 440) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "図版を移動：OFF",
+      "view": "translate(-454.48 -386.24) scale(1.196)",
+      "reading": "現在 400% / 中央 (505, 440) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "図版を移動：ON",
+      "view": "translate(-454.48 -386.24) scale(1.196)",
+      "reading": "現在 400% / 中央 (505, 440) / 見える範囲 250 × 234"
+    },
+    {
+      "name": "三日月橋：この場所を見る",
+      "view": "translate(-454.48 -386.24) scale(1.196)",
+      "reading": "現在 400% / 中央 (505, 440) / 見える範囲 250 × 234"
+    }
+  ],
+  "complete": true,
+  "finished": "2026-11-04T08:38:29.513Z"
+}

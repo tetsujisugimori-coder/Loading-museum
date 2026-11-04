@@ -1,0 +1,51 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ 笶ｯ tests/pan-zoom.test.tsx (12 tests | 1 failed) 562ms
+   笨・keeps the pointed world feature at its screen position; center controls use the center 2ms
+   笨・fits only measured viewports, clamps limits and never loses the entire world 4ms
+   ﾃ・resize retains the center when not clamped, landmarks and minimap match independent geometric expectations 6ms
+     竊・expected { x: 368.75000000000006, 窶ｦ(3) } to deeply equal { x: 368.75, y: 262.5, 窶ｦ(2) }
+   笨・owner pointer alone can commit; cancel rolls back and stale events cannot commit 112ms
+   笨・invalidates pending drag on Reset 52ms
+   笨・invalidates pending drag on 蜈ｨ菴楢｡ｨ遉ｺ 45ms
+   笨・invalidates pending drag on 諡｡螟ｧ 40ms
+   笨・invalidates pending drag on resize 42ms
+   笨・invalidates pending drag on mode 34ms
+   笨・invalidates pending drag on blur 27ms
+   笨・buttons, numeric validation, keyboard scope, touch modes and Reset/fit selection contracts 99ms
+   笨・searches one new exhibit, discards drag on switching and returns focus on close 100ms
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ Failed Tests 1 竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ
+
+ FAIL  tests/pan-zoom.test.tsx > resize retains the center when not clamped, landmarks and minimap match independent geometric expectations
+AssertionError: expected { x: 368.75000000000006, 窶ｦ(3) } to deeply equal { x: 368.75, y: 262.5, 窶ｦ(2) }
+
+- Expected
++ Received
+
+  {
+    "height": 175,
+-   "width": 262.5,
+-   "x": 368.75,
++   "width": 262.49999999999994,
++   "x": 368.75000000000006,
+    "y": 262.5,
+  }
+
+ 笶ｯ tests/pan-zoom.test.tsx:32:25
+     30|  const v=focusPoint(fit(600,400)!,{x:500,y:350}),next=resize(v,400,500窶ｦ
+     31|  expect(worldAt(next,{x:200,y:250}).x).toBeCloseTo(500,7);expect(world窶ｦ
+     32|  expect(visibleRect(v)).toEqual({x:368.75,y:262.5,width:262.5,height:1窶ｦ
+       |                         ^
+     33|  for(const m of landmarks){const target=focusPoint(fit(600,400)!,m),s=窶ｦ
+     34| });
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[1/1]竡ｯ
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 11 passed (12)
+   Start at  17:16:53
+   Duration  1.93s (transform 252ms, setup 0ms, collect 568ms, tests 562ms, environment 520ms, prepare 99ms)
+
