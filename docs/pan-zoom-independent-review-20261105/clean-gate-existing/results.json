@@ -1,0 +1,41 @@
+{
+  "head": "36f9cca37f174a56767614c6b0a22eb90f9d87e2",
+  "tree": "ea82e61f90a18524500bb03f34d870594c352b70",
+  "dirty": "?? debug.log",
+  "node": "v24.20.0",
+  "platform": "win32",
+  "cases": [],
+  "images": [],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: Source must match submitted HEAD\n\n'?? debug.log' !== ''\n\n    at file:///C:/Users/tetsu/Documents/ChatGPT/loading-museum/review-source/scripts/verify-pan-zoom-browser.mjs:23:44"
+  ],
+  "started": "2026-11-04T21:34:22.738Z",
+  "notTested": [
+    "physical Safari",
+    "VoiceOver",
+    "real OS capture loss",
+    "WebKit native touch drag"
+  ],
+  "exportSHA256": "7ec8aa19b8a80be5c64ccd7cd0665d0cb497b74d142ae24e9a0c2dc9745c9de3",
+  "sourceCanonicalSHA256": {
+    "app/components/practical/PanZoom.tsx": "d5fc2145df8eac44461796649a6729efc0e2839f71c1270f215575f4c04354c3",
+    "app/components/practical/PanZoomWorld.tsx": "aad6e036dceea1aa462ff4c74d22e1410598cd711eb4fc39a286a2ae3d5d23c4",
+    "app/components/practical/pan-zoom-model.ts": "77416fd0dbdfec1028bea37de0bfcd3ec86687fc2164fec56a465cf295ea0aac",
+    "app/components/practical/pan-zoom.css": "cf76904d159c90688c67763222adbf4dc419d5bb4010d6f3f46d17e66326a491",
+    "app/components/PracticalRoom.tsx": "c95d9397bab3cdb3808e0015be81760e8818b75c1780799a42f65e24391e896c",
+    "app/data/phase6aExhibits.ts": "86a13c21f8a9911f3d07694c4b641d8d1a99a25859b10779924968fdc28d45b6",
+    "app/page.tsx": "772b31bcf9d8a354029a494e09aae87178fc6763123976406e61fdc8aadd3cce"
+  },
+  "sourceSHA256": {
+    "app/components/practical/PanZoom.tsx": "4f8c67f48685a19c300e15f9ce8aabceaa630c589987d8fb7746cbd43c7054a0",
+    "app/components/practical/PanZoomWorld.tsx": "8718c6c781419084ab1e3393019193731876e661c958ad2840ddf1549080fe0c",
+    "app/components/practical/pan-zoom-model.ts": "88d3d421ecc642c03fee78a8b5be28d50c563cb7716568e93e74edcc77464f47",
+    "app/components/practical/pan-zoom.css": "ff74e7f108b7d07967d495fca9121ce41319f9088097acf766ab0399378a12e2",
+    "app/components/PracticalRoom.tsx": "f6bb813bdb64b7a2d55665e100ffe9707a544401cad3c10afeda8c7e4f3dedbf",
+    "app/data/phase6aExhibits.ts": "d18824e6530d50a13c19849f98f33f20000e1e21dffe0d3ce2b5e7ddc2610e59",
+    "app/page.tsx": "6e7716167dcf0ac3baba9df2724569b5978fe858056def58ead829aec56aaf2c"
+  },
+  "expected": 16,
+  "complete": false,
+  "finished": "2026-11-04T21:34:22.744Z"
+}

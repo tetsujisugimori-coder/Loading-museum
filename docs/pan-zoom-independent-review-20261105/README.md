@@ -1,0 +1,22 @@
+# Evidence index
+
+Read `REPORT.md` for the A–H review and `summary.json` for final totals. Product HEAD is 36f9cca37f174a56767614c6b0a22eb90f9d87e2. This is an evidence-only branch; do not treat its commit as the product HEAD or transfer the product's CI status to this branch.
+
+- `existing/`: completed clean-HEAD 16-condition replay of the submitted browser harness, 24 final PNGs.
+- `independent/`: 14 completed conditions from the original independent batch. The batch was interrupted during the first WebKit1280 condition without stage progress; the unfinished condition is excluded. `independent-browser-executed.mjs` preserves that exact harness. The stopping stage/root cause remains UNKNOWN.
+- `independent-final1280/`: remaining two WebKit1280 conditions, identical inputs/oracles with bounded frame observation and stage logging. `independent-matrix.json` accepts only the 14+2 completed, distinct conditions; it does not relabel the interrupted batch as complete. The two batches together save 16 final PNGs.
+- `independent-browser.mjs`: same checks with extra per-stage diagnostics, an 8-second frame-observation timeout, configurable external Playwright module/output, and a corrected expected-condition counter for subset runs. No product code changes or relaxed expectations.
+- `check.log`: npm run check, lint/type/build, Node49+Vitest406=455 passing tests.
+- `touch-results.json`: three scroll/pan observations pass; browser pinch remains NOT_VERIFIED. `touch-pinch-timeout.*` preserves the first failed attempt. Plain control also stayed scale=1.
+- `paint-diagnostic.*`: WebKit immediate capture-release readback differs from the first rendered frame. Committed geometry restores on the first frame. This does not resolve other pre-existing UNKNOWNs.
+- `environment.json`: launch stages, network restrictions, approved normal execution, and failed Windows UI helper attempt. `headed-os-results.json` has INITIAL state only; no OS input was performed.
+- `harness-before-paint-gate/`: previous independent run, 9 passing conditions and 7 assertion stops from immediate readback. These are not counted as final success.
+- `harness-hidden-locator/`: interrupted earlier trial, hidden-role locator timeout. A hidden element must be selected with includeHidden for the synthetic hidden-state probe. Not a product failure.
+- `sandbox-existing/`, `sandbox-independent/`, `sandbox-touch-*`: localhost access denied before product interaction. Raw harness labels can say FAIL; this is environment evidence, not product failure or success.
+- `clean-gate-existing/`: run stopped before browser testing because the preceding sandbox Chromium created untracked debug.log. That generated diagnostic file was preserved separately, product files were unchanged, and clean status was re-established.
+- `independent-webkit-diagnostic/`: extra 375px normal-motion diagnostic with all 13 groups passing. The process exited 1 because its expected-condition count was still hardcoded to 16 for a one-condition run. Preserved and excluded from the final 16. Current diagnostic runner computes expected from the matrix configuration.
+- `independent-webkit-remaining.log`: an extra stage-logging diagnostic started while the original matrix was slow at WebKit765. The original matrix resumed and passed both 765 conditions; this duplicate diagnostic was intentionally interrupted and is excluded from all success totals.
+
+For reproduction, use a detached exact-HEAD checkout named `review-source` in a parent folder, install its locked dependencies and build `out/`, copy these harnesses to sibling `review-evidence/`, and run from that parent folder. Set `PLAYWRIGHT_MODULE` to an external Playwright 1.58.2 installation and `PLAYWRIGHT_BROWSERS_PATH` to its installed browser cache. Use `independent-browser.mjs` for portable/restricted subset diagnostics; inspect the executed version for exact provenance. No application dependency change is required. The host requires authorized normal execution to navigate localhost; changing browser security flags is unnecessary.
+
+All timestamps inside browser JSON are ISO UTC; the review's user-facing timestamp is JST. `manifest.json` records SHA256 of every bundled file except itself. Post-submission response/readback files are retained in the local `review-evidence/` and are verified against the posted COMMENT body and commit ID; the remote evidence snapshot predates posting.

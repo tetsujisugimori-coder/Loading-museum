@@ -1,0 +1,16 @@
+FAIL chromium-375-no-preference locator.evaluate: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator('.phase4Room').getByTestId('pan-zoom').getByRole('group', { name: '図版の操作領域' })
+
+    at ev (C:\Users\tetsu\Documents\ChatGPT\loading-museum\review-evidence\independent-browser.mjs:60:42)
+    at C:\Users\tetsu\Documents\ChatGPT\loading-museum\review-evidence\independent-browser.mjs:68:329 {
+  name: 'TimeoutError'
+}
+FAIL chromium-375-reduce locator.evaluate: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator('.phase4Room').getByTestId('pan-zoom').getByRole('group', { name: '図版の操作領域' })
+
+    at ev (C:\Users\tetsu\Documents\ChatGPT\loading-museum\review-evidence\independent-browser.mjs:60:42)
+    at C:\Users\tetsu\Documents\ChatGPT\loading-museum\review-evidence\independent-browser.mjs:68:329 {
+  name: 'TimeoutError'
+}

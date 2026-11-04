@@ -1,0 +1,8 @@
+page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:53584/Loading-museum/
+Call log:
+  - navigating to "http://127.0.0.1:53584/Loading-museum/", waiting until "load"
+
+    at C:\Users\tetsu\Documents\ChatGPT\loading-museum\review-evidence\touch-browser.mjs:11:179 {
+  name: 'Error'
+}
+{"type":"Chromium CDP touch emulation, not physical device","head":"36f9cca37f174a56767614c6b0a22eb90f9d87e2","steps":[],"started":"2026-11-04T21:33:59.610Z","status":"FAIL","error":"page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:53584/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:53584/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\touch-browser.mjs:11:179","finished":"2026-11-04T21:34:00.797Z"}

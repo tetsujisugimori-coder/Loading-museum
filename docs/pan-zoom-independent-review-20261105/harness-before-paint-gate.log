@@ -1,0 +1,107 @@
+PASS independent chromium-375-no-preference 13
+PASS independent chromium-375-reduce 13
+PASS independent chromium-390-no-preference 13
+PASS independent chromium-390-reduce 13
+PASS independent chromium-765-no-preference 13
+PASS independent chromium-765-reduce 13
+PASS independent chromium-1280-no-preference 13
+PASS independent chromium-1280-reduce 13
+FAIL webkit-375-no-preference AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'translate(-454.48 -386.24) scale(1.196)'
+- 'translate(-423.48 -363.24) scale(1.196)'
+
+    at file:///C:/Users/tetsu/Documents/ChatGPT/loading-museum/review-evidence/independent-browser.mjs:64:361 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'translate(-454.48 -386.24) scale(1.196)',
+  expected: 'translate(-423.48 -363.24) scale(1.196)',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+PASS independent webkit-375-reduce 13
+FAIL webkit-390-no-preference AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'translate(-459.28 -398.64) scale(1.256)'
+- 'translate(-477.28 -412.64) scale(1.256)'
+
+    at file:///C:/Users/tetsu/Documents/ChatGPT/loading-museum/review-evidence/independent-browser.mjs:57:448 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'translate(-459.28 -398.64) scale(1.256)',
+  expected: 'translate(-477.28 -412.64) scale(1.256)',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+FAIL webkit-390-reduce AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'translate(-459.28 -398.64) scale(1.256)'
+- 'translate(-477.28 -412.64) scale(1.256)'
+
+    at file:///C:/Users/tetsu/Documents/ChatGPT/loading-museum/review-evidence/independent-browser.mjs:57:448 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'translate(-459.28 -398.64) scale(1.256)',
+  expected: 'translate(-477.28 -412.64) scale(1.256)',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+FAIL webkit-765-no-preference AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'translate(-673.2714285714286 -695.0285714285715) scale(2.0114285714285716)'
+- 'translate(-691.2714285714286 -709.0285714285715) scale(2.0114285714285716)'
+
+    at file:///C:/Users/tetsu/Documents/ChatGPT/loading-museum/review-evidence/independent-browser.mjs:57:448 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'translate(-673.2714285714286 -695.0285714285715) scale(2.0114285714285716)',
+  expected: 'translate(-691.2714285714286 -709.0285714285715) scale(2.0114285714285716)',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+FAIL webkit-765-reduce AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'translate(-660.2714285714286 -686.0285714285715) scale(2.0114285714285716)'
+- 'translate(-691.2714285714286 -709.0285714285715) scale(2.0114285714285716)'
+
+    at file:///C:/Users/tetsu/Documents/ChatGPT/loading-museum/review-evidence/independent-browser.mjs:62:178 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'translate(-660.2714285714286 -686.0285714285715) scale(2.0114285714285716)',
+  expected: 'translate(-691.2714285714286 -709.0285714285715) scale(2.0114285714285716)',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+FAIL webkit-1280-no-preference AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'translate(-697.7142857142858 -872.2857142857142) scale(2.5142857142857142)'
+- 'translate(-715.7142857142858 -886.2857142857142) scale(2.5142857142857142)'
+
+    at file:///C:/Users/tetsu/Documents/ChatGPT/loading-museum/review-evidence/independent-browser.mjs:57:448 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'translate(-697.7142857142858 -872.2857142857142) scale(2.5142857142857142)',
+  expected: 'translate(-715.7142857142858 -886.2857142857142) scale(2.5142857142857142)',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+FAIL webkit-1280-reduce AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'translate(-697.7142857142858 -872.2857142857142) scale(2.5142857142857142)'
+- 'translate(-715.7142857142858 -886.2857142857142) scale(2.5142857142857142)'
+
+    at file:///C:/Users/tetsu/Documents/ChatGPT/loading-museum/review-evidence/independent-browser.mjs:57:448 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'translate(-697.7142857142858 -872.2857142857142) scale(2.5142857142857142)',
+  expected: 'translate(-715.7142857142858 -886.2857142857142) scale(2.5142857142857142)',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

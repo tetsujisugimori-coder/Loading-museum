@@ -1,0 +1,18 @@
+{
+  "head": "36f9cca37f174a56767614c6b0a22eb90f9d87e2",
+  "os": "Windows NT 10.0.26300.0 x64",
+  "node": "24.20.0",
+  "npm": "11.17.0",
+  "playwright": "1.58.2 (pre-existing external installation, no app dependency changes)",
+  "launch": "Playwright browserType.launch({headless:true}), existing browser binaries, no custom security flags. Separate headed Chromium launch also succeeded.",
+  "initialProbe": "Both engines stopped before launch: default sandbox-profile browser cache did not contain expected executable. Executable doesn't exist at .../Packages/sandbox.{28152aaa-7956-487d-b8e1-25d536ced90f}/AC/ms-playwright/...",
+  "resolution": "Set PLAYWRIGHT_BROWSERS_PATH=C:/Users/tetsu/AppData/Local/ms-playwright to existing installed binaries; same restricted shell execution succeeded without escalation",
+  "chromium": "145.0.7632.6, revision 1208",
+  "webkit": "26.0, revision 2248",
+  "probe": "Both engines launched, newPage/setContent/heading readback succeeded. Sandboxed localhost navigation then stopped: Chromium net::ERR_NETWORK_ACCESS_DENIED; WebKit Could not connect to server. Authorized require_escalated execution succeeded; no browser/OS security settings were changed.",
+  "osInputAttempt": "Headed Chromium opened, but sky.get_window twice stopped with: window id 16976188 no longer belongs to Chrome; current owner is Chrome. No sky mouse/keyboard input was executed. Window/server closed afterward. Do not claim OS SendInput or physical mouse verification.",
+  "priorSocketFailure": "Not reproduced on this Windows host; earlier environment not available for causal comparison. Do not resolve prior UNKNOWN.",
+  "github": "Connector unavailable to model; gh network unavailable in sandbox; authorized network escalation succeeded",
+  "checkout": "New isolated review-source clone in initially empty workspace, detached exact HEAD; no existing tree modified",
+  "instructions": "No repository AGENTS.md present at reviewed HEAD; user supplied instruction: final response includes JST timestamp"
+}

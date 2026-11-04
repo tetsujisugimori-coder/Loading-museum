@@ -1,0 +1,14 @@
+STEP webkit-375-no-preference native form Enter and center button/input anchors
+STEP webkit-375-no-preference native off-center doubleclick anchor
+STEP webkit-375-no-preference doubleclick with actual edge/letterbox correction
+STEP webkit-375-no-preference native mouse all four boundaries and zoom clamps
+STEP webkit-375-no-preference five landmarks and minimap in portrait and landscape windows
+STEP webkit-375-no-preference native mouse commit and Escape rollback
+STEP webkit-375-no-preference programmatic native capture release rollback (not OS loss)
+STEP webkit-375-no-preference synthetic foreign pointer and reused owner ID with stale timestamps
+STEP webkit-375-no-preference synthetic late events after Reset/fit/zoom/mode/lostcapture
+STEP webkit-375-no-preference real layout width0/height0/hidden, same/different size, provisional drag and stale events
+STEP webkit-375-no-preference fit retains selection/mode; Reset clears both
+STEP webkit-375-no-preference native keyboard scope, modified keys, numeric editing and Enter
+STEP webkit-375-no-preference native-drag exhibit switch, detached synthetic stale events, close focus return
+PASS independent webkit-375-no-preference 13

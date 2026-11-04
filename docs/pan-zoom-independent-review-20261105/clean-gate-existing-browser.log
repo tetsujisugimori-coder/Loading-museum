@@ -1,0 +1,12 @@
+AssertionError [ERR_ASSERTION]: Source must match submitted HEAD
+
+'?? debug.log' !== ''
+
+    at file:///C:/Users/tetsu/Documents/ChatGPT/loading-museum/review-source/scripts/verify-pan-zoom-browser.mjs:23:44 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '?? debug.log',
+  expected: '',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

@@ -1,0 +1,7 @@
+page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:55686/Loading-museum/
+Call log:
+  - navigating to "http://127.0.0.1:55686/Loading-museum/", waiting until "load"
+
+    at C:\Users\tetsu\Documents\ChatGPT\loading-museum\review-source\scripts\verify-pan-zoom-browser.mjs:27:540 {
+  name: 'Error'
+}

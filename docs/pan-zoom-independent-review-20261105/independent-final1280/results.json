@@ -1,0 +1,1939 @@
+{
+  "head": "36f9cca37f174a56767614c6b0a22eb90f9d87e2",
+  "expected": 2,
+  "started": "2026-11-04T21:50:51.439Z",
+  "oracle": "Independent DOM getScreenCTM inversion and intersection; no product model imports",
+  "cases": [
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 1280,
+      "motion": "no-preference",
+      "steps": [
+        "native form Enter and center button/input anchors",
+        "native off-center doubleclick anchor",
+        "doubleclick with actual edge/letterbox correction",
+        "native mouse all four boundaries and zoom clamps",
+        "five landmarks and minimap in portrait and landscape windows",
+        "native mouse commit and Escape rollback",
+        "programmatic native capture release rollback (not OS loss)",
+        "synthetic foreign pointer and reused owner ID with stale timestamps",
+        "synthetic late events after Reset/fit/zoom/mode/lostcapture",
+        "real layout width0/height0/hidden, same/different size, provisional drag and stale events",
+        "fit retains selection/mode; Reset clears both",
+        "native keyboard scope, modified keys, numeric editing and Enter",
+        "native-drag exhibit switch, detached synthetic stale events, close focus return"
+      ],
+      "measurements": [
+        {
+          "tag": "fit",
+          "geometry": {
+            "s": 0.6285714507102966,
+            "x": 239.7142791748047,
+            "y": 0,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 0,
+            "y": 0,
+            "width": 1000,
+            "height": 699.9999753453524
+          },
+          "miniActual": {
+            "x": 0,
+            "y": 0,
+            "width": 1000,
+            "height": 700
+          }
+        },
+        {
+          "tag": "center-button-487.5",
+          "geometry": {
+            "s": 3.0642857551574707,
+            "x": -993.4642944335938,
+            "y": -1128.2857666015625,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 324.2074577286088,
+            "y": 368.2051403667413,
+            "width": 361.5850767622228,
+            "height": 143.58974167452897
+          },
+          "miniActual": {
+            "x": 324.2074592074592,
+            "y": 368.20512820512823,
+            "width": 361.5850815850816,
+            "height": 143.5897435897436
+          }
+        },
+        {
+          "tag": "off-center-native-doubleclick",
+          "geometry": {
+            "s": 4.120285511016846,
+            "x": -1487.7442626953125,
+            "y": -1586.1131591796875,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 361.07795411686214,
+            "y": 384.95224540598656,
+            "width": 268.9134034613433,
+            "height": 106.78871617598469
+          },
+          "miniActual": {
+            "x": 361.07794189029886,
+            "y": 384.9522397891963,
+            "width": 268.9133901948547,
+            "height": 106.78871090770406
+          }
+        },
+        {
+          "tag": "constrained-doubleclick",
+          "wanted": {
+            "x": 337.41142802639376,
+            "y": -206.80001960992746
+          },
+          "expected": {
+            "x": 82.57139706611633,
+            "y": -206.80001960992746
+          },
+          "actual": {
+            "s": 0.9428572058677673,
+            "x": 82.57142639160156,
+            "y": -206.6875,
+            "w": 1108,
+            "h": 440
+          }
+        },
+        {
+          "tag": "corner-5000-5000",
+          "geometry": {
+            "s": 5.028571605682373,
+            "x": 0,
+            "y": 0,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 0,
+            "y": 0,
+            "width": 220.3409013302984,
+            "height": 87.49999691816905
+          },
+          "miniActual": {
+            "x": 0,
+            "y": 0,
+            "width": 220.3409090909091,
+            "height": 87.5
+          }
+        },
+        {
+          "tag": "corner--5000--5000",
+          "geometry": {
+            "s": 5.028571605682373,
+            "x": -3920.571533203125,
+            "y": -3080,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 779.6590842562152,
+            "y": 612.4999784271834,
+            "width": 220.3409013302985,
+            "height": 87.49999691816902
+          },
+          "miniActual": {
+            "x": 779.6590909090909,
+            "y": 612.5,
+            "width": 220.34090909090912,
+            "height": 87.5
+          }
+        },
+        {
+          "tag": "corner-5000--5000",
+          "geometry": {
+            "s": 5.028571605682373,
+            "x": 0,
+            "y": -3080,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 0,
+            "y": 612.4999784271834,
+            "width": 220.3409013302984,
+            "height": 87.49999691816902
+          },
+          "miniActual": {
+            "x": 0,
+            "y": 612.5,
+            "width": 220.3409090909091,
+            "height": 87.5
+          }
+        },
+        {
+          "tag": "corner--5000-5000",
+          "geometry": {
+            "s": 5.028571605682373,
+            "x": -3920.571533203125,
+            "y": 0,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 779.6590842562152,
+            "y": 0,
+            "width": 220.3409013302985,
+            "height": 87.49999691816905
+          },
+          "miniActual": {
+            "x": 779.6590909090909,
+            "y": 0,
+            "width": 220.34090909090912,
+            "height": 87.5
+          }
+        },
+        {
+          "tag": "portrait-星見の観測所",
+          "geometry": {
+            "s": 0.6920000314712524,
+            "x": -100.33999633789062,
+            "y": 67.80000305175781,
+            "w": 173,
+            "h": 620
+          },
+          "miniExpected": {
+            "x": 144.99998811352515,
+            "y": 0,
+            "width": 249.9999886303284,
+            "height": 700
+          },
+          "miniActual": {
+            "x": 144.99999999999997,
+            "y": 0,
+            "width": 250.00000000000003,
+            "height": 700
+          }
+        },
+        {
+          "tag": "portrait-時計の庭",
+          "geometry": {
+            "s": 0.6920000314712524,
+            "x": -404.82000732421875,
+            "y": 67.80000305175781,
+            "w": 173,
+            "h": 620
+          },
+          "miniExpected": {
+            "x": 584.999983979099,
+            "y": 0,
+            "width": 249.9999886303284,
+            "height": 700
+          },
+          "miniActual": {
+            "x": 585,
+            "y": 0,
+            "width": 250,
+            "height": 700
+          }
+        },
+        {
+          "tag": "portrait-三日月橋",
+          "geometry": {
+            "s": 0.6920000314712524,
+            "x": -262.9599914550781,
+            "y": 67.80000305175781,
+            "w": 173,
+            "h": 620
+          },
+          "miniExpected": {
+            "x": 379.9999703699467,
+            "y": 0,
+            "width": 249.9999886303284,
+            "height": 700
+          },
+          "miniActual": {
+            "x": 380,
+            "y": 0,
+            "width": 250,
+            "height": 700
+          }
+        },
+        {
+          "tag": "portrait-灯りの小屋",
+          "geometry": {
+            "s": 0.6920000314712524,
+            "x": -467.1000061035156,
+            "y": 67.80000305175781,
+            "w": 173,
+            "h": 620
+          },
+          "miniExpected": {
+            "x": 674.9999781219956,
+            "y": 0,
+            "width": 249.9999886303284,
+            "height": 700
+          },
+          "miniActual": {
+            "x": 674.9999999999999,
+            "y": 0,
+            "width": 250,
+            "height": 700
+          }
+        },
+        {
+          "tag": "portrait-風の木立",
+          "geometry": {
+            "s": 0.6920000314712524,
+            "x": -31.139999389648438,
+            "y": 67.80000305175781,
+            "w": 173,
+            "h": 620
+          },
+          "miniExpected": {
+            "x": 44.99999707144822,
+            "y": 0,
+            "width": 249.9999886303284,
+            "height": 700
+          },
+          "miniActual": {
+            "x": 44.999999999999986,
+            "y": 0,
+            "width": 250,
+            "height": 700
+          }
+        },
+        {
+          "tag": "landscape-星見の観測所",
+          "geometry": {
+            "s": 0.4171428382396698,
+            "x": 345.4285583496094,
+            "y": -42.75714111328125,
+            "w": 1108,
+            "h": 73
+          },
+          "miniExpected": {
+            "x": 0,
+            "y": 102.50000046438552,
+            "width": 1000,
+            "height": 175.00000793027587
+          },
+          "miniActual": {
+            "x": 0,
+            "y": 102.49999999999999,
+            "width": 1000,
+            "height": 175
+          }
+        },
+        {
+          "tag": "landscape-時計の庭",
+          "geometry": {
+            "s": 0.4171428382396698,
+            "x": 345.4285583496094,
+            "y": -59.44285583496094,
+            "w": 1108,
+            "h": 73
+          },
+          "miniExpected": {
+            "x": 0,
+            "y": 142.5000033221426,
+            "width": 1000,
+            "height": 175.00000793027587
+          },
+          "miniActual": {
+            "x": 0,
+            "y": 142.50000000000003,
+            "width": 1000,
+            "height": 174.99999999999997
+          }
+        },
+        {
+          "tag": "landscape-三日月橋",
+          "geometry": {
+            "s": 0.4171428382396698,
+            "x": 345.4285583496094,
+            "y": -147.04286193847656,
+            "w": 1108,
+            "h": 73
+          },
+          "miniExpected": {
+            "x": 0,
+            "y": 352.5000274701898,
+            "width": 1000,
+            "height": 175.00000793027584
+          },
+          "miniActual": {
+            "x": 0,
+            "y": 352.5,
+            "width": 1000,
+            "height": 175
+          }
+        },
+        {
+          "tag": "landscape-灯りの小屋",
+          "geometry": {
+            "s": 0.4171428382396698,
+            "x": 345.4285583496094,
+            "y": -199.1857147216797,
+            "w": 1108,
+            "h": 73
+          },
+          "miniExpected": {
+            "x": 0,
+            "y": 477.50002268344673,
+            "width": 1000,
+            "height": 175.0000079302759
+          },
+          "miniActual": {
+            "x": 0,
+            "y": 477.5,
+            "width": 1000,
+            "height": 175
+          }
+        },
+        {
+          "tag": "landscape-風の木立",
+          "geometry": {
+            "s": 0.4171428382396698,
+            "x": 345.4285583496094,
+            "y": -188.75714111328125,
+            "w": 1108,
+            "h": 73
+          },
+          "miniExpected": {
+            "x": 0,
+            "y": 452.5000163249373,
+            "width": 1000,
+            "height": 175.00000793027584
+          },
+          "miniActual": {
+            "x": 0,
+            "y": 452.5,
+            "width": 1000,
+            "height": 175
+          }
+        },
+        {
+          "tag": "zero-width-changed-false-drag-false",
+          "geometry": {
+            "s": 2.5142855644226074,
+            "x": -715.7142944335938,
+            "y": -886.2857055664062,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 284.6591113440027,
+            "y": 352.5000175427317,
+            "width": 440.681844448503,
+            "height": 175.00001043081352
+          },
+          "miniActual": {
+            "x": 284.65909090909093,
+            "y": 352.5,
+            "width": 440.6818181818182,
+            "height": 175
+          }
+        },
+        {
+          "tag": "zero-width-changed-true-drag-true",
+          "geometry": {
+            "s": 2.7828571796417236,
+            "x": -866.8428344726562,
+            "y": -980.9571533203125,
+            "w": 1077,
+            "h": 487
+          },
+          "miniExpected": {
+            "x": 311.4938275719407,
+            "y": 352.4999991004227,
+            "width": 387.01231521290555,
+            "height": 174.99999768680135
+          },
+          "miniActual": {
+            "x": 311.49383983572903,
+            "y": 352.49999999999994,
+            "width": 387.0123203285421,
+            "height": 175.00000000000006
+          }
+        },
+        {
+          "tag": "zero-height-changed-false-drag-true",
+          "geometry": {
+            "s": 2.5142855644226074,
+            "x": -715.7142944335938,
+            "y": -886.2857055664062,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 284.6591113440027,
+            "y": 352.5000175427317,
+            "width": 440.681844448503,
+            "height": 175.00001043081352
+          },
+          "miniActual": {
+            "x": 284.65909090909093,
+            "y": 352.5,
+            "width": 440.6818181818182,
+            "height": 175
+          }
+        },
+        {
+          "tag": "zero-height-changed-true-drag-false",
+          "geometry": {
+            "s": 2.7828571796417236,
+            "x": -866.8428344726562,
+            "y": -980.9571533203125,
+            "w": 1077,
+            "h": 487
+          },
+          "miniExpected": {
+            "x": 311.4938275719407,
+            "y": 352.4999991004227,
+            "width": 387.01231521290555,
+            "height": 174.99999768680135
+          },
+          "miniActual": {
+            "x": 311.49383983572903,
+            "y": 352.49999999999994,
+            "width": 387.0123203285421,
+            "height": 175.00000000000006
+          }
+        },
+        {
+          "tag": "zero-hidden-changed-true-drag-true",
+          "geometry": {
+            "s": 2.7828571796417236,
+            "x": -866.8428344726562,
+            "y": -980.9571533203125,
+            "w": 1077,
+            "h": 487
+          },
+          "miniExpected": {
+            "x": 311.4938275719407,
+            "y": 352.4999991004227,
+            "width": 387.01231521290555,
+            "height": 174.99999768680135
+          },
+          "miniActual": {
+            "x": 311.49383983572903,
+            "y": 352.49999999999994,
+            "width": 387.0123203285421,
+            "height": 175.00000000000006
+          }
+        }
+      ],
+      "anchorError": {
+        "x": 0.21988633058441565,
+        "y": 0.21242675912409936
+      },
+      "overflow": {
+        "w": 1280,
+        "scroll": 1280
+      },
+      "focus": {
+        "active": true,
+        "outline": "3px solid rgb(255, 211, 126)",
+        "rect": {
+          "x": 86,
+          "y": 276.625,
+          "width": 1108,
+          "height": 440,
+          "top": 276.625,
+          "right": 1194,
+          "bottom": 716.625,
+          "left": 86
+        }
+      },
+      "inputAudit": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "time": 61093,
+          "trusted": true
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "time": 61099.00000000001,
+          "trusted": true
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "time": 61105.00000000001,
+          "trusted": true
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "time": 61154,
+          "trusted": true
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "time": 61150,
+          "trusted": true
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "time": 61159,
+          "trusted": true
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 62474.00000000001,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 63139,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 92,
+          "time": 64497,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 92,
+          "time": 65162.00000000001,
+          "trusted": false
+        },
+        {
+          "type": "pointercancel",
+          "id": 92,
+          "time": 65835.00000000001,
+          "trusted": false
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 92,
+          "time": 66504,
+          "trusted": false
+        },
+        {
+          "type": "pointercancel",
+          "id": 91,
+          "time": 67852,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 1000000,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 999999,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 999999,
+          "trusted": false
+        },
+        {
+          "type": "pointercancel",
+          "id": 91,
+          "time": 999999,
+          "trusted": false
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 91,
+          "time": 999999,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 1000001,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 1000002,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 77659,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 78327,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 81552,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 82196,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 85449,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 86090,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 89435,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 90117,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 93572,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 94216.00000000001,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 97584,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 98245,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 101577,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 102208,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 105581,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 106257,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 109773,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 110411,
+          "trusted": false
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 91,
+          "time": 111078,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 112426,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 113082.00000000001,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 117945.00000000001,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 118543,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 121234.00000000001,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 121890,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 125914,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 126525,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 127868.00000000001,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 128424,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 131155,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 131820,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 136564,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 137189,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 138599,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 139215,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 141957,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 142613,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 147336,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 147939,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 150569.00000000003,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 151209,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 155819.00000000003,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 156453,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 157818,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 158422,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 161085,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 161737,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "time": 176639,
+          "trusted": true
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 1280,
+      "motion": "reduce",
+      "steps": [
+        "native form Enter and center button/input anchors",
+        "native off-center doubleclick anchor",
+        "doubleclick with actual edge/letterbox correction",
+        "native mouse all four boundaries and zoom clamps",
+        "five landmarks and minimap in portrait and landscape windows",
+        "native mouse commit and Escape rollback",
+        "programmatic native capture release rollback (not OS loss)",
+        "synthetic foreign pointer and reused owner ID with stale timestamps",
+        "synthetic late events after Reset/fit/zoom/mode/lostcapture",
+        "real layout width0/height0/hidden, same/different size, provisional drag and stale events",
+        "fit retains selection/mode; Reset clears both",
+        "native keyboard scope, modified keys, numeric editing and Enter",
+        "native-drag exhibit switch, detached synthetic stale events, close focus return"
+      ],
+      "measurements": [
+        {
+          "tag": "fit",
+          "geometry": {
+            "s": 0.6285714507102966,
+            "x": 239.7142791748047,
+            "y": 0,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 0,
+            "y": 0,
+            "width": 1000,
+            "height": 699.9999753453524
+          },
+          "miniActual": {
+            "x": 0,
+            "y": 0,
+            "width": 1000,
+            "height": 700
+          }
+        },
+        {
+          "tag": "center-button-487.5",
+          "geometry": {
+            "s": 3.0642857551574707,
+            "x": -993.4642944335938,
+            "y": -1128.2857666015625,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 324.2074577286088,
+            "y": 368.2051403667413,
+            "width": 361.5850767622228,
+            "height": 143.58974167452897
+          },
+          "miniActual": {
+            "x": 324.2074592074592,
+            "y": 368.20512820512823,
+            "width": 361.5850815850816,
+            "height": 143.5897435897436
+          }
+        },
+        {
+          "tag": "off-center-native-doubleclick",
+          "geometry": {
+            "s": 4.120285511016846,
+            "x": -1487.7442626953125,
+            "y": -1586.1131591796875,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 361.07795411686214,
+            "y": 384.95224540598656,
+            "width": 268.9134034613433,
+            "height": 106.78871617598469
+          },
+          "miniActual": {
+            "x": 361.07794189029886,
+            "y": 384.9522397891963,
+            "width": 268.9133901948547,
+            "height": 106.78871090770406
+          }
+        },
+        {
+          "tag": "constrained-doubleclick",
+          "wanted": {
+            "x": 337.41142802639376,
+            "y": -206.80001960992746
+          },
+          "expected": {
+            "x": 82.57139706611633,
+            "y": -206.80001960992746
+          },
+          "actual": {
+            "s": 0.9428572058677673,
+            "x": 82.57142639160156,
+            "y": -206.6875,
+            "w": 1108,
+            "h": 440
+          }
+        },
+        {
+          "tag": "corner-5000-5000",
+          "geometry": {
+            "s": 5.028571605682373,
+            "x": 0,
+            "y": 0,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 0,
+            "y": 0,
+            "width": 220.3409013302984,
+            "height": 87.49999691816905
+          },
+          "miniActual": {
+            "x": 0,
+            "y": 0,
+            "width": 220.3409090909091,
+            "height": 87.5
+          }
+        },
+        {
+          "tag": "corner--5000--5000",
+          "geometry": {
+            "s": 5.028571605682373,
+            "x": -3920.571533203125,
+            "y": -3080,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 779.6590842562152,
+            "y": 612.4999784271834,
+            "width": 220.3409013302985,
+            "height": 87.49999691816902
+          },
+          "miniActual": {
+            "x": 779.6590909090909,
+            "y": 612.5,
+            "width": 220.34090909090912,
+            "height": 87.5
+          }
+        },
+        {
+          "tag": "corner-5000--5000",
+          "geometry": {
+            "s": 5.028571605682373,
+            "x": 0,
+            "y": -3080,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 0,
+            "y": 612.4999784271834,
+            "width": 220.3409013302984,
+            "height": 87.49999691816902
+          },
+          "miniActual": {
+            "x": 0,
+            "y": 612.5,
+            "width": 220.3409090909091,
+            "height": 87.5
+          }
+        },
+        {
+          "tag": "corner--5000-5000",
+          "geometry": {
+            "s": 5.028571605682373,
+            "x": -3920.571533203125,
+            "y": 0,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 779.6590842562152,
+            "y": 0,
+            "width": 220.3409013302985,
+            "height": 87.49999691816905
+          },
+          "miniActual": {
+            "x": 779.6590909090909,
+            "y": 0,
+            "width": 220.34090909090912,
+            "height": 87.5
+          }
+        },
+        {
+          "tag": "portrait-星見の観測所",
+          "geometry": {
+            "s": 0.6920000314712524,
+            "x": -100.33999633789062,
+            "y": 67.80000305175781,
+            "w": 173,
+            "h": 620
+          },
+          "miniExpected": {
+            "x": 144.99998811352515,
+            "y": 0,
+            "width": 249.9999886303284,
+            "height": 700
+          },
+          "miniActual": {
+            "x": 144.99999999999997,
+            "y": 0,
+            "width": 250.00000000000003,
+            "height": 700
+          }
+        },
+        {
+          "tag": "portrait-時計の庭",
+          "geometry": {
+            "s": 0.6920000314712524,
+            "x": -404.82000732421875,
+            "y": 67.80000305175781,
+            "w": 173,
+            "h": 620
+          },
+          "miniExpected": {
+            "x": 584.999983979099,
+            "y": 0,
+            "width": 249.9999886303284,
+            "height": 700
+          },
+          "miniActual": {
+            "x": 585,
+            "y": 0,
+            "width": 250,
+            "height": 700
+          }
+        },
+        {
+          "tag": "portrait-三日月橋",
+          "geometry": {
+            "s": 0.6920000314712524,
+            "x": -262.9599914550781,
+            "y": 67.80000305175781,
+            "w": 173,
+            "h": 620
+          },
+          "miniExpected": {
+            "x": 379.9999703699467,
+            "y": 0,
+            "width": 249.9999886303284,
+            "height": 700
+          },
+          "miniActual": {
+            "x": 380,
+            "y": 0,
+            "width": 250,
+            "height": 700
+          }
+        },
+        {
+          "tag": "portrait-灯りの小屋",
+          "geometry": {
+            "s": 0.6920000314712524,
+            "x": -467.1000061035156,
+            "y": 67.80000305175781,
+            "w": 173,
+            "h": 620
+          },
+          "miniExpected": {
+            "x": 674.9999781219956,
+            "y": 0,
+            "width": 249.9999886303284,
+            "height": 700
+          },
+          "miniActual": {
+            "x": 674.9999999999999,
+            "y": 0,
+            "width": 250,
+            "height": 700
+          }
+        },
+        {
+          "tag": "portrait-風の木立",
+          "geometry": {
+            "s": 0.6920000314712524,
+            "x": -31.139999389648438,
+            "y": 67.80000305175781,
+            "w": 173,
+            "h": 620
+          },
+          "miniExpected": {
+            "x": 44.99999707144822,
+            "y": 0,
+            "width": 249.9999886303284,
+            "height": 700
+          },
+          "miniActual": {
+            "x": 44.999999999999986,
+            "y": 0,
+            "width": 250,
+            "height": 700
+          }
+        },
+        {
+          "tag": "landscape-星見の観測所",
+          "geometry": {
+            "s": 0.4171428382396698,
+            "x": 345.4285583496094,
+            "y": -42.75714111328125,
+            "w": 1108,
+            "h": 73
+          },
+          "miniExpected": {
+            "x": 0,
+            "y": 102.50000046438552,
+            "width": 1000,
+            "height": 175.00000793027587
+          },
+          "miniActual": {
+            "x": 0,
+            "y": 102.49999999999999,
+            "width": 1000,
+            "height": 175
+          }
+        },
+        {
+          "tag": "landscape-時計の庭",
+          "geometry": {
+            "s": 0.4171428382396698,
+            "x": 345.4285583496094,
+            "y": -59.44285583496094,
+            "w": 1108,
+            "h": 73
+          },
+          "miniExpected": {
+            "x": 0,
+            "y": 142.5000033221426,
+            "width": 1000,
+            "height": 175.00000793027587
+          },
+          "miniActual": {
+            "x": 0,
+            "y": 142.50000000000003,
+            "width": 1000,
+            "height": 174.99999999999997
+          }
+        },
+        {
+          "tag": "landscape-三日月橋",
+          "geometry": {
+            "s": 0.4171428382396698,
+            "x": 345.4285583496094,
+            "y": -147.04286193847656,
+            "w": 1108,
+            "h": 73
+          },
+          "miniExpected": {
+            "x": 0,
+            "y": 352.5000274701898,
+            "width": 1000,
+            "height": 175.00000793027584
+          },
+          "miniActual": {
+            "x": 0,
+            "y": 352.5,
+            "width": 1000,
+            "height": 175
+          }
+        },
+        {
+          "tag": "landscape-灯りの小屋",
+          "geometry": {
+            "s": 0.4171428382396698,
+            "x": 345.4285583496094,
+            "y": -199.1857147216797,
+            "w": 1108,
+            "h": 73
+          },
+          "miniExpected": {
+            "x": 0,
+            "y": 477.50002268344673,
+            "width": 1000,
+            "height": 175.0000079302759
+          },
+          "miniActual": {
+            "x": 0,
+            "y": 477.5,
+            "width": 1000,
+            "height": 175
+          }
+        },
+        {
+          "tag": "landscape-風の木立",
+          "geometry": {
+            "s": 0.4171428382396698,
+            "x": 345.4285583496094,
+            "y": -188.75714111328125,
+            "w": 1108,
+            "h": 73
+          },
+          "miniExpected": {
+            "x": 0,
+            "y": 452.5000163249373,
+            "width": 1000,
+            "height": 175.00000793027584
+          },
+          "miniActual": {
+            "x": 0,
+            "y": 452.5,
+            "width": 1000,
+            "height": 175
+          }
+        },
+        {
+          "tag": "zero-width-changed-false-drag-false",
+          "geometry": {
+            "s": 2.5142855644226074,
+            "x": -715.7142944335938,
+            "y": -886.2857055664062,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 284.6591113440027,
+            "y": 352.5000175427317,
+            "width": 440.681844448503,
+            "height": 175.00001043081352
+          },
+          "miniActual": {
+            "x": 284.65909090909093,
+            "y": 352.5,
+            "width": 440.6818181818182,
+            "height": 175
+          }
+        },
+        {
+          "tag": "zero-width-changed-true-drag-true",
+          "geometry": {
+            "s": 2.7828571796417236,
+            "x": -866.8428344726562,
+            "y": -980.9571533203125,
+            "w": 1077,
+            "h": 487
+          },
+          "miniExpected": {
+            "x": 311.4938275719407,
+            "y": 352.4999991004227,
+            "width": 387.01231521290555,
+            "height": 174.99999768680135
+          },
+          "miniActual": {
+            "x": 311.49383983572903,
+            "y": 352.49999999999994,
+            "width": 387.0123203285421,
+            "height": 175.00000000000006
+          }
+        },
+        {
+          "tag": "zero-height-changed-false-drag-true",
+          "geometry": {
+            "s": 2.5142855644226074,
+            "x": -715.7142944335938,
+            "y": -886.2857055664062,
+            "w": 1108,
+            "h": 440
+          },
+          "miniExpected": {
+            "x": 284.6591113440027,
+            "y": 352.5000175427317,
+            "width": 440.681844448503,
+            "height": 175.00001043081352
+          },
+          "miniActual": {
+            "x": 284.65909090909093,
+            "y": 352.5,
+            "width": 440.6818181818182,
+            "height": 175
+          }
+        },
+        {
+          "tag": "zero-height-changed-true-drag-false",
+          "geometry": {
+            "s": 2.7828571796417236,
+            "x": -866.8428344726562,
+            "y": -980.9571533203125,
+            "w": 1077,
+            "h": 487
+          },
+          "miniExpected": {
+            "x": 311.4938275719407,
+            "y": 352.4999991004227,
+            "width": 387.01231521290555,
+            "height": 174.99999768680135
+          },
+          "miniActual": {
+            "x": 311.49383983572903,
+            "y": 352.49999999999994,
+            "width": 387.0123203285421,
+            "height": 175.00000000000006
+          }
+        },
+        {
+          "tag": "zero-hidden-changed-true-drag-true",
+          "geometry": {
+            "s": 2.7828571796417236,
+            "x": -866.8428344726562,
+            "y": -980.9571533203125,
+            "w": 1077,
+            "h": 487
+          },
+          "miniExpected": {
+            "x": 311.4938275719407,
+            "y": 352.4999991004227,
+            "width": 387.01231521290555,
+            "height": 174.99999768680135
+          },
+          "miniActual": {
+            "x": 311.49383983572903,
+            "y": 352.49999999999994,
+            "width": 387.0123203285421,
+            "height": 175.00000000000006
+          }
+        }
+      ],
+      "anchorError": {
+        "x": 0.21988633058441565,
+        "y": 0.21242675912409936
+      },
+      "overflow": {
+        "w": 1280,
+        "scroll": 1280
+      },
+      "focus": {
+        "active": true,
+        "outline": "3px solid rgb(255, 211, 126)",
+        "rect": {
+          "x": 86,
+          "y": 276.625,
+          "width": 1108,
+          "height": 440,
+          "top": 276.625,
+          "right": 1194,
+          "bottom": 716.625,
+          "left": 86
+        }
+      },
+      "inputAudit": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "time": 31128,
+          "trusted": true
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "time": 31134,
+          "trusted": true
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "time": 31143,
+          "trusted": true
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "time": 31197,
+          "trusted": true
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "time": 31195,
+          "trusted": true
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "time": 31201,
+          "trusted": true
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 32243.000000000004,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 32640,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 92,
+          "time": 33095,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 92,
+          "time": 33172.00000000001,
+          "trusted": false
+        },
+        {
+          "type": "pointercancel",
+          "id": 92,
+          "time": 33261,
+          "trusted": false
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 92,
+          "time": 33341,
+          "trusted": false
+        },
+        {
+          "type": "pointercancel",
+          "id": 91,
+          "time": 33492,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 1000000,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 999999,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 999999,
+          "trusted": false
+        },
+        {
+          "type": "pointercancel",
+          "id": 91,
+          "time": 999999,
+          "trusted": false
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 91,
+          "time": 999999,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 1000001,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 1000002,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 36272,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 36911,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 38268,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 38355.00000000001,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 38693,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 39328,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 40656,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 40743,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 41148,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 41756,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 43006,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 43088,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 43450,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 44109,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 45434,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 45527,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 45945,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 46585,
+          "trusted": false
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 91,
+          "time": 46941,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 47402,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 47487,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 48940,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 49233.00000000001,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 50127,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 50201,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 51498,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 51797.00000000001,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 52624,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 52872,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 54079,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 54157,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 55580,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 55939,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 57024,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 57324,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 58514,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 58595,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 60393,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 60970,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 61843,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 61922.00000000001,
+          "trusted": false
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "time": 63590,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 63964,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 64781.00000000001,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 65074,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "time": 65984,
+          "trusted": false
+        },
+        {
+          "type": "pointerup",
+          "id": 91,
+          "time": 66045,
+          "trusted": false
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "time": 71545,
+          "trusted": true
+        }
+      ],
+      "status": "PASS"
+    }
+  ],
+  "failures": [],
+  "images": [
+    "C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-final1280\\webkit-1280-no-preference-focus.png",
+    "C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-final1280\\webkit-1280-no-preference-exhibit.png",
+    "C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-final1280\\webkit-1280-reduce-focus.png",
+    "C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-final1280\\webkit-1280-reduce-exhibit.png"
+  ],
+  "finished": "2026-11-04T21:55:31.302Z",
+  "complete": true,
+  "imageHashes": {
+    "webkit-1280-no-preference-focus.png": "35fa1db4d6dd1048f76e2cbd7f18ef0f146f78b1d0f112a120b6759b147c4d10",
+    "webkit-1280-no-preference-exhibit.png": "7b00cdaa83f332bffa04762576bc69118cd476b52379e268f4f45e38c0619c4a",
+    "webkit-1280-reduce-focus.png": "35fa1db4d6dd1048f76e2cbd7f18ef0f146f78b1d0f112a120b6759b147c4d10",
+    "webkit-1280-reduce-exhibit.png": "7b00cdaa83f332bffa04762576bc69118cd476b52379e268f4f45e38c0619c4a"
+  }
+}

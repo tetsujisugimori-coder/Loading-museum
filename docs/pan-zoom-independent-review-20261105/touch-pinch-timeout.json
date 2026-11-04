@@ -1,0 +1,25 @@
+{
+  "type": "Chromium CDP touch emulation, not physical device",
+  "head": "36f9cca37f174a56767614c6b0a22eb90f9d87e2",
+  "steps": [
+    {
+      "name": "initial OFF vertical page scroll, diagram unchanged",
+      "beforeScroll": 5421,
+      "afterScroll": 5501
+    },
+    {
+      "name": "ON one-finger pan with page stationary",
+      "before": "translate(-477.28 -412.64) scale(1.256)",
+      "after": "translate(-508.28 -388.64) scale(1.256)"
+    },
+    {
+      "name": "outside-diagram vertical scroll while mode ON",
+      "beforeScroll": 5095,
+      "afterScroll": 5180
+    }
+  ],
+  "started": "2026-11-04T21:34:38.716Z",
+  "status": "FAIL",
+  "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\touch-browser.mjs:17:538",
+  "finished": "2026-11-04T21:35:11.140Z"
+}

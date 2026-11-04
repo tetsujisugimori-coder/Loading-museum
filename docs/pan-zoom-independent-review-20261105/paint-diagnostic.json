@@ -1,0 +1,352 @@
+{
+  "engine": "webkit",
+  "input": "native browser mouse + programmatic capture release; synthetic cancel",
+  "samples": [
+    {
+      "tag": "committed",
+      "at": 889,
+      "transform": "translate(-477.28 -412.64) scale(1.256)",
+      "dragging": "false",
+      "events": []
+    },
+    {
+      "tag": "provisional",
+      "at": 944.0000000000001,
+      "transform": "translate(-459.28 -398.64) scale(1.256)",
+      "dragging": "true",
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 898
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "at": 900
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 903
+        }
+      ]
+    },
+    {
+      "tag": "immediate-after-release-and-up",
+      "at": 966,
+      "transform": "translate(-459.28 -398.64) scale(1.256)",
+      "dragging": "true",
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 898
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "at": 900
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 903
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "trusted": true,
+          "at": 953.0000000000001
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 953.0000000000001
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "trusted": true,
+          "at": 954.0000000000001
+        }
+      ]
+    },
+    {
+      "tag": "first-paint",
+      "at": 1002,
+      "transform": "translate(-477.28 -412.64) scale(1.256)",
+      "dragging": "false",
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 898
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "at": 900
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 903
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "trusted": true,
+          "at": 953.0000000000001
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 953.0000000000001
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "trusted": true,
+          "at": 954.0000000000001
+        }
+      ]
+    },
+    {
+      "tag": "second-paint",
+      "at": 1032,
+      "transform": "translate(-477.28 -412.64) scale(1.256)",
+      "dragging": "false",
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 898
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "at": 900
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 903
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "trusted": true,
+          "at": 953.0000000000001
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 953.0000000000001
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "trusted": true,
+          "at": 954.0000000000001
+        }
+      ]
+    },
+    {
+      "tag": "synthetic-provisional",
+      "at": 1064,
+      "transform": "translate(-446.28 -389.64) scale(1.256)",
+      "dragging": "true",
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 898
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "at": 900
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 903
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "trusted": true,
+          "at": 953.0000000000001
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 953.0000000000001
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "trusted": true,
+          "at": 954.0000000000001
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "trusted": false,
+          "at": 1038
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "trusted": false,
+          "at": 1039
+        }
+      ]
+    },
+    {
+      "tag": "immediate-synthetic-cancel",
+      "at": 1076,
+      "transform": "translate(-477.28 -412.64) scale(1.256)",
+      "dragging": "false",
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 898
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "at": 900
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 903
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "trusted": true,
+          "at": 953.0000000000001
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 953.0000000000001
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "trusted": true,
+          "at": 954.0000000000001
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "trusted": false,
+          "at": 1038
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "trusted": false,
+          "at": 1039
+        },
+        {
+          "type": "pointercancel",
+          "id": 91,
+          "trusted": false,
+          "at": 1070
+        }
+      ]
+    },
+    {
+      "tag": "painted-synthetic-cancel",
+      "at": 1128,
+      "transform": "translate(-477.28 -412.64) scale(1.256)",
+      "dragging": "false",
+      "events": [
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 898
+        },
+        {
+          "type": "pointerdown",
+          "id": 1,
+          "trusted": true,
+          "at": 900
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 903
+        },
+        {
+          "type": "lostpointercapture",
+          "id": 1,
+          "trusted": true,
+          "at": 953.0000000000001
+        },
+        {
+          "type": "pointermove",
+          "id": 1,
+          "trusted": true,
+          "at": 953.0000000000001
+        },
+        {
+          "type": "pointerup",
+          "id": 1,
+          "trusted": true,
+          "at": 954.0000000000001
+        },
+        {
+          "type": "pointerdown",
+          "id": 91,
+          "trusted": false,
+          "at": 1038
+        },
+        {
+          "type": "pointermove",
+          "id": 91,
+          "trusted": false,
+          "at": 1039
+        },
+        {
+          "type": "pointercancel",
+          "id": 91,
+          "trusted": false,
+          "at": 1070
+        }
+      ]
+    }
+  ],
+  "status": "PASS"
+}

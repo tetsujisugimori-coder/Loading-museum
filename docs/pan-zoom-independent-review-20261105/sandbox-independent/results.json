@@ -1,0 +1,236 @@
+{
+  "head": "36f9cca37f174a56767614c6b0a22eb90f9d87e2",
+  "started": "2026-11-04T21:33:53.627Z",
+  "oracle": "Independent DOM getScreenCTM inversion and intersection; no product model imports",
+  "cases": [
+    {
+      "engine": "chromium",
+      "version": "145.0.7632.6",
+      "width": 375,
+      "motion": "no-preference",
+      "steps": [],
+      "measurements": [],
+      "status": "FAIL",
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:54593/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "engine": "chromium",
+      "version": "145.0.7632.6",
+      "width": 375,
+      "motion": "reduce",
+      "steps": [],
+      "measurements": [],
+      "status": "FAIL",
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:54593/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "engine": "chromium",
+      "version": "145.0.7632.6",
+      "width": 390,
+      "motion": "no-preference",
+      "steps": [],
+      "measurements": [],
+      "status": "FAIL",
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:54593/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "engine": "chromium",
+      "version": "145.0.7632.6",
+      "width": 390,
+      "motion": "reduce",
+      "steps": [],
+      "measurements": [],
+      "status": "FAIL",
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:54593/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "engine": "chromium",
+      "version": "145.0.7632.6",
+      "width": 765,
+      "motion": "no-preference",
+      "steps": [],
+      "measurements": [],
+      "status": "FAIL",
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:54593/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "engine": "chromium",
+      "version": "145.0.7632.6",
+      "width": 765,
+      "motion": "reduce",
+      "steps": [],
+      "measurements": [],
+      "status": "FAIL",
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:54593/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "engine": "chromium",
+      "version": "145.0.7632.6",
+      "width": 1280,
+      "motion": "no-preference",
+      "steps": [],
+      "measurements": [],
+      "status": "FAIL",
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:54593/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "engine": "chromium",
+      "version": "145.0.7632.6",
+      "width": 1280,
+      "motion": "reduce",
+      "steps": [],
+      "measurements": [],
+      "status": "FAIL",
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:54593/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 375,
+      "motion": "no-preference",
+      "steps": [],
+      "measurements": [],
+      "status": "FAIL",
+      "error": "page.goto: Could not connect to server\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 375,
+      "motion": "reduce",
+      "steps": [],
+      "measurements": [],
+      "status": "FAIL",
+      "error": "page.goto: Could not connect to server\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 390,
+      "motion": "no-preference",
+      "steps": [],
+      "measurements": [],
+      "status": "FAIL",
+      "error": "page.goto: Could not connect to server\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 390,
+      "motion": "reduce",
+      "steps": [],
+      "measurements": [],
+      "status": "FAIL",
+      "error": "page.goto: Could not connect to server\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 765,
+      "motion": "no-preference",
+      "steps": [],
+      "measurements": [],
+      "status": "FAIL",
+      "error": "page.goto: Could not connect to server\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 765,
+      "motion": "reduce",
+      "steps": [],
+      "measurements": [],
+      "status": "FAIL",
+      "error": "page.goto: Could not connect to server\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 1280,
+      "motion": "no-preference",
+      "steps": [],
+      "measurements": [],
+      "status": "FAIL",
+      "error": "page.goto: Could not connect to server\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 1280,
+      "motion": "reduce",
+      "steps": [],
+      "measurements": [],
+      "status": "FAIL",
+      "error": "page.goto: Could not connect to server\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    }
+  ],
+  "failures": [
+    {
+      "label": "chromium-375-no-preference",
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:54593/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "label": "chromium-375-reduce",
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:54593/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "label": "chromium-390-no-preference",
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:54593/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "label": "chromium-390-reduce",
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:54593/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "label": "chromium-765-no-preference",
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:54593/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "label": "chromium-765-reduce",
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:54593/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "label": "chromium-1280-no-preference",
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:54593/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "label": "chromium-1280-reduce",
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:54593/Loading-museum/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "label": "webkit-375-no-preference",
+      "error": "page.goto: Could not connect to server\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "label": "webkit-375-reduce",
+      "error": "page.goto: Could not connect to server\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "label": "webkit-390-no-preference",
+      "error": "page.goto: Could not connect to server\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "label": "webkit-390-reduce",
+      "error": "page.goto: Could not connect to server\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "label": "webkit-765-no-preference",
+      "error": "page.goto: Could not connect to server\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "label": "webkit-765-reduce",
+      "error": "page.goto: Could not connect to server\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "label": "webkit-1280-no-preference",
+      "error": "page.goto: Could not connect to server\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    },
+    {
+      "label": "webkit-1280-reduce",
+      "error": "page.goto: Could not connect to server\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:54593/Loading-museum/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\tetsu\\Documents\\ChatGPT\\loading-museum\\review-evidence\\independent-browser.mjs:26:15"
+    }
+  ],
+  "images": [],
+  "finished": "2026-11-04T21:33:57.475Z",
+  "complete": false
+}
