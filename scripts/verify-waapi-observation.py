@@ -36,7 +36,7 @@ with sync_playwright() as p:
     q.goto(URL,wait_until='networkidle');q.get_by_role('button',name='サンプル一覧を見る',exact=False).click()
     assert q.locator('.waapiSampleCard').count()==47
     # Current collection with Flash Phase 2, checked independently by rendered-html.test.mjs.
-    assert '13 ROOMS / 263 OBJECTS' in q.locator('.archiveMeta').inner_text()
+    assert '13 ROOMS / 264 OBJECTS' in q.locator('.archiveMeta').inner_text()
     assert sum(map(int,q.locator('.waapiCategoryCounts b').all_text_contents()))==47
     r['pageGeometry100']=q.evaluate('()=>({viewport:innerWidth,scroll:document.documentElement.scrollWidth})')
     assert r['pageGeometry100']['scroll']<=width,r['pageGeometry100']

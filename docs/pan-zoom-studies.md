@@ -91,3 +91,10 @@ React自己レビュー：`vercel:react-best-practices`を適用。イベント�
 **全16条件PASS**：Chromium141.0.7390.37/WebKit26.0 ×375/390/765/1280×通常/reduced。pageerror/横超過0、必要な旧event拒否/幅0復帰/mini実範囲/5目印/keyboard/close focusも検証。pointerアンカー誤差の最大値は約0.500109 CSS px（許容0.75 CSS px以内）。両engine375/1280の通常画像を目視。motion間のPNGは同一ではないため同一画像とは主張せず、reduced側も目視確認。24枚の最終overview/exhibit/detailを保存。Chromium CDPで通常scroll/mode pan/mode中図版外scroll成功（模擬）。
 
 これは開発中の自己実行でありJSONのHEADは当時のmainとdirtyを保持。最終product 7ファイルのraw SHA一致を検査し、canonical SHAも別記録。最終commitのclean CIと独立レビューを区別し、CI URL/結果/HEADはPRとIssueへ確定する。提出準備時点14/16の記載は履歴で、上記が最新結果。
+
+
+## 初回正式CIの旧件数assert修正
+
+HEAD `29688ec9941919025220775e13435dca4407fd73` の新規Pan & Zoom両job（41802434106）は16/16成功、全館contractsは455成功。既存Stage 2B run41802433784の失敗artifactを実取得し、WebKit全4幅が `verify-waapi-stage2b.py:30` の `13 ROOMS / 263 OBJECTS` 固定期待で止まったことをJSON tracebackで確認。Stage 2Aにも同じ旧263のassertが残っていた。
+
+初回失敗を `first-ci-stage2b-webkit-failure.json` とCI URLに保全し、両Python検査の全館総数だけ264へ更新。WAAPI47、13室、操作/時間/座標/許容差/timeoutは変更しない。登録の現物と静的HTML試験の264へ揃える整備であり、機能契約の緩和ではない。アプリ差分0の追加commitで提出し、最終HEADで全workflowを再実行する。無条件rerunはしない。

@@ -4,6 +4,7 @@
 - 独自SVG小世界1展示。1〜8倍、中心/ポインタ基準拡大、drag/矢印/数値/ボタン、全体/Reset、5目印、実可視ミニマップ。touch scroll優先と移動mode、所有pointer、仮状態と確定、取消・古event失効、リサイズ中央保持。
 - 最終ローカル：lint/type/buildと455試験成功、負対照2検出、Chromium/WebKit×4幅×両motionの16条件成功。両engine375/1280の画像を目視。正式clean CIと最終HEADはPRへ追補。
 - 自己ブラウザ検査で一時幅0による倍率喪失を発見。寸法0でcommittedをnullにし最後の有効viewを失うのが原因。13番目の単体を先にRED保存し、lastMeasured分離でGREEN。未取得中は成功扱いせず操作停止、再取得で倍率/中央復元。幅0通知の外部発生源の詳細はUNKNOWN。
+- 初回正式CIは新規16条件/全館455成功、既存WAAPI Stage2A/2Bの旧総数263期待で停止。取得した失敗JSONを保全し、Python2検査の件数だけ264へ更新。製品/WAAPI47/時間許容差/timeout不変、最終HEAD CIを再実行。
 - 検証途中の型mock/完全一致/旧総数assert/端移動回数の試験前提修正も保全。旧ソースの退避.tsxがtsconfigの全体includeに入りbuildを止めた記録あり。.tsx.txtへ保全して実行対象から外した。
 - 方式/比較/原因/証拠/最終検証は docs/pan-zoom-studies.md と docs/pan-zoom-evidence/。自己検証と独立レビューを区別。#29/#44/#54、既存UNKNOWN、実機NOT_TESTEDを保持。Draft維持、マージ推奨NO。公開・merge・auto-mergeなし。
 
