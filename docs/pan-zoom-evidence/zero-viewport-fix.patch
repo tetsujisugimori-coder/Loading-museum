@@ -1,0 +1,33 @@
+--- PanZoom-before-zero-fix.tsx
++++ PanZoom.tsx
+@@ -8,6 +8,7 @@
+ type Drag = { id: number; time: number; x: number; y: number; start: View; element: HTMLDivElement };
+ export default function PanZoom() {
+   const surface = useRef<HTMLDivElement>(null), committed = useRef<View | null>(null), drag = useRef<Drag | null>(null);
++  const lastMeasured = useRef<View | null>(null);
+   const [view, setView] = useState<View | null>(null), [moving, setMoving] = useState(false);
+   const [moveMode, setMoveMode] = useState(false), [selected, setSelected] = useState('');
+   const [input, setInput] = useState('100'), [message, setMessage] = useState('図版の表示領域を測定しています。');
+@@ -19,6 +20,7 @@
+     release(d); setMoving(false); setView(committed.current);
+   }
+   function store(next: View | null) {
++    if (next) lastMeasured.current = next;
+     committed.current = next; setView(next); setInput(next ? (next.zoom * 100).toFixed(0) : '100');
+   }
+   function change(update: (v: View) => View | null, notice: string) {
+@@ -31,10 +33,12 @@
+     let alive = true;
+     const measure = () => {
+       if (!alive) return;
+-      const width = element.clientWidth, height = element.clientHeight, old = committed.current;
+-      if (old?.width === width && old?.height === height) return;
++      const width = element.clientWidth, height = element.clientHeight, current = committed.current;
++      if (current?.width === width && current?.height === height) return;
++      const old = current ?? lastMeasured.current;
+       const d = drag.current; drag.current = null; release(d); setMoving(false);
+       const next = old ? resize(old, width, height) : fit(width, height);
++      if (next) lastMeasured.current = next;
+       committed.current = next; setView(next); setInput(next ? (next.zoom * 100).toFixed(0) : '100');
+       setMessage(next ? '表示領域に合わせました。操作できます。' : '表示領域が未取得です。表示後に再測定します。');
+     };

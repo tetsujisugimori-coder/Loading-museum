@@ -1,0 +1,260 @@
+
+> loading-museum@0.1.0 check
+> npm run lint && npm run typecheck && npm test
+
+
+> loading-museum@0.1.0 lint
+> eslint .
+
+
+> loading-museum@0.1.0 typecheck
+> tsc --noEmit
+
+
+> loading-museum@0.1.0 test
+> npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run --maxWorkers=2 tests/practical-b.test.tsx tests/practical-runtime.test.tsx tests/practical-a.test.tsx tests/practical-room.test.tsx tests/phase2-elastic.test.ts tests/phase2-regression.test.tsx tests/phase2-b.test.tsx tests/phase2-room.test.tsx tests/modern-mesh.test.ts tests/modern-drift-geometry.test.ts tests/modern-lens.test.tsx tests/modern-menu.test.tsx tests/paper-exhibit.test.tsx tests/glass-exhibit.test.tsx tests/modern-animation.test.tsx tests/macintosh-system-choice.test.tsx tests/waapi-samples.test.ts tests/waapi-gallery.test.tsx tests/waapi-interaction-state.test.ts tests/waapi-game-regressions.test.tsx tests/waapi-hp-regression.test.tsx tests/waapi-cascade-motion.test.tsx tests/dom11-selection.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-stage1-menu-coin.test.tsx && vitest run --maxWorkers=2 tests/phase4a.test.tsx && vitest run --maxWorkers=2 tests/phase4b-interactions.test.tsx tests/phase4b-async.test.tsx && vitest run --maxWorkers=2 tests/phase5-data.test.tsx tests/phase5-navigation.test.tsx && vitest run --maxWorkers=2 tests/phase5-focus-revision.test.tsx && vitest run --maxWorkers=2 tests/then-now-first.test.tsx tests/then-now-second.test.tsx tests/then-now-registration.test.ts tests/then-now-visibility.test.tsx && vitest run --maxWorkers=2 tests/waapi-observation.test.tsx tests/waapi-observation-independent.test.tsx && vitest run --maxWorkers=2 tests/waapi-stage2b.test.tsx && vitest run --maxWorkers=2 tests/then-now-phase2-first.test.tsx tests/then-now-phase2-second.test.tsx tests/then-now-phase2-card.test.tsx tests/then-now-phase2-registration.test.ts && vitest run --maxWorkers=2 tests/phase5b-editors.test.tsx tests/phase5b-compare.test.tsx tests/phase5b-registration.test.tsx && vitest run --maxWorkers=2 tests/pan-zoom.test.tsx
+
+
+> loading-museum@0.1.0 build
+> next build
+
+笆ｲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+笨・Compiled successfully in 1539ms
+  Running TypeScript ...
+  Finished TypeScript in 13.1s ...
+  Collecting page data using 4 workers ...
+  Generating static pages using 4 workers (0/3) ...
+笨・Generating static pages using 4 workers (3/3) in 534ms
+  Finalizing page optimization ...
+
+Route (app)
+笏・笳・/
+笏・笳・/_not-found
+
+
+笳・ (Static)  prerendered as static content
+
+笨・Read Me縺ｮ螳溽洸蠖｢縺ｯ繧ｴ繝溽ｮｱ縺ｸ蝗帶婿蜷代°繧蛾㍾縺ｪ繧・(0.5703ms)
+笨・System 1竊・竊・竊・竊・繧偵け繝ｪ繝・け逶ｸ蠖薙・謫堺ｽ懊〒騾｣邯夐∈謚槭☆繧・(0.5248ms)
+笨・System 5繧脱nter縲ヾystem 6繧担pace逶ｸ蠖薙・謫堺ｽ懊〒驕ｸ謚槭☆繧・(0.1611ms)
+笨・loading縺九ｉ譛蛻昴・蟷ｴ莉｣縺ｸ遘ｻ陦後☆繧・(0.7796ms)
+笨・蟷ｴ莉｣縺斐→縺ｫeraIndex縺碁ｲ繧 (0.0999ms)
+笨・騾壼ｸｸ蟷ｴ莉｣縺ｯ蜈ｱ騾壹・蠕・ｩ滓凾髢薙ｒ菴ｿ縺・(0.0952ms)
+笨・譛蠕後・蟷ｴ莉｣縺縺鷹聞縺・ｾ・ｩ滓凾髢薙ｒ菴ｿ縺・(0.1164ms)
+笨・譛蠕後・蟷ｴ莉｣蠕後↓index-complete縺ｸ遘ｻ陦後☆繧・(0.0935ms)
+笨・index-complete蠕後↓typing縺ｸ遘ｻ陦後☆繧・(0.0777ms)
+笨・繧ｿ繧､繝医Ν譁・ｭ玲焚縺・譁・ｭ励★縺､蠅励∴繧・(0.0601ms)
+笨・繧ｿ繧､繝医Ν蜈ｨ譁・ｒtyping迥ｶ諷九〒菫晄戟縺吶ｋ (0.065ms)
+笨・繧ｿ繧､繝医Ν蜈ｨ譁・｡ｨ遉ｺ蠕後↓typing-hold縺ｸ遘ｻ陦後☆繧・(0.0733ms)
+笨・typing-hold蠕後↓signal-lock縺ｮbrighten縺ｸ遘ｻ陦後☆繧・(0.1499ms)
+笨・signal-lock縺ｯbrighten縺九ｉnoise縺ｸ騾ｲ繧 (0.1267ms)
+笨・signal-lock縺ｯnoise縺九ｉlocked縺ｸ騾ｲ繧 (0.0784ms)
+笨・signal-lock縺ｮlocked蠕後↓complete縺ｸ騾ｲ繧 (0.1088ms)
+笨・complete莉･髯阪・迥ｶ諷九′騾ｲ縺ｾ縺ｪ縺・(0.0433ms)
+笨・complete迥ｶ諷九・譛蠕後・蟷ｴ莉｣縺ｨ繧ｿ繧､繝医Ν蜈ｨ譁・ｒ菫晄戟縺吶ｋ (0.171ms)
+笨・Replay縺ｯrunId繧貞｢励ｄ縺・(0.066ms)
+笨・Replay縺ｯ蛻晄悄迥ｶ諷九∈謌ｻ縺・(0.4966ms)
+笨・蜿､縺вunId縺ｫ繧医ｋ繧ｿ繧､繝槭・譖ｴ譁ｰ繧堤┌隕悶☆繧・(0.0808ms)
+笨・reduced motion縺ｯ蜊ｳ譎Ｄomplete縺ｫ縺ｪ繧・(0.0429ms)
+笨・蟷ｴ莉｣襍ｰ譟ｻ荳ｭ縺ｮ轤ｹ轣ｯ謨ｰ縺ｨ繝弱・繝臥憾諷九ｒeraIndex縺九ｉ邂怜・縺吶ｋ (0.1075ms)
+笨・蟷ｴ莉｣襍ｰ譟ｻ螳御ｺ・ｾ後・蜈ｨ繧ｿ繧､繝繝ｩ繧､繝ｳ繝弱・繝峨′轤ｹ轣ｯ縺吶ｋ (0.0756ms)
+笨・繧ｿ繧､繝繝ｩ繧､繝ｳ騾ｲ謐礼紫繧貞ｹｴ莉｣莉ｶ謨ｰ縺ｨ迴ｾ蝨ｨ菴咲ｽｮ縺九ｉ邂怜・縺吶ｋ (0.0629ms)
+笨・蟷ｴ莉｣縺・莉ｶ縺ｧ繧ょｮ牙・縺ｪ騾ｲ謐礼紫繧定ｿ斐＠縲∝ｮ御ｺ・焚繧剃ｻｶ謨ｰ蜀・∈蛻ｶ髯舌☆繧・(0.0324ms)
+笨・蜈ｨ蟷ｴ莉｣縺ｨ蜈ｨ譎る俣螳壽焚繧剃ｸ縺区園縺ｧ邂｡逅・☆繧・(0.0608ms)
+笨・GitHub Pages逕ｨ縺ｮ髱咏噪HTML縺ｸ9遞ｮ鬘槭・螻慕､ｺ繧呈嶌縺榊・縺・(10.7195ms)
+笨・豁｣蠑丞錐遘ｰ縺ｮ繧ｿ繧､繝医Ν蟆主・縲∝ｹｴ莉｣繝・・繝槭∫｢ｺ螳壽ｼ泌・縲∬ｻｽ貂帙Δ繝ｼ繧ｷ繝ｧ繝ｳ縺ｨ蜀咲函謫堺ｽ懊ｒ螳溯｣・☆繧・(2.3178ms)
+笨・譌｢蟄・螻慕､ｺ縺ｮ荳九∈髢峨§縺櫪S-DOS螻慕､ｺ螳､縺ｨ8遞ｮ鬘槭・螻慕､ｺ繧呈嶌縺榊・縺・(1.7701ms)
+笨・繧ｫ繝ｼ繧ｽ繝ｫ螻慕､ｺ螳､縺ｨ8遞ｮ鬘槭・菴馴ｨ灘ｱ慕､ｺ繧呈嶌縺榊・縺・(2.1257ms)
+笨・繧ｫ繝ｼ繧ｽ繝ｫ螻慕､ｺ縺ｮ繝・・繧ｿ縲￣ointer Events縲∵ｧ閭ｽ縺ｨ繧｢繧ｯ繧ｻ繧ｷ繝薙Μ繝・ぅ蟇ｾ蠢懊ｒ螳溯｣・☆繧・(3.6872ms)
+笨・Macintosh隱慕函螻慕､ｺ螳､繧貞刈縺医◆螻慕､ｺ螳､繝ｻ螻慕､ｺ莉ｶ謨ｰ繧定｡ｨ遉ｺ縺吶ｋ (2.4552ms)
+笨・Macintosh隱慕函螻慕､ｺ螳､縺ｸ18遞ｮ鬘槭・謫堺ｽ懷ｱ慕､ｺ繧呈嶌縺榊・縺・(3.752ms)
+笨・Apple I / Apple II 螻慕､ｺ螳､縺ｸ蝗譫憺未菫ゅ′蛻・°繧・3螻慕､ｺ繧貞ｮ溯｣・☆繧・(5.028ms)
+笨・Flash迚ｹ蛻･螻慕､ｺ螳､縺ｸ18繧ｫ繝・ざ繝ｪ繝ｻ66螻慕､ｺ縺ｨ蜆ｪ蜈医ョ繝｢繧貞ｮ溯｣・☆繧・(3.1164ms)
+笨・蜀肴､懆ｨ弱＠縺・螻慕､ｺ縺ｨ迴ｾ莉｣Web邯呎価豈碑ｼ・ｒ蟆ら畑螳溯｣・↓縺吶ｋ (2.9077ms)
+笨・Flash繝舌リ繝ｼ縺ｮCTA繧貞ｮ牙・縺ｫ2蝗槫ｼｷ隱ｿ縺励∽ｾ｡譬ｼ縺ｨreduced motion繧定ｪｿ謨ｴ縺吶ｋ (2.4231ms)
+笨・Flash蟆ら畑螻慕､ｺ縺ｮ迥ｶ諷矩・遘ｻ縲∝●豁｢蛻ｶ蠕｡縲∵桃菴懷庄閭ｽ縺ｪARIA讒矩繧貞ｮ溯｣・☆繧・(2.0202ms)
+笨・MS-DOS螻慕､ｺ螳､縺ｮ荳九∈髢峨§縺櫚inux / UNIX螻慕､ｺ螳､縺ｨ5遞ｮ鬘槭・繝・Δ繧呈嶌縺榊・縺・(2.1132ms)
+笨・迢ｬ遶九＠縺滓ｶ医∴縺欅S螻慕､ｺ螳､縺ｸ6 OS繝ｻ18遞ｮ鬘槭・Loading蜀肴ｧ区・繧呈嶌縺榊・縺・(3.3805ms)
+笨・螻慕､ｺ螳､縺ｮ繝・・繧ｿ螳夂ｾｩ縺ｨ繧ｿ繧､繝槭・蛛懈ｭ｢繝ｻ繝輔か繝ｼ繧ｫ繧ｹ蠕ｩ蟶ｰ繧貞ｮ溯｣・☆繧・(0.874ms)
+笨・豸医∴縺欅S螻慕､ｺ縺ｮ繝・・繧ｿ繝ｻ襍ｷ蜍輔・蛛懈ｭ｢繝ｻreduced motion繧貞ｮ溯｣・☆繧・(0.9999ms)
+笨・Linux / UNIX繝・Δ縺ｮ蜀榊ｮ溯｡後・騾溷ｺｦ蛻・崛繝ｻ螳牙・縺ｪ蛛懈ｭ｢繧貞ｮ溯｣・☆繧・(0.9321ms)
+笨・CSS縺ｨJavaScript繧鱈oading-museum繧ｵ繝悶ヱ繧ｹ縺九ｉ蜿ら・縺吶ｋ (2.1018ms)
+笨・髱咏噪export險ｭ螳壹→譌｢蟄倥Ξ繧ｹ繝昴Φ繧ｷ繝悶・reduced-motion蟇ｾ蠢懊ｒ邯ｭ謖√☆繧・(2.2953ms)
+笨・System 1縲・縺ｮbutton讒矩縺ｨ髱槭せ繧ｯ繝ｭ繝ｼ繝ｫgrid繧帝撕逧・↓邯ｭ謖√☆繧・(0.9392ms)
+笨・DOM ANIMATION ROOM 繧帝撕逧ЗTML縺ｸ蜃ｺ蜉帙＠縲・7謫堺ｽ懊・API菴馴ｨ薙ｒ遒ｺ隱阪☆繧・(3.3491ms)
+笨・譌｢蟄倥Ο繝ｼ繝・ぅ繝ｳ繧ｰ讓呎悽縺ｮ逶ｴ荳九↓縲・≦蟒ｶ逕滓・縺吶ｋWAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ繧定ｿｽ蜉縺吶ｋ (1.6582ms)
+邃ｹ tests 49
+邃ｹ suites 0
+邃ｹ pass 49
+邃ｹ fail 0
+邃ｹ cancelled 0
+邃ｹ skipped 0
+邃ｹ todo 0
+邃ｹ duration_ms 237.731
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ 笨・tests/waapi-stage1-menu-coin.test.tsx (5 tests) 856ms
+ 笨・tests/waapi-hp-regression.test.tsx (4 tests) 780ms
+ 笨・tests/dom11-selection.test.tsx (4 tests) 796ms
+   笨・DOM11 陦ｨ遉ｺ逡ｪ蜿ｷ縺ｮ蛛ｶ謨ｰ驕ｸ謚・> reset縺ｧ驕ｸ謚槭→繝弱・繝峨ｒ髯､縺阪∝・螳溯｡後→騾｣邯壼・逕溘〒繧ょ酔縺・莉ｶ縺ｨ驕ｸ謚樣寔蜷医ｒ菫昴▽  385ms
+ 笨・tests/macintosh-system-choice.test.tsx (2 tests) 476ms
+ 笨・tests/phase2-regression.test.tsx (7 tests) 467ms
+ 笨・tests/waapi-gallery.test.tsx (12 tests) 8111ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> 蛻晄悄DOM繧帝≦蟒ｶ縺励∵ｭ｣隕丞喧讀懃ｴ｢繝ｻ隗｣髯､繝ｻ髢矩哩繧呈桶縺・ 377ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> 譁ｰ縺励＞繧ｲ繝ｼ繝讓呎悽縲・霆ｸ繝輔ぅ繝ｫ繧ｿ繝ｼ縲、I蜈ｱ騾夂憾諷九ｒ謫堺ｽ懊〒縺阪ｋ  305ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> AI豈碑ｼ・Δ繝ｼ繝峨・荳諡ｬ繝輔ぉ繝ｼ繧ｺ繧帝ｲ繧√・哩縺倥ｋ縺ｨ繝ｫ繝ｼ繝励ｒ蛛懈ｭ｢縺吶ｋ  1645ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> 霑ｽ蜉繧ｲ繝ｼ繝14莉ｶ縺ｯ蝗ｺ譛吋OM繝ｻ迥ｶ諷九・謫堺ｽ懃ｵ先棡繧呈署萓帙☆繧・ 3811ms
+   笨・WAAPI讓呎悽繧ｮ繝｣繝ｩ繝ｪ繝ｼ謫堺ｽ・> Card Deal縺ｮ蜈ｨ蟾･遞九→AI縺ｮ螳御ｺ・・繧ｨ繝ｩ繝ｼ繝ｻ繝ｪ繧ｻ繝・ヨ繧呈桃菴懊〒縺阪ｋ  1113ms
+ 笨・tests/waapi-stage1-expanded.test.tsx (23 tests) 337ms
+ 笨・tests/practical-room.test.tsx (15 tests) 523ms
+ 笨・tests/practical-b.test.tsx (6 tests) 301ms
+ 笨・tests/practical-a.test.tsx (8 tests) 209ms
+ 笨・tests/phase2-b.test.tsx (4 tests) 133ms
+ 笨・tests/waapi-cascade-motion.test.tsx (14 tests) 180ms
+ 笨・tests/phase2-room.test.tsx (4 tests) 151ms
+ 笨・tests/glass-exhibit.test.tsx (3 tests) 115ms
+ 笨・tests/paper-exhibit.test.tsx (3 tests) 96ms
+ 笨・tests/waapi-game-regressions.test.tsx (15 tests) 116ms
+ 笨・tests/modern-animation.test.tsx (3 tests) 99ms
+ 笨・tests/modern-menu.test.tsx (1 test) 66ms
+ 笨・tests/modern-lens.test.tsx (1 test) 56ms
+ 笨・tests/modern-drift-geometry.test.ts (2 tests) 62ms
+ 笨・tests/practical-runtime.test.tsx (1 test) 13ms
+ 笨・tests/modern-mesh.test.ts (2 tests) 21ms
+ 笨・tests/waapi-samples.test.ts (7 tests) 10ms
+ 笨・tests/waapi-interaction-state.test.ts (2 tests) 2ms
+ 笨・tests/phase2-elastic.test.ts (2 tests) 1ms
+
+ Test Files  25 passed (25)
+      Tests  150 passed (150)
+   Start at  17:33:07
+   Duration  30.42s (transform 1.69s, setup 0ms, collect 7.37s, tests 13.98s, environment 11.10s, prepare 3.42s)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ 笨・tests/phase4a.test.tsx (32 tests) 622ms
+
+ Test Files  1 passed (1)
+      Tests  32 passed (32)
+   Start at  17:33:38
+   Duration  1.97s (transform 254ms, setup 0ms, collect 565ms, tests 622ms, environment 481ms, prepare 125ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ 笨・tests/phase4b-interactions.test.tsx (11 tests) 210ms
+ 笨・tests/phase4b-async.test.tsx (14 tests) 230ms
+
+ Test Files  2 passed (2)
+      Tests  25 passed (25)
+   Start at  17:33:41
+   Duration  1.40s (transform 163ms, setup 0ms, collect 607ms, tests 440ms, environment 1.14s, prepare 210ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ 笨・tests/phase5-data.test.tsx (8 tests) 279ms
+ 笨・tests/phase5-navigation.test.tsx (12 tests) 304ms
+
+ Test Files  2 passed (2)
+      Tests  20 passed (20)
+   Start at  17:33:44
+   Duration  1.49s (transform 150ms, setup 0ms, collect 628ms, tests 583ms, environment 1.17s, prepare 219ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ 笨・tests/phase5-focus-revision.test.tsx (8 tests) 2433ms
+   笨・six conditions: keyboard deletes position 1 and returns to enabled add  548ms
+   笨・six conditions: keyboard deletes position 3 and returns to enabled add  514ms
+   笨・six conditions: keyboard deletes position 6 and returns to enabled add  485ms
+   笨・zero-padded date-only comparison handles reverse year crossing  343ms
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  17:33:46
+   Duration  3.75s (transform 85ms, setup 0ms, collect 353ms, tests 2.43s, environment 574ms, prepare 101ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ 笨・tests/then-now-second.test.tsx (17 tests) 245ms
+ 笨・tests/then-now-visibility.test.tsx (1 test) 164ms
+ 笨・tests/then-now-registration.test.ts (3 tests) 3ms
+ 笨・tests/then-now-first.test.tsx (7 tests) 98ms
+
+ Test Files  4 passed (4)
+      Tests  28 passed (28)
+   Start at  17:33:51
+   Duration  2.71s (transform 274ms, setup 0ms, collect 1.02s, tests 510ms, environment 1.88s, prepare 458ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ 笨・tests/waapi-observation-independent.test.tsx (7 tests) 194ms
+ 笨・tests/waapi-observation.test.tsx (37 tests) 15989ms
+   笨・actual gallery integration: observation never owns game state > Menu selection survives observation seek, finish, reverse, mode exit, and ordinary Reset still works  303ms
+   笨・actual gallery integration: observation never owns game state > gallery closure cancels observation; reopening has no old callback or auto-score  1177ms
+   笨・actual gallery integration: observation never owns game state > gallery media notification reaches observation without changing Coin collected state  1661ms
+   笨・observed Coin normal motion cancellation > Replay after observation cancels running normal motion on reduced ON without changing score  1481ms
+   笨・observed Coin normal motion cancellation > Replay after observation cancels paused normal motion on reduced ON without changing score  1403ms
+   笨・observed Coin normal motion cancellation > COLLECT after observation cancels running normal motion on reduced ON without changing score  1398ms
+   笨・observed Coin normal motion cancellation > COLLECT after observation cancels paused normal motion on reduced ON without changing score  1421ms
+   笨・observed Coin normal motion cancellation > reduced explicit Replay uses reduced definition and repeated ON/OFF does not award or autoplay  1780ms
+   笨・observed Coin normal motion cancellation > rapid mode switches retain collected state and Reset permits exactly one new acquisition  2248ms
+   笨・observed Coin normal motion cancellation > observed normal Coin leaving the viewport cancels, re-entry stays stopped, and unmount clears old instances  1535ms
+
+ Test Files  2 passed (2)
+      Tests  44 passed (44)
+   Start at  17:33:54
+   Duration  17.51s (transform 269ms, setup 0ms, collect 855ms, tests 16.18s, environment 1.20s, prepare 231ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ 笨・tests/waapi-stage2b.test.tsx (24 tests) 777ms
+
+ Test Files  1 passed (1)
+      Tests  24 passed (24)
+   Start at  17:34:13
+   Duration  2.13s (transform 143ms, setup 0ms, collect 381ms, tests 777ms, environment 661ms, prepare 119ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ 笨・tests/then-now-phase2-card.test.tsx (3 tests) 385ms
+ 笨・tests/then-now-phase2-second.test.tsx (20 tests) 475ms
+ 笨・tests/then-now-phase2-registration.test.ts (2 tests) 3ms
+ 笨・tests/then-now-phase2-first.test.tsx (13 tests) 176ms
+
+ Test Files  4 passed (4)
+      Tests  38 passed (38)
+   Start at  17:34:16
+   Duration  2.82s (transform 276ms, setup 0ms, collect 923ms, tests 1.04s, environment 1.76s, prepare 397ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ 笨・tests/phase5b-editors.test.tsx (10 tests) 449ms
+ 笨・tests/phase5b-registration.test.tsx (7 tests) 358ms
+ 笨・tests/phase5b-compare.test.tsx (7 tests) 325ms
+
+ Test Files  3 passed (3)
+      Tests  24 passed (24)
+   Start at  17:34:20
+   Duration  2.95s (transform 375ms, setup 0ms, collect 1.23s, tests 1.13s, environment 1.68s, prepare 310ms)
+
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ 笨・tests/pan-zoom.test.tsx (13 tests) 582ms
+
+ Test Files  1 passed (1)
+      Tests  13 passed (13)
+   Start at  17:34:23
+   Duration  1.96s (transform 256ms, setup 0ms, collect 588ms, tests 582ms, environment 506ms, prepare 102ms)
+

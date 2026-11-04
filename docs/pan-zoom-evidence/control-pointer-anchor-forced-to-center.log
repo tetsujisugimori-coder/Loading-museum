@@ -1,0 +1,50 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ ❯ tests/pan-zoom.test.tsx (13 tests | 1 failed) 600ms
+   × keeps the pointed world feature at its screen position; center controls use the center 8ms
+     → expected { x: 476.66666666666674, y: 341.25 } to deeply equal { x: 465.00000000000006, y: 336.875 }
+   ✓ fits only measured viewports, clamps limits and never loses the entire world 5ms
+   ✓ resize retains the center when not clamped, landmarks and minimap match independent geometric expectations 1ms
+   ✓ owner pointer alone can commit; cancel rolls back and stale events cannot commit 124ms
+   ✓ invalidates pending drag on Reset 51ms
+   ✓ invalidates pending drag on 全体表示 48ms
+   ✓ invalidates pending drag on 拡大 45ms
+   ✓ invalidates pending drag on resize 38ms
+   ✓ invalidates pending drag on mode 33ms
+   ✓ invalidates pending drag on blur 25ms
+   ✓ buttons, numeric validation, keyboard scope, touch modes and Reset/fit selection contracts 98ms
+   ✓ searches one new exhibit, discards drag on switching and returns focus on close 102ms
+   ✓ suspends a zero-width viewport without losing the last measured zoom and center 24ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 passed (13)
+   Start at  17:31:35
+   Duration  1.95s (transform 255ms, setup 0ms, collect 583ms, tests 600ms, environment 504ms, prepare 101ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/pan-zoom.test.tsx > keeps the pointed world feature at its screen position; center controls use the center
+AssertionError: expected { x: 476.66666666666674, y: 341.25 } to deeply equal { x: 465.00000000000006, y: 336.875 }
+
+- Expected
++ Received
+
+  {
+-   "x": 465.00000000000006,
+-   "y": 336.875,
++   "x": 476.66666666666674,
++   "y": 341.25,
+  }
+
+ ❯ tests/pan-zoom.test.tsx:21:45
+     19| it('keeps the pointed world feature at its screen position; center con…
+     20|  const v=focusPoint(fit(600,400)!,{x:500,y:350}),anchor={x:220,y:170};
+     21|  expect(worldAt(zoomAt(v,6,anchor),anchor)).toEqual(worldAt(v,anchor));
+       |                                             ^
+     22|  const center={x:300,y:200};expect(worldAt(zoomAt(v,5),center).x).toBe…
+     23| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

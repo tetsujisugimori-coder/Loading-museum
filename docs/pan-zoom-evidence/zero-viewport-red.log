@@ -1,0 +1,43 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ 笶ｯ tests/pan-zoom.test.tsx (13 tests | 1 failed) 745ms
+   笨・keeps the pointed world feature at its screen position; center controls use the center 2ms
+   笨・fits only measured viewports, clamps limits and never loses the entire world 4ms
+   笨・resize retains the center when not clamped, landmarks and minimap match independent geometric expectations 1ms
+   笨・owner pointer alone can commit; cancel rolls back and stale events cannot commit 122ms
+   笨・invalidates pending drag on Reset 56ms
+   笨・invalidates pending drag on 蜈ｨ菴楢｡ｨ遉ｺ 48ms
+   笨・invalidates pending drag on 諡｡螟ｧ 43ms
+   笨・invalidates pending drag on resize 39ms
+   笨・invalidates pending drag on mode 35ms
+   笨・invalidates pending drag on blur 27ms
+   笨・buttons, numeric validation, keyboard scope, touch modes and Reset/fit selection contracts 130ms
+   笨・searches one new exhibit, discards drag on switching and returns focus on close 182ms
+   ﾃ・suspends a zero-width viewport without losing the last measured zoom and center 55ms
+     竊・expected 'translate(14.285714285714278 0) scale窶ｦ' to be 'translate(-854.2857142857142 -805.714窶ｦ' // Object.is equality
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ Failed Tests 1 竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ
+
+ FAIL  tests/pan-zoom.test.tsx > suspends a zero-width viewport without losing the last measured zoom and center
+AssertionError: expected 'translate(14.285714285714278 0) scale窶ｦ' to be 'translate(-854.2857142857142 -805.714窶ｦ' // Object.is equality
+
+Expected: "translate(-854.2857142857142 -805.7142857142857) scale(2.2857142857142856)"
+Received: "translate(14.285714285714278 0) scale(0.5714285714285714)"
+
+ 笶ｯ tests/pan-zoom.test.tsx:71:51
+     69|  render(<PanZoom/>);click('荳画律譛域ｩ具ｼ壹％縺ｮ蝣ｴ謇繧定ｦ九ｋ');const before=transform();
+     70|  width=0;act(()=>measure());expect(screen.queryByTestId('pz-transform'窶ｦ
+     71|  width=600;act(()=>measure());expect(transform()).toBe(before);expect(窶ｦ
+       |                                                   ^
+     72| });
+     73| 
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[1/1]竡ｯ
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 passed (13)
+   Start at  17:29:29
+   Duration  2.23s (transform 305ms, setup 0ms, collect 654ms, tests 745ms, environment 540ms, prepare 103ms)
+

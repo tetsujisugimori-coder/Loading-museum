@@ -1,0 +1,11 @@
+AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to:
+
+'translate(0 35.35000000000001) scale(0.299)'
+    at file:///C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum/scripts/verify-pan-zoom-browser.mjs:61:53 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'translate(0 35.35000000000001) scale(0.299)',
+  expected: 'translate(0 35.35000000000001) scale(0.299)',
+  operator: 'notStrictEqual',
+  diff: 'simple'
+}

@@ -1,0 +1,39 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-04/task-7/museum
+
+ ❯ tests/pan-zoom.test.tsx (13 tests | 1 failed) 614ms
+   ✓ keeps the pointed world feature at its screen position; center controls use the center 2ms
+   ✓ fits only measured viewports, clamps limits and never loses the entire world 4ms
+   × resize retains the center when not clamped, landmarks and minimap match independent geometric expectations 4ms
+     → expected +0 to be close to 368.75, received difference is 368.75, but expected 5e-8
+   ✓ owner pointer alone can commit; cancel rolls back and stale events cannot commit 124ms
+   ✓ invalidates pending drag on Reset 57ms
+   ✓ invalidates pending drag on 全体表示 49ms
+   ✓ invalidates pending drag on 拡大 52ms
+   ✓ invalidates pending drag on resize 38ms
+   ✓ invalidates pending drag on mode 31ms
+   ✓ invalidates pending drag on blur 24ms
+   ✓ buttons, numeric validation, keyboard scope, touch modes and Reset/fit selection contracts 103ms
+   ✓ searches one new exhibit, discards drag on switching and returns focus on close 103ms
+   ✓ suspends a zero-width viewport without losing the last measured zoom and center 23ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 passed (13)
+   Start at  17:31:38
+   Duration  2.05s (transform 268ms, setup 0ms, collect 625ms, tests 614ms, environment 528ms, prepare 106ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/pan-zoom.test.tsx > resize retains the center when not clamped, landmarks and minimap match independent geometric expectations
+AssertionError: expected +0 to be close to 368.75, received difference is 368.75, but expected 5e-8
+ ❯ tests/pan-zoom.test.tsx:32:153
+     30|  const v=focusPoint(fit(600,400)!,{x:500,y:350}),next=resize(v,400,500…
+     31|  expect(worldAt(next,{x:200,y:250}).x).toBeCloseTo(500,7);expect(world…
+     32|  for(const [key,value] of Object.entries({x:368.75,y:262.5,width:262.5…
+       |                                                                                                                                                         ^
+     33|  for(const m of landmarks){const target=focusPoint(fit(600,400)!,m),s=…
+     34| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
