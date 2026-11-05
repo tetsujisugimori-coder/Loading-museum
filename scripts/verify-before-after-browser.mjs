@@ -88,7 +88,7 @@ try {
         }, { pair, mode, amount, reversed });
         await canvas.locator('#compare-independent-reference img').evaluateAll(async imgs => Promise.all(imgs.map(img => img.decode())));
         const expected = await canvas.screenshot(); await canvas.locator('#compare-independent-reference').evaluate(el => el.remove()); await hide.evaluate(el => el.remove());
-        const result = comparePNG(actual, expected, mode, amount); if (!result.pass) { await fs.writeFile(path.join(dest, `${prefix}-${pair}-${mode}-${amount}-${reversed}-actual.png`), actual); await fs.writeFile(path.join(dest, `${prefix}-${pair}-${mode}-${amount}-${reversed}-expected.png`), expected); } measurements.push({ raster: { pair, mode, amount, reversed }, result }); return result;
+        const result = comparePNG(actual, expected, mode, amount); if (!result.pass) { for (const [kind, data] of [['actual', actual], ['expected', expected]]) { const name = `${prefix}-${pair}-${mode}-${amount}-${reversed}-${kind}.png`; await fs.writeFile(path.join(dest, name), data); report.images.push({ name, sha256: sha(data), kind: 'oracle-disagreement' }); } } measurements.push({ raster: { pair, mode, amount, reversed }, result }); return result;
       }
       for (const pair of ['restoration', 'correction']) {
         await stage.getByLabel('比較する図版').selectOption(pair); await waitReady();
@@ -123,9 +123,8 @@ try {
       // Synthetic delivery is supplemental and explicitly distinct from trusted browser input.
       for (const reason of ['pointercancel', 'lostpointercapture', 'reset', 'resize-zero', 'hidden']) {
         await manual(50);
-        await handle().dispatchEvent('pointerdown', { pointerId: 73, pointerType: 'mouse', button: 0, clientX: b.x + b.width / 2, bubbles: true });
-        // Synthetic pointer capture cannot always be acquired; use real mouse ownership for the gesture.
-        h = await handle().boundingBox(); await page.mouse.move(h.x + 24, h.y + 24); await page.mouse.down(); await page.mouse.move(b.x + b.width * .8, h.y + 24); await value(80);
+        // Range focus may scroll the handle outside the viewport on large figures.
+        await handle().scrollIntoViewIfNeeded(); b = await canvas.boundingBox(); h = await handle().boundingBox(); await page.mouse.move(h.x + 24, h.y + 24); await page.mouse.down(); await page.waitForFunction(() => document.querySelector('[data-testid="bc-canvas"]').dataset.dragging === 'true'); await page.mouse.move(b.x + b.width * .8, h.y + 24); await value(80);
         const id = await canvas.evaluate(el => { window.compareLastPointer = null; el.addEventListener('pointermove', e => { window.compareLastPointer = e.pointerId; }, { once: true }); return true; }); assert.equal(id, true);
         await page.mouse.move(b.x + b.width * .81, h.y + 24); await value(81);
         const pointerId = await page.evaluate(() => window.compareLastPointer); assert.ok(Number.isInteger(pointerId));

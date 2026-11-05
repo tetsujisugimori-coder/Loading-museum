@@ -1,0 +1,115 @@
+{
+  "runHead": "0826a5d5f09c03ee8b0d451c20970ad4eba61601",
+  "tree": "00f6f5eb82908618a1a3dbca2c9a92e586c4ff5c",
+  "currentHead": "0826a5d5f09c03ee8b0d451c20970ad4eba61601",
+  "clean": true,
+  "sourceFiles": 15,
+  "sourceAllMatchRunCommitAndCurrent": true,
+  "pass": true,
+  "cases": 8,
+  "controls": [
+    {
+      "fault": "fixed25-mask",
+      "wrong": 54,
+      "detected": true
+    },
+    {
+      "fault": "fixed25-alpha",
+      "wrong": 125,
+      "detected": true
+    }
+  ],
+  "images": 70,
+  "files": [
+    {
+      "file": "app/components/practical/BeforeAfterCompare.tsx",
+      "expected": "45e227392ac932d529e8447bb9c9de55f10668f45104f902167a7dcc81cfe26e",
+      "actual": "45e227392ac932d529e8447bb9c9de55f10668f45104f902167a7dcc81cfe26e",
+      "current": "45e227392ac932d529e8447bb9c9de55f10668f45104f902167a7dcc81cfe26e"
+    },
+    {
+      "file": "app/components/practical/compare-model.ts",
+      "expected": "f7826fcdbe3753825902b75b6b06f268f37a0e59fac1aaf0f655cdb913d466b2",
+      "actual": "f7826fcdbe3753825902b75b6b06f268f37a0e59fac1aaf0f655cdb913d466b2",
+      "current": "f7826fcdbe3753825902b75b6b06f268f37a0e59fac1aaf0f655cdb913d466b2"
+    },
+    {
+      "file": "app/components/practical/before-after-compare.css",
+      "expected": "57b80cee9be4c8ac8c208fe9a87be1f64694add0f42d95c8de93813813809b7d",
+      "actual": "57b80cee9be4c8ac8c208fe9a87be1f64694add0f42d95c8de93813813809b7d",
+      "current": "57b80cee9be4c8ac8c208fe9a87be1f64694add0f42d95c8de93813813809b7d"
+    },
+    {
+      "file": "app/components/PracticalRoom.tsx",
+      "expected": "eb9c5e90684e4cb8fe09c7d991c3261b49cfb26c470b13ba2debb7d8a6e25c23",
+      "actual": "eb9c5e90684e4cb8fe09c7d991c3261b49cfb26c470b13ba2debb7d8a6e25c23",
+      "current": "eb9c5e90684e4cb8fe09c7d991c3261b49cfb26c470b13ba2debb7d8a6e25c23"
+    },
+    {
+      "file": "app/data/phase6aExhibits.ts",
+      "expected": "5c3a70615b77b8f577ec5ffe315ecea783e92e333fcb1ca1f3fcd7047b8eeac1",
+      "actual": "5c3a70615b77b8f577ec5ffe315ecea783e92e333fcb1ca1f3fcd7047b8eeac1",
+      "current": "5c3a70615b77b8f577ec5ffe315ecea783e92e333fcb1ca1f3fcd7047b8eeac1"
+    },
+    {
+      "file": "app/page.tsx",
+      "expected": "772b31bcf9d8a354029a494e09aae87178fc6763123976406e61fdc8aadd3cce",
+      "actual": "772b31bcf9d8a354029a494e09aae87178fc6763123976406e61fdc8aadd3cce",
+      "current": "772b31bcf9d8a354029a494e09aae87178fc6763123976406e61fdc8aadd3cce"
+    },
+    {
+      "file": "package.json",
+      "expected": "d4cd5d430930790d5af9292bd29634970a530665aa046fe6a84999d0b831f5df",
+      "actual": "d4cd5d430930790d5af9292bd29634970a530665aa046fe6a84999d0b831f5df",
+      "current": "d4cd5d430930790d5af9292bd29634970a530665aa046fe6a84999d0b831f5df"
+    },
+    {
+      "file": "tests/before-after-compare.test.tsx",
+      "expected": "c727661575cb543f4b6009652c80a93ca813e43797e8906d615b2249a30100f7",
+      "actual": "c727661575cb543f4b6009652c80a93ca813e43797e8906d615b2249a30100f7",
+      "current": "c727661575cb543f4b6009652c80a93ca813e43797e8906d615b2249a30100f7"
+    },
+    {
+      "file": "scripts/verify-before-after-browser.mjs",
+      "expected": "71a51bd3bb8e09ef09cb4df0b314014de2bcdc84df8f972f4b73f937d838f37d",
+      "actual": "71a51bd3bb8e09ef09cb4df0b314014de2bcdc84df8f972f4b73f937d838f37d",
+      "current": "71a51bd3bb8e09ef09cb4df0b314014de2bcdc84df8f972f4b73f937d838f37d"
+    },
+    {
+      "file": "scripts/generate-compare-art.py",
+      "expected": "e762f379ae258b0ad9c6ccd630a8ccde2ebe549b78273c884cd1716c1f11cfa5",
+      "actual": "e762f379ae258b0ad9c6ccd630a8ccde2ebe549b78273c884cd1716c1f11cfa5",
+      "current": "e762f379ae258b0ad9c6ccd630a8ccde2ebe549b78273c884cd1716c1f11cfa5"
+    },
+    {
+      "file": ".github/workflows/verify-before-after.yml",
+      "expected": "7b43ca5c30301db2b4e42b9dc15ee65b4972f3ffcd49288e3dabbd6b86528b06",
+      "actual": "7b43ca5c30301db2b4e42b9dc15ee65b4972f3ffcd49288e3dabbd6b86528b06",
+      "current": "7b43ca5c30301db2b4e42b9dc15ee65b4972f3ffcd49288e3dabbd6b86528b06"
+    },
+    {
+      "file": "public/compare/restoration-before.svg",
+      "expected": "0e7331d3ebe73bfab09fe89a55fac01ac695c79f772cc36cd3b77f361b83df8c",
+      "actual": "0e7331d3ebe73bfab09fe89a55fac01ac695c79f772cc36cd3b77f361b83df8c",
+      "current": "0e7331d3ebe73bfab09fe89a55fac01ac695c79f772cc36cd3b77f361b83df8c"
+    },
+    {
+      "file": "public/compare/restoration-after.svg",
+      "expected": "fb0074d61549c386f923cd520e3dbbe4e8ed9173cac4eb0aabae476cd38f0ff1",
+      "actual": "fb0074d61549c386f923cd520e3dbbe4e8ed9173cac4eb0aabae476cd38f0ff1",
+      "current": "fb0074d61549c386f923cd520e3dbbe4e8ed9173cac4eb0aabae476cd38f0ff1"
+    },
+    {
+      "file": "public/compare/correction-before.svg",
+      "expected": "50a302bf4100606c92ae76ca67923292e976795d3be2738c014c49be90912eb0",
+      "actual": "50a302bf4100606c92ae76ca67923292e976795d3be2738c014c49be90912eb0",
+      "current": "50a302bf4100606c92ae76ca67923292e976795d3be2738c014c49be90912eb0"
+    },
+    {
+      "file": "public/compare/correction-after.svg",
+      "expected": "5a179c85e0833cff86e7a28bc13dca44eb514dca7b33dd29aebba27b443b6a82",
+      "actual": "5a179c85e0833cff86e7a28bc13dca44eb514dca7b33dd29aebba27b443b6a82",
+      "current": "5a179c85e0833cff86e7a28bc13dca44eb514dca7b33dd29aebba27b443b6a82"
+    }
+  ]
+}

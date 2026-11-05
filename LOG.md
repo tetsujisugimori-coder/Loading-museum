@@ -8,6 +8,11 @@
 - 独立担当が端で押すだけの0→8% jumpを発見しREDを保存。pointer開始からの差分へ修正。reducedの全館1ms transitionを局所無効化、比較値outputをlive通知対象外へ。最終コード/ブラウザ再レビューは別担当の記録を参照し、自己検証と分ける。
 - 固定browserローカル取得は通信policyの403、迂回せず既設Chromium154と正式Actions固定browserを分離。物理Safari/VoiceOver/入力/実OS capture/background/WebKit native touch/pinchはNOT_TESTED、既存 #29/#44/#54/UNKNOWNを保持。Draft提出で停止し、解除/merge/auto-merge/公開を行わない。
 
+### 固定候補0826a5dの検証・独立レビュー追補
+
+- 自己の全館checkはNode49+Vitest474=523件、精度45群、lint/type/build成功。独立Chromium8条件・touch・keyboard補完・関連88unit・故障2件・15source照合成功、未解決P1/P2なし。別担当文書と全原本をdocs/before-after-evidence/independentへ保存。
+- 自己固定matrixは6/8成功後1280通常で、range focus後の画面外handleをmouseで操作したharness前提により停止。毎gesture前のscroll/box更新とdragging到達を追加、製品変更なし。同じ1280通常は修正後成功。失敗原本と新harnessを保全。正式最終HEADの16条件と旧展示回帰/CIの確定結果はDraft PR #66へ記録する。
+
 ## 2026-11-05 PR #64 P2-01 数値精度・境界の根本修正
 
 - 対象95ab616/tree dc9ebccと現PR一致、開始clean。旧証拠保持。16:9最小枠の表示再適用拒否、4:3の変形、自由比率の近接端変形を純粋モデルとChromium/WebKitの実マウス・フォームで再現。二進数和が1000へ丸まる端超過の誤受理も記録。

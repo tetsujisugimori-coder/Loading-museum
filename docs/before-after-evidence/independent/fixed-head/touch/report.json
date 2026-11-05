@@ -1,0 +1,17 @@
+{
+  "head": "0826a5d5f09c03ee8b0d451c20970ad4eba61601",
+  "start": "2026-11-05T18:04:05.489Z",
+  "input": "Chromium CDP touch emulation, not physical touch",
+  "checks": [
+    "handle native touch moves comparison",
+    "image native touch scrolls page while comparison stays50"
+  ],
+  "browser": "154.0.8037.57",
+  "scroll": {
+    "before": 5220,
+    "after": 5299
+  },
+  "sha256": "58ccabde5162440812ef36ff71413a3a41f37e1c7c776ed6c1ad85a2b1a8c6f1",
+  "pass": true,
+  "end": "2026-11-05T18:04:09.082Z"
+}

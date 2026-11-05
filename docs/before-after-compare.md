@@ -50,3 +50,11 @@ pointer所有IDと単調timestampで外来・古eventを拒否。animationはrun
 ## 未検証と範囲
 
 物理Safari/iPhone/VoiceOver、物理mouse/key/touch、WebKit native touch drag、実OS background/capture喪失、browser pinchはNOT_TESTED。ローカル固定browser取得は通信policyの403で停止し迂回しない。既設Chromium154とGitHub Actionsの固定Chromium141/WebKit26を別環境として記録する。既存 #29/#44/#54と従来UNKNOWNを保持する。独立レビューは別agentの記録を根拠にし、自己検証で代用しない。Draft解除、merge、auto-merge、公開は行わない。
+
+## 固定候補の検証追補（正式CIの確定前）
+
+製品候補は `0826a5d5f09c03ee8b0d451c20970ad4eba61601` / tree `00f6f5eb82908618a1a3dbca2c9a92e586c4ff5c`。独立レビュー文書は[別担当の評価](before-after-evidence/independent/fixed-head-review.md)。この記録の`work/independent/fixed-head/`は、保存先`docs/before-after-evidence/independent/fixed-head/`へ対応する。独立Chromium8条件、touch、native keyboard補完、関連88unit、独立故障2件、15source照合が成功。物理/独立WebKitは未検証。全館はNode49+Vitest474=523件成功、別枠精度45群成功。
+
+自己の固定候補matrixは6/8条件と負対照12件まで成功した後、1280通常の取消補助検査で停止した。rangeへfocusしたことで大きな画像のhandleが画面外となったのに古いscreen boxへmouseを送った検査前提が原因。不要な合成downを除き、毎gesture前のhandle表示・box再取得・native down後のdragging到達を検査する。製品source差分なし。同じ1280通常は修正後に完了し、負対照2件も検出した。初回reportと検査source、修正後reportを保存し、timeout/retry/toleranceで隠さない。
+
+この追補の後の証拠・検査commitでは製品ファイルは変更しない。正式CIは新HEADで全条件を実施し、そのHEAD/tree、結果、artifactと照合を[Draft PR #66](https://github.com/tetsujisugimori-coder/Loading-museum/pull/66)へ記録する。過去の候補の結果をそのまま最終HEADの実行結果とはしない。
