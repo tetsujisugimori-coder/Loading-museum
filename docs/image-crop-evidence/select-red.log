@@ -1,0 +1,12 @@
+AssertionError [ERR_ASSERTION]: Native select must paint in the explicit light field palette
+
+'normal' !== 'light'
+
+    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-browser.mjs:42:40 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'normal',
+  expected: 'light',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

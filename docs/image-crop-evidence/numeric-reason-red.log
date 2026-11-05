@@ -1,0 +1,51 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum
+
+ ❯ tests/image-crop.test.tsx (26 tests | 1 failed) 984ms
+   ✓ moves without resizing and stops at all four source boundaries 2ms
+   ✓ resizes nw with its opposite corner fixed 1ms
+   ✓ resizes ne with its opposite corner fixed 0ms
+   ✓ resizes sw with its opposite corner fixed 0ms
+   ✓ resizes se with its opposite corner fixed 0ms
+   ✓ keeps every ratio and all boundaries under mixed edits and inverted handle attempts 25ms
+   ✓ ratio changes preserve center until a source edge requires correction 0ms
+   × numeric validation rejects blanks, nonfinite, negative, undersize and outside values, with width driving fixed ratios 5ms
+     → expected '空欄があります。X・Y・幅・高さを入力してください。' to contain '有限'
+   ✓ model separates provisional/editing/committed and refuses foreign, stale and post-command pointer events 0ms
+   ✓ initial confirmed result, editing preview, confirm, further edit, cancel and Reset agree 163ms
+   ✓ actual numeric form, independent numeric vs pointer equivalence, invalid value messages and input arrow scope 255ms
+   ✓ rolls back provisional edit on pointercancel, not the last confirmed result 34ms
+   ✓ rolls back provisional edit on lostpointercapture, not the last confirmed result 28ms
+   ✓ rolls back provisional edit on Escape, not the last confirmed result 26ms
+   ✓ rolls back provisional edit on blur, not the last confirmed result 31ms
+   ✓ rolls back provisional edit on hidden, not the last confirmed result 34ms
+   ✓ rolls back provisional edit on focus, not the last confirmed result 37ms
+   ✓ invalidates pending pointer before 切抜きを確定 39ms
+   ✓ invalidates pending pointer before 編集を取消 43ms
+   ✓ invalidates pending pointer before Reset 29ms
+   ✓ invalidates pending pointer before ratio 29ms
+   ✓ invalidates pending pointer before numeric 31ms
+   ✓ invalidates pending pointer before direction 33ms
+   ✓ keyboard corners resize via the same constraints and capture failure cannot leave a provisional edit 24ms
+   ✓ retains world coordinates and committed crop through resizing, zero width and restoration; unmount releases listeners 38ms
+   ✓ registers only one new unique ID, searches by crop tags, switches and closes without retaining state 76ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/image-crop.test.tsx > numeric validation rejects blanks, nonfinite, negative, undersize and outside values, with width driving fixed ratios
+AssertionError: expected '空欄があります。X・Y・幅・高さを入力してください。' to contain '有限'
+
+Expected: "有限"
+Received: "空欄があります。X・Y・幅・高さを入力してください。"
+
+ ❯ tests/image-crop.test.tsx:73:78
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 25 passed (26)
+   Start at  09:32:58
+   Duration  2.52s (transform 296ms, setup 0ms, collect 664ms, tests 984ms, environment 551ms, prepare 97ms)
+

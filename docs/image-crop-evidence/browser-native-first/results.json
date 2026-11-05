@@ -1,0 +1,403 @@
+{
+  "head": "8f065e0d0392b78b927d148648d0b77205ef979a",
+  "tree": "ea82e61f90a18524500bb03f34d870594c352b70",
+  "dirty": "M app/components/PracticalRoom.tsx\n M app/data/phase6aExhibits.ts\n M package.json\n M scripts/verify-phase4a-browser.mjs\n M scripts/verify-phase4b-browser.mjs\n M scripts/verify-phase5a-browser.mjs\n M scripts/verify-phase5b-browser.mjs\n M scripts/verify-waapi-observation.py\n M scripts/verify-waapi-stage2b.py\n M tests/phase4a.test.tsx\n M tests/rendered-html.test.mjs\n?? .github/workflows/verify-image-crop.yml\n?? app/components/practical/CropGarden.tsx\n?? app/components/practical/ImageCrop.tsx\n?? app/components/practical/image-crop-model.ts\n?? app/components/practical/image-crop.css\n?? debug.log\n?? docs/image-crop-evidence/\n?? docs/image-crop-studies.md\n?? scripts/verify-image-crop-browser.mjs\n?? scripts/verify-image-crop-controls.mjs\n?? tests/image-crop.test.tsx",
+  "node": "v24.20.0",
+  "platform": "win32",
+  "started": "2026-11-05T00:07:01.176Z",
+  "cases": [
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "motion": "no-preference",
+      "status": "PASS",
+      "native": "Playwright mouse/keyboard",
+      "synthetic": [
+        "foreign pointer",
+        "cancel",
+        "lost capture",
+        "hidden",
+        "blur",
+        "stale after command"
+      ],
+      "observations": [
+        {
+          "expected": {
+            "x": 100,
+            "y": 120,
+            "width": 480,
+            "height": 360
+          },
+          "frameScreen": {
+            "left": 98.30357360839844,
+            "top": 2840.337158203125,
+            "width": 107.03570556640625,
+            "height": 80.276611328125,
+            "px": 98.30357142857142,
+            "py": 2840.3370535714284,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 650,
+            "y": 80,
+            "width": 300,
+            "height": 420
+          },
+          "frameScreen": {
+            "left": 220.9486541748047,
+            "top": -1041.5826416015625,
+            "width": 66.89732360839844,
+            "height": 93.65631103515625,
+            "px": 220.94866071428572,
+            "py": -1041.5825892857142,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 650,
+            "y": 80,
+            "width": 300,
+            "height": 420
+          },
+          "frameScreen": {
+            "left": 220.9486541748047,
+            "top": 843.4174194335938,
+            "width": 66.89732360839844,
+            "height": 93.65625,
+            "px": 220.94866071428572,
+            "py": 843.4174107142857,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 153.8138138138138,
+            "y": 155.87587587587586,
+            "width": 480,
+            "height": 360
+          },
+          "frameScreen": {
+            "left": 110.30357360839844,
+            "top": 860.3370361328125,
+            "width": 107.03572082519531,
+            "height": 80.27679443359375,
+            "px": 110.3035710811615,
+            "py": 860.3370522056307,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 153.8138138138138,
+            "y": 155.87587587587586,
+            "width": 480,
+            "height": 360
+          },
+          "frameScreen": {
+            "left": 110.30357360839844,
+            "top": -844.6629638671875,
+            "width": 107.03572082519531,
+            "height": 80.27679443359375,
+            "px": 110.3035710811615,
+            "py": -844.6629477943693,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 153.8138138138138,
+            "y": 155.87587587587586,
+            "width": 480,
+            "height": 360
+          },
+          "frameScreen": {
+            "left": 110.30357360839844,
+            "top": 456.3370361328125,
+            "width": 107.03572082519531,
+            "height": 80.27679443359375,
+            "px": 110.3035710811615,
+            "py": 456.3370522056307,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 131.39139139139138,
+            "y": 142.42242242242241,
+            "width": 448.6086086086086,
+            "height": 337.5775775775776
+          },
+          "frameScreen": {
+            "left": 105.30357360839844,
+            "top": 453.3370666503906,
+            "width": 100.03570556640625,
+            "height": 75.27676391601562,
+            "px": 105.30357065882001,
+            "py": 453.33705399377004,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 100,
+            "y": 142.42242242242241,
+            "width": 511.3913913913914,
+            "height": 337.5775775775776
+          },
+          "frameScreen": {
+            "left": 98.30357360839844,
+            "top": 437.3370666503906,
+            "width": 114.03570556640625,
+            "height": 75.27676391601562,
+            "px": 98.30357142857142,
+            "py": 437.33705399377004,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 131.39139139139138,
+            "y": 120,
+            "width": 448.6086086086086,
+            "height": 382.4224224224224
+          },
+          "frameScreen": {
+            "left": 105.30357360839844,
+            "top": 432.3370666503906,
+            "width": 100.03570556640625,
+            "height": 85.27676391601562,
+            "px": 105.30357065882001,
+            "py": 432.33705357142856,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 100,
+            "y": 120,
+            "width": 511.3913913913914,
+            "height": 382.4224224224224
+          },
+          "frameScreen": {
+            "left": 98.30357360839844,
+            "top": 404.3370666503906,
+            "width": 114.03570556640625,
+            "height": 85.27676391601562,
+            "px": 98.30357142857142,
+            "py": 404.33705357142856,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 780,
+            "y": 500,
+            "width": 200,
+            "height": 200
+          },
+          "frameScreen": {
+            "left": 249.9375,
+            "top": -836.9263305664062,
+            "width": 44.59820556640625,
+            "height": 44.59820556640625,
+            "px": 249.9375,
+            "py": -836.9263392857142,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "width": 80,
+            "height": 80
+          },
+          "frameScreen": {
+            "left": 76.00446319580078,
+            "top": 265.578125,
+            "width": 17.83928680419922,
+            "height": 17.83929443359375,
+            "px": 76.00446428571428,
+            "py": 265.578125,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 920,
+            "y": 620,
+            "width": 80,
+            "height": 80
+          },
+          "frameScreen": {
+            "left": 281.15625,
+            "top": 403.83258056640625,
+            "width": 17.83929443359375,
+            "height": 17.83929443359375,
+            "px": 281.15625,
+            "py": 403.83258928571433,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 100,
+            "y": 120,
+            "width": 480,
+            "height": 360
+          },
+          "frameScreen": {
+            "left": 98.30357360839844,
+            "top": 852.3370361328125,
+            "width": 107.03570556640625,
+            "height": 80.27679443359375,
+            "px": 98.30357142857142,
+            "py": 852.3370535714286,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 110,
+            "y": 120,
+            "width": 480,
+            "height": 360
+          },
+          "frameScreen": {
+            "left": 100.53347778320312,
+            "top": 907.3370361328125,
+            "width": 107.03572082519531,
+            "height": 80.27679443359375,
+            "px": 100.53348214285714,
+            "py": 907.3370535714286,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 120,
+            "y": 120,
+            "width": 480,
+            "height": 360
+          },
+          "frameScreen": {
+            "left": 102.76339721679688,
+            "top": 448.3370666503906,
+            "width": 107.03570556640625,
+            "height": 80.27676391601562,
+            "px": 102.76339285714285,
+            "py": 448.33705357142856,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 120,
+            "y": 120,
+            "width": 480,
+            "height": 370
+          },
+          "frameScreen": {
+            "left": 102.76339721679688,
+            "top": 448.3370666503906,
+            "width": 107.03570556640625,
+            "height": 82.50668334960938,
+            "px": 102.76339285714285,
+            "py": 448.33705357142856,
+            "scale": 0.22299107142857144
+          }
+        },
+        {
+          "expected": {
+            "x": 100,
+            "y": 120,
+            "width": 480,
+            "height": 360
+          },
+          "frameScreen": {
+            "left": 98.30357360839844,
+            "top": 2840.337158203125,
+            "width": 107.03570556640625,
+            "height": 80.276611328125,
+            "px": 98.30357142857142,
+            "py": 2840.3370535714284,
+            "scale": 0.22299107142857144
+          }
+        }
+      ],
+      "overflow": {
+        "viewport": 375,
+        "scroll": 375
+      },
+      "pageerrors": [],
+      "houseHash": "0997e338f258b4b6949a9c9c48da82a3ff352c4942bf5a2aec8092ab9f3a6f93",
+      "orchardHash": "69bf5552e307857d4d8043e9200572c45976ef63de0ce62532492c7d46404892"
+    }
+  ],
+  "images": [
+    {
+      "name": "chromium-375-no-preference-orchard.png",
+      "sha256": "c28a3e45921efeecf2fa6eb9189e9068308cd4677fc225540c4dec57d278d1bf"
+    },
+    {
+      "name": "chromium-375-no-preference-exhibit.png",
+      "sha256": "a7b3d5fcc746172c9f71746ba4c11382f4c0fc3a888a3e950f7189cb6d4b8591"
+    },
+    {
+      "name": "chromium-375-no-preference-frame.png",
+      "sha256": "5cba293c00a50cdae4f0157be7d2c077a2cbc56b00fdb24accbf9f7ab147c916"
+    }
+  ],
+  "controls": [
+    {
+      "engine": "chromium",
+      "fault": "wrong-position",
+      "result": "REJECTED",
+      "type": "temporary DOM render fault"
+    },
+    {
+      "engine": "chromium",
+      "fault": "stretched-ratio",
+      "result": "REJECTED",
+      "type": "temporary DOM render fault"
+    }
+  ],
+  "errors": [],
+  "notTested": [
+    "physical Safari",
+    "VoiceOver",
+    "physical mouse/OS SendInput",
+    "WebKit native touch",
+    "real OS capture loss/backgrounding",
+    "browser pinch zoom"
+  ],
+  "exportSHA256": "e3d8b1ced00b02b25cf8efba65ac48c5c257636f5f7b4501112d499c8e05316a",
+  "sourceCanonicalSHA256": {
+    "app/components/practical/ImageCrop.tsx": "5b276f5728dccacb412bd4bfd8dc0c5901428de2983440a3799ea3a8176b3481",
+    "app/components/practical/CropGarden.tsx": "18e9a41a92d7a4d085a214c021b479d9cecaee2869a3f50bf23fda809d1fa1b2",
+    "app/components/practical/image-crop-model.ts": "fbaa9864ddc8b861e295544e4d4ea4ef342cf64ee68cc859fd2d26a582c26d6c",
+    "app/components/practical/image-crop.css": "d3b9d21e8ce58766e485d8b8b2478e7ce9b7a0d4aa9439dd7d2a7809fcc52968",
+    "app/components/PracticalRoom.tsx": "498a5926f961ca4ea6047e8b0341f60cde23313d829ba37bffa6e22bc06be0ec",
+    "app/data/phase6aExhibits.ts": "a67718329411d0444c8513e6fb2cd2472bbd2992a54d44cd314e1b17f24f2d91",
+    "app/page.tsx": "772b31bcf9d8a354029a494e09aae87178fc6763123976406e61fdc8aadd3cce"
+  },
+  "expected": 1,
+  "current": {
+    "engine": "chromium",
+    "version": "141.0.7390.37",
+    "width": 375,
+    "motion": "no-preference"
+  },
+  "touch": {
+    "source": "Chromium CDP emulated touch",
+    "cropDrag": "PASS",
+    "outsidePageScroll": "PASS",
+    "physicalDevice": false
+  },
+  "complete": true,
+  "finished": "2026-11-05T00:07:20.424Z"
+}

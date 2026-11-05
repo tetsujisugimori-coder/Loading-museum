@@ -1,3 +1,14 @@
+## 2026-11-05 第6期A-2 Image Crop / Issue #63
+
+- main 8f065e0d0392b78b927d148648d0b77205ef979a（PR #62統合済み）をGitHub/local両方で確認、新規clone・専用branch feat/image-crop-phase6a2。初期clean、AGENTS.md/.agents/skillsなし。別checkout変更・stashなし。
+- inventoryで264→265展示、13室、実用UI室25→26。安定ID image-cropを1件だけ追加。検索・用途/技術/性質タグ・件数へ統合。既存ID/順番/素材、lockfileと依存を保護。
+- 家/花壇/橋/木立の独自SVG、元絵固定の選択枠、薄い暗幕、外向き44px四隅handle、編集/確定結果。自由/固定比率、元絵内・最小80、対角固定・反転防止、中心優先比率切替、数値/方向/keyboard、確定/取消/Reset。
+- committed/editing/provisional分離。owner pointer・timestamp、Escape/cancel/lostcapture/hidden/blur/focus rollback、別操作で仮状態失効、幅0からの復帰、unmount解放。数値の空/非有限/範囲外は現在枠を保持して拒否。
+- 新規26契約＋既存455＝481試験成功。source故障2件を終了1で検出し元bytes復元。ブラウザ16条件・最終lint/type/build/CIの確定結果は証拠台帳とPRへ記録。初回のref lint違反/試験型オプション誤りとsandboxブラウザ環境停止を保全。自己検証を独立レビューと呼ばない。
+- 自己目視でWebKitの比率select低視認性を発見し、同条件RED→GREENでcolor-scheme:lightを明示。固定比率の幅Infinityで読取専用高さの空欄を先に案内する問題も25/26 RED→26 GREENで修正。枠破壊ではなく理由表示の修正。新旧原本を保全し、最後の入力案内は関連試験/型/buildと最終HEAD CIで検証。
+- 初回matrixは10/16でWebKit390の取消直後の単発読取りにより停止。描画終了待ち＋既知座標へ修正し16/16、即時/描画後の差6観測を記録。WebKit1280通常の長時間化は内部原因UNKNOWN、retry/timeout延長なしで完了。新規CIはengine×4幅8独立job、既存7 workflowと15分制限を維持。
+- 設計と補正規則は docs/image-crop-studies.md、実行別の原本は docs/image-crop-evidence/。実機Safari/VoiceOver等NOT_TESTED、#29/#44/#54と過去UNKNOWNを維持。独立レビュー用引渡しで停止、マージ推奨NO、Draft解除/merge/auto-merge/手動公開なし。
+
 ## 2026-11-04 第6期A-1 Pan & Zoom / Issue #61
 
 - PR #60 mergedのmain cf3370fから新規clone・専用branch feat/pan-zoom-phase6a1。263→264展示、13室、既存実用UI室24→25。既存ID/順序/素材/lockfile保全。

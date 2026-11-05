@@ -7,4 +7,13 @@ export const phase6aExhibits = [{
   example: '観測所・庭・小道の独自SVG。架空の小世界を拡大して細部を探すローカル教材。',
   history: '発祥・初出年 UNKNOWN。一般的な探索UIを独自に再構成した教材で、実在施設の再現ではありません。',
   source: 'https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html',
+}, {
+  id: 'image-crop', title: 'Image Crop / 構図を切り取る',
+  use: '切抜き 構図 画像編集 選択範囲 トリミング',
+  tags: ['構図', '比率', '確定と取消', '第6期A-2'], technology: ['React', 'TypeScript', 'SVG', 'Pointer Events'],
+  principle: '元絵座標の枠だけを編集し、同じ範囲をプレビューと確定結果へ描きます。元絵は保持します。',
+  replacement: 'Pan & Zoomは図版全体の拡大探索、Mask Theatreは遮蔽の演出。今回は切抜き枠の移動・伸縮と構図の確定を学びます。',
+  example: '家・花壇・橋・木立の独自SVG。自由比率と固定比率で異なる構図を比較するローカル教材。',
+  history: '発祥・初出年 UNKNOWN。一般的な画像編集UIを独自に再構成した教材で、実在製品の再現ではありません。',
+  source: 'https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html',
 }];

@@ -1,0 +1,85 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum
+
+ ❯ tests/image-crop.test.tsx (26 tests | 2 failed) 725ms
+   ✓ moves without resizing and stops at all four source boundaries 2ms
+   ✓ resizes nw with its opposite corner fixed 1ms
+   ✓ resizes ne with its opposite corner fixed 0ms
+   ✓ resizes sw with its opposite corner fixed 0ms
+   ✓ resizes se with its opposite corner fixed 0ms
+   ✓ keeps every ratio and all boundaries under mixed edits and inverted handle attempts 24ms
+   ✓ ratio changes preserve center until a source edge requires correction 0ms
+   ✓ numeric validation rejects blanks, nonfinite, negative, undersize and outside values, with width driving fixed ratios 0ms
+   × model separates provisional/editing/committed and refuses foreign, stale and post-command pointer events 6ms
+     → expected { Object (rect, ratio) } to deeply equal { Object (rect, ratio) }
+   ✓ initial confirmed result, editing preview, confirm, further edit, cancel and Reset agree 141ms
+   ✓ actual numeric form, independent numeric vs pointer equivalence, invalid value messages and input arrow scope 171ms
+   ✓ rolls back provisional edit on pointercancel, not the last confirmed result 25ms
+   ✓ rolls back provisional edit on lostpointercapture, not the last confirmed result 23ms
+   ✓ rolls back provisional edit on Escape, not the last confirmed result 22ms
+   ✓ rolls back provisional edit on blur, not the last confirmed result 24ms
+   ✓ rolls back provisional edit on hidden, not the last confirmed result 21ms
+   ✓ rolls back provisional edit on focus, not the last confirmed result 25ms
+   × invalidates pending pointer before 切抜きを確定 30ms
+     → expected '140 140 480 360' to be '110 120 480 360' // Object.is equality
+   ✓ invalidates pending pointer before 編集を取消 27ms
+   ✓ invalidates pending pointer before Reset 23ms
+   ✓ invalidates pending pointer before ratio 20ms
+   ✓ invalidates pending pointer before numeric 24ms
+   ✓ invalidates pending pointer before direction 26ms
+   ✓ keyboard corners resize via the same constraints and capture failure cannot leave a provisional edit 16ms
+   ✓ retains world coordinates and committed crop through resizing, zero width and restoration; unmount releases listeners 25ms
+   ✓ registers only one new unique ID, searches by crop tags, switches and closes without retaining state 48ms
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 24 passed (26)
+   Start at  09:30:02
+   Duration  2.23s (transform 288ms, setup 0ms, collect 641ms, tests 725ms, environment 595ms, prepare 109ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/image-crop.test.tsx > model separates provisional/editing/committed and refuses foreign, stale and post-command pointer events
+AssertionError: expected { Object (rect, ratio) } to deeply equal { Object (rect, ratio) }
+
+- Expected
++ Received
+
+  {
+    "ratio": "free",
+    "rect": {
+      "height": 360,
+      "width": 480,
+-     "x": 100,
+-     "y": 120,
++     "x": 150,
++     "y": 140,
+    },
+  }
+
+ ❯ tests/image-crop.test.tsx:81:63
+     79|   const changed = s; expect(transition(s, { type: 'pointer', phase: 'u…
+     80|   expect(transition(s, { type: 'pointer', phase: 'up', id: 7, time: 99…
+     81|   s = transition(s, { type: 'confirm' }); expect(s.committed).toEqual(…
+       |                                                               ^
+     82|   expect(transition(s, { type: 'pointer', phase: 'up', id: 7, time: 11…
+     83|   s = transition(s, { type: 'move', dx: 30, dy: 40 }); s = transition(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/image-crop.test.tsx > invalidates pending pointer before 切抜きを確定
+AssertionError: expected '140 140 480 360' to be '110 120 480 360' // Object.is equality
+
+Expected: "110 120 480 360"
+Received: "140 140 480 360"
+
+ ❯ tests/image-crop.test.tsx:118:48
+    116|   else if (action === 'numeric') click('数値を適用'); else click(action ===…
+    117|   const stable = box(); stale(zone); expect(box()).toBe(stable); expec…
+    118|   if (action === '切抜きを確定') expect(confirmed()).toBe('110 120 480 360');
+       |                                                ^
+    119| });
+    120| it('keyboard corners resize via the same constraints and capture failu…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+

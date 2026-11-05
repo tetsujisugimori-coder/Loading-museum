@@ -1,0 +1,51 @@
+{
+  "type": "implementation self visual review, not independent review",
+  "images": [
+    {
+      "file": "final-chromium/chromium-375-no-preference-exhibit.png",
+      "sha256": "a7b3d5fcc746172c9f71746ba4c11382f4c0fc3a888a3e950f7189cb6d4b8591"
+    },
+    {
+      "file": "final-chromium/chromium-375-reduce-exhibit.png",
+      "sha256": "6460ee652cacce115a25f29b6dc639e04bc4104976f93529e0aa5f9982358b86"
+    },
+    {
+      "file": "final-chromium/chromium-1280-no-preference-exhibit.png",
+      "sha256": "6bed2db8c795072dd676cded4e8c40238d686d3f8def3c25547251f801fdcb6b"
+    },
+    {
+      "file": "final-chromium/chromium-1280-reduce-exhibit.png",
+      "sha256": "7cac5e3229ac9aa60ac10e63ccb4e0389e530cddaa521a98348900117992c913"
+    },
+    {
+      "file": "final-webkit/webkit-375-no-preference-exhibit.png",
+      "sha256": "bd925e7ed34b8ff452003db4c9ff0b51e7f12914d2ec2bade3d5f0ce21cada4c"
+    },
+    {
+      "file": "final-webkit/webkit-375-reduce-exhibit.png",
+      "sha256": "ded30bdb942be29a4f0e438f9511a0e4fc50611dfb70ebc9d048a14a79d6e541"
+    },
+    {
+      "file": "final-webkit/webkit-1280-no-preference-exhibit.png",
+      "sha256": "b15e921000803b0c1eb49d24eb926f99c81a67dae4ececc62ec2d7fdd22b649d"
+    },
+    {
+      "file": "final-webkit/webkit-1280-reduce-exhibit.png",
+      "sha256": "b15e921000803b0c1eb49d24eb926f99c81a67dae4ececc62ec2d7fdd22b649d"
+    }
+  ],
+  "findings": [
+    "Source frame and both cropped compositions correspond visually.",
+    "375px stacks source/results; 1280px uses side-by-side source/results.",
+    "House and orchard are distinct compositions.",
+    "Native WebKit ratio label changes from unreadable dark painting to readable light painting.",
+    "WebKit1280 normal/reduced raw PNGs are byte-identical; the full normal image was inspected as the shared image."
+  ],
+  "notTested": [
+    "physical Safari",
+    "VoiceOver",
+    "physical input",
+    "browser pinch zoom"
+  ],
+  "webkit1280ByteIdentical": true
+}

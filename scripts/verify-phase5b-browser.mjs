@@ -25,7 +25,7 @@ try{
  for(const engine of engines){browser=await({chromium,webkit}[engine]).launch({headless:true});report[engine]=browser.version();
  for(const width of widths)for(const reducedMotion of motions){
   page=await browser.newPage({viewport:{width,height:900},hasTouch:width<500,reducedMotion});page.setDefaultTimeout(8000);const errors=[];page.on('pageerror',e=>errors.push(String(e)));
-  await page.addInitScript(()=>sessionStorage.setItem('digital-motion-archive-title-seen-v1','seen'));await page.goto(url);assert.match(await page.locator('body').textContent(),/13 ROOMS \/ 264 OBJECTS/);
+  await page.addInitScript(()=>sessionStorage.setItem('digital-motion-archive-title-seen-v1','seen'));await page.goto(url);assert.match(await page.locator('body').textContent(),/13 ROOMS \/ 265 OBJECTS/);
   const room=page.locator('.phase4Room');await room.getByRole('button',{name:'部品展示室を開く',exact:true}).click();assert.equal(await room.locator('nav button').count(),25);
   for(let n=0;n<ids.length;n++){
    if(!selectedIds.includes(ids[n]))continue;report.current={engine,width,reducedMotion,id:ids[n]};await room.locator('nav button').nth(18+n).click();const stage=room.getByTestId('phase5b-stage');await stage.scrollIntoViewIfNeeded();
