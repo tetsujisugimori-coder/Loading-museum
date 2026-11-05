@@ -76,3 +76,13 @@ pointer所有IDと単調timestampで外来・古eventを拒否。animationはrun
 別担当が独自に作成した `scripts/verify-before-after-independent.mjs` をWebKit375通常のCIへ追加した。既存の主検査の成否にかかわらず実行し、いずれか失敗ならjob FAILを維持する。これは主検査をskipして成功にするものではない。独立probeはもう一つの参照imgを生成せず、実Before/After全面baselineからSplit37%とOverlay50%を厳密な均色内点で照合する。2pair、native pointer/keyboard、4SVG XML/public-out一致、固定mask/alpha故障4件と復旧、HEAD/tree/clean/source/script/PNG hashを記録し全結果をconsoleにも出す。内部ZIP取得が403で阻止される状態でも、実検査の数値を正規job logから監査できる。
 
 portable原本は子エージェントが作成し、SHA256 `5aefe861ea147e05b28a6a0a665d5467d387d1ff519f528059adba3fce4ad7ce` を変更せず採用。Chromium375の事前校正ではpositive8・故障4拒否・復旧成功。校正中の主harness変更によるdirtyを明示し、正式clean WebKit実行とは区別する。校正の試作でraster用にhandleを隠してからpointer操作して停止した記録も原本を保全した。新しい最終CIと独立評価はPR #66へ記録する。
+
+## 外周・実配送値の検査前提の訂正（製品変更なし）
+
+54442のWK765ログは、correction Overlay0で差588画素がx=1とx=635の2列だけ（各294）、他の内点0と示した。CSS635.25×402.3125に対しPNG637×403、computed box/fit/opacityは一致。参照をproduct画像の上へ描いており、SVG外周の半透明AA画素だけが二重合成される構造を独立担当が指摘した。expected撮影時だけproduct `.bcLayer` を隠し、同じcanvas背景に参照を一度だけ描く方式へ訂正した。
+
+**ROIを広げる案は未commitの校正後に破棄し、提出する合否基準は元の外周1px除外、RGB差3、画素比率0.002のまま。** padding/CSS寸法/DPR/PNG寸法・除外数は診断値として記録する。0/50/100/反転37のcomputed clip四辺を試験値へ別途照合し、0%で1px露出、100%で1px欠け、top画像1px移動の3故障を幾何検査で拒否・復旧する。既存mask25/alpha.25の実PNG故障も維持するので、外周除外が誤マスク/図版ずれを隠すことを防ぐ。
+
+WK375/390の主検査はrasterの正系を通過した後、要求target75/73%をraw描画値と同一視したpointer検査で停止した。要求した小数CSS座標と、ブラウザが配送した座標を分けて検証する。期待値は**試験で既知の開始値50＋trusted pointerの配送clientX差/実測frame幅**から計算し、製品state/出力を正解の生成に使わない。owner/type一致、down後の非ゼロmove、末尾move/up、新sequence、up後moveなしを要求し、古い配送列やdownだけでは成功しない。計算したraw値を境界styleへ、四捨五入値をnative rangeへ厳密に照合して実配送観測をlogへ残す。
+
+同じ54442の別担当作成portable probeは正式WebKit375通常で成功し、2pairのSplit37/Overlay50と復旧はすべてwrong0、4故障は110/640/438/3579sampleを拒否した。これは比較描画を支持する別検査であり、主harness失敗/job FAILを上書きしない。ZIP実bytesは依然403で未監査。初回失敗・校正・未採用ROI版を保存し、新しい最終HEADで自己/独立/正式CIを対応付ける。

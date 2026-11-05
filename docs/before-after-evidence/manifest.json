@@ -1,5 +1,5 @@
 {
-  "purpose": "Evidence bytes including failed diagnostics. Reports retain measured HEAD/dirty. Final CI and submitted HEAD are recorded on PR #66.",
+  "purpose": "Saved evidence bytes including unsuccessful diagnostics and abandoned ROI experiment. Reports retain measured HEAD/dirty. Submitted HEAD and final CI are recorded on PR #66.",
   "files": [
     {
       "file": "independent/art-generation.json",
@@ -1125,6 +1125,41 @@
       "file": "self/raster-harness/verify-before-after-browser.mjs.txt",
       "bytes": 22718,
       "sha256": "f4618540b3168f92536478d52da74467a05f0962ff5554704ec5350e2accc325"
+    },
+    {
+      "file": "self/reference-isolation/loading-edge-controls.log",
+      "bytes": 112,
+      "sha256": "d7e110894ace2c3c1024e46d6cc9f6a68bdaa3e90460f5c203dc303142542e0d"
+    },
+    {
+      "file": "self/reference-isolation/loading-final-harness-calibration.log",
+      "bytes": 17739,
+      "sha256": "e9b6a4d539060e5e7243a209d0799e4021f5753cde791c54d3cb6b4791daa0dc"
+    },
+    {
+      "file": "self/reference-isolation/loading-isolated-native.log",
+      "bytes": 112,
+      "sha256": "77383dec5c4d9759aad64748ec07280c730f2c8a47065a39b70c43828a54381d"
+    },
+    {
+      "file": "self/reference-isolation/loading-roi-native.log",
+      "bytes": 112,
+      "sha256": "77383dec5c4d9759aad64748ec07280c730f2c8a47065a39b70c43828a54381d"
+    },
+    {
+      "file": "self/reference-isolation/roi-experiment-not-adopted.mjs.txt",
+      "bytes": 30083,
+      "sha256": "d237e8bbd9c712a8cb2d629ea39523ad9c57179d24acdc808468f4d99ed3a125"
+    },
+    {
+      "file": "self/reference-isolation/webkit-375-54442.log",
+      "bytes": 150039,
+      "sha256": "4c980db6054883607a42627b2fda3af8377610afb0091a99dc1ddbcf9801a380"
+    },
+    {
+      "file": "self/reference-isolation/webkit-765-54442-failure.log",
+      "bytes": 140098,
+      "sha256": "5ebb896febacbec2f63a00e70a7c12bd253588107d7b2dc606471854a62897d8"
     },
     {
       "file": "self/scroll-fix-1280/chromium-1280-no-preference-after-full.png",

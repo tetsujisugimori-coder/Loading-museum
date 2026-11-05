@@ -1,3 +1,9 @@
+## 2026-11-05 第6期A-3 参照の二重合成とpointer検査の訂正
+
+- WK765の差588画素は外周2列のみ・内点0。参照をproduct上へ描くことで外周AAが二重合成される構造を訂正し、expectedは同じ背景上に一度だけ描く。ROI拡張案は破棄し元1px/RGB3/.002を維持。失敗/未採用校正原本を保全。
+- 正系computed mask4辺、0/100%の1px誤マスクと図版1px移動の3幾何負対照を追加。mask25/alpha.25PNG負対照も維持。pointerは要求targetと実配送座標を分け、既知start50とtrusted client差/独立frame幅から期待値を計算。非ゼロowner move・新sequence等を要求し製品出力を正解に使わない。独立担当が静的に再監査。
+- 別担当portableは正式54442/WK375で2pair正系＋復旧8結果wrong0、4故障を検出。主harnessのpointer目標値待ち失敗/jobFAILとは区別。新HEADの自己/独立/全CIで最終確認し、ZIP403BLOCKEDを維持する。
+
 ## 2026-11-05 第6期A-3 参照描画と独立WebKitプローブ
 
 - 4b4790のWK375で読込準備true/alert0となり、次のSplit0% raster oracleで停止。旧参照imgのfillと製品のcontainの不一致を訂正し、表示style到達とrAF paint同期、失敗時のfit/box/画素差分布logを追加。製品変更なし、許容値と負対照は不変。微小丸めだけを旧差の全原因とは断定しない。

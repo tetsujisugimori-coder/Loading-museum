@@ -24,12 +24,16 @@ const engines = (process.env.BROWSERS || 'chromium,webkit').split(','), widths =
 report.expected = engines.length * widths.length * motions.length;
 let browser, page;
 const near = (a, b, tol = .05) => assert.ok(Math.abs(a - b) <= tol, `${a} != ${b} ± ${tol}`);
-function comparePNG(actualBytes, expectedBytes, mode, amount) {
+function comparePNG(actualBytes, expectedBytes, mode, amount, frame) {
   const a = PNG.sync.read(actualBytes), b = PNG.sync.read(expectedBytes); assert.equal(a.width, b.width); assert.equal(a.height, b.height);
+  const cssWidth = frame.images[0].width, cssHeight = frame.images[0].height, dpr = frame.dpr;
+  const paddingX = Math.max(0, a.width - cssWidth * dpr), paddingY = Math.max(0, a.height - cssHeight * dpr);
+  // Keep the original one-pixel perimeter exclusion. Quantization is recorded
+  // for diagnosis; it is not used to enlarge the accepted region or tolerance.
+  const marginX = 1, marginY = 1;
   let mismatches = 0, pixels = 0, max = 0;
   const samples = [], columns = new Map(), rows = new Map();
-  // Exclude only the outermost screenshot rounding edge. No product metadata is used.
-  for (let y = 1; y < a.height - 1; y++) for (let x = 1; x < a.width - 1; x++) {
+  for (let y = marginY; y < a.height - marginY; y++) for (let x = marginX; x < a.width - marginX; x++) {
     // A percentage edge can cross a device pixel. Its exact CSS coordinate is checked separately.
     if (mode === 'split' && Math.abs(x - a.width * amount / 100) <= 1) continue;
     const i = (y * a.width + x) * 4; let bad = false;
@@ -40,7 +44,9 @@ function comparePNG(actualBytes, expectedBytes, mode, amount) {
     }
   }
   const peak = map => [...map].sort((a, b) => b[1] - a[1]).slice(0, 12);
-  return { mismatches, pixels, fraction: mismatches / pixels, max, pass: mismatches / pixels < .002, samples, columns: peak(columns), rows: peak(rows) };
+  const interior = (a.width - 2 * marginX) * (a.height - 2 * marginY);
+  return { mismatches, pixels, fraction: mismatches / pixels, max, pass: mismatches / pixels < .002, samples, columns: peak(columns), rows: peak(rows),
+    frame: { cssWidth, cssHeight, dpr, pngWidth: a.width, pngHeight: a.height, paddingX, paddingY, marginX, marginY, frameExcludedPixels: a.width * a.height - interior, boundaryExcludedPixels: interior - pixels } };
 }
 try {
   if (process.env.REQUIRE_CLEAN === '1') assert.equal(report.dirty, '', 'Source must match submitted HEAD');
@@ -58,7 +64,12 @@ try {
       const context = await browser.newContext({ viewport: { width, height: 1000 }, reducedMotion: motion, hasTouch: width < 500 }); page = await context.newPage(); page.setDefaultTimeout(8000);
       const errors = [], checks = [], measurements = []; page.on('pageerror', e => errors.push(String(e)));
       const prefix = `${engine}-${width}-${motion}`; report.current = { engine, version: browser.version(), width, motion }; report.activeCase = { checks, measurements, errors };
-      await page.addInitScript(() => sessionStorage.setItem('digital-motion-archive-title-seen-v1', 'seen'));
+      await page.addInitScript(() => {
+        sessionStorage.setItem('digital-motion-archive-title-seen-v1', 'seen'); window.compareNativePointers = [];
+        for (const type of ['pointerdown', 'pointermove', 'pointerup']) document.addEventListener(type, e => {
+          if (e.target instanceof Element && e.target.closest('[data-testid="bc-canvas"]')) window.compareNativePointers.push({ sequence: window.compareNativePointers.length, type, id: e.pointerId, x: e.clientX, y: e.clientY, trusted: e.isTrusted, pointerType: e.pointerType });
+        }, true);
+      });
       await page.goto(url); assert.match(await page.locator('.archiveMeta').textContent(), /13 ROOMS \/ 266 OBJECTS/);
       const room = page.locator('.phase4Room'); await room.getByRole('button', { name: '部品展示室を開く', exact: true }).click(); assert.equal(await room.locator('nav button').count(), 27);
       const selectExhibit = async name => room.getByRole('button', { name, exact: true }).click();
@@ -81,6 +92,31 @@ try {
         const input = overlay ? alpha() : range(); await input.focus(); await page.keyboard.press('Home');
         for (let n = 0; n < Math.floor(expected / 10); n++) await page.keyboard.press('Shift+ArrowRight');
         for (let n = 0; n < expected % 10; n++) await page.keyboard.press('ArrowRight'); await value(expected, overlay);
+      }
+      let lastNativeSequence = -1;
+      async function nativeValue(startValue) {
+        const delivered = await page.evaluate(() => {
+          const events = window.compareNativePointers.filter(e => e.trusted), index = events.findLastIndex(e => e.type === 'pointerdown');
+          const start = events[index], path = events.slice(index).filter(e => e.id === start?.id && e.pointerType === start?.pointerType);
+          return { start, end: path.at(-1), moves: path.filter(e => e.type === 'pointermove'), moveAfterUp: path.some((e, i) => e.type === 'pointerup' && i < path.length - 1) };
+        });
+        assert.ok(delivered.start && delivered.end && delivered.start.id === delivered.end.id, 'Trusted owner pointer path must exist');
+        assert.ok(['pointermove', 'pointerup'].includes(delivered.end.type) && delivered.moves.some(e => e.x !== delivered.start.x), 'A trusted nonzero owner move must be delivered after down');
+        assert.ok(!delivered.moveAfterUp && delivered.end.sequence > lastNativeSequence, 'A new coherent owner event must be delivered for this assertion'); lastNativeSequence = delivered.end.sequence;
+        const expected = Math.max(0, Math.min(100, startValue + (delivered.end.x - delivered.start.x) / b.width * 100));
+        await page.waitForFunction(expected => {
+          const e = document.querySelector('input[aria-label="比較位置"]'), line = document.querySelector('[data-testid="bc-boundary"]');
+          return e && Math.abs(+e.value - Math.round(expected)) < .001 && Math.abs(parseFloat(line.style.left) - expected) < .001;
+        }, expected);
+        measurements.push({ nativePointer: delivered, startValue, width: b.width, expected });
+      }
+      async function mask(expected) {
+        const clip = await top.evaluate(el => getComputedStyle(el).clipPath), args = clip.match(/^inset\(([^)]+)\)$/)?.[1].trim().split(/\s+/);
+        assert.ok(args && args.length >= 1 && args.length <= 4, `Expected rectangular inset: ${clip}`);
+        const [t, r = t, bt = t, l = r] = args;
+        const box = await canvas.boundingBox(), lengths = [t, r, bt, l].map((v, i) => parseFloat(v) * (v.endsWith('%') ? (i % 2 ? box.width : box.height) / 100 : 1));
+        near(lengths[0], 0); near(lengths[1], box.width * (100 - expected) / 100); near(lengths[2], 0); near(lengths[3], 0);
+        measurements.push({ maskExpected: expected, computedClip: clip, edgesCSS: lengths });
       }
       async function snapshot(name, locator = canvas) {
         const file = `${prefix}-${name}.png`, data = await locator.screenshot(); await fs.writeFile(path.join(dest, file), data); report.images.push({ name: file, sha256: sha(data) });
@@ -114,21 +150,24 @@ try {
           ref.append(image(which[0])); const over = document.createElement('div'); Object.assign(over.style, { position: 'absolute', inset: '0', overflow: 'hidden', width: mode === 'split' ? `${amount}%` : '100%', opacity: mode === 'overlay' ? String(amount / 100) : '1' }); over.append(image(which[1])); ref.append(over); el.append(ref);
         }, { pair, mode, amount, reversed });
         await canvas.locator('#compare-independent-reference img').evaluateAll(async imgs => Promise.all(imgs.map(img => img.decode())));
+        // The expected image must be drawn once on the canvas background. Keeping
+        // the actual art underneath would double-composite partially covered SVG edge pixels.
+        const isolate = await page.addStyleTag({ content: '.bcLayer{visibility:hidden!important}' });
         const referenceDOM = await canvas.locator('#compare-independent-reference img').evaluateAll(imgs => imgs.map(img => { const b = img.getBoundingClientRect(); return { x: b.x, y: b.y, width: b.width, height: b.height, fit: getComputedStyle(img).objectFit }; }));
-        const expected = await canvas.screenshot(); await canvas.locator('#compare-independent-reference').evaluate(el => el.remove()); await hide.evaluate(el => el.remove());
-        const result = comparePNG(actual, expected, mode, amount); if (!result.pass) { for (const [kind, data] of [['actual', actual], ['expected', expected]]) { const name = `${prefix}-${pair}-${mode}-${amount}-${reversed}-${kind}.png`; await fs.writeFile(path.join(dest, name), data); report.images.push({ name, sha256: sha(data), kind: 'oracle-disagreement' }); } } measurements.push({ raster: { pair, mode, amount, reversed }, actualDOM, referenceDOM, result }); return result;
+        const expected = await canvas.screenshot(); await canvas.locator('#compare-independent-reference').evaluate(el => el.remove()); await isolate.evaluate(el => el.remove()); await hide.evaluate(el => el.remove());
+        const result = comparePNG(actual, expected, mode, amount, actualDOM); if (!result.pass) { for (const [kind, data] of [['actual', actual], ['expected', expected]]) { const name = `${prefix}-${pair}-${mode}-${amount}-${reversed}-${kind}.png`; await fs.writeFile(path.join(dest, name), data); report.images.push({ name, sha256: sha(data), kind: 'oracle-disagreement' }); } } measurements.push({ raster: { pair, mode, amount, reversed }, actualDOM, referenceDOM, result }); return result;
       }
       for (const pair of ['restoration', 'correction']) {
         await stage.getByLabel('比較する図版').selectOption(pair); await waitReady();
         const fixed = await geometry();
         for (const amount of [0, 50, 100]) {
-          await manual(amount); await geometry();
+          await manual(amount); await geometry(); await mask(amount);
           const line = await stage.getByTestId('bc-boundary').evaluate(el => { const parent = el.parentElement.getBoundingClientRect(), b = el.getBoundingClientRect(); return (b.x + b.width / 2 - parent.x) / parent.width * 100; }); near(line, amount, .02);
           assert.ok((await raster({ pair, amount })).pass, `split raster ${pair} ${amount}`);
           if (pair === 'restoration') await snapshot(amount === 0 ? 'before-full' : amount === 100 ? 'after-full' : 'split50');
           const now = await geometry(); for (const k of ['width', 'height']) near(now.images[0][k], fixed.images[0][k]);
         }
-        await manual(37); await click('Before / Afterを反転'); await value(37); assert.match(await top.locator('img').getAttribute('alt'), /^Before/); assert.match(await base.locator('img').getAttribute('alt'), /^After/);
+        await manual(37); await click('Before / Afterを反転'); await value(37); await mask(37); assert.match(await top.locator('img').getAttribute('alt'), /^Before/); assert.match(await base.locator('img').getAttribute('alt'), /^After/);
         assert.ok((await raster({ pair, amount: 37, reversed: true })).pass); if (pair === 'restoration') await snapshot('reversed');
         await click('Reset'); await click('Overlay / 透明度');
         for (const amount of [0, 50, 100]) { await manual(amount, true); near(Number(await top.evaluate(el => getComputedStyle(el).opacity)), amount / 100, .001); assert.ok((await raster({ pair, mode: 'overlay', amount })).pass, `overlay raster ${pair} ${amount}`); if (pair === 'restoration' && amount === 50) await snapshot('overlay50'); }
@@ -145,16 +184,16 @@ try {
         await handle().focus(); await page.keyboard.press(key); await value(expected); const b = await handle().boundingBox(); await page.mouse.move(b.x + b.width / 2, b.y + b.height / 2); await page.mouse.down(); await value(expected); await page.mouse.up(); await value(expected);
       }
       await manual(50); await canvas.scrollIntoViewIfNeeded(); let b = await canvas.boundingBox(), h = await handle().boundingBox();
-      await page.mouse.move(h.x + h.width / 2, h.y + h.height / 2); await page.mouse.down(); await page.mouse.move(b.x + b.width * .75, h.y + h.height / 2, { steps: 6 }); await value(75); await page.keyboard.press('Escape'); await page.mouse.up(); await value(50);
-      h = await handle().boundingBox(); await page.mouse.move(h.x + 24, h.y + 24); await page.mouse.down(); await page.mouse.move(b.x + b.width * .73, h.y + 24, { steps: 5 }); await page.mouse.up(); await value(73);
+      await page.mouse.move(h.x + h.width / 2, h.y + h.height / 2); await page.mouse.down(); await page.mouse.move(b.x + b.width * .75, h.y + h.height / 2, { steps: 6 }); await nativeValue(50); await page.keyboard.press('Escape'); await page.mouse.up(); await value(50);
+      h = await handle().boundingBox(); await page.mouse.move(h.x + 24, h.y + 24); await page.mouse.down(); await page.mouse.move(b.x + b.width * .73, h.y + 24, { steps: 5 }); await page.mouse.up(); await nativeValue(50);
       checks.push('Playwright browser mouse drag/commit and Escape rollback, native keyboard 1/10/Home/End and no jump on inward edge handle press');
       // Synthetic delivery is supplemental and explicitly distinct from trusted browser input.
       for (const reason of ['pointercancel', 'lostpointercapture', 'reset', 'resize-zero', 'hidden']) {
         await manual(50);
         // Range focus may scroll the handle outside the viewport on large figures.
-        await handle().scrollIntoViewIfNeeded(); b = await canvas.boundingBox(); h = await handle().boundingBox(); await page.mouse.move(h.x + 24, h.y + 24); await page.mouse.down(); await page.waitForFunction(() => document.querySelector('[data-testid="bc-canvas"]').dataset.dragging === 'true'); await page.mouse.move(b.x + b.width * .8, h.y + 24); await value(80);
+        await handle().scrollIntoViewIfNeeded(); b = await canvas.boundingBox(); h = await handle().boundingBox(); await page.mouse.move(h.x + 24, h.y + 24); await page.mouse.down(); await page.waitForFunction(() => document.querySelector('[data-testid="bc-canvas"]').dataset.dragging === 'true'); await page.mouse.move(b.x + b.width * .8, h.y + 24); await nativeValue(50);
         const id = await canvas.evaluate(el => { window.compareLastPointer = null; el.addEventListener('pointermove', e => { window.compareLastPointer = e.pointerId; }, { once: true }); return true; }); assert.equal(id, true);
-        await page.mouse.move(b.x + b.width * .81, h.y + 24); await value(81);
+        await page.mouse.move(b.x + b.width * .81, h.y + 24); await nativeValue(50);
         const pointerId = await page.evaluate(() => window.compareLastPointer); assert.ok(Number.isInteger(pointerId));
         if (reason === 'reset') await stage.getByRole('button', { name: 'Reset', exact: true }).dispatchEvent('click');
         else if (reason === 'resize-zero') { await canvas.evaluate(el => { el.style.width = '0px'; }); await page.waitForFunction(() => document.querySelector('[data-testid="bc-canvas"]').dataset.ready === 'false'); await canvas.evaluate(el => { el.style.width = ''; }); await waitReady(); }
@@ -189,6 +228,23 @@ try {
       await page.route('**/restoration-after.svg', r => r.abort()); await stage.getByLabel('比較する図版').selectOption('restoration'); await stage.getByRole('alert').waitFor(); assert.ok(await stage.getByRole('button', { name: '自動比較', exact: true }).isDisabled());
       await page.unroute('**/restoration-after.svg'); await click('図版を再読込'); await waitReady(); await value(50, true);
       checks.push('actual request failure blocks comparison; explicit retry restores pair');
+      // Geometry controls protect the exact edges excluded from antialiased PNG
+      // comparisons. Their expected positions come from test-owned 0/100 values.
+      await click('Split / 境界');
+      for (const edge of [0, 100]) {
+        await manual(edge); const box = await canvas.boundingBox();
+        const right = edge === 0 ? box.width - 1 : 1;
+        const fault = await page.addStyleTag({ content: `.bcTop{clip-path:inset(0 ${right}px 0 0)!important}` });
+        let reason = '';
+        await assert.rejects(async () => { try { await mask(edge); } catch (error) { reason = String(error); throw error; } }, /!=.*±/);
+        report.controls.push({ ...report.current, fault: `mask-edge-${edge}-one-pixel`, kind: 'geometry', result: { pass: false, reason } });
+        await fault.evaluate(el => el.remove()); await mask(edge);
+      }
+      const shiftFault = await page.addStyleTag({ content: '.bcTop img{transform:translateX(1px)!important}' }); let shiftReason = '';
+      await assert.rejects(async () => { try { await geometry(); } catch (error) { shiftReason = String(error); throw error; } }, /!=.*±/);
+      report.controls.push({ ...report.current, fault: 'image-shift-one-pixel', kind: 'geometry', result: { pass: false, reason: shiftReason } });
+      await shiftFault.evaluate(el => el.remove()); await geometry();
+      checks.push('negative geometry controls reject one-pixel mask errors at 0/100 and an actual one-pixel image shift; restored geometry passes');
       await click('Split / 境界'); await manual(37);
       for (const [fault, css, expected] of [['mask-fixed', 'clip-path:inset(0 75% 0 0)!important', { amount: 37 }], ['alpha-fixed', 'opacity:.25!important', { mode: 'overlay', amount: 50 }]]) {
         if (fault === 'alpha-fixed') { await click('Overlay / 透明度'); await manual(50, true); }
@@ -200,7 +256,7 @@ try {
         await click('Split / 境界'); await manual(50); await canvas.scrollIntoViewIfNeeded(); b = await canvas.boundingBox(); h = await handle().boundingBox();
         const cdp = await context.newCDPSession(page); const x = h.x + 24, y = h.y + 24;
         await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
-        await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x + b.width / 4, y }] }); await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] }); await value(75);
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x + b.width / 4, y }] }); await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] }); await nativeValue(50);
         await manual(50); await canvas.scrollIntoViewIfNeeded(); b = await canvas.boundingBox(); const scrollBefore = await page.evaluate(() => scrollY);
         await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: b.x + 15, y: b.y + b.height * .8 }] });
         await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: b.x + 15, y: b.y + b.height * .2 }] }); await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
@@ -213,6 +269,10 @@ try {
       assert.ok(await room.locator('article').textContent());
       const overflow = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, width: innerWidth })); assert.ok(overflow.scroll <= overflow.width, JSON.stringify(overflow)); assert.deepEqual(errors, []);
       checks.push('close/reopen initial state; Pan & Zoom / Image Crop / Diff Viewer selection; no pageerror or document overflow');
+      console.log(JSON.stringify({ caseComplete: report.current, head: report.head, checks: checks.length,
+        nativePointer: measurements.filter(x => x.nativePointer), masks: measurements.filter(x => x.maskExpected !== undefined),
+        raster: measurements.filter(x => x.raster).map(x => ({ case: x.raster, pass: x.result.pass, mismatches: x.result.mismatches, pixels: x.result.pixels, frame: x.result.frame })),
+        controls: report.controls.filter(c => c.engine === engine && c.width === width && c.motion === motion) }));
       report.cases.push({ ...report.current, checks, measurements, errors }); await context.close();
     }
     await browser.close(); browser = null;
