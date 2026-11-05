@@ -44,6 +44,19 @@ jobs:
           export PLAYWRIGHT_MODULE="$RUNNER_TEMP/before-after-playwright/node_modules/playwright"
           export PNG_MODULE="$RUNNER_TEMP/before-after-playwright/node_modules/pngjs"
           node scripts/verify-before-after-browser.mjs 2>&1 | tee work/before-after-browser.log
+      - name: Independent reviewer endpoint-baseline probe
+        if: ${{ !cancelled() && matrix.browser == 'webkit' && matrix.width == 375 }}
+        env:
+          INDEPENDENT_ENGINE: webkit
+          INDEPENDENT_WIDTH: 375
+          INDEPENDENT_MOTION: no-preference
+          INDEPENDENT_EVIDENCE: work/independent-webkit
+          REQUIRE_CLEAN: '1'
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/before-after-playwright/node_modules/playwright"
+          export PNG_MODULE="$RUNNER_TEMP/before-after-playwright/node_modules/pngjs"
+          node scripts/verify-before-after-independent.mjs 2>&1 | tee work/independent-webkit.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:

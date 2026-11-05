@@ -27,15 +27,20 @@ const near = (a, b, tol = .05) => assert.ok(Math.abs(a - b) <= tol, `${a} != ${b
 function comparePNG(actualBytes, expectedBytes, mode, amount) {
   const a = PNG.sync.read(actualBytes), b = PNG.sync.read(expectedBytes); assert.equal(a.width, b.width); assert.equal(a.height, b.height);
   let mismatches = 0, pixels = 0, max = 0;
+  const samples = [], columns = new Map(), rows = new Map();
   // Exclude only the outermost screenshot rounding edge. No product metadata is used.
   for (let y = 1; y < a.height - 1; y++) for (let x = 1; x < a.width - 1; x++) {
     // A percentage edge can cross a device pixel. Its exact CSS coordinate is checked separately.
     if (mode === 'split' && Math.abs(x - a.width * amount / 100) <= 1) continue;
     const i = (y * a.width + x) * 4; let bad = false;
     for (let c = 0; c < 3; c++) { const d = Math.abs(a.data[i + c] - b.data[i + c]); max = Math.max(max, d); if (d > 3) bad = true; }
-    pixels++; if (bad) mismatches++;
+    pixels++; if (bad) {
+      mismatches++; columns.set(x, (columns.get(x) ?? 0) + 1); rows.set(y, (rows.get(y) ?? 0) + 1);
+      if (samples.length < 12) samples.push({ x, y, actual: [...a.data.subarray(i, i + 3)], expected: [...b.data.subarray(i, i + 3)] });
+    }
   }
-  return { mismatches, pixels, fraction: mismatches / pixels, max, pass: mismatches / pixels < .002 };
+  const peak = map => [...map].sort((a, b) => b[1] - a[1]).slice(0, 12);
+  return { mismatches, pixels, fraction: mismatches / pixels, max, pass: mismatches / pixels < .002, samples, columns: peak(columns), rows: peak(rows) };
 }
 try {
   if (process.env.REQUIRE_CLEAN === '1') assert.equal(report.dirty, '', 'Source must match submitted HEAD');
@@ -66,7 +71,11 @@ try {
       const alpha = () => stage.getByRole('slider', { name: '比較透明度', exact: true });
       const handle = () => stage.getByRole('slider', { name: '比較境界', exact: true });
       async function value(expected, overlay = false) {
-        await page.waitForFunction(({ expected, overlay }) => { const e = document.querySelector(`input[aria-label="${overlay ? '比較透明度' : '比較位置'}"]`); return e && Math.abs(+e.value - expected) < .001; }, { expected, overlay });
+        await page.waitForFunction(({ expected, overlay }) => {
+          const e = document.querySelector(`input[aria-label="${overlay ? '比較透明度' : '比較位置'}"]`), top = document.querySelector('[data-testid="bc-top"]'), line = document.querySelector('[data-testid="bc-boundary"]');
+          const displayed = overlay ? Number(top?.style.opacity) * 100 : parseFloat(line?.style.left);
+          return e && Math.abs(+e.value - expected) < .001 && Math.abs(displayed - expected) < .001;
+        }, { expected, overlay });
       }
       async function manual(expected, overlay = false) {
         const input = overlay ? alpha() : range(); await input.focus(); await page.keyboard.press('Home');
@@ -88,16 +97,26 @@ try {
       // Its opacity is set from the test case, never from a product output or label.
       async function raster({ pair = 'restoration', mode = 'split', amount = 50, reversed = false } = {}) {
         const hide = await page.addStyleTag({ content: '.bcLabels,.bcBoundary,.bcHandle{visibility:hidden!important}' });
+        const actualDOM = await canvas.evaluate(el => {
+          const top = el.querySelector('[data-testid="bc-top"]'), s = getComputedStyle(top);
+          return { clip: top.style.clipPath, opacity: top.style.opacity, computedClip: s.clipPath, computedOpacity: s.opacity, scrollY, dpr: devicePixelRatio,
+            images: [...el.querySelectorAll('img')].map(img => { const b = img.getBoundingClientRect(); return { x: b.x, y: b.y, width: b.width, height: b.height, fit: getComputedStyle(img).objectFit }; }) };
+        });
+        // Observe committed styles and allow their paint; native range values can lead a React/paint update.
+        await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
         const actual = await canvas.screenshot();
         await canvas.evaluate((el, { pair, mode, amount, reversed }) => {
           const b = el.getBoundingClientRect(), which = reversed ? ['after', 'before'] : ['before', 'after'];
           const ref = document.createElement('div'); ref.id = 'compare-independent-reference'; Object.assign(ref.style, { position: 'absolute', inset: '0', zIndex: '20', overflow: 'hidden' });
-          const image = name => { const img = document.createElement('img'); img.src = `/Loading-museum/compare/${pair}-${name}.svg`; Object.assign(img.style, { position: 'absolute', left: '0', top: '0', width: `${b.width}px`, height: `${b.height}px`, maxWidth: 'none' }); return img; };
+          // The test-owned source contract preserves aspect ratio inside the measured box.
+          // Default object-fit:fill would distort the reference at fractional CSS dimensions.
+          const image = name => { const img = document.createElement('img'); img.width = 1200; img.height = 760; img.src = `/Loading-museum/compare/${pair}-${name}.svg`; Object.assign(img.style, { position: 'absolute', left: '0', top: '0', width: `${b.width}px`, height: `${b.height}px`, maxWidth: 'none', objectFit: 'contain' }); return img; };
           ref.append(image(which[0])); const over = document.createElement('div'); Object.assign(over.style, { position: 'absolute', inset: '0', overflow: 'hidden', width: mode === 'split' ? `${amount}%` : '100%', opacity: mode === 'overlay' ? String(amount / 100) : '1' }); over.append(image(which[1])); ref.append(over); el.append(ref);
         }, { pair, mode, amount, reversed });
         await canvas.locator('#compare-independent-reference img').evaluateAll(async imgs => Promise.all(imgs.map(img => img.decode())));
+        const referenceDOM = await canvas.locator('#compare-independent-reference img').evaluateAll(imgs => imgs.map(img => { const b = img.getBoundingClientRect(); return { x: b.x, y: b.y, width: b.width, height: b.height, fit: getComputedStyle(img).objectFit }; }));
         const expected = await canvas.screenshot(); await canvas.locator('#compare-independent-reference').evaluate(el => el.remove()); await hide.evaluate(el => el.remove());
-        const result = comparePNG(actual, expected, mode, amount); if (!result.pass) { for (const [kind, data] of [['actual', actual], ['expected', expected]]) { const name = `${prefix}-${pair}-${mode}-${amount}-${reversed}-${kind}.png`; await fs.writeFile(path.join(dest, name), data); report.images.push({ name, sha256: sha(data), kind: 'oracle-disagreement' }); } } measurements.push({ raster: { pair, mode, amount, reversed }, result }); return result;
+        const result = comparePNG(actual, expected, mode, amount); if (!result.pass) { for (const [kind, data] of [['actual', actual], ['expected', expected]]) { const name = `${prefix}-${pair}-${mode}-${amount}-${reversed}-${kind}.png`; await fs.writeFile(path.join(dest, name), data); report.images.push({ name, sha256: sha(data), kind: 'oracle-disagreement' }); } } measurements.push({ raster: { pair, mode, amount, reversed }, actualDOM, referenceDOM, result }); return result;
       }
       for (const pair of ['restoration', 'correction']) {
         await stage.getByLabel('比較する図版').selectOption(pair); await waitReady();
@@ -209,7 +228,7 @@ try {
         images: [...(el?.querySelectorAll('img') ?? [])].map(img => ({ src: img.getAttribute('src'), complete: img.complete, naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight, currentSrc: img.currentSrc })),
         alerts: [...document.querySelectorAll('.beforeAfterCompare [role="alert"]')].map(n => n.textContent), status: [...document.querySelectorAll('.beforeAfterCompare [role="status"]')].map(n => n.textContent) };
     }).catch(e => ({ error: String(e) }));
-    console.log(JSON.stringify({ failureDOM: report.failureDOM, pageErrors: report.activeCase?.errors ?? [] }));
+    console.log(JSON.stringify({ failureDOM: report.failureDOM, pageErrors: report.activeCase?.errors ?? [], raster: report.activeCase?.measurements.filter(x => x.raster).slice(-3) }));
     await page.screenshot({ path: path.join(dest, 'failure.png'), fullPage: true }).catch(() => {});
   }
   process.exitCode = 1;

@@ -1,5 +1,5 @@
 {
-  "purpose": "Saved evidence bytes including unsuccessful diagnostics. Final CI and HEAD are recorded on PR #66. Earlier reports retain their own measured HEAD/dirty state.",
+  "purpose": "Evidence bytes including failed diagnostics. Reports retain measured HEAD/dirty. Final CI and submitted HEAD are recorded on PR #66.",
   "files": [
     {
       "file": "independent/art-generation.json",
@@ -977,6 +977,21 @@
       "sha256": "8c307c6387258e66dbc7aeb723c927d800f5ab53ecb69c76cfe193850f83560f"
     },
     {
+      "file": "independent/portable-probe/chromium-calibration.json",
+      "bytes": 27905,
+      "sha256": "ac7d646bbb44691aad3fa4595fccea88ace42e976b6aa7cd42e95ca4aec98d55"
+    },
+    {
+      "file": "independent/portable-probe/verify-before-after-independent-calibration-v1.mjs.txt",
+      "bytes": 10590,
+      "sha256": "f4c1139598f05d3c29ca37d9644b4d381fdafdade581bf57c1ac8ea838ad2095"
+    },
+    {
+      "file": "independent/portable-probe/verify-before-after-independent-calibration-v2.mjs.txt",
+      "bytes": 10571,
+      "sha256": "d159c603c4ca86e29e9f3f3c789345444e0499b1c3219a85e39dba0b57022a93"
+    },
+    {
       "file": "independent/raster-diagnostic/375-no-preference-restoration-after.png",
       "bytes": 14356,
       "sha256": "16599d41641b6bd16702ace881a6bb36d312f513b2b6bac69cac9dd547192a59"
@@ -1190,6 +1205,11 @@
       "file": "self/unit-before-edge-fix.log",
       "bytes": 503,
       "sha256": "1ea8ba2510b839b06012f7a0a63632bfcfefda9940c820ee3f7717a82e0552a3"
+    },
+    {
+      "file": "self/webkit-raster/webkit-375-4b-failure.log",
+      "bytes": 136605,
+      "sha256": "974b89b81a8a226bb4fad9face3952f181cb949062bd5152c6b81c4104feb23e"
     },
     {
       "file": "self/webkit-readiness/check-525.log",

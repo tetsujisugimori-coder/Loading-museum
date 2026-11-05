@@ -1,3 +1,9 @@
+## 2026-11-05 第6期A-3 参照描画と独立WebKitプローブ
+
+- 4b4790のWK375で読込準備true/alert0となり、次のSplit0% raster oracleで停止。旧参照imgのfillと製品のcontainの不一致を訂正し、表示style到達とrAF paint同期、失敗時のfit/box/画素差分布logを追加。製品変更なし、許容値と負対照は不変。微小丸めだけを旧差の全原因とは断定しない。
+- 別担当作成のendpoint-baseline型独立probeを原本SHA5aefe861...のまま採用。2pair/4源SVG/native入力/独立均色oracle/4故障と復旧を実行し、WebKit375のCIに主検査成否を問わず追加。どちらか失敗ならjobFAILを維持。校正の失敗/dirtyと本番cleanを区別し、ZIP実bytes403BLOCKEDを維持する。
+- 新しい最終HEAD/全館525/精度45/正式16条件/独立再レビューの結果はPR #66へ追補。Draft/禁止操作・既存未検証を保持する。
+
 ## 2026-11-05 第6期A-3 WebKit SVG準備判定の根本修正
 
 - 7174正式CIはChromium8条件成功、WebKit4幅は初回ready待ちで失敗。独立担当も失敗logを確認し、マージ推奨をNOへ保留。ZIP転送は配信先へのproxy403でBLOCKED、表示digestと実bytes照合を混同しない。

@@ -68,3 +68,11 @@ pointer所有IDと単調timestampで外来・古eventを拒否。animationはrun
 観測値300×190の正常受入と、寸法0拒否後のretry復帰を2単体として先に追加し、38成功/2失敗のREDを保存。onLoadは正の描画寸法による成功確認へ変更した。既知の独自SVGの源座標は、4原本のwidth=1200、height=760、viewBox=0 0 1200 760を検査側で直接確認する。実img boxの一致・倍率・境界・独立描画とのPNG照合は引き続き行い、座標やpixelの許容値を拡大しない。天然寸法は実測値として記録し、原本寸法の代用にはしない。
 
 新規40件・全館525件（Node49+Vitest476）、関連90件と精度45群が検証対象。RED/GREEN、診断logは`self/webkit-readiness/`。補修後の正式16条件・独立再レビュー・最終HEAD/CIの確定結果はPR #66へ追補する。未確認をPASSへ変えない。
+
+## 参照描画の契約と独立WebKit診断の追加
+
+4b4790の正式WebKit375ではready=true、alert0へ進み、P2-02の読込誤拒否は改善した。一方、最初のSplit0%のPNG照合で停止した。旧参照rendererは既定のobject-fit:fill、製品は源比率を保持するcontainであり、参照側が仕様と異なっていた。参照側へ試験指定の1200×760属性とcontainを宣言し、inputの値だけでなく表示styleへの到達を待ち、paint機会をrAFで同期する。画素差の許容値・幾何検査・故障対照は変更しない。失敗時はactual/参照のfitとbox、clip/opacity、scroll/DPR、画素差の分布をログへ出す。0.0083px程度の丸め差だけが旧失敗の全原因だったとは断定しない。
+
+別担当が独自に作成した `scripts/verify-before-after-independent.mjs` をWebKit375通常のCIへ追加した。既存の主検査の成否にかかわらず実行し、いずれか失敗ならjob FAILを維持する。これは主検査をskipして成功にするものではない。独立probeはもう一つの参照imgを生成せず、実Before/After全面baselineからSplit37%とOverlay50%を厳密な均色内点で照合する。2pair、native pointer/keyboard、4SVG XML/public-out一致、固定mask/alpha故障4件と復旧、HEAD/tree/clean/source/script/PNG hashを記録し全結果をconsoleにも出す。内部ZIP取得が403で阻止される状態でも、実検査の数値を正規job logから監査できる。
+
+portable原本は子エージェントが作成し、SHA256 `5aefe861ea147e05b28a6a0a665d5467d387d1ff519f528059adba3fce4ad7ce` を変更せず採用。Chromium375の事前校正ではpositive8・故障4拒否・復旧成功。校正中の主harness変更によるdirtyを明示し、正式clean WebKit実行とは区別する。校正の試作でraster用にhandleを隠してからpointer操作して停止した記録も原本を保全した。新しい最終CIと独立評価はPR #66へ記録する。
