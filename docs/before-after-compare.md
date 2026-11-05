@@ -86,3 +86,9 @@ portable原本は子エージェントが作成し、SHA256 `5aefe861ea147e05b28
 WK375/390の主検査はrasterの正系を通過した後、要求target75/73%をraw描画値と同一視したpointer検査で停止した。要求した小数CSS座標と、ブラウザが配送した座標を分けて検証する。期待値は**試験で既知の開始値50＋trusted pointerの配送clientX差/実測frame幅**から計算し、製品state/出力を正解の生成に使わない。owner/type一致、down後の非ゼロmove、末尾move/up、新sequence、up後moveなしを要求し、古い配送列やdownだけでは成功しない。計算したraw値を境界styleへ、四捨五入値をnative rangeへ厳密に照合して実配送観測をlogへ残す。
 
 同じ54442の別担当作成portable probeは正式WebKit375通常で成功し、2pairのSplit37/Overlay50と復旧はすべてwrong0、4故障は110/640/438/3579sampleを拒否した。これは比較描画を支持する別検査であり、主harness失敗/job FAILを上書きしない。ZIP実bytesは依然403で未監査。初回失敗・校正・未採用ROI版を保存し、新しい最終HEADで自己/独立/正式CIを対応付ける。
+
+## 通信失敗fixtureの実測（製品変更なし）
+
+cd0b50のWebKit主検査はrasterとtrusted pointer等を進んだ後、既に表示したSVGへ後付けしたroute.abortのalert待ちで停止した。ready=true/alert0で正常画像が残り、旧fixtureはリクエストが本当に発生・遮断されたかを計測していなかった。decoded imageが再利用される経路と整合するが、旧試験の実route命中回数はUNKNOWNのまま保存する。
+
+失敗注入は別fresh BrowserContextで最初の画像ロードより前にrouteを置く方式へ変更。遮断したURLと回数が実際に1以上あることを要求し、製品alert/再生無効→route解除＋明示retry→ready/50%復旧、pageerror0まで検査する。finallyでfresh contextを閉じ、主画面はbringToFrontして通常のwarm pair切替検査を続ける。timeout/正系/負対照の閾値を変えず、エラー経路をskipしない。Ch375の校正はactual abort・alert・復旧を含め1条件/5故障検出成功。新しい固定HEADの全16条件・独立評価で確定する。

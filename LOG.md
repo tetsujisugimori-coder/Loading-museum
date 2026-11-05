@@ -1,3 +1,8 @@
+## 2026-11-05 第6期A-3 cold request失敗fixture
+
+- cd0b50/WKでraster・実配送pointerの先へ進み、表示済みSVGへの後付けroute.abortでalert待ちに停止。旧fixtureはroute命中を計測しておらず、cached表示経路と整合するが旧命中回数はUNKNOWNとして保持する。製品変更なし。
+- 別fresh contextで初回ロード前にabortを設定しURL/実回数>=1→alert/disabled→解除＋明示retry→ready50/pageerror0を検査。finally閉鎖・主画面bringToFront・通常warm切替も維持。独立担当が妥当性確認、C375校正1条件/5故障成功。新固定HEAD/16条件/独立/CIをPR #66へ対応付け、旧失敗やZIP403制約を消さない。
+
 ## 2026-11-05 第6期A-3 参照の二重合成とpointer検査の訂正
 
 - WK765の差588画素は外周2列のみ・内点0。参照をproduct上へ描くことで外周AAが二重合成される構造を訂正し、expectedは同じ背景上に一度だけ描く。ROI拡張案は破棄し元1px/RGB3/.002を維持。失敗/未採用校正原本を保全。

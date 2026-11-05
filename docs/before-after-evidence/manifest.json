@@ -1,5 +1,5 @@
 {
-  "purpose": "Saved evidence bytes including unsuccessful diagnostics and abandoned ROI experiment. Reports retain measured HEAD/dirty. Submitted HEAD and final CI are recorded on PR #66.",
+  "purpose": "Saved evidence bytes including failed diagnostics and unadopted ROI experiment. Reports retain measured HEAD/dirty. Submitted HEAD and final CI are recorded on PR #66.",
   "files": [
     {
       "file": "independent/art-generation.json",
@@ -1045,6 +1045,16 @@
       "file": "self/check-523.log",
       "bytes": 18450,
       "sha256": "db9a50735596afecdeb88235a73d1285338cade812d96d5897d1d6ac86eb02cf"
+    },
+    {
+      "file": "self/cold-failure-fixture/loading-cold-fixture.log",
+      "bytes": 17906,
+      "sha256": "9f26c4f0686b7a044773cb3259b90afa6d445860ec5a8bec848819824719f612"
+    },
+    {
+      "file": "self/cold-failure-fixture/webkit-390-cd0b50-warm-fixture.log",
+      "bytes": 138640,
+      "sha256": "c9793c79cbf855a08e44d80647e37334c9a7f813ae5606874752f234ffc499f0"
     },
     {
       "file": "self/environment/browser-download-denied.log",

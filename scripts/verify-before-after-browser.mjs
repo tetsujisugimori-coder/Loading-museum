@@ -225,9 +225,31 @@ try {
       await page.waitForFunction(() => document.querySelector('[data-testid="before-after-compare"]').dataset.playback === 'paused'); const held = await alpha().inputValue(); await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))); assert.equal(await alpha().inputValue(), held);
       await page.emulateMedia({ reducedMotion: motion });
       checks.push('mode/pair changes stop prior playback; runtime reduced-motion toggle pauses and holds');
-      await page.route('**/restoration-after.svg', r => r.abort()); await stage.getByLabel('比較する図版').selectOption('restoration'); await stage.getByRole('alert').waitFor(); assert.ok(await stage.getByRole('button', { name: '自動比較', exact: true }).isDisabled());
-      await page.unroute('**/restoration-after.svg'); await click('図版を再読込'); await waitReady(); await value(50, true);
-      checks.push('actual request failure blocks comparison; explicit retry restores pair');
+      // A decoded SVG may be served from WebKit's image cache without a new request.
+      // Inject the failure before the first load in a fresh context, and require an
+      // observed intercepted request so a missing error cannot be mistaken for success.
+      const cold = await browser.newContext({ viewport: { width, height: 1000 }, reducedMotion: motion, hasTouch: width < 500 });
+      const coldPage = await cold.newPage(); coldPage.setDefaultTimeout(8000); const coldErrors = [], abortedURLs = []; let abortedRequests = 0;
+      coldPage.on('pageerror', e => coldErrors.push(String(e)));
+      try {
+        await coldPage.route('**/restoration-after.svg', r => { abortedRequests++; abortedURLs.push(r.request().url()); return r.abort(); });
+        await coldPage.addInitScript(() => sessionStorage.setItem('digital-motion-archive-title-seen-v1', 'seen'));
+        await coldPage.goto(url); const coldRoom = coldPage.locator('.phase4Room');
+        await coldRoom.getByRole('button', { name: '部品展示室を開く', exact: true }).click();
+        await coldRoom.getByRole('button', { name: 'Before / After Compare / 画像の変化を見比べる', exact: true }).click();
+        const coldStage = coldRoom.getByTestId('before-after-compare'); await coldStage.getByRole('alert').waitFor();
+        assert.ok(abortedRequests > 0, 'The cold SVG request must actually be intercepted');
+        assert.ok(await coldStage.getByRole('button', { name: '自動比較', exact: true }).isDisabled());
+        await coldPage.unroute('**/restoration-after.svg'); await coldStage.getByRole('button', { name: '図版を再読込', exact: true }).click();
+        await coldPage.waitForFunction(() => document.querySelector('[data-testid="bc-canvas"]')?.dataset.ready === 'true');
+        assert.equal(await coldStage.getByRole('slider', { name: '比較位置', exact: true }).inputValue(), '50'); assert.deepEqual(coldErrors, []);
+        measurements.push({ coldRequestFailure: { abortedRequests, abortedURLs, alertObserved: true, playbackDisabled: true, explicitRetryReady: true, resetValue: 50, errors: coldErrors } });
+      } catch (error) {
+        report.coldFailure = { abortedRequests, abortedURLs, errors: coldErrors, dom: await coldPage.evaluate(() => ({ alert: document.querySelector('.beforeAfterCompare [role="alert"]')?.textContent, canvas: { ...document.querySelector('[data-testid="bc-canvas"]')?.dataset }, images: [...document.querySelectorAll('.bcCanvas img')].map(i => ({ src: i.getAttribute('src'), complete: i.complete, natural: [i.naturalWidth, i.naturalHeight] })) })).catch(() => null) };
+        throw error;
+      } finally { await cold.close(); }
+      await page.bringToFront(); await stage.getByLabel('比較する図版').selectOption('restoration'); await waitReady(); await value(50, true);
+      checks.push('observed cold request failure blocks comparison; explicit retry restores pair; main warm-cache pair switch succeeds');
       // Geometry controls protect the exact edges excluded from antialiased PNG
       // comparisons. Their expected positions come from test-owned 0/100 values.
       await click('Split / 境界');
@@ -270,7 +292,7 @@ try {
       const overflow = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, width: innerWidth })); assert.ok(overflow.scroll <= overflow.width, JSON.stringify(overflow)); assert.deepEqual(errors, []);
       checks.push('close/reopen initial state; Pan & Zoom / Image Crop / Diff Viewer selection; no pageerror or document overflow');
       console.log(JSON.stringify({ caseComplete: report.current, head: report.head, checks: checks.length,
-        nativePointer: measurements.filter(x => x.nativePointer), masks: measurements.filter(x => x.maskExpected !== undefined),
+        nativePointer: measurements.filter(x => x.nativePointer), masks: measurements.filter(x => x.maskExpected !== undefined), coldRequestFailure: measurements.filter(x => x.coldRequestFailure),
         raster: measurements.filter(x => x.raster).map(x => ({ case: x.raster, pass: x.result.pass, mismatches: x.result.mismatches, pixels: x.result.pixels, frame: x.result.frame })),
         controls: report.controls.filter(c => c.engine === engine && c.width === width && c.motion === motion) }));
       report.cases.push({ ...report.current, checks, measurements, errors }); await context.close();
@@ -288,7 +310,7 @@ try {
         images: [...(el?.querySelectorAll('img') ?? [])].map(img => ({ src: img.getAttribute('src'), complete: img.complete, naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight, currentSrc: img.currentSrc })),
         alerts: [...document.querySelectorAll('.beforeAfterCompare [role="alert"]')].map(n => n.textContent), status: [...document.querySelectorAll('.beforeAfterCompare [role="status"]')].map(n => n.textContent) };
     }).catch(e => ({ error: String(e) }));
-    console.log(JSON.stringify({ failureDOM: report.failureDOM, pageErrors: report.activeCase?.errors ?? [], raster: report.activeCase?.measurements.filter(x => x.raster).slice(-3) }));
+    console.log(JSON.stringify({ failureDOM: report.failureDOM, coldFailure: report.coldFailure, pageErrors: report.activeCase?.errors ?? [], raster: report.activeCase?.measurements.filter(x => x.raster).slice(-3) }));
     await page.screenshot({ path: path.join(dest, 'failure.png'), fullPage: true }).catch(() => {});
   }
   process.exitCode = 1;
