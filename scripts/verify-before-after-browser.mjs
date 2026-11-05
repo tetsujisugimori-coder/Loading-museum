@@ -45,7 +45,7 @@ try {
     for (const width of widths) for (const motion of motions) {
       const context = await browser.newContext({ viewport: { width, height: 1000 }, reducedMotion: motion, hasTouch: width < 500 }); page = await context.newPage(); page.setDefaultTimeout(8000);
       const errors = [], checks = [], measurements = []; page.on('pageerror', e => errors.push(String(e)));
-      const prefix = `${engine}-${width}-${motion}`; report.current = { engine, version: browser.version(), width, motion }; report.activeCase = { checks, measurements };
+      const prefix = `${engine}-${width}-${motion}`; report.current = { engine, version: browser.version(), width, motion }; report.activeCase = { checks, measurements, errors };
       await page.addInitScript(() => sessionStorage.setItem('digital-motion-archive-title-seen-v1', 'seen'));
       await page.goto(url); assert.match(await page.locator('.archiveMeta').textContent(), /13 ROOMS \/ 266 OBJECTS/);
       const room = page.locator('.phase4Room'); await room.getByRole('button', { name: '部品展示室を開く', exact: true }).click(); assert.equal(await room.locator('nav button').count(), 27);
@@ -191,7 +191,19 @@ try {
   }
   assert.equal(report.cases.length, report.expected); report.pass = true;
 } catch (error) {
-  report.pass = false; report.errors.push(String(error.stack || error)); if (page) await page.screenshot({ path: path.join(dest, 'failure.png'), fullPage: true }).catch(() => {}); process.exitCode = 1;
+  report.pass = false; report.errors.push(String(error.stack || error));
+  if (page) {
+    report.failureDOM = await page.evaluate(() => {
+      const el = document.querySelector('[data-testid="bc-canvas"]'), stage = document.querySelector('[data-testid="before-after-compare"]');
+      const b = el?.getBoundingClientRect();
+      return { stage: stage ? { ...stage.dataset } : null, canvas: el ? { ...el.dataset, width: b.width, height: b.height } : null,
+        images: [...(el?.querySelectorAll('img') ?? [])].map(img => ({ src: img.getAttribute('src'), complete: img.complete, naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight, currentSrc: img.currentSrc })),
+        alerts: [...document.querySelectorAll('.beforeAfterCompare [role="alert"]')].map(n => n.textContent), status: [...document.querySelectorAll('.beforeAfterCompare [role="status"]')].map(n => n.textContent) };
+    }).catch(e => ({ error: String(e) }));
+    console.log(JSON.stringify({ failureDOM: report.failureDOM, pageErrors: report.activeCase?.errors ?? [] }));
+    await page.screenshot({ path: path.join(dest, 'failure.png'), fullPage: true }).catch(() => {});
+  }
+  process.exitCode = 1;
 } finally {
   if (browser) await browser.close(); server.close(); report.finished = new Date().toISOString();
   await fs.writeFile(path.join(dest, 'report.json'), JSON.stringify(report, null, 2)); console.log(JSON.stringify({ head: report.head, pass: report.pass, expected: report.expected, cases: report.cases.length, controls: report.controls.length, errors: report.errors }));
