@@ -1,0 +1,162 @@
+{
+  "baseline": "05735e83fd23d228d797afb89a150045293d3e58",
+  "head": "7593e5136efc90c6bccf63fa2fc3e429b51a128d",
+  "unchangedRelevantFiles": 26,
+  "files": [
+    {
+      "file": ".github/workflows/verify-flash-phase2.yml",
+      "baselineAndFinalSHA256": "4567acad75848604cc97035aa383ffadfc0a26624c5fb6ce92aa9b8596530c0e",
+      "sameBytes": true
+    },
+    {
+      "file": ".github/workflows/verify-practical.yml",
+      "baselineAndFinalSHA256": "cb6d5ec1c287799369d8d8edab591e4199209b4b572b0ff8645b87f96d4cfc9c",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/FlashSpecialExhibitRoom.tsx",
+      "baselineAndFinalSHA256": "88f143df98a07724989231edc6c0310f2fcf1e2c355fd56afe9c6bb3828b5855",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/practical/PracticalA.tsx",
+      "baselineAndFinalSHA256": "40a082670ab54e9425be0e6486f7b63e8c9c04ff125768962a2de0749222f45a",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/practical/PracticalB.tsx",
+      "baselineAndFinalSHA256": "0a75bce89fab023c2655eb44adf148fc0a539e640f5f79d5fa1f88e48299e4b8",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/practical/practical-a.css",
+      "baselineAndFinalSHA256": "7be14b8af6cb3889ce4da2a1d1e89c312fe876eb109a286c713ed11c0df332db",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/practical/practical-b.css",
+      "baselineAndFinalSHA256": "39e3f36081d33f6e17d5e1516e8ea5cd06458d591556a8018607de4e90d4d031",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/practical/practical.css",
+      "baselineAndFinalSHA256": "aa1acbdf240c49fa28a5546a9704b63cf4d28faf771cc7743873eab21e79dc93",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/practical/runtime.tsx",
+      "baselineAndFinalSHA256": "2c43aca4cd6d9292f949dde195fde60a56b1e3612457625c303044bb20820981",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/then-now/FirstStudies.tsx",
+      "baselineAndFinalSHA256": "ed6cb4ba1444ffe2853033a96cb9688895be00a28b268753cab6624697dfa510",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/then-now/PhaseTwoCard.tsx",
+      "baselineAndFinalSHA256": "9542a7d7d6ca7a766afba503c63d2c2ce90eeef4266574dd1f2fdf8b56ed06ed",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/then-now/PhaseTwoFirst.tsx",
+      "baselineAndFinalSHA256": "e6983c2a217d767bd3c0018585a32a82944c0bb648ca41c9f54ca47966e77f8b",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/then-now/PhaseTwoSecond.tsx",
+      "baselineAndFinalSHA256": "d4164557f0623249d1a0f574c8b192ca9a2e3d6732116fd3d6b63185ad074e48",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/then-now/SecondStudies.tsx",
+      "baselineAndFinalSHA256": "c699bea0690fc43f4e502f86a2a4543e398e0d994e2ffd795c4211309577da30",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/then-now/ThenNowCard.tsx",
+      "baselineAndFinalSHA256": "978b7008501e0beeef709adb60bdabbf39299255eee68da0586002b917dbb339",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/then-now/phase-two-first.css",
+      "baselineAndFinalSHA256": "38c5cbcb8edadedf4ce4bfce2d451d63892fe9be5a5b2480ae2d69a421acbbfb",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/then-now/phase-two-second.css",
+      "baselineAndFinalSHA256": "1a1a31e0bd83a43127b6583b2b54d487afdf50980a1876c68345252fc73b74a8",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/then-now/runtime.tsx",
+      "baselineAndFinalSHA256": "eb6ee5381be9d7800e8130e4a6dc99b5e7ba45a88127068064e0c93c92bbed1e",
+      "sameBytes": true
+    },
+    {
+      "file": "app/components/then-now/then-now.css",
+      "baselineAndFinalSHA256": "13b6eaf86f7cded4915b92a2a49e2bed4889d24ae6874f07b2da9846896fe690",
+      "sameBytes": true
+    },
+    {
+      "file": "app/data/practicalExhibits.ts",
+      "baselineAndFinalSHA256": "eb0598449dbef3b520a2e7351c03895139e0fea4b9419636b0bf9b6400a593d2",
+      "sameBytes": true
+    },
+    {
+      "file": "app/data/thenNowPhaseTwo.ts",
+      "baselineAndFinalSHA256": "ccaad91e9eec8f2351cc0b2c67cf561450260fc98960777ee1146cef157c3216",
+      "sameBytes": true
+    },
+    {
+      "file": "app/data/thenNowStudies.ts",
+      "baselineAndFinalSHA256": "31b5000a586f93d4ef4f688722039b4eab1f74e597126938ad7e64f3c4a59608",
+      "sameBytes": true
+    },
+    {
+      "file": "scripts/verify-flash-phase2-browser.mjs",
+      "baselineAndFinalSHA256": "7b378fb27ac61cc271a23656155cc3a61c605c6feb81f460479b50fa73a99252",
+      "sameBytes": true
+    },
+    {
+      "file": "scripts/verify-flash-phase2-editing.mjs",
+      "baselineAndFinalSHA256": "ba5805fcba8f000c8b86373d7984af0640fe180fb591a792428a287d3334dc33",
+      "sameBytes": true
+    },
+    {
+      "file": "scripts/verify-flash-phase2-touch.mjs",
+      "baselineAndFinalSHA256": "452ef4cf413605fdb77a6140a57b810dd85adf0920f5000134c591b0b4bb9b4a",
+      "sameBytes": true
+    },
+    {
+      "file": "scripts/verify-practical-browser.mjs",
+      "baselineAndFinalSHA256": "1cd23c811a711385590a6b934a2c6effb9e57ffb08b564e76741f3d26093cfca",
+      "sameBytes": true
+    }
+  ],
+  "newExhibitMountedInTheseLegacyTests": false,
+  "noDirectSourceChangeInAffectedComponents": true,
+  "behavioralCausality": "UNKNOWN: unchanged source and unmounted new exhibit do not prove absence of timing/layout/bundle effects",
+  "practicalFailure": {
+    "job": 127469992191,
+    "engine": "webkit",
+    "width": 390,
+    "stage": "first Step Progress, before any cases pushed",
+    "assertion": "data-active true != false after fixed100ms scroll check",
+    "laterFailureContextActive": false,
+    "stageY": 3893.4375,
+    "diagnosticRerun": "one same-head same-condition rerun authorized by primary; initial failure retained"
+  },
+  "flashFailure": {
+    "job": 127469904626,
+    "engine": "webkit",
+    "width": 1280,
+    "era": "then",
+    "primaryCases": "24/24 pass",
+    "editingCases": "7/8 pass",
+    "assertion": "cancel retains exact partial ink",
+    "touchPhase": "not executed after shell failure",
+    "rerun": "not performed",
+    "beforeAfterPointArraysOrFailureArtifactBytes": "UNAVAILABLE: ZIP transfer blocked; log only exposes assertion name"
+  }
+}

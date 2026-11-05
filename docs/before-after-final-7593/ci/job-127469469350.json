@@ -1,0 +1,3624 @@
+{
+  "job": {
+    "id": 127469469350,
+    "name": "state-and-browser (webkit, 765)",
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 42091230501,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Run npm ci",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Run npm run lint && npm run typecheck && npx vitest run --maxWorkers=2 tests/before-after-compare.test.tsx tests/pan-zoom.test.tsx tests/image-crop.test.tsx tests/phase5b-compare.test.tsx && npm run build",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Fixed external browser and PNG tools",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Both motion preferences at the assigned width",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Independent reviewer endpoint-baseline probe",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 8
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 19
+      }
+    ]
+  },
+  "summary": {
+    "head": "7593e5136efc90c6bccf63fa2fc3e429b51a128d",
+    "pass": true,
+    "expected": 2,
+    "cases": 2,
+    "controls": 10,
+    "errors": []
+  },
+  "cases": [
+    {
+      "caseComplete": {
+        "engine": "webkit",
+        "version": "26.0",
+        "width": 765,
+        "motion": "no-preference"
+      },
+      "head": "7593e5136efc90c6bccf63fa2fc3e429b51a128d",
+      "checks": 9,
+      "nativePointer": [
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 7,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 13,
+              "type": "pointermove",
+              "id": 1,
+              "x": 541,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 8,
+                "type": "pointermove",
+                "id": 1,
+                "x": 408,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 9,
+                "type": "pointermove",
+                "id": 1,
+                "x": 435,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 10,
+                "type": "pointermove",
+                "id": 1,
+                "x": 461,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 11,
+                "type": "pointermove",
+                "id": 1,
+                "x": 488,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 12,
+                "type": "pointermove",
+                "id": 1,
+                "x": 514,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 13,
+                "type": "pointermove",
+                "id": 1,
+                "x": 541,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 75.02951593860685
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 16,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 22,
+              "type": "pointerup",
+              "id": 1,
+              "x": 528,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 17,
+                "type": "pointermove",
+                "id": 1,
+                "x": 411,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 18,
+                "type": "pointermove",
+                "id": 1,
+                "x": 440,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 19,
+                "type": "pointermove",
+                "id": 1,
+                "x": 470,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 20,
+                "type": "pointermove",
+                "id": 1,
+                "x": 499,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 21,
+                "type": "pointermove",
+                "id": 1,
+                "x": 528,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 72.98307752853208
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 24,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 25,
+              "type": "pointermove",
+              "id": 1,
+              "x": 573,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 25,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 80.06690279417552
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 24,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 26,
+              "type": "pointermove",
+              "id": 1,
+              "x": 579,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 25,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 26,
+                "type": "pointermove",
+                "id": 1,
+                "x": 579,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 81.01141282959465
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 31,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 32,
+              "type": "pointermove",
+              "id": 1,
+              "x": 573,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 32,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 80.06690279417552
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 31,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 33,
+              "type": "pointermove",
+              "id": 1,
+              "x": 579,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 32,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 33,
+                "type": "pointermove",
+                "id": 1,
+                "x": 579,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 81.01141282959465
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 38,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 39,
+              "type": "pointermove",
+              "id": 1,
+              "x": 573,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 39,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 80.06690279417552
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 38,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 40,
+              "type": "pointermove",
+              "id": 1,
+              "x": 579,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 39,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 40,
+                "type": "pointermove",
+                "id": 1,
+                "x": 579,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 81.01141282959465
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 45,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 46,
+              "type": "pointermove",
+              "id": 1,
+              "x": 573,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 46,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 80.06690279417552
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 45,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 47,
+              "type": "pointermove",
+              "id": 1,
+              "x": 579,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 46,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 47,
+                "type": "pointermove",
+                "id": 1,
+                "x": 579,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 81.01141282959465
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 52,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 53,
+              "type": "pointermove",
+              "id": 1,
+              "x": 573,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 53,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 80.06690279417552
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 52,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 54,
+              "type": "pointermove",
+              "id": 1,
+              "x": 579,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 53,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 54,
+                "type": "pointermove",
+                "id": 1,
+                "x": 579,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 81.01141282959465
+        }
+      ],
+      "masks": [
+        {
+          "maskExpected": 0,
+          "computedClip": "inset(0px 100% 0px 0px)",
+          "edgesCSS": [
+            0,
+            635.25,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 50,
+          "computedClip": "inset(0px 50% 0px 0px)",
+          "edgesCSS": [
+            0,
+            317.625,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 100,
+          "computedClip": "inset(0px 0% 0px 0px)",
+          "edgesCSS": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 37,
+          "computedClip": "inset(0px 63% 0px 0px)",
+          "edgesCSS": [
+            0,
+            400.2075,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 0,
+          "computedClip": "inset(0px 100% 0px 0px)",
+          "edgesCSS": [
+            0,
+            635.25,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 50,
+          "computedClip": "inset(0px 50% 0px 0px)",
+          "edgesCSS": [
+            0,
+            317.625,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 100,
+          "computedClip": "inset(0px 0% 0px 0px)",
+          "edgesCSS": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 37,
+          "computedClip": "inset(0px 63% 0px 0px)",
+          "edgesCSS": [
+            0,
+            400.2075,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 0,
+          "computedClip": "inset(0px 100% 0px 0px)",
+          "edgesCSS": [
+            0,
+            635.25,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 100,
+          "computedClip": "inset(0px 0% 0px 0px)",
+          "edgesCSS": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "coldRequestFailure": [
+        {
+          "coldRequestFailure": {
+            "abortedRequests": 1,
+            "abortedURLs": [
+              "http://127.0.0.1:39087/Loading-museum/compare/restoration-after.svg"
+            ],
+            "alertObserved": true,
+            "playbackDisabled": true,
+            "explicitRetryReady": true,
+            "resetValue": 50,
+            "errors": []
+          }
+        }
+      ],
+      "raster": [
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 0,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254234,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 401
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 253833,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 802
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 100,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 37,
+            "reversed": true
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 253833,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 802
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 0,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 100,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "split",
+            "amount": 0,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254234,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 401
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "split",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 253833,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 802
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "split",
+            "amount": 100,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "split",
+            "amount": 37,
+            "reversed": true
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 253833,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 802
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "overlay",
+            "amount": 0,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "overlay",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "overlay",
+            "amount": 100,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 37,
+            "reversed": false
+          },
+          "pass": false,
+          "mismatches": 10658,
+          "pixels": 253833,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 802
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 37,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 253833,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 802
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": false,
+          "mismatches": 53166,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        }
+      ],
+      "controls": [
+        {
+          "engine": "webkit",
+          "version": "26.0",
+          "width": 765,
+          "motion": "no-preference",
+          "fault": "mask-edge-0-one-pixel",
+          "kind": "geometry",
+          "result": {
+            "pass": false,
+            "reason": "AssertionError [ERR_ASSERTION]: 634.25 != 635.25 ± 0.05"
+          }
+        },
+        {
+          "engine": "webkit",
+          "version": "26.0",
+          "width": 765,
+          "motion": "no-preference",
+          "fault": "mask-edge-100-one-pixel",
+          "kind": "geometry",
+          "result": {
+            "pass": false,
+            "reason": "AssertionError [ERR_ASSERTION]: 1 != 0 ± 0.05"
+          }
+        },
+        {
+          "engine": "webkit",
+          "version": "26.0",
+          "width": 765,
+          "motion": "no-preference",
+          "fault": "image-shift-one-pixel",
+          "kind": "geometry",
+          "result": {
+            "pass": false,
+            "reason": "AssertionError [ERR_ASSERTION]: 64.875 != 65.875 ± 0.05"
+          }
+        },
+        {
+          "engine": "webkit",
+          "version": "26.0",
+          "width": 765,
+          "motion": "no-preference",
+          "fault": "mask-fixed",
+          "result": {
+            "mismatches": 10658,
+            "pixels": 253833,
+            "fraction": 0.04198823636012654,
+            "max": 128,
+            "pass": false,
+            "samples": [
+              {
+                "x": 234,
+                "y": 98,
+                "actual": [
+                  212,
+                  222,
+                  221
+                ],
+                "expected": [
+                  217,
+                  223,
+                  221
+                ]
+              },
+              {
+                "x": 232,
+                "y": 99,
+                "actual": [
+                  209,
+                  219,
+                  218
+                ],
+                "expected": [
+                  216,
+                  221,
+                  219
+                ]
+              },
+              {
+                "x": 233,
+                "y": 99,
+                "actual": [
+                  167,
+                  164,
+                  159
+                ],
+                "expected": [
+                  198,
+                  163,
+                  149
+                ]
+              },
+              {
+                "x": 234,
+                "y": 99,
+                "actual": [
+                  131,
+                  118,
+                  108
+                ],
+                "expected": [
+                  182,
+                  111,
+                  86
+                ]
+              },
+              {
+                "x": 230,
+                "y": 100,
+                "actual": [
+                  189,
+                  197,
+                  195
+                ],
+                "expected": [
+                  195,
+                  199,
+                  196
+                ]
+              },
+              {
+                "x": 231,
+                "y": 100,
+                "actual": [
+                  149,
+                  145,
+                  140
+                ],
+                "expected": [
+                  179,
+                  145,
+                  132
+                ]
+              },
+              {
+                "x": 232,
+                "y": 100,
+                "actual": [
+                  119,
+                  107,
+                  97
+                ],
+                "expected": [
+                  165,
+                  100,
+                  78
+                ]
+              },
+              {
+                "x": 233,
+                "y": 100,
+                "actual": [
+                  116,
+                  104,
+                  95
+                ],
+                "expected": [
+                  164,
+                  97,
+                  73
+                ]
+              },
+              {
+                "x": 234,
+                "y": 100,
+                "actual": [
+                  116,
+                  104,
+                  95
+                ],
+                "expected": [
+                  164,
+                  97,
+                  73
+                ]
+              },
+              {
+                "x": 228,
+                "y": 101,
+                "actual": [
+                  204,
+                  212,
+                  210
+                ],
+                "expected": [
+                  214,
+                  216,
+                  212
+                ]
+              },
+              {
+                "x": 229,
+                "y": 101,
+                "actual": [
+                  161,
+                  157,
+                  150
+                ],
+                "expected": [
+                  195,
+                  155,
+                  139
+                ]
+              },
+              {
+                "x": 230,
+                "y": 101,
+                "actual": [
+                  129,
+                  115,
+                  105
+                ],
+                "expected": [
+                  181,
+                  109,
+                  84
+                ]
+              }
+            ],
+            "columns": [
+              [
+                159,
+                267
+              ],
+              [
+                177,
+                179
+              ],
+              [
+                178,
+                179
+              ],
+              [
+                174,
+                178
+              ],
+              [
+                175,
+                178
+              ],
+              [
+                176,
+                178
+              ],
+              [
+                172,
+                177
+              ],
+              [
+                173,
+                177
+              ],
+              [
+                170,
+                176
+              ],
+              [
+                171,
+                176
+              ],
+              [
+                168,
+                175
+              ],
+              [
+                169,
+                175
+              ]
+            ],
+            "rows": [
+              [
+                137,
+                78
+              ],
+              [
+                135,
+                77
+              ],
+              [
+                136,
+                77
+              ],
+              [
+                156,
+                77
+              ],
+              [
+                157,
+                77
+              ],
+              [
+                138,
+                76
+              ],
+              [
+                139,
+                76
+              ],
+              [
+                140,
+                76
+              ],
+              [
+                141,
+                76
+              ],
+              [
+                142,
+                76
+              ],
+              [
+                143,
+                76
+              ],
+              [
+                144,
+                76
+              ]
+            ],
+            "frame": {
+              "cssWidth": 635.25,
+              "cssHeight": 402.3125,
+              "dpr": 1,
+              "pngWidth": 637,
+              "pngHeight": 403,
+              "paddingX": 1.75,
+              "paddingY": 0.6875,
+              "marginX": 1,
+              "marginY": 1,
+              "frameExcludedPixels": 2076,
+              "boundaryExcludedPixels": 802
+            }
+          }
+        },
+        {
+          "engine": "webkit",
+          "version": "26.0",
+          "width": 765,
+          "motion": "no-preference",
+          "fault": "alpha-fixed",
+          "result": {
+            "mismatches": 53166,
+            "pixels": 254635,
+            "fraction": 0.2087929781844601,
+            "max": 40,
+            "pass": false,
+            "samples": [
+              {
+                "x": 317,
+                "y": 58,
+                "actual": [
+                  198,
+                  200,
+                  197
+                ],
+                "expected": [
+                  202,
+                  199,
+                  195
+                ]
+              },
+              {
+                "x": 318,
+                "y": 58,
+                "actual": [
+                  170,
+                  156,
+                  147
+                ],
+                "expected": [
+                  178,
+                  155,
+                  143
+                ]
+              },
+              {
+                "x": 319,
+                "y": 58,
+                "actual": [
+                  198,
+                  200,
+                  197
+                ],
+                "expected": [
+                  202,
+                  199,
+                  195
+                ]
+              },
+              {
+                "x": 315,
+                "y": 59,
+                "actual": [
+                  195,
+                  195,
+                  191
+                ],
+                "expected": [
+                  199,
+                  194,
+                  189
+                ]
+              },
+              {
+                "x": 316,
+                "y": 59,
+                "actual": [
+                  158,
+                  137,
+                  127
+                ],
+                "expected": [
+                  168,
+                  135,
+                  122
+                ]
+              },
+              {
+                "x": 317,
+                "y": 59,
+                "actual": [
+                  141,
+                  111,
+                  97
+                ],
+                "expected": [
+                  154,
+                  109,
+                  91
+                ]
+              },
+              {
+                "x": 318,
+                "y": 59,
+                "actual": [
+                  141,
+                  111,
+                  97
+                ],
+                "expected": [
+                  154,
+                  109,
+                  91
+                ]
+              },
+              {
+                "x": 319,
+                "y": 59,
+                "actual": [
+                  141,
+                  111,
+                  97
+                ],
+                "expected": [
+                  154,
+                  109,
+                  91
+                ]
+              },
+              {
+                "x": 320,
+                "y": 59,
+                "actual": [
+                  158,
+                  137,
+                  127
+                ],
+                "expected": [
+                  168,
+                  135,
+                  122
+                ]
+              },
+              {
+                "x": 321,
+                "y": 59,
+                "actual": [
+                  195,
+                  195,
+                  191
+                ],
+                "expected": [
+                  199,
+                  194,
+                  189
+                ]
+              },
+              {
+                "x": 313,
+                "y": 60,
+                "actual": [
+                  175,
+                  174,
+                  169
+                ],
+                "expected": [
+                  179,
+                  174,
+                  167
+                ]
+              },
+              {
+                "x": 314,
+                "y": 60,
+                "actual": [
+                  141,
+                  122,
+                  111
+                ],
+                "expected": [
+                  151,
+                  120,
+                  107
+                ]
+              }
+            ],
+            "columns": [
+              [
+                260,
+                212
+              ],
+              [
+                262,
+                211
+              ],
+              [
+                376,
+                211
+              ],
+              [
+                258,
+                211
+              ],
+              [
+                259,
+                211
+              ],
+              [
+                377,
+                211
+              ],
+              [
+                378,
+                211
+              ],
+              [
+                256,
+                210
+              ],
+              [
+                257,
+                210
+              ],
+              [
+                379,
+                210
+              ],
+              [
+                380,
+                210
+              ],
+              [
+                253,
+                209
+              ]
+            ],
+            "rows": [
+              [
+                151,
+                385
+              ],
+              [
+                150,
+                381
+              ],
+              [
+                149,
+                377
+              ],
+              [
+                145,
+                361
+              ],
+              [
+                144,
+                357
+              ],
+              [
+                143,
+                353
+              ],
+              [
+                142,
+                349
+              ],
+              [
+                141,
+                345
+              ],
+              [
+                152,
+                345
+              ],
+              [
+                153,
+                345
+              ],
+              [
+                154,
+                345
+              ],
+              [
+                155,
+                345
+              ]
+            ],
+            "frame": {
+              "cssWidth": 635.25,
+              "cssHeight": 402.3125,
+              "dpr": 1,
+              "pngWidth": 637,
+              "pngHeight": 403,
+              "paddingX": 1.75,
+              "paddingY": 0.6875,
+              "marginX": 1,
+              "marginY": 1,
+              "frameExcludedPixels": 2076,
+              "boundaryExcludedPixels": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "caseComplete": {
+        "engine": "webkit",
+        "version": "26.0",
+        "width": 765,
+        "motion": "reduce"
+      },
+      "head": "7593e5136efc90c6bccf63fa2fc3e429b51a128d",
+      "checks": 9,
+      "nativePointer": [
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 7,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 13,
+              "type": "pointermove",
+              "id": 1,
+              "x": 541,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 8,
+                "type": "pointermove",
+                "id": 1,
+                "x": 408,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 9,
+                "type": "pointermove",
+                "id": 1,
+                "x": 435,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 10,
+                "type": "pointermove",
+                "id": 1,
+                "x": 461,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 11,
+                "type": "pointermove",
+                "id": 1,
+                "x": 488,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 12,
+                "type": "pointermove",
+                "id": 1,
+                "x": 514,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 13,
+                "type": "pointermove",
+                "id": 1,
+                "x": 541,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 75.02951593860685
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 16,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 22,
+              "type": "pointerup",
+              "id": 1,
+              "x": 528,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 17,
+                "type": "pointermove",
+                "id": 1,
+                "x": 411,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 18,
+                "type": "pointermove",
+                "id": 1,
+                "x": 440,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 19,
+                "type": "pointermove",
+                "id": 1,
+                "x": 470,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 20,
+                "type": "pointermove",
+                "id": 1,
+                "x": 499,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 21,
+                "type": "pointermove",
+                "id": 1,
+                "x": 528,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 72.98307752853208
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 24,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 25,
+              "type": "pointermove",
+              "id": 1,
+              "x": 573,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 25,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 80.06690279417552
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 24,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 26,
+              "type": "pointermove",
+              "id": 1,
+              "x": 579,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 25,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 26,
+                "type": "pointermove",
+                "id": 1,
+                "x": 579,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 81.01141282959465
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 31,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 32,
+              "type": "pointermove",
+              "id": 1,
+              "x": 573,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 32,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 80.06690279417552
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 31,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 33,
+              "type": "pointermove",
+              "id": 1,
+              "x": 579,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 32,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 33,
+                "type": "pointermove",
+                "id": 1,
+                "x": 579,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 81.01141282959465
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 38,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 39,
+              "type": "pointermove",
+              "id": 1,
+              "x": 573,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 39,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 80.06690279417552
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 38,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 40,
+              "type": "pointermove",
+              "id": 1,
+              "x": 579,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 39,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 40,
+                "type": "pointermove",
+                "id": 1,
+                "x": 579,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 81.01141282959465
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 45,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 46,
+              "type": "pointermove",
+              "id": 1,
+              "x": 573,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 46,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 80.06690279417552
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 45,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 47,
+              "type": "pointermove",
+              "id": 1,
+              "x": 579,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 46,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 47,
+                "type": "pointermove",
+                "id": 1,
+                "x": 579,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 81.01141282959465
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 52,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 53,
+              "type": "pointermove",
+              "id": 1,
+              "x": 573,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 53,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 80.06690279417552
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 52,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 382,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 54,
+              "type": "pointermove",
+              "id": 1,
+              "x": 579,
+              "y": 201,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 53,
+                "type": "pointermove",
+                "id": 1,
+                "x": 573,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 54,
+                "type": "pointermove",
+                "id": 1,
+                "x": 579,
+                "y": 201,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 635.25,
+          "expected": 81.01141282959465
+        }
+      ],
+      "masks": [
+        {
+          "maskExpected": 0,
+          "computedClip": "inset(0px 100% 0px 0px)",
+          "edgesCSS": [
+            0,
+            635.25,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 50,
+          "computedClip": "inset(0px 50% 0px 0px)",
+          "edgesCSS": [
+            0,
+            317.625,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 100,
+          "computedClip": "inset(0px 0% 0px 0px)",
+          "edgesCSS": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 37,
+          "computedClip": "inset(0px 63% 0px 0px)",
+          "edgesCSS": [
+            0,
+            400.2075,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 0,
+          "computedClip": "inset(0px 100% 0px 0px)",
+          "edgesCSS": [
+            0,
+            635.25,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 50,
+          "computedClip": "inset(0px 50% 0px 0px)",
+          "edgesCSS": [
+            0,
+            317.625,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 100,
+          "computedClip": "inset(0px 0% 0px 0px)",
+          "edgesCSS": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 37,
+          "computedClip": "inset(0px 63% 0px 0px)",
+          "edgesCSS": [
+            0,
+            400.2075,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 0,
+          "computedClip": "inset(0px 100% 0px 0px)",
+          "edgesCSS": [
+            0,
+            635.25,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 100,
+          "computedClip": "inset(0px 0% 0px 0px)",
+          "edgesCSS": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "coldRequestFailure": [
+        {
+          "coldRequestFailure": {
+            "abortedRequests": 1,
+            "abortedURLs": [
+              "http://127.0.0.1:39087/Loading-museum/compare/restoration-after.svg"
+            ],
+            "alertObserved": true,
+            "playbackDisabled": true,
+            "explicitRetryReady": true,
+            "resetValue": 50,
+            "errors": []
+          }
+        }
+      ],
+      "raster": [
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 0,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254234,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 401
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 253833,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 802
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 100,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 37,
+            "reversed": true
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 253833,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 802
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 0,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 100,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "split",
+            "amount": 0,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254234,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 401
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "split",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 253833,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 802
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "split",
+            "amount": 100,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "split",
+            "amount": 37,
+            "reversed": true
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 253833,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 802
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "overlay",
+            "amount": 0,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "overlay",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "overlay",
+            "amount": 100,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 37,
+            "reversed": false
+          },
+          "pass": false,
+          "mismatches": 10658,
+          "pixels": 253833,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 802
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 37,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 253833,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 802
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": false,
+          "mismatches": 53166,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 254635,
+          "frame": {
+            "cssWidth": 635.25,
+            "cssHeight": 402.3125,
+            "dpr": 1,
+            "pngWidth": 637,
+            "pngHeight": 403,
+            "paddingX": 1.75,
+            "paddingY": 0.6875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 2076,
+            "boundaryExcludedPixels": 0
+          }
+        }
+      ],
+      "controls": [
+        {
+          "engine": "webkit",
+          "version": "26.0",
+          "width": 765,
+          "motion": "reduce",
+          "fault": "mask-edge-0-one-pixel",
+          "kind": "geometry",
+          "result": {
+            "pass": false,
+            "reason": "AssertionError [ERR_ASSERTION]: 634.25 != 635.25 ± 0.05"
+          }
+        },
+        {
+          "engine": "webkit",
+          "version": "26.0",
+          "width": 765,
+          "motion": "reduce",
+          "fault": "mask-edge-100-one-pixel",
+          "kind": "geometry",
+          "result": {
+            "pass": false,
+            "reason": "AssertionError [ERR_ASSERTION]: 1 != 0 ± 0.05"
+          }
+        },
+        {
+          "engine": "webkit",
+          "version": "26.0",
+          "width": 765,
+          "motion": "reduce",
+          "fault": "image-shift-one-pixel",
+          "kind": "geometry",
+          "result": {
+            "pass": false,
+            "reason": "AssertionError [ERR_ASSERTION]: 64.875 != 65.875 ± 0.05"
+          }
+        },
+        {
+          "engine": "webkit",
+          "version": "26.0",
+          "width": 765,
+          "motion": "reduce",
+          "fault": "mask-fixed",
+          "result": {
+            "mismatches": 10658,
+            "pixels": 253833,
+            "fraction": 0.04198823636012654,
+            "max": 128,
+            "pass": false,
+            "samples": [
+              {
+                "x": 234,
+                "y": 98,
+                "actual": [
+                  212,
+                  222,
+                  221
+                ],
+                "expected": [
+                  217,
+                  223,
+                  221
+                ]
+              },
+              {
+                "x": 232,
+                "y": 99,
+                "actual": [
+                  209,
+                  219,
+                  218
+                ],
+                "expected": [
+                  216,
+                  221,
+                  219
+                ]
+              },
+              {
+                "x": 233,
+                "y": 99,
+                "actual": [
+                  167,
+                  164,
+                  159
+                ],
+                "expected": [
+                  198,
+                  163,
+                  149
+                ]
+              },
+              {
+                "x": 234,
+                "y": 99,
+                "actual": [
+                  131,
+                  118,
+                  108
+                ],
+                "expected": [
+                  182,
+                  111,
+                  86
+                ]
+              },
+              {
+                "x": 230,
+                "y": 100,
+                "actual": [
+                  189,
+                  197,
+                  195
+                ],
+                "expected": [
+                  195,
+                  199,
+                  196
+                ]
+              },
+              {
+                "x": 231,
+                "y": 100,
+                "actual": [
+                  149,
+                  145,
+                  140
+                ],
+                "expected": [
+                  179,
+                  145,
+                  132
+                ]
+              },
+              {
+                "x": 232,
+                "y": 100,
+                "actual": [
+                  119,
+                  107,
+                  97
+                ],
+                "expected": [
+                  165,
+                  100,
+                  78
+                ]
+              },
+              {
+                "x": 233,
+                "y": 100,
+                "actual": [
+                  116,
+                  104,
+                  95
+                ],
+                "expected": [
+                  164,
+                  97,
+                  73
+                ]
+              },
+              {
+                "x": 234,
+                "y": 100,
+                "actual": [
+                  116,
+                  104,
+                  95
+                ],
+                "expected": [
+                  164,
+                  97,
+                  73
+                ]
+              },
+              {
+                "x": 228,
+                "y": 101,
+                "actual": [
+                  204,
+                  212,
+                  210
+                ],
+                "expected": [
+                  214,
+                  216,
+                  212
+                ]
+              },
+              {
+                "x": 229,
+                "y": 101,
+                "actual": [
+                  161,
+                  157,
+                  150
+                ],
+                "expected": [
+                  195,
+                  155,
+                  139
+                ]
+              },
+              {
+                "x": 230,
+                "y": 101,
+                "actual": [
+                  129,
+                  115,
+                  105
+                ],
+                "expected": [
+                  181,
+                  109,
+                  84
+                ]
+              }
+            ],
+            "columns": [
+              [
+                159,
+                267
+              ],
+              [
+                177,
+                179
+              ],
+              [
+                178,
+                179
+              ],
+              [
+                174,
+                178
+              ],
+              [
+                175,
+                178
+              ],
+              [
+                176,
+                178
+              ],
+              [
+                172,
+                177
+              ],
+              [
+                173,
+                177
+              ],
+              [
+                170,
+                176
+              ],
+              [
+                171,
+                176
+              ],
+              [
+                168,
+                175
+              ],
+              [
+                169,
+                175
+              ]
+            ],
+            "rows": [
+              [
+                137,
+                78
+              ],
+              [
+                135,
+                77
+              ],
+              [
+                136,
+                77
+              ],
+              [
+                156,
+                77
+              ],
+              [
+                157,
+                77
+              ],
+              [
+                138,
+                76
+              ],
+              [
+                139,
+                76
+              ],
+              [
+                140,
+                76
+              ],
+              [
+                141,
+                76
+              ],
+              [
+                142,
+                76
+              ],
+              [
+                143,
+                76
+              ],
+              [
+                144,
+                76
+              ]
+            ],
+            "frame": {
+              "cssWidth": 635.25,
+              "cssHeight": 402.3125,
+              "dpr": 1,
+              "pngWidth": 637,
+              "pngHeight": 403,
+              "paddingX": 1.75,
+              "paddingY": 0.6875,
+              "marginX": 1,
+              "marginY": 1,
+              "frameExcludedPixels": 2076,
+              "boundaryExcludedPixels": 802
+            }
+          }
+        },
+        {
+          "engine": "webkit",
+          "version": "26.0",
+          "width": 765,
+          "motion": "reduce",
+          "fault": "alpha-fixed",
+          "result": {
+            "mismatches": 53166,
+            "pixels": 254635,
+            "fraction": 0.2087929781844601,
+            "max": 40,
+            "pass": false,
+            "samples": [
+              {
+                "x": 317,
+                "y": 58,
+                "actual": [
+                  198,
+                  200,
+                  197
+                ],
+                "expected": [
+                  202,
+                  199,
+                  195
+                ]
+              },
+              {
+                "x": 318,
+                "y": 58,
+                "actual": [
+                  170,
+                  156,
+                  147
+                ],
+                "expected": [
+                  178,
+                  155,
+                  143
+                ]
+              },
+              {
+                "x": 319,
+                "y": 58,
+                "actual": [
+                  198,
+                  200,
+                  197
+                ],
+                "expected": [
+                  202,
+                  199,
+                  195
+                ]
+              },
+              {
+                "x": 315,
+                "y": 59,
+                "actual": [
+                  195,
+                  195,
+                  191
+                ],
+                "expected": [
+                  199,
+                  194,
+                  189
+                ]
+              },
+              {
+                "x": 316,
+                "y": 59,
+                "actual": [
+                  158,
+                  137,
+                  127
+                ],
+                "expected": [
+                  168,
+                  135,
+                  122
+                ]
+              },
+              {
+                "x": 317,
+                "y": 59,
+                "actual": [
+                  141,
+                  111,
+                  97
+                ],
+                "expected": [
+                  154,
+                  109,
+                  91
+                ]
+              },
+              {
+                "x": 318,
+                "y": 59,
+                "actual": [
+                  141,
+                  111,
+                  97
+                ],
+                "expected": [
+                  154,
+                  109,
+                  91
+                ]
+              },
+              {
+                "x": 319,
+                "y": 59,
+                "actual": [
+                  141,
+                  111,
+                  97
+                ],
+                "expected": [
+                  154,
+                  109,
+                  91
+                ]
+              },
+              {
+                "x": 320,
+                "y": 59,
+                "actual": [
+                  158,
+                  137,
+                  127
+                ],
+                "expected": [
+                  168,
+                  135,
+                  122
+                ]
+              },
+              {
+                "x": 321,
+                "y": 59,
+                "actual": [
+                  195,
+                  195,
+                  191
+                ],
+                "expected": [
+                  199,
+                  194,
+                  189
+                ]
+              },
+              {
+                "x": 313,
+                "y": 60,
+                "actual": [
+                  175,
+                  174,
+                  169
+                ],
+                "expected": [
+                  179,
+                  174,
+                  167
+                ]
+              },
+              {
+                "x": 314,
+                "y": 60,
+                "actual": [
+                  141,
+                  122,
+                  111
+                ],
+                "expected": [
+                  151,
+                  120,
+                  107
+                ]
+              }
+            ],
+            "columns": [
+              [
+                260,
+                212
+              ],
+              [
+                262,
+                211
+              ],
+              [
+                376,
+                211
+              ],
+              [
+                258,
+                211
+              ],
+              [
+                259,
+                211
+              ],
+              [
+                377,
+                211
+              ],
+              [
+                378,
+                211
+              ],
+              [
+                256,
+                210
+              ],
+              [
+                257,
+                210
+              ],
+              [
+                379,
+                210
+              ],
+              [
+                380,
+                210
+              ],
+              [
+                253,
+                209
+              ]
+            ],
+            "rows": [
+              [
+                151,
+                385
+              ],
+              [
+                150,
+                381
+              ],
+              [
+                149,
+                377
+              ],
+              [
+                145,
+                361
+              ],
+              [
+                144,
+                357
+              ],
+              [
+                143,
+                353
+              ],
+              [
+                142,
+                349
+              ],
+              [
+                141,
+                345
+              ],
+              [
+                152,
+                345
+              ],
+              [
+                153,
+                345
+              ],
+              [
+                154,
+                345
+              ],
+              [
+                155,
+                345
+              ]
+            ],
+            "frame": {
+              "cssWidth": 635.25,
+              "cssHeight": 402.3125,
+              "dpr": 1,
+              "pngWidth": 637,
+              "pngHeight": 403,
+              "paddingX": 1.75,
+              "paddingY": 0.6875,
+              "marginX": 1,
+              "marginY": 1,
+              "frameExcludedPixels": 2076,
+              "boundaryExcludedPixels": 0
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

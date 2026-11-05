@@ -1,0 +1,3624 @@
+{
+  "job": {
+    "id": 127469469210,
+    "name": "state-and-browser (chromium, 390)",
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 42091230501,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Run npm ci",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Run npm run lint && npm run typecheck && npx vitest run --maxWorkers=2 tests/before-after-compare.test.tsx tests/pan-zoom.test.tsx tests/image-crop.test.tsx tests/phase5b-compare.test.tsx && npm run build",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Fixed external browser and PNG tools",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Both motion preferences at the assigned width",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Independent reviewer endpoint-baseline probe",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 8
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 19
+      }
+    ]
+  },
+  "summary": {
+    "head": "7593e5136efc90c6bccf63fa2fc3e429b51a128d",
+    "pass": true,
+    "expected": 2,
+    "cases": 2,
+    "controls": 10,
+    "errors": []
+  },
+  "cases": [
+    {
+      "caseComplete": {
+        "engine": "chromium",
+        "version": "141.0.7390.37",
+        "width": 390,
+        "motion": "no-preference"
+      },
+      "head": "7593e5136efc90c6bccf63fa2fc3e429b51a128d",
+      "checks": 9,
+      "nativePointer": [
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 7,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 13,
+              "type": "pointermove",
+              "id": 1,
+              "x": 274,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 8,
+                "type": "pointermove",
+                "id": 1,
+                "x": 208.1666717529297,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 9,
+                "type": "pointermove",
+                "id": 1,
+                "x": 221.3333282470703,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 10,
+                "type": "pointermove",
+                "id": 1,
+                "x": 234.5,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 11,
+                "type": "pointermove",
+                "id": 1,
+                "x": 247.6666717529297,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 12,
+                "type": "pointermove",
+                "id": 1,
+                "x": 260.8333435058594,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 13,
+                "type": "pointermove",
+                "id": 1,
+                "x": 274,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 75
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 16,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 22,
+              "type": "pointerup",
+              "id": 1,
+              "x": 267.67999267578125,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 17,
+                "type": "pointermove",
+                "id": 1,
+                "x": 209.53599548339844,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 18,
+                "type": "pointermove",
+                "id": 1,
+                "x": 224.07200622558594,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 19,
+                "type": "pointermove",
+                "id": 1,
+                "x": 238.60800170898438,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 20,
+                "type": "pointermove",
+                "id": 1,
+                "x": 253.1439971923828,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 21,
+                "type": "pointermove",
+                "id": 1,
+                "x": 267.67999267578125,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 72.99999768220925
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 24,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 25,
+              "type": "pointermove",
+              "id": 1,
+              "x": 289.79998779296875,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 25,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 79.99999613701543
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 24,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 26,
+              "type": "pointermove",
+              "id": 1,
+              "x": 292.9599914550781,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 25,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 26,
+                "type": "pointermove",
+                "id": 1,
+                "x": 292.9599914550781,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 80.9999972959108
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 31,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 32,
+              "type": "pointermove",
+              "id": 1,
+              "x": 289.79998779296875,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 32,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 79.99999613701543
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 31,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 33,
+              "type": "pointermove",
+              "id": 1,
+              "x": 292.9599914550781,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 32,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 33,
+                "type": "pointermove",
+                "id": 1,
+                "x": 292.9599914550781,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 80.9999972959108
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 38,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 39,
+              "type": "pointermove",
+              "id": 1,
+              "x": 289.79998779296875,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 39,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 79.99999613701543
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 38,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 40,
+              "type": "pointermove",
+              "id": 1,
+              "x": 292.9599914550781,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 39,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 40,
+                "type": "pointermove",
+                "id": 1,
+                "x": 292.9599914550781,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 80.9999972959108
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 45,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 46,
+              "type": "pointermove",
+              "id": 1,
+              "x": 289.79998779296875,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 46,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 79.99999613701543
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 45,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 47,
+              "type": "pointermove",
+              "id": 1,
+              "x": 292.9599914550781,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 46,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 47,
+                "type": "pointermove",
+                "id": 1,
+                "x": 292.9599914550781,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 80.9999972959108
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 52,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 53,
+              "type": "pointermove",
+              "id": 1,
+              "x": 289.79998779296875,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 53,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 79.99999613701543
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 52,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 54,
+              "type": "pointermove",
+              "id": 1,
+              "x": 292.9599914550781,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 53,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 54,
+                "type": "pointermove",
+                "id": 1,
+                "x": 292.9599914550781,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 80.9999972959108
+        }
+      ],
+      "masks": [
+        {
+          "maskExpected": 0,
+          "computedClip": "inset(0px 100% 0px 0px)",
+          "edgesCSS": [
+            0,
+            316,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 50,
+          "computedClip": "inset(0px 50% 0px 0px)",
+          "edgesCSS": [
+            0,
+            158,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 100,
+          "computedClip": "inset(0px 0% 0px 0px)",
+          "edgesCSS": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 37,
+          "computedClip": "inset(0px 63% 0px 0px)",
+          "edgesCSS": [
+            0,
+            199.08,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 0,
+          "computedClip": "inset(0px 100% 0px 0px)",
+          "edgesCSS": [
+            0,
+            316,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 50,
+          "computedClip": "inset(0px 50% 0px 0px)",
+          "edgesCSS": [
+            0,
+            158,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 100,
+          "computedClip": "inset(0px 0% 0px 0px)",
+          "edgesCSS": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 37,
+          "computedClip": "inset(0px 63% 0px 0px)",
+          "edgesCSS": [
+            0,
+            199.08,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 0,
+          "computedClip": "inset(0px 100% 0px 0px)",
+          "edgesCSS": [
+            0,
+            316,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 100,
+          "computedClip": "inset(0px 0% 0px 0px)",
+          "edgesCSS": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "coldRequestFailure": [
+        {
+          "coldRequestFailure": {
+            "abortedRequests": 1,
+            "abortedURLs": [
+              "http://127.0.0.1:34193/Loading-museum/compare/restoration-after.svg"
+            ],
+            "alertObserved": true,
+            "playbackDisabled": true,
+            "explicitRetryReady": true,
+            "resetValue": 50,
+            "errors": []
+          }
+        }
+      ],
+      "raster": [
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 0,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62287,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 199
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 61889,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 597
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 100,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 2,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 37,
+            "reversed": true
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62088,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 398
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 0,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 1,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 100,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "split",
+            "amount": 0,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62287,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 199
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "split",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 61889,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 597
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "split",
+            "amount": 100,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 3,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "split",
+            "amount": 37,
+            "reversed": true
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62088,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 398
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "overlay",
+            "amount": 0,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 1,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "overlay",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "overlay",
+            "amount": 100,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 37,
+            "reversed": false
+          },
+          "pass": false,
+          "mismatches": 2640,
+          "pixels": 62088,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 398
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 37,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62088,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 398
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": false,
+          "mismatches": 13410,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        }
+      ],
+      "controls": [
+        {
+          "engine": "chromium",
+          "version": "141.0.7390.37",
+          "width": 390,
+          "motion": "no-preference",
+          "fault": "mask-edge-0-one-pixel",
+          "kind": "geometry",
+          "result": {
+            "pass": false,
+            "reason": "AssertionError [ERR_ASSERTION]: 315 != 316 ± 0.05"
+          }
+        },
+        {
+          "engine": "chromium",
+          "version": "141.0.7390.37",
+          "width": 390,
+          "motion": "no-preference",
+          "fault": "mask-edge-100-one-pixel",
+          "kind": "geometry",
+          "result": {
+            "pass": false,
+            "reason": "AssertionError [ERR_ASSERTION]: 1 != 0 ± 0.05"
+          }
+        },
+        {
+          "engine": "chromium",
+          "version": "141.0.7390.37",
+          "width": 390,
+          "motion": "no-preference",
+          "fault": "image-shift-one-pixel",
+          "kind": "geometry",
+          "result": {
+            "pass": false,
+            "reason": "AssertionError [ERR_ASSERTION]: 37 != 38 ± 0.05"
+          }
+        },
+        {
+          "engine": "chromium",
+          "version": "141.0.7390.37",
+          "width": 390,
+          "motion": "no-preference",
+          "fault": "mask-fixed",
+          "result": {
+            "mismatches": 2640,
+            "pixels": 62088,
+            "fraction": 0.04252029377657519,
+            "max": 117,
+            "pass": false,
+            "samples": [
+              {
+                "x": 115,
+                "y": 49,
+                "actual": [
+                  217,
+                  229,
+                  228
+                ],
+                "expected": [
+                  217,
+                  223,
+                  221
+                ]
+              },
+              {
+                "x": 113,
+                "y": 50,
+                "actual": [
+                  196,
+                  206,
+                  205
+                ],
+                "expected": [
+                  196,
+                  201,
+                  199
+                ]
+              },
+              {
+                "x": 114,
+                "y": 50,
+                "actual": [
+                  162,
+                  163,
+                  158
+                ],
+                "expected": [
+                  180,
+                  148,
+                  136
+                ]
+              },
+              {
+                "x": 115,
+                "y": 50,
+                "actual": [
+                  125,
+                  114,
+                  106
+                ],
+                "expected": [
+                  165,
+                  101,
+                  78
+                ]
+              },
+              {
+                "x": 111,
+                "y": 51,
+                "actual": [
+                  215,
+                  226,
+                  225
+                ],
+                "expected": [
+                  215,
+                  219,
+                  216
+                ]
+              },
+              {
+                "x": 112,
+                "y": 51,
+                "actual": [
+                  175,
+                  175,
+                  170
+                ],
+                "expected": [
+                  197,
+                  160,
+                  145
+                ]
+              },
+              {
+                "x": 113,
+                "y": 51,
+                "actual": [
+                  135,
+                  123,
+                  114
+                ],
+                "expected": [
+                  181,
+                  110,
+                  85
+                ]
+              },
+              {
+                "x": 114,
+                "y": 51,
+                "actual": [
+                  128,
+                  114,
+                  104
+                ],
+                "expected": [
+                  180,
+                  106,
+                  80
+                ]
+              },
+              {
+                "x": 115,
+                "y": 51,
+                "actual": [
+                  128,
+                  114,
+                  104
+                ],
+                "expected": [
+                  180,
+                  106,
+                  80
+                ]
+              },
+              {
+                "x": 109,
+                "y": 52,
+                "actual": [
+                  213,
+                  224,
+                  223
+                ],
+                "expected": [
+                  214,
+                  216,
+                  212
+                ]
+              },
+              {
+                "x": 110,
+                "y": 52,
+                "actual": [
+                  172,
+                  171,
+                  166
+                ],
+                "expected": [
+                  195,
+                  155,
+                  139
+                ]
+              },
+              {
+                "x": 111,
+                "y": 52,
+                "actual": [
+                  133,
+                  121,
+                  111
+                ],
+                "expected": [
+                  181,
+                  109,
+                  84
+                ]
+              }
+            ],
+            "columns": [
+              [
+                88,
+                90
+              ],
+              [
+                87,
+                89
+              ],
+              [
+                85,
+                88
+              ],
+              [
+                86,
+                88
+              ],
+              [
+                83,
+                87
+              ],
+              [
+                84,
+                87
+              ],
+              [
+                81,
+                86
+              ],
+              [
+                82,
+                86
+              ],
+              [
+                79,
+                85
+              ],
+              [
+                80,
+                85
+              ],
+              [
+                115,
+                72
+              ],
+              [
+                109,
+                71
+              ]
+            ],
+            "rows": [
+              [
+                68,
+                39
+              ],
+              [
+                69,
+                39
+              ],
+              [
+                72,
+                39
+              ],
+              [
+                67,
+                38
+              ],
+              [
+                71,
+                38
+              ],
+              [
+                73,
+                38
+              ],
+              [
+                70,
+                37
+              ],
+              [
+                74,
+                37
+              ],
+              [
+                75,
+                37
+              ],
+              [
+                76,
+                37
+              ],
+              [
+                77,
+                37
+              ],
+              [
+                78,
+                37
+              ]
+            ],
+            "frame": {
+              "cssWidth": 316,
+              "cssHeight": 200.125,
+              "dpr": 1,
+              "pngWidth": 316,
+              "pngHeight": 201,
+              "paddingX": 0,
+              "paddingY": 0.875,
+              "marginX": 1,
+              "marginY": 1,
+              "frameExcludedPixels": 1030,
+              "boundaryExcludedPixels": 398
+            }
+          }
+        },
+        {
+          "engine": "chromium",
+          "version": "141.0.7390.37",
+          "width": 390,
+          "motion": "no-preference",
+          "fault": "alpha-fixed",
+          "result": {
+            "mismatches": 13410,
+            "pixels": 62486,
+            "fraction": 0.21460807220817463,
+            "max": 38,
+            "pass": false,
+            "samples": [
+              {
+                "x": 157,
+                "y": 29,
+                "actual": [
+                  198,
+                  200,
+                  197
+                ],
+                "expected": [
+                  202,
+                  199,
+                  195
+                ]
+              },
+              {
+                "x": 158,
+                "y": 29,
+                "actual": [
+                  198,
+                  200,
+                  197
+                ],
+                "expected": [
+                  202,
+                  199,
+                  195
+                ]
+              },
+              {
+                "x": 155,
+                "y": 30,
+                "actual": [
+                  177,
+                  177,
+                  174
+                ],
+                "expected": [
+                  181,
+                  176,
+                  172
+                ]
+              },
+              {
+                "x": 156,
+                "y": 30,
+                "actual": [
+                  144,
+                  125,
+                  116
+                ],
+                "expected": [
+                  153,
+                  123,
+                  111
+                ]
+              },
+              {
+                "x": 157,
+                "y": 30,
+                "actual": [
+                  128,
+                  101,
+                  88
+                ],
+                "expected": [
+                  140,
+                  99,
+                  83
+                ]
+              },
+              {
+                "x": 158,
+                "y": 30,
+                "actual": [
+                  128,
+                  101,
+                  88
+                ],
+                "expected": [
+                  140,
+                  99,
+                  83
+                ]
+              },
+              {
+                "x": 159,
+                "y": 30,
+                "actual": [
+                  144,
+                  125,
+                  116
+                ],
+                "expected": [
+                  153,
+                  123,
+                  111
+                ]
+              },
+              {
+                "x": 160,
+                "y": 30,
+                "actual": [
+                  177,
+                  178,
+                  174
+                ],
+                "expected": [
+                  181,
+                  177,
+                  172
+                ]
+              },
+              {
+                "x": 153,
+                "y": 31,
+                "actual": [
+                  193,
+                  192,
+                  186
+                ],
+                "expected": [
+                  197,
+                  191,
+                  184
+                ]
+              },
+              {
+                "x": 154,
+                "y": 31,
+                "actual": [
+                  155,
+                  134,
+                  122
+                ],
+                "expected": [
+                  166,
+                  132,
+                  117
+                ]
+              },
+              {
+                "x": 155,
+                "y": 31,
+                "actual": [
+                  141,
+                  111,
+                  97
+                ],
+                "expected": [
+                  154,
+                  109,
+                  91
+                ]
+              },
+              {
+                "x": 156,
+                "y": 31,
+                "actual": [
+                  141,
+                  111,
+                  97
+                ],
+                "expected": [
+                  154,
+                  109,
+                  91
+                ]
+              }
+            ],
+            "columns": [
+              [
+                129,
+                106
+              ],
+              [
+                186,
+                106
+              ],
+              [
+                126,
+                105
+              ],
+              [
+                127,
+                105
+              ],
+              [
+                128,
+                105
+              ],
+              [
+                187,
+                105
+              ],
+              [
+                188,
+                105
+              ],
+              [
+                189,
+                105
+              ],
+              [
+                124,
+                104
+              ],
+              [
+                125,
+                104
+              ],
+              [
+                190,
+                104
+              ],
+              [
+                191,
+                104
+              ]
+            ],
+            "rows": [
+              [
+                75,
+                192
+              ],
+              [
+                74,
+                188
+              ],
+              [
+                72,
+                178
+              ],
+              [
+                71,
+                174
+              ],
+              [
+                76,
+                172
+              ],
+              [
+                77,
+                172
+              ],
+              [
+                78,
+                172
+              ],
+              [
+                79,
+                172
+              ],
+              [
+                80,
+                172
+              ],
+              [
+                94,
+                172
+              ],
+              [
+                95,
+                172
+              ],
+              [
+                96,
+                172
+              ]
+            ],
+            "frame": {
+              "cssWidth": 316,
+              "cssHeight": 200.125,
+              "dpr": 1,
+              "pngWidth": 316,
+              "pngHeight": 201,
+              "paddingX": 0,
+              "paddingY": 0.875,
+              "marginX": 1,
+              "marginY": 1,
+              "frameExcludedPixels": 1030,
+              "boundaryExcludedPixels": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "caseComplete": {
+        "engine": "chromium",
+        "version": "141.0.7390.37",
+        "width": 390,
+        "motion": "reduce"
+      },
+      "head": "7593e5136efc90c6bccf63fa2fc3e429b51a128d",
+      "checks": 9,
+      "nativePointer": [
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 7,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 13,
+              "type": "pointermove",
+              "id": 1,
+              "x": 274,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 8,
+                "type": "pointermove",
+                "id": 1,
+                "x": 208.1666717529297,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 9,
+                "type": "pointermove",
+                "id": 1,
+                "x": 221.3333282470703,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 10,
+                "type": "pointermove",
+                "id": 1,
+                "x": 234.5,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 11,
+                "type": "pointermove",
+                "id": 1,
+                "x": 247.6666717529297,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 12,
+                "type": "pointermove",
+                "id": 1,
+                "x": 260.8333435058594,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 13,
+                "type": "pointermove",
+                "id": 1,
+                "x": 274,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 75
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 16,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 22,
+              "type": "pointerup",
+              "id": 1,
+              "x": 267.67999267578125,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 17,
+                "type": "pointermove",
+                "id": 1,
+                "x": 209.53599548339844,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 18,
+                "type": "pointermove",
+                "id": 1,
+                "x": 224.07200622558594,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 19,
+                "type": "pointermove",
+                "id": 1,
+                "x": 238.60800170898438,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 20,
+                "type": "pointermove",
+                "id": 1,
+                "x": 253.1439971923828,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 21,
+                "type": "pointermove",
+                "id": 1,
+                "x": 267.67999267578125,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 72.99999768220925
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 24,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 25,
+              "type": "pointermove",
+              "id": 1,
+              "x": 289.79998779296875,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 25,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 79.99999613701543
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 24,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 26,
+              "type": "pointermove",
+              "id": 1,
+              "x": 292.9599914550781,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 25,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 26,
+                "type": "pointermove",
+                "id": 1,
+                "x": 292.9599914550781,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 80.9999972959108
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 31,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 32,
+              "type": "pointermove",
+              "id": 1,
+              "x": 289.79998779296875,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 32,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 79.99999613701543
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 31,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 33,
+              "type": "pointermove",
+              "id": 1,
+              "x": 292.9599914550781,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 32,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 33,
+                "type": "pointermove",
+                "id": 1,
+                "x": 292.9599914550781,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 80.9999972959108
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 38,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 39,
+              "type": "pointermove",
+              "id": 1,
+              "x": 289.79998779296875,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 39,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 79.99999613701543
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 38,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 40,
+              "type": "pointermove",
+              "id": 1,
+              "x": 292.9599914550781,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 39,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 40,
+                "type": "pointermove",
+                "id": 1,
+                "x": 292.9599914550781,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 80.9999972959108
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 45,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 46,
+              "type": "pointermove",
+              "id": 1,
+              "x": 289.79998779296875,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 46,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 79.99999613701543
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 45,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 47,
+              "type": "pointermove",
+              "id": 1,
+              "x": 292.9599914550781,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 46,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 47,
+                "type": "pointermove",
+                "id": 1,
+                "x": 292.9599914550781,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 80.9999972959108
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 52,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 53,
+              "type": "pointermove",
+              "id": 1,
+              "x": 289.79998779296875,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 53,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 79.99999613701543
+        },
+        {
+          "nativePointer": {
+            "start": {
+              "sequence": 52,
+              "type": "pointerdown",
+              "id": 1,
+              "x": 195,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "end": {
+              "sequence": 54,
+              "type": "pointermove",
+              "id": 1,
+              "x": 292.9599914550781,
+              "y": 170.578125,
+              "trusted": true,
+              "pointerType": "mouse"
+            },
+            "moves": [
+              {
+                "sequence": 53,
+                "type": "pointermove",
+                "id": 1,
+                "x": 289.79998779296875,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              },
+              {
+                "sequence": 54,
+                "type": "pointermove",
+                "id": 1,
+                "x": 292.9599914550781,
+                "y": 170.578125,
+                "trusted": true,
+                "pointerType": "mouse"
+              }
+            ],
+            "moveAfterUp": false
+          },
+          "startValue": 50,
+          "width": 316,
+          "expected": 80.9999972959108
+        }
+      ],
+      "masks": [
+        {
+          "maskExpected": 0,
+          "computedClip": "inset(0px 100% 0px 0px)",
+          "edgesCSS": [
+            0,
+            316,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 50,
+          "computedClip": "inset(0px 50% 0px 0px)",
+          "edgesCSS": [
+            0,
+            158,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 100,
+          "computedClip": "inset(0px 0% 0px 0px)",
+          "edgesCSS": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 37,
+          "computedClip": "inset(0px 63% 0px 0px)",
+          "edgesCSS": [
+            0,
+            199.08,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 0,
+          "computedClip": "inset(0px 100% 0px 0px)",
+          "edgesCSS": [
+            0,
+            316,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 50,
+          "computedClip": "inset(0px 50% 0px 0px)",
+          "edgesCSS": [
+            0,
+            158,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 100,
+          "computedClip": "inset(0px 0% 0px 0px)",
+          "edgesCSS": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 37,
+          "computedClip": "inset(0px 63% 0px 0px)",
+          "edgesCSS": [
+            0,
+            199.08,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 0,
+          "computedClip": "inset(0px 100% 0px 0px)",
+          "edgesCSS": [
+            0,
+            316,
+            0,
+            0
+          ]
+        },
+        {
+          "maskExpected": 100,
+          "computedClip": "inset(0px 0% 0px 0px)",
+          "edgesCSS": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "coldRequestFailure": [
+        {
+          "coldRequestFailure": {
+            "abortedRequests": 1,
+            "abortedURLs": [
+              "http://127.0.0.1:34193/Loading-museum/compare/restoration-after.svg"
+            ],
+            "alertObserved": true,
+            "playbackDisabled": true,
+            "explicitRetryReady": true,
+            "resetValue": 50,
+            "errors": []
+          }
+        }
+      ],
+      "raster": [
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 0,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62287,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 199
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 61889,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 597
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 100,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 2,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 37,
+            "reversed": true
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62088,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 398
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 0,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 100,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "split",
+            "amount": 0,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62287,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 199
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "split",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 61889,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 597
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "split",
+            "amount": 100,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 3,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "split",
+            "amount": 37,
+            "reversed": true
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62088,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 398
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "overlay",
+            "amount": 0,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "overlay",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "correction",
+            "mode": "overlay",
+            "amount": 100,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 37,
+            "reversed": false
+          },
+          "pass": false,
+          "mismatches": 2640,
+          "pixels": 62088,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 398
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "split",
+            "amount": 37,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62088,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 398
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": false,
+          "mismatches": 13576,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        },
+        {
+          "case": {
+            "pair": "restoration",
+            "mode": "overlay",
+            "amount": 50,
+            "reversed": false
+          },
+          "pass": true,
+          "mismatches": 0,
+          "pixels": 62486,
+          "frame": {
+            "cssWidth": 316,
+            "cssHeight": 200.125,
+            "dpr": 1,
+            "pngWidth": 316,
+            "pngHeight": 201,
+            "paddingX": 0,
+            "paddingY": 0.875,
+            "marginX": 1,
+            "marginY": 1,
+            "frameExcludedPixels": 1030,
+            "boundaryExcludedPixels": 0
+          }
+        }
+      ],
+      "controls": [
+        {
+          "engine": "chromium",
+          "version": "141.0.7390.37",
+          "width": 390,
+          "motion": "reduce",
+          "fault": "mask-edge-0-one-pixel",
+          "kind": "geometry",
+          "result": {
+            "pass": false,
+            "reason": "AssertionError [ERR_ASSERTION]: 315 != 316 ± 0.05"
+          }
+        },
+        {
+          "engine": "chromium",
+          "version": "141.0.7390.37",
+          "width": 390,
+          "motion": "reduce",
+          "fault": "mask-edge-100-one-pixel",
+          "kind": "geometry",
+          "result": {
+            "pass": false,
+            "reason": "AssertionError [ERR_ASSERTION]: 1 != 0 ± 0.05"
+          }
+        },
+        {
+          "engine": "chromium",
+          "version": "141.0.7390.37",
+          "width": 390,
+          "motion": "reduce",
+          "fault": "image-shift-one-pixel",
+          "kind": "geometry",
+          "result": {
+            "pass": false,
+            "reason": "AssertionError [ERR_ASSERTION]: 37 != 38 ± 0.05"
+          }
+        },
+        {
+          "engine": "chromium",
+          "version": "141.0.7390.37",
+          "width": 390,
+          "motion": "reduce",
+          "fault": "mask-fixed",
+          "result": {
+            "mismatches": 2640,
+            "pixels": 62088,
+            "fraction": 0.04252029377657519,
+            "max": 117,
+            "pass": false,
+            "samples": [
+              {
+                "x": 115,
+                "y": 49,
+                "actual": [
+                  217,
+                  229,
+                  228
+                ],
+                "expected": [
+                  217,
+                  223,
+                  221
+                ]
+              },
+              {
+                "x": 113,
+                "y": 50,
+                "actual": [
+                  196,
+                  206,
+                  205
+                ],
+                "expected": [
+                  196,
+                  201,
+                  199
+                ]
+              },
+              {
+                "x": 114,
+                "y": 50,
+                "actual": [
+                  162,
+                  163,
+                  158
+                ],
+                "expected": [
+                  180,
+                  148,
+                  136
+                ]
+              },
+              {
+                "x": 115,
+                "y": 50,
+                "actual": [
+                  125,
+                  114,
+                  106
+                ],
+                "expected": [
+                  165,
+                  101,
+                  78
+                ]
+              },
+              {
+                "x": 111,
+                "y": 51,
+                "actual": [
+                  215,
+                  226,
+                  225
+                ],
+                "expected": [
+                  215,
+                  219,
+                  216
+                ]
+              },
+              {
+                "x": 112,
+                "y": 51,
+                "actual": [
+                  175,
+                  175,
+                  170
+                ],
+                "expected": [
+                  197,
+                  160,
+                  145
+                ]
+              },
+              {
+                "x": 113,
+                "y": 51,
+                "actual": [
+                  135,
+                  123,
+                  114
+                ],
+                "expected": [
+                  181,
+                  110,
+                  85
+                ]
+              },
+              {
+                "x": 114,
+                "y": 51,
+                "actual": [
+                  128,
+                  114,
+                  104
+                ],
+                "expected": [
+                  180,
+                  106,
+                  80
+                ]
+              },
+              {
+                "x": 115,
+                "y": 51,
+                "actual": [
+                  128,
+                  114,
+                  104
+                ],
+                "expected": [
+                  180,
+                  106,
+                  80
+                ]
+              },
+              {
+                "x": 109,
+                "y": 52,
+                "actual": [
+                  213,
+                  224,
+                  223
+                ],
+                "expected": [
+                  214,
+                  216,
+                  212
+                ]
+              },
+              {
+                "x": 110,
+                "y": 52,
+                "actual": [
+                  172,
+                  171,
+                  166
+                ],
+                "expected": [
+                  195,
+                  155,
+                  139
+                ]
+              },
+              {
+                "x": 111,
+                "y": 52,
+                "actual": [
+                  133,
+                  121,
+                  111
+                ],
+                "expected": [
+                  181,
+                  109,
+                  84
+                ]
+              }
+            ],
+            "columns": [
+              [
+                88,
+                90
+              ],
+              [
+                87,
+                89
+              ],
+              [
+                85,
+                88
+              ],
+              [
+                86,
+                88
+              ],
+              [
+                83,
+                87
+              ],
+              [
+                84,
+                87
+              ],
+              [
+                81,
+                86
+              ],
+              [
+                82,
+                86
+              ],
+              [
+                79,
+                85
+              ],
+              [
+                80,
+                85
+              ],
+              [
+                115,
+                72
+              ],
+              [
+                109,
+                71
+              ]
+            ],
+            "rows": [
+              [
+                68,
+                39
+              ],
+              [
+                69,
+                39
+              ],
+              [
+                72,
+                39
+              ],
+              [
+                67,
+                38
+              ],
+              [
+                71,
+                38
+              ],
+              [
+                73,
+                38
+              ],
+              [
+                70,
+                37
+              ],
+              [
+                74,
+                37
+              ],
+              [
+                75,
+                37
+              ],
+              [
+                76,
+                37
+              ],
+              [
+                77,
+                37
+              ],
+              [
+                78,
+                37
+              ]
+            ],
+            "frame": {
+              "cssWidth": 316,
+              "cssHeight": 200.125,
+              "dpr": 1,
+              "pngWidth": 316,
+              "pngHeight": 201,
+              "paddingX": 0,
+              "paddingY": 0.875,
+              "marginX": 1,
+              "marginY": 1,
+              "frameExcludedPixels": 1030,
+              "boundaryExcludedPixels": 398
+            }
+          }
+        },
+        {
+          "engine": "chromium",
+          "version": "141.0.7390.37",
+          "width": 390,
+          "motion": "reduce",
+          "fault": "alpha-fixed",
+          "result": {
+            "mismatches": 13576,
+            "pixels": 62486,
+            "fraction": 0.21726466728547195,
+            "max": 38,
+            "pass": false,
+            "samples": [
+              {
+                "x": 157,
+                "y": 29,
+                "actual": [
+                  198,
+                  200,
+                  197
+                ],
+                "expected": [
+                  202,
+                  199,
+                  195
+                ]
+              },
+              {
+                "x": 158,
+                "y": 29,
+                "actual": [
+                  198,
+                  200,
+                  197
+                ],
+                "expected": [
+                  202,
+                  199,
+                  195
+                ]
+              },
+              {
+                "x": 155,
+                "y": 30,
+                "actual": [
+                  177,
+                  177,
+                  174
+                ],
+                "expected": [
+                  181,
+                  176,
+                  172
+                ]
+              },
+              {
+                "x": 156,
+                "y": 30,
+                "actual": [
+                  144,
+                  125,
+                  116
+                ],
+                "expected": [
+                  153,
+                  123,
+                  111
+                ]
+              },
+              {
+                "x": 157,
+                "y": 30,
+                "actual": [
+                  128,
+                  101,
+                  88
+                ],
+                "expected": [
+                  140,
+                  99,
+                  83
+                ]
+              },
+              {
+                "x": 158,
+                "y": 30,
+                "actual": [
+                  128,
+                  101,
+                  88
+                ],
+                "expected": [
+                  140,
+                  99,
+                  83
+                ]
+              },
+              {
+                "x": 159,
+                "y": 30,
+                "actual": [
+                  144,
+                  125,
+                  116
+                ],
+                "expected": [
+                  153,
+                  123,
+                  111
+                ]
+              },
+              {
+                "x": 160,
+                "y": 30,
+                "actual": [
+                  177,
+                  178,
+                  174
+                ],
+                "expected": [
+                  181,
+                  177,
+                  172
+                ]
+              },
+              {
+                "x": 153,
+                "y": 31,
+                "actual": [
+                  193,
+                  192,
+                  186
+                ],
+                "expected": [
+                  197,
+                  191,
+                  184
+                ]
+              },
+              {
+                "x": 154,
+                "y": 31,
+                "actual": [
+                  155,
+                  134,
+                  122
+                ],
+                "expected": [
+                  166,
+                  132,
+                  117
+                ]
+              },
+              {
+                "x": 155,
+                "y": 31,
+                "actual": [
+                  141,
+                  111,
+                  97
+                ],
+                "expected": [
+                  154,
+                  109,
+                  91
+                ]
+              },
+              {
+                "x": 156,
+                "y": 31,
+                "actual": [
+                  141,
+                  111,
+                  97
+                ],
+                "expected": [
+                  154,
+                  109,
+                  91
+                ]
+              }
+            ],
+            "columns": [
+              [
+                129,
+                106
+              ],
+              [
+                186,
+                106
+              ],
+              [
+                126,
+                105
+              ],
+              [
+                127,
+                105
+              ],
+              [
+                128,
+                105
+              ],
+              [
+                187,
+                105
+              ],
+              [
+                188,
+                105
+              ],
+              [
+                189,
+                105
+              ],
+              [
+                143,
+                104
+              ],
+              [
+                185,
+                104
+              ],
+              [
+                124,
+                104
+              ],
+              [
+                125,
+                104
+              ]
+            ],
+            "rows": [
+              [
+                75,
+                192
+              ],
+              [
+                74,
+                188
+              ],
+              [
+                72,
+                178
+              ],
+              [
+                71,
+                174
+              ],
+              [
+                76,
+                172
+              ],
+              [
+                77,
+                172
+              ],
+              [
+                78,
+                172
+              ],
+              [
+                79,
+                172
+              ],
+              [
+                80,
+                172
+              ],
+              [
+                94,
+                172
+              ],
+              [
+                95,
+                172
+              ],
+              [
+                96,
+                172
+              ]
+            ],
+            "frame": {
+              "cssWidth": 316,
+              "cssHeight": 200.125,
+              "dpr": 1,
+              "pngWidth": 316,
+              "pngHeight": 201,
+              "paddingX": 0,
+              "paddingY": 0.875,
+              "marginX": 1,
+              "marginY": 1,
+              "frameExcludedPixels": 1030,
+              "boundaryExcludedPixels": 0
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

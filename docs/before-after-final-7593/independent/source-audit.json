@@ -1,0 +1,33 @@
+{
+  "head": "7593e5136efc90c6bccf63fa2fc3e429b51a128d",
+  "tree": "d453f5aab866cd5194b831080571208ef3463a56",
+  "clean": true,
+  "productTestsDependenciesIdenticalTo4b4790": true,
+  "independentChromiumConditions": 8,
+  "portablePairCount": 2,
+  "primaryHarnessIndependentRerunConditions": 1,
+  "primaryFaultsDetected": 5,
+  "allRasterMarginsStayOnePixel": true,
+  "thresholds": "original RGB3/fraction .002 and boundary exclusion",
+  "sourceFilesVerified": [
+    15,
+    7,
+    228
+  ],
+  "pngBytesHashVerified": 99,
+  "coldRequestFailure": {
+    "abortedRequests": 1,
+    "abortedURLs": [
+      "http://127.0.0.1:46533/Loading-museum/compare/restoration-after.svg"
+    ],
+    "alertObserved": true,
+    "playbackDisabled": true,
+    "explicitRetryReady": true,
+    "resetValue": 50,
+    "errors": []
+  },
+  "formalCi": "BeforeAfter8/8 successful; two initial legacy WebKit regressions failed, one diagnostic rerun handled separately",
+  "zipBytesAudit": "BLOCKED: previously observed CONNECT403; no same-host retry",
+  "overallVerdict": "PARTIAL",
+  "mergeRecommendation": "NO"
+}

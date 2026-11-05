@@ -1,0 +1,735 @@
+{
+  "start": "2026-11-05T19:10:09.760Z",
+  "head": "7593e5136efc90c6bccf63fa2fc3e429b51a128d",
+  "tree": "d453f5aab866cd5194b831080571208ef3463a56",
+  "dirty": "",
+  "source": {
+    "app/components/practical/BeforeAfterCompare.tsx": "d15fb3ef382d4c6d7b303265a2a4d59bfbac10823ce8b9d5e1370d9c9342ef82",
+    "app/components/practical/compare-model.ts": "f7826fcdbe3753825902b75b6b06f268f37a0e59fac1aaf0f655cdb913d466b2",
+    "app/components/practical/before-after-compare.css": "57b80cee9be4c8ac8c208fe9a87be1f64694add0f42d95c8de93813813809b7d",
+    "app/components/PracticalRoom.tsx": "eb9c5e90684e4cb8fe09c7d991c3261b49cfb26c470b13ba2debb7d8a6e25c23",
+    "app/data/phase6aExhibits.ts": "5c3a70615b77b8f577ec5ffe315ecea783e92e333fcb1ca1f3fcd7047b8eeac1",
+    "app/page.tsx": "772b31bcf9d8a354029a494e09aae87178fc6763123976406e61fdc8aadd3cce",
+    "package.json": "d4cd5d430930790d5af9292bd29634970a530665aa046fe6a84999d0b831f5df",
+    "tests/before-after-compare.test.tsx": "add4611aa899debc165d7b83b71ee698c44ba8b5b7c4d1896b96c8d8751cbc03",
+    "scripts/verify-before-after-browser.mjs": "6d0d2e3a89a6b7625399633054d5ba3898de3308852ced6a6460e3b75cba39e6",
+    "scripts/generate-compare-art.py": "e762f379ae258b0ad9c6ccd630a8ccde2ebe549b78273c884cd1716c1f11cfa5",
+    ".github/workflows/verify-before-after.yml": "56ce47ffebed4a130e3f1946f8d3a4f8c32ab00f47d7a5cf2f26b618b0be2376",
+    "public/compare/restoration-before.svg": "0e7331d3ebe73bfab09fe89a55fac01ac695c79f772cc36cd3b77f361b83df8c",
+    "public/compare/restoration-after.svg": "fb0074d61549c386f923cd520e3dbbe4e8ed9173cac4eb0aabae476cd38f0ff1",
+    "public/compare/correction-before.svg": "50a302bf4100606c92ae76ca67923292e976795d3be2738c014c49be90912eb0",
+    "public/compare/correction-after.svg": "5a179c85e0833cff86e7a28bc13dca44eb514dca7b33dd29aebba27b443b6a82"
+  },
+  "checks": [],
+  "cases": [
+    {
+      "width": 375,
+      "motion": "no-preference",
+      "checks": [
+        "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+        "endpoint handle no-jump (native pointer)",
+        "restoration: split 37% raster sampled 1179, visible-change samples 218",
+        "restoration: overlay50 raster channel mean 558 strictly-flat samples",
+        "restoration: side matched scale, no horizontal overflow",
+        "correction: split 37% raster sampled 1272, visible-change samples 934",
+        "correction: overlay50 raster channel mean 612 strictly-flat samples",
+        "correction: side matched scale, no horizontal overflow",
+        "native pointer+Escape rollback",
+        "native pause,resume,mode/pair interruption,dynamic reduced",
+        "close/reopen initialized"
+      ],
+      "images": [
+        {
+          "name": "final",
+          "sha256": "bd2882a392bba146737171e7d3d850d6391e0b0fbae19789acbcfb2914c125fc"
+        }
+      ],
+      "endpointTrace": {
+        "h": {
+          "x": 37,
+          "y": 61.40625,
+          "width": 48,
+          "height": 48
+        },
+        "h2": {
+          "x": 290,
+          "y": 61.40625,
+          "width": 48,
+          "height": 48
+        },
+        "valueBefore": 100,
+        "target": "<span aria-hidden=\"true\">↔</span>"
+      },
+      "captureMotion": "false"
+    },
+    {
+      "width": 375,
+      "motion": "reduce",
+      "checks": [
+        "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+        "endpoint handle no-jump (native pointer)",
+        "restoration: split 37% raster sampled 1179, visible-change samples 218",
+        "restoration: overlay50 raster channel mean 558 strictly-flat samples",
+        "restoration: side matched scale, no horizontal overflow",
+        "correction: split 37% raster sampled 1272, visible-change samples 934",
+        "correction: overlay50 raster channel mean 612 strictly-flat samples",
+        "correction: side matched scale, no horizontal overflow",
+        "native pointer+Escape rollback",
+        "reduced: replay immediate After/manual retained",
+        "close/reopen initialized"
+      ],
+      "images": [
+        {
+          "name": "final",
+          "sha256": "0eb1f2fe8811ae9b811249aa969ee38111017e500b228a8f70a898039a523846"
+        }
+      ],
+      "endpointTrace": {
+        "h": {
+          "x": 37,
+          "y": 61.40625,
+          "width": 48,
+          "height": 48
+        },
+        "h2": {
+          "x": 290,
+          "y": 61.40625,
+          "width": 48,
+          "height": 48
+        },
+        "valueBefore": 100,
+        "target": "<span aria-hidden=\"true\">↔</span>"
+      },
+      "captureMotion": "true"
+    },
+    {
+      "width": 390,
+      "motion": "no-preference",
+      "checks": [
+        "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+        "endpoint handle no-jump (native pointer)",
+        "restoration: split 37% raster sampled 1361, visible-change samples 281",
+        "restoration: overlay50 raster channel mean 621 strictly-flat samples",
+        "restoration: side matched scale, no horizontal overflow",
+        "correction: split 37% raster sampled 1425, visible-change samples 1055",
+        "correction: overlay50 raster channel mean 683 strictly-flat samples",
+        "correction: side matched scale, no horizontal overflow",
+        "native pointer+Escape rollback",
+        "native pause,resume,mode/pair interruption,dynamic reduced",
+        "close/reopen initialized"
+      ],
+      "images": [],
+      "endpointTrace": {
+        "h": {
+          "x": 37,
+          "y": 55.765625,
+          "width": 48,
+          "height": 48
+        },
+        "h2": {
+          "x": 305,
+          "y": 55.765625,
+          "width": 48,
+          "height": 48
+        },
+        "valueBefore": 100,
+        "target": "<span aria-hidden=\"true\">↔</span>"
+      },
+      "captureMotion": "false"
+    },
+    {
+      "width": 390,
+      "motion": "reduce",
+      "checks": [
+        "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+        "endpoint handle no-jump (native pointer)",
+        "restoration: split 37% raster sampled 1361, visible-change samples 281",
+        "restoration: overlay50 raster channel mean 621 strictly-flat samples",
+        "restoration: side matched scale, no horizontal overflow",
+        "correction: split 37% raster sampled 1426, visible-change samples 1056",
+        "correction: overlay50 raster channel mean 683 strictly-flat samples",
+        "correction: side matched scale, no horizontal overflow",
+        "native pointer+Escape rollback",
+        "reduced: replay immediate After/manual retained",
+        "close/reopen initialized"
+      ],
+      "images": [],
+      "endpointTrace": {
+        "h": {
+          "x": 37,
+          "y": 55.765625,
+          "width": 48,
+          "height": 48
+        },
+        "h2": {
+          "x": 305,
+          "y": 55.765625,
+          "width": 48,
+          "height": 48
+        },
+        "valueBefore": 100,
+        "target": "<span aria-hidden=\"true\">↔</span>"
+      },
+      "captureMotion": "true"
+    },
+    {
+      "width": 765,
+      "motion": "no-preference",
+      "checks": [
+        "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+        "endpoint handle no-jump (native pointer)",
+        "restoration: split 37% raster sampled 7253, visible-change samples 1337",
+        "restoration: overlay50 raster channel mean 3617 strictly-flat samples",
+        "restoration: side matched scale, no horizontal overflow",
+        "correction: split 37% raster sampled 7886, visible-change samples 6158",
+        "correction: overlay50 raster channel mean 3971 strictly-flat samples",
+        "correction: side matched scale, no horizontal overflow",
+        "native pointer+Escape rollback",
+        "native pause,resume,mode/pair interruption,dynamic reduced",
+        "close/reopen initialized"
+      ],
+      "images": [],
+      "endpointTrace": {
+        "h": {
+          "x": 64.875,
+          "y": 77.40625,
+          "width": 48,
+          "height": 48
+        },
+        "h2": {
+          "x": 652.125,
+          "y": 77.40625,
+          "width": 48,
+          "height": 48
+        },
+        "valueBefore": 100,
+        "target": "<span aria-hidden=\"true\">↔</span>"
+      },
+      "captureMotion": "false"
+    },
+    {
+      "width": 765,
+      "motion": "reduce",
+      "checks": [
+        "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+        "endpoint handle no-jump (native pointer)",
+        "restoration: split 37% raster sampled 7253, visible-change samples 1337",
+        "restoration: overlay50 raster channel mean 3617 strictly-flat samples",
+        "restoration: side matched scale, no horizontal overflow",
+        "correction: split 37% raster sampled 7886, visible-change samples 6158",
+        "correction: overlay50 raster channel mean 3971 strictly-flat samples",
+        "correction: side matched scale, no horizontal overflow",
+        "native pointer+Escape rollback",
+        "reduced: replay immediate After/manual retained",
+        "close/reopen initialized"
+      ],
+      "images": [],
+      "endpointTrace": {
+        "h": {
+          "x": 64.875,
+          "y": 77.40625,
+          "width": 48,
+          "height": 48
+        },
+        "h2": {
+          "x": 652.125,
+          "y": 77.40625,
+          "width": 48,
+          "height": 48
+        },
+        "valueBefore": 100,
+        "target": "<span aria-hidden=\"true\">↔</span>"
+      },
+      "captureMotion": "true"
+    },
+    {
+      "width": 1280,
+      "motion": "no-preference",
+      "checks": [
+        "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+        "endpoint handle no-jump (native pointer)",
+        "restoration: split 37% raster sampled 25035, visible-change samples 4979",
+        "restoration: overlay50 raster channel mean 12723 strictly-flat samples",
+        "restoration: side matched scale, no horizontal overflow",
+        "correction: split 37% raster sampled 26416, visible-change samples 20783",
+        "correction: overlay50 raster channel mean 13386 strictly-flat samples",
+        "correction: side matched scale, no horizontal overflow",
+        "native pointer+Escape rollback",
+        "native pause,resume,mode/pair interruption,dynamic reduced",
+        "close/reopen initialized"
+      ],
+      "images": [
+        {
+          "name": "final",
+          "sha256": "eb3883103d5f2610a09e95a8861bff413b842cee9b8b98397778b4c2e41d1755"
+        }
+      ],
+      "endpointTrace": {
+        "h": {
+          "x": 89,
+          "y": 475.578125,
+          "width": 48,
+          "height": 48
+        },
+        "h2": {
+          "x": 1143,
+          "y": -48.421875,
+          "width": 48,
+          "height": 48
+        },
+        "valueBefore": 100
+      },
+      "captureMotion": "false"
+    },
+    {
+      "width": 1280,
+      "motion": "reduce",
+      "checks": [
+        "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+        "endpoint handle no-jump (native pointer)",
+        "restoration: split 37% raster sampled 25035, visible-change samples 4979",
+        "restoration: overlay50 raster channel mean 12723 strictly-flat samples",
+        "restoration: side matched scale, no horizontal overflow",
+        "correction: split 37% raster sampled 26416, visible-change samples 20783",
+        "correction: overlay50 raster channel mean 13386 strictly-flat samples",
+        "correction: side matched scale, no horizontal overflow",
+        "native pointer+Escape rollback",
+        "reduced: replay immediate After/manual retained",
+        "close/reopen initialized"
+      ],
+      "images": [
+        {
+          "name": "final",
+          "sha256": "7a6b46c6ad56576507d9eeb816f485f4dc951cf521e489b3e3e5bca312c263ed"
+        }
+      ],
+      "endpointTrace": {
+        "h": {
+          "x": 89,
+          "y": 475.578125,
+          "width": 48,
+          "height": 48
+        },
+        "h2": {
+          "x": 1143,
+          "y": -48.421875,
+          "width": 48,
+          "height": 48
+        },
+        "valueBefore": 100
+      },
+      "captureMotion": "true"
+    }
+  ],
+  "errors": [],
+  "controls": [
+    {
+      "fault": "fixed25-mask",
+      "wrong": 54,
+      "detected": true
+    },
+    {
+      "fault": "fixed25-alpha",
+      "wrong": 125,
+      "detected": true
+    }
+  ],
+  "rasterFixture": "Hide comparison labels/handle/line and existing body scanline only for raster checks; evaluate strict 5x5 flat neighborhoods from endpoint baselines; preserve separate DOM geometry checks",
+  "images": [
+    {
+      "name": "1280-no-preference-correction-after.png",
+      "sha256": "0a95d4abd4d764b5b103bd9d0c3e49667ff50e8fc647ebaf96efb71c60974cf6"
+    },
+    {
+      "name": "1280-no-preference-correction-before.png",
+      "sha256": "92cecdbbea4c2fb2c4c53bfe315894464530f0b37850417625c18900263d7338"
+    },
+    {
+      "name": "1280-no-preference-correction-overlay.png",
+      "sha256": "da92c3703fc4550d0017b3819d0784acdf613a2d3352abfe1f2061f78e3aa368"
+    },
+    {
+      "name": "1280-no-preference-correction-split.png",
+      "sha256": "91440079cca8ce226aef61490bb0ff8ee1b24b7a014dcff62fde0236ffde7b95"
+    },
+    {
+      "name": "1280-no-preference-final.png",
+      "sha256": "eb3883103d5f2610a09e95a8861bff413b842cee9b8b98397778b4c2e41d1755"
+    },
+    {
+      "name": "1280-no-preference-restoration-after.png",
+      "sha256": "831c24fe4e77b77c10c109ff8a513f21fa9dfde9a16cc9f29b0cf8c2ddf380df"
+    },
+    {
+      "name": "1280-no-preference-restoration-before.png",
+      "sha256": "32e0704a85eb0a210aaba46d8fcfbb61326fffc27f7e853f97c937ddf41811d5"
+    },
+    {
+      "name": "1280-no-preference-restoration-overlay.png",
+      "sha256": "905dd8ea3ede59c2037ee0134a16ae5e60b108f5f3fed6c4f752438743dd1d7d"
+    },
+    {
+      "name": "1280-no-preference-restoration-split.png",
+      "sha256": "de8d1dcff1312488f95668261d5a6309561480d260403a9e002ba81fc433f3eb"
+    },
+    {
+      "name": "1280-reduce-correction-after.png",
+      "sha256": "0a95d4abd4d764b5b103bd9d0c3e49667ff50e8fc647ebaf96efb71c60974cf6"
+    },
+    {
+      "name": "1280-reduce-correction-before.png",
+      "sha256": "2b2c9b10eb049b1aef76d3f6f3dade601930ae770c671a8fdf2e5f61da81052a"
+    },
+    {
+      "name": "1280-reduce-correction-overlay.png",
+      "sha256": "a76986779f157422e38f40b66709b89d17161815d77774cc48ae056a99926092"
+    },
+    {
+      "name": "1280-reduce-correction-split.png",
+      "sha256": "91440079cca8ce226aef61490bb0ff8ee1b24b7a014dcff62fde0236ffde7b95"
+    },
+    {
+      "name": "1280-reduce-final.png",
+      "sha256": "7a6b46c6ad56576507d9eeb816f485f4dc951cf521e489b3e3e5bca312c263ed"
+    },
+    {
+      "name": "1280-reduce-restoration-after.png",
+      "sha256": "831c24fe4e77b77c10c109ff8a513f21fa9dfde9a16cc9f29b0cf8c2ddf380df"
+    },
+    {
+      "name": "1280-reduce-restoration-before.png",
+      "sha256": "32e0704a85eb0a210aaba46d8fcfbb61326fffc27f7e853f97c937ddf41811d5"
+    },
+    {
+      "name": "1280-reduce-restoration-overlay.png",
+      "sha256": "ee7dd86d4002863602d93231d1f3376d2ab6cd8cfa138666a35d00a9ffbd43c4"
+    },
+    {
+      "name": "1280-reduce-restoration-split.png",
+      "sha256": "de8d1dcff1312488f95668261d5a6309561480d260403a9e002ba81fc433f3eb"
+    },
+    {
+      "name": "375-no-preference-correction-after.png",
+      "sha256": "8a336efcf086425fae4d1bdf640ab5e6d7b0eb964bfa9e83834dc9ab79c2de3b"
+    },
+    {
+      "name": "375-no-preference-correction-before.png",
+      "sha256": "a069a8878a7247c5020b5218ca0caa4707d1d482fdd09f8881140ef7b1df5da0"
+    },
+    {
+      "name": "375-no-preference-correction-overlay.png",
+      "sha256": "5c9eddb33ff99ffe579ff619ef646953ab91d6f5687728c9a0a326367a2e02c0"
+    },
+    {
+      "name": "375-no-preference-correction-split.png",
+      "sha256": "71f59bd0abe9c1179677cbc7ba5ecb9022c3939c03dfb3b64b1ee64c8aaa7ce6"
+    },
+    {
+      "name": "375-no-preference-final.png",
+      "sha256": "bd2882a392bba146737171e7d3d850d6391e0b0fbae19789acbcfb2914c125fc"
+    },
+    {
+      "name": "375-no-preference-restoration-after.png",
+      "sha256": "b228f1579a083bd25dc669fa3c7044aa061d6ba4b7b3e0dc0c9b78350d752dfd"
+    },
+    {
+      "name": "375-no-preference-restoration-before.png",
+      "sha256": "64eb4d6f910b97f9ca24f7818424ee13a664b4e8695f7d9fd861afcb83fd940a"
+    },
+    {
+      "name": "375-no-preference-restoration-overlay.png",
+      "sha256": "fe5147bd2f70d9ace7bff566bd09decf89c00cadd596aaf89cbf63284e5933f4"
+    },
+    {
+      "name": "375-no-preference-restoration-split.png",
+      "sha256": "8c68d49ab2c9ab4496ec17e0432fb690bd168792df01d59ee2ffec6843a7a97d"
+    },
+    {
+      "name": "375-reduce-correction-after.png",
+      "sha256": "8a336efcf086425fae4d1bdf640ab5e6d7b0eb964bfa9e83834dc9ab79c2de3b"
+    },
+    {
+      "name": "375-reduce-correction-before.png",
+      "sha256": "a069a8878a7247c5020b5218ca0caa4707d1d482fdd09f8881140ef7b1df5da0"
+    },
+    {
+      "name": "375-reduce-correction-overlay.png",
+      "sha256": "839afa7d59d846560fd566f13d3e6743ea77ff8ecfdd00aee757f120a638022e"
+    },
+    {
+      "name": "375-reduce-correction-split.png",
+      "sha256": "71f59bd0abe9c1179677cbc7ba5ecb9022c3939c03dfb3b64b1ee64c8aaa7ce6"
+    },
+    {
+      "name": "375-reduce-final.png",
+      "sha256": "0eb1f2fe8811ae9b811249aa969ee38111017e500b228a8f70a898039a523846"
+    },
+    {
+      "name": "375-reduce-restoration-after.png",
+      "sha256": "b228f1579a083bd25dc669fa3c7044aa061d6ba4b7b3e0dc0c9b78350d752dfd"
+    },
+    {
+      "name": "375-reduce-restoration-before.png",
+      "sha256": "1c4987bab4dfa379afaa80c6e67f468c5fe9e6493a04bb5bf0f61266bb01818b"
+    },
+    {
+      "name": "375-reduce-restoration-overlay.png",
+      "sha256": "fe5147bd2f70d9ace7bff566bd09decf89c00cadd596aaf89cbf63284e5933f4"
+    },
+    {
+      "name": "375-reduce-restoration-split.png",
+      "sha256": "8c68d49ab2c9ab4496ec17e0432fb690bd168792df01d59ee2ffec6843a7a97d"
+    },
+    {
+      "name": "390-no-preference-correction-after.png",
+      "sha256": "6750a32abf1d88337b1036a924e6b0b3d505dbb36fea0e4286f4c51eda5061ca"
+    },
+    {
+      "name": "390-no-preference-correction-before.png",
+      "sha256": "5de766c86c99f0d5146dd48798f1e97e005c4b26324fac6d3e180372583c2979"
+    },
+    {
+      "name": "390-no-preference-correction-overlay.png",
+      "sha256": "154249c7fa343ddc776cefe923bf359705d4b1a895a3d24a8d38cd8104eec1c2"
+    },
+    {
+      "name": "390-no-preference-correction-split.png",
+      "sha256": "9a2dbe336b190f656293e40d0fa54ce927631951e605f62f3c39b2e52ae265be"
+    },
+    {
+      "name": "390-no-preference-restoration-after.png",
+      "sha256": "b1cfc1ca6e0dfdbfc1e8b1550a0edc7885b3676495dccaaeba8f68a2be47344d"
+    },
+    {
+      "name": "390-no-preference-restoration-before.png",
+      "sha256": "aff8c05f6aab6733d7d34fa7c762a6dafbf644dd5da707dab885c1b4064f405f"
+    },
+    {
+      "name": "390-no-preference-restoration-overlay.png",
+      "sha256": "570d69aa0b2312400852061e42512ae494894de1457f254c1411b2ed747a8c42"
+    },
+    {
+      "name": "390-no-preference-restoration-split.png",
+      "sha256": "4751af9dffa26c06de259bbf44768664d9aea46ebed00c6d4d3e80bd0698cd59"
+    },
+    {
+      "name": "390-reduce-correction-after.png",
+      "sha256": "6750a32abf1d88337b1036a924e6b0b3d505dbb36fea0e4286f4c51eda5061ca"
+    },
+    {
+      "name": "390-reduce-correction-before.png",
+      "sha256": "eb54e95eed6ebd90f02b7e0e77f4d68adb36ee0acf09f010a0931bd7e0206a71"
+    },
+    {
+      "name": "390-reduce-correction-overlay.png",
+      "sha256": "154249c7fa343ddc776cefe923bf359705d4b1a895a3d24a8d38cd8104eec1c2"
+    },
+    {
+      "name": "390-reduce-correction-split.png",
+      "sha256": "9a2dbe336b190f656293e40d0fa54ce927631951e605f62f3c39b2e52ae265be"
+    },
+    {
+      "name": "390-reduce-restoration-after.png",
+      "sha256": "b1cfc1ca6e0dfdbfc1e8b1550a0edc7885b3676495dccaaeba8f68a2be47344d"
+    },
+    {
+      "name": "390-reduce-restoration-before.png",
+      "sha256": "513c666b7b14852ac250a573430f15c249d1144b6971251911e410f19d2de0f8"
+    },
+    {
+      "name": "390-reduce-restoration-overlay.png",
+      "sha256": "67e9bd3475677ecadc05654fb4345899493f0c453a6cf0e1a4257e1732fc7311"
+    },
+    {
+      "name": "390-reduce-restoration-split.png",
+      "sha256": "4751af9dffa26c06de259bbf44768664d9aea46ebed00c6d4d3e80bd0698cd59"
+    },
+    {
+      "name": "765-no-preference-correction-after.png",
+      "sha256": "2c0f9db7c4c79ce42c685b4b819745c892853ffca7249c1132c236242b9f3e63"
+    },
+    {
+      "name": "765-no-preference-correction-before.png",
+      "sha256": "6a250562bf82e980dbce50dd8a4ef495a6bdfca0021bc7de76e13afae4061a0f"
+    },
+    {
+      "name": "765-no-preference-correction-overlay.png",
+      "sha256": "dce5b30c576a37d454f136efd40a52f597b315956a2f56bfe82ea266520446e4"
+    },
+    {
+      "name": "765-no-preference-correction-split.png",
+      "sha256": "84a435c105cc5bb261178ecd01c7629ba96515cb685036132b7cb99946bd46d3"
+    },
+    {
+      "name": "765-no-preference-restoration-after.png",
+      "sha256": "bf09798a875af145b06cd057dd0a332571cb3c15ab74f2f076b6a792503f5e27"
+    },
+    {
+      "name": "765-no-preference-restoration-before.png",
+      "sha256": "ed19d52c556dbb8e950de527fd336fc040595b660a5bd814b1f699b10ca67767"
+    },
+    {
+      "name": "765-no-preference-restoration-overlay.png",
+      "sha256": "75f1a3f349a2fe082f265f681240d45eeb39417766961d725340cbdf6ce44ed9"
+    },
+    {
+      "name": "765-no-preference-restoration-split.png",
+      "sha256": "673e8f662b6e28fba4cff7f161fe521174879cbdef38fea317dd239ab8b373fd"
+    },
+    {
+      "name": "765-reduce-correction-after.png",
+      "sha256": "2c0f9db7c4c79ce42c685b4b819745c892853ffca7249c1132c236242b9f3e63"
+    },
+    {
+      "name": "765-reduce-correction-before.png",
+      "sha256": "a628f586c8df1c1111d11ea754894d4e66bcfe408a3a30ad3130ca289ed8dc0f"
+    },
+    {
+      "name": "765-reduce-correction-overlay.png",
+      "sha256": "4969aa665760572981cf013c2263a584918b93fe7d0868ec21319a2c584a7d96"
+    },
+    {
+      "name": "765-reduce-correction-split.png",
+      "sha256": "84a435c105cc5bb261178ecd01c7629ba96515cb685036132b7cb99946bd46d3"
+    },
+    {
+      "name": "765-reduce-restoration-after.png",
+      "sha256": "bf09798a875af145b06cd057dd0a332571cb3c15ab74f2f076b6a792503f5e27"
+    },
+    {
+      "name": "765-reduce-restoration-before.png",
+      "sha256": "ed19d52c556dbb8e950de527fd336fc040595b660a5bd814b1f699b10ca67767"
+    },
+    {
+      "name": "765-reduce-restoration-overlay.png",
+      "sha256": "f6fd11625c083c4b03a5009d99833200169ddcbacddaa47a345c5d28dbe3dd29"
+    },
+    {
+      "name": "765-reduce-restoration-split.png",
+      "sha256": "673e8f662b6e28fba4cff7f161fe521174879cbdef38fea317dd239ab8b373fd"
+    },
+    {
+      "name": "fault-alpha25.png",
+      "sha256": "7cd77df3548ee0ac85b0d4b1999f180af1f2f949e4c2566e4bec70e8e942b0b0"
+    },
+    {
+      "name": "fault-mask25.png",
+      "sha256": "500b9fc0c8d0f3cae7d6ba687a2bd836adbf7f7ae08edd319c60293465075d59"
+    }
+  ],
+  "notTested": [
+    "WebKit in this local independent run",
+    "physical Safari",
+    "VoiceOver",
+    "physical mouse/touch",
+    "real OS background/capture-loss"
+  ],
+  "assetSources": [
+    {
+      "name": "restoration-before.svg",
+      "sourceSHA256": "0e7331d3ebe73bfab09fe89a55fac01ac695c79f772cc36cd3b77f361b83df8c",
+      "exportSHA256": "0e7331d3ebe73bfab09fe89a55fac01ac695c79f772cc36cd3b77f361b83df8c",
+      "sameBytes": true
+    },
+    {
+      "name": "restoration-after.svg",
+      "sourceSHA256": "fb0074d61549c386f923cd520e3dbbe4e8ed9173cac4eb0aabae476cd38f0ff1",
+      "exportSHA256": "fb0074d61549c386f923cd520e3dbbe4e8ed9173cac4eb0aabae476cd38f0ff1",
+      "sameBytes": true
+    },
+    {
+      "name": "correction-before.svg",
+      "sourceSHA256": "50a302bf4100606c92ae76ca67923292e976795d3be2738c014c49be90912eb0",
+      "exportSHA256": "50a302bf4100606c92ae76ca67923292e976795d3be2738c014c49be90912eb0",
+      "sameBytes": true
+    },
+    {
+      "name": "correction-after.svg",
+      "sourceSHA256": "5a179c85e0833cff86e7a28bc13dca44eb514dca7b33dd29aebba27b443b6a82",
+      "exportSHA256": "5a179c85e0833cff86e7a28bc13dca44eb514dca7b33dd29aebba27b443b6a82",
+      "sameBytes": true
+    }
+  ],
+  "browser": "154.0.8037.57",
+  "assetCoordinates": [
+    {
+      "name": "restoration-before.svg",
+      "width": "1200",
+      "height": "760",
+      "viewBox": "0 0 1200 760",
+      "namespace": "http://www.w3.org/2000/svg",
+      "rootName": "svg",
+      "parseErrors": 0
+    },
+    {
+      "name": "restoration-after.svg",
+      "width": "1200",
+      "height": "760",
+      "viewBox": "0 0 1200 760",
+      "namespace": "http://www.w3.org/2000/svg",
+      "rootName": "svg",
+      "parseErrors": 0
+    },
+    {
+      "name": "correction-before.svg",
+      "width": "1200",
+      "height": "760",
+      "viewBox": "0 0 1200 760",
+      "namespace": "http://www.w3.org/2000/svg",
+      "rootName": "svg",
+      "parseErrors": 0
+    },
+    {
+      "name": "correction-after.svg",
+      "width": "1200",
+      "height": "760",
+      "viewBox": "0 0 1200 760",
+      "namespace": "http://www.w3.org/2000/svg",
+      "rootName": "svg",
+      "parseErrors": 0
+    }
+  ],
+  "currentCase": {
+    "width": 1280,
+    "motion": "reduce",
+    "checks": [
+      "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+      "endpoint handle no-jump (native pointer)",
+      "restoration: split 37% raster sampled 25035, visible-change samples 4979",
+      "restoration: overlay50 raster channel mean 12723 strictly-flat samples",
+      "restoration: side matched scale, no horizontal overflow",
+      "correction: split 37% raster sampled 26416, visible-change samples 20783",
+      "correction: overlay50 raster channel mean 13386 strictly-flat samples",
+      "correction: side matched scale, no horizontal overflow",
+      "native pointer+Escape rollback",
+      "reduced: replay immediate After/manual retained",
+      "close/reopen initialized"
+    ],
+    "images": [
+      {
+        "name": "final",
+        "sha256": "7a6b46c6ad56576507d9eeb816f485f4dc951cf521e489b3e3e5bca312c263ed"
+      }
+    ],
+    "endpointTrace": {
+      "h": {
+        "x": 89,
+        "y": 475.578125,
+        "width": 48,
+        "height": 48
+      },
+      "h2": {
+        "x": 1143,
+        "y": -48.421875,
+        "width": 48,
+        "height": 48
+      },
+      "valueBefore": 100
+    },
+    "captureMotion": "true"
+  },
+  "pass": true,
+  "end": "2026-11-05T19:11:06.741Z",
+  "exportSHA256": "75633b70ffad1469f09af28dda1db5dcdfcca9febb794c2fa3147ffaaab18e66",
+  "scriptSHA256": "973f91dd995b79ed15e67574ccfc0e19af65bb03c86cb7e95f366a35b67c0a25"
+}

@@ -1,0 +1,517 @@
+﻿2026-11-05T19:12:05.7101601Z Current runner version: '2.338.2'
+2026-11-05T19:12:05.7139060Z ##[group]Runner Image Provisioner
+2026-11-05T19:12:05.7140550Z Hosted Compute Agent
+2026-11-05T19:12:05.7141622Z Version: 20261028.624
+2026-11-05T19:12:05.7142665Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-05T19:12:05.7144101Z Build Date: 2026-10-28T21:51:42Z
+2026-11-05T19:12:05.7145258Z Worker ID: {1c5681b4-78b0-4c04-9342-3145ec169e6b}
+2026-11-05T19:12:05.7146521Z Region: eastus
+2026-11-05T19:12:05.7147484Z Cloud: Azure
+2026-11-05T19:12:05.7148672Z ##[endgroup]
+2026-11-05T19:12:05.7151768Z ##[group]Operating System
+2026-11-05T19:12:05.7152810Z Ubuntu
+2026-11-05T19:12:05.7153728Z 24.04.5
+2026-11-05T19:12:05.7154605Z LTS
+2026-11-05T19:12:05.7155454Z ##[endgroup]
+2026-11-05T19:12:05.7156668Z ##[group]Runner Image
+2026-11-05T19:12:05.7157700Z Image: ubuntu-24.04
+2026-11-05T19:12:05.7159083Z Version: 20261101.360.1
+2026-11-05T19:12:05.7161204Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261101.360/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-05T19:12:05.7164160Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261101.360
+2026-11-05T19:12:05.7165803Z ##[endgroup]
+2026-11-05T19:12:05.7167790Z ##[group]GITHUB_TOKEN Permissions
+2026-11-05T19:12:05.7171174Z Contents: read
+2026-11-05T19:12:05.7172162Z Metadata: read
+2026-11-05T19:12:05.7173061Z ##[endgroup]
+2026-11-05T19:12:05.7176245Z Secret source: Actions
+2026-11-05T19:12:05.7177884Z Cache mode: write
+2026-11-05T19:12:05.7179781Z Prepare workflow directory
+2026-11-05T19:12:05.7679133Z Prepare all required actions
+2026-11-05T19:12:05.7754126Z Getting action download info
+2026-11-05T19:12:06.0792677Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-05T19:12:06.1815014Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-11-05T19:12:06.2830032Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-05T19:12:06.4886006Z Complete job name: state-and-browser (chromium, 375)
+2026-11-05T19:12:06.5845870Z ##[group]Run actions/checkout@v4
+2026-11-05T19:12:06.5846829Z with:
+2026-11-05T19:12:06.5847337Z   ref: 7593e5136efc90c6bccf63fa2fc3e429b51a128d
+2026-11-05T19:12:06.5848233Z   persist-credentials: false
+2026-11-05T19:12:06.5848862Z   repository: tetsujisugimori-coder/Loading-museum
+2026-11-05T19:12:06.5853061Z   token: ***
+2026-11-05T19:12:06.5853515Z   ssh-strict: true
+2026-11-05T19:12:06.5853974Z   ssh-user: git
+2026-11-05T19:12:06.5854417Z   clean: true
+2026-11-05T19:12:06.5854895Z   sparse-checkout-cone-mode: true
+2026-11-05T19:12:06.5855456Z   fetch-depth: 1
+2026-11-05T19:12:06.5855910Z   fetch-tags: false
+2026-11-05T19:12:06.5856385Z   show-progress: true
+2026-11-05T19:12:06.5856857Z   lfs: false
+2026-11-05T19:12:06.5857287Z   submodules: false
+2026-11-05T19:12:06.5857767Z   set-safe-directory: true
+2026-11-05T19:12:06.5858452Z   allow-unsafe-pr-checkout: false
+2026-11-05T19:12:06.5859325Z ##[endgroup]
+2026-11-05T19:12:06.9115959Z Syncing repository: tetsujisugimori-coder/Loading-museum
+2026-11-05T19:12:06.9119244Z ##[group]Getting Git version info
+2026-11-05T19:12:06.9120524Z Working directory is '/home/runner/work/Loading-museum/Loading-museum'
+2026-11-05T19:12:06.9121674Z [command]/usr/bin/git version
+2026-11-05T19:12:06.9235517Z git version 2.56.0
+2026-11-05T19:12:06.9268756Z ##[endgroup]
+2026-11-05T19:12:06.9276619Z Temporarily overriding HOME='/home/runner/work/_temp/832f87b7-b258-47a6-a88e-5c569d8844a7' before making global git config changes
+2026-11-05T19:12:06.9279187Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-05T19:12:06.9282276Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Loading-museum/Loading-museum
+2026-11-05T19:12:06.9349809Z Deleting the contents of '/home/runner/work/Loading-museum/Loading-museum'
+2026-11-05T19:12:06.9356216Z ##[group]Initializing the repository
+2026-11-05T19:12:06.9371127Z [command]/usr/bin/git init /home/runner/work/Loading-museum/Loading-museum
+2026-11-05T19:12:06.9479635Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-05T19:12:06.9481451Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-05T19:12:06.9482995Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-05T19:12:06.9484195Z hint: call:
+2026-11-05T19:12:06.9484889Z hint:
+2026-11-05T19:12:06.9485774Z hint: 	git config --global init.defaultBranch <name>
+2026-11-05T19:12:06.9486834Z hint:
+2026-11-05T19:12:06.9487796Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-05T19:12:06.9490039Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-05T19:12:06.9491307Z hint:
+2026-11-05T19:12:06.9492038Z hint: 	git branch -m <name>
+2026-11-05T19:12:06.9492852Z hint:
+2026-11-05T19:12:06.9493938Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-05T19:12:06.9496301Z Initialized empty Git repository in /home/runner/work/Loading-museum/Loading-museum/.git/
+2026-11-05T19:12:06.9510213Z [command]/usr/bin/git remote add origin https://github.com/tetsujisugimori-coder/Loading-museum
+2026-11-05T19:12:06.9590816Z ##[endgroup]
+2026-11-05T19:12:06.9592186Z ##[group]Disabling automatic garbage collection
+2026-11-05T19:12:06.9595028Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-05T19:12:06.9636851Z ##[endgroup]
+2026-11-05T19:12:06.9638229Z ##[group]Setting up auth
+2026-11-05T19:12:06.9646305Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-05T19:12:06.9696371Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-05T19:12:07.0156097Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-05T19:12:07.0203567Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-05T19:12:07.0459238Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-05T19:12:07.0506477Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-05T19:12:07.0766356Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-05T19:12:07.0822430Z ##[endgroup]
+2026-11-05T19:12:07.0823346Z ##[group]Fetching the repository
+2026-11-05T19:12:07.0835876Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 7593e5136efc90c6bccf63fa2fc3e429b51a128d
+2026-11-05T19:12:09.9809326Z From https://github.com/tetsujisugimori-coder/Loading-museum
+2026-11-05T19:12:09.9810902Z  * branch            7593e5136efc90c6bccf63fa2fc3e429b51a128d -> FETCH_HEAD
+2026-11-05T19:12:09.9841062Z ##[endgroup]
+2026-11-05T19:12:09.9842330Z ##[group]Determining the checkout info
+2026-11-05T19:12:09.9844073Z ##[endgroup]
+2026-11-05T19:12:09.9845058Z [command]/usr/bin/git sparse-checkout disable
+2026-11-05T19:12:09.9918670Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-05T19:12:09.9969214Z ##[group]Checking out the ref
+2026-11-05T19:12:09.9975521Z [command]/usr/bin/git checkout --progress --force 7593e5136efc90c6bccf63fa2fc3e429b51a128d
+2026-11-05T19:12:10.3646119Z Note: switching to '7593e5136efc90c6bccf63fa2fc3e429b51a128d'.
+2026-11-05T19:12:10.3647046Z 
+2026-11-05T19:12:10.3647674Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-05T19:12:10.3649486Z changes and commit them, and you can discard any commits you make in this
+2026-11-05T19:12:10.3743526Z state without impacting any branches by switching back to a branch.
+2026-11-05T19:12:10.3745950Z 
+2026-11-05T19:12:10.3746956Z If you want to create a new branch to retain commits you create, you may
+2026-11-05T19:12:10.3753640Z do so (now or later) by using -c with the switch command. Example:
+2026-11-05T19:12:10.3754964Z 
+2026-11-05T19:12:10.3755542Z   git switch -c <new-branch-name>
+2026-11-05T19:12:10.3756438Z 
+2026-11-05T19:12:10.3757011Z Or undo this operation with:
+2026-11-05T19:12:10.3757913Z 
+2026-11-05T19:12:10.3758696Z   git switch -
+2026-11-05T19:12:10.3759390Z 
+2026-11-05T19:12:10.3760604Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-05T19:12:10.3762458Z 
+2026-11-05T19:12:10.3763235Z HEAD is now at 7593e51 test: inject observed image failures before the first cold load
+2026-11-05T19:12:10.3766703Z ##[endgroup]
+2026-11-05T19:12:10.3768953Z [command]/usr/bin/git log -1 --format=%H
+2026-11-05T19:12:10.3788683Z 7593e5136efc90c6bccf63fa2fc3e429b51a128d
+2026-11-05T19:12:10.3801561Z ##[group]Removing auth
+2026-11-05T19:12:10.3806523Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-05T19:12:10.3854239Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-05T19:12:10.4112797Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-05T19:12:10.4150568Z http.https://github.com/.extraheader
+2026-11-05T19:12:10.4160133Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-05T19:12:10.4205330Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-05T19:12:10.4467559Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-05T19:12:10.4516787Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-05T19:12:10.4772977Z ##[endgroup]
+2026-11-05T19:12:10.5198413Z ##[group]Run actions/setup-node@v4
+2026-11-05T19:12:10.5199631Z with:
+2026-11-05T19:12:10.5200499Z   node-version: 22
+2026-11-05T19:12:10.5201439Z   cache: npm
+2026-11-05T19:12:10.5202336Z   always-auth: false
+2026-11-05T19:12:10.5203321Z   check-latest: false
+2026-11-05T19:12:10.5213043Z   token: ***
+2026-11-05T19:12:10.5213962Z ##[endgroup]
+2026-11-05T19:12:10.6863444Z (node:2390) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-05T19:12:10.6869249Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-05T19:12:10.6876135Z Found in cache @ /opt/hostedtoolcache/node/22.23.4/x64
+2026-11-05T19:12:10.6878644Z ##[group]Environment details
+2026-11-05T19:12:11.1898803Z node: v22.23.4
+2026-11-05T19:12:11.1899229Z npm: 10.9.9
+2026-11-05T19:12:11.1899553Z yarn: 1.22.22
+2026-11-05T19:12:11.1900976Z ##[endgroup]
+2026-11-05T19:12:11.1930466Z [command]/opt/hostedtoolcache/node/22.23.4/x64/bin/npm config get cache
+2026-11-05T19:12:11.3152041Z /home/runner/.npm
+2026-11-05T19:12:11.4166057Z Cache hit for: node-cache-Linux-x64-npm-bdf7676ac3c73d012e84037285c700072175be4631684dbc433a5ae75338da79
+2026-11-05T19:12:11.4286833Z (node:2390) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-05T19:12:12.1810232Z Received 123734185 of 123734185 (100.0%), 162.8 MBs/sec
+2026-11-05T19:12:12.1811004Z Cache Size: ~118 MB (123734185 B)
+2026-11-05T19:12:12.1950312Z [command]/usr/bin/tar -xf /home/runner/work/_temp/a21b7460-4356-4726-8e11-2ab20867fdda/cache.tzst -P -C /home/runner/work/Loading-museum/Loading-museum --use-compress-program unzstd
+2026-11-05T19:12:12.5415269Z Cache restored successfully
+2026-11-05T19:12:12.5475402Z Cache restored from key: node-cache-Linux-x64-npm-bdf7676ac3c73d012e84037285c700072175be4631684dbc433a5ae75338da79
+2026-11-05T19:12:12.5721085Z ##[group]Run npm ci
+2026-11-05T19:12:12.5721445Z [36;1mnpm ci[0m
+2026-11-05T19:12:12.5755907Z shell: /usr/bin/bash -e {0}
+2026-11-05T19:12:12.5756213Z ##[endgroup]
+2026-11-05T19:12:15.9339792Z npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+2026-11-05T19:12:58.1050847Z 
+2026-11-05T19:12:58.1051959Z added 437 packages, and audited 438 packages in 45s
+2026-11-05T19:12:58.1052502Z 
+2026-11-05T19:12:58.1052845Z 160 packages are looking for funding
+2026-11-05T19:12:58.1053379Z   run `npm fund` for details
+2026-11-05T19:12:58.4415026Z 
+2026-11-05T19:12:58.4416038Z 22 vulnerabilities (1 low, 10 moderate, 8 high, 3 critical)
+2026-11-05T19:12:58.4416801Z 
+2026-11-05T19:12:58.4417286Z To address issues that do not require attention, run:
+2026-11-05T19:12:58.4418318Z   npm audit fix
+2026-11-05T19:12:58.4418642Z 
+2026-11-05T19:12:58.4419130Z To address all issues (including breaking changes), run:
+2026-11-05T19:12:58.4419911Z   npm audit fix --force
+2026-11-05T19:12:58.4421409Z 
+2026-11-05T19:12:58.4421782Z Run `npm audit` for details.
+2026-11-05T19:12:58.5768732Z ##[group]Run npm run lint && npm run typecheck && npx vitest run --maxWorkers=2 tests/before-after-compare.test.tsx tests/pan-zoom.test.tsx tests/image-crop.test.tsx tests/phase5b-compare.test.tsx && npm run build
+2026-11-05T19:12:58.5770350Z [36;1mnpm run lint && npm run typecheck && npx vitest run --maxWorkers=2 tests/before-after-compare.test.tsx tests/pan-zoom.test.tsx tests/image-crop.test.tsx tests/phase5b-compare.test.tsx && npm run build[0m
+2026-11-05T19:12:58.5791959Z shell: /usr/bin/bash -e {0}
+2026-11-05T19:12:58.5792237Z ##[endgroup]
+2026-11-05T19:12:58.6773006Z 
+2026-11-05T19:12:58.6773600Z > loading-museum@0.1.0 lint
+2026-11-05T19:12:58.6774135Z > eslint .
+2026-11-05T19:12:58.6774369Z 
+2026-11-05T19:13:17.5176312Z 
+2026-11-05T19:13:17.5177144Z > loading-museum@0.1.0 typecheck
+2026-11-05T19:13:17.5177797Z > tsc --noEmit
+2026-11-05T19:13:17.5178336Z 
+2026-11-05T19:13:26.6104845Z 
+2026-11-05T19:13:26.6111247Z [1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+2026-11-05T19:13:26.6111937Z 
+2026-11-05T19:13:28.9762886Z  [32m✓[39m tests/before-after-compare.test.tsx [2m([22m[2m40 tests[22m[2m)[22m[33m 937[2mms[22m[39m
+2026-11-05T19:13:30.5622078Z  [32m✓[39m tests/phase5b-compare.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 734[2mms[22m[39m
+2026-11-05T19:13:30.9554037Z  [32m✓[39m tests/image-crop.test.tsx [2m([22m[2m30 tests[22m[2m)[22m[33m 2917[2mms[22m[39m
+2026-11-05T19:13:30.9556076Z    [33m[2m✓[22m[39m reapplies actual displayed wide minimum values 16 times without drift [33m 590[2mms[22m[39m
+2026-11-05T19:13:30.9557414Z    [33m[2m✓[22m[39m reapplies actual displayed square minimum values 16 times without drift [33m 308[2mms[22m[39m
+2026-11-05T19:13:32.6909416Z  [32m✓[39m tests/pan-zoom.test.tsx [2m([22m[2m13 tests[22m[2m)[22m[33m 1246[2mms[22m[39m
+2026-11-05T19:13:32.7187561Z 
+2026-11-05T19:13:32.7192956Z [2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+2026-11-05T19:13:32.7194178Z [2m      Tests [22m [1m[32m90 passed[39m[22m[90m (90)[39m
+2026-11-05T19:13:32.7195037Z [2m   Start at [22m 19:13:26
+2026-11-05T19:13:32.7196382Z [2m   Duration [22m 6.11s[2m (transform 626ms, setup 0ms, collect 1.72s, tests 5.83s, environment 1.72s, prepare 415ms)[22m
+2026-11-05T19:13:32.7197234Z 
+2026-11-05T19:13:32.9432717Z 
+2026-11-05T19:13:32.9433826Z > loading-museum@0.1.0 build
+2026-11-05T19:13:32.9434721Z > next build
+2026-11-05T19:13:32.9434982Z 
+2026-11-05T19:13:33.3323316Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2026-11-05T19:13:33.3422950Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2026-11-05T19:13:33.3425203Z This information is used to shape Next.js' roadmap and prioritize features.
+2026-11-05T19:13:33.3432710Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2026-11-05T19:13:33.3434000Z https://nextjs.org/telemetry
+2026-11-05T19:13:33.3434555Z 
+2026-11-05T19:13:33.3588886Z ▲ Next.js 16.2.6 (Turbopack)
+2026-11-05T19:13:33.3593271Z 
+2026-11-05T19:13:33.4066174Z   Creating an optimized production build ...
+2026-11-05T19:13:36.8470032Z ✓ Compiled successfully in 3.2s
+2026-11-05T19:13:36.8489031Z   Running TypeScript ...
+2026-11-05T19:13:45.6999370Z   Finished TypeScript in 8.9s ...
+2026-11-05T19:13:45.7043828Z   Collecting page data using 3 workers ...
+2026-11-05T19:13:46.1713036Z   Generating static pages using 3 workers (0/3) ...
+2026-11-05T19:13:46.4459396Z ✓ Generating static pages using 3 workers (3/3) in 275ms
+2026-11-05T19:13:46.4502959Z   Finalizing page optimization ...
+2026-11-05T19:13:46.5837726Z 
+2026-11-05T19:13:46.5856905Z Route (app)
+2026-11-05T19:13:46.5857560Z ┌ ○ /
+2026-11-05T19:13:46.5858241Z └ ○ /_not-found
+2026-11-05T19:13:46.5858517Z 
+2026-11-05T19:13:46.5858527Z 
+2026-11-05T19:13:46.5859482Z ○  (Static)  prerendered as static content
+2026-11-05T19:13:46.5859896Z 
+2026-11-05T19:13:46.6462816Z ##[group]Run npm install --prefix "$RUNNER_TEMP/before-after-playwright" --no-save playwright@1.56.1 pngjs@7.0.0
+2026-11-05T19:13:46.6463708Z [36;1mnpm install --prefix "$RUNNER_TEMP/before-after-playwright" --no-save playwright@1.56.1 pngjs@7.0.0[0m
+2026-11-05T19:13:46.6464299Z [36;1mif [ -f /etc/apt/apt-mirrors.txt ]; then[0m
+2026-11-05T19:13:46.6465037Z [36;1m  printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt[0m
+2026-11-05T19:13:46.6465740Z [36;1mfi[0m
+2026-11-05T19:13:46.6466311Z [36;1mprintf 'Acquire::http::Timeout "30";\nAcquire::https::Timeout "30";\nAcquire::Retries "1";\n' | sudo tee /etc/apt/apt.conf.d/99-museum-network-bounds[0m
+2026-11-05T19:13:46.6467237Z [36;1m"$RUNNER_TEMP/before-after-playwright/node_modules/.bin/playwright" install --with-deps chromium[0m
+2026-11-05T19:13:46.6488247Z shell: /usr/bin/bash -e {0}
+2026-11-05T19:13:46.6488529Z ##[endgroup]
+2026-11-05T19:13:48.2983374Z 
+2026-11-05T19:13:48.2983995Z added 3 packages in 2s
+2026-11-05T19:13:48.3299966Z https://archive.ubuntu.com/ubuntu/	priority:1
+2026-11-05T19:13:48.3300687Z https://security.ubuntu.com/ubuntu/	priority:2
+2026-11-05T19:13:48.3378536Z Acquire::http::Timeout "30";
+2026-11-05T19:13:48.3378913Z Acquire::https::Timeout "30";
+2026-11-05T19:13:48.3379378Z Acquire::Retries "1";
+2026-11-05T19:13:48.8959398Z Installing dependencies...
+2026-11-05T19:13:48.9026103Z Switching to root user to install dependencies...
+2026-11-05T19:13:48.9779755Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [93 B]
+2026-11-05T19:13:49.0049390Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2026-11-05T19:13:49.0896953Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [733 kB]
+2026-11-05T19:13:49.1062792Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [664 kB]
+2026-11-05T19:13:49.5301538Z Hit:2 https://archive.ubuntu.com/ubuntu noble InRelease
+2026-11-05T19:13:49.6175018Z Get:3 https://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-11-05T19:13:49.9225855Z Get:4 https://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-11-05T19:13:50.0583512Z Get:5 https://archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-11-05T19:13:50.1871798Z Get:9 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1409 kB]
+2026-11-05T19:13:50.5363798Z Get:10 https://archive.ubuntu.com/ubuntu noble-updates/main Translation-en [311 kB]
+2026-11-05T19:13:50.6289352Z Get:11 https://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1708 kB]
+2026-11-05T19:13:50.7790583Z Get:12 https://archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [343 kB]
+2026-11-05T19:13:50.8695685Z Get:13 https://archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1157 kB]
+2026-11-05T19:13:50.9854228Z Get:14 https://archive.ubuntu.com/ubuntu noble-security/main Translation-en [234 kB]
+2026-11-05T19:13:51.0750124Z Get:15 https://archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1225 kB]
+2026-11-05T19:13:51.1933943Z Get:16 https://archive.ubuntu.com/ubuntu noble-security/universe Translation-en [247 kB]
+2026-11-05T19:13:51.2825574Z Get:17 https://archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1721 kB]
+2026-11-05T19:13:51.4155902Z Get:18 https://archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [394 kB]
+2026-11-05T19:13:51.5064769Z Get:19 https://archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [12.4 kB]
+2026-11-05T19:13:54.0105715Z Fetched 10.5 MB in 3s (4083 kB/s)
+2026-11-05T19:13:55.1816273Z Reading package lists...
+2026-11-05T19:13:55.2175522Z Reading package lists...
+2026-11-05T19:13:55.4416809Z Building dependency tree...
+2026-11-05T19:13:55.4423938Z Reading state information...
+2026-11-05T19:13:55.5811090Z libasound2t64 is already the newest version (1.2.11-1ubuntu0.3).
+2026-11-05T19:13:55.5812873Z libasound2t64 set to manually installed.
+2026-11-05T19:13:55.5813983Z libatk-bridge2.0-0t64 is already the newest version (2.52.0-1build1).
+2026-11-05T19:13:55.5815090Z libatk-bridge2.0-0t64 set to manually installed.
+2026-11-05T19:13:55.5837188Z libatk1.0-0t64 is already the newest version (2.52.0-1build1).
+2026-11-05T19:13:55.5838130Z libatk1.0-0t64 set to manually installed.
+2026-11-05T19:13:55.5838775Z libatspi2.0-0t64 is already the newest version (2.52.0-1build1).
+2026-11-05T19:13:55.5839257Z libatspi2.0-0t64 set to manually installed.
+2026-11-05T19:13:55.5839711Z libcairo2 is already the newest version (1.18.0-3build1).
+2026-11-05T19:13:55.5840114Z libcairo2 set to manually installed.
+2026-11-05T19:13:55.5840558Z libcups2t64 is already the newest version (2.4.7-1.2ubuntu7.14).
+2026-11-05T19:13:55.5841002Z libcups2t64 set to manually installed.
+2026-11-05T19:13:55.5841436Z libdbus-1-3 is already the newest version (1.14.10-4ubuntu4.1).
+2026-11-05T19:13:55.5841848Z libdbus-1-3 set to manually installed.
+2026-11-05T19:13:55.5842288Z libdrm2 is already the newest version (2.4.125-1ubuntu0.1~24.04.2).
+2026-11-05T19:13:55.5842697Z libdrm2 set to manually installed.
+2026-11-05T19:13:55.5843104Z libgbm1 is already the newest version (25.2.8-0ubuntu0.24.04.4).
+2026-11-05T19:13:55.5843503Z libgbm1 set to manually installed.
+2026-11-05T19:13:55.5843923Z libglib2.0-0t64 is already the newest version (2.80.0-6ubuntu3.10).
+2026-11-05T19:13:55.5844348Z libglib2.0-0t64 set to manually installed.
+2026-11-05T19:13:55.5844775Z libnspr4 is already the newest version (2:4.35-1.1build1).
+2026-11-05T19:13:55.5845162Z libnspr4 set to manually installed.
+2026-11-05T19:13:55.5845549Z libnss3 is already the newest version (2:3.98-1ubuntu0.3).
+2026-11-05T19:13:55.5845929Z libnss3 set to manually installed.
+2026-11-05T19:13:55.5846343Z libpango-1.0-0 is already the newest version (1.52.1+ds-1build1).
+2026-11-05T19:13:55.5846776Z libpango-1.0-0 set to manually installed.
+2026-11-05T19:13:55.5847200Z libx11-6 is already the newest version (2:1.8.7-1ubuntu0.1).
+2026-11-05T19:13:55.5847591Z libx11-6 set to manually installed.
+2026-11-05T19:13:55.5848084Z libxcb1 is already the newest version (1.15-1ubuntu2).
+2026-11-05T19:13:55.5848452Z libxcb1 set to manually installed.
+2026-11-05T19:13:55.5848868Z libxcomposite1 is already the newest version (1:0.4.5-1build3).
+2026-11-05T19:13:55.5849284Z libxcomposite1 set to manually installed.
+2026-11-05T19:13:55.5849716Z libxdamage1 is already the newest version (1:1.1.6-1build1).
+2026-11-05T19:13:55.5850125Z libxdamage1 set to manually installed.
+2026-11-05T19:13:55.5850519Z libxext6 is already the newest version (2:1.3.4-1build2).
+2026-11-05T19:13:55.5850907Z libxext6 set to manually installed.
+2026-11-05T19:13:55.5851306Z libxfixes3 is already the newest version (1:6.0.0-2build1).
+2026-11-05T19:13:55.5851972Z libxfixes3 set to manually installed.
+2026-11-05T19:13:55.5852377Z libxkbcommon0 is already the newest version (1.6.0-1build1).
+2026-11-05T19:13:55.5852780Z libxkbcommon0 set to manually installed.
+2026-11-05T19:13:55.5853191Z libxrandr2 is already the newest version (2:1.5.2-2build1).
+2026-11-05T19:13:55.5853574Z libxrandr2 set to manually installed.
+2026-11-05T19:13:55.5853977Z xvfb is already the newest version (2:21.1.12-1ubuntu1.9).
+2026-11-05T19:13:55.5854543Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+2026-11-05T19:13:55.5855119Z libfontconfig1 is already the newest version (2.15.0-1.1ubuntu2).
+2026-11-05T19:13:55.5855550Z libfontconfig1 set to manually installed.
+2026-11-05T19:13:55.5856009Z libfreetype6 is already the newest version (2.13.2+dfsg-1ubuntu0.2).
+2026-11-05T19:13:55.5856451Z libfreetype6 set to manually installed.
+2026-11-05T19:13:55.5856873Z fonts-liberation is already the newest version (1:2.1.5-3).
+2026-11-05T19:13:55.5857301Z fonts-liberation set to manually installed.
+2026-11-05T19:13:55.5857703Z The following additional packages will be installed:
+2026-11-05T19:13:55.5858308Z   xfonts-encodings xfonts-utils
+2026-11-05T19:13:55.5858612Z Recommended packages:
+2026-11-05T19:13:55.5859048Z   fonts-ipafont-mincho fonts-tlwg-loma
+2026-11-05T19:13:55.6011724Z The following NEW packages will be installed:
+2026-11-05T19:13:55.6012573Z   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+2026-11-05T19:13:55.6017530Z   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
+2026-11-05T19:13:55.6018371Z   xfonts-utils
+2026-11-05T19:13:55.6222351Z 0 upgraded, 9 newly installed, 0 to remove and 24 not upgraded.
+2026-11-05T19:13:55.6223040Z Need to get 21.1 MB of archives.
+2026-11-05T19:13:55.6223491Z After this operation, 79.5 MB of additional disk space will be used.
+2026-11-05T19:13:55.6224007Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [93 B]
+2026-11-05T19:13:55.8266565Z Get:2 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1 [3513 kB]
+2026-11-05T19:13:55.9488309Z Get:3 https://archive.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2 [5641 kB]
+2026-11-05T19:13:56.0209898Z Get:4 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1 [107 kB]
+2026-11-05T19:13:56.0364286Z Get:5 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1 [2993 kB]
+2026-11-05T19:13:56.0814207Z Get:6 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8 [7472 kB]
+2026-11-05T19:13:56.1827211Z Get:7 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2 [578 kB]
+2026-11-05T19:13:56.2001975Z Get:8 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
+2026-11-05T19:13:56.2150476Z Get:9 https://archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
+2026-11-05T19:13:56.2313736Z Get:10 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
+2026-11-05T19:13:56.5046022Z Fetched 21.1 MB in 1s (33.8 MB/s)
+2026-11-05T19:13:56.5310342Z Selecting previously unselected package fonts-ipafont-gothic.
+2026-11-05T19:13:56.5634187Z (Reading database ... 
+2026-11-05T19:13:56.5634741Z (Reading database ... 5%
+2026-11-05T19:13:56.5635213Z (Reading database ... 10%
+2026-11-05T19:13:56.5635643Z (Reading database ... 15%
+2026-11-05T19:13:56.5636054Z (Reading database ... 20%
+2026-11-05T19:13:56.5636493Z (Reading database ... 25%
+2026-11-05T19:13:56.5636907Z (Reading database ... 30%
+2026-11-05T19:13:56.5637309Z (Reading database ... 35%
+2026-11-05T19:13:56.5637791Z (Reading database ... 40%
+2026-11-05T19:13:56.5639021Z (Reading database ... 45%
+2026-11-05T19:13:56.5639513Z (Reading database ... 50%
+2026-11-05T19:13:56.5699392Z (Reading database ... 55%
+2026-11-05T19:13:56.7098757Z (Reading database ... 60%
+2026-11-05T19:13:56.9128455Z (Reading database ... 65%
+2026-11-05T19:13:57.1089386Z (Reading database ... 70%
+2026-11-05T19:13:57.3132277Z (Reading database ... 75%
+2026-11-05T19:13:57.4140495Z (Reading database ... 80%
+2026-11-05T19:13:57.5554008Z (Reading database ... 85%
+2026-11-05T19:13:57.7192430Z (Reading database ... 90%
+2026-11-05T19:13:57.8667598Z (Reading database ... 95%
+2026-11-05T19:13:57.8668523Z (Reading database ... 100%
+2026-11-05T19:13:57.8669110Z (Reading database ... 215960 files and directories currently installed.)
+2026-11-05T19:13:57.8710474Z Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
+2026-11-05T19:13:57.8815432Z Unpacking fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-11-05T19:13:58.1254370Z Selecting previously unselected package fonts-freefont-ttf.
+2026-11-05T19:13:58.1403126Z Preparing to unpack .../1-fonts-freefont-ttf_20211204+svn4273-2_all.deb ...
+2026-11-05T19:13:58.1411104Z Unpacking fonts-freefont-ttf (20211204+svn4273-2) ...
+2026-11-05T19:13:58.2373179Z Selecting previously unselected package fonts-tlwg-loma-otf.
+2026-11-05T19:13:58.2564679Z Preparing to unpack .../2-fonts-tlwg-loma-otf_1%3a0.7.3-1_all.deb ...
+2026-11-05T19:13:58.2572499Z Unpacking fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-11-05T19:13:58.2811646Z Selecting previously unselected package fonts-unifont.
+2026-11-05T19:13:58.2957093Z Preparing to unpack .../3-fonts-unifont_1%3a15.1.01-1build1_all.deb ...
+2026-11-05T19:13:58.2963575Z Unpacking fonts-unifont (1:15.1.01-1build1) ...
+2026-11-05T19:13:58.4297413Z Selecting previously unselected package fonts-wqy-zenhei.
+2026-11-05T19:13:58.4441885Z Preparing to unpack .../4-fonts-wqy-zenhei_0.9.45-8_all.deb ...
+2026-11-05T19:13:58.4551148Z Unpacking fonts-wqy-zenhei (0.9.45-8) ...
+2026-11-05T19:13:58.9429362Z Selecting previously unselected package xfonts-encodings.
+2026-11-05T19:13:58.9578094Z Preparing to unpack .../5-xfonts-encodings_1%3a1.0.5-0ubuntu2_all.deb ...
+2026-11-05T19:13:58.9584979Z Unpacking xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-11-05T19:13:58.9890499Z Selecting previously unselected package xfonts-utils.
+2026-11-05T19:13:59.0032798Z Preparing to unpack .../6-xfonts-utils_1%3a7.7+6build3_amd64.deb ...
+2026-11-05T19:13:59.0040042Z Unpacking xfonts-utils (1:7.7+6build3) ...
+2026-11-05T19:13:59.0469308Z Selecting previously unselected package xfonts-cyrillic.
+2026-11-05T19:13:59.0614330Z Preparing to unpack .../7-xfonts-cyrillic_1%3a1.0.5+nmu1_all.deb ...
+2026-11-05T19:13:59.0623681Z Unpacking xfonts-cyrillic (1:1.0.5+nmu1) ...
+2026-11-05T19:13:59.1020423Z Selecting previously unselected package xfonts-scalable.
+2026-11-05T19:13:59.1162130Z Preparing to unpack .../8-xfonts-scalable_1%3a1.0.3-1.3_all.deb ...
+2026-11-05T19:13:59.1170080Z Unpacking xfonts-scalable (1:1.0.3-1.3) ...
+2026-11-05T19:13:59.1629354Z Setting up fonts-wqy-zenhei (0.9.45-8) ...
+2026-11-05T19:13:59.1785135Z Setting up fonts-freefont-ttf (20211204+svn4273-2) ...
+2026-11-05T19:13:59.1809909Z Setting up fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-11-05T19:13:59.1827533Z Setting up xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-11-05T19:13:59.1846888Z Setting up fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-11-05T19:13:59.1924719Z update-alternatives: using /usr/share/fonts/opentype/ipafont-gothic/ipag.ttf to provide /usr/share/fonts/truetype/fonts-japanese-gothic.ttf (fonts-japanese-gothic.ttf) in auto mode
+2026-11-05T19:13:59.1963504Z Setting up fonts-unifont (1:15.1.01-1build1) ...
+2026-11-05T19:13:59.2015182Z Setting up xfonts-utils (1:7.7+6build3) ...
+2026-11-05T19:13:59.2081546Z Setting up xfonts-cyrillic (1:1.0.5+nmu1) ...
+2026-11-05T19:13:59.2407271Z Setting up xfonts-scalable (1:1.0.3-1.3) ...
+2026-11-05T19:13:59.2685404Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-11-05T19:13:59.2737068Z Not building database; man-db/auto-update is not 'true'.
+2026-11-05T19:13:59.2752319Z Processing triggers for fontconfig (2.15.0-1.1ubuntu2) ...
+2026-11-05T19:14:00.0616582Z 
+2026-11-05T19:14:00.0617608Z Running kernel seems to be up-to-date.
+2026-11-05T19:14:00.0618929Z 
+2026-11-05T19:14:00.0619241Z No services need to be restarted.
+2026-11-05T19:14:00.0619583Z 
+2026-11-05T19:14:00.0619865Z No containers need to be restarted.
+2026-11-05T19:14:00.0620246Z 
+2026-11-05T19:14:00.0620552Z No user sessions are running outdated binaries.
+2026-11-05T19:14:00.0620930Z 
+2026-11-05T19:14:00.0621425Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-11-05T19:14:01.0572681Z Downloading Chromium 141.0.7390.37 (playwright build v1194) from https://cdn.playwright.dev/dbazure/download/playwright/builds/chromium/1194/chromium-linux.zip
+2026-11-05T19:14:01.2338296Z |                                                                                |   0% of 173.9 MiB
+2026-11-05T19:14:01.4329448Z |■■■■■■■■                                                                        |  10% of 173.9 MiB
+2026-11-05T19:14:01.5162770Z |■■■■■■■■■■■■■■■■                                                                |  20% of 173.9 MiB
+2026-11-05T19:14:01.5980326Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 173.9 MiB
+2026-11-05T19:14:01.6635894Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 173.9 MiB
+2026-11-05T19:14:01.7367027Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 173.9 MiB
+2026-11-05T19:14:01.7917881Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 173.9 MiB
+2026-11-05T19:14:01.8670362Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 173.9 MiB
+2026-11-05T19:14:01.9607801Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 173.9 MiB
+2026-11-05T19:14:02.0467400Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 173.9 MiB
+2026-11-05T19:14:02.1314257Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 173.9 MiB
+2026-11-05T19:14:05.4854636Z Chromium 141.0.7390.37 (playwright build v1194) downloaded to /home/runner/.cache/ms-playwright/chromium-1194
+2026-11-05T19:14:05.4859148Z Downloading FFMPEG playwright build v1011 from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-linux.zip
+2026-11-05T19:14:05.6219765Z |                                                                                |   0% of 2.3 MiB
+2026-11-05T19:14:05.6268938Z |■■■■■■■■                                                                        |  10% of 2.3 MiB
+2026-11-05T19:14:05.6294655Z |■■■■■■■■■■■■■■■■                                                                |  20% of 2.3 MiB
+2026-11-05T19:14:05.6322275Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.3 MiB
+2026-11-05T19:14:05.6343435Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.3 MiB
+2026-11-05T19:14:05.6362822Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.3 MiB
+2026-11-05T19:14:05.6378250Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.3 MiB
+2026-11-05T19:14:05.6399642Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.3 MiB
+2026-11-05T19:14:05.6412648Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.3 MiB
+2026-11-05T19:14:05.6426722Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.3 MiB
+2026-11-05T19:14:05.6438522Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.3 MiB
+2026-11-05T19:14:05.6996712Z FFMPEG playwright build v1011 downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1011
+2026-11-05T19:14:05.7001001Z Downloading Chromium Headless Shell 141.0.7390.37 (playwright build v1194) from https://cdn.playwright.dev/dbazure/download/playwright/builds/chromium/1194/chromium-headless-shell-linux.zip
+2026-11-05T19:14:05.8334611Z |                                                                                |   0% of 104.3 MiB
+2026-11-05T19:14:05.9170033Z |■■■■■■■■                                                                        |  10% of 104.3 MiB
+2026-11-05T19:14:05.9799788Z |■■■■■■■■■■■■■■■■                                                                |  20% of 104.3 MiB
+2026-11-05T19:14:06.0443411Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 104.3 MiB
+2026-11-05T19:14:06.1007729Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 104.3 MiB
+2026-11-05T19:14:06.1422636Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 104.3 MiB
+2026-11-05T19:14:06.1909666Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 104.3 MiB
+2026-11-05T19:14:06.2366063Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 104.3 MiB
+2026-11-05T19:14:06.2699125Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 104.3 MiB
+2026-11-05T19:14:06.3075774Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 104.3 MiB
+2026-11-05T19:14:06.3398951Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 104.3 MiB
+2026-11-05T19:14:08.0851663Z Chromium Headless Shell 141.0.7390.37 (playwright build v1194) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1194
+2026-11-05T19:14:08.1762430Z ##[group]Run set -o pipefail
+2026-11-05T19:14:08.1762776Z [36;1mset -o pipefail[0m
+2026-11-05T19:14:08.1763029Z [36;1mmkdir -p work[0m
+2026-11-05T19:14:08.1763488Z [36;1mexport PLAYWRIGHT_MODULE="$RUNNER_TEMP/before-after-playwright/node_modules/playwright"[0m
+2026-11-05T19:14:08.1764134Z [36;1mexport PNG_MODULE="$RUNNER_TEMP/before-after-playwright/node_modules/pngjs"[0m
+2026-11-05T19:14:08.1764767Z [36;1mnode scripts/verify-before-after-browser.mjs 2>&1 | tee work/before-after-browser.log[0m
+2026-11-05T19:14:08.1785635Z shell: /usr/bin/bash -e {0}
+2026-11-05T19:14:08.1785893Z env:
+2026-11-05T19:14:08.1786084Z   BROWSERS: chromium
+2026-11-05T19:14:08.1786309Z   WIDTHS: 375
+2026-11-05T19:14:08.1786532Z   EVIDENCE_DIR: work/before-after-browser
+2026-11-05T19:14:08.1786813Z   REQUIRE_CLEAN: 1
+2026-11-05T19:14:08.1787018Z ##[endgroup]
+2026-11-05T19:14:36.2241995Z {"caseComplete":{"engine":"chromium","version":"141.0.7390.37","width":375,"motion":"no-preference"},"head":"7593e5136efc90c6bccf63fa2fc3e429b51a128d","checks":10,"nativePointer":[{"nativePointer":{"start":{"sequence":7,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":13,"type":"pointermove","id":1,"x":262.75,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":8,"type":"pointermove","id":1,"x":200.0416717529297,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":9,"type":"pointermove","id":1,"x":212.5833282470703,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":10,"type":"pointermove","id":1,"x":225.125,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":11,"type":"pointermove","id":1,"x":237.6666717529297,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":12,"type":"pointermove","id":1,"x":250.2083282470703,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":13,"type":"pointermove","id":1,"x":262.75,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":75},{"nativePointer":{"start":{"sequence":16,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":22,"type":"pointerup","id":1,"x":256.7300109863281,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":17,"type":"pointermove","id":1,"x":201.3459930419922,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":18,"type":"pointermove","id":1,"x":215.19200134277344,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":19,"type":"pointermove","id":1,"x":229.03799438476562,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":20,"type":"pointermove","id":1,"x":242.88400268554688,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":21,"type":"pointermove","id":1,"x":256.7300109863281,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":73.0000036499429},{"nativePointer":{"start":{"sequence":24,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":25,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":25,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":79.99999594450789},{"nativePointer":{"start":{"sequence":24,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":26,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":25,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":26,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":80.99999918890158},{"nativePointer":{"start":{"sequence":31,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":32,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":32,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":79.99999594450789},{"nativePointer":{"start":{"sequence":31,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":33,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":32,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":33,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":80.99999918890158},{"nativePointer":{"start":{"sequence":38,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":39,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":39,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":79.99999594450789},{"nativePointer":{"start":{"sequence":38,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":40,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":39,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":40,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":80.99999918890158},{"nativePointer":{"start":{"sequence":45,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":46,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":46,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":79.99999594450789},{"nativePointer":{"start":{"sequence":45,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":47,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":46,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":47,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":80.99999918890158},{"nativePointer":{"start":{"sequence":52,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":53,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":53,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":79.99999594450789},{"nativePointer":{"start":{"sequence":52,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":54,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":53,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":54,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":80.99999918890158},{"nativePointer":{"start":{"sequence":58,"type":"pointerdown","id":2,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"touch"},"end":{"sequence":60,"type":"pointerup","id":2,"x":262.75,"y":161.21875,"trusted":true,"pointerType":"touch"},"moves":[{"sequence":59,"type":"pointermove","id":2,"x":262.75,"y":161.21875,"trusted":true,"pointerType":"touch"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":75}],"masks":[{"maskExpected":0,"computedClip":"inset(0px 100% 0px 0px)","edgesCSS":[0,301,0,0]},{"maskExpected":50,"computedClip":"inset(0px 50% 0px 0px)","edgesCSS":[0,150.5,0,0]},{"maskExpected":100,"computedClip":"inset(0px 0% 0px 0px)","edgesCSS":[0,0,0,0]},{"maskExpected":37,"computedClip":"inset(0px 63% 0px 0px)","edgesCSS":[0,189.63,0,0]},{"maskExpected":0,"computedClip":"inset(0px 100% 0px 0px)","edgesCSS":[0,301,0,0]},{"maskExpected":50,"computedClip":"inset(0px 50% 0px 0px)","edgesCSS":[0,150.5,0,0]},{"maskExpected":100,"computedClip":"inset(0px 0% 0px 0px)","edgesCSS":[0,0,0,0]},{"maskExpected":37,"computedClip":"inset(0px 63% 0px 0px)","edgesCSS":[0,189.63,0,0]},{"maskExpected":0,"computedClip":"inset(0px 100% 0px 0px)","edgesCSS":[0,301,0,0]},{"maskExpected":100,"computedClip":"inset(0px 0% 0px 0px)","edgesCSS":[0,0,0,0]}],"coldRequestFailure":[{"coldRequestFailure":{"abortedRequests":1,"abortedURLs":["http://127.0.0.1:39409/Loading-museum/compare/restoration-after.svg"],"alertObserved":true,"playbackDisabled":true,"explicitRetryReady":true,"resetValue":50,"errors":[]}}],"raster":[{"case":{"pair":"restoration","mode":"split","amount":0,"reversed":false},"pass":true,"mismatches":0,"pixels":56620,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":190}},{"case":{"pair":"restoration","mode":"split","amount":50,"reversed":false},"pass":true,"mismatches":2,"pixels":56430,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":380}},{"case":{"pair":"restoration","mode":"split","amount":100,"reversed":false},"pass":true,"mismatches":2,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"restoration","mode":"split","amount":37,"reversed":true},"pass":true,"mismatches":11,"pixels":56430,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":380}},{"case":{"pair":"restoration","mode":"overlay","amount":0,"reversed":false},"pass":true,"mismatches":5,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"restoration","mode":"overlay","amount":50,"reversed":false},"pass":true,"mismatches":0,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"restoration","mode":"overlay","amount":100,"reversed":false},"pass":true,"mismatches":0,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"correction","mode":"split","amount":0,"reversed":false},"pass":true,"mismatches":0,"pixels":56620,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":190}},{"case":{"pair":"correction","mode":"split","amount":50,"reversed":false},"pass":true,"mismatches":0,"pixels":56430,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":380}},{"case":{"pair":"correction","mode":"split","amount":100,"reversed":false},"pass":true,"mismatches":1,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"correction","mode":"split","amount":37,"reversed":true},"pass":true,"mismatches":7,"pixels":56430,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":380}},{"case":{"pair":"correction","mode":"overlay","amount":0,"reversed":false},"pass":true,"mismatches":3,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"correction","mode":"overlay","amount":50,"reversed":false},"pass":true,"mismatches":0,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"correction","mode":"overlay","amount":100,"reversed":false},"pass":true,"mismatches":0,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"restoration","mode":"split","amount":37,"reversed":false},"pass":false,"mismatches":2527,"pixels":56430,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":380}},{"case":{"pair":"restoration","mode":"split","amount":37,"reversed":false},"pass":true,"mismatches":17,"pixels":56430,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":380}},{"case":{"pair":"restoration","mode":"overlay","amount":50,"reversed":false},"pass":false,"mismatches":12174,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"restoration","mode":"overlay","amount":50,"reversed":false},"pass":true,"mismatches":0,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}}],"controls":[{"engine":"chromium","version":"141.0.7390.37","width":375,"motion":"no-preference","fault":"mask-edge-0-one-pixel","kind":"geometry","result":{"pass":false,"reason":"AssertionError [ERR_ASSERTION]: 300 != 301 ± 0.05"}},{"engine":"chromium","version":"141.0.7390.37","width":375,"motion":"no-preference","fault":"mask-edge-100-one-pixel","kind":"geometry","result":{"pass":false,"reason":"AssertionError [ERR_ASSERTION]: 1 != 0 ± 0.05"}},{"engine":"chromium","version":"141.0.7390.37","width":375,"motion":"no-preference","fault":"image-shift-one-pixel","kind":"geometry","result":{"pass":false,"reason":"AssertionError [ERR_ASSERTION]: 37 != 38 ± 0.05"}},{"engine":"chromium","version":"141.0.7390.37","width":375,"motion":"no-preference","fault":"mask-fixed","result":{"mismatches":2527,"pixels":56430,"fraction":0.04478114478114478,"max":117,"pass":false,"samples":[{"x":109,"y":47,"actual":[200,212,212],"expected":[198,204,203]},{"x":110,"y":47,"actual":[174,178,175],"expected":[181,152,140]},{"x":107,"y":48,"actual":[219,232,232],"expected":[217,223,221]},{"x":108,"y":48,"actual":[189,193,190],"expected":[200,168,154]},{"x":109,"y":48,"actual":[145,136,127],"expected":[182,113,89]},{"x":110,"y":48,"actual":[128,114,104],"expected":[180,106,80]},{"x":105,"y":49,"actual":[219,231,231],"expected":[216,221,219]},{"x":106,"y":49,"actual":[186,190,186],"expected":[198,164,150]},{"x":107,"y":49,"actual":[143,133,125],"expected":[182,111,86]},{"x":108,"y":49,"actual":[128,114,104],"expected":[180,106,80]},{"x":109,"y":49,"actual":[128,114,104],"expected":[180,106,80]},{"x":110,"y":49,"actual":[128,114,104],"expected":[180,106,80]}],"columns":[[75,127],[83,85],[84,85],[81,84],[82,84],[79,83],[80,83],[77,82],[78,82],[76,81],[110,68],[109,67]],"rows":[[65,39],[66,39],[68,39],[69,39],[67,38],[64,37],[71,36],[72,36],[73,36],[74,36],[75,36],[76,36]],"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":380}}},{"engine":"chromium","version":"141.0.7390.37","width":375,"motion":"no-preference","fault":"alpha-fixed","result":{"mismatches":12174,"pixels":56810,"fraction":0.214293258229185,"max":34,"pass":false,"samples":[{"x":150,"y":28,"actual":[170,156,147],"expected":[178,155,143]},{"x":147,"y":29,"actual":[195,195,191],"expected":[199,194,189]},{"x":148,"y":29,"actual":[158,137,127],"expected":[168,135,122]},{"x":149,"y":29,"actual":[141,111,97],"expected":[154,109,91]},{"x":150,"y":29,"actual":[141,111,97],"expected":[154,109,91]},{"x":151,"y":29,"actual":[141,111,97],"expected":[154,109,91]},{"x":152,"y":29,"actual":[158,137,127],"expected":[168,135,122]},{"x":153,"y":29,"actual":[195,195,191],"expected":[199,194,189]},{"x":145,"y":30,"actual":[193,192,187],"expected":[197,191,185]},{"x":146,"y":30,"actual":[155,134,122],"expected":[166,132,117]},{"x":147,"y":30,"actual":[141,111,97],"expected":[154,109,91]},{"x":148,"y":30,"actual":[141,111,97],"expected":[154,109,91]}],"columns":[[123,102],[177,102],[121,101],[122,101],[178,101],[179,101],[118,100],[119,100],[120,100],[180,100],[181,100],[116,99]],"rows":[[71,181],[72,181],[69,173],[68,169],[67,164],[73,163],[74,163],[75,163],[76,163],[90,163],[91,163],[92,163]],"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}}}]}
+2026-11-05T19:14:47.7351952Z {"caseComplete":{"engine":"chromium","version":"141.0.7390.37","width":375,"motion":"reduce"},"head":"7593e5136efc90c6bccf63fa2fc3e429b51a128d","checks":10,"nativePointer":[{"nativePointer":{"start":{"sequence":7,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":13,"type":"pointermove","id":1,"x":262.75,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":8,"type":"pointermove","id":1,"x":200.0416717529297,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":9,"type":"pointermove","id":1,"x":212.5833282470703,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":10,"type":"pointermove","id":1,"x":225.125,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":11,"type":"pointermove","id":1,"x":237.6666717529297,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":12,"type":"pointermove","id":1,"x":250.2083282470703,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":13,"type":"pointermove","id":1,"x":262.75,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":75},{"nativePointer":{"start":{"sequence":16,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":22,"type":"pointerup","id":1,"x":256.7300109863281,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":17,"type":"pointermove","id":1,"x":201.3459930419922,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":18,"type":"pointermove","id":1,"x":215.19200134277344,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":19,"type":"pointermove","id":1,"x":229.03799438476562,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":20,"type":"pointermove","id":1,"x":242.88400268554688,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":21,"type":"pointermove","id":1,"x":256.7300109863281,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":73.0000036499429},{"nativePointer":{"start":{"sequence":24,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":25,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":25,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":79.99999594450789},{"nativePointer":{"start":{"sequence":24,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":26,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":25,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":26,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":80.99999918890158},{"nativePointer":{"start":{"sequence":31,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":32,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":32,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":79.99999594450789},{"nativePointer":{"start":{"sequence":31,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":33,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":32,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":33,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":80.99999918890158},{"nativePointer":{"start":{"sequence":38,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":39,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":39,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":79.99999594450789},{"nativePointer":{"start":{"sequence":38,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":40,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":39,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":40,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":80.99999918890158},{"nativePointer":{"start":{"sequence":45,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":46,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":46,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":79.99999594450789},{"nativePointer":{"start":{"sequence":45,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":47,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":46,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":47,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":80.99999918890158},{"nativePointer":{"start":{"sequence":52,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":53,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":53,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":79.99999594450789},{"nativePointer":{"start":{"sequence":52,"type":"pointerdown","id":1,"x":187.5,"y":161.21875,"trusted":true,"pointerType":"mouse"},"end":{"sequence":54,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"},"moves":[{"sequence":53,"type":"pointermove","id":1,"x":277.79998779296875,"y":161.21875,"trusted":true,"pointerType":"mouse"},{"sequence":54,"type":"pointermove","id":1,"x":280.80999755859375,"y":161.21875,"trusted":true,"pointerType":"mouse"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":80.99999918890158},{"nativePointer":{"start":{"sequence":58,"type":"pointerdown","id":2,"x":187.5,"y":288.21875,"trusted":true,"pointerType":"touch"},"end":{"sequence":60,"type":"pointerup","id":2,"x":262.75,"y":288.21875,"trusted":true,"pointerType":"touch"},"moves":[{"sequence":59,"type":"pointermove","id":2,"x":262.75,"y":288.21875,"trusted":true,"pointerType":"touch"}],"moveAfterUp":false},"startValue":50,"width":301,"expected":75}],"masks":[{"maskExpected":0,"computedClip":"inset(0px 100% 0px 0px)","edgesCSS":[0,301,0,0]},{"maskExpected":50,"computedClip":"inset(0px 50% 0px 0px)","edgesCSS":[0,150.5,0,0]},{"maskExpected":100,"computedClip":"inset(0px 0% 0px 0px)","edgesCSS":[0,0,0,0]},{"maskExpected":37,"computedClip":"inset(0px 63% 0px 0px)","edgesCSS":[0,189.63,0,0]},{"maskExpected":0,"computedClip":"inset(0px 100% 0px 0px)","edgesCSS":[0,301,0,0]},{"maskExpected":50,"computedClip":"inset(0px 50% 0px 0px)","edgesCSS":[0,150.5,0,0]},{"maskExpected":100,"computedClip":"inset(0px 0% 0px 0px)","edgesCSS":[0,0,0,0]},{"maskExpected":37,"computedClip":"inset(0px 63% 0px 0px)","edgesCSS":[0,189.63,0,0]},{"maskExpected":0,"computedClip":"inset(0px 100% 0px 0px)","edgesCSS":[0,301,0,0]},{"maskExpected":100,"computedClip":"inset(0px 0% 0px 0px)","edgesCSS":[0,0,0,0]}],"coldRequestFailure":[{"coldRequestFailure":{"abortedRequests":1,"abortedURLs":["http://127.0.0.1:39409/Loading-museum/compare/restoration-after.svg"],"alertObserved":true,"playbackDisabled":true,"explicitRetryReady":true,"resetValue":50,"errors":[]}}],"raster":[{"case":{"pair":"restoration","mode":"split","amount":0,"reversed":false},"pass":true,"mismatches":0,"pixels":56620,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":190}},{"case":{"pair":"restoration","mode":"split","amount":50,"reversed":false},"pass":true,"mismatches":2,"pixels":56430,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":380}},{"case":{"pair":"restoration","mode":"split","amount":100,"reversed":false},"pass":true,"mismatches":2,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"restoration","mode":"split","amount":37,"reversed":true},"pass":true,"mismatches":11,"pixels":56430,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":380}},{"case":{"pair":"restoration","mode":"overlay","amount":0,"reversed":false},"pass":true,"mismatches":0,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"restoration","mode":"overlay","amount":50,"reversed":false},"pass":true,"mismatches":0,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"restoration","mode":"overlay","amount":100,"reversed":false},"pass":true,"mismatches":0,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"correction","mode":"split","amount":0,"reversed":false},"pass":true,"mismatches":0,"pixels":56620,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":190}},{"case":{"pair":"correction","mode":"split","amount":50,"reversed":false},"pass":true,"mismatches":0,"pixels":56430,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":380}},{"case":{"pair":"correction","mode":"split","amount":100,"reversed":false},"pass":true,"mismatches":1,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"correction","mode":"split","amount":37,"reversed":true},"pass":true,"mismatches":7,"pixels":56430,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":380}},{"case":{"pair":"correction","mode":"overlay","amount":0,"reversed":false},"pass":true,"mismatches":0,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"correction","mode":"overlay","amount":50,"reversed":false},"pass":true,"mismatches":0,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"correction","mode":"overlay","amount":100,"reversed":false},"pass":true,"mismatches":0,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"restoration","mode":"split","amount":37,"reversed":false},"pass":false,"mismatches":2527,"pixels":56430,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":380}},{"case":{"pair":"restoration","mode":"split","amount":37,"reversed":false},"pass":true,"mismatches":17,"pixels":56430,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":380}},{"case":{"pair":"restoration","mode":"overlay","amount":50,"reversed":false},"pass":false,"mismatches":12320,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}},{"case":{"pair":"restoration","mode":"overlay","amount":50,"reversed":false},"pass":true,"mismatches":0,"pixels":56810,"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}}],"controls":[{"engine":"chromium","version":"141.0.7390.37","width":375,"motion":"reduce","fault":"mask-edge-0-one-pixel","kind":"geometry","result":{"pass":false,"reason":"AssertionError [ERR_ASSERTION]: 300 != 301 ± 0.05"}},{"engine":"chromium","version":"141.0.7390.37","width":375,"motion":"reduce","fault":"mask-edge-100-one-pixel","kind":"geometry","result":{"pass":false,"reason":"AssertionError [ERR_ASSERTION]: 1 != 0 ± 0.05"}},{"engine":"chromium","version":"141.0.7390.37","width":375,"motion":"reduce","fault":"image-shift-one-pixel","kind":"geometry","result":{"pass":false,"reason":"AssertionError [ERR_ASSERTION]: 37 != 38 ± 0.05"}},{"engine":"chromium","version":"141.0.7390.37","width":375,"motion":"reduce","fault":"mask-fixed","result":{"mismatches":2527,"pixels":56430,"fraction":0.04478114478114478,"max":117,"pass":false,"samples":[{"x":109,"y":47,"actual":[200,212,212],"expected":[198,204,203]},{"x":110,"y":47,"actual":[174,178,175],"expected":[181,152,140]},{"x":107,"y":48,"actual":[219,232,232],"expected":[217,223,221]},{"x":108,"y":48,"actual":[189,193,190],"expected":[200,168,154]},{"x":109,"y":48,"actual":[145,136,127],"expected":[182,113,89]},{"x":110,"y":48,"actual":[128,114,104],"expected":[180,106,80]},{"x":105,"y":49,"actual":[219,231,231],"expected":[216,221,219]},{"x":106,"y":49,"actual":[186,190,186],"expected":[198,164,150]},{"x":107,"y":49,"actual":[143,133,125],"expected":[182,111,86]},{"x":108,"y":49,"actual":[128,114,104],"expected":[180,106,80]},{"x":109,"y":49,"actual":[128,114,104],"expected":[180,106,80]},{"x":110,"y":49,"actual":[128,114,104],"expected":[180,106,80]}],"columns":[[75,127],[83,85],[84,85],[81,84],[82,84],[79,83],[80,83],[77,82],[78,82],[76,81],[110,68],[109,67]],"rows":[[65,39],[66,39],[68,39],[69,39],[67,38],[64,37],[71,36],[72,36],[73,36],[74,36],[75,36],[76,36]],"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":380}}},{"engine":"chromium","version":"141.0.7390.37","width":375,"motion":"reduce","fault":"alpha-fixed","result":{"mismatches":12320,"pixels":56810,"fraction":0.2168632283048759,"max":34,"pass":false,"samples":[{"x":150,"y":28,"actual":[170,156,147],"expected":[178,155,143]},{"x":147,"y":29,"actual":[195,195,191],"expected":[199,194,189]},{"x":148,"y":29,"actual":[158,137,127],"expected":[168,135,122]},{"x":149,"y":29,"actual":[141,111,97],"expected":[154,109,91]},{"x":150,"y":29,"actual":[141,111,97],"expected":[154,109,91]},{"x":151,"y":29,"actual":[141,111,97],"expected":[154,109,91]},{"x":152,"y":29,"actual":[158,137,127],"expected":[168,135,122]},{"x":153,"y":29,"actual":[195,195,191],"expected":[199,194,189]},{"x":145,"y":30,"actual":[193,192,187],"expected":[197,191,185]},{"x":146,"y":30,"actual":[155,134,122],"expected":[166,132,117]},{"x":147,"y":30,"actual":[141,111,97],"expected":[154,109,91]},{"x":148,"y":30,"actual":[141,111,97],"expected":[154,109,91]}],"columns":[[123,102],[177,102],[121,101],[122,101],[178,101],[179,101],[118,100],[119,100],[120,100],[180,100],[181,100],[116,99]],"rows":[[71,181],[72,181],[69,173],[68,169],[67,164],[73,163],[74,163],[75,163],[76,163],[90,163],[91,163],[92,163]],"frame":{"cssWidth":301,"cssHeight":190.625,"dpr":1,"pngWidth":301,"pngHeight":192,"paddingX":0,"paddingY":1.375,"marginX":1,"marginY":1,"frameExcludedPixels":982,"boundaryExcludedPixels":0}}}]}
+2026-11-05T19:14:47.7566731Z {"head":"7593e5136efc90c6bccf63fa2fc3e429b51a128d","pass":true,"expected":2,"cases":2,"controls":10,"errors":[]}
+2026-11-05T19:14:47.7821040Z ##[group]Run actions/upload-artifact@v4
+2026-11-05T19:14:47.7821355Z with:
+2026-11-05T19:14:47.7821703Z   name: before-after-chromium-375-7593e5136efc90c6bccf63fa2fc3e429b51a128d
+2026-11-05T19:14:47.7822134Z   path: work/
+2026-11-05T19:14:47.7822345Z   if-no-files-found: warn
+2026-11-05T19:14:47.7822585Z   compression-level: 6
+2026-11-05T19:14:47.7822820Z   overwrite: false
+2026-11-05T19:14:47.7823218Z   include-hidden-files: false
+2026-11-05T19:14:47.7823470Z ##[endgroup]
+2026-11-05T19:14:47.9546947Z (node:3730) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-05T19:14:47.9548884Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-05T19:14:47.9696173Z With the provided path, there will be 26 files uploaded
+2026-11-05T19:14:47.9697772Z Artifact name is valid!
+2026-11-05T19:14:47.9698868Z Root directory input is valid!
+2026-11-05T19:14:48.1935801Z Beginning upload of artifact content to blob storage
+2026-11-05T19:14:48.2637436Z (node:3730) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-05T19:14:48.3527324Z Uploaded bytes 622078
+2026-11-05T19:14:48.3715164Z Finished uploading artifact content to blob storage!
+2026-11-05T19:14:48.3716842Z SHA256 digest of uploaded artifact zip is 6221c13f0693f61ee12e591095198b249f95598ed5218fc56fd1450e89220adb
+2026-11-05T19:14:48.3718974Z Finalizing artifact upload
+2026-11-05T19:14:48.7935604Z Artifact before-after-chromium-375-7593e5136efc90c6bccf63fa2fc3e429b51a128d.zip successfully finalized. Artifact ID 13443929885
+2026-11-05T19:14:48.7938449Z Artifact before-after-chromium-375-7593e5136efc90c6bccf63fa2fc3e429b51a128d has been successfully uploaded! Final size is 622078 bytes. Artifact ID is 13443929885
+2026-11-05T19:14:48.7944253Z Artifact download URL: https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/42091230501/artifacts/13443929885
+2026-11-05T19:14:48.8150774Z Post job cleanup.
+2026-11-05T19:14:48.9466962Z (node:3744) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-05T19:14:48.9468198Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-05T19:14:48.9472494Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-bdf7676ac3c73d012e84037285c700072175be4631684dbc433a5ae75338da79, not saving cache.
+2026-11-05T19:14:48.9612407Z Post job cleanup.
+2026-11-05T19:14:49.0800969Z [command]/usr/bin/git version
+2026-11-05T19:14:49.0870854Z git version 2.56.0
+2026-11-05T19:14:49.0924263Z Temporarily overriding HOME='/home/runner/work/_temp/b580ffd1-4f3a-4cdd-8141-5841d590f117' before making global git config changes
+2026-11-05T19:14:49.0925989Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-05T19:14:49.0932428Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Loading-museum/Loading-museum
+2026-11-05T19:14:49.0992759Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-05T19:14:49.1104579Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-05T19:14:49.1469248Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-05T19:14:49.1548783Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-05T19:14:49.1848404Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-05T19:14:49.1896323Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-05T19:14:49.2295093Z Cleaning up orphan processes
+2026-11-05T19:14:49.2819387Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

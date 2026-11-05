@@ -1,0 +1,57 @@
+{
+  "head": "7593e5136efc90c6bccf63fa2fc3e429b51a128d",
+  "tree": "d453f5aab866cd5194b831080571208ef3463a56",
+  "overall": "PARTIAL",
+  "mergeRecommendation": "NO",
+  "workflows": {
+    "total": 9,
+    "success": 8,
+    "failure": 1
+  },
+  "jobs": {
+    "total": 37,
+    "success": 36,
+    "failure": 1
+  },
+  "beforeAfter": {
+    "conditions": 16,
+    "jobs": 8,
+    "success": 8,
+    "faultControls": 80
+  },
+  "firstAttemptFailures": [
+    {
+      "job": 127469992191,
+      "run": 42091230700,
+      "exhibit": "Step Progress",
+      "result": "FAIL",
+      "cause": "UNKNOWN",
+      "log": "ci/job-127469992191.log"
+    },
+    {
+      "job": 127469904626,
+      "run": 42091230666,
+      "exhibit": "Flash phase2 drawing",
+      "result": "FAIL",
+      "cause": "UNKNOWN",
+      "log": "ci/job-127469904626.log"
+    }
+  ],
+  "diagnostic": {
+    "job": 127477191352,
+    "run": 42091230700,
+    "result": "PASS",
+    "sameHead": true,
+    "sameConditions": true,
+    "sourceOrToleranceChanges": false,
+    "retries": 1,
+    "log": "ci/job-127477191352-diagnostic.log",
+    "interpretation": "Does not erase first failure or prove stability. Flash remains unresolved; NO merge."
+  },
+  "independent": {
+    "verdict": "PARTIAL; limited new-exhibit PASS; whole-PR NO",
+    "review": "independent/review.md"
+  },
+  "artifactZipBytes": "BLOCKED: proxy CONNECT403",
+  "physicalDevices": "NOT_TESTED"
+}

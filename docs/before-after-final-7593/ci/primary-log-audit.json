@@ -1,0 +1,109 @@
+{
+  "head": "7593e5136efc90c6bccf63fa2fc3e429b51a128d",
+  "source": "GitHub job logs via connector; artifact ZIP bytes remain BLOCKED",
+  "jobs": 8,
+  "conditions": 16,
+  "negativeControlsDetected": 80,
+  "originalRasterThresholdsAndMarginMaintained": true,
+  "nativeExpectationsRecomputed": true,
+  "coldRequestErrorAndRetryObserved": true,
+  "cases": [
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 765,
+      "motion": "no-preference"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 765,
+      "motion": "reduce"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 1280,
+      "motion": "no-preference"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 1280,
+      "motion": "reduce"
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "motion": "no-preference"
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 1280,
+      "motion": "reduce"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 375,
+      "motion": "no-preference"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 375,
+      "motion": "reduce"
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 765,
+      "motion": "no-preference"
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 765,
+      "motion": "reduce"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 390,
+      "motion": "no-preference"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "width": 390,
+      "motion": "reduce"
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "motion": "no-preference"
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 375,
+      "motion": "reduce"
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "motion": "no-preference"
+    },
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "width": 390,
+      "motion": "reduce"
+    }
+  ],
+  "pass": true
+}

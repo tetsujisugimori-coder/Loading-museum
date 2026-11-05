@@ -1,0 +1,823 @@
+{
+  "head": "7593e5136efc90c6bccf63fa2fc3e429b51a128d",
+  "tree": "d453f5aab866cd5194b831080571208ef3463a56",
+  "directGithubLogsAudited": true,
+  "jobs": [
+    {
+      "job": 127469469128,
+      "summary": {
+        "head": "7593e5136efc90c6bccf63fa2fc3e429b51a128d",
+        "pass": true,
+        "expected": 2,
+        "cases": 2,
+        "controls": 10,
+        "errors": []
+      },
+      "cases": [
+        {
+          "condition": {
+            "engine": "webkit",
+            "version": "26.0",
+            "width": 375,
+            "motion": "no-preference"
+          },
+          "checks": 9,
+          "rawPointerAssertions": 12,
+          "pointerExamples": [
+            {
+              "startX": 187,
+              "endX": 262,
+              "width": 301,
+              "startValue": 50,
+              "independentExpected": 74.91694352159469,
+              "recordedExpected": 74.91694352159469,
+              "rangeRoundedExpected": 75
+            },
+            {
+              "startX": 187,
+              "endX": 256,
+              "width": 301,
+              "startValue": 50,
+              "independentExpected": 72.92358803986711,
+              "recordedExpected": 72.92358803986711,
+              "rangeRoundedExpected": 73
+            }
+          ],
+          "masks": 10,
+          "coldRequest": {
+            "abortedRequests": 1,
+            "abortedURLs": [
+              "http://127.0.0.1:37267/Loading-museum/compare/restoration-after.svg"
+            ],
+            "alertObserved": true,
+            "playbackDisabled": true,
+            "explicitRetryReady": true,
+            "resetValue": 50,
+            "errors": []
+          },
+          "geometryControls": [
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 375,
+              "motion": "no-preference",
+              "fault": "mask-edge-0-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 300 != 301 \u00b1 0.05"
+              }
+            },
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 375,
+              "motion": "no-preference",
+              "fault": "mask-edge-100-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 1 != 0 \u00b1 0.05"
+              }
+            },
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 375,
+              "motion": "no-preference",
+              "fault": "image-shift-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 37 != 38 \u00b1 0.05"
+              }
+            }
+          ],
+          "pixelControls": [
+            {
+              "fault": "mask-fixed",
+              "fraction": 0.04476342371079213
+            },
+            {
+              "fault": "alpha-fixed",
+              "fraction": 0.2137299771167048
+            }
+          ],
+          "rasterMeasurements": 18,
+          "roiMargin": 1
+        },
+        {
+          "condition": {
+            "engine": "webkit",
+            "version": "26.0",
+            "width": 375,
+            "motion": "reduce"
+          },
+          "checks": 9,
+          "rawPointerAssertions": 12,
+          "pointerExamples": [
+            {
+              "startX": 187,
+              "endX": 262,
+              "width": 301,
+              "startValue": 50,
+              "independentExpected": 74.91694352159469,
+              "recordedExpected": 74.91694352159469,
+              "rangeRoundedExpected": 75
+            },
+            {
+              "startX": 187,
+              "endX": 256,
+              "width": 301,
+              "startValue": 50,
+              "independentExpected": 72.92358803986711,
+              "recordedExpected": 72.92358803986711,
+              "rangeRoundedExpected": 73
+            }
+          ],
+          "masks": 10,
+          "coldRequest": {
+            "abortedRequests": 1,
+            "abortedURLs": [
+              "http://127.0.0.1:37267/Loading-museum/compare/restoration-after.svg"
+            ],
+            "alertObserved": true,
+            "playbackDisabled": true,
+            "explicitRetryReady": true,
+            "resetValue": 50,
+            "errors": []
+          },
+          "geometryControls": [
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 375,
+              "motion": "reduce",
+              "fault": "mask-edge-0-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 300 != 301 \u00b1 0.05"
+              }
+            },
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 375,
+              "motion": "reduce",
+              "fault": "mask-edge-100-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 1 != 0 \u00b1 0.05"
+              }
+            },
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 375,
+              "motion": "reduce",
+              "fault": "image-shift-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 37 != 38 \u00b1 0.05"
+              }
+            }
+          ],
+          "pixelControls": [
+            {
+              "fault": "mask-fixed",
+              "fraction": 0.04476342371079213
+            },
+            {
+              "fault": "alpha-fixed",
+              "fraction": 0.2137299771167048
+            }
+          ],
+          "rasterMeasurements": 18,
+          "roiMargin": 1
+        }
+      ],
+      "independentProbePass": true,
+      "recordedUploadDigest": [
+        "773da947f62c35b6f5106ac989dbed6044763e9510ee64d150eec53f99fd1c8c"
+      ],
+      "zipBytesVerified": false
+    },
+    {
+      "job": 127469469197,
+      "summary": {
+        "head": "7593e5136efc90c6bccf63fa2fc3e429b51a128d",
+        "pass": true,
+        "expected": 2,
+        "cases": 2,
+        "controls": 10,
+        "errors": []
+      },
+      "cases": [
+        {
+          "condition": {
+            "engine": "webkit",
+            "version": "26.0",
+            "width": 390,
+            "motion": "no-preference"
+          },
+          "checks": 9,
+          "rawPointerAssertions": 12,
+          "pointerExamples": [
+            {
+              "startX": 195,
+              "endX": 274,
+              "width": 316,
+              "startValue": 50,
+              "independentExpected": 75.0,
+              "recordedExpected": 75,
+              "rangeRoundedExpected": 75
+            },
+            {
+              "startX": 195,
+              "endX": 267,
+              "width": 316,
+              "startValue": 50,
+              "independentExpected": 72.78481012658227,
+              "recordedExpected": 72.78481012658227,
+              "rangeRoundedExpected": 73
+            }
+          ],
+          "masks": 10,
+          "coldRequest": {
+            "abortedRequests": 1,
+            "abortedURLs": [
+              "http://127.0.0.1:33709/Loading-museum/compare/restoration-after.svg"
+            ],
+            "alertObserved": true,
+            "playbackDisabled": true,
+            "explicitRetryReady": true,
+            "resetValue": 50,
+            "errors": []
+          },
+          "geometryControls": [
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 390,
+              "motion": "no-preference",
+              "fault": "mask-edge-0-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 315 != 316 \u00b1 0.05"
+              }
+            },
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 390,
+              "motion": "no-preference",
+              "fault": "mask-edge-100-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 1 != 0 \u00b1 0.05"
+              }
+            },
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 390,
+              "motion": "no-preference",
+              "fault": "image-shift-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 37 != 38 \u00b1 0.05"
+              }
+            }
+          ],
+          "pixelControls": [
+            {
+              "fault": "mask-fixed",
+              "fraction": 0.042633036979770646
+            },
+            {
+              "fault": "alpha-fixed",
+              "fraction": 0.21520020484588548
+            }
+          ],
+          "rasterMeasurements": 18,
+          "roiMargin": 1
+        },
+        {
+          "condition": {
+            "engine": "webkit",
+            "version": "26.0",
+            "width": 390,
+            "motion": "reduce"
+          },
+          "checks": 9,
+          "rawPointerAssertions": 12,
+          "pointerExamples": [
+            {
+              "startX": 195,
+              "endX": 274,
+              "width": 316,
+              "startValue": 50,
+              "independentExpected": 75.0,
+              "recordedExpected": 75,
+              "rangeRoundedExpected": 75
+            },
+            {
+              "startX": 195,
+              "endX": 267,
+              "width": 316,
+              "startValue": 50,
+              "independentExpected": 72.78481012658227,
+              "recordedExpected": 72.78481012658227,
+              "rangeRoundedExpected": 73
+            }
+          ],
+          "masks": 10,
+          "coldRequest": {
+            "abortedRequests": 1,
+            "abortedURLs": [
+              "http://127.0.0.1:33709/Loading-museum/compare/restoration-after.svg"
+            ],
+            "alertObserved": true,
+            "playbackDisabled": true,
+            "explicitRetryReady": true,
+            "resetValue": 50,
+            "errors": []
+          },
+          "geometryControls": [
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 390,
+              "motion": "reduce",
+              "fault": "mask-edge-0-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 315 != 316 \u00b1 0.05"
+              }
+            },
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 390,
+              "motion": "reduce",
+              "fault": "mask-edge-100-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 1 != 0 \u00b1 0.05"
+              }
+            },
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 390,
+              "motion": "reduce",
+              "fault": "image-shift-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 37 != 38 \u00b1 0.05"
+              }
+            }
+          ],
+          "pixelControls": [
+            {
+              "fault": "mask-fixed",
+              "fraction": 0.042633036979770646
+            },
+            {
+              "fault": "alpha-fixed",
+              "fraction": 0.21520020484588548
+            }
+          ],
+          "rasterMeasurements": 18,
+          "roiMargin": 1
+        }
+      ],
+      "independentProbePass": null,
+      "recordedUploadDigest": [
+        "0809a8a135a81d66fd73c9246a84d996f45fc7b99aa7017fb161a4e141a663d1"
+      ],
+      "zipBytesVerified": false
+    },
+    {
+      "job": 127469469350,
+      "summary": {
+        "head": "7593e5136efc90c6bccf63fa2fc3e429b51a128d",
+        "pass": true,
+        "expected": 2,
+        "cases": 2,
+        "controls": 10,
+        "errors": []
+      },
+      "cases": [
+        {
+          "condition": {
+            "engine": "webkit",
+            "version": "26.0",
+            "width": 765,
+            "motion": "no-preference"
+          },
+          "checks": 9,
+          "rawPointerAssertions": 12,
+          "pointerExamples": [
+            {
+              "startX": 382,
+              "endX": 541,
+              "width": 635.25,
+              "startValue": 50,
+              "independentExpected": 75.02951593860685,
+              "recordedExpected": 75.02951593860685,
+              "rangeRoundedExpected": 75
+            },
+            {
+              "startX": 382,
+              "endX": 528,
+              "width": 635.25,
+              "startValue": 50,
+              "independentExpected": 72.98307752853208,
+              "recordedExpected": 72.98307752853208,
+              "rangeRoundedExpected": 73
+            }
+          ],
+          "masks": 10,
+          "coldRequest": {
+            "abortedRequests": 1,
+            "abortedURLs": [
+              "http://127.0.0.1:39087/Loading-museum/compare/restoration-after.svg"
+            ],
+            "alertObserved": true,
+            "playbackDisabled": true,
+            "explicitRetryReady": true,
+            "resetValue": 50,
+            "errors": []
+          },
+          "geometryControls": [
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 765,
+              "motion": "no-preference",
+              "fault": "mask-edge-0-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 634.25 != 635.25 \u00b1 0.05"
+              }
+            },
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 765,
+              "motion": "no-preference",
+              "fault": "mask-edge-100-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 1 != 0 \u00b1 0.05"
+              }
+            },
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 765,
+              "motion": "no-preference",
+              "fault": "image-shift-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 64.875 != 65.875 \u00b1 0.05"
+              }
+            }
+          ],
+          "pixelControls": [
+            {
+              "fault": "mask-fixed",
+              "fraction": 0.04198823636012654
+            },
+            {
+              "fault": "alpha-fixed",
+              "fraction": 0.2087929781844601
+            }
+          ],
+          "rasterMeasurements": 18,
+          "roiMargin": 1
+        },
+        {
+          "condition": {
+            "engine": "webkit",
+            "version": "26.0",
+            "width": 765,
+            "motion": "reduce"
+          },
+          "checks": 9,
+          "rawPointerAssertions": 12,
+          "pointerExamples": [
+            {
+              "startX": 382,
+              "endX": 541,
+              "width": 635.25,
+              "startValue": 50,
+              "independentExpected": 75.02951593860685,
+              "recordedExpected": 75.02951593860685,
+              "rangeRoundedExpected": 75
+            },
+            {
+              "startX": 382,
+              "endX": 528,
+              "width": 635.25,
+              "startValue": 50,
+              "independentExpected": 72.98307752853208,
+              "recordedExpected": 72.98307752853208,
+              "rangeRoundedExpected": 73
+            }
+          ],
+          "masks": 10,
+          "coldRequest": {
+            "abortedRequests": 1,
+            "abortedURLs": [
+              "http://127.0.0.1:39087/Loading-museum/compare/restoration-after.svg"
+            ],
+            "alertObserved": true,
+            "playbackDisabled": true,
+            "explicitRetryReady": true,
+            "resetValue": 50,
+            "errors": []
+          },
+          "geometryControls": [
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 765,
+              "motion": "reduce",
+              "fault": "mask-edge-0-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 634.25 != 635.25 \u00b1 0.05"
+              }
+            },
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 765,
+              "motion": "reduce",
+              "fault": "mask-edge-100-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 1 != 0 \u00b1 0.05"
+              }
+            },
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 765,
+              "motion": "reduce",
+              "fault": "image-shift-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 64.875 != 65.875 \u00b1 0.05"
+              }
+            }
+          ],
+          "pixelControls": [
+            {
+              "fault": "mask-fixed",
+              "fraction": 0.04198823636012654
+            },
+            {
+              "fault": "alpha-fixed",
+              "fraction": 0.2087929781844601
+            }
+          ],
+          "rasterMeasurements": 18,
+          "roiMargin": 1
+        }
+      ],
+      "independentProbePass": null,
+      "recordedUploadDigest": [
+        "6fe2142d49d78962be892b35cea5ca890fb33ce99d85160b1fa49c9191ed2a72"
+      ],
+      "zipBytesVerified": false
+    },
+    {
+      "job": 127469469289,
+      "summary": {
+        "head": "7593e5136efc90c6bccf63fa2fc3e429b51a128d",
+        "pass": true,
+        "expected": 2,
+        "cases": 2,
+        "controls": 10,
+        "errors": []
+      },
+      "cases": [
+        {
+          "condition": {
+            "engine": "webkit",
+            "version": "26.0",
+            "width": 1280,
+            "motion": "no-preference"
+          },
+          "checks": 9,
+          "rawPointerAssertions": 12,
+          "pointerExamples": [
+            {
+              "startX": 640,
+              "endX": 915,
+              "width": 1102,
+              "startValue": 50,
+              "independentExpected": 74.9546279491833,
+              "recordedExpected": 74.9546279491833,
+              "rangeRoundedExpected": 75
+            },
+            {
+              "startX": 640,
+              "endX": 893,
+              "width": 1102,
+              "startValue": 50,
+              "independentExpected": 72.95825771324864,
+              "recordedExpected": 72.95825771324864,
+              "rangeRoundedExpected": 73
+            }
+          ],
+          "masks": 10,
+          "coldRequest": {
+            "abortedRequests": 1,
+            "abortedURLs": [
+              "http://127.0.0.1:32849/Loading-museum/compare/restoration-after.svg"
+            ],
+            "alertObserved": true,
+            "playbackDisabled": true,
+            "explicitRetryReady": true,
+            "resetValue": 50,
+            "errors": []
+          },
+          "geometryControls": [
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 1280,
+              "motion": "no-preference",
+              "fault": "mask-edge-0-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 1101 != 1102 \u00b1 0.05"
+              }
+            },
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 1280,
+              "motion": "no-preference",
+              "fault": "mask-edge-100-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 1 != 0 \u00b1 0.05"
+              }
+            },
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 1280,
+              "motion": "no-preference",
+              "fault": "image-shift-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 89 != 90 \u00b1 0.05"
+              }
+            }
+          ],
+          "pixelControls": [
+            {
+              "fault": "mask-fixed",
+              "fraction": 0.04087123320606398
+            },
+            {
+              "fault": "alpha-fixed",
+              "fraction": 0.2053710708230077
+            }
+          ],
+          "rasterMeasurements": 18,
+          "roiMargin": 1
+        },
+        {
+          "condition": {
+            "engine": "webkit",
+            "version": "26.0",
+            "width": 1280,
+            "motion": "reduce"
+          },
+          "checks": 9,
+          "rawPointerAssertions": 12,
+          "pointerExamples": [
+            {
+              "startX": 640,
+              "endX": 915,
+              "width": 1102,
+              "startValue": 50,
+              "independentExpected": 74.9546279491833,
+              "recordedExpected": 74.9546279491833,
+              "rangeRoundedExpected": 75
+            },
+            {
+              "startX": 640,
+              "endX": 893,
+              "width": 1102,
+              "startValue": 50,
+              "independentExpected": 72.95825771324864,
+              "recordedExpected": 72.95825771324864,
+              "rangeRoundedExpected": 73
+            }
+          ],
+          "masks": 10,
+          "coldRequest": {
+            "abortedRequests": 1,
+            "abortedURLs": [
+              "http://127.0.0.1:32849/Loading-museum/compare/restoration-after.svg"
+            ],
+            "alertObserved": true,
+            "playbackDisabled": true,
+            "explicitRetryReady": true,
+            "resetValue": 50,
+            "errors": []
+          },
+          "geometryControls": [
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 1280,
+              "motion": "reduce",
+              "fault": "mask-edge-0-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 1101 != 1102 \u00b1 0.05"
+              }
+            },
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 1280,
+              "motion": "reduce",
+              "fault": "mask-edge-100-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 1 != 0 \u00b1 0.05"
+              }
+            },
+            {
+              "engine": "webkit",
+              "version": "26.0",
+              "width": 1280,
+              "motion": "reduce",
+              "fault": "image-shift-one-pixel",
+              "kind": "geometry",
+              "result": {
+                "pass": false,
+                "reason": "AssertionError [ERR_ASSERTION]: 89 != 90 \u00b1 0.05"
+              }
+            }
+          ],
+          "pixelControls": [
+            {
+              "fault": "mask-fixed",
+              "fraction": 0.04087123320606398
+            },
+            {
+              "fault": "alpha-fixed",
+              "fraction": 0.2053710708230077
+            }
+          ],
+          "rasterMeasurements": 18,
+          "roiMargin": 1
+        }
+      ],
+      "independentProbePass": null,
+      "recordedUploadDigest": [
+        "e49ba116588dfff7def95f41bae77f0a00aaab6e1cce8975ddbbc3d01e9a64ad"
+      ],
+      "zipBytesVerified": false
+    }
+  ],
+  "eightPrimaryWebKitConditionsPass": true,
+  "independentWebKit375NormalProbePass": true,
+  "allPrimaryRoiMarginsOnePixel": true,
+  "trustedPointerExpectationsRecomputedFromInputs": true,
+  "coldRequestFailureActuallyInjected": true,
+  "pngHashesInLogsOnlyNotBytes": true,
+  "zipBytesAudit": "BLOCKED by proxy transfer-host CONNECT403; no retry",
+  "allNineWorkflowConclusion": "Not all initially successful: Museum practical(WebKit) and Flash Phase2(WebKit) failed. Diagnostic rerun is separate."
+}

@@ -1,0 +1,734 @@
+﻿2026-11-05T19:12:15.6155953Z Current runner version: '2.338.2'
+2026-11-05T19:12:15.6176897Z ##[group]Runner Image Provisioner
+2026-11-05T19:12:15.6177593Z Hosted Compute Agent
+2026-11-05T19:12:15.6178169Z Version: 20261028.624
+2026-11-05T19:12:15.6178739Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-05T19:12:15.6179329Z Build Date: 2026-10-28T21:51:42Z
+2026-11-05T19:12:15.6179974Z Worker ID: {f71dd281-6909-46e6-9df2-43265e8adf56}
+2026-11-05T19:12:15.6180608Z Region: centralus
+2026-11-05T19:12:15.6181394Z Cloud: Azure
+2026-11-05T19:12:15.6181861Z ##[endgroup]
+2026-11-05T19:12:15.6182996Z ##[group]Operating System
+2026-11-05T19:12:15.6183689Z Ubuntu
+2026-11-05T19:12:15.6184142Z 24.04.5
+2026-11-05T19:12:15.6184600Z LTS
+2026-11-05T19:12:15.6185091Z ##[endgroup]
+2026-11-05T19:12:15.6185567Z ##[group]Runner Image
+2026-11-05T19:12:15.6186106Z Image: ubuntu-24.04
+2026-11-05T19:12:15.6186704Z Version: 20261101.360.1
+2026-11-05T19:12:15.6187772Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261101.360/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-05T19:12:15.6189009Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261101.360
+2026-11-05T19:12:15.6189865Z ##[endgroup]
+2026-11-05T19:12:15.6190761Z ##[group]GITHUB_TOKEN Permissions
+2026-11-05T19:12:15.6192654Z Contents: read
+2026-11-05T19:12:15.6193167Z Metadata: read
+2026-11-05T19:12:15.6193702Z ##[endgroup]
+2026-11-05T19:12:15.6195398Z Secret source: Actions
+2026-11-05T19:12:15.6196314Z Cache mode: write
+2026-11-05T19:12:15.6196954Z Prepare workflow directory
+2026-11-05T19:12:15.6464414Z Prepare all required actions
+2026-11-05T19:12:15.6504802Z Getting action download info
+2026-11-05T19:12:15.9535445Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-05T19:12:16.1014844Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-11-05T19:12:16.2171685Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-05T19:12:16.4311905Z Complete job name: contracts
+2026-11-05T19:12:16.5065808Z ##[group]Run actions/checkout@v4
+2026-11-05T19:12:16.5066510Z with:
+2026-11-05T19:12:16.5066912Z   ref: 7593e5136efc90c6bccf63fa2fc3e429b51a128d
+2026-11-05T19:12:16.5067474Z   repository: tetsujisugimori-coder/Loading-museum
+2026-11-05T19:12:16.5071037Z   token: ***
+2026-11-05T19:12:16.5071424Z   ssh-strict: true
+2026-11-05T19:12:16.5071798Z   ssh-user: git
+2026-11-05T19:12:16.5072174Z   persist-credentials: true
+2026-11-05T19:12:16.5072581Z   clean: true
+2026-11-05T19:12:16.5072956Z   sparse-checkout-cone-mode: true
+2026-11-05T19:12:16.5073382Z   fetch-depth: 1
+2026-11-05T19:12:16.5073740Z   fetch-tags: false
+2026-11-05T19:12:16.5074103Z   show-progress: true
+2026-11-05T19:12:16.5074500Z   lfs: false
+2026-11-05T19:12:16.5074865Z   submodules: false
+2026-11-05T19:12:16.5075235Z   set-safe-directory: true
+2026-11-05T19:12:16.5075654Z   allow-unsafe-pr-checkout: false
+2026-11-05T19:12:16.5076233Z ##[endgroup]
+2026-11-05T19:12:16.7377126Z Syncing repository: tetsujisugimori-coder/Loading-museum
+2026-11-05T19:12:16.7378720Z ##[group]Getting Git version info
+2026-11-05T19:12:16.7379342Z Working directory is '/home/runner/work/Loading-museum/Loading-museum'
+2026-11-05T19:12:16.7380394Z [command]/usr/bin/git version
+2026-11-05T19:12:16.7438498Z git version 2.56.0
+2026-11-05T19:12:16.7454577Z ##[endgroup]
+2026-11-05T19:12:16.7470251Z Temporarily overriding HOME='/home/runner/work/_temp/38b54e76-fc24-4bb7-a2a4-44a19da29aab' before making global git config changes
+2026-11-05T19:12:16.7472505Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-05T19:12:16.7474444Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Loading-museum/Loading-museum
+2026-11-05T19:12:16.7517985Z Deleting the contents of '/home/runner/work/Loading-museum/Loading-museum'
+2026-11-05T19:12:16.7524383Z ##[group]Initializing the repository
+2026-11-05T19:12:16.7534248Z [command]/usr/bin/git init /home/runner/work/Loading-museum/Loading-museum
+2026-11-05T19:12:16.7598508Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-05T19:12:16.7599753Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-05T19:12:16.7600583Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-05T19:12:16.7601676Z hint: call:
+2026-11-05T19:12:16.7602165Z hint:
+2026-11-05T19:12:16.7602702Z hint: 	git config --global init.defaultBranch <name>
+2026-11-05T19:12:16.7603198Z hint:
+2026-11-05T19:12:16.7603666Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-05T19:12:16.7604583Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-05T19:12:16.7605231Z hint:
+2026-11-05T19:12:16.7605695Z hint: 	git branch -m <name>
+2026-11-05T19:12:16.7606129Z hint:
+2026-11-05T19:12:16.7606820Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-05T19:12:16.7611416Z Initialized empty Git repository in /home/runner/work/Loading-museum/Loading-museum/.git/
+2026-11-05T19:12:16.7620153Z [command]/usr/bin/git remote add origin https://github.com/tetsujisugimori-coder/Loading-museum
+2026-11-05T19:12:16.7661442Z ##[endgroup]
+2026-11-05T19:12:16.7662401Z ##[group]Disabling automatic garbage collection
+2026-11-05T19:12:16.7666459Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-05T19:12:16.7696490Z ##[endgroup]
+2026-11-05T19:12:16.7697461Z ##[group]Setting up auth
+2026-11-05T19:12:16.7702768Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-05T19:12:16.7734797Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-05T19:12:16.8122073Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-05T19:12:16.8158789Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-05T19:12:16.8368520Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-05T19:12:16.8441027Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-05T19:12:16.8638673Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-05T19:12:16.8681812Z ##[endgroup]
+2026-11-05T19:12:16.8682694Z ##[group]Fetching the repository
+2026-11-05T19:12:16.8691435Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 7593e5136efc90c6bccf63fa2fc3e429b51a128d
+2026-11-05T19:12:20.3889167Z From https://github.com/tetsujisugimori-coder/Loading-museum
+2026-11-05T19:12:20.3890721Z  * branch            7593e5136efc90c6bccf63fa2fc3e429b51a128d -> FETCH_HEAD
+2026-11-05T19:12:20.3895445Z ##[endgroup]
+2026-11-05T19:12:20.3896538Z ##[group]Determining the checkout info
+2026-11-05T19:12:20.3897789Z ##[endgroup]
+2026-11-05T19:12:20.3908136Z [command]/usr/bin/git sparse-checkout disable
+2026-11-05T19:12:20.3958997Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-05T19:12:20.3993764Z ##[group]Checking out the ref
+2026-11-05T19:12:20.3996405Z [command]/usr/bin/git checkout --progress --force 7593e5136efc90c6bccf63fa2fc3e429b51a128d
+2026-11-05T19:12:20.7025307Z Note: switching to '7593e5136efc90c6bccf63fa2fc3e429b51a128d'.
+2026-11-05T19:12:20.7025907Z 
+2026-11-05T19:12:20.7026314Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-05T19:12:20.7027118Z changes and commit them, and you can discard any commits you make in this
+2026-11-05T19:12:20.7028035Z state without impacting any branches by switching back to a branch.
+2026-11-05T19:12:20.7028984Z 
+2026-11-05T19:12:20.7029386Z If you want to create a new branch to retain commits you create, you may
+2026-11-05T19:12:20.7030159Z do so (now or later) by using -c with the switch command. Example:
+2026-11-05T19:12:20.7030590Z 
+2026-11-05T19:12:20.7031014Z   git switch -c <new-branch-name>
+2026-11-05T19:12:20.7031355Z 
+2026-11-05T19:12:20.7031620Z Or undo this operation with:
+2026-11-05T19:12:20.7031939Z 
+2026-11-05T19:12:20.7032141Z   git switch -
+2026-11-05T19:12:20.7032463Z 
+2026-11-05T19:12:20.7032875Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-05T19:12:20.7041473Z 
+2026-11-05T19:12:20.7042055Z HEAD is now at 7593e51 test: inject observed image failures before the first cold load
+2026-11-05T19:12:20.7048627Z ##[endgroup]
+2026-11-05T19:12:20.7095928Z [command]/usr/bin/git log -1 --format=%H
+2026-11-05T19:12:20.7125126Z 7593e5136efc90c6bccf63fa2fc3e429b51a128d
+2026-11-05T19:12:20.7442007Z ##[group]Run actions/setup-node@v4
+2026-11-05T19:12:20.7442464Z with:
+2026-11-05T19:12:20.7442850Z   node-version: 22
+2026-11-05T19:12:20.7443221Z   cache: npm
+2026-11-05T19:12:20.7443581Z   always-auth: false
+2026-11-05T19:12:20.7443957Z   check-latest: false
+2026-11-05T19:12:20.7446505Z   token: ***
+2026-11-05T19:12:20.7446892Z ##[endgroup]
+2026-11-05T19:12:20.8620194Z Found in cache @ /opt/hostedtoolcache/node/22.23.4/x64
+2026-11-05T19:12:20.8623187Z (node:2239) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-05T19:12:20.8623996Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-05T19:12:20.8625724Z ##[group]Environment details
+2026-11-05T19:12:21.2130627Z node: v22.23.4
+2026-11-05T19:12:21.2131432Z npm: 10.9.9
+2026-11-05T19:12:21.2131905Z yarn: 1.22.22
+2026-11-05T19:12:21.2132808Z ##[endgroup]
+2026-11-05T19:12:21.2141946Z [command]/opt/hostedtoolcache/node/22.23.4/x64/bin/npm config get cache
+2026-11-05T19:12:21.3085930Z /home/runner/.npm
+2026-11-05T19:12:21.4620187Z Cache hit for: node-cache-Linux-x64-npm-bdf7676ac3c73d012e84037285c700072175be4631684dbc433a5ae75338da79
+2026-11-05T19:12:21.4704646Z (node:2239) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-05T19:12:22.7594017Z Received 104857600 of 123734185 (84.7%), 99.7 MBs/sec
+2026-11-05T19:12:22.8790160Z Received 123734185 of 123734185 (100.0%), 105.2 MBs/sec
+2026-11-05T19:12:22.8790604Z Cache Size: ~118 MB (123734185 B)
+2026-11-05T19:12:22.8892598Z [command]/usr/bin/tar -xf /home/runner/work/_temp/75a492c8-1a36-409c-a95d-cf0a308523da/cache.tzst -P -C /home/runner/work/Loading-museum/Loading-museum --use-compress-program unzstd
+2026-11-05T19:12:23.1298722Z Cache restored successfully
+2026-11-05T19:12:23.1355974Z Cache restored from key: node-cache-Linux-x64-npm-bdf7676ac3c73d012e84037285c700072175be4631684dbc433a5ae75338da79
+2026-11-05T19:12:23.1544383Z ##[group]Run npm ci
+2026-11-05T19:12:23.1544622Z [36;1mnpm ci[0m
+2026-11-05T19:12:23.1572480Z shell: /usr/bin/bash -e {0}
+2026-11-05T19:12:23.1572715Z ##[endgroup]
+2026-11-05T19:12:25.8019688Z npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+2026-11-05T19:12:59.4017137Z 
+2026-11-05T19:12:59.4017855Z added 437 packages, and audited 438 packages in 36s
+2026-11-05T19:12:59.4018280Z 
+2026-11-05T19:12:59.4020419Z 160 packages are looking for funding
+2026-11-05T19:12:59.4021236Z   run `npm fund` for details
+2026-11-05T19:12:59.6750646Z 
+2026-11-05T19:12:59.6751736Z 22 vulnerabilities (1 low, 10 moderate, 8 high, 3 critical)
+2026-11-05T19:12:59.7793939Z 
+2026-11-05T19:12:59.7794393Z To address issues that do not require attention, run:
+2026-11-05T19:12:59.7794713Z   npm audit fix
+2026-11-05T19:12:59.7794832Z 
+2026-11-05T19:12:59.7795023Z To address all issues (including breaking changes), run:
+2026-11-05T19:12:59.7795410Z   npm audit fix --force
+2026-11-05T19:12:59.7795795Z 
+2026-11-05T19:12:59.7795917Z Run `npm audit` for details.
+2026-11-05T19:12:59.7828336Z ##[group]Run set -o pipefail
+2026-11-05T19:12:59.7828601Z [36;1mset -o pipefail[0m
+2026-11-05T19:12:59.7828800Z [36;1mgit rev-parse HEAD[0m
+2026-11-05T19:12:59.7829060Z [36;1mnpm run check 2>&1 | tee contract-results.log[0m
+2026-11-05T19:12:59.7846634Z shell: /usr/bin/bash -e {0}
+2026-11-05T19:12:59.7846850Z ##[endgroup]
+2026-11-05T19:12:59.7897841Z 7593e5136efc90c6bccf63fa2fc3e429b51a128d
+2026-11-05T19:12:59.8637906Z 
+2026-11-05T19:12:59.8638609Z > loading-museum@0.1.0 check
+2026-11-05T19:12:59.8639013Z > npm run lint && npm run typecheck && npm test
+2026-11-05T19:12:59.8639212Z 
+2026-11-05T19:12:59.9422848Z 
+2026-11-05T19:12:59.9423557Z > loading-museum@0.1.0 lint
+2026-11-05T19:12:59.9423872Z > eslint .
+2026-11-05T19:12:59.9423989Z 
+2026-11-05T19:13:14.8625495Z 
+2026-11-05T19:13:14.8626278Z > loading-museum@0.1.0 typecheck
+2026-11-05T19:13:14.8626886Z > tsc --noEmit
+2026-11-05T19:13:14.8627130Z 
+2026-11-05T19:13:21.3768181Z 
+2026-11-05T19:13:21.3768821Z > loading-museum@0.1.0 test
+2026-11-05T19:13:21.3778044Z > npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run --maxWorkers=2 tests/practical-b.test.tsx tests/practical-runtime.test.tsx tests/practical-a.test.tsx tests/practical-room.test.tsx tests/phase2-elastic.test.ts tests/phase2-regression.test.tsx tests/phase2-b.test.tsx tests/phase2-room.test.tsx tests/modern-mesh.test.ts tests/modern-drift-geometry.test.ts tests/modern-lens.test.tsx tests/modern-menu.test.tsx tests/paper-exhibit.test.tsx tests/glass-exhibit.test.tsx tests/modern-animation.test.tsx tests/macintosh-system-choice.test.tsx tests/waapi-samples.test.ts tests/waapi-gallery.test.tsx tests/waapi-interaction-state.test.ts tests/waapi-game-regressions.test.tsx tests/waapi-hp-regression.test.tsx tests/waapi-cascade-motion.test.tsx tests/dom11-selection.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-stage1-menu-coin.test.tsx && vitest run --maxWorkers=2 tests/phase4a.test.tsx && vitest run --maxWorkers=2 tests/phase4b-interactions.test.tsx tests/phase4b-async.test.tsx && vitest run --maxWorkers=2 tests/phase5-data.test.tsx tests/phase5-navigation.test.tsx && vitest run --maxWorkers=2 tests/phase5-focus-revision.test.tsx && vitest run --maxWorkers=2 tests/then-now-first.test.tsx tests/then-now-second.test.tsx tests/then-now-registration.test.ts tests/then-now-visibility.test.tsx && vitest run --maxWorkers=2 tests/waapi-observation.test.tsx tests/waapi-observation-independent.test.tsx && vitest run --maxWorkers=2 tests/waapi-stage2b.test.tsx && vitest run --maxWorkers=2 tests/then-now-phase2-first.test.tsx tests/then-now-phase2-second.test.tsx tests/then-now-phase2-card.test.tsx tests/then-now-phase2-registration.test.ts && vitest run --maxWorkers=2 tests/phase5b-editors.test.tsx tests/phase5b-compare.test.tsx tests/phase5b-registration.test.tsx && vitest run --maxWorkers=2 tests/pan-zoom.test.tsx tests/image-crop.test.tsx tests/before-after-compare.test.tsx && node --experimental-strip-types scripts/verify-image-crop-precision-model.mjs
+2026-11-05T19:13:21.3785198Z 
+2026-11-05T19:13:21.4558334Z 
+2026-11-05T19:13:21.4559111Z > loading-museum@0.1.0 build
+2026-11-05T19:13:21.4559478Z > next build
+2026-11-05T19:13:21.4559620Z 
+2026-11-05T19:13:21.7614228Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2026-11-05T19:13:21.8075847Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2026-11-05T19:13:21.8076759Z This information is used to shape Next.js' roadmap and prioritize features.
+2026-11-05T19:13:21.8077882Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2026-11-05T19:13:21.8078685Z https://nextjs.org/telemetry
+2026-11-05T19:13:21.8079480Z 
+2026-11-05T19:13:21.8217042Z ▲ Next.js 16.2.6 (Turbopack)
+2026-11-05T19:13:21.8217571Z 
+2026-11-05T19:13:21.8584732Z   Creating an optimized production build ...
+2026-11-05T19:13:24.5967220Z ✓ Compiled successfully in 2.6s
+2026-11-05T19:13:24.6012358Z   Running TypeScript ...
+2026-11-05T19:13:31.2661314Z   Finished TypeScript in 6.7s ...
+2026-11-05T19:13:31.2694987Z   Collecting page data using 3 workers ...
+2026-11-05T19:13:31.6043087Z   Generating static pages using 3 workers (0/3) ...
+2026-11-05T19:13:31.8225822Z ✓ Generating static pages using 3 workers (3/3) in 219ms
+2026-11-05T19:13:31.8254663Z   Finalizing page optimization ...
+2026-11-05T19:13:31.9999891Z 
+2026-11-05T19:13:32.0014355Z Route (app)
+2026-11-05T19:13:32.0014945Z ┌ ○ /
+2026-11-05T19:13:32.0015262Z └ ○ /_not-found
+2026-11-05T19:13:32.0015437Z 
+2026-11-05T19:13:32.0015444Z 
+2026-11-05T19:13:32.0018605Z ○  (Static)  prerendered as static content
+2026-11-05T19:13:32.0019084Z 
+2026-11-05T19:13:32.0733822Z TAP version 13
+2026-11-05T19:13:32.1524738Z # Subtest: Read Meの実矩形はゴミ箱へ四方向から重なる
+2026-11-05T19:13:32.1551204Z ok 1 - Read Meの実矩形はゴミ箱へ四方向から重なる
+2026-11-05T19:13:32.1554221Z   ---
+2026-11-05T19:13:32.1556347Z   duration_ms: 3.69022
+2026-11-05T19:13:32.1556846Z   type: 'test'
+2026-11-05T19:13:32.1557308Z   ...
+2026-11-05T19:13:32.1558056Z # Subtest: System 1→5→6→1→6をクリック相当の操作で連続選択する
+2026-11-05T19:13:32.1558815Z ok 2 - System 1→5→6→1→6をクリック相当の操作で連続選択する
+2026-11-05T19:13:32.1559362Z   ---
+2026-11-05T19:13:32.1559804Z   duration_ms: 0.780086
+2026-11-05T19:13:32.1560300Z   type: 'test'
+2026-11-05T19:13:32.1560724Z   ...
+2026-11-05T19:13:32.1561643Z # Subtest: System 5をEnter、System 6をSpace相当の操作で選択する
+2026-11-05T19:13:32.1574529Z ok 3 - System 5をEnter、System 6をSpace相当の操作で選択する
+2026-11-05T19:13:32.1579863Z   ---
+2026-11-05T19:13:32.1580398Z   duration_ms: 0.500344
+2026-11-05T19:13:32.1581133Z   type: 'test'
+2026-11-05T19:13:32.1581653Z   ...
+2026-11-05T19:13:32.1672967Z # Subtest: loadingから最初の年代へ移行する
+2026-11-05T19:13:32.1702062Z ok 4 - loadingから最初の年代へ移行する
+2026-11-05T19:13:32.1722006Z   ---
+2026-11-05T19:13:32.1741589Z   duration_ms: 1.447081
+2026-11-05T19:13:32.1767163Z   type: 'test'
+2026-11-05T19:13:32.1767820Z   ...
+2026-11-05T19:13:32.1768573Z # Subtest: 年代ごとにeraIndexが進む
+2026-11-05T19:13:32.1769326Z ok 5 - 年代ごとにeraIndexが進む
+2026-11-05T19:13:32.1769943Z   ---
+2026-11-05T19:13:32.1770387Z   duration_ms: 0.180432
+2026-11-05T19:13:32.1771007Z   type: 'test'
+2026-11-05T19:13:32.1771554Z   ...
+2026-11-05T19:13:32.1772123Z # Subtest: 通常年代は共通の待機時間を使う
+2026-11-05T19:13:32.1772973Z ok 6 - 通常年代は共通の待機時間を使う
+2026-11-05T19:13:32.1773557Z   ---
+2026-11-05T19:13:32.1773998Z   duration_ms: 0.157748
+2026-11-05T19:13:32.1774558Z   type: 'test'
+2026-11-05T19:13:32.1774811Z   ...
+2026-11-05T19:13:32.1775202Z # Subtest: 最後の年代だけ長い待機時間を使う
+2026-11-05T19:13:32.1775561Z ok 7 - 最後の年代だけ長い待機時間を使う
+2026-11-05T19:13:32.1775834Z   ---
+2026-11-05T19:13:32.1776083Z   duration_ms: 0.123576
+2026-11-05T19:13:32.1776367Z   type: 'test'
+2026-11-05T19:13:32.1776622Z   ...
+2026-11-05T19:13:32.1777041Z # Subtest: 最後の年代後にindex-completeへ移行する
+2026-11-05T19:13:32.1777511Z ok 8 - 最後の年代後にindex-completeへ移行する
+2026-11-05T19:13:32.1777819Z   ---
+2026-11-05T19:13:32.1778058Z   duration_ms: 0.194062
+2026-11-05T19:13:32.1778335Z   type: 'test'
+2026-11-05T19:13:32.1778564Z   ...
+2026-11-05T19:13:32.1778947Z # Subtest: index-complete後にtypingへ移行する
+2026-11-05T19:13:32.1779399Z ok 9 - index-complete後にtypingへ移行する
+2026-11-05T19:13:32.1779719Z   ---
+2026-11-05T19:13:32.1779952Z   duration_ms: 0.129455
+2026-11-05T19:13:32.1780232Z   type: 'test'
+2026-11-05T19:13:32.1780468Z   ...
+2026-11-05T19:13:32.1781011Z # Subtest: タイトル文字数が1文字ずつ増える
+2026-11-05T19:13:32.1781382Z ok 10 - タイトル文字数が1文字ずつ増える
+2026-11-05T19:13:32.1781690Z   ---
+2026-11-05T19:13:32.1781935Z   duration_ms: 0.176046
+2026-11-05T19:13:32.1782245Z   type: 'test'
+2026-11-05T19:13:32.1782555Z   ...
+2026-11-05T19:13:32.1782955Z # Subtest: タイトル全文をtyping状態で保持する
+2026-11-05T19:13:32.1783335Z ok 11 - タイトル全文をtyping状態で保持する
+2026-11-05T19:13:32.1783621Z   ---
+2026-11-05T19:13:32.1783865Z   duration_ms: 0.11917
+2026-11-05T19:13:32.1784482Z   type: 'test'
+2026-11-05T19:13:32.1784908Z   ...
+2026-11-05T19:13:32.1785299Z # Subtest: タイトル全文表示後にtyping-holdへ移行する
+2026-11-05T19:13:32.1785766Z ok 12 - タイトル全文表示後にtyping-holdへ移行する
+2026-11-05T19:13:32.1786078Z   ---
+2026-11-05T19:13:32.1786316Z   duration_ms: 0.374224
+2026-11-05T19:13:32.1786606Z   type: 'test'
+2026-11-05T19:13:32.1786847Z   ...
+2026-11-05T19:13:32.1787280Z # Subtest: typing-hold後にsignal-lockのbrightenへ移行する
+2026-11-05T19:13:32.1787951Z ok 13 - typing-hold後にsignal-lockのbrightenへ移行する
+2026-11-05T19:13:32.1788313Z   ---
+2026-11-05T19:13:32.1788556Z   duration_ms: 0.716489
+2026-11-05T19:13:32.1788833Z   type: 'test'
+2026-11-05T19:13:32.1789081Z   ...
+2026-11-05T19:13:32.1789464Z # Subtest: signal-lockはbrightenからnoiseへ進む
+2026-11-05T19:13:32.1789951Z ok 14 - signal-lockはbrightenからnoiseへ進む
+2026-11-05T19:13:32.1790291Z   ---
+2026-11-05T19:13:32.1790527Z   duration_ms: 5.295138
+2026-11-05T19:13:32.1790797Z   type: 'test'
+2026-11-05T19:13:32.1791187Z   ...
+2026-11-05T19:13:32.1791575Z # Subtest: signal-lockはnoiseからlockedへ進む
+2026-11-05T19:13:32.1792054Z ok 15 - signal-lockはnoiseからlockedへ進む
+2026-11-05T19:13:32.1792369Z   ---
+2026-11-05T19:13:32.1792619Z   duration_ms: 0.149064
+2026-11-05T19:13:32.1792890Z   type: 'test'
+2026-11-05T19:13:32.1793126Z   ...
+2026-11-05T19:13:32.1793529Z # Subtest: signal-lockのlocked後にcompleteへ進む
+2026-11-05T19:13:32.1794026Z ok 16 - signal-lockのlocked後にcompleteへ進む
+2026-11-05T19:13:32.1794362Z   ---
+2026-11-05T19:13:32.1794600Z   duration_ms: 0.105859
+2026-11-05T19:13:32.1794883Z   type: 'test'
+2026-11-05T19:13:32.1795137Z   ...
+2026-11-05T19:13:32.1795463Z # Subtest: complete以降は状態が進まない
+2026-11-05T19:13:32.1795867Z ok 17 - complete以降は状態が進まない
+2026-11-05T19:13:32.1796165Z   ---
+2026-11-05T19:13:32.1796407Z   duration_ms: 0.094091
+2026-11-05T19:13:32.1796692Z   type: 'test'
+2026-11-05T19:13:32.1796931Z   ...
+2026-11-05T19:13:32.1797308Z # Subtest: complete状態は最後の年代とタイトル全文を保持する
+2026-11-05T19:13:32.1797776Z ok 18 - complete状態は最後の年代とタイトル全文を保持する
+2026-11-05T19:13:32.1798119Z   ---
+2026-11-05T19:13:32.1798360Z   duration_ms: 0.069474
+2026-11-05T19:13:32.1798654Z   type: 'test'
+2026-11-05T19:13:32.1798903Z   ...
+2026-11-05T19:13:32.1799213Z # Subtest: ReplayはrunIdを増やす
+2026-11-05T19:13:32.1799572Z ok 19 - ReplayはrunIdを増やす
+2026-11-05T19:13:32.1799846Z   ---
+2026-11-05T19:13:32.1800081Z   duration_ms: 0.070877
+2026-11-05T19:13:32.1800352Z   type: 'test'
+2026-11-05T19:13:32.1800586Z   ...
+2026-11-05T19:13:32.1826347Z # Subtest: Replayは初期状態へ戻す
+2026-11-05T19:13:32.1826883Z ok 20 - Replayは初期状態へ戻す
+2026-11-05T19:13:32.1827179Z   ---
+2026-11-05T19:13:32.1827443Z   duration_ms: 0.65715
+2026-11-05T19:13:32.1827723Z   type: 'test'
+2026-11-05T19:13:32.1827966Z   ...
+2026-11-05T19:13:32.1828337Z # Subtest: 古いrunIdによるタイマー更新を無視する
+2026-11-05T19:13:32.1828747Z ok 21 - 古いrunIdによるタイマー更新を無視する
+2026-11-05T19:13:32.1829039Z   ---
+2026-11-05T19:13:32.1829281Z   duration_ms: 0.097877
+2026-11-05T19:13:32.1829562Z   type: 'test'
+2026-11-05T19:13:32.1829803Z   ...
+2026-11-05T19:13:32.1830204Z # Subtest: reduced motionは即時completeになる
+2026-11-05T19:13:32.1831103Z ok 22 - reduced motionは即時completeになる
+2026-11-05T19:13:32.1831454Z   ---
+2026-11-05T19:13:32.1831693Z   duration_ms: 0.091738
+2026-11-05T19:13:32.1831971Z   type: 'test'
+2026-11-05T19:13:32.1832214Z   ...
+2026-11-05T19:13:32.1832649Z # Subtest: 年代走査中の点灯数とノード状態をeraIndexから算出する
+2026-11-05T19:13:32.1833131Z ok 23 - 年代走査中の点灯数とノード状態をeraIndexから算出する
+2026-11-05T19:13:32.1833454Z   ---
+2026-11-05T19:13:32.1833684Z   duration_ms: 0.154463
+2026-11-05T19:13:32.1833961Z   type: 'test'
+2026-11-05T19:13:32.1834206Z   ...
+2026-11-05T19:13:32.1834571Z # Subtest: 年代走査完了後は全タイムラインノードが点灯する
+2026-11-05T19:13:32.1834996Z ok 24 - 年代走査完了後は全タイムラインノードが点灯する
+2026-11-05T19:13:32.1835282Z   ---
+2026-11-05T19:13:32.1835519Z   duration_ms: 0.221884
+2026-11-05T19:13:32.1835782Z   type: 'test'
+2026-11-05T19:13:32.1836005Z   ...
+2026-11-05T19:13:32.1836359Z # Subtest: タイムライン進捗率を年代件数と現在位置から算出する
+2026-11-05T19:13:32.1836772Z ok 25 - タイムライン進捗率を年代件数と現在位置から算出する
+2026-11-05T19:13:32.1837268Z   ---
+2026-11-05T19:13:32.1837495Z   duration_ms: 0.149005
+2026-11-05T19:13:32.1837785Z   type: 'test'
+2026-11-05T19:13:32.1838022Z   ...
+2026-11-05T19:13:32.1838405Z # Subtest: 年代が1件でも安全な進捗率を返し、完了数を件数内へ制限する
+2026-11-05T19:13:32.1838920Z ok 26 - 年代が1件でも安全な進捗率を返し、完了数を件数内へ制限する
+2026-11-05T19:13:32.1842127Z   ---
+2026-11-05T19:13:32.1842544Z   duration_ms: 0.091357
+2026-11-05T19:13:32.1842955Z   type: 'test'
+2026-11-05T19:13:32.1843355Z   ...
+2026-11-05T19:13:32.1844038Z # Subtest: 全年代と全時間定数を一か所で管理する
+2026-11-05T19:13:32.1844586Z ok 27 - 全年代と全時間定数を一か所で管理する
+2026-11-05T19:13:32.1845012Z   ---
+2026-11-05T19:13:32.1845376Z   duration_ms: 0.173221
+2026-11-05T19:13:32.1845776Z   type: 'test'
+2026-11-05T19:13:32.1846144Z   ...
+2026-11-05T19:13:32.2021147Z # Subtest: GitHub Pages用の静的HTMLへ9種類の展示を書き出す
+2026-11-05T19:13:32.2035842Z ok 28 - GitHub Pages用の静的HTMLへ9種類の展示を書き出す
+2026-11-05T19:13:32.2036539Z   ---
+2026-11-05T19:13:32.2037010Z   duration_ms: 15.267807
+2026-11-05T19:13:32.2037539Z   type: 'test'
+2026-11-05T19:13:32.2038075Z   ...
+2026-11-05T19:13:32.2038834Z # Subtest: 正式名称のタイトル導入、年代テーマ、確定演出、軽減モーションと再生操作を実装する
+2026-11-05T19:13:32.2039631Z ok 29 - 正式名称のタイトル導入、年代テーマ、確定演出、軽減モーションと再生操作を実装する
+2026-11-05T19:13:32.2040191Z   ---
+2026-11-05T19:13:32.2040609Z   duration_ms: 8.242318
+2026-11-05T19:13:32.2041413Z   type: 'test'
+2026-11-05T19:13:32.2041912Z   ...
+2026-11-05T19:13:32.2042578Z # Subtest: 既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き出す
+2026-11-05T19:13:32.2043352Z ok 30 - 既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き出す
+2026-11-05T19:13:32.2043909Z   ---
+2026-11-05T19:13:32.2044306Z   duration_ms: 6.056435
+2026-11-05T19:13:32.2044646Z   type: 'test'
+2026-11-05T19:13:32.2044960Z   ...
+2026-11-05T19:13:32.2045368Z # Subtest: カーソル展示室と8種類の体験展示を書き出す
+2026-11-05T19:13:32.2045767Z ok 31 - カーソル展示室と8種類の体験展示を書き出す
+2026-11-05T19:13:32.2046111Z   ---
+2026-11-05T19:13:32.2046414Z   duration_ms: 5.983815
+2026-11-05T19:13:32.2046737Z   type: 'test'
+2026-11-05T19:13:32.2047039Z   ...
+2026-11-05T19:13:32.2069521Z # Subtest: カーソル展示のデータ、Pointer Events、性能とアクセシビリティ対応を実装する
+2026-11-05T19:13:32.2070192Z ok 32 - カーソル展示のデータ、Pointer Events、性能とアクセシビリティ対応を実装する
+2026-11-05T19:13:32.2070551Z   ---
+2026-11-05T19:13:32.2070952Z   duration_ms: 7.986582
+2026-11-05T19:13:32.2071183Z   type: 'test'
+2026-11-05T19:13:32.2071364Z   ...
+2026-11-05T19:13:32.2071645Z # Subtest: Macintosh誕生展示室を加えた展示室・展示件数を表示する
+2026-11-05T19:13:32.2071964Z ok 33 - Macintosh誕生展示室を加えた展示室・展示件数を表示する
+2026-11-05T19:13:32.2072190Z   ---
+2026-11-05T19:13:32.2072359Z   duration_ms: 5.677754
+2026-11-05T19:13:32.2072556Z   type: 'test'
+2026-11-05T19:13:32.2072727Z   ...
+2026-11-05T19:13:32.2072978Z # Subtest: Macintosh誕生展示室へ18種類の操作展示を書き出す
+2026-11-05T19:13:32.2073296Z ok 34 - Macintosh誕生展示室へ18種類の操作展示を書き出す
+2026-11-05T19:13:32.2073516Z   ---
+2026-11-05T19:13:32.2073674Z   duration_ms: 6.792945
+2026-11-05T19:13:32.2073852Z   type: 'test'
+2026-11-05T19:13:32.2074007Z   ...
+2026-11-05T19:13:32.2074310Z # Subtest: Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する
+2026-11-05T19:13:32.2074668Z ok 35 - Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する
+2026-11-05T19:13:32.2075170Z   ---
+2026-11-05T19:13:32.2075477Z   duration_ms: 15.451314
+2026-11-05T19:13:32.2075680Z   type: 'test'
+2026-11-05T19:13:32.2075849Z   ...
+2026-11-05T19:13:32.2076122Z # Subtest: Flash特別展示室へ18カテゴリ・66展示と優先デモを実装する
+2026-11-05T19:13:32.2076447Z ok 36 - Flash特別展示室へ18カテゴリ・66展示と優先デモを実装する
+2026-11-05T19:13:32.2076666Z   ---
+2026-11-05T19:13:32.2076829Z   duration_ms: 11.697724
+2026-11-05T19:13:32.2077027Z   type: 'test'
+2026-11-05T19:13:32.2077188Z   ...
+2026-11-05T19:13:32.2077436Z # Subtest: 再検討した9展示と現代Web継承比較を専用実装にする
+2026-11-05T19:13:32.2077732Z ok 37 - 再検討した9展示と現代Web継承比較を専用実装にする
+2026-11-05T19:13:32.2077935Z   ---
+2026-11-05T19:13:32.2078099Z   duration_ms: 6.105399
+2026-11-05T19:13:32.2078280Z   type: 'test'
+2026-11-05T19:13:32.2078449Z   ...
+2026-11-05T19:13:32.2109893Z # Subtest: FlashバナーのCTAを安全に2回強調し、価格とreduced motionを調整する
+2026-11-05T19:13:32.2111133Z ok 38 - FlashバナーのCTAを安全に2回強調し、価格とreduced motionを調整する
+2026-11-05T19:13:32.2111970Z   ---
+2026-11-05T19:13:32.2112758Z   duration_ms: 4.419408
+2026-11-05T19:13:32.2113131Z   type: 'test'
+2026-11-05T19:13:32.2113404Z   ...
+2026-11-05T19:13:32.2158658Z # Subtest: Flash専用展示の状態遷移、停止制御、操作可能なARIA構造を実装する
+2026-11-05T19:13:32.2159397Z ok 39 - Flash専用展示の状態遷移、停止制御、操作可能なARIA構造を実装する
+2026-11-05T19:13:32.2159832Z   ---
+2026-11-05T19:13:32.2160041Z   duration_ms: 5.022051
+2026-11-05T19:13:32.2160280Z   type: 'test'
+2026-11-05T19:13:32.2160470Z   ...
+2026-11-05T19:13:32.2185872Z # Subtest: MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモを書き出す
+2026-11-05T19:13:32.2187204Z ok 40 - MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモを書き出す
+2026-11-05T19:13:32.2191570Z   ---
+2026-11-05T19:13:32.2191927Z   duration_ms: 2.756468
+2026-11-05T19:13:32.2192303Z   type: 'test'
+2026-11-05T19:13:32.2192617Z   ...
+2026-11-05T19:13:32.2240142Z # Subtest: 独立した消えたOS展示室へ6 OS・18種類のLoading再構成を書き出す
+2026-11-05T19:13:32.2241120Z ok 41 - 独立した消えたOS展示室へ6 OS・18種類のLoading再構成を書き出す
+2026-11-05T19:13:32.2241800Z   ---
+2026-11-05T19:13:32.2242032Z   duration_ms: 5.395002
+2026-11-05T19:13:32.2242240Z   type: 'test'
+2026-11-05T19:13:32.2242451Z   ...
+2026-11-05T19:13:32.2249613Z # Subtest: 展示室のデータ定義とタイマー停止・フォーカス復帰を実装する
+2026-11-05T19:13:32.2251254Z ok 42 - 展示室のデータ定義とタイマー停止・フォーカス復帰を実装する
+2026-11-05T19:13:32.2251535Z   ---
+2026-11-05T19:13:32.2251719Z   duration_ms: 0.944263
+2026-11-05T19:13:32.2251915Z   type: 'test'
+2026-11-05T19:13:32.2252085Z   ...
+2026-11-05T19:13:32.2263691Z # Subtest: 消えたOS展示のデータ・起動・停止・reduced motionを実装する
+2026-11-05T19:13:32.2264301Z ok 43 - 消えたOS展示のデータ・起動・停止・reduced motionを実装する
+2026-11-05T19:13:32.2264764Z   ---
+2026-11-05T19:13:32.2265036Z   duration_ms: 1.404236
+2026-11-05T19:13:32.2265396Z   type: 'test'
+2026-11-05T19:13:32.2265711Z   ...
+2026-11-05T19:13:32.2281555Z # Subtest: Linux / UNIXデモの再実行・速度切替・安全な停止を実装する
+2026-11-05T19:13:32.2282300Z ok 44 - Linux / UNIXデモの再実行・速度切替・安全な停止を実装する
+2026-11-05T19:13:32.2282878Z   ---
+2026-11-05T19:13:32.2283313Z   duration_ms: 1.105285
+2026-11-05T19:13:32.2283756Z   type: 'test'
+2026-11-05T19:13:32.2284152Z   ...
+2026-11-05T19:13:32.2326822Z # Subtest: CSSとJavaScriptをLoading-museumサブパスから参照する
+2026-11-05T19:13:32.2330504Z ok 45 - CSSとJavaScriptをLoading-museumサブパスから参照する
+2026-11-05T19:13:32.2331608Z   ---
+2026-11-05T19:13:32.2331943Z   duration_ms: 4.930728
+2026-11-05T19:13:32.2332278Z   type: 'test'
+2026-11-05T19:13:32.2332583Z   ...
+2026-11-05T19:13:32.2379905Z # Subtest: 静的export設定と既存レスポンシブ・reduced-motion対応を維持する
+2026-11-05T19:13:32.2380720Z ok 46 - 静的export設定と既存レスポンシブ・reduced-motion対応を維持する
+2026-11-05T19:13:32.2381369Z   ---
+2026-11-05T19:13:32.2381655Z   duration_ms: 5.317521
+2026-11-05T19:13:32.2381942Z   type: 'test'
+2026-11-05T19:13:32.2382183Z   ...
+2026-11-05T19:13:32.2398897Z # Subtest: System 1〜6のbutton構造と非スクロールgridを静的に維持する
+2026-11-05T19:13:32.2400250Z ok 47 - System 1〜6のbutton構造と非スクロールgridを静的に維持する
+2026-11-05T19:13:32.2400660Z   ---
+2026-11-05T19:13:32.2401056Z   duration_ms: 1.690397
+2026-11-05T19:13:32.2401357Z   type: 'test'
+2026-11-05T19:13:32.2401631Z   ...
+2026-11-05T19:13:32.2448752Z # Subtest: DOM ANIMATION ROOM を静的HTMLへ出力し、17操作のAPI体験を確認する
+2026-11-05T19:13:32.2449469Z ok 48 - DOM ANIMATION ROOM を静的HTMLへ出力し、17操作のAPI体験を確認する
+2026-11-05T19:13:32.2449904Z   ---
+2026-11-05T19:13:32.2450148Z   duration_ms: 4.794944
+2026-11-05T19:13:32.2450432Z   type: 'test'
+2026-11-05T19:13:32.2450685Z   ...
+2026-11-05T19:13:32.2485423Z # Subtest: 既存ローディング標本の直下に、遅延生成するWAAPI標本ギャラリーを追加する
+2026-11-05T19:13:32.2486193Z ok 49 - 既存ローディング標本の直下に、遅延生成するWAAPI標本ギャラリーを追加する
+2026-11-05T19:13:32.2486682Z   ---
+2026-11-05T19:13:32.2487072Z   duration_ms: 3.631061
+2026-11-05T19:13:32.2487460Z   type: 'test'
+2026-11-05T19:13:32.2487792Z   ...
+2026-11-05T19:13:32.2584936Z 1..49
+2026-11-05T19:13:32.2585222Z # tests 49
+2026-11-05T19:13:32.2591670Z # suites 0
+2026-11-05T19:13:32.2591900Z # pass 49
+2026-11-05T19:13:32.2592069Z # fail 0
+2026-11-05T19:13:32.2592237Z # cancelled 0
+2026-11-05T19:13:32.2592413Z # skipped 0
+2026-11-05T19:13:32.2592580Z # todo 0
+2026-11-05T19:13:32.2592765Z # duration_ms 199.302065
+2026-11-05T19:13:32.4938726Z 
+2026-11-05T19:13:32.4941997Z [1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+2026-11-05T19:13:32.4942904Z 
+2026-11-05T19:13:33.5878499Z  [32m✓[39m tests/waapi-game-regressions.test.tsx [2m([22m[2m15 tests[22m[2m)[22m[32m 190[2mms[22m[39m
+2026-11-05T19:13:34.6542505Z  [32m✓[39m tests/waapi-cascade-motion.test.tsx [2m([22m[2m14 tests[22m[2m)[22m[33m 324[2mms[22m[39m
+2026-11-05T19:13:35.8873177Z  [32m✓[39m tests/waapi-stage1-expanded.test.tsx [2m([22m[2m23 tests[22m[2m)[22m[33m 586[2mms[22m[39m
+2026-11-05T19:13:37.3046554Z  [32m✓[39m tests/phase2-regression.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 764[2mms[22m[39m
+2026-11-05T19:13:37.3047856Z    [33m[2m✓[22m[39m phase and reset regression[2m > [22mretains plasma phase while changing speed or pausing [33m 336[2mms[22m[39m
+2026-11-05T19:13:38.0432937Z  [32m✓[39m tests/waapi-gallery.test.tsx [2m([22m[2m12 tests[22m[2m)[22m[33m 4644[2mms[22m[39m
+2026-11-05T19:13:38.0462615Z    [33m[2m✓[22m[39m WAAPI標本ギャラリー操作[2m > [22m初期DOMを遅延し、正規化検索・解除・開閉を扱う [33m 764[2mms[22m[39m
+2026-11-05T19:13:38.0488945Z    [33m[2m✓[22m[39m WAAPI標本ギャラリー操作[2m > [22m複合フィルター・0件・解除後の全件表示と閉鎖取消を扱う [33m 390[2mms[22m[39m
+2026-11-05T19:13:38.0502373Z    [33m[2m✓[22m[39m WAAPI標本ギャラリー操作[2m > [22mゲーム標本を直接操作し、Resetで意味のある初期状態へ戻す [33m 301[2mms[22m[39m
+2026-11-05T19:13:38.0503602Z    [33m[2m✓[22m[39m WAAPI標本ギャラリー操作[2m > [22m新しいゲーム標本、5軸フィルター、AI共通状態を操作できる [33m 557[2mms[22m[39m
+2026-11-05T19:13:38.0504511Z    [33m[2m✓[22m[39m WAAPI標本ギャラリー操作[2m > [22mAI比較モードは一括フェーズを進め、閉じるとループを停止する [33m 635[2mms[22m[39m
+2026-11-05T19:13:38.0505393Z    [33m[2m✓[22m[39m WAAPI標本ギャラリー操作[2m > [22m追加ゲーム14件は固有DOM・状態・操作結果を提供する [33m 889[2mms[22m[39m
+2026-11-05T19:13:38.4305496Z  [32m✓[39m tests/practical-b.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 486[2mms[22m[39m
+2026-11-05T19:13:39.3753623Z  [32m✓[39m tests/glass-exhibit.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 252[2mms[22m[39m
+2026-11-05T19:13:40.3417246Z  [32m✓[39m tests/waapi-stage1-menu-coin.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 1564[2mms[22m[39m
+2026-11-05T19:13:40.3418815Z    [33m[2m✓[22m[39m Menu cursor belongs to the current row for buttons, keyboard, limits and Reset [33m 499[2mms[22m[39m
+2026-11-05T19:13:40.3420252Z    [33m[2m✓[22m[39m Coin entry, Replay and re-entry never grant points, including late completion after Reset [33m 366[2mms[22m[39m
+2026-11-05T19:13:40.3682532Z  [32m✓[39m tests/practical-a.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 300[2mms[22m[39m
+2026-11-05T19:13:41.6254161Z  [32m✓[39m tests/dom11-selection.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 579[2mms[22m[39m
+2026-11-05T19:13:42.4458055Z  [32m✓[39m tests/waapi-hp-regression.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 1449[2mms[22m[39m
+2026-11-05T19:13:42.4459913Z    [33m[2m✓[22m[39m Damage直後Reset後、旧追従更新の予定時刻を過ぎても72を保つ [33m 526[2mms[22m[39m
+2026-11-05T19:13:42.4460685Z    [33m[2m✓[22m[39m Damage連打とHealは最新HPに収束し、Reset連打も不変 [33m 413[2mms[22m[39m
+2026-11-05T19:13:42.4752856Z  [32m✓[39m tests/paper-exhibit.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 182[2mms[22m[39m
+2026-11-05T19:13:43.3591443Z  [32m✓[39m tests/phase2-room.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 258[2mms[22m[39m
+2026-11-05T19:13:43.3837309Z  [32m✓[39m tests/modern-animation.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 195[2mms[22m[39m
+2026-11-05T19:13:44.0421994Z  [32m✓[39m tests/practical-runtime.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 17[2mms[22m[39m
+2026-11-05T19:13:44.3078778Z  [32m✓[39m tests/phase2-b.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 282[2mms[22m[39m
+2026-11-05T19:13:44.7992284Z  [32m✓[39m tests/modern-lens.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 84[2mms[22m[39m
+2026-11-05T19:13:45.7887977Z  [32m✓[39m tests/macintosh-system-choice.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 233[2mms[22m[39m
+2026-11-05T19:13:46.0753989Z  [32m✓[39m tests/practical-room.test.tsx [2m([22m[2m15 tests[22m[2m)[22m[33m 782[2mms[22m[39m
+2026-11-05T19:13:46.3418855Z  [32m✓[39m tests/waapi-samples.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+2026-11-05T19:13:46.6008178Z  [32m✓[39m tests/modern-menu.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 127[2mms[22m[39m
+2026-11-05T19:13:46.6685877Z  [32m✓[39m tests/modern-drift-geometry.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 106[2mms[22m[39m
+2026-11-05T19:13:46.8907171Z  [32m✓[39m tests/modern-mesh.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 56[2mms[22m[39m
+2026-11-05T19:13:46.8954784Z  [32m✓[39m tests/waapi-interaction-state.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+2026-11-05T19:13:47.1032715Z  [32m✓[39m tests/phase2-elastic.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+2026-11-05T19:13:47.1227800Z 
+2026-11-05T19:13:47.1242371Z [2m Test Files [22m [1m[32m25 passed[39m[22m[90m (25)[39m
+2026-11-05T19:13:47.1244065Z [2m      Tests [22m [1m[32m150 passed[39m[22m[90m (150)[39m
+2026-11-05T19:13:47.1244831Z [2m   Start at [22m 19:13:32
+2026-11-05T19:13:47.1246142Z [2m   Duration [22m 14.63s[2m (transform 1.04s, setup 0ms, collect 3.76s, tests 13.48s, environment 6.77s, prepare 1.79s)[22m
+2026-11-05T19:13:47.1246852Z 
+2026-11-05T19:13:47.4654327Z 
+2026-11-05T19:13:47.4656974Z [1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+2026-11-05T19:13:47.4657595Z 
+2026-11-05T19:13:49.4352666Z  [32m✓[39m tests/phase4a.test.tsx [2m([22m[2m32 tests[22m[2m)[22m[33m 988[2mms[22m[39m
+2026-11-05T19:13:49.4575759Z 
+2026-11-05T19:13:49.4579351Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-11-05T19:13:49.4580306Z [2m      Tests [22m [1m[32m32 passed[39m[22m[90m (32)[39m
+2026-11-05T19:13:49.4581153Z [2m   Start at [22m 19:13:47
+2026-11-05T19:13:49.4587890Z [2m   Duration [22m 1.99s[2m (transform 344ms, setup 0ms, collect 509ms, tests 988ms, environment 276ms, prepare 55ms)[22m
+2026-11-05T19:13:49.4588518Z 
+2026-11-05T19:13:49.7896388Z 
+2026-11-05T19:13:49.7899009Z [1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+2026-11-05T19:13:49.7908348Z 
+2026-11-05T19:13:50.9189372Z  [32m✓[39m tests/phase4b-interactions.test.tsx [2m([22m[2m11 tests[22m[2m)[22m[33m 342[2mms[22m[39m
+2026-11-05T19:13:50.9604040Z  [32m✓[39m tests/phase4b-async.test.tsx [2m([22m[2m14 tests[22m[2m)[22m[33m 384[2mms[22m[39m
+2026-11-05T19:13:50.9838369Z 
+2026-11-05T19:13:50.9843035Z [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+2026-11-05T19:13:50.9844130Z [2m      Tests [22m [1m[32m25 passed[39m[22m[90m (25)[39m
+2026-11-05T19:13:50.9845131Z [2m   Start at [22m 19:13:49
+2026-11-05T19:13:50.9846405Z [2m   Duration [22m 1.19s[2m (transform 196ms, setup 0ms, collect 509ms, tests 726ms, environment 637ms, prepare 133ms)[22m
+2026-11-05T19:13:50.9847242Z 
+2026-11-05T19:13:51.3339622Z 
+2026-11-05T19:13:51.3353655Z [1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+2026-11-05T19:13:51.3354019Z 
+2026-11-05T19:13:52.6193815Z  [32m✓[39m tests/phase5-data.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 480[2mms[22m[39m
+2026-11-05T19:13:52.7519265Z  [32m✓[39m tests/phase5-navigation.test.tsx [2m([22m[2m12 tests[22m[2m)[22m[33m 606[2mms[22m[39m
+2026-11-05T19:13:52.7811609Z 
+2026-11-05T19:13:52.7813269Z [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+2026-11-05T19:13:52.7814202Z [2m      Tests [22m [1m[32m20 passed[39m[22m[90m (20)[39m
+2026-11-05T19:13:52.7814933Z [2m   Start at [22m 19:13:51
+2026-11-05T19:13:52.7816083Z [2m   Duration [22m 1.44s[2m (transform 198ms, setup 0ms, collect 551ms, tests 1.09s, environment 650ms, prepare 132ms)[22m
+2026-11-05T19:13:52.7816829Z 
+2026-11-05T19:13:53.1148210Z 
+2026-11-05T19:13:53.1151347Z [1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+2026-11-05T19:13:53.1152351Z 
+2026-11-05T19:13:54.4751097Z  [32m✓[39m tests/phase5-focus-revision.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 637[2mms[22m[39m
+2026-11-05T19:13:54.4979145Z 
+2026-11-05T19:13:54.4985566Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-11-05T19:13:54.4990285Z [2m      Tests [22m [1m[32m8 passed[39m[22m[90m (8)[39m
+2026-11-05T19:13:54.4991519Z [2m   Start at [22m 19:13:53
+2026-11-05T19:13:54.4992533Z [2m   Duration [22m 1.38s[2m (transform 112ms, setup 0ms, collect 235ms, tests 637ms, environment 287ms, prepare 63ms)[22m
+2026-11-05T19:13:54.4993353Z 
+2026-11-05T19:13:54.8283826Z 
+2026-11-05T19:13:54.8287692Z [1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+2026-11-05T19:13:54.8288246Z 
+2026-11-05T19:13:55.7823396Z  [32m✓[39m tests/then-now-first.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[32m 149[2mms[22m[39m
+2026-11-05T19:13:55.9939783Z  [32m✓[39m tests/then-now-second.test.tsx [2m([22m[2m17 tests[22m[2m)[22m[33m 361[2mms[22m[39m
+2026-11-05T19:13:56.2758249Z  [32m✓[39m tests/then-now-registration.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+2026-11-05T19:13:56.7654253Z  [32m✓[39m tests/then-now-visibility.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 174[2mms[22m[39m
+2026-11-05T19:13:56.7848564Z 
+2026-11-05T19:13:56.7851567Z [2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+2026-11-05T19:13:56.7852388Z [2m      Tests [22m [1m[32m28 passed[39m[22m[90m (28)[39m
+2026-11-05T19:13:56.7872699Z [2m   Start at [22m 19:13:54
+2026-11-05T19:13:56.7875952Z [2m   Duration [22m 1.96s[2m (transform 377ms, setup 0ms, collect 860ms, tests 688ms, environment 1.02s, prepare 277ms)[22m
+2026-11-05T19:13:56.7876638Z 
+2026-11-05T19:13:57.1106162Z 
+2026-11-05T19:13:57.1108825Z [1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+2026-11-05T19:13:57.1111532Z 
+2026-11-05T19:13:58.2152946Z  [32m✓[39m tests/waapi-observation-independent.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[32m 225[2mms[22m[39m
+2026-11-05T19:14:02.5942702Z  [32m✓[39m tests/waapi-observation.test.tsx [2m([22m[2m37 tests[22m[2m)[22m[33m 4526[2mms[22m[39m
+2026-11-05T19:14:02.5944347Z    [33m[2m✓[22m[39m actual gallery integration: observation never owns game state[2m > [22mMenu selection survives observation seek, finish, reverse, mode exit, and ordinary Reset still works [33m 386[2mms[22m[39m
+2026-11-05T19:14:02.5946396Z    [33m[2m✓[22m[39m actual gallery integration: observation never owns game state[2m > [22mCoin preview repeatedly finishes and rewinds with zero points; normal COLLECT awards once [33m 369[2mms[22m[39m
+2026-11-05T19:14:02.5981507Z    [33m[2m✓[22m[39m actual gallery integration: observation never owns game state[2m > [22mcollected Coin retains its score and collected guard through observation and return [33m 322[2mms[22m[39m
+2026-11-05T19:14:02.5982899Z    [33m[2m✓[22m[39m observed Coin normal motion cancellation[2m > [22mrapid mode switches retain collected state and Reset permits exactly one new acquisition [33m 349[2mms[22m[39m
+2026-11-05T19:14:02.6306165Z 
+2026-11-05T19:14:02.6309676Z [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+2026-11-05T19:14:02.6310429Z [2m      Tests [22m [1m[32m44 passed[39m[22m[90m (44)[39m
+2026-11-05T19:14:02.6311537Z [2m   Start at [22m 19:13:57
+2026-11-05T19:14:02.6312508Z [2m   Duration [22m 5.52s[2m (transform 325ms, setup 0ms, collect 739ms, tests 4.75s, environment 675ms, prepare 127ms)[22m
+2026-11-05T19:14:02.6313084Z 
+2026-11-05T19:14:02.9698550Z 
+2026-11-05T19:14:02.9701334Z [1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+2026-11-05T19:14:02.9701852Z 
+2026-11-05T19:14:04.9246533Z  [32m✓[39m tests/waapi-stage2b.test.tsx [2m([22m[2m24 tests[22m[2m)[22m[33m 1170[2mms[22m[39m
+2026-11-05T19:14:04.9461317Z 
+2026-11-05T19:14:04.9464766Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-11-05T19:14:04.9465654Z [2m      Tests [22m [1m[32m24 passed[39m[22m[90m (24)[39m
+2026-11-05T19:14:04.9488510Z [2m   Start at [22m 19:14:02
+2026-11-05T19:14:04.9489496Z [2m   Duration [22m 1.98s[2m (transform 187ms, setup 0ms, collect 303ms, tests 1.17s, environment 284ms, prepare 63ms)[22m
+2026-11-05T19:14:04.9490026Z 
+2026-11-05T19:14:05.2762453Z 
+2026-11-05T19:14:05.2773704Z [1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+2026-11-05T19:14:05.2774286Z 
+2026-11-05T19:14:06.3655529Z  [32m✓[39m tests/then-now-phase2-first.test.tsx [2m([22m[2m13 tests[22m[2m)[22m[32m 281[2mms[22m[39m
+2026-11-05T19:14:06.9020175Z  [32m✓[39m tests/then-now-phase2-second.test.tsx [2m([22m[2m20 tests[22m[2m)[22m[33m 817[2mms[22m[39m
+2026-11-05T19:14:07.1827197Z  [32m✓[39m tests/then-now-phase2-registration.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+2026-11-05T19:14:07.6071028Z  [32m✓[39m tests/then-now-phase2-card.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 549[2mms[22m[39m
+2026-11-05T19:14:07.6072323Z    [33m[2m✓[22m[39m page hidden suspends a phase-two editor without destroying its work; close still unmounts [33m 326[2mms[22m[39m
+2026-11-05T19:14:07.6268091Z 
+2026-11-05T19:14:07.6271999Z [2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+2026-11-05T19:14:07.6281961Z [2m      Tests [22m [1m[32m38 passed[39m[22m[90m (38)[39m
+2026-11-05T19:14:07.6282510Z [2m   Start at [22m 19:14:05
+2026-11-05T19:14:07.6283463Z [2m   Duration [22m 2.35s[2m (transform 414ms, setup 0ms, collect 807ms, tests 1.66s, environment 956ms, prepare 271ms)[22m
+2026-11-05T19:14:07.6284033Z 
+2026-11-05T19:14:07.9669404Z 
+2026-11-05T19:14:07.9673437Z [1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+2026-11-05T19:14:07.9674158Z 
+2026-11-05T19:14:09.3766411Z  [32m✓[39m tests/phase5b-compare.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 583[2mms[22m[39m
+2026-11-05T19:14:09.5194674Z  [32m✓[39m tests/phase5b-editors.test.tsx [2m([22m[2m10 tests[22m[2m)[22m[33m 750[2mms[22m[39m
+2026-11-05T19:14:10.7569442Z  [32m✓[39m tests/phase5b-registration.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 518[2mms[22m[39m
+2026-11-05T19:14:10.7780190Z 
+2026-11-05T19:14:10.7785332Z [2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+2026-11-05T19:14:10.7786139Z [2m      Tests [22m [1m[32m24 passed[39m[22m[90m (24)[39m
+2026-11-05T19:14:10.7786718Z [2m   Start at [22m 19:14:07
+2026-11-05T19:14:10.7792881Z [2m   Duration [22m 2.81s[2m (transform 462ms, setup 0ms, collect 956ms, tests 1.85s, environment 926ms, prepare 195ms)[22m
+2026-11-05T19:14:10.7793585Z 
+2026-11-05T19:14:11.1138916Z 
+2026-11-05T19:14:11.1141969Z [1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+2026-11-05T19:14:11.1142869Z 
+2026-11-05T19:14:12.8970713Z  [32m✓[39m tests/before-after-compare.test.tsx [2m([22m[2m40 tests[22m[2m)[22m[33m 718[2mms[22m[39m
+2026-11-05T19:14:14.2580095Z  [32m✓[39m tests/image-crop.test.tsx [2m([22m[2m30 tests[22m[2m)[22m[33m 2080[2mms[22m[39m
+2026-11-05T19:14:14.2581775Z    [33m[2m✓[22m[39m reapplies actual displayed wide minimum values 16 times without drift [33m 458[2mms[22m[39m
+2026-11-05T19:14:14.7248871Z  [32m✓[39m tests/pan-zoom.test.tsx [2m([22m[2m13 tests[22m[2m)[22m[33m 1121[2mms[22m[39m
+2026-11-05T19:14:14.7488725Z 
+2026-11-05T19:14:14.7492170Z [2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+2026-11-05T19:14:14.7493199Z [2m      Tests [22m [1m[32m83 passed[39m[22m[90m (83)[39m
+2026-11-05T19:14:14.7493999Z [2m   Start at [22m 19:14:11
+2026-11-05T19:14:14.7496205Z [2m   Duration [22m 3.63s[2m (transform 485ms, setup 0ms, collect 1.25s, tests 3.92s, environment 964ms, prepare 202ms)[22m
+2026-11-05T19:14:14.7497115Z 
+2026-11-05T19:14:15.2319715Z {"head":"7593e5136efc90c6bccf63fa2fc3e429b51a128d","checks":45,"passed":45,"failures":[]}
+2026-11-05T19:14:15.2576441Z ##[group]Run actions/upload-artifact@v4
+2026-11-05T19:14:15.2576693Z with:
+2026-11-05T19:14:15.2576926Z   name: contracts-7593e5136efc90c6bccf63fa2fc3e429b51a128d
+2026-11-05T19:14:15.2577215Z   path: contract-results.log
+2026-11-05T19:14:15.2577433Z   if-no-files-found: warn
+2026-11-05T19:14:15.2577628Z   compression-level: 6
+2026-11-05T19:14:15.2577813Z   overwrite: false
+2026-11-05T19:14:15.2577997Z   include-hidden-files: false
+2026-11-05T19:14:15.2578202Z ##[endgroup]
+2026-11-05T19:14:15.3934469Z (node:4309) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-05T19:14:15.3935174Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-05T19:14:15.3973823Z With the provided path, there will be 1 file uploaded
+2026-11-05T19:14:15.3989685Z Artifact name is valid!
+2026-11-05T19:14:15.3990108Z Root directory input is valid!
+2026-11-05T19:14:15.6796133Z Beginning upload of artifact content to blob storage
+2026-11-05T19:14:15.7618963Z (node:4309) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-05T19:14:15.9021399Z Uploaded bytes 6198
+2026-11-05T19:14:15.9479576Z Finished uploading artifact content to blob storage!
+2026-11-05T19:14:15.9480782Z SHA256 digest of uploaded artifact zip is b4aa2feebe314b434147c1986aa79e5ff8b1c1e2e76f66170685ffc6ef173b1b
+2026-11-05T19:14:15.9482096Z Finalizing artifact upload
+2026-11-05T19:14:16.4352802Z Artifact contracts-7593e5136efc90c6bccf63fa2fc3e429b51a128d.zip successfully finalized. Artifact ID 13445647841
+2026-11-05T19:14:16.4354191Z Artifact contracts-7593e5136efc90c6bccf63fa2fc3e429b51a128d has been successfully uploaded! Final size is 6198 bytes. Artifact ID is 13445647841
+2026-11-05T19:14:16.4359108Z Artifact download URL: https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/42091230700/artifacts/13445647841
+2026-11-05T19:14:16.4543797Z Post job cleanup.
+2026-11-05T19:14:16.5570039Z (node:4321) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-05T19:14:16.5571260Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-05T19:14:16.5573449Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-bdf7676ac3c73d012e84037285c700072175be4631684dbc433a5ae75338da79, not saving cache.
+2026-11-05T19:14:16.5707673Z Post job cleanup.
+2026-11-05T19:14:16.6458508Z [command]/usr/bin/git version
+2026-11-05T19:14:16.6485148Z git version 2.56.0
+2026-11-05T19:14:16.6530340Z Temporarily overriding HOME='/home/runner/work/_temp/aa2f9814-4e65-49a6-9614-d827f1ffd35a' before making global git config changes
+2026-11-05T19:14:16.6534320Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-05T19:14:16.6536579Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Loading-museum/Loading-museum
+2026-11-05T19:14:16.6588786Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-05T19:14:16.6628849Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-05T19:14:16.6875300Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-05T19:14:16.6905281Z http.https://github.com/.extraheader
+2026-11-05T19:14:16.6917739Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-05T19:14:16.6977575Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-05T19:14:16.7303741Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-05T19:14:16.7365644Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-05T19:14:16.7730179Z Cleaning up orphan processes
+2026-11-05T19:14:16.8074908Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+
