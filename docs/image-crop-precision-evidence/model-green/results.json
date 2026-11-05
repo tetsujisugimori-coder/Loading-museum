@@ -1,0 +1,1121 @@
+{
+  "head": "95ab616f961fcfb5af9ac393c44f33ead68d285b",
+  "tree": "dc9ebcc42c54142aa724ab0739998741737294e5",
+  "dirty": "M app/components/practical/ImageCrop.tsx\n M app/components/practical/image-crop-model.ts\n?? docs/image-crop-precision-design.md\n?? docs/image-crop-precision-evidence/\n?? scripts/verify-image-crop-precision-browser.mjs\n?? scripts/verify-image-crop-precision-model.mjs",
+  "platform": "win32",
+  "node": "v24.20.0",
+  "serializerSource": "const strings = formatSelection;\r",
+  "checks": [
+    {
+      "label": "minimum/wide/nw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "wide",
+          "rect": {
+            "x": 437.77777777777777,
+            "y": 355,
+            "width": 142.22222222222223,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "437.77777777777777",
+          "y": "355",
+          "width": "142.22222222222223",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 437.77777777777777,
+            "y": 355,
+            "width": 142.22222222222223,
+            "height": 80
+          },
+          "ratio": "wide"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "minimum/wide/ne",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "wide",
+          "rect": {
+            "x": 100,
+            "y": 355,
+            "width": 142.22222222222223,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "355",
+          "width": "142.22222222222223",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 355,
+            "width": 142.22222222222223,
+            "height": 80
+          },
+          "ratio": "wide"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "minimum/wide/sw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "wide",
+          "rect": {
+            "x": 437.77777777777777,
+            "y": 165,
+            "width": 142.22222222222223,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "437.77777777777777",
+          "y": "165",
+          "width": "142.22222222222223",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 437.77777777777777,
+            "y": 165,
+            "width": 142.22222222222223,
+            "height": 80
+          },
+          "ratio": "wide"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "minimum/wide/se",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "wide",
+          "rect": {
+            "x": 100,
+            "y": 165,
+            "width": 142.22222222222223,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "165",
+          "width": "142.22222222222223",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 165,
+            "width": 142.22222222222223,
+            "height": 80
+          },
+          "ratio": "wide"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "minimum/photo/nw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "photo",
+          "rect": {
+            "x": 473.3333333333333,
+            "y": 400,
+            "width": 106.66666666666667,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "473.3333333333333",
+          "y": "400",
+          "width": "106.66666666666667",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 473.3333333333333,
+            "y": 400,
+            "width": 106.66666666666667,
+            "height": 80
+          },
+          "ratio": "photo"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "minimum/photo/ne",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "photo",
+          "rect": {
+            "x": 100,
+            "y": 400,
+            "width": 106.66666666666667,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "400",
+          "width": "106.66666666666667",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 400,
+            "width": 106.66666666666667,
+            "height": 80
+          },
+          "ratio": "photo"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "minimum/photo/sw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "photo",
+          "rect": {
+            "x": 473.3333333333333,
+            "y": 120,
+            "width": 106.66666666666667,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "473.3333333333333",
+          "y": "120",
+          "width": "106.66666666666667",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 473.3333333333333,
+            "y": 120,
+            "width": 106.66666666666667,
+            "height": 80
+          },
+          "ratio": "photo"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "minimum/photo/se",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "photo",
+          "rect": {
+            "x": 100,
+            "y": 120,
+            "width": 106.66666666666667,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "120",
+          "width": "106.66666666666667",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 120,
+            "width": 106.66666666666667,
+            "height": 80
+          },
+          "ratio": "photo"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "minimum/square/nw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "square",
+          "rect": {
+            "x": 500,
+            "y": 460,
+            "width": 80,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "500",
+          "y": "460",
+          "width": "80",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 500,
+            "y": 460,
+            "width": 80,
+            "height": 80
+          },
+          "ratio": "square"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "minimum/square/ne",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "square",
+          "rect": {
+            "x": 100,
+            "y": 460,
+            "width": 80,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "460",
+          "width": "80",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 460,
+            "width": 80,
+            "height": 80
+          },
+          "ratio": "square"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "minimum/square/sw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "square",
+          "rect": {
+            "x": 500,
+            "y": 60,
+            "width": 80,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "500",
+          "y": "60",
+          "width": "80",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 500,
+            "y": 60,
+            "width": 80,
+            "height": 80
+          },
+          "ratio": "square"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "minimum/square/se",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "square",
+          "rect": {
+            "x": 100,
+            "y": 60,
+            "width": 80,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "60",
+          "width": "80",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 60,
+            "width": 80,
+            "height": 80
+          },
+          "ratio": "square"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/free/nw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "free",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 580,
+            "height": 480
+          }
+        },
+        "values": {
+          "x": "0",
+          "y": "0",
+          "width": "580",
+          "height": "480"
+        },
+        "after": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 580,
+            "height": 480
+          },
+          "ratio": "free"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/free/ne",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "free",
+          "rect": {
+            "x": 100,
+            "y": 0,
+            "width": 900,
+            "height": 480
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "0",
+          "width": "900",
+          "height": "480"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 0,
+            "width": 900,
+            "height": 480
+          },
+          "ratio": "free"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/free/sw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "free",
+          "rect": {
+            "x": 0,
+            "y": 120,
+            "width": 580,
+            "height": 580
+          }
+        },
+        "values": {
+          "x": "0",
+          "y": "120",
+          "width": "580",
+          "height": "580"
+        },
+        "after": {
+          "rect": {
+            "x": 0,
+            "y": 120,
+            "width": 580,
+            "height": 580
+          },
+          "ratio": "free"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/free/se",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "free",
+          "rect": {
+            "x": 100,
+            "y": 120,
+            "width": 900,
+            "height": 580
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "120",
+          "width": "900",
+          "height": "580"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 120,
+            "width": 900,
+            "height": 580
+          },
+          "ratio": "free"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/wide/nw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "wide",
+          "rect": {
+            "x": 0,
+            "y": 108.75,
+            "width": 580,
+            "height": 326.25
+          }
+        },
+        "values": {
+          "x": "0",
+          "y": "108.75",
+          "width": "580",
+          "height": "326.25"
+        },
+        "after": {
+          "rect": {
+            "x": 0,
+            "y": 108.75,
+            "width": 580,
+            "height": 326.25
+          },
+          "ratio": "wide"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/wide/ne",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "wide",
+          "rect": {
+            "x": 100,
+            "y": 0,
+            "width": 773.3333333333334,
+            "height": 435
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "0",
+          "width": "773.3333333333334",
+          "height": "435"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 0,
+            "width": 773.3333333333334,
+            "height": 435
+          },
+          "ratio": "wide"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/wide/sw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "wide",
+          "rect": {
+            "x": 0,
+            "y": 165,
+            "width": 580,
+            "height": 326.25
+          }
+        },
+        "values": {
+          "x": "0",
+          "y": "165",
+          "width": "580",
+          "height": "326.25"
+        },
+        "after": {
+          "rect": {
+            "x": 0,
+            "y": 165,
+            "width": 580,
+            "height": 326.25
+          },
+          "ratio": "wide"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/wide/se",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "wide",
+          "rect": {
+            "x": 100,
+            "y": 165,
+            "width": 900,
+            "height": 506.25
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "165",
+          "width": "900",
+          "height": "506.25"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 165,
+            "width": 900,
+            "height": 506.25
+          },
+          "ratio": "wide"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/photo/nw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "photo",
+          "rect": {
+            "x": 0,
+            "y": 45,
+            "width": 580,
+            "height": 435
+          }
+        },
+        "values": {
+          "x": "0",
+          "y": "45",
+          "width": "580",
+          "height": "435"
+        },
+        "after": {
+          "rect": {
+            "x": 0,
+            "y": 45,
+            "width": 580,
+            "height": 435
+          },
+          "ratio": "photo"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/photo/ne",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "photo",
+          "rect": {
+            "x": 100,
+            "y": 0,
+            "width": 640,
+            "height": 480
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "0",
+          "width": "640",
+          "height": "480"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 0,
+            "width": 640,
+            "height": 480
+          },
+          "ratio": "photo"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/photo/sw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "photo",
+          "rect": {
+            "x": 0,
+            "y": 120,
+            "width": 580,
+            "height": 435
+          }
+        },
+        "values": {
+          "x": "0",
+          "y": "120",
+          "width": "580",
+          "height": "435"
+        },
+        "after": {
+          "rect": {
+            "x": 0,
+            "y": 120,
+            "width": 580,
+            "height": 435
+          },
+          "ratio": "photo"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/photo/se",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "photo",
+          "rect": {
+            "x": 100,
+            "y": 120,
+            "width": 773.3333333333334,
+            "height": 580
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "120",
+          "width": "773.3333333333334",
+          "height": "580"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 120,
+            "width": 773.3333333333334,
+            "height": 580
+          },
+          "ratio": "photo"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/square/nw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "square",
+          "rect": {
+            "x": 40,
+            "y": 0,
+            "width": 540,
+            "height": 540
+          }
+        },
+        "values": {
+          "x": "40",
+          "y": "0",
+          "width": "540",
+          "height": "540"
+        },
+        "after": {
+          "rect": {
+            "x": 40,
+            "y": 0,
+            "width": 540,
+            "height": 540
+          },
+          "ratio": "square"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/square/ne",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "square",
+          "rect": {
+            "x": 100,
+            "y": 0,
+            "width": 540,
+            "height": 540
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "0",
+          "width": "540",
+          "height": "540"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 0,
+            "width": 540,
+            "height": 540
+          },
+          "ratio": "square"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/square/sw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "square",
+          "rect": {
+            "x": 0,
+            "y": 60,
+            "width": 580,
+            "height": 580
+          }
+        },
+        "values": {
+          "x": "0",
+          "y": "60",
+          "width": "580",
+          "height": "580"
+        },
+        "after": {
+          "rect": {
+            "x": 0,
+            "y": 60,
+            "width": 580,
+            "height": 580
+          },
+          "ratio": "square"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/square/se",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "square",
+          "rect": {
+            "x": 100,
+            "y": 60,
+            "width": 640,
+            "height": 640
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "60",
+          "width": "640",
+          "height": "640"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 60,
+            "width": 640,
+            "height": 640
+          },
+          "ratio": "square"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "near-edge/free",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "free",
+          "rect": {
+            "x": 919.9999999,
+            "y": 619.9999999,
+            "width": 80.00000005,
+            "height": 80.00000005
+          }
+        },
+        "values": {
+          "x": "919.9999999",
+          "y": "619.9999999",
+          "width": "80.00000005",
+          "height": "80.00000005"
+        },
+        "after": {
+          "rect": {
+            "x": 919.9999999,
+            "y": 619.9999999,
+            "width": 80.00000005,
+            "height": 80.00000005
+          },
+          "ratio": "free"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "free/minimum",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "free",
+          "rect": {
+            "x": 920,
+            "y": 620,
+            "width": 80,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "920",
+          "y": "620",
+          "width": "80",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 920,
+            "y": 620,
+            "width": 80,
+            "height": 80
+          },
+          "ratio": "free"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "mixed-ratio-corner-numeric",
+      "status": "PASS",
+      "detail": {
+        "rect": {
+          "x": 300,
+          "y": 0,
+          "width": 700,
+          "height": 700
+        },
+        "ratio": "square"
+      }
+    },
+    {
+      "label": "reject/empty",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "",
+          "y": "120",
+          "width": "480",
+          "height": "360"
+        },
+        "ratio": "free",
+        "error": "空欄があります。X・Y・幅・高さを入力してください。"
+      }
+    },
+    {
+      "label": "reject/NaN",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "100",
+          "y": "120",
+          "width": "NaN",
+          "height": "360"
+        },
+        "ratio": "free",
+        "error": "有限の数値を入力してください。"
+      }
+    },
+    {
+      "label": "reject/Infinity",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "100",
+          "y": "Infinity",
+          "width": "480",
+          "height": "360"
+        },
+        "ratio": "free",
+        "error": "有限の数値を入力してください。"
+      }
+    },
+    {
+      "label": "reject/negative",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "-0.0000001",
+          "y": "120",
+          "width": "480",
+          "height": "360"
+        },
+        "ratio": "free",
+        "error": "枠全体が元絵（1000 × 700）の内側に収まる値を入力してください。"
+      }
+    },
+    {
+      "label": "reject/free-below-min",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "100",
+          "y": "120",
+          "width": "480",
+          "height": "79.9999999"
+        },
+        "ratio": "free",
+        "error": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。"
+      }
+    },
+    {
+      "label": "reject/square-below-min",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "100",
+          "y": "120",
+          "width": "79.9999999",
+          "height": "360"
+        },
+        "ratio": "square",
+        "error": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。"
+      }
+    },
+    {
+      "label": "reject/wide-below-min",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "100",
+          "y": "120",
+          "width": "142.222222",
+          "height": "360"
+        },
+        "ratio": "wide",
+        "error": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。"
+      }
+    },
+    {
+      "label": "reject/photo-below-min",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "100",
+          "y": "120",
+          "width": "106.666666",
+          "height": "360"
+        },
+        "ratio": "photo",
+        "error": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。"
+      }
+    },
+    {
+      "label": "reject/outside-x",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "920.0000001",
+          "y": "620",
+          "width": "80",
+          "height": "80"
+        },
+        "ratio": "free",
+        "error": "枠全体が元絵（1000 × 700）の内側に収まる値を入力してください。"
+      }
+    },
+    {
+      "label": "reject/outside-y",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "920",
+          "y": "620.0000001",
+          "width": "80",
+          "height": "80"
+        },
+        "ratio": "free",
+        "error": "枠全体が元絵（1000 × 700）の内側に収まる値を入力してください。"
+      }
+    },
+    {
+      "label": "reject/outside-hidden-by-rounded-add",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "919.9999999999999",
+          "y": "620",
+          "width": "80.00000000000016",
+          "height": "80"
+        },
+        "ratio": "free",
+        "error": "枠全体が元絵（1000 × 700）の内側に収まる値を入力してください。"
+      }
+    },
+    {
+      "label": "strict-generated-edges",
+      "status": "PASS",
+      "detail": {
+        "iterations": 2500
+      }
+    }
+  ],
+  "errors": [],
+  "sourceSHA256": {
+    "app/components/practical/image-crop-model.ts": "055153ac327bb7c911a709a06b0f2cec63e3ab8dc912741130f3012cd69f0f1c",
+    "app/components/practical/ImageCrop.tsx": "d3fab34016bdaa6a5bcfc8ba715afa783b08724298d4c6c5b97f48368e189ea0",
+    "scripts/verify-image-crop-precision-model.mjs": "070cf6b15beec0a481a148cf01acab87387bbc816658d9e62974d0649aae63ca"
+  },
+  "complete": true
+}

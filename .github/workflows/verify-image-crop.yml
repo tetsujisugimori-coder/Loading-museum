@@ -23,7 +23,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run lint && npm run typecheck && npx vitest run --maxWorkers=2 tests/image-crop.test.tsx && node scripts/verify-image-crop-controls.mjs && npm run build
+      - run: npm run lint && npm run typecheck && npx vitest run --maxWorkers=2 tests/image-crop.test.tsx && node --experimental-strip-types scripts/verify-image-crop-precision-model.mjs && node scripts/verify-image-crop-controls.mjs && npm run build
       - name: Fixed external browser harness
         run: |
           npm install --prefix "$RUNNER_TEMP/image-crop-playwright" --no-save playwright@1.56.1
@@ -43,6 +43,7 @@ jobs:
           mkdir -p work
           export PLAYWRIGHT_MODULE="$RUNNER_TEMP/image-crop-playwright/node_modules/playwright"
           node scripts/verify-image-crop-browser.mjs 2>&1 | tee work/image-crop-browser.log
+          node scripts/verify-image-crop-precision-browser.mjs 2>&1 | tee work/image-crop-precision-browser.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -1,0 +1,347 @@
+{
+  "head": "95ab616f961fcfb5af9ac393c44f33ead68d285b",
+  "formatterSource": "const strings = (s: Selection) => Object.fromEntries(fields.map(([k]) => [k, String(Number(s.rect[k].toFixed(6)))])) as Record<keyof Rect, string>;\r",
+  "cases": [
+    {
+      "ratio": "wide",
+      "corner": "nw",
+      "before": {
+        "ratio": "wide",
+        "rect": {
+          "x": 437.77777777777777,
+          "y": 355,
+          "width": 142.22222222222223,
+          "height": 80.00000000000001
+        }
+      },
+      "values": {
+        "x": "437.777778",
+        "y": "355",
+        "width": "142.222222",
+        "height": "80"
+      },
+      "result": {
+        "error": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。"
+      },
+      "stable": false
+    },
+    {
+      "ratio": "wide",
+      "corner": "ne",
+      "before": {
+        "ratio": "wide",
+        "rect": {
+          "x": 100,
+          "y": 355,
+          "width": 142.22222222222223,
+          "height": 80.00000000000001
+        }
+      },
+      "values": {
+        "x": "100",
+        "y": "355",
+        "width": "142.222222",
+        "height": "80"
+      },
+      "result": {
+        "error": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。"
+      },
+      "stable": false
+    },
+    {
+      "ratio": "wide",
+      "corner": "sw",
+      "before": {
+        "ratio": "wide",
+        "rect": {
+          "x": 437.77777777777777,
+          "y": 165,
+          "width": 142.22222222222223,
+          "height": 80.00000000000001
+        }
+      },
+      "values": {
+        "x": "437.777778",
+        "y": "165",
+        "width": "142.222222",
+        "height": "80"
+      },
+      "result": {
+        "error": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。"
+      },
+      "stable": false
+    },
+    {
+      "ratio": "wide",
+      "corner": "se",
+      "before": {
+        "ratio": "wide",
+        "rect": {
+          "x": 100,
+          "y": 165,
+          "width": 142.22222222222223,
+          "height": 80.00000000000001
+        }
+      },
+      "values": {
+        "x": "100",
+        "y": "165",
+        "width": "142.222222",
+        "height": "80"
+      },
+      "result": {
+        "error": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。"
+      },
+      "stable": false
+    },
+    {
+      "ratio": "photo",
+      "corner": "nw",
+      "before": {
+        "ratio": "photo",
+        "rect": {
+          "x": 473.33333333333337,
+          "y": 400,
+          "width": 106.66666666666666,
+          "height": 80
+        }
+      },
+      "values": {
+        "x": "473.333333",
+        "y": "400",
+        "width": "106.666667",
+        "height": "80"
+      },
+      "result": {
+        "selection": {
+          "rect": {
+            "x": 473.333333,
+            "y": 400,
+            "width": 106.666667,
+            "height": 80.00000025000001
+          },
+          "ratio": "photo"
+        }
+      },
+      "stable": false
+    },
+    {
+      "ratio": "photo",
+      "corner": "ne",
+      "before": {
+        "ratio": "photo",
+        "rect": {
+          "x": 100,
+          "y": 400,
+          "width": 106.66666666666666,
+          "height": 80
+        }
+      },
+      "values": {
+        "x": "100",
+        "y": "400",
+        "width": "106.666667",
+        "height": "80"
+      },
+      "result": {
+        "selection": {
+          "rect": {
+            "x": 100,
+            "y": 400,
+            "width": 106.666667,
+            "height": 80.00000025000001
+          },
+          "ratio": "photo"
+        }
+      },
+      "stable": false
+    },
+    {
+      "ratio": "photo",
+      "corner": "sw",
+      "before": {
+        "ratio": "photo",
+        "rect": {
+          "x": 473.33333333333337,
+          "y": 120,
+          "width": 106.66666666666666,
+          "height": 80
+        }
+      },
+      "values": {
+        "x": "473.333333",
+        "y": "120",
+        "width": "106.666667",
+        "height": "80"
+      },
+      "result": {
+        "selection": {
+          "rect": {
+            "x": 473.333333,
+            "y": 120,
+            "width": 106.666667,
+            "height": 80.00000025000001
+          },
+          "ratio": "photo"
+        }
+      },
+      "stable": false
+    },
+    {
+      "ratio": "photo",
+      "corner": "se",
+      "before": {
+        "ratio": "photo",
+        "rect": {
+          "x": 100,
+          "y": 120,
+          "width": 106.66666666666666,
+          "height": 80
+        }
+      },
+      "values": {
+        "x": "100",
+        "y": "120",
+        "width": "106.666667",
+        "height": "80"
+      },
+      "result": {
+        "selection": {
+          "rect": {
+            "x": 100,
+            "y": 120,
+            "width": 106.666667,
+            "height": 80.00000025000001
+          },
+          "ratio": "photo"
+        }
+      },
+      "stable": false
+    },
+    {
+      "ratio": "square",
+      "corner": "nw",
+      "before": {
+        "ratio": "square",
+        "rect": {
+          "x": 500,
+          "y": 460,
+          "width": 80,
+          "height": 80
+        }
+      },
+      "values": {
+        "x": "500",
+        "y": "460",
+        "width": "80",
+        "height": "80"
+      },
+      "result": {
+        "selection": {
+          "rect": {
+            "x": 500,
+            "y": 460,
+            "width": 80,
+            "height": 80
+          },
+          "ratio": "square"
+        }
+      },
+      "stable": true
+    },
+    {
+      "ratio": "square",
+      "corner": "ne",
+      "before": {
+        "ratio": "square",
+        "rect": {
+          "x": 100,
+          "y": 460,
+          "width": 80,
+          "height": 80
+        }
+      },
+      "values": {
+        "x": "100",
+        "y": "460",
+        "width": "80",
+        "height": "80"
+      },
+      "result": {
+        "selection": {
+          "rect": {
+            "x": 100,
+            "y": 460,
+            "width": 80,
+            "height": 80
+          },
+          "ratio": "square"
+        }
+      },
+      "stable": true
+    },
+    {
+      "ratio": "square",
+      "corner": "sw",
+      "before": {
+        "ratio": "square",
+        "rect": {
+          "x": 500,
+          "y": 60,
+          "width": 80,
+          "height": 80
+        }
+      },
+      "values": {
+        "x": "500",
+        "y": "60",
+        "width": "80",
+        "height": "80"
+      },
+      "result": {
+        "selection": {
+          "rect": {
+            "x": 500,
+            "y": 60,
+            "width": 80,
+            "height": 80
+          },
+          "ratio": "square"
+        }
+      },
+      "stable": true
+    },
+    {
+      "ratio": "square",
+      "corner": "se",
+      "before": {
+        "ratio": "square",
+        "rect": {
+          "x": 100,
+          "y": 60,
+          "width": 80,
+          "height": 80
+        }
+      },
+      "values": {
+        "x": "100",
+        "y": "60",
+        "width": "80",
+        "height": "80"
+      },
+      "result": {
+        "selection": {
+          "rect": {
+            "x": 100,
+            "y": 60,
+            "width": 80,
+            "height": 80
+          },
+          "ratio": "square"
+        }
+      },
+      "stable": true
+    }
+  ],
+  "comparison": "rect/ratio value equality; prior attempt incorrectly compared JSON object key order"
+}

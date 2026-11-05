@@ -1,0 +1,23 @@
+FAIL webkit 375 no-preference [
+  'minimum/wide/nw',
+  'minimum/wide/ne',
+  'minimum/wide/sw',
+  'minimum/wide/se',
+  'minimum/photo/nw',
+  'minimum/photo/ne',
+  'minimum/photo/sw',
+  'minimum/photo/se',
+  'minimum/square/nw',
+  'minimum/square/ne',
+  'minimum/square/sw',
+  'minimum/square/se',
+  'near-edge/free',
+  'reject/empty',
+  'reject/NaN',
+  'reject/negative',
+  'reject/below80',
+  'reject/square-below80',
+  'reject/outside-hidden-by-rounded-add',
+  'confirm-cancel-reset',
+  'mixed-ratio-corner'
+]

@@ -1,0 +1,170 @@
+
+ RUN  v3.2.4 C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum
+
+ 笶ｯ tests/pan-zoom.test.tsx (13 tests | 3 failed) 38605ms
+   笨・keeps the pointed world feature at its screen position; center controls use the center  1022ms
+   笨・fits only measured viewports, clamps limits and never loses the entire world 57ms
+   笨・resize retains the center when not clamped, landmarks and minimap match independent geometric expectations 7ms
+   ﾃ・owner pointer alone can commit; cancel rolls back and stale events cannot commit 7241ms
+     竊・Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   笨・invalidates pending drag on Reset  5178ms
+   笨・invalidates pending drag on 蜈ｨ菴楢｡ｨ遉ｺ  1304ms
+   笨・invalidates pending drag on 諡｡螟ｧ  465ms
+   笨・invalidates pending drag on resize  1235ms
+   笨・invalidates pending drag on mode  2482ms
+   笨・invalidates pending drag on blur  2701ms
+   ﾃ・buttons, numeric validation, keyboard scope, touch modes and Reset/fit selection contracts 6690ms
+     竊・Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ﾃ・searches one new exhibit, discards drag on switching and returns focus on close 7465ms
+     竊・Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   笨・suspends a zero-width viewport without losing the last measured zoom and center  2746ms
+ 笶ｯ tests/image-crop.test.tsx (30 tests | 9 failed) 116756ms
+   笨・moves without resizing and stops at all four source boundaries  537ms
+   笨・resizes nw with its opposite corner fixed  500ms
+   笨・resizes ne with its opposite corner fixed 7ms
+   笨・resizes sw with its opposite corner fixed 5ms
+   笨・resizes se with its opposite corner fixed 4ms
+   笨・keeps every ratio and all boundaries under mixed edits and inverted handle attempts  1936ms
+   笨・ratio changes preserve center until a source edge requires correction 3ms
+   笨・numeric validation rejects blanks, nonfinite, negative, undersize and outside values, with width driving fixed ratios 6ms
+   ﾃ・reapplies actual displayed wide minimum values 16 times without drift 18031ms
+     竊・Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ﾃ・reapplies actual displayed photo minimum values 16 times without drift 12265ms
+     竊・Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ﾃ・reapplies actual displayed square minimum values 16 times without drift 15089ms
+     竊・Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   笨・accepts equivalent decimal spellings but rejects silently lost precision and sub-ULP edge overflow 2ms
+   笨・model separates provisional/editing/committed and refuses foreign, stale and post-command pointer events 2ms
+   笨・initial confirmed result, editing preview, confirm, further edit, cancel and Reset agree  2864ms
+   ﾃ・actual numeric form, independent numeric vs pointer equivalence, invalid value messages and input arrow scope 6028ms
+     竊・Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   笨・rolls back provisional edit on pointercancel, not the last confirmed result  2787ms
+   笨・rolls back provisional edit on lostpointercapture, not the last confirmed result  445ms
+   笨・rolls back provisional edit on Escape, not the last confirmed result  947ms
+   笨・rolls back provisional edit on blur, not the last confirmed result  638ms
+   笨・rolls back provisional edit on hidden, not the last confirmed result  361ms
+   笨・rolls back provisional edit on focus, not the last confirmed result  401ms
+   ﾃ・invalidates pending pointer before 蛻・栢縺阪ｒ遒ｺ螳・8782ms
+     竊・Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ﾃ・invalidates pending pointer before 邱ｨ髮・ｒ蜿匁ｶ・11243ms
+     竊・Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   笨・invalidates pending pointer before Reset  3116ms
+   ﾃ・invalidates pending pointer before ratio 5647ms
+     竊・Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ﾃ・invalidates pending pointer before numeric 6807ms
+     竊・Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   笨・invalidates pending pointer before direction  2861ms
+   笨・keyboard corners resize via the same constraints and capture failure cannot leave a provisional edit  4596ms
+   ﾃ・retains world coordinates and committed crop through resizing, zero width and restoration; unmount releases listeners 6070ms
+     竊・Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   笨・registers only one new unique ID, searches by crop tags, switches and closes without retaining state  4763ms
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ Failed Tests 12 竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ
+
+ FAIL  tests/image-crop.test.tsx > reapplies actual displayed wide minimum values 16 times without drift
+ FAIL  tests/image-crop.test.tsx > reapplies actual displayed photo minimum values 16 times without drift
+ FAIL  tests/image-crop.test.tsx > reapplies actual displayed square minimum values 16 times without drift
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ 笶ｯ tests/image-crop.test.tsx:77:59
+
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[1/12]竡ｯ
+
+ FAIL  tests/image-crop.test.tsx > actual numeric form, independent numeric vs pointer equivalence, invalid value messages and input arrow scope
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ 笶ｯ tests/image-crop.test.tsx:118:1
+
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[2/12]竡ｯ
+
+ FAIL  tests/image-crop.test.tsx > invalidates pending pointer before 蛻・栢縺阪ｒ遒ｺ螳・ FAIL  tests/image-crop.test.tsx > invalidates pending pointer before 邱ｨ髮・ｒ蜿匁ｶ・ FAIL  tests/image-crop.test.tsx > invalidates pending pointer before ratio
+ FAIL  tests/image-crop.test.tsx > invalidates pending pointer before numeric
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ 笶ｯ tests/image-crop.test.tsx:137:85
+    135|   stale(zone); expect(box()).toBe(before); expect(confirmed()).toBe(re窶ｦ
+    136| });
+    137| for (const action of ['蛻・栢縺阪ｒ遒ｺ螳・, '邱ｨ髮・ｒ蜿匁ｶ・, 'Reset', 'ratio', 'numeric', 窶ｦ
+       |                                                                                     ^
+    138|   render(<ImageCrop />); click('竊・蜿ｳ'); const zone = start();
+    139|   if (action === 'ratio') fireEvent.change(screen.getByLabelText('蛻・栢縺肴ｯ披ｦ
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[3/12]竡ｯ
+
+ FAIL  tests/image-crop.test.tsx > retains world coordinates and committed crop through resizing, zero width and restoration; unmount releases listeners
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ 笶ｯ tests/image-crop.test.tsx:148:1
+
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[4/12]竡ｯ
+
+ FAIL  tests/pan-zoom.test.tsx > owner pointer alone can commit; cancel rolls back and stale events cannot commit
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ 笶ｯ tests/pan-zoom.test.tsx:39:1
+
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[5/12]竡ｯ
+
+ FAIL  tests/pan-zoom.test.tsx > buttons, numeric validation, keyboard scope, touch modes and Reset/fit selection contracts
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ 笶ｯ tests/pan-zoom.test.tsx:51:1
+     49|  const result=transform();stale(zone);expect(transform()).toBe(result)窶ｦ
+     50| });
+     51| it('buttons, numeric validation, keyboard scope, touch modes and Reset窶ｦ
+       | ^
+     52|  render(<PanZoom/>);click('譎りｨ医・蠎ｭ・壹％縺ｮ蝣ｴ謇繧定ｦ九ｋ');expect(screen.getByText(/譎りｨ医・窶ｦ
+     53|  const zone=screen.getByRole('group',{name:'蝗ｳ迚医・謫堺ｽ憺伜沺'}),input=screen.ge窶ｦ
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[6/12]竡ｯ
+
+ FAIL  tests/pan-zoom.test.tsx > searches one new exhibit, discards drag on switching and returns focus on close
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ 笶ｯ tests/pan-zoom.test.tsx:61:1
+     59|  click('Reset');expect(screen.queryByText(/・磯∈謚樔ｸｭ・・)).toBeNull();expect(窶ｦ
+     60| });
+     61| it('searches one new exhibit, discards drag on switching and returns f窶ｦ
+       | ^
+     62|  render(<PracticalRoom phase={4}/>);click('驛ｨ蜩∝ｱ慕､ｺ螳､繧帝幕縺・);click(phase6aExh窶ｦ
+     63|  click('Kanban Board / 莉穂ｺ九ｒ驟咲ｽｮ縺吶ｋ');stale(zone);click(phase6aExhibits[0].窶ｦ
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ[7/12]竡ｯ
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ Unhandled Errors 竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ Unhandled Error 竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ
+Error: [vitest-worker]: Timeout calling "onTaskUpdate"
+ 笶ｯ Object.onTimeoutError node_modules/vitest/dist/chunks/rpc.-pEldfrD.js:53:10
+ 笶ｯ Timeout._onTimeout node_modules/vitest/dist/chunks/index.B521nVV-.js:59:62
+ 笶ｯ listOnTimeout node:internal/timers:685:17
+ 笶ｯ processTimers node:internal/timers:618:7
+
+竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ竡ｯ
+
+
+ Test Files  2 failed (2)
+      Tests  12 failed | 31 passed (43)
+     Errors  1 error
+   Start at  12:43:24
+   Duration  125.75s (transform 4.48s, setup 0ms, collect 15.26s, tests 155.36s, environment 1.27s, prepare 258ms)
+

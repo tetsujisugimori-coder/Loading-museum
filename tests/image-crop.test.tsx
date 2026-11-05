@@ -4,7 +4,7 @@ import { act, cleanup, fireEvent, render, screen, within } from '@testing-librar
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import ImageCrop from '../app/components/practical/ImageCrop';
 import PracticalRoom from '../app/components/PracticalRoom';
-import { changeRatio, equal, INITIAL, initialState, move, numeric, RATIOS, resize, transition, type Corner, type Ratio, type Selection } from '../app/components/practical/image-crop-model';
+import { changeRatio, equal, formatSelection, INITIAL, initialState, move, numeric, RATIOS, resize, transition, type Corner, type Ratio, type Selection } from '../app/components/practical/image-crop-model';
 import { phase6aExhibits } from '../app/data/phase6aExhibits';
 import { phase4aExhibits } from '../app/data/phase4aExhibits';
 import { phase4bExhibits } from '../app/data/phase4bExhibits';
@@ -73,6 +73,28 @@ it('numeric validation rejects blanks, nonfinite, negative, undersize and outsid
   expect(numeric({ ...valid, width: 'Infinity', height: '' }, 'wide').error).toContain('有限');
   expect(numeric({ ...valid, height: '' }, 'wide').selection?.rect.height).toBe(180);
   for (const patch of [{ x: '' }, { y: 'Infinity' }, { x: '-1' }, { width: '-2' }, { height: '79' }, { width: '1001' }, { y: '650' }, { width: 'NaN' }]) expect(numeric({ ...valid, ...patch }, 'free').selection).toBeUndefined();
+});
+for (const ratio of ['wide', 'photo', 'square'] as const) it(`reapplies actual displayed ${ratio} minimum values 16 times without drift`, () => {
+  render(<ImageCrop />);
+  fireEvent.change(screen.getByLabelText('切抜き比率'), { target: { value: ratio } });
+  const handle = screen.getByRole('button', { name: '右下の角を伸縮' });
+  fireEvent.pointerDown(handle, { pointerId: 1, button: 0, clientX: 200, clientY: 200 });
+  const zone = screen.getByRole('group', { name: '切抜き枠の操作領域' });
+  fireEvent.pointerUp(zone, { pointerId: 1, clientX: -10000, clientY: -10000 });
+  const before = box(), fixed = confirmed();
+  const apply = screen.getByRole('button', { name: '数値を適用', exact: true }), notice = screen.getByRole('status');
+  for (let i = 0; i < 16; i++) { fireEvent.click(apply); expect(notice.textContent).toContain('数値を適用しました'); expect(box()).toBe(before); expect(confirmed()).toBe(fixed); }
+  click('切抜きを確定'); click('→ 右'); click('編集を取消'); expect(box()).toBe(before); expect(confirmed()).toBe(before);
+  click('Reset'); expect(box()).toBe('100 120 480 360'); expect(confirmed()).toBe(box());
+});
+it('accepts equivalent decimal spellings but rejects silently lost precision and sub-ULP edge overflow', () => {
+  const values = { x: '-0.000', y: '1.2e2', width: '00480.000', height: '360' };
+  expect(numeric(values, 'free').selection?.rect).toEqual({ x: 0, y: 120, width: 480, height: 360 });
+  for (const patch of [{ height: '79.999999999999999' }, { x: '-1e-400' }, { x: '0x10' }, { x: '919.9999999999999', width: '80.00000000000016' }]) expect(numeric({ ...values, ...patch }, 'free').selection).toBeUndefined();
+  for (const ratio of ['free', 'square', 'wide', 'photo'] as const) {
+    const s = changeRatio(INITIAL, ratio); expect(numeric(formatSelection(s), ratio).selection).toEqual(s);
+    expect(changeRatio(s, ratio)).toBe(s); expect(resize(s, 'nw', 0, 0)).toBe(s);
+  }
 });
 it('model separates provisional/editing/committed and refuses foreign, stale and post-command pointer events', () => {
   let s = transition(initialState(), { type: 'start', id: 7, time: 100, x: 0, y: 0 });

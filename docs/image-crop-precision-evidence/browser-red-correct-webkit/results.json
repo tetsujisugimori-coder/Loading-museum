@@ -1,0 +1,1160 @@
+{
+  "head": "95ab616f961fcfb5af9ac393c44f33ead68d285b",
+  "tree": "dc9ebcc42c54142aa724ab0739998741737294e5",
+  "dirty": "?? docs/image-crop-precision-evidence/\n?? scripts/verify-image-crop-precision-browser.mjs\n?? scripts/verify-image-crop-precision-model.mjs",
+  "started": "2026-11-05T03:34:45.742Z",
+  "platform": "win32",
+  "node": "v24.20.0",
+  "expected": 1,
+  "cases": [
+    {
+      "engine": "webkit",
+      "width": 375,
+      "motion": "no-preference",
+      "version": "26.0",
+      "status": "FAIL",
+      "checks": [
+        {
+          "label": "minimum/wide/nw",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 437.77777777777777,
+              "y": 355,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "437.777778",
+              "Y": "355",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "437.77777777777777 355 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 0
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 437.77777777777777,
+                "y": 355,
+                "width": 142.22222222222223,
+                "height": 80.00000000000001
+              },
+              "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+              "submitCount": 1
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 437.77777777777777,
+              "y": 355,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "437.777778",
+              "Y": "355",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "437.77777777777777 355 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 1
+          },
+          "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /数値を適用しました/. Input:\n\n'幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。'\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:289)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/wide/ne",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 355,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "100",
+              "Y": "355",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "100 355 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 1
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 100,
+                "y": 355,
+                "width": 142.22222222222223,
+                "height": 80.00000000000001
+              },
+              "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+              "submitCount": 2
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 355,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "100",
+              "Y": "355",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "100 355 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 2
+          },
+          "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /数値を適用しました/. Input:\n\n'幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。'\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:289)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/wide/sw",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 437.77777777777777,
+              "y": 165,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "437.777778",
+              "Y": "165",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "437.77777777777777 165 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 2
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 437.77777777777777,
+                "y": 165,
+                "width": 142.22222222222223,
+                "height": 80.00000000000001
+              },
+              "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+              "submitCount": 3
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 437.77777777777777,
+              "y": 165,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "437.777778",
+              "Y": "165",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "437.77777777777777 165 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 3
+          },
+          "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /数値を適用しました/. Input:\n\n'幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。'\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:289)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/wide/se",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 165,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "100",
+              "Y": "165",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "100 165 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 3
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 100,
+                "y": 165,
+                "width": 142.22222222222223,
+                "height": 80.00000000000001
+              },
+              "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+              "submitCount": 4
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 165,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "100",
+              "Y": "165",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "100 165 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 4
+          },
+          "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /数値を適用しました/. Input:\n\n'幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。'\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:289)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/photo/nw",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 473.33333333333337,
+              "y": 400,
+              "width": 106.66666666666666,
+              "height": 80
+            },
+            "fields": {
+              "X": "473.333333",
+              "Y": "400",
+              "幅": "106.666667",
+              "高さ": "80"
+            },
+            "ratio": "photo",
+            "preview": "473.33333333333337 400 106.66666666666666 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 4
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 473.333333,
+                "y": 400,
+                "width": 106.666667,
+                "height": 80.00000025000001
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 5
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 473.333333,
+              "y": 400,
+              "width": 106.666667,
+              "height": 80.00000025000001
+            },
+            "fields": {
+              "X": "473.333333",
+              "Y": "400",
+              "幅": "106.666667",
+              "高さ": "80"
+            },
+            "ratio": "photo",
+            "preview": "473.333333 400 106.666667 80.00000025000001",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 5
+          },
+          "error": "AssertionError [ERR_ASSERTION]: Every coordinate must remain bit-for-bit unchanged\n+ actual - expected\n\n  {\n+   height: 80.00000025000001,\n+   width: 106.666667,\n+   x: 473.333333,\n-   height: 80,\n-   width: 106.66666666666666,\n-   x: 473.33333333333337,\n    y: 400\n  }\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:328)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/photo/ne",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 400,
+              "width": 106.66666666666666,
+              "height": 80
+            },
+            "fields": {
+              "X": "100",
+              "Y": "400",
+              "幅": "106.666667",
+              "高さ": "80"
+            },
+            "ratio": "photo",
+            "preview": "100 400 106.66666666666666 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 5
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 100,
+                "y": 400,
+                "width": 106.666667,
+                "height": 80.00000025000001
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 6
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 400,
+              "width": 106.666667,
+              "height": 80.00000025000001
+            },
+            "fields": {
+              "X": "100",
+              "Y": "400",
+              "幅": "106.666667",
+              "高さ": "80"
+            },
+            "ratio": "photo",
+            "preview": "100 400 106.666667 80.00000025000001",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 6
+          },
+          "error": "AssertionError [ERR_ASSERTION]: Every coordinate must remain bit-for-bit unchanged\n+ actual - expected\n\n  {\n+   height: 80.00000025000001,\n+   width: 106.666667,\n-   height: 80,\n-   width: 106.66666666666666,\n    x: 100,\n    y: 400\n  }\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:328)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/photo/sw",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 473.33333333333337,
+              "y": 120,
+              "width": 106.66666666666666,
+              "height": 80
+            },
+            "fields": {
+              "X": "473.333333",
+              "Y": "120",
+              "幅": "106.666667",
+              "高さ": "80"
+            },
+            "ratio": "photo",
+            "preview": "473.33333333333337 120 106.66666666666666 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 6
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 473.333333,
+                "y": 120,
+                "width": 106.666667,
+                "height": 80.00000025000001
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 7
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 473.333333,
+              "y": 120,
+              "width": 106.666667,
+              "height": 80.00000025000001
+            },
+            "fields": {
+              "X": "473.333333",
+              "Y": "120",
+              "幅": "106.666667",
+              "高さ": "80"
+            },
+            "ratio": "photo",
+            "preview": "473.333333 120 106.666667 80.00000025000001",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 7
+          },
+          "error": "AssertionError [ERR_ASSERTION]: Every coordinate must remain bit-for-bit unchanged\n+ actual - expected\n\n  {\n+   height: 80.00000025000001,\n+   width: 106.666667,\n+   x: 473.333333,\n-   height: 80,\n-   width: 106.66666666666666,\n-   x: 473.33333333333337,\n    y: 120\n  }\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:328)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/photo/se",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 106.66666666666666,
+              "height": 80
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "106.666667",
+              "高さ": "80"
+            },
+            "ratio": "photo",
+            "preview": "100 120 106.66666666666666 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 7
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 100,
+                "y": 120,
+                "width": 106.666667,
+                "height": 80.00000025000001
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 8
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 106.666667,
+              "height": 80.00000025000001
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "106.666667",
+              "高さ": "80"
+            },
+            "ratio": "photo",
+            "preview": "100 120 106.666667 80.00000025000001",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 8
+          },
+          "error": "AssertionError [ERR_ASSERTION]: Every coordinate must remain bit-for-bit unchanged\n+ actual - expected\n\n  {\n+   height: 80.00000025000001,\n+   width: 106.666667,\n-   height: 80,\n-   width: 106.66666666666666,\n    x: 100,\n    y: 120\n  }\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:328)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/square/nw",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 500,
+              "y": 460,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "500",
+              "Y": "460",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "500 460 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 8
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 9
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 10
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 11
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 12
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 13
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 14
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 15
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 16
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 17
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 500,
+              "y": 460,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "500",
+              "Y": "460",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "500 460 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 17
+          },
+          "error": "locator.click: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.phase4Room').getByTestId('image-crop').getByRole('button', { name: '数値を適用', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button>数値を適用</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\n    at click (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:28:65)\n    at apply (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:29:98)\n    at async reapply (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:35:134)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/square/ne",
+          "status": "FAIL",
+          "error": "locator.scrollIntoViewIfNeeded: Timeout 7903.006000000001ms exceeded.\nCall log:\n\u001b[2m  - attempting scroll into view action\u001b[22m\n\u001b[2m    - waiting for element to be stable\u001b[22m\n\n    at minimum (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:33:163)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:37:4\n    at async check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/square/sw",
+          "status": "FAIL",
+          "error": "locator.click: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.phase4Room').getByTestId('image-crop').getByRole('button', { name: 'Reset', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button>Reset</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\n    at click (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:28:65)\n    at minimum (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:33:42)\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:37:10\n    at check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:82)\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:36:92"
+        },
+        {
+          "label": "minimum/square/se",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 60,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "100",
+              "Y": "60",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "100 60 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 17
+          },
+          "cycles": 12,
+          "sequence": [],
+          "error": "locator.screenshot: Timeout 5224.031999999992ms exceeded.\nCall log:\n\u001b[2m  - taking element screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\n    at snapshot (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:30:63)\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:38:59\n    at async check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "near-edge/free",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 919.9999999,
+              "y": 619.9999999,
+              "width": 80.00000005,
+              "height": 80.00000005
+            },
+            "fields": {
+              "X": "920",
+              "Y": "620",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "free",
+            "preview": "919.9999999 619.9999999 80.00000005 80.00000005",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 18
+          },
+          "cycles": 16,
+          "sequence": [
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 19
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 920,
+              "y": 620,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "920",
+              "Y": "620",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "free",
+            "preview": "920 620 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 19
+          },
+          "error": "AssertionError [ERR_ASSERTION]: Every coordinate must remain bit-for-bit unchanged\n+ actual - expected\n\n  {\n+   height: 80,\n+   width: 80,\n+   x: 920,\n+   y: 620\n-   height: 80.00000005,\n-   width: 80.00000005,\n-   x: 919.9999999,\n-   y: 619.9999999\n  }\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:328)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:41:209\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:41:3"
+        },
+        {
+          "label": "reject/empty",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 19
+          },
+          "error": "locator.click: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.phase4Room').getByTestId('image-crop').getByRole('button', { name: '数値を適用', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button>数値を適用</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\n    at click (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:28:65)\n    at apply (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:29:98)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:47:191\n    at async check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:47:47"
+        },
+        {
+          "label": "reject/NaN",
+          "status": "FAIL",
+          "error": "locator.click: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.phase4Room').getByTestId('image-crop').getByRole('button', { name: 'Reset', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button>Reset</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\n    at click (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:28:65)\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:47:98\n    at check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:82)\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:47:53"
+        },
+        {
+          "label": "reject/Infinity",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 19
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "有限の数値を入力してください。",
+            "dragging": "false",
+            "submitCount": 20
+          }
+        },
+        {
+          "label": "reject/negative",
+          "status": "FAIL",
+          "error": "locator.click: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.phase4Room').getByTestId('image-crop').getByRole('button', { name: 'Reset', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button>Reset</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\n    at click (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:28:65)\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:47:98\n    at check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:82)\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:47:53"
+        },
+        {
+          "label": "reject/below80",
+          "status": "FAIL",
+          "error": "locator.click: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.phase4Room').getByTestId('image-crop').getByRole('button', { name: 'Reset', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button>Reset</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\n    at click (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:28:65)\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:47:98\n    at check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:82)\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:47:53"
+        },
+        {
+          "label": "reject/wide-below80",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 165,
+              "width": 480,
+              "height": 270
+            },
+            "fields": {
+              "X": "100",
+              "Y": "165",
+              "幅": "480",
+              "高さ": "270"
+            },
+            "ratio": "wide",
+            "preview": "100 165 480 270",
+            "confirmed": "100 120 480 360",
+            "notice": "中心をできるだけ保って比率を変更しました。元絵の端では補正します。",
+            "dragging": "false",
+            "submitCount": 20
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 165,
+              "width": 480,
+              "height": 270
+            },
+            "fields": {
+              "X": "100",
+              "Y": "165",
+              "幅": "480",
+              "高さ": "270"
+            },
+            "ratio": "wide",
+            "preview": "100 165 480 270",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 21
+          }
+        },
+        {
+          "label": "reject/photo-below80",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "photo",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "中心をできるだけ保って比率を変更しました。元絵の端では補正します。",
+            "dragging": "false",
+            "submitCount": 21
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "photo",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 22
+          }
+        },
+        {
+          "label": "reject/square-below80",
+          "status": "FAIL",
+          "error": "locator.click: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.phase4Room').getByTestId('image-crop').getByRole('button', { name: 'Reset', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button>Reset</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\n    at click (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:28:65)\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:47:98\n    at check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:82)\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:47:53"
+        },
+        {
+          "label": "reject/outside-x",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 22
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "枠全体が元絵（1000 × 700）の内側に収まる値を入力してください。",
+            "dragging": "false",
+            "submitCount": 23
+          }
+        },
+        {
+          "label": "reject/outside-hidden-by-rounded-add",
+          "status": "FAIL",
+          "error": "locator.click: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.phase4Room').getByTestId('image-crop').getByRole('button', { name: 'Reset', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button>Reset</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\n    at click (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:28:65)\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:47:98\n    at check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:82)\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:47:53"
+        },
+        {
+          "label": "confirm-cancel-reset",
+          "status": "FAIL",
+          "error": "locator.click: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.phase4Room').getByTestId('image-crop').getByRole('button', { name: 'Reset', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button>Reset</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\n    at click (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:28:65)\n    at minimum (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:33:42)\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:48:59\n    at check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:82)\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:48:9"
+        },
+        {
+          "label": "mixed-ratio-corner",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 133.42737396149846,
+              "y": 183.80289785334287,
+              "width": 446.57262603850154,
+              "height": 251.19710214665713
+            },
+            "fields": {
+              "X": "133.427374",
+              "Y": "183.802898",
+              "幅": "446.572626",
+              "高さ": "251.197102"
+            },
+            "ratio": "wide",
+            "preview": "133.42737396149846 183.80289785334287 446.57262603850154 251.19710214665713",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 23
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 133.427374,
+                "y": 183.802898,
+                "width": 446.572626,
+                "height": 251.19710212500001
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 24
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 133.427374,
+              "y": 183.802898,
+              "width": 446.572626,
+              "height": 251.19710212500001
+            },
+            "fields": {
+              "X": "133.427374",
+              "Y": "183.802898",
+              "幅": "446.572626",
+              "高さ": "251.197102"
+            },
+            "ratio": "wide",
+            "preview": "133.427374 183.802898 446.572626 251.19710212500001",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 24
+          },
+          "error": "AssertionError [ERR_ASSERTION]: Every coordinate must remain bit-for-bit unchanged\n+ actual - expected\n\n  {\n+   height: 251.19710212500001,\n+   width: 446.572626,\n+   x: 133.427374,\n+   y: 183.802898\n-   height: 251.19710214665713,\n-   width: 446.57262603850154,\n-   x: 133.42737396149846,\n-   y: 183.80289785334287\n  }\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:328)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:49:506\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:49:3"
+        },
+        {
+          "label": "pageerror-overflow",
+          "status": "PASS"
+        }
+      ],
+      "pageerrors": [],
+      "overflow": {
+        "viewport": 375,
+        "scroll": 375
+      },
+      "inputKind": "Playwright native mouse and trusted form submission; not physical input",
+      "submits": [
+        {
+          "trusted": true,
+          "time": 1105
+        },
+        {
+          "trusted": true,
+          "time": 1616
+        },
+        {
+          "trusted": true,
+          "time": 2177
+        },
+        {
+          "trusted": true,
+          "time": 3546.0000000000005
+        },
+        {
+          "trusted": true,
+          "time": 8018.000000000001
+        },
+        {
+          "trusted": true,
+          "time": 10679
+        },
+        {
+          "trusted": true,
+          "time": 13368
+        },
+        {
+          "trusted": true,
+          "time": 17441
+        },
+        {
+          "trusted": true,
+          "time": 21569
+        },
+        {
+          "trusted": true,
+          "time": 22503
+        },
+        {
+          "trusted": true,
+          "time": 23428
+        },
+        {
+          "trusted": true,
+          "time": 24197
+        },
+        {
+          "trusted": true,
+          "time": 25079
+        },
+        {
+          "trusted": true,
+          "time": 25687
+        },
+        {
+          "trusted": true,
+          "time": 26279
+        },
+        {
+          "trusted": true,
+          "time": 26721
+        },
+        {
+          "trusted": true,
+          "time": 31075
+        },
+        {
+          "trusted": true,
+          "time": 111385
+        },
+        {
+          "trusted": true,
+          "time": 118193
+        },
+        {
+          "trusted": true,
+          "time": 149795.00000000003
+        },
+        {
+          "trusted": true,
+          "time": 171078
+        },
+        {
+          "trusted": true,
+          "time": 175975
+        },
+        {
+          "trusted": true,
+          "time": 193382
+        },
+        {
+          "trusted": true,
+          "time": 223225
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "images": [
+    {
+      "name": "webkit-375-no-preference-wide-se-before.png",
+      "sha256": "cc7ff56f423b4dfc482934183c4c171a9fd710d6932de7e17d93eaa0aa9ef6a9"
+    },
+    {
+      "name": "webkit-375-no-preference-wide-se-after.png",
+      "sha256": "b59577a13fb3ec3e187ae47981f93cbd466ded601cabad06c97823efefda0a3b"
+    },
+    {
+      "name": "webkit-375-no-preference-photo-se-before.png",
+      "sha256": "54cebc077943ded679f04da1e4cf2fbf245a6c33096313ca34e5038f3681a233"
+    },
+    {
+      "name": "webkit-375-no-preference-photo-se-after.png",
+      "sha256": "00903972b8363c32d6db9c62808333280f687ca7009b4dbf6d1b1cce7ec253d9"
+    },
+    {
+      "name": "webkit-375-no-preference-square-se-before.png",
+      "sha256": "f880b842fe11d79311a4b6e72c0b1fbb41a02e5fd6d85244243542bd1822ad66"
+    }
+  ],
+  "sourceCanonicalSHA256": {
+    "app/components/practical/ImageCrop.tsx": "452ea920c31c24960ade804bbf5073aafbd1e7ccca4e3b431ebd702558966ee5",
+    "app/components/practical/image-crop-model.ts": "01812c2077b89e28bbe158bb6446f7c8604165ef76ae650166b28dac069b7a23",
+    "app/components/practical/CropGarden.tsx": "18e9a41a92d7a4d085a214c021b479d9cecaee2869a3f50bf23fda809d1fa1b2",
+    "scripts/verify-image-crop-precision-browser.mjs": "00fef4d22d5bbde2e374479daf0170d6220cb774b695e745245af5a8cdd5952f",
+    "scripts/verify-image-crop-precision-model.mjs": "070cf6b15beec0a481a148cf01acab87387bbc816658d9e62974d0649aae63ca"
+  },
+  "exportSHA256": "76120d0a3d7ccfcf7b390499cac472094a3e0f3db6bac684b228432609e98b85",
+  "notTested": [
+    "physical Safari",
+    "VoiceOver",
+    "physical input",
+    "OS backgrounding/capture loss",
+    "browser pinch zoom"
+  ],
+  "current": {
+    "engine": "webkit",
+    "width": 375,
+    "motion": "no-preference",
+    "version": "26.0"
+  },
+  "complete": false,
+  "finished": "2026-11-05T03:38:30.037Z"
+}

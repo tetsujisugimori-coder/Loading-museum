@@ -2,18 +2,18 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { PointerEvent as ReactPointerEvent } from 'react';
 import CropGarden from './CropGarden';
-import { equal, INITIAL, initialState, numeric, RATIOS, resize, transition, type Action, type Corner, type Ratio, type Rect, type Selection } from './image-crop-model';
+import { equal, fixedHeight, formatSelection, INITIAL, initialState, numeric, RATIOS, resize, transition, type Action, type Corner, type Ratio, type Rect, type Selection } from './image-crop-model';
 import './image-crop.css';
 
 const ratioLabels: Record<Ratio, string> = { free: '自由', square: '1:1', wide: '16:9', photo: '4:3' };
 const corners: [Corner, string][] = [['nw', '左上'], ['ne', '右上'], ['sw', '左下'], ['se', '右下']];
 const fields: [keyof Rect, string][] = [['x', 'X'], ['y', 'Y'], ['width', '幅'], ['height', '高さ']];
-const strings = (s: Selection) => Object.fromEntries(fields.map(([k]) => [k, String(Number(s.rect[k].toFixed(6)))])) as Record<keyof Rect, string>;
+const strings = formatSelection;
 const viewBox = (s: Selection) => `${s.rect.x} ${s.rect.y} ${s.rect.width} ${s.rect.height}`;
 function CropResult({ selection, label, testId }: { selection: Selection; label: string; testId: string }) {
   return <figure className="icResult"><figcaption>{label} <span>{ratioLabels[selection.ratio]}</span></figcaption>
     <svg data-testid={testId} viewBox={viewBox(selection)} style={{ aspectRatio: `${selection.rect.width} / ${selection.rect.height}` }} role="img" aria-label={label} preserveAspectRatio="xMidYMid meet"><CropGarden /></svg>
-    <p>X {selection.rect.x.toFixed(1)} / Y {selection.rect.y.toFixed(1)} / {selection.rect.width.toFixed(1)} × {selection.rect.height.toFixed(1)}</p>
+    <p>概数：X {selection.rect.x.toFixed(1)} / Y {selection.rect.y.toFixed(1)} / {selection.rect.width.toFixed(1)} × {selection.rect.height.toFixed(1)}</p>
   </figure>;
 }
 export default function ImageCrop() {
@@ -117,10 +117,10 @@ export default function ImageCrop() {
       const result = numeric(inputs, base.ratio); dispatch({ type: 'abort' });
       if (result.selection) command({ type: 'numeric', selection: result.selection }, '数値を適用しました。確定結果はまだ変わりません。');
       else setMessage(result.error!);
-    }}><fieldset><legend>元絵の座標で編集（1000 × 700）</legend><p id="ic-number-help">幅・高さは80以上。自由比率は4項目を編集、固定比率は幅から高さが連動します。枠全体が元絵の内側に収まる値で「数値を適用」。入力中は枠を動かしません。</p>
+    }}><fieldset><legend>元絵の座標で編集（1000 × 700）</legend><p id="ic-number-help">幅・高さは80以上。自由比率は4項目を編集、固定比率は幅から高さが連動します。枠全体が元絵の内側に収まる値で「数値を適用」。入力欄は丸めず表示し、保持できない精度の入力は拒否します。入力中は枠を動かしません。</p>
       <div>{fields.map(([key, label]) => <label key={key}>{label}<input type="text" inputMode="decimal" value={inputs[key]} readOnly={key === 'height' && state.editing.ratio !== 'free'} aria-describedby="ic-number-help" onChange={e => setInputs(old => {
         const next = { ...old, [key]: e.target.value }, ratio = RATIOS[state.editing.ratio];
-        if (key === 'width' && ratio) next.height = e.target.value.trim() && Number.isFinite(Number(e.target.value)) ? String(Number((Number(e.target.value) / ratio).toFixed(6))) : '';
+        if (key === 'width' && ratio) next.height = e.target.value.trim() && Number.isFinite(Number(e.target.value)) ? String(fixedHeight(Number(e.target.value), state.editing.ratio as Exclude<Ratio, 'free'>)) : '';
         return next;
       })} /></label>)}<button>数値を適用</button></div>
     </fieldset></form>
