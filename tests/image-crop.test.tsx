@@ -82,7 +82,7 @@ for (const ratio of ['wide', 'photo', 'square'] as const) it(`reapplies actual d
   const zone = screen.getByRole('group', { name: '切抜き枠の操作領域' });
   fireEvent.pointerUp(zone, { pointerId: 1, clientX: -10000, clientY: -10000 });
   const before = box(), fixed = confirmed();
-  const apply = screen.getByRole('button', { name: '数値を適用', exact: true }), notice = screen.getByRole('status');
+  const apply = screen.getByRole('button', { name: '数値を適用' }), notice = screen.getByRole('status');
   for (let i = 0; i < 16; i++) { fireEvent.click(apply); expect(notice.textContent).toContain('数値を適用しました'); expect(box()).toBe(before); expect(confirmed()).toBe(fixed); }
   click('切抜きを確定'); click('→ 右'); click('編集を取消'); expect(box()).toBe(before); expect(confirmed()).toBe(before);
   click('Reset'); expect(box()).toBe('100 120 480 360'); expect(confirmed()).toBe(box());

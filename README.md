@@ -160,6 +160,10 @@ Menu照準は選択行へ追従。Parry/Dodgeの成功窓は開始後420〜680ms
 
 第2期BではInfinite Tunnel、Raster Bars、Elastic Space、Kaleidoscope、Ink Bloom、Glitch Laboratoryを追加。Canvasによる独自の近似です。インクは流体計算ではなく半透明粒子、グリッチは強い点滅を伴わない画素ずれです。作品ごとの操作・原理・着想は展示内に記載しています。
 
+## Image Crop 数値精度の補修（2026-11-05）
+
+PR #64 P2-01では、最小枠の表示値をそのまま再適用しても構図が変わらないよう、入力表示と座標計算を共通化しました。入力の最小値・元絵境界は緩和しません。[方式比較](docs/image-crop-precision-design.md)・[新規検証と再レビュー引渡し](docs/image-crop-precision-verification.md)。265展示・13室・実用UI26展示を維持。独立再レビュー未完了の間はPARTIAL・マージ推奨NO、Draftを維持します。
+
 ## 第3期：実用UI部品の観察室
 
 Issue #41。既存215展示に、工程進捗・先読み進捗・引いて更新・注目位置・吸着対象・挿入予告付き並替の先行6部品を追加（221件）。同名待機部品を重複登録せず、用途・技術・性質を分けて検索できます。独自再構成と確認範囲は [第3期記録](docs/phase3-studies.md) を参照。後半6部品は次checkpointで追加します。

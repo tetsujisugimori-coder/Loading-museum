@@ -1,3 +1,10 @@
+## 2026-11-05 PR #64 P2-01 数値精度・境界の根本修正
+
+- 対象95ab616/tree dc9ebccと現PR一致、開始clean。旧証拠保持。16:9最小枠の表示再適用拒否、4:3の変形、自由比率の近接端変形を純粋モデルとChromium/WebKitの実マウス・フォームで再現。二進数和が1000へ丸まる端超過の誤受理も記録。
+- A内部量子化/B6桁共有snap/C一律epsilon/D往復codecと整数比率を比較しD採用。入力は丸めず最短往復表示、幅から高さの共通計算、明示的な精度喪失と最小/範囲違反は拒否。TwoSumと内側の隣接表現による範囲構成。図版/CSS/登録/展示数/lock変更なし。
+- 同じモデル43検査はRED14→GREEN0、追加反例2件。実フォーム各16回、source故障対照を2→5へ拡張しPNG負対照維持。新しい検証を8独立CI jobへ追加。ローカル時間超過/PNG安定待ち/子process timeoutを保存。追加テストの型オプション誤りも修正し、次の検証へ進める。
+- 設計 docs/image-crop-precision-design.md、検証/独立再レビュー引渡し docs/image-crop-precision-verification.md、新証拠 docs/image-crop-precision-evidence/。最終HEAD CIは別記。独立再レビュー待ちは総合PARTIAL、限定マージ推奨NO。Draft/禁止操作/既存UNKNOWNを維持。
+
 ## 2026-11-05 第6期A-2 Image Crop / Issue #63
 
 - main 8f065e0d0392b78b927d148648d0b77205ef979a（PR #62統合済み）をGitHub/local両方で確認、新規clone・専用branch feat/image-crop-phase6a2。初期clean、AGENTS.md/.agents/skillsなし。別checkout変更・stashなし。

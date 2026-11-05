@@ -1,5 +1,7 @@
 # 第6期A-2：Image Crop / 構図を切り取る
 
+2026-11-05追記：PR #64 P2-01の表示丸め・境界再適用を別工程で修正。[数値契約の比較・採用](image-crop-precision-design.md)と[自己検証・再レビュー引渡し](image-crop-precision-verification.md)を参照。以下は初回実装の時点記録として保持する。新しい失敗・修正は過去の検証へ混ぜない。
+
 Issue #63。自己検証から独立レビューへの引渡し用。**独立レビュー未実施、マージ推奨NO、Draft維持。** merge / auto-merge / Draft解除 / 手動公開は実施しない。
 
 ## 調査・保全・件数
