@@ -1,0 +1,58 @@
+{
+  "start": "2026-11-05T18:00:33.518Z",
+  "head": "05735e83fd23d228d797afb89a150045293d3e58",
+  "tree": "c467dc4839e7d777942f27c06f1fb1d0ea9758d5",
+  "dirty": "M app/components/PracticalRoom.tsx\n M app/data/phase6aExhibits.ts\n M package.json\n M scripts/verify-image-crop-browser.mjs\n M scripts/verify-phase4a-browser.mjs\n M scripts/verify-phase4b-browser.mjs\n M scripts/verify-phase5a-browser.mjs\n M scripts/verify-phase5b-browser.mjs\n M scripts/verify-waapi-observation.py\n M scripts/verify-waapi-stage2b.py\n M tests/image-crop.test.tsx\n M tests/phase4a.test.tsx\n M tests/rendered-html.test.mjs\n?? .github/workflows/verify-before-after.yml\n?? app/components/practical/BeforeAfterCompare.tsx\n?? app/components/practical/before-after-compare.css\n?? app/components/practical/compare-model.ts\n?? docs/before-after-evidence/\n?? public/compare/\n?? scripts/generate-compare-art.py\n?? scripts/verify-before-after-browser.mjs\n?? tests/before-after-compare.test.tsx",
+  "source": {
+    "app/components/practical/BeforeAfterCompare.tsx": "45e227392ac932d529e8447bb9c9de55f10668f45104f902167a7dcc81cfe26e",
+    "app/components/practical/compare-model.ts": "f7826fcdbe3753825902b75b6b06f268f37a0e59fac1aaf0f655cdb913d466b2",
+    "app/components/practical/before-after-compare.css": "8ade5822a2a412720a61ef96d86a44a628a5e499ff135bc1f7aedb60ea0878f0",
+    "app/components/PracticalRoom.tsx": "eb9c5e90684e4cb8fe09c7d991c3261b49cfb26c470b13ba2debb7d8a6e25c23",
+    "app/data/phase6aExhibits.ts": "5c3a70615b77b8f577ec5ffe315ecea783e92e333fcb1ca1f3fcd7047b8eeac1",
+    "public/compare/restoration-before.svg": "0e7331d3ebe73bfab09fe89a55fac01ac695c79f772cc36cd3b77f361b83df8c",
+    "public/compare/restoration-after.svg": "fb0074d61549c386f923cd520e3dbbe4e8ed9173cac4eb0aabae476cd38f0ff1",
+    "public/compare/correction-before.svg": "50a302bf4100606c92ae76ca67923292e976795d3be2738c014c49be90912eb0",
+    "public/compare/correction-after.svg": "5a179c85e0833cff86e7a28bc13dca44eb514dca7b33dd29aebba27b443b6a82"
+  },
+  "checks": [],
+  "cases": [],
+  "errors": [],
+  "notTested": [
+    "WebKit in this local independent run",
+    "physical Safari",
+    "VoiceOver",
+    "physical mouse/touch",
+    "real OS background/capture-loss"
+  ],
+  "browser": "154.0.8037.57",
+  "currentCase": {
+    "width": 375,
+    "motion": "reduce",
+    "checks": [
+      "native keyboard endpoints,shift,small step/reset/fixed image geometry"
+    ],
+    "images": [],
+    "endpointTrace": {
+      "h": {
+        "x": 37,
+        "y": 61.40625,
+        "width": 48,
+        "height": 48
+      },
+      "h2": {
+        "x": 37,
+        "y": 61.40625,
+        "width": 48,
+        "height": 48
+      },
+      "valueBefore": 100,
+      "target": "<span aria-hidden=\"true\">↔</span>"
+    }
+  },
+  "failure": {
+    "message": "P2: pressing the far endpoint handle must preserve the boundary\n\n8 !== 100\n",
+    "stack": "AssertionError [ERR_ASSERTION]: P2: pressing the far endpoint handle must preserve the boundary\n\n8 !== 100\n\n    at file:///workspace/loading-museum-phase6a3/work/independent/review-browser.mjs:28:956"
+  },
+  "pass": false,
+  "end": "2026-11-05T18:00:36.476Z"
+}

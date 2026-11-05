@@ -16,4 +16,13 @@ export const phase6aExhibits = [{
   example: '家・花壇・橋・木立の独自SVG。自由比率と固定比率で異なる構図を比較するローカル教材。',
   history: '発祥・初出年 UNKNOWN。一般的な画像編集UIを独自に再構成した教材で、実在製品の再現ではありません。',
   source: 'https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html',
+}, {
+  id: 'before-after-compare', title: 'Before / After Compare / 画像の変化を見比べる',
+  use: '画像編集・比較 画像比較 修復 色補正 Before After',
+  tags: ['画像編集・比較', '同一座標', 'マスクと透明度', '第6期A-3'], technology: ['React', 'TypeScript', 'SVG', 'Pointer Events', 'requestAnimationFrame'],
+  principle: '同じ座標に固定した2枚の画像の表示境界と不透明度を変え、変化を観察します。',
+  replacement: 'Pan & Zoomは全画像の拡大移動、Image Cropは残す領域の確定、Diff Viewerはテキスト差分。本展示は2枚の画像を重ねる・透かす・並べる比較装置です。',
+  example: '修復前後の港のアトリエと、窓辺の色補正を模した独自SVG。実際の歴史写真や修復資料ではありません。',
+  history: '発祥・初出年 UNKNOWN。一般的な画像比較UIを独自に再構成した教材で、画像の加工や実在製品の再現ではありません。',
+  source: 'https://www.w3.org/WAI/ARIA/apg/patterns/slider/',
 }];

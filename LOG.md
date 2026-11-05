@@ -1,3 +1,13 @@
+## 2026-11-05 第6期A-3 Before / After Compare / Issue #65
+
+- 最新main 05735e83fd23d228d797afb89a150045293d3e58から独立clone、専用branch feat/before-after-compare-phase6a3。開始clean、適用AGENTS/checkout skillsなし。PR #60/#62/#64統合済み、同目的Issue/open PRなし。別repo変更なし。
+- 既存実用UI室へbefore-after-compareを1件追加。全館265→266展示・13室維持、同室26→27。既存ID/順序/素材/依存/lockfileを保持し、登録と旧総数assertを整合。README冒頭とdocs/before-after-compare.mdへ契約と検証を記録。
+- 独自1200×760 SVGを2組制作。修復の景観変化と補正の色変化。Split/Overlay/並列、反転、0〜100%・Reset、キーボード1/10%/両端、48pxハンドル、touch画像面scroll、再生/pause/resume/Replay/速度。架空図版を明示、画像加工/保存/外部APIなし。
+- 状態・仮drag・asset世代・animation epoch/elapsedを分離。取消/古pointer・古tick失効、mode/pair/Reset/resize/hidden/途中reduced/unmount対応。画像error/retry、ARIA/alt/focus/節目通知、reduced即時After・途中pause。
+- baseline check485件+別枠精度45群成功。新規38件（端ハンドル2件を含む）、browser16条件、負対照mask/alpha、既存回帰用CIを追加。結果は確定追補・PRと証拠へ記録する。初期npm cache、テスト型、検査screen-Y/境界pixelの失敗原本を保持し、未実施を成功としない。
+- 独立担当が端で押すだけの0→8% jumpを発見しREDを保存。pointer開始からの差分へ修正。reducedの全館1ms transitionを局所無効化、比較値outputをlive通知対象外へ。最終コード/ブラウザ再レビューは別担当の記録を参照し、自己検証と分ける。
+- 固定browserローカル取得は通信policyの403、迂回せず既設Chromium154と正式Actions固定browserを分離。物理Safari/VoiceOver/入力/実OS capture/background/WebKit native touch/pinchはNOT_TESTED、既存 #29/#44/#54/UNKNOWNを保持。Draft提出で停止し、解除/merge/auto-merge/公開を行わない。
+
 ## 2026-11-05 PR #64 P2-01 数値精度・境界の根本修正
 
 - 対象95ab616/tree dc9ebccと現PR一致、開始clean。旧証拠保持。16:9最小枠の表示再適用拒否、4:3の変形、自由比率の近接端変形を純粋モデルとChromium/WebKitの実マウス・フォームで再現。二進数和が1000へ丸まる端超過の誤受理も記録。
