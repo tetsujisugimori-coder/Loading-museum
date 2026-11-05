@@ -1,0 +1,35 @@
+{
+  "head": "8f065e0d0392b78b927d148648d0b77205ef979a",
+  "tree": "ea82e61f90a18524500bb03f34d870594c352b70",
+  "dirty": "M app/components/PracticalRoom.tsx\n M app/data/phase6aExhibits.ts\n M package.json\n M scripts/verify-phase4a-browser.mjs\n M scripts/verify-phase4b-browser.mjs\n M scripts/verify-phase5a-browser.mjs\n M scripts/verify-phase5b-browser.mjs\n M scripts/verify-waapi-observation.py\n M scripts/verify-waapi-stage2b.py\n M tests/phase4a.test.tsx\n M tests/rendered-html.test.mjs\n?? .github/workflows/verify-image-crop.yml\n?? app/components/practical/CropGarden.tsx\n?? app/components/practical/ImageCrop.tsx\n?? app/components/practical/image-crop-model.ts\n?? app/components/practical/image-crop.css\n?? docs/image-crop-evidence/\n?? scripts/verify-image-crop-browser.mjs\n?? scripts/verify-image-crop-controls.mjs\n?? tests/image-crop.test.tsx",
+  "node": "v24.20.0",
+  "platform": "win32",
+  "started": "2026-11-05T00:05:24.693Z",
+  "cases": [],
+  "images": [],
+  "controls": [],
+  "errors": [
+    "browserType.launch: Executable doesn't exist at C:\\Users\\tetsu\\AppData\\Local\\Packages\\sandbox.{c50aa09a-af78-4279-8cbc-2dfbada0b8a5}\\AC\\ms-playwright\\chromium_headless_shell-1194\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝\n    at C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-browser.mjs:30:32"
+  ],
+  "notTested": [
+    "physical Safari",
+    "VoiceOver",
+    "physical mouse/OS SendInput",
+    "WebKit native touch",
+    "real OS capture loss/backgrounding",
+    "browser pinch zoom"
+  ],
+  "exportSHA256": "e3d8b1ced00b02b25cf8efba65ac48c5c257636f5f7b4501112d499c8e05316a",
+  "sourceCanonicalSHA256": {
+    "app/components/practical/ImageCrop.tsx": "5b276f5728dccacb412bd4bfd8dc0c5901428de2983440a3799ea3a8176b3481",
+    "app/components/practical/CropGarden.tsx": "18e9a41a92d7a4d085a214c021b479d9cecaee2869a3f50bf23fda809d1fa1b2",
+    "app/components/practical/image-crop-model.ts": "fbaa9864ddc8b861e295544e4d4ea4ef342cf64ee68cc859fd2d26a582c26d6c",
+    "app/components/practical/image-crop.css": "d3b9d21e8ce58766e485d8b8b2478e7ce9b7a0d4aa9439dd7d2a7809fcc52968",
+    "app/components/PracticalRoom.tsx": "498a5926f961ca4ea6047e8b0341f60cde23313d829ba37bffa6e22bc06be0ec",
+    "app/data/phase6aExhibits.ts": "a67718329411d0444c8513e6fb2cd2472bbd2992a54d44cd314e1b17f24f2d91",
+    "app/page.tsx": "772b31bcf9d8a354029a494e09aae87178fc6763123976406e61fdc8aadd3cce"
+  },
+  "expected": 1,
+  "complete": false,
+  "finished": "2026-11-05T00:05:24.704Z"
+}

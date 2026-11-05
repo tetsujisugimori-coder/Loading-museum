@@ -1,0 +1,12 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+26 !== 25
+
+    at file:///home/runner/work/Loading-museum/Loading-museum/scripts/verify-phase5b-browser.mjs:29:117 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 26,
+  expected: 25,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

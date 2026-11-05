@@ -1,0 +1,24 @@
+PASS chromium 375 no-preference
+PASS chromium 375 reduce
+PASS chromium 390 no-preference
+PASS chromium 390 reduce
+PASS chromium 765 no-preference
+PASS chromium 765 reduce
+PASS chromium 1280 no-preference
+PASS chromium 1280 reduce
+PASS webkit 375 no-preference
+PASS webkit 375 reduce
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ '100 120 480 360'
+- '184.03676608516224 162.0183830425808 480 360'
+
+    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-browser.mjs:100:85 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '100 120 480 360',
+  expected: '184.03676608516224 162.0183830425808 480 360',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

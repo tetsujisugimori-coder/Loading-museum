@@ -1,0 +1,197 @@
+{
+  "head": "fe6cc020aff40492c0fd437eeb4169a07ff8e9a7",
+  "tree": "c58cdd35ebb3a5105cf7a0769848e4108b5e705b",
+  "artifacts": [
+    {
+      "id": 13387870126,
+      "name": "image-crop-webkit-390-fe6cc020aff40492c0fd437eeb4169a07ff8e9a7",
+      "digest": "sha256:59254b50e428dd6bfa7ff9c6bae8f6a30cb0cdbc528826e73c23da26c15f46c7",
+      "size_in_bytes": 33143
+    },
+    {
+      "id": 13387600080,
+      "name": "image-crop-chromium-765-fe6cc020aff40492c0fd437eeb4169a07ff8e9a7",
+      "digest": "sha256:9054f47040900d450f242acbc2691ec503e73289a56d403db6bf0ee8cd0186b4",
+      "size_in_bytes": 33125
+    },
+    {
+      "id": 13387246752,
+      "name": "image-crop-webkit-765-fe6cc020aff40492c0fd437eeb4169a07ff8e9a7",
+      "digest": "sha256:cd4767ee679bb1d92448e1c6d4ca161e5807fc203e0f55f29f0dac4584fc872a",
+      "size_in_bytes": 33143
+    },
+    {
+      "id": 13387082319,
+      "name": "image-crop-webkit-375-fe6cc020aff40492c0fd437eeb4169a07ff8e9a7",
+      "digest": "sha256:f7269e946049a6d4c3ab2f41941138f691f6febf5cccc2917429d22ba3c2a35c",
+      "size_in_bytes": 4106605
+    },
+    {
+      "id": 13386918822,
+      "name": "image-crop-webkit-1280-fe6cc020aff40492c0fd437eeb4169a07ff8e9a7",
+      "digest": "sha256:c227da9966e8ee7f6bed8522d3e5f0fc237d7e1b476957de8af0b419e98650da",
+      "size_in_bytes": 4917789
+    },
+    {
+      "id": 13386918798,
+      "name": "image-crop-chromium-375-fe6cc020aff40492c0fd437eeb4169a07ff8e9a7",
+      "digest": "sha256:3622f83fe8f27e2524eb4d84cd784ce8f9df13723a0cada39879ef6e94877bca",
+      "size_in_bytes": 3431540
+    },
+    {
+      "id": 13386284517,
+      "name": "image-crop-chromium-1280-fe6cc020aff40492c0fd437eeb4169a07ff8e9a7",
+      "digest": "sha256:9460748447c39fff691c1525beb04a32a50ba4410d3c75f91deb31519c77069d",
+      "size_in_bytes": 4283700
+    },
+    {
+      "id": 13386264840,
+      "name": "image-crop-chromium-390-fe6cc020aff40492c0fd437eeb4169a07ff8e9a7",
+      "digest": "sha256:9c9230daabb14ecebe2375419033474f122d782ca4c6e359f828566b6630d035",
+      "size_in_bytes": 33161
+    }
+  ],
+  "conditions": [
+    {
+      "engine": "webkit",
+      "width": 390,
+      "motion": "no-preference",
+      "version": "26.0",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "motion": "reduce",
+      "version": "26.0",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 765,
+      "motion": "no-preference",
+      "version": "141.0.7390.37",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 765,
+      "motion": "reduce",
+      "version": "141.0.7390.37",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 765,
+      "motion": "no-preference",
+      "version": "26.0",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 765,
+      "motion": "reduce",
+      "version": "26.0",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "motion": "no-preference",
+      "version": "26.0",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "motion": "reduce",
+      "version": "26.0",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "motion": "no-preference",
+      "version": "26.0",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "motion": "reduce",
+      "version": "26.0",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "motion": "no-preference",
+      "version": "141.0.7390.37",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "motion": "reduce",
+      "version": "141.0.7390.37",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "motion": "no-preference",
+      "version": "141.0.7390.37",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "motion": "reduce",
+      "version": "141.0.7390.37",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "motion": "no-preference",
+      "version": "141.0.7390.37",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "motion": "reduce",
+      "version": "141.0.7390.37",
+      "status": "PASS"
+    }
+  ],
+  "pngs": 92,
+  "sourceChecks": 144,
+  "pngFaults": [
+    {
+      "engine": "webkit",
+      "fault": "wrong-position",
+      "result": "REJECTED",
+      "type": "temporary DOM render fault"
+    },
+    {
+      "engine": "webkit",
+      "fault": "stretched-ratio",
+      "result": "REJECTED",
+      "type": "temporary DOM render fault"
+    },
+    {
+      "engine": "chromium",
+      "fault": "wrong-position",
+      "result": "REJECTED",
+      "type": "temporary DOM render fault"
+    },
+    {
+      "engine": "chromium",
+      "fault": "stretched-ratio",
+      "result": "REJECTED",
+      "type": "temporary DOM render fault"
+    }
+  ],
+  "complete": true
+}

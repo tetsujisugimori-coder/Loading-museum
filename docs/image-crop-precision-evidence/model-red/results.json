@@ -1,0 +1,831 @@
+{
+  "head": "95ab616f961fcfb5af9ac393c44f33ead68d285b",
+  "tree": "dc9ebcc42c54142aa724ab0739998741737294e5",
+  "dirty": "?? docs/image-crop-precision-evidence/\n?? scripts/verify-image-crop-precision-model.mjs",
+  "platform": "win32",
+  "node": "v24.20.0",
+  "serializerSource": "const strings = (s: Selection) => Object.fromEntries(fields.map(([k]) => [k, String(Number(s.rect[k].toFixed(6)))])) as Record<keyof Rect, string>;\r",
+  "checks": [
+    {
+      "label": "minimum/wide/nw",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: 幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。\n    at roundTrip (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:35:91)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:39:162\n    at check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:20:50)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:39:3\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "label": "minimum/wide/ne",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: 幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。\n    at roundTrip (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:35:91)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:39:162\n    at check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:20:50)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:39:3\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "label": "minimum/wide/sw",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: 幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。\n    at roundTrip (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:35:91)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:39:162\n    at check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:20:50)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:39:3\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "label": "minimum/wide/se",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: 幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。\n    at roundTrip (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:35:91)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:39:162\n    at check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:20:50)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:39:3\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "label": "minimum/photo/nw",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Unmodified displayed fields must preserve every coordinate exactly\n+ actual - expected\n\n  {\n    ratio: 'photo',\n    rect: {\n+     height: 80.00000025000001,\n+     width: 106.666667,\n+     x: 473.333333,\n-     height: 80,\n-     width: 106.66666666666666,\n-     x: 473.33333333333337,\n      y: 400\n    }\n  }\n\n    at roundTrip (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:35:154)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:39:162\n    at check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:20:50)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:39:3\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "label": "minimum/photo/ne",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Unmodified displayed fields must preserve every coordinate exactly\n+ actual - expected\n\n  {\n    ratio: 'photo',\n    rect: {\n+     height: 80.00000025000001,\n+     width: 106.666667,\n-     height: 80,\n-     width: 106.66666666666666,\n      x: 100,\n      y: 400\n    }\n  }\n\n    at roundTrip (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:35:154)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:39:162\n    at check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:20:50)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:39:3\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "label": "minimum/photo/sw",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Unmodified displayed fields must preserve every coordinate exactly\n+ actual - expected\n\n  {\n    ratio: 'photo',\n    rect: {\n+     height: 80.00000025000001,\n+     width: 106.666667,\n+     x: 473.333333,\n-     height: 80,\n-     width: 106.66666666666666,\n-     x: 473.33333333333337,\n      y: 120\n    }\n  }\n\n    at roundTrip (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:35:154)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:39:162\n    at check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:20:50)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:39:3\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "label": "minimum/photo/se",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Unmodified displayed fields must preserve every coordinate exactly\n+ actual - expected\n\n  {\n    ratio: 'photo',\n    rect: {\n+     height: 80.00000025000001,\n+     width: 106.666667,\n-     height: 80,\n-     width: 106.66666666666666,\n      x: 100,\n      y: 120\n    }\n  }\n\n    at roundTrip (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:35:154)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:39:162\n    at check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:20:50)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:39:3\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "label": "minimum/square/nw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "square",
+          "rect": {
+            "x": 500,
+            "y": 460,
+            "width": 80,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "500",
+          "y": "460",
+          "width": "80",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 500,
+            "y": 460,
+            "width": 80,
+            "height": 80
+          },
+          "ratio": "square"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "minimum/square/ne",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "square",
+          "rect": {
+            "x": 100,
+            "y": 460,
+            "width": 80,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "460",
+          "width": "80",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 460,
+            "width": 80,
+            "height": 80
+          },
+          "ratio": "square"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "minimum/square/sw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "square",
+          "rect": {
+            "x": 500,
+            "y": 60,
+            "width": 80,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "500",
+          "y": "60",
+          "width": "80",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 500,
+            "y": 60,
+            "width": 80,
+            "height": 80
+          },
+          "ratio": "square"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "minimum/square/se",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "square",
+          "rect": {
+            "x": 100,
+            "y": 60,
+            "width": 80,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "60",
+          "width": "80",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 60,
+            "width": 80,
+            "height": 80
+          },
+          "ratio": "square"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/free/nw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "free",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 580,
+            "height": 480
+          }
+        },
+        "values": {
+          "x": "0",
+          "y": "0",
+          "width": "580",
+          "height": "480"
+        },
+        "after": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 580,
+            "height": 480
+          },
+          "ratio": "free"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/free/ne",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "free",
+          "rect": {
+            "x": 100,
+            "y": 0,
+            "width": 900,
+            "height": 480
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "0",
+          "width": "900",
+          "height": "480"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 0,
+            "width": 900,
+            "height": 480
+          },
+          "ratio": "free"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/free/sw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "free",
+          "rect": {
+            "x": 0,
+            "y": 120,
+            "width": 580,
+            "height": 580
+          }
+        },
+        "values": {
+          "x": "0",
+          "y": "120",
+          "width": "580",
+          "height": "580"
+        },
+        "after": {
+          "rect": {
+            "x": 0,
+            "y": 120,
+            "width": 580,
+            "height": 580
+          },
+          "ratio": "free"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/free/se",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "free",
+          "rect": {
+            "x": 100,
+            "y": 120,
+            "width": 900,
+            "height": 580
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "120",
+          "width": "900",
+          "height": "580"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 120,
+            "width": 900,
+            "height": 580
+          },
+          "ratio": "free"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/wide/nw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "wide",
+          "rect": {
+            "x": 0,
+            "y": 108.75,
+            "width": 580,
+            "height": 326.25
+          }
+        },
+        "values": {
+          "x": "0",
+          "y": "108.75",
+          "width": "580",
+          "height": "326.25"
+        },
+        "after": {
+          "rect": {
+            "x": 0,
+            "y": 108.75,
+            "width": 580,
+            "height": 326.25
+          },
+          "ratio": "wide"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/wide/ne",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Unmodified displayed fields must preserve every coordinate exactly\n+ actual - expected\n\n  {\n    ratio: 'wide',\n    rect: {\n+     height: 434.99999981250005,\n+     width: 773.333333,\n-     height: 435,\n-     width: 773.3333333333333,\n      x: 100,\n      y: 0\n    }\n  }\n\n    at roundTrip (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:35:154)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:41:253\n    at check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:20:50)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:41:95\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "label": "maximum/wide/sw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "wide",
+          "rect": {
+            "x": 0,
+            "y": 165,
+            "width": 580,
+            "height": 326.25
+          }
+        },
+        "values": {
+          "x": "0",
+          "y": "165",
+          "width": "580",
+          "height": "326.25"
+        },
+        "after": {
+          "rect": {
+            "x": 0,
+            "y": 165,
+            "width": 580,
+            "height": 326.25
+          },
+          "ratio": "wide"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/wide/se",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "wide",
+          "rect": {
+            "x": 100,
+            "y": 165,
+            "width": 900,
+            "height": 506.25
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "165",
+          "width": "900",
+          "height": "506.25"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 165,
+            "width": 900,
+            "height": 506.25
+          },
+          "ratio": "wide"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/photo/nw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "photo",
+          "rect": {
+            "x": 0,
+            "y": 45,
+            "width": 580,
+            "height": 435
+          }
+        },
+        "values": {
+          "x": "0",
+          "y": "45",
+          "width": "580",
+          "height": "435"
+        },
+        "after": {
+          "rect": {
+            "x": 0,
+            "y": 45,
+            "width": 580,
+            "height": 435
+          },
+          "ratio": "photo"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/photo/ne",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "photo",
+          "rect": {
+            "x": 100,
+            "y": 0,
+            "width": 640,
+            "height": 480
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "0",
+          "width": "640",
+          "height": "480"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 0,
+            "width": 640,
+            "height": 480
+          },
+          "ratio": "photo"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/photo/sw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "photo",
+          "rect": {
+            "x": 0,
+            "y": 120,
+            "width": 580,
+            "height": 435
+          }
+        },
+        "values": {
+          "x": "0",
+          "y": "120",
+          "width": "580",
+          "height": "435"
+        },
+        "after": {
+          "rect": {
+            "x": 0,
+            "y": 120,
+            "width": 580,
+            "height": 435
+          },
+          "ratio": "photo"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/photo/se",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Unmodified displayed fields must preserve every coordinate exactly\n+ actual - expected\n\n  {\n    ratio: 'photo',\n    rect: {\n+     height: 579.99999975,\n+     width: 773.333333,\n-     height: 580,\n-     width: 773.3333333333333,\n      x: 100,\n      y: 120\n    }\n  }\n\n    at roundTrip (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:35:154)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:41:253\n    at check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:20:50)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:41:95\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "label": "maximum/square/nw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "square",
+          "rect": {
+            "x": 40,
+            "y": 0,
+            "width": 540,
+            "height": 540
+          }
+        },
+        "values": {
+          "x": "40",
+          "y": "0",
+          "width": "540",
+          "height": "540"
+        },
+        "after": {
+          "rect": {
+            "x": 40,
+            "y": 0,
+            "width": 540,
+            "height": 540
+          },
+          "ratio": "square"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/square/ne",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "square",
+          "rect": {
+            "x": 100,
+            "y": 0,
+            "width": 540,
+            "height": 540
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "0",
+          "width": "540",
+          "height": "540"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 0,
+            "width": 540,
+            "height": 540
+          },
+          "ratio": "square"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/square/sw",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "square",
+          "rect": {
+            "x": 0,
+            "y": 60,
+            "width": 580,
+            "height": 580
+          }
+        },
+        "values": {
+          "x": "0",
+          "y": "60",
+          "width": "580",
+          "height": "580"
+        },
+        "after": {
+          "rect": {
+            "x": 0,
+            "y": 60,
+            "width": 580,
+            "height": 580
+          },
+          "ratio": "square"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "maximum/square/se",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "square",
+          "rect": {
+            "x": 100,
+            "y": 60,
+            "width": 640,
+            "height": 640
+          }
+        },
+        "values": {
+          "x": "100",
+          "y": "60",
+          "width": "640",
+          "height": "640"
+        },
+        "after": {
+          "rect": {
+            "x": 100,
+            "y": 60,
+            "width": 640,
+            "height": 640
+          },
+          "ratio": "square"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "near-edge/free",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Unmodified displayed fields must preserve every coordinate exactly\n+ actual - expected\n\n  {\n    ratio: 'free',\n    rect: {\n+     height: 80,\n+     width: 80,\n+     x: 920,\n+     y: 620\n-     height: 80.00000005,\n-     width: 80.00000005,\n-     x: 919.9999999,\n-     y: 619.9999999\n    }\n  }\n\n    at roundTrip (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:35:154)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:42:28\n    at check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:20:50)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:42:1\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "label": "free/minimum",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "ratio": "free",
+          "rect": {
+            "x": 920,
+            "y": 620,
+            "width": 80,
+            "height": 80
+          }
+        },
+        "values": {
+          "x": "920",
+          "y": "620",
+          "width": "80",
+          "height": "80"
+        },
+        "after": {
+          "rect": {
+            "x": 920,
+            "y": 620,
+            "width": 80,
+            "height": 80
+          },
+          "ratio": "free"
+        },
+        "cycles": 16
+      }
+    },
+    {
+      "label": "mixed-ratio-corner-numeric",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Unmodified displayed fields must preserve every coordinate exactly\n+ actual - expected\n\n  {\n    ratio: 'wide',\n    rect: {\n+     height: 301.166172,\n+     width: 535.406528,\n-     height: 301.16617210682494,\n-     width: 535.406528189911,\n      x: 0,\n      y: 0\n    }\n  }\n\n    at roundTrip (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:35:154)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:45:235\n    at check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:20:50)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:44:1\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "label": "reject/empty",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "",
+          "y": "120",
+          "width": "480",
+          "height": "360"
+        },
+        "ratio": "free",
+        "error": "空欄があります。X・Y・幅・高さを入力してください。"
+      }
+    },
+    {
+      "label": "reject/NaN",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "100",
+          "y": "120",
+          "width": "NaN",
+          "height": "360"
+        },
+        "ratio": "free",
+        "error": "有限の数値を入力してください。"
+      }
+    },
+    {
+      "label": "reject/Infinity",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "100",
+          "y": "Infinity",
+          "width": "480",
+          "height": "360"
+        },
+        "ratio": "free",
+        "error": "有限の数値を入力してください。"
+      }
+    },
+    {
+      "label": "reject/negative",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "-0.0000001",
+          "y": "120",
+          "width": "480",
+          "height": "360"
+        },
+        "ratio": "free",
+        "error": "枠全体が元絵（1000 × 700）の内側に収まる値を入力してください。"
+      }
+    },
+    {
+      "label": "reject/free-below-min",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "100",
+          "y": "120",
+          "width": "480",
+          "height": "79.9999999"
+        },
+        "ratio": "free",
+        "error": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。"
+      }
+    },
+    {
+      "label": "reject/square-below-min",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "100",
+          "y": "120",
+          "width": "79.9999999",
+          "height": "360"
+        },
+        "ratio": "square",
+        "error": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。"
+      }
+    },
+    {
+      "label": "reject/wide-below-min",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "100",
+          "y": "120",
+          "width": "142.222222",
+          "height": "360"
+        },
+        "ratio": "wide",
+        "error": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。"
+      }
+    },
+    {
+      "label": "reject/photo-below-min",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "100",
+          "y": "120",
+          "width": "106.666666",
+          "height": "360"
+        },
+        "ratio": "photo",
+        "error": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。"
+      }
+    },
+    {
+      "label": "reject/outside-x",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "920.0000001",
+          "y": "620",
+          "width": "80",
+          "height": "80"
+        },
+        "ratio": "free",
+        "error": "枠全体が元絵（1000 × 700）の内側に収まる値を入力してください。"
+      }
+    },
+    {
+      "label": "reject/outside-y",
+      "status": "PASS",
+      "detail": {
+        "values": {
+          "x": "920",
+          "y": "620.0000001",
+          "width": "80",
+          "height": "80"
+        },
+        "ratio": "free",
+        "error": "枠全体が元絵（1000 × 700）の内側に収まる値を入力してください。"
+      }
+    },
+    {
+      "label": "reject/outside-hidden-by-rounded-add",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: {\"selection\":{\"rect\":{\"x\":919.9999999999999,\"y\":620,\"width\":80.00000000000016,\"height\":80},\"ratio\":\"free\"}}\n+ actual - expected\n\n+ {\n+   ratio: 'free',\n+   rect: {\n+     height: 80,\n+     width: 80.00000000000016,\n+     x: 919.9999999999999,\n+     y: 620\n+   }\n+ }\n- undefined\n\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:54:117\n    at check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:20:50)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:54:41\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "label": "strict-generated-edges",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: {\"x\":893.3333333333334,\"y\":0,\"width\":106.66666666666666,\"height\":80}\n    at invariant (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:30:10)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:56:257\n    at check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:20:50)\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-model.mjs:55:1\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    }
+  ],
+  "errors": [
+    "minimum/wide/nw",
+    "minimum/wide/ne",
+    "minimum/wide/sw",
+    "minimum/wide/se",
+    "minimum/photo/nw",
+    "minimum/photo/ne",
+    "minimum/photo/sw",
+    "minimum/photo/se",
+    "maximum/wide/ne",
+    "maximum/photo/se",
+    "near-edge/free",
+    "mixed-ratio-corner-numeric",
+    "reject/outside-hidden-by-rounded-add",
+    "strict-generated-edges"
+  ],
+  "sourceSHA256": {
+    "app/components/practical/image-crop-model.ts": "01812c2077b89e28bbe158bb6446f7c8604165ef76ae650166b28dac069b7a23",
+    "app/components/practical/ImageCrop.tsx": "452ea920c31c24960ade804bbf5073aafbd1e7ccca4e3b431ebd702558966ee5",
+    "scripts/verify-image-crop-precision-model.mjs": "070cf6b15beec0a481a148cf01acab87387bbc816658d9e62974d0649aae63ca"
+  },
+  "complete": false
+}

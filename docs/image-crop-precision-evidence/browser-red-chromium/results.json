@@ -1,0 +1,1885 @@
+{
+  "head": "95ab616f961fcfb5af9ac393c44f33ead68d285b",
+  "tree": "dc9ebcc42c54142aa724ab0739998741737294e5",
+  "dirty": "?? docs/image-crop-precision-evidence/\n?? scripts/verify-image-crop-precision-browser.mjs\n?? scripts/verify-image-crop-precision-model.mjs",
+  "started": "2026-11-05T03:29:35.694Z",
+  "platform": "win32",
+  "node": "v24.20.0",
+  "expected": 1,
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "motion": "no-preference",
+      "version": "141.0.7390.37",
+      "status": "FAIL",
+      "checks": [
+        {
+          "label": "minimum/wide/nw",
+          "status": "FAIL",
+          "error": "page.waitForFunction: Timeout 8000ms exceeded.\n    at waitRect (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:27:41)\n    at minimum (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:33:457)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:37:4\n    at async check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/wide/ne",
+          "status": "FAIL",
+          "error": "page.waitForFunction: Timeout 8000ms exceeded.\n    at waitRect (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:27:41)\n    at minimum (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:33:457)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:37:4\n    at async check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/wide/sw",
+          "status": "FAIL",
+          "error": "page.waitForFunction: Timeout 8000ms exceeded.\n    at waitRect (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:27:41)\n    at minimum (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:33:457)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:37:4\n    at async check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/wide/se",
+          "status": "FAIL",
+          "error": "page.waitForFunction: Timeout 8000ms exceeded.\n    at waitRect (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:27:41)\n    at minimum (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:33:457)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:37:4\n    at async check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/photo/nw",
+          "status": "FAIL",
+          "error": "page.waitForFunction: Timeout 8000ms exceeded.\n    at waitRect (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:27:41)\n    at minimum (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:33:457)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:37:4\n    at async check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/photo/ne",
+          "status": "FAIL",
+          "error": "page.waitForFunction: Timeout 8000ms exceeded.\n    at waitRect (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:27:41)\n    at minimum (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:33:457)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:37:4\n    at async check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/photo/sw",
+          "status": "FAIL",
+          "error": "page.waitForFunction: Timeout 8000ms exceeded.\n    at waitRect (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:27:41)\n    at minimum (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:33:457)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:37:4\n    at async check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/photo/se",
+          "status": "FAIL",
+          "error": "page.waitForFunction: Timeout 8000ms exceeded.\n    at waitRect (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:27:41)\n    at minimum (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:33:457)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:37:4\n    at async check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/square/nw",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 500,
+              "y": 460,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "500",
+              "Y": "460",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "500 460 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 0
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 1
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 2
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 3
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 4
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 5
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 6
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 7
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 8
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 9
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 10
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 11
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 12
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 500,
+              "y": 460,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "500",
+              "Y": "460",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "500 460 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 12
+          }
+        },
+        {
+          "label": "minimum/square/ne",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 460,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "100",
+              "Y": "460",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "100 460 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 12
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 13
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 14
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 15
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 16
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 17
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 18
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 19
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 20
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 21
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 22
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 23
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 24
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 460,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "100",
+              "Y": "460",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "100 460 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 24
+          }
+        },
+        {
+          "label": "minimum/square/sw",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 500,
+              "y": 60,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "500",
+              "Y": "60",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "500 60 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 24
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 25
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 26
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 27
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 28
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 29
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 30
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 31
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 32
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 33
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 34
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 35
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 36
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 500,
+              "y": 60,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "500",
+              "Y": "60",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "500 60 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 36
+          }
+        },
+        {
+          "label": "minimum/square/se",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 60,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "100",
+              "Y": "60",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "100 60 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 36
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 37
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 38
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 39
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 40
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 41
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 42
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 43
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 44
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 45
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 46
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 47
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 48
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 60,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "100",
+              "Y": "60",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "100 60 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 48
+          }
+        },
+        {
+          "label": "near-edge/free",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 920,
+              "y": 620,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "920",
+              "Y": "620",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "free",
+            "preview": "919.9999999 619.9999999 80.00000005 80.00000005",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 49
+          },
+          "cycles": 16,
+          "sequence": [
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 50
+            },
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 51
+            },
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 52
+            },
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 53
+            },
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 54
+            },
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 55
+            },
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 56
+            },
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 57
+            },
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 58
+            },
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 59
+            },
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 60
+            },
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 61
+            },
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 62
+            },
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 63
+            },
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 64
+            },
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 65
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 920,
+              "y": 620,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "920",
+              "Y": "620",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "free",
+            "preview": "920 620 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 65
+          }
+        },
+        {
+          "label": "reject/empty",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 65
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "空欄があります。X・Y・幅・高さを入力してください。",
+            "dragging": "false",
+            "submitCount": 66
+          }
+        },
+        {
+          "label": "reject/NaN",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 66
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "有限の数値を入力してください。",
+            "dragging": "false",
+            "submitCount": 67
+          }
+        },
+        {
+          "label": "reject/Infinity",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 67
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "有限の数値を入力してください。",
+            "dragging": "false",
+            "submitCount": 68
+          }
+        },
+        {
+          "label": "reject/negative",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 68
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "枠全体が元絵（1000 × 700）の内側に収まる値を入力してください。",
+            "dragging": "false",
+            "submitCount": 69
+          }
+        },
+        {
+          "label": "reject/below80",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 69
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 70
+          }
+        },
+        {
+          "label": "reject/wide-below80",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 165,
+              "width": 480,
+              "height": 270
+            },
+            "fields": {
+              "X": "100",
+              "Y": "165",
+              "幅": "480",
+              "高さ": "270"
+            },
+            "ratio": "wide",
+            "preview": "100 165 480 270",
+            "confirmed": "100 120 480 360",
+            "notice": "中心をできるだけ保って比率を変更しました。元絵の端では補正します。",
+            "dragging": "false",
+            "submitCount": 70
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 165,
+              "width": 480,
+              "height": 270
+            },
+            "fields": {
+              "X": "100",
+              "Y": "165",
+              "幅": "480",
+              "高さ": "270"
+            },
+            "ratio": "wide",
+            "preview": "100 165 480 270",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 71
+          }
+        },
+        {
+          "label": "reject/photo-below80",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "photo",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "中心をできるだけ保って比率を変更しました。元絵の端では補正します。",
+            "dragging": "false",
+            "submitCount": 71
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "photo",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 72
+          }
+        },
+        {
+          "label": "reject/square-below80",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 60,
+              "width": 480,
+              "height": 480
+            },
+            "fields": {
+              "X": "100",
+              "Y": "60",
+              "幅": "480",
+              "高さ": "480"
+            },
+            "ratio": "square",
+            "preview": "100 60 480 480",
+            "confirmed": "100 120 480 360",
+            "notice": "中心をできるだけ保って比率を変更しました。元絵の端では補正します。",
+            "dragging": "false",
+            "submitCount": 72
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 60,
+              "width": 480,
+              "height": 480
+            },
+            "fields": {
+              "X": "100",
+              "Y": "60",
+              "幅": "480",
+              "高さ": "480"
+            },
+            "ratio": "square",
+            "preview": "100 60 480 480",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 73
+          }
+        },
+        {
+          "label": "reject/outside-x",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 73
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "枠全体が元絵（1000 × 700）の内側に収まる値を入力してください。",
+            "dragging": "false",
+            "submitCount": 74
+          }
+        },
+        {
+          "label": "reject/outside-hidden-by-rounded-add",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 74
+          },
+          "after": {
+            "rect": {
+              "x": 920,
+              "y": 620,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "920",
+              "Y": "620",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "free",
+            "preview": "919.9999999999999 620 80.00000000000016 80",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 75
+          },
+          "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /内側/. Input:\n\n'数値を適用しました。確定結果はまだ変わりません。'\n\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:47:238\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:47:47"
+        },
+        {
+          "label": "confirm-cancel-reset",
+          "status": "FAIL",
+          "error": "page.waitForFunction: Timeout 8000ms exceeded.\n    at waitRect (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:27:41)\n    at minimum (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:33:457)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:48:53\n    at async check (C:\\Users\\tetsu\\Documents\\Codex\\2026-11-05\\task-7\\museum\\scripts\\verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:48:3"
+        },
+        {
+          "label": "mixed-ratio-corner",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 195.67201232910156,
+              "y": 188.05963134765625,
+              "width": 384.3279724121094,
+              "height": 288.2459716796875
+            },
+            "fields": {
+              "X": "195.672018",
+              "Y": "188.059637",
+              "幅": "384.327982",
+              "高さ": "288.245986"
+            },
+            "ratio": "photo",
+            "preview": "195.67201825325327 188.05963681493995 384.32798174674673 288.24598631006006",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 99
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 195.67201232910156,
+                "y": 188.05963134765625,
+                "width": 384.3279724121094,
+                "height": 288.2459716796875
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 100
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 195.67201232910156,
+              "y": 188.05963134765625,
+              "width": 384.3279724121094,
+              "height": 288.2459716796875
+            },
+            "fields": {
+              "X": "195.672018",
+              "Y": "188.059637",
+              "幅": "384.327982",
+              "高さ": "288.245987"
+            },
+            "ratio": "photo",
+            "preview": "195.672018 188.059637 384.327982 288.2459865",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 100
+          },
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n    '幅': '384.327982',\n+   '高さ': '288.245987',\n-   '高さ': '288.245986',\n    X: '195.672018',\n    Y: '188.059637'\n  }\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:429)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:49:506\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:49:3"
+        },
+        {
+          "label": "pageerror-overflow",
+          "status": "PASS"
+        }
+      ],
+      "pageerrors": [],
+      "overflow": {
+        "viewport": 375,
+        "scroll": 375
+      },
+      "inputKind": "Playwright native mouse and trusted form submission; not physical input",
+      "submits": [
+        {
+          "trusted": true,
+          "time": 68877.19999998808
+        },
+        {
+          "trusted": true,
+          "time": 69033.5
+        },
+        {
+          "trusted": true,
+          "time": 69181.29999999702
+        },
+        {
+          "trusted": true,
+          "time": 69315.19999998808
+        },
+        {
+          "trusted": true,
+          "time": 69449
+        },
+        {
+          "trusted": true,
+          "time": 69583.19999998808
+        },
+        {
+          "trusted": true,
+          "time": 69698.59999999404
+        },
+        {
+          "trusted": true,
+          "time": 69831.89999999106
+        },
+        {
+          "trusted": true,
+          "time": 69947.29999999702
+        },
+        {
+          "trusted": true,
+          "time": 70064.19999998808
+        },
+        {
+          "trusted": true,
+          "time": 70182.89999999106
+        },
+        {
+          "trusted": true,
+          "time": 70333.5
+        },
+        {
+          "trusted": true,
+          "time": 71318.29999999702
+        },
+        {
+          "trusted": true,
+          "time": 71444.89999999106
+        },
+        {
+          "trusted": true,
+          "time": 71582.5
+        },
+        {
+          "trusted": true,
+          "time": 71731.89999999106
+        },
+        {
+          "trusted": true,
+          "time": 71883.29999999702
+        },
+        {
+          "trusted": true,
+          "time": 72015.59999999404
+        },
+        {
+          "trusted": true,
+          "time": 72143.09999999404
+        },
+        {
+          "trusted": true,
+          "time": 72266.29999999702
+        },
+        {
+          "trusted": true,
+          "time": 72383.5
+        },
+        {
+          "trusted": true,
+          "time": 72516
+        },
+        {
+          "trusted": true,
+          "time": 72630.69999998808
+        },
+        {
+          "trusted": true,
+          "time": 72747.79999999702
+        },
+        {
+          "trusted": true,
+          "time": 73633.19999998808
+        },
+        {
+          "trusted": true,
+          "time": 73783
+        },
+        {
+          "trusted": true,
+          "time": 73896.5
+        },
+        {
+          "trusted": true,
+          "time": 74033.19999998808
+        },
+        {
+          "trusted": true,
+          "time": 74165.69999998808
+        },
+        {
+          "trusted": true,
+          "time": 74297.5
+        },
+        {
+          "trusted": true,
+          "time": 74431.59999999404
+        },
+        {
+          "trusted": true,
+          "time": 74566.39999999106
+        },
+        {
+          "trusted": true,
+          "time": 74716.59999999404
+        },
+        {
+          "trusted": true,
+          "time": 74847.59999999404
+        },
+        {
+          "trusted": true,
+          "time": 74962.29999999702
+        },
+        {
+          "trusted": true,
+          "time": 75079.19999998808
+        },
+        {
+          "trusted": true,
+          "time": 76752.5
+        },
+        {
+          "trusted": true,
+          "time": 76899.09999999404
+        },
+        {
+          "trusted": true,
+          "time": 77032.19999998808
+        },
+        {
+          "trusted": true,
+          "time": 77164.89999999106
+        },
+        {
+          "trusted": true,
+          "time": 77299.09999999404
+        },
+        {
+          "trusted": true,
+          "time": 77450.89999999106
+        },
+        {
+          "trusted": true,
+          "time": 77599.59999999404
+        },
+        {
+          "trusted": true,
+          "time": 77750.5
+        },
+        {
+          "trusted": true,
+          "time": 77899.5
+        },
+        {
+          "trusted": true,
+          "time": 78031
+        },
+        {
+          "trusted": true,
+          "time": 78167.29999999702
+        },
+        {
+          "trusted": true,
+          "time": 78319.89999999106
+        },
+        {
+          "trusted": true,
+          "time": 79786.69999998808
+        },
+        {
+          "trusted": true,
+          "time": 79947.5
+        },
+        {
+          "trusted": true,
+          "time": 80083
+        },
+        {
+          "trusted": true,
+          "time": 80215.79999999702
+        },
+        {
+          "trusted": true,
+          "time": 80348.5
+        },
+        {
+          "trusted": true,
+          "time": 80482.89999999106
+        },
+        {
+          "trusted": true,
+          "time": 80633.09999999404
+        },
+        {
+          "trusted": true,
+          "time": 80749.59999999404
+        },
+        {
+          "trusted": true,
+          "time": 80866.69999998808
+        },
+        {
+          "trusted": true,
+          "time": 80997.29999999702
+        },
+        {
+          "trusted": true,
+          "time": 81129.79999999702
+        },
+        {
+          "trusted": true,
+          "time": 81265.59999999404
+        },
+        {
+          "trusted": true,
+          "time": 81383.39999999106
+        },
+        {
+          "trusted": true,
+          "time": 81513.79999999702
+        },
+        {
+          "trusted": true,
+          "time": 81629.5
+        },
+        {
+          "trusted": true,
+          "time": 81748.5
+        },
+        {
+          "trusted": true,
+          "time": 81865.5
+        },
+        {
+          "trusted": true,
+          "time": 82581.29999999702
+        },
+        {
+          "trusted": true,
+          "time": 82852.69999998808
+        },
+        {
+          "trusted": true,
+          "time": 83280.29999999702
+        },
+        {
+          "trusted": true,
+          "time": 83658
+        },
+        {
+          "trusted": true,
+          "time": 83989.59999999404
+        },
+        {
+          "trusted": true,
+          "time": 84583.69999998808
+        },
+        {
+          "trusted": true,
+          "time": 85040.5
+        },
+        {
+          "trusted": true,
+          "time": 85483.59999999404
+        },
+        {
+          "trusted": true,
+          "time": 86054.39999999106
+        },
+        {
+          "trusted": true,
+          "time": 86467.39999999106
+        },
+        {
+          "trusted": true,
+          "time": 95797.59999999404
+        },
+        {
+          "trusted": true,
+          "time": 95950
+        },
+        {
+          "trusted": true,
+          "time": 96082.5
+        },
+        {
+          "trusted": true,
+          "time": 96236.89999999106
+        },
+        {
+          "trusted": true,
+          "time": 96399.79999999702
+        },
+        {
+          "trusted": true,
+          "time": 96571.19999998808
+        },
+        {
+          "trusted": true,
+          "time": 96716.69999998808
+        },
+        {
+          "trusted": true,
+          "time": 96866.5
+        },
+        {
+          "trusted": true,
+          "time": 97031.09999999404
+        },
+        {
+          "trusted": true,
+          "time": 97183.29999999702
+        },
+        {
+          "trusted": true,
+          "time": 97306.79999999702
+        },
+        {
+          "trusted": true,
+          "time": 97449.59999999404
+        },
+        {
+          "trusted": true,
+          "time": 98805.09999999404
+        },
+        {
+          "trusted": true,
+          "time": 98984.69999998808
+        },
+        {
+          "trusted": true,
+          "time": 99164.69999998808
+        },
+        {
+          "trusted": true,
+          "time": 99321.09999999404
+        },
+        {
+          "trusted": true,
+          "time": 99465.39999999106
+        },
+        {
+          "trusted": true,
+          "time": 99655.19999998808
+        },
+        {
+          "trusted": true,
+          "time": 99834.59999999404
+        },
+        {
+          "trusted": true,
+          "time": 99987.79999999702
+        },
+        {
+          "trusted": true,
+          "time": 100167.69999998808
+        },
+        {
+          "trusted": true,
+          "time": 100321.09999999404
+        },
+        {
+          "trusted": true,
+          "time": 100466.59999999404
+        },
+        {
+          "trusted": true,
+          "time": 100616.89999999106
+        },
+        {
+          "trusted": true,
+          "time": 101550.29999999702
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "images": [
+    {
+      "name": "chromium-375-no-preference-square-se-before.png",
+      "sha256": "e35b649337a89f4c645b6b659b6499de3b714b9e3d557531b15a14d3f4249fe1"
+    },
+    {
+      "name": "chromium-375-no-preference-square-se-after.png",
+      "sha256": "c78b4d46abb23d9e60a27ad6f7ff27d4ffb591cb6578c08f02c77c195ab16129"
+    }
+  ],
+  "sourceCanonicalSHA256": {
+    "app/components/practical/ImageCrop.tsx": "452ea920c31c24960ade804bbf5073aafbd1e7ccca4e3b431ebd702558966ee5",
+    "app/components/practical/image-crop-model.ts": "01812c2077b89e28bbe158bb6446f7c8604165ef76ae650166b28dac069b7a23",
+    "app/components/practical/CropGarden.tsx": "18e9a41a92d7a4d085a214c021b479d9cecaee2869a3f50bf23fda809d1fa1b2",
+    "scripts/verify-image-crop-precision-browser.mjs": "3e4ac51a97e5baa2e830487cabe0b39168812c5033bad4ae0a79a14563200587",
+    "scripts/verify-image-crop-precision-model.mjs": "070cf6b15beec0a481a148cf01acab87387bbc816658d9e62974d0649aae63ca"
+  },
+  "exportSHA256": "090f92b271d832bddb91d269f63d311edd4e1bdb3b2d80f74ed32deeac0441bf",
+  "notTested": [
+    "physical Safari",
+    "VoiceOver",
+    "physical input",
+    "OS backgrounding/capture loss",
+    "browser pinch zoom"
+  ],
+  "current": {
+    "engine": "chromium",
+    "width": 375,
+    "motion": "no-preference",
+    "version": "141.0.7390.37"
+  },
+  "complete": false,
+  "finished": "2026-11-05T03:31:17.937Z"
+}

@@ -1,0 +1,32 @@
+{
+  "head": "ff052ca8298f21d31bd0f59227c6ce899a6cbe2d",
+  "tree": "2a4f0a1c95138519e4ac6f0ce510135f236a6796",
+  "dirty": true,
+  "started": "2026-11-05T00:45:04.028Z",
+  "expected": 24,
+  "cases": [],
+  "files": [
+    {
+      "name": "failure.png",
+      "size": 116327,
+      "sha256": "fcf9bbb770d777e131a56667149b073e23c21ed674e26d2f09c4cb3eb841564e"
+    }
+  ],
+  "errors": [],
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n26 !== 25\n\n    at file:///home/runner/work/Loading-museum/Loading-museum/scripts/verify-phase4a-browser.mjs:24:162",
+  "failure": {
+    "url": "http://127.0.0.1:42015/Loading-museum/",
+    "text": "Toast Stack / 通知の積み重ね停止Reset動きの速さ速い / 250ms標準 / 600msゆっくり / 1600ms通知の種類情報成功注意通知を追加すべて解除上限4件 / 現在 0件。寿命5秒（観察中の有効時間）。通知なし新着は下へ。中間を消すと後続が移動します。種類を変えて連続追加し、位置と残り時間を比べてください。動き低減：大きな移動を省略し、入力・選択・取消と結果は保持します。停止時にも直接操作できます。Resetは保留・選択・古い処理を破棄し初期状態へ戻します。原理独立した寿命を持つ最大4通知。追加・中間解除で位置差を測り、既存通知を再配置します。使用例保存完了・接続状態などの複数通知。実通信なし。歴史・位置付け初出・発明者 UNKNOWN。一般的な通知パターンの独自再構成。既存展示との差既存WAAPI単体toastに、複数寿命・上限・個別解除・再配置を追加した別用途。用途通知 notification技術React / CSS / WAAPI性質通知 / feedback / 第4期A技術・アクセシビリティ参考資料コード・図形は独自制作。参照先のコード・画像を転載していません。製品名・商標の権利は各権利者に帰属し、公式製品の再現を保証しません。",
+    "state": {
+      "matches": false,
+      "stage": [
+        {
+          "active": "false",
+          "reduced": "false",
+          "phases": []
+        }
+      ]
+    }
+  },
+  "ended": "2026-11-05T00:45:05.685Z"
+}

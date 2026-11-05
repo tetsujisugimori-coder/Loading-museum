@@ -1,0 +1,37 @@
+{
+  "head": "ff052ca8298f21d31bd0f59227c6ce899a6cbe2d",
+  "tree": "2a4f0a1c95138519e4ac6f0ce510135f236a6796",
+  "trackedChanges": "",
+  "platform": "linux",
+  "node": "v22.23.4",
+  "started": "2026-11-05T00:41:03.139Z",
+  "expected": 48,
+  "cases": [],
+  "files": [],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n26 !== 25\n\n    at file:///home/runner/work/Loading-museum/Loading-museum/scripts/verify-phase5b-browser.mjs:29:117"
+  ],
+  "notTested": [
+    "physical iPhone Safari",
+    "VoiceOver",
+    "OS capture loss",
+    "WebKit native touch drag"
+  ],
+  "sourceSHA256": {
+    "app/components/PracticalRoom.tsx": "498a5926f961ca4ea6047e8b0341f60cde23313d829ba37bffa6e22bc06be0ec",
+    "app/components/practical/Phase5BCompare.tsx": "214d37b4695074142343fd1c29b16fed7689becccc71a732d96b4d554ed0296c",
+    "app/components/practical/Phase5BEditors.tsx": "caa1837ef62912d28a66b574c9d4ff413a6088c7836257dee1906f65817ece1e",
+    "app/components/practical/Phase5BPlayer.tsx": "bf8eb3d84a1a31175ca3c041cb7461d96ce013e7ef97553f79d18141f9e7912a",
+    "app/components/practical/Phase5BShared.tsx": "28da13353b63fd97f7afa8e6bbb6064d69bfdf7159089bbbe6527214392d4419",
+    "app/components/practical/Phase5BShortcuts.tsx": "e9a7811d081ddcfd4773da884927ac258091cb903db25ebfe7b9988735ecfd98",
+    "app/components/practical/phase5b-history.ts": "65f96610581271039bab0b215e863631016c39e38eb318f33f1f77a67f7fbb6a",
+    "app/components/practical/phase5b-model.ts": "1c01f6a0ff247272894eacbf0474295bef8fa35f0daa0983e4f2f1a5eabd289e",
+    "app/components/practical/phase5b.css": "3d78423e165fccdbc3fe4c45bb9d22f6376d6824cdc56c7460317b10ace0d639",
+    "app/data/phase5bExhibits.ts": "fdffa300631d04caaa7e71d2f52c1db9e76bab18c5f00c73b74d0350a18ad244",
+    "app/page.tsx": "772b31bcf9d8a354029a494e09aae87178fc6763123976406e61fdc8aadd3cce"
+  },
+  "exportSHA256": "247a07a91fce66041bed6133f6c62e633be580c10e94aff70c821074edada9c0",
+  "webkit": "26.0",
+  "finished": "2026-11-05T00:41:09.776Z",
+  "complete": false
+}

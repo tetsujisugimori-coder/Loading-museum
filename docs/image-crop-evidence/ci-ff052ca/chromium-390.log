@@ -1,0 +1,15 @@
+PASS chromium 390 no-preference
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ '184.03676608516224 162.01838304258126 480 360'
+- '100 120 480 360'
+
+    at file:///home/runner/work/Loading-museum/Loading-museum/scripts/verify-image-crop-browser.mjs:109:336 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '184.03676608516224 162.01838304258126 480 360',
+  expected: '100 120 480 360',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

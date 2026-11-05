@@ -1,5 +1,11 @@
 # DIGITAL MOTION ARCHIVE
 
+## 第6期A-2：Image Crop（Issue #63）
+
+既存実用UI室へ「Image Crop / 構図を切り取る」を1展示追加。**265展示・13室、同室26展示**。家・花壇・橋・木立の独自SVGを切抜き枠で選び、編集中のプレビューと確定結果を比較できます。枠内移動、四隅伸縮、自由／1:1／16:9／4:3、数値適用、方向ボタン、専用キーボード、確定・取消・Reset。元絵は保持し、追加依存・保存・書出し・通信はありません。
+
+[設計・補正規則・自己検証・引渡し](docs/image-crop-studies.md)／[証拠台帳](docs/image-crop-evidence/README.md)。自己検証と独立レビューを区別し、**独立レビュー前のマージ推奨NO・Draft維持**。実機Safari／VoiceOverなどは未検証。#29/#44/#54を今回成功で解消しません。以下の展示数は各時点の履歴です。
+
 ## 第6期A-1：Pan & Zoom（Issue #61）
 
 既存実用UI室へ「Pan & Zoom / 拡大して探す」を1展示追加。**264展示・13室**。観測所・庭・小道の独自SVGを、倍率・位置・ミニマップの窓を比べながら探索できます。＋/−、数値、ドラッグ、方向ボタン、専用領域の矢印、全体表示、Reset、5つの目印一覧。タッチはページscroll優先の初期OFFと明示的移動modeを切替。外部画像・実通信・保存・新規依存なし。
@@ -153,6 +159,10 @@ Menu照準は選択行へ追従。Parry/Dodgeの成功窓は開始後420〜680ms
 独立した展示室にStarfield Warp、Plasma Dream、Liquid Metaballs、Flocking Life、Pixel Dissolve、Tile Flipを収録。Canvasで描画し、図柄もコードから独自生成します。星の透視、波の重ね合わせ、陰関数、群れの近傍則、画素・タイル遷移を操作できます。原典のコード・素材を使用しません。動き低減時は自動再生を止めます。
 
 第2期BではInfinite Tunnel、Raster Bars、Elastic Space、Kaleidoscope、Ink Bloom、Glitch Laboratoryを追加。Canvasによる独自の近似です。インクは流体計算ではなく半透明粒子、グリッチは強い点滅を伴わない画素ずれです。作品ごとの操作・原理・着想は展示内に記載しています。
+
+## Image Crop 数値精度の補修（2026-11-05）
+
+PR #64 P2-01では、最小枠の表示値をそのまま再適用しても構図が変わらないよう、入力表示と座標計算を共通化しました。入力の最小値・元絵境界は緩和しません。[方式比較](docs/image-crop-precision-design.md)・[新規検証と再レビュー引渡し](docs/image-crop-precision-verification.md)。265展示・13室・実用UI26展示を維持。独立再レビュー未完了の間はPARTIAL・マージ推奨NO、Draftを維持します。
 
 ## 第3期：実用UI部品の観察室
 

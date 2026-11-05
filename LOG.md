@@ -1,3 +1,22 @@
+## 2026-11-05 PR #64 P2-01 数値精度・境界の根本修正
+
+- 対象95ab616/tree dc9ebccと現PR一致、開始clean。旧証拠保持。16:9最小枠の表示再適用拒否、4:3の変形、自由比率の近接端変形を純粋モデルとChromium/WebKitの実マウス・フォームで再現。二進数和が1000へ丸まる端超過の誤受理も記録。
+- A内部量子化/B6桁共有snap/C一律epsilon/D往復codecと整数比率を比較しD採用。入力は丸めず最短往復表示、幅から高さの共通計算、明示的な精度喪失と最小/範囲違反は拒否。TwoSumと内側の隣接表現による範囲構成。図版/CSS/登録/展示数/lock変更なし。
+- 同じモデル43検査はRED14→GREEN0、追加反例2件。実フォーム各16回、source故障対照を2→5へ拡張しPNG負対照維持。新しい検証を8独立CI jobへ追加。ローカル時間超過/PNG安定待ち/子process timeoutを保存。追加テストの型オプション誤りも修正し、次の検証へ進める。
+- 設計 docs/image-crop-precision-design.md、検証/独立再レビュー引渡し docs/image-crop-precision-verification.md、新証拠 docs/image-crop-precision-evidence/。最終HEAD CIは別記。独立再レビュー待ちは総合PARTIAL、限定マージ推奨NO。Draft/禁止操作/既存UNKNOWNを維持。
+
+## 2026-11-05 第6期A-2 Image Crop / Issue #63
+
+- main 8f065e0d0392b78b927d148648d0b77205ef979a（PR #62統合済み）をGitHub/local両方で確認、新規clone・専用branch feat/image-crop-phase6a2。初期clean、AGENTS.md/.agents/skillsなし。別checkout変更・stashなし。
+- inventoryで264→265展示、13室、実用UI室25→26。安定ID image-cropを1件だけ追加。検索・用途/技術/性質タグ・件数へ統合。既存ID/順番/素材、lockfileと依存を保護。
+- 家/花壇/橋/木立の独自SVG、元絵固定の選択枠、薄い暗幕、外向き44px四隅handle、編集/確定結果。自由/固定比率、元絵内・最小80、対角固定・反転防止、中心優先比率切替、数値/方向/keyboard、確定/取消/Reset。
+- committed/editing/provisional分離。owner pointer・timestamp、Escape/cancel/lostcapture/hidden/blur/focus rollback、別操作で仮状態失効、幅0からの復帰、unmount解放。数値の空/非有限/範囲外は現在枠を保持して拒否。
+- 新規26契約＋既存455＝481試験成功。source故障2件を終了1で検出し元bytes復元。ブラウザ16条件・最終lint/type/build/CIの確定結果は証拠台帳とPRへ記録。初回のref lint違反/試験型オプション誤りとsandboxブラウザ環境停止を保全。自己検証を独立レビューと呼ばない。
+- 自己目視でWebKitの比率select低視認性を発見し、同条件RED→GREENでcolor-scheme:lightを明示。固定比率の幅Infinityで読取専用高さの空欄を先に案内する問題も25/26 RED→26 GREENで修正。枠破壊ではなく理由表示の修正。新旧原本を保全し、最後の入力案内は関連試験/型/buildと最終HEAD CIで検証。
+- 初回提出ff052caのImage Crop CIは7/8 job成功、Ch390/reducedの合成move描画前読取りで停止。既知の枠/preview双方への描画到達を待つharnessへ修正。第4期A/第5期Bに残った旧25件assertの見落とし2箇所も26へ整合。製品差分0、初回CI artifactのdigest/HEAD/画像と失敗伝播を保存。全館contracts481成功の実CIログも保全し、追加HEADの全CIを再確認する。
+- 初回matrixは10/16でWebKit390の取消直後の単発読取りにより停止。描画終了待ち＋既知座標へ修正し16/16、即時/描画後の差6観測を記録。WebKit1280通常の長時間化は内部原因UNKNOWN、retry/timeout延長なしで完了。新規CIはengine×4幅8独立job、既存7 workflowと15分制限を維持。
+- 設計と補正規則は docs/image-crop-studies.md、実行別の原本は docs/image-crop-evidence/。実機Safari/VoiceOver等NOT_TESTED、#29/#44/#54と過去UNKNOWNを維持。独立レビュー用引渡しで停止、マージ推奨NO、Draft解除/merge/auto-merge/手動公開なし。
+
 ## 2026-11-04 第6期A-1 Pan & Zoom / Issue #61
 
 - PR #60 mergedのmain cf3370fから新規clone・専用branch feat/pan-zoom-phase6a1。263→264展示、13室、既存実用UI室24→25。既存ID/順序/素材/lockfile保全。

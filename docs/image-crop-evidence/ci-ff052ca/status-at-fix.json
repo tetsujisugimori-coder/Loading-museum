@@ -1,0 +1,152 @@
+{
+  "observedAt": "2026-11-05T00:49:00Z",
+  "head": "ff052ca8298f21d31bd0f59227c6ce899a6cbe2d",
+  "note": "Snapshot at follow-up fix, not a final conclusion for the still-running Flash workflow.",
+  "runs": [
+    {
+      "id": 41942824165,
+      "name": "Flash Then & Now phase 2",
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/41942824165"
+    },
+    {
+      "id": 41942823881,
+      "name": "Physics lifecycle RED to GREEN",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/41942823881"
+    },
+    {
+      "id": 41942824204,
+      "name": "Verify practical phase 5B",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/41942824204"
+    },
+    {
+      "id": 41942823892,
+      "name": "WAAPI Stage 2B timing",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/41942823892"
+    },
+    {
+      "id": 41942823856,
+      "name": "Verify Pan and Zoom",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/41942823856"
+    },
+    {
+      "id": 41942823951,
+      "name": "Verify Image Crop",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/41942823951"
+    },
+    {
+      "id": 41942824055,
+      "name": "WAAPI Stage 2A integration",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/41942824055"
+    },
+    {
+      "id": 41942823864,
+      "name": "Verify museum and practical UI",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/41942823864"
+    }
+  ],
+  "mainJobs": [
+    {
+      "id": 126967612054,
+      "name": "then-now-browser (chromium)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126967612174,
+      "name": "phase4b-browser (chromium)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126967612264,
+      "name": "practical-browser (chromium)",
+      "conclusion": "failure"
+    },
+    {
+      "id": 126967612290,
+      "name": "phase5a-browser (chromium)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126967612301,
+      "name": "phase5a-browser (webkit)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126967612353,
+      "name": "contracts",
+      "conclusion": "success"
+    },
+    {
+      "id": 126967612360,
+      "name": "phase4b-browser (webkit)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126967612446,
+      "name": "practical-browser (webkit)",
+      "conclusion": "failure"
+    },
+    {
+      "id": 126967612461,
+      "name": "then-now-browser (webkit)",
+      "conclusion": "success"
+    }
+  ],
+  "imageCropJobs": [
+    {
+      "id": 126967611107,
+      "name": "state-and-browser (chromium, 390)",
+      "conclusion": "failure"
+    },
+    {
+      "id": 126967611312,
+      "name": "state-and-browser (chromium, 1280)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126967611325,
+      "name": "state-and-browser (webkit, 1280)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126967611439,
+      "name": "state-and-browser (webkit, 375)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126967611457,
+      "name": "state-and-browser (chromium, 765)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126967611462,
+      "name": "state-and-browser (chromium, 375)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126967611530,
+      "name": "state-and-browser (webkit, 765)",
+      "conclusion": "success"
+    },
+    {
+      "id": 126967611587,
+      "name": "state-and-browser (webkit, 390)",
+      "conclusion": "success"
+    }
+  ]
+}

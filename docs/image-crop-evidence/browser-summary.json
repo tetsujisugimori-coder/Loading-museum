@@ -1,0 +1,122 @@
+{
+  "complete": true,
+  "cases": 16,
+  "engines": [
+    {
+      "engine": "chromium",
+      "version": "141.0.7390.37",
+      "cases": 8,
+      "controls": [
+        {
+          "engine": "chromium",
+          "fault": "wrong-position",
+          "result": "REJECTED",
+          "type": "temporary DOM render fault"
+        },
+        {
+          "engine": "chromium",
+          "fault": "stretched-ratio",
+          "result": "REJECTED",
+          "type": "temporary DOM render fault"
+        }
+      ],
+      "images": 20,
+      "pendingDOMReadings": 0,
+      "changedReadings": [],
+      "started": "2026-11-05T00:14:35.793Z",
+      "finished": "2026-11-05T00:17:30.770Z"
+    },
+    {
+      "engine": "webkit",
+      "version": "26.0",
+      "cases": 8,
+      "controls": [
+        {
+          "engine": "webkit",
+          "fault": "wrong-position",
+          "result": "REJECTED",
+          "type": "temporary DOM render fault"
+        },
+        {
+          "engine": "webkit",
+          "fault": "stretched-ratio",
+          "result": "REJECTED",
+          "type": "temporary DOM render fault"
+        }
+      ],
+      "images": 20,
+      "pendingDOMReadings": 6,
+      "changedReadings": [
+        {
+          "engine": "webkit",
+          "width": 375,
+          "motion": "reduce",
+          "action": "lostpointercapture",
+          "immediate": {
+            "box": "189.68968968968966 164.84484484484483 480 360",
+            "dragging": "false"
+          },
+          "afterRender": "100 120 480 360"
+        },
+        {
+          "engine": "webkit",
+          "width": 390,
+          "motion": "no-preference",
+          "action": "lostpointercapture",
+          "immediate": {
+            "box": "184.03676608516224 162.0183830425808 480 360",
+            "dragging": "false"
+          },
+          "afterRender": "100 120 480 360"
+        },
+        {
+          "engine": "webkit",
+          "width": 390,
+          "motion": "no-preference",
+          "action": "hidden",
+          "immediate": {
+            "box": "184.03676608516224 162.0183830425808 480 360",
+            "dragging": "false"
+          },
+          "afterRender": "100 120 480 360"
+        },
+        {
+          "engine": "webkit",
+          "width": 765,
+          "motion": "reduce",
+          "action": "lostpointercapture",
+          "immediate": {
+            "box": "135.6815738122735 137.84078690613683 480 360",
+            "dragging": "true"
+          },
+          "afterRender": "100 120 480 360"
+        },
+        {
+          "engine": "webkit",
+          "width": 765,
+          "motion": "reduce",
+          "action": "hidden",
+          "immediate": {
+            "box": "135.6815738122735 137.84078690613683 480 360",
+            "dragging": "true"
+          },
+          "afterRender": "100 120 480 360"
+        },
+        {
+          "engine": "webkit",
+          "width": 1280,
+          "motion": "reduce",
+          "action": "lostpointercapture",
+          "immediate": {
+            "box": "134.3927529556272 137.1963764778136 480 360",
+            "dragging": "true"
+          },
+          "afterRender": "100 120 480 360"
+        }
+      ],
+      "started": "2026-11-05T00:14:35.791Z",
+      "finished": "2026-11-05T00:29:13.832Z"
+    }
+  ],
+  "provenance": "Windows local development build; final exact HEAD verified separately by CI"
+}

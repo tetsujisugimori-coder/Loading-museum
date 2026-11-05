@@ -1,0 +1,18 @@
+{
+  "base": "8f065e0d0392b78b927d148648d0b77205ef979a",
+  "nodeTests": 49,
+  "vitestTests": 432,
+  "total": 481,
+  "skip": 0,
+  "protectedPaths": [
+    "package-lock.json",
+    "public",
+    "app/components/practical/PanZoom.tsx",
+    "app/components/practical/PanZoomWorld.tsx",
+    "app/components/practical/pan-zoom-model.ts",
+    "app/components/practical/pan-zoom.css",
+    "app/components/then-now"
+  ],
+  "protectedDiff": "",
+  "note": "Existing full suite run before palette CSS and one notice wording correction. Final exact-HEAD CI is recorded in PR."
+}

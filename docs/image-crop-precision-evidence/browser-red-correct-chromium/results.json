@@ -1,0 +1,2109 @@
+{
+  "head": "95ab616f961fcfb5af9ac393c44f33ead68d285b",
+  "tree": "dc9ebcc42c54142aa724ab0739998741737294e5",
+  "dirty": "?? docs/image-crop-precision-evidence/\n?? scripts/verify-image-crop-precision-browser.mjs\n?? scripts/verify-image-crop-precision-model.mjs",
+  "started": "2026-11-05T03:34:46.840Z",
+  "platform": "win32",
+  "node": "v24.20.0",
+  "expected": 1,
+  "cases": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "motion": "no-preference",
+      "version": "141.0.7390.37",
+      "status": "FAIL",
+      "checks": [
+        {
+          "label": "minimum/wide/nw",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 437.77777777777777,
+              "y": 355,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "437.777778",
+              "Y": "355",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "437.77777777777777 355 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 0
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 437.77777777777777,
+                "y": 355,
+                "width": 142.22222222222223,
+                "height": 80.00000000000001
+              },
+              "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+              "submitCount": 1
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 437.77777777777777,
+              "y": 355,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "437.777778",
+              "Y": "355",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "437.77777777777777 355 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 1
+          },
+          "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /数値を適用しました/. Input:\n\n'幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。'\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:289)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/wide/ne",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 355,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "100",
+              "Y": "355",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "100 355 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 1
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 100,
+                "y": 355,
+                "width": 142.22222222222223,
+                "height": 80.00000000000001
+              },
+              "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+              "submitCount": 2
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 355,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "100",
+              "Y": "355",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "100 355 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 2
+          },
+          "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /数値を適用しました/. Input:\n\n'幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。'\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:289)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/wide/sw",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 437.77777777777777,
+              "y": 165,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "437.777778",
+              "Y": "165",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "437.77777777777777 165 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 2
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 437.77777777777777,
+                "y": 165,
+                "width": 142.22222222222223,
+                "height": 80.00000000000001
+              },
+              "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+              "submitCount": 3
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 437.77777777777777,
+              "y": 165,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "437.777778",
+              "Y": "165",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "437.77777777777777 165 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 3
+          },
+          "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /数値を適用しました/. Input:\n\n'幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。'\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:289)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/wide/se",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 165,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "100",
+              "Y": "165",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "100 165 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 3
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 100,
+                "y": 165,
+                "width": 142.22222222222223,
+                "height": 80.00000000000001
+              },
+              "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+              "submitCount": 4
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 165,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "100",
+              "Y": "165",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "100 165 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 4
+          },
+          "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /数値を適用しました/. Input:\n\n'幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。'\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:289)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/photo/nw",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 473.33333333333337,
+              "y": 400,
+              "width": 106.66666666666666,
+              "height": 80
+            },
+            "fields": {
+              "X": "473.333333",
+              "Y": "400",
+              "幅": "106.666667",
+              "高さ": "80"
+            },
+            "ratio": "photo",
+            "preview": "473.33333333333337 400 106.66666666666666 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 4
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 473.333333,
+                "y": 400,
+                "width": 106.666667,
+                "height": 80.00000025000001
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 5
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 473.333333,
+              "y": 400,
+              "width": 106.666667,
+              "height": 80.00000025000001
+            },
+            "fields": {
+              "X": "473.333333",
+              "Y": "400",
+              "幅": "106.666667",
+              "高さ": "80"
+            },
+            "ratio": "photo",
+            "preview": "473.333333 400 106.666667 80.00000025000001",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 5
+          },
+          "error": "AssertionError [ERR_ASSERTION]: Every coordinate must remain bit-for-bit unchanged\n+ actual - expected\n\n  {\n+   height: 80.00000025000001,\n+   width: 106.666667,\n+   x: 473.333333,\n-   height: 80,\n-   width: 106.66666666666666,\n-   x: 473.33333333333337,\n    y: 400\n  }\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:328)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/photo/ne",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 400,
+              "width": 106.66666666666666,
+              "height": 80
+            },
+            "fields": {
+              "X": "100",
+              "Y": "400",
+              "幅": "106.666667",
+              "高さ": "80"
+            },
+            "ratio": "photo",
+            "preview": "100 400 106.66666666666666 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 5
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 100,
+                "y": 400,
+                "width": 106.666667,
+                "height": 80.00000025000001
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 6
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 400,
+              "width": 106.666667,
+              "height": 80.00000025000001
+            },
+            "fields": {
+              "X": "100",
+              "Y": "400",
+              "幅": "106.666667",
+              "高さ": "80"
+            },
+            "ratio": "photo",
+            "preview": "100 400 106.666667 80.00000025000001",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 6
+          },
+          "error": "AssertionError [ERR_ASSERTION]: Every coordinate must remain bit-for-bit unchanged\n+ actual - expected\n\n  {\n+   height: 80.00000025000001,\n+   width: 106.666667,\n-   height: 80,\n-   width: 106.66666666666666,\n    x: 100,\n    y: 400\n  }\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:328)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/photo/sw",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 473.33333333333337,
+              "y": 120,
+              "width": 106.66666666666666,
+              "height": 80
+            },
+            "fields": {
+              "X": "473.333333",
+              "Y": "120",
+              "幅": "106.666667",
+              "高さ": "80"
+            },
+            "ratio": "photo",
+            "preview": "473.33333333333337 120 106.66666666666666 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 6
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 473.333333,
+                "y": 120,
+                "width": 106.666667,
+                "height": 80.00000025000001
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 7
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 473.333333,
+              "y": 120,
+              "width": 106.666667,
+              "height": 80.00000025000001
+            },
+            "fields": {
+              "X": "473.333333",
+              "Y": "120",
+              "幅": "106.666667",
+              "高さ": "80"
+            },
+            "ratio": "photo",
+            "preview": "473.333333 120 106.666667 80.00000025000001",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 7
+          },
+          "error": "AssertionError [ERR_ASSERTION]: Every coordinate must remain bit-for-bit unchanged\n+ actual - expected\n\n  {\n+   height: 80.00000025000001,\n+   width: 106.666667,\n+   x: 473.333333,\n-   height: 80,\n-   width: 106.66666666666666,\n-   x: 473.33333333333337,\n    y: 120\n  }\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:328)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/photo/se",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 106.66666666666666,
+              "height": 80
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "106.666667",
+              "高さ": "80"
+            },
+            "ratio": "photo",
+            "preview": "100 120 106.66666666666666 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 7
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 100,
+                "y": 120,
+                "width": 106.666667,
+                "height": 80.00000025000001
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 8
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 106.666667,
+              "height": 80.00000025000001
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "106.666667",
+              "高さ": "80"
+            },
+            "ratio": "photo",
+            "preview": "100 120 106.666667 80.00000025000001",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 8
+          },
+          "error": "AssertionError [ERR_ASSERTION]: Every coordinate must remain bit-for-bit unchanged\n+ actual - expected\n\n  {\n+   height: 80.00000025000001,\n+   width: 106.666667,\n-   height: 80,\n-   width: 106.66666666666666,\n    x: 100,\n    y: 120\n  }\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:328)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:38:8\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:36:86"
+        },
+        {
+          "label": "minimum/square/nw",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 500,
+              "y": 460,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "500",
+              "Y": "460",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "500 460 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 8
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 9
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 10
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 11
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 12
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 13
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 14
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 15
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 16
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 17
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 18
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 19
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 20
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 500,
+              "y": 460,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "500",
+              "Y": "460",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "500 460 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 20
+          }
+        },
+        {
+          "label": "minimum/square/ne",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 460,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "100",
+              "Y": "460",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "100 460 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 20
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 21
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 22
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 23
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 24
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 25
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 26
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 27
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 28
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 29
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 30
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 31
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 460,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 32
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 460,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "100",
+              "Y": "460",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "100 460 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 32
+          }
+        },
+        {
+          "label": "minimum/square/sw",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 500,
+              "y": 60,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "500",
+              "Y": "60",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "500 60 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 32
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 33
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 34
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 35
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 36
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 37
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 38
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 39
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 40
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 41
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 42
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 43
+            },
+            {
+              "rect": {
+                "x": 500,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 44
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 500,
+              "y": 60,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "500",
+              "Y": "60",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "500 60 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 44
+          }
+        },
+        {
+          "label": "minimum/square/se",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 60,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "100",
+              "Y": "60",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "100 60 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 44
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 45
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 46
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 47
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 48
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 49
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 50
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 51
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 52
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 53
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 54
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 55
+            },
+            {
+              "rect": {
+                "x": 100,
+                "y": 60,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 56
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 60,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "100",
+              "Y": "60",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "square",
+            "preview": "100 60 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 56
+          }
+        },
+        {
+          "label": "near-edge/free",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 919.9999999,
+              "y": 619.9999999,
+              "width": 80.00000005,
+              "height": 80.00000005
+            },
+            "fields": {
+              "X": "920",
+              "Y": "620",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "free",
+            "preview": "919.9999999 619.9999999 80.00000005 80.00000005",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 57
+          },
+          "cycles": 16,
+          "sequence": [
+            {
+              "rect": {
+                "x": 920,
+                "y": 620,
+                "width": 80,
+                "height": 80
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 58
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 920,
+              "y": 620,
+              "width": 80,
+              "height": 80
+            },
+            "fields": {
+              "X": "920",
+              "Y": "620",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "free",
+            "preview": "920 620 80 80",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 58
+          },
+          "error": "AssertionError [ERR_ASSERTION]: Every coordinate must remain bit-for-bit unchanged\n+ actual - expected\n\n  {\n+   height: 80,\n+   width: 80,\n+   x: 920,\n+   y: 620\n-   height: 80.00000005,\n-   width: 80.00000005,\n-   x: 919.9999999,\n-   y: 619.9999999\n  }\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:328)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:41:209\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:41:3"
+        },
+        {
+          "label": "reject/empty",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 58
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "空欄があります。X・Y・幅・高さを入力してください。",
+            "dragging": "false",
+            "submitCount": 59
+          }
+        },
+        {
+          "label": "reject/NaN",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 59
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "有限の数値を入力してください。",
+            "dragging": "false",
+            "submitCount": 60
+          }
+        },
+        {
+          "label": "reject/Infinity",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 60
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "有限の数値を入力してください。",
+            "dragging": "false",
+            "submitCount": 61
+          }
+        },
+        {
+          "label": "reject/negative",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 61
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "枠全体が元絵（1000 × 700）の内側に収まる値を入力してください。",
+            "dragging": "false",
+            "submitCount": 62
+          }
+        },
+        {
+          "label": "reject/below80",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 62
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 63
+          }
+        },
+        {
+          "label": "reject/wide-below80",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 165,
+              "width": 480,
+              "height": 270
+            },
+            "fields": {
+              "X": "100",
+              "Y": "165",
+              "幅": "480",
+              "高さ": "270"
+            },
+            "ratio": "wide",
+            "preview": "100 165 480 270",
+            "confirmed": "100 120 480 360",
+            "notice": "中心をできるだけ保って比率を変更しました。元絵の端では補正します。",
+            "dragging": "false",
+            "submitCount": 63
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 165,
+              "width": 480,
+              "height": 270
+            },
+            "fields": {
+              "X": "100",
+              "Y": "165",
+              "幅": "480",
+              "高さ": "270"
+            },
+            "ratio": "wide",
+            "preview": "100 165 480 270",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 64
+          }
+        },
+        {
+          "label": "reject/photo-below80",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "photo",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "中心をできるだけ保って比率を変更しました。元絵の端では補正します。",
+            "dragging": "false",
+            "submitCount": 64
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "photo",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 65
+          }
+        },
+        {
+          "label": "reject/square-below80",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 60,
+              "width": 480,
+              "height": 480
+            },
+            "fields": {
+              "X": "100",
+              "Y": "60",
+              "幅": "480",
+              "高さ": "480"
+            },
+            "ratio": "square",
+            "preview": "100 60 480 480",
+            "confirmed": "100 120 480 360",
+            "notice": "中心をできるだけ保って比率を変更しました。元絵の端では補正します。",
+            "dragging": "false",
+            "submitCount": 65
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 60,
+              "width": 480,
+              "height": 480
+            },
+            "fields": {
+              "X": "100",
+              "Y": "60",
+              "幅": "480",
+              "高さ": "480"
+            },
+            "ratio": "square",
+            "preview": "100 60 480 480",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 66
+          }
+        },
+        {
+          "label": "reject/outside-x",
+          "status": "PASS",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 66
+          },
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "枠全体が元絵（1000 × 700）の内側に収まる値を入力してください。",
+            "dragging": "false",
+            "submitCount": 67
+          }
+        },
+        {
+          "label": "reject/outside-hidden-by-rounded-add",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 120,
+              "width": 480,
+              "height": 360
+            },
+            "fields": {
+              "X": "100",
+              "Y": "120",
+              "幅": "480",
+              "高さ": "360"
+            },
+            "ratio": "free",
+            "preview": "100 120 480 360",
+            "confirmed": "100 120 480 360",
+            "notice": "Reset：編集中・確定済みの両方を初期の家と庭へ戻しました。",
+            "dragging": "false",
+            "submitCount": 67
+          },
+          "after": {
+            "rect": {
+              "x": 919.9999999999999,
+              "y": 620,
+              "width": 80.00000000000016,
+              "height": 80
+            },
+            "fields": {
+              "X": "920",
+              "Y": "620",
+              "幅": "80",
+              "高さ": "80"
+            },
+            "ratio": "free",
+            "preview": "919.9999999999999 620 80.00000000000016 80",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 68
+          },
+          "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /内側/. Input:\n\n'数値を適用しました。確定結果はまだ変わりません。'\n\n    at file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:47:238\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:47:47"
+        },
+        {
+          "label": "confirm-cancel-reset",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 100,
+              "y": 165,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "100",
+              "Y": "165",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "100 165 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 68
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 100,
+                "y": 165,
+                "width": 142.22222222222223,
+                "height": 80.00000000000001
+              },
+              "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+              "submitCount": 69
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 100,
+              "y": 165,
+              "width": 142.22222222222223,
+              "height": 80.00000000000001
+            },
+            "fields": {
+              "X": "100",
+              "Y": "165",
+              "幅": "142.222222",
+              "高さ": "80"
+            },
+            "ratio": "wide",
+            "preview": "100 165 142.22222222222223 80.00000000000001",
+            "confirmed": "100 120 480 360",
+            "notice": "幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。",
+            "dragging": "false",
+            "submitCount": 69
+          },
+          "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /数値を適用しました/. Input:\n\n'幅・高さはどちらも80以上にしてください。固定比率では幅から高さを求めます。'\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:289)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:48:80\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:48:3"
+        },
+        {
+          "label": "mixed-ratio-corner",
+          "status": "FAIL",
+          "before": {
+            "rect": {
+              "x": 133.42737396149874,
+              "y": 183.80289785334304,
+              "width": 446.57262603850126,
+              "height": 251.19710214665696
+            },
+            "fields": {
+              "X": "133.427374",
+              "Y": "183.802898",
+              "幅": "446.572626",
+              "高さ": "251.197102"
+            },
+            "ratio": "wide",
+            "preview": "133.42737396149874 183.80289785334304 446.57262603850126 251.19710214665696",
+            "confirmed": "100 120 480 360",
+            "notice": "枠を編集しました。確定すると確定結果に反映します。",
+            "dragging": "false",
+            "submitCount": 69
+          },
+          "cycles": 12,
+          "sequence": [
+            {
+              "rect": {
+                "x": 133.427374,
+                "y": 183.802898,
+                "width": 446.572626,
+                "height": 251.19710212500001
+              },
+              "notice": "数値を適用しました。確定結果はまだ変わりません。",
+              "submitCount": 70
+            }
+          ],
+          "after": {
+            "rect": {
+              "x": 133.427374,
+              "y": 183.802898,
+              "width": 446.572626,
+              "height": 251.19710212500001
+            },
+            "fields": {
+              "X": "133.427374",
+              "Y": "183.802898",
+              "幅": "446.572626",
+              "高さ": "251.197102"
+            },
+            "ratio": "wide",
+            "preview": "133.427374 183.802898 446.572626 251.19710212500001",
+            "confirmed": "100 120 480 360",
+            "notice": "数値を適用しました。確定結果はまだ変わりません。",
+            "dragging": "false",
+            "submitCount": 70
+          },
+          "error": "AssertionError [ERR_ASSERTION]: Every coordinate must remain bit-for-bit unchanged\n+ actual - expected\n\n  {\n+   height: 251.19710212500001,\n+   width: 446.572626,\n+   x: 133.427374,\n+   y: 183.802898\n-   height: 251.19710214665696,\n-   width: 446.57262603850126,\n-   x: 133.42737396149874,\n-   y: 183.80289785334304\n  }\n\n    at reapply (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:35:328)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:49:506\n    at async check (file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:31:76)\n    at async file:///C:/Users/tetsu/Documents/Codex/2026-11-05/task-7/museum/scripts/verify-image-crop-precision-browser.mjs:49:3"
+        },
+        {
+          "label": "pageerror-overflow",
+          "status": "PASS"
+        }
+      ],
+      "pageerrors": [],
+      "overflow": {
+        "viewport": 375,
+        "scroll": 375
+      },
+      "inputKind": "Playwright native mouse and trusted form submission; not physical input",
+      "submits": [
+        {
+          "trusted": true,
+          "time": 806.7999999970198
+        },
+        {
+          "trusted": true,
+          "time": 1041.2000000029802
+        },
+        {
+          "trusted": true,
+          "time": 1273.4000000059605
+        },
+        {
+          "trusted": true,
+          "time": 1690.4000000059605
+        },
+        {
+          "trusted": true,
+          "time": 2041
+        },
+        {
+          "trusted": true,
+          "time": 2292.5
+        },
+        {
+          "trusted": true,
+          "time": 2627.6000000089407
+        },
+        {
+          "trusted": true,
+          "time": 3524.4000000059605
+        },
+        {
+          "trusted": true,
+          "time": 4570.4000000059605
+        },
+        {
+          "trusted": true,
+          "time": 4726.5
+        },
+        {
+          "trusted": true,
+          "time": 4872.600000008941
+        },
+        {
+          "trusted": true,
+          "time": 5023.70000000298
+        },
+        {
+          "trusted": true,
+          "time": 5168.79999999702
+        },
+        {
+          "trusted": true,
+          "time": 5331.79999999702
+        },
+        {
+          "trusted": true,
+          "time": 5482.79999999702
+        },
+        {
+          "trusted": true,
+          "time": 5648.9000000059605
+        },
+        {
+          "trusted": true,
+          "time": 5767.70000000298
+        },
+        {
+          "trusted": true,
+          "time": 5907.100000008941
+        },
+        {
+          "trusted": true,
+          "time": 6055.5
+        },
+        {
+          "trusted": true,
+          "time": 6200.9000000059605
+        },
+        {
+          "trusted": true,
+          "time": 7234.70000000298
+        },
+        {
+          "trusted": true,
+          "time": 7383.9000000059605
+        },
+        {
+          "trusted": true,
+          "time": 7519.100000008941
+        },
+        {
+          "trusted": true,
+          "time": 7672.20000000298
+        },
+        {
+          "trusted": true,
+          "time": 7800.20000000298
+        },
+        {
+          "trusted": true,
+          "time": 7924.5
+        },
+        {
+          "trusted": true,
+          "time": 8065.9000000059605
+        },
+        {
+          "trusted": true,
+          "time": 8197.90000000596
+        },
+        {
+          "trusted": true,
+          "time": 8317.20000000298
+        },
+        {
+          "trusted": true,
+          "time": 8451.10000000894
+        },
+        {
+          "trusted": true,
+          "time": 8544.5
+        },
+        {
+          "trusted": true,
+          "time": 8672.40000000596
+        },
+        {
+          "trusted": true,
+          "time": 9604.5
+        },
+        {
+          "trusted": true,
+          "time": 9755
+        },
+        {
+          "trusted": true,
+          "time": 9900.60000000894
+        },
+        {
+          "trusted": true,
+          "time": 10049.79999999702
+        },
+        {
+          "trusted": true,
+          "time": 10200
+        },
+        {
+          "trusted": true,
+          "time": 10360.79999999702
+        },
+        {
+          "trusted": true,
+          "time": 10484.70000000298
+        },
+        {
+          "trusted": true,
+          "time": 10631.10000000894
+        },
+        {
+          "trusted": true,
+          "time": 10767.60000000894
+        },
+        {
+          "trusted": true,
+          "time": 10900.79999999702
+        },
+        {
+          "trusted": true,
+          "time": 11032.60000000894
+        },
+        {
+          "trusted": true,
+          "time": 11167.79999999702
+        },
+        {
+          "trusted": true,
+          "time": 12569.70000000298
+        },
+        {
+          "trusted": true,
+          "time": 12699.29999999702
+        },
+        {
+          "trusted": true,
+          "time": 12833
+        },
+        {
+          "trusted": true,
+          "time": 12989.60000000894
+        },
+        {
+          "trusted": true,
+          "time": 13134
+        },
+        {
+          "trusted": true,
+          "time": 13303.10000000894
+        },
+        {
+          "trusted": true,
+          "time": 13449.60000000894
+        },
+        {
+          "trusted": true,
+          "time": 13584.29999999702
+        },
+        {
+          "trusted": true,
+          "time": 13733.60000000894
+        },
+        {
+          "trusted": true,
+          "time": 13867.20000000298
+        },
+        {
+          "trusted": true,
+          "time": 14016.70000000298
+        },
+        {
+          "trusted": true,
+          "time": 14160.70000000298
+        },
+        {
+          "trusted": true,
+          "time": 15607.29999999702
+        },
+        {
+          "trusted": true,
+          "time": 15800.79999999702
+        },
+        {
+          "trusted": true,
+          "time": 16240.20000000298
+        },
+        {
+          "trusted": true,
+          "time": 16553.60000000894
+        },
+        {
+          "trusted": true,
+          "time": 17006.60000000894
+        },
+        {
+          "trusted": true,
+          "time": 17403
+        },
+        {
+          "trusted": true,
+          "time": 17722.29999999702
+        },
+        {
+          "trusted": true,
+          "time": 18304.10000000894
+        },
+        {
+          "trusted": true,
+          "time": 18791.60000000894
+        },
+        {
+          "trusted": true,
+          "time": 19221
+        },
+        {
+          "trusted": true,
+          "time": 19740.70000000298
+        },
+        {
+          "trusted": true,
+          "time": 20168.20000000298
+        },
+        {
+          "trusted": true,
+          "time": 20902.10000000894
+        },
+        {
+          "trusted": true,
+          "time": 21533.5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "images": [
+    {
+      "name": "chromium-375-no-preference-wide-se-before.png",
+      "sha256": "da79279b340d984500a97d06487dd8aa0e15ad5dd183cd9d090d77de2034d612"
+    },
+    {
+      "name": "chromium-375-no-preference-wide-se-after.png",
+      "sha256": "d673550429a9c810b320e3cf798b6eedc4c8c095e3eb39758a85d5d7221374be"
+    },
+    {
+      "name": "chromium-375-no-preference-photo-se-before.png",
+      "sha256": "8962b355b92d48df3bd5282139ab603d5cefd48be7b476a6ae6784210ac80ad5"
+    },
+    {
+      "name": "chromium-375-no-preference-photo-se-after.png",
+      "sha256": "42f6cbbdaf2591af9dde08cb8fdde527c75d0145c67b8eedd4f2648719dce894"
+    },
+    {
+      "name": "chromium-375-no-preference-square-se-before.png",
+      "sha256": "41601866141d59c10a93d5968772a41c7b095df6f7ba241233aae68ed7a0aa7c"
+    },
+    {
+      "name": "chromium-375-no-preference-square-se-after.png",
+      "sha256": "c78b4d46abb23d9e60a27ad6f7ff27d4ffb591cb6578c08f02c77c195ab16129"
+    }
+  ],
+  "sourceCanonicalSHA256": {
+    "app/components/practical/ImageCrop.tsx": "452ea920c31c24960ade804bbf5073aafbd1e7ccca4e3b431ebd702558966ee5",
+    "app/components/practical/image-crop-model.ts": "01812c2077b89e28bbe158bb6446f7c8604165ef76ae650166b28dac069b7a23",
+    "app/components/practical/CropGarden.tsx": "18e9a41a92d7a4d085a214c021b479d9cecaee2869a3f50bf23fda809d1fa1b2",
+    "scripts/verify-image-crop-precision-browser.mjs": "00fef4d22d5bbde2e374479daf0170d6220cb774b695e745245af5a8cdd5952f",
+    "scripts/verify-image-crop-precision-model.mjs": "070cf6b15beec0a481a148cf01acab87387bbc816658d9e62974d0649aae63ca"
+  },
+  "exportSHA256": "76120d0a3d7ccfcf7b390499cac472094a3e0f3db6bac684b228432609e98b85",
+  "notTested": [
+    "physical Safari",
+    "VoiceOver",
+    "physical input",
+    "OS backgrounding/capture loss",
+    "browser pinch zoom"
+  ],
+  "current": {
+    "engine": "chromium",
+    "width": 375,
+    "motion": "no-preference",
+    "version": "141.0.7390.37"
+  },
+  "complete": false,
+  "finished": "2026-11-05T03:35:08.955Z"
+}
