@@ -48,6 +48,10 @@ try {
       async function snapshot(locator, name) { const data = await locator.screenshot(); await fs.writeFile(path.join(dest, name), data); report.images.push({ name, sha256: sha(data) }); }
       // Independent DOM/SVG geometry: actual frame corners in source-screen coordinates.
       async function geometry(expected) {
+        await page.waitForFunction(e => {
+          const f = document.querySelector('[data-testid="ic-frame"]'), p = document.querySelector('[data-testid="ic-preview"]')?.viewBox.baseVal;
+          return f && p && ['x', 'y', 'width', 'height'].every(k => Math.abs(f[k].baseVal.value - e[k]) <= .01 && Math.abs(p[k] - e[k]) <= .01);
+        }, expected);
         const actual = await frame.evaluate(el => { const m = el.getScreenCTM(), r = el.getBoundingClientRect(), p = new DOMPoint(el.x.baseVal.value, el.y.baseVal.value).matrixTransform(m); return { left: r.left, top: r.top, width: r.width, height: r.height, px: p.x, py: p.y, scale: m.a }; });
         nearRect(await rect(), expected); near(actual.left, actual.px); near(actual.top, actual.py); near(actual.width / actual.scale, expected.width); near(actual.height / actual.scale, expected.height);
         observations.push({ expected, frameScreen: actual });
@@ -89,7 +93,7 @@ try {
       await ratio('free'); await input({ X: 0, Y: 0, 幅: 80, 高さ: 80 }); await click('← 左'); await click('↑ 上'); await geometry({ x: 0, y: 0, width: 80, height: 80 });
       await input({ X: 920, Y: 620, 幅: 80, 高さ: 80 }); await click('→ 右'); await click('↓ 下'); await geometry({ x: 920, y: 620, width: 80, height: 80 });
       for (const bad of ['', 'Infinity', 'NaN', '-1', '1001']) { const old = await preview.getAttribute('viewBox'); await stage.getByLabel('X', { exact: true }).fill(bad); await click('数値を適用'); assert.equal(await preview.getAttribute('viewBox'), old); assert.match(await stage.getByRole('status').textContent(), /空欄|有限|内側/); }
-      await click('Reset'); await ratio('wide'); const fixedBeforeInvalid = await preview.getAttribute('viewBox');
+      await click('Reset'); await ratio('wide'); await geometry({ x: 100, y: 165, width: 480, height: 270 }); const fixedBeforeInvalid = await preview.getAttribute('viewBox');
       await stage.getByLabel('幅', { exact: true }).fill('Infinity'); await click('数値を適用'); assert.match(await stage.getByRole('status').textContent(), /有限/); assert.equal(await preview.getAttribute('viewBox'), fixedBeforeInvalid);
       // Synthetic cancellation/foreign pointer/stale probes: stub capture only here.
       await zone.evaluate(el => { el.__capture = el.setPointerCapture; el.setPointerCapture = () => {}; });
@@ -104,9 +108,13 @@ try {
         await zone.dispatchEvent('pointermove', { pointerId: 70, clientX: sx * sign * 100000, clientY: sy * sign * 100000 });
         await zone.dispatchEvent('pointerup', { pointerId: 70, clientX: sx * sign * 100000, clientY: sy * sign * 100000 }); await geometry(expand ? maximum : minimum);
       }
-      async function syntheticStart() { await frame.dispatchEvent('pointerdown', { pointerId: 77, pointerType: 'mouse', button: 0, clientX: 120, clientY: 150 }); await zone.dispatchEvent('pointermove', { pointerId: 77, clientX: 140, clientY: 160 }); assert.equal(await zone.getAttribute('data-dragging'), 'true'); }
+      async function syntheticStart() {
+        await geometry(initial); const scale = await source.evaluate(el => el.getScreenCTM().a);
+        await frame.dispatchEvent('pointerdown', { pointerId: 77, pointerType: 'mouse', button: 0, clientX: 120, clientY: 150 }); await zone.dispatchEvent('pointermove', { pointerId: 77, clientX: 140, clientY: 160 });
+        await geometry({ ...initial, x: 100 + 20 / scale, y: 120 + 10 / scale }); assert.equal(await zone.getAttribute('data-dragging'), 'true');
+      }
       async function stale() { await zone.dispatchEvent('pointermove', { pointerId: 77, clientX: 190, clientY: 210 }); await zone.dispatchEvent('pointerup', { pointerId: 77, clientX: 190, clientY: 210 }); }
-      await click('Reset'); await syntheticStart(); const provisional = await preview.getAttribute('viewBox'); await zone.dispatchEvent('pointerdown', { pointerId: 78, button: 0 }); await zone.dispatchEvent('pointermove', { pointerId: 78, clientX: 400, clientY: 400 }); await zone.dispatchEvent('pointerup', { pointerId: 78 }); assert.equal(await preview.getAttribute('viewBox'), provisional); await zone.dispatchEvent('pointercancel', { pointerId: 77 }); await stale(); await geometry(initial);
+      await click('Reset'); await syntheticStart(); const provisional = await preview.getAttribute('viewBox'); await frame.dispatchEvent('pointerdown', { pointerId: 78, pointerType: 'mouse', button: 0, clientX: 120, clientY: 150 }); await zone.dispatchEvent('pointermove', { pointerId: 78, clientX: 400, clientY: 400 }); await zone.dispatchEvent('pointerup', { pointerId: 78 }); assert.equal(await preview.getAttribute('viewBox'), provisional); await zone.dispatchEvent('pointercancel', { pointerId: 77 }); await stale(); await geometry(initial);
       for (const action of ['lostpointercapture', 'blur', 'hidden', 'Reset', '切抜きを確定', '編集を取消', 'ratio', 'numeric']) {
         await click('Reset'); await syntheticStart();
         if (action === 'lostpointercapture') await zone.dispatchEvent(action, { pointerId: 77 });

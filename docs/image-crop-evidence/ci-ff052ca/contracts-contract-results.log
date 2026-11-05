@@ -1,0 +1,533 @@
+
+> loading-museum@0.1.0 check
+> npm run lint && npm run typecheck && npm test
+
+
+> loading-museum@0.1.0 lint
+> eslint .
+
+
+> loading-museum@0.1.0 typecheck
+> tsc --noEmit
+
+
+> loading-museum@0.1.0 test
+> npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run --maxWorkers=2 tests/practical-b.test.tsx tests/practical-runtime.test.tsx tests/practical-a.test.tsx tests/practical-room.test.tsx tests/phase2-elastic.test.ts tests/phase2-regression.test.tsx tests/phase2-b.test.tsx tests/phase2-room.test.tsx tests/modern-mesh.test.ts tests/modern-drift-geometry.test.ts tests/modern-lens.test.tsx tests/modern-menu.test.tsx tests/paper-exhibit.test.tsx tests/glass-exhibit.test.tsx tests/modern-animation.test.tsx tests/macintosh-system-choice.test.tsx tests/waapi-samples.test.ts tests/waapi-gallery.test.tsx tests/waapi-interaction-state.test.ts tests/waapi-game-regressions.test.tsx tests/waapi-hp-regression.test.tsx tests/waapi-cascade-motion.test.tsx tests/dom11-selection.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-stage1-menu-coin.test.tsx && vitest run --maxWorkers=2 tests/phase4a.test.tsx && vitest run --maxWorkers=2 tests/phase4b-interactions.test.tsx tests/phase4b-async.test.tsx && vitest run --maxWorkers=2 tests/phase5-data.test.tsx tests/phase5-navigation.test.tsx && vitest run --maxWorkers=2 tests/phase5-focus-revision.test.tsx && vitest run --maxWorkers=2 tests/then-now-first.test.tsx tests/then-now-second.test.tsx tests/then-now-registration.test.ts tests/then-now-visibility.test.tsx && vitest run --maxWorkers=2 tests/waapi-observation.test.tsx tests/waapi-observation-independent.test.tsx && vitest run --maxWorkers=2 tests/waapi-stage2b.test.tsx && vitest run --maxWorkers=2 tests/then-now-phase2-first.test.tsx tests/then-now-phase2-second.test.tsx tests/then-now-phase2-card.test.tsx tests/then-now-phase2-registration.test.ts && vitest run --maxWorkers=2 tests/phase5b-editors.test.tsx tests/phase5b-compare.test.tsx tests/phase5b-registration.test.tsx && vitest run --maxWorkers=2 tests/pan-zoom.test.tsx tests/image-crop.test.tsx
+
+
+> loading-museum@0.1.0 build
+> next build
+
+⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.4s
+  Running TypeScript ...
+  Finished TypeScript in 8.9s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/3) ...
+✓ Generating static pages using 3 workers (3/3) in 265ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+TAP version 13
+# Subtest: Read Meの実矩形はゴミ箱へ四方向から重なる
+ok 1 - Read Meの実矩形はゴミ箱へ四方向から重なる
+  ---
+  duration_ms: 4.279328
+  type: 'test'
+  ...
+# Subtest: System 1→5→6→1→6をクリック相当の操作で連続選択する
+ok 2 - System 1→5→6→1→6をクリック相当の操作で連続選択する
+  ---
+  duration_ms: 1.021718
+  type: 'test'
+  ...
+# Subtest: System 5をEnter、System 6をSpace相当の操作で選択する
+ok 3 - System 5をEnter、System 6をSpace相当の操作で選択する
+  ---
+  duration_ms: 0.298146
+  type: 'test'
+  ...
+# Subtest: loadingから最初の年代へ移行する
+ok 4 - loadingから最初の年代へ移行する
+  ---
+  duration_ms: 2.852697
+  type: 'test'
+  ...
+# Subtest: 年代ごとにeraIndexが進む
+ok 5 - 年代ごとにeraIndexが進む
+  ---
+  duration_ms: 0.272699
+  type: 'test'
+  ...
+# Subtest: 通常年代は共通の待機時間を使う
+ok 6 - 通常年代は共通の待機時間を使う
+  ---
+  duration_ms: 0.243495
+  type: 'test'
+  ...
+# Subtest: 最後の年代だけ長い待機時間を使う
+ok 7 - 最後の年代だけ長い待機時間を使う
+  ---
+  duration_ms: 0.199613
+  type: 'test'
+  ...
+# Subtest: 最後の年代後にindex-completeへ移行する
+ok 8 - 最後の年代後にindex-completeへ移行する
+  ---
+  duration_ms: 0.328784
+  type: 'test'
+  ...
+# Subtest: index-complete後にtypingへ移行する
+ok 9 - index-complete後にtypingへ移行する
+  ---
+  duration_ms: 0.201816
+  type: 'test'
+  ...
+# Subtest: タイトル文字数が1文字ずつ増える
+ok 10 - タイトル文字数が1文字ずつ増える
+  ---
+  duration_ms: 0.270675
+  type: 'test'
+  ...
+# Subtest: タイトル全文をtyping状態で保持する
+ok 11 - タイトル全文をtyping状態で保持する
+  ---
+  duration_ms: 0.191508
+  type: 'test'
+  ...
+# Subtest: タイトル全文表示後にtyping-holdへ移行する
+ok 12 - タイトル全文表示後にtyping-holdへ移行する
+  ---
+  duration_ms: 0.486327
+  type: 'test'
+  ...
+# Subtest: typing-hold後にsignal-lockのbrightenへ移行する
+ok 13 - typing-hold後にsignal-lockのbrightenへ移行する
+  ---
+  duration_ms: 0.602896
+  type: 'test'
+  ...
+# Subtest: signal-lockはbrightenからnoiseへ進む
+ok 14 - signal-lockはbrightenからnoiseへ進む
+  ---
+  duration_ms: 0.261007
+  type: 'test'
+  ...
+# Subtest: signal-lockはnoiseからlockedへ進む
+ok 15 - signal-lockはnoiseからlockedへ進む
+  ---
+  duration_ms: 2.021333
+  type: 'test'
+  ...
+# Subtest: signal-lockのlocked後にcompleteへ進む
+ok 16 - signal-lockのlocked後にcompleteへ進む
+  ---
+  duration_ms: 0.197068
+  type: 'test'
+  ...
+# Subtest: complete以降は状態が進まない
+ok 17 - complete以降は状態が進まない
+  ---
+  duration_ms: 0.143427
+  type: 'test'
+  ...
+# Subtest: complete状態は最後の年代とタイトル全文を保持する
+ok 18 - complete状態は最後の年代とタイトル全文を保持する
+  ---
+  duration_ms: 0.137085
+  type: 'test'
+  ...
+# Subtest: ReplayはrunIdを増やす
+ok 19 - ReplayはrunIdを増やす
+  ---
+  duration_ms: 0.139641
+  type: 'test'
+  ...
+# Subtest: Replayは初期状態へ戻す
+ok 20 - Replayは初期状態へ戻す
+  ---
+  duration_ms: 0.941647
+  type: 'test'
+  ...
+# Subtest: 古いrunIdによるタイマー更新を無視する
+ok 21 - 古いrunIdによるタイマー更新を無視する
+  ---
+  duration_ms: 0.157033
+  type: 'test'
+  ...
+# Subtest: reduced motionは即時completeになる
+ok 22 - reduced motionは即時completeになる
+  ---
+  duration_ms: 0.179064
+  type: 'test'
+  ...
+# Subtest: 年代走査中の点灯数とノード状態をeraIndexから算出する
+ok 23 - 年代走査中の点灯数とノード状態をeraIndexから算出する
+  ---
+  duration_ms: 0.296404
+  type: 'test'
+  ...
+# Subtest: 年代走査完了後は全タイムラインノードが点灯する
+ok 24 - 年代走査完了後は全タイムラインノードが点灯する
+  ---
+  duration_ms: 0.292887
+  type: 'test'
+  ...
+# Subtest: タイムライン進捗率を年代件数と現在位置から算出する
+ok 25 - タイムライン進捗率を年代件数と現在位置から算出する
+  ---
+  duration_ms: 0.186238
+  type: 'test'
+  ...
+# Subtest: 年代が1件でも安全な進捗率を返し、完了数を件数内へ制限する
+ok 26 - 年代が1件でも安全な進捗率を返し、完了数を件数内へ制限する
+  ---
+  duration_ms: 0.138809
+  type: 'test'
+  ...
+# Subtest: 全年代と全時間定数を一か所で管理する
+ok 27 - 全年代と全時間定数を一か所で管理する
+  ---
+  duration_ms: 0.263902
+  type: 'test'
+  ...
+# Subtest: GitHub Pages用の静的HTMLへ9種類の展示を書き出す
+ok 28 - GitHub Pages用の静的HTMLへ9種類の展示を書き出す
+  ---
+  duration_ms: 23.128217
+  type: 'test'
+  ...
+# Subtest: 正式名称のタイトル導入、年代テーマ、確定演出、軽減モーションと再生操作を実装する
+ok 29 - 正式名称のタイトル導入、年代テーマ、確定演出、軽減モーションと再生操作を実装する
+  ---
+  duration_ms: 7.949919
+  type: 'test'
+  ...
+# Subtest: 既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き出す
+ok 30 - 既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き出す
+  ---
+  duration_ms: 7.551503
+  type: 'test'
+  ...
+# Subtest: カーソル展示室と8種類の体験展示を書き出す
+ok 31 - カーソル展示室と8種類の体験展示を書き出す
+  ---
+  duration_ms: 5.873654
+  type: 'test'
+  ...
+# Subtest: カーソル展示のデータ、Pointer Events、性能とアクセシビリティ対応を実装する
+ok 32 - カーソル展示のデータ、Pointer Events、性能とアクセシビリティ対応を実装する
+  ---
+  duration_ms: 13.521032
+  type: 'test'
+  ...
+# Subtest: Macintosh誕生展示室を加えた展示室・展示件数を表示する
+ok 33 - Macintosh誕生展示室を加えた展示室・展示件数を表示する
+  ---
+  duration_ms: 7.089293
+  type: 'test'
+  ...
+# Subtest: Macintosh誕生展示室へ18種類の操作展示を書き出す
+ok 34 - Macintosh誕生展示室へ18種類の操作展示を書き出す
+  ---
+  duration_ms: 8.945157
+  type: 'test'
+  ...
+# Subtest: Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する
+ok 35 - Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する
+  ---
+  duration_ms: 16.008643
+  type: 'test'
+  ...
+# Subtest: Flash特別展示室へ18カテゴリ・66展示と優先デモを実装する
+ok 36 - Flash特別展示室へ18カテゴリ・66展示と優先デモを実装する
+  ---
+  duration_ms: 11.348222
+  type: 'test'
+  ...
+# Subtest: 再検討した9展示と現代Web継承比較を専用実装にする
+ok 37 - 再検討した9展示と現代Web継承比較を専用実装にする
+  ---
+  duration_ms: 8.055457
+  type: 'test'
+  ...
+# Subtest: FlashバナーのCTAを安全に2回強調し、価格とreduced motionを調整する
+ok 38 - FlashバナーのCTAを安全に2回強調し、価格とreduced motionを調整する
+  ---
+  duration_ms: 9.046156
+  type: 'test'
+  ...
+# Subtest: Flash専用展示の状態遷移、停止制御、操作可能なARIA構造を実装する
+ok 39 - Flash専用展示の状態遷移、停止制御、操作可能なARIA構造を実装する
+  ---
+  duration_ms: 5.599231
+  type: 'test'
+  ...
+# Subtest: MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモを書き出す
+ok 40 - MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモを書き出す
+  ---
+  duration_ms: 3.611792
+  type: 'test'
+  ...
+# Subtest: 独立した消えたOS展示室へ6 OS・18種類のLoading再構成を書き出す
+ok 41 - 独立した消えたOS展示室へ6 OS・18種類のLoading再構成を書き出す
+  ---
+  duration_ms: 6.408192
+  type: 'test'
+  ...
+# Subtest: 展示室のデータ定義とタイマー停止・フォーカス復帰を実装する
+ok 42 - 展示室のデータ定義とタイマー停止・フォーカス復帰を実装する
+  ---
+  duration_ms: 1.416143
+  type: 'test'
+  ...
+# Subtest: 消えたOS展示のデータ・起動・停止・reduced motionを実装する
+ok 43 - 消えたOS展示のデータ・起動・停止・reduced motionを実装する
+  ---
+  duration_ms: 2.102014
+  type: 'test'
+  ...
+# Subtest: Linux / UNIXデモの再実行・速度切替・安全な停止を実装する
+ok 44 - Linux / UNIXデモの再実行・速度切替・安全な停止を実装する
+  ---
+  duration_ms: 1.555644
+  type: 'test'
+  ...
+# Subtest: CSSとJavaScriptをLoading-museumサブパスから参照する
+ok 45 - CSSとJavaScriptをLoading-museumサブパスから参照する
+  ---
+  duration_ms: 6.857671
+  type: 'test'
+  ...
+# Subtest: 静的export設定と既存レスポンシブ・reduced-motion対応を維持する
+ok 46 - 静的export設定と既存レスポンシブ・reduced-motion対応を維持する
+  ---
+  duration_ms: 6.909778
+  type: 'test'
+  ...
+# Subtest: System 1〜6のbutton構造と非スクロールgridを静的に維持する
+ok 47 - System 1〜6のbutton構造と非スクロールgridを静的に維持する
+  ---
+  duration_ms: 2.195558
+  type: 'test'
+  ...
+# Subtest: DOM ANIMATION ROOM を静的HTMLへ出力し、17操作のAPI体験を確認する
+ok 48 - DOM ANIMATION ROOM を静的HTMLへ出力し、17操作のAPI体験を確認する
+  ---
+  duration_ms: 5.907758
+  type: 'test'
+  ...
+# Subtest: 既存ローディング標本の直下に、遅延生成するWAAPI標本ギャラリーを追加する
+ok 49 - 既存ローディング標本の直下に、遅延生成するWAAPI標本ギャラリーを追加する
+  ---
+  duration_ms: 4.809648
+  type: 'test'
+  ...
+1..49
+# tests 49
+# suites 0
+# pass 49
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 252.45458
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+
+ [32m✓[39m tests/waapi-game-regressions.test.tsx [2m([22m[2m15 tests[22m[2m)[22m[32m 268[2mms[22m[39m
+ [32m✓[39m tests/waapi-cascade-motion.test.tsx [2m([22m[2m14 tests[22m[2m)[22m[33m 480[2mms[22m[39m
+ [32m✓[39m tests/waapi-stage1-expanded.test.tsx [2m([22m[2m23 tests[22m[2m)[22m[33m 866[2mms[22m[39m
+ [32m✓[39m tests/phase2-regression.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 1102[2mms[22m[39m
+   [33m[2m✓[22m[39m phase and reset regression[2m > [22mretains plasma phase while changing speed or pausing [33m 481[2mms[22m[39m
+ [32m✓[39m tests/waapi-gallery.test.tsx [2m([22m[2m12 tests[22m[2m)[22m[33m 6581[2mms[22m[39m
+   [33m[2m✓[22m[39m WAAPI標本ギャラリー操作[2m > [22m初期DOMを遅延し、正規化検索・解除・開閉を扱う [33m 1061[2mms[22m[39m
+   [33m[2m✓[22m[39m WAAPI標本ギャラリー操作[2m > [22m複合フィルター・0件・解除後の全件表示と閉鎖取消を扱う [33m 679[2mms[22m[39m
+   [33m[2m✓[22m[39m WAAPI標本ギャラリー操作[2m > [22mReplay、コード解説、ModalとToastの両方向を操作する [33m 343[2mms[22m[39m
+   [33m[2m✓[22m[39m WAAPI標本ギャラリー操作[2m > [22mConsoleの全操作、速度、Seek、実playStateを安全に反映する [33m 331[2mms[22m[39m
+   [33m[2m✓[22m[39m WAAPI標本ギャラリー操作[2m > [22mFade/Slideは手動再生、Button/Toggleは直接操作だけを提供する [33m 322[2mms[22m[39m
+   [33m[2m✓[22m[39m WAAPI標本ギャラリー操作[2m > [22mゲーム標本を直接操作し、Resetで意味のある初期状態へ戻す [33m 448[2mms[22m[39m
+   [33m[2m✓[22m[39m WAAPI標本ギャラリー操作[2m > [22m新しいゲーム標本、5軸フィルター、AI共通状態を操作できる [33m 660[2mms[22m[39m
+   [33m[2m✓[22m[39m WAAPI標本ギャラリー操作[2m > [22mAI比較モードは一括フェーズを進め、閉じるとループを停止する [33m 930[2mms[22m[39m
+   [33m[2m✓[22m[39m WAAPI標本ギャラリー操作[2m > [22m追加ゲーム14件は固有DOM・状態・操作結果を提供する [33m 1173[2mms[22m[39m
+   [33m[2m✓[22m[39m WAAPI標本ギャラリー操作[2m > [22mCard Dealの全工程とAIの完了・エラー・リセットを操作できる [33m 348[2mms[22m[39m
+ [32m✓[39m tests/practical-b.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 657[2mms[22m[39m
+ [32m✓[39m tests/glass-exhibit.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 349[2mms[22m[39m
+ [32m✓[39m tests/practical-a.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 476[2mms[22m[39m
+ [32m✓[39m tests/waapi-stage1-menu-coin.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 2388[2mms[22m[39m
+   [33m[2m✓[22m[39m Menu cursor belongs to the current row for buttons, keyboard, limits and Reset [33m 739[2mms[22m[39m
+   [33m[2m✓[22m[39m Coin entry, Replay and re-entry never grant points, including late completion after Reset [33m 468[2mms[22m[39m
+   [33m[2m✓[22m[39m Coin explicit COLLECT awards once per Reset and rapid input cannot duplicate it [33m 483[2mms[22m[39m
+   [33m[2m✓[22m[39m Coin has an explicit explanation separating demonstration, award and Reset [33m 367[2mms[22m[39m
+   [33m[2m✓[22m[39m Menu detail metadata describes actual no-fill decoration rather than generic sample defaults [33m 330[2mms[22m[39m
+ [32m✓[39m tests/dom11-selection.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 847[2mms[22m[39m
+   [33m[2m✓[22m[39m DOM11 表示番号の偶数選択[2m > [22mP1〜P6を生成し、P2/P4/P6だけを強調して結果説明と一致する [33m 333[2mms[22m[39m
+ [32m✓[39m tests/waapi-hp-regression.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 2065[2mms[22m[39m
+   [33m[2m✓[22m[39m Damage直後Reset後、旧追従更新の予定時刻を過ぎても72を保つ [33m 674[2mms[22m[39m
+   [33m[2m✓[22m[39m Damage連打とHealは最新HPに収束し、Reset連打も不変 [33m 555[2mms[22m[39m
+   [33m[2m✓[22m[39m Damage中のアンマウントは遅延更新を解除する [33m 451[2mms[22m[39m
+   [33m[2m✓[22m[39m 画面外停止と再表示は現在HPを保持し古い追従更新を残さない [33m 383[2mms[22m[39m
+ [32m✓[39m tests/paper-exhibit.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 258[2mms[22m[39m
+ [32m✓[39m tests/phase2-room.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 340[2mms[22m[39m
+ [32m✓[39m tests/modern-animation.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 289[2mms[22m[39m
+ [32m✓[39m tests/phase2-b.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 340[2mms[22m[39m
+ [32m✓[39m tests/practical-runtime.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 24[2mms[22m[39m
+ [32m✓[39m tests/modern-lens.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 142[2mms[22m[39m
+ [32m✓[39m tests/macintosh-system-choice.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[33m 317[2mms[22m[39m
+ [32m✓[39m tests/practical-room.test.tsx [2m([22m[2m15 tests[22m[2m)[22m[33m 1107[2mms[22m[39m
+ [32m✓[39m tests/waapi-samples.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m tests/modern-menu.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 170[2mms[22m[39m
+ [32m✓[39m tests/modern-drift-geometry.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 158[2mms[22m[39m
+ [32m✓[39m tests/waapi-interaction-state.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m tests/modern-mesh.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 74[2mms[22m[39m
+ [32m✓[39m tests/phase2-elastic.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m25 passed[39m[22m[90m (25)[39m
+[2m      Tests [22m [1m[32m150 passed[39m[22m[90m (150)[39m
+[2m   Start at [22m 00:42:47
+[2m   Duration [22m 20.00s[2m (transform 1.43s, setup 0ms, collect 5.14s, tests 19.33s, environment 8.64s, prepare 2.41s)[22m
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+
+ [32m✓[39m tests/phase4a.test.tsx [2m([22m[2m32 tests[22m[2m)[22m[33m 1354[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m32 passed[39m[22m[90m (32)[39m
+[2m   Start at [22m 00:43:07
+[2m   Duration [22m 2.64s[2m (transform 413ms, setup 0ms, collect 617ms, tests 1.35s, environment 377ms, prepare 81ms)[22m
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+
+ [32m✓[39m tests/phase4b-interactions.test.tsx [2m([22m[2m11 tests[22m[2m)[22m[33m 505[2mms[22m[39m
+ [32m✓[39m tests/phase4b-async.test.tsx [2m([22m[2m14 tests[22m[2m)[22m[33m 585[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m25 passed[39m[22m[90m (25)[39m
+[2m   Start at [22m 00:43:10
+[2m   Duration [22m 1.69s[2m (transform 287ms, setup 0ms, collect 757ms, tests 1.09s, environment 830ms, prepare 184ms)[22m
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+
+ [32m✓[39m tests/phase5-data.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 751[2mms[22m[39m
+ [32m✓[39m tests/phase5-navigation.test.tsx [2m([22m[2m12 tests[22m[2m)[22m[33m 879[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m20 passed[39m[22m[90m (20)[39m
+[2m   Start at [22m 00:43:13
+[2m   Duration [22m 1.97s[2m (transform 280ms, setup 0ms, collect 731ms, tests 1.63s, environment 839ms, prepare 192ms)[22m
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+
+ [32m✓[39m tests/phase5-focus-revision.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 812[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m8 passed[39m[22m[90m (8)[39m
+[2m   Start at [22m 00:43:15
+[2m   Duration [22m 1.80s[2m (transform 146ms, setup 0ms, collect 323ms, tests 812ms, environment 385ms, prepare 81ms)[22m
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+
+ [32m✓[39m tests/then-now-first.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[32m 213[2mms[22m[39m
+ [32m✓[39m tests/then-now-second.test.tsx [2m([22m[2m17 tests[22m[2m)[22m[33m 559[2mms[22m[39m
+ [32m✓[39m tests/then-now-registration.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m tests/then-now-visibility.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 253[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m      Tests [22m [1m[32m28 passed[39m[22m[90m (28)[39m
+[2m   Start at [22m 00:43:17
+[2m   Duration [22m 2.59s[2m (transform 484ms, setup 0ms, collect 1.10s, tests 1.03s, environment 1.32s, prepare 351ms)[22m
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+
+ [32m✓[39m tests/waapi-observation-independent.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 313[2mms[22m[39m
+ [32m✓[39m tests/waapi-observation.test.tsx [2m([22m[2m37 tests[22m[2m)[22m[33m 6171[2mms[22m[39m
+   [33m[2m✓[22m[39m actual gallery integration: observation never owns game state[2m > [22mMenu selection survives observation seek, finish, reverse, mode exit, and ordinary Reset still works [33m 549[2mms[22m[39m
+   [33m[2m✓[22m[39m actual gallery integration: observation never owns game state[2m > [22mCoin preview repeatedly finishes and rewinds with zero points; normal COLLECT awards once [33m 564[2mms[22m[39m
+   [33m[2m✓[22m[39m actual gallery integration: observation never owns game state[2m > [22mcollected Coin retains its score and collected guard through observation and return [33m 398[2mms[22m[39m
+   [33m[2m✓[22m[39m actual gallery integration: observation never owns game state[2m > [22mobservation reset does not reset collected game state and old callback cannot revive playback [33m 360[2mms[22m[39m
+   [33m[2m✓[22m[39m actual gallery integration: observation never owns game state[2m > [22mmode exit cancels observation and reopening cannot resurrect the old running instance [33m 338[2mms[22m[39m
+   [33m[2m✓[22m[39m actual gallery integration: observation never owns game state[2m > [22mgallery media notification reaches observation without changing Coin collected state [33m 358[2mms[22m[39m
+   [33m[2m✓[22m[39m observed Coin normal motion cancellation[2m > [22mReplay after observation cancels running normal motion on reduced ON without changing score [33m 315[2mms[22m[39m
+   [33m[2m✓[22m[39m observed Coin normal motion cancellation[2m > [22mCOLLECT after observation cancels running normal motion on reduced ON without changing score [33m 361[2mms[22m[39m
+   [33m[2m✓[22m[39m observed Coin normal motion cancellation[2m > [22mCOLLECT after observation cancels paused normal motion on reduced ON without changing score [33m 307[2mms[22m[39m
+   [33m[2m✓[22m[39m observed Coin normal motion cancellation[2m > [22mreduced explicit Replay uses reduced definition and repeated ON/OFF does not award or autoplay [33m 338[2mms[22m[39m
+   [33m[2m✓[22m[39m observed Coin normal motion cancellation[2m > [22mrapid mode switches retain collected state and Reset permits exactly one new acquisition [33m 552[2mms[22m[39m
+   [33m[2m✓[22m[39m observed Coin normal motion cancellation[2m > [22mobserved normal Coin leaving the viewport cancels, re-entry stays stopped, and unmount clears old instances [33m 304[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m44 passed[39m[22m[90m (44)[39m
+[2m   Start at [22m 00:43:20
+[2m   Duration [22m 7.42s[2m (transform 469ms, setup 0ms, collect 961ms, tests 6.48s, environment 830ms, prepare 176ms)[22m
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+
+ [32m✓[39m tests/waapi-stage2b.test.tsx [2m([22m[2m24 tests[22m[2m)[22m[33m 1646[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m24 passed[39m[22m[90m (24)[39m
+[2m   Start at [22m 00:43:28
+[2m   Duration [22m 2.71s[2m (transform 249ms, setup 0ms, collect 409ms, tests 1.65s, environment 371ms, prepare 81ms)[22m
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+
+ [32m✓[39m tests/then-now-phase2-first.test.tsx [2m([22m[2m13 tests[22m[2m)[22m[33m 368[2mms[22m[39m
+ [32m✓[39m tests/then-now-phase2-second.test.tsx [2m([22m[2m20 tests[22m[2m)[22m[33m 1095[2mms[22m[39m
+ [32m✓[39m tests/then-now-phase2-registration.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m tests/then-now-phase2-card.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 759[2mms[22m[39m
+   [33m[2m✓[22m[39m page hidden suspends a phase-two editor without destroying its work; close still unmounts [33m 435[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m      Tests [22m [1m[32m38 passed[39m[22m[90m (38)[39m
+[2m   Start at [22m 00:43:31
+[2m   Duration [22m 3.09s[2m (transform 556ms, setup 0ms, collect 1.03s, tests 2.23s, environment 1.24s, prepare 359ms)[22m
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+
+ [32m✓[39m tests/phase5b-compare.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 781[2mms[22m[39m
+   [33m[2m✓[22m[39m diff enforces resource boundaries explicitly, and navigation focuses actual hunk [33m 306[2mms[22m[39m
+ [32m✓[39m tests/phase5b-editors.test.tsx [2m([22m[2m10 tests[22m[2m)[22m[33m 1138[2mms[22m[39m
+   [33m[2m✓[22m[39m kanban CRUD, reorder then edit, draft cancellation and undo preserve identities [33m 340[2mms[22m[39m
+ [32m✓[39m tests/phase5b-registration.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 734[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[32m24 passed[39m[22m[90m (24)[39m
+[2m   Start at [22m 00:43:35
+[2m   Duration [22m 3.76s[2m (transform 518ms, setup 0ms, collect 1.22s, tests 2.65s, environment 1.22s, prepare 298ms)[22m
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Loading-museum/Loading-museum[39m
+
+ [32m✓[39m tests/pan-zoom.test.tsx [2m([22m[2m13 tests[22m[2m)[22m[33m 1719[2mms[22m[39m
+   [33m[2m✓[22m[39m searches one new exhibit, discards drag on switching and returns focus on close [33m 338[2mms[22m[39m
+ [32m✓[39m tests/image-crop.test.tsx [2m([22m[2m26 tests[22m[2m)[22m[33m 2273[2mms[22m[39m
+   [33m[2m✓[22m[39m initial confirmed result, editing preview, confirm, further edit, cancel and Reset agree [33m 410[2mms[22m[39m
+   [33m[2m✓[22m[39m actual numeric form, independent numeric vs pointer equivalence, invalid value messages and input arrow scope [33m 506[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m39 passed[39m[22m[90m (39)[39m
+[2m   Start at [22m 00:43:39
+[2m   Duration [22m 3.66s[2m (transform 517ms, setup 0ms, collect 1.33s, tests 3.99s, environment 845ms, prepare 179ms)[22m
+

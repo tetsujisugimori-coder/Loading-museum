@@ -47,7 +47,17 @@ native selectの修正は`.imageCrop select{color-scheme:light}`のみ。修正�
 
 実入力はPlaywright mouse/keyboard、pointerの所有・cancel等は明記した合成イベント、touchはChromium CDP模擬。実機・OS SendInputとは区別。PNG oracleは元絵と同じ図柄を試験側指定viewBox/ratioで描いた画像と比較する。誤位置/誤比率を一時注入した2描画負対照をengine別に拒否。raw PNGを保持し、数値成功だけで描画をPASSにしない。四隅の最小停止・四辺到達は合成pointerでも検査し、純粋モデル側の全比率反復検査と区別する。
 
-## 再実行
+## 初回提出HEAD ff052ca のCI修正
+
+初回Image Crop CI 41942823951は7/8 job成功、Chromium390/reducedの別pointer検査だけ失敗。初回の合成moveの描画前に初期枠を仮枠の基準として読んでいた。取得ZIPはGitHub digestと一致、HEAD/tree/cleanを確認し`ci-ff052ca/`へJSON/log/失敗PNGを保存。描画比較失敗→runner非zero→CI failureの伝播も実際に確認した。
+
+修正はharness側だけ。geometry()は既知の期待座標が元絵の枠とプレビューの双方へ反映されるまで待ち、同じ0.01座標許容差で実screen CTMを照合する。合成moveは20/scale・10/scaleの既知の移動を要求してから仮枠を基準にする。別pointerのdownも編集可能な枠へ送る。待ちの時間制限を延長せず、移動が出なければ失敗する。誤位置/誤比率のPNG対照は維持。
+
+また既存第4期A／第5期Bの各両engineが、総数26に対し旧25件assertで操作前に停止。最初の件数検索で2箇所を見落としたため、残る期待件数だけ26へ整合した。素材・製品・時間・座標許容差・既存操作契約は変更していない。両engineのJSON/log/失敗PNGとZIP digestを同じ履歴フォルダーに保全。初回全館contractsは最終製品ソースに対し481成功で、取得ログを保存した。
+
+ローカルChromium390/reducedで描画ゲート後の同条件を成功確認（WindowsのためLinux CIのRED→GREENの代用とは呼ばない）。追加commitの最終HEADで正式CIを再実行し、結果をPR/Issueへ追補する。
+
+## 再実行コマンド
 
 ```sh
 npm ci

@@ -6,6 +6,7 @@
 - committed/editing/provisional分離。owner pointer・timestamp、Escape/cancel/lostcapture/hidden/blur/focus rollback、別操作で仮状態失効、幅0からの復帰、unmount解放。数値の空/非有限/範囲外は現在枠を保持して拒否。
 - 新規26契約＋既存455＝481試験成功。source故障2件を終了1で検出し元bytes復元。ブラウザ16条件・最終lint/type/build/CIの確定結果は証拠台帳とPRへ記録。初回のref lint違反/試験型オプション誤りとsandboxブラウザ環境停止を保全。自己検証を独立レビューと呼ばない。
 - 自己目視でWebKitの比率select低視認性を発見し、同条件RED→GREENでcolor-scheme:lightを明示。固定比率の幅Infinityで読取専用高さの空欄を先に案内する問題も25/26 RED→26 GREENで修正。枠破壊ではなく理由表示の修正。新旧原本を保全し、最後の入力案内は関連試験/型/buildと最終HEAD CIで検証。
+- 初回提出ff052caのImage Crop CIは7/8 job成功、Ch390/reducedの合成move描画前読取りで停止。既知の枠/preview双方への描画到達を待つharnessへ修正。第4期A/第5期Bに残った旧25件assertの見落とし2箇所も26へ整合。製品差分0、初回CI artifactのdigest/HEAD/画像と失敗伝播を保存。全館contracts481成功の実CIログも保全し、追加HEADの全CIを再確認する。
 - 初回matrixは10/16でWebKit390の取消直後の単発読取りにより停止。描画終了待ち＋既知座標へ修正し16/16、即時/描画後の差6観測を記録。WebKit1280通常の長時間化は内部原因UNKNOWN、retry/timeout延長なしで完了。新規CIはengine×4幅8独立job、既存7 workflowと15分制限を維持。
 - 設計と補正規則は docs/image-crop-studies.md、実行別の原本は docs/image-crop-evidence/。実機Safari/VoiceOver等NOT_TESTED、#29/#44/#54と過去UNKNOWNを維持。独立レビュー用引渡しで停止、マージ推奨NO、Draft解除/merge/auto-merge/手動公開なし。
 
