@@ -56,5 +56,6 @@ for(const [name,values,ratio]of invalid)check(`reject/${name}`,()=>{const result
 check('strict-generated-edges',()=>{
   let s=model.INITIAL;for(let i=0;i<2500;i++){s=model.changeRatio(s,['free','wide','photo','square'][i%4]);s=model.resize(s,['nw','ne','sw','se'][i%4],Math.sin(i)*1937,Math.cos(i)*1781);s={...s,rect:model.move(s.rect,Math.sin(i*7)*1e5,Math.cos(i*11)*1e5)};invariant(s);roundTrip(s,2);}return {iterations:2500};
 });
+assert.equal(new Set(report.checks.map(c => c.label)).size, report.checks.length, 'Each reported check must have a unique label');
 report.complete=report.errors.length===0;fs.writeFileSync(path.join(dest,'results.json'),JSON.stringify(report,null,2));
 console.log(JSON.stringify({head:report.head,checks:report.checks.length,passed:report.checks.filter(x=>x.status==='PASS').length,failures:report.errors}));if(!report.complete)process.exitCode=1;

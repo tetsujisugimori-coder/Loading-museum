@@ -30,7 +30,17 @@ WebKitの1:1などの一部ケースはactionability/PNGの8秒待ちに失敗�
 
 最初の修正後Chromium375通常は26チェック中24成功。失敗2件はPNG screenshotの8秒安定待ちで、数値反復自体には不整合を検出していない。`browser-green-chromium-375`に記録。全条件の成功へ代用しない。
 
-CIと独立再レビューの確定結果は、固定HEAD取得後に追記する。ローカル実行中の結果はdirty作業treeとsource hashを記録し、cleanな提出HEAD実行と区別する。
+WebKit375通常の修正後も26件中24成功。全3比率×4隅は各12回再適用、全座標・入力欄・確定結果保持、raster照合が成功。旧版と同じWindows/engine/幅/motionで16:9拒否→受理・座標一致、4:3変形→座標一致を確認した。後半のconfirm-cancel-resetはclick安定待ち、mixedはPNG安定待ちで8秒timeout。取得できた代表PNGを目視し、元絵の枠/屋根のpreview/家と橋の確定結果/通知の対応を確認した。CIのLinux実行と同一環境とは呼ばない。
+
+長い往復小数は小幅のinput内で横にスクロールして編集する標準動作となる（値自体は省略・丸めない）。これは表示桁を失わない方式のUI上の限界として記録し、元絵/previewの引伸ばしやページ横超過と混同しない。
+
+型の誤りを修正した後の`typecheck-corrected.log`は成功。`model-green-45`は重複のない45件成功。途中の`model-green-final`は新反例2件が二重登録された47件の診断結果であり、45件とは別の47種類があると数えない。最終再現器はlabelの重複自体を拒否する。ローカル全館回帰は最初のVitestブロックで15/150件失敗とworker RPC timeoutになったため、その先のblockは未実行。旧展示にも時間超過が生じ、成功と扱わない。
+
+CIと独立再レビューの確定結果は、固定HEAD取得後にPR #64 / Issue #63の証拠台帳へ追記する。ローカル実行中の結果はdirty作業treeとsource hashを記録し、cleanな提出HEAD実行と区別する。
+
+中間提出HEAD `fe6cc020aff40492c0fd437eeb4169a07ff8e9a7` / tree `c58cdd35ebb3a5105cf7a0769848e4108b5e705b`の[Image Crop CI 41964678477](https://github.com/tetsujisugimori-coder/Loading-museum/actions/runs/41964678477)は8/8 job成功。従来検査16条件と新精度検査16条件（26チェック/条件）を受理。全8 ZIPのGitHub digest、clean HEAD/tree、144件のsource hash照合、92 PNGのhash、各jobのモデル45件、source故障5種類のexit1/原文bytes復旧、PNG故障4件を実ファイルで照合した。照合結果は`image-crop-precision-evidence/ci-fe6cc02-verification.json`。最終HEADはPR台帳の新しいCIを参照し、この中間HEADを最終HEAD検証と呼ばない。
+
+照合器は`scripts/audit-image-crop-precision-ci.py`。configは`head`/`tree`/`dest`/`artifacts`（GitHub metadataと有効なdownload_url）を持つJSONをローカルのignored workに置き、`python scripts/audit-image-crop-precision-ci.py config.json`で実行する。署名付きURLは公開記録へ保存しない。8個・16条件・45独自label・各26項目・5故障・4PNG故障・全PNG/ソースhash・元絵内の座標保持のどれかが欠けると拒否する。照合器自身は独立レビューではない。
 
 ## 再現方法と独立レビュー重点
 
