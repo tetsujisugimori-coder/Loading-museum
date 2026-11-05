@@ -1,6 +1,5 @@
 {
-  "measuredProductHead": "0826a5d5f09c03ee8b0d451c20970ad4eba61601",
-  "purpose": "Evidence bytes, including unsuccessful diagnostics. A hash does not turn a failed report into PASS. Final CI is recorded on PR #66.",
+  "purpose": "Saved evidence bytes including unsuccessful diagnostics. Final CI and HEAD are recorded on PR #66. Earlier reports retain their own measured HEAD/dirty state.",
   "files": [
     {
       "file": "independent/art-generation.json",
@@ -51,6 +50,31 @@
       "file": "independent/endpoint-trace/report.json",
       "bytes": 3167,
       "sha256": "c2c374d2d6cca7344b9a914578602cd69ade0afddf4e569ab86e76e1bc379853"
+    },
+    {
+      "file": "independent/final-7174/ci-failure-review.md",
+      "bytes": 1319,
+      "sha256": "fb65e286d7e1b3c92fe645b38cd5494b2f0a167dff2747e8bf3edbdb32409d1d"
+    },
+    {
+      "file": "independent/final-7174/hidden-and-endpoints/overlay-hidden-paused-resumed.png",
+      "bytes": 15004,
+      "sha256": "b9990ad3fc14887100d24dda688791256c6cc7d32e86d502e8309239b05451fa"
+    },
+    {
+      "file": "independent/final-7174/hidden-and-endpoints/report.json",
+      "bytes": 3697,
+      "sha256": "97b2b17cab1505e9b0bbfd2b75bdd36db5a00f746a0847b4e67899d801933524"
+    },
+    {
+      "file": "independent/final-7174/hidden-and-endpoints/split-hidden-paused-resumed.png",
+      "bytes": 17364,
+      "sha256": "52e4fd9698b7e5fdec818b5697c955b5d7642001fef1226cf5c35a19e2b577c5"
+    },
+    {
+      "file": "independent/final-7174/source-equivalence.json",
+      "bytes": 21560,
+      "sha256": "a7a6679f85431f1ef485652739d45d7e583f15449b8c201a51efdaa6ac8eaa78"
     },
     {
       "file": "independent/fixed-head/art-generation.json",
@@ -1166,6 +1190,101 @@
       "file": "self/unit-before-edge-fix.log",
       "bytes": 503,
       "sha256": "1ea8ba2510b839b06012f7a0a63632bfcfefda9940c820ee3f7717a82e0552a3"
+    },
+    {
+      "file": "self/webkit-readiness/check-525.log",
+      "bytes": 17452,
+      "sha256": "e63b04f5a4e17dd9b01033e7a0d52f543fdc28c5441d80316035e3a9d0e62edb"
+    },
+    {
+      "file": "self/webkit-readiness/loading-webkit-readiness-green.log",
+      "bytes": 503,
+      "sha256": "4f659846a0196cc649aa8e4281f86b28fd2764969c16be656e97fc467d2331d2"
+    },
+    {
+      "file": "self/webkit-readiness/loading-webkit-readiness-red.log",
+      "bytes": 6165,
+      "sha256": "f5feb1eb97d9ad5fad9b06458ada286a7579f474db280ff3673d309068043c74"
+    },
+    {
+      "file": "self/webkit-readiness/local-375-dirty/chromium-375-no-preference-after-full.png",
+      "bytes": 16238,
+      "sha256": "50ebf9a723fc22c9ee2edb87f8c68d494a1d5c0fdf7a7607afdf7de9f52e1e08"
+    },
+    {
+      "file": "self/webkit-readiness/local-375-dirty/chromium-375-no-preference-before-full.png",
+      "bytes": 16609,
+      "sha256": "9279a309624dc4cc595c0f1f443b800be108d74301bc9c61e5d0ea900bccbee0"
+    },
+    {
+      "file": "self/webkit-readiness/local-375-dirty/chromium-375-no-preference-mobile.png",
+      "bytes": 125109,
+      "sha256": "5dc0db1705d223f522e9c4529cdec66918dcd9d4bf2b436561ed447925b7c390"
+    },
+    {
+      "file": "self/webkit-readiness/local-375-dirty/chromium-375-no-preference-overlay-paused.png",
+      "bytes": 14881,
+      "sha256": "420578671df43d0357353b352c379326fd4fa457ce799e8b8f709ebb12571b68"
+    },
+    {
+      "file": "self/webkit-readiness/local-375-dirty/chromium-375-no-preference-overlay50.png",
+      "bytes": 14873,
+      "sha256": "acfe9d206557a1ac7acb4a5716a03ad73e6563ffdfa533c84afca909c02c7852"
+    },
+    {
+      "file": "self/webkit-readiness/local-375-dirty/chromium-375-no-preference-restoration-overlay-50-false-actual.png",
+      "bytes": 12271,
+      "sha256": "76e3634ef28d4d1e528230bdaa4b38d4d9aa319acae8afc488b2be01fcfc78b1"
+    },
+    {
+      "file": "self/webkit-readiness/local-375-dirty/chromium-375-no-preference-restoration-overlay-50-false-expected.png",
+      "bytes": 12242,
+      "sha256": "ede8e651afbe1f0fee967d4fd26f4f8c562c3e78cddaad6c4f2a702d02e1e241"
+    },
+    {
+      "file": "self/webkit-readiness/local-375-dirty/chromium-375-no-preference-restoration-split-37-false-actual.png",
+      "bytes": 11845,
+      "sha256": "ec40750a85413fe7ca866508fb8d4ff0e84f83681ff37d0b9274ec5d400dd0a5"
+    },
+    {
+      "file": "self/webkit-readiness/local-375-dirty/chromium-375-no-preference-restoration-split-37-false-expected.png",
+      "bytes": 12071,
+      "sha256": "cd746e9b7958f314604dedd972f98e4808d8dfbbfd61c8240ead150d3e7218aa"
+    },
+    {
+      "file": "self/webkit-readiness/local-375-dirty/chromium-375-no-preference-reversed.png",
+      "bytes": 16722,
+      "sha256": "0ddfb4f89d17824b611aa88edda7d8c84393dea8767690fbb183422a91768659"
+    },
+    {
+      "file": "self/webkit-readiness/local-375-dirty/chromium-375-no-preference-side-by-side.png",
+      "bytes": 14426,
+      "sha256": "8649409cfc8acc81909ffe8cc625d64984ca731421ac3dd7c063c6a7ed511188"
+    },
+    {
+      "file": "self/webkit-readiness/local-375-dirty/chromium-375-no-preference-split-paused.png",
+      "bytes": 17363,
+      "sha256": "be672d6169b40f7ea2a1c4b81ae3106e70867f31e468067d46a068df2e62a5ec"
+    },
+    {
+      "file": "self/webkit-readiness/local-375-dirty/chromium-375-no-preference-split50.png",
+      "bytes": 17630,
+      "sha256": "1a767ac5341e96577a9d8087704d3d046adb745f1149561ae58ba191f0f2d77a"
+    },
+    {
+      "file": "self/webkit-readiness/local-375-dirty/report.json",
+      "bytes": 61936,
+      "sha256": "4a6aea64511f4f606ff19ac7adba6a6c76264cdafcfd03e3bbd2a7bc757cb044"
+    },
+    {
+      "file": "self/webkit-readiness/webkit-readiness-diagnostic-e140.log",
+      "bytes": 1245,
+      "sha256": "343bc09ab6f01fba0977a1015028da074b144b7899fcea859992d3210db10406"
+    },
+    {
+      "file": "self/webkit-readiness/wk1280-ci-failure.log",
+      "bytes": 135426,
+      "sha256": "ac41b0a980d6ea39661588cb75d5c19efd68d3dfb32d396bf16e8a4c963b3005"
     }
   ]
 }

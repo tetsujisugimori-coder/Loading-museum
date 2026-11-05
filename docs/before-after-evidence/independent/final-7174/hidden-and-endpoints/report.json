@@ -1,0 +1,148 @@
+{
+  "head": "7174e19dfa712297314aaff62a54ce080ab1f7f9",
+  "tree": "a68366434826c708b7280a951241da3fffce80dc",
+  "dirty": "",
+  "start": "2026-11-05T18:12:47.360Z",
+  "input": "Playwright native browser mouse; synthetic document.hidden + visibilitychange. Not real OS backgrounding.",
+  "sourceSHA256": {
+    "app/components/practical/BeforeAfterCompare.tsx": "45e227392ac932d529e8447bb9c9de55f10668f45104f902167a7dcc81cfe26e",
+    "app/components/practical/compare-model.ts": "f7826fcdbe3753825902b75b6b06f268f37a0e59fac1aaf0f655cdb913d466b2",
+    "app/components/practical/before-after-compare.css": "57b80cee9be4c8ac8c208fe9a87be1f64694add0f42d95c8de93813813809b7d"
+  },
+  "cases": [
+    {
+      "mode": "split",
+      "hidden": {
+        "playback": "paused",
+        "clip": "inset(0px 89.0283% 0px 0px)",
+        "alpha": "1",
+        "value": "11"
+      },
+      "restored": {
+        "playback": "paused",
+        "clip": "inset(0px 89.0283% 0px 0px)",
+        "alpha": "1",
+        "value": "11"
+      },
+      "resumed": {
+        "playback": "paused",
+        "clip": "inset(0px 86.0917% 0px 0px)",
+        "alpha": "1",
+        "value": "14"
+      },
+      "fiveRafHold": true,
+      "noAutomaticResume": true,
+      "explicitResume": true
+    },
+    {
+      "mode": "overlay",
+      "hidden": {
+        "playback": "paused",
+        "clip": "none",
+        "alpha": "0.109917",
+        "value": "11"
+      },
+      "restored": {
+        "playback": "paused",
+        "clip": "none",
+        "alpha": "0.109917",
+        "value": "11"
+      },
+      "resumed": {
+        "playback": "paused",
+        "clip": "none",
+        "alpha": "0.136233",
+        "value": "14"
+      },
+      "fiveRafHold": true,
+      "noAutomaticResume": true,
+      "explicitResume": true
+    }
+  ],
+  "images": [
+    {
+      "name": "split-hidden-paused-resumed.png",
+      "sha256": "52e4fd9698b7e5fdec818b5697c955b5d7642001fef1226cf5c35a19e2b577c5"
+    },
+    {
+      "name": "overlay-hidden-paused-resumed.png",
+      "sha256": "b9990ad3fc14887100d24dda688791256c6cc7d32e86d502e8309239b05451fa"
+    }
+  ],
+  "errors": [],
+  "browser": "154.0.8037.57",
+  "endpoints": [
+    {
+      "endpoint": 0,
+      "canvas": {
+        "x": 37,
+        "y": 193.09375,
+        "width": 301,
+        "height": 190.625
+      },
+      "handle": {
+        "x": 163.5,
+        "y": 264.40625,
+        "width": 48,
+        "height": 48
+      },
+      "targetX": 13,
+      "captureExtendsBeyondImage": true,
+      "result": {
+        "playback": "idle",
+        "clip": "inset(0px 100% 0px 0px)",
+        "alpha": "1",
+        "value": "0"
+      }
+    },
+    {
+      "endpoint": 100,
+      "canvas": {
+        "x": 37,
+        "y": 193.09375,
+        "width": 301,
+        "height": 190.625
+      },
+      "handle": {
+        "x": 37,
+        "y": 264.40625,
+        "width": 48,
+        "height": 48
+      },
+      "targetX": 362,
+      "captureExtendsBeyondImage": true,
+      "result": {
+        "playback": "idle",
+        "clip": "inset(0px 0% 0px 0px)",
+        "alpha": "1",
+        "value": "100"
+      }
+    },
+    {
+      "endpoint": 0,
+      "canvas": {
+        "x": 37,
+        "y": 193.09375,
+        "width": 301,
+        "height": 190.625
+      },
+      "handle": {
+        "x": 290,
+        "y": 264.40625,
+        "width": 48,
+        "height": 48
+      },
+      "targetX": 13,
+      "captureExtendsBeyondImage": true,
+      "result": {
+        "playback": "idle",
+        "clip": "inset(0px 100% 0px 0px)",
+        "alpha": "1",
+        "value": "0"
+      }
+    }
+  ],
+  "pass": true,
+  "end": "2026-11-05T18:12:52.794Z",
+  "scriptSHA256": "d79654aea77b4bf8d28e1a56dffd69db3a6c786f8f938cadf5127d8f4ef5eb1c"
+}

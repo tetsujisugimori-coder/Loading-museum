@@ -143,6 +143,17 @@ it('load failure is visible, blocks playback, and retry replaces image generatio
   expect(screen.getByRole('button', { name: '自動比較' }).hasAttribute('disabled')).toBe(true);
   click('図版を再読込'); load(); expect(screen.queryByRole('alert')).toBeNull(); expect(screen.getByTestId('bc-canvas').dataset.ready).toBe('true');
 });
+it('accepts a decoded SVG whose renderer reports 300×190 natural size while its source coordinates stay 1200×760', () => {
+  vi.mocked(Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'naturalWidth')!.get!).mockReturnValue(300);
+  vi.mocked(Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'naturalHeight')!.get!).mockReturnValue(190);
+  ui(); expect(screen.queryByRole('alert')).toBeNull(); expect(screen.getByTestId('bc-canvas').dataset.ready).toBe('true');
+  for (const image of screen.getAllByRole('img')) { expect(image.getAttribute('width')).toBe('1200'); expect(image.getAttribute('height')).toBe('760'); }
+});
+it('rejects a loaded image with no intrinsic pixels, then recovers on explicit retry with valid renderer dimensions', () => {
+  const naturalWidth = vi.mocked(Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'naturalWidth')!.get!);
+  naturalWidth.mockReturnValue(0); ui(); expect(screen.getByRole('alert')).toBeTruthy(); expect(screen.getByTestId('bc-canvas').dataset.ready).toBe('false');
+  naturalWidth.mockReturnValue(300); click('図版を再読込'); load(); expect(screen.queryByRole('alert')).toBeNull(); expect(screen.getByTestId('bc-canvas').dataset.ready).toBe('true');
+});
 it('registration adds exactly one searchable comparison exhibit and closing/reopening resets it', () => {
   expect(phase6aExhibits.map(e => e.id)).toEqual(['pan-zoom', 'image-crop', 'before-after-compare']);
   render(<PracticalRoom phase={4} />); click('部品展示室を開く'); fireEvent.change(screen.getByLabelText('部品名・用途・技術で検索'), { target: { value: '画像編集・比較' } });

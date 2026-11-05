@@ -39,6 +39,13 @@ function comparePNG(actualBytes, expectedBytes, mode, amount) {
 }
 try {
   if (process.env.REQUIRE_CLEAN === '1') assert.equal(report.dirty, '', 'Source must match submitted HEAD');
+  report.assetCoordinates = [];
+  for (const pair of ['restoration', 'correction']) for (const version of ['before', 'after']) {
+    const file = `public/compare/${pair}-${version}.svg`, bytes = await fs.readFile(file), svg = bytes.toString();
+    const rootTag = svg.match(/^<svg\b[^>]*>/)?.[0]; assert.ok(rootTag, `SVG root ${file}`);
+    assert.match(rootTag, /\bwidth="1200"/); assert.match(rootTag, /\bheight="760"/); assert.match(rootTag, /\bviewBox="0 0 1200 760"/);
+    report.assetCoordinates.push({ file, width: 1200, height: 760, viewBox: '0 0 1200 760', sha256: sha(bytes) });
+  }
   for (const engine of engines) {
     const executablePath = engine === 'chromium' ? process.env.CHROMIUM_EXECUTABLE : process.env.WEBKIT_EXECUTABLE;
     browser = await pw[engine].launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
@@ -71,7 +78,9 @@ try {
       }
       async function geometry() {
         const rects = await canvas.evaluate(el => ({ canvas: (() => { const r = el.getBoundingClientRect(); return { x: r.x, y: r.y, width: r.width, height: r.height }; })(), images: [...el.querySelectorAll('img')].map(img => { const r = img.getBoundingClientRect(); return { x: r.x, y: r.y, width: r.width, height: r.height, natural: [img.naturalWidth, img.naturalHeight] }; }) }));
-        const [a, b] = rects.images; assert.deepEqual(a.natural, [1200, 760]); assert.deepEqual(b.natural, [1200, 760]);
+        const [a, b] = rects.images;
+        // Source coordinate dimensions are checked above. WebKit reports a different SVG natural size.
+        assert.ok(a.natural.every(n => n > 0)); assert.ok(b.natural.every(n => n > 0));
         for (const k of ['x', 'y', 'width', 'height']) { near(a[k], b[k]); near(a[k], rects.canvas[k]); }
         near(a.width / a.height, 1200 / 760, .001); measurements.push(rects); return rects;
       }

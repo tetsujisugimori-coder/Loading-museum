@@ -1,0 +1,112 @@
+
+ RUN  v3.2.4 /workspace/loading-museum-phase6a3
+
+ ❯ tests/before-after-compare.test.tsx (40 tests | 2 failed) 831ms
+   ✓ split represents 0% exactly and independently 4ms
+   ✓ split represents 50% exactly and independently 1ms
+   ✓ split represents 100% exactly and independently 0ms
+   ✓ overlay represents 0% exactly and independently 0ms
+   ✓ overlay represents 50% exactly and independently 0ms
+   ✓ overlay represents 100% exactly and independently 0ms
+   ✓ clamps finite values, rejects invalid arithmetic and recovers from zero dimensions 2ms
+   ✓ swap preserves both numerical values; reset preserves pair and mode but resets values, swap and speed 1ms
+   ✓ replay / pause / resume / finish agrees with Before → After in split, reversed=false 1ms
+   ✓ replay / pause / resume / finish agrees with Before → After in overlay, reversed=false 1ms
+   ✓ replay / pause / resume / finish agrees with Before → After in split, reversed=true 0ms
+   ✓ replay / pause / resume / finish agrees with Before → After in overlay, reversed=true 1ms
+   ✓ speed changes pause at the actual position; resuming uses remaining distance and new speed 0ms
+   ✓ repeated Replay creates new epochs; foreign and invalid animation callbacks cannot overwrite state 1ms
+   ✓ reset invalidates the running animation and tentative drag 1ms
+   ✓ mode invalidates the running animation and tentative drag 0ms
+   ✓ pair invalidates the running animation and tentative drag 1ms
+   ✓ swap invalidates the running animation and tentative drag 0ms
+   ✓ manual invalidates the running animation and tentative drag 1ms
+   ✓ measure invalidates the running animation and tentative drag 0ms
+   ✓ reduced invalidates the running animation and tentative drag 0ms
+   ✓ pointer owner, monotonic timestamps, provisional value and rollback are separate from committed position 1ms
+   ✓ pair change resets values and rejects old load/error callbacks; failure stops replay 1ms
+   ✓ reduced motion preserves manual comparisons, finishes explicit play atomically and pauses a running comparison on preference change 0ms
+   ✓ keyboard steps, Shift steps and endpoints operate both boundary and native range; ARIA matches mask/alpha 206ms
+   ✓ UI aborts provisional drag on Escape and rejects late pointer up 49ms
+   ✓ UI aborts provisional drag on pointercancel and rejects late pointer up 41ms
+   ✓ UI aborts provisional drag on lostpointercapture and rejects late pointer up 24ms
+   ✓ UI aborts provisional drag on Reset and rejects late pointer up 44ms
+   ✓ UI aborts provisional drag on hidden and rejects late pointer up 43ms
+   ✓ UI aborts provisional drag on resize and rejects late pointer up 42ms
+   ✓ UI aborts provisional drag on focus and rejects late pointer up 48ms
+   ✓ image surface leaves touch scrolling alone; explicit handle touch and mouse use the comparison 22ms
+   ✓ pressing the inward edge handle at 0% does not move the boundary 21ms
+   ✓ pressing the inward edge handle at 100% does not move the boundary 21ms
+   ✓ rAF updates hold pause/resume position; mode/pair/Reset/preference changes invalidate queued callbacks and unmount cleans up 93ms
+   ✓ load failure is visible, blocks playback, and retry replaces image generation 32ms
+   × accepts a decoded SVG whose renderer reports 300×190 natural size while its source coordinates stay 1200×760 24ms
+     → expected <div role="alert">…(1)</div> to be null
+   × rejects a loaded image with no intrinsic pixels, then recovers on explicit retry with valid renderer dimensions 27ms
+     → expected <div role="alert">…(1)</div> to be null
+   ✓ registration adds exactly one searchable comparison exhibit and closing/reopening resets it 76ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/before-after-compare.test.tsx > accepts a decoded SVG whose renderer reports 300×190 natural size while its source coordinates stay 1200×760
+AssertionError: expected <div role="alert">…(1)</div> to be null
+
+- Expected: 
+null
+
++ Received: 
+<div
+  role="alert"
+>
+  図版を表示できません。比較は停止しています。
+  <button>
+    図版を再読込
+  </button>
+</div>
+
+ ❯ tests/before-after-compare.test.tsx:149:45
+    147|   vi.mocked(Object.getOwnPropertyDescriptor(HTMLImageElement.prototype…
+    148|   vi.mocked(Object.getOwnPropertyDescriptor(HTMLImageElement.prototype…
+    149|   ui(); expect(screen.queryByRole('alert')).toBeNull(); expect(screen.…
+       |                                             ^
+    150|   for (const image of screen.getAllByRole('img')) { expect(image.getAt…
+    151| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/before-after-compare.test.tsx > rejects a loaded image with no intrinsic pixels, then recovers on explicit retry with valid renderer dimensions
+AssertionError: expected <div role="alert">…(1)</div> to be null
+
+- Expected: 
+null
+
++ Received: 
+<div
+  role="alert"
+>
+  図版を表示できません。比較は停止しています。
+  <button>
+    図版を再読込
+  </button>
+</div>
+
+ ❯ tests/before-after-compare.test.tsx:155:99
+    153|   const naturalWidth = vi.mocked(Object.getOwnPropertyDescriptor(HTMLI…
+    154|   naturalWidth.mockReturnValue(0); ui(); expect(screen.getByRole('aler…
+    155|   naturalWidth.mockReturnValue(300); click('図版を再読込'); load(); expect(s…
+       |                                                                                                   ^
+    156| });
+    157| it('registration adds exactly one searchable comparison exhibit and cl…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 38 passed (40)
+   Start at  18:28:14
+   Duration  2.20s (transform 484ms, setup 0ms, collect 717ms, tests 831ms, environment 381ms, prepare 75ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice

@@ -22,7 +22,7 @@ Pan & Zoomは全画像の拡大移動、Image Cropは残す領域の選択確定
 
 `compare-model.ts` はpair、mode、position、alpha、reversed、drag、playback、animation、epoch、speed、reduced、ready、asset世代を分離。ドラッグは仮の値だけ更新し、upでcommit。Escape/cancel/lostcapture/blur/hidden/幅変化は開始前の位置へ戻す。別commandは仮値を破棄して適用する。
 
-pointer所有IDと単調timestampで外来・古eventを拒否。animationはrunごとのepochとelapsed/from/to/durationを持ち、tickはepochが一致したplaying状態だけ受理する。Reset、mode/pair/swap、手動入力、resize、非表示、途中reduced変更は旧callbackを失効。rAF cleanupとunmount cleanupで古い処理を止める。画像load/errorもpairごとのresource世代が一致するものだけ受理し、エラー・異寸法は操作停止と再読込を表示する。
+pointer所有IDと単調timestampで外来・古eventを拒否。animationはrunごとのepochとelapsed/from/to/durationを持ち、tickはepochが一致したplaying状態だけ受理する。Reset、mode/pair/swap、手動入力、resize、非表示、途中reduced変更は旧callbackを失効。rAF cleanupとunmount cleanupで古い処理を止める。画像load/errorもpairごとのresource世代が一致するものだけ受理し、エラー・描画寸法0は操作停止と再読込を表示する。
 
 ハンドルは48px。端では丸を内側へ収め、線自体は0/100%へ到達する。ハンドル開始は現在値とpointer開始座標を保存し差分で動かすので、端の丸を押しただけでは値が跳ばない。mouseは画像内クリック/ドラッグも可能。touch/penはハンドルにだけ所有権を取り、画像面は`pan-y`で縦scrollを維持する。rangeと全button/selectが代替入力となる。Arrowは1%、Shift+Arrowは10%、Home/Endで両端。range/handle以外のキーは奪わない。
 
@@ -58,3 +58,13 @@ pointer所有IDと単調timestampで外来・古eventを拒否。animationはrun
 自己の固定候補matrixは6/8条件と負対照12件まで成功した後、1280通常の取消補助検査で停止した。rangeへfocusしたことで大きな画像のhandleが画面外となったのに古いscreen boxへmouseを送った検査前提が原因。不要な合成downを除き、毎gesture前のhandle表示・box再取得・native down後のdragging到達を検査する。製品source差分なし。同じ1280通常は修正後に完了し、負対照2件も検出した。初回reportと検査source、修正後reportを保存し、timeout/retry/toleranceで隠さない。
 
 この追補の後の証拠・検査commitでは製品ファイルは変更しない。正式CIは新HEADで全条件を実施し、そのHEAD/tree、結果、artifactと照合を[Draft PR #66](https://github.com/tetsujisugimori-coder/Loading-museum/pull/66)へ記録する。過去の候補の結果をそのまま最終HEADの実行結果とはしない。
+
+## WebKit準備判定の補修（正式CIのREDから）
+
+候補7174の正式BeforeAfter CIはChromium4幅×両motionの8条件成功、WebKit4幅はすべて初回ready待ちで終了1。独立担当もjobログを確認してマージ推奨をNOへ保留した。資料の署名付きファイル配信先へのproxy CONNECT403により、ZIP実bytes・内部PNG監査はBLOCKED。GitHubの表示digestを実ZIP照合済みとは扱わない。
+
+診断だけを追加したe140884のWebKit375ログで、canvasは301×190.625、両SVGはcomplete=true、natural寸法は300×190、エラー表示あり、pageerrorなしと判明。製品はnatural寸法を原本の1200×760と同一視して正常な描画を拒否していた。UAのSVG自然寸法を源座標の正規データとして使った設計不良であり、単なるtimeoutではない。
+
+観測値300×190の正常受入と、寸法0拒否後のretry復帰を2単体として先に追加し、38成功/2失敗のREDを保存。onLoadは正の描画寸法による成功確認へ変更した。既知の独自SVGの源座標は、4原本のwidth=1200、height=760、viewBox=0 0 1200 760を検査側で直接確認する。実img boxの一致・倍率・境界・独立描画とのPNG照合は引き続き行い、座標やpixelの許容値を拡大しない。天然寸法は実測値として記録し、原本寸法の代用にはしない。
+
+新規40件・全館525件（Node49+Vitest476）、関連90件と精度45群が検証対象。RED/GREEN、診断logは`self/webkit-readiness/`。補修後の正式16条件・独立再レビュー・最終HEAD/CIの確定結果はPR #66へ追補する。未確認をPASSへ変えない。

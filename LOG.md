@@ -1,3 +1,10 @@
+## 2026-11-05 第6期A-3 WebKit SVG準備判定の根本修正
+
+- 7174正式CIはChromium8条件成功、WebKit4幅は初回ready待ちで失敗。独立担当も失敗logを確認し、マージ推奨をNOへ保留。ZIP転送は配信先へのproxy403でBLOCKED、表示digestと実bytes照合を混同しない。
+- 診断専用e140884で、両SVG complete=true/natural300×190、canvas301×190.625、エラー表示ありを確認。ブラウザのSVG自然寸法を原本1200×760と同一視した誤拒否が原因。画像源座標とUAの読込寸法を分離する。
+- 観測された300×190の受入・描画寸法0拒否後のretryを2単体に追加し38成功/2失敗のRED保存後に補修。onLoadは正寸法確認、4SVG原本の厳密なwidth/height/viewBoxは検査側で確認。実box/倍率/境界/PNG oracleの閾値は不変。
+- 新規40件、全館525件、関連90件、精度45群。補修後の最終CI・独立再レビューはPR #66へ記録する。失敗/診断/旧判定を消さず、全未検証・Draft/禁止操作を維持。
+
 ## 2026-11-05 第6期A-3 Before / After Compare / Issue #65
 
 - 最新main 05735e83fd23d228d797afb89a150045293d3e58から独立clone、専用branch feat/before-after-compare-phase6a3。開始clean、適用AGENTS/checkout skillsなし。PR #60/#62/#64統合済み、同目的Issue/open PRなし。別repo変更なし。

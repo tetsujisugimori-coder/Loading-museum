@@ -121,7 +121,9 @@ export default function BeforeAfterCompare() {
   const value = valueOf(state), rounded = Math.round(value), playback = { idle: '停止中', playing: '再生中', paused: '一時停止', finished: '終端 / After全面' }[state.playback];
   const asset = (which: 'before' | 'after', index: 0 | 1) => <img key={`${state.resource}-${which}`} draggable={false}
     src={`${basePath}/compare/${state.pair}-${which}.svg`} width={1200} height={760} alt={`${label(which)}。${pair.alt} ${pair.description}`}
-    onLoad={e => dispatch({ type: 'asset', resource: state.resource, index, ok: e.currentTarget.naturalWidth === 1200 && e.currentTarget.naturalHeight === 760 })}
+    // SVG source coordinates are declared by the assets, not by the UA's reported natural size.
+    // WebKit reports 300×190 for these valid 1200×760 SVGs. Require successful rendering, not that API's exact size.
+    onLoad={e => dispatch({ type: 'asset', resource: state.resource, index, ok: e.currentTarget.naturalWidth > 0 && e.currentTarget.naturalHeight > 0 })}
     onError={() => dispatch({ type: 'asset', resource: state.resource, index, ok: false })} />;
   return <div className="beforeAfterCompare" ref={root} data-testid="before-after-compare" data-mode={state.mode} data-playback={state.playback} data-resource={state.resource} data-reduced={state.reduced}>
     <header><span>COMPARISON STUDY / 06 A-3</span><h4>同じ場所に、変化が見える。</h4><p>重ねて、透かして、並べて。図版を動かさず、2枚の違いを探す比較装置です。</p></header>
