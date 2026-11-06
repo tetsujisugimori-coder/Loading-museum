@@ -1,0 +1,288 @@
+
+> loading-museum@0.1.0 check
+> npm run lint && npm run typecheck && npm test
+
+
+> loading-museum@0.1.0 lint
+> eslint .
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
+
+> loading-museum@0.1.0 typecheck
+> tsc --noEmit
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
+
+> loading-museum@0.1.0 test
+> npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run --maxWorkers=2 tests/practical-b.test.tsx tests/practical-runtime.test.tsx tests/practical-a.test.tsx tests/practical-room.test.tsx tests/phase2-elastic.test.ts tests/phase2-regression.test.tsx tests/phase2-b.test.tsx tests/phase2-room.test.tsx tests/modern-mesh.test.ts tests/modern-drift-geometry.test.ts tests/modern-lens.test.tsx tests/modern-menu.test.tsx tests/paper-exhibit.test.tsx tests/glass-exhibit.test.tsx tests/modern-animation.test.tsx tests/macintosh-system-choice.test.tsx tests/waapi-samples.test.ts tests/waapi-gallery.test.tsx tests/waapi-interaction-state.test.ts tests/waapi-game-regressions.test.tsx tests/waapi-hp-regression.test.tsx tests/waapi-cascade-motion.test.tsx tests/dom11-selection.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-stage1-menu-coin.test.tsx && vitest run --maxWorkers=2 tests/phase4a.test.tsx && vitest run --maxWorkers=2 tests/phase4b-interactions.test.tsx tests/phase4b-async.test.tsx && vitest run --maxWorkers=2 tests/phase5-data.test.tsx tests/phase5-navigation.test.tsx && vitest run --maxWorkers=2 tests/phase5-focus-revision.test.tsx && vitest run --maxWorkers=2 tests/then-now-first.test.tsx tests/then-now-second.test.tsx tests/then-now-registration.test.ts tests/then-now-visibility.test.tsx && vitest run --maxWorkers=2 tests/waapi-observation.test.tsx tests/waapi-observation-independent.test.tsx && vitest run --maxWorkers=2 tests/waapi-stage2b.test.tsx && vitest run --maxWorkers=2 tests/then-now-phase2-first.test.tsx tests/then-now-phase2-second.test.tsx tests/then-now-phase2-card.test.tsx tests/then-now-phase2-registration.test.ts && vitest run --maxWorkers=2 tests/phase5b-editors.test.tsx tests/phase5b-compare.test.tsx tests/phase5b-registration.test.tsx && vitest run --maxWorkers=2 tests/pan-zoom.test.tsx tests/image-crop.test.tsx && node --experimental-strip-types scripts/verify-image-crop-precision-model.mjs
+
+
+> loading-museum@0.1.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.7s
+  Running TypeScript ...
+  Finished TypeScript in 7.7s ...
+  Collecting page data using 4 workers ...
+  Generating static pages using 4 workers (0/3) ...
+✓ Generating static pages using 4 workers (3/3) in 442ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
+✔ Read Meの実矩形はゴミ箱へ四方向から重なる (0.858072ms)
+✔ System 1→5→6→1→6をクリック相当の操作で連続選択する (1.090622ms)
+✔ System 5をEnter、System 6をSpace相当の操作で選択する (0.37733ms)
+✔ loadingから最初の年代へ移行する (1.398155ms)
+✔ 年代ごとにeraIndexが進む (0.182059ms)
+✔ 通常年代は共通の待機時間を使う (0.139982ms)
+✔ 最後の年代だけ長い待機時間を使う (0.107372ms)
+✔ 最後の年代後にindex-completeへ移行する (0.227042ms)
+✔ index-complete後にtypingへ移行する (1.756676ms)
+✔ タイトル文字数が1文字ずつ増える (0.208009ms)
+✔ タイトル全文をtyping状態で保持する (0.150756ms)
+✔ タイトル全文表示後にtyping-holdへ移行する (0.241971ms)
+✔ typing-hold後にsignal-lockのbrightenへ移行する (0.230036ms)
+✔ signal-lockはbrightenからnoiseへ進む (0.145854ms)
+✔ signal-lockはnoiseからlockedへ進む (0.106645ms)
+✔ signal-lockのlocked後にcompleteへ進む (0.131848ms)
+✔ complete以降は状態が進まない (0.109474ms)
+✔ complete状態は最後の年代とタイトル全文を保持する (0.167022ms)
+✔ ReplayはrunIdを増やす (0.146825ms)
+✔ Replayは初期状態へ戻す (1.159996ms)
+✔ 古いrunIdによるタイマー更新を無視する (0.140798ms)
+✔ reduced motionは即時completeになる (0.082503ms)
+✔ 年代走査中の点灯数とノード状態をeraIndexから算出する (0.161593ms)
+✔ 年代走査完了後は全タイムラインノードが点灯する (0.367999ms)
+✔ タイムライン進捗率を年代件数と現在位置から算出する (0.235252ms)
+✔ 年代が1件でも安全な進捗率を返し、完了数を件数内へ制限する (0.077638ms)
+✔ 全年代と全時間定数を一か所で管理する (0.211885ms)
+✔ GitHub Pages用の静的HTMLへ9種類の展示を書き出す (9.862839ms)
+✔ 正式名称のタイトル導入、年代テーマ、確定演出、軽減モーションと再生操作を実装する (3.902069ms)
+✔ 既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き出す (2.707989ms)
+✔ カーソル展示室と8種類の体験展示を書き出す (5.86263ms)
+✔ カーソル展示のデータ、Pointer Events、性能とアクセシビリティ対応を実装する (10.183766ms)
+✔ Macintosh誕生展示室を加えた展示室・展示件数を表示する (2.810473ms)
+✔ Macintosh誕生展示室へ18種類の操作展示を書き出す (5.431111ms)
+✔ Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する (5.799407ms)
+✔ Flash特別展示室へ18カテゴリ・66展示と優先デモを実装する (3.818553ms)
+✔ 再検討した9展示と現代Web継承比較を専用実装にする (4.278284ms)
+✔ FlashバナーのCTAを安全に2回強調し、価格とreduced motionを調整する (3.80238ms)
+✔ Flash専用展示の状態遷移、停止制御、操作可能なARIA構造を実装する (2.982634ms)
+✔ MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモを書き出す (3.420114ms)
+✔ 独立した消えたOS展示室へ6 OS・18種類のLoading再構成を書き出す (5.466581ms)
+✔ 展示室のデータ定義とタイマー停止・フォーカス復帰を実装する (1.456164ms)
+✔ 消えたOS展示のデータ・起動・停止・reduced motionを実装する (1.442484ms)
+✔ Linux / UNIXデモの再実行・速度切替・安全な停止を実装する (2.482015ms)
+✔ CSSとJavaScriptをLoading-museumサブパスから参照する (6.703448ms)
+✔ 静的export設定と既存レスポンシブ・reduced-motion対応を維持する (4.920119ms)
+✔ System 1〜6のbutton構造と非スクロールgridを静的に維持する (1.387562ms)
+✔ DOM ANIMATION ROOM を静的HTMLへ出力し、17操作のAPI体験を確認する (4.605453ms)
+✔ 既存ローディング標本の直下に、遅延生成するWAAPI標本ギャラリーを追加する (1.847614ms)
+ℹ tests 49
+ℹ suites 0
+ℹ pass 49
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 173.84063
+
+ RUN  v3.2.4 /workspace/loading-museum-phase6a3
+
+ ✓ tests/waapi-game-regressions.test.tsx (15 tests) 307ms
+ ✓ tests/waapi-cascade-motion.test.tsx (14 tests) 455ms
+ ✓ tests/waapi-stage1-expanded.test.tsx (23 tests) 583ms
+ ✓ tests/phase2-regression.test.tsx (7 tests) 800ms
+   ✓ phase and reset regression > retains plasma phase while changing speed or pausing  364ms
+ ✓ tests/waapi-gallery.test.tsx (12 tests) 5240ms
+   ✓ WAAPI標本ギャラリー操作 > 初期DOMを遅延し、正規化検索・解除・開閉を扱う  913ms
+   ✓ WAAPI標本ギャラリー操作 > 複合フィルター・0件・解除後の全件表示と閉鎖取消を扱う  621ms
+   ✓ WAAPI標本ギャラリー操作 > ゲーム標本を直接操作し、Resetで意味のある初期状態へ戻す  361ms
+   ✓ WAAPI標本ギャラリー操作 > 新しいゲーム標本、5軸フィルター、AI共通状態を操作できる  458ms
+   ✓ WAAPI標本ギャラリー操作 > AI比較モードは一括フェーズを進め、閉じるとループを停止する  904ms
+   ✓ WAAPI標本ギャラリー操作 > 追加ゲーム14件は固有DOM・状態・操作結果を提供する  827ms
+ ✓ tests/practical-b.test.tsx (6 tests) 465ms
+ ✓ tests/glass-exhibit.test.tsx (3 tests) 244ms
+ ✓ tests/practical-a.test.tsx (8 tests) 374ms
+ ✓ tests/waapi-stage1-menu-coin.test.tsx (5 tests) 1764ms
+   ✓ Menu cursor belongs to the current row for buttons, keyboard, limits and Reset  525ms
+   ✓ Coin entry, Replay and re-entry never grant points, including late completion after Reset  380ms
+   ✓ Coin explicit COLLECT awards once per Reset and rapid input cannot duplicate it  321ms
+ ✓ tests/dom11-selection.test.tsx (4 tests) 574ms
+ ✓ tests/waapi-hp-regression.test.tsx (4 tests) 1515ms
+   ✓ Damage直後Reset後、旧追従更新の予定時刻を過ぎても72を保つ  547ms
+   ✓ Damage連打とHealは最新HPに収束し、Reset連打も不変  416ms
+ ✓ tests/paper-exhibit.test.tsx (3 tests) 177ms
+ ✓ tests/modern-animation.test.tsx (3 tests) 195ms
+ ✓ tests/phase2-room.test.tsx (4 tests) 298ms
+ ✓ tests/practical-runtime.test.tsx (1 test) 23ms
+ ✓ tests/phase2-b.test.tsx (4 tests) 262ms
+ ✓ tests/modern-lens.test.tsx (1 test) 106ms
+ ✓ tests/macintosh-system-choice.test.tsx (2 tests) 339ms
+ ✓ tests/practical-room.test.tsx (15 tests) 1075ms
+ ✓ tests/waapi-samples.test.ts (7 tests) 26ms
+ ✓ tests/modern-menu.test.tsx (1 test) 147ms
+ ✓ tests/modern-drift-geometry.test.ts (2 tests) 183ms
+ ✓ tests/modern-mesh.test.ts (2 tests) 38ms
+ ✓ tests/waapi-interaction-state.test.ts (2 tests) 4ms
+ ✓ tests/phase2-elastic.test.ts (2 tests) 2ms
+
+ Test Files  25 passed (25)
+      Tests  150 passed (150)
+   Start at  17:49:34
+   Duration  15.97s (transform 1.28s, setup 0ms, collect 3.90s, tests 15.20s, environment 7.02s, prepare 1.64s)
+
+
+ RUN  v3.2.4 /workspace/loading-museum-phase6a3
+
+ ✓ tests/phase4a.test.tsx (32 tests) 1153ms
+
+ Test Files  1 passed (1)
+      Tests  32 passed (32)
+   Start at  17:49:51
+   Duration  2.24s (transform 375ms, setup 0ms, collect 557ms, tests 1.15s, environment 297ms, prepare 70ms)
+
+
+ RUN  v3.2.4 /workspace/loading-museum-phase6a3
+
+ ✓ tests/phase4b-interactions.test.tsx (11 tests) 562ms
+ ✓ tests/phase4b-async.test.tsx (14 tests) 601ms
+
+ Test Files  2 passed (2)
+      Tests  25 passed (25)
+   Start at  17:49:53
+   Duration  1.61s (transform 209ms, setup 0ms, collect 523ms, tests 1.16s, environment 923ms, prepare 169ms)
+
+
+ RUN  v3.2.4 /workspace/loading-museum-phase6a3
+
+ ✓ tests/phase5-data.test.tsx (8 tests) 727ms
+ ✓ tests/phase5-navigation.test.tsx (12 tests) 838ms
+
+ Test Files  2 passed (2)
+      Tests  20 passed (20)
+   Start at  17:49:55
+   Duration  1.81s (transform 190ms, setup 0ms, collect 474ms, tests 1.57s, environment 916ms, prepare 161ms)
+
+
+ RUN  v3.2.4 /workspace/loading-museum-phase6a3
+
+ ✓ tests/phase5-focus-revision.test.tsx (8 tests) 675ms
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  17:49:58
+   Duration  1.41s (transform 112ms, setup 0ms, collect 232ms, tests 675ms, environment 272ms, prepare 63ms)
+
+
+ RUN  v3.2.4 /workspace/loading-museum-phase6a3
+
+ ✓ tests/then-now-first.test.tsx (7 tests) 165ms
+ ✓ tests/then-now-second.test.tsx (17 tests) 446ms
+ ✓ tests/then-now-registration.test.ts (3 tests) 8ms
+ ✓ tests/then-now-visibility.test.tsx (1 test) 211ms
+
+ Test Files  4 passed (4)
+      Tests  28 passed (28)
+   Start at  17:49:59
+   Duration  1.88s (transform 365ms, setup 0ms, collect 717ms, tests 830ms, environment 916ms, prepare 245ms)
+
+
+ RUN  v3.2.4 /workspace/loading-museum-phase6a3
+
+ ✓ tests/waapi-observation-independent.test.tsx (7 tests) 350ms
+ ✓ tests/waapi-observation.test.tsx (37 tests) 5308ms
+   ✓ actual gallery integration: observation never owns game state > Menu selection survives observation seek, finish, reverse, mode exit, and ordinary Reset still works  446ms
+   ✓ actual gallery integration: observation never owns game state > Coin preview repeatedly finishes and rewinds with zero points; normal COLLECT awards once  455ms
+   ✓ actual gallery integration: observation never owns game state > collected Coin retains its score and collected guard through observation and return  337ms
+   ✓ actual gallery integration: observation never owns game state > mode exit cancels observation and reopening cannot resurrect the old running instance  362ms
+   ✓ observed Coin normal motion cancellation > Replay after observation cancels running normal motion on reduced ON without changing score  307ms
+   ✓ observed Coin normal motion cancellation > reduced explicit Replay uses reduced definition and repeated ON/OFF does not award or autoplay  350ms
+   ✓ observed Coin normal motion cancellation > rapid mode switches retain collected state and Reset permits exactly one new acquisition  374ms
+
+ Test Files  2 passed (2)
+      Tests  44 passed (44)
+   Start at  17:50:02
+   Duration  6.50s (transform 324ms, setup 0ms, collect 769ms, tests 5.66s, environment 915ms, prepare 163ms)
+
+
+ RUN  v3.2.4 /workspace/loading-museum-phase6a3
+
+ ✓ tests/waapi-stage2b.test.tsx (24 tests) 1393ms
+
+ Test Files  1 passed (1)
+      Tests  24 passed (24)
+   Start at  17:50:09
+   Duration  2.21s (transform 193ms, setup 0ms, collect 303ms, tests 1.39s, environment 291ms, prepare 64ms)
+
+
+ RUN  v3.2.4 /workspace/loading-museum-phase6a3
+
+ ✓ tests/then-now-phase2-first.test.tsx (13 tests) 294ms
+ ✓ tests/then-now-phase2-second.test.tsx (20 tests) 815ms
+ ✓ tests/then-now-phase2-registration.test.ts (2 tests) 7ms
+ ✓ tests/then-now-phase2-card.test.tsx (3 tests) 633ms
+   ✓ page hidden suspends a phase-two editor without destroying its work; close still unmounts  349ms
+
+ Test Files  4 passed (4)
+      Tests  38 passed (38)
+   Start at  17:50:11
+   Duration  2.43s (transform 407ms, setup 0ms, collect 679ms, tests 1.75s, environment 948ms, prepare 270ms)
+
+
+ RUN  v3.2.4 /workspace/loading-museum-phase6a3
+
+ ✓ tests/phase5b-compare.test.tsx (7 tests) 600ms
+ ✓ tests/phase5b-editors.test.tsx (10 tests) 763ms
+ ✓ tests/phase5b-registration.test.tsx (7 tests) 593ms
+
+ Test Files  3 passed (3)
+      Tests  24 passed (24)
+   Start at  17:50:14
+   Duration  2.95s (transform 464ms, setup 0ms, collect 884ms, tests 1.96s, environment 959ms, prepare 209ms)
+
+
+ RUN  v3.2.4 /workspace/loading-museum-phase6a3
+
+ ✓ tests/pan-zoom.test.tsx (13 tests) 1263ms
+ ✓ tests/image-crop.test.tsx (30 tests) 1874ms
+   ✓ reapplies actual displayed wide minimum values 16 times without drift  392ms
+
+ Test Files  2 passed (2)
+      Tests  43 passed (43)
+   Start at  17:50:17
+   Duration  3.02s (transform 429ms, setup 0ms, collect 1.04s, tests 3.14s, environment 723ms, prepare 180ms)
+
+{"head":"05735e83fd23d228d797afb89a150045293d3e58","checks":45,"passed":45,"failures":[]}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice

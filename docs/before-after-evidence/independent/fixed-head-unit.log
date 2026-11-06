@@ -1,0 +1,26 @@
+
+ RUN  v3.2.4 /workspace/loading-museum-phase6a3
+
+ ✓ tests/pan-zoom.test.tsx (13 tests) 2432ms
+   ✓ owner pointer alone can commit; cancel rolls back and stale events cannot commit  424ms
+   ✓ buttons, numeric validation, keyboard scope, touch modes and Reset/fit selection contracts  535ms
+   ✓ searches one new exhibit, discards drag on switching and returns focus on close  576ms
+ ✓ tests/image-crop.test.tsx (30 tests) 4501ms
+   ✓ reapplies actual displayed wide minimum values 16 times without drift  692ms
+   ✓ reapplies actual displayed photo minimum values 16 times without drift  391ms
+   ✓ reapplies actual displayed square minimum values 16 times without drift  499ms
+   ✓ actual numeric form, independent numeric vs pointer equivalence, invalid value messages and input arrow scope  576ms
+ ✓ tests/phase5b-compare.test.tsx (7 tests) 999ms
+   ✓ diff enforces resource boundaries explicitly, and navigation focuses actual hunk  414ms
+ ✓ tests/before-after-compare.test.tsx (38 tests) 660ms
+
+ Test Files  4 passed (4)
+      Tests  88 passed (88)
+   Start at  18:04:09
+   Duration  8.22s (transform 940ms, setup 0ms, collect 2.63s, tests 8.59s, environment 2.24s, prepare 492ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice

@@ -1,0 +1,271 @@
+import { createRequire } from 'node:module';
+import { createServer } from 'node:http';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import assert from 'node:assert/strict';
+const require = createRequire(import.meta.url), pw = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const { PNG } = require(process.env.PNG_MODULE || 'pngjs');
+const root = await fs.realpath('out'), dest = process.env.EVIDENCE_DIR || 'work/before-after-browser'; await fs.mkdir(dest, { recursive: true });
+const git = (...args) => execFileSync('git', args, { encoding: 'utf8' }).trim(), sha = b => createHash('sha256').update(b).digest('hex');
+const server = createServer(async (req, res) => {
+  try {
+    let url = decodeURIComponent(new URL(req.url, 'http://localhost').pathname).replace(/^\/Loading-museum/, ''); if (url.endsWith('/')) url += 'index.html';
+    const file = await fs.realpath(path.resolve(root, '.' + url)); assert.ok(file.startsWith(root + path.sep));
+    res.setHeader('Content-Type', file.endsWith('.js') ? 'text/javascript' : file.endsWith('.css') ? 'text/css' : file.endsWith('.svg') ? 'image/svg+xml' : 'text/html'); res.end(await fs.readFile(file));
+  } catch { res.statusCode = 404; res.end('missing'); }
+});
+await new Promise(r => server.listen(0, '127.0.0.1', r));
+const url = `http://127.0.0.1:${server.address().port}/Loading-museum/`;
+const report = { head: git('rev-parse', 'HEAD'), tree: git('rev-parse', 'HEAD^{tree}'), dirty: git('status', '--porcelain'), node: process.version, platform: process.platform, started: new Date().toISOString(), exportSHA256: sha(await fs.readFile('out/index.html')), sourceSHA256: {}, cases: [], images: [], controls: [], errors: [], notTested: ['physical Safari / VoiceOver', 'physical mouse / keyboard / touch', 'WebKit native touch drag', 'real OS backgrounding / capture loss', 'browser pinch'] };
+for (const file of git('ls-files', '--cached', '--others', '--exclude-standard').split('\n').filter(f => /^(app\/|scripts\/|tests\/|public\/compare\/|package|\.github\/)/.test(f))) report.sourceSHA256[file] = sha((await fs.readFile(file)).toString().replaceAll('\r\n', '\n'));
+const engines = (process.env.BROWSERS || 'chromium,webkit').split(','), widths = (process.env.WIDTHS || '375,390,765,1280').split(',').map(Number), motions = (process.env.MOTIONS || 'no-preference,reduce').split(',');
+report.expected = engines.length * widths.length * motions.length;
+let browser, page;
+const near = (a, b, tol = .05) => assert.ok(Math.abs(a - b) <= tol, `${a} != ${b} ± ${tol}`);
+function comparePNG(actualBytes, expectedBytes, mode, amount, frame) {
+  const a = PNG.sync.read(actualBytes), b = PNG.sync.read(expectedBytes); assert.equal(a.width, b.width); assert.equal(a.height, b.height);
+  const cssWidth = frame.images[0].width, cssHeight = frame.images[0].height, dpr = frame.dpr;
+  const paddingX = Math.max(0, a.width - cssWidth * dpr), paddingY = Math.max(0, a.height - cssHeight * dpr);
+  // floor/ceil of fractional screenshot bounds adds <2px in total. This is a
+  // symmetric interior guard, not an estimate of how that padding is distributed.
+  const marginX = 1 + Math.ceil(paddingX / 2), marginY = 1 + Math.ceil(paddingY / 2);
+  assert.ok(marginX <= 2 && marginY <= 2, 'At most one quantization pixel plus one AA pixel per edge');
+  let mismatches = 0, pixels = 0, max = 0;
+  const samples = [], columns = new Map(), rows = new Map();
+  for (let y = marginY; y < a.height - marginY; y++) for (let x = marginX; x < a.width - marginX; x++) {
+    // A percentage edge can cross a device pixel. Its exact CSS coordinate is checked separately.
+    if (mode === 'split' && Math.abs(x - a.width * amount / 100) <= 1) continue;
+    const i = (y * a.width + x) * 4; let bad = false;
+    for (let c = 0; c < 3; c++) { const d = Math.abs(a.data[i + c] - b.data[i + c]); max = Math.max(max, d); if (d > 3) bad = true; }
+    pixels++; if (bad) {
+      mismatches++; columns.set(x, (columns.get(x) ?? 0) + 1); rows.set(y, (rows.get(y) ?? 0) + 1);
+      if (samples.length < 12) samples.push({ x, y, actual: [...a.data.subarray(i, i + 3)], expected: [...b.data.subarray(i, i + 3)] });
+    }
+  }
+  const peak = map => [...map].sort((a, b) => b[1] - a[1]).slice(0, 12);
+  const interior = (a.width - 2 * marginX) * (a.height - 2 * marginY);
+  return { mismatches, pixels, fraction: mismatches / pixels, max, pass: mismatches / pixels < .002, samples, columns: peak(columns), rows: peak(rows),
+    frame: { cssWidth, cssHeight, dpr, pngWidth: a.width, pngHeight: a.height, paddingX, paddingY, marginX, marginY, frameExcludedPixels: a.width * a.height - interior, boundaryExcludedPixels: interior - pixels } };
+}
+try {
+  if (process.env.REQUIRE_CLEAN === '1') assert.equal(report.dirty, '', 'Source must match submitted HEAD');
+  report.assetCoordinates = [];
+  for (const pair of ['restoration', 'correction']) for (const version of ['before', 'after']) {
+    const file = `public/compare/${pair}-${version}.svg`, bytes = await fs.readFile(file), svg = bytes.toString();
+    const rootTag = svg.match(/^<svg\b[^>]*>/)?.[0]; assert.ok(rootTag, `SVG root ${file}`);
+    assert.match(rootTag, /\bwidth="1200"/); assert.match(rootTag, /\bheight="760"/); assert.match(rootTag, /\bviewBox="0 0 1200 760"/);
+    report.assetCoordinates.push({ file, width: 1200, height: 760, viewBox: '0 0 1200 760', sha256: sha(bytes) });
+  }
+  for (const engine of engines) {
+    const executablePath = engine === 'chromium' ? process.env.CHROMIUM_EXECUTABLE : process.env.WEBKIT_EXECUTABLE;
+    browser = await pw[engine].launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
+    for (const width of widths) for (const motion of motions) {
+      const context = await browser.newContext({ viewport: { width, height: 1000 }, reducedMotion: motion, hasTouch: width < 500 }); page = await context.newPage(); page.setDefaultTimeout(8000);
+      const errors = [], checks = [], measurements = []; page.on('pageerror', e => errors.push(String(e)));
+      const prefix = `${engine}-${width}-${motion}`; report.current = { engine, version: browser.version(), width, motion }; report.activeCase = { checks, measurements, errors };
+      await page.addInitScript(() => {
+        sessionStorage.setItem('digital-motion-archive-title-seen-v1', 'seen'); window.compareNativePointers = [];
+        for (const type of ['pointerdown', 'pointermove', 'pointerup']) document.addEventListener(type, e => {
+          if (e.target instanceof Element && e.target.closest('[data-testid="bc-canvas"]')) window.compareNativePointers.push({ type, id: e.pointerId, x: e.clientX, y: e.clientY, trusted: e.isTrusted, pointerType: e.pointerType });
+        }, true);
+      });
+      await page.goto(url); assert.match(await page.locator('.archiveMeta').textContent(), /13 ROOMS \/ 266 OBJECTS/);
+      const room = page.locator('.phase4Room'); await room.getByRole('button', { name: '部品展示室を開く', exact: true }).click(); assert.equal(await room.locator('nav button').count(), 27);
+      const selectExhibit = async name => room.getByRole('button', { name, exact: true }).click();
+      await selectExhibit('Before / After Compare / 画像の変化を見比べる');
+      const stage = room.getByTestId('before-after-compare'), canvas = stage.getByTestId('bc-canvas'), top = stage.getByTestId('bc-top'), base = stage.getByTestId('bc-base');
+      const click = async name => stage.getByRole('button', { name, exact: true }).click();
+      const waitReady = () => page.waitForFunction(() => document.querySelector('[data-testid="bc-canvas"]')?.dataset.ready === 'true');
+      await waitReady();
+      const range = () => stage.getByRole('slider', { name: '比較位置', exact: true });
+      const alpha = () => stage.getByRole('slider', { name: '比較透明度', exact: true });
+      const handle = () => stage.getByRole('slider', { name: '比較境界', exact: true });
+      async function value(expected, overlay = false) {
+        await page.waitForFunction(({ expected, overlay }) => {
+          const e = document.querySelector(`input[aria-label="${overlay ? '比較透明度' : '比較位置'}"]`), top = document.querySelector('[data-testid="bc-top"]'), line = document.querySelector('[data-testid="bc-boundary"]');
+          const displayed = overlay ? Number(top?.style.opacity) * 100 : parseFloat(line?.style.left);
+          return e && Math.abs(+e.value - expected) < .001 && Math.abs(displayed - expected) < .001;
+        }, { expected, overlay });
+      }
+      async function manual(expected, overlay = false) {
+        const input = overlay ? alpha() : range(); await input.focus(); await page.keyboard.press('Home');
+        for (let n = 0; n < Math.floor(expected / 10); n++) await page.keyboard.press('Shift+ArrowRight');
+        for (let n = 0; n < expected % 10; n++) await page.keyboard.press('ArrowRight'); await value(expected, overlay);
+      }
+      async function nativeValue(startValue) {
+        const delivered = await page.evaluate(() => {
+          const events = window.compareNativePointers.filter(e => e.trusted), index = events.findLastIndex(e => e.type === 'pointerdown');
+          return { start: events[index], end: events.slice(index).at(-1) };
+        });
+        assert.ok(delivered.start && delivered.end && delivered.start.id === delivered.end.id, 'Trusted owner pointer path must exist');
+        const expected = Math.max(0, Math.min(100, startValue + (delivered.end.x - delivered.start.x) / b.width * 100));
+        await page.waitForFunction(expected => {
+          const e = document.querySelector('input[aria-label="比較位置"]'), line = document.querySelector('[data-testid="bc-boundary"]');
+          return e && Math.abs(+e.value - Math.round(expected)) < .001 && Math.abs(parseFloat(line.style.left) - expected) < .001;
+        }, expected);
+        measurements.push({ nativePointer: delivered, startValue, width: b.width, expected });
+      }
+      async function mask(expected) {
+        const clip = await top.evaluate(el => getComputedStyle(el).clipPath), args = clip.match(/^inset\(([^)]+)\)$/)?.[1].trim().split(/\s+/);
+        assert.ok(args && args.length >= 1 && args.length <= 4, `Expected rectangular inset: ${clip}`);
+        const [t, r = t, bt = t, l = r] = args;
+        const box = await canvas.boundingBox(), lengths = [t, r, bt, l].map((v, i) => parseFloat(v) * (v.endsWith('%') ? (i % 2 ? box.width : box.height) / 100 : 1));
+        near(lengths[0], 0); near(lengths[1], box.width * (100 - expected) / 100); near(lengths[2], 0); near(lengths[3], 0);
+        measurements.push({ maskExpected: expected, computedClip: clip, edgesCSS: lengths });
+      }
+      async function snapshot(name, locator = canvas) {
+        const file = `${prefix}-${name}.png`, data = await locator.screenshot(); await fs.writeFile(path.join(dest, file), data); report.images.push({ name: file, sha256: sha(data) });
+      }
+      async function geometry() {
+        const rects = await canvas.evaluate(el => ({ canvas: (() => { const r = el.getBoundingClientRect(); return { x: r.x, y: r.y, width: r.width, height: r.height }; })(), images: [...el.querySelectorAll('img')].map(img => { const r = img.getBoundingClientRect(); return { x: r.x, y: r.y, width: r.width, height: r.height, natural: [img.naturalWidth, img.naturalHeight] }; }) }));
+        const [a, b] = rects.images;
+        // Source coordinate dimensions are checked above. WebKit reports a different SVG natural size.
+        assert.ok(a.natural.every(n => n > 0)); assert.ok(b.natural.every(n => n > 0));
+        for (const k of ['x', 'y', 'width', 'height']) { near(a[k], b[k]); near(a[k], rects.canvas[k]); }
+        near(a.width / a.height, 1200 / 760, .001); measurements.push(rects); return rects;
+      }
+      // Test-owned renderer uses explicit source URLs and an overflow rectangle (not product clip-path).
+      // Its opacity is set from the test case, never from a product output or label.
+      async function raster({ pair = 'restoration', mode = 'split', amount = 50, reversed = false } = {}) {
+        const hide = await page.addStyleTag({ content: '.bcLabels,.bcBoundary,.bcHandle{visibility:hidden!important}' });
+        const actualDOM = await canvas.evaluate(el => {
+          const top = el.querySelector('[data-testid="bc-top"]'), s = getComputedStyle(top);
+          return { clip: top.style.clipPath, opacity: top.style.opacity, computedClip: s.clipPath, computedOpacity: s.opacity, scrollY, dpr: devicePixelRatio,
+            images: [...el.querySelectorAll('img')].map(img => { const b = img.getBoundingClientRect(); return { x: b.x, y: b.y, width: b.width, height: b.height, fit: getComputedStyle(img).objectFit }; }) };
+        });
+        // Observe committed styles and allow their paint; native range values can lead a React/paint update.
+        await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
+        const actual = await canvas.screenshot();
+        await canvas.evaluate((el, { pair, mode, amount, reversed }) => {
+          const b = el.getBoundingClientRect(), which = reversed ? ['after', 'before'] : ['before', 'after'];
+          const ref = document.createElement('div'); ref.id = 'compare-independent-reference'; Object.assign(ref.style, { position: 'absolute', inset: '0', zIndex: '20', overflow: 'hidden' });
+          // The test-owned source contract preserves aspect ratio inside the measured box.
+          // Default object-fit:fill would distort the reference at fractional CSS dimensions.
+          const image = name => { const img = document.createElement('img'); img.width = 1200; img.height = 760; img.src = `/Loading-museum/compare/${pair}-${name}.svg`; Object.assign(img.style, { position: 'absolute', left: '0', top: '0', width: `${b.width}px`, height: `${b.height}px`, maxWidth: 'none', objectFit: 'contain' }); return img; };
+          ref.append(image(which[0])); const over = document.createElement('div'); Object.assign(over.style, { position: 'absolute', inset: '0', overflow: 'hidden', width: mode === 'split' ? `${amount}%` : '100%', opacity: mode === 'overlay' ? String(amount / 100) : '1' }); over.append(image(which[1])); ref.append(over); el.append(ref);
+        }, { pair, mode, amount, reversed });
+        await canvas.locator('#compare-independent-reference img').evaluateAll(async imgs => Promise.all(imgs.map(img => img.decode())));
+        const referenceDOM = await canvas.locator('#compare-independent-reference img').evaluateAll(imgs => imgs.map(img => { const b = img.getBoundingClientRect(); return { x: b.x, y: b.y, width: b.width, height: b.height, fit: getComputedStyle(img).objectFit }; }));
+        const expected = await canvas.screenshot(); await canvas.locator('#compare-independent-reference').evaluate(el => el.remove()); await hide.evaluate(el => el.remove());
+        const result = comparePNG(actual, expected, mode, amount, actualDOM); if (!result.pass) { for (const [kind, data] of [['actual', actual], ['expected', expected]]) { const name = `${prefix}-${pair}-${mode}-${amount}-${reversed}-${kind}.png`; await fs.writeFile(path.join(dest, name), data); report.images.push({ name, sha256: sha(data), kind: 'oracle-disagreement' }); } } measurements.push({ raster: { pair, mode, amount, reversed }, actualDOM, referenceDOM, result }); return result;
+      }
+      for (const pair of ['restoration', 'correction']) {
+        await stage.getByLabel('比較する図版').selectOption(pair); await waitReady();
+        const fixed = await geometry();
+        for (const amount of [0, 50, 100]) {
+          await manual(amount); await geometry(); await mask(amount);
+          const line = await stage.getByTestId('bc-boundary').evaluate(el => { const parent = el.parentElement.getBoundingClientRect(), b = el.getBoundingClientRect(); return (b.x + b.width / 2 - parent.x) / parent.width * 100; }); near(line, amount, .02);
+          assert.ok((await raster({ pair, amount })).pass, `split raster ${pair} ${amount}`);
+          if (pair === 'restoration') await snapshot(amount === 0 ? 'before-full' : amount === 100 ? 'after-full' : 'split50');
+          const now = await geometry(); for (const k of ['width', 'height']) near(now.images[0][k], fixed.images[0][k]);
+        }
+        await manual(37); await click('Before / Afterを反転'); await value(37); await mask(37); assert.match(await top.locator('img').getAttribute('alt'), /^Before/); assert.match(await base.locator('img').getAttribute('alt'), /^After/);
+        assert.ok((await raster({ pair, amount: 37, reversed: true })).pass); if (pair === 'restoration') await snapshot('reversed');
+        await click('Reset'); await click('Overlay / 透明度');
+        for (const amount of [0, 50, 100]) { await manual(amount, true); near(Number(await top.evaluate(el => getComputedStyle(el).opacity)), amount / 100, .001); assert.ok((await raster({ pair, mode: 'overlay', amount })).pass, `overlay raster ${pair} ${amount}`); if (pair === 'restoration' && amount === 50) await snapshot('overlay50'); }
+        await click('Reset'); await click('Side-by-Side / 並列');
+        const side = await canvas.locator('img').evaluateAll(imgs => imgs.map(img => { const b = img.getBoundingClientRect(); return { width: b.width, height: b.height, x: b.x, right: b.right }; }));
+        near(side[0].width, side[1].width); near(side[0].height, side[1].height); assert.ok(side[0].right <= side[1].x); near(side[0].width / side[0].height, 1200 / 760, .001);
+        assert.ok(await stage.getByRole('button', { name: '自動比較', exact: true }).isDisabled()); if (pair === 'restoration') await snapshot('side-by-side');
+        await click('Split / 境界');
+      }
+      checks.push('two pairs: test-owned SVG raster oracle at split/opacity 0/50/100, fixed geometry, split37 reversed labels/content, equal side scales');
+      await stage.getByLabel('比較する図版').selectOption('restoration'); await waitReady(); await click('Reset');
+      await handle().focus(); await page.keyboard.press('ArrowRight'); await value(51); await page.keyboard.press('Shift+ArrowLeft'); await value(41);
+      for (const [key, expected] of [['Home', 0], ['End', 100]]) {
+        await handle().focus(); await page.keyboard.press(key); await value(expected); const b = await handle().boundingBox(); await page.mouse.move(b.x + b.width / 2, b.y + b.height / 2); await page.mouse.down(); await value(expected); await page.mouse.up(); await value(expected);
+      }
+      await manual(50); await canvas.scrollIntoViewIfNeeded(); let b = await canvas.boundingBox(), h = await handle().boundingBox();
+      await page.mouse.move(h.x + h.width / 2, h.y + h.height / 2); await page.mouse.down(); await page.mouse.move(b.x + b.width * .75, h.y + h.height / 2, { steps: 6 }); await nativeValue(50); await page.keyboard.press('Escape'); await page.mouse.up(); await value(50);
+      h = await handle().boundingBox(); await page.mouse.move(h.x + 24, h.y + 24); await page.mouse.down(); await page.mouse.move(b.x + b.width * .73, h.y + 24, { steps: 5 }); await page.mouse.up(); await nativeValue(50);
+      checks.push('Playwright browser mouse drag/commit and Escape rollback, native keyboard 1/10/Home/End and no jump on inward edge handle press');
+      // Synthetic delivery is supplemental and explicitly distinct from trusted browser input.
+      for (const reason of ['pointercancel', 'lostpointercapture', 'reset', 'resize-zero', 'hidden']) {
+        await manual(50);
+        // Range focus may scroll the handle outside the viewport on large figures.
+        await handle().scrollIntoViewIfNeeded(); b = await canvas.boundingBox(); h = await handle().boundingBox(); await page.mouse.move(h.x + 24, h.y + 24); await page.mouse.down(); await page.waitForFunction(() => document.querySelector('[data-testid="bc-canvas"]').dataset.dragging === 'true'); await page.mouse.move(b.x + b.width * .8, h.y + 24); await nativeValue(50);
+        const id = await canvas.evaluate(el => { window.compareLastPointer = null; el.addEventListener('pointermove', e => { window.compareLastPointer = e.pointerId; }, { once: true }); return true; }); assert.equal(id, true);
+        await page.mouse.move(b.x + b.width * .81, h.y + 24); await nativeValue(50);
+        const pointerId = await page.evaluate(() => window.compareLastPointer); assert.ok(Number.isInteger(pointerId));
+        if (reason === 'reset') await stage.getByRole('button', { name: 'Reset', exact: true }).dispatchEvent('click');
+        else if (reason === 'resize-zero') { await canvas.evaluate(el => { el.style.width = '0px'; }); await page.waitForFunction(() => document.querySelector('[data-testid="bc-canvas"]').dataset.ready === 'false'); await canvas.evaluate(el => { el.style.width = ''; }); await waitReady(); }
+        else if (reason === 'hidden') { await page.evaluate(() => { Object.defineProperty(document, 'hidden', { configurable: true, get: () => true }); document.dispatchEvent(new Event('visibilitychange')); }); }
+        else await canvas.dispatchEvent(reason, { pointerId, bubbles: true });
+        await canvas.dispatchEvent('pointermove', { pointerId, clientX: b.x + b.width, bubbles: true }); await canvas.dispatchEvent('pointerup', { pointerId, clientX: b.x + b.width, bubbles: true }); await page.mouse.up(); await value(50);
+        if (reason === 'hidden') await page.evaluate(() => { delete document.hidden; document.dispatchEvent(new Event('visibilitychange')); });
+      }
+      checks.push('native mouse drag plus synthetic cancel/lostcapture/Reset/hidden and CSS zero-width resize; post-cancel stale pointer rejects');
+      await click('Reset');
+      for (const mode of ['split', 'overlay']) {
+        await click(mode === 'split' ? 'Split / 境界' : 'Overlay / 透明度');
+        await click('Replay');
+        if (motion === 'reduce') { await value(100, mode === 'overlay'); assert.equal(await stage.getAttribute('data-playback'), 'finished'); }
+        else {
+          await page.waitForFunction(() => { const e = document.querySelector('.bcRange input'); return +e.value > 15 && +e.value < 85; });
+          await click('一時停止'); const paused = Number(await (mode === 'overlay' ? alpha() : range()).inputValue()); assert.ok(paused > 0 && paused < 100); await snapshot(`${mode}-paused`);
+          await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))); near(Number(await (mode === 'overlay' ? alpha() : range()).inputValue()), paused, .001);
+          await click('再開'); await page.waitForFunction(v => +document.querySelector('.bcRange input').value > v, paused);
+          await manual(42, mode === 'overlay'); assert.equal(await stage.getAttribute('data-playback'), 'idle');
+          await click('Replay'); await click('Replay'); await click('Replay'); await click('一時停止');
+          await click('Replay'); await page.waitForFunction(() => document.querySelector('[data-testid="before-after-compare"]').dataset.playback === 'finished'); await value(100, mode === 'overlay');
+        }
+      }
+      checks.push('both playback modes: reduced explicit end or real rAF intermediate, pause/hold/resume/manual interrupt, continuous Replay, final endpoint');
+      await click('Split / 境界'); await click('Replay'); await click('Overlay / 透明度'); assert.notEqual(await stage.getAttribute('data-playback'), 'playing');
+      await click('Replay'); await stage.getByLabel('比較する図版').selectOption('correction'); await waitReady(); await value(50, true); assert.equal(await stage.getAttribute('data-playback'), 'idle');
+      await page.emulateMedia({ reducedMotion: 'no-preference' }); await click('Replay'); await page.waitForFunction(() => +document.querySelector('.bcRange input').value > 5); await page.emulateMedia({ reducedMotion: 'reduce' });
+      await page.waitForFunction(() => document.querySelector('[data-testid="before-after-compare"]').dataset.playback === 'paused'); const held = await alpha().inputValue(); await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))); assert.equal(await alpha().inputValue(), held);
+      await page.emulateMedia({ reducedMotion: motion });
+      checks.push('mode/pair changes stop prior playback; runtime reduced-motion toggle pauses and holds');
+      await page.route('**/restoration-after.svg', r => r.abort()); await stage.getByLabel('比較する図版').selectOption('restoration'); await stage.getByRole('alert').waitFor(); assert.ok(await stage.getByRole('button', { name: '自動比較', exact: true }).isDisabled());
+      await page.unroute('**/restoration-after.svg'); await click('図版を再読込'); await waitReady(); await value(50, true);
+      checks.push('actual request failure blocks comparison; explicit retry restores pair');
+      await click('Split / 境界'); await manual(37);
+      for (const [fault, css, expected] of [['mask-fixed', 'clip-path:inset(0 75% 0 0)!important', { amount: 37 }], ['alpha-fixed', 'opacity:.25!important', { mode: 'overlay', amount: 50 }]]) {
+        if (fault === 'alpha-fixed') { await click('Overlay / 透明度'); await manual(50, true); }
+        const style = await page.addStyleTag({ content: `.bcTop{${css}}` }); const result = await raster(expected); assert.equal(result.pass, false, `oracle must detect ${fault}`); report.controls.push({ ...report.current, fault, result }); await style.evaluate(el => el.remove()); assert.ok((await raster(expected)).pass);
+      }
+      checks.push('negative controls detect fixed 25% mask and fixed .25 alpha; restored renderer passes');
+      await click('Reset'); if (width < 500) await snapshot('mobile', stage);
+      if (engine === 'chromium' && width === 375) {
+        await click('Split / 境界'); await manual(50); await canvas.scrollIntoViewIfNeeded(); b = await canvas.boundingBox(); h = await handle().boundingBox();
+        const cdp = await context.newCDPSession(page); const x = h.x + 24, y = h.y + 24;
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x + b.width / 4, y }] }); await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] }); await nativeValue(50);
+        await manual(50); await canvas.scrollIntoViewIfNeeded(); b = await canvas.boundingBox(); const scrollBefore = await page.evaluate(() => scrollY);
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: b.x + 15, y: b.y + b.height * .8 }] });
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: b.x + 15, y: b.y + b.height * .2 }] }); await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+        await page.waitForFunction(old => scrollY > old, scrollBefore); await value(50); await cdp.detach(); checks.push('Chromium CDP emulated touch handle drag + image vertical scroll (not physical touch)');
+      }
+      await room.getByRole('button', { name: '部品展示室を閉じる', exact: true }).click(); assert.equal(await stage.count(), 0); await room.getByRole('button', { name: '部品展示室を開く', exact: true }).click(); await waitReady(); await value(50);
+      await selectExhibit('Pan & Zoom / 拡大して探す'); assert.ok(await room.getByTestId('pan-zoom').count());
+      await selectExhibit('Image Crop / 構図を切り取る'); assert.equal(await room.getByTestId('ic-preview').getAttribute('viewBox'), '100 120 480 360');
+      await selectExhibit('Diff Viewer / 版の間を読む');
+      assert.ok(await room.locator('article').textContent());
+      const overflow = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, width: innerWidth })); assert.ok(overflow.scroll <= overflow.width, JSON.stringify(overflow)); assert.deepEqual(errors, []);
+      checks.push('close/reopen initial state; Pan & Zoom / Image Crop / Diff Viewer selection; no pageerror or document overflow');
+      report.cases.push({ ...report.current, checks, measurements, errors }); await context.close();
+    }
+    await browser.close(); browser = null;
+  }
+  assert.equal(report.cases.length, report.expected); report.pass = true;
+} catch (error) {
+  report.pass = false; report.errors.push(String(error.stack || error));
+  if (page) {
+    report.failureDOM = await page.evaluate(() => {
+      const el = document.querySelector('[data-testid="bc-canvas"]'), stage = document.querySelector('[data-testid="before-after-compare"]');
+      const b = el?.getBoundingClientRect();
+      return { stage: stage ? { ...stage.dataset } : null, canvas: el ? { ...el.dataset, width: b.width, height: b.height } : null,
+        images: [...(el?.querySelectorAll('img') ?? [])].map(img => ({ src: img.getAttribute('src'), complete: img.complete, naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight, currentSrc: img.currentSrc })),
+        alerts: [...document.querySelectorAll('.beforeAfterCompare [role="alert"]')].map(n => n.textContent), status: [...document.querySelectorAll('.beforeAfterCompare [role="status"]')].map(n => n.textContent) };
+    }).catch(e => ({ error: String(e) }));
+    console.log(JSON.stringify({ failureDOM: report.failureDOM, pageErrors: report.activeCase?.errors ?? [], raster: report.activeCase?.measurements.filter(x => x.raster).slice(-3) }));
+    await page.screenshot({ path: path.join(dest, 'failure.png'), fullPage: true }).catch(() => {});
+  }
+  process.exitCode = 1;
+} finally {
+  if (browser) await browser.close(); server.close(); report.finished = new Date().toISOString();
+  await fs.writeFile(path.join(dest, 'report.json'), JSON.stringify(report, null, 2)); console.log(JSON.stringify({ head: report.head, pass: report.pass, expected: report.expected, cases: report.cases.length, controls: report.controls.length, errors: report.errors }));
+}

@@ -92,11 +92,14 @@ jobs:
           set -o pipefail
           git rev-parse HEAD
           npm run check 2>&1 | tee contract-results.log
+          node --test tests/regression-result-contract.test.mjs 2>&1 | tee regression-contract-results.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: contracts-${{ github.event.pull_request.head.sha }}
-          path: contract-results.log
+          path: |
+            contract-results.log
+            regression-contract-results.log
   practical-browser:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -127,7 +130,7 @@ jobs:
       - name: Actual interaction and rendering
         env:
           BROWSERS: ${{ matrix.browser }}
-          WIDTHS: 390,375,1280
+          WIDTHS: 375,390,765,1280
           EVIDENCE_DIR: practical-browser-evidence
         run: |
           set -o pipefail

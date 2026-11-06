@@ -1,0 +1,359 @@
+{
+  "start": "2026-11-05T18:01:19.944Z",
+  "head": "05735e83fd23d228d797afb89a150045293d3e58",
+  "tree": "c467dc4839e7d777942f27c06f1fb1d0ea9758d5",
+  "dirty": "M app/components/PracticalRoom.tsx\n M app/data/phase6aExhibits.ts\n M package.json\n M scripts/verify-image-crop-browser.mjs\n M scripts/verify-phase4a-browser.mjs\n M scripts/verify-phase4b-browser.mjs\n M scripts/verify-phase5a-browser.mjs\n M scripts/verify-phase5b-browser.mjs\n M scripts/verify-waapi-observation.py\n M scripts/verify-waapi-stage2b.py\n M tests/image-crop.test.tsx\n M tests/phase4a.test.tsx\n M tests/rendered-html.test.mjs\n?? .github/workflows/verify-before-after.yml\n?? app/components/practical/BeforeAfterCompare.tsx\n?? app/components/practical/before-after-compare.css\n?? app/components/practical/compare-model.ts\n?? docs/before-after-evidence/\n?? public/compare/\n?? scripts/generate-compare-art.py\n?? scripts/verify-before-after-browser.mjs\n?? tests/before-after-compare.test.tsx",
+  "source": {
+    "app/components/practical/BeforeAfterCompare.tsx": "45e227392ac932d529e8447bb9c9de55f10668f45104f902167a7dcc81cfe26e",
+    "app/components/practical/compare-model.ts": "f7826fcdbe3753825902b75b6b06f268f37a0e59fac1aaf0f655cdb913d466b2",
+    "app/components/practical/before-after-compare.css": "8ade5822a2a412720a61ef96d86a44a628a5e499ff135bc1f7aedb60ea0878f0",
+    "app/components/PracticalRoom.tsx": "eb9c5e90684e4cb8fe09c7d991c3261b49cfb26c470b13ba2debb7d8a6e25c23",
+    "app/data/phase6aExhibits.ts": "5c3a70615b77b8f577ec5ffe315ecea783e92e333fcb1ca1f3fcd7047b8eeac1",
+    "public/compare/restoration-before.svg": "0e7331d3ebe73bfab09fe89a55fac01ac695c79f772cc36cd3b77f361b83df8c",
+    "public/compare/restoration-after.svg": "fb0074d61549c386f923cd520e3dbbe4e8ed9173cac4eb0aabae476cd38f0ff1",
+    "public/compare/correction-before.svg": "50a302bf4100606c92ae76ca67923292e976795d3be2738c014c49be90912eb0",
+    "public/compare/correction-after.svg": "5a179c85e0833cff86e7a28bc13dca44eb514dca7b33dd29aebba27b443b6a82"
+  },
+  "checks": [],
+  "cases": [
+    {
+      "width": 375,
+      "motion": "no-preference",
+      "checks": [
+        "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+        "endpoint handle no-jump (native pointer)",
+        "restoration: split 37% raster sampled 1179, visible-change samples 218",
+        "restoration: overlay50 raster channel mean 558 strictly-flat samples",
+        "restoration: side matched scale, no horizontal overflow",
+        "correction: split 37% raster sampled 1272, visible-change samples 934",
+        "correction: overlay50 raster channel mean 612 strictly-flat samples",
+        "correction: side matched scale, no horizontal overflow",
+        "native pointer+Escape rollback",
+        "native pause,resume,mode/pair interruption,dynamic reduced",
+        "close/reopen initialized"
+      ],
+      "images": [
+        {
+          "name": "final",
+          "sha256": "32882e9a2264a449bb0a5cf5bd6d681c00473c24ecef27f379198ee7055802c5"
+        }
+      ],
+      "endpointTrace": {
+        "h": {
+          "x": 37,
+          "y": 61.40625,
+          "width": 48,
+          "height": 48
+        },
+        "h2": {
+          "x": 290,
+          "y": 61.40625,
+          "width": 48,
+          "height": 48
+        },
+        "valueBefore": 100,
+        "target": "<span aria-hidden=\"true\">↔</span>"
+      }
+    },
+    {
+      "width": 375,
+      "motion": "reduce",
+      "checks": [
+        "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+        "endpoint handle no-jump (native pointer)",
+        "restoration: split 37% raster sampled 1179, visible-change samples 218",
+        "restoration: overlay50 raster channel mean 558 strictly-flat samples",
+        "restoration: side matched scale, no horizontal overflow",
+        "correction: split 37% raster sampled 1272, visible-change samples 934",
+        "correction: overlay50 raster channel mean 612 strictly-flat samples",
+        "correction: side matched scale, no horizontal overflow",
+        "native pointer+Escape rollback",
+        "reduced: replay immediate After/manual retained",
+        "close/reopen initialized"
+      ],
+      "images": [
+        {
+          "name": "final",
+          "sha256": "2b9a48c996a0528076669b927b7a72aaf01407352ac51e3834c2ec51efc3445f"
+        }
+      ],
+      "endpointTrace": {
+        "h": {
+          "x": 37,
+          "y": 61.40625,
+          "width": 48,
+          "height": 48
+        },
+        "h2": {
+          "x": 290,
+          "y": 61.40625,
+          "width": 48,
+          "height": 48
+        },
+        "valueBefore": 100,
+        "target": "<span aria-hidden=\"true\">↔</span>"
+      }
+    },
+    {
+      "width": 390,
+      "motion": "no-preference",
+      "checks": [
+        "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+        "endpoint handle no-jump (native pointer)",
+        "restoration: split 37% raster sampled 1361, visible-change samples 281",
+        "restoration: overlay50 raster channel mean 621 strictly-flat samples",
+        "restoration: side matched scale, no horizontal overflow",
+        "correction: split 37% raster sampled 1425, visible-change samples 1055",
+        "correction: overlay50 raster channel mean 683 strictly-flat samples",
+        "correction: side matched scale, no horizontal overflow",
+        "native pointer+Escape rollback",
+        "native pause,resume,mode/pair interruption,dynamic reduced",
+        "close/reopen initialized"
+      ],
+      "images": [],
+      "endpointTrace": {
+        "h": {
+          "x": 37,
+          "y": 55.765625,
+          "width": 48,
+          "height": 48
+        },
+        "h2": {
+          "x": 305,
+          "y": 55.765625,
+          "width": 48,
+          "height": 48
+        },
+        "valueBefore": 100,
+        "target": "<span aria-hidden=\"true\">↔</span>"
+      }
+    },
+    {
+      "width": 390,
+      "motion": "reduce",
+      "checks": [
+        "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+        "endpoint handle no-jump (native pointer)",
+        "restoration: split 37% raster sampled 1361, visible-change samples 281",
+        "restoration: overlay50 raster channel mean 621 strictly-flat samples",
+        "restoration: side matched scale, no horizontal overflow",
+        "correction: split 37% raster sampled 1425, visible-change samples 1055",
+        "correction: overlay50 raster channel mean 683 strictly-flat samples",
+        "correction: side matched scale, no horizontal overflow",
+        "native pointer+Escape rollback",
+        "reduced: replay immediate After/manual retained",
+        "close/reopen initialized"
+      ],
+      "images": [],
+      "endpointTrace": {
+        "h": {
+          "x": 37,
+          "y": 55.765625,
+          "width": 48,
+          "height": 48
+        },
+        "h2": {
+          "x": 305,
+          "y": 55.765625,
+          "width": 48,
+          "height": 48
+        },
+        "valueBefore": 100,
+        "target": "<span aria-hidden=\"true\">↔</span>"
+      }
+    },
+    {
+      "width": 765,
+      "motion": "no-preference",
+      "checks": [
+        "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+        "endpoint handle no-jump (native pointer)",
+        "restoration: split 37% raster sampled 7254, visible-change samples 1337",
+        "restoration: overlay50 raster channel mean 3617 strictly-flat samples",
+        "restoration: side matched scale, no horizontal overflow",
+        "correction: split 37% raster sampled 7886, visible-change samples 6158",
+        "correction: overlay50 raster channel mean 3971 strictly-flat samples",
+        "correction: side matched scale, no horizontal overflow",
+        "native pointer+Escape rollback",
+        "native pause,resume,mode/pair interruption,dynamic reduced",
+        "close/reopen initialized"
+      ],
+      "images": [],
+      "endpointTrace": {
+        "h": {
+          "x": 64.875,
+          "y": 77.40625,
+          "width": 48,
+          "height": 48
+        },
+        "h2": {
+          "x": 652.125,
+          "y": 77.40625,
+          "width": 48,
+          "height": 48
+        },
+        "valueBefore": 100,
+        "target": "<span aria-hidden=\"true\">↔</span>"
+      }
+    },
+    {
+      "width": 765,
+      "motion": "reduce",
+      "checks": [
+        "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+        "endpoint handle no-jump (native pointer)",
+        "restoration: split 37% raster sampled 7253, visible-change samples 1337",
+        "restoration: overlay50 raster channel mean 3617 strictly-flat samples",
+        "restoration: side matched scale, no horizontal overflow",
+        "correction: split 37% raster sampled 7886, visible-change samples 6158",
+        "correction: overlay50 raster channel mean 3971 strictly-flat samples",
+        "correction: side matched scale, no horizontal overflow",
+        "native pointer+Escape rollback",
+        "reduced: replay immediate After/manual retained",
+        "close/reopen initialized"
+      ],
+      "images": [],
+      "endpointTrace": {
+        "h": {
+          "x": 64.875,
+          "y": 77.40625,
+          "width": 48,
+          "height": 48
+        },
+        "h2": {
+          "x": 652.125,
+          "y": 77.40625,
+          "width": 48,
+          "height": 48
+        },
+        "valueBefore": 100,
+        "target": "<span aria-hidden=\"true\">↔</span>"
+      }
+    },
+    {
+      "width": 1280,
+      "motion": "no-preference",
+      "checks": [
+        "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+        "endpoint handle no-jump (native pointer)",
+        "restoration: split 37% raster sampled 25036, visible-change samples 4979",
+        "restoration: overlay50 raster channel mean 12724 strictly-flat samples",
+        "restoration: side matched scale, no horizontal overflow",
+        "correction: split 37% raster sampled 26416, visible-change samples 20783",
+        "correction: overlay50 raster channel mean 13386 strictly-flat samples",
+        "correction: side matched scale, no horizontal overflow",
+        "native pointer+Escape rollback",
+        "native pause,resume,mode/pair interruption,dynamic reduced",
+        "close/reopen initialized"
+      ],
+      "images": [
+        {
+          "name": "final",
+          "sha256": "e883f157ec5fdda416a17be6c37ff801cc7dcf3b96caa668fdb75312d9bf8a33"
+        }
+      ],
+      "endpointTrace": {
+        "h": {
+          "x": 89,
+          "y": 475.578125,
+          "width": 48,
+          "height": 48
+        },
+        "h2": {
+          "x": 1143,
+          "y": -48.421875,
+          "width": 48,
+          "height": 48
+        },
+        "valueBefore": 100
+      }
+    },
+    {
+      "width": 1280,
+      "motion": "reduce",
+      "checks": [
+        "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+        "endpoint handle no-jump (native pointer)",
+        "restoration: split 37% raster sampled 25035, visible-change samples 4979",
+        "restoration: overlay50 raster channel mean 12723 strictly-flat samples",
+        "restoration: side matched scale, no horizontal overflow",
+        "correction: split 37% raster sampled 26416, visible-change samples 20783",
+        "correction: overlay50 raster channel mean 13386 strictly-flat samples",
+        "correction: side matched scale, no horizontal overflow",
+        "native pointer+Escape rollback",
+        "reduced: replay immediate After/manual retained",
+        "close/reopen initialized"
+      ],
+      "images": [
+        {
+          "name": "final",
+          "sha256": "7a6b46c6ad56576507d9eeb816f485f4dc951cf521e489b3e3e5bca312c263ed"
+        }
+      ],
+      "endpointTrace": {
+        "h": {
+          "x": 89,
+          "y": 475.578125,
+          "width": 48,
+          "height": 48
+        },
+        "h2": {
+          "x": 1143,
+          "y": -48.421875,
+          "width": 48,
+          "height": 48
+        },
+        "valueBefore": 100
+      }
+    }
+  ],
+  "errors": [],
+  "notTested": [
+    "WebKit in this local independent run",
+    "physical Safari",
+    "VoiceOver",
+    "physical mouse/touch",
+    "real OS background/capture-loss"
+  ],
+  "browser": "154.0.8037.57",
+  "currentCase": {
+    "width": 1280,
+    "motion": "reduce",
+    "checks": [
+      "native keyboard endpoints,shift,small step/reset/fixed image geometry",
+      "endpoint handle no-jump (native pointer)",
+      "restoration: split 37% raster sampled 25035, visible-change samples 4979",
+      "restoration: overlay50 raster channel mean 12723 strictly-flat samples",
+      "restoration: side matched scale, no horizontal overflow",
+      "correction: split 37% raster sampled 26416, visible-change samples 20783",
+      "correction: overlay50 raster channel mean 13386 strictly-flat samples",
+      "correction: side matched scale, no horizontal overflow",
+      "native pointer+Escape rollback",
+      "reduced: replay immediate After/manual retained",
+      "close/reopen initialized"
+    ],
+    "images": [
+      {
+        "name": "final",
+        "sha256": "7a6b46c6ad56576507d9eeb816f485f4dc951cf521e489b3e3e5bca312c263ed"
+      }
+    ],
+    "endpointTrace": {
+      "h": {
+        "x": 89,
+        "y": 475.578125,
+        "width": 48,
+        "height": 48
+      },
+      "h2": {
+        "x": 1143,
+        "y": -48.421875,
+        "width": 48,
+        "height": 48
+      },
+      "valueBefore": 100
+    }
+  },
+  "pass": true,
+  "end": "2026-11-05T18:02:21.525Z"
+}

@@ -1,3 +1,42 @@
+## 2026-11-05 第6期A-3 cold request失敗fixture
+
+- cd0b50/WKでraster・実配送pointerの先へ進み、表示済みSVGへの後付けroute.abortでalert待ちに停止。旧fixtureはroute命中を計測しておらず、cached表示経路と整合するが旧命中回数はUNKNOWNとして保持する。製品変更なし。
+- 別fresh contextで初回ロード前にabortを設定しURL/実回数>=1→alert/disabled→解除＋明示retry→ready50/pageerror0を検査。finally閉鎖・主画面bringToFront・通常warm切替も維持。独立担当が妥当性確認、C375校正1条件/5故障成功。新固定HEAD/16条件/独立/CIをPR #66へ対応付け、旧失敗やZIP403制約を消さない。
+
+## 2026-11-05 第6期A-3 参照の二重合成とpointer検査の訂正
+
+- WK765の差588画素は外周2列のみ・内点0。参照をproduct上へ描くことで外周AAが二重合成される構造を訂正し、expectedは同じ背景上に一度だけ描く。ROI拡張案は破棄し元1px/RGB3/.002を維持。失敗/未採用校正原本を保全。
+- 正系computed mask4辺、0/100%の1px誤マスクと図版1px移動の3幾何負対照を追加。mask25/alpha.25PNG負対照も維持。pointerは要求targetと実配送座標を分け、既知start50とtrusted client差/独立frame幅から期待値を計算。非ゼロowner move・新sequence等を要求し製品出力を正解に使わない。独立担当が静的に再監査。
+- 別担当portableは正式54442/WK375で2pair正系＋復旧8結果wrong0、4故障を検出。主harnessのpointer目標値待ち失敗/jobFAILとは区別。新HEADの自己/独立/全CIで最終確認し、ZIP403BLOCKEDを維持する。
+
+## 2026-11-05 第6期A-3 参照描画と独立WebKitプローブ
+
+- 4b4790のWK375で読込準備true/alert0となり、次のSplit0% raster oracleで停止。旧参照imgのfillと製品のcontainの不一致を訂正し、表示style到達とrAF paint同期、失敗時のfit/box/画素差分布logを追加。製品変更なし、許容値と負対照は不変。微小丸めだけを旧差の全原因とは断定しない。
+- 別担当作成のendpoint-baseline型独立probeを原本SHA5aefe861...のまま採用。2pair/4源SVG/native入力/独立均色oracle/4故障と復旧を実行し、WebKit375のCIに主検査成否を問わず追加。どちらか失敗ならjobFAILを維持。校正の失敗/dirtyと本番cleanを区別し、ZIP実bytes403BLOCKEDを維持する。
+- 新しい最終HEAD/全館525/精度45/正式16条件/独立再レビューの結果はPR #66へ追補。Draft/禁止操作・既存未検証を保持する。
+
+## 2026-11-05 第6期A-3 WebKit SVG準備判定の根本修正
+
+- 7174正式CIはChromium8条件成功、WebKit4幅は初回ready待ちで失敗。独立担当も失敗logを確認し、マージ推奨をNOへ保留。ZIP転送は配信先へのproxy403でBLOCKED、表示digestと実bytes照合を混同しない。
+- 診断専用e140884で、両SVG complete=true/natural300×190、canvas301×190.625、エラー表示ありを確認。ブラウザのSVG自然寸法を原本1200×760と同一視した誤拒否が原因。画像源座標とUAの読込寸法を分離する。
+- 観測された300×190の受入・描画寸法0拒否後のretryを2単体に追加し38成功/2失敗のRED保存後に補修。onLoadは正寸法確認、4SVG原本の厳密なwidth/height/viewBoxは検査側で確認。実box/倍率/境界/PNG oracleの閾値は不変。
+- 新規40件、全館525件、関連90件、精度45群。補修後の最終CI・独立再レビューはPR #66へ記録する。失敗/診断/旧判定を消さず、全未検証・Draft/禁止操作を維持。
+
+## 2026-11-05 第6期A-3 Before / After Compare / Issue #65
+
+- 最新main 05735e83fd23d228d797afb89a150045293d3e58から独立clone、専用branch feat/before-after-compare-phase6a3。開始clean、適用AGENTS/checkout skillsなし。PR #60/#62/#64統合済み、同目的Issue/open PRなし。別repo変更なし。
+- 既存実用UI室へbefore-after-compareを1件追加。全館265→266展示・13室維持、同室26→27。既存ID/順序/素材/依存/lockfileを保持し、登録と旧総数assertを整合。README冒頭とdocs/before-after-compare.mdへ契約と検証を記録。
+- 独自1200×760 SVGを2組制作。修復の景観変化と補正の色変化。Split/Overlay/並列、反転、0〜100%・Reset、キーボード1/10%/両端、48pxハンドル、touch画像面scroll、再生/pause/resume/Replay/速度。架空図版を明示、画像加工/保存/外部APIなし。
+- 状態・仮drag・asset世代・animation epoch/elapsedを分離。取消/古pointer・古tick失効、mode/pair/Reset/resize/hidden/途中reduced/unmount対応。画像error/retry、ARIA/alt/focus/節目通知、reduced即時After・途中pause。
+- baseline check485件+別枠精度45群成功。新規38件（端ハンドル2件を含む）、browser16条件、負対照mask/alpha、既存回帰用CIを追加。結果は確定追補・PRと証拠へ記録する。初期npm cache、テスト型、検査screen-Y/境界pixelの失敗原本を保持し、未実施を成功としない。
+- 独立担当が端で押すだけの0→8% jumpを発見しREDを保存。pointer開始からの差分へ修正。reducedの全館1ms transitionを局所無効化、比較値outputをlive通知対象外へ。最終コード/ブラウザ再レビューは別担当の記録を参照し、自己検証と分ける。
+- 固定browserローカル取得は通信policyの403、迂回せず既設Chromium154と正式Actions固定browserを分離。物理Safari/VoiceOver/入力/実OS capture/background/WebKit native touch/pinchはNOT_TESTED、既存 #29/#44/#54/UNKNOWNを保持。Draft提出で停止し、解除/merge/auto-merge/公開を行わない。
+
+### 固定候補0826a5dの検証・独立レビュー追補
+
+- 自己の全館checkはNode49+Vitest474=524件、精度45群、lint/type/build成功。独立Chromium8条件・touch・keyboard補完・関連88unit・故障2件・15source照合成功、未解決P1/P2なし。別担当文書と全原本をdocs/before-after-evidence/independentへ保存。
+- 自己固定matrixは6/8成功後1280通常で、range focus後の画面外handleをmouseで操作したharness前提により停止。毎gesture前のscroll/box更新とdragging到達を追加、製品変更なし。同じ1280通常は修正後成功。失敗原本と新harnessを保全。正式最終HEADの16条件と旧展示回帰/CIの確定結果はDraft PR #66へ記録する。
+
 ## 2026-11-05 PR #64 P2-01 数値精度・境界の根本修正
 
 - 対象95ab616/tree dc9ebccと現PR一致、開始clean。旧証拠保持。16:9最小枠の表示再適用拒否、4:3の変形、自由比率の近接端変形を純粋モデルとChromium/WebKitの実マウス・フォームで再現。二進数和が1000へ丸まる端超過の誤受理も記録。
@@ -1652,3 +1691,12 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - #29/#44/#54は継続、依存lock不変。実機iPhone Safari、VoiceOver、実OS背景化は未検証。公開・merge・auto-mergeなし。
 - 375px画像目視で、Frame Thenの茶色が暗い操作面へ継承する低コントラストと、Elastic Nowの温室が中央hubに重なる点を発見して局所修正。茶色をSVG内へ限定、Nowを二列二段＋実位置へ接続線、240px時の非重複単体検査を追加。自動PASSだけでは作品品質を認定しない。
 - ブラウザ検査器自身のfocus対象が完了後disabledボタンだった失敗も別保存。enabled操作へ正して再実行し、製品不具合と混同しない。
+
+## 2026-11-06 — PR #66 R1/R2/Undo回帰検査の再受入
+
+- 製品コード・素材・依存は変更せず、Flash source/copy/committed/cancelの期待点列を実配送owner pointerから生成する検査へ変更。capture/bubble/MutationObserver/read/cancel時刻と入力順を保存。
+- Step Progressの100ms後の即時判定を、scroll/geometry/独立IO/data-activeと複数frameの収束検査へ変更。10秒枠は維持、radiusの停止も確認。
+- 同じmain05735とPR exportへ正系と故障を適用するChromium/WebKit×4幅CI、独立担当の別oracle、通常実行ファイルのFAIL/nonzeroと回復PASSを追加。旧REDは保持し、初回CIの未記録時系列はUNKNOWN。
+- 候補登録時点では正式CI・固定HEADの独立再受入待ち。完了判定・マージ推奨は最終証拠とPR本文に従う。#44のsecurity課題、#54の未検証範囲を解消扱いにしない。
+
+- 独立した検査器攻撃で、旧結果・空結果・HEAD不一致・空targetsの誤PASSを確認し、受入阻害P2としてRED保存。新規子dir/nonce/identity/case集合と独立probeのcoverage検証へ修正。通常経路の故障FAIL/復旧PASSと24件の結果契約試験を追加し、同じ攻撃の独立再確認を必須にした。

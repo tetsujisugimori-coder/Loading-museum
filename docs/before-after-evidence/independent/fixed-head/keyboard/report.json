@@ -1,0 +1,91 @@
+{
+  "head": "0826a5d5f09c03ee8b0d451c20970ad4eba61601",
+  "input": "Native browser keyboard events after programmatic focus; keyboard Tab traversal separately",
+  "checks": [
+    "keyboard Enter opens room; Space selects exhibit; native select ArrowDown chooses correction",
+    "native keyboard activates all three modes, swap/replay/pause/resume/Reset; both boundary and alpha keyboard endpoints/Shift",
+    "native Tab reaches handle, mode buttons, native range and Reset without trapping"
+  ],
+  "browser": "154.0.8037.57",
+  "tabOrder": [
+    {
+      "tag": "DIV",
+      "role": "slider",
+      "name": "比較境界",
+      "inside": true
+    },
+    {
+      "tag": "BUTTON",
+      "role": null,
+      "name": "Split / 境界",
+      "inside": true
+    },
+    {
+      "tag": "BUTTON",
+      "role": null,
+      "name": "Overlay / 透明度",
+      "inside": true
+    },
+    {
+      "tag": "BUTTON",
+      "role": null,
+      "name": "Side-by-Side / 並列",
+      "inside": true
+    },
+    {
+      "tag": "INPUT",
+      "role": null,
+      "name": "比較位置",
+      "inside": true
+    },
+    {
+      "tag": "BUTTON",
+      "role": null,
+      "name": "自動比較",
+      "inside": true
+    },
+    {
+      "tag": "BUTTON",
+      "role": null,
+      "name": "Replay",
+      "inside": true
+    },
+    {
+      "tag": "SELECT",
+      "role": null,
+      "name": "0.5× / ゆっくり1× / 6秒2× / 速く",
+      "inside": true
+    },
+    {
+      "tag": "BUTTON",
+      "role": null,
+      "name": "Before / Afterを反転",
+      "inside": true
+    },
+    {
+      "tag": "BUTTON",
+      "role": null,
+      "name": "Reset",
+      "inside": true
+    },
+    {
+      "tag": "SUMMARY",
+      "role": null,
+      "name": "比較装置のしくみ",
+      "inside": true
+    },
+    {
+      "tag": "A",
+      "role": null,
+      "name": "技術・アクセシビリティ参考資料",
+      "inside": false
+    },
+    {
+      "tag": "BUTTON",
+      "role": null,
+      "name": "閉室して一覧へ戻る",
+      "inside": false
+    }
+  ],
+  "pass": true
+}
