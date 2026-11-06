@@ -113,10 +113,15 @@ export default function ImageAnnotation() {
   function key(e: KeyboardEvent<SVGSVGElement>) {
     if (e.altKey || e.ctrlKey || e.metaKey) return;
     if (guiding && ['ArrowLeft', 'ArrowRight'].includes(e.key)) { e.preventDefault(); dispatch({ type: 'guide', command: e.key === 'ArrowLeft' ? 'prev' : 'next' }); return; }
-    if (!editable) return; const a = current.current.annotations.find(a => a.id === current.current.selectedId); if (!a) return;
+    if (!editable) return;
+    // Focused marks own keyboard edits. Canvas focus edits the explicit selection.
+    // Tab alone must not change selection or reorder the rendered marks.
+    const mark = e.target instanceof Element ? e.target.closest('[data-annotation-id]') : null;
+    const id = mark && e.currentTarget.contains(mark) ? mark.getAttribute('data-annotation-id') : current.current.selectedId;
+    const a = current.current.annotations.find(a => a.id === id); if (!a) return;
     if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); dispatch({ type: 'delete', id: a.id }, '注釈を削除しました。Undoで戻せます。'); focusCanvas(); return; }
     const d = e.shiftKey ? .05 : .01, vectors: Record<string, [number, number]> = { ArrowLeft: [-d, 0], ArrowRight: [d, 0], ArrowUp: [0, -d], ArrowDown: [0, d] };
-    if (e.key in vectors) { e.preventDefault(); const [x, y] = vectors[e.key]; dispatch({ type: 'update', id: a.id, patch: moveAnnotation(a, x, y) }, '注釈を移動しました。'); }
+    if (e.key in vectors) { e.preventDefault(); if (a.id !== current.current.selectedId) dispatch({ type: 'select', id: a.id }); const [x, y] = vectors[e.key]; dispatch({ type: 'update', id: a.id, patch: moveAnnotation(a, x, y) }, '注釈を移動しました。'); }
   }
   const guideCommand = (command: 'play'|'pause'|'resume'|'restart'|'end'|'next'|'prev'|'jump', index?: number) => { dispatch({ type: 'guide', command, ...(index === undefined ? {} : { index }) }, command === 'end' ? 'ガイドを終了しました。編集へ切り替えると続けられます。' : 'ガイドの注目位置と説明を更新しました。'); if (command === 'end') focusCanvas(); };
   return <div ref={root} className="imageAnnotation" data-testid="image-annotation" data-scene={state.scene} data-mode={state.mode} data-guide={state.guide.status} data-reduced={state.reduced} data-history={state.past.length} data-committed={JSON.stringify(state.annotations)}>
@@ -147,7 +152,7 @@ export default function ImageAnnotation() {
       </div>
       <aside className="iaSidebar"><section aria-label="注釈一覧"><h5>観察ノート <span>{state.annotations.length}</span></h5><ol className="iaList">{ordered.map((a, index) => <li key={a.id}><button aria-pressed={a.id === (guided?.id ?? state.selectedId)} onClick={() => { if (guiding) guideCommand('jump', index); else dispatch({ type: 'select', id: a.id }, '注釈を選びました。'); }}><span className="iaNumber" style={{ borderColor: a.color }}>{a.number}</span><span><b>{a.title}</b><small>{typeNames[a.kind]}</small></span><span aria-hidden="true">{a.id === (guided?.id ?? state.selectedId) ? '✓' : '→'}</span></button></li>)}</ol>{!state.annotations.length && <p>まだ注釈がありません。編集に切り替えて追加できます。</p>}</section><section aria-label="選択注釈を編集"><h5>{selected ? `${typeNames[selected.kind]}を編集` : '注釈の編集'}</h5>{selected && editable ? <Editor key={JSON.stringify(selected)} annotation={selected} annotations={state.annotations} apply={patch => { returnToApply.current = true; dispatch({ type: 'update', id: selected.id, patch }, '変更を確定しました。Undoで編集前へ戻せます。'); }} /> : <p>{editable ? '注釈を選ぶと位置や説明を編集できます。' : '閲覧中です。「編集」でガイドを止め、注釈を変更できます。'}</p>}</section></aside>
     </div>
-    <p role="status" className="iaStatus">{message}</p><p id={helpId} className="iaHelp">Tabでツール・注釈・一覧へ。Enter / Spaceで選択。画像にフォーカスすると方向キーで1%、Shift付きで5%移動、Deleteで削除、Escapeでドラッグ取消。ガイド中は左右キーで前後へ。画像上はタッチ編集、ページのスクロールは画像の外側で操作できます。</p>
+    <p role="status" className="iaStatus">{message}</p><p id={helpId} className="iaHelp">Tabでツール・注釈・一覧へ。Enter / Spaceで選択。注釈にフォーカスするとその注釈を、画像にフォーカスすると選択中の注釈を編集します。方向キーで1%、Shift付きで5%移動、Deleteで削除、Escapeでドラッグ取消。ガイド中は左右キーで前後へ。画像上はタッチ編集、ページのスクロールは画像の外側で操作できます。</p>
     <details><summary>座標と履歴のしくみ / 使い方</summary><p>画像の左上を(0,0)、右下を(1,1)として位置を保存します。画像は比率を保って表示し、周囲の余白への追加は拒否。画面幅やスクロールが変わっても同じ対象を指します。ドラッグ中は仮の表示、離すと1操作として確定、取消は履歴へ追加しません。確定履歴は直近50操作です。</p><p>図版の切替・Reset・閉室で編集は失われ、完成サンプルへ戻ります。保存・アップロード・外部通信はありません。地図も装置もこの展示用の独自制作で、実在の歴史資料・装置ではありません。</p></details>
   </div>;
 }

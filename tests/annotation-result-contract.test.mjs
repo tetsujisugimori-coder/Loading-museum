@@ -1,7 +1,17 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';import {configuration,validateReport,CHECKS} from '../scripts/annotation-result-contract.mjs';
 const expected={runId:'fresh',head:'abc',tree:'def',exportSHA256:'123',keys:['chromium/375/reduce']};
-const valid=()=>({...expected,status:'PASS',errors:[],cases:[{key:expected.keys[0],status:'PASS',checks:[...CHECKS],inputEvents:3,negativeControl:{detected:true},images:['a','b']}]});
+const valid=()=>({...expected,status:'PASS',errors:[],cases:[{key:expected.keys[0],status:'PASS',checks:[...CHECKS],inputEvents:3,negativeControl:{detected:true,recovered:true},images:['a','b']}]});
 test('16 distinct cases are mandatory by default',()=>{const c=configuration({});assert.equal(c.keys.length,16);assert.equal(new Set(c.keys).size,16)});
 for(const env of [{BROWSERS:''},{BROWSERS:'chromium,chromium'},{BROWSERS:'firefox'},{WIDTHS:'0'},{WIDTHS:'375,375'},{WIDTHS:''},{MOTIONS:'reduce,reduce'},{MOTIONS:'fast'}])test(`reject invalid config ${JSON.stringify(env)}`,()=>assert.throws(()=>configuration(env)));
 test('accepts complete current legitimate result',()=>validateReport(valid(),expected));
-for(const [name,mutate] of Object.entries({empty:r=>r.cases=[],partial:r=>r.cases[0].checks.pop(),old:r=>r.runId='old',head:r=>r.head='old',tree:r=>r.tree='old',build:r=>r.exportSHA256='old',failed:r=>r.cases[0].status='FAIL',duplicate:r=>r.cases.push(r.cases[0]),fault:r=>r.cases[0].negativeControl.detected=false,input:r=>r.cases[0].inputEvents=0,images:r=>r.cases[0].images=[]}))test(`reject ${name} result`,()=>{const r=valid();mutate(r);assert.throws(()=>validateReport(r,expected))});
+for(const [name,mutate] of Object.entries({empty:r=>r.cases=[],partial:r=>r.cases[0].checks.pop(),old:r=>r.runId='old',head:r=>r.head='old',tree:r=>r.tree='old',build:r=>r.exportSHA256='old',failed:r=>r.cases[0].status='FAIL',duplicate:r=>r.cases.push(r.cases[0]),fault:r=>r.cases[0].negativeControl.detected=false,recovery:r=>r.cases[0].negativeControl.recovered=false,input:r=>r.cases[0].inputEvents=0,images:r=>r.cases[0].images=[]}))test(`reject ${name} result`,()=>{const r=valid();mutate(r);assert.throws(()=>validateReport(r,expected))});
+
+import fs from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {validateEvidence} from '../scripts/annotation-result-contract.mjs';
+const png=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=','base64');
+async function evidence(t){const dir=await fs.mkdtemp(path.join(os.tmpdir(),'annotation-contract-'));t.after(()=>fs.rm(dir,{recursive:true,force:true}));const r=valid();r.images=['a','b'].map(file=>({file,sha256:createHash('sha256').update(png).digest('hex')}));for(const name of ['a','b'])await fs.writeFile(path.join(dir,name),png);return {r,dir};}
+test('accepts real hash-matched image evidence',async t=>{const {r,dir}=await evidence(t);await validateEvidence(r,expected,dir)});
+for(const mode of ['missing','changed','signature','manifest','duplicate','path'])test(`reject image evidence ${mode}`,async t=>{const {r,dir}=await evidence(t);if(mode==='missing')await fs.unlink(path.join(dir,'a'));if(mode==='changed')await fs.appendFile(path.join(dir,'a'),'corrupt');if(mode==='signature')await fs.writeFile(path.join(dir,'a'),'not png');if(mode==='manifest')r.images.pop();if(mode==='duplicate')r.images.push(r.images[0]);if(mode==='path')r.images[0].file='../a';await assert.rejects(()=>validateEvidence(r,expected,dir));});

@@ -112,3 +112,24 @@ it('arrowhead paint explicitly follows its own color and Undo without context-st
   fireEvent.change(screen.getByLabelText('注釈の色'), { target: { value: '#8256a1' } }); click('変更を適用');
   expect(fill()).toBe('#8256a1'); click('Undo'); expect(fill()).toBe('#286e68'); click('Redo'); expect(fill()).toBe('#8256a1');
 });
+
+for (const key of ['ArrowRight', 'Delete', 'Backspace']) it(`editing ${key} targets the focused mark instead of the previous selection`, () => {
+  render(<ImageAnnotation />);
+  const root = screen.getByTestId('image-annotation');
+  const before = JSON.parse(root.dataset.committed!);
+  const mark = screen.getByTestId('ia-mark-map-route');
+  mark.focus();
+  fireEvent.keyDown(mark, { key });
+  const after = JSON.parse(root.dataset.committed!);
+  expect(after.find((a: {id:string}) => a.id === 'map-port')).toEqual(before[0]);
+  if (key === 'ArrowRight') {
+    expect(after[1].x).toBeCloseTo(before[1].x + .01, 14);
+    expect(mark.getAttribute('aria-pressed')).toBe('true');
+    expect(document.activeElement).toBe(mark);
+  } else {
+    expect(after.some((a: {id:string}) => a.id === 'map-route')).toBe(false);
+    expect(document.activeElement).toBe(screen.getByTestId('ia-canvas'));
+  }
+  click('Undo');
+  expect(JSON.parse(root.dataset.committed!)).toEqual(before);
+});

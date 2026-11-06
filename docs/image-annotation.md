@@ -36,3 +36,12 @@ Each case observes input events (trusted/synthetic identified), committed state 
 Results are stored in a fresh run directory with parent-created UUID, HEAD/tree, actual export SHA-256, exact ordered case/check sets, input events and image hashes. The result contract rejects empty, duplicate, stale, partial, failed, no-input, missing-screenshot and undetected-fault results. Contract fixture tests are not counted as browser passes. Final acceptance must match the submitted HEAD; exploratory dirty-tree results are not final-head evidence.
 
 See `docs/image-annotation-evidence/README.md` and the PR for the current measured results, failures and limitations. This is implementation self-verification, not independent acceptance. **Merge recommendation remains NO before independent review.** Existing #44 security and #54 device/verification gaps remain open.
+
+## PR #68 keyboard reacceptance contract
+
+- Tab only moves focus; it does not select or reorder annotation marks.
+- Arrow keys and Delete/Backspace delivered to an annotation edit that focused annotation. Arrow editing also selects it. Keys delivered to the canvas itself edit the explicit selection.
+- Enter/Space select the focused annotation. Deletion returns focus to the canvas. Undo restores the whole annotation transaction, including related links.
+- The original head `60ed975e1d934c032521f5217e12c9d984caff5b` edited the previous selection instead of the focused mark. Independent Chromium actual Tab and programmatic focus controls reproduced ArrowRight and Delete (four fresh-page cases). Unit RED covered ArrowRight/Delete/Backspace; the local fix passes all 14 component tests.
+- Browser evidence now records focus and annotation identity and checks Tab/focus against arrows, Delete, Backspace, Enter and Space. Result acceptance also requires fault removal recovery, actual PNG files and matching SHA-256, not filenames alone.
+- This is a candidate pending fixed-head browser/CI and independent reacceptance. Final outcome belongs in PR #68's evidence record. Physical input, Safari devices and assistive technology are not inferred from Playwright results. Issues #44 and #54 remain open risks.

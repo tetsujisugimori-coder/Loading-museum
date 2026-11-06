@@ -1706,3 +1706,10 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - 候補登録時点では正式CI・固定HEADの独立再受入待ち。完了判定・マージ推奨は最終証拠とPR本文に従う。#44のsecurity課題、#54の未検証範囲を解消扱いにしない。
 
 - 独立した検査器攻撃で、旧結果・空結果・HEAD不一致・空targetsの誤PASSを確認し、受入阻害P2としてRED保存。新規子dir/nonce/identity/case集合と独立probeのcoverage検証へ修正。通常経路の故障FAIL/復旧PASSと24件の結果契約試験を追加し、同じ攻撃の独立再確認を必須にした。
+
+## PR #68 — focused-annotation keyboard repair candidate
+
+- Reproduced old selection A being moved/deleted after actual Tab focuses B, using independent Chromium input; kept old JSON/PNG/event evidence.
+- Keyboard edits use focused annotation identity, with canvas-only selection fallback; Tab alone remains non-mutating. Added three component regressions and expanded browser keyboard ownership checks.
+- Hardened image evidence validation and required successful fault-removal recovery. Added seven real-file negative/positive cases (29 contract tests total).
+- No dependencies, other exhibits, IDs, or publication settings changed. Final exact-head CI and independent reacceptance remain prerequisites; Draft and #44/#54 boundaries remain.
