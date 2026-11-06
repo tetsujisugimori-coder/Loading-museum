@@ -27,8 +27,8 @@ try:
      q=context.new_page();q.set_default_timeout(10000);q.on('pageerror',lambda error:r['pageerrors'].append(str(error)))
      q.goto(url,wait_until='networkidle');q.get_by_role('button',name='サンプル一覧を見る',exact=False).click()
      assert q.locator('.waapiSampleCard').count()==47
-     assert '13 ROOMS / 266 OBJECTS' in q.locator('.archiveMeta').inner_text()
-     r['checks'].append('Inventory 266 exhibits / 13 rooms / 47 WAAPI')
+     assert '13 ROOMS / 267 OBJECTS' in q.locator('.archiveMeta').inner_text()
+     r['checks'].append('Inventory 267 exhibits / 13 rooms / 47 WAAPI')
      def button(root,name): return root.get_by_role('button',name=name,exact=True)
      def snap(o):
       return o.evaluate('''o=>{const h=o.querySelector('[data-timing-hero]'),a=h.getAnimations()[0] || window.__stage2bAnimations?.get(h),s=getComputedStyle(h),m=new DOMMatrixReadOnly(s.transform);return {time:Number(o.dataset.timingTime),input:Number(o.dataset.timingInput),result:o.dataset.timingResult,phase:o.dataset.timingPhase,controller:o.dataset.controller,native:a?.playState,nativeTime:a?.currentTime,transform:s.transform,x:m.m41,scale:m.a,opacity:Number(s.opacity),trails:h.querySelectorAll('i').length,reading:o.querySelector('[data-observation-reading]').textContent}}''')

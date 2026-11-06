@@ -1,3 +1,9 @@
+## 2026-11-06 JST / Phase6A-4 Image Annotation & Hotspots
+
+Issue #67。PR #66統合済みmain737ec827を基準に、既存実用UI室へ1展示追加。原画像正規化座標、独自SVG2枚、4種注釈、ドラッグと数値編集、50操作履歴、関連説明、順次ガイド、キーボード/取消/reduced対応を実装。登録をコードで266→267、同室27→28、13室維持と確認。既存の登録IDは保護。
+
+Windows実行環境断の初回停止後、実装なし・remoteなしを確認して別クラウドcheckoutで継続。表示幅/通常blurでguideが止まる不具合、無効endpoint解放、最小矢印の丸め、重なりでhandleが隠れる反例を試験で捕捉し修正。自己検証と独立レビューは区別。最新HEADの実測はPRと[台帳](docs/image-annotation-evidence/README.md)を参照。過去の成功や空結果は流用しない。main変更、merge、auto-merge、Draft解除、公開は行わない。#44/#54継続、マージ推奨NO。
+
 ## 2026-11-05 第6期A-3 cold request失敗fixture
 
 - cd0b50/WKでraster・実配送pointerの先へ進み、表示済みSVGへの後付けroute.abortでalert待ちに停止。旧fixtureはroute命中を計測しておらず、cached表示経路と整合するが旧命中回数はUNKNOWNとして保持する。製品変更なし。

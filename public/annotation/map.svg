@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0H0V60" fill="none" stroke="#678680" stroke-opacity=".15"/></pattern><pattern id="waves" width="48" height="24" patternUnits="userSpaceOnUse"><path d="M0 12q12-10 24 0t24 0" fill="none" stroke="#7fa8a1" stroke-width="1.5"/></pattern><filter id="shadow"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-opacity=".13"/></filter></defs>
+<path fill="#b5cfca" d="M0 0h1200v760H0z"/><path fill="url(#waves)" d="M0 0h1200v760H0z"/>
+<path d="M-30 0H1075q-80 120-34 187t-41 93q-115 14-130 83t-133 71q-91-2-116 101t-191 67Q275 596 261 760H0z" fill="#e8dfc2" stroke="#f7efd9" stroke-width="16"/>
+<path d="M-30 0H1075q-80 120-34 187t-41 93q-115 14-130 83t-133 71q-91-2-116 101t-191 67Q275 596 261 760H0z" fill="url(#grid)"/>
+<path d="M100 600Q240 410 330 340T590 280 880 140" fill="none" stroke="#fcf6e5" stroke-width="27"/><path d="M100 600Q240 410 330 340T590 280 880 140" fill="none" stroke="#b5a989" stroke-width="3" stroke-dasharray="7 9"/>
+<path d="M330 340Q450 470 620 535M590 280Q560 140 440 70" fill="none" stroke="#fcf6e5" stroke-width="18"/>
+<g fill="#779680" stroke="#5b7d68" stroke-width="3"><path d="m130 220 38-95 38 95zM200 245l36-103 36 103zM80 310l42-110 42 110zM245 190l32-85 32 85zM405 160l29-80 29 80zM460 140l25-76 25 76zM730 190l40-100 40 100zM800 255l35-100 35 100zM880 225l35-90 35 90z"/></g>
+<g filter="url(#shadow)"><g transform="translate(245 310)"><path d="M0 30h130v100H0z" fill="#c09370"/><path d="m-12 30 77-55 77 55z" fill="#677f7e"/><path d="M46 80h35v50" fill="#5b6661"/><path d="M14 52h22v26H14zm78 0h22v26H92z" fill="#f8ecc1"/></g>
+<g transform="translate(530 190)"><path d="M0 45h125v65H0z" fill="#f4ecd6" stroke="#b7a584" stroke-width="3"/><path d="m-10 45 72-50 73 50z" fill="#a9674f"/><path d="M20 65h22v25H20zm62 0h22v25H82z" fill="#718e8a"/><path d="M53 70h20v40H53z" fill="#8a725f"/></g>
+<g transform="translate(585 450)"><path d="M0 22h75v85H0z" fill="#e9dec4" stroke="#a8987d" stroke-width="3"/><path d="M-7 23h89L38-8z" fill="#697b77"/><path d="M30 45h16v20H30zM30 80h16v27H30z" fill="#708d8a"/><path d="M25-8h25v-22H25z" fill="#a9674f"/></g></g>
+<g stroke="#a68662" stroke-width="10"><path d="m660 540 108 56m-97-66-22 27m47-14-23 27m49-14-23 28m49-14-23 28"/></g>
+<g fill="#718e7c"><ellipse cx="475" cy="430" rx="57" ry="32"/><ellipse cx="470" cy="430" rx="42" ry="19" fill="#a9c5bb"/></g>
+<g fill="#4a6259" font-family="Georgia,serif" letter-spacing="4"><text x="68" y="77" font-size="30">ASTER ISLAND</text><text x="70" y="108" font-size="12">FIELD NOTES / AN IMAGINARY LANDSCAPE</text><text x="280" y="469" font-size="17">ARCHIVE</text><text x="534" y="326" font-size="17">GLASSHOUSE</text><text x="578" y="593" font-size="15">BEACON</text></g>
+<g transform="translate(1065 570)" fill="none" stroke="#4e726d"><circle r="57" stroke-opacity=".4"/><path d="M0-47V47M-47 0H47"/><path d="m0-37-12 35L0-9l12 7z" fill="#4e726d"/></g><text x="1058" y="505" fill="#4e726d" font-size="18" font-family="Georgia">N</text>
+<path d="M70 682h180m-180-8v16m90-16v16m90-16v16" stroke="#61786d" stroke-width="2"/><text x="70" y="714" font-size="12" fill="#61786d" font-family="monospace">0          50        100 paces</text><text x="830" y="715" font-size="13" fill="#527b76" font-family="Georgia" letter-spacing="3">THE QUIET INLET</text>
+</svg>
