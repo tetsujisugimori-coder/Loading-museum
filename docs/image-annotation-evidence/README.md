@@ -17,6 +17,8 @@ Code inventory was freshly run against base main and working tree: 266→267 exh
 
 - Final screenshot inspection found selected-list and primary-button hover contrast loss from CSS rule specificity. A real computed-color WCAG contrast check reproduced the failure, then scoped selected/hover rules repaired it. The earlier clean `8d4c0e3` run is superseded, not final acceptance.
 
+- CI WebKit screenshot inspection found native dark select surfaces despite declared light CSS (paint sample RGB51,51,51) and black arrowheads from unsupported context-stroke. The exhibit now uses a light native color scheme with explicit select appearance and per-arrow marker fill. Raster select checks and a marker color/Undo regression guard the fixes.
+
 ## Final evidence requirements
 
 The PR must record its actual submitted HEAD and base, fresh lint/type/build/unit outputs, all16 browser conditions, current CI workflow/job results, screenshot hashes, negative controls, unchanged known gaps and independent-review recommendation. Do not promote the exploratory results above to final acceptance. Raw per-case evidence is uploaded by CI even for a failed job.

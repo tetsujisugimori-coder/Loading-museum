@@ -104,3 +104,11 @@ it('accepted minimum-length arrows remain movable by repeated keyboard steps', (
   expect(Number(screen.getByTestId('ia-mark-map-route').getAttribute('data-x'))).toBeCloseTo(.1, 14);
   expect(screen.getByTestId('image-annotation').dataset.history).toBe('3');
 });
+
+it('arrowhead paint explicitly follows its own color and Undo without context-stroke support', () => {
+  render(<ImageAnnotation />); fireEvent.click(list().getByRole('button', { name: /温室への道/ }));
+  const fill = () => { const shape=screen.getByTestId('ia-mark-map-route').querySelector('path[marker-end]')!; const id=shape.getAttribute('marker-end')!.slice(5,-1); return document.getElementById(id)!.querySelector('path')!.getAttribute('fill'); };
+  expect(fill()).toBe('#286e68');
+  fireEvent.change(screen.getByLabelText('注釈の色'), { target: { value: '#8256a1' } }); click('変更を適用');
+  expect(fill()).toBe('#8256a1'); click('Undo'); expect(fill()).toBe('#286e68'); click('Redo'); expect(fill()).toBe('#8256a1');
+});

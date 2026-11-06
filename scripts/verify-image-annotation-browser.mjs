@@ -40,6 +40,14 @@ try{
     await actionContrast(control,'normal'); await control.hover(); await actionContrast(control,'hover'); await page.mouse.move(0,0);
   }
   for (const copy of await stage.locator('.iaHelp, .iaGuide>p, .iaHeader>p, .iaSidebar h5 span, .iaHeader>span, .iaGuideTitle>span:first-child, .iaDescription>span').all()) await actionContrast(copy,'supporting text');
+  for (const select of await stage.locator('select').all()) {
+    const png=PNG.sync.read(await select.screenshot()); let total=0,count=0;
+    for(let y=5;y<11;y++) for(let x=7;x<13;x++){const i=(y*png.width+x)*4;total+=png.data[i]+png.data[i+1]+png.data[i+2];count+=3;}
+    const paintedMean=total/count; assert.ok(paintedMean>220,`select paint must retain light high-contrast surface: ${paintedMean}`);
+    await actionContrast(select,'select text'); c.measurements.push({selectPaint:{label:await select.getAttribute('aria-label'),paintedMean}});
+  }
+  const arrowPaint=await canvas.locator('[data-kind="arrow"] path[marker-end]').evaluateAll(paths=>paths.map(p=>({stroke:p.getAttribute('stroke'),fill:document.getElementById(p.getAttribute('marker-end').slice(5,-1)).querySelector('path').getAttribute('fill')})));
+  for(const paint of arrowPaint) assert.equal(paint.fill,paint.stroke,'explicit arrowhead color must match its own line'); c.measurements.push({arrowPaint});
   let m=await model();assert.equal(m.length,4);near(m[0].x,.258);near(m[0].y,.49);c.measurements.push(await assertPinRaster(m[0].id,.258,.49));await snap('initial');check('samples-and-raster');
   await click('ピン');let b=await box(),p=at(b,.82,.73);await page.mouse.click(p.x,p.y);m=await waitModel(m=>m.length===5);let created=m.at(-1);const pinInput=await page.evaluate(()=>window.annotationEvents.findLast(e=>e.type==='pointerdown'));near(created.x,(pinInput.x-b.x)/b.width);near(created.y,(pinInput.y-b.y)/b.height);c.measurements.push({pinInput,b,created});check('pin-create');
   await click('矢印');const arrowDrag=await drag([.1,.12],[.32,.18]);m=await waitModel(m=>m.length===6);assert.equal(m.at(-1).kind,'arrow');const arrowEnd=await page.evaluate(()=>window.annotationEvents.findLast(e=>e.type==='pointerup'));near(m.at(-1).x2,(arrowEnd.x-arrowDrag.b.x)/arrowDrag.b.width);check('arrow-create');
