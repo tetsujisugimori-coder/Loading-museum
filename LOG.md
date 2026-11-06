@@ -34,7 +34,7 @@
 
 ### 固定候補0826a5dの検証・独立レビュー追補
 
-- 自己の全館checkはNode49+Vitest474=523件、精度45群、lint/type/build成功。独立Chromium8条件・touch・keyboard補完・関連88unit・故障2件・15source照合成功、未解決P1/P2なし。別担当文書と全原本をdocs/before-after-evidence/independentへ保存。
+- 自己の全館checkはNode49+Vitest474=524件、精度45群、lint/type/build成功。独立Chromium8条件・touch・keyboard補完・関連88unit・故障2件・15source照合成功、未解決P1/P2なし。別担当文書と全原本をdocs/before-after-evidence/independentへ保存。
 - 自己固定matrixは6/8成功後1280通常で、range focus後の画面外handleをmouseで操作したharness前提により停止。毎gesture前のscroll/box更新とdragging到達を追加、製品変更なし。同じ1280通常は修正後成功。失敗原本と新harnessを保全。正式最終HEADの16条件と旧展示回帰/CIの確定結果はDraft PR #66へ記録する。
 
 ## 2026-11-05 PR #64 P2-01 数値精度・境界の根本修正
@@ -1698,3 +1698,5 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - Step Progressの100ms後の即時判定を、scroll/geometry/独立IO/data-activeと複数frameの収束検査へ変更。10秒枠は維持、radiusの停止も確認。
 - 同じmain05735とPR exportへ正系と故障を適用するChromium/WebKit×4幅CI、独立担当の別oracle、通常実行ファイルのFAIL/nonzeroと回復PASSを追加。旧REDは保持し、初回CIの未記録時系列はUNKNOWN。
 - 候補登録時点では正式CI・固定HEADの独立再受入待ち。完了判定・マージ推奨は最終証拠とPR本文に従う。#44のsecurity課題、#54の未検証範囲を解消扱いにしない。
+
+- 独立した検査器攻撃で、旧結果・空結果・HEAD不一致・空targetsの誤PASSを確認し、受入阻害P2としてRED保存。新規子dir/nonce/identity/case集合と独立probeのcoverage検証へ修正。通常経路の故障FAIL/復旧PASSと24件の結果契約試験を追加し、同じ攻撃の独立再確認を必須にした。

@@ -25,6 +25,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - run: node --test tests/regression-result-contract.test.mjs
       - run: npm ci
       - run: npm run build
       - uses: actions/checkout@v4

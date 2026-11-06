@@ -31,3 +31,9 @@ R2はscrollY=0・画面外geometry・独立IO false・data-active=false・radius
 ## 残る範囲
 
 ローカルの固定ブラウザ配信はDomain forbidden403。迂回せず既設Chromiumで実行し、WebKitは正式CIで新規実行する。物理Safari/VoiceOver/入力、実OS背景化/capture loss等はNOT_TESTEDを保持。Playwright入力、合成cancel/DOM故障、IO通知抑止は実機操作と区別する。#44のsecurityと#54の未検証は今回の対象外として保持する。最終結果は固定HEAD証拠とIssue65/PR66へ追補する。
+
+## 結果検証器のP2 RED→修正
+
+独立担当がbb397で、子processが結果を書かずexit1→古いFAILを読んでPASS、回復case空でPASS、古い回復PASS再利用、異なるHEAD/exportの新規最小JSONでPASS、独立probeのtargets=[]で無試験PASSという5つの誤成功を隔離実行で確認。製品の不具合ではなく検査器の受入阻害P2として保全した。
+
+各子実行をmkdtempの新規保存先へ分離し、親のnonceを子JSONへ必須にする。numeric exit/signal/errorに加え、HEAD/tree/export HEAD/tree/build hash、完全なcase集合・重複・status・必要検査・指定faultの実到達を共通契約で照合。空・古い・部分的な結果はfail-closed。独立probeも設定の非空/一意性、期待case数とcoverageを自ら確認する。単体契約試験と同じ誤成功入力の独立再注入で修正を検証する。旧候補の成功は新固定HEADの成功へ流用しない。
