@@ -22,6 +22,24 @@ try{
   const at=(b,x,y)=>({x:b.x+x*b.width,y:b.y+y*b.height});
   async function drag(from,to,{cancel=false,escape=false}={}){const b=await box(),a=at(b,...from),z=at(b,...to);await page.mouse.move(a.x,a.y);await page.mouse.down();await page.mouse.move(z.x,z.y,{steps:5});if(escape)await page.keyboard.press('Escape');if(cancel)await canvas.evaluate(el=>{const e=window.annotationEvents.findLast(e=>e.type==='pointerdown');el.dispatchEvent(new PointerEvent('pointercancel',{bubbles:true,pointerId:e.id,pointerType:'mouse'}))});await page.mouse.up();return {b,a,z};}
   async function assertPinRaster(id,x,y){await canvas.scrollIntoViewIfNeeded();const b=await box();await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));const png=PNG.sync.read(await canvas.screenshot()),cx=(b.x-b.outer.x)+x*b.width,cy=(b.y-b.outer.y)+y*b.height;let hits=0;for(let yy=Math.round(cy)-13;yy<=Math.round(cy)+13;yy++)for(let xx=Math.round(cx)-13;xx<=Math.round(cx)+13;xx++){const i=(yy*png.width+xx)*4;if(Math.abs(png.data[i]-185)<8&&Math.abs(png.data[i+1]-90)<8&&Math.abs(png.data[i+2]-61)<8)hits++}assert.ok(hits>100,`painted pin ${id} at input-derived coordinate; hits=${hits}`);return{cx,cy,hits,pngWidth:png.width,pngHeight:png.height}}
+  async function actionContrast(locator, state) {
+    const value = await locator.evaluate(el => {
+      const rgb = text => text.match(/[\d.]+/g).map(Number);
+      let background = [255,255,255];
+      const parents = []; for (let node=el; node; node=node.parentElement) parents.unshift(node);
+      for (const node of parents) { const color=rgb(getComputedStyle(node).backgroundColor), alpha=color[3]??1; background=background.map((v,i)=>color[i]*alpha+v*(1-alpha)); }
+      const foreground=rgb(getComputedStyle(el).color);
+      const luminance=color=>color.slice(0,3).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);
+      const a=luminance(foreground), b=luminance(background);
+      return {label:el.textContent.trim(),foreground,background,ratio:(Math.max(a,b)+.05)/(Math.min(a,b)+.05)};
+    });
+    assert.ok(value.ratio>=4.5, `${state} action contrast ${value.label}: ${value.ratio} < 4.5`);
+    c.measurements.push({actionContrast:{state,...value}});
+  }
+  for (const control of await stage.locator('button[aria-pressed=true], .iaPrimary, .iaGuideControls button:first-child').all()) {
+    await actionContrast(control,'normal'); await control.hover(); await actionContrast(control,'hover'); await page.mouse.move(0,0);
+  }
+  for (const copy of await stage.locator('.iaHelp, .iaGuide>p, .iaHeader>p, .iaSidebar h5 span, .iaHeader>span, .iaGuideTitle>span:first-child, .iaDescription>span').all()) await actionContrast(copy,'supporting text');
   let m=await model();assert.equal(m.length,4);near(m[0].x,.258);near(m[0].y,.49);c.measurements.push(await assertPinRaster(m[0].id,.258,.49));await snap('initial');check('samples-and-raster');
   await click('ピン');let b=await box(),p=at(b,.82,.73);await page.mouse.click(p.x,p.y);m=await waitModel(m=>m.length===5);let created=m.at(-1);const pinInput=await page.evaluate(()=>window.annotationEvents.findLast(e=>e.type==='pointerdown'));near(created.x,(pinInput.x-b.x)/b.width);near(created.y,(pinInput.y-b.y)/b.height);c.measurements.push({pinInput,b,created});check('pin-create');
   await click('矢印');const arrowDrag=await drag([.1,.12],[.32,.18]);m=await waitModel(m=>m.length===6);assert.equal(m.at(-1).kind,'arrow');const arrowEnd=await page.evaluate(()=>window.annotationEvents.findLast(e=>e.type==='pointerup'));near(m.at(-1).x2,(arrowEnd.x-arrowDrag.b.x)/arrowDrag.b.width);check('arrow-create');

@@ -15,6 +15,8 @@ Code inventory was freshly run against base main and working tree: 266→267 exh
 - Chromium141 launched locally. Local WebKit initially could not launch because required shared libraries were absent. No local WebKit success is claimed from that failure; the pinned CI workflow is the supported acceptance route.
 - Initial npm setup failed because the default cache path was unavailable; a workspace-independent /tmp cache succeeded without changing dependencies or the lockfile.
 
+- Final screenshot inspection found selected-list and primary-button hover contrast loss from CSS rule specificity. A real computed-color WCAG contrast check reproduced the failure, then scoped selected/hover rules repaired it. The earlier clean `8d4c0e3` run is superseded, not final acceptance.
+
 ## Final evidence requirements
 
 The PR must record its actual submitted HEAD and base, fresh lint/type/build/unit outputs, all16 browser conditions, current CI workflow/job results, screenshot hashes, negative controls, unchanged known gaps and independent-review recommendation. Do not promote the exploratory results above to final acceptance. Raw per-case evidence is uploaded by CI even for a failed job.
