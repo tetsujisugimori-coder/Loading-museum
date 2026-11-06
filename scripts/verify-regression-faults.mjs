@@ -1,0 +1,19 @@
+// Execute the actual normal harness under DOM faults. A helper-only assertion
+// cannot satisfy this test: each fault must make that harness exit nonzero.
+import {spawnSync} from 'node:child_process';
+import {mkdir,readFile,writeFile} from 'node:fs/promises';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const root=process.env.EVIDENCE_DIR||'work/regression-faults';await mkdir(root,{recursive:true});const report={kind:'same normal harness, injected DOM faults and recovery',cases:[]};
+try{for(const era of ['then','now'])for(const fault of ['missingLast','extraAfterCancel','changedExisting']){
+ const dir=path.join(root,`${era}-${fault}`),env={...process.env,EVIDENCE_DIR:dir,REGRESSION_DRAW_FAULT:fault,REGRESSION_DRAW_FAULT_ERA:era};
+ const r=spawnSync(process.execPath,['scripts/verify-flash-phase2-editing.mjs'],{env,encoding:'utf8'});await writeFile(path.join(root,`${era}-${fault}.log`),r.stdout+r.stderr);
+ const data=JSON.parse(await readFile(path.join(dir,'results.json'),'utf8')),c=data.cases.find(c=>c.injectedFault?.name===fault&&c.era===era);
+ assert.notEqual(r.status,0,'fault must fail normal executable');assert.equal(data.status,'FAIL');assert.ok(c,'fault must actually reach normal assertion');assert.ok(c.failures.some(f=>f.name==='cancel retains exact input-derived partial ink'));assert.match(data.error,/normal cancel assertion failed/);
+ report.cases.push({era,fault,exit:r.status,harnessHead:data.head,exportHead:data.exportHead,expected:c.injectedFault.expected,actual:c.injectedFault.actual,assertion:c.failures,status:'PASS'});
+}
+const stepDir=path.join(root,'step-never-stops'),step=spawnSync(process.execPath,['scripts/verify-regression-timing.mjs'],{env:{...process.env,EVIDENCE_DIR:stepDir,REGRESSION_STEP_FAULT:'neverStops'},encoding:'utf8'});
+await writeFile(path.join(root,'step-never-stops.log'),step.stdout+step.stderr);const stepReport=JSON.parse(await readFile(path.join(stepDir,'report.json'),'utf8'));assert.notEqual(step.status,0);assert.equal(stepReport.status,'FAIL');assert.equal(stepReport.cases.at(-1).injectedFault,'neverStops');assert.match(stepReport.error,/visibility did not settle within 10000ms/);report.stepFault={exit:step.status,status:stepReport.status,error:stepReport.error,assertion:'same settledVisibility as normal and practical harness'};
+const env={...process.env,EVIDENCE_DIR:path.join(root,'recovery')};delete env.REGRESSION_DRAW_FAULT;delete env.REGRESSION_DRAW_FAULT_ERA;
+const r=spawnSync(process.execPath,['scripts/verify-flash-phase2-editing.mjs'],{env,encoding:'utf8'});await writeFile(path.join(root,'recovery.log'),r.stdout+r.stderr);const recovery=JSON.parse(await readFile(path.join(root,'recovery/results.json'),'utf8'));assert.equal(r.status,0,'normal executable must recover after fault removal');assert.equal(recovery.status,'PASS');const stepRecovery=spawnSync(process.execPath,['scripts/verify-regression-timing.mjs'],{env:{...env,EVIDENCE_DIR:path.join(root,'step-recovery')},encoding:'utf8'});await writeFile(path.join(root,'step-recovery.log'),stepRecovery.stdout+stepRecovery.stderr);assert.equal(stepRecovery.status,0);report.stepRecovery=JSON.parse(await readFile(path.join(root,'step-recovery/report.json'),'utf8')).status;assert.equal(report.stepRecovery,'PASS');report.recovery={exit:r.status,status:recovery.status,head:recovery.head,exportHead:recovery.exportHead,cases:recovery.cases.length};report.status='PASS';
+}catch(e){report.status='FAIL';report.error=String(e.stack||e);process.exitCode=1;}finally{await writeFile(path.join(root,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));}

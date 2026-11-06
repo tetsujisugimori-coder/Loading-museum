@@ -1691,3 +1691,10 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - #29/#44/#54は継続、依存lock不変。実機iPhone Safari、VoiceOver、実OS背景化は未検証。公開・merge・auto-mergeなし。
 - 375px画像目視で、Frame Thenの茶色が暗い操作面へ継承する低コントラストと、Elastic Nowの温室が中央hubに重なる点を発見して局所修正。茶色をSVG内へ限定、Nowを二列二段＋実位置へ接続線、240px時の非重複単体検査を追加。自動PASSだけでは作品品質を認定しない。
 - ブラウザ検査器自身のfocus対象が完了後disabledボタンだった失敗も別保存。enabled操作へ正して再実行し、製品不具合と混同しない。
+
+## 2026-11-06 — PR #66 R1/R2/Undo回帰検査の再受入
+
+- 製品コード・素材・依存は変更せず、Flash source/copy/committed/cancelの期待点列を実配送owner pointerから生成する検査へ変更。capture/bubble/MutationObserver/read/cancel時刻と入力順を保存。
+- Step Progressの100ms後の即時判定を、scroll/geometry/独立IO/data-activeと複数frameの収束検査へ変更。10秒枠は維持、radiusの停止も確認。
+- 同じmain05735とPR exportへ正系と故障を適用するChromium/WebKit×4幅CI、独立担当の別oracle、通常実行ファイルのFAIL/nonzeroと回復PASSを追加。旧REDは保持し、初回CIの未記録時系列はUNKNOWN。
+- 候補登録時点では正式CI・固定HEADの独立再受入待ち。完了判定・マージ推奨は最終証拠とPR本文に従う。#44のsecurity課題、#54の未検証範囲を解消扱いにしない。

@@ -127,7 +127,7 @@ jobs:
       - name: Actual interaction and rendering
         env:
           BROWSERS: ${{ matrix.browser }}
-          WIDTHS: 390,375,1280
+          WIDTHS: 375,390,765,1280
           EVIDENCE_DIR: practical-browser-evidence
         run: |
           set -o pipefail

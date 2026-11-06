@@ -1,0 +1,100 @@
+name: Regression timing reacceptance
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: regression-timing-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  timing:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+        width: [375, 390, 765, 1280]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/checkout@v4
+        with:
+          repository: tetsujisugimori-coder/Loading-museum
+          ref: 05735e83fd23d228d797afb89a150045293d3e58
+          path: baseline
+          persist-credentials: false
+      - name: Build unchanged main counterexample
+        run: |
+          git rev-parse HEAD HEAD^{tree}
+          git -C baseline rev-parse HEAD HEAD^{tree}
+          npm ci --prefix baseline
+          npm run build --prefix baseline
+      - name: Pinned browser tooling outside application dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/regression-playwright" --no-save playwright@1.56.1
+          if [ -f /etc/apt/apt-mirrors.txt ]; then
+            printf 'https://archive.ubuntu.com/ubuntu/\tpriority:1\nhttps://security.ubuntu.com/ubuntu/\tpriority:2\n' | sudo tee /etc/apt/apt-mirrors.txt
+          fi
+          "$RUNNER_TEMP/regression-playwright/node_modules/.bin/playwright" install --with-deps ${{ matrix.browser }}
+      - name: Identical input oracle on main and PR, normal and faults
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          WIDTHS: ${{ matrix.width }}
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/regression-playwright/node_modules/playwright"
+          status=0
+          for variant in main pr; do
+            if [ "$variant" = main ]; then export SOURCE_REPO="$PWD/baseline"; export EXPORT_DIR="$PWD/baseline/out"; export EXPORT_HEAD="$(git -C baseline rev-parse HEAD)"; export EXPORT_TREE="$(git -C baseline rev-parse HEAD^{tree})"; else export SOURCE_REPO="$PWD"; export EXPORT_DIR="$PWD/out"; export EXPORT_HEAD="$(git rev-parse HEAD)"; export EXPORT_TREE="$(git rev-parse HEAD^{tree})"; fi
+            EVIDENCE_DIR="regression-evidence/$variant/flash" node scripts/verify-flash-phase2-editing.mjs 2>&1 | tee "regression-$variant-flash.log" || status=1
+            EVIDENCE_DIR="regression-evidence/$variant/step" node scripts/verify-regression-timing.mjs 2>&1 | tee "regression-$variant-step.log" || status=1
+          done
+          exit "$status"
+      - name: Faults must fail the normal executable, then recover
+        if: ${{ !cancelled() }}
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          WIDTHS: ${{ matrix.width }}
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/regression-playwright/node_modules/playwright"
+          status=0
+          for variant in main pr; do
+            if [ "$variant" = main ]; then export SOURCE_REPO="$PWD/baseline"; export EXPORT_DIR="$PWD/baseline/out"; export EXPORT_HEAD="$(git -C baseline rev-parse HEAD)"; export EXPORT_TREE="$(git -C baseline rev-parse HEAD^{tree})"; else export SOURCE_REPO="$PWD"; export EXPORT_DIR="$PWD/out"; export EXPORT_HEAD="$(git rev-parse HEAD)"; export EXPORT_TREE="$(git rev-parse HEAD^{tree})"; fi
+            EVIDENCE_DIR="regression-evidence/$variant/faults" node scripts/verify-regression-faults.mjs 2>&1 | tee "regression-$variant-faults.log" || status=1
+          done
+          exit "$status"
+      - name: Independent assertions against both exports
+        if: ${{ !cancelled() }}
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          WIDTHS: ${{ matrix.width }}
+        run: |
+          set -o pipefail
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/regression-playwright/node_modules/playwright"
+          status=0
+          for variant in main pr; do
+            if [ "$variant" = main ]; then export SOURCE_REPO="$PWD/baseline"; export EXPORT_DIR="$PWD/baseline/out"; export EXPORT_HEAD="$(git -C baseline rev-parse HEAD)"; export EXPORT_TREE="$(git -C baseline rev-parse HEAD^{tree})"; else export SOURCE_REPO="$PWD"; export EXPORT_DIR="$PWD/out"; export EXPORT_HEAD="$(git rev-parse HEAD)"; export EXPORT_TREE="$(git rev-parse HEAD^{tree})"; fi
+            EVIDENCE_DIR="regression-evidence/$variant/independent" node scripts/verify-regression-independent.mjs 2>&1 | tee "regression-$variant-independent.log" || status=1
+          done
+          exit "$status"
+      - name: Evidence mapping even after a failed check
+        if: ${{ !cancelled() }}
+        run: node scripts/summarize-regression-evidence.mjs regression-evidence
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: regression-timing-${{ matrix.browser }}-${{ matrix.width }}-${{ github.event.pull_request.head.sha }}
+          path: |
+            regression-evidence/
+            regression-*.log
