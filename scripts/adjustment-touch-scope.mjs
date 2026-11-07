@@ -24,6 +24,7 @@ const WATCHED_EXACT = new Set([
   'scripts/adjustment-png-evidence.mjs',
   'scripts/adjustment-probe-manifest.mjs',
   'scripts/adjustment-result-contract.mjs',
+  'scripts/annotation-result-contract.mjs',
   'docs/phase6a5/original-raster-manifest.json',
   'tests/adjustment-result-contract.test.mjs',
   'tests/adjustment-registration.test.mjs',

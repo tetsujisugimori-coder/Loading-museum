@@ -36,6 +36,14 @@ The last is a synthetic observer test, not evidence of physical native delivery.
 
 ## CI policy limitations
 
+Final independent scope audit found one more transitive dependency: the A5
+result contract imports the sixteen-condition matrix from
+`scripts/annotation-result-contract.mjs`. A change to that shared matrix was
+incorrectly skipped. A recursive local-module dependency test reproduced RED;
+the shared contract is now watched and the same test is GREEN. The combined
+scope/gate/physical/native contract suite now contains 78 tests (previous 77
+results remain historical evidence). No product or browser assertion changed.
+
 No branch-protection or required-check settings are changed. The available GitHub
 connector exposes no read endpoint for those rules; their actual configured required
 contexts are UNKNOWN. Repository maintainers should consider the stable always-run

@@ -86,6 +86,20 @@ test('base-only code change does not falsely trigger an unrelated feature PR', a
 test('shared layout, CSS, physical recorder and its validators trigger native diagnosis',()=>{
  for(const file of ['app/page.tsx','app/layout.tsx','app/components/practical/practical.css','docs/phase6a5/touch-reacceptance/ios-range-instrument.js','docs/phase6a5/touch-reacceptance/ios-native-range.html','scripts/adjustment-physical-contract.mjs','scripts/adjustment-touch-gate.mjs','scripts/adjustment-png-evidence.mjs','scripts/adjustment-result-contract.mjs','docs/phase6a5/original-raster-manifest.json']) assert.equal(shouldRunTouchDiagnosis([file]),true,file);
 });
+test('native/probe/regression local module dependencies all trigger diagnosis', async()=>{
+ const {readFileSync}=await import('node:fs');
+ const {resolve,dirname,relative}=await import('node:path');
+ const root=fileURLToPath(new URL('..',import.meta.url));
+ const visited=new Set();
+ const inspect=file=>{
+  if(visited.has(file))return;visited.add(file);
+  assert.equal(shouldRunTouchDiagnosis([relative(root,file)]),true,relative(root,file));
+  const source=readFileSync(file,'utf8');
+  for(const match of source.matchAll(/(?:import|export)[^;]*?from\s+['"](\.[^'"]+)['"]/g))inspect(resolve(dirname(file),match[1]));
+ };
+ for(const file of ['scripts/diagnose-adjustment-touch.mjs','scripts/verify-adjustment-probe.mjs','scripts/verify-image-adjustment-browser.mjs'])inspect(resolve(root,file));
+ assert.ok(visited.has(resolve(root,'scripts/annotation-result-contract.mjs')),'shared matrix dependency inspected');
+});
 test('malformed changed-file evidence cannot become an unrelated skip',()=>{
  for (const value of [[null],[42],[''],['a\0b']]) assert.throws(()=>shouldRunTouchDiagnosis(value));
 });
