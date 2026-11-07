@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 export {configuration} from './annotation-result-contract.mjs';
-export const CHECKS=['inventory','original-pixels','numeric-adjustments','invalid-numbers','preset-pixels','history','keyboard-transaction','pointer-transaction','escape-cancel','pointer-cancel','gesture-isolation','resize-cancel','touch-input','comparison','image-switch','text-zoom','zero-recovery','layout','pixel-negative-control','histogram-negative-control','original-negative-control','graph-negative-control'];
+export const CHECKS=['inventory','original-pixels','numeric-adjustments','invalid-numbers','preset-pixels','history','keyboard-transaction','pointer-transaction','escape-cancel','pointer-cancel','gesture-isolation','resize-cancel','resize-before-observer','touch-input','comparison','image-switch','text-zoom','zero-recovery','layout','pixel-negative-control','histogram-negative-control','original-negative-control','graph-negative-control'];
 export function validateReport(report,expected){
  for(const field of ['runId','head','tree','exportSHA256'])assert.equal(report[field],expected[field],field);
  assert.deepEqual(report.sourceHashes,expected.sourceHashes,'exact source bytes');assert.ok(Object.keys(report.sourceHashes||{}).length>0,'source hashes required');

@@ -1728,3 +1728,4 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - Linuxの製品／素HTML native rangeを同じ位置・寸法、3 touch-action、capture有無、mouse/tap/CDP dragで60条件採取。WebKit tapは両方でpointercancel。Reactが発生に必須ではない一方、WebKit本体と入力backendの切分けはUNKNOWN。
 - 取消契約を変更せず、P3ヒストグラム説明／線種の不一致を2反例RED→GREENで修正。名前によるチャンネル選択を追加し非色識別を保持。
 - 別OS・別buildの診断CIと証拠契約を追加。収集完了と製品受入を分離し、native touch失敗は非0終了とする。原票／既知の失敗／#44・#54を保全。最終CIと別担当の結果はPR #70へ記録。
+- 独立Windows検証で、実幅変更後にkeyupがresize/ResizeObserver通知より先に届くと旧プレビューを確定するP2候補を発見。開始幅と終了直前の実幅を同期比較し、変更／ゼロ幅時に取消する局所修正。keyboard／element pointerup／document pointerup／zero幅の4反例でRED→GREEN。sleep増量による成功には置換しない。ネイティブtouch取消とは別に記録。
