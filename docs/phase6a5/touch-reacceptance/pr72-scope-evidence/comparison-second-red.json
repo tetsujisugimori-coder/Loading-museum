@@ -1,0 +1,111 @@
+[
+  {
+    "name": "cancelled-but-committed",
+    "rejected": true,
+    "reason": "CANCELLED_BUT_COMMITTED"
+  },
+  {
+    "name": "mismatched-pointer-end",
+    "rejected": true,
+    "reason": "POINTER_END_ID_OR_ORDER"
+  },
+  {
+    "name": "end-before-start",
+    "rejected": true,
+    "reason": "POINTER_END_ID_OR_ORDER"
+  },
+  {
+    "name": "no-input-value-change",
+    "rejected": true,
+    "reason": "INPUT_FINAL_MISMATCH"
+  },
+  {
+    "name": "out-of-range-final",
+    "rejected": true,
+    "reason": "INITIAL_FINAL_STATE"
+  },
+  {
+    "name": "drag-with-zero-displacement",
+    "rejected": true,
+    "reason": "DRAG_MOVEMENT_MISSING"
+  },
+  {
+    "name": "empty-touch-points",
+    "rejected": true,
+    "reason": "TOUCH_POINTS_OR_ORDER"
+  },
+  {
+    "name": "invalid-eight-byte-png",
+    "rejected": true,
+    "reason": "PNG_INCOMPLETE"
+  },
+  {
+    "name": "different-finger-drag",
+    "rejected": false,
+    "result": {
+      "collection": "COMPLETE",
+      "physicalVerification": "NOT_TESTED",
+      "cancelled": false,
+      "acceptance": "PASS",
+      "sequence": [
+        "pointerdown",
+        "touchstart",
+        "gotpointercapture",
+        "pointermove",
+        "touchmove",
+        "input",
+        "pointerup",
+        "lostpointercapture",
+        "touchend",
+        "change"
+      ],
+      "finalValue": 53
+    }
+  },
+  {
+    "name": "different-touch-endpoint",
+    "rejected": false,
+    "result": {
+      "collection": "COMPLETE",
+      "physicalVerification": "NOT_TESTED",
+      "cancelled": false,
+      "acceptance": "PASS",
+      "sequence": [
+        "pointerdown",
+        "touchstart",
+        "gotpointercapture",
+        "pointermove",
+        "touchmove",
+        "input",
+        "pointerup",
+        "lostpointercapture",
+        "touchend",
+        "change"
+      ],
+      "finalValue": 53
+    }
+  },
+  {
+    "name": "touch-ended-before-pointer-start",
+    "rejected": false,
+    "result": {
+      "collection": "COMPLETE",
+      "physicalVerification": "NOT_TESTED",
+      "cancelled": false,
+      "acceptance": "PASS",
+      "sequence": [
+        "touchstart",
+        "touchend",
+        "pointerdown",
+        "gotpointercapture",
+        "pointermove",
+        "touchmove",
+        "input",
+        "pointerup",
+        "lostpointercapture",
+        "change"
+      ],
+      "finalValue": 53
+    }
+  }
+]

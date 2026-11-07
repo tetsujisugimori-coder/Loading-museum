@@ -55,3 +55,23 @@ interaction and state response, not whether WebKit engine or Playwright's WebKit
 input backend is defective. Engine/backend cause remains UNKNOWN. No cancellation
 contract is relaxed. Physical Safari, physical touch and native WebKit drag remain
 NOT_TESTED. Independent code/new-browser/raw-artifact review follows the final HEAD.
+
+## Independent counterexamples found during this implementation
+
+The first comparison implementation incorrectly accepted eight explicitly mutated
+records, and the next candidate 86662 accepted three further cross-family gesture
+mutations. Those failures are retained alongside the same-input rejection results.
+Cancellation cannot be product PASS; pointer and finger identifiers, within-gesture
+ordering, actual movement, both endpoints, input/final values and pending state are
+checked. PNG validation now decodes pixels after CRC and IDAT checks. Synthetic
+observer tests are NOT_TESTED for native product acceptance.
+
+A unit-fixture alias was also found while extending these tests: mutation of a shared
+viewport could contaminate subsequent negatives. Each fixture is now cloned, and each
+negative first verifies its own unmodified positive control. Earlier counts are kept
+as the results of those earlier test versions, not promoted to the final result.
+
+Local broad browser run at 86662 did not complete: after initial successful cases it
+hit a missing image-adjustment locator timeout. Shared /tmp exhaustion also occurred
+during this period; causality is UNKNOWN. The failed original run is retained. A new
+run with a workspace-local TMPDIR and final-HEAD CI is separate, not a reclassification.

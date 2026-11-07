@@ -123,3 +123,9 @@ fs.writeFileSync(out,JSON.stringify(r,null,2));' original.json trial.png trial-w
 Keep original.json, trial-with-png.json and trial.png together. The comparison CLI
 reads PNG files next to their envelopes and rejects missing, truncated or altered
 images. Final visual/hardware review is still required even if numeric checks pass.
+
+The fixture's automatically started observer has no operator metadata on first load.
+Treat that preliminary report as unconfigured, not a trial. After setting the config
+in Web Inspector, paste and execute the exact current `ios-range-instrument.js` again;
+it stops the old observer and takes a new initial snapshot. Do the same for the
+product page. Do not begin the gesture until the configured observer is ready.

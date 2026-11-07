@@ -52,7 +52,10 @@ export function validateProbe(r,expected) {
   const start=starts[0],end=terminals[0];
   need(end.seq>start.seq&&start.touches?.length===1&&start.changedTouches?.length===1&&end.changedTouches?.length===1&&end.touches?.length===0,'TOUCH_POINTS_OR_ORDER');
   const id=start.changedTouches[0].identifier;
+  need(start.seq>down.seq&&end.seq>lastEnd.seq,'CROSS_FAMILY_EVENT_ORDER');
   need(start.touches[0].identifier===id&&end.changedTouches[0].identifier===id,'TOUCH_ID');
+  for(const move of capture.filter(e=>e.type==='touchmove'))need(move.seq>start.seq&&move.seq<end.seq&&move.touches?.length===1&&move.changedTouches?.length===1&&move.touches[0].identifier===id&&move.changedTouches[0].identifier===id,'TOUCH_MOVE_ID_OR_ORDER');
+  need(Math.abs(end.changedTouches[0].clientX-lastEnd.clientX)<=1&&Math.abs(end.changedTouches[0].clientY-lastEnd.clientY)<=1,'TOUCH_POINTER_END_COORDINATES');
   need(Math.abs(start.changedTouches[0].clientX-down.clientX)<=1&&Math.abs(start.changedTouches[0].clientY-down.clientY)<=1,'TOUCH_POINTER_COORDINATES');
  }
  if(m.method==='drag')need(capture.some(e=>e.seq>down.seq&&e.seq<lastEnd.seq&&((e.type==='pointermove'&&e.pointerId===down.pointerId&&Math.hypot(e.clientX-down.clientX,e.clientY-down.clientY)>1)||(e.type==='touchmove'&&e.changedTouches?.some(t=>Math.hypot(t.clientX-down.clientX,t.clientY-down.clientY)>1)))),'DRAG_MOVEMENT_MISSING');
@@ -60,14 +63,14 @@ export function validateProbe(r,expected) {
  const lastInput=Number(inputs.at(-1).value);
  if(r.surface==='product'){
   for(const s of [r.initial,r.final])need(object(s.preview)&&object(s.committed?.params)&&finite(s.committed.params.brightness)&&Number.isInteger(s.history),'PRODUCT_STATE');
-  need(r.initial.committed.params.brightness===0&&r.initial.history===0,'PRODUCT_NOT_RESET');
+  need(r.initial.committed.params.brightness===0&&r.initial.preview.brightness===0&&r.initial.pending==='false'&&r.initial.history===0,'PRODUCT_NOT_RESET');
   if(cancelled)need(r.final.value===r.initial.value&&r.final.history===0,'CANCELLED_BUT_COMMITTED');
   else if(Number(r.final.value)!==0)need(Number(r.final.value)===lastInput&&lastInput!==Number(r.initial.value),'INPUT_FINAL_MISMATCH');
   need(r.final.pending==='false'&&r.final.preview.brightness===r.final.committed.params.brightness&&Number(r.final.value)===r.final.committed.params.brightness,'PENDING_OR_INCONSISTENT');
  }
  return {collection:'COMPLETE',physicalVerification:m.inputKind==='physical'?'OPERATOR_ATTESTED_ONLY':'NOT_TESTED',
   cancelled,
-  acceptance:r.surface==='product'?(!cancelled&&lastInput===r.final.committed.params.brightness&&r.final.committed.params.brightness>20&&r.final.history===1?'PASS':'FAIL'):'CONTROL_ONLY',
+  acceptance:m.inputKind==='synthetic'?'NOT_TESTED':r.surface==='product'?(!cancelled&&lastInput===r.final.committed.params.brightness&&r.final.committed.params.brightness>20&&r.final.history===1?'PASS':'FAIL'):'CONTROL_ONLY',
   sequence:capture.map(e=>e.type),finalValue:Number(r.final.value)};
 }
 const near=(a,b)=>Math.abs(a-b)<=0.5;
@@ -103,7 +106,7 @@ export function compareProbeTrials(records,expected,{minimumRepetitions=3,requir
  }
  need([...coverage.values()].every(s=>requiredMethods.every(m=>s.has(m))),'MISSING_METHOD_CONDITION');
  need([...counts.values()].every(s=>s.size>=minimumRepetitions),'INSUFFICIENT_REPETITIONS');
- return {status:'COMPARISON_COMPLETE',productAcceptance:pairs.every(p=>p.product.acceptance==='PASS')?'PASS':'FAIL',
+ return {status:'COMPARISON_COMPLETE',productAcceptance:pairs.some(p=>p.product.acceptance==='FAIL')?'FAIL':pairs.every(p=>p.product.acceptance==='PASS')?'PASS':'NOT_TESTED',
   physicalDeviceResult:records.every(r=>r.metadata.inputKind==='physical')?'REQUIRES_OPERATOR_AND_SCREENSHOT_REVIEW':'NOT_TESTED',
   cause:'UNKNOWN',pairs};
 }
