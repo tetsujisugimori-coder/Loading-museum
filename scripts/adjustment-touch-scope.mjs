@@ -45,7 +45,7 @@ function main() {
     const base = process.env.PR_BASE_SHA, head = process.env.PR_HEAD_SHA;
     if (![base, head].every(sha => /^[0-9a-f]{40}$/.test(sha ?? '')))
       throw new Error('Missing or invalid base/head SHA: refuse to skip native diagnosis');
-    const changed = execFileSync('git', ['diff', '--name-only', '-z', base, head], {encoding:'utf8'})
+    const changed = execFileSync('git', ['diff', '--name-only', '-z', base + '...' + head], {encoding:'utf8'})
       .split('\0').filter(Boolean);
     related = changed.filter(isTouchRelatedPath);
     selected = related.length > 0;
