@@ -1,0 +1,120 @@
+{
+  "base": "ab05ffa4e95a68bc387bcfbd04a16bad6e331a75",
+  "legacyTotal": 267,
+  "rooms": 13,
+  "practicalTotal": 28,
+  "hashes": {
+    "app/data/appleEarlyBeginnerGuide.ts": "374995301c907a25525807b66f42ba481cc5060af149365cf9453c4e444e7202",
+    "app/data/appleEarlyExhibits.ts": "904426e76eaa3614db3ef3fda475e08875664c9c30d5758a9228dde1794c9443",
+    "app/data/cursorExhibits.ts": "e2a7c340906c9b7c45fb695785f4ac3247908fffc3bd86ff1ae9b1757944c94a",
+    "app/data/exhibitRooms.ts": "5f781c2d56603b44681dcf81c1973827c0187e7bc90a996846b62703a5a8b962",
+    "app/data/flashExhibits.ts": "71309b9b4439021cf161278c8ff3fba13557433d66cb104b8f0e8f95c40b966f",
+    "app/data/glass-bar.json": "2fdf775a316b2e8592f9f0a0b7c2c547fc763f0cfe3ff0e504da461bedf823b1",
+    "app/data/macintoshBirthExhibits.ts": "4576d347287b3a982102ff3ae431231061caf03941202f25d19a93fccdbe6910",
+    "app/data/modernExhibits.ts": "520c15703a659fcb14e88117232e1cc78267b3d91070eddd38e99947a7c5865a",
+    "app/data/paper.json": "4cc78f1f508880f1b8932b534affeeed2230811d03a5bc8c102f42654b167472",
+    "app/data/phase2BStudies.ts": "f925ab1fd7e8e694ddbf6b075ec8f804d108e6e34cb49b32ade004ff7cb1397e",
+    "app/data/phase2Studies.ts": "dc14178b9cf9a80930c48c5cafe097c9df66cd58b0b7883cde2ab2d2adc92330",
+    "app/data/phase4aExhibits.ts": "e32cbc5d3a1726d64ffd1ca01240f02c08ac6b33cc1c8ce2642e0971b0da2672",
+    "app/data/phase4bExhibits.ts": "ee12c47730aa5b98577500c247ce1268a9ab99d1575a2be7669554a4d0abd631",
+    "app/data/phase5aExhibits.ts": "5a0915d6b2de659554b073e07e74ca220702b74513e7fc7ea0896bbcc41d61c3",
+    "app/data/phase5bExhibits.ts": "fdffa300631d04caaa7e71d2f52c1db9e76bab18c5f00c73b74d0350a18ad244",
+    "app/data/practicalExhibits.ts": "eb0598449dbef3b520a2e7351c03895139e0fea4b9419636b0bf9b6400a593d2",
+    "app/data/thenNowPhaseTwo.ts": "ccaad91e9eec8f2351cc0b2c67cf561450260fc98960777ee1146cef157c3216",
+    "app/data/thenNowStudies.ts": "31b5000a586f93d4ef4f688722039b4eab1f74e597126938ad7e64f3c4a59608",
+    "app/data/vanishedOperatingSystems.ts": "6f8e24e38b2774485c3990c38cca032668b2b60257e5b0db59b88dc4a183e0c1",
+    "app/data/waapiAdditionalSamples.ts": "d2d796ab15d170b50372fdf7ff96834f5b506342fd8e1ba130a05a478193a4c7",
+    "app/data/waapiSamples.ts": "9192ea98459f9f818ed264fd40a9e4aaf61ec9bfd4f59799cb56602805922697"
+  },
+  "phase6a": [
+    {
+      "id": "pan-zoom",
+      "title": "Pan & Zoom / 拡大して探す",
+      "use": "探索 図版 拡大 移動 可視範囲 ミニマップ",
+      "tags": [
+        "探索",
+        "座標変換",
+        "取消可能",
+        "第6期A-1"
+      ],
+      "technology": [
+        "React",
+        "TypeScript",
+        "SVG",
+        "Pointer Events"
+      ],
+      "principle": "同じ図版座標から倍率・注目位置・可視範囲を計算。拡大の基準とミニマップの窓を操作して比べます。",
+      "replacement": "レンズの局所効果や自由ドラッグ・Node Flowの要素配置に対し、図版全体の座標変換と可視範囲を管理します。",
+      "example": "観測所・庭・小道の独自SVG。架空の小世界を拡大して細部を探すローカル教材。",
+      "history": "発祥・初出年 UNKNOWN。一般的な探索UIを独自に再構成した教材で、実在施設の再現ではありません。",
+      "source": "https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html"
+    },
+    {
+      "id": "image-crop",
+      "title": "Image Crop / 構図を切り取る",
+      "use": "切抜き 構図 画像編集 選択範囲 トリミング",
+      "tags": [
+        "構図",
+        "比率",
+        "確定と取消",
+        "第6期A-2"
+      ],
+      "technology": [
+        "React",
+        "TypeScript",
+        "SVG",
+        "Pointer Events"
+      ],
+      "principle": "元絵座標の枠だけを編集し、同じ範囲をプレビューと確定結果へ描きます。元絵は保持します。",
+      "replacement": "Pan & Zoomは図版全体の拡大探索、Mask Theatreは遮蔽の演出。今回は切抜き枠の移動・伸縮と構図の確定を学びます。",
+      "example": "家・花壇・橋・木立の独自SVG。自由比率と固定比率で異なる構図を比較するローカル教材。",
+      "history": "発祥・初出年 UNKNOWN。一般的な画像編集UIを独自に再構成した教材で、実在製品の再現ではありません。",
+      "source": "https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html"
+    },
+    {
+      "id": "before-after-compare",
+      "title": "Before / After Compare / 画像の変化を見比べる",
+      "use": "画像編集・比較 画像比較 修復 色補正 Before After",
+      "tags": [
+        "画像編集・比較",
+        "同一座標",
+        "マスクと透明度",
+        "第6期A-3"
+      ],
+      "technology": [
+        "React",
+        "TypeScript",
+        "SVG",
+        "Pointer Events",
+        "requestAnimationFrame"
+      ],
+      "principle": "同じ座標に固定した2枚の画像の表示境界と不透明度を変え、変化を観察します。",
+      "replacement": "Pan & Zoomは全画像の拡大移動、Image Cropは残す領域の確定、Diff Viewerはテキスト差分。本展示は2枚の画像を重ねる・透かす・並べる比較装置です。",
+      "example": "修復前後の港のアトリエと、窓辺の色補正を模した独自SVG。実際の歴史写真や修復資料ではありません。",
+      "history": "発祥・初出年 UNKNOWN。一般的な画像比較UIを独自に再構成した教材で、画像の加工や実在製品の再現ではありません。",
+      "source": "https://www.w3.org/WAI/ARIA/apg/patterns/slider/"
+    },
+    {
+      "id": "image-annotation",
+      "title": "Image Annotation & Hotspots / 画像へ意味を付ける",
+      "use": "画像編集・比較 注釈 ピン 矢印 範囲 説明 ガイド 観察",
+      "tags": [
+        "画像編集・比較",
+        "座標変換",
+        "履歴と取消",
+        "第6期A-4"
+      ],
+      "technology": [
+        "React",
+        "TypeScript",
+        "SVG",
+        "Pointer Events"
+      ],
+      "principle": "画像に対する座標で注釈を保持。地点・方向・領域・言葉を編集し、確定と取消、履歴、順次案内を体験します。",
+      "replacement": "Pan & Zoomは表示範囲、Image Cropは残す範囲、Before / Afterは2枚の比較。本展示は同じ図版に意味と説明を付け加えます。",
+      "example": "架空の島の観察図と天候観測機の独自SVG。完成済みの注釈を編集して、自分のガイドを作るローカル教材。",
+      "history": "発祥・初出年 UNKNOWN。一般的な画像注釈UIを独自に再構成し、実在資料や製品を複製していません。",
+      "source": "https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html"
+    }
+  ]
+}

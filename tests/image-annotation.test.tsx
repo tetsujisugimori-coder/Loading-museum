@@ -19,7 +19,7 @@ const click = (name: string) => fireEvent.click(screen.getByRole('button', { nam
 const marks = () => (JSON.parse(screen.getByTestId('image-annotation').dataset.committed!) as {id:string}[]).map(a => screen.getByTestId(`ia-mark-${a.id}`));
 const list = () => within(screen.getByRole('region', { name: '注釈一覧' }));
 it('registers exactly one new exhibit alongside all three existing images', () => {
-  expect(phase6aExhibits.map(x => x.id)).toEqual(['pan-zoom', 'image-crop', 'before-after-compare', 'image-annotation']);
+  expect(phase6aExhibits.map(x => x.id)).toEqual(['pan-zoom', 'image-crop', 'before-after-compare', 'image-annotation', 'image-adjustment']);
 });
 it('adds each tool without dragging, edits text and geometry, deletes and restores exact annotations', () => {
   render(<ImageAnnotation />); expect(marks().length).toBe(4);

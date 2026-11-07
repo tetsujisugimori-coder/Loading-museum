@@ -34,4 +34,13 @@ export const phase6aExhibits = [{
   example: '架空の島の観察図と天候観測機の独自SVG。完成済みの注釈を編集して、自分のガイドを作るローカル教材。',
   history: '発祥・初出年 UNKNOWN。一般的な画像注釈UIを独自に再構成し、実在資料や製品を複製していません。',
   source: 'https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html',
+}, {
+  id: 'image-adjustment', title: 'Image Adjustment Lab / 画像の色と光を調整する',
+  use: '画像編集・比較 明るさ コントラスト 彩度 色温度 RGB ヒストグラム',
+  tags: ['画像編集・比較', '実画素処理', 'ヒストグラム', '第6期A-5'], technology: ['React', 'TypeScript', 'Canvas ImageData', 'SVG'],
+  principle: '原画像のRGBを決まった式と順序で変換し、その画素を256階調へ数え上げます。数値、画像、分布、履歴の一致を観察します。',
+  replacement: 'Pan & Zoomは表示範囲、Cropは残す範囲、Compareは2枚の比較、Annotationは意味の追加。本展示は実際のRGB画素値と分布を変える教材です。',
+  example: '独自生成した水辺の集落と窓辺の静物。光の階調、色、白飛びを比較できるローカルのラスタ画像。',
+  history: '発祥・初出年 UNKNOWN。一般的な画像補正を教材用の符号化sRGB近似で独自構成。厳密な測色・Kelvin補正ではありません。',
+  source: 'https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Pixel_manipulation_with_canvas',
 }];

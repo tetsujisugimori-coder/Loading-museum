@@ -1713,3 +1713,18 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - Keyboard edits use focused annotation identity, with canvas-only selection fallback; Tab alone remains non-mutating. Added three component regressions and expanded browser keyboard ownership checks.
 - Hardened image evidence validation and required successful fault-removal recovery. Added seven real-file negative/positive cases (29 contract tests total).
 - No dependencies, other exhibits, IDs, or publication settings changed. Final exact-head CI and independent reacceptance remain prerequisites; Draft and #44/#54 boundaries remain.
+
+## 2026-11-07 — 第6期A-5 Image Adjustment Lab（Issue #69）
+- PR #68 merge main ab05ffa4e95a68bc387bcfbd04a16bad6e331a75 を基準に独自ラスタ2種、実RGBA変換、RGB256ビン、数値/スライダー、6プリセット、比較、原子的履歴を追加。
+- 既存登録は固定source hashとA1〜A4値で保全。追加後268展示・13室・実用UI29。既存browserの個数期待値だけ更新、検査条件を緩和しない。
+- 探索中の初回Chromium375で、プレビューによるroot高さ変化をresizeと誤認して取消する反例を取得。幅変化のみを観測して自己起因の取消を除去。失敗原票を保存し、最終検査へ引継ぐ。
+- 依存/lockは変更なし。#44セキュリティ、#54未検証は継続。自己検証段階で、独立レビューとマージ・公開は行わない。
+- WebKit375の実配送mouse dragで入力が変化しない反例を取得。native rangeに明示setPointerCaptureを入れた場合のみ再現し、no-op対照で変化することを確認。native slider自身の配送へ任せ、document pointerup/cancelで画面外releaseも処理する局所修正を実施。実機touchの検証とは区別する。
+
+- 提出候補f2ce79c5の16条件は指定の22検査すべて成功したが、後の目視でWebKit native selectの暗背景/暗文字を確認。light color-schemeを局所指定し、computed styleだけでなくselect PNGの描画背景を検査する。旧候補の成功を新HEADへ流用しない。
+- 補足のWebKit native slider touch tapはinput54の後pointercancelが発生し0へ取消。touch-action:noneとpointerdown preventDefaultでも再現。原因UNKNOWN、実機Safari未検証。取消を無視する変更はせず、数値入力/keyboard/mouseの成功と分離。Chromium touch tapとCDP touch dragは成功。
+
+## 2026-11-07 PR #70 局所調査・再受入
+- Linuxの製品／素HTML native rangeを同じ位置・寸法、3 touch-action、capture有無、mouse/tap/CDP dragで60条件採取。WebKit tapは両方でpointercancel。Reactが発生に必須ではない一方、WebKit本体と入力backendの切分けはUNKNOWN。
+- 取消契約を変更せず、P3ヒストグラム説明／線種の不一致を2反例RED→GREENで修正。名前によるチャンネル選択を追加し非色識別を保持。
+- 別OS・別buildの診断CIと証拠契約を追加。収集完了と製品受入を分離し、native touch失敗は非0終了とする。原票／既知の失敗／#44・#54を保全。最終CIと別担当の結果はPR #70へ記録。

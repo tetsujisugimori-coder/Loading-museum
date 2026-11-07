@@ -1,5 +1,13 @@
 # DIGITAL MOTION ARCHIVE
 
+## 第6期A-5：Image Adjustment Lab
+
+実際のRGB画素を明るさ・コントラスト・彩度・色温度で変換し、同じ画素から256階調ヒストグラムを計算する教材を追加。**268展示・13室、実用UI29展示**。独自ラスタ2種、6プリセット、前後・Split比較、Undo/Redo/Reset、連続編集の確定・取消を備える。
+
+- [設計・変換式・色空間の限界](docs/phase6a5/design.md)
+- 既存267展示と第6期A-1〜A-4のID、過去証拠を保全。#44 security と #54未検証は継続。
+- Draft提出段階は自己検証。後続の独立レビューまでマージ推奨NO、公開しない。
+
 ## 第6期A-4：Image Annotation & Hotspots（Issue #67）
 
 「画像へ意味を付ける」を既存実用UI室へ1展示追加。**267展示・13室、同室28展示**。独自の島の観察図と装置図にピン・矢印・矩形・説明文を追加し、ドラッグ・数値編集・関連付け・削除・Undo/Redo・順次ガイドを体験できます。
@@ -183,3 +191,5 @@ Issue #41。既存215展示に、工程進捗・先読み進捗・引いて更�
 第3期Bでは長押し・弾性・処理状態ボタン、時間差一覧、共有要素遷移、Crossfadeを追加し、同室12部品・全館227展示になりました。旧150/197の記載は各増築時点の内訳です。操作に応じた状態・描画を観察する独自教材で、実削除やネットワーク処理は行いません。差替判断・原典・UNKNOWNの歴史は [棚卸し](docs/phase3-inventory.md)、試験と残件は [作品別記録](docs/phase3-studies.md) に保持します。
 
 第6期A-3の回帰検査再受入では、Flashの入力配送からの全点列照合と、Step Progressのscroll/Observer/DOM収束を検査します。固定待機の延長をせず、元の10秒以内で状態を確認し、通常検査への故障注入が非ゼロ終了することも確認します。[検査契約と旧REDの扱い](docs/regression-timing-reacceptance.md)。
+
+第6期A-5の[WebKit native touch局所調査](docs/phase6a5/touch-reacceptance/README.md)では、製品と素HTMLを比較し、収集完了と製品受入を区別します。native rangeのtouch取消は原因UNKNOWNを含む受入阻害として追跡し、数値入力・keyboard・mouseによる操作とは分けて扱います。
