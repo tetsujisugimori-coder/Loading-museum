@@ -54,3 +54,30 @@ test('entrypoint: docs skipped, change selected, manual forced, invalid SHA fail
   const invalid=run('pull_request','unknown');
   assert.notEqual(invalid.status,0);assert.equal(invalid.out,'');
 });
+
+test('base-only code change does not falsely trigger an unrelated feature PR', async () => {
+  const {mkdtempSync,mkdirSync,writeFileSync,readFileSync} = await import('node:fs');
+  const {tmpdir} = await import('node:os');
+  const {join} = await import('node:path');
+  const {execFileSync,spawnSync} = await import('node:child_process');
+  const dir=mkdtempSync(join(tmpdir(),'iad-three-dot-'));
+  const git=(...args)=>execFileSync('git',args,{cwd:dir,encoding:'utf8'}).trim();
+  git('init','-q');git('config','user.name','Test');git('config','user.email','ci@example.test');
+  writeFileSync(join(dir,'README.md'),'base\n');git('add','.');git('commit','-qm','base');
+  const initial=git('rev-parse','HEAD');
+  git('checkout','-qb','feature');
+  writeFileSync(join(dir,'README.md'),'feature documentation\n');
+  git('add','.');git('commit','-qm','unrelated feature');
+  const head=git('rev-parse','HEAD');
+  git('checkout','-qb','main',initial);
+  mkdirSync(join(dir,'app/components/practical'),{recursive:true});
+  writeFileSync(join(dir,'app/components/practical/ImageAdjustment.tsx'),'base only change\n');
+  git('add','.');git('commit','-qm','base changed adjustment');
+  const base=git('rev-parse','HEAD'),output=join(dir,'result');
+  writeFileSync(output,'');
+  const script=new URL('../scripts/adjustment-touch-scope.mjs',import.meta.url).pathname;
+  const result=spawnSync(process.execPath,[script],{cwd:dir,
+    env:{...process.env,GITHUB_EVENT_NAME:'pull_request',PR_BASE_SHA:base,PR_HEAD_SHA:head,GITHUB_OUTPUT:output}});
+  assert.equal(result.status,0);
+  assert.equal(readFileSync(output,'utf8'),'run_native=false\n');
+});
