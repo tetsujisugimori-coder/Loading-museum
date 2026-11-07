@@ -2,10 +2,32 @@ name: Diagnose Image Adjustment Touch
 on:
   pull_request:
     branches: [main]
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
+  select-scope:
+    runs-on: ubuntu-24.04
+    outputs:
+      run_native: ${{ steps.scope.outputs.run_native }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Decide whether native touch diagnosis is relevant
+        id: scope
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/adjustment-touch-scope.mjs
   native-range:
+    needs: select-scope
+    if: needs.select-scope.outputs.run_native == 'true'
     name: Native range ${{ matrix.os }} PW ${{ matrix.playwright }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 20
@@ -17,7 +39,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
@@ -38,5 +60,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: native-range-${{ matrix.os }}-${{ matrix.playwright }}-${{ github.event.pull_request.head.sha }}
+          name: native-range-${{ matrix.os }}-${{ matrix.playwright }}-${{ github.event.pull_request.head.sha || github.sha }}
           path: work/touch-reacceptance/
