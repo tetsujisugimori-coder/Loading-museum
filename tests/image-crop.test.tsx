@@ -152,7 +152,7 @@ it('retains world coordinates and committed crop through resizing, zero width an
   const remove = vi.spyOn(document, 'removeEventListener'); unmount(); expect(remove.mock.calls.some(([type]) => type === 'visibilitychange')).toBe(true); expect(remove.mock.calls.some(([type]) => type === 'keydown')).toBe(true);
 });
 it('registers only one new unique ID, searches by crop tags, switches and closes without retaining state', () => {
-  const all = [...phase4aExhibits, ...phase4bExhibits, ...phase5aExhibits, ...phase5bExhibits, ...phase6aExhibits]; expect(all).toHaveLength(27); expect(new Set(all.map(e => e.id)).size).toBe(27); expect(phase6aExhibits.map(e => e.id)).toEqual(['pan-zoom', 'image-crop', 'before-after-compare']);
+  const all = [...phase4aExhibits, ...phase4bExhibits, ...phase5aExhibits, ...phase5bExhibits, ...phase6aExhibits]; expect(all).toHaveLength(28); expect(new Set(all.map(e => e.id)).size).toBe(28); expect(phase6aExhibits.map(e => e.id)).toEqual(['pan-zoom', 'image-crop', 'before-after-compare', 'image-annotation']);
   render(<PracticalRoom phase={4} />); click('部品展示室を開く'); fireEvent.change(screen.getByLabelText('部品名・用途・技術で検索'), { target: { value: 'トリミング' } }); expect(within(screen.getByRole('navigation')).getAllByRole('button')).toHaveLength(1); click('Image Crop / 構図を切り取る'); click('→ 右'); start();
   click('閉室して一覧へ戻る'); expect(screen.queryByTestId('image-crop')).toBeNull(); expect(document.activeElement?.textContent).toBe('部品展示室を開く'); click('部品展示室を開く'); expect(box()).toBe('100 120 480 360');
 });

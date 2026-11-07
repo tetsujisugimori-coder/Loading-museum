@@ -1,0 +1,47 @@
+name: Verify Image Annotation
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  annotation-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+        width: [375, 390, 765, 1280]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint && npm run typecheck && npx vitest run --maxWorkers=2 tests/annotation-model.test.ts tests/image-annotation.test.tsx tests/before-after-compare.test.tsx tests/image-crop.test.tsx tests/pan-zoom.test.tsx && node --test tests/annotation-result-contract.test.mjs && npm run build
+      - name: Fixed external browser and image tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/annotation-tools" --no-save playwright@1.56.1 pngjs@7.0.0
+          "$RUNNER_TEMP/annotation-tools/node_modules/.bin/playwright" install --with-deps ${{ matrix.browser }}
+      - name: Both motion preferences, exact submitted source
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          WIDTHS: ${{ matrix.width }}
+          EVIDENCE_DIR: work/image-annotation
+          REQUIRE_CLEAN: '1'
+        run: |
+          set -o pipefail
+          mkdir -p work
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/annotation-tools/node_modules/playwright"
+          export PNG_MODULE="$RUNNER_TEMP/annotation-tools/node_modules/pngjs"
+          node scripts/verify-image-annotation-browser.mjs 2>&1 | tee work/image-annotation.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: annotation-${{ matrix.browser }}-${{ matrix.width }}-${{ github.event.pull_request.head.sha }}
+          path: work/

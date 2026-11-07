@@ -1,5 +1,11 @@
 # DIGITAL MOTION ARCHIVE
 
+## 第6期A-4：Image Annotation & Hotspots（Issue #67）
+
+「画像へ意味を付ける」を既存実用UI室へ1展示追加。**267展示・13室、同室28展示**。独自の島の観察図と装置図にピン・矢印・矩形・説明文を追加し、ドラッグ・数値編集・関連付け・削除・Undo/Redo・順次ガイドを体験できます。
+
+[設計・操作・座標契約](docs/image-annotation.md)／[検証台帳](docs/image-annotation-evidence/README.md)。画像の比率を保ち、余白への入力を拒否。編集/閲覧、取消、キーボード、狭幅、reduced motionに対応。ブラウザ内のみで動作し、保存やアップロードはありません。独立レビュー前は**マージ推奨NO・Draft維持**。以下の過去件数は当時の履歴です。
+
 ## 第6期A-3：Before / After Compare（Issue #65）
 
 既存実用UI室へ「Before / After Compare / 画像の変化を見比べる」を追加。**266展示・13室、同室27展示**。同じ座標の独自SVG2組をSplit、Overlay、並列で比較し、反転・自動比較・一時停止・再開・Replay・Resetを操作できます。キーボード、ハンドルのタッチ操作、reduced motionに対応。「画像編集・比較」で検索できます。

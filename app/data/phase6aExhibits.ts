@@ -25,4 +25,13 @@ export const phase6aExhibits = [{
   example: '修復前後の港のアトリエと、窓辺の色補正を模した独自SVG。実際の歴史写真や修復資料ではありません。',
   history: '発祥・初出年 UNKNOWN。一般的な画像比較UIを独自に再構成した教材で、画像の加工や実在製品の再現ではありません。',
   source: 'https://www.w3.org/WAI/ARIA/apg/patterns/slider/',
+}, {
+  id: 'image-annotation', title: 'Image Annotation & Hotspots / 画像へ意味を付ける',
+  use: '画像編集・比較 注釈 ピン 矢印 範囲 説明 ガイド 観察',
+  tags: ['画像編集・比較', '座標変換', '履歴と取消', '第6期A-4'], technology: ['React', 'TypeScript', 'SVG', 'Pointer Events'],
+  principle: '画像に対する座標で注釈を保持。地点・方向・領域・言葉を編集し、確定と取消、履歴、順次案内を体験します。',
+  replacement: 'Pan & Zoomは表示範囲、Image Cropは残す範囲、Before / Afterは2枚の比較。本展示は同じ図版に意味と説明を付け加えます。',
+  example: '架空の島の観察図と天候観測機の独自SVG。完成済みの注釈を編集して、自分のガイドを作るローカル教材。',
+  history: '発祥・初出年 UNKNOWN。一般的な画像注釈UIを独自に再構成し、実在資料や製品を複製していません。',
+  source: 'https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html',
 }];

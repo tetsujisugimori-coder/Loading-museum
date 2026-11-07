@@ -70,8 +70,8 @@ try {
           if (e.target instanceof Element && e.target.closest('[data-testid="bc-canvas"]')) window.compareNativePointers.push({ sequence: window.compareNativePointers.length, type, id: e.pointerId, x: e.clientX, y: e.clientY, trusted: e.isTrusted, pointerType: e.pointerType });
         }, true);
       });
-      await page.goto(url); assert.match(await page.locator('.archiveMeta').textContent(), /13 ROOMS \/ 266 OBJECTS/);
-      const room = page.locator('.phase4Room'); await room.getByRole('button', { name: '部品展示室を開く', exact: true }).click(); assert.equal(await room.locator('nav button').count(), 27);
+      await page.goto(url); assert.match(await page.locator('.archiveMeta').textContent(), /13 ROOMS \/ 267 OBJECTS/);
+      const room = page.locator('.phase4Room'); await room.getByRole('button', { name: '部品展示室を開く', exact: true }).click(); assert.equal(await room.locator('nav button').count(), 28);
       const selectExhibit = async name => room.getByRole('button', { name, exact: true }).click();
       await selectExhibit('Before / After Compare / 画像の変化を見比べる');
       const stage = room.getByTestId('before-after-compare'), canvas = stage.getByTestId('bc-canvas'), top = stage.getByTestId('bc-top'), base = stage.getByTestId('bc-base');

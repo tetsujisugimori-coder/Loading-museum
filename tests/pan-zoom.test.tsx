@@ -58,10 +58,10 @@ it('buttons, numeric validation, keyboard scope, touch modes and Reset/fit selec
  click('全体表示');expect(screen.getByText(/時計の庭（選択中）/)).toBeTruthy();expect(screen.getByRole('button',{name:'図版を移動：ON'}).getAttribute('aria-pressed')).toBe('true');
  click('Reset');expect(screen.queryByText(/（選択中）/)).toBeNull();expect(screen.getByRole('button',{name:'図版を移動：OFF'})).toBeTruthy();expect((input as HTMLInputElement).value).toBe('100');
 });
-it('searches one new exhibit, discards drag on switching and returns focus on close',()=>{
+it('searches coordinate exhibits, discards drag on switching and returns focus on close',()=>{
  render(<PracticalRoom phase={4}/>);click('部品展示室を開く');click(phase6aExhibits[0].title);click('三日月橋：この場所を見る');const zone=start();
  click('Kanban Board / 仕事を配置する');stale(zone);click(phase6aExhibits[0].title);expect(screen.getByTestId('pz-reading').textContent).toContain('100%');
- fireEvent.change(screen.getByLabelText('部品名・用途・技術で検索'),{target:{value:'座標変換'}});expect(screen.getByRole('navigation').querySelectorAll('button')).toHaveLength(1);
+ fireEvent.change(screen.getByLabelText('部品名・用途・技術で検索'),{target:{value:'座標変換'}});expect([...screen.getByRole('navigation').querySelectorAll('button')].map(b=>b.textContent)).toEqual([phase6aExhibits[0].title,phase6aExhibits[3].title]);
  click('閉室して一覧へ戻る');expect(screen.queryByTestId('pan-zoom')).toBeNull();expect(document.activeElement?.textContent).toBe('部品展示室を開く');
 });
 
