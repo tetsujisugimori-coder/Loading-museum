@@ -1,0 +1,42 @@
+name: Diagnose Image Adjustment Touch
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  native-range:
+    name: Native range ${{ matrix.os }} PW ${{ matrix.playwright }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+        playwright: ['1.55.1', '1.56.1']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Fixed independent browser versions (outside product dependencies)
+        shell: bash
+        run: |
+          npm install --prefix "$RUNNER_TEMP/touch-tools" --no-save playwright@${{ matrix.playwright }}
+          "$RUNNER_TEMP/touch-tools/node_modules/.bin/playwright" install --with-deps chromium webkit
+      - name: Native touch acceptance with complete diagnostic collection
+        shell: bash
+        run: |
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/touch-tools/node_modules/playwright"
+          node scripts/diagnose-adjustment-touch.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-range-${{ matrix.os }}-${{ matrix.playwright }}-${{ github.event.pull_request.head.sha }}
+          path: work/touch-reacceptance/

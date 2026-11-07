@@ -191,3 +191,5 @@ Issue #41。既存215展示に、工程進捗・先読み進捗・引いて更�
 第3期Bでは長押し・弾性・処理状態ボタン、時間差一覧、共有要素遷移、Crossfadeを追加し、同室12部品・全館227展示になりました。旧150/197の記載は各増築時点の内訳です。操作に応じた状態・描画を観察する独自教材で、実削除やネットワーク処理は行いません。差替判断・原典・UNKNOWNの歴史は [棚卸し](docs/phase3-inventory.md)、試験と残件は [作品別記録](docs/phase3-studies.md) に保持します。
 
 第6期A-3の回帰検査再受入では、Flashの入力配送からの全点列照合と、Step Progressのscroll/Observer/DOM収束を検査します。固定待機の延長をせず、元の10秒以内で状態を確認し、通常検査への故障注入が非ゼロ終了することも確認します。[検査契約と旧REDの扱い](docs/regression-timing-reacceptance.md)。
+
+第6期A-5の[WebKit native touch局所調査](docs/phase6a5/touch-reacceptance/README.md)では、製品と素HTMLを比較し、収集完了と製品受入を区別します。native rangeのtouch取消は原因UNKNOWNを含む受入阻害として追跡し、数値入力・keyboard・mouseによる操作とは分けて扱います。

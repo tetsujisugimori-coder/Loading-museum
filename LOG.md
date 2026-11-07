@@ -1723,3 +1723,8 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 
 - 提出候補f2ce79c5の16条件は指定の22検査すべて成功したが、後の目視でWebKit native selectの暗背景/暗文字を確認。light color-schemeを局所指定し、computed styleだけでなくselect PNGの描画背景を検査する。旧候補の成功を新HEADへ流用しない。
 - 補足のWebKit native slider touch tapはinput54の後pointercancelが発生し0へ取消。touch-action:noneとpointerdown preventDefaultでも再現。原因UNKNOWN、実機Safari未検証。取消を無視する変更はせず、数値入力/keyboard/mouseの成功と分離。Chromium touch tapとCDP touch dragは成功。
+
+## 2026-11-07 PR #70 局所調査・再受入
+- Linuxの製品／素HTML native rangeを同じ位置・寸法、3 touch-action、capture有無、mouse/tap/CDP dragで60条件採取。WebKit tapは両方でpointercancel。Reactが発生に必須ではない一方、WebKit本体と入力backendの切分けはUNKNOWN。
+- 取消契約を変更せず、P3ヒストグラム説明／線種の不一致を2反例RED→GREENで修正。名前によるチャンネル選択を追加し非色識別を保持。
+- 別OS・別buildの診断CIと証拠契約を追加。収集完了と製品受入を分離し、native touch失敗は非0終了とする。原票／既知の失敗／#44・#54を保全。最終CIと別担当の結果はPR #70へ記録。

@@ -23,7 +23,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run lint && npm run typecheck && npx vitest run --maxWorkers=2 tests/adjustment-model.test.ts tests/image-adjustment.test.tsx tests/annotation-model.test.ts tests/image-annotation.test.tsx tests/before-after-compare.test.tsx tests/image-crop.test.tsx tests/pan-zoom.test.tsx && node --test tests/adjustment-result-contract.test.mjs tests/adjustment-registration.test.mjs && npm run build
+      - run: npm run lint && npm run typecheck && npx vitest run --maxWorkers=2 tests/adjustment-model.test.ts tests/image-adjustment.test.tsx tests/adjustment-line-style.test.tsx tests/annotation-model.test.ts tests/image-annotation.test.tsx tests/before-after-compare.test.tsx tests/image-crop.test.tsx tests/pan-zoom.test.tsx && node --test tests/adjustment-result-contract.test.mjs tests/adjustment-registration.test.mjs tests/adjustment-touch-contract.test.mjs && npm run build
       - name: Fixed external browser and image tools
         run: |
           npm install --prefix "$RUNNER_TEMP/adjustment-tools" --no-save playwright@1.56.1 pngjs@7.0.0
