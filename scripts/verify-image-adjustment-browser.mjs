@@ -32,6 +32,13 @@ try{
   const room=page.locator('.phase4Room');await room.getByRole('button',{name:'部品展示室を開く',exact:true}).click();assert.equal(await room.locator('nav button').count(),29);await room.locator('nav button').filter({hasText:'Image Adjustment'}).click();
   const stage=page.getByTestId('image-adjustment'),original=page.getByTestId('iad-original'),adjusted=page.getByTestId('iad-adjusted'),histogram=page.getByTestId('iad-histogram'),click=name=>stage.getByRole('button',{name,exact:true}).click(),model=async()=>JSON.parse(await stage.getAttribute('data-committed')),preview=async()=>JSON.parse(await stage.getAttribute('data-preview')),check=name=>c.checks.push(name);
   await original.waitFor();check('inventory');
+  // Computed background alone misses WebKit's native dark select paint.
+  for(const select of await stage.locator('select').all()){
+   const png=PNG.sync.read(await select.screenshot());let sum=0,n=0;
+   for(let y=6;y<12;y++)for(let x=8;x<14;x++){const i=(y*png.width+x)*4;sum+=png.data[i]+png.data[i+1]+png.data[i+2];n+=3;}
+   const paintedMean=sum/n;assert.ok(paintedMean>220,`native select paint contrast: ${paintedMean}`);(c.selectPaint??=[]).push({select:await select.getAttribute('aria-label'),paintedMean});
+  }
+
   async function settle(){await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))))}
   async function pixels(canvas){return Buffer.from(await canvas.evaluate(el=>{const data=el.getContext('2d').getImageData(0,0,el.width,el.height).data;let binary='';for(let i=0;i<data.length;i+=8192)binary+=String.fromCharCode(...data.subarray(i,i+8192));return btoa(binary)}),'base64')}
   async function verifyRaster(name){await settle();const source=await pixels(original),actual=await pixels(adjusted),p=await preview();assert.equal(source.length,480*300*4);assert.equal(actual.length,source.length);const image=(await model()).image;assert.ok(Object.hasOwn(originalManifest.sources,image),'known original image');assert.equal(hash(source),originalManifest.sources[image],`original source oracle ${name}: ${image}`);const want=reference(source,p);assert.ok(actual.equals(want),`pixel oracle ${name}: actual ${hash(actual)}, expected ${hash(want)}`);const png=PNG.sync.read(Buffer.from((await adjusted.evaluate(el=>el.toDataURL('image/png'))).split(',')[1],'base64'));assert.equal(png.width,480);assert.equal(png.height,300);assert.ok(png.data.equals(want),`PNG raster oracle ${name}`);const bins=[Array(256).fill(0),Array(256).fill(0),Array(256).fill(0)];for(let i=0;i<want.length;i+=4)for(let channel=0;channel<3;channel++)bins[channel][want[i+channel]]++;

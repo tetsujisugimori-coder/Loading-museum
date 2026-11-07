@@ -1720,3 +1720,6 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - 探索中の初回Chromium375で、プレビューによるroot高さ変化をresizeと誤認して取消する反例を取得。幅変化のみを観測して自己起因の取消を除去。失敗原票を保存し、最終検査へ引継ぐ。
 - 依存/lockは変更なし。#44セキュリティ、#54未検証は継続。自己検証段階で、独立レビューとマージ・公開は行わない。
 - WebKit375の実配送mouse dragで入力が変化しない反例を取得。native rangeに明示setPointerCaptureを入れた場合のみ再現し、no-op対照で変化することを確認。native slider自身の配送へ任せ、document pointerup/cancelで画面外releaseも処理する局所修正を実施。実機touchの検証とは区別する。
+
+- 提出候補f2ce79c5の16条件は指定の22検査すべて成功したが、後の目視でWebKit native selectの暗背景/暗文字を確認。light color-schemeを局所指定し、computed styleだけでなくselect PNGの描画背景を検査する。旧候補の成功を新HEADへ流用しない。
+- 補足のWebKit native slider touch tapはinput54の後pointercancelが発生し0へ取消。touch-action:noneとpointerdown preventDefaultでも再現。原因UNKNOWN、実機Safari未検証。取消を無視する変更はせず、数値入力/keyboard/mouseの成功と分離。Chromium touch tapとCDP touch dragは成功。
