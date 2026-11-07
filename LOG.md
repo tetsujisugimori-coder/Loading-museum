@@ -1729,3 +1729,8 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - 取消契約を変更せず、P3ヒストグラム説明／線種の不一致を2反例RED→GREENで修正。名前によるチャンネル選択を追加し非色識別を保持。
 - 別OS・別buildの診断CIと証拠契約を追加。収集完了と製品受入を分離し、native touch失敗は非0終了とする。原票／既知の失敗／#44・#54を保全。最終CIと別担当の結果はPR #70へ記録。
 - 独立Windows検証で、実幅変更後にkeyupがresize/ResizeObserver通知より先に届くと旧プレビューを確定するP2候補を発見。開始幅と終了直前の実幅を同期比較し、変更／ゼロ幅時に取消する局所修正。keyboard／element pointerup／document pointerup／zero幅の4反例でRED→GREEN。sleep増量による成功には置換しない。ネイティブtouch取消とは別に記録。
+
+## 2026-11-08 PR #72 scope・実機引継ぎの局所検証
+- PR #70固定のまま、scopeの共有CSS/layout漏れとrename元消失を反例で確認。三点比較を保ち、誤skipを拒否する局所修正と2OS契約CI・常時集約gateを追加。
+- iOS記録器の0座標とlostpointercapture欠落を修正。終了時点のfreezeで保存操作のblurを分離し、HEAD/tree/hash・実座標・試行識別付きJSONとtap/drag各3組の比較器を用意。
+- 同じ記録器で製品／素HTMLを新規20条件比較。記録器検証の成功とWebKit製品タッチFAILを分離。実機SafariはNOT_TESTED、engine/backendの原因はUNKNOWN。製品UI・RGB・履歴・依存/lockは変更しない。最終HEAD・CI・独立再レビューはPR #72とIssue #71へ記録する。

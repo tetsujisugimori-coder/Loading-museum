@@ -5,6 +5,21 @@ on:
 permissions:
   contents: read
 jobs:
+  contract-checks:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test tests/adjustment-touch-scope.test.mjs tests/adjustment-touch-gate.test.mjs tests/adjustment-physical-contract.test.mjs tests/adjustment-touch-contract.test.mjs
   select-scope:
     runs-on: ubuntu-24.04
     outputs:
@@ -51,6 +66,12 @@ jobs:
         run: |
           npm install --prefix "$RUNNER_TEMP/touch-tools" --no-save playwright@${{ matrix.playwright }}
           "$RUNNER_TEMP/touch-tools/node_modules/.bin/playwright" install --with-deps chromium webkit
+      - name: Validate the physical-test observer with automated input (not physical PASS)
+        shell: bash
+        run: |
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/touch-tools/node_modules/playwright"
+          export PROBE_EVIDENCE=work/touch-reacceptance/probe
+          node scripts/verify-adjustment-probe.mjs
       - name: Native touch acceptance with complete diagnostic collection
         shell: bash
         run: |
@@ -61,3 +82,57 @@ jobs:
         with:
           name: native-range-${{ matrix.os }}-${{ matrix.playwright }}-${{ github.event.pull_request.head.sha || github.sha }}
           path: work/touch-reacceptance/
+          if-no-files-found: error
+
+  adjustment-regression:
+    needs: select-scope
+    if: needs.select-scope.outputs.run_native == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint && npm run typecheck && npm test
+      - name: Browser tools outside repository dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/adjustment-tools" --no-save playwright@1.56.1 pngjs@7.0.0
+          "$RUNNER_TEMP/adjustment-tools/node_modules/.bin/playwright" install --with-deps chromium webkit
+      - name: Fixed-source sixteen browser conditions and fault controls
+        env:
+          REQUIRE_CLEAN: '1'
+          EVIDENCE_DIR: work/image-adjustment
+        run: |
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/adjustment-tools/node_modules/playwright"
+          export PNG_MODULE="$RUNNER_TEMP/adjustment-tools/node_modules/pngjs"
+          node scripts/verify-image-adjustment-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: touch-scope-regression-${{ github.event.pull_request.head.sha || github.sha }}
+          path: work/image-adjustment/
+          if-no-files-found: error
+  touch-gate:
+    name: Touch diagnostic gate
+    needs: [select-scope, contract-checks, native-range, adjustment-regression]
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fail closed on missing routing, failed selected diagnosis or missing checks
+        env:
+          TOUCH_GATE_INPUT: >-
+            {"scope":"${{ needs.select-scope.result }}","selected":"${{ needs.select-scope.outputs.run_native }}","checks":"${{ needs.contract-checks.result }}","native":"${{ needs.native-range.result }}","regression":"${{ needs.adjustment-regression.result }}"}
+        run: node scripts/adjustment-touch-gate.mjs

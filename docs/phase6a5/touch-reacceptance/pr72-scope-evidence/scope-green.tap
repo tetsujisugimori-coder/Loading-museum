@@ -1,0 +1,26 @@
+✔ selected checks and explicit unrelated skips have different results (1.087393ms)
+✔ gate rejects scopeFail (0.273611ms)
+✔ gate rejects scopeCancel (0.08598ms)
+✔ gate rejects missingDecision (0.09991ms)
+✔ gate rejects missingChecks (0.078017ms)
+✔ gate rejects nativeFail (0.169164ms)
+✔ gate rejects nativeSkip (0.068353ms)
+✔ gate rejects regressionSkip (0.076105ms)
+✔ gate rejects unrelatedRan (0.175393ms)
+✔ gate rejects invalidDecision (0.190095ms)
+✔ selects changes relevant to adjustment or its runtime (0.984328ms)
+✔ does not run for unrelated work and docs (0.12689ms)
+✔ no accidental prefix match and Windows separator behavior (0.371378ms)
+✔ entrypoint: docs skipped, change selected, manual forced, invalid SHA fails closed (275.183843ms)
+✔ base-only code change does not falsely trigger an unrelated feature PR (102.30102ms)
+✔ shared layout, CSS, physical recorder and its validators trigger native diagnosis (0.261593ms)
+✔ malformed changed-file evidence cannot become an unrelated skip (0.178428ms)
+✔ rename/delete retain old watched path; valid but absent SHA and unavailable output fail closed (255.172858ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 715.176804

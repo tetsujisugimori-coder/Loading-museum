@@ -1,0 +1,182 @@
+[
+  {
+    "engine": "chromium",
+    "version": "141.0.7390.37",
+    "errors": [],
+    "requestedRect": {
+      "x": 0,
+      "y": 0,
+      "w": 280,
+      "h": 32
+    },
+    "actualRect": {
+      "x": 46,
+      "y": 484,
+      "width": 280,
+      "height": 32
+    },
+    "tapCaptureTypes": [
+      "pointerdown",
+      "touchstart",
+      "input",
+      "gotpointercapture",
+      "pointerup",
+      "lostpointercapture",
+      "touchend",
+      "change"
+    ],
+    "tapFinal": {
+      "value": "53",
+      "preview": null,
+      "committed": null,
+      "history": null,
+      "pending": null,
+      "rect": {
+        "x": 46,
+        "y": 484,
+        "width": 280,
+        "height": 32
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "pointerId": null,
+      "pointerType": null,
+      "target": null
+    },
+    "syntheticExpected": [
+      "pointerdown",
+      "pointerup",
+      "lostpointercapture"
+    ],
+    "syntheticObserved": [
+      "pointerdown",
+      "pointerup"
+    ],
+    "topLevelFields": [
+      "startedAt",
+      "userAgent",
+      "devicePixelRatio",
+      "viewport",
+      "url",
+      "surface",
+      "nativeRange",
+      "exportedAt",
+      "final",
+      "events"
+    ],
+    "eventFields": [
+      "seq",
+      "phase",
+      "type",
+      "timeStamp",
+      "observedAt",
+      "isTrusted",
+      "cancelable",
+      "defaultPrevented",
+      "touches",
+      "changedTouches",
+      "value",
+      "preview",
+      "committed",
+      "history",
+      "pending",
+      "rect",
+      "scroll",
+      "pointerId",
+      "pointerType",
+      "target"
+    ]
+  },
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "errors": [],
+    "requestedRect": {
+      "x": 0,
+      "y": 0,
+      "w": 280,
+      "h": 32
+    },
+    "actualRect": {
+      "x": 46,
+      "y": 484,
+      "width": 280,
+      "height": 32
+    },
+    "tapCaptureTypes": [
+      "pointerdown",
+      "touchstart",
+      "input",
+      "gotpointercapture",
+      "pointercancel",
+      "pointerup",
+      "lostpointercapture",
+      "touchend"
+    ],
+    "tapFinal": {
+      "value": "54",
+      "preview": null,
+      "committed": null,
+      "history": null,
+      "pending": null,
+      "rect": {
+        "x": 46,
+        "y": 484,
+        "width": 280,
+        "height": 32
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "pointerId": null,
+      "pointerType": null,
+      "target": null
+    },
+    "syntheticExpected": [
+      "pointerdown",
+      "pointerup",
+      "lostpointercapture"
+    ],
+    "syntheticObserved": [
+      "pointerdown",
+      "pointerup"
+    ],
+    "topLevelFields": [
+      "startedAt",
+      "userAgent",
+      "devicePixelRatio",
+      "viewport",
+      "url",
+      "surface",
+      "nativeRange",
+      "exportedAt",
+      "final",
+      "events"
+    ],
+    "eventFields": [
+      "seq",
+      "phase",
+      "type",
+      "timeStamp",
+      "observedAt",
+      "isTrusted",
+      "cancelable",
+      "defaultPrevented",
+      "touches",
+      "changedTouches",
+      "value",
+      "preview",
+      "committed",
+      "history",
+      "pending",
+      "rect",
+      "scroll",
+      "pointerId",
+      "pointerType",
+      "target"
+    ]
+  }
+]

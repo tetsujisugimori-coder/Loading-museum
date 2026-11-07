@@ -1,0 +1,79 @@
+✔ selects changes relevant to adjustment or its runtime (0.851518ms)
+✔ does not run for unrelated work and docs (0.129414ms)
+✔ no accidental prefix match and Windows separator behavior (0.45278ms)
+✔ entrypoint: docs skipped, change selected, manual forced, invalid SHA fails closed (288.25528ms)
+✔ base-only code change does not falsely trigger an unrelated feature PR (101.292186ms)
+✖ shared layout, CSS, physical recorder and its validators trigger native diagnosis (1.228295ms)
+✖ malformed changed-file evidence cannot become an unrelated skip (0.20645ms)
+✖ rename/delete retain old watched path; valid but absent SHA and unavailable output fail closed (83.989365ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 5
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 567.207982
+
+✖ failing tests:
+
+test at tests/adjustment-touch-scope.test.mjs:86:1
+✖ shared layout, CSS, physical recorder and its validators trigger native diagnosis (1.228295ms)
+  AssertionError [ERR_ASSERTION]: app/page.tsx
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///tmp/loading-pr72/tests/adjustment-touch-scope.test.mjs:87:298)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/adjustment-touch-scope.test.mjs:89:1
+✖ malformed changed-file evidence cannot become an unrelated skip (0.20645ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///tmp/loading-pr72/tests/adjustment-touch-scope.test.mjs:90:58)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/adjustment-touch-scope.test.mjs:92:1
+✖ rename/delete retain old watched path; valid but absent SHA and unavailable output fail closed (83.989365ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   out: 'run_native=false\n',
+  -   out: 'run_native=true\n',
+      status: 0
+    }
+  
+      at TestContext.<anonymous> (file:///tmp/loading-pr72/tests/adjustment-touch-scope.test.mjs:104:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { status: 0, out: 'run_native=false\n' },
+    expected: { status: 0, out: 'run_native=true\n' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
