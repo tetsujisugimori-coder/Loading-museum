@@ -1,0 +1,74 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v3.2.4 /tmp/loading-pr70-submitted
+
+ ❯ tests/image-adjustment.test.tsx (26 tests | 4 failed) 2041ms
+   ✓ adds exactly A5 after the preserved A1–A4 IDs 3ms
+   ✓ commits numeric edits and restores precise undo/redo/reset  311ms
+   ✓ rejects invalid numeric  without history 49ms
+   ✓ rejects invalid numeric NaN without history 45ms
+   ✓ rejects invalid numeric Infinity without history 43ms
+   ✓ rejects invalid numeric -Infinity without history 44ms
+   ✓ rejects invalid numeric 1.2 without history 44ms
+   ✓ rejects invalid numeric 101 without history 41ms
+   ✓ rejects invalid numeric -101 without history 40ms
+   ✓ rejects invalid numeric wat without history 42ms
+   ✓ previews a continuous pointer gesture then commits exactly once 74ms
+   ✓ cancels pointer edits and ignores stale release / unowned change 66ms
+   ✓ foreign pointer cannot finish or cancel an owner 66ms
+   ✓ Escape rolls preview back and ignores late keyup 65ms
+   ✓ keyboard repeat is one edit on keyup 70ms
+   ✓ Reset interrupts preview and refuses delayed delivery 131ms
+   ✓ all six presets remain editable and undoable; new editing discards redo 256ms
+   ✓ image switching is atomic, clears pending and preserves prior state for Undo 155ms
+   ✓ canvas and histogram describe the same 144000 pixels 41ms
+   ✓ comparison modes do not alter committed state or histogram 94ms
+   ✓ resize/zero recovery cancels pending edit without changing committed image 55ms
+   ✓ own preview height changes do not cancel an active edit at constant width 68ms
+   × rejects keyboard completion after layout changed before ResizeObserver notification 66ms
+     → expected 23 to be +0 // Object.is equality
+   × rejects pointer completion after layout changed before ResizeObserver notification 52ms
+     → expected 23 to be +0 // Object.is equality
+   × rejects document-pointer completion after layout changed before ResizeObserver notification 55ms
+     → expected 23 to be +0 // Object.is equality
+   × rejects an invisible zero-width gesture completion even before observer notification 66ms
+     → expected 23 to be +0 // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/image-adjustment.test.tsx > rejects keyboard completion after layout changed before ResizeObserver notification
+ FAIL  tests/image-adjustment.test.tsx > rejects pointer completion after layout changed before ResizeObserver notification
+ FAIL  tests/image-adjustment.test.tsx > rejects document-pointer completion after layout changed before ResizeObserver notification
+AssertionError: expected 23 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 23
+
+ ❯ tests/image-adjustment.test.tsx:34:599
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/image-adjustment.test.tsx > rejects an invisible zero-width gesture completion even before observer notification
+AssertionError: expected 23 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 23
+
+ ❯ tests/image-adjustment.test.tsx:35:228
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 22 passed (26)
+   Start at  23:14:29
+   Duration  2.71s (transform 113ms, setup 0ms, collect 202ms, tests 2.04s, environment 278ms, prepare 53ms)
+
