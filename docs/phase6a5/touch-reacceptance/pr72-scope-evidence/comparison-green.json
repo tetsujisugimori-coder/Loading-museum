@@ -1,0 +1,42 @@
+[
+  {
+    "name": "cancelled-but-committed",
+    "erroneouslyAccepted": false,
+    "error": "CANCELLED_BUT_COMMITTED"
+  },
+  {
+    "name": "mismatched-pointer-end",
+    "erroneouslyAccepted": false,
+    "error": "POINTER_END_ID_OR_ORDER"
+  },
+  {
+    "name": "end-before-start",
+    "erroneouslyAccepted": false,
+    "error": "POINTER_END_ID_OR_ORDER"
+  },
+  {
+    "name": "no-input-value-change",
+    "erroneouslyAccepted": false,
+    "error": "INPUT_FINAL_MISMATCH"
+  },
+  {
+    "name": "out-of-range-final",
+    "erroneouslyAccepted": false,
+    "error": "INITIAL_FINAL_STATE"
+  },
+  {
+    "name": "drag-with-zero-displacement",
+    "erroneouslyAccepted": false,
+    "error": "DRAG_MOVEMENT_MISSING"
+  },
+  {
+    "name": "empty-touch-points",
+    "erroneouslyAccepted": false,
+    "error": "TOUCH_POINTS_OR_ORDER"
+  },
+  {
+    "name": "invalid-eight-byte-png",
+    "erroneouslyAccepted": false,
+    "error": "PNG_INCOMPLETE"
+  }
+]

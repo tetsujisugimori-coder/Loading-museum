@@ -1,0 +1,57 @@
+[
+  {
+    "name": "cancelled-but-committed",
+    "rejected": true,
+    "reason": "CANCELLED_BUT_COMMITTED"
+  },
+  {
+    "name": "mismatched-pointer-end",
+    "rejected": true,
+    "reason": "POINTER_END_ID_OR_ORDER"
+  },
+  {
+    "name": "end-before-start",
+    "rejected": true,
+    "reason": "POINTER_END_ID_OR_ORDER"
+  },
+  {
+    "name": "no-input-value-change",
+    "rejected": true,
+    "reason": "INPUT_FINAL_MISMATCH"
+  },
+  {
+    "name": "out-of-range-final",
+    "rejected": true,
+    "reason": "INITIAL_FINAL_STATE"
+  },
+  {
+    "name": "drag-with-zero-displacement",
+    "rejected": true,
+    "reason": "DRAG_MOVEMENT_MISSING"
+  },
+  {
+    "name": "empty-touch-points",
+    "rejected": true,
+    "reason": "TOUCH_POINTS_OR_ORDER"
+  },
+  {
+    "name": "invalid-eight-byte-png",
+    "rejected": true,
+    "reason": "PNG_INCOMPLETE"
+  },
+  {
+    "name": "different-finger-drag",
+    "rejected": true,
+    "reason": "TOUCH_MOVE_ID_OR_ORDER"
+  },
+  {
+    "name": "different-touch-endpoint",
+    "rejected": true,
+    "reason": "TOUCH_POINTER_END_COORDINATES"
+  },
+  {
+    "name": "touch-ended-before-pointer-start",
+    "rejected": true,
+    "reason": "CROSS_FAMILY_EVENT_ORDER"
+  }
+]

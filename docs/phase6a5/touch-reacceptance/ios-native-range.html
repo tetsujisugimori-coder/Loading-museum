@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Native Range Safari Touch Control</title>
+<style>:root{font-family:system-ui,sans-serif;color-scheme:light}
+body{margin:0;background:white;color:#111}
+header{position:fixed;left:8px;right:8px;top:2px;font-size:12px;pointer-events:none}
+#probe-range{position:absolute;margin:0;touch-action:auto}</style></head>
+<body><header>Reactなし・製品コードなし。実機Safariでtapとdragを分けて試験し、操作後にWeb Inspectorからfinish()、download()でJSONを保存します。</header>
+<input id="probe-range" aria-label="plain" type="range" min="-100" max="100" step="1" value="0">
+<script>
+const q=new URLSearchParams(location.search),range=document.querySelector('#probe-range');
+const dim=(key,def,zero=false)=>{const raw=q.get(key),value=Number(raw);return raw!==null&&raw!==''&&Number.isFinite(value)&&(zero?value>=0:value>0)?value:def;};
+Object.assign(range.style,{left:dim('x',46,true)+'px',top:dim('y',484,true)+'px',
+  width:dim('w',280)+'px',height:dim('h',32)+'px',
+  touchAction:['auto','pan-y','none'].includes(q.get('touchAction'))?q.get('touchAction'):'auto'});
+</script>
+<script src="./ios-range-instrument.js"></script></body></html>

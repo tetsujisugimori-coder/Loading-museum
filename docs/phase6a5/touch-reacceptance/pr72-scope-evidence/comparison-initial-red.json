@@ -1,0 +1,154 @@
+[
+  {
+    "name": "cancelled-but-committed",
+    "erroneouslyAccepted": true,
+    "result": {
+      "collection": "COMPLETE",
+      "physicalVerification": "NOT_TESTED",
+      "cancelled": true,
+      "acceptance": "PASS",
+      "sequence": [
+        "pointerdown",
+        "touchstart",
+        "input",
+        "gotpointercapture",
+        "pointercancel",
+        "lostpointercapture",
+        "touchend",
+        "change"
+      ],
+      "finalValue": 53
+    }
+  },
+  {
+    "name": "mismatched-pointer-end",
+    "erroneouslyAccepted": true,
+    "result": {
+      "collection": "COMPLETE",
+      "physicalVerification": "NOT_TESTED",
+      "cancelled": false,
+      "acceptance": "PASS",
+      "sequence": [
+        "pointerdown",
+        "touchstart",
+        "input",
+        "gotpointercapture",
+        "pointerup",
+        "lostpointercapture",
+        "touchend",
+        "change"
+      ],
+      "finalValue": 53
+    }
+  },
+  {
+    "name": "end-before-start",
+    "erroneouslyAccepted": true,
+    "result": {
+      "collection": "COMPLETE",
+      "physicalVerification": "NOT_TESTED",
+      "cancelled": false,
+      "acceptance": "PASS",
+      "sequence": [
+        "pointerup",
+        "touchstart",
+        "input",
+        "gotpointercapture",
+        "pointerdown",
+        "lostpointercapture",
+        "touchend",
+        "change"
+      ],
+      "finalValue": 53
+    }
+  },
+  {
+    "name": "no-input-value-change",
+    "erroneouslyAccepted": true,
+    "result": {
+      "collection": "COMPLETE",
+      "physicalVerification": "NOT_TESTED",
+      "cancelled": false,
+      "acceptance": "PASS",
+      "sequence": [
+        "pointerdown",
+        "touchstart",
+        "input",
+        "gotpointercapture",
+        "pointerup",
+        "lostpointercapture",
+        "touchend",
+        "change"
+      ],
+      "finalValue": 53
+    }
+  },
+  {
+    "name": "out-of-range-final",
+    "erroneouslyAccepted": true,
+    "result": {
+      "collection": "COMPLETE",
+      "physicalVerification": "NOT_TESTED",
+      "cancelled": false,
+      "acceptance": "PASS",
+      "sequence": [
+        "pointerdown",
+        "touchstart",
+        "input",
+        "gotpointercapture",
+        "pointerup",
+        "lostpointercapture",
+        "touchend",
+        "change"
+      ],
+      "finalValue": 1000000
+    }
+  },
+  {
+    "name": "drag-with-zero-displacement",
+    "erroneouslyAccepted": true,
+    "result": {
+      "collection": "COMPLETE",
+      "physicalVerification": "NOT_TESTED",
+      "cancelled": false,
+      "acceptance": "PASS",
+      "sequence": [
+        "pointerdown",
+        "touchstart",
+        "input",
+        "gotpointercapture",
+        "pointerup",
+        "lostpointercapture",
+        "touchend",
+        "change",
+        "pointermove"
+      ],
+      "finalValue": 53
+    }
+  },
+  {
+    "name": "empty-touch-points",
+    "erroneouslyAccepted": true,
+    "result": {
+      "collection": "COMPLETE",
+      "physicalVerification": "NOT_TESTED",
+      "cancelled": false,
+      "acceptance": "PASS",
+      "sequence": [
+        "pointerdown",
+        "touchstart",
+        "input",
+        "gotpointercapture",
+        "pointerup",
+        "lostpointercapture",
+        "touchend",
+        "change"
+      ],
+      "finalValue": 53
+    }
+  },
+  {
+    "name": "invalid-eight-byte-png",
+    "erroneouslyAccepted": true
+  }
+]
