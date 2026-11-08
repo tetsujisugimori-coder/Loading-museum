@@ -58,6 +58,7 @@ export function compareConditions(a,b,expected){
  const differences=[];for(const k of ['method','targetValue','targetPercent','tolerance','mode','inputKind'])if(a.metadata[k]!==b.metadata[k])differences.push(k);
  for(const k of ['min','max','step','touchAction','thumbWidth'])if(a.nativeRange[k]!==b.nativeRange[k])differences.push(k);
  for(const k of ['x','y','width','height'])if(Math.abs(a.nativeRange.rect[k]-b.nativeRange.rect[k])>.5)differences.push('rect.'+k);
+ if(a.devicePixelRatio!==b.devicePixelRatio)differences.push('devicePixelRatio');
  if(JSON.stringify(a.environment)!==JSON.stringify(b.environment))differences.push('environment');
  const points=r=>r.events.filter(e=>['pointerdown','pointerup','pointercancel'].includes(e.type)).map(e=>({type:e.type,x:e.clientX,y:e.clientY}));
  const ap=points(a),bp=points(b);if(JSON.stringify(ap)!==JSON.stringify(bp))differences.push('inputCoordinatesObservedDifference');
