@@ -1,0 +1,554 @@
+{
+  "a": {
+    "schemaVersion": "iad-standard-2",
+    "metadata": {
+      "head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tree": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "sourceHashes": {
+        "source": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "method": "drag",
+      "mode": "full",
+      "inputKind": "synthetic",
+      "targetPercent": 75,
+      "targetValue": 50,
+      "tolerance": 1
+    },
+    "surface": "plain-html",
+    "startedAt": "2026-11-08T00:00:00Z",
+    "finishedAt": "2026-11-08T00:00:01Z",
+    "nativeRange": {
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 342,
+        "height": 44
+      },
+      "touchAction": "pan-y",
+      "thumbWidth": 20
+    },
+    "initial": {
+      "value": 0,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 342,
+        "height": 44
+      },
+      "viewport": {
+        "width": 390,
+        "height": 900,
+        "scale": 1,
+        "visualWidth": 390,
+        "visualHeight": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0
+      }
+    },
+    "final": {
+      "value": 50,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 342,
+        "height": 44
+      },
+      "viewport": {
+        "width": 390,
+        "height": 900,
+        "scale": 1,
+        "visualWidth": 390,
+        "visualHeight": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0
+      }
+    },
+    "events": [
+      {
+        "seq": 0,
+        "type": "pointerdown",
+        "phase": "capture",
+        "observedAt": 0,
+        "timeStamp": 0,
+        "isTrusted": false,
+        "value": 0,
+        "pointerId": 1,
+        "clientX": 195,
+        "clientY": 332,
+        "pointerType": "mouse",
+        "mappedValue": 0,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 342,
+          "height": 44
+        },
+        "viewport": {
+          "width": 390,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 390,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      {
+        "seq": 1,
+        "type": "pointermove",
+        "phase": "capture",
+        "observedAt": 1,
+        "timeStamp": 1,
+        "isTrusted": false,
+        "value": 50,
+        "pointerId": 1,
+        "clientX": 275.5,
+        "clientY": 332,
+        "pointerType": "mouse",
+        "mappedValue": 50,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 342,
+          "height": 44
+        },
+        "viewport": {
+          "width": 390,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 390,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      {
+        "seq": 2,
+        "type": "input",
+        "phase": "capture",
+        "observedAt": 2,
+        "timeStamp": 2,
+        "isTrusted": false,
+        "value": 50,
+        "pointerId": 1,
+        "clientX": 275.5,
+        "clientY": 332,
+        "pointerType": "mouse",
+        "mappedValue": 50,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 342,
+          "height": 44
+        },
+        "viewport": {
+          "width": 390,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 390,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      {
+        "seq": 3,
+        "type": "pointerup",
+        "phase": "capture",
+        "observedAt": 3,
+        "timeStamp": 3,
+        "isTrusted": false,
+        "value": 50,
+        "pointerId": 1,
+        "clientX": 275.5,
+        "clientY": 332,
+        "pointerType": "mouse",
+        "mappedValue": 50,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 342,
+          "height": 44
+        },
+        "viewport": {
+          "width": 390,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 390,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      }
+    ],
+    "devicePixelRatio": 1,
+    "environment": {
+      "userAgent": "test",
+      "viewport": {
+        "width": 390,
+        "height": 900,
+        "scale": 1,
+        "visualWidth": 390,
+        "visualHeight": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0
+      }
+    },
+    "diagnosis": {
+      "status": "COMPLETED",
+      "counts": {
+        "pointerdown": 1,
+        "pointermove": 1,
+        "pointerup": 1,
+        "pointercancel": 0,
+        "touchstart": 0,
+        "touchmove": 0,
+        "touchend": 0,
+        "touchcancel": 0,
+        "input": 1,
+        "change": 0,
+        "gotpointercapture": 0,
+        "lostpointercapture": 0
+      },
+      "cancelled": false,
+      "lastObservedValue": 50,
+      "finalValue": 50,
+      "committedValue": null,
+      "delta": 0,
+      "targetReached": true,
+      "missing": [],
+      "physicalVerification": "NOT_TESTED",
+      "cause": "UNKNOWN",
+      "tapSupport": "NOT_APPLICABLE"
+    }
+  },
+  "b": {
+    "schemaVersion": "iad-standard-2",
+    "metadata": {
+      "head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tree": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "sourceHashes": {
+        "source": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "method": "drag",
+      "mode": "full",
+      "inputKind": "synthetic",
+      "targetPercent": 75,
+      "targetValue": 50,
+      "tolerance": 1
+    },
+    "surface": "product",
+    "startedAt": "2026-11-08T00:00:00Z",
+    "finishedAt": "2026-11-08T00:00:01Z",
+    "nativeRange": {
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 342,
+        "height": 44
+      },
+      "touchAction": "pan-y",
+      "thumbWidth": 20
+    },
+    "initial": {
+      "value": 0,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 342,
+        "height": 44
+      },
+      "viewport": {
+        "width": 390,
+        "height": 900,
+        "scale": 1,
+        "visualWidth": 390,
+        "visualHeight": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0
+      }
+    },
+    "final": {
+      "value": 50,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 250,
+        "height": 44
+      },
+      "viewport": {
+        "width": 390,
+        "height": 900,
+        "scale": 2,
+        "visualWidth": 195,
+        "visualHeight": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0
+      },
+      "committed": {
+        "params": {
+          "brightness": 50
+        }
+      },
+      "preview": {
+        "brightness": 50
+      },
+      "history": 1,
+      "pending": false
+    },
+    "events": [
+      {
+        "seq": 0,
+        "type": "pointerdown",
+        "phase": "capture",
+        "observedAt": 0,
+        "timeStamp": 0,
+        "isTrusted": false,
+        "value": 0,
+        "pointerId": 1,
+        "clientX": 195,
+        "clientY": 332,
+        "pointerType": "mouse",
+        "mappedValue": 0,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 342,
+          "height": 44
+        },
+        "viewport": {
+          "width": 390,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 390,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      {
+        "seq": 1,
+        "type": "pointermove",
+        "phase": "capture",
+        "observedAt": 1,
+        "timeStamp": 1,
+        "isTrusted": false,
+        "value": 50,
+        "pointerId": 1,
+        "clientX": 275.5,
+        "clientY": 332,
+        "pointerType": "mouse",
+        "mappedValue": 50,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 342,
+          "height": 44
+        },
+        "viewport": {
+          "width": 390,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 390,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      {
+        "seq": 2,
+        "type": "input",
+        "phase": "capture",
+        "observedAt": 2,
+        "timeStamp": 2,
+        "isTrusted": false,
+        "value": 50,
+        "pointerId": 1,
+        "clientX": 275.5,
+        "clientY": 332,
+        "pointerType": "mouse",
+        "mappedValue": 50,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 342,
+          "height": 44
+        },
+        "viewport": {
+          "width": 390,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 390,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      },
+      {
+        "seq": 3,
+        "type": "pointerup",
+        "phase": "capture",
+        "observedAt": 3,
+        "timeStamp": 3,
+        "isTrusted": false,
+        "value": 50,
+        "pointerId": 1,
+        "clientX": 275.5,
+        "clientY": 332,
+        "pointerType": "mouse",
+        "mappedValue": 50,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 342,
+          "height": 44
+        },
+        "viewport": {
+          "width": 390,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 390,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        }
+      }
+    ],
+    "devicePixelRatio": 1,
+    "environment": {
+      "userAgent": "test",
+      "viewport": {
+        "width": 390,
+        "height": 900,
+        "scale": 1,
+        "visualWidth": 390,
+        "visualHeight": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0
+      }
+    },
+    "diagnosis": {
+      "status": "COMPLETED",
+      "counts": {
+        "pointerdown": 1,
+        "pointermove": 1,
+        "pointerup": 1,
+        "pointercancel": 0,
+        "touchstart": 0,
+        "touchmove": 0,
+        "touchend": 0,
+        "touchcancel": 0,
+        "input": 1,
+        "change": 0,
+        "gotpointercapture": 0,
+        "lostpointercapture": 0
+      },
+      "cancelled": false,
+      "lastObservedValue": 50,
+      "finalValue": 50,
+      "committedValue": 50,
+      "delta": 0,
+      "targetReached": true,
+      "missing": [],
+      "physicalVerification": "NOT_TESTED",
+      "cause": "UNKNOWN",
+      "tapSupport": "NOT_APPLICABLE"
+    }
+  },
+  "validation": {
+    "status": "COMPLETED",
+    "counts": {
+      "pointerdown": 1,
+      "pointermove": 1,
+      "pointerup": 1,
+      "pointercancel": 0,
+      "touchstart": 0,
+      "touchmove": 0,
+      "touchend": 0,
+      "touchcancel": 0,
+      "input": 1,
+      "change": 0,
+      "gotpointercapture": 0,
+      "lostpointercapture": 0
+    },
+    "cancelled": false,
+    "lastObservedValue": 50,
+    "finalValue": 50,
+    "committedValue": 50,
+    "delta": 0,
+    "targetReached": true,
+    "missing": [],
+    "physicalVerification": "NOT_TESTED",
+    "cause": "UNKNOWN",
+    "tapSupport": "NOT_APPLICABLE"
+  },
+  "comparison": {
+    "status": "RECORDED_CONDITIONS_MATCH",
+    "differences": [],
+    "outcomes": [
+      {
+        "status": "COMPLETED",
+        "counts": {
+          "pointerdown": 1,
+          "pointermove": 1,
+          "pointerup": 1,
+          "pointercancel": 0,
+          "touchstart": 0,
+          "touchmove": 0,
+          "touchend": 0,
+          "touchcancel": 0,
+          "input": 1,
+          "change": 0,
+          "gotpointercapture": 0,
+          "lostpointercapture": 0
+        },
+        "cancelled": false,
+        "lastObservedValue": 50,
+        "finalValue": 50,
+        "committedValue": null,
+        "delta": 0,
+        "targetReached": true,
+        "missing": [],
+        "physicalVerification": "NOT_TESTED",
+        "cause": "UNKNOWN",
+        "tapSupport": "NOT_APPLICABLE"
+      },
+      {
+        "status": "COMPLETED",
+        "counts": {
+          "pointerdown": 1,
+          "pointermove": 1,
+          "pointerup": 1,
+          "pointercancel": 0,
+          "touchstart": 0,
+          "touchmove": 0,
+          "touchend": 0,
+          "touchcancel": 0,
+          "input": 1,
+          "change": 0,
+          "gotpointercapture": 0,
+          "lostpointercapture": 0
+        },
+        "cancelled": false,
+        "lastObservedValue": 50,
+        "finalValue": 50,
+        "committedValue": 50,
+        "delta": 0,
+        "targetReached": true,
+        "missing": [],
+        "physicalVerification": "NOT_TESTED",
+        "cause": "UNKNOWN",
+        "tapSupport": "NOT_APPLICABLE"
+      }
+    ],
+    "physicalVerification": "NOT_TESTED",
+    "cause": "UNKNOWN",
+    "note": "No causal inference; final values are outcomes, not matching prerequisites. Existing strict v1 comparator remains unchanged."
+  }
+}

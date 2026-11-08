@@ -42,7 +42,7 @@ export function validate(r,expected){
  require(r.initial&&r.final&&r.initial.value===0&&finite(r.final.value)&&r.final.value>=n.min&&r.final.value<=n.max,'INITIAL_FINAL');
  require(Number.isFinite(Date.parse(r.startedAt))&&Number.isFinite(Date.parse(r.finishedAt))&&Date.parse(r.finishedAt)>=Date.parse(r.startedAt),'UNFINISHED');
  require(r.environment&&typeof r.environment.userAgent==='string'&&r.environment.userAgent.length>0&&finite(r.devicePixelRatio)&&r.devicePixelRatio>0,'ENVIRONMENT');
- const vp=v=>v&&['width','height','scale','visualWidth','visualHeight','offsetLeft','offsetTop'].every(k=>finite(v[k]))&&v.width>0&&v.height>0&&v.scale>0;
+ const vp=v=>v&&['width','height','scale','visualWidth','visualHeight','offsetLeft','offsetTop'].every(k=>finite(v[k]))&&v.width>0&&v.height>0&&v.scale>0&&v.visualWidth>0&&v.visualHeight>0;
  require(vp(r.environment.viewport)&&[r.initial,r.final].every(s=>rect(s.rect)&&vp(s.viewport)),'SNAPSHOT_GEOMETRY');
  require(Array.isArray(r.events),'EVENTS');let t=-Infinity;
  for(const [i,e]of r.events.entries()){
@@ -55,12 +55,32 @@ export function validate(r,expected){
 }
 export function compareConditions(a,b,expected){
  validate(a,expected);validate(b,expected);require(a.surface!==b.surface,'PAIR_SURFACES');
- const differences=[];for(const k of ['method','targetValue','targetPercent','tolerance','mode','inputKind'])if(a.metadata[k]!==b.metadata[k])differences.push(k);
+ const differences=[],withinTrialDifferences=[],betweenTrialDifferences=[],unobserved=[];
+ const fields={rect:['x','y','width','height'],viewport:['width','height','scale','visualWidth','visualHeight','offsetLeft','offsetTop'],scroll:['x','y']};
+ const tolerance=(group,key)=>group==='viewport'&&key==='scale'?0:0.5;
+ const compare=(a,b,label,out)=>{
+  for(const [group,keys] of Object.entries(fields))for(const key of keys){
+   const av=a?.[group]?.[key],bv=b?.[group]?.[key];
+   if(!finite(av)||!finite(bv)){unobserved.push(label+'.'+group+'.'+key);continue;}
+   if(Math.abs(av-bv)>tolerance(group,key))out.push(label+'.'+group+'.'+key);
+  }
+  if(!finite(a?.devicePixelRatio)||!finite(b?.devicePixelRatio)||a.devicePixelRatio<=0||b.devicePixelRatio<=0)unobserved.push(label+'.devicePixelRatio');
+  else if(a.devicePixelRatio!==b.devicePixelRatio)out.push(label+'.devicePixelRatio');
+ };
+ for(const r of [a,b]){
+  compare(r.initial,r.final,r.surface+'.initial-final',withinTrialDifferences);
+  compare(r.initial,{rect:r.nativeRange.rect,viewport:r.environment.viewport,devicePixelRatio:r.devicePixelRatio,scroll:r.initial.scroll},r.surface+'.initial-metadata',withinTrialDifferences);
+  if(!r.events.length||r.metadata.mode==='off')unobserved.push(r.surface+'.in-operation');
+  for(const e of r.events)compare(r.initial,e,r.surface+'.event['+e.seq+']',withinTrialDifferences);
+ }
+ for(const phase of ['initial','final'])compare(a[phase],b[phase],phase,betweenTrialDifferences);
+ differences.push(...withinTrialDifferences,...betweenTrialDifferences);
+ for(const k of ['method','targetValue','targetPercent','tolerance','mode','inputKind'])if(a.metadata[k]!==b.metadata[k])differences.push(k);
  for(const k of ['min','max','step','touchAction','thumbWidth'])if(a.nativeRange[k]!==b.nativeRange[k])differences.push(k);
  for(const k of ['x','y','width','height'])if(Math.abs(a.nativeRange.rect[k]-b.nativeRange.rect[k])>.5)differences.push('rect.'+k);
  if(a.devicePixelRatio!==b.devicePixelRatio)differences.push('devicePixelRatio');
  if(JSON.stringify(a.environment)!==JSON.stringify(b.environment))differences.push('environment');
  const points=r=>r.events.filter(e=>['pointerdown','pointerup','pointercancel'].includes(e.type)).map(e=>({type:e.type,x:e.clientX,y:e.clientY}));
  const ap=points(a),bp=points(b);if(JSON.stringify(ap)!==JSON.stringify(bp))differences.push('inputCoordinatesObservedDifference');
- return {status:differences.length?'CONDITIONS_DIFFER':'RECORDED_CONDITIONS_MATCH',differences,outcomes:[a.diagnosis,b.diagnosis],physicalVerification:'NOT_TESTED',cause:'UNKNOWN',note:'No causal inference; final values are outcomes, not matching prerequisites. Existing strict v1 comparator remains unchanged.'};
+ return {status:differences.length?'CONDITIONS_DIFFER':unobserved.length?'CONDITIONS_NOT_OBSERVED':'RECORDED_CONDITIONS_MATCH',differences,withinTrialDifferences,betweenTrialDifferences,unobserved:[...new Set(unobserved)],outcomes:[a.diagnosis,b.diagnosis],physicalVerification:'NOT_TESTED',cause:'UNKNOWN',note:'No causal inference; final values are outcomes, not matching prerequisites. Existing strict v1 comparator remains unchanged.'};
 }
