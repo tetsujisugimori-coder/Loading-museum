@@ -1,0 +1,407 @@
+{
+  "artifact_id": 13631601940,
+  "run_id": 42515166947,
+  "head": "cc1a760209e0dba9c94f17f64ad26acf71576bcc",
+  "original_zip": "/workspace/shared/loading76-independent-calculator/13631601940.zip",
+  "zip_sha256": "33c49490cd6f3e4f7bf33156c8806bc215f41a852d2475a4cd959d5a42ecbfc0",
+  "zip_sha256_matches_expected": true,
+  "zip_bytes": 40625587,
+  "zip_entries": 475,
+  "report_sha256": "b392e87204199ccd36a70f3d6c1eac199c12e274aa55c06cc97c945058b97f22",
+  "original_report_status": "PREPARATION_PASS",
+  "original_report_errors": [],
+  "rows": 192,
+  "pairs": 96,
+  "canonical_json_hash_matches": 192,
+  "canonical_png_hash_matches": 192,
+  "png_signature_chunk_crc_idat_valid": 192,
+  "recorded_event_samples": 3120,
+  "total_snapshots": 3504,
+  "raw_rect_fields_recorded": [
+    "x",
+    "y",
+    "width",
+    "height"
+  ],
+  "raw_rect_fields_NOT_RECORDED": [
+    "top",
+    "right",
+    "bottom",
+    "left"
+  ],
+  "document_body_scroller_fields": "NOT_RECORDED",
+  "initial_rect4_equal_pairs": 96,
+  "final_rect4_equal_pairs": 96,
+  "initial_viewport_equal_pairs": 96,
+  "final_viewport_equal_pairs": 96,
+  "initial_window_scroll_equal_pairs": 0,
+  "final_window_scroll_equal_pairs": 0,
+  "event_rect4_equal_pairs": 64,
+  "event_viewport_equal_pairs": 64,
+  "event_window_scroll_equal_pairs": 0,
+  "event_comparison_NOT_RECORDED_pairs": 32,
+  "rect_stable_rows": 192,
+  "viewport_stable_rows": 192,
+  "window_scroll_stable_rows": 192,
+  "scroll_by_engine_width": [
+    {
+      "engine": "chromium",
+      "width": 375,
+      "pairs": 12,
+      "product_initial_y_values": [
+        4642
+      ],
+      "product_final_y_values": [
+        4642
+      ],
+      "plain_initial_y_values": [
+        0
+      ],
+      "plain_final_y_values": [
+        0
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "pairs": 12,
+      "product_initial_y_values": [
+        4593
+      ],
+      "product_final_y_values": [
+        4593
+      ],
+      "plain_initial_y_values": [
+        0
+      ],
+      "plain_final_y_values": [
+        0
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 765,
+      "pairs": 12,
+      "product_initial_y_values": [
+        2709
+      ],
+      "product_final_y_values": [
+        2709
+      ],
+      "plain_initial_y_values": [
+        0
+      ],
+      "plain_final_y_values": [
+        0
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "pairs": 12,
+      "product_initial_y_values": [
+        1958
+      ],
+      "product_final_y_values": [
+        1958
+      ],
+      "plain_initial_y_values": [
+        0
+      ],
+      "plain_final_y_values": [
+        0
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "pairs": 12,
+      "product_initial_y_values": [
+        4637
+      ],
+      "product_final_y_values": [
+        4637
+      ],
+      "plain_initial_y_values": [
+        0
+      ],
+      "plain_final_y_values": [
+        0
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "pairs": 12,
+      "product_initial_y_values": [
+        4604
+      ],
+      "product_final_y_values": [
+        4604
+      ],
+      "plain_initial_y_values": [
+        0
+      ],
+      "plain_final_y_values": [
+        0
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 765,
+      "pairs": 12,
+      "product_initial_y_values": [
+        2710
+      ],
+      "product_final_y_values": [
+        2710
+      ],
+      "plain_initial_y_values": [
+        0
+      ],
+      "plain_final_y_values": [
+        0
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "pairs": 12,
+      "product_initial_y_values": [
+        1958
+      ],
+      "product_final_y_values": [
+        1958
+      ],
+      "plain_initial_y_values": [
+        0
+      ],
+      "plain_final_y_values": [
+        0
+      ]
+    }
+  ],
+  "results_by_engine_method_mode": [
+    {
+      "engine": "chromium",
+      "method": "drag",
+      "mode": "off",
+      "pairs": 8,
+      "product_status_counts": {
+        "NOT_TESTED": 8
+      },
+      "plain_status_counts": {
+        "NOT_TESTED": 8
+      },
+      "product_final_value_counts": {
+        "50": 8
+      },
+      "plain_final_value_counts": {
+        "50": 8
+      }
+    },
+    {
+      "engine": "chromium",
+      "method": "drag",
+      "mode": "minimal",
+      "pairs": 8,
+      "product_status_counts": {
+        "COMPLETED": 8
+      },
+      "plain_status_counts": {
+        "COMPLETED": 8
+      },
+      "product_final_value_counts": {
+        "50": 8
+      },
+      "plain_final_value_counts": {
+        "50": 8
+      }
+    },
+    {
+      "engine": "chromium",
+      "method": "drag",
+      "mode": "full",
+      "pairs": 8,
+      "product_status_counts": {
+        "COMPLETED": 8
+      },
+      "plain_status_counts": {
+        "COMPLETED": 8
+      },
+      "product_final_value_counts": {
+        "50": 8
+      },
+      "plain_final_value_counts": {
+        "50": 8
+      }
+    },
+    {
+      "engine": "chromium",
+      "method": "tap",
+      "mode": "off",
+      "pairs": 8,
+      "product_status_counts": {
+        "NOT_TESTED": 8
+      },
+      "plain_status_counts": {
+        "NOT_TESTED": 8
+      },
+      "product_final_value_counts": {
+        "50": 8
+      },
+      "plain_final_value_counts": {
+        "50": 8
+      }
+    },
+    {
+      "engine": "chromium",
+      "method": "tap",
+      "mode": "minimal",
+      "pairs": 8,
+      "product_status_counts": {
+        "COMPLETED": 8
+      },
+      "plain_status_counts": {
+        "COMPLETED": 8
+      },
+      "product_final_value_counts": {
+        "50": 8
+      },
+      "plain_final_value_counts": {
+        "50": 8
+      }
+    },
+    {
+      "engine": "chromium",
+      "method": "tap",
+      "mode": "full",
+      "pairs": 8,
+      "product_status_counts": {
+        "COMPLETED": 8
+      },
+      "plain_status_counts": {
+        "COMPLETED": 8
+      },
+      "product_final_value_counts": {
+        "50": 8
+      },
+      "plain_final_value_counts": {
+        "50": 8
+      }
+    },
+    {
+      "engine": "webkit",
+      "method": "drag",
+      "mode": "off",
+      "pairs": 8,
+      "product_status_counts": {
+        "NOT_TESTED": 8
+      },
+      "plain_status_counts": {
+        "NOT_TESTED": 8
+      },
+      "product_final_value_counts": {
+        "50": 8
+      },
+      "plain_final_value_counts": {
+        "50": 8
+      }
+    },
+    {
+      "engine": "webkit",
+      "method": "drag",
+      "mode": "minimal",
+      "pairs": 8,
+      "product_status_counts": {
+        "COMPLETED": 8
+      },
+      "plain_status_counts": {
+        "COMPLETED": 8
+      },
+      "product_final_value_counts": {
+        "50": 8
+      },
+      "plain_final_value_counts": {
+        "50": 8
+      }
+    },
+    {
+      "engine": "webkit",
+      "method": "drag",
+      "mode": "full",
+      "pairs": 8,
+      "product_status_counts": {
+        "COMPLETED": 8
+      },
+      "plain_status_counts": {
+        "COMPLETED": 8
+      },
+      "product_final_value_counts": {
+        "50": 8
+      },
+      "plain_final_value_counts": {
+        "50": 8
+      }
+    },
+    {
+      "engine": "webkit",
+      "method": "tap",
+      "mode": "off",
+      "pairs": 8,
+      "product_status_counts": {
+        "NOT_TESTED": 8
+      },
+      "plain_status_counts": {
+        "NOT_TESTED": 8
+      },
+      "product_final_value_counts": {
+        "0": 8
+      },
+      "plain_final_value_counts": {
+        "50": 8
+      }
+    },
+    {
+      "engine": "webkit",
+      "method": "tap",
+      "mode": "minimal",
+      "pairs": 8,
+      "product_status_counts": {
+        "CANCELLED": 8
+      },
+      "plain_status_counts": {
+        "CANCELLED": 8
+      },
+      "product_final_value_counts": {
+        "0": 8
+      },
+      "plain_final_value_counts": {
+        "50": 8
+      }
+    },
+    {
+      "engine": "webkit",
+      "method": "tap",
+      "mode": "full",
+      "pairs": 8,
+      "product_status_counts": {
+        "CANCELLED": 8
+      },
+      "plain_status_counts": {
+        "CANCELLED": 8
+      },
+      "product_final_value_counts": {
+        "0": 8
+      },
+      "plain_final_value_counts": {
+        "50": 8
+      }
+    }
+  ],
+  "unmodified_report_final_vs_sealed_final": {
+    "at": 192
+  },
+  "policy": "No pair is filtered. Missing is NOT_RECORDED, not zero. Original null and zero are retained. No causal attribution or physical-device acceptance.",
+  "anomalies": []
+}
