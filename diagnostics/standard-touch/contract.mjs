@@ -48,7 +48,7 @@ export function validate(r,expected){
  for(const [i,e]of r.events.entries()){
   require(e.seq===i&&['capture','next-animation-frame'].includes(e.phase)&&EVENT_TYPES.includes(e.type)&&finite(e.value)&&finite(e.observedAt)&&e.observedAt>=t&&finite(e.timeStamp)&&typeof e.isTrusted==='boolean','EVENT_STRUCTURE');t=e.observedAt;
   require(rect(e.rect)&&vp(e.viewport),'EVENT_GEOMETRY');require(e.clientX===null||finite(e.clientX),'COORDINATE');require(e.clientY===null||finite(e.clientY),'COORDINATE');
-  if(e.type.startsWith('pointer')||e.type.endsWith('pointercapture'))require(['mouse','touch','pen'].includes(e.pointerType)&&Number.isInteger(e.pointerId),'POINTER_IDENTITY');if(finite(e.clientX))require(finite(e.mappedValue),'COORDINATE_VALUE_REQUIRED');if(finite(e.clientX)&&e.rect&&finite(e.mappedValue))require(e.mappedValue===xToValue(e.clientX,e.rect,n.min,n.max,n.step,n.thumbWidth),'COORDINATE_VALUE_MAPPING');
+  if(e.type.startsWith('pointer')||e.type.endsWith('pointercapture'))require(['mouse','touch','pen'].includes(e.pointerType)&&Number.isInteger(e.pointerId),'POINTER_IDENTITY');if(['pointerdown','pointermove','pointerup','pointercancel'].includes(e.type))require(finite(e.clientX)&&finite(e.clientY),'POINTER_COORDINATES');if(finite(e.clientX))require(finite(e.mappedValue),'COORDINATE_VALUE_REQUIRED');if(finite(e.clientX)&&e.rect&&finite(e.mappedValue))require(e.mappedValue===xToValue(e.clientX,e.rect,n.min,n.max,n.step,n.thumbWidth),'COORDINATE_VALUE_MAPPING');
  }
  const d=evaluate(r);require(JSON.stringify(r.diagnosis)===JSON.stringify(d),'DIAGNOSIS_MISMATCH');
  require(d.physicalVerification==='NOT_TESTED'&&d.cause==='UNKNOWN','OVERCLAIM');return d;

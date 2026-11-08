@@ -23,3 +23,5 @@ test('product inconsistency cannot complete',()=>{const r=fixture();r.surface='p
 test('missing environment and event geometry rejected',()=>{let r=fixture();delete r.environment;assert.throws(()=>validate(r,expected),/ENVIRONMENT/);r=fixture();delete r.events[1].rect;assert.throws(()=>validate(r,expected),/EVENT_GEOMETRY/);});
 
 test('DPR difference prevents condition equivalence',()=>{const a=fixture(),b=fixture();b.surface='product';b.devicePixelRatio=3;reseal(b);const c=compareConditions(a,b,expected);assert.equal(c.status,'CONDITIONS_DIFFER');assert.ok(c.differences.includes('devicePixelRatio'));});
+
+test('missing pointer start coordinates are rejected explicitly',()=>{const r=fixture();r.events[0].clientX=null;r.events[0].clientY=null;r.events[0].mappedValue=null;assert.throws(()=>validate(reseal(r),expected),/POINTER_COORDINATES/);});
