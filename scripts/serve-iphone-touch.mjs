@@ -25,7 +25,11 @@ export async function createDiagnosticServer({root=process.cwd(),manifest}={}) {
    if(u.pathname==='/diagnostic/manifest.json'){res.setHeader('Content-Type','application/json');res.end(JSON.stringify(manifest));return;}
    let f=fixed.get(u.pathname);
    if(!f){let p=decodeURIComponent(u.pathname);if(!p.startsWith('/Loading-museum/'))throw Error('route');p=p.slice('/Loading-museum'.length);if(p.endsWith('/'))p+='index.html';f=path.resolve(out,'.'+p);const real=await fs.realpath(f);if(!real.startsWith(out+path.sep))throw Error('path');f=real;}
-   let bytes=await fs.readFile(f);const ext=path.extname(f);res.setHeader('Content-Type',({'.js':'text/javascript','.html':'text/html; charset=utf-8','.css':'text/css','.json':'application/json','.png':'image/png','.svg':'image/svg+xml'})[ext]||'application/octet-stream');
+   let bytes=await fs.readFile(f);
+   const relative=path.relative(root,f).split(path.sep).join('/');
+   const expected=f.startsWith(out+path.sep)?manifest?.build?.exportHashes?.[path.relative(out,f).split(path.sep).join('/')]:manifest?.sourceHashes?.[relative];
+   if(!expected||createHash('sha256').update(bytes).digest('hex')!==expected){res.writeHead(409);res.end('SOURCE_OR_EXPORT_CHANGED');return;}
+   const ext=path.extname(f);res.setHeader('Content-Type',({'.js':'text/javascript','.html':'text/html; charset=utf-8','.css':'text/css','.json':'application/json','.png':'image/png','.svg':'image/svg+xml'})[ext]||'application/octet-stream');
    if(f===fixed.get('/diagnostic/plain.html'))bytes=Buffer.from(bytes.toString().replace('<script src="./ios-range-instrument.js"></script>',''));
    if(ext==='.html'&&u.searchParams.get('probe')==='1'){
     let html=bytes.toString();
