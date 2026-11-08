@@ -14,7 +14,7 @@ try{for(const engine of ['chromium','webkit']){const browser=await pw[engine].la
  await range.scrollIntoViewIfNeeded();
  if(mode!=='absent'){
   for(const [k,v]of Object.entries({device:'automated emulator',os:process.platform,browser:engine,operator:'CI-not-physical',sessionId:'ci-handoff'}))await page.locator(`#iad73 input[name=${k}]`).fill(v);
-  await page.locator('#iad73 select[name=inputKind]').selectOption('playwright');await page.locator('#iad73 select[name=mode]').selectOption(mode);await page.locator('#iad73 form button').click();await page.waitForFunction(()=>window.__iad73?.state()==='recording');
+  await page.locator('#iad73 select[name=method]').selectOption(method);await page.locator('#iad73 select[name=inputKind]').selectOption('playwright');await page.locator('#iad73 select[name=mode]').selectOption(mode);await page.locator('#iad73 form button').click();await page.waitForFunction(()=>window.__iad73?.state()==='recording');
  }
  const before=await range.boundingBox();assert(before);
  const x=before.x+before.width*.75,y=before.y+before.height/2;if(method==='mouse')await page.mouse.click(x,y);else await page.touchscreen.tap(x,y);
