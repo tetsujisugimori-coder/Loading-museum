@@ -25,3 +25,11 @@ The read-only server checks original source/export hashes; experimental runner a
 ## Acceptance / unresolved
 
 Successful construction and evidence integrity do not imply successful gestures. Cancellation is retained. A missing event is not inferred to have happened. Null/unrecorded values are not treated as zero. The independent review must separately verify source, original artifact digest, bytes, all trial identities/counts, condition construction, images and event statistics, and inject faults. Actual physical touch and Safari remain NOT_TESTED; browser automation is not physical acceptance.
+
+## Additional strict acceptance checks
+
+The read-only aggregate verifier `scripts/audit-scroll-geometry.mjs` reconstructs comparisons from every raw JSON and checks all 768 required identities, all JSON/PNG/trace hashes and byte counts, three screenshot phases, and the externally pinned HEAD/tree/protocol/source binding. Invoke it with an independently verified binding JSON as its second argument. Do not give the report its own unverified binding as proof. Duplicate identities and omitted matrix cells fail; a development subset is PARTIAL.
+
+The original run/artifact relationship was also queried directly through GitHub: run 42515166947, artifact 13631601940, HEAD cc1a760209e0dba9c94f17f64ad26acf71576bcc, 40,625,587 bytes, API digest `sha256:33c49490cd6f3e4f7bf33156c8806bc215f41a852d2475a4cd959d5a42ecbfc0`. It matches the independent local recount. This API confirmation supplements, rather than changes, the recount worker's stated scope.
+
+Local Chromium preliminary sampling at 390px completed 96 rows/48 pairs on the pre-review code. Its old status label TECHNICAL_PASS meant only that subset and must not be used as full acceptance. The corrected runner labels subsets PARTIAL. The first local attempt could not find the pinned browser executable; the available cached executable was then selected. Local WebKit launch was NOT_TESTED because GTK4/Graphene/WOFF2/Harfbuzz ICU/Hyphen/Manette/GLES dependencies were absent. Formal CI installs its own dependencies and is evaluated separately. These failed or partial runs are retained; no filtering or replacement is performed.

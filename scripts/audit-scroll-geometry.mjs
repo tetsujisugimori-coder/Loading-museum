@@ -15,7 +15,7 @@ export async function audit(directory,expected){
   try{
    for(const f of [row.json,row.trace,...Object.values(row.images??{})]){if(!f||path.basename(f.file)!==f.file)throw Error('UNSAFE_FILE_REFERENCE');const b=await fs.readFile(path.join(directory,f.file));if(sha(b)!==f.sha256||b.length!==f.bytes)throw Error('FILE_HASH_OR_SIZE:'+f.file);}
    if(Object.keys(row.images??{}).sort().join(',')!=='after,before,during')throw Error('MISSING_IMAGE_PHASE');
-   const r=JSON.parse(await fs.readFile(path.join(directory,row.json.file)));if(r.identity.trialId!==row.trialId)throw Error('RECORD_TRIAL_ID');if(r.pageErrors?.length||!Array.isArray(r.pageErrors))throw Error('PAGE_ERRORS_MISSING_OR_PRESENT');
+   const r=JSON.parse(await fs.readFile(path.join(directory,row.json.file)));const i=r.identity,canonical=[i.engine,i.width,i.motion,i.method,i.condition,'r'+i.repetition].join('-');if(i.pairId!==canonical||i.trialId!==canonical+'-'+i.surface||i.trialId!==row.trialId)throw Error('RECORD_TRIAL_ID');for(const k of ['pairId','condition','engine','width','motion','method','repetition','surface'])if(i[k]!==row[k])throw Error('ROW_IDENTITY:'+k);if(r.pageErrors?.length||!Array.isArray(r.pageErrors))throw Error('PAGE_ERRORS_MISSING_OR_PRESENT');
    const v=validate(r,expected);if(!v.valid)throw Error('RECORD_INVALID:'+v.errors.join(','));records.set(row.trialId,r);
   }catch(e){errors.push(row.trialId+':'+String(e));}
  }

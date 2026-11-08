@@ -1,0 +1,31 @@
+baseline SHA256 1328e517157ec40c3f6c91d09d0c3e62d787d1aff91376ec8b05d4b44795aba6
+current SHA256 717d7d3afa033887497e02218eebfc8f2e70da6f813e6679456673e72b98067f
+fixture set SHA256 927891b86bec2280ea7bd3b6b1953705ff460365a9d001a1d023a3e7cb724576
+original: control | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/COMPLETED | CAPTURE_METADATA
+original: pointerup before pointerdown | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/INCOMPLETE | CAPTURE_METADATA,UNPAIRED_POINTER_END
+original: terminal from different pointer | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/INCOMPLETE | CAPTURE_METADATA,UNPAIRED_POINTER_END
+original: cross-family incomplete gesture | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/INCOMPLETE | CAPTURE_METADATA,TOUCH_METADATA,UNPAIRED_TOUCH_END
+original: browser and input path identity absent | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/COMPLETED | CAPTURE_METADATA,INPUT_ENVIRONMENT
+original: tap identity with arbitrary command and no coordinates | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/COMPLETED | CAPTURE_METADATA,EVENT_METADATA,POINTER_METADATA,INPUT_IDENTITY,INPUT_COORDINATES,RESPONSE_PRECEDES_INPUT,INPUT_SEQUENCE
+original: condition A entire recording at wrong width and target | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/COMPLETED | CAPTURE_METADATA,INPUT_PATH_MISMATCH
+original: condition B constructed by 1px instead of 1000 | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/COMPLETED | CAPTURE_METADATA
+original: condition C wrong rectangle dimension | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/COMPLETED | CAPTURE_METADATA,INPUT_PATH_MISMATCH
+original: all capture metadata and timestamps absent | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/COMPLETED | CAPTURE_METADATA
+original: cancellation preserved control | ESTABLISHED/CANCELLED -> NOT_EXECUTABLE/CANCELLED | CAPTURE_METADATA
+complete: protocol-complete positive control | ESTABLISHED/COMPLETED -> ESTABLISHED/COMPLETED | no errors
+complete: tap command outside range | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/COMPLETED | INPUT_PATH_MISMATCH
+complete: different pair tap command target | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/COMPLETED | INPUT_PATH_MISMATCH
+complete: input command logged after completed gesture | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/COMPLETED | RESPONSE_PRECEDES_INPUT
+complete: unfinished second pointer after completion | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/COMPLETED | UNFINISHED_LIFECYCLE
+complete: touch lifecycle unfinished after pointer completion | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/COMPLETED | UNFINISHED_LIFECYCLE
+complete: pointer identity changes type mid gesture | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/COMPLETED | POINTER_TYPE_CHANGED
+complete: event snapshots reverse timeline | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/COMPLETED | EVENT_SNAPSHOT_ORDER
+complete: negative page scroll construction | ESTABLISHED/COMPLETED -> NOT_EXECUTABLE/COMPLETED | initial:scroll.y,initial:scroll.scrollingElement.top,initial:scroll.documentElement.top,final:scroll.y,final:scroll.scrollingElement.top,final:scroll.documentElement.top
+complete: unobserved cause claimed | ESTABLISHED/COMPLETED -> ESTABLISHED/COMPLETED | no errors
+complete: non-finite final value | NOT_EXECUTABLE/COMPLETED -> NOT_EXECUTABLE/COMPLETED | DOM_VALUE_INVALID
+complete: unrecognized cancellation type | ESTABLISHED/INCOMPLETE -> NOT_EXECUTABLE/INCOMPLETE | UNKNOWN_EVENT
+complete: valid pointer and touch completion | ESTABLISHED/COMPLETED -> ESTABLISHED/COMPLETED | no errors
+complete: valid WebKit-style pointer cancel then touchend | ESTABLISHED/CANCELLED -> ESTABLISHED/CANCELLED | no errors
+complete: valid both cancellation families | ESTABLISHED/CANCELLED -> ESTABLISHED/CANCELLED | no errors
+complete: cancelled pointer with unfinished touch retained | ESTABLISHED/CANCELLED -> ESTABLISHED/CANCELLED | no errors
+{"cases":27,"redToGreen":20,"completeControlsPreserved":6,"failures":[]}

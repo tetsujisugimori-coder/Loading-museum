@@ -1,0 +1,19 @@
+{
+  "verification": "Node assert.deepStrictEqual, after JSON normalization; both comparator result objects excluded",
+  "sets": [
+    {
+      "suite": "original",
+      "cases": 11,
+      "rawFile": "contract-counterexamples.json",
+      "rawSha256": "a9f86266377a9d4f825d6c430048ec927d037ab77e315524edb5a75eafb8ab63",
+      "generatedInputsExactlyEqualPreservedInputs": true
+    },
+    {
+      "suite": "complete",
+      "cases": 16,
+      "rawFile": "additional-counterexamples.json",
+      "rawSha256": "148f2f9f7213e6a37e922fd7193c1a641924386fcfd1bee4657cc2fcd9621497",
+      "generatedInputsExactlyEqualPreservedInputs": true
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+✔ independent condition A (3.158149ms)
+✔ independent condition B (1.369558ms)
+✔ independent condition C (0.529199ms)
+✔ independent condition D (0.484933ms)
+✔ final value difference is not geometry (0.53652ms)
+✔ cancel result independent of matching conditions (0.493435ms)
+✔ reject scroll erased (0.461306ms)
+✔ reject missing rect (0.413324ms)
+✔ reject null value (0.423921ms)
+✔ reject numeric string (0.956284ms)
+✔ reject bad rectangle (0.30437ms)
+✔ reject events from another trial (0.322026ms)
+✔ reject points from another trial (0.228755ms)
+✔ reject old HEAD (0.179962ms)
+✔ reject old protocol (0.150016ms)
+✔ reject old runner (0.141253ms)
+✔ reject empty timeline (0.100932ms)
+✔ reject event missing (0.434226ms)
+✔ reject input missing (0.173843ms)
+✔ reject event order (0.216937ms)
+✔ reject point order (0.184499ms)
+✔ reject capture metadata (0.407696ms)
+✔ reject wrong input path (0.193523ms)
+✔ reject reversed lifecycle (0.155285ms)
+✔ reject different pointer (0.285471ms)
+✔ reject missing event trust (0.159511ms)
+✔ reject event object (0.154313ms)
+✔ reject zero viewport (0.149035ms)
+✔ same final value cannot hide temporary scroll drift (0.534898ms)
+✔ temporary viewport restored (0.44386ms)
+✔ mismatched pair rejected (0.767279ms)
+✔ viewport confound separate (0.47674ms)
+✔ expected binding required (0.306383ms)
+✔ one-pixel B is not requested thousand-pixel construction (0.458483ms)
+✔ C width difference is not requested vertical shift (0.352172ms)
+✔ matching wrong absolute coordinates are not established (0.304269ms)
+✔ response before input rejected (0.309037ms)
+✔ pointer type change rejected (0.23158ms)
+✔ event snapshot order rejected (0.228876ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 118.129983
