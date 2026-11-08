@@ -1,0 +1,333 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/loading-museum/iad-standard-2.schema.json",
+  "title": "Diagnostic observation v2 (not physical acceptance)",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "metadata",
+    "surface",
+    "startedAt",
+    "finishedAt",
+    "environment",
+    "devicePixelRatio",
+    "nativeRange",
+    "initial",
+    "final",
+    "events",
+    "diagnosis"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "iad-standard-2"
+    },
+    "surface": {
+      "enum": [
+        "product",
+        "plain-html"
+      ]
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "finishedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "devicePixelRatio": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "environment": {
+      "type": "object",
+      "required": [
+        "userAgent",
+        "viewport"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "required": [
+        "head",
+        "tree",
+        "sourceHashes",
+        "method",
+        "mode",
+        "inputKind",
+        "targetPercent",
+        "targetValue",
+        "tolerance"
+      ],
+      "properties": {
+        "head": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "tree": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "sourceHashes": {
+          "type": "object",
+          "minProperties": 1
+        },
+        "method": {
+          "enum": [
+            "drag",
+            "tap"
+          ]
+        },
+        "mode": {
+          "enum": [
+            "off",
+            "minimal",
+            "full"
+          ]
+        },
+        "inputKind": {
+          "enum": [
+            "physical",
+            "playwright",
+            "synthetic"
+          ]
+        },
+        "targetPercent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "targetValue": {
+          "type": "number"
+        },
+        "tolerance": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "nativeRange": {
+      "type": "object",
+      "required": [
+        "min",
+        "max",
+        "step",
+        "rect",
+        "thumbWidth",
+        "touchAction"
+      ],
+      "properties": {
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "step": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "rect": {
+          "type": "object",
+          "required": [
+            "x",
+            "y",
+            "width",
+            "height"
+          ],
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "width": {
+              "type": "number"
+            },
+            "height": {
+              "type": "number"
+            }
+          }
+        },
+        "thumbWidth": {
+          "const": 20
+        },
+        "touchAction": {
+          "const": "pan-y"
+        }
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "seq",
+          "phase",
+          "type",
+          "observedAt",
+          "timeStamp",
+          "value",
+          "isTrusted",
+          "rect",
+          "viewport",
+          "clientX",
+          "clientY",
+          "pointerId"
+        ],
+        "properties": {
+          "seq": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "phase": {
+            "enum": [
+              "capture",
+              "next-animation-frame"
+            ]
+          },
+          "type": {
+            "enum": [
+              "pointerdown",
+              "pointermove",
+              "pointerup",
+              "pointercancel",
+              "touchstart",
+              "touchmove",
+              "touchend",
+              "touchcancel",
+              "input",
+              "change",
+              "gotpointercapture",
+              "lostpointercapture"
+            ]
+          },
+          "observedAt": {
+            "type": "number"
+          },
+          "timeStamp": {
+            "type": "number"
+          },
+          "value": {
+            "type": "number"
+          },
+          "isTrusted": {
+            "type": "boolean"
+          },
+          "rect": {
+            "type": "object",
+            "required": [
+              "x",
+              "y",
+              "width",
+              "height"
+            ],
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "width": {
+                "type": "number"
+              },
+              "height": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "diagnosis": {
+      "type": "object",
+      "required": [
+        "status",
+        "cause",
+        "physicalVerification"
+      ],
+      "properties": {
+        "cause": {
+          "const": "UNKNOWN"
+        },
+        "physicalVerification": {
+          "const": "NOT_TESTED"
+        }
+      }
+    },
+    "initial": {
+      "type": "object",
+      "required": [
+        "value",
+        "rect",
+        "viewport"
+      ],
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "rect": {
+          "type": "object",
+          "required": [
+            "x",
+            "y",
+            "width",
+            "height"
+          ],
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "width": {
+              "type": "number"
+            },
+            "height": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "final": {
+      "type": "object",
+      "required": [
+        "value",
+        "rect",
+        "viewport"
+      ],
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "rect": {
+          "type": "object",
+          "required": [
+            "x",
+            "y",
+            "width",
+            "height"
+          ],
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "width": {
+              "type": "number"
+            },
+            "height": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    }
+  }
+}
