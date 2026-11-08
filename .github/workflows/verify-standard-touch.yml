@@ -1,0 +1,33 @@
+name: Verify standardized touch diagnostics
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint && npm run typecheck && npm test
+      - run: node --test tests/standard-touch-contract.test.mjs tests/iphone-diagnostic-server.test.mjs tests/adjustment-physical-contract.test.mjs tests/adjustment-touch-contract.test.mjs
+      - run: npm install --prefix /tmp/iad75-tools --no-package-lock playwright@1.56.1
+      - run: /tmp/iad75-tools/node_modules/.bin/playwright install --with-deps chromium webkit
+      - run: node scripts/prepare-standard-touch.mjs
+      - run: node scripts/verify-standard-touch.mjs
+        env:
+          PLAYWRIGHT_MODULE: /tmp/iad75-tools/node_modules/playwright
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: standard-touch-${{ github.event.pull_request.head.sha }}
+          path: work/standard-touch/
+          if-no-files-found: error
