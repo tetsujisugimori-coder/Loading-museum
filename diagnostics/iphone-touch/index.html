@@ -1,0 +1,7 @@
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>iPhone物理touch診断</title><body>
+<h1>iPhone物理touch診断</h1><p>実機試験前：NOT_TESTED。MacやWeb Inspectorは不要。送信機能はありません。</p>
+<ol><li>製品を開き「部品展示室を開く」→Image Adjustmentへ移動。</li><li>診断パネルで端末・OS・Safari版・担当・セッション名、tap/drag、1〜3、計測条件を入力。</li><li>新しいページで初期値0を確認して開始。指を操作面から離し、READY表示後にtapは75%、dragは50%→75%を1回だけ操作。</li><li>値が落ち着いてから「封印」を押す。封印はボタンのpointerdown捕捉時で、通常のボタンフォーカス移動より前。実Safariでの順序保証は未検証。途中・取消・失敗も保存。</li><li>JSON保存を押して「ファイル」に保存し、封印前後の画面も撮影。再試行時は新しいattempt番号を使い旧ファイルを残す。</li><li>素HTMLを開く。直近の製品開始時の矩形を同一originのsessionStorageから使用。矩形・ズーム・回転・スクロールを実測し、合わなければ比較不能のまま保存。</li></ol>
+<p><a href="/Loading-museum/?probe=1">製品（診断付き・新規読込）</a> / <a id="plain" href="/diagnostic/plain.html?probe=1">ReactなしHTML</a> / <a href="/Loading-museum/">製品（診断スクリプトなし）</a></p>
+<p>製品/素HTML × tap/drag × 各3回。詳細計測の12本を基本とし、off/minimalは別の対照として同じ操作を行う。offも開始/終了snapshotと封印制御は残るため完全無計測ではありません。真の未注入対照は上の「診断スクリプトなし」で画面録画と値を手記します。</p>
+<p>isTrustedは物理入力の証明ではありません。端末・操作者申告、画像・動画の独立確認が必要です。数値の成功やログ完走から実機PASSを自動生成しません。</p>
+<script>try{const r=JSON.parse(sessionStorage.getItem('iad73-rect'));if(r){const q=new URLSearchParams({probe:'1',x:r.x,y:r.y,w:r.width,h:r.height});document.querySelector('#plain').href='/diagnostic/plain.html?'+q;}}catch{}</script></body></html>

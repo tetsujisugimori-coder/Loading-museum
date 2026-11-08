@@ -1,0 +1,33 @@
+name: Verify iPhone touch preparation
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint && npm run typecheck && npm test
+      - run: node --test tests/iphone-diagnostic-server.test.mjs tests/adjustment-physical-contract.test.mjs tests/adjustment-touch-contract.test.mjs
+      - run: npm install --prefix /tmp/iad73-tools --no-package-lock playwright@1.56.1
+      - run: /tmp/iad73-tools/node_modules/.bin/playwright install --with-deps chromium webkit
+      - run: node scripts/prepare-iphone-touch.mjs
+      - run: node scripts/verify-iphone-touch-handoff.mjs
+        env:
+          PLAYWRIGHT_MODULE: /tmp/iad73-tools/node_modules/playwright
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: iphone-preparation-${{ github.event.pull_request.head.sha }}
+          path: work/iphone-handoff/
+          if-no-files-found: error
