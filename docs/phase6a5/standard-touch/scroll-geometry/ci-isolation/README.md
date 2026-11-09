@@ -1,0 +1,9 @@
+# CI evidence isolation
+
+On 2026-11-09 at approximately 01:58 UTC, GitHub still reported run 42541568084 / attempt 1 at HEAD 39cc9af660a56459449096cdeb2307e3ca1dbbbc as in progress. Its new 768-trial browser acquisition, raw audit, and binary/fault replay steps had succeeded, but the unchanged legacy 16-condition step had not finished since 01:02:58 UTC. The 75-minute job limit had elapsed without a completed status in the observed API response. No artifact was available and job logs returned 404. This is NOT an accepted run or proof of an identified infrastructure cause. The captured job response is historical evidence, not a future status prediction.
+
+The revised workflow puts the exact unchanged legacy script in a fresh, parallel job. Both jobs check out the same pull-request HEAD, use Ubuntu 24.04, Node 22, pinned Playwright 1.56.1 and pngjs 7.0.0, and independently build the same source. Primary raw evidence uploads without waiting for the legacy job. The legacy job retains its full 16-condition/368-check contract and uploads separately labeled evidence and live console output.
+
+An always-running acceptance job requires BOTH job results to be `success`. Failed, cancelled, skipped, missing or timed-out execution does not pass. The legacy step has a 25-minute timeout within a 35-minute job to leave a window for failure evidence upload; no test is omitted or relaxed. Process or runner loss may still prevent upload, and must be reported as missing evidence rather than success.
+
+The old standard-touch workflow already independently passed its separate final-39cc legacy regression, but that is not substituted for a new-HEAD run. New acceptance requires fresh evidence from both jobs on the revised HEAD. Resource carryover is only a possible explanation for isolation to investigate, not a determined cause. Existing product scripts, all historical evidence, source contracts, trial count and pre-registered acquisition protocol remain unchanged.

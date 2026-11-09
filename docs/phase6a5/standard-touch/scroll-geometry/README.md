@@ -47,3 +47,7 @@ Independent inference review adds two limits: the serialized finish result in th
 The first full CI attempts rejected WebKit tap recordings as UNPAIRED_POINTER_END. Historical raw evidence already records a same-ID/type pointerup after pointercancel. The validator now models that observed trailing terminal separately: one same-ID/type post-cancel pointerup is retained, cancellation remains CANCELLED, and it cannot establish completion. An unrelated ID/type, orphan terminal, or second trailing up still rejects. No browser events or product handlers are changed. This is validation of an observed cancellation sequence, not a claim that the sequence is specification-conforming or that its cause is known. Failed CI evidence remains separate.
 
 CI runs a copied independent synthetic harness against the current checked-out validator files; committed historical source snapshots and recorded test results remain untouched.
+
+### Independent CI jobs and evidence upload
+
+The primary 768-trial job and unchanged legacy 16-condition regression now run independently on fresh GitHub runners at the same HEAD. Both must succeed through an always-running final acceptance gate. Their original artifacts are separate, so a later legacy stall cannot block publication of completed primary evidence. See `ci-isolation/README.md` for the observed older run and explicit limits. No skipped or timed-out job counts as PASS.
