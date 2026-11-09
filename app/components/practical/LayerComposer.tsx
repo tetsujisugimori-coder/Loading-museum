@@ -19,10 +19,25 @@ function Editor({layer,apply}:{layer:Layer;apply:(p:Partial<Layer>)=>void}) {
 export default function LayerComposer(){
   const [state,setState]=useState(initialState),current=useRef(initialState());
   const [asset,setAsset]=useState<AssetId>('sun'),[touch,setTouch]=useState(false),[status,setStatus]=useState('教材画像を準備中'),[ready,setReady]=useState(false),[error,setError]=useState(''),[preview,setPreview]=useState(false),[exporting,setExporting]=useState(false);
+  const opacityControl=useRef<HTMLInputElement>(null);
   const canvas=useRef<HTMLCanvasElement>(null),previewCanvas=useRef<HTMLCanvasElement>(null),beforeCanvas=useRef<HTMLCanvasElement>(null),sources=useRef<Record<string,HTMLCanvasElement|null>>({}),comparison=useRef<Record<string,HTMLCanvasElement|null>>({}),images=useRef<Images|null>(null),alive=useRef(true),version=useRef(0),capture=useRef<number|null>(null);
   const release=useCallback(()=>{const id=capture.current;capture.current=null;if(id!==null&&canvas.current?.hasPointerCapture?.(id))canvas.current.releasePointerCapture(id);},[]);
   const update=useCallback((s:State)=>{current.current=s;version.current++;setState(s);setPreview(false);setError('');if(!s.gesture)release();},[release]);
   const cancel=useCallback(()=>{if(current.current.gesture){update(abort(current.current));setStatus('操作を取り消しました。確定済みの作品は保持しました。');}},[update]);
+  const opacityEnd=useCallback((pointerId:number,node:HTMLInputElement|null)=>{
+    const s=current.current,g=s.gesture;if(g?.kind!=='opacity'||g.pointerId!==pointerId)return;
+    if(!node){update(abort(s));return;}
+    const r=node.getBoundingClientRect(),b={x:r.x,y:r.y,width:r.width,height:r.height};
+    update(JSON.stringify(b)===JSON.stringify(g.bounds)?commit(s,s.layers):abort(s));
+  },[update]);
+  // Native range controls can release the pointer over a different element without
+  // delivering pointerup/lostpointercapture to the input. Match the active ID only.
+  useEffect(()=>{
+    const end=(e:globalThis.PointerEvent)=>opacityEnd(e.pointerId,opacityControl.current);
+    const abortPointer=(e:globalThis.PointerEvent)=>{const g=current.current.gesture;if(g?.kind==='opacity'&&g.pointerId===e.pointerId)cancel();};
+    window.addEventListener('pointerup',end);window.addEventListener('pointercancel',abortPointer);
+    return()=>{window.removeEventListener('pointerup',end);window.removeEventListener('pointercancel',abortPointer);};
+  },[opacityEnd,cancel]);
   useEffect(()=>{
     alive.current=true;let frame=0;
     try{images.current=createImages();for(const a of ASSETS){const n=sources.current[a.id];if(n){n.width=a.width;n.height=a.height;const c=n.getContext('2d');if(!c)throw new Error('教材プレビューを描画できません');c.drawImage(images.current[a.id],0,0);}}
@@ -41,6 +56,7 @@ export default function LayerComposer(){
   const bounds=():Box=>{const b=canvas.current!.getBoundingClientRect();return{x:b.x,y:b.y,width:b.width,height:b.height};};
   function pointer(e:PointerEvent<HTMLCanvasElement>,phase:'down'|'move'|'up'|'cancel'){
     if(phase==='cancel'){if(current.current.gesture?.pointerId===e.pointerId)cancel();return;}
+    if(current.current.gesture?.kind==='opacity')return;
     if(!ready||error||e.pointerType==='touch'&&!touch)return;
     const b=bounds(),p=point({x:e.clientX,y:e.clientY},b);if(!p){cancel();return;}
     if(phase==='down'){
@@ -51,11 +67,6 @@ export default function LayerComposer(){
   function opacityStart(pointerId:number,node:HTMLInputElement){
     const s=current.current;if(s.gesture||!s.selected)return;const r=node.getBoundingClientRect();
     update({...s,gesture:{kind:'opacity',pointerId,start:{x:0,y:0},bounds:{x:r.x,y:r.y,width:r.width,height:r.height},before:s.layers,layerId:s.selected}});
-  }
-  function opacityEnd(pointerId:number,node:HTMLInputElement){
-    const s=current.current,g=s.gesture;if(g?.kind!=='opacity'||g.pointerId!==pointerId)return;
-    const r=node.getBoundingClientRect(),b={x:r.x,y:r.y,width:r.width,height:r.height};
-    update(JSON.stringify(b)===JSON.stringify(g.bounds)?commit(s,s.layers):abort(s));
   }
   function opacityValue(value:number){
     const s=current.current,g=s.gesture;
@@ -85,7 +96,7 @@ export default function LayerComposer(){
       <ol className="lcList">{[...state.layers].reverse().map(l=><li key={l.id}><button data-layer-id={l.id} aria-pressed={l.id===state.selected} disabled={busy} onClick={()=>update({...current.current,selected:l.id})}>{l.name} <small>{l.id} · {l.visible?'表示':'非表示'} · {l.locked?'ロック':'編集可'}</small></button></li>)}</ol>
       {selected?<><div className="lcToolbar"><button disabled={busy} onClick={()=>act('up')}>手前へ</button><button disabled={busy} onClick={()=>act('down')}>奥へ</button><button disabled={busy||state.layers.length>=MAX_LAYERS} onClick={()=>act('duplicate')}>複製</button><button disabled={busy} onClick={()=>act('delete')}>削除</button><button disabled={busy} aria-pressed={!selected.visible} onClick={()=>apply({visible:!selected.visible})}>表示切替</button><button disabled={busy} aria-pressed={selected.locked} onClick={()=>apply({locked:!selected.locked})}>ロック切替</button></div>
       <fieldset disabled={busy&&state.gesture?.kind!=='opacity'}><Editor key={JSON.stringify(selected)} layer={selected} apply={apply}/>
-      <label>透明度スライダー<input aria-label="透明度スライダー" type="range" min={0} max={100} value={selected.opacity*100} onPointerDown={e=>{if(e.button===0){opacityStart(e.pointerId,e.currentTarget);try{e.currentTarget.setPointerCapture?.(e.pointerId);}catch{cancel();}}}} onPointerUp={e=>opacityEnd(e.pointerId,e.currentTarget)} onPointerCancel={e=>{if(current.current.gesture?.pointerId===e.pointerId)cancel();}} onLostPointerCapture={e=>{if(current.current.gesture?.pointerId===e.pointerId)cancel();}} onBlur={cancel} onKeyDown={e=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End','PageUp','PageDown'].includes(e.key))opacityStart(-1,e.currentTarget);}} onKeyUp={e=>opacityEnd(-1,e.currentTarget)} onChange={e=>opacityValue(Number(e.target.value)/100)}/></label>
+      <label>透明度スライダー<input ref={opacityControl} aria-label="透明度スライダー" type="range" min={0} max={100} value={selected.opacity*100} onPointerDown={e=>{if(e.button===0){opacityStart(e.pointerId,e.currentTarget);try{e.currentTarget.setPointerCapture?.(e.pointerId);}catch{cancel();}}}} onPointerUp={e=>opacityEnd(e.pointerId,e.currentTarget)} onPointerCancel={e=>{if(current.current.gesture?.pointerId===e.pointerId)cancel();}} onLostPointerCapture={e=>{if(current.current.gesture?.pointerId===e.pointerId)cancel();}} onBlur={cancel} onKeyDown={e=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End','PageUp','PageDown'].includes(e.key))opacityStart(-1,e.currentTarget);}} onKeyUp={e=>opacityEnd(-1,e.currentTarget)} onChange={e=>opacityValue(Number(e.target.value)/100)}/></label>
       <label>合成モード<select aria-label="合成モード" value={selected.blend} onChange={e=>apply({blend:e.target.value as Blend})}><option value="normal">Normal</option><option value="multiply">Multiply</option><option value="screen">Screen</option></select></label><p>{descriptions[selected.blend]}</p><button disabled={selected.locked} onClick={()=>{const a=ASSETS.find(a=>a.id===selected.imageId)!;apply({x:0,y:0,width:a.width,height:a.height});}}>位置・倍率Reset</button></fieldset></>:<p>レイヤーを追加してください。</p>}
     </aside></div>
     <p role="status">{status}</p>{error&&<p role="alert">{error}</p>}
