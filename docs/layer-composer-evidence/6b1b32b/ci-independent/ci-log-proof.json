@@ -1,0 +1,844 @@
+{
+  "runs": {
+    "workflow_runs": [
+      {
+        "id": 42629099296,
+        "name": "Verify Pan and Zoom",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 31,
+        "jobs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099296/jobs",
+        "logs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099296/logs",
+        "workflow_id": 406698166
+      },
+      {
+        "id": 42629099292,
+        "name": "WAAPI Stage 2B timing",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 41,
+        "jobs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099292/jobs",
+        "logs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099292/logs",
+        "workflow_id": 405272166
+      },
+      {
+        "id": 42629099294,
+        "name": "Physics lifecycle RED to GREEN",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 46,
+        "jobs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099294/jobs",
+        "logs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099294/logs",
+        "workflow_id": 404410706
+      },
+      {
+        "id": 42629099300,
+        "name": "Verify practical phase 5B",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 33,
+        "jobs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099300/jobs",
+        "logs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099300/logs",
+        "workflow_id": 406003112
+      },
+      {
+        "id": 42629099301,
+        "name": "WAAPI Stage 2A integration",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 42,
+        "jobs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099301/jobs",
+        "logs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099301/logs",
+        "workflow_id": 404515236
+      },
+      {
+        "id": 42629099289,
+        "name": "Flash Then & Now phase 2",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 38,
+        "jobs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099289/jobs",
+        "logs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099289/logs",
+        "workflow_id": 405537440
+      },
+      {
+        "id": 42629099408,
+        "name": "Verify museum and practical UI",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 60,
+        "jobs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099408/jobs",
+        "logs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099408/logs",
+        "workflow_id": 402468319
+      },
+      {
+        "id": 42629099302,
+        "name": "Regression timing reacceptance",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 18,
+        "jobs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099302/jobs",
+        "logs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099302/logs",
+        "workflow_id": 409178098
+      },
+      {
+        "id": 42629099290,
+        "name": "Verify Before After Compare",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 25,
+        "jobs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099290/jobs",
+        "logs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099290/logs",
+        "workflow_id": 408474722
+      },
+      {
+        "id": 42629099297,
+        "name": "Verify Image Annotation",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 15,
+        "jobs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099297/jobs",
+        "logs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099297/logs",
+        "workflow_id": 409301891
+      },
+      {
+        "id": 42629099303,
+        "name": "Verify Layer Composer",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 6,
+        "jobs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099303/jobs",
+        "logs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099303/logs",
+        "workflow_id": 412119476
+      },
+      {
+        "id": 42629099295,
+        "name": "Verify Image Crop",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 29,
+        "jobs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099295/jobs",
+        "logs_url": "https://api.github.com/repos/tetsujisugimori-coder/Loading-museum/actions/runs/42629099295/logs",
+        "workflow_id": 407559554
+      }
+    ]
+  },
+  "jobs": {
+    "jobs": [
+      {
+        "id": 129200433316,
+        "name": "composer-browser (webkit, 390)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42629099303,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run npm ci",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run npm run lint && npm run typecheck && npm test && node scripts/build-layer-composer.mjs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Fixed external browser and image tools",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Both motion preferences, exact submitted source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 129200433319,
+        "name": "composer-browser (webkit, 765)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42629099303,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run npm ci",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run npm run lint && npm run typecheck && npm test && node scripts/build-layer-composer.mjs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Fixed external browser and image tools",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Both motion preferences, exact submitted source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 129200433353,
+        "name": "composer-browser (webkit, 1280)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42629099303,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run npm ci",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run npm run lint && npm run typecheck && npm test && node scripts/build-layer-composer.mjs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Fixed external browser and image tools",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Both motion preferences, exact submitted source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 129200433387,
+        "name": "composer-browser (chromium, 375)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42629099303,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run npm ci",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run npm run lint && npm run typecheck && npm test && node scripts/build-layer-composer.mjs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Fixed external browser and image tools",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Both motion preferences, exact submitted source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 129200433513,
+        "name": "composer-browser (chromium, 390)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42629099303,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run npm ci",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run npm run lint && npm run typecheck && npm test && node scripts/build-layer-composer.mjs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Fixed external browser and image tools",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Both motion preferences, exact submitted source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 129200433514,
+        "name": "composer-browser (chromium, 1280)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42629099303,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run npm ci",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run npm run lint && npm run typecheck && npm test && node scripts/build-layer-composer.mjs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Fixed external browser and image tools",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Both motion preferences, exact submitted source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 129200433573,
+        "name": "composer-browser (webkit, 375)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42629099303,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run npm ci",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run npm run lint && npm run typecheck && npm test && node scripts/build-layer-composer.mjs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Fixed external browser and image tools",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Both motion preferences, exact submitted source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 129200433724,
+        "name": "composer-browser (chromium, 765)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42629099303,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run npm ci",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run npm run lint && npm run typecheck && npm test && node scripts/build-layer-composer.mjs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Fixed external browser and image tools",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Both motion preferences, exact submitted source",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      }
+    ]
+  },
+  "logProof": [
+    {
+      "id": 129200433316,
+      "name": "composer-browser (webkit, 390)",
+      "boundLines": [
+        "2026-11-09T14:21:24.1590129Z Bound production build 6b1b32b6cd6d8684ab622043960277824925a348 6b3ee2499623449000a183b3693380a7efcb60cc4434ac35e96985be962c3eba"
+      ],
+      "checkoutLines": [
+        "2026-11-09T14:19:31.8968359Z   ref: 6b1b32b6cd6d8684ab622043960277824925a348",
+        "2026-11-09T14:19:32.2578990Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 6b1b32b6cd6d8684ab622043960277824925a348",
+        "2026-11-09T14:19:34.0741391Z  * branch            6b1b32b6cd6d8684ab622043960277824925a348 -> FETCH_HEAD",
+        "2026-11-09T14:19:34.0892483Z [command]/usr/bin/git checkout --progress --force 6b1b32b6cd6d8684ab622043960277824925a348"
+      ]
+    },
+    {
+      "id": 129200433319,
+      "name": "composer-browser (webkit, 765)",
+      "boundLines": [
+        "2026-11-09T14:22:43.3099191Z Bound production build 6b1b32b6cd6d8684ab622043960277824925a348 7a48c6f5ff4b17893a01b2fc6d8a771d180bbe1b80ed3ff8d34efb268ab03571"
+      ],
+      "checkoutLines": [
+        "2026-11-09T14:19:56.2673738Z   ref: 6b1b32b6cd6d8684ab622043960277824925a348",
+        "2026-11-09T14:19:57.1726348Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 6b1b32b6cd6d8684ab622043960277824925a348",
+        "2026-11-09T14:19:58.4834130Z  * branch            6b1b32b6cd6d8684ab622043960277824925a348 -> FETCH_HEAD",
+        "2026-11-09T14:19:58.4963705Z [command]/usr/bin/git checkout --progress --force 6b1b32b6cd6d8684ab622043960277824925a348"
+      ]
+    },
+    {
+      "id": 129200433353,
+      "name": "composer-browser (webkit, 1280)",
+      "boundLines": [
+        "2026-11-09T14:20:42.4197113Z Bound production build 6b1b32b6cd6d8684ab622043960277824925a348 412113f6f1e660ccef314b969ee1a9ac677c9a7398492b9f4fa99134deea30cd"
+      ],
+      "checkoutLines": [
+        "2026-11-09T14:18:26.2851893Z   ref: 6b1b32b6cd6d8684ab622043960277824925a348",
+        "2026-11-09T14:18:27.1005140Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 6b1b32b6cd6d8684ab622043960277824925a348",
+        "2026-11-09T14:18:28.9102796Z  * branch            6b1b32b6cd6d8684ab622043960277824925a348 -> FETCH_HEAD",
+        "2026-11-09T14:18:28.9214220Z [command]/usr/bin/git checkout --progress --force 6b1b32b6cd6d8684ab622043960277824925a348"
+      ]
+    },
+    {
+      "id": 129200433387,
+      "name": "composer-browser (chromium, 375)",
+      "boundLines": [
+        "2026-11-09T14:21:08.4660979Z Bound production build 6b1b32b6cd6d8684ab622043960277824925a348 a19cc441ccce17c9ef1b1d86b568984d349bb0815cddfdb640ba86be5648f928"
+      ],
+      "checkoutLines": [
+        "2026-11-09T14:19:19.7587194Z   ref: 6b1b32b6cd6d8684ab622043960277824925a348",
+        "2026-11-09T14:19:20.0676528Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 6b1b32b6cd6d8684ab622043960277824925a348",
+        "2026-11-09T14:19:21.4502933Z  * branch            6b1b32b6cd6d8684ab622043960277824925a348 -> FETCH_HEAD",
+        "2026-11-09T14:19:21.4618875Z [command]/usr/bin/git checkout --progress --force 6b1b32b6cd6d8684ab622043960277824925a348"
+      ]
+    },
+    {
+      "id": 129200433513,
+      "name": "composer-browser (chromium, 390)",
+      "boundLines": [
+        "2026-11-09T14:22:20.6222531Z Bound production build 6b1b32b6cd6d8684ab622043960277824925a348 7e0438138b494845280f68f25565880c126129d4a59d7801276c8c4c9f5ebb6e"
+      ],
+      "checkoutLines": [
+        "2026-11-09T14:19:25.2125576Z   ref: 6b1b32b6cd6d8684ab622043960277824925a348",
+        "2026-11-09T14:19:25.7615197Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 6b1b32b6cd6d8684ab622043960277824925a348",
+        "2026-11-09T14:19:27.2725945Z  * branch            6b1b32b6cd6d8684ab622043960277824925a348 -> FETCH_HEAD",
+        "2026-11-09T14:19:27.2885052Z [command]/usr/bin/git checkout --progress --force 6b1b32b6cd6d8684ab622043960277824925a348"
+      ]
+    },
+    {
+      "id": 129200433514,
+      "name": "composer-browser (chromium, 1280)",
+      "boundLines": [
+        "2026-11-09T14:22:29.5482479Z Bound production build 6b1b32b6cd6d8684ab622043960277824925a348 7566f2b52a133df13a54ce17d7ba2ca1350c0e2fd106068ebd9ce53ed855c98e"
+      ],
+      "checkoutLines": [
+        "2026-11-09T14:19:39.0130470Z   ref: 6b1b32b6cd6d8684ab622043960277824925a348",
+        "2026-11-09T14:19:39.5065143Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 6b1b32b6cd6d8684ab622043960277824925a348",
+        "2026-11-09T14:19:40.6291583Z  * branch            6b1b32b6cd6d8684ab622043960277824925a348 -> FETCH_HEAD",
+        "2026-11-09T14:19:40.6416065Z [command]/usr/bin/git checkout --progress --force 6b1b32b6cd6d8684ab622043960277824925a348"
+      ]
+    },
+    {
+      "id": 129200433573,
+      "name": "composer-browser (webkit, 375)",
+      "boundLines": [
+        "2026-11-09T14:22:42.1648447Z Bound production build 6b1b32b6cd6d8684ab622043960277824925a348 ce35139809b0ba6d4a34cf36368346c5dbdc4039b5739b54649f80024a7bf9f9"
+      ],
+      "checkoutLines": [
+        "2026-11-09T14:20:29.5096978Z   ref: 6b1b32b6cd6d8684ab622043960277824925a348",
+        "2026-11-09T14:20:29.9269416Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 6b1b32b6cd6d8684ab622043960277824925a348",
+        "2026-11-09T14:20:31.1766271Z  * branch            6b1b32b6cd6d8684ab622043960277824925a348 -> FETCH_HEAD",
+        "2026-11-09T14:20:31.1876861Z [command]/usr/bin/git checkout --progress --force 6b1b32b6cd6d8684ab622043960277824925a348"
+      ]
+    },
+    {
+      "id": 129200433724,
+      "name": "composer-browser (chromium, 765)",
+      "boundLines": [
+        "2026-11-09T14:23:03.7986446Z Bound production build 6b1b32b6cd6d8684ab622043960277824925a348 e9db76e31d06897378cbff38601c66166cf04744ce7a876ead761c7cae923f9a"
+      ],
+      "checkoutLines": [
+        "2026-11-09T14:20:51.5881508Z   ref: 6b1b32b6cd6d8684ab622043960277824925a348",
+        "2026-11-09T14:20:52.0265847Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 6b1b32b6cd6d8684ab622043960277824925a348",
+        "2026-11-09T14:20:53.4014665Z  * branch            6b1b32b6cd6d8684ab622043960277824925a348 -> FETCH_HEAD",
+        "2026-11-09T14:20:53.4115248Z [command]/usr/bin/git checkout --progress --force 6b1b32b6cd6d8684ab622043960277824925a348"
+      ]
+    }
+  ]
+}
