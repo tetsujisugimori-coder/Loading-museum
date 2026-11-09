@@ -34,4 +34,13 @@ export const phase6aExhibits = [{
   example: '架空の島の観察図と天候観測機の独自SVG。完成済みの注釈を編集して、自分のガイドを作るローカル教材。',
   history: '発祥・初出年 UNKNOWN。一般的な画像注釈UIを独自に再構成し、実在資料や製品を複製していません。',
   source: 'https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html',
+}, {
+  id: 'layer-composer', title: 'Layer Composer / 画像を重ねて作品を作る',
+  use: '画像編集・比較 レイヤー 合成 透明度 PNG 作品',
+  tags: ['画像編集・比較', 'アルファ合成', '履歴と取消', '第6期A-6'], technology: ['React', 'TypeScript', 'Canvas 2D', 'Pointer Events'],
+  principle: '同じ論理座標とレイヤー状態から編集画面とPNGを描画。順序・透明度・合成方法を操作して観察します。',
+  replacement: '切抜きや2枚の比較と異なり、複数画像を追加・並べ替えながら一枚の作品を構成します。',
+  example: '夜明けの丘、太陽、葉の独自教材画像を合成するローカル工房。外部素材・通信を使用しません。',
+  history: '発祥・初出年 UNKNOWN。一般的なレイヤー編集を独自に再構成した教材で実在製品の複製ではありません。',
+  source: 'https://www.w3.org/TR/compositing-1/',
 }];

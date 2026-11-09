@@ -1,5 +1,11 @@
 # DIGITAL MOTION ARCHIVE
 
+## 第6期A-6：Layer Composer（Issue #79）
+
+**268展示・13室、実用UI29展示**。独自教材の丘・太陽・葉を重ね、位置・寸法・順序・透明度・Normal/Multiply/Screenを編集。履歴・取消・数値/キーボード・600×400 PNG保存に対応。表示倍率と作品座標を分離し、画像復号の実画素照合を検証します。
+
+[操作と合成契約](docs/layer-composer.md)／[検証台帳](docs/layer-composer-evidence/README.md)。実機Safari等は未検証、未統合A5診断とは独立。Draft・未公開として提出し、最終判定はPRの固定HEAD証拠を参照。以下の件数は各時点の履歴です。
+
 ## 第6期A-4：Image Annotation & Hotspots（Issue #67）
 
 「画像へ意味を付ける」を既存実用UI室へ1展示追加。**267展示・13室、同室28展示**。独自の島の観察図と装置図にピン・矢印・矩形・説明文を追加し、ドラッグ・数値編集・関連付け・削除・Undo/Redo・順次ガイドを体験できます。

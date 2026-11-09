@@ -19,9 +19,9 @@ async function save(name,buffer){await writeFile(path.join(dest,name),buffer);re
 try{
   for(const engine of engines){browser=await({chromium,webkit}[engine]).launch({headless:true});
     for(const width of widths){page=await browser.newPage({viewport:{width,height:1000},hasTouch:width<500});const errors=[];page.on('pageerror',error=>errors.push(String(error)));
-      await page.goto(url);assert.match(await page.locator('body').textContent(),/267 OBJECTS/);
+      await page.goto(url);assert.match(await page.locator('body').textContent(),/268 OBJECTS/);
       const storage=await page.evaluate(()=>({local:{...localStorage},session:{...sessionStorage}}));
-      const room=page.locator('.phase4Room');await room.getByRole('button',{name:'部品展示室を開く',exact:true}).click();const choices=room.locator('nav button');assert.equal(await choices.count(),28);
+      const room=page.locator('.phase4Room');await room.getByRole('button',{name:'部品展示室を開く',exact:true}).click();const choices=room.locator('nav button');assert.equal(await choices.count(),29);
       for(let index=0;index<ids.length;index++){
         const id=ids[index],started=new Date().toISOString(),observations=[];results.currentCase={engine,width,id,observations};
         await choices.nth(allIds.indexOf(ids[index])).click();const article=room.locator('article'),stage=article.getByTestId('practical-stage');await stage.scrollIntoViewIfNeeded();
