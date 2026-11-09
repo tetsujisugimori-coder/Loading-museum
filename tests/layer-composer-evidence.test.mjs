@@ -1,6 +1,7 @@
+import fs from 'node:fs/promises';import os from 'node:os';import path from 'node:path';import {createHash} from 'node:crypto';
 import {validateBuild} from '../scripts/build-layer-composer.mjs';
-import {test} from 'node:test';import assert from 'node:assert/strict';import {CHECKS,config,validate,over,pixelsEqual} from '../scripts/layer-composer-contract.mjs';
-const e={runId:'fresh',head:'abc',tree:'tree',sourceHash:'src',exportHash:'build',keys:['chromium/375/reduce']};const good=()=>({...e,status:'PASS',errors:[],cases:[{key:e.keys[0],status:'PASS',checks:CHECKS,browserVersion:'141',pngCount:1,scalarSamples:36,faultDetected:true,faultRecovered:true,events:[{trusted:true}]}]});
+import {test} from 'node:test';import assert from 'node:assert/strict';import {CHECKS,config,validate,validateFiles,over,pixelsEqual} from '../scripts/layer-composer-contract.mjs';
+const e={runId:'fresh',head:'abc',tree:'tree',sourceHash:'src',exportHash:'build',keys:['chromium/375/reduce']};const good=()=>({...e,status:'PASS',errors:[],cases:[{key:e.keys[0],status:'PASS',checks:CHECKS,browserVersion:'141',pngCount:2,scalarSamples:36,faultDetected:true,faultRecovered:true,events:[{trusted:true}]}]});
 test('positive exact evidence contract',()=>validate(good(),e));
 for(const [name,change]of Object.entries({missing:r=>r.cases=[],oldHead:r=>r.head='old',oldNonce:r=>r.runId='old',wrongTree:r=>r.tree='bad',oldBuild:r=>r.exportHash='bad',error:r=>r.errors=['error'],skipped:r=>r.cases[0].status='SKIP',missingCheck:r=>r.cases[0].checks=[],fakePNG:r=>r.cases[0].pngCount=0,noOracle:r=>r.cases[0].scalarSamples=0,failedFault:r=>r.cases[0].faultDetected=false,noRecovery:r=>r.cases[0].faultRecovered=false,fakeInput:r=>r.cases[0].events=[{trusted:false}],duplicate:r=>r.cases.push(r.cases[0]),invalidType:r=>r.head=null}))test('reject '+name,()=>{const r=good();change(r);assert.throws(()=>validate(r,e))});
 test('bad matrix rejected',()=>{assert.throws(()=>config({BROWSERS:'unknown'}));assert.throws(()=>config({WIDTHS:'375,375'}));});
@@ -9,3 +10,7 @@ test('scalar known values and tamper detection',()=>{pixelsEqual(over([0,0,255,2
 const bound={success:true,dirty:"",head:"a",tree:"b",sourceHash:"c",outputHash:"d"};
 for(const field of ["head","tree","sourceHash","outputHash"]){test(`reject stale build ${field}`,()=>assert.throws(()=>validateBuild({...bound,[field]:"OLD"},bound)));}
 test("reject failed or dirty build",()=>{assert.throws(()=>validateBuild({...bound,success:false},bound));assert.throws(()=>validateBuild({...bound,dirty:"M file"},bound));validateBuild(bound,bound);});
+
+for(const field of ["pngCount","scalarSamples"]){for(const value of ["2", "36", Infinity,NaN, null])test(`reject invalid ${field} ${value}`,()=>{const r=good();r.cases[0][field]=value;assert.throws(()=>validate(r,e));});}
+
+test('per-case evidence files must all exist and match hashes',async()=>{const dir=await fs.mkdtemp(path.join(os.tmpdir(),'lc-contract-')),r=good();const png=Buffer.from([137,80,78,71,13,10,26,10]);r.files=[];for(const suffix of ['export.png','screen.png','trace.zip']){const name='chromium-375-reduce-'+suffix;await fs.writeFile(path.join(dir,name),png);r.files.push({name,sha256:createHash('sha256').update(png).digest('hex')});}await validateFiles(r,dir);await assert.rejects(validateFiles({...r,files:r.files.slice(1)},dir));await fs.unlink(path.join(dir,r.files[0].name));await assert.rejects(validateFiles(r,dir));await fs.writeFile(path.join(dir,r.files[0].name),'tampered');await assert.rejects(validateFiles(r,dir));await fs.rm(dir,{recursive:true});});
