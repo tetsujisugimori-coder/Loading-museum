@@ -44,3 +44,5 @@ test('matching wrong absolute coordinates are not established',()=>{const a=shif
 test('response before input rejected',()=>{const r=record();r.inputs[0].t=1.5;assert.equal(validate(r,expected).valid,false);});
 test('pointer type change rejected',()=>{const r=record();r.events[1].pointerType='pen';assert.equal(validate(r,expected).valid,false);});
 test('event snapshot order rejected',()=>{const r=record();r.events[1].snapshot=r.events[0].snapshot;assert.equal(validate(r,expected).valid,false);});
+test('orphan touchmove rejected',()=>{const r=record();r.events[0].type='touchmove';r.events[0].touchId=1;assert.equal(validate(r,expected).valid,false);});
+test('mouse lifecycle cannot impersonate touchscreen route',()=>{const r=record();for(const e of r.events)e.pointerType='mouse';assert.equal(validate(r,expected).valid,false);});

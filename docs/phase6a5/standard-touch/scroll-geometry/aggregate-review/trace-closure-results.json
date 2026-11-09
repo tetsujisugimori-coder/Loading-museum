@@ -1,0 +1,95 @@
+{
+  "syntheticOnly": true,
+  "scope": "Direct binary trace verifier calls, not full aggregate.",
+  "tests": [
+    {
+      "name": "positive",
+      "expected": "PASS",
+      "actual": "PASS",
+      "satisfied": true,
+      "error": null,
+      "detail": {
+        "entries": 1,
+        "events": 7,
+        "inputActions": 1,
+        "recordMatched": true
+      }
+    },
+    {
+      "name": "empty_captured_record",
+      "expected": "FAIL",
+      "actual": "PASS",
+      "satisfied": false,
+      "error": null,
+      "detail": {
+        "entries": 1,
+        "events": 7,
+        "inputActions": 1,
+        "recordMatched": true
+      }
+    },
+    {
+      "name": "missing_captured_final",
+      "expected": "FAIL",
+      "actual": "PASS",
+      "satisfied": false,
+      "error": null,
+      "detail": {
+        "entries": 1,
+        "events": 7,
+        "inputActions": 1,
+        "recordMatched": true
+      }
+    },
+    {
+      "name": "captured_identity_only",
+      "expected": "FAIL",
+      "actual": "PASS",
+      "satisfied": false,
+      "error": null,
+      "detail": {
+        "entries": 1,
+        "events": 7,
+        "inputActions": 1,
+        "recordMatched": true
+      }
+    },
+    {
+      "name": "duplicate_after_hides_input_failure",
+      "expected": "FAIL",
+      "actual": "PASS",
+      "satisfied": false,
+      "error": null,
+      "detail": {
+        "entries": 1,
+        "events": 8,
+        "inputActions": 1,
+        "recordMatched": true
+      }
+    },
+    {
+      "name": "capture_error",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "error": "TRACE_CAPTURE_ERROR",
+      "detail": null
+    },
+    {
+      "name": "input_error",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "error": "TRACE_INPUT_FAILURE",
+      "detail": null
+    },
+    {
+      "name": "captured_value_mismatch",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "error": "TRACE_RAW_RECORD_DIFFER:final",
+      "detail": null
+    }
+  ]
+}

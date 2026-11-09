@@ -1,0 +1,113 @@
+{
+  "syntheticOnly": true,
+  "tests": [
+    {
+      "name": "errors_missing",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "errors": [
+        "RUN_EXECUTION_ERRORS"
+      ]
+    },
+    {
+      "name": "errors_null",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "errors": [
+        "RUN_EXECUTION_ERRORS"
+      ]
+    },
+    {
+      "name": "errors_object",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "errors": [
+        "RUN_EXECUTION_ERRORS"
+      ]
+    },
+    {
+      "name": "fatal_cleanup_failure",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "errors": [
+        "RUN_EXECUTION_ERRORS"
+      ]
+    },
+    {
+      "name": "fatal_browser_close_failure",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "errors": [
+        "RUN_EXECUTION_ERRORS"
+      ]
+    },
+    {
+      "name": "fullMatrix_false",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "errors": [
+        "RUN_NOT_COMPLETE"
+      ]
+    },
+    {
+      "name": "fullMatrix_missing",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "errors": [
+        "RUN_NOT_COMPLETE"
+      ]
+    },
+    {
+      "name": "expectedRows_wrong",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "errors": [
+        "RUN_NOT_COMPLETE"
+      ]
+    },
+    {
+      "name": "expectedRows_missing",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "errors": [
+        "RUN_NOT_COMPLETE"
+      ]
+    },
+    {
+      "name": "status_partial",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "errors": [
+        "RUN_NOT_COMPLETE"
+      ]
+    },
+    {
+      "name": "status_unsupported",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "errors": [
+        "RUN_NOT_COMPLETE"
+      ]
+    },
+    {
+      "name": "status_missing",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "errors": [
+        "RUN_NOT_COMPLETE"
+      ]
+    }
+  ]
+}

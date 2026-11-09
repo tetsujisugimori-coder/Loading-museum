@@ -6,7 +6,7 @@ permissions:
 jobs:
   experiment:
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@v4
         with:
@@ -20,6 +20,16 @@ jobs:
       - run: npm run lint && npm run typecheck && npm test
       - run: node --test tests/scroll-geometry-contract.test.mjs tests/standard-touch-contract.test.mjs tests/standard-touch-server.test.mjs tests/iphone-diagnostic-server.test.mjs tests/adjustment-physical-contract.test.mjs tests/adjustment-touch-contract.test.mjs
       - run: node docs/phase6a5/standard-touch/scroll-geometry/independent-review/replay.mjs --current diagnostics/scroll-geometry/contract.mjs
+      - name: Independent aggregate fault controls
+        run: |
+          root=docs/phase6a5/standard-touch/scroll-geometry/aggregate-review
+          cmp scripts/audit-scroll-geometry.mjs "$root/frozen-final/scripts/audit-scroll-geometry.mjs"
+          cmp scripts/audit-scroll-files.py "$root/frozen-final/scripts/audit-scroll-files.py"
+          cmp diagnostics/scroll-geometry/contract.mjs "$root/frozen-final/diagnostics/scroll-geometry/contract.mjs"
+          cp -R "$root" /tmp/iad77-review
+          cd /tmp/iad77-review
+          python3 -B generate-final-mini-fixture.py
+          node test-final-mini.mjs
       - run: npm install --prefix /tmp/iad77-tools --no-package-lock playwright@1.56.1 pngjs@7.0.0
       - run: /tmp/iad77-tools/node_modules/.bin/playwright install --with-deps chromium webkit
       - run: node scripts/prepare-standard-touch.mjs
@@ -31,6 +41,12 @@ jobs:
         run: |
           node scripts/pin-scroll-binding.mjs > work/scroll-expected-binding.json
           node scripts/audit-scroll-geometry.mjs work/scroll-geometry work/scroll-expected-binding.json
+      - name: Independent byte positive and trace negative replay
+        if: always()
+        run: |
+          python3 -B /tmp/iad77-review/test-final-binary.py "$PWD/work/scroll-geometry"
+          mkdir -p work/scroll-geometry/independent-replay
+          cp /tmp/iad77-review/final-mini-results.json /tmp/iad77-review/final-binary-results.json work/scroll-geometry/independent-replay/
       - name: Original unchanged sixteen-condition regression
         if: always()
         run: node scripts/verify-image-adjustment-browser.mjs

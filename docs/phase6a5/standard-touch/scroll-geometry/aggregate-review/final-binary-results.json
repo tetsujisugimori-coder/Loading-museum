@@ -1,0 +1,267 @@
+{
+  "scope": "16 real Chromium positive row byte checks plus copied-trace synthetic negatives; no full-matrix or physical-device claim.",
+  "source": "/workspace/scratch/e622c1e9421e/loading-scroll-geometry/work/scroll-66f99c0",
+  "positiveRealRows": 16,
+  "positiveRealPng": 48,
+  "positiveRealTrace": 16,
+  "positive": [
+    {
+      "trialId": "chromium-375-normal-drag-A-r1-product",
+      "png": 3,
+      "trace": {
+        "entries": 108,
+        "events": 399,
+        "inputActions": 13,
+        "recordMatched": true
+      },
+      "sourceJsonSha256": "377aad81a4b8966f64bf57358775ec4cb0447b743b6f6e9a95fc1b555ac733f2",
+      "sourceTraceSha256": "2068846d93f22885c7874978a5ba4eb88a13ed1d76891ca189dd24f9ed5b6bc1"
+    },
+    {
+      "trialId": "chromium-375-normal-drag-A-r1-plain",
+      "png": 3,
+      "trace": {
+        "entries": 29,
+        "events": 276,
+        "inputActions": 13,
+        "recordMatched": true
+      },
+      "sourceJsonSha256": "31a7ba3cd7c666f52a40c7f94680cd8846687e2b259abc8a69d794398fd6b4ce",
+      "sourceTraceSha256": "5d0d82c4e01ab9643277bb19617bc1699d95e44e5141f7f3f9b5de369da36870"
+    },
+    {
+      "trialId": "chromium-375-normal-drag-B-r1-product",
+      "png": 3,
+      "trace": {
+        "entries": 169,
+        "events": 463,
+        "inputActions": 13,
+        "recordMatched": true
+      },
+      "sourceJsonSha256": "e47d6a58bda2fc666e7e3a35d049c1b0e4eca7deb059e79c65706c3c710ab6ad",
+      "sourceTraceSha256": "821db75123edfc226865ca61650af2e51208abf665f34b2926adb615beeaf20d"
+    },
+    {
+      "trialId": "chromium-375-normal-drag-B-r1-plain",
+      "png": 3,
+      "trace": {
+        "entries": 28,
+        "events": 275,
+        "inputActions": 13,
+        "recordMatched": true
+      },
+      "sourceJsonSha256": "faeaa8a58ec7f01557a087909920ffb7c0f3d0d6596e44c84e142cf1455bda9b",
+      "sourceTraceSha256": "9209d135dc61240a796bcb657cc4597e3fb3011aa659c6efa72340bcee251ddc"
+    },
+    {
+      "trialId": "chromium-375-normal-drag-C-r1-product",
+      "png": 3,
+      "trace": {
+        "entries": 105,
+        "events": 398,
+        "inputActions": 13,
+        "recordMatched": true
+      },
+      "sourceJsonSha256": "fb5b8a3bb02d6de230f637ceb0dbbd84243623d995bf1380743ef33f74dea3a4",
+      "sourceTraceSha256": "e794752af3a60dae36fb743ce9b5448f575ee71bccf70689bbb4bc8c7fecd3f6"
+    },
+    {
+      "trialId": "chromium-375-normal-drag-C-r1-plain",
+      "png": 3,
+      "trace": {
+        "entries": 28,
+        "events": 275,
+        "inputActions": 13,
+        "recordMatched": true
+      },
+      "sourceJsonSha256": "623bc25576c0a5cf8ca5008f8bd5082479631aa967c77149fe73540376c2e8dd",
+      "sourceTraceSha256": "7643d1ef97569f3059ea5c9100ccf9bbb323ad7ca14734ea45868136d6a0ce02"
+    },
+    {
+      "trialId": "chromium-375-normal-drag-D-r1-product",
+      "png": 3,
+      "trace": {
+        "entries": 168,
+        "events": 459,
+        "inputActions": 13,
+        "recordMatched": true
+      },
+      "sourceJsonSha256": "5e4979ba754273f864396de4723da2ea6b4867ab336fc3971cb2d9d6da5d6cb7",
+      "sourceTraceSha256": "12609c653a83fdd1a4b253edc401f03428d95abeb105b8fb1bc877be6ff9a151"
+    },
+    {
+      "trialId": "chromium-375-normal-drag-D-r1-plain",
+      "png": 3,
+      "trace": {
+        "entries": 30,
+        "events": 277,
+        "inputActions": 13,
+        "recordMatched": true
+      },
+      "sourceJsonSha256": "860749c372e46444efadb152b963e66d9b052fc65ec50f0152da995a5f0a18dd",
+      "sourceTraceSha256": "888d055ee10874c502d7d39d997a14cdf2b7f702150ceb4bda1f556a89574dc2"
+    },
+    {
+      "trialId": "chromium-375-normal-tap-A-r1-product",
+      "png": 3,
+      "trace": {
+        "entries": 86,
+        "events": 278,
+        "inputActions": 1,
+        "recordMatched": true
+      },
+      "sourceJsonSha256": "b6e122db76fe9594cfef8ee1a280cfd5c844c4e54086de62babd246b7dfc6a66",
+      "sourceTraceSha256": "6ad0513912e5c8c9b0ca2ff25957ac18afac08f4db539a7ca029a031a4ec294f"
+    },
+    {
+      "trialId": "chromium-375-normal-tap-A-r1-plain",
+      "png": 3,
+      "trace": {
+        "entries": 16,
+        "events": 163,
+        "inputActions": 1,
+        "recordMatched": true
+      },
+      "sourceJsonSha256": "68c2c5b7b011c5f61585b7e875ebefdabc8bedf3f152eeb2270ff1dbec1b0cf1",
+      "sourceTraceSha256": "a017e9e7d2e5999b225e7b6f48e713f13e204df1e79d6e8144f1dd0f1047900f"
+    },
+    {
+      "trialId": "chromium-375-normal-tap-B-r1-product",
+      "png": 3,
+      "trace": {
+        "entries": 100,
+        "events": 292,
+        "inputActions": 1,
+        "recordMatched": true
+      },
+      "sourceJsonSha256": "6d8ca71674148a3df80a0a2f747e82920a41a26076ee37401a5b4b89c0a4af38",
+      "sourceTraceSha256": "23c45ab075d99d96710c52664e0ecafdd19513355540bb9a0fe4242cc18df320"
+    },
+    {
+      "trialId": "chromium-375-normal-tap-B-r1-plain",
+      "png": 3,
+      "trace": {
+        "entries": 16,
+        "events": 163,
+        "inputActions": 1,
+        "recordMatched": true
+      },
+      "sourceJsonSha256": "54129940a9ce43a486f94de16cb68d33d27cd82808efe0f115ee36b00ffa482e",
+      "sourceTraceSha256": "07dd6d074173d509985f7ae85fa794ef2ec843477343262a37d9eb660c10adee"
+    },
+    {
+      "trialId": "chromium-375-normal-tap-C-r1-product",
+      "png": 3,
+      "trace": {
+        "entries": 88,
+        "events": 281,
+        "inputActions": 1,
+        "recordMatched": true
+      },
+      "sourceJsonSha256": "b67b9541f7d0c4794f5ceee9e9ec80d96679483b236e38fd41a1dfd935233f19",
+      "sourceTraceSha256": "8523b52c858b7ffac29ca8c967d05b873b6fc0e222ce8e18ac1620d0dbc5f91b"
+    },
+    {
+      "trialId": "chromium-375-normal-tap-C-r1-plain",
+      "png": 3,
+      "trace": {
+        "entries": 15,
+        "events": 162,
+        "inputActions": 1,
+        "recordMatched": true
+      },
+      "sourceJsonSha256": "7c5c5e7d49df8448929687cdde9244e200663ca4df903d06d63f73c7acaf1ea6",
+      "sourceTraceSha256": "1f42d6b88f4682effd62ccad48d80f486da81664f9f10a11da7fe8da6a6a3020"
+    },
+    {
+      "trialId": "chromium-375-normal-tap-D-r1-product",
+      "png": 3,
+      "trace": {
+        "entries": 102,
+        "events": 295,
+        "inputActions": 1,
+        "recordMatched": true
+      },
+      "sourceJsonSha256": "19b859cc27461ea2ca0609707b36a153eb796f6f09f1dc4d1dcd83363b4a3d96",
+      "sourceTraceSha256": "f0fef4cad45cb0a63e0be624c9a7577c6f04a2a7d52e5a06be303260e9c56c6f"
+    },
+    {
+      "trialId": "chromium-375-normal-tap-D-r1-plain",
+      "png": 3,
+      "trace": {
+        "entries": 17,
+        "events": 164,
+        "inputActions": 1,
+        "recordMatched": true
+      },
+      "sourceJsonSha256": "a87110b46eb22d51690a8129aba9156a5f404e395534130cc81e3bb41535455e",
+      "sourceTraceSha256": "a7570aa5374df9c9184e1c8950764b58aa84d18b458d751cbf34c7a413607624"
+    }
+  ],
+  "negative": [
+    {
+      "name": "empty_capture",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "error": "TRACE_CAPTURE_FIELDS"
+    },
+    {
+      "name": "missing_final",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "error": "TRACE_CAPTURE_FIELDS"
+    },
+    {
+      "name": "identity_only",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "error": "TRACE_CAPTURE_FIELDS"
+    },
+    {
+      "name": "duplicate_after_hides_error",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "error": "TRACE_DUPLICATE_CALL_ID"
+    },
+    {
+      "name": "duplicate_before",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "error": "TRACE_DUPLICATE_CALL_ID"
+    },
+    {
+      "name": "capture_error",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "error": "TRACE_CAPTURE_ERROR"
+    },
+    {
+      "name": "input_error",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "error": "TRACE_INPUT_FAILURE"
+    },
+    {
+      "name": "final_value_mismatch",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "error": "TRACE_RAW_RECORD_DIFFER:points"
+    },
+    {
+      "name": "missing_screenshot_phases",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "satisfied": true,
+      "error": "TRACE_SCREENSHOT_PHASES"
+    }
+  ],
+  "binaryVerifierSha256": "f8fcc594eb3bc1bbf8c5ab00a50deec6f93a02f975a7d643a6b13a40aad812e2"
+}

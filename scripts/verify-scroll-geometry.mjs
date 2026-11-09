@@ -29,7 +29,7 @@ async function save(name,bytes){await fs.writeFile(path.join(dir,name),bytes);re
 try{for(const engine of engines){const browser=await pw[engine].launch();try{for(const width of widths)for(const motion of protocol.motion)for(const method of protocol.methods)for(const condition of Object.keys(protocol.conditions))for(let repetition=1;repetition<=protocol.repetitions;repetition++){
   const pairId=`${engine}-${width}-${motion}-${method}-${condition}-r${repetition}`,records=[];
   for(const surface of protocol.surfaces){const trialId=`${pairId}-${surface}`,requested=protocol.conditions[condition][surface],context=await browser.newContext({viewport:{width,height:protocol.height},hasTouch:true,reducedMotion:motion==='reduce'?'reduce':'no-preference'}),page=await context.newPage(),pageErrors=[];
-    page.on('pageerror',e=>pageErrors.push(String(e)));await context.tracing.start({screenshots:true,snapshots:true,sources:false});let record,error,images={};
+    page.on('pageerror',e=>pageErrors.push(String(e)));await context.tracing.start(protocol.traceOptions);let record,error,images={};
     try{
       await page.addInitScript(()=>sessionStorage.setItem('digital-motion-archive-title-seen-v1','seen'));
       await page.goto(origin+(surface==='product'?'/Loading-museum/?standardProbe=1':'/standard/plain.html?standardProbe=1'));
