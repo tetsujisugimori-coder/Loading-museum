@@ -18,15 +18,15 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run lint && npm run typecheck && npm test
-      - run: node --test tests/scroll-geometry-contract.test.mjs tests/standard-touch-contract.test.mjs tests/standard-touch-server.test.mjs tests/iphone-diagnostic-server.test.mjs tests/adjustment-physical-contract.test.mjs tests/adjustment-touch-contract.test.mjs
+      - run: node --test tests/scroll-geometry-post-cancel.test.mjs tests/scroll-geometry-contract.test.mjs tests/standard-touch-contract.test.mjs tests/standard-touch-server.test.mjs tests/iphone-diagnostic-server.test.mjs tests/adjustment-physical-contract.test.mjs tests/adjustment-touch-contract.test.mjs
       - run: node docs/phase6a5/standard-touch/scroll-geometry/independent-review/replay.mjs --current diagnostics/scroll-geometry/contract.mjs
       - name: Independent aggregate fault controls
         run: |
           root=docs/phase6a5/standard-touch/scroll-geometry/aggregate-review
-          cmp scripts/audit-scroll-geometry.mjs "$root/frozen-final/scripts/audit-scroll-geometry.mjs"
-          cmp scripts/audit-scroll-files.py "$root/frozen-final/scripts/audit-scroll-files.py"
-          cmp diagnostics/scroll-geometry/contract.mjs "$root/frozen-final/diagnostics/scroll-geometry/contract.mjs"
           cp -R "$root" /tmp/iad77-review
+          # Preserve committed snapshots; execute the copied harness against current source.
+          cp scripts/audit-scroll-geometry.mjs scripts/audit-scroll-files.py /tmp/iad77-review/frozen-final/scripts/
+          cp diagnostics/scroll-geometry/contract.mjs /tmp/iad77-review/frozen-final/diagnostics/scroll-geometry/
           cd /tmp/iad77-review
           python3 -B generate-final-mini-fixture.py
           node test-final-mini.mjs

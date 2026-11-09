@@ -46,3 +46,9 @@ test('pointer type change rejected',()=>{const r=record();r.events[1].pointerTyp
 test('event snapshot order rejected',()=>{const r=record();r.events[1].snapshot=r.events[0].snapshot;assert.equal(validate(r,expected).valid,false);});
 test('orphan touchmove rejected',()=>{const r=record();r.events[0].type='touchmove';r.events[0].touchId=1;assert.equal(validate(r,expected).valid,false);});
 test('mouse lifecycle cannot impersonate touchscreen route',()=>{const r=record();for(const e of r.events)e.pointerType='mouse';assert.equal(validate(r,expected).valid,false);});
+
+function afterCancel(){const r=record(),up=r.events[1];const final=structuredClone(r.final);final.seq=3;final.t=3;r.points.push(final);r.final=final;up.type='pointercancel';r.events.push({...structuredClone(up),index:2,t:3,type:'pointerup',snapshot:final});return r;}
+test('observed same-pointer up after cancel remains CANCELLED',()=>{const r=afterCancel(),v=validate(r,expected);assert.equal(v.valid,true);assert.equal(v.outcome,'CANCELLED');assert.equal(v.postCancelPointerUps,1);});
+test('post-cancel up cannot change pointer identity',()=>{const r=afterCancel();r.events[2].pointerId=9;assert.equal(validate(r,expected).valid,false);});
+test('post-cancel up cannot change pointer type',()=>{const r=afterCancel();r.events[2].pointerType='pen';assert.equal(validate(r,expected).valid,false);});
+test('post-cancel up cannot occur twice',()=>{const r=afterCancel(),last=structuredClone(r.final);last.seq=4;last.t=4;r.points.push(last);r.final=last;r.events.push({...structuredClone(r.events[2]),index:3,t:4,snapshot:last});assert.equal(validate(r,expected).valid,false);});
