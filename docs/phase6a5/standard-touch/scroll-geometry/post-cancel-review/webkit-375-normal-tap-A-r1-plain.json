@@ -1,0 +1,3280 @@
+{
+  "schemaVersion": "iad-scroll-geometry-1",
+  "identity": {
+    "head": "ea7fa2cd13758ea715be38d3785597ae82aa8ef7",
+    "tree": "88adfed5688012137bf50db8f0e4af0a70e22c70",
+    "protocolHash": "318efba463f2da471254e4d6bbd494ec3a695f2483adb7bccbd53654c4c5b33c",
+    "sourceHash": "514924d16b821ba0e4824db04b514b17877600ffabeda98eb87411694557f265",
+    "trialId": "webkit-375-normal-tap-A-r1-plain",
+    "pairId": "webkit-375-normal-tap-A-r1",
+    "surface": "plain",
+    "condition": "A",
+    "engine": "webkit",
+    "width": 375,
+    "motion": "normal",
+    "method": "tap",
+    "repetition": 1,
+    "browserVersion": "26.0",
+    "inputPath": "Playwright touchscreen tap",
+    "requested": {
+      "scrollY": 0,
+      "rectY": 310
+    },
+    "layout": "experimental fixed range plus min-height body; unchanged product handlers"
+  },
+  "startedAt": "2026-11-09T00:16:42.699Z",
+  "finishedAt": "2026-11-09T00:16:42.783Z",
+  "initial": {
+    "trialId": "webkit-375-normal-tap-A-r1-plain",
+    "seq": 0,
+    "reason": "initial",
+    "t": 0,
+    "rect": {
+      "x": 24,
+      "y": 310,
+      "width": 327,
+      "height": 44,
+      "top": 310,
+      "right": 351,
+      "bottom": 354,
+      "left": 24
+    },
+    "viewport": {
+      "innerWidth": 375,
+      "innerHeight": 900,
+      "width": 375,
+      "height": 900,
+      "offsetLeft": 0,
+      "offsetTop": 0,
+      "scale": 1,
+      "devicePixelRatio": 1
+    },
+    "scroll": {
+      "x": 0,
+      "y": 0,
+      "scrollingElement": {
+        "tag": "HTML",
+        "left": 0,
+        "top": 0
+      },
+      "documentElement": {
+        "left": 0,
+        "top": 0
+      },
+      "body": {
+        "left": 0,
+        "top": 0
+      }
+    },
+    "value": 0,
+    "react": null,
+    "activeElement": "BODY"
+  },
+  "final": {
+    "trialId": "webkit-375-normal-tap-A-r1-plain",
+    "seq": 16,
+    "reason": "final",
+    "t": 84,
+    "rect": {
+      "x": 24,
+      "y": 310,
+      "width": 327,
+      "height": 44,
+      "top": 310,
+      "right": 351,
+      "bottom": 354,
+      "left": 24
+    },
+    "viewport": {
+      "innerWidth": 375,
+      "innerHeight": 900,
+      "width": 375,
+      "height": 900,
+      "offsetLeft": 0,
+      "offsetTop": 0,
+      "scale": 1,
+      "devicePixelRatio": 1
+    },
+    "scroll": {
+      "x": 0,
+      "y": 0,
+      "scrollingElement": {
+        "tag": "HTML",
+        "left": 0,
+        "top": 0
+      },
+      "documentElement": {
+        "left": 0,
+        "top": 0
+      },
+      "body": {
+        "left": 0,
+        "top": 0
+      }
+    },
+    "value": 50,
+    "react": null,
+    "activeElement": "BODY"
+  },
+  "points": [
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 0,
+      "reason": "initial",
+      "t": 0,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 0,
+      "react": null,
+      "activeElement": "BODY"
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 1,
+      "reason": "construction-check",
+      "t": 1,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 0,
+      "react": null,
+      "activeElement": "BODY"
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 2,
+      "reason": "animation-frame",
+      "t": 20.00000000000003,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 0,
+      "react": null,
+      "activeElement": "BODY"
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 3,
+      "reason": "event:pointerdown",
+      "t": 24,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 0,
+      "react": null,
+      "activeElement": "BODY"
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 4,
+      "reason": "event:touchstart",
+      "t": 24,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 0,
+      "react": null,
+      "activeElement": "BODY"
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 5,
+      "reason": "event:input",
+      "t": 24,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 50,
+      "react": null,
+      "activeElement": "BODY"
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 6,
+      "reason": "event:gotpointercapture",
+      "t": 25,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 50,
+      "react": null,
+      "activeElement": "BODY"
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 7,
+      "reason": "event:pointercancel",
+      "t": 25,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 50,
+      "react": null,
+      "activeElement": "BODY"
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 8,
+      "reason": "event:pointerup",
+      "t": 25,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 50,
+      "react": null,
+      "activeElement": "BODY"
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 9,
+      "reason": "event:lostpointercapture",
+      "t": 25,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 50,
+      "react": null,
+      "activeElement": "BODY"
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 10,
+      "reason": "event:touchend",
+      "t": 25,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 50,
+      "react": null,
+      "activeElement": "BODY"
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 11,
+      "reason": "animation-frame",
+      "t": 42,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 50,
+      "react": null,
+      "activeElement": "BODY"
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 12,
+      "reason": "animation-frame",
+      "t": 48.00000000000003,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 50,
+      "react": null,
+      "activeElement": "BODY"
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 13,
+      "reason": "animation-frame",
+      "t": 62,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 50,
+      "react": null,
+      "activeElement": "BODY"
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 14,
+      "reason": "input-finished",
+      "t": 63,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 50,
+      "react": null,
+      "activeElement": "BODY"
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 15,
+      "reason": "animation-frame",
+      "t": 81,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 50,
+      "react": null,
+      "activeElement": "BODY"
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "seq": 16,
+      "reason": "final",
+      "t": 84,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44,
+        "top": 310,
+        "right": 351,
+        "bottom": 354,
+        "left": 24
+      },
+      "viewport": {
+        "innerWidth": 375,
+        "innerHeight": 900,
+        "width": 375,
+        "height": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "scale": 1,
+        "devicePixelRatio": 1
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0,
+        "scrollingElement": {
+          "tag": "HTML",
+          "left": 0,
+          "top": 0
+        },
+        "documentElement": {
+          "left": 0,
+          "top": 0
+        },
+        "body": {
+          "left": 0,
+          "top": 0
+        }
+      },
+      "value": 50,
+      "react": null,
+      "activeElement": "BODY"
+    }
+  ],
+  "events": [
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "index": 0,
+      "type": "pointerdown",
+      "t": 24,
+      "timeStamp": 210,
+      "target": "range",
+      "touchId": null,
+      "pointerId": 0,
+      "pointerType": "touch",
+      "clientX": 264,
+      "clientY": 332,
+      "pageX": 264,
+      "pageY": 332,
+      "isTrusted": true,
+      "cancelable": true,
+      "defaultPrevented": false,
+      "snapshot": {
+        "trialId": "webkit-375-normal-tap-A-r1-plain",
+        "seq": 3,
+        "reason": "event:pointerdown",
+        "t": 24,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44,
+          "top": 310,
+          "right": 351,
+          "bottom": 354,
+          "left": 24
+        },
+        "viewport": {
+          "innerWidth": 375,
+          "innerHeight": 900,
+          "width": 375,
+          "height": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0,
+          "scale": 1,
+          "devicePixelRatio": 1
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0,
+          "scrollingElement": {
+            "tag": "HTML",
+            "left": 0,
+            "top": 0
+          },
+          "documentElement": {
+            "left": 0,
+            "top": 0
+          },
+          "body": {
+            "left": 0,
+            "top": 0
+          }
+        },
+        "value": 0,
+        "react": null,
+        "activeElement": "BODY"
+      }
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "index": 1,
+      "type": "touchstart",
+      "t": 24,
+      "timeStamp": 211,
+      "target": "range",
+      "touchId": 0,
+      "pointerId": null,
+      "pointerType": null,
+      "clientX": 264,
+      "clientY": 332,
+      "pageX": 264,
+      "pageY": 332,
+      "isTrusted": true,
+      "cancelable": true,
+      "defaultPrevented": false,
+      "snapshot": {
+        "trialId": "webkit-375-normal-tap-A-r1-plain",
+        "seq": 4,
+        "reason": "event:touchstart",
+        "t": 24,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44,
+          "top": 310,
+          "right": 351,
+          "bottom": 354,
+          "left": 24
+        },
+        "viewport": {
+          "innerWidth": 375,
+          "innerHeight": 900,
+          "width": 375,
+          "height": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0,
+          "scale": 1,
+          "devicePixelRatio": 1
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0,
+          "scrollingElement": {
+            "tag": "HTML",
+            "left": 0,
+            "top": 0
+          },
+          "documentElement": {
+            "left": 0,
+            "top": 0
+          },
+          "body": {
+            "left": 0,
+            "top": 0
+          }
+        },
+        "value": 0,
+        "react": null,
+        "activeElement": "BODY"
+      }
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "index": 2,
+      "type": "input",
+      "t": 24,
+      "timeStamp": 211,
+      "target": "range",
+      "touchId": null,
+      "pointerId": null,
+      "pointerType": null,
+      "clientX": null,
+      "clientY": null,
+      "pageX": null,
+      "pageY": null,
+      "isTrusted": true,
+      "cancelable": false,
+      "defaultPrevented": false,
+      "snapshot": {
+        "trialId": "webkit-375-normal-tap-A-r1-plain",
+        "seq": 5,
+        "reason": "event:input",
+        "t": 24,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44,
+          "top": 310,
+          "right": 351,
+          "bottom": 354,
+          "left": 24
+        },
+        "viewport": {
+          "innerWidth": 375,
+          "innerHeight": 900,
+          "width": 375,
+          "height": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0,
+          "scale": 1,
+          "devicePixelRatio": 1
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0,
+          "scrollingElement": {
+            "tag": "HTML",
+            "left": 0,
+            "top": 0
+          },
+          "documentElement": {
+            "left": 0,
+            "top": 0
+          },
+          "body": {
+            "left": 0,
+            "top": 0
+          }
+        },
+        "value": 50,
+        "react": null,
+        "activeElement": "BODY"
+      }
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "index": 3,
+      "type": "gotpointercapture",
+      "t": 25,
+      "timeStamp": 212,
+      "target": "range",
+      "touchId": null,
+      "pointerId": 0,
+      "pointerType": "touch",
+      "clientX": 0,
+      "clientY": 0,
+      "pageX": 0,
+      "pageY": 0,
+      "isTrusted": true,
+      "cancelable": false,
+      "defaultPrevented": false,
+      "snapshot": {
+        "trialId": "webkit-375-normal-tap-A-r1-plain",
+        "seq": 6,
+        "reason": "event:gotpointercapture",
+        "t": 25,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44,
+          "top": 310,
+          "right": 351,
+          "bottom": 354,
+          "left": 24
+        },
+        "viewport": {
+          "innerWidth": 375,
+          "innerHeight": 900,
+          "width": 375,
+          "height": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0,
+          "scale": 1,
+          "devicePixelRatio": 1
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0,
+          "scrollingElement": {
+            "tag": "HTML",
+            "left": 0,
+            "top": 0
+          },
+          "documentElement": {
+            "left": 0,
+            "top": 0
+          },
+          "body": {
+            "left": 0,
+            "top": 0
+          }
+        },
+        "value": 50,
+        "react": null,
+        "activeElement": "BODY"
+      }
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "index": 4,
+      "type": "pointercancel",
+      "t": 25,
+      "timeStamp": 211,
+      "target": "range",
+      "touchId": null,
+      "pointerId": 0,
+      "pointerType": "touch",
+      "clientX": 264,
+      "clientY": 332,
+      "pageX": 264,
+      "pageY": 332,
+      "isTrusted": true,
+      "cancelable": true,
+      "defaultPrevented": false,
+      "snapshot": {
+        "trialId": "webkit-375-normal-tap-A-r1-plain",
+        "seq": 7,
+        "reason": "event:pointercancel",
+        "t": 25,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44,
+          "top": 310,
+          "right": 351,
+          "bottom": 354,
+          "left": 24
+        },
+        "viewport": {
+          "innerWidth": 375,
+          "innerHeight": 900,
+          "width": 375,
+          "height": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0,
+          "scale": 1,
+          "devicePixelRatio": 1
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0,
+          "scrollingElement": {
+            "tag": "HTML",
+            "left": 0,
+            "top": 0
+          },
+          "documentElement": {
+            "left": 0,
+            "top": 0
+          },
+          "body": {
+            "left": 0,
+            "top": 0
+          }
+        },
+        "value": 50,
+        "react": null,
+        "activeElement": "BODY"
+      }
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "index": 5,
+      "type": "pointerup",
+      "t": 25,
+      "timeStamp": 211,
+      "target": "range",
+      "touchId": null,
+      "pointerId": 0,
+      "pointerType": "touch",
+      "clientX": 264,
+      "clientY": 332,
+      "pageX": 264,
+      "pageY": 332,
+      "isTrusted": true,
+      "cancelable": true,
+      "defaultPrevented": false,
+      "snapshot": {
+        "trialId": "webkit-375-normal-tap-A-r1-plain",
+        "seq": 8,
+        "reason": "event:pointerup",
+        "t": 25,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44,
+          "top": 310,
+          "right": 351,
+          "bottom": 354,
+          "left": 24
+        },
+        "viewport": {
+          "innerWidth": 375,
+          "innerHeight": 900,
+          "width": 375,
+          "height": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0,
+          "scale": 1,
+          "devicePixelRatio": 1
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0,
+          "scrollingElement": {
+            "tag": "HTML",
+            "left": 0,
+            "top": 0
+          },
+          "documentElement": {
+            "left": 0,
+            "top": 0
+          },
+          "body": {
+            "left": 0,
+            "top": 0
+          }
+        },
+        "value": 50,
+        "react": null,
+        "activeElement": "BODY"
+      }
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "index": 6,
+      "type": "lostpointercapture",
+      "t": 25,
+      "timeStamp": 212,
+      "target": "range",
+      "touchId": null,
+      "pointerId": 0,
+      "pointerType": "touch",
+      "clientX": 0,
+      "clientY": 0,
+      "pageX": 0,
+      "pageY": 0,
+      "isTrusted": true,
+      "cancelable": false,
+      "defaultPrevented": false,
+      "snapshot": {
+        "trialId": "webkit-375-normal-tap-A-r1-plain",
+        "seq": 9,
+        "reason": "event:lostpointercapture",
+        "t": 25,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44,
+          "top": 310,
+          "right": 351,
+          "bottom": 354,
+          "left": 24
+        },
+        "viewport": {
+          "innerWidth": 375,
+          "innerHeight": 900,
+          "width": 375,
+          "height": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0,
+          "scale": 1,
+          "devicePixelRatio": 1
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0,
+          "scrollingElement": {
+            "tag": "HTML",
+            "left": 0,
+            "top": 0
+          },
+          "documentElement": {
+            "left": 0,
+            "top": 0
+          },
+          "body": {
+            "left": 0,
+            "top": 0
+          }
+        },
+        "value": 50,
+        "react": null,
+        "activeElement": "BODY"
+      }
+    },
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "index": 7,
+      "type": "touchend",
+      "t": 25,
+      "timeStamp": 212,
+      "target": "range",
+      "touchId": 0,
+      "pointerId": null,
+      "pointerType": null,
+      "clientX": 264,
+      "clientY": 332,
+      "pageX": 264,
+      "pageY": 332,
+      "isTrusted": true,
+      "cancelable": true,
+      "defaultPrevented": false,
+      "snapshot": {
+        "trialId": "webkit-375-normal-tap-A-r1-plain",
+        "seq": 10,
+        "reason": "event:touchend",
+        "t": 25,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44,
+          "top": 310,
+          "right": 351,
+          "bottom": 354,
+          "left": 24
+        },
+        "viewport": {
+          "innerWidth": 375,
+          "innerHeight": 900,
+          "width": 375,
+          "height": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0,
+          "scale": 1,
+          "devicePixelRatio": 1
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0,
+          "scrollingElement": {
+            "tag": "HTML",
+            "left": 0,
+            "top": 0
+          },
+          "documentElement": {
+            "left": 0,
+            "top": 0
+          },
+          "body": {
+            "left": 0,
+            "top": 0
+          }
+        },
+        "value": 50,
+        "react": null,
+        "activeElement": "BODY"
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "trialId": "webkit-375-normal-tap-A-r1-plain",
+      "index": 0,
+      "t": 23,
+      "kind": "touchscreen.tap",
+      "x": 264.25,
+      "y": 332
+    }
+  ],
+  "observer": "passive capture + requestAnimationFrame",
+  "physicalInput": "NOT_TESTED",
+  "cause": "UNKNOWN",
+  "missing": [],
+  "screenshotTiming": {
+    "during": "NOT_CAPTURED_IN_CONTACT; tap-return is after atomic API returns"
+  },
+  "legacyV2BeforeSeal": {
+    "schemaVersion": "iad-standard-2",
+    "metadata": {
+      "head": "ea7fa2cd13758ea715be38d3785597ae82aa8ef7",
+      "tree": "88adfed5688012137bf50db8f0e4af0a70e22c70",
+      "sourceHashes": {
+        "docs/phase6a5/touch-reacceptance/ios-range-instrument.js": "93f4636d2ecb9f51f3aee3ce38272ba92aadd795e3883e5b03ae18862f24d628",
+        "docs/phase6a5/touch-reacceptance/ios-native-range.html": "4b0271c6e38e8faa730ae538c41ff87f7756101c206203e5188d62ec40bb6c7d",
+        "scripts/adjustment-physical-contract.mjs": "d48fcf8e83296f46dee7e12af9443ee306b6e378d7c972a0dd62c7f6728ede6f",
+        "scripts/adjustment-png-evidence.mjs": "b06399b6a4d5c68e3d71bd58c2b2cd410a20fd8591f0575ee3d998d2c17c1818",
+        "scripts/adjustment-probe-manifest.mjs": "ad545bcd6b87f3c05b469fb6eea1c028cdb579969d372b1b97fae332eea6cb70",
+        "scripts/verify-adjustment-probe.mjs": "8fa2f325e53d44e2778b8ff7584b08e30254dd1992de1768464c024889690df1",
+        "app/components/practical/ImageAdjustment.tsx": "6622705a293bc29dc1a9550b8d77fde1e48f4236317bcf2e989442cea736fa93",
+        "app/components/practical/adjustment-model.ts": "707beb3beac5eba38ced8522561f9f29e5be38aca4683bedac7582bf80154222",
+        "app/components/practical/image-adjustment.css": "b56478b373f217280c0969f0eb44bafc78d18e3eb08e98793aace60df25f66ed",
+        "app/components/practical/practical.css": "aa1acbdf240c49fa28a5546a9704b63cf4d28faf771cc7743873eab21e79dc93",
+        "scripts/serve-iphone-touch.mjs": "8402a886effdea601c7f1e30d00014540d8cba3b8570bdea744bd76579dcbeba",
+        "diagnostics/iphone-touch/controls.js": "f9f06d575fc04ebe57e465cdb0858f916a31217fedc9442c2556151203eef30a",
+        "diagnostics/iphone-touch/index.html": "af469ee20cd718ec09be9848ece2a9f2b6587322b92c3bfec852196e394b4318",
+        "scripts/prepare-iphone-touch.mjs": "e3bd0103053dd262a6720f5c3fddb5122c590ff1d82ebc8a0ff5916bc544af4c",
+        "scripts/verify-iphone-touch-handoff.mjs": "c3a34cc15d7107896f396e5bbe1c5334620a08d7c22238036fd8734b4a9c5d08",
+        "diagnostics/standard-touch/index.html": "7e03b8536479c1424c0e6d9196d5add7d4a2ed3019283a8fa83a3d46b3fa1e25",
+        "diagnostics/standard-touch/controls.js": "fa20a88a6fbfa1538f70b5982291d41e532cb2f5ba2988e8c09ba27f02fefd85",
+        "diagnostics/standard-touch/plain.html": "ecfe3b93e87ca3ab196370420a81522f945dd9709b57ebdd65a6a421a9326f4d",
+        "diagnostics/standard-touch/contract.mjs": "fd66df8b5f4ed01b1342e6ece54d694152afda0f1a6ba4a38945b72cafa7653d",
+        "diagnostics/standard-touch/record.schema.json": "e8f4138ac0e015bfc0524f47b674202ce005c3cc058ba1e238c40b0dce64455f",
+        "scripts/serve-standard-touch.mjs": "732b06360f989c4e45c10fbcbc175c4ea9b3c3769304b2a1b0499ed04ceb94e0",
+        "scripts/prepare-standard-touch.mjs": "079dc51c3e72602dca33e1d7762ad0bc39c82a4bd0c96693ffe40bccc14390d8",
+        "scripts/verify-standard-touch.mjs": "878f37ca447c6e37641c1ad0d1813b6559a9d69c3ba539a36651783ff5207407"
+      },
+      "build": {
+        "builtAt": "2026-11-09T00:10:13.223Z",
+        "exportHashes": {
+          "__next.__PAGE__.txt": "e099dae29239c531b14d50e925259fc92e9ee3b32b6bada2121a8dd025693200",
+          "__next._full.txt": "a65e15ade9ffecc596aa36fb302784dc1ca84dca5631c34bd5b61342a7b52c92",
+          "__next._head.txt": "35e0f4951f66a9e04b28896377120f4bfad31c620580d4f25145ae96cd5fd21b",
+          "__next._index.txt": "15c81289e353dacbbea705dc6cd29b42cc7133249b065082eb59d708642a6a92",
+          "__next._tree.txt": "b7292ae967f857367503ab98da1f120e7618ff805d0dcd49500f810929268f6b",
+          "_next/static/chunks/0.hwyoruac_ad.js": "55e8f6dcaea8678913a6ba57406c91d6c01f60e0dbe525b2206892ae4d68e9f2",
+          "_next/static/chunks/03~yq9q893hmn.js": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+          "_next/static/chunks/07lhk_q6pmm3r.js": "d8957e42e0c2769a5d79cb7ff90fc7c6b6b5bd8e0a1cd66f8950e404c806aa3e",
+          "_next/static/chunks/0dbhjjzl8qfwv.js": "59d6d2186868625417737f3f33980e55f778eb3672cd03a10cf26b1259ca2314",
+          "_next/static/chunks/0ht900cau6_ur.js": "b2b0fb9dbb3e38abc0110efd9dc4c5ec29e2e7c6cff449d61c95f354b4014f5b",
+          "_next/static/chunks/0ujl8a_grwin5.css": "e1b400b079849ad5550cef75a03c362acd5ddfed4adafe057c6a5cebd4043178",
+          "_next/static/chunks/0ulh71qsjn-wf.css": "55e8b465fbfd73ff24d830e7bc77ed7f1829f8bde7365aab63356f79cfaae720",
+          "_next/static/chunks/10kedf-fhjleq.js": "2718721c6c41e9ec38be5f36472e65d7f20708aa7c36e4a69c81176d493be3a4",
+          "_next/static/chunks/turbopack-06cagmb1zkfh1.js": "74ac6fbe3d3dec545d513253306841f2453674f266e76499c3ad61abc6cccb35",
+          "_next/static/qcVeKOtTNRrZmWzolGNPz/_buildManifest.js": "9476e0afd3f9da68a64e6ec58631191fd3eaca62c9f5a377e7517fe9a89e59ea",
+          "_next/static/qcVeKOtTNRrZmWzolGNPz/_clientMiddlewareManifest.js": "5483e3295dc35dfe29ea932efc85341c916f10ff78ff5b0e965e003710893a4a",
+          "_next/static/qcVeKOtTNRrZmWzolGNPz/_ssgManifest.js": "678f6ce2cb80b1fe72fc67e7412be6e2ab6ada083111b64f7c40d35e3cba5e00",
+          "_not-found/__next._full.txt": "30dab07639f8639ec6a0931cbc26c43ce10a7a48857250e9187a276518fd266f",
+          "_not-found/__next._head.txt": "4e91944b3bf340cf993575d2cd7320dba28a05fcdf4dd8991cbf5ec4f2d71bc9",
+          "_not-found/__next._index.txt": "15c81289e353dacbbea705dc6cd29b42cc7133249b065082eb59d708642a6a92",
+          "_not-found/__next._not-found.__PAGE__.txt": "b266d9de62e8a66670bbbfcf7636d98b78376eb4ef88e977a7b4fe948cc64fd8",
+          "_not-found/__next._not-found.txt": "c70d1130a3e66d6eb43cdeb75862193a5770052f886fd18fcca659b022439078",
+          "_not-found/__next._tree.txt": "51d8a65581fd64e3c7a3b46201e17b8ead3e829d0e4575e3de9da6fa3dc7c6b6",
+          "_not-found/index.html": "13f76c50871558f63bc3d5def11052365d1d7ae33e794df54a120b6a0b6e408a",
+          "_not-found/index.txt": "30dab07639f8639ec6a0931cbc26c43ce10a7a48857250e9187a276518fd266f",
+          ".nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "404/index.html": "13f76c50871558f63bc3d5def11052365d1d7ae33e794df54a120b6a0b6e408a",
+          "404.html": "13f76c50871558f63bc3d5def11052365d1d7ae33e794df54a120b6a0b6e408a",
+          "annotation/machine.svg": "6b956abedd25d56ce1fa1c361b3acb6250e57a17a47d8d26c492fa9f5557711a",
+          "annotation/map.svg": "75c4c617f1ef8f54de54de3dc23fa08298e65adc6db0d2fe0980090a7f1be0cb",
+          "compare/correction-after.svg": "5a179c85e0833cff86e7a28bc13dca44eb514dca7b33dd29aebba27b443b6a82",
+          "compare/correction-before.svg": "50a302bf4100606c92ae76ca67923292e976795d3be2738c014c49be90912eb0",
+          "compare/restoration-after.svg": "fb0074d61549c386f923cd520e3dbbe4e8ed9173cac4eb0aabae476cd38f0ff1",
+          "compare/restoration-before.svg": "0e7331d3ebe73bfab09fe89a55fac01ac695c79f772cc36cd3b77f361b83df8c",
+          "index.html": "4f455d7273f57fdfe63704d68e26603bb4b030b18ffeb371a200ee443c787d6f",
+          "index.txt": "a65e15ade9ffecc596aa36fb302784dc1ca84dca5631c34bd5b61342a7b52c92"
+        }
+      },
+      "method": "tap",
+      "targetMode": "percent",
+      "target": "75",
+      "tolerance": 1,
+      "mode": "full",
+      "inputKind": "playwright",
+      "device": "未申告",
+      "os": "未申告",
+      "browser": "未申告",
+      "repetition": 1,
+      "attempt": 1,
+      "targetPercent": 75,
+      "targetValue": 50,
+      "nativeRange": {
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "min": -100,
+        "max": 100,
+        "step": 1,
+        "thumbWidth": 20,
+        "usableTrack": {
+          "left": 34,
+          "right": 341,
+          "width": 307
+        },
+        "touchAction": "pan-y",
+        "geometryModel": "CSS thumb center: rect.x + 10 + ratio * (rect.width - 20); diagnostic style only",
+        "geometryVerified": "REQUIRES_BROWSER_MEASUREMENT",
+        "originalStyle": {
+          "touchAction": "pan-y",
+          "rect": {
+            "x": 26,
+            "y": 679.875,
+            "width": 129,
+            "height": 20
+          },
+          "appearance": "auto"
+        }
+      },
+      "presentation": "standardized-diagnostic-only",
+      "timestampBasis": "performance.now milliseconds (observedAt); event.timeStamp separately retained"
+    },
+    "surface": "plain-html",
+    "startedAt": "2026-11-09T00:16:42.665Z",
+    "finishedAt": null,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15",
+    "devicePixelRatio": 1,
+    "environment": {
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15",
+      "platform": "Linux x86_64",
+      "language": "en-US",
+      "reportedDevice": "未申告",
+      "reportedOS": "未申告",
+      "reportedBrowser": "未申告",
+      "viewport": {
+        "width": 375,
+        "height": 900,
+        "scale": 1,
+        "visualWidth": 375,
+        "visualHeight": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0
+      }
+    },
+    "nativeRange": {
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44
+      },
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "thumbWidth": 20,
+      "usableTrack": {
+        "left": 34,
+        "right": 341,
+        "width": 307
+      },
+      "touchAction": "pan-y",
+      "geometryModel": "CSS thumb center: rect.x + 10 + ratio * (rect.width - 20); diagnostic style only",
+      "geometryVerified": "REQUIRES_BROWSER_MEASUREMENT",
+      "originalStyle": {
+        "touchAction": "pan-y",
+        "rect": {
+          "x": 26,
+          "y": 679.875,
+          "width": 129,
+          "height": 20
+        },
+        "appearance": "auto"
+      }
+    },
+    "initial": {
+      "value": 0,
+      "preview": null,
+      "committed": null,
+      "history": null,
+      "pending": null,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44
+      },
+      "viewport": {
+        "width": 375,
+        "height": 900,
+        "scale": 1,
+        "visualWidth": 375,
+        "visualHeight": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "devicePixelRatio": 1,
+      "at": 152
+    },
+    "final": null,
+    "events": [
+      {
+        "type": "pointerdown",
+        "timeStamp": 210,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 0,
+        "phase": "capture",
+        "observedAt": 211,
+        "value": 0,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 211
+      },
+      {
+        "type": "touchstart",
+        "timeStamp": 211,
+        "isTrusted": true,
+        "pointerId": null,
+        "pointerType": null,
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 1,
+        "phase": "capture",
+        "observedAt": 211,
+        "value": 0,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 211
+      },
+      {
+        "type": "input",
+        "timeStamp": 211,
+        "isTrusted": true,
+        "pointerId": null,
+        "pointerType": null,
+        "clientX": null,
+        "clientY": null,
+        "mappedValue": null,
+        "target": "range",
+        "cancelable": false,
+        "defaultPrevented": false,
+        "seq": 2,
+        "phase": "capture",
+        "observedAt": 211,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 211
+      },
+      {
+        "type": "gotpointercapture",
+        "timeStamp": 212,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 0,
+        "clientY": 0,
+        "mappedValue": -100,
+        "target": "range",
+        "cancelable": false,
+        "defaultPrevented": false,
+        "seq": 3,
+        "phase": "capture",
+        "observedAt": 212,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 212
+      },
+      {
+        "type": "pointercancel",
+        "timeStamp": 211,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 4,
+        "phase": "capture",
+        "observedAt": 212,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 212
+      },
+      {
+        "type": "pointerup",
+        "timeStamp": 211,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 5,
+        "phase": "capture",
+        "observedAt": 212,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 212
+      },
+      {
+        "type": "lostpointercapture",
+        "timeStamp": 212,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 0,
+        "clientY": 0,
+        "mappedValue": -100,
+        "target": "range",
+        "cancelable": false,
+        "defaultPrevented": false,
+        "seq": 6,
+        "phase": "capture",
+        "observedAt": 212,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 212
+      },
+      {
+        "type": "touchend",
+        "timeStamp": 212,
+        "isTrusted": true,
+        "pointerId": null,
+        "pointerType": null,
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 7,
+        "phase": "capture",
+        "observedAt": 212,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 212
+      },
+      {
+        "type": "pointerdown",
+        "timeStamp": 210,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 8,
+        "phase": "next-animation-frame",
+        "observedAt": 229,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 229
+      },
+      {
+        "type": "touchstart",
+        "timeStamp": 211,
+        "isTrusted": true,
+        "pointerId": null,
+        "pointerType": null,
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 9,
+        "phase": "next-animation-frame",
+        "observedAt": 229,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 230
+      },
+      {
+        "type": "input",
+        "timeStamp": 211,
+        "isTrusted": true,
+        "pointerId": null,
+        "pointerType": null,
+        "clientX": null,
+        "clientY": null,
+        "mappedValue": null,
+        "target": "range",
+        "cancelable": false,
+        "defaultPrevented": false,
+        "seq": 10,
+        "phase": "next-animation-frame",
+        "observedAt": 230,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 230
+      },
+      {
+        "type": "gotpointercapture",
+        "timeStamp": 212,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 0,
+        "clientY": 0,
+        "mappedValue": -100,
+        "target": "range",
+        "cancelable": false,
+        "defaultPrevented": false,
+        "seq": 11,
+        "phase": "next-animation-frame",
+        "observedAt": 230,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 231
+      },
+      {
+        "type": "pointercancel",
+        "timeStamp": 211,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 12,
+        "phase": "next-animation-frame",
+        "observedAt": 231,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 231
+      },
+      {
+        "type": "pointerup",
+        "timeStamp": 211,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 13,
+        "phase": "next-animation-frame",
+        "observedAt": 231,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 231
+      },
+      {
+        "type": "lostpointercapture",
+        "timeStamp": 212,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 0,
+        "clientY": 0,
+        "mappedValue": -100,
+        "target": "range",
+        "cancelable": false,
+        "defaultPrevented": false,
+        "seq": 14,
+        "phase": "next-animation-frame",
+        "observedAt": 231,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 232
+      },
+      {
+        "type": "touchend",
+        "timeStamp": 212,
+        "isTrusted": true,
+        "pointerId": null,
+        "pointerType": null,
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 15,
+        "phase": "next-animation-frame",
+        "observedAt": 232,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 232
+      }
+    ],
+    "lastObservedInput": 50,
+    "cancelled": true,
+    "missing": [],
+    "physicalDeviceResult": "NOT_TESTED",
+    "causalAttribution": "UNKNOWN",
+    "neutrality": "NOT_PROVEN",
+    "conditionDifferences": [
+      "Product React state/commit/history exists; plain HTML has no corresponding contract.",
+      "Diagnostic styling standardizes placement and native thumb; this is not the unmodified product appearance.",
+      "Browser chrome/viewport and human trajectories must be compared from recorded data."
+    ]
+  },
+  "legacyV2": {
+    "schemaVersion": "iad-standard-2",
+    "metadata": {
+      "head": "ea7fa2cd13758ea715be38d3785597ae82aa8ef7",
+      "tree": "88adfed5688012137bf50db8f0e4af0a70e22c70",
+      "sourceHashes": {
+        "docs/phase6a5/touch-reacceptance/ios-range-instrument.js": "93f4636d2ecb9f51f3aee3ce38272ba92aadd795e3883e5b03ae18862f24d628",
+        "docs/phase6a5/touch-reacceptance/ios-native-range.html": "4b0271c6e38e8faa730ae538c41ff87f7756101c206203e5188d62ec40bb6c7d",
+        "scripts/adjustment-physical-contract.mjs": "d48fcf8e83296f46dee7e12af9443ee306b6e378d7c972a0dd62c7f6728ede6f",
+        "scripts/adjustment-png-evidence.mjs": "b06399b6a4d5c68e3d71bd58c2b2cd410a20fd8591f0575ee3d998d2c17c1818",
+        "scripts/adjustment-probe-manifest.mjs": "ad545bcd6b87f3c05b469fb6eea1c028cdb579969d372b1b97fae332eea6cb70",
+        "scripts/verify-adjustment-probe.mjs": "8fa2f325e53d44e2778b8ff7584b08e30254dd1992de1768464c024889690df1",
+        "app/components/practical/ImageAdjustment.tsx": "6622705a293bc29dc1a9550b8d77fde1e48f4236317bcf2e989442cea736fa93",
+        "app/components/practical/adjustment-model.ts": "707beb3beac5eba38ced8522561f9f29e5be38aca4683bedac7582bf80154222",
+        "app/components/practical/image-adjustment.css": "b56478b373f217280c0969f0eb44bafc78d18e3eb08e98793aace60df25f66ed",
+        "app/components/practical/practical.css": "aa1acbdf240c49fa28a5546a9704b63cf4d28faf771cc7743873eab21e79dc93",
+        "scripts/serve-iphone-touch.mjs": "8402a886effdea601c7f1e30d00014540d8cba3b8570bdea744bd76579dcbeba",
+        "diagnostics/iphone-touch/controls.js": "f9f06d575fc04ebe57e465cdb0858f916a31217fedc9442c2556151203eef30a",
+        "diagnostics/iphone-touch/index.html": "af469ee20cd718ec09be9848ece2a9f2b6587322b92c3bfec852196e394b4318",
+        "scripts/prepare-iphone-touch.mjs": "e3bd0103053dd262a6720f5c3fddb5122c590ff1d82ebc8a0ff5916bc544af4c",
+        "scripts/verify-iphone-touch-handoff.mjs": "c3a34cc15d7107896f396e5bbe1c5334620a08d7c22238036fd8734b4a9c5d08",
+        "diagnostics/standard-touch/index.html": "7e03b8536479c1424c0e6d9196d5add7d4a2ed3019283a8fa83a3d46b3fa1e25",
+        "diagnostics/standard-touch/controls.js": "fa20a88a6fbfa1538f70b5982291d41e532cb2f5ba2988e8c09ba27f02fefd85",
+        "diagnostics/standard-touch/plain.html": "ecfe3b93e87ca3ab196370420a81522f945dd9709b57ebdd65a6a421a9326f4d",
+        "diagnostics/standard-touch/contract.mjs": "fd66df8b5f4ed01b1342e6ece54d694152afda0f1a6ba4a38945b72cafa7653d",
+        "diagnostics/standard-touch/record.schema.json": "e8f4138ac0e015bfc0524f47b674202ce005c3cc058ba1e238c40b0dce64455f",
+        "scripts/serve-standard-touch.mjs": "732b06360f989c4e45c10fbcbc175c4ea9b3c3769304b2a1b0499ed04ceb94e0",
+        "scripts/prepare-standard-touch.mjs": "079dc51c3e72602dca33e1d7762ad0bc39c82a4bd0c96693ffe40bccc14390d8",
+        "scripts/verify-standard-touch.mjs": "878f37ca447c6e37641c1ad0d1813b6559a9d69c3ba539a36651783ff5207407"
+      },
+      "build": {
+        "builtAt": "2026-11-09T00:10:13.223Z",
+        "exportHashes": {
+          "__next.__PAGE__.txt": "e099dae29239c531b14d50e925259fc92e9ee3b32b6bada2121a8dd025693200",
+          "__next._full.txt": "a65e15ade9ffecc596aa36fb302784dc1ca84dca5631c34bd5b61342a7b52c92",
+          "__next._head.txt": "35e0f4951f66a9e04b28896377120f4bfad31c620580d4f25145ae96cd5fd21b",
+          "__next._index.txt": "15c81289e353dacbbea705dc6cd29b42cc7133249b065082eb59d708642a6a92",
+          "__next._tree.txt": "b7292ae967f857367503ab98da1f120e7618ff805d0dcd49500f810929268f6b",
+          "_next/static/chunks/0.hwyoruac_ad.js": "55e8f6dcaea8678913a6ba57406c91d6c01f60e0dbe525b2206892ae4d68e9f2",
+          "_next/static/chunks/03~yq9q893hmn.js": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+          "_next/static/chunks/07lhk_q6pmm3r.js": "d8957e42e0c2769a5d79cb7ff90fc7c6b6b5bd8e0a1cd66f8950e404c806aa3e",
+          "_next/static/chunks/0dbhjjzl8qfwv.js": "59d6d2186868625417737f3f33980e55f778eb3672cd03a10cf26b1259ca2314",
+          "_next/static/chunks/0ht900cau6_ur.js": "b2b0fb9dbb3e38abc0110efd9dc4c5ec29e2e7c6cff449d61c95f354b4014f5b",
+          "_next/static/chunks/0ujl8a_grwin5.css": "e1b400b079849ad5550cef75a03c362acd5ddfed4adafe057c6a5cebd4043178",
+          "_next/static/chunks/0ulh71qsjn-wf.css": "55e8b465fbfd73ff24d830e7bc77ed7f1829f8bde7365aab63356f79cfaae720",
+          "_next/static/chunks/10kedf-fhjleq.js": "2718721c6c41e9ec38be5f36472e65d7f20708aa7c36e4a69c81176d493be3a4",
+          "_next/static/chunks/turbopack-06cagmb1zkfh1.js": "74ac6fbe3d3dec545d513253306841f2453674f266e76499c3ad61abc6cccb35",
+          "_next/static/qcVeKOtTNRrZmWzolGNPz/_buildManifest.js": "9476e0afd3f9da68a64e6ec58631191fd3eaca62c9f5a377e7517fe9a89e59ea",
+          "_next/static/qcVeKOtTNRrZmWzolGNPz/_clientMiddlewareManifest.js": "5483e3295dc35dfe29ea932efc85341c916f10ff78ff5b0e965e003710893a4a",
+          "_next/static/qcVeKOtTNRrZmWzolGNPz/_ssgManifest.js": "678f6ce2cb80b1fe72fc67e7412be6e2ab6ada083111b64f7c40d35e3cba5e00",
+          "_not-found/__next._full.txt": "30dab07639f8639ec6a0931cbc26c43ce10a7a48857250e9187a276518fd266f",
+          "_not-found/__next._head.txt": "4e91944b3bf340cf993575d2cd7320dba28a05fcdf4dd8991cbf5ec4f2d71bc9",
+          "_not-found/__next._index.txt": "15c81289e353dacbbea705dc6cd29b42cc7133249b065082eb59d708642a6a92",
+          "_not-found/__next._not-found.__PAGE__.txt": "b266d9de62e8a66670bbbfcf7636d98b78376eb4ef88e977a7b4fe948cc64fd8",
+          "_not-found/__next._not-found.txt": "c70d1130a3e66d6eb43cdeb75862193a5770052f886fd18fcca659b022439078",
+          "_not-found/__next._tree.txt": "51d8a65581fd64e3c7a3b46201e17b8ead3e829d0e4575e3de9da6fa3dc7c6b6",
+          "_not-found/index.html": "13f76c50871558f63bc3d5def11052365d1d7ae33e794df54a120b6a0b6e408a",
+          "_not-found/index.txt": "30dab07639f8639ec6a0931cbc26c43ce10a7a48857250e9187a276518fd266f",
+          ".nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "404/index.html": "13f76c50871558f63bc3d5def11052365d1d7ae33e794df54a120b6a0b6e408a",
+          "404.html": "13f76c50871558f63bc3d5def11052365d1d7ae33e794df54a120b6a0b6e408a",
+          "annotation/machine.svg": "6b956abedd25d56ce1fa1c361b3acb6250e57a17a47d8d26c492fa9f5557711a",
+          "annotation/map.svg": "75c4c617f1ef8f54de54de3dc23fa08298e65adc6db0d2fe0980090a7f1be0cb",
+          "compare/correction-after.svg": "5a179c85e0833cff86e7a28bc13dca44eb514dca7b33dd29aebba27b443b6a82",
+          "compare/correction-before.svg": "50a302bf4100606c92ae76ca67923292e976795d3be2738c014c49be90912eb0",
+          "compare/restoration-after.svg": "fb0074d61549c386f923cd520e3dbbe4e8ed9173cac4eb0aabae476cd38f0ff1",
+          "compare/restoration-before.svg": "0e7331d3ebe73bfab09fe89a55fac01ac695c79f772cc36cd3b77f361b83df8c",
+          "index.html": "4f455d7273f57fdfe63704d68e26603bb4b030b18ffeb371a200ee443c787d6f",
+          "index.txt": "a65e15ade9ffecc596aa36fb302784dc1ca84dca5631c34bd5b61342a7b52c92"
+        }
+      },
+      "method": "tap",
+      "targetMode": "percent",
+      "target": "75",
+      "tolerance": 1,
+      "mode": "full",
+      "inputKind": "playwright",
+      "device": "未申告",
+      "os": "未申告",
+      "browser": "未申告",
+      "repetition": 1,
+      "attempt": 1,
+      "targetPercent": 75,
+      "targetValue": 50,
+      "nativeRange": {
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "min": -100,
+        "max": 100,
+        "step": 1,
+        "thumbWidth": 20,
+        "usableTrack": {
+          "left": 34,
+          "right": 341,
+          "width": 307
+        },
+        "touchAction": "pan-y",
+        "geometryModel": "CSS thumb center: rect.x + 10 + ratio * (rect.width - 20); diagnostic style only",
+        "geometryVerified": "REQUIRES_BROWSER_MEASUREMENT",
+        "originalStyle": {
+          "touchAction": "pan-y",
+          "rect": {
+            "x": 26,
+            "y": 679.875,
+            "width": 129,
+            "height": 20
+          },
+          "appearance": "auto"
+        }
+      },
+      "presentation": "standardized-diagnostic-only",
+      "timestampBasis": "performance.now milliseconds (observedAt); event.timeStamp separately retained"
+    },
+    "surface": "plain-html",
+    "startedAt": "2026-11-09T00:16:42.665Z",
+    "finishedAt": "2026-11-09T00:16:42.828Z",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15",
+    "devicePixelRatio": 1,
+    "environment": {
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15",
+      "platform": "Linux x86_64",
+      "language": "en-US",
+      "reportedDevice": "未申告",
+      "reportedOS": "未申告",
+      "reportedBrowser": "未申告",
+      "viewport": {
+        "width": 375,
+        "height": 900,
+        "scale": 1,
+        "visualWidth": 375,
+        "visualHeight": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0
+      }
+    },
+    "nativeRange": {
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44
+      },
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "thumbWidth": 20,
+      "usableTrack": {
+        "left": 34,
+        "right": 341,
+        "width": 307
+      },
+      "touchAction": "pan-y",
+      "geometryModel": "CSS thumb center: rect.x + 10 + ratio * (rect.width - 20); diagnostic style only",
+      "geometryVerified": "REQUIRES_BROWSER_MEASUREMENT",
+      "originalStyle": {
+        "touchAction": "pan-y",
+        "rect": {
+          "x": 26,
+          "y": 679.875,
+          "width": 129,
+          "height": 20
+        },
+        "appearance": "auto"
+      }
+    },
+    "initial": {
+      "value": 0,
+      "preview": null,
+      "committed": null,
+      "history": null,
+      "pending": null,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44
+      },
+      "viewport": {
+        "width": 375,
+        "height": 900,
+        "scale": 1,
+        "visualWidth": 375,
+        "visualHeight": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "devicePixelRatio": 1,
+      "at": 152
+    },
+    "final": {
+      "value": 50,
+      "preview": null,
+      "committed": null,
+      "history": null,
+      "pending": null,
+      "rect": {
+        "x": 24,
+        "y": 310,
+        "width": 327,
+        "height": 44
+      },
+      "viewport": {
+        "width": 375,
+        "height": 900,
+        "scale": 1,
+        "visualWidth": 375,
+        "visualHeight": 900,
+        "offsetLeft": 0,
+        "offsetTop": 0
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "devicePixelRatio": 1,
+      "at": 316
+    },
+    "events": [
+      {
+        "type": "pointerdown",
+        "timeStamp": 210,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 0,
+        "phase": "capture",
+        "observedAt": 211,
+        "value": 0,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 211
+      },
+      {
+        "type": "touchstart",
+        "timeStamp": 211,
+        "isTrusted": true,
+        "pointerId": null,
+        "pointerType": null,
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 1,
+        "phase": "capture",
+        "observedAt": 211,
+        "value": 0,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 211
+      },
+      {
+        "type": "input",
+        "timeStamp": 211,
+        "isTrusted": true,
+        "pointerId": null,
+        "pointerType": null,
+        "clientX": null,
+        "clientY": null,
+        "mappedValue": null,
+        "target": "range",
+        "cancelable": false,
+        "defaultPrevented": false,
+        "seq": 2,
+        "phase": "capture",
+        "observedAt": 211,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 211
+      },
+      {
+        "type": "gotpointercapture",
+        "timeStamp": 212,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 0,
+        "clientY": 0,
+        "mappedValue": -100,
+        "target": "range",
+        "cancelable": false,
+        "defaultPrevented": false,
+        "seq": 3,
+        "phase": "capture",
+        "observedAt": 212,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 212
+      },
+      {
+        "type": "pointercancel",
+        "timeStamp": 211,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 4,
+        "phase": "capture",
+        "observedAt": 212,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 212
+      },
+      {
+        "type": "pointerup",
+        "timeStamp": 211,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 5,
+        "phase": "capture",
+        "observedAt": 212,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 212
+      },
+      {
+        "type": "lostpointercapture",
+        "timeStamp": 212,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 0,
+        "clientY": 0,
+        "mappedValue": -100,
+        "target": "range",
+        "cancelable": false,
+        "defaultPrevented": false,
+        "seq": 6,
+        "phase": "capture",
+        "observedAt": 212,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 212
+      },
+      {
+        "type": "touchend",
+        "timeStamp": 212,
+        "isTrusted": true,
+        "pointerId": null,
+        "pointerType": null,
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 7,
+        "phase": "capture",
+        "observedAt": 212,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 212
+      },
+      {
+        "type": "pointerdown",
+        "timeStamp": 210,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 8,
+        "phase": "next-animation-frame",
+        "observedAt": 229,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 229
+      },
+      {
+        "type": "touchstart",
+        "timeStamp": 211,
+        "isTrusted": true,
+        "pointerId": null,
+        "pointerType": null,
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 9,
+        "phase": "next-animation-frame",
+        "observedAt": 229,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 230
+      },
+      {
+        "type": "input",
+        "timeStamp": 211,
+        "isTrusted": true,
+        "pointerId": null,
+        "pointerType": null,
+        "clientX": null,
+        "clientY": null,
+        "mappedValue": null,
+        "target": "range",
+        "cancelable": false,
+        "defaultPrevented": false,
+        "seq": 10,
+        "phase": "next-animation-frame",
+        "observedAt": 230,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 230
+      },
+      {
+        "type": "gotpointercapture",
+        "timeStamp": 212,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 0,
+        "clientY": 0,
+        "mappedValue": -100,
+        "target": "range",
+        "cancelable": false,
+        "defaultPrevented": false,
+        "seq": 11,
+        "phase": "next-animation-frame",
+        "observedAt": 230,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 231
+      },
+      {
+        "type": "pointercancel",
+        "timeStamp": 211,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 12,
+        "phase": "next-animation-frame",
+        "observedAt": 231,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 231
+      },
+      {
+        "type": "pointerup",
+        "timeStamp": 211,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 13,
+        "phase": "next-animation-frame",
+        "observedAt": 231,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 231
+      },
+      {
+        "type": "lostpointercapture",
+        "timeStamp": 212,
+        "isTrusted": true,
+        "pointerId": 0,
+        "pointerType": "touch",
+        "clientX": 0,
+        "clientY": 0,
+        "mappedValue": -100,
+        "target": "range",
+        "cancelable": false,
+        "defaultPrevented": false,
+        "seq": 14,
+        "phase": "next-animation-frame",
+        "observedAt": 231,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 232
+      },
+      {
+        "type": "touchend",
+        "timeStamp": 212,
+        "isTrusted": true,
+        "pointerId": null,
+        "pointerType": null,
+        "clientX": 264,
+        "clientY": 332,
+        "mappedValue": 50,
+        "target": "range",
+        "cancelable": true,
+        "defaultPrevented": false,
+        "seq": 15,
+        "phase": "next-animation-frame",
+        "observedAt": 232,
+        "value": 50,
+        "preview": null,
+        "committed": null,
+        "history": null,
+        "pending": null,
+        "rect": {
+          "x": 24,
+          "y": 310,
+          "width": 327,
+          "height": 44
+        },
+        "viewport": {
+          "width": 375,
+          "height": 900,
+          "scale": 1,
+          "visualWidth": 375,
+          "visualHeight": 900,
+          "offsetLeft": 0,
+          "offsetTop": 0
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "devicePixelRatio": 1,
+        "at": 232
+      }
+    ],
+    "lastObservedInput": 50,
+    "cancelled": true,
+    "missing": [],
+    "physicalDeviceResult": "NOT_TESTED",
+    "causalAttribution": "UNKNOWN",
+    "neutrality": "NOT_PROVEN",
+    "conditionDifferences": [
+      "Product React state/commit/history exists; plain HTML has no corresponding contract.",
+      "Diagnostic styling standardizes placement and native thumb; this is not the unmodified product appearance.",
+      "Browser chrome/viewport and human trajectories must be compared from recorded data."
+    ],
+    "handoff": {
+      "sealEvent": "pointerdown",
+      "sealTrusted": true,
+      "sealTime": 316,
+      "physicalVerification": "REQUIRES_OPERATOR_AND_SCREENSHOT_REVIEW"
+    },
+    "diagnosis": {
+      "status": "CANCELLED",
+      "counts": {
+        "pointerdown": 1,
+        "pointermove": 0,
+        "pointerup": 1,
+        "pointercancel": 1,
+        "touchstart": 1,
+        "touchmove": 0,
+        "touchend": 1,
+        "touchcancel": 0,
+        "input": 1,
+        "change": 0,
+        "gotpointercapture": 1,
+        "lostpointercapture": 1
+      },
+      "cancelled": true,
+      "lastObservedValue": 50,
+      "finalValue": 50,
+      "committedValue": null,
+      "delta": 0,
+      "targetReached": null,
+      "missing": [],
+      "physicalVerification": "NOT_TESTED",
+      "cause": "UNKNOWN",
+      "tapSupport": "VALUE_CHANGE_OBSERVED"
+    }
+  },
+  "images": {
+    "before": {
+      "file": "webkit-375-normal-tap-A-r1-plain-before.png",
+      "sha256": "29b3700879039f8d00b026651b89b9833507bd175be183fb7d717c4bb385852e",
+      "bytes": 84835
+    },
+    "during": {
+      "file": "webkit-375-normal-tap-A-r1-plain-tap-return.png",
+      "sha256": "e90aa69c2e9767f7cf7a1e2c4f57382eed29bba9c73fca2b97baeebc58360aae",
+      "bytes": 84838
+    },
+    "after": {
+      "file": "webkit-375-normal-tap-A-r1-plain-after.png",
+      "sha256": "f9ea56d75d87b45f4e21df5e589e364333471c36d692c0068e093bfa31fffa25",
+      "bytes": 88371
+    }
+  },
+  "pageErrors": []
+}

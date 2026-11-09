@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {validate,compare} from '../diagnostics/scroll-geometry/contract.mjs';import {validate as before} from '../docs/phase6a5/standard-touch/scroll-geometry/aggregate-review/frozen-final/diagnostics/scroll-geometry/contract.mjs';
+const root='docs/phase6a5/standard-touch/scroll-geometry/post-cancel-review/';
+const load=f=>JSON.parse(fs.readFileSync(root+f));const binding=load('failed-run-binding.json');
+const product=load('webkit-375-normal-tap-A-r1-product.json'),plain=load('webkit-375-normal-tap-A-r1-plain.json');
+for(const [surface,raw]of [['product',product],['plain',plain]])test('actual failed CI same-input cancellation sequence '+surface,()=>{const old=before(raw,binding),now=validate(raw,binding);assert.equal(old.valid,false);assert.ok(old.errors.includes('UNPAIRED_POINTER_END'));assert.equal(now.valid,true);assert.equal(now.outcome,'CANCELLED');assert.equal(now.postCancelPointerUps,1);});
+test('historical pair remains cancellation with distinct final values',()=>{const r=compare(product,plain,binding);assert.equal(r.construction,'ESTABLISHED');assert.equal(r.a.outcome,'CANCELLED');assert.equal(r.b.outcome,'CANCELLED');assert.equal(r.a.finalValue,0);assert.equal(r.b.finalValue,50);});

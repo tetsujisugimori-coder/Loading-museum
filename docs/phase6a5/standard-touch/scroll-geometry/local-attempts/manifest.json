@@ -1,0 +1,64 @@
+{
+  "scroll-pilot-bb19915": {
+    "sha256": "69dbe93a3be1f8ddea474375e959b9a072b16fa723434caa2fc16499ea93322d",
+    "bytes": 11230,
+    "binding": {
+      "head": "bb19915e4df849ce1c66443fa5c6fd1cca624041",
+      "tree": "54bc7b0b392f92aea5cba468176ad71e3ca88a1d",
+      "protocolHash": "81421f63fe86df417f271ed8e104dd5a427abed9dba11cae9b048fefab4aea40",
+      "sourceHash": "60ba8d991d3460668fdd27e68a68d81935449ecb4208af90a029957b9c8cb1c7"
+    },
+    "rows": 0,
+    "pairs": 0,
+    "reportedStatus": "PARTIAL",
+    "errors": [
+      {
+        "fatal": "browserType.launch: Executable doesn't exist at /home/agent/.cache/ms-playwright/chromium_headless_shell-1194/chrome-linux/headless_shell\n\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551 Looks like Playwright Test or Playwright was just installed or updated. \u2551\n\u2551 Please run the following command to download new browsers:              \u2551\n\u2551                                                                         \u2551\n\u2551     npx playwright install                                              \u2551\n\u2551                                                                         \u2551\n\u2551 <3 Playwright Team                                                      \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n    at /workspace/scratch/e622c1e9421e/loading-scroll-geometry/scripts/verify-scroll-geometry.mjs:27:65"
+      }
+    ],
+    "startedAt": "2026-11-08T23:39:32.948Z",
+    "finishedAt": "2026-11-08T23:39:32.954Z",
+    "acceptance": "NOT_FULL_ACCEPTANCE",
+    "rawLocation": "local retained run; not final CI proof"
+  },
+  "scroll-pilot-bb19915-available": {
+    "sha256": "701832bc272fad70356907230fa8609259baf8384c0cd899ef28a7782adabcfc",
+    "bytes": 453366,
+    "binding": {
+      "head": "bb19915e4df849ce1c66443fa5c6fd1cca624041",
+      "tree": "54bc7b0b392f92aea5cba468176ad71e3ca88a1d",
+      "protocolHash": "81421f63fe86df417f271ed8e104dd5a427abed9dba11cae9b048fefab4aea40",
+      "sourceHash": "60ba8d991d3460668fdd27e68a68d81935449ecb4208af90a029957b9c8cb1c7"
+    },
+    "rows": 96,
+    "pairs": 48,
+    "reportedStatus": "TECHNICAL_PASS",
+    "errors": [],
+    "startedAt": "2026-11-08T23:40:07.055Z",
+    "finishedAt": "2026-11-08T23:43:10.798Z",
+    "acceptance": "NOT_FULL_ACCEPTANCE",
+    "rawLocation": "local retained run; not final CI proof"
+  },
+  "scroll-66f99c0": {
+    "sha256": "84451baf87ad286b02938074b08f8db438b21f4a4ee842acb9c0b0ad483cbc62",
+    "bytes": 1987273,
+    "binding": {
+      "head": "66f99c0a273e4c51dfaf94e34359e454e7dd3950",
+      "tree": "d770d45738b487b1ede1ba7853d9ffc3377de326",
+      "protocolHash": "81421f63fe86df417f271ed8e104dd5a427abed9dba11cae9b048fefab4aea40",
+      "sourceHash": "66de00740c7937047b9affcf089805acdd3d819dec0690f613c75b634314d8d9"
+    },
+    "rows": 384,
+    "pairs": 192,
+    "reportedStatus": "PARTIAL",
+    "errors": [
+      {
+        "fatal": "browserType.launch: \n\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551 Host system is missing dependencies to run browsers. \u2551\n\u2551 Missing libraries:                                   \u2551\n\u2551     libgtk-4.so.1                                    \u2551\n\u2551     libgraphene-1.0.so.0                             \u2551\n\u2551     libwoff2dec.so.1.0.2                             \u2551\n\u2551     libharfbuzz-icu.so.0                             \u2551\n\u2551     libhyphen.so.0                                   \u2551\n\u2551     libmanette-0.2.so.0                              \u2551\n\u2551     libGLESv2.so.2                                   \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n    at /workspace/scratch/e622c1e9421e/loading-scroll-geometry/scripts/verify-scroll-geometry.mjs:29:65"
+      }
+    ],
+    "startedAt": "2026-11-08T23:46:12.541Z",
+    "finishedAt": "2026-11-08T23:58:40.180Z",
+    "acceptance": "NOT_FULL_ACCEPTANCE",
+    "rawLocation": "local retained run; not final CI proof"
+  }
+}

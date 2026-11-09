@@ -1,0 +1,225 @@
+{
+  "scope": "Local shell replay of exact workflow gate, not GitHub job execution",
+  "workflow_sha256": "f55bae91350df77fbbafb5d3f66f4e49e623f5615a06c2d7e57261b0493baeab",
+  "cases": 36,
+  "accepted": 1,
+  "rejected": 35,
+  "results": [
+    {
+      "experiment": "success",
+      "legacy": "success",
+      "exit": 0,
+      "accepted": true
+    },
+    {
+      "experiment": "success",
+      "legacy": "failure",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "success",
+      "legacy": "cancelled",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "success",
+      "legacy": "skipped",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "success",
+      "legacy": "timed_out",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "success",
+      "legacy": "",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "failure",
+      "legacy": "success",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "failure",
+      "legacy": "failure",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "failure",
+      "legacy": "cancelled",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "failure",
+      "legacy": "skipped",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "failure",
+      "legacy": "timed_out",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "failure",
+      "legacy": "",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "cancelled",
+      "legacy": "success",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "cancelled",
+      "legacy": "failure",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "cancelled",
+      "legacy": "cancelled",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "cancelled",
+      "legacy": "skipped",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "cancelled",
+      "legacy": "timed_out",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "cancelled",
+      "legacy": "",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "skipped",
+      "legacy": "success",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "skipped",
+      "legacy": "failure",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "skipped",
+      "legacy": "cancelled",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "skipped",
+      "legacy": "skipped",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "skipped",
+      "legacy": "timed_out",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "skipped",
+      "legacy": "",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "timed_out",
+      "legacy": "success",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "timed_out",
+      "legacy": "failure",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "timed_out",
+      "legacy": "cancelled",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "timed_out",
+      "legacy": "skipped",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "timed_out",
+      "legacy": "timed_out",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "timed_out",
+      "legacy": "",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "",
+      "legacy": "success",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "",
+      "legacy": "failure",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "",
+      "legacy": "cancelled",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "",
+      "legacy": "skipped",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "",
+      "legacy": "timed_out",
+      "exit": 1,
+      "accepted": false
+    },
+    {
+      "experiment": "",
+      "legacy": "",
+      "exit": 1,
+      "accepted": false
+    }
+  ]
+}

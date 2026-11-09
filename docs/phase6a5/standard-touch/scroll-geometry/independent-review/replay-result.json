@@ -1,0 +1,720 @@
+{
+  "schemaVersion": "iad-independent-source-replay-1",
+  "baselineSha256": "1328e517157ec40c3f6c91d09d0c3e62d787d1aff91376ec8b05d4b44795aba6",
+  "currentSha256": "717d7d3afa033887497e02218eebfc8f2e70da6f813e6679456673e72b98067f",
+  "fixtureSetSha256": "927891b86bec2280ea7bd3b6b1953705ff460365a9d001a1d023a3e7cb724576",
+  "cases": 27,
+  "redToGreen": 20,
+  "completeControlsPreserved": 6,
+  "failures": [],
+  "rows": [
+    {
+      "suite": "original",
+      "name": "control",
+      "fixtureSha256": "74b92a0b828d75b1ecccee15ba61be6cfc2390032259c5c5b6705d6588a38487",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "CAPTURE_METADATA"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "original",
+      "name": "pointerup before pointerdown",
+      "fixtureSha256": "3e5c2e2bb326db2104d71c8d46d44f6dab3a24b2b7086d5a03213ea23f7948ec",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "INCOMPLETE",
+        "cause": "UNKNOWN",
+        "errors": [
+          "CAPTURE_METADATA",
+          "UNPAIRED_POINTER_END"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "original",
+      "name": "terminal from different pointer",
+      "fixtureSha256": "24c6424fde1e60b60eb17b62eab06a070a13cb1fcc22961f67e9a383d65c72f9",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "INCOMPLETE",
+        "cause": "UNKNOWN",
+        "errors": [
+          "CAPTURE_METADATA",
+          "UNPAIRED_POINTER_END"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "original",
+      "name": "cross-family incomplete gesture",
+      "fixtureSha256": "61687c9e3c01924016659f33231359266e49e516b8603d050218169afd6ab629",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "INCOMPLETE",
+        "cause": "UNKNOWN",
+        "errors": [
+          "CAPTURE_METADATA",
+          "TOUCH_METADATA",
+          "UNPAIRED_TOUCH_END"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "original",
+      "name": "browser and input path identity absent",
+      "fixtureSha256": "6eee9b35fad5f7a64bc788429a3e68cb742e985ca5f6f30dd5c979847bee330f",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "CAPTURE_METADATA",
+          "INPUT_ENVIRONMENT"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "original",
+      "name": "tap identity with arbitrary command and no coordinates",
+      "fixtureSha256": "2127c780c189c7a80628364bfcc4c9f2d38f0a12924b93add40584e007241ef3",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "CAPTURE_METADATA",
+          "EVENT_METADATA",
+          "POINTER_METADATA",
+          "INPUT_IDENTITY",
+          "INPUT_COORDINATES",
+          "RESPONSE_PRECEDES_INPUT",
+          "INPUT_SEQUENCE"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "original",
+      "name": "condition A entire recording at wrong width and target",
+      "fixtureSha256": "e629beb9ed5ea864c6195ab4e76e67c2ab81b4aaf0aa082fac4b5b73c119ce74",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "CAPTURE_METADATA",
+          "INPUT_PATH_MISMATCH"
+        ],
+        "targetErrors": [
+          "initial:rect.y",
+          "initial:viewport.innerWidth",
+          "initial:viewport.width",
+          "final:rect.y",
+          "final:viewport.innerWidth",
+          "final:viewport.width",
+          "initial:rect.y",
+          "initial:viewport.innerWidth",
+          "initial:viewport.width",
+          "final:rect.y",
+          "final:viewport.innerWidth",
+          "final:viewport.width"
+        ]
+      }
+    },
+    {
+      "suite": "original",
+      "name": "condition B constructed by 1px instead of 1000",
+      "fixtureSha256": "72262d4ee1c68d2695debfacfd22ea6463f88293ca77436460abc7654760c2db",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_DIFFER",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "CAPTURE_METADATA"
+        ],
+        "targetErrors": [
+          "initial:scroll.y",
+          "initial:scroll.scrollingElement.top",
+          "initial:scroll.documentElement.top",
+          "final:scroll.y",
+          "final:scroll.scrollingElement.top",
+          "final:scroll.documentElement.top"
+        ]
+      }
+    },
+    {
+      "suite": "original",
+      "name": "condition C wrong rectangle dimension",
+      "fixtureSha256": "7968c9ace222dff51aa8c9bbc17dccca3fd8da1e4920a8d482a13da710e0e2c3",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_DIFFER",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "CAPTURE_METADATA",
+          "INPUT_PATH_MISMATCH"
+        ],
+        "targetErrors": [
+          "initial:rect.y",
+          "initial:rect.width",
+          "final:rect.y",
+          "final:rect.width"
+        ]
+      }
+    },
+    {
+      "suite": "original",
+      "name": "all capture metadata and timestamps absent",
+      "fixtureSha256": "fd11845970315e1abb409f39eb1f79f2c813ce84c1bc041e20c4cf986ab7f490",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "CAPTURE_METADATA"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "original",
+      "name": "cancellation preserved control",
+      "fixtureSha256": "135a2a2ee79b0a314b0e7e71a16bb2d0bddc7ac1224987a0c89d74238713f52e",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "CANCELLED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "CANCELLED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "CAPTURE_METADATA"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "complete",
+      "name": "protocol-complete positive control",
+      "fixtureSha256": "9c23a24abfda9ffbc7580e2791daf06bac0f8ea5a27d3fc0231a9173990facc3",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "complete",
+      "name": "tap command outside range",
+      "fixtureSha256": "834ca6889bab4837532102b6ceccfe3b2a3cbedad21a7f139a9998eb625add46",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "INPUT_PATH_MISMATCH"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "complete",
+      "name": "different pair tap command target",
+      "fixtureSha256": "ee63d5f3b3b725f72d8994ee872379c3e4ba07dddbb265f05ebecc2227b868cf",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "INPUT_PATH_MISMATCH"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "complete",
+      "name": "input command logged after completed gesture",
+      "fixtureSha256": "0aca7b3e6f97b4743d434b5af499a542123dcac293b3ee2d1bc5f6c2e7f5fef6",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "RESPONSE_PRECEDES_INPUT"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "complete",
+      "name": "unfinished second pointer after completion",
+      "fixtureSha256": "a9a9f12633b86d408ddd814a95bbf968a723f665fe7033339f0632d19fdbc412",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "UNFINISHED_LIFECYCLE"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "complete",
+      "name": "touch lifecycle unfinished after pointer completion",
+      "fixtureSha256": "2bcf5108ae52bc88f1dcdec7d2b9b9e26a7761682c971c8ba088fbfee3d733f1",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "UNFINISHED_LIFECYCLE"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "complete",
+      "name": "pointer identity changes type mid gesture",
+      "fixtureSha256": "8a0e0551283a2ede230378570f4289e8b2b8c388011011ddc112e77d8e204e6e",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "POINTER_TYPE_CHANGED"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "complete",
+      "name": "event snapshots reverse timeline",
+      "fixtureSha256": "ac12fa91a5c09c138c6d983c884f0a9829cfd63a3556fa924f448a8e4ab46841",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "EVENT_SNAPSHOT_ORDER"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "complete",
+      "name": "negative page scroll construction",
+      "fixtureSha256": "769fe17322b1630e98990b5ff211622819084c131d82b6e555c94fbf0e1d08aa",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_DIFFER",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": true,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "RECORDED_CONDITIONS_DIFFER",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": [
+          "initial:scroll.y",
+          "initial:scroll.scrollingElement.top",
+          "initial:scroll.documentElement.top",
+          "final:scroll.y",
+          "final:scroll.scrollingElement.top",
+          "final:scroll.documentElement.top"
+        ]
+      }
+    },
+    {
+      "suite": "complete",
+      "name": "unobserved cause claimed",
+      "fixtureSha256": "7f8e490726c6a09c72ee5b3a1148bd4cdd3b08109973759fd1e8d3df8d066411",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "complete",
+      "name": "non-finite final value",
+      "fixtureSha256": "521cc530fa6703d72d16d9b0b467300511bce1f822cc826c7afea4e445db5cab",
+      "before": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "DOM_VALUE_INVALID"
+        ],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [
+          "DOM_VALUE_INVALID"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "complete",
+      "name": "unrecognized cancellation type",
+      "fixtureSha256": "526a925f2615ea21b25a195768d4481ee033d8a3b5dc4e57691152e9b44a3303",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "INCOMPLETE",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": false,
+        "construction": "NOT_EXECUTABLE",
+        "comparison": "INVALID_EVIDENCE",
+        "outcome": "INCOMPLETE",
+        "cause": "UNKNOWN",
+        "errors": [
+          "UNKNOWN_EVENT"
+        ],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "complete",
+      "name": "valid pointer and touch completion",
+      "fixtureSha256": "17d05e41decec93f05275a86d1d94ab957cd6c6eff254e80de59dee4a24674a8",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "COMPLETED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "complete",
+      "name": "valid WebKit-style pointer cancel then touchend",
+      "fixtureSha256": "9085da853ec74ea62d2a198e6ac525096f62f74f42751f9bd6e1158a11a6926d",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "CANCELLED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "CANCELLED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "complete",
+      "name": "valid both cancellation families",
+      "fixtureSha256": "1adb2083573c84a5fcc9c6b477e27013917d0b47a5e5c9a4911f72a95f24e924",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "CANCELLED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "CANCELLED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      }
+    },
+    {
+      "suite": "complete",
+      "name": "cancelled pointer with unfinished touch retained",
+      "fixtureSha256": "796069e4592e1b28d4614f062113c78ad5dbb94dabe38206e814faa017eeaaed",
+      "before": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "CANCELLED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      },
+      "after": {
+        "valid": true,
+        "construction": "ESTABLISHED",
+        "comparison": "RECORDED_CONDITIONS_MATCH",
+        "outcome": "CANCELLED",
+        "cause": "UNKNOWN",
+        "errors": [],
+        "targetErrors": []
+      }
+    }
+  ]
+}

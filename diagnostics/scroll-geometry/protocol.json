@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "iad-scroll-geometry-protocol-1",
+  "baselineHead": "cc1a760209e0dba9c94f17f64ad26acf71576bcc",
+  "repetitions": 3,
+  "engines": [
+    "chromium",
+    "webkit"
+  ],
+  "widths": [
+    375,
+    390,
+    765,
+    1280
+  ],
+  "height": 900,
+  "motion": [
+    "normal",
+    "reduce"
+  ],
+  "methods": [
+    "drag",
+    "tap"
+  ],
+  "surfaces": [
+    "product",
+    "plain"
+  ],
+  "toleranceCssPx": 0.5,
+  "scaleDprTolerance": 0,
+  "range": {
+    "min": -100,
+    "max": 100,
+    "step": 1,
+    "initial": 0,
+    "target": 50,
+    "thumbWidth": 20
+  },
+  "conditions": {
+    "A": {
+      "product": {
+        "scrollY": 0,
+        "rectY": 310
+      },
+      "plain": {
+        "scrollY": 0,
+        "rectY": 310
+      }
+    },
+    "B": {
+      "product": {
+        "scrollY": 1000,
+        "rectY": 310
+      },
+      "plain": {
+        "scrollY": 0,
+        "rectY": 310
+      }
+    },
+    "C": {
+      "product": {
+        "scrollY": 0,
+        "rectY": 410
+      },
+      "plain": {
+        "scrollY": 0,
+        "rectY": 310
+      }
+    },
+    "D": {
+      "product": {
+        "scrollY": 1000,
+        "rectY": 410
+      },
+      "plain": {
+        "scrollY": 0,
+        "rectY": 310
+      }
+    }
+  },
+  "input": {
+    "drag": "Playwright mouse, initial thumb to 75%-of-range, 10 move steps",
+    "tap": "Playwright touchscreen.tap at 75%-of-range"
+  },
+  "primaryOutcomes": [
+    "conditionConstruction",
+    "pointercancel",
+    "touchcancel",
+    "eventOrder",
+    "finalDomValue"
+  ],
+  "measurement": "passive capture listeners plus every requestAnimationFrame; finite samples do not prove absence between samples",
+  "causalAttribution": "UNKNOWN",
+  "physicalInput": "NOT_TESTED",
+  "traceOptions": {
+    "screenshots": false,
+    "snapshots": false,
+    "sources": false
+  },
+  "traceScope": "API commands/results, context and serialized raw capture are retained. Three separate full-resolution PNG phases replace screencast/DOM snapshots; those trace streams are NOT_RECORDED."
+}

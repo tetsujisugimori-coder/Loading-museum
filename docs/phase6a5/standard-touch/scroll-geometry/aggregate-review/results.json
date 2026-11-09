@@ -1,0 +1,1040 @@
+{
+  "syntheticOnly": true,
+  "notBrowserEvidence": true,
+  "fixtureRows": 768,
+  "fixturePairs": 384,
+  "totalTests": 67,
+  "satisfied": 59,
+  "unexpectedPasses": [
+    "unsupported_run_schema",
+    "hash_consistent_non_png_bytes",
+    "hash_consistent_non_trace_bytes",
+    "raw_image_binding_mismatch",
+    "all_screenshot_phases_reuse_one_file",
+    "unpaired_touchmove_before_completion",
+    "event_pointer_type_incompatible_with_input"
+  ],
+  "unexpectedFailures": [
+    "unsupported_report_status_ignored"
+  ],
+  "frozenAuditSha256": "3119fd0d918ba1fc853c31f145c5dc116755a03fbdf93e5c4d4874679300b126",
+  "frozenContractSha256": "717d7d3afa033887497e02218eebfc8f2e70da6f813e6679456673e72b98067f",
+  "tests": [
+    {
+      "name": "positive_full_768",
+      "classification": "required",
+      "expected": "PASS",
+      "actual": "PASS",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 0,
+      "errors": [],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "missing_trial",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 767,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "MISSING_TRIAL:webkit-1280-reduce-tap-D-r3-plain"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "duplicate_trial",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 769,
+      "pairs": 384,
+      "errorCount": 1,
+      "errors": [
+        "DUPLICATE_TRIAL:chromium-375-normal-drag-A-r1-product"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "unknown_trial",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 3,
+      "errors": [
+        "UNKNOWN_TRIAL:unknown-trial",
+        "unknown-trial:Error: RECORD_TRIAL_ID",
+        "MISSING_TRIAL:chromium-375-normal-drag-A-r1-product"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "run_binding_head",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 1,
+      "errors": [
+        "RUN_BINDING:head"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "raw_binding_head",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:BINDING:head"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "expected_binding_head",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 0,
+      "errorCount": 769,
+      "errors": [
+        "RUN_BINDING:head",
+        "chromium-375-normal-drag-A-r1-product:Error: RECORD_INVALID:BINDING:head",
+        "chromium-375-normal-drag-A-r1-plain:Error: RECORD_INVALID:BINDING:head",
+        "chromium-375-normal-drag-A-r2-product:Error: RECORD_INVALID:BINDING:head",
+        "chromium-375-normal-drag-A-r2-plain:Error: RECORD_INVALID:BINDING:head",
+        "chromium-375-normal-drag-A-r3-product:Error: RECORD_INVALID:BINDING:head",
+        "chromium-375-normal-drag-A-r3-plain:Error: RECORD_INVALID:BINDING:head",
+        "chromium-375-normal-drag-B-r1-product:Error: RECORD_INVALID:BINDING:head",
+        "chromium-375-normal-drag-B-r1-plain:Error: RECORD_INVALID:BINDING:head",
+        "chromium-375-normal-drag-B-r2-product:Error: RECORD_INVALID:BINDING:head",
+        "chromium-375-normal-drag-B-r2-plain:Error: RECORD_INVALID:BINDING:head",
+        "chromium-375-normal-drag-B-r3-product:Error: RECORD_INVALID:BINDING:head"
+      ],
+      "thrown": null
+    },
+    {
+      "name": "run_binding_tree",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 1,
+      "errors": [
+        "RUN_BINDING:tree"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "raw_binding_tree",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:BINDING:tree"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "expected_binding_tree",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 0,
+      "errorCount": 769,
+      "errors": [
+        "RUN_BINDING:tree",
+        "chromium-375-normal-drag-A-r1-product:Error: RECORD_INVALID:BINDING:tree",
+        "chromium-375-normal-drag-A-r1-plain:Error: RECORD_INVALID:BINDING:tree",
+        "chromium-375-normal-drag-A-r2-product:Error: RECORD_INVALID:BINDING:tree",
+        "chromium-375-normal-drag-A-r2-plain:Error: RECORD_INVALID:BINDING:tree",
+        "chromium-375-normal-drag-A-r3-product:Error: RECORD_INVALID:BINDING:tree",
+        "chromium-375-normal-drag-A-r3-plain:Error: RECORD_INVALID:BINDING:tree",
+        "chromium-375-normal-drag-B-r1-product:Error: RECORD_INVALID:BINDING:tree",
+        "chromium-375-normal-drag-B-r1-plain:Error: RECORD_INVALID:BINDING:tree",
+        "chromium-375-normal-drag-B-r2-product:Error: RECORD_INVALID:BINDING:tree",
+        "chromium-375-normal-drag-B-r2-plain:Error: RECORD_INVALID:BINDING:tree",
+        "chromium-375-normal-drag-B-r3-product:Error: RECORD_INVALID:BINDING:tree"
+      ],
+      "thrown": null
+    },
+    {
+      "name": "run_binding_protocolHash",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 1,
+      "errors": [
+        "RUN_BINDING:protocolHash"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "raw_binding_protocolHash",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:BINDING:protocolHash"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "expected_binding_protocolHash",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 0,
+      "errorCount": 769,
+      "errors": [
+        "RUN_BINDING:protocolHash",
+        "chromium-375-normal-drag-A-r1-product:Error: RECORD_INVALID:BINDING:protocolHash",
+        "chromium-375-normal-drag-A-r1-plain:Error: RECORD_INVALID:BINDING:protocolHash",
+        "chromium-375-normal-drag-A-r2-product:Error: RECORD_INVALID:BINDING:protocolHash",
+        "chromium-375-normal-drag-A-r2-plain:Error: RECORD_INVALID:BINDING:protocolHash",
+        "chromium-375-normal-drag-A-r3-product:Error: RECORD_INVALID:BINDING:protocolHash",
+        "chromium-375-normal-drag-A-r3-plain:Error: RECORD_INVALID:BINDING:protocolHash",
+        "chromium-375-normal-drag-B-r1-product:Error: RECORD_INVALID:BINDING:protocolHash",
+        "chromium-375-normal-drag-B-r1-plain:Error: RECORD_INVALID:BINDING:protocolHash",
+        "chromium-375-normal-drag-B-r2-product:Error: RECORD_INVALID:BINDING:protocolHash",
+        "chromium-375-normal-drag-B-r2-plain:Error: RECORD_INVALID:BINDING:protocolHash",
+        "chromium-375-normal-drag-B-r3-product:Error: RECORD_INVALID:BINDING:protocolHash"
+      ],
+      "thrown": null
+    },
+    {
+      "name": "run_binding_sourceHash",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 1,
+      "errors": [
+        "RUN_BINDING:sourceHash"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "raw_binding_sourceHash",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:BINDING:sourceHash"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "expected_binding_sourceHash",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 0,
+      "errorCount": 769,
+      "errors": [
+        "RUN_BINDING:sourceHash",
+        "chromium-375-normal-drag-A-r1-product:Error: RECORD_INVALID:BINDING:sourceHash",
+        "chromium-375-normal-drag-A-r1-plain:Error: RECORD_INVALID:BINDING:sourceHash",
+        "chromium-375-normal-drag-A-r2-product:Error: RECORD_INVALID:BINDING:sourceHash",
+        "chromium-375-normal-drag-A-r2-plain:Error: RECORD_INVALID:BINDING:sourceHash",
+        "chromium-375-normal-drag-A-r3-product:Error: RECORD_INVALID:BINDING:sourceHash",
+        "chromium-375-normal-drag-A-r3-plain:Error: RECORD_INVALID:BINDING:sourceHash",
+        "chromium-375-normal-drag-B-r1-product:Error: RECORD_INVALID:BINDING:sourceHash",
+        "chromium-375-normal-drag-B-r1-plain:Error: RECORD_INVALID:BINDING:sourceHash",
+        "chromium-375-normal-drag-B-r2-product:Error: RECORD_INVALID:BINDING:sourceHash",
+        "chromium-375-normal-drag-B-r2-plain:Error: RECORD_INVALID:BINDING:sourceHash",
+        "chromium-375-normal-drag-B-r3-product:Error: RECORD_INVALID:BINDING:sourceHash"
+      ],
+      "thrown": null
+    },
+    {
+      "name": "row_identity_pairId",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ROW_IDENTITY:pairId"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "row_identity_condition",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ROW_IDENTITY:condition"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "row_identity_engine",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ROW_IDENTITY:engine"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "row_identity_width",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ROW_IDENTITY:width"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "row_identity_motion",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ROW_IDENTITY:motion"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "row_identity_method",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ROW_IDENTITY:method"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "row_identity_repetition",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ROW_IDENTITY:repetition"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "row_identity_surface",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ROW_IDENTITY:surface"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "raw_trial_identity",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_TRIAL_ID"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "raw_pair_identity",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_TRIAL_ID"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "json_sha256_mismatch",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: FILE_HASH_OR_SIZE:chromium-375-normal-tap-A-r1-product.json"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "json_bytes_mismatch",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: FILE_HASH_OR_SIZE:chromium-375-normal-tap-A-r1-product.json"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "trace_sha256_mismatch",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: FILE_HASH_OR_SIZE:chromium-375-normal-tap-A-r1-product-trace.zip"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "trace_bytes_mismatch",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: FILE_HASH_OR_SIZE:chromium-375-normal-tap-A-r1-product-trace.zip"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "png_sha256_mismatch",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: FILE_HASH_OR_SIZE:chromium-375-normal-tap-A-r1-product-before.png"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "png_bytes_mismatch",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: FILE_HASH_OR_SIZE:chromium-375-normal-tap-A-r1-product-before.png"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "json_file_missing",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ENOENT: no such file or directory, open '/workspace/scratch/e622c1e9421e/loading-scroll-auditor-fault-tests/synthetic-fixture/chromium-375-normal-tap-A-r1-product.json'"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "trace_file_missing",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ENOENT: no such file or directory, open '/workspace/scratch/e622c1e9421e/loading-scroll-auditor-fault-tests/synthetic-fixture/chromium-375-normal-tap-A-r1-product-trace.zip'"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "png_file_missing",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ENOENT: no such file or directory, open '/workspace/scratch/e622c1e9421e/loading-scroll-auditor-fault-tests/synthetic-fixture/chromium-375-normal-tap-A-r1-product-before.png'"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "missing_screenshot_before",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: MISSING_IMAGE_PHASE"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "missing_screenshot_during",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: MISSING_IMAGE_PHASE"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "missing_screenshot_after",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: MISSING_IMAGE_PHASE"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "extra_screenshot_phase",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: MISSING_IMAGE_PHASE"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "unsafe_relative_file",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: UNSAFE_FILE_REFERENCE"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "unsafe_absolute_file",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: UNSAFE_FILE_REFERENCE"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "row_execution_error",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 1,
+      "errors": [
+        "EXECUTION_ERROR:chromium-375-normal-tap-A-r1-product"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "page_errors_missing",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: PAGE_ERRORS_MISSING_OR_PRESENT"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "page_errors_present",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: PAGE_ERRORS_MISSING_OR_PRESENT"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "unsupported_raw_schema",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:SCHEMA"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "unsupported_event_type",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:UNKNOWN_EVENT,UNPAIRED_POINTER_END"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "unpaired_pointer_end",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:UNPAIRED_POINTER_END"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "wrong_pointer_end_id",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:UNPAIRED_POINTER_END,UNFINISHED_LIFECYCLE"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "unpaired_touch_end",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:UNPAIRED_TOUCH_END"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "wrong_touch_end_id",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:UNPAIRED_TOUCH_END,UNFINISHED_LIFECYCLE"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "pointer_type_switch",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:POINTER_TYPE_CHANGED"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "unfinished_lifecycle_after_completed",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:UNFINISHED_LIFECYCLE"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "unsupported_report_status_ignored",
+      "classification": "status_recomputation",
+      "expected": "PASS",
+      "actual": "FAIL",
+      "satisfied": false,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 1,
+      "errors": [
+        "RUN_NOT_COMPLETE"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "unsupported_row_status_ignored",
+      "classification": "status_recomputation",
+      "expected": "PASS",
+      "actual": "PASS",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 0,
+      "errors": [],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "false_report_pass_cannot_hide_missing_row",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 767,
+      "pairs": 383,
+      "errorCount": 2,
+      "errors": [
+        "RUN_NOT_COMPLETE",
+        "MISSING_TRIAL:webkit-1280-reduce-tap-D-r3-plain"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "aggregate_fatal_error_present",
+      "classification": "boundary_probe",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 1,
+      "errors": [
+        "RUN_EXECUTION_ERRORS"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "unsupported_run_schema",
+      "classification": "boundary_probe",
+      "expected": "REJECT",
+      "actual": "PASS",
+      "satisfied": false,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 0,
+      "errors": [],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "missing_run_binding",
+      "classification": "robustness",
+      "expected": "REJECT",
+      "actual": "THREW",
+      "satisfied": true,
+      "thrown": "TypeError: Cannot read properties of undefined (reading 'head')"
+    },
+    {
+      "name": "rows_object_instead_of_array",
+      "classification": "robustness",
+      "expected": "REJECT",
+      "actual": "THREW",
+      "satisfied": true,
+      "thrown": "TypeError: report.rows is not iterable"
+    },
+    {
+      "name": "hash_consistent_non_png_bytes",
+      "classification": "format_probe",
+      "expected": "REJECT",
+      "actual": "PASS",
+      "satisfied": false,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 0,
+      "errors": [],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "hash_consistent_non_trace_bytes",
+      "classification": "format_probe",
+      "expected": "REJECT",
+      "actual": "PASS",
+      "satisfied": false,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 0,
+      "errors": [],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "raw_image_binding_mismatch",
+      "classification": "boundary_probe",
+      "expected": "REJECT",
+      "actual": "PASS",
+      "satisfied": false,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 0,
+      "errors": [],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "all_screenshot_phases_reuse_one_file",
+      "classification": "phase_provenance_probe",
+      "expected": "REJECT",
+      "actual": "PASS",
+      "satisfied": false,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 0,
+      "errors": [],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "unpaired_touchmove_before_completion",
+      "classification": "lifecycle_probe",
+      "expected": "REJECT",
+      "actual": "PASS",
+      "satisfied": false,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 0,
+      "errors": [],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "event_pointer_type_incompatible_with_input",
+      "classification": "lifecycle_probe",
+      "expected": "REJECT",
+      "actual": "PASS",
+      "satisfied": false,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 0,
+      "errors": [],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "untrusted_event",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 383,
+      "errorCount": 1,
+      "errors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:EVENT_METADATA"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "temporary_scroll_drift",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 768,
+      "pairs": 384,
+      "errorCount": 1,
+      "errors": [
+        "PAIR_NOT_ESTABLISHED:chromium-375-normal-tap-A-r1-product"
+      ],
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    }
+  ]
+}

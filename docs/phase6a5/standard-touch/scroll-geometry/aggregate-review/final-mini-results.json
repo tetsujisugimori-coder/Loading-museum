@@ -1,0 +1,1291 @@
+{
+  "syntheticOnly": true,
+  "notBrowserEvidence": true,
+  "fixtureRows": 2,
+  "fixturePairs": 1,
+  "scope": "Fault isolation in intentionally incomplete 2-row matrix. Every aggregate result remains FAIL; PASS here means no new target error beyond known missing 766 trials and binary aggregate count.",
+  "totalTests": 67,
+  "satisfied": 67,
+  "unexpectedPasses": [],
+  "unexpectedFailures": [],
+  "frozenAuditSha256": "176c0794c736d4f7864c0e69d3ce7963a0a2bad19678f6d438db0c15a2d5e18e",
+  "frozenContractSha256": "585b217c4f6cee8b7fcbd636c5723600e5ce826712808db66d5ab71d755592b4",
+  "tests": [
+    {
+      "name": "positive_full_768",
+      "classification": "required",
+      "expected": "PASS",
+      "actual": "PASS",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 1,
+      "errorCount": 767,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "missing_trial",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 1,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "MISSING_TRIAL:chromium-375-normal-tap-A-r1-plain"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "duplicate_trial",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 3,
+      "pairs": 1,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "DUPLICATE_TRIAL:chromium-375-normal-tap-A-r1-product"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "unknown_trial",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 770,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "UNKNOWN_TRIAL:unknown-trial",
+        "unknown-trial:Error: IMAGE_PHASE_IDENTITY",
+        "MISSING_TRIAL:chromium-375-normal-tap-A-r1-product"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "run_binding_head",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 1,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "RUN_BINDING:head"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "raw_binding_head",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:BINDING:head"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_TRIAL_BINDING"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "expected_binding_head",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 770,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "RUN_BINDING:head",
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:BINDING:head",
+        "chromium-375-normal-tap-A-r1-plain:Error: RECORD_INVALID:BINDING:head"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "run_binding_tree",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 1,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "RUN_BINDING:tree"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "raw_binding_tree",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:BINDING:tree"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_TRIAL_BINDING"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "expected_binding_tree",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 770,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "RUN_BINDING:tree",
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:BINDING:tree",
+        "chromium-375-normal-tap-A-r1-plain:Error: RECORD_INVALID:BINDING:tree"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "run_binding_protocolHash",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 1,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "RUN_BINDING:protocolHash"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "raw_binding_protocolHash",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:BINDING:protocolHash"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_TRIAL_BINDING"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "expected_binding_protocolHash",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 770,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "RUN_BINDING:protocolHash",
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:BINDING:protocolHash",
+        "chromium-375-normal-tap-A-r1-plain:Error: RECORD_INVALID:BINDING:protocolHash"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "run_binding_sourceHash",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 1,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "RUN_BINDING:sourceHash"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "raw_binding_sourceHash",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:BINDING:sourceHash"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_TRIAL_BINDING"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "expected_binding_sourceHash",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 771,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "RUN_BINDING:sourceHash",
+        "SOURCE_HASH_MANIFEST",
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:BINDING:sourceHash",
+        "chromium-375-normal-tap-A-r1-plain:Error: RECORD_INVALID:BINDING:sourceHash"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "row_identity_pairId",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ROW_IDENTITY:pairId"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "row_identity_condition",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ROW_IDENTITY:condition"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "row_identity_engine",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ROW_IDENTITY:engine"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "row_identity_width",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ROW_IDENTITY:width"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "PNG_VIEWPORT_DIMENSIONS"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "row_identity_motion",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ROW_IDENTITY:motion"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "row_identity_method",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: IMAGE_PHASE_IDENTITY"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "row_identity_repetition",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ROW_IDENTITY:repetition"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "row_identity_surface",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ROW_IDENTITY:surface"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "raw_trial_identity",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_TRIAL_ID"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_TRIAL_BINDING"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "raw_pair_identity",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_TRIAL_ID"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_TRIAL_BINDING"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "json_sha256_mismatch",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: FILE_HASH_OR_SIZE:chromium-375-normal-tap-A-r1-product.json"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "json_bytes_mismatch",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: FILE_HASH_OR_SIZE:chromium-375-normal-tap-A-r1-product.json"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "trace_sha256_mismatch",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: FILE_HASH_OR_SIZE:chromium-375-normal-tap-A-r1-product-trace.zip"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "trace_bytes_mismatch",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: FILE_HASH_OR_SIZE:chromium-375-normal-tap-A-r1-product-trace.zip"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "png_sha256_mismatch",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: FILE_HASH_OR_SIZE:chromium-375-normal-tap-A-r1-product-before.png"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "png_bytes_mismatch",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: FILE_HASH_OR_SIZE:chromium-375-normal-tap-A-r1-product-before.png"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "json_file_missing",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ENOENT: no such file or directory, open '/workspace/scratch/e622c1e9421e/loading-scroll-auditor-fault-tests/final-mini-fixture/chromium-375-normal-tap-A-r1-product.json'"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "[Errno 2] No such file or directory: '/workspace/scratch/e622c1e9421e/loading-scroll-auditor-fault-tests/final-mini-fixture/chromium-375-normal-tap-A-r1-product.json'"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "trace_file_missing",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ENOENT: no such file or directory, open '/workspace/scratch/e622c1e9421e/loading-scroll-auditor-fault-tests/final-mini-fixture/chromium-375-normal-tap-A-r1-product-trace.zip'"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "[Errno 2] No such file or directory: '/workspace/scratch/e622c1e9421e/loading-scroll-auditor-fault-tests/final-mini-fixture/chromium-375-normal-tap-A-r1-product-trace.zip'"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "png_file_missing",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: ENOENT: no such file or directory, open '/workspace/scratch/e622c1e9421e/loading-scroll-auditor-fault-tests/final-mini-fixture/chromium-375-normal-tap-A-r1-product-before.png'"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "[Errno 2] No such file or directory: '/workspace/scratch/e622c1e9421e/loading-scroll-auditor-fault-tests/final-mini-fixture/chromium-375-normal-tap-A-r1-product-before.png'"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "missing_screenshot_before",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: MISSING_IMAGE_PHASE"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "missing_screenshot_during",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: MISSING_IMAGE_PHASE"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "missing_screenshot_after",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: MISSING_IMAGE_PHASE"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "extra_screenshot_phase",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: MISSING_IMAGE_PHASE"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "unsafe_relative_file",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: UNSAFE_FILE_REFERENCE"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "UNSAFE_FILE_REFERENCE"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "unsafe_absolute_file",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: UNSAFE_FILE_REFERENCE"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "UNSAFE_FILE_REFERENCE"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "row_execution_error",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 1,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "EXECUTION_ERROR:chromium-375-normal-tap-A-r1-product"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "page_errors_missing",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: PAGE_ERRORS_MISSING_OR_PRESENT"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "page_errors_present",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: PAGE_ERRORS_MISSING_OR_PRESENT"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "unsupported_raw_schema",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:SCHEMA"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_RAW_RECORD_DIFFER:schemaVersion"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "unsupported_event_type",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:UNKNOWN_EVENT,UNPAIRED_POINTER_END"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_RAW_RECORD_DIFFER:events"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "unpaired_pointer_end",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:UNPAIRED_POINTER_END"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_RAW_RECORD_DIFFER:events"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "wrong_pointer_end_id",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:UNPAIRED_POINTER_END,UNFINISHED_LIFECYCLE"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_RAW_RECORD_DIFFER:events"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "unpaired_touch_end",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:UNPAIRED_TOUCH_END"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_RAW_RECORD_DIFFER:events"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "wrong_touch_end_id",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:UNPAIRED_TOUCH_END,UNFINISHED_LIFECYCLE"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_RAW_RECORD_DIFFER:events"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "pointer_type_switch",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:POINTER_TYPE_CHANGED"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_RAW_RECORD_DIFFER:events"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "unfinished_lifecycle_after_completed",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:UNFINISHED_LIFECYCLE"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_RAW_RECORD_DIFFER:events"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "unsupported_report_status_rejected",
+      "classification": "status_recomputation",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 1,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "RUN_NOT_COMPLETE"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "unsupported_row_status_ignored",
+      "classification": "status_recomputation",
+      "expected": "PASS",
+      "actual": "PASS",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 1,
+      "errorCount": 767,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "false_report_pass_cannot_hide_missing_row",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 1,
+      "pairs": 0,
+      "errorCount": 769,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "RUN_NOT_COMPLETE",
+        "MISSING_TRIAL:chromium-375-normal-tap-A-r1-plain"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "aggregate_fatal_error_present",
+      "classification": "boundary_probe",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 1,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "RUN_EXECUTION_ERRORS"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "unsupported_run_schema",
+      "classification": "boundary_probe",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 1,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "RUN_SCHEMA"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "missing_run_binding",
+      "classification": "robustness",
+      "expected": "REJECT",
+      "actual": "THREW",
+      "satisfied": true,
+      "newTargetErrors": [],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": "TypeError: Cannot read properties of undefined (reading 'head')"
+    },
+    {
+      "name": "rows_object_instead_of_array",
+      "classification": "robustness",
+      "expected": "REJECT",
+      "actual": "THREW",
+      "satisfied": true,
+      "newTargetErrors": [],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": "TypeError: report.rows is not iterable"
+    },
+    {
+      "name": "hash_consistent_non_png_bytes",
+      "classification": "format_probe",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_IMAGE_MANIFEST"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "PNG_SIGNATURE"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "hash_consistent_non_trace_bytes",
+      "classification": "format_probe",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 1,
+      "errorCount": 767,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "File is not a zip file"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    },
+    {
+      "name": "raw_image_binding_mismatch",
+      "classification": "boundary_probe",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_IMAGE_MANIFEST"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "all_screenshot_phases_reuse_one_file",
+      "classification": "phase_provenance_probe",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: IMAGE_PHASE_IDENTITY"
+      ],
+      "binaryErrors": [],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "unpaired_touchmove_before_completion",
+      "classification": "lifecycle_probe",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:ORPHAN_TOUCH_MOVE"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_RAW_RECORD_DIFFER:events"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "event_pointer_type_incompatible_with_input",
+      "classification": "lifecycle_probe",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:INPUT_ROUTE_MISMATCH"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_RAW_RECORD_DIFFER:events"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "untrusted_event",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 0,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "chromium-375-normal-tap-A-r1-product:Error: RECORD_INVALID:EVENT_METADATA"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_RAW_RECORD_DIFFER:events"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null
+    },
+    {
+      "name": "temporary_scroll_drift",
+      "classification": "required",
+      "expected": "REJECT",
+      "actual": "FAIL",
+      "satisfied": true,
+      "rows": 2,
+      "pairs": 1,
+      "errorCount": 768,
+      "rawAggregateStatus": "FAIL",
+      "newTargetErrors": [
+        "PAIR_NOT_ESTABLISHED:chromium-375-normal-tap-A-r1-product"
+      ],
+      "binaryErrors": [
+        {
+          "trialId": "chromium-375-normal-tap-A-r1-product",
+          "error": "TRACE_RAW_RECORD_DIFFER:events"
+        }
+      ],
+      "knownIncompleteMatrixIgnoredOnlyForFaultIsolation": true,
+      "thrown": null,
+      "targetOutcome": "COMPLETED"
+    }
+  ]
+}
