@@ -1,0 +1,403 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 test
+> npm run build && node --experimental-strip-types --test tests/rendered-html.test.mjs tests/museum-title-sequence-state.test.mjs tests/macintosh-interaction-state.test.mjs && vitest run --maxWorkers=2 tests/practical-b.test.tsx tests/practical-runtime.test.tsx tests/practical-a.test.tsx tests/practical-room.test.tsx tests/phase2-elastic.test.ts tests/phase2-regression.test.tsx tests/phase2-b.test.tsx tests/phase2-room.test.tsx tests/modern-mesh.test.ts tests/modern-drift-geometry.test.ts tests/modern-lens.test.tsx tests/modern-menu.test.tsx tests/paper-exhibit.test.tsx tests/glass-exhibit.test.tsx tests/modern-animation.test.tsx tests/macintosh-system-choice.test.tsx tests/waapi-samples.test.ts tests/waapi-gallery.test.tsx tests/waapi-interaction-state.test.ts tests/waapi-game-regressions.test.tsx tests/waapi-hp-regression.test.tsx tests/waapi-cascade-motion.test.tsx tests/dom11-selection.test.tsx tests/waapi-stage1-expanded.test.tsx tests/waapi-stage1-menu-coin.test.tsx && vitest run --maxWorkers=2 tests/phase4a.test.tsx && vitest run --maxWorkers=2 tests/phase4b-interactions.test.tsx tests/phase4b-async.test.tsx && vitest run --maxWorkers=2 tests/phase5-data.test.tsx tests/phase5-navigation.test.tsx && vitest run --maxWorkers=2 tests/phase5-focus-revision.test.tsx && vitest run --maxWorkers=2 tests/then-now-first.test.tsx tests/then-now-second.test.tsx tests/then-now-registration.test.ts tests/then-now-visibility.test.tsx && vitest run --maxWorkers=2 tests/waapi-observation.test.tsx tests/waapi-observation-independent.test.tsx && vitest run --maxWorkers=2 tests/waapi-stage2b.test.tsx && vitest run --maxWorkers=2 tests/then-now-phase2-first.test.tsx tests/then-now-phase2-second.test.tsx tests/then-now-phase2-card.test.tsx tests/then-now-phase2-registration.test.ts && vitest run --maxWorkers=2 tests/phase5b-editors.test.tsx tests/phase5b-compare.test.tsx tests/phase5b-registration.test.tsx && vitest run --maxWorkers=2 tests/pan-zoom.test.tsx tests/image-crop.test.tsx tests/before-after-compare.test.tsx tests/annotation-model.test.ts tests/image-annotation.test.tsx && node --experimental-strip-types scripts/verify-image-crop-precision-model.mjs && node --test tests/annotation-result-contract.test.mjs && vitest run --maxWorkers=2 tests/layer-composer-model.test.ts tests/layer-composer.test.tsx && node --test tests/layer-composer-evidence.test.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> loading-museum@0.1.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 6.0s
+  Running TypeScript ...
+  Finished TypeScript in 19.3s ...
+  Collecting page data using 4 workers ...
+  Generating static pages using 4 workers (0/3) ...
+✓ Generating static pages using 4 workers (3/3) in 752ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+✔ Read Meの実矩形はゴミ箱へ四方向から重なる (2.693124ms)
+✔ System 1→5→6→1→6をクリック相当の操作で連続選択する (1.542091ms)
+✔ System 5をEnter、System 6をSpace相当の操作で選択する (0.279829ms)
+✔ loadingから最初の年代へ移行する (2.490735ms)
+✔ 年代ごとにeraIndexが進む (0.299831ms)
+✔ 通常年代は共通の待機時間を使う (0.33595ms)
+✔ 最後の年代だけ長い待機時間を使う (0.24982ms)
+✔ 最後の年代後にindex-completeへ移行する (0.601ms)
+✔ index-complete後にtypingへ移行する (0.654359ms)
+✔ タイトル文字数が1文字ずつ増える (0.342123ms)
+✔ タイトル全文をtyping状態で保持する (0.38267ms)
+✔ タイトル全文表示後にtyping-holdへ移行する (0.316807ms)
+✔ typing-hold後にsignal-lockのbrightenへ移行する (0.695602ms)
+✔ signal-lockはbrightenからnoiseへ進む (0.971945ms)
+✔ signal-lockはnoiseからlockedへ進む (0.164635ms)
+✔ signal-lockのlocked後にcompleteへ進む (0.20228ms)
+✔ complete以降は状態が進まない (0.113726ms)
+✔ complete状態は最後の年代とタイトル全文を保持する (0.361381ms)
+✔ ReplayはrunIdを増やす (0.142941ms)
+✔ Replayは初期状態へ戻す (1.511526ms)
+✔ 古いrunIdによるタイマー更新を無視する (0.326443ms)
+✔ reduced motionは即時completeになる (0.140723ms)
+✔ 年代走査中の点灯数とノード状態をeraIndexから算出する (0.292848ms)
+✔ 年代走査完了後は全タイムラインノードが点灯する (0.422294ms)
+✔ タイムライン進捗率を年代件数と現在位置から算出する (0.185411ms)
+✔ 年代が1件でも安全な進捗率を返し、完了数を件数内へ制限する (0.176461ms)
+✔ 全年代と全時間定数を一か所で管理する (0.655204ms)
+✔ GitHub Pages用の静的HTMLへ9種類の展示を書き出す (47.714576ms)
+✔ 正式名称のタイトル導入、年代テーマ、確定演出、軽減モーションと再生操作を実装する (13.462693ms)
+✔ 既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き出す (4.689238ms)
+✔ カーソル展示室と8種類の体験展示を書き出す (4.870505ms)
+✔ カーソル展示のデータ、Pointer Events、性能とアクセシビリティ対応を実装する (31.729372ms)
+✔ Macintosh誕生展示室を加えた展示室・展示件数を表示する (6.393914ms)
+✔ Macintosh誕生展示室へ18種類の操作展示を書き出す (10.292733ms)
+✔ Apple I / Apple II 展示室へ因果関係が分かる13展示を実装する (24.511344ms)
+✔ Flash特別展示室へ18カテゴリ・66展示と優先デモを実装する (6.618749ms)
+✔ 再検討した9展示と現代Web継承比較を専用実装にする (9.894009ms)
+✔ FlashバナーのCTAを安全に2回強調し、価格とreduced motionを調整する (8.926719ms)
+✔ Flash専用展示の状態遷移、停止制御、操作可能なARIA構造を実装する (18.177464ms)
+✔ MS-DOS展示室の下へ閉じたLinux / UNIX展示室と5種類のデモを書き出す (16.849744ms)
+✔ 独立した消えたOS展示室へ6 OS・18種類のLoading再構成を書き出す (12.960712ms)
+✔ 展示室のデータ定義とタイマー停止・フォーカス復帰を実装する (2.677034ms)
+✔ 消えたOS展示のデータ・起動・停止・reduced motionを実装する (4.518186ms)
+✔ Linux / UNIXデモの再実行・速度切替・安全な停止を実装する (2.987382ms)
+✔ CSSとJavaScriptをLoading-museumサブパスから参照する (3.980981ms)
+✔ 静的export設定と既存レスポンシブ・reduced-motion対応を維持する (11.271306ms)
+✔ System 1〜6のbutton構造と非スクロールgridを静的に維持する (3.080199ms)
+✔ DOM ANIMATION ROOM を静的HTMLへ出力し、17操作のAPI体験を確認する (11.01206ms)
+✔ 既存ローディング標本の直下に、遅延生成するWAAPI標本ギャラリーを追加する (3.170476ms)
+ℹ tests 49
+ℹ suites 0
+ℹ pass 49
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 785.036208
+
+ RUN  v3.2.4 <CHECKOUT>
+
+ ✓ tests/waapi-hp-regression.test.tsx (4 tests) 5905ms
+   ✓ Damage直後Reset後、旧追従更新の予定時刻を過ぎても72を保つ  2191ms
+   ✓ Damage連打とHealは最新HPに収束し、Reset連打も不変  1582ms
+   ✓ Damage中のアンマウントは遅延更新を解除する  1151ms
+   ✓ 画面外停止と再表示は現在HPを保持し古い追従更新を残さない  980ms
+ ✓ tests/waapi-stage1-menu-coin.test.tsx (5 tests) 5161ms
+   ✓ Menu cursor belongs to the current row for buttons, keyboard, limits and Reset  1662ms
+   ✓ Coin entry, Replay and re-entry never grant points, including late completion after Reset  916ms
+   ✓ Coin explicit COLLECT awards once per Reset and rapid input cannot duplicate it  836ms
+   ✓ Coin has an explicit explanation separating demonstration, award and Reset  812ms
+   ✓ Menu detail metadata describes actual no-fill decoration rather than generic sample defaults  932ms
+ ✓ tests/waapi-gallery.test.tsx (12 tests) 18089ms
+   ✓ WAAPI標本ギャラリー操作 > 初期DOMを遅延し、正規化検索・解除・開閉を扱う  2079ms
+   ✓ WAAPI標本ギャラリー操作 > 複合フィルター・0件・解除後の全件表示と閉鎖取消を扱う  1905ms
+   ✓ WAAPI標本ギャラリー操作 > Replay、コード解説、ModalとToastの両方向を操作する  874ms
+   ✓ WAAPI標本ギャラリー操作 > Consoleの全操作、速度、Seek、実playStateを安全に反映する  623ms
+   ✓ WAAPI標本ギャラリー操作 > Reduced motion時は自動ループを残さず、代替表示を説明する  482ms
+   ✓ WAAPI標本ギャラリー操作 > Fade/Slideは手動再生、Button/Toggleは直接操作だけを提供する  391ms
+   ✓ WAAPI標本ギャラリー操作 > ゲーム標本を直接操作し、Resetで意味のある初期状態へ戻す  1642ms
+   ✓ WAAPI標本ギャラリー操作 > 新しいゲーム標本、5軸フィルター、AI共通状態を操作できる  2111ms
+   ✓ WAAPI標本ギャラリー操作 > AI比較モードは一括フェーズを進め、閉じるとループを停止する  2378ms
+   ✓ WAAPI標本ギャラリー操作 > 追加ゲーム14件は固有DOM・状態・操作結果を提供する  4975ms
+   ✓ WAAPI標本ギャラリー操作 > Card Dealの全工程とAIの完了・エラー・リセットを操作できる  596ms
+ ✓ tests/practical-room.test.tsx (15 tests) 2642ms
+   ✓ practical collection registration and lifecycle > renders refresh with reset and source  360ms
+ ✓ tests/waapi-stage1-expanded.test.tsx (23 tests) 3450ms
+   ✓ parry reduced-motion labels agree with early and active judgment  507ms
+   ✓ parry exact boundaries and adjacent times, reduced=false  406ms
+   ✓ parry exact boundaries and adjacent times, reduced=true  320ms
+ ✓ tests/phase2-regression.test.tsx (7 tests) 3046ms
+   ✓ phase and reset regression > retains plasma phase while changing speed or pausing  819ms
+   ✓ phase and reset regression > keeps metaballs in place when paused  1165ms
+   ✓ phase and reset regression > restores the first ink color after reset  439ms
+ ✓ tests/macintosh-system-choice.test.tsx (2 tests) 542ms
+   ✓ System 1〜6の操作回帰 > クリックでSystem 1→5→6→1→6を連続して切り替える  383ms
+ ✓ tests/dom11-selection.test.tsx (4 tests) 1117ms
+   ✓ DOM11 表示番号の偶数選択 > P1〜P6を生成し、P2/P4/P6だけを強調して結果説明と一致する  482ms
+ ✓ tests/practical-b.test.tsx (6 tests) 1879ms
+   ✓ hold early release and Escape do not confirm; completed hold confirms only on release  443ms
+   ✓ elastic press changes transform and release settles without endless frames  636ms
+ ✓ tests/modern-animation.test.tsx (3 tests) 424ms
+ ✓ tests/phase2-room.test.tsx (4 tests) 520ms
+ ✓ tests/phase2-b.test.tsx (4 tests) 472ms
+ ✓ tests/practical-a.test.tsx (8 tests) 3053ms
+   ✓ step failure prevents next, retry retains current stage, reset restores defaults  1556ms
+   ✓ sort cancel leaves order; only drop changes it; reset restores  484ms
+   ✓ spotlight arrows move its actual paint center  550ms
+ ✓ tests/waapi-cascade-motion.test.tsx (14 tests) 680ms
+ ✓ tests/glass-exhibit.test.tsx (3 tests) 495ms
+ ✓ tests/waapi-game-regressions.test.tsx (15 tests) 867ms
+ ✓ tests/paper-exhibit.test.tsx (3 tests) 341ms
+ ✓ tests/modern-lens.test.tsx (1 test) 183ms
+ ✓ tests/modern-menu.test.tsx (1 test) 199ms
+ ✓ tests/modern-drift-geometry.test.ts (2 tests) 167ms
+ ✓ tests/modern-mesh.test.ts (2 tests) 53ms
+ ✓ tests/practical-runtime.test.tsx (1 test) 108ms
+ ✓ tests/waapi-samples.test.ts (7 tests) 35ms
+ ✓ tests/waapi-interaction-state.test.ts (2 tests) 4ms
+ ✓ tests/phase2-elastic.test.ts (2 tests) 3ms
+
+ Test Files  25 passed (25)
+      Tests  150 passed (150)
+   Start at  22:53:49
+   Duration  53.07s (transform 3.78s, setup 0ms, collect 14.43s, tests 49.43s, environment 23.60s, prepare 6.01s)
+
+
+ RUN  v3.2.4 <CHECKOUT>
+
+ ✓ tests/phase4a.test.tsx (32 tests) 2411ms
+   ✓ toast-stack: close unmounts and reset permits another operation  403ms
+
+ Test Files  1 passed (1)
+      Tests  32 passed (32)
+   Start at  22:54:43
+   Duration  5.86s (transform 1.52s, setup 0ms, collect 2.13s, tests 2.41s, environment 637ms, prepare 232ms)
+
+
+ RUN  v3.2.4 <CHECKOUT>
+
+ ✓ tests/phase4b-async.test.tsx (14 tests) 676ms
+ ✓ tests/phase4b-interactions.test.tsx (11 tests) 775ms
+
+ Test Files  2 passed (2)
+      Tests  25 passed (25)
+   Start at  22:54:50
+   Duration  2.16s (transform 353ms, setup 0ms, collect 717ms, tests 1.45s, environment 1.11s, prepare 278ms)
+
+
+ RUN  v3.2.4 <CHECKOUT>
+
+ ✓ tests/phase5-data.test.tsx (8 tests) 2298ms
+   ✓ table sorting preserves selected IDs and editing target  737ms
+   ✓ table escape cancels and keyboard enter commits without changing ID  340ms
+ ✓ tests/phase5-navigation.test.tsx (12 tests) 2657ms
+   ✓ date reverse selection swaps date-only endpoints and repeats a new range  865ms
+   ✓ date disabled day cannot select and arrows skip it with escape clearing  305ms
+   ✓ date month and year navigation retains start and supports cross-month ranges  450ms
+
+ Test Files  2 passed (2)
+      Tests  20 passed (20)
+   Start at  22:54:53
+   Duration  5.27s (transform 307ms, setup 0ms, collect 934ms, tests 4.95s, environment 2.81s, prepare 428ms)
+
+
+ RUN  v3.2.4 <CHECKOUT>
+
+ ✓ tests/phase5-focus-revision.test.tsx (8 tests) 1225ms
+   ✓ six conditions: keyboard deletes position 1 and returns to enabled add  413ms
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  22:54:59
+   Duration  2.89s (transform 286ms, setup 0ms, collect 655ms, tests 1.23s, environment 536ms, prepare 125ms)
+
+
+ RUN  v3.2.4 <CHECKOUT>
+
+ ✓ tests/then-now-first.test.tsx (7 tests) 349ms
+ ✓ tests/then-now-second.test.tsx (17 tests) 622ms
+ ✓ tests/then-now-registration.test.ts (3 tests) 9ms
+ ✓ tests/then-now-visibility.test.tsx (1 test) 726ms
+   ✓ visible new study remains operable after a stale false observer entry and stops outside the viewport  722ms
+
+ Test Files  4 passed (4)
+      Tests  28 passed (28)
+   Start at  22:55:03
+   Duration  6.45s (transform 743ms, setup 0ms, collect 1.98s, tests 1.71s, environment 3.46s, prepare 664ms)
+
+
+ RUN  v3.2.4 <CHECKOUT>
+
+ ✓ tests/waapi-observation-independent.test.tsx (7 tests) 492ms
+ ✓ tests/waapi-observation.test.tsx (37 tests) 16802ms
+   ✓ independent observation controller contract (WAAPI double) > rapid play/pause and slider changes do not allocate competing animations  458ms
+   ✓ actual gallery integration: observation never owns game state > Menu selection survives observation seek, finish, reverse, mode exit, and ordinary Reset still works  1419ms
+   ✓ actual gallery integration: observation never owns game state > Coin preview repeatedly finishes and rewinds with zero points; normal COLLECT awards once  1522ms
+   ✓ actual gallery integration: observation never owns game state > collected Coin retains its score and collected guard through observation and return  1304ms
+   ✓ actual gallery integration: observation never owns game state > observation reset does not reset collected game state and old callback cannot revive playback  1003ms
+   ✓ actual gallery integration: observation never owns game state > mode exit cancels observation and reopening cannot resurrect the old running instance  943ms
+   ✓ actual gallery integration: observation never owns game state > gallery closure cancels observation; reopening has no old callback or auto-score  1128ms
+   ✓ actual gallery integration: observation never owns game state > gallery media notification reaches observation without changing Coin collected state  691ms
+   ✓ observed Coin normal motion cancellation > Replay after observation cancels running normal motion on reduced ON without changing score  867ms
+   ✓ observed Coin normal motion cancellation > Replay after observation cancels paused normal motion on reduced ON without changing score  1013ms
+   ✓ observed Coin normal motion cancellation > COLLECT after observation cancels running normal motion on reduced ON without changing score  832ms
+   ✓ observed Coin normal motion cancellation > COLLECT after observation cancels paused normal motion on reduced ON without changing score  1001ms
+   ✓ observed Coin normal motion cancellation > reduced explicit Replay uses reduced definition and repeated ON/OFF does not award or autoplay  903ms
+   ✓ observed Coin normal motion cancellation > rapid mode switches retain collected state and Reset permits exactly one new acquisition  1108ms
+   ✓ observed Coin normal motion cancellation > observed normal Coin leaving the viewport cancels, re-entry stays stopped, and unmount clears old instances  984ms
+
+ Test Files  2 passed (2)
+      Tests  44 passed (44)
+   Start at  22:55:11
+   Duration  19.43s (transform 617ms, setup 0ms, collect 1.24s, tests 17.29s, environment 1.58s, prepare 358ms)
+
+
+ RUN  v3.2.4 <CHECKOUT>
+
+ ✓ tests/waapi-stage2b.test.tsx (24 tests) 2608ms
+   ✓ parry independent timing observation > judges the shared boundaries only on commit and preserves results through arbitrary seek  386ms
+   ✓ dodge independent timing observation > judges the shared boundaries only on commit and preserves results through arbitrary seek  309ms
+
+ Test Files  1 passed (1)
+      Tests  24 passed (24)
+   Start at  22:55:32
+   Duration  4.21s (transform 459ms, setup 0ms, collect 625ms, tests 2.61s, environment 480ms, prepare 126ms)
+
+
+ RUN  v3.2.4 <CHECKOUT>
+
+ ✓ tests/then-now-phase2-second.test.tsx (20 tests) 1434ms
+ ✓ tests/then-now-phase2-card.test.tsx (3 tests) 1645ms
+   ✓ solo modes retain each side state, Reset resets the pair and reduced motion reports no automatic play  361ms
+   ✓ page hidden suspends a phase-two editor without destroying its work; close still unmounts  1143ms
+ ✓ tests/then-now-phase2-registration.test.ts (2 tests) 12ms
+ ✓ tests/then-now-phase2-first.test.tsx (13 tests) 441ms
+
+ Test Files  4 passed (4)
+      Tests  38 passed (38)
+   Start at  22:55:37
+   Duration  4.59s (transform 1.01s, setup 0ms, collect 1.33s, tests 3.53s, environment 2.14s, prepare 574ms)
+
+
+ RUN  v3.2.4 <CHECKOUT>
+
+ ✓ tests/phase5b-compare.test.tsx (7 tests) 916ms
+   ✓ diff enforces resource boundaries explicitly, and navigation focuses actual hunk  376ms
+ ✓ tests/phase5b-editors.test.tsx (10 tests) 1231ms
+   ✓ kanban CRUD, reorder then edit, draft cancellation and undo preserve identities  388ms
+ ✓ tests/phase5b-registration.test.tsx (7 tests) 1153ms
+   ✓ mounts, searches and closes kanban-board without retaining hidden state  385ms
+
+ Test Files  3 passed (3)
+      Tests  24 passed (24)
+   Start at  22:55:43
+   Duration  5.92s (transform 1.38s, setup 0ms, collect 2.19s, tests 3.30s, environment 1.79s, prepare 415ms)
+
+
+ RUN  v3.2.4 <CHECKOUT>
+
+ ✓ tests/image-crop.test.tsx (30 tests) 3927ms
+   ✓ reapplies actual displayed wide minimum values 16 times without drift  762ms
+   ✓ reapplies actual displayed photo minimum values 16 times without drift  412ms
+   ✓ reapplies actual displayed square minimum values 16 times without drift  425ms
+   ✓ actual numeric form, independent numeric vs pointer equivalence, invalid value messages and input arrow scope  372ms
+ ✓ tests/image-annotation.test.tsx (14 tests) 4786ms
+   ✓ adds each tool without dragging, edits text and geometry, deletes and restores exact annotations  1775ms
+   ✓ rejects invalid numbers without committing history; form Escape does not silently submit  513ms
+   ✓ guide advances in edited number order, pauses and resumes, locks editing and resets from view  579ms
+   ✓ pointer cancel/Escape restore committed shape, reject foreign and late events and one drag is one history entry  470ms
+   ✓ arrowhead paint explicitly follows its own color and Undo without context-stroke support  324ms
+ ✓ tests/pan-zoom.test.tsx (13 tests) 2017ms
+   ✓ owner pointer alone can commit; cancel rolls back and stale events cannot commit  352ms
+   ✓ buttons, numeric validation, keyboard scope, touch modes and Reset/fit selection contracts  417ms
+   ✓ searches coordinate exhibits, discards drag on switching and returns focus on close  410ms
+ ✓ tests/before-after-compare.test.tsx (40 tests) 1712ms
+   ✓ keyboard steps, Shift steps and endpoints operate both boundary and native range; ARIA matches mask/alpha  332ms
+ ✓ tests/annotation-model.test.ts (52 tests) 298ms
+
+ Test Files  5 passed (5)
+      Tests  149 passed (149)
+   Start at  22:55:49
+   Duration  10.03s (transform 974ms, setup 0ms, collect 2.41s, tests 12.74s, environment 2.52s, prepare 623ms)
+
+{"head":"6b1b32b6cd6d8684ab622043960277824925a348","checks":45,"passed":45,"failures":[]}
+✔ 16 distinct cases are mandatory by default (2.096695ms)
+✔ reject invalid config {"BROWSERS":""} (1.297327ms)
+✔ reject invalid config {"BROWSERS":"chromium,chromium"} (0.527176ms)
+✔ reject invalid config {"BROWSERS":"firefox"} (1.750247ms)
+✔ reject invalid config {"WIDTHS":"0"} (0.222119ms)
+✔ reject invalid config {"WIDTHS":"375,375"} (0.667356ms)
+✔ reject invalid config {"WIDTHS":""} (0.513733ms)
+✔ reject invalid config {"MOTIONS":"reduce,reduce"} (0.369862ms)
+✔ reject invalid config {"MOTIONS":"fast"} (2.342195ms)
+✔ accepts complete current legitimate result (2.28988ms)
+✔ reject empty result (1.721089ms)
+✔ reject partial result (1.473513ms)
+✔ reject old result (0.349974ms)
+✔ reject head result (0.200276ms)
+✔ reject tree result (0.128997ms)
+✔ reject build result (0.191505ms)
+✔ reject failed result (0.276879ms)
+✔ reject duplicate result (0.269539ms)
+✔ reject fault result (0.154823ms)
+✔ reject recovery result (0.171214ms)
+✔ reject input result (0.160183ms)
+✔ reject images result (0.108806ms)
+✔ accepts real hash-matched image evidence (22.403529ms)
+✔ reject image evidence missing (2.783774ms)
+✔ reject image evidence changed (3.336896ms)
+✔ reject image evidence signature (3.156029ms)
+✔ reject image evidence manifest (2.956536ms)
+✔ reject image evidence duplicate (3.090546ms)
+✔ reject image evidence path (2.245074ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 227.468882
+
+ RUN  v3.2.4 <CHECKOUT>
+
+ ✓ tests/layer-composer-model.test.ts (27 tests) 30ms
+ ✓ tests/layer-composer.test.tsx (15 tests) 2066ms
+   ✓ adds duplicates removes and synchronizes undo with numeric panel  566ms
+
+ Test Files  2 passed (2)
+      Tests  42 passed (42)
+   Start at  22:56:01
+   Duration  3.76s (transform 292ms, setup 0ms, collect 497ms, tests 2.10s, environment 723ms, prepare 268ms)
+
+✔ positive exact evidence contract (2.638788ms)
+✔ reject missing (2.596666ms)
+✔ reject oldHead (0.477305ms)
+✔ reject oldNonce (1.246101ms)
+✔ reject wrongTree (2.569052ms)
+✔ reject oldBuild (0.612958ms)
+✔ reject error (0.545449ms)
+✔ reject skipped (1.489094ms)
+✔ reject missingCheck (1.002932ms)
+✔ reject fakePNG (1.358993ms)
+✔ reject noOracle (0.462751ms)
+✔ reject failedFault (2.171779ms)
+✔ reject noRecovery (0.449573ms)
+✔ reject fakeInput (7.670549ms)
+✔ reject duplicate (0.336774ms)
+✔ reject invalidType (0.358963ms)
+✔ bad matrix rejected (6.737053ms)
+✔ scalar known values and tamper detection (1.454627ms)
+✔ reject stale build head (1.549019ms)
+✔ reject stale build tree (0.175049ms)
+✔ reject stale build sourceHash (0.114664ms)
+✔ reject stale build outputHash (0.323123ms)
+✔ reject failed or dirty build (2.761393ms)
+✔ reject invalid pngCount 2 (5.984854ms)
+✔ reject invalid pngCount 36 (0.29083ms)
+✔ reject invalid pngCount Infinity (0.980072ms)
+✔ reject invalid pngCount NaN (5.471162ms)
+✔ reject invalid pngCount null (0.153676ms)
+✔ reject invalid scalarSamples 2 (0.104075ms)
+✔ reject invalid scalarSamples 36 (0.142004ms)
+✔ reject invalid scalarSamples Infinity (0.509347ms)
+✔ reject invalid scalarSamples NaN (0.162477ms)
+✔ reject invalid scalarSamples null (0.293357ms)
+✔ per-case evidence files must all exist and match hashes (90.293197ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 363.967075
