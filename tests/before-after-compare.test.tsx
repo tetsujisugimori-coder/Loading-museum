@@ -155,7 +155,7 @@ it('rejects a loaded image with no intrinsic pixels, then recovers on explicit r
   naturalWidth.mockReturnValue(300); click('図版を再読込'); load(); expect(screen.queryByRole('alert')).toBeNull(); expect(screen.getByTestId('bc-canvas').dataset.ready).toBe('true');
 });
 it('registration adds exactly one searchable comparison exhibit and closing/reopening resets it', () => {
-  expect(phase6aExhibits.map(e => e.id)).toEqual(['pan-zoom', 'image-crop', 'before-after-compare', 'image-annotation']);
+  expect(phase6aExhibits.map(e => e.id)).toEqual(['pan-zoom', 'image-crop', 'before-after-compare', 'image-annotation', 'layer-composer']);
   render(<PracticalRoom phase={4} />); click('部品展示室を開く'); fireEvent.change(screen.getByLabelText('部品名・用途・技術で検索'), { target: { value: '画像編集・比較' } });
   click('Before / After Compare / 画像の変化を見比べる'); load(); fireEvent.keyDown(screen.getByRole('slider', { name: '比較位置' }), { key: 'End' }); expect(read()).toBe('100%');
   click('部品展示室を閉じる'); expect(screen.queryByTestId('before-after-compare')).toBeNull(); click('部品展示室を開く'); load(); expect(read()).toBe('50%');
