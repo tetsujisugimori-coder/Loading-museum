@@ -1,7 +1,7 @@
 # 第7期B — Small Motion Collection II
 
 基準 main 8eae48a276baacebfed23f602294f30f32b6a2bd（PR82統合済み）。Issue83。
-既存274作品・13室の各IDを保持し、現代アニメーション室に6作品を追加。目標280作品、歴史145／現代158／横断23、13室。登録の自動集計は scripts/audit-phase7a.mjs。
+既存274作品・13室の各IDを保持し、現代アニメーション室に6作品を追加。目標280作品、歴史145／現代158／横断23、13室。登録の自動集計は scripts/audit-phase7b.mjs。
 
 ## 作品と観察
 
@@ -27,3 +27,13 @@ tests/phase7b-first.test.tsx、phase7b-second.test.tsx は固定時間・境界�
 全npm suiteの先行実行は747件成功、追加独立試験を含む最新専用群は最終CIで再実行する。全館監査scripts/audit-phase7b.mjsは基準274件の全レコード完全一致と新6件を確認。独立レビューは実装分担者による未担当後半レビューと、別担当の先行/全体レビューを区別。
 
 ローカル失敗原記録を保持：依存symlinkによるTurbopack失敗、process SIGKILL、旧build件数不一致、旧Flash横断リンクtimeout、defaultWebKitの共有library不足。WPE wrapperによるLinuxWebKit追加検証とCI標準WebKitは別環境。最終CI・最終matrix・独立原票照合が完了するまでマージ推奨NO。全研究・物理入力を合格とはしない。
+
+## 2026-11-10 再検証記録
+
+4785adb93cb47db47c260bcb7453f8df98db0992のclean checkoutで、bound build、lint、型検査、全751試験（Vitest639＋Node112）、正式条件と同じ16ブラウザ条件がローカル成功。pause検査はPlaywright制御時計で途中進行を明示的に作り、0<progress<1を前提として停止・再開を検証する。これは実時間の性能計測ではない。
+
+独立原画像レビューが後半作品のWebKitネイティブselect低コントラストを追加検出したため、16操作条件の成功だけで受入とはしない。局所的なlight color-scheme指定を追加し、同じWebKit条件で再確認する。
+
+追加の既存第7期Aローカル回帰はChromium7条件成功、1280px reduced-motionでscreenshot安定待ちtimeout。残るWebKit8条件は未実行。過去のWebKit1280 reduced-motion timeoutとは別の記録であり、原因はUNKNOWN。既存assertは緩和していない。
+
+GitHub Actionsは14workflowがqueuedでrunner未割当。CI成功とは扱わず、原因UNKNOWN・最終技術受入PARTIAL・限定マージ推奨NOを維持。元の失敗原票も削除しない。
