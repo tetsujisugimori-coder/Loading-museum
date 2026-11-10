@@ -42,7 +42,7 @@ try{
    }
    if(id==='swipe-dismiss'){
     const target=stage.getByRole('button',{name:'スワイプするカード'});await target.focus();await page.keyboard.press('ArrowRight');await page.clock.runFor(500);assert.equal(await state(),'dismissed');await button('Undo').click();assert.equal(await state(),'idle');
-    const b=await target.boundingBox();await page.mouse.move(b.x+b.width/2,b.y+b.height/2);await page.mouse.down();await page.mouse.move(b.x+b.width/2+130,b.y+b.height/2,{steps:8});await page.mouse.up();await page.clock.runFor(500);assert.equal(await state(),'dismissed');await button('Undo').click();
+    await page.clock.runFor(300);await target.scrollIntoViewIfNeeded();const b=await target.boundingBox();await page.mouse.move(b.x+b.width/2,b.y+b.height/2);await page.mouse.down();await page.mouse.move(b.x+b.width/2+130,b.y+b.height/2,{steps:8});await page.mouse.up();await page.clock.runFor(500);assert.equal(await state(),'dismissed');await button('Undo').click();
    }
    if(id==='magnetic-attraction'){
     const target=stage.getByRole('button',{name:'磁力の対象。矢印キーで仮想ポインターを動かす'});await target.focus();await page.keyboard.press('ArrowRight');assert.equal(await state(),'Attracted');assert.equal(Number(await root.getAttribute('data-x'))>0,motion==='no-preference');await page.keyboard.press('Escape');assert.equal(await state(),'Rest');await button('仮想ポインターを左へ').click();assert.equal(await state(),'Attracted');
