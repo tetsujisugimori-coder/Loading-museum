@@ -1,0 +1,84 @@
+{
+  "source": "/workspace/scratch/e622c1e9421e/loading-phase7c/work/phase7c/final-matrix/2026-11-10T11-55-24.473Z/failure-trace.zip",
+  "sha256": "504084908872c0da7c012592491a3e53ee5204e0d1db32154c6c8437e4f1a79f",
+  "selected": [
+    {
+      "type": "before",
+      "callId": "call@7879",
+      "startTime": 415236.916,
+      "class": "Frame",
+      "method": "click",
+      "params": {
+        "selector": "#modern-exhibit-flip-layout >> internal:role=button[name=\"再開\"s]",
+        "strict": true,
+        "timeout": 9000
+      },
+      "pageId": "page@2fb4ef70a3c04b96ff37b4375c21f6de",
+      "beforeSnapshot": "before@call@7879"
+    },
+    {
+      "type": "after",
+      "callId": "call@7879",
+      "endTime": 415344.428,
+      "point": {
+        "x": 132.02,
+        "y": 594.2
+      },
+      "afterSnapshot": "after@call@7879"
+    },
+    {
+      "type": "before",
+      "callId": "call@7881",
+      "startTime": 415366.876,
+      "class": "BrowserContext",
+      "method": "clockRunFor",
+      "params": {
+        "ticksNumber": 100
+      },
+      "beforeSnapshot": "before@call@7881"
+    },
+    {
+      "type": "after",
+      "callId": "call@7881",
+      "endTime": 415374.336,
+      "afterSnapshot": "after@call@7881"
+    },
+    {
+      "type": "before",
+      "callId": "call@7883",
+      "startTime": 415374.784,
+      "class": "Frame",
+      "method": "getAttribute",
+      "params": {
+        "selector": "#modern-exhibit-flip-layout >> internal:testid=[data-testid=\"flip-layout\"s]",
+        "strict": true,
+        "name": "data-time",
+        "timeout": 9000
+      },
+      "pageId": "page@2fb4ef70a3c04b96ff37b4375c21f6de",
+      "beforeSnapshot": "before@call@7883"
+    },
+    {
+      "type": "after",
+      "callId": "call@7883",
+      "endTime": 415399.197,
+      "result": {
+        "value": "192"
+      },
+      "afterSnapshot": "after@call@7883"
+    },
+    {
+      "snapshotName": "after@call@7883",
+      "timestamp": 415441.389,
+      "attributes": {
+        "__playwright_target__": "call@7883",
+        "class": "mcSpatial",
+        "data-testid": "flip-layout",
+        "data-time": "272",
+        "data-work": "flip-layout",
+        "data-state": "再生中",
+        "data-progress": "0.1511111111111111"
+      }
+    }
+  ]
+}
