@@ -29,4 +29,4 @@ Issue #85。基準 main `547c7d7a460d40bf90591d842cb354ef13958b8a`（第7期B PR
 
 実機iPhone Safari・VoiceOver・物理入力はNOT_TESTED。#44、#54、Image Adjustment Lab native WebKit touch、旧WebKit timeout原因UNKNOWNを保全。本工程はそれらの解決・Draft解除・マージ・本番公開を許可しない。
 
-現在は実装中。総合・CI・独立受入は未判定、マージ推奨NO。
+実装と初期検証を完了。最終CI・独立再受入はPR #86の最新報告で確認する。[検証と失敗履歴](verification.md)。その確認前はマージ推奨NO。

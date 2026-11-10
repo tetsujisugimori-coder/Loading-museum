@@ -37,6 +37,7 @@ jobs:
         run: |
           export PLAYWRIGHT_MODULE="$RUNNER_TEMP/composition-tools/node_modules/playwright"
           node scripts/verify-phase7c-browser.mjs
+          node scripts/audit-phase7c-results.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
