@@ -1,3 +1,4 @@
+import {smallMotionIIExhibits} from './smallMotionIIExhibits';
 import {exhibitRooms} from './exhibitRooms';
 import {appleEarlyExhibits} from './appleEarlyExhibits';
 import {macintoshBirthExhibits} from './macintoshBirthExhibits';
@@ -42,6 +43,7 @@ export const museumCatalog:CatalogRecord[]=[
   ...waapiSamples.map(x=>record('waapi',x.id,x.name,x.category==='OS / Historical'?['historical']:['modern'],x.category,x.tags)),
   ...modernExhibits.map(x=>record('modern-animation',x.id,x.title,['modern'],'原典着想コレクション',x.tags,`#modern-exhibit-${x.id}`)),
   ...smallMotionExhibits.map(x=>record('modern-animation',x.id,x.title,['modern'],'Small Motion Collection',x.tags,`#modern-exhibit-${x.id}`)),
+  ...smallMotionIIExhibits.map(x=>record('modern-animation',x.id,x.title,['modern'],'Small Motion Collection II',x.tags,`#modern-exhibit-${x.id}`)),
   ...modern('experiments',[...phase2Studies,...phase2BStudies]),
   ...modern('practical',practicalExhibits),
   ...modern('practical-advanced',[...phase4aExhibits,...phase4bExhibits,...phase5aExhibits,...phase5bExhibits,...phase6aExhibits]),

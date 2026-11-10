@@ -1,3 +1,7 @@
+## 第7期B：Small Motion Collection II（Issue #83）
+
+既存274展示を保全し、動きの仕組みを観察する6作品を同じ現代アニメーション室へ追加。280展示・13室。モデル値と実測、教材結果と演出を分離します。[設計・検証と限界](docs/phase7b/README.md)。最終CI・独立レビュー前、Draft維持・マージ推奨NO。以下の過去記録は当時の状態として保全。
+
 ## 2026-11-10 / Phase7A Historical・Modern / Small Motion
 
 Issue #81、branch `feat/phase7a-small-motion`。最新main38838bc7の268展示・13室を監査。22既存データファイルと9常設作品本体を保全し、現代常設展内に6小作品を追加。274展示・13室、歴史145／現代152／横断23。主題の分類メタデータ、全館検索、部屋/コレクションの階層、既存本体を開く案内を追加。Bell / Bookmark / Squash / Send / Blink / Dropの独自SVG、途中観察・停止/再生・速度・Replay/Reset・generation取消・可視性停止を実装。既存波紋/視線/ベル/物理との差を明記。
