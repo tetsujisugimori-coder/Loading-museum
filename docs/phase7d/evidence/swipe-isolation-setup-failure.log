@@ -1,0 +1,40 @@
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/phase7d-swipe-red-UThfIA
+
+ ❯ tests/phase7d-independent.test.tsx (10 tests | 1 failed | 9 skipped) 40ms
+   × normal horizontal release survives the browser lost-capture event 39ms
+     → React is not defined
+   ↓ held confirmation cannot be resurrected by a queued frame after cancellation
+   ↓ reduced motion does not confirm before the threshold, including key release
+   ↓ press restoration callback cannot overwrite a subsequent press
+   ↓ magnetic observed geometry is not substituted with its computed transform
+   ↓ halo geometry resize never takes keyboard focus from its actual target
+   ↓ status cancelled callback remains inert even if cancellation cannot dequeue it
+   ↓ active hold is cancelled across hidden-return and cannot revive, reduced=false
+   ↓ active hold is cancelled across hidden-return and cannot revive, reduced=true
+   ↓ withdrawn active permission prevents timer completion and deliberate restart
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/phase7d-independent.test.tsx > normal horizontal release survives the browser lost-capture event
+ReferenceError: React is not defined
+ ❯ SwipeDismiss app/components/interactive-motion/GestureExhibits.tsx:75:2
+
+ ❯ Object.react_stack_bottom_frame ../loading-phase7c/node_modules/react-dom/cjs/react-dom-client.development.js:25904:20
+ ❯ renderWithHooks ../loading-phase7c/node_modules/react-dom/cjs/react-dom-client.development.js:7662:22
+ ❯ updateFunctionComponent ../loading-phase7c/node_modules/react-dom/cjs/react-dom-client.development.js:10166:19
+ ❯ beginWork ../loading-phase7c/node_modules/react-dom/cjs/react-dom-client.development.js:11778:18
+ ❯ runWithFiberInDEV ../loading-phase7c/node_modules/react-dom/cjs/react-dom-client.development.js:874:13
+ ❯ performUnitOfWork ../loading-phase7c/node_modules/react-dom/cjs/react-dom-client.development.js:17641:22
+ ❯ workLoopSync ../loading-phase7c/node_modules/react-dom/cjs/react-dom-client.development.js:17469:41
+ ❯ renderRootSync ../loading-phase7c/node_modules/react-dom/cjs/react-dom-client.development.js:17450:11
+ ❯ performWorkOnRoot ../loading-phase7c/node_modules/react-dom/cjs/react-dom-client.development.js:16583:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 skipped (10)
+   Start at  05:04:37
+   Duration  1.26s (transform 220ms, setup 0ms, collect 330ms, tests 40ms, environment 474ms, prepare 135ms)
+
