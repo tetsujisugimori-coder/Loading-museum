@@ -21,6 +21,31 @@ describe('classification registry',()=>{
  it('classifies historical WAAPI by subject and references Then/Now without duplication',()=>{expect(museumCatalog.find(x=>x.originalId==='classic-mac-watch')?.categories).toEqual(['historical']);const cross=museumCatalog.filter(x=>x.categories.length===2);expect(cross).toHaveLength(23);expect(categorySummary('historical').objects+categorySummary('modern').objects-cross.length).toBe(274);});
  it('supports category filtering, search and collection hierarchy',()=>{render(<MuseumNavigation/>);fireEvent.click(screen.getByRole('button',{name:/Modern Motion/}));fireEvent.change(screen.getByLabelText('全館の作品・展示室・タグで検索'),{target:{value:'Small Motion'}});expect(screen.getByRole('status').textContent).toContain('6展示');expect(screen.getAllByRole('link',{name:/Bell Bounce/})).toHaveLength(1);expect(screen.getByRole('link',{name:'作品を選ぶ'}).getAttribute('href')).toBe('#small-motion-collection');});
 });
+describe('catalog focus readiness',()=>{
+ const fixture=()=>{
+  const host=document.createElement('article');
+  host.innerHTML='<button id="vanished-operating-systems-toggle" aria-expanded="true">Room</button><div inert aria-hidden="true"><article data-museum-id="beos-tracker-launch" style="visibility:hidden">Tracker</article></div>';
+  document.body.append(host);
+  return {host,panel:host.querySelector('div')!,target:host.querySelector<HTMLElement>('[data-museum-id]')!};
+ };
+ const navigate=()=>act(()=>{history.replaceState(null,'','#browse-vanished-operating-systems?exhibit=beos-tracker-launch');window.dispatchEvent(new Event('hashchange'));});
+ beforeEach(()=>{history.replaceState(null,'','#');vi.stubGlobal('CSS',{escape:(s:string)=>s});HTMLElement.prototype.scrollIntoView=vi.fn();});
+ afterEach(()=>{history.replaceState(null,'','#');document.querySelectorAll('[data-test-focus-fixture]').forEach(n=>n.remove());});
+ it('waits for an opened panel and re-scrolls a skipped hidden descendant before focusing',()=>{
+  const {host,panel,target}=fixture();host.dataset.testFocusFixture='';render(<MuseumNavigation/>);navigate();advance(16);expect(document.activeElement).not.toBe(target);
+  panel.removeAttribute('inert');panel.removeAttribute('aria-hidden');advance(16);expect(target.scrollIntoView).toHaveBeenCalled();expect(document.activeElement).not.toBe(target);
+  target.style.visibility='visible';advance(16);expect(document.activeElement).toBe(target);expect(frames.size).toBe(0);
+ });
+ it('cancels an older pending destination on a newer hash',()=>{
+  const {host,panel,target}=fixture();host.dataset.testFocusFixture='';render(<MuseumNavigation/>);navigate();advance(16);
+  act(()=>{history.replaceState(null,'','#loading-gallery');window.dispatchEvent(new Event('hashchange'));});panel.removeAttribute('inert');panel.removeAttribute('aria-hidden');target.style.visibility='visible';advance(100);expect(document.activeElement).not.toBe(target);expect(frames.size).toBe(0);
+ });
+ it('does not steal focus after a user action or unmount',()=>{
+  const {host,panel,target}=fixture();host.dataset.testFocusFixture='';const view=render(<MuseumNavigation/>);navigate();advance(16);fireEvent.keyDown(window,{key:'Tab'});
+  panel.removeAttribute('inert');panel.removeAttribute('aria-hidden');target.style.visibility='visible';advance(100);expect(document.activeElement).not.toBe(target);expect(frames.size).toBe(0);
+  navigate();view.unmount();advance(100);expect(document.activeElement).not.toBe(target);expect(frames.size).toBe(0);
+ });
+});
 describe('small motion lifecycle',()=>{
  for(const item of smallMotionExhibits)it(`${item.id}: seek, replay, stop, resume, reset and stale frame`,()=>{
   render(<SmallMotionPlayer id={item.id}/>);button('再生');advance(200);expect(progress()).toBeGreaterThan(0);button('停止');const paused=progress();advance(300);expect(progress()).toBe(paused);button('再生');advance(200);expect(progress()).toBeGreaterThan(paused);

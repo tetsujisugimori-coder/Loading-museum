@@ -65,3 +65,7 @@ The early uncommitted Chromium375 two-condition pilot passed but is **not final-
 Physical iPhone Safari, physical mouse/touch gestures, VoiceOver/screen-reader experience, real OS-background-tab behavior and native WebKit range touch are NOT_TESTED. A synthetic visibility event checks our lifecycle handler but is not a claim about browser scheduling of a real background tab. This does not resolve existing native WebKit touch issues.
 
 **Submission-stage verdict: PARTIAL / merge recommendation NO until independent review and exact-HEAD final CI complete.** Final verdict, corrections, CI links and evidence digests are recorded on the Draft PR. Draft is retained and no merge is performed.
+
+### Nested focus correction
+
+The serial final-HEAD run exposed a reduced-motion navigation failure in an existing Vanished OS room. The target existed and the room had removed `inert`, but its skipped descendant retained computed `visibility: hidden`. Waiting two seconds and focusing again did not recover. Independent replay confirmed that re-scrolling after layout, then checking visibility and actual focus, did recover. The navigation now uses a bounded two-second readiness loop that re-scrolls, waits for an uninert/visible destination, verifies focus success, and cancels on a newer hash, user input or unmount. No global visibility, animation or content-visibility CSS is changed. Three regression cases cover readiness and cancellation. Earlier failing matrix reports are retained; the corrected final HEAD must run all 16 conditions again.

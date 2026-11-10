@@ -3,8 +3,33 @@ import {useEffect,useState} from 'react';
 import {categorySummary,museumCatalog,museumRooms,museumTotal,type MotionCategory} from '../data/museumClassification';
 import './museum-navigation.css';
 
+// Opening a room commits asynchronously, and content-visibility may retain a skipped
+// descendant's old inherited visibility until it is scrolled into the rendered area.
+// Recheck the real focus destination; cancel when a newer navigation or user action wins.
+let cancelDestination=()=>{};
+function focusDestination(resolve:()=>HTMLElement|null|undefined){
+  cancelDestination();
+  let frame=0,started:number|undefined,cancelled=false;
+  const stop=()=>{cancelled=true;cancelAnimationFrame(frame);};
+  cancelDestination=stop;
+  const attempt=(now:number)=>{
+    if(cancelled)return;
+    started??=now;
+    const target=resolve();
+    if(target?.isConnected&&!target.closest('[inert], [aria-hidden="true"]')){
+      target.scrollIntoView({block:'start'});
+      if(getComputedStyle(target).visibility==='visible'){
+        target.tabIndex=-1;target.focus({preventScroll:true});
+        if(document.activeElement===target){stop();return;}
+      }
+    }
+    if(now-started<2000)frame=requestAnimationFrame(attempt);else stop();
+  };
+  frame=requestAnimationFrame(attempt);
+}
 // Only opens the existing instance. Classification does not render copies of exhibits.
 function followHash(){
+  cancelDestination();
   const hash=window.location.hash.slice(1);
   if(hash.startsWith('browse-')){
     const [entrance,params]=hash.split('?');
@@ -15,21 +40,32 @@ function followHash(){
     const toggle=root?.matches('button')?root:root?.querySelector<HTMLElement>('button[aria-expanded]');
     if(toggle?.getAttribute('aria-expanded')==='false')toggle.click();
     root?.scrollIntoView({block:'start'});toggle?.focus({preventScroll:true});
-    if(id){const record=museumCatalog.find(x=>x.room===room.id&&x.originalId===id);requestAnimationFrame(()=>{const scope=root?.matches('button')?root.parentElement:root;const target=scope?.querySelector<HTMLElement>(`[data-museum-id="${CSS.escape(id)}"]`)??[...scope?.querySelectorAll<HTMLElement>('h2,h3,h4')??[]].find(n=>record&&n.textContent?.trim()===record.title);if(target){target.tabIndex=-1;target.scrollIntoView({block:'start'});target.focus({preventScroll:true});}});}
+    if(id){
+      const record=museumCatalog.find(x=>x.room===room.id&&x.originalId===id);
+      focusDestination(()=>{
+        const scope=root?.matches('button')?root.parentElement:root;
+        return scope?.querySelector<HTMLElement>(`[data-museum-id="${CSS.escape(id)}"]`)??[...scope?.querySelectorAll<HTMLElement>('h2,h3,h4')??[]].find(n=>record&&n.textContent?.trim()===record.title);
+      });
+    }
   }else if(hash.startsWith('flash-category-')){
     const room=document.getElementById('flash-special-exhibit');const button=room?.querySelector<HTMLButtonElement>('button[aria-expanded]');
     if(button?.getAttribute('aria-expanded')==='false')button.click();
     // The Flash component also selects the requested category before focusing it.
-    const target=document.getElementById(hash);target?.scrollIntoView({block:'start'});if(target){target.tabIndex=-1;target.focus({preventScroll:true});}
+    focusDestination(()=>document.getElementById(hash));
   }else {
     const target=document.getElementById(hash);const panel=target?.closest<HTMLElement>('[aria-hidden="true"]');
     if(panel?.id){const toggle=document.querySelector<HTMLButtonElement>(`button[aria-controls="${CSS.escape(panel.id)}"]`);if(toggle?.getAttribute('aria-expanded')==='false')toggle.click();}
-    if(target&&panel){requestAnimationFrame(()=>{target.scrollIntoView({block:'start'});target.tabIndex=-1;target.focus({preventScroll:true});});}
+    if(target&&panel)focusDestination(()=>target);
   }
 }
 export default function MuseumNavigation(){
   const [category,setCategory]=useState<MotionCategory|null>(null),[query,setQuery]=useState('');
-  useEffect(()=>{followHash();window.addEventListener('hashchange',followHash);return()=>window.removeEventListener('hashchange',followHash);},[]);
+  useEffect(()=>{
+    const stop=()=>cancelDestination();
+    followHash();window.addEventListener('hashchange',followHash);
+    for(const event of ['pointerdown','keydown','wheel'])window.addEventListener(event,stop,{passive:true});
+    return()=>{stop();window.removeEventListener('hashchange',followHash);for(const event of ['pointerdown','keydown','wheel'])window.removeEventListener(event,stop);};
+  },[]);
   const records=museumCatalog.filter(x=>(!category||x.categories.includes(category))&&`${x.title} ${x.collection} ${x.tags.join(' ')} ${museumRooms.find(r=>r.id===x.room)?.title??''}`.toLowerCase().includes(query.trim().toLowerCase()));
   const rooms=museumRooms.filter(r=>records.some(x=>x.room===r.id));
   return <nav onClick={e=>{const anchor=(e.target as HTMLElement).closest('a');if(anchor?.hash===location.hash)window.dispatchEvent(new Event('hashchange'));}} className="museumNavigation" aria-label="歴史と現代から展示を探す">
