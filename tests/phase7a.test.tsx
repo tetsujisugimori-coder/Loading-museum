@@ -42,7 +42,7 @@ describe('catalog focus readiness',()=>{
   act(()=>{history.replaceState(null,'','#browse-ms-dos-pc-command-line');window.dispatchEvent(new Event('hashchange'));});
   const toggle=container.querySelector('#ms-dos-pc-command-line-toggle')!;expect(toggle.getAttribute('aria-expanded')).toBe('true');
   fireEvent.click(toggle);expect(toggle.getAttribute('aria-expanded')).toBe('false');
-  fireEvent.click(screen.getByRole('link',{name:room.roomTitle,exact:true}));expect(toggle.getAttribute('aria-expanded')).toBe('true');
+  fireEvent.click(screen.getByRole('link',{name:room.roomTitle}));expect(toggle.getAttribute('aria-expanded')).toBe('true');
  });
  it('cancels an older pending destination on a newer hash',()=>{
   const {host,panel,target}=fixture();host.dataset.testFocusFixture='';render(<MuseumNavigation/>);navigate();advance(16);
