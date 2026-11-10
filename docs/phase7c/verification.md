@@ -31,3 +31,7 @@
 ## 保留
 
 実機iPhone Safari、VoiceOver、物理入力、真のOS背景制御はNOT_TESTED。非表示イベントは合成、タッチはPlaywright API tapである。#44/#54、既存native WebKit touchおよび旧WebKit timeoutの原因UNKNOWNを維持。最終CI・独立再受入前はマージ推奨NO、Draftを維持。
+
+## 原画像レビューでの追加修正
+
+3b31519候補の正式Chromium8条件原PNGで、Sequenceの帯が安定ID+1、一覧が表示順+1という番号ずれを独立担当が検出。Sequenceは両方を現在の「動作」順番号へ統一し、Stagger/Parallelは両方を要素IDへ統一した。追加・削除・順序変更を含む同じ独立入力で1FAIL/6PASSから7PASSへ変化し、時間作品13試験も成功。旧原画像とREDログは保持。修正後HEADの全CIと再レビューはPR報告で別途確認する。

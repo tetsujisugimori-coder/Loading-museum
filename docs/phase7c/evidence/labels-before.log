@@ -1,0 +1,40 @@
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/phase7c-review-labels
+
+ ❯ tests/phase7c-independent.test.tsx (7 tests | 1 failed) 665ms
+   ✓ independent: reverse relay calls the disappearing B stage exit, not entrance  364ms
+   ✓ independent dynamic reduced motion stagger-motion 57ms
+   ✓ independent dynamic reduced motion sequence-builder 68ms
+   ✓ independent dynamic reduced motion parallel-choreography 58ms
+   ✓ independent: sequence edits invalidate an already queued callback 73ms
+   ✓ independent: FLIP uses x and width inversion that reconstructs supplied first rectangle 27ms
+   × independent: sequence timeline labels match observation rows before and after reorder 17ms
+     → expected [ '要素2', '要素3', '要素4', '要素5' ] to deeply equal [ '要素1', '要素2', '要素3', '要素4' ]
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/phase7c-independent.test.tsx > independent: sequence timeline labels match observation rows before and after reorder
+AssertionError: expected [ '要素2', '要素3', '要素4', '要素5' ] to deeply equal [ '要素1', '要素2', '要素3', '要素4' ]
+
+- Expected
++ Received
+
+  [
+-   "要素1",
+    "要素2",
+    "要素3",
+    "要素4",
++   "要素5",
+  ]
+
+ ❯ tests/phase7c-independent.test.tsx:18:434
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed (7)
+   Start at  20:47:49
+   Duration  2.02s (transform 273ms, setup 0ms, collect 457ms, tests 665ms, environment 551ms, prepare 117ms)
+
