@@ -42,4 +42,6 @@ let hasPhase5b=false;try{read('app/data/phase5bExhibits.ts');hasPhase5b=true;}ca
 if(hasPhase5b) counts.phase5b=data('phase5bExhibits').phase5bExhibits.length;
 let hasPhase6a=false;try{read('app/data/phase6aExhibits.ts');hasPhase6a=true;}catch{}
 if(hasPhase6a) counts.phase6a=data('phase6aExhibits').phase6aExhibits.length;
+let hasSmallMotion=false;try{read('app/data/smallMotionExhibits.ts');hasSmallMotion=true;}catch{}
+if(hasSmallMotion) counts.smallMotion=data('smallMotionExhibits').smallMotionExhibits.length;
 console.log(JSON.stringify({ref:ref||'working-tree',counts,total:Object.values(counts).reduce((a,b)=>a+b,0)},null,2));

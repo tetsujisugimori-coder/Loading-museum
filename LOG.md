@@ -1,3 +1,9 @@
+## 2026-11-10 / Phase7A Historical・Modern / Small Motion
+
+Issue #81、branch `feat/phase7a-small-motion`。最新main38838bc7の268展示・13室を監査。22既存データファイルと9常設作品本体を保全し、現代常設展内に6小作品を追加。274展示・13室、歴史145／現代152／横断23。主題の分類メタデータ、全館検索、部屋/コレクションの階層、既存本体を開く案内を追加。Bell / Bookmark / Squash / Send / Blink / Dropの独自SVG、途中観察・停止/再生・速度・Replay/Reset・generation取消・可視性停止を実装。既存波紋/視線/ベル/物理との差を明記。
+
+変更：新分類データ/案内、Small Motionデータ/モデル/player/CSS、pageと既存roomのhash案内、台帳/README/試験/16条件CI。既存ブラウザ検査は全館期待件数のみ268→274へ更新。新規依存なし。既存単体一式と新17試験の初回成功、Chromium375×2のdirty校正成功。WebKit既定起動のライブラリ不足を保全し、公式MiniBrowser wrapperで再準備。最終HEADの各結果と独立レビューはPRで固定して記録。実機/VoiceOver/native WebKit touch未検証、#44/#54/未統合Image Adjustment Lab継続。提出段階PARTIAL・マージNO、Draft維持。マージ/公開なし。
+
 ## 2026-11-09 / Phase6A-6 Layer Composer
 
 Issue #79。main ab05ffa4e95a68bc387bcfbd04a16bad6e331a75から独立実装。267→268展示、13室維持、実用28→29。既存PR70/72/74/76/78および旧証拠は保全。Canvas合成、編集履歴、取消、数値とキーボード、PNG出力を追加。固定RGBAの独立スカラー式とPNG復号、故障対照、16条件を検証対象とする。最終CI・独立レビュー結果はIssue/PRと台帳でHEADごとに追跡。実機未検証を自動試験と区別し、マージ・公開は行わない。

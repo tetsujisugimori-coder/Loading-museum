@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { practicalExhibits } from '../data/practicalExhibits';
 import { phase4aExhibits, type Phase4Id } from '../data/phase4aExhibits';
 import { phase4bExhibits, type Phase4BId } from '../data/phase4bExhibits';
@@ -26,6 +26,7 @@ export default function PracticalRoom({phase=3}:{phase?:3|4}) {
   const list=collection.filter(e=>`${e.title} ${e.use} ${e.technology.join(' ')} ${e.tags.join(' ')}`.toLowerCase().includes(query.toLowerCase()));
   const item=list.find(e=>e.id===selected);
   const suffix=phase===4?'-phase4':'';
+  useEffect(()=>{const navigate=()=>{const [room,params]=location.hash.slice(1).split('?');if(room!==`browse-${phase===4?'practical-advanced':'practical'}`)return;const id=new URLSearchParams(params).get('exhibit');if(id){setQuery('');setSelected(id);setOpen(true);}};navigate();window.addEventListener('hashchange',navigate);return()=>window.removeEventListener('hashchange',navigate);},[phase]);
   return <section className={`practicalRoom${phase===4?' phase4Room':''}`} aria-labelledby={`practical-heading${suffix}`}>
     <h2 id={`practical-heading${suffix}`}>{phase===4?'第4・5期：実用UI部品の観察室':'実用UI部品の観察室'}</h2>
     <p>{phase===4?'第4期A・B／第5期A・B／第6期A-1・A-2・A-3・A-4・A-6':'第3期'}：状態を伝え、操作を案内する部品。{collection.length}種類の独自再構成。</p>

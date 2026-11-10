@@ -1,0 +1,2719 @@
+{
+  "baseline": "38838bc76ca05aab27be6b714b60a9e1a211b20d",
+  "head": "38838bc76ca05aab27be6b714b60a9e1a211b20d",
+  "preservedDataFiles": [
+    {
+      "file": "app/data/appleEarlyBeginnerGuide.ts",
+      "sha256": "374995301c907a25525807b66f42ba481cc5060af149365cf9453c4e444e7202"
+    },
+    {
+      "file": "app/data/appleEarlyExhibits.ts",
+      "sha256": "904426e76eaa3614db3ef3fda475e08875664c9c30d5758a9228dde1794c9443"
+    },
+    {
+      "file": "app/data/cursorExhibits.ts",
+      "sha256": "e2a7c340906c9b7c45fb695785f4ac3247908fffc3bd86ff1ae9b1757944c94a"
+    },
+    {
+      "file": "app/data/exhibitRooms.ts",
+      "sha256": "5f781c2d56603b44681dcf81c1973827c0187e7bc90a996846b62703a5a8b962"
+    },
+    {
+      "file": "app/data/flashExhibits.ts",
+      "sha256": "71309b9b4439021cf161278c8ff3fba13557433d66cb104b8f0e8f95c40b966f"
+    },
+    {
+      "file": "app/data/glass-bar.json",
+      "sha256": "2fdf775a316b2e8592f9f0a0b7c2c547fc763f0cfe3ff0e504da461bedf823b1"
+    },
+    {
+      "file": "app/data/macintoshBirthExhibits.ts",
+      "sha256": "4576d347287b3a982102ff3ae431231061caf03941202f25d19a93fccdbe6910"
+    },
+    {
+      "file": "app/data/modernExhibits.ts",
+      "sha256": "520c15703a659fcb14e88117232e1cc78267b3d91070eddd38e99947a7c5865a"
+    },
+    {
+      "file": "app/data/paper.json",
+      "sha256": "4cc78f1f508880f1b8932b534affeeed2230811d03a5bc8c102f42654b167472"
+    },
+    {
+      "file": "app/data/phase2BStudies.ts",
+      "sha256": "f925ab1fd7e8e694ddbf6b075ec8f804d108e6e34cb49b32ade004ff7cb1397e"
+    },
+    {
+      "file": "app/data/phase2Studies.ts",
+      "sha256": "dc14178b9cf9a80930c48c5cafe097c9df66cd58b0b7883cde2ab2d2adc92330"
+    },
+    {
+      "file": "app/data/phase4aExhibits.ts",
+      "sha256": "e32cbc5d3a1726d64ffd1ca01240f02c08ac6b33cc1c8ce2642e0971b0da2672"
+    },
+    {
+      "file": "app/data/phase4bExhibits.ts",
+      "sha256": "ee12c47730aa5b98577500c247ce1268a9ab99d1575a2be7669554a4d0abd631"
+    },
+    {
+      "file": "app/data/phase5aExhibits.ts",
+      "sha256": "5a0915d6b2de659554b073e07e74ca220702b74513e7fc7ea0896bbcc41d61c3"
+    },
+    {
+      "file": "app/data/phase5bExhibits.ts",
+      "sha256": "fdffa300631d04caaa7e71d2f52c1db9e76bab18c5f00c73b74d0350a18ad244"
+    },
+    {
+      "file": "app/data/phase6aExhibits.ts",
+      "sha256": "4fbf3c66e7ecef0a079eb08cb542585d108cdb3e3f710fb24df7df9bf4bd452f"
+    },
+    {
+      "file": "app/data/practicalExhibits.ts",
+      "sha256": "eb0598449dbef3b520a2e7351c03895139e0fea4b9419636b0bf9b6400a593d2"
+    },
+    {
+      "file": "app/data/thenNowPhaseTwo.ts",
+      "sha256": "ccaad91e9eec8f2351cc0b2c67cf561450260fc98960777ee1146cef157c3216"
+    },
+    {
+      "file": "app/data/thenNowStudies.ts",
+      "sha256": "31b5000a586f93d4ef4f688722039b4eab1f74e597126938ad7e64f3c4a59608"
+    },
+    {
+      "file": "app/data/vanishedOperatingSystems.ts",
+      "sha256": "6f8e24e38b2774485c3990c38cca032668b2b60257e5b0db59b88dc4a183e0c1"
+    },
+    {
+      "file": "app/data/waapiAdditionalSamples.ts",
+      "sha256": "d2d796ab15d170b50372fdf7ff96834f5b506342fd8e1ba130a05a478193a4c7"
+    },
+    {
+      "file": "app/data/waapiSamples.ts",
+      "sha256": "9192ea98459f9f818ed264fd40a9e4aaf61ec9bfd4f59799cb56602805922697"
+    }
+  ],
+  "originalGalleryHash": "6eba33b0f5a5f62792596b3e5e89a89df915c1b9a26aaf6f4606e0fded3d1afd",
+  "total": 274,
+  "rooms": [
+    {
+      "id": "ms-dos-pc-command-line",
+      "title": "MS-DOS・PCコマンドライン展示室",
+      "count": 8,
+      "historical": 8,
+      "modern": 0
+    },
+    {
+      "id": "linux-unix",
+      "title": "Linux / UNIX 展示室",
+      "count": 5,
+      "historical": 5,
+      "modern": 0
+    },
+    {
+      "id": "vanished-operating-systems",
+      "title": "消えたOS展示室",
+      "count": 18,
+      "historical": 18,
+      "modern": 0
+    },
+    {
+      "id": "apple",
+      "title": "Apple I / Apple II 展示室",
+      "count": 13,
+      "historical": 13,
+      "modern": 0
+    },
+    {
+      "id": "macintosh",
+      "title": "Macintosh誕生展示室",
+      "count": 18,
+      "historical": 18,
+      "modern": 0
+    },
+    {
+      "id": "cursor",
+      "title": "カーソル展示室",
+      "count": 8,
+      "historical": 8,
+      "modern": 8
+    },
+    {
+      "id": "flash",
+      "title": "Flash特別展示室",
+      "count": 66,
+      "historical": 66,
+      "modern": 15
+    },
+    {
+      "id": "dom",
+      "title": "DOM ANIMATION ROOM",
+      "count": 17,
+      "historical": 0,
+      "modern": 17
+    },
+    {
+      "id": "waapi",
+      "title": "WAAPI標本室",
+      "count": 47,
+      "historical": 3,
+      "modern": 44
+    },
+    {
+      "id": "modern-animation",
+      "title": "現代アニメーション常設展",
+      "count": 12,
+      "historical": 0,
+      "modern": 12
+    },
+    {
+      "id": "experiments",
+      "title": "インタラクティブ作品・表現実験",
+      "count": 12,
+      "historical": 0,
+      "modern": 12
+    },
+    {
+      "id": "practical",
+      "title": "実用UI部品の観察室",
+      "count": 12,
+      "historical": 0,
+      "modern": 12
+    },
+    {
+      "id": "practical-advanced",
+      "title": "第4・5期：実用UI部品の観察室",
+      "count": 29,
+      "historical": 0,
+      "modern": 29
+    }
+  ],
+  "gallery": {
+    "total": 9,
+    "historical": 6,
+    "modern": 3
+  },
+  "historical": {
+    "objects": 145,
+    "rooms": 8
+  },
+  "modern": {
+    "objects": 152,
+    "rooms": 8
+  },
+  "crossReferences": [
+    "cursor:standard-arrow",
+    "cursor:link-hand",
+    "cursor:text-ibeam",
+    "cursor:waiting-pointer",
+    "cursor:forbidden-pointer",
+    "cursor:drag-pointer",
+    "cursor:click-effect",
+    "cursor:cursor-trail",
+    "flash:tween-modern-map",
+    "flash:mouse-modern-map",
+    "flash:audio-modern-map",
+    "flash:tn-vector-morph",
+    "flash:tn-cursor-creature",
+    "flash:tn-kinetic-type",
+    "flash:tn-physics",
+    "flash:tn-intro",
+    "flash:tn-sound",
+    "flash:tn-mask-theatre",
+    "flash:tn-elastic-navigation",
+    "flash:tn-parallax-stage",
+    "flash:tn-frame-lab",
+    "flash:tn-isometric-explorer",
+    "flash:tn-preloader-theatre"
+  ],
+  "records": [
+    {
+      "key": "loading-gallery:loading-1",
+      "originalId": "loading-1",
+      "room": "loading-gallery",
+      "categories": [
+        "historical"
+      ],
+      "collection": "ローディング常設ギャラリー"
+    },
+    {
+      "key": "loading-gallery:loading-2",
+      "originalId": "loading-2",
+      "room": "loading-gallery",
+      "categories": [
+        "historical"
+      ],
+      "collection": "ローディング常設ギャラリー"
+    },
+    {
+      "key": "loading-gallery:loading-3",
+      "originalId": "loading-3",
+      "room": "loading-gallery",
+      "categories": [
+        "historical"
+      ],
+      "collection": "ローディング常設ギャラリー"
+    },
+    {
+      "key": "loading-gallery:loading-4",
+      "originalId": "loading-4",
+      "room": "loading-gallery",
+      "categories": [
+        "historical"
+      ],
+      "collection": "ローディング常設ギャラリー"
+    },
+    {
+      "key": "loading-gallery:loading-5",
+      "originalId": "loading-5",
+      "room": "loading-gallery",
+      "categories": [
+        "historical"
+      ],
+      "collection": "ローディング常設ギャラリー"
+    },
+    {
+      "key": "loading-gallery:loading-6",
+      "originalId": "loading-6",
+      "room": "loading-gallery",
+      "categories": [
+        "historical"
+      ],
+      "collection": "ローディング常設ギャラリー"
+    },
+    {
+      "key": "loading-gallery:loading-7",
+      "originalId": "loading-7",
+      "room": "loading-gallery",
+      "categories": [
+        "modern"
+      ],
+      "collection": "ローディング常設ギャラリー"
+    },
+    {
+      "key": "loading-gallery:loading-8",
+      "originalId": "loading-8",
+      "room": "loading-gallery",
+      "categories": [
+        "modern"
+      ],
+      "collection": "ローディング常設ギャラリー"
+    },
+    {
+      "key": "loading-gallery:loading-9",
+      "originalId": "loading-9",
+      "room": "loading-gallery",
+      "categories": [
+        "modern"
+      ],
+      "collection": "ローディング常設ギャラリー"
+    },
+    {
+      "key": "ms-dos-pc-command-line:rotating-spinner",
+      "originalId": "rotating-spinner",
+      "room": "ms-dos-pc-command-line",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "ms-dos-pc-command-line:growing-dots",
+      "originalId": "growing-dots",
+      "room": "ms-dos-pc-command-line",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "ms-dos-pc-command-line:blinking-wait",
+      "originalId": "blinking-wait",
+      "room": "ms-dos-pc-command-line",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "ms-dos-pc-command-line:text-progress",
+      "originalId": "text-progress",
+      "room": "ms-dos-pc-command-line",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "ms-dos-pc-command-line:file-copy",
+      "originalId": "file-copy",
+      "room": "ms-dos-pc-command-line",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "ms-dos-pc-command-line:archive-extract",
+      "originalId": "archive-extract",
+      "room": "ms-dos-pc-command-line",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "ms-dos-pc-command-line:compile-build",
+      "originalId": "compile-build",
+      "room": "ms-dos-pc-command-line",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "ms-dos-pc-command-line:disk-check",
+      "originalId": "disk-check",
+      "room": "ms-dos-pc-command-line",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "linux-unix:unix-login",
+      "originalId": "unix-login",
+      "room": "linux-unix",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "linux-unix:linux-kernel-boot",
+      "originalId": "linux-kernel-boot",
+      "room": "linux-unix",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "linux-unix:sysvinit-startup",
+      "originalId": "sysvinit-startup",
+      "room": "linux-unix",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "linux-unix:apt-progress",
+      "originalId": "apt-progress",
+      "room": "linux-unix",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "linux-unix:configure-make-build",
+      "originalId": "configure-make-build",
+      "room": "linux-unix",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:classic-extension-parade",
+      "originalId": "classic-extension-parade",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:classic-watch-cursor",
+      "originalId": "classic-watch-cursor",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:classic-disk-load",
+      "originalId": "classic-disk-load",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:beos-boot-icons",
+      "originalId": "beos-boot-icons",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:beos-tracker-launch",
+      "originalId": "beos-tracker-launch",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:beos-file-access",
+      "originalId": "beos-file-access",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:nextstep-boot-messages",
+      "originalId": "nextstep-boot-messages",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:nextstep-disk-services",
+      "originalId": "nextstep-disk-services",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:nextstep-app-launch",
+      "originalId": "nextstep-app-launch",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:palm-hotsync",
+      "originalId": "palm-hotsync",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:palm-database-load",
+      "originalId": "palm-database-load",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:palm-beam-transfer",
+      "originalId": "palm-beam-transfer",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:webos-pulse-boot",
+      "originalId": "webos-pulse-boot",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:webos-card-launch",
+      "originalId": "webos-card-launch",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:webos-update-install",
+      "originalId": "webos-update-install",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:windows-phone-dots",
+      "originalId": "windows-phone-dots",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:windows-phone-resuming",
+      "originalId": "windows-phone-resuming",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "vanished-operating-systems:windows-phone-store-update",
+      "originalId": "windows-phone-store-update",
+      "room": "vanished-operating-systems",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "apple:apple-one-setup",
+      "originalId": "apple-one-setup",
+      "room": "apple",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "apple:apple-one-monitor",
+      "originalId": "apple-one-monitor",
+      "room": "apple",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "apple:apple-one-cassette",
+      "originalId": "apple-one-cassette",
+      "room": "apple",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "apple:apple-text-scroll",
+      "originalId": "apple-text-scroll",
+      "room": "apple",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "apple:apple-two-power-on",
+      "originalId": "apple-two-power-on",
+      "room": "apple",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "apple:apple-two-basic",
+      "originalId": "apple-two-basic",
+      "room": "apple",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "apple:apple-two-cassette-storage",
+      "originalId": "apple-two-cassette-storage",
+      "room": "apple",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "apple:apple-two-low-resolution",
+      "originalId": "apple-two-low-resolution",
+      "room": "apple",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "apple:apple-two-high-resolution",
+      "originalId": "apple-two-high-resolution",
+      "room": "apple",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "apple:disk-two-boot",
+      "originalId": "disk-two-boot",
+      "room": "apple",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "apple:disk-two-access-patterns",
+      "originalId": "disk-two-access-patterns",
+      "room": "apple",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "apple:early-game-loading",
+      "originalId": "early-game-loading",
+      "room": "apple",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "apple:early-errors-retry",
+      "originalId": "early-errors-retry",
+      "room": "apple",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:macintosh-boot",
+      "originalId": "macintosh-boot",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:finder",
+      "originalId": "finder",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:window-controls",
+      "originalId": "window-controls",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:mouse-pointer",
+      "originalId": "mouse-pointer",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:scroll-bar",
+      "originalId": "scroll-bar",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:desk-accessories",
+      "originalId": "desk-accessories",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:macpaint",
+      "originalId": "macpaint",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:macwrite",
+      "originalId": "macwrite",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:mac-fonts",
+      "originalId": "mac-fonts",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:susan-kare",
+      "originalId": "susan-kare",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:system-1-6",
+      "originalId": "system-1-6",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:multifinder",
+      "originalId": "multifinder",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:system-7",
+      "originalId": "system-7",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:balloon-help",
+      "originalId": "balloon-help",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:models",
+      "originalId": "models",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:macintosh-ii-color",
+      "originalId": "macintosh-ii-color",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:mac-sound",
+      "originalId": "mac-sound",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "macintosh:apple-ii-to-mac",
+      "originalId": "apple-ii-to-mac",
+      "room": "macintosh",
+      "categories": [
+        "historical"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "cursor:standard-arrow",
+      "originalId": "standard-arrow",
+      "room": "cursor",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "歴史から現在へ続くポインター"
+    },
+    {
+      "key": "cursor:link-hand",
+      "originalId": "link-hand",
+      "room": "cursor",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "歴史から現在へ続くポインター"
+    },
+    {
+      "key": "cursor:text-ibeam",
+      "originalId": "text-ibeam",
+      "room": "cursor",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "歴史から現在へ続くポインター"
+    },
+    {
+      "key": "cursor:waiting-pointer",
+      "originalId": "waiting-pointer",
+      "room": "cursor",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "歴史から現在へ続くポインター"
+    },
+    {
+      "key": "cursor:forbidden-pointer",
+      "originalId": "forbidden-pointer",
+      "room": "cursor",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "歴史から現在へ続くポインター"
+    },
+    {
+      "key": "cursor:drag-pointer",
+      "originalId": "drag-pointer",
+      "room": "cursor",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "歴史から現在へ続くポインター"
+    },
+    {
+      "key": "cursor:click-effect",
+      "originalId": "click-effect",
+      "room": "cursor",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "歴史から現在へ続くポインター"
+    },
+    {
+      "key": "cursor:cursor-trail",
+      "originalId": "cursor-trail",
+      "room": "cursor",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "歴史から現在へ続くポインター"
+    },
+    {
+      "key": "flash:motion-tween",
+      "originalId": "motion-tween",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:shape-tween",
+      "originalId": "shape-tween",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:frame-by-frame",
+      "originalId": "frame-by-frame",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:typewriter",
+      "originalId": "typewriter",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:logo-assembly",
+      "originalId": "logo-assembly",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:glow-wave-type",
+      "originalId": "glow-wave-type",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:vector-morph",
+      "originalId": "vector-morph",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:liquid-rubber",
+      "originalId": "liquid-rubber",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:tile-break",
+      "originalId": "tile-break",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:circle-mask",
+      "originalId": "circle-mask",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:venetian-blinds",
+      "originalId": "venetian-blinds",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:spotlight",
+      "originalId": "spotlight",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:rollover-button",
+      "originalId": "rollover-button",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:radial-menu",
+      "originalId": "radial-menu",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:percent-loader",
+      "originalId": "percent-loader",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:cursor-follow",
+      "originalId": "cursor-follow",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:watching-eyes",
+      "originalId": "watching-eyes",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:paint-trail",
+      "originalId": "paint-trail",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:mascot-idle",
+      "originalId": "mascot-idle",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:part-animation",
+      "originalId": "part-animation",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:edge-peek",
+      "originalId": "edge-peek",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:gravity-bounce",
+      "originalId": "gravity-bounce",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:spring-drag",
+      "originalId": "spring-drag",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:rain-fire",
+      "originalId": "rain-fire",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:spark-particles",
+      "originalId": "spark-particles",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:logo-burst",
+      "originalId": "logo-burst",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:magic-constellation",
+      "originalId": "magic-constellation",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:layered-scroll",
+      "originalId": "layered-scroll",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:starfield",
+      "originalId": "starfield",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:horizon-grid",
+      "originalId": "horizon-grid",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:rotating-cube",
+      "originalId": "rotating-cube",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:photo-carousel",
+      "originalId": "photo-carousel",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:wireframe-tunnel",
+      "originalId": "wireframe-tunnel",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:spectrum",
+      "originalId": "spectrum",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:audio-wave",
+      "originalId": "audio-wave",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:beat-flash",
+      "originalId": "beat-flash",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:fullscreen-intro",
+      "originalId": "fullscreen-intro",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:moving-portfolio",
+      "originalId": "moving-portfolio",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:room-navigation",
+      "originalId": "room-navigation",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:flashing-cta",
+      "originalId": "flashing-cta",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:banner-slot",
+      "originalId": "banner-slot",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:safe-escape-close",
+      "originalId": "safe-escape-close",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:sprite-run",
+      "originalId": "sprite-run",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:mini-shooter",
+      "originalId": "mini-shooter",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:combo-score",
+      "originalId": "combo-score",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:generative-lines",
+      "originalId": "generative-lines",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:kaleidoscope",
+      "originalId": "kaleidoscope",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:interactive-poem",
+      "originalId": "interactive-poem",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:keyframe-timeline",
+      "originalId": "keyframe-timeline",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:onion-skin",
+      "originalId": "onion-skin",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:fps-compare",
+      "originalId": "fps-compare",
+      "room": "flash",
+      "categories": [
+        "historical"
+      ],
+      "collection": "Flash表現"
+    },
+    {
+      "key": "flash:tween-modern-map",
+      "originalId": "tween-modern-map",
+      "room": "flash",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "Then / Now・技術継承比較"
+    },
+    {
+      "key": "flash:mouse-modern-map",
+      "originalId": "mouse-modern-map",
+      "room": "flash",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "Then / Now・技術継承比較"
+    },
+    {
+      "key": "flash:audio-modern-map",
+      "originalId": "audio-modern-map",
+      "room": "flash",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "Then / Now・技術継承比較"
+    },
+    {
+      "key": "flash:tn-vector-morph",
+      "originalId": "tn-vector-morph",
+      "room": "flash",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "Then / Now・技術継承比較"
+    },
+    {
+      "key": "flash:tn-cursor-creature",
+      "originalId": "tn-cursor-creature",
+      "room": "flash",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "Then / Now・技術継承比較"
+    },
+    {
+      "key": "flash:tn-kinetic-type",
+      "originalId": "tn-kinetic-type",
+      "room": "flash",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "Then / Now・技術継承比較"
+    },
+    {
+      "key": "flash:tn-physics",
+      "originalId": "tn-physics",
+      "room": "flash",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "Then / Now・技術継承比較"
+    },
+    {
+      "key": "flash:tn-intro",
+      "originalId": "tn-intro",
+      "room": "flash",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "Then / Now・技術継承比較"
+    },
+    {
+      "key": "flash:tn-sound",
+      "originalId": "tn-sound",
+      "room": "flash",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "Then / Now・技術継承比較"
+    },
+    {
+      "key": "flash:tn-mask-theatre",
+      "originalId": "tn-mask-theatre",
+      "room": "flash",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "Then / Now・技術継承比較"
+    },
+    {
+      "key": "flash:tn-elastic-navigation",
+      "originalId": "tn-elastic-navigation",
+      "room": "flash",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "Then / Now・技術継承比較"
+    },
+    {
+      "key": "flash:tn-parallax-stage",
+      "originalId": "tn-parallax-stage",
+      "room": "flash",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "Then / Now・技術継承比較"
+    },
+    {
+      "key": "flash:tn-frame-lab",
+      "originalId": "tn-frame-lab",
+      "room": "flash",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "Then / Now・技術継承比較"
+    },
+    {
+      "key": "flash:tn-isometric-explorer",
+      "originalId": "tn-isometric-explorer",
+      "room": "flash",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "Then / Now・技術継承比較"
+    },
+    {
+      "key": "flash:tn-preloader-theatre",
+      "originalId": "tn-preloader-theatre",
+      "room": "flash",
+      "categories": [
+        "historical",
+        "modern"
+      ],
+      "collection": "Then / Now・技術継承比較"
+    },
+    {
+      "key": "dom:operation-01-create-append",
+      "originalId": "operation-01-create-append",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "dom:operation-02-prepend",
+      "originalId": "operation-02-prepend",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "dom:operation-03-insert-before",
+      "originalId": "operation-03-insert-before",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "dom:operation-04-set-attribute",
+      "originalId": "operation-04-set-attribute",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "dom:operation-05-remove-attribute",
+      "originalId": "operation-05-remove-attribute",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "dom:operation-06-class-list-add-remove",
+      "originalId": "operation-06-class-list-add-remove",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "dom:operation-07-class-toggle-loop",
+      "originalId": "operation-07-class-toggle-loop",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "dom:operation-08-style-set-property",
+      "originalId": "operation-08-style-set-property",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "dom:operation-09-dataset-state",
+      "originalId": "operation-09-dataset-state",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "dom:operation-10-text-content",
+      "originalId": "operation-10-text-content",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "dom:operation-11-query-selector-all",
+      "originalId": "operation-11-query-selector-all",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "dom:operation-12-closest",
+      "originalId": "operation-12-closest",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "dom:operation-13-contains",
+      "originalId": "operation-13-contains",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "dom:operation-14-clone-node",
+      "originalId": "operation-14-clone-node",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "dom:operation-15-replace-children",
+      "originalId": "operation-15-replace-children",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "dom:operation-16-event-listener",
+      "originalId": "operation-16-event-listener",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "dom:operation-17-scroll-and-rect",
+      "originalId": "operation-17-scroll-and-rect",
+      "room": "dom",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "waapi:fade-in",
+      "originalId": "fade-in",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Entrance"
+    },
+    {
+      "key": "waapi:fade-out",
+      "originalId": "fade-out",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Exit"
+    },
+    {
+      "key": "waapi:slide-in-left",
+      "originalId": "slide-in-left",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Entrance"
+    },
+    {
+      "key": "waapi:slide-out-right",
+      "originalId": "slide-out-right",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Exit"
+    },
+    {
+      "key": "waapi:scale-pop",
+      "originalId": "scale-pop",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Entrance"
+    },
+    {
+      "key": "waapi:bounce",
+      "originalId": "bounce",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "UI Feedback"
+    },
+    {
+      "key": "waapi:shake",
+      "originalId": "shake",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "UI Feedback"
+    },
+    {
+      "key": "waapi:button-press",
+      "originalId": "button-press",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "UI Feedback"
+    },
+    {
+      "key": "waapi:modal-open-close",
+      "originalId": "modal-open-close",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "UI Feedback"
+    },
+    {
+      "key": "waapi:toast-enter-exit",
+      "originalId": "toast-enter-exit",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "UI Feedback"
+    },
+    {
+      "key": "waapi:toggle-switch",
+      "originalId": "toggle-switch",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "UI Feedback"
+    },
+    {
+      "key": "waapi:typewriter",
+      "originalId": "typewriter",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Text"
+    },
+    {
+      "key": "waapi:character-by-character",
+      "originalId": "character-by-character",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Text"
+    },
+    {
+      "key": "waapi:counter-roll",
+      "originalId": "counter-roll",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Text"
+    },
+    {
+      "key": "waapi:cursor-blink",
+      "originalId": "cursor-blink",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Text"
+    },
+    {
+      "key": "waapi:classic-mac-watch",
+      "originalId": "classic-mac-watch",
+      "room": "waapi",
+      "categories": [
+        "historical"
+      ],
+      "collection": "OS / Historical"
+    },
+    {
+      "key": "waapi:dock-bounce",
+      "originalId": "dock-bounce",
+      "room": "waapi",
+      "categories": [
+        "historical"
+      ],
+      "collection": "OS / Historical"
+    },
+    {
+      "key": "waapi:geometric-formation",
+      "originalId": "geometric-formation",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Advanced"
+    },
+    {
+      "key": "waapi:web-1990s-marquee",
+      "originalId": "web-1990s-marquee",
+      "room": "waapi",
+      "categories": [
+        "historical"
+      ],
+      "collection": "OS / Historical"
+    },
+    {
+      "key": "waapi:treasure-chest-open",
+      "originalId": "treasure-chest-open",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:rhythm-judgement",
+      "originalId": "rhythm-judgement",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:coin-pickup-arc",
+      "originalId": "coin-pickup-arc",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:combo-counter",
+      "originalId": "combo-counter",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:hp-damage-heal",
+      "originalId": "hp-damage-heal",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:boss-entrance",
+      "originalId": "boss-entrance",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:menu-selection-cursor",
+      "originalId": "menu-selection-cursor",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:card-deal-shuffle",
+      "originalId": "card-deal-shuffle",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:combat-damage-feedback",
+      "originalId": "combat-damage-feedback",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:reward-reveal-lab",
+      "originalId": "reward-reveal-lab",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:hit-stop-knockback",
+      "originalId": "hit-stop-knockback",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:perfect-parry",
+      "originalId": "perfect-parry",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:dodge-afterimage",
+      "originalId": "dodge-afterimage",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:falling-block-line-clear",
+      "originalId": "falling-block-line-clear",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:match-3-cascade",
+      "originalId": "match-3-cascade",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:pinball-bumper-hit",
+      "originalId": "pinball-bumper-hit",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:lock-on-reticle",
+      "originalId": "lock-on-reticle",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:inventory-equip-snap",
+      "originalId": "inventory-equip-snap",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:status-effect-lab",
+      "originalId": "status-effect-lab",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:turn-order-reflow",
+      "originalId": "turn-order-reflow",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:battle-transition",
+      "originalId": "battle-transition",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:race-countdown-launch",
+      "originalId": "race-countdown-launch",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Game UI"
+    },
+    {
+      "key": "waapi:ai-modular-thought-blocks",
+      "originalId": "ai-modular-thought-blocks",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "AI Working Motion"
+    },
+    {
+      "key": "waapi:ai-ribbon-assembly",
+      "originalId": "ai-ribbon-assembly",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "AI Working Motion"
+    },
+    {
+      "key": "waapi:ai-code-companion",
+      "originalId": "ai-code-companion",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "AI Working Motion"
+    },
+    {
+      "key": "waapi:ai-sparkle-reasoning",
+      "originalId": "ai-sparkle-reasoning",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "AI Working Motion"
+    },
+    {
+      "key": "waapi:ai-warm-thought-pulse",
+      "originalId": "ai-warm-thought-pulse",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "AI Working Motion"
+    },
+    {
+      "key": "waapi:ai-answer-weave",
+      "originalId": "ai-answer-weave",
+      "room": "waapi",
+      "categories": [
+        "modern"
+      ],
+      "collection": "AI Working Motion"
+    },
+    {
+      "key": "modern-animation:unwoven",
+      "originalId": "unwoven",
+      "room": "modern-animation",
+      "categories": [
+        "modern"
+      ],
+      "collection": "原典着想コレクション"
+    },
+    {
+      "key": "modern-animation:paper",
+      "originalId": "paper",
+      "room": "modern-animation",
+      "categories": [
+        "modern"
+      ],
+      "collection": "原典着想コレクション"
+    },
+    {
+      "key": "modern-animation:lens",
+      "originalId": "lens",
+      "room": "modern-animation",
+      "categories": [
+        "modern"
+      ],
+      "collection": "原典着想コレクション"
+    },
+    {
+      "key": "modern-animation:drift",
+      "originalId": "drift",
+      "room": "modern-animation",
+      "categories": [
+        "modern"
+      ],
+      "collection": "原典着想コレクション"
+    },
+    {
+      "key": "modern-animation:glass",
+      "originalId": "glass",
+      "room": "modern-animation",
+      "categories": [
+        "modern"
+      ],
+      "collection": "原典着想コレクション"
+    },
+    {
+      "key": "modern-animation:clip",
+      "originalId": "clip",
+      "room": "modern-animation",
+      "categories": [
+        "modern"
+      ],
+      "collection": "原典着想コレクション"
+    },
+    {
+      "key": "modern-animation:bell-bounce",
+      "originalId": "bell-bounce",
+      "room": "modern-animation",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Small Motion Collection"
+    },
+    {
+      "key": "modern-animation:bookmark-fold",
+      "originalId": "bookmark-fold",
+      "room": "modern-animation",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Small Motion Collection"
+    },
+    {
+      "key": "modern-animation:squash-stretch",
+      "originalId": "squash-stretch",
+      "room": "modern-animation",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Small Motion Collection"
+    },
+    {
+      "key": "modern-animation:send-flight",
+      "originalId": "send-flight",
+      "room": "modern-animation",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Small Motion Collection"
+    },
+    {
+      "key": "modern-animation:blink-look",
+      "originalId": "blink-look",
+      "room": "modern-animation",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Small Motion Collection"
+    },
+    {
+      "key": "modern-animation:drop-ripple",
+      "originalId": "drop-ripple",
+      "room": "modern-animation",
+      "categories": [
+        "modern"
+      ],
+      "collection": "Small Motion Collection"
+    },
+    {
+      "key": "experiments:starfield",
+      "originalId": "starfield",
+      "room": "experiments",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "experiments:plasma",
+      "originalId": "plasma",
+      "room": "experiments",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "experiments:metaballs",
+      "originalId": "metaballs",
+      "room": "experiments",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "experiments:flock",
+      "originalId": "flock",
+      "room": "experiments",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "experiments:dissolve",
+      "originalId": "dissolve",
+      "room": "experiments",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "experiments:tile",
+      "originalId": "tile",
+      "room": "experiments",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "experiments:tunnel",
+      "originalId": "tunnel",
+      "room": "experiments",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "experiments:raster",
+      "originalId": "raster",
+      "room": "experiments",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "experiments:elastic",
+      "originalId": "elastic",
+      "room": "experiments",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "experiments:kaleidoscope",
+      "originalId": "kaleidoscope",
+      "room": "experiments",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "experiments:ink",
+      "originalId": "ink",
+      "room": "experiments",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "experiments:glitch",
+      "originalId": "glitch",
+      "room": "experiments",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical:steps",
+      "originalId": "steps",
+      "room": "practical",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical:buffer",
+      "originalId": "buffer",
+      "room": "practical",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical:refresh",
+      "originalId": "refresh",
+      "room": "practical",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical:spotlight",
+      "originalId": "spotlight",
+      "room": "practical",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical:magnetic",
+      "originalId": "magnetic",
+      "room": "practical",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical:sort",
+      "originalId": "sort",
+      "room": "practical",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical:hold",
+      "originalId": "hold",
+      "room": "practical",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical:elastic-button",
+      "originalId": "elastic-button",
+      "room": "practical",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical:state-button",
+      "originalId": "state-button",
+      "room": "practical",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical:stagger",
+      "originalId": "stagger",
+      "room": "practical",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical:shared",
+      "originalId": "shared",
+      "room": "practical",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical:crossfade",
+      "originalId": "crossfade",
+      "room": "practical",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:toast-stack",
+      "originalId": "toast-stack",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:undo-snackbar",
+      "originalId": "undo-snackbar",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:inline-validation",
+      "originalId": "inline-validation",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:search-suggestions",
+      "originalId": "search-suggestions",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:sliding-tabs",
+      "originalId": "sliding-tabs",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:animated-accordion",
+      "originalId": "animated-accordion",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:command-palette",
+      "originalId": "command-palette",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:optimistic-action",
+      "originalId": "optimistic-action",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:upload-queue",
+      "originalId": "upload-queue",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:form-wizard",
+      "originalId": "form-wizard",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:resizable-split-pane",
+      "originalId": "resizable-split-pane",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:context-menu",
+      "originalId": "context-menu",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:editable-data-table",
+      "originalId": "editable-data-table",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:date-range-picker",
+      "originalId": "date-range-picker",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:virtualized-list",
+      "originalId": "virtualized-list",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:filter-builder",
+      "originalId": "filter-builder",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:tree-view",
+      "originalId": "tree-view",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:multi-select-chips",
+      "originalId": "multi-select-chips",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:kanban-board",
+      "originalId": "kanban-board",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:node-flow-editor",
+      "originalId": "node-flow-editor",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:schedule-grid",
+      "originalId": "schedule-grid",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:diff-viewer",
+      "originalId": "diff-viewer",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:theme-studio",
+      "originalId": "theme-studio",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:shortcut-recorder",
+      "originalId": "shortcut-recorder",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:pan-zoom",
+      "originalId": "pan-zoom",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:image-crop",
+      "originalId": "image-crop",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:before-after-compare",
+      "originalId": "before-after-compare",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:image-annotation",
+      "originalId": "image-annotation",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    },
+    {
+      "key": "practical-advanced:layer-composer",
+      "originalId": "layer-composer",
+      "room": "practical-advanced",
+      "categories": [
+        "modern"
+      ],
+      "collection": ""
+    }
+  ],
+  "status": "PASS"
+}

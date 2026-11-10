@@ -125,6 +125,11 @@ export function FlashSpecialExhibitRoom() {
   );
   const category = flashCategories.find((item) => item.id === activeCategory) ?? flashCategories[0];
   const runtimeActive = open && pageVisible && playing && !reduced;
+  useEffect(() => {
+    const navigate = () => { const hash = window.location.hash.slice(1); const target = flashCategories.find(c => hash === `flash-category-${c.id}`); if (target) { setActiveCategory(target.id); setOpen(true); } };
+    navigate(); window.addEventListener('hashchange', navigate); return () => window.removeEventListener('hashchange', navigate);
+  }, []);
+  useEffect(() => { if (!open || window.location.hash !== `#flash-category-${activeCategory}`) return; const frame = requestAnimationFrame(() => { const target = document.getElementById(`flash-category-${activeCategory}`); if (target) { target.tabIndex = -1; target.scrollIntoView({block:'start'}); target.focus({preventScroll:true}); } }); return () => cancelAnimationFrame(frame); }, [open, activeCategory]);
 
   return (
     <article id="flash-special-exhibit" className="flashRoom" data-open={open} data-playing={runtimeActive} data-speed={speed}>

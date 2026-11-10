@@ -325,7 +325,7 @@ function VanishedOsExhibitCard({
             <h4 id={`${exhibit.exhibitId}-${category}`}>{category}</h4>
             <div className="vanishedLoadingGrid">
               {demos.map((demo) => (
-                <article className="vanishedLoadingExhibit" key={demo.demoId}>
+                <article className="vanishedLoadingExhibit" key={demo.demoId} data-museum-id={demo.demoId}>
                   <div className="vanishedLoadingTopline">
                     <span>{exhibit.title}</span>
                     <span>{demo.era}</span>

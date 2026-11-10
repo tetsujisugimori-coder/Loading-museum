@@ -1,5 +1,11 @@
 # DIGITAL MOTION ARCHIVE
 
+## 第7期A：歴史・現代と Small Motion Collection（Issue #81）
+
+**274展示・13室**。全館の入口を「歴史 / Historical Motion」「現代 / Modern Motion」に整理。主題による分類と、展示室内のコレクションを区別します。横断23作品は同じ本体を参照し、重複登録しません。現代アニメーション常設展にBell Bounce / Bookmark Fold / Squash & Stretch / Send Flight / Blink & Look / Drop & Rippleを追加。停止・途中観察・速度・Replay・Reset・動き低減に対応します。
+
+[構造・実数・既存作品との差・検証と未検証事項](docs/phase7a/README.md)。画像編集シリーズや既存未解決課題は変更しません。独立レビュー・最終CI前はPARTIAL、Draft維持・マージ推奨NO。以下の件数は各時点の履歴です。
+
 ## 第6期A-6：Layer Composer（Issue #79）
 
 **268展示・13室、実用UI29展示**。独自教材の丘・太陽・葉を重ね、位置・寸法・順序・透明度・Normal/Multiply/Screenを編集。履歴・取消・数値/キーボード・600×400 PNG保存に対応。表示倍率と作品座標を分離し、画像復号の実画素照合を検証します。
