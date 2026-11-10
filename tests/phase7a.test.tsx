@@ -36,6 +36,14 @@ describe('catalog focus readiness',()=>{
   panel.removeAttribute('inert');panel.removeAttribute('aria-hidden');advance(16);expect(target.scrollIntoView).toHaveBeenCalled();expect(document.activeElement).not.toBe(target);
   target.style.visibility='visible';advance(16);expect(document.activeElement).toBe(target);expect(frames.size).toBe(0);
  });
+ it('reopens a room from the same directory hash without toggling twice',()=>{
+  const room=exhibitRooms.find(r=>r.roomId==='ms-dos-pc-command-line')!;
+  const {container}=render(<><MuseumNavigation/><ExhibitRoomAccordion room={room}/></>);
+  act(()=>{history.replaceState(null,'','#browse-ms-dos-pc-command-line');window.dispatchEvent(new Event('hashchange'));});
+  const toggle=container.querySelector('#ms-dos-pc-command-line-toggle')!;expect(toggle.getAttribute('aria-expanded')).toBe('true');
+  fireEvent.click(toggle);expect(toggle.getAttribute('aria-expanded')).toBe('false');
+  fireEvent.click(screen.getByRole('link',{name:room.roomTitle,exact:true}));expect(toggle.getAttribute('aria-expanded')).toBe('true');
+ });
  it('cancels an older pending destination on a newer hash',()=>{
   const {host,panel,target}=fixture();host.dataset.testFocusFixture='';render(<MuseumNavigation/>);navigate();advance(16);
   act(()=>{history.replaceState(null,'','#loading-gallery');window.dispatchEvent(new Event('hashchange'));});panel.removeAttribute('inert');panel.removeAttribute('aria-hidden');target.style.visibility='visible';advance(100);expect(document.activeElement).not.toBe(target);expect(frames.size).toBe(0);

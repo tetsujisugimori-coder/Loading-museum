@@ -73,3 +73,9 @@ The serial final-HEAD run exposed a reduced-motion navigation failure in an exis
 ### Short-motion browser observation window
 
 The first corrected-HEAD run then exposed a test scheduling race: at 2× speed the test could not reliably intercept a short work's active interval to click Pause. The trace records Replay at 24.113s, the progress observation at 24.381s, and the Pause request starting at 24.975s; the locator never resolved, and the work was complete by timeout. A later snapshot still showed progress 0.2962, so exact completion before Pause dispatch is not established. This is retained as a failed run, not a product PASS. Pause/resume and visibility checks now use the supported 0.25× observation speed with real pointer input; the maximum speed value and 2× terminal state remain separately asserted. No timeout or state assertion is weakened.
+
+### Repeated room-link correction and process isolation
+
+Independent testing reproduced a same-hash room-link defect after an accordion was closed: both the anchor and the navigation container dispatched the opening handler, so two functional toggles cancelled each other. The redundant anchor handler is removed. A deterministic RED-to-GREEN unit test and the full browser matrix now require closing and reopening the same room through the unchanged directory hash.
+
+The preceding matrix passed five conditions before Chromium reported a target crash in its sixth condition; that incomplete run remains FAIL. Resource contention is a possible explanation, not an established cause. Each final matrix condition now launches and closes its own browser process so context and trace caches cannot accumulate across conditions. Validation is run serially without concurrent local test/build work.
