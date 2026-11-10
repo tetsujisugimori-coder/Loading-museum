@@ -37,3 +37,7 @@ tests/phase7b-first.test.tsx、phase7b-second.test.tsx は固定時間・境界�
 追加の既存第7期Aローカル回帰はChromium7条件成功、1280px reduced-motionでscreenshot安定待ちtimeout。残るWebKit8条件は未実行。過去のWebKit1280 reduced-motion timeoutとは別の記録であり、原因はUNKNOWN。既存assertは緩和していない。
 
 GitHub Actionsは14workflowがqueuedでrunner未割当。CI成功とは扱わず、原因UNKNOWN・最終技術受入PARTIAL・限定マージ推奨NOを維持。元の失敗原票も削除しない。
+
+## 7A回帰CIの実行予算
+
+11a4a48の7A WebKit jobは全体20分上限でcancelled。原ログは7/8条件PASS、第8条件の途中PNGを保持し、個別assert失敗は記録されていない。build/installまで9分24秒、browser実行10分48秒で上限に到達した。独立原artifact照合に基づき、7A workflowのjob予算のみ30分へ変更する。8条件、個別9秒上限、assert、製品コードは不変。これを過去の1280 reduced timeoutの原因解消とは扱わない。新HEADで全CIを再確認する。
