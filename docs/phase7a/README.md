@@ -69,3 +69,7 @@ Physical iPhone Safari, physical mouse/touch gestures, VoiceOver/screen-reader e
 ### Nested focus correction
 
 The serial final-HEAD run exposed a reduced-motion navigation failure in an existing Vanished OS room. The target existed and the room had removed `inert`, but its skipped descendant retained computed `visibility: hidden`. Waiting two seconds and focusing again did not recover. Independent replay confirmed that re-scrolling after layout, then checking visibility and actual focus, did recover. The navigation now uses a bounded two-second readiness loop that re-scrolls, waits for an uninert/visible destination, verifies focus success, and cancels on a newer hash, user input or unmount. No global visibility, animation or content-visibility CSS is changed. Three regression cases cover readiness and cancellation. Earlier failing matrix reports are retained; the corrected final HEAD must run all 16 conditions again.
+
+### Short-motion browser observation window
+
+The first corrected-HEAD run then exposed a test scheduling race: at 2× speed a 1.8-second work completed before Playwright could click Pause. The trace records Replay at 24.113s, the progress observation at 24.381s, and Pause dispatch starting at 24.975s (already beyond the 0.9-second duration). This is retained as a failed run, not a product PASS. Pause/resume and visibility checks now use the supported 0.25× observation speed with real pointer input; the maximum speed value and 2× terminal state remain separately asserted. No timeout or state assertion is weakened.
