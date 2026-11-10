@@ -9,6 +9,7 @@ const group=process.env.DIAGNOSTIC_GROUP??'A';
 if(!['A','B','C'].includes(group))throw Error('invalid group');
 const root=process.cwd(),head=git('rev-parse','HEAD'),tree=git('rev-parse','HEAD^{tree}');
 const destination=path.resolve(process.env.DIAGNOSTIC_COPY_DIR??`work/phase7d-causal-build-${group}-${Date.now()}`);
+await fs.mkdir(path.dirname(destination),{recursive:true});
 await fs.mkdir(destination,{recursive:false});
 const files=git('ls-files','-z').split('\0').filter(Boolean);
 const sourceHashes={};
