@@ -24,7 +24,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run lint && npm run typecheck && npm test
-      - run: AUDIT_OUTPUT=work/phase7b/inventory.json node scripts/audit-phase7a.mjs
+      - run: AUDIT_OUTPUT=work/phase7b/inventory.json node scripts/audit-phase7b.mjs
       - run: node scripts/build-layer-composer.mjs
       - name: Browser tools
         run: |
