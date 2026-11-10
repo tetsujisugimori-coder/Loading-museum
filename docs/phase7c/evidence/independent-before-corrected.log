@@ -1,0 +1,31 @@
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-phase7c
+
+ ❯ tests/phase7c-independent.test.tsx (6 tests | 1 failed) 1646ms
+   × independent: reverse relay calls the disappearing B stage exit, not entrance 811ms
+     → expected '現在の表示：B / 遷移先：A / 段階：登場 / 処理状態：再生中' to contain '段階：退場'
+   ✓ independent dynamic reduced motion stagger-motion 130ms
+   ✓ independent dynamic reduced motion sequence-builder 139ms
+   ✓ independent dynamic reduced motion parallel-choreography 132ms
+   ✓ independent: sequence edits invalidate an already queued callback  389ms
+   ✓ independent: FLIP uses x and width inversion that reconstructs supplied first rectangle 43ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/phase7c-independent.test.tsx > independent: reverse relay calls the disappearing B stage exit, not entrance
+AssertionError: expected '現在の表示：B / 遷移先：A / 段階：登場 / 処理状態：再生中' to contain '段階：退場'
+
+Expected: "段階：退場"
+Received: "現在の表示：B / 遷移先：A / 段階：登場 / 処理状態：再生中"
+
+ ❯ tests/phase7c-independent.test.tsx:14:392
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  20:13:46
+   Duration  3.89s (transform 473ms, setup 0ms, collect 915ms, tests 1.65s, environment 843ms, prepare 123ms)
+

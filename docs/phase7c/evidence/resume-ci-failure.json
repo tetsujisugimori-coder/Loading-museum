@@ -1,0 +1,24 @@
+{
+  "source": "work/phase7c/ci-artifacts/webkit-3b-failed/2026-11-10T11-52-44.914Z/failure-trace.zip",
+  "call": "call@4678",
+  "result": {
+    "type": "after",
+    "callId": "call@4678",
+    "endTime": 248897.741,
+    "result": {
+      "value": "176"
+    },
+    "afterSnapshot": "after@call@4678"
+  },
+  "snapshotAttributes": [
+    {
+      "__playwright_target__": "call@4678",
+      "class": "mcSpatial",
+      "data-testid": "transition-relay",
+      "data-time": "272",
+      "data-work": "transition-relay",
+      "data-state": "再生中",
+      "data-progress": "0.8488888888888898"
+    }
+  ]
+}

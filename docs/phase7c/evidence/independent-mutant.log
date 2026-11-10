@@ -1,0 +1,31 @@
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/loading-phase7c/work/phase7c/mutant
+
+ ❯ tests/phase7c-independent.test.tsx (6 tests | 1 failed) 997ms
+   ✓ independent: reverse relay calls the disappearing B stage exit, not entrance  481ms
+   ✓ independent dynamic reduced motion stagger-motion 142ms
+   ✓ independent dynamic reduced motion sequence-builder 116ms
+   ✓ independent dynamic reduced motion parallel-choreography 87ms
+   × independent: sequence edits invalidate an already queued callback 135ms
+     → expected '3500' to be '0' // Object.is equality
+   ✓ independent: FLIP uses x and width inversion that reconstructs supplied first rectangle 34ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/phase7c-independent.test.tsx > independent: sequence edits invalidate an already queued callback
+AssertionError: expected '3500' to be '0' // Object.is equality
+
+Expected: "0"
+Received: "3500"
+
+ ❯ tests/phase7c-independent.test.tsx:16:290
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  20:14:41
+   Duration  2.11s (transform 184ms, setup 0ms, collect 302ms, tests 997ms, environment 466ms, prepare 114ms)
+
