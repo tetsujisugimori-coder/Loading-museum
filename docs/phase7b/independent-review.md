@@ -43,3 +43,15 @@ The earlier old-Flash navigation timeout did not repeat in the coordinator's fre
 Added an independent same-task event sequence (pointerdown→pointermove→pointerup inside a single React act, without rendering between events). With SecondWorks from remote0966dc0, expected order B→C→A fails; with the synchronous drag-session snapshot repair, the same test passes. All four reviewer-owned tests pass after repair. The original component was preserved under work/phase7b-old; RED and GREEN logs remain separate. This checks render-latency independence rather than adding a fixed wait to the browser test.
 
 Browser-runner failure accounting was also reviewed: only a RUNNING case is now marked FAIL, so next-engine launch failure no longer rewrites the preceding successful case. Overall run remains FAIL. The attempting stage should be advanced after successful launch to avoid labeling subsequent execution failures as launch failures.
+
+## Final source candidate and scratch preservation
+
+Independently fetched f85d31e2b1c4e55b7e1becbee443b5314fd73e59, tree a7d658163ade8b6a95d02b322384c119d2d260d3. Reviewed app/scripts/tests/workflows/package files have zero byte mismatches against that remote commit. Fourteen GitHub workflows for this exact HEAD are queued, not successful, as of this check. Formal final acceptance remains pending.
+
+The reviewer-created old TSX scratch fixture was accidentally included in TypeScript's default source scan, causing unrelated import errors. Both exact files were preserved as .tsx.txt with before/after byte verification and SHA256 in work/phase7b-old/preservation.json. No tsconfig relaxation was made. Typecheck then passed (exit0). This correction changes neither original RED evidence nor submitted product source.
+
+## Matrix evidence audit (validation checkout, 04:14:23)
+
+The completed local report is FAIL: fourteen conditions PASS; WebKit1280 normal fails while trying to resume Expanding Card; the sixteenth condition did not run. There are88 work entries and101 listed raw files, all SHA256 verified. These are not96 completed work cases. Independently compared153 app/public/package/config files in that validation checkout with finalf85d31e2: byte-identical. The report's actual HEAD is0966dc0 plus workspace changes, so this is equivalent-product-source evidence, not an execution directly at finalHEAD. This distinction must remain visible.
+
+Original trace shows Replay click beginning394529.921ms and Pause click beginning395835.353ms (1305ms later, beyond the900ms card duration). Resume later finds a disabled button. A stable progress assertion alone does not establish an in-progress pause. The revised test should use the supported slower speed and explicitly require progress<1 plus enabled Resume after pausing; no forced click or weakened assertion is warranted.
