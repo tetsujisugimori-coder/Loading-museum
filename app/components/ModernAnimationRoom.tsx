@@ -28,7 +28,7 @@ export default function ModernAnimationRoom() {
   const [selected, setSelected] = useState<Id | null>(null);
   const [roomOpen, setRoomOpen] = useState(false);
   useEffect(()=>{
-    const openHash=()=>{const hash=window.location.hash.slice(1);const found=[...modernExhibits,...smallMotionExhibits].find(e=>hash===`modern-exhibit-${e.id}`);if(found){setRoomOpen(true);setQuery('');setSelected(found.id);}else if(hash==='small-motion-collection')setRoomOpen(true);};
+    const openHash=()=>{const hash=window.location.hash.slice(1);const found=[...modernExhibits,...smallMotionExhibits].find(e=>hash===`modern-exhibit-${e.id}`);if(found){setRoomOpen(true);setQuery('');setSelected(found.id);}else if(hash==='small-motion-collection'){setRoomOpen(true);setQuery('');setSelected(null);}};
     openHash();window.addEventListener('hashchange',openHash);return()=>window.removeEventListener('hashchange',openHash);
   },[]);
   useEffect(()=>{if(!roomOpen)return;const hash=window.location.hash.slice(1);if(!hash.startsWith('modern-exhibit-')&&hash!=='small-motion-collection')return;const frame=requestAnimationFrame(()=>{const target=document.getElementById(hash);if(target){target.tabIndex=-1;target.scrollIntoView({block:'start'});target.focus({preventScroll:true});}});return()=>cancelAnimationFrame(frame);},[roomOpen,selected]);

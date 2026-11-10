@@ -15,11 +15,11 @@ function followHash(){
     const toggle=root?.matches('button')?root:root?.querySelector<HTMLElement>('button[aria-expanded]');
     if(toggle?.getAttribute('aria-expanded')==='false')toggle.click();
     root?.scrollIntoView({block:'start'});toggle?.focus({preventScroll:true});
-    if(id){const record=museumCatalog.find(x=>x.room===room.id&&x.originalId===id);requestAnimationFrame(()=>{const target=[...(root?.matches('button')?root.parentElement:root)?.querySelectorAll<HTMLElement>('h2,h3,h4')??[]].find(n=>record&&n.textContent?.trim()===record.title);if(target){target.tabIndex=-1;target.scrollIntoView({block:'start'});target.focus({preventScroll:true});}});} 
+    if(id){const record=museumCatalog.find(x=>x.room===room.id&&x.originalId===id);requestAnimationFrame(()=>{const scope=root?.matches('button')?root.parentElement:root;const target=scope?.querySelector<HTMLElement>(`[data-museum-id="${CSS.escape(id)}"]`)??[...scope?.querySelectorAll<HTMLElement>('h2,h3,h4')??[]].find(n=>record&&n.textContent?.trim()===record.title);if(target){target.tabIndex=-1;target.scrollIntoView({block:'start'});target.focus({preventScroll:true});}});}
   }else if(hash.startsWith('flash-category-')){
     const room=document.getElementById('flash-special-exhibit');const button=room?.querySelector<HTMLButtonElement>('button[aria-expanded]');
     if(button?.getAttribute('aria-expanded')==='false')button.click();
-    // Flash category headings exist even when the room is collapsed.
+    // The Flash component also selects the requested category before focusing it.
     const target=document.getElementById(hash);target?.scrollIntoView({block:'start'});if(target){target.tabIndex=-1;target.focus({preventScroll:true});}
   }else {
     const target=document.getElementById(hash);const panel=target?.closest<HTMLElement>('[aria-hidden="true"]');
