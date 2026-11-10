@@ -1,3 +1,7 @@
+## 第7期B：Small Motion Collection II（Issue #83）
+
+既存274展示を保全し、動きの仕組みを観察する6作品を同じ現代アニメーション室へ追加。280展示・13室。モデル値と実測、教材結果と演出を分離します。[設計・検証と限界](docs/phase7b/README.md)。最終CI・独立レビュー前、Draft維持・マージ推奨NO。以下の過去記録は当時の状態として保全。
+
 # DIGITAL MOTION ARCHIVE
 
 ## 第7期A：歴史・現代と Small Motion Collection（Issue #81）

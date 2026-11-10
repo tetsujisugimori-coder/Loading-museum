@@ -1,0 +1,44 @@
+name: Verify Phase 7B Small Motion
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  classification-motion:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint && npm run typecheck && npm test
+      - run: AUDIT_OUTPUT=work/phase7b/inventory.json node scripts/audit-phase7a.mjs
+      - run: node scripts/build-layer-composer.mjs
+      - name: Browser tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/small-motion-tools" --no-save playwright@1.56.1
+          "$RUNNER_TEMP/small-motion-tools/node_modules/.bin/playwright" install --with-deps ${{ matrix.browser }}
+      - name: Four widths and both motion preferences
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          REQUIRE_CLEAN: '1'
+        run: |
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/small-motion-tools/node_modules/playwright"
+          node scripts/verify-phase7b-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: phase7b-${{ matrix.browser }}-${{ github.event.pull_request.head.sha }}
+          path: work/phase7b/

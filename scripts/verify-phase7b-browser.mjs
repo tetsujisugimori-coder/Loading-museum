@@ -1,0 +1,46 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {createRequire} from 'node:module';
+import {execFileSync,spawn} from 'node:child_process';
+import {once} from 'node:events';
+import {sourceDigest,outputDigest,validateBuild} from './build-layer-composer.mjs';
+const require=createRequire(import.meta.url),pw=require(process.env.PLAYWRIGHT_MODULE||'playwright');
+const engines=(process.env.BROWSERS||'chromium,webkit').split(','),widths=(process.env.WIDTHS||'375,390,765,1280').split(',').map(Number),motions=['no-preference','reduce'];
+assert.ok(engines.length&&engines.every(x=>['chromium','webkit'].includes(x)));assert.ok(widths.length&&widths.every(x=>[375,390,765,1280].includes(x)));assert.equal(new Set(engines).size,engines.length);assert.equal(new Set(widths).size,widths.length);
+const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim(),hash=b=>createHash('sha256').update(b).digest('hex');
+const dest=path.resolve(process.env.EVIDENCE_DIR||'work/phase7b',new Date().toISOString().replaceAll(':','-'));await fs.mkdir(dest,{recursive:true});
+const report={status:'RUNNING',head:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),sourceHash:await sourceDigest(),outputHash:await outputDigest(),dirty:git('status','--porcelain'),started:new Date().toISOString(),expected:engines.length*widths.length*2,cases:[],files:[],webkitExecutable:process.env.WEBKIT_PATH||'Playwright default',limitations:['Physical iOS Safari, VoiceOver and physical touch drag NOT_TESTED','Tab visibility event is simulated; real background-tab lifecycle NOT_TESTED','Range values use native keyboard events; WebKit native range touch acceptance is not claimed']};
+if(process.env.REQUIRE_CLEAN==='1'){assert.equal(report.dirty,'');validateBuild(JSON.parse(await fs.readFile('out/.layer-build.json','utf8')),{...report});}
+const save=async(name,bytes)=>{await fs.writeFile(path.join(dest,name),bytes);report.files.push({name,sha256:hash(bytes)});};
+const server=spawn(process.execPath,['scripts/serve-static-export.mjs','out'],{stdio:['ignore','pipe','inherit']});const [data]=await once(server.stdout,'data');const url=String(data).trim();let browser,context;
+try{
+ for(const engine of engines){for(const width of widths)for(const motion of motions){
+  // Isolate each matrix condition so discarded contexts and trace caches cannot accumulate.
+  browser=await pw[engine].launch({headless:true,...(engine==='webkit'&&process.env.WEBKIT_PATH?{executablePath:process.env.WEBKIT_PATH}:{})});
+  const c={engine,width,motion,browserVersion:browser.version(),status:'RUNNING',works:[],checks:[]};report.cases.push(c);
+  context=await browser.newContext({viewport:{width,height:1000},reducedMotion:motion,hasTouch:true});await context.tracing.start({screenshots:true,snapshots:true});const page=await context.newPage();page.setDefaultTimeout(9000);const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+  await page.addInitScript(()=>sessionStorage.setItem('digital-motion-archive-title-seen-v1','seen'));await page.goto(url);
+  assert.match(await page.locator('.archiveMeta').innerText(),/13 ROOMS \/ 280 OBJECTS/);assert.equal(await page.locator('.roomDirectory > li').count(),13);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));c.checks.push('inventory-no-overflow');
+  const nav=page.getByRole('navigation',{name:'歴史と現代から展示を探す'});const history=nav.getByRole('button',{name:/Historical Motion/});await history.focus();await page.keyboard.press('Enter');assert.equal(await history.getAttribute('aria-pressed'),'true');await nav.getByLabel('全館の作品・展示室・タグで検索').fill('Cursor Creature');assert.equal(await nav.locator('.catalogResults li').count(),1);const crossHref=await nav.locator('.catalogResults a').getAttribute('href');await nav.getByRole('button',{name:/Modern Motion/}).click();await nav.getByLabel('全館の作品・展示室・タグで検索').fill('Cursor Creature');assert.equal(await nav.locator('.catalogResults a').getAttribute('href'),crossHref);await nav.locator('.catalogResults a').click();await page.waitForFunction(()=>document.querySelector('#flash-special-exhibit')?.getAttribute('data-open')==='true');await page.locator(crossHref).waitFor({state:'visible'});c.checks.push('cross-reference-single-instance');
+  await page.goto(url+'#finder');await page.waitForFunction(()=>document.querySelector('#macintosh-birth-room-toggle')?.getAttribute('aria-expanded')==='true');await page.locator('#finder').waitFor({state:'visible'});await page.goto(url+'#loading-gallery');await page.locator('#loading-gallery').waitFor({state:'visible'});c.checks.push('old-url-anchors');
+  const ids=['spring-toggle','success-draw','sliding-indicator','expanding-card','drag-settle','skeleton-reveal'];
+  for(const id of ids){
+   await page.goto(url+`#modern-exhibit-${id}`);const stage=page.locator(`#modern-exhibit-${id}`);await stage.waitFor();await stage.scrollIntoViewIfNeeded();const work={id,checks:[]};c.works.push(work);
+   const details=stage.locator('details');assert.equal(await details.getAttribute('open'),null);await details.locator('summary').click();assert.equal(await details.getAttribute('open'),'');work.checks.push('optional-observation');
+   const button=name=>stage.getByRole('button',{name,exact:true});
+   if(id==='spring-toggle'){await stage.getByRole('switch').click();assert.equal(await stage.getByRole('switch').getAttribute('aria-checked'),'true');await stage.getByRole('switch').click();assert.equal(await stage.getByRole('switch').getAttribute('aria-checked'),'false');}
+   if(id==='success-draw'){await button('失敗を模擬').click();await page.waitForFunction(()=>document.querySelector('[data-testid="success-draw"]')?.getAttribute('data-state')==='failure');assert.match(await stage.getByRole('status').innerText(),/失敗/);await button('成功を模擬').click();if(motion==='no-preference'){await button('取消').click();assert.equal(await stage.getByTestId(id).getAttribute('data-state'),'cancelled');}}
+   if(id==='sliding-indicator'){await stage.getByRole('tab',{name:'山',exact:true}).focus();await page.keyboard.press('End');assert.equal(await stage.getByRole('tab',{name:'街',exact:true}).getAttribute('aria-selected'),'true');await stage.getByRole('tab',{name:'川',exact:true}).click();assert.equal(await stage.getByRole('tab',{name:'川',exact:true}).getAttribute('aria-selected'),'true');}
+   if(id==='expanding-card'){await button('カードを開く').click();await button('カードを閉じる').click();assert.equal(await button('カードを開く').getAttribute('aria-expanded'),'false');await page.waitForFunction(()=>document.querySelector('[data-testid="motion-ii"]')?.getAttribute('data-progress')==='0');}
+   if(id==='drag-settle'){await button('Aを移動').focus();await page.keyboard.press('ArrowDown');assert.match(await details.innerText(),/B → A → C/);await button('リセット').click();const handle=button('Aを移動');const box=await handle.boundingBox();await page.mouse.move(box.x+20,box.y+20);await page.mouse.down();await page.mouse.move(box.x+20,box.y+85);await page.mouse.up();assert.match(await details.innerText(),/B → A → C/);await button('リセット').click();}
+   if(id==='skeleton-reveal'){await stage.getByLabel('教材用結果').selectOption('failure');await button('再実行').click();await page.waitForFunction(()=>document.querySelector('[data-testid="motion-ii"]')?.getAttribute('data-state')==='完了');assert.match(await stage.getByRole('status').innerText(),/failure/);await button('取消').click();assert.match(await stage.getByRole('status').innerText(),/取消/);}
+   work.checks.push('specific-state-keyboard');const reset=button(id==='spring-toggle'||id==='success-draw'||id==='sliding-indicator'?'Reset':'リセット');await reset.click();
+   await save(`${engine}-${width}-${motion}-${id}.png`,await stage.screenshot());assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));work.checks.push('no-overflow-evidence');
+   await page.locator('.modernRoom').getByRole('button',{name:'展示室を閉じる',exact:true}).click();assert.equal(await stage.count(),0);work.checks.push('close-unmount');
+  }
+  assert.deepEqual(errors,[]);c.checks.push('no-browser-errors');c.status='PASS';await context.tracing.stop({path:path.join(dest,`${engine}-${width}-${motion}-trace.zip`)});report.files.push({name:`${engine}-${width}-${motion}-trace.zip`,sha256:hash(await fs.readFile(path.join(dest,`${engine}-${width}-${motion}-trace.zip`)))});await context.close();context=null;await browser.close();browser=null;console.log(`${engine}/${width}/${motion} PASS`);
+ }}
+ assert.equal(report.cases.length,report.expected);assert.ok(report.cases.every(c=>c.status==='PASS'&&c.works.length===6));report.status='PASS';
+}catch(error){report.status='FAIL';report.error=String(error.stack||error);if(report.cases.at(-1))report.cases.at(-1).status='FAIL';console.error(report.error);process.exitCode=1;}finally{if(context){await context.tracing.stop({path:path.join(dest,'failure-trace.zip')}).catch(()=>{});await context.close();}if(browser)await browser.close();server.kill();report.finished=new Date().toISOString();await fs.writeFile(path.join(dest,'report.json'),JSON.stringify(report,null,2));console.log('Evidence '+dest);}

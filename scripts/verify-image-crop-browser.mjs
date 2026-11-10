@@ -32,7 +32,7 @@ try {
       const context = await browser.newContext({ viewport: { width, height: 1000 }, reducedMotion: motion, hasTouch: width < 500 }); page = await context.newPage(); page.setDefaultTimeout(8000);
       const errors = [], observations = []; page.on('pageerror', e => errors.push(String(e))); report.current = { engine, version: browser.version(), width, motion };
       await page.addInitScript(() => sessionStorage.setItem('digital-motion-archive-title-seen-v1', 'seen'));
-      await page.goto(url); assert.match(await page.locator('.archiveMeta').textContent(), /13 ROOMS \/ 274 OBJECTS/);
+      await page.goto(url); assert.match(await page.locator('.archiveMeta').textContent(), /13 ROOMS \/ 280 OBJECTS/);
       const room = page.locator('.phase4Room'); await room.getByRole('button', { name: '部品展示室を開く', exact: true }).click(); assert.equal(await room.locator('nav button').count(), 29);
       const search = room.getByLabel('部品名・用途・技術で検索'); await search.fill('トリミング'); assert.equal(await room.locator('nav button').count(), 1); await room.locator('nav button').click(); await search.fill('');
       const stage = room.getByTestId('image-crop'), zone = stage.getByRole('group', { name: '切抜き枠の操作領域' }), frame = stage.getByTestId('ic-frame'), preview = stage.getByTestId('ic-preview'), confirmed = stage.getByTestId('ic-confirmed'), source = stage.locator('.icSource');
