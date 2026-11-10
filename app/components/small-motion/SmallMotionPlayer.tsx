@@ -30,7 +30,7 @@ export default function SmallMotionPlayer({id}:{id:SmallMotionId}) {
     const generation=++epoch.current;let previous:number|undefined,frame=0;
     const tick=(now:number)=>{
       if(generation!==epoch.current)return;
-      if(previous!==undefined){const next=clamp(progress.current+Math.min(now-previous,64)*speed/duration(id,gravity,fallSpeed));move(next);if(next===1){setPlaying(false);return;}}
+      if(previous!==undefined){const next=clamp(progress.current+Math.max(0,now-previous)*speed/duration(id,gravity,fallSpeed));move(next);if(next===1){setPlaying(false);return;}}
       previous=now;frame=requestAnimationFrame(tick);
     };
     frame=requestAnimationFrame(tick);return()=>{invalidate();cancelAnimationFrame(frame);};

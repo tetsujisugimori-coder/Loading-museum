@@ -1,0 +1,7 @@
+# Foreground timing correction
+
+The exact-b401011 local matrix attempts were not complete successes. Chromium crashed during a Reset action; a concurrent lint process was killed. Resource contention is possible but not established as the cause. The parallel WebKit attempt reached Blink & Look and timed out awaiting its terminal frame. Failure reports are retained separately; they are not reused as successful conditions.
+
+A deterministic timing counterexample was then added: after the first foreground rAF timestamp, delay the next foreground frame by 1000 ms during Bell Bounce at 1x. Expected timeline progress is 1000/1800 = 0.5555556. The old implementation capped every frame's contribution to 64ms and produced 0.0356, slowing playback on a low-frame-rate foreground page. The added test failed on the old implementation and passed after removing that cap.
+
+The correction uses nonnegative actual elapsed time for a pure authored timeline. It does not change physical integration or increase any timeout. Pause/offscreen/hidden/unmount invalidate the previous loop; resume starts with a fresh timestamp. Thus time in a paused or hidden state is still excluded. The complete 20-case unit suite, including stale callbacks and hidden/resumed time, passes. The counterexample proves the timing flaw; it does not alone establish the cause of every earlier browser failure. Final full matrix and exact-HEAD CI remain separate requirements.
