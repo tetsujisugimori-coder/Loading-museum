@@ -1,0 +1,40 @@
+// @vitest-environment jsdom
+import React from 'react';
+import {afterEach,beforeEach,describe,expect,it,vi} from 'vitest';
+import {cleanup,fireEvent,render,screen,act} from '@testing-library/react';
+import {museumCatalog,museumRooms,museumTotal,categorySummary} from '../app/data/museumClassification';
+import {smallMotionExhibits} from '../app/data/smallMotionExhibits';
+import {sample,duration} from '../app/components/small-motion/model';
+import SmallMotionPlayer from '../app/components/small-motion/SmallMotionPlayer';
+import ModernAnimationRoom from '../app/components/ModernAnimationRoom';
+import MuseumNavigation from '../app/components/MuseumNavigation';
+let intersect:(v:boolean)=>void;let reduced=false;let mediaChange:()=>void;let clock=0;let frameId=0;const frames=new Map<number,FrameRequestCallback>();
+beforeEach(()=>{clock=0;frameId=0;frames.clear();reduced=false;Object.defineProperty(document,'visibilityState',{configurable:true,value:'visible'});window.matchMedia=vi.fn(()=>({get matches(){return reduced},addEventListener:(_event:string,fn:()=>void)=>{mediaChange=fn},removeEventListener:vi.fn()})) as unknown as typeof window.matchMedia;globalThis.IntersectionObserver=class{constructor(cb:(v:{isIntersecting:boolean}[])=>void){intersect=(v)=>cb([{isIntersecting:v}])}observe(){intersect(true)}disconnect(){} } as unknown as typeof IntersectionObserver;vi.stubGlobal('requestAnimationFrame',(cb:FrameRequestCallback)=>{frames.set(++frameId,cb);return frameId});vi.stubGlobal('cancelAnimationFrame',(n:number)=>frames.delete(n));});
+afterEach(()=>{cleanup();vi.unstubAllGlobals();});
+const advance=(ms:number)=>act(()=>{for(let t=0;t<ms;t+=16){clock+=16;const callbacks=[...frames.values()];frames.clear();callbacks.forEach(cb=>cb(clock));}});
+const button=(name:string)=>fireEvent.click(screen.getByRole('button',{name}));
+const progress=()=>Number(screen.getByTestId('small-motion').getAttribute('data-progress'));
+describe('classification registry',()=>{
+ it('has 274 unique records and exactly 13 existing rooms',()=>{expect(museumTotal).toBe(274);expect(museumCatalog.length).toBe(274);expect(new Set(museumRooms.map(x=>x.id)).size).toBe(13);expect(museumCatalog.every(x=>x.categories.length>0)).toBe(true);expect(museumCatalog.filter(x=>x.collection==='Small Motion Collection')).toHaveLength(6);});
+ it('classifies historical WAAPI by subject and references Then/Now without duplication',()=>{expect(museumCatalog.find(x=>x.originalId==='classic-mac-watch')?.categories).toEqual(['historical']);const cross=museumCatalog.filter(x=>x.categories.length===2);expect(cross).toHaveLength(23);expect(categorySummary('historical').objects+categorySummary('modern').objects-cross.length).toBe(274);});
+ it('supports category filtering, search and collection hierarchy',()=>{render(<MuseumNavigation/>);fireEvent.click(screen.getByRole('button',{name:/Modern Motion/}));fireEvent.change(screen.getByLabelText('全館の作品・展示室・タグで検索'),{target:{value:'Small Motion'}});expect(screen.getByRole('status').textContent).toContain('6展示');expect(screen.getAllByRole('link',{name:/Bell Bounce/})).toHaveLength(1);expect(screen.getByRole('link',{name:'作品を選ぶ'}).getAttribute('href')).toBe('#small-motion-collection');});
+});
+describe('small motion lifecycle',()=>{
+ for(const item of smallMotionExhibits)it(`${item.id}: seek, replay, stop, resume, reset and stale frame`,()=>{
+  render(<SmallMotionPlayer id={item.id}/>);button('再生');advance(200);expect(progress()).toBeGreaterThan(0);button('停止');const paused=progress();advance(300);expect(progress()).toBe(paused);button('再生');advance(200);expect(progress()).toBeGreaterThan(paused);
+  const stale=[...frames.values()];button('Reset');act(()=>stale.forEach(cb=>cb(clock+9999)));expect(progress()).toBe(0);expect(screen.getByRole('status',{name:'作品の状態'}).textContent).toBe('待機');
+  fireEvent.change(screen.getByLabelText('途中位置 (%)'),{target:{value:55}});expect(progress()).toBe(.55);button('Replay');expect(progress()).toBe(0);advance(100);button('Replay');expect(progress()).toBe(0);advance(100);expect(progress()).toBeGreaterThan(0);
+  act(()=>intersect(false));const hidden=progress();advance(500);expect(progress()).toBe(hidden);act(()=>intersect(true));advance(200);expect(progress()).toBeGreaterThan(hidden);
+  act(()=>{Object.defineProperty(document,'visibilityState',{configurable:true,value:'hidden'});document.dispatchEvent(new Event('visibilitychange'));});const tab=progress();advance(500);expect(progress()).toBe(tab);act(()=>{Object.defineProperty(document,'visibilityState',{configurable:true,value:'visible'});document.dispatchEvent(new Event('visibilitychange'));});advance(200);expect(progress()).toBeGreaterThan(tab);
+ });
+ it('reduced motion ends explicitly and permits manual intermediate observation',()=>{reduced=true;render(<SmallMotionPlayer id="send-flight"/>);button('送信（模擬）');expect(progress()).toBe(1);expect(frames.size).toBe(0);fireEvent.change(screen.getByLabelText('途中位置 (%)'),{target:{value:40}});expect(progress()).toBe(.4);button('取消');expect(progress()).toBe(0);advance(10000);expect(screen.getByRole('status',{name:'作品の状態'}).textContent).toContain('取消済み');});
+ it('live reduced-motion change cancels callbacks without jumping state',()=>{render(<SmallMotionPlayer id="bell-bounce"/>);button('通知を発生');advance(200);act(()=>{reduced=true;mediaChange();});const p=progress();advance(900);expect(progress()).toBe(p);expect(frames.size).toBe(0);button('最終状態');expect(progress()).toBe(1);});
+ it('notification confirm/renotify and bookmark reversal are distinct',()=>{const a=render(<SmallMotionPlayer id="bell-bounce"/>);button('通知を発生');button('確認');expect(screen.getByRole('status',{name:'作品の状態'}).textContent).toBe('確認済み');button('再通知');expect(screen.getByTestId('small-motion').getAttribute('data-mode')).toBe('unread');a.unmount();render(<SmallMotionPlayer id="bookmark-fold"/>);button('保存する');advance(100);button('保存を解除');expect(screen.getByTestId('small-motion').getAttribute('data-mode')).toBe('unsave');});
+ it('send cancellation cannot be overwritten by stale completion',()=>{render(<SmallMotionPlayer id="send-flight"/>);button('送信（模擬）');advance(100);const stale=[...frames.values()];button('取消');act(()=>stale.forEach(cb=>cb(9999)));expect(screen.getByRole('status',{name:'作品の状態'}).textContent).toBe('取消済み');});
+ it('gaze keyboard and lock work without body following',()=>{render(<SmallMotionPlayer id="blink-look"/>);const stage=screen.getByRole('group',{name:/視線の操作領域/});fireEvent.keyDown(stage,{key:'ArrowRight'});expect(stage.textContent).toContain('0.2, 0.0');fireEvent.click(screen.getByLabelText('視線を固定'));fireEvent.keyDown(stage,{key:'ArrowRight'});expect(stage.textContent).toContain('0.2, 0.0');button('正面を見る');expect(stage.textContent).toContain('0.0, 0.0');});
+ it('collection search preserves existing works and unmounts on close',()=>{render(<ModernAnimationRoom/>);button('展示室を開く');fireEvent.change(screen.getByLabelText('作品名・タグで探す'),{target:{value:'ベル'}});button('Bell Bounce / 小さな知らせ');button('通知を発生');advance(100);button('展示室を閉じる');expect(frames.size).toBe(0);expect(screen.queryByTestId('small-motion')).toBeNull();});
+});
+describe('motion geometry',()=>{
+ it('has distinct fall, squash, rebound and final frames',()=>{const value=(p:number)=>sample('squash-stretch',p,26,.7,12,92,1);expect(value(.4).scaleY).toBeLessThan(.6);expect(value(.26).scaleY).toBeGreaterThan(1);expect(value(.7).ballY).toBeLessThan(value(1).ballY);expect(value(.4).scaleX*value(.4).scaleY).toBeCloseTo(1);});
+ it('controls change motion and total time with exact terminal values',()=>{expect(duration('squash-stretch',2,1)).toBeLessThan(duration('squash-stretch',1,1));expect(duration('drop-ripple',1,2)).toBeLessThan(duration('drop-ripple',1,.5));expect(sample('drop-ripple',1,26,.7,12,92,1).rippleOpacity).toBe(0);expect(sample('bell-bounce',1,26,.7,12,92,1).bellAngle).toBeCloseTo(0);});
+});

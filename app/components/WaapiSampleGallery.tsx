@@ -466,6 +466,7 @@ export function WaapiSampleGallery() {
   const gridRef = useRef<HTMLDivElement>(null);
   const reducedMotion = usePrefersReducedMotion();
   const filteredSamples = useMemo(() => filterWaapiSamples(query, filters), [filters, query]);
+  useEffect(()=>{const navigate=()=>{const [room,params]=location.hash.slice(1).split('?');if(room!=='browse-waapi')return;const id=new URLSearchParams(params).get('exhibit');const target=waapiSamples.find(x=>x.id===id);if(target){setQuery(target.name);setFilters(blankFilters);setOpen(true);}};navigate();window.addEventListener('hashchange',navigate);return()=>window.removeEventListener('hashchange',navigate);},[]);
   const options = useMemo(() => Object.fromEntries(filterKeys.map((key) => [key, Array.from(new Set(waapiSamples.flatMap((sample) => Array.isArray(sample[key]) ? sample[key] : [sample[key]]))).sort()])), []);
   const categoryCounts = useMemo(() => Array.from(new Set(waapiSamples.map((sample) => sample.category))).map((category) => ({ category, count: waapiSamples.filter((sample) => sample.category === category).length })), []);
 

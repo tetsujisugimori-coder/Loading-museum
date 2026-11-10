@@ -1,3 +1,5 @@
+import MuseumNavigation from "./components/MuseumNavigation";
+import {smallMotionExhibits} from "./data/smallMotionExhibits";
 import PracticalRoom from "./components/PracticalRoom";
 import { practicalExhibits } from "./data/practicalExhibits";
 import { phase4aExhibits } from "./data/phase4aExhibits";
@@ -71,9 +73,11 @@ export default function Home() {
           <br />
           COLLECTION 1976—NOW
           <br />
-          {periodRoomCount + 4} ROOMS / {totalExhibitCount + modernExhibits.length + 12 + practicalExhibits.length + phase4aExhibits.length + phase4bExhibits.length + phase5aExhibits.length + phase5bExhibits.length + phase6aExhibits.length} OBJECTS
+          {periodRoomCount + 4} ROOMS / {totalExhibitCount + modernExhibits.length + 12 + practicalExhibits.length + phase4aExhibits.length + phase4bExhibits.length + phase5aExhibits.length + phase5bExhibits.length + phase6aExhibits.length + smallMotionExhibits.length} OBJECTS
         </p>
       </header>
+
+      <MuseumNavigation />
 
       <section id="loading-gallery" className="timeline" aria-label="ローディング展示室の展示一覧">
         <article className="exhibit">
