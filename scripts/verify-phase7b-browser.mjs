@@ -18,8 +18,8 @@ const server=spawn(process.execPath,['scripts/serve-static-export.mjs','out'],{s
 try{
  for(const engine of engines){for(const width of widths)for(const motion of motions){
   // Isolate each matrix condition so discarded contexts and trace caches cannot accumulate.
-  browser=await pw[engine].launch({headless:true,...(engine==='webkit'&&process.env.WEBKIT_PATH?{executablePath:process.env.WEBKIT_PATH}:{})});
-  const c={engine,width,motion,browserVersion:browser.version(),status:'RUNNING',works:[],checks:[]};report.cases.push(c);
+  report.attempting={engine,width,motion,stage:'launch'};browser=await pw[engine].launch({headless:true,...(engine==='webkit'&&process.env.WEBKIT_PATH?{executablePath:process.env.WEBKIT_PATH}:{})});
+  report.attempting.stage='execution';const c={engine,width,motion,browserVersion:browser.version(),status:'RUNNING',works:[],checks:[]};report.cases.push(c);
   context=await browser.newContext({viewport:{width,height:1000},reducedMotion:motion,hasTouch:true});await context.tracing.start({screenshots:true,snapshots:true});const page=await context.newPage();page.setDefaultTimeout(9000);const errors=[];page.on('pageerror',e=>errors.push(String(e)));
   await page.addInitScript(()=>sessionStorage.setItem('digital-motion-archive-title-seen-v1','seen'));await page.goto(url);
   assert.match(await page.locator('.archiveMeta').innerText(),/13 ROOMS \/ 280 OBJECTS/);assert.equal(await page.locator('.roomDirectory > li').count(),13);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));c.checks.push('inventory-no-overflow');
@@ -47,4 +47,4 @@ try{
   assert.deepEqual(errors,[]);c.checks.push('no-browser-errors');c.status='PASS';await context.tracing.stop({path:path.join(dest,`${engine}-${width}-${motion}-trace.zip`)});report.files.push({name:`${engine}-${width}-${motion}-trace.zip`,sha256:hash(await fs.readFile(path.join(dest,`${engine}-${width}-${motion}-trace.zip`)))});await context.close();context=null;await browser.close();browser=null;console.log(`${engine}/${width}/${motion} PASS`);
  }}
  assert.equal(report.cases.length,report.expected);assert.ok(report.cases.every(c=>c.status==='PASS'&&c.works.length===6));report.status='PASS';
-}catch(error){report.status='FAIL';report.error=String(error.stack||error);if(report.cases.at(-1))report.cases.at(-1).status='FAIL';console.error(report.error);process.exitCode=1;}finally{if(context){await context.tracing.stop({path:path.join(dest,'failure-trace.zip')}).catch(()=>{});await context.close();}if(browser)await browser.close();server.kill();report.finished=new Date().toISOString();await fs.writeFile(path.join(dest,'report.json'),JSON.stringify(report,null,2));console.log('Evidence '+dest);}
+}catch(error){report.status='FAIL';report.error=String(error.stack||error);if(report.cases.at(-1)?.status==='RUNNING')report.cases.at(-1).status='FAIL';console.error(report.error);process.exitCode=1;}finally{if(context){await context.tracing.stop({path:path.join(dest,'failure-trace.zip')}).catch(()=>{});await context.close();}if(browser)await browser.close();server.kill();report.finished=new Date().toISOString();await fs.writeFile(path.join(dest,'report.json'),JSON.stringify(report,null,2));console.log('Evidence '+dest);}

@@ -12,3 +12,10 @@ const advance=(ms:number)=>act(()=>{for(let t=0;t<ms;t+=16){time+=16;const list=
 it('independent: cancelled draw cannot be revived by resume',()=>{render(<FirstWorks id="success-draw"/>);fireEvent.click(screen.getByText('成功を模擬'));advance(240);fireEvent.click(screen.getByText('取消'));expect(screen.getByTestId('success-draw').dataset.state).toBe('cancelled');fireEvent.click(screen.getByText('再開'));advance(1500);expect(screen.getByTestId('success-draw').dataset.state).toBe('cancelled');});
 it('independent: toggling reduced motion off does not rewind a completed spring',()=>{render(<FirstWorks id="spring-toggle"/>);fireEvent.click(screen.getByRole('switch'));advance(160);act(()=>{reduce=true;mediaListener();});expect(screen.getByTestId('spring-toggle').dataset.position).toBe('1');act(()=>{reduce=false;mediaListener();});expect(screen.getByTestId('spring-toggle').dataset.position).toBe('1');});
 it('independent: completed draw remains final after motion preference changes',()=>{render(<FirstWorks id="success-draw"/>);fireEvent.click(screen.getByText('失敗を模擬'));advance(240);act(()=>{reduce=true;mediaListener();});expect(screen.getByTestId('success-draw').dataset.state).toBe('failure');act(()=>{reduce=false;mediaListener();});expect(screen.getByTestId('success-draw').dataset.state).toBe('failure');});
+
+it('independent: batched pointer move and release commit the latest destination without a render',async()=>{
+ const {default:SecondWorks}=await import('../app/components/small-motion-ii/SecondWorks');
+ render(<SecondWorks id="drag-settle"/>);const button=screen.getByRole('button',{name:'Aを移動'});button.setPointerCapture=vi.fn();
+ act(()=>{for(const [type,y] of [['pointerdown',100],['pointermove',200],['pointerup',200]] as const){const event=new Event(type,{bubbles:true});Object.assign(event,{button:0,clientY:y,pointerId:4});button.dispatchEvent(event);}});
+ expect(screen.getByText('B → C → A')).toBeTruthy();
+});

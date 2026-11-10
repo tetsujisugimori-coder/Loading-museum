@@ -25,3 +25,21 @@ PARTIAL / merge recommendation NO pending fixes, same-counterexample rerun, comp
 ## Recheck after repair
 
 Independent rerun of the unchanged three counterexamples and nine existing first-work tests: 12/12 PASS. The clock now materializes the terminal time for reduced motion, and Resume excludes cancelled/idle/completed states. Code inspection confirms both changes address the reproduced failures without changing test expectations. Browser recheck and finalHEAD/CI acceptance remain pending; no final merge recommendation is issued from unit results alone.
+
+## Independent browser and remote-source recheck
+
+Fetched remote 0966dc09b8344047801b7d6d8d11dbef1a1a842f independently; tree 3dde74cefe97f8142141060ba1b80ee84dc015a0. All tracked app/scripts/tests/workflow/package source bytes matched the reviewed workspace. Rebuilt output was supplied by coordinator (reviewer did not rebuild concurrently).
+
+Chromium141.0.7390.37 at390×1000 independently confirms cancelled state cannot resume, and reduced-motion ON→OFF retains spring final position1. Both browser counterexamples now PASS. Fixed trace/PNGs/report/manifest are in work/phase7b/independent-first-fixed, separate from original RED evidence. WebKit independent attempt failed before launch due to missing GTK4/Graphene/WOFF2/Harfbuzz-ICU/Hyphen/Manette/GLES shared libraries; no WebKit behavioral success is claimed by this reviewer. CI remains pending. This is code-scoped defect resolution, not full matrix or final integration acceptance.
+
+## WPE WebKit follow-up and navigation limit
+
+Using the available existing MiniBrowser WPE wrapper, WebKit26 launched successfully. Spring final-state retention passed. First cancellation attempt reached success before the cancellation precondition could be established; its raw FAIL is classified UNCONFIRMED, not as cancelled-job revival. A separately recorded early-cancel trial using the supported0.5 speed control established cancelled→cancelled and passed. Original JSON/trace remain unchanged; interpretation is separate. Evidence: independent-first-fixed-webkit and independent-first-fixed-webkit-slow with SHA256 manifests.
+
+The earlier old-Flash navigation timeout did not repeat in the coordinator's fresh eight-condition Chromium run. Independent code inspection found both hash handlers still target setOpen(true), but no causal explanation for the earlier timeout was established. It remains UNKNOWN; this reviewer did not modify old Flash product code. Full local matrix then hit default WebKit library startup failure, separate from the successful independent WPE trials.
+
+## Batched pointer delivery counterexample
+
+Added an independent same-task event sequence (pointerdown→pointermove→pointerup inside a single React act, without rendering between events). With SecondWorks from remote0966dc0, expected order B→C→A fails; with the synchronous drag-session snapshot repair, the same test passes. All four reviewer-owned tests pass after repair. The original component was preserved under work/phase7b-old; RED and GREEN logs remain separate. This checks render-latency independence rather than adding a fixed wait to the browser test.
+
+Browser-runner failure accounting was also reviewed: only a RUNNING case is now marked FAIL, so next-engine launch failure no longer rewrites the preceding successful case. Overall run remains FAIL. The attempting stage should be advanced after successful launch to avoid labeling subsequent execution failures as launch failures.
