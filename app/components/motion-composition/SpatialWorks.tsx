@@ -1,0 +1,52 @@
+'use client';
+import {useCallback,useEffect,useLayoutEffect,useRef,useState} from 'react';
+import {distanceAt,invertRect,paths,relayPhase,relayStyle,smooth,unit,type Rect} from './spatial-model';
+import './spatial.css';
+type Id='flip-layout'|'motion-path'|'transition-relay';
+type Status='待機'|'再生中'|'一時停止'|'完了'|'取消';
+const rect=(e:Element):Rect=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height};};
+function useMotion(){
+ const [p,setP]=useState(0),[status,setStatus]=useState<Status>('待機'),[speed,setSpeed]=useState(1),[reduced,setReduced]=useState(false);
+ const data=useRef({p:0,target:1,speed:1,running:false,token:0,frame:0,last:0,elapsed:0});
+ const [elapsed,setElapsed]=useState(0);const root=useRef<HTMLDivElement>(null);
+ const stop=useCallback((s:Status='一時停止')=>{const d=data.current;d.running=false;d.token++;cancelAnimationFrame(d.frame);setStatus(s);},[]);
+ const run=useCallback((target=1,from?:number)=>{const d=data.current;cancelAnimationFrame(d.frame);const token=++d.token;if(from!==undefined){d.p=unit(from);d.elapsed=0;setElapsed(0);}d.target=target;d.last=0;d.running=true;setP(d.p);setStatus('再生中');
+ if(reduced){d.p=target;d.running=false;setP(target);setStatus('完了');return;}
+ const tick=(time:number)=>{if(token!==d.token||!d.running)return;const dt=d.last?Math.max(0,time-d.last):0;d.last=time;d.elapsed+=dt*d.speed;const step=dt*d.speed/1800;d.p=d.target>d.p?Math.min(d.target,d.p+step):Math.max(d.target,d.p-step);setP(d.p);setElapsed(d.elapsed);if(d.p===d.target){d.running=false;setStatus('完了');}else d.frame=requestAnimationFrame(tick);};d.frame=requestAnimationFrame(tick);
+ },[reduced]);
+ const reset=useCallback(()=>{stop('待機');data.current.p=0;data.current.elapsed=0;data.current.target=1;setP(0);setElapsed(0);},[stop]);
+ useEffect(()=>{const media=matchMedia('(prefers-reduced-motion: reduce)');const change=()=>{setReduced(media.matches);if(media.matches&&data.current.running){stop('完了');data.current.p=data.current.target;setP(data.current.target);}};change();media.addEventListener('change',change);return()=>media.removeEventListener('change',change);},[stop]);
+ useEffect(()=>{const clock=data.current;const hide=()=>{if(document.hidden&&data.current.running)stop();};document.addEventListener('visibilitychange',hide);const observer=typeof IntersectionObserver==='undefined'?null:new IntersectionObserver(entries=>{if(!entries[0]?.isIntersecting&&data.current.running)stop();});if(root.current)observer?.observe(root.current);return()=>{document.removeEventListener('visibilitychange',hide);observer?.disconnect();clock.token++;clock.running=false;cancelAnimationFrame(clock.frame);};},[stop]);
+ const seek=(value:number)=>{stop();data.current.p=unit(value);data.current.elapsed=0;setP(data.current.p);setElapsed(0);};
+ return {p,status,speed,reduced,elapsed,root,run,stop,reset,seek,resume:()=>{if(!data.current.running)run(data.current.target);},setSpeed:(v:number)=>{data.current.speed=v;setSpeed(v);}};
+}
+export default function SpatialWorks({id}:{id:Id}){const m=useMotion();const {root,run,stop}=m;const [layout,setLayout]=useState(false),[order,setOrder]=useState([0,1,2,3]),[normal,setNormal]=useState(false),[path,setPath]=useState<keyof typeof paths>('curve'),[reverse,setReverse]=useState(false),[orient,setOrient]=useState(true),[trail,setTrail]=useState(true),[target,setTarget]=useState(false);
+ const cards=useRef<(HTMLDivElement|null)[]>([]),first=useRef<Rect[]>([]),pending=useRef(false);const [geometry,setGeometry]=useState<{first:Rect[];last:Rect[]}>({first:[],last:[]}),[measured,setMeasured]=useState<Rect[]>([]);
+ const svgPath=useRef<SVGPathElement>(null);const [position,setPosition]=useState<{length:number;x:number;y:number;angle:number;distance:number}|null>(null);
+ const changeLayout=(reorder=false)=>{first.current=cards.current.map(e=>e?rect(e):{x:0,y:0,width:0,height:0});pending.current=true;m.stop();if(reorder)setOrder(v=>[...v].reverse());else setLayout(v=>!v);};
+ useLayoutEffect(()=>{if(!pending.current)return;pending.current=false;const transforms=cards.current.map(e=>e?.style.transform??'');cards.current.forEach(e=>{if(e)e.style.transform='none';});const last=cards.current.map(e=>e?rect(e):{x:0,y:0,width:0,height:0});cards.current.forEach((e,i)=>{if(e)e.style.transform=transforms[i];});setGeometry({first:first.current,last});run(1,normal?1:0);},[layout,order,run,normal]);
+ useLayoutEffect(()=>{if(id==='flip-layout')setMeasured(cards.current.filter((e):e is HTMLDivElement=>!!e).map(rect));},[id,m.p,geometry]);
+ useEffect(()=>{const resize=()=>{if(id==='flip-layout'){stop('取消');setGeometry({first:[],last:[]});setMeasured(cards.current.filter((e):e is HTMLDivElement=>!!e).map(rect));}};window.addEventListener('resize',resize);return()=>window.removeEventListener('resize',resize);},[id,stop]);
+ useLayoutEffect(()=>{if(id!=='motion-path'||!svgPath.current)return;try{const node=svgPath.current,length=node.getTotalLength(),distance=distanceAt(length,m.p,reverse),pt=node.getPointAtLength(distance),a=node.getPointAtLength(Math.max(0,distance-.2)),b=node.getPointAtLength(Math.min(length,distance+.2));setPosition({length,distance,x:pt.x,y:pt.y,angle:Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI+(reverse?180:0)});}catch{setPosition(null);}},[id,m.p,path,reverse]);
+ const reset=()=>{m.reset();m.setSpeed(1);setNormal(false);setPath('curve');setReverse(false);setOrient(true);setTrail(true);setTarget(false);if(id==='flip-layout'){pending.current=false;setGeometry({first:[],last:[]});setLayout(false);setOrder([0,1,2,3]);}};
+ const replay=()=>{if(id==='flip-layout'){changeLayout();}else m.run(target||id==='motion-path'?1:0,target?0:id==='motion-path'?0:1);};
+ const switchScreen=()=>{const next=!target;setTarget(next);m.run(next?1:0,normal?(next?1:0):undefined);};
+ const visual=relayStyle(m.p);
+ return <div ref={root} className="mcSpatial" data-testid={id} data-time={m.elapsed} data-work={id} data-state={m.status} data-progress={m.p}>
+ <div className="mcSpatialStage" aria-label="動きの鑑賞">
+ {id==='flip-layout'&&<div className={`mcFlip ${layout?'mcList':''}`}>{order.map(i=>{const f=geometry.first[i],l=geometry.last[i],v=f&&l?invertRect(f,l):{x:0,y:0,sx:1,sy:1},q=1-smooth(m.p);return <div key={i} ref={e=>{cards.current[i]=e;}} className="mcTile" style={{transformOrigin:'0 0',transform:`translate(${v.x*q}px,${v.y*q}px) scale(${1+(v.sx-1)*q},${1+(v.sy-1)*q})`}}>0{i+1}<span>Motion specimen</span></div>;})}</div>}
+ {id==='motion-path'&&<svg viewBox="0 0 320 180" role="img" aria-label="経路を進む図形"><path ref={svgPath} d={paths[path]} fill="none" stroke={trail?'#436a87':'transparent'} strokeWidth="2" strokeDasharray="4 5"/>{position&&<g transform={`translate(${position.x} ${position.y}) rotate(${orient?position.angle:0})`}><path d="M 13 0 L -10 -9 L -5 0 L -10 9 Z" fill="#e2b36c"/></g>}</svg>}
+ {id==='transition-relay'&&<div className="mcRelay" style={{background:m.p<.5?'#183c55':'#624321'}}><div style={{opacity:visual.opacity,transform:`translateX(${visual.x}px)`}}><h5>{m.p<.5?'A · 静かな入口':'B · 新しい景色'}</h5><p>{m.p<.5?'退場して、配置を変える。':'配置が整ってから、登場する。'}</p></div></div>}
+ </div>
+ {id==='flip-layout'&&<button onClick={()=>changeLayout()}>グリッド・リスト切替</button>}{id==='transition-relay'&&<button onClick={switchScreen}>画面{target?'A':'B'}へ切替</button>}
+ <p role="status">{m.status}{m.reduced?' · 動きを省略':''}</p>
+ <details><summary>操作する</summary><div className="mcSpatialControls"><button onClick={()=>{if(id==='flip-layout')changeLayout();else {if(id==='transition-relay')setTarget(true);m.run(1,m.p===1?0:undefined);}}}>再生</button><button disabled={m.status!=='一時停止'} onClick={()=>m.resume()}>再開</button><button disabled={m.status!=='再生中'} onClick={()=>m.stop()}>一時停止</button><button onClick={replay}>Replay</button><button onClick={reset}>Reset</button><button onClick={()=>m.stop('取消')}>取消</button><label>速度 <select aria-label="速度" value={m.speed} onChange={e=>m.setSpeed(Number(e.target.value))}><option value="0.5">0.5倍</option><option value="1">1倍</option><option value="2">2倍</option></select></label>
+ {id==='flip-layout'&&<><button onClick={()=>changeLayout(true)}>順序を反転</button><label><input type="checkbox" checked={normal} onChange={e=>{m.stop('取消');setNormal(e.target.checked);}}/>通常配置（FLIPなし）</label></>}
+ {id==='motion-path'&&<><label>経路 <select aria-label="経路" value={path} onChange={e=>{m.reset();setPath(e.target.value as keyof typeof paths);}}><option value="line">直線</option><option value="curve">曲線</option><option value="loop">周回</option></select></label><label><input type="checkbox" checked={reverse} onChange={e=>{const wasRunning=m.status==='再生中';const value=1-m.p;setReverse(e.target.checked);if(wasRunning)m.run(1,value);else m.seek(value);}}/>逆方向</label><label><input type="checkbox" checked={orient} onChange={e=>setOrient(e.target.checked)}/>経路方向に向ける</label><label><input type="checkbox" checked={trail} onChange={e=>setTrail(e.target.checked)}/>軌跡を表示</label></>}
+ {id==='transition-relay'&&<label><input type="checkbox" checked={normal} onChange={e=>setNormal(e.target.checked)}/>通常遷移（演出なし）</label>}</div></details>
+ <details><summary>仕組みを見る</summary><p>設定値：所要時間1800 ms、速度{m.speed}倍。計算値：時間位置{(m.p*100).toFixed(1)}%、進行時間{m.elapsed.toFixed(0)} ms（rAF差分×速度）。画面外・非表示では一時停止し、自動再開しません。</p>
+ {id==='flip-layout'&&<><p>Firstで変更前の実DOM矩形、Lastで新配置の矩形を測ります。差をInvertのtransformにし、Playで0へ補間します。Expanding Cardの指定矩形補間と異なり、実際のレイアウト変更を測定します。resizeでは取消して新配置へ収束。</p><p>実測値（CSS px）：F {JSON.stringify(geometry.first)} / L {JSON.stringify(geometry.last)} / 描画後矩形 {JSON.stringify(measured)}</p><p>計算値：Invert {JSON.stringify(geometry.first.map((f,i)=>geometry.last[i]?invertRect(f,geometry.last[i]):null))}</p></>}
+ {id==='motion-path'&&<><p>SVG getTotalLength / getPointAtLengthで経路長と座標を取得します。距離割合で移動し、Bezierのパラメータtでは進めません。方向は近傍2点から計算します。単位はSVG座標で、画面上のCSS pxとは異なります。</p><p>ブラウザ幾何測定値：{position?`経路長 ${position.length.toFixed(2)}、位置 (${position.x.toFixed(2)}, ${position.y.toFixed(2)})`:'NOT_OBSERVED'}</p><p>計算値：移動距離 {position?.distance.toFixed(2)??'NOT_OBSERVED'}、向き {position?.angle.toFixed(1)??'NOT_OBSERVED'}度。設定方向：{reverse?'逆':'順'}。</p></>}
+ {id==='transition-relay'&&<><p>現在の表示：{m.p<.5?'A':'B'} / 遷移先：{target?'B':'A'} / 段階：{relayPhase(target?m.p:1-m.p)} / 処理状態：{m.status}</p><p>計算上の共通時間軸を逆向きに戻します。進行方向に沿った退場0–35%、配置変更35–65%、登場65–100%。B→Aでは共通時間位置の逆順に段階を読みます。実測画素・描画完了時刻：NOT_OBSERVED。新操作は世代番号を更新し古いrAFを破棄します。これは通信や実画面ナビゲーションではありません。</p></>}
+ </details></div>;
+}

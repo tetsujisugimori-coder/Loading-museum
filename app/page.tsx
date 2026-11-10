@@ -1,3 +1,4 @@
+import {motionCompositionExhibits} from './data/motionCompositionExhibits';
 import {smallMotionIIExhibits} from './data/smallMotionIIExhibits';
 import MuseumNavigation from "./components/MuseumNavigation";
 import {smallMotionExhibits} from "./data/smallMotionExhibits";
@@ -74,7 +75,7 @@ export default function Home() {
           <br />
           COLLECTION 1976—NOW
           <br />
-          {periodRoomCount + 4} ROOMS / {totalExhibitCount + modernExhibits.length + 12 + practicalExhibits.length + phase4aExhibits.length + phase4bExhibits.length + phase5aExhibits.length + phase5bExhibits.length + phase6aExhibits.length + smallMotionExhibits.length + smallMotionIIExhibits.length} OBJECTS
+          {periodRoomCount + 4} ROOMS / {totalExhibitCount + modernExhibits.length + 12 + practicalExhibits.length + phase4aExhibits.length + phase4bExhibits.length + phase5aExhibits.length + phase5bExhibits.length + phase6aExhibits.length + smallMotionExhibits.length + smallMotionIIExhibits.length + motionCompositionExhibits.length} OBJECTS
         </p>
       </header>
 
