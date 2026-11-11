@@ -1,4 +1,4 @@
-name: Diagnose Phase 7D async causality
+name: Diagnose Phase 7D observation effects
 on:
   pull_request:
     branches: [main]
@@ -12,7 +12,6 @@ jobs:
       fail-fast: false
       matrix:
         browser: [chromium, webkit]
-        group: [A, B, C]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,46 +23,43 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: node --test tests/phase7d-*diagnostic*.test.mjs tests/phase7d-causal-contract.test.mjs
-      - name: Build isolated observation variant
+      - run: node --test tests/phase7d-*diagnostic*.test.mjs tests/phase7d-causal-contract.test.mjs tests/phase7d-observation-contract.test.mjs
+      - name: Build one uninstrumented source for every observation group
         env:
-          DIAGNOSTIC_GROUP: ${{ matrix.group }}
-          DIAGNOSTIC_COPY_DIR: work/causal-copy
+          DIAGNOSTIC_GROUP: A
+          DIAGNOSTIC_COPY_DIR: work/observation-copy
         run: node scripts/prepare-phase7d-diagnostic.mjs
       - name: Browser tools
         run: |
-          npm install --prefix "$RUNNER_TEMP/causal-tools" --no-save playwright@1.56.1
-          "$RUNNER_TEMP/causal-tools/node_modules/.bin/playwright" install --with-deps ${{ matrix.browser }}
-      - name: Fixed trials without acceptance relaxation
+          npm install --prefix "$RUNNER_TEMP/observation-tools" --no-save playwright@1.56.1
+          "$RUNNER_TEMP/observation-tools/node_modules/.bin/playwright" install --with-deps ${{ matrix.browser }}
+      - name: Fixed balanced A1 A2 A3 trials on the same runner
         env:
-          DIAGNOSTIC_GROUP: ${{ matrix.group }}
           BROWSERS: ${{ matrix.browser }}
-          DIAGNOSTIC_BUILD_DIR: work/causal-copy/out
-          DIAGNOSTIC_BUILD_MANIFEST: work/causal-copy/diagnostic-build.json
-          DIAGNOSTIC_REPEATS: '3'
-          EVIDENCE_DIR: work/phase7d-causal
+          DIAGNOSTIC_BUILD_DIR: work/observation-copy/out
+          DIAGNOSTIC_BUILD_MANIFEST: work/observation-copy/diagnostic-build.json
+          EVIDENCE_DIR: work/phase7d-observation
         run: |
-          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/causal-tools/node_modules/playwright"
-          mkdir -p "$GITHUB_WORKSPACE/work/browser-tmp"
-          export TMPDIR="$GITHUB_WORKSPACE/work/browser-tmp"
-          node scripts/diagnose-phase7d-async.mjs
-      - name: Audit raw diagnostic evidence independently of product outcome
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/observation-tools/node_modules/playwright"
+          mkdir -p "$GITHUB_WORKSPACE/work/observation-tmp"
+          export TMPDIR="$GITHUB_WORKSPACE/work/observation-tmp"
+          node scripts/diagnose-phase7d-observation.mjs
+      - name: Audit immutable primary results and original traces
         if: always()
         env:
-          DIAGNOSTIC_GROUP: ${{ matrix.group }}
+          DIAGNOSTIC_BUILD_DIR: work/observation-copy/out
           BROWSERS: ${{ matrix.browser }}
-          DIAGNOSTIC_REPEATS: '3'
         run: |
           export EXPECTED_HEAD="$(git rev-parse HEAD)"
           export EXPECTED_TREE="$(git rev-parse HEAD^{tree})"
-          for report in work/phase7d-causal/*/report.json; do
-            node scripts/audit-phase7d-causal.mjs "$(dirname "$report")"
+          for report in work/phase7d-observation/*/report.json; do
+            node scripts/audit-phase7d-observation.mjs "$(dirname "$report")"
           done
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: phase7d-causal-${{ matrix.browser }}-${{ matrix.group }}-${{ github.event.pull_request.head.sha }}
+          name: phase7d-observation-${{ matrix.browser }}-${{ github.event.pull_request.head.sha }}
           retention-days: 30
           path: |
-            work/phase7d-causal/
-            work/causal-copy/diagnostic-build.json
+            work/phase7d-observation/
+            work/observation-copy/diagnostic-build.json

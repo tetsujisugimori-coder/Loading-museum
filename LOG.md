@@ -1731,3 +1731,7 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - Keyboard edits use focused annotation identity, with canvas-only selection fallback; Tab alone remains non-mutating. Added three component regressions and expanded browser keyboard ownership checks.
 - Hardened image evidence validation and required successful fault-removal recovery. Added seven real-file negative/positive cases (29 contract tests total).
 - No dependencies, other exhibits, IDs, or publication settings changed. Final exact-head CI and independent reacceptance remain prerequisites; Draft and #44/#54 boundaries remain.
+
+## 2026-11-11 Phase 7D observation-effect diagnostic follow-up
+
+Preregister A1 single DOM / A2 four secondary DOM / A3 DOM-image-DOM after the unchanged common primary read. Fixed balanced90-trial matrix, API-only trace, separate commanded virtual-clock ledger, immutable primary FAIL, original evidence cross-check and negative controls. Product code and formal acceptance oracle unchanged. Original failure ZIP/JSON/trace/PNG independently reconciled; old and new failures must not be replaced by later success. See docs/phase7d/observation-diagnosis.md. Cause remains UNKNOWN; Draft and NO merge remain pending actual diagnostic/formal/regression results and independent review.
