@@ -12,7 +12,7 @@ const summary=validateObservationReport(r,{head:process.env.EXPECTED_HEAD,tree:p
 await verifyCausalFiles(root,r.files);
 const buildBytes=await fs.readFile(path.join(root,'diagnostic-build.json'));assert.equal(digest(buildBytes),r.buildManifest.sha256,'original build manifest digest');assert.deepEqual(JSON.parse(buildBytes),r.buildManifest.data);
 assert.equal(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),r.head,'audit checkout HEAD');
-assert.equal(digest(await fs.readFile('scripts/diagnose-phase7d-observation.mjs')),r.runnerSha256,'actual runner hash');
+assert.equal(digest(execFileSync('git',['show',r.head+':scripts/diagnose-phase7d-observation.mjs'])),r.runnerSha256,'actual runner hash');
 for(const [file,sha]of Object.entries(r.buildManifest.data.sourceHashes))assert.equal(digest(execFileSync('git',['show',r.head+':'+file],{maxBuffer:32*1024*1024})),sha,'committed source '+file);
 if(process.env.DIAGNOSTIC_BUILD_DIR)for(const [file,sha]of Object.entries(r.buildManifest.data.outputHashes))assert.equal(digest(await fs.readFile(path.join(process.env.DIAGNOSTIC_BUILD_DIR,file))),sha,'actual output '+file);
 
@@ -32,6 +32,6 @@ print(json.dumps({'calls':[{'before':x,'after':after.get(x['callId'])} for x in 
     audits.push({id:t.id,...validateObservationTrace(t,raw)});
   }
 }
-const result={audit:'PASS',...summary,head:r.head,tree:r.tree,runnerId:r.runnerId,rawTraceAudits:audits,meaning:'Technical evidence audit, not product acceptance. Primary FAIL remains FAIL.'};
+const result={auditorSha256:digest(await fs.readFile(new URL(import.meta.url))),audit:'PASS',...summary,head:r.head,tree:r.tree,runnerId:r.runnerId,rawTraceAudits:audits,meaning:'Technical evidence audit, not product acceptance. Primary FAIL remains FAIL.'};
 await fs.writeFile(path.join(root,'independent-audit.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
 if(summary.complete!==summary.trials)process.exitCode=1;

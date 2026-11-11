@@ -1,6 +1,6 @@
 /** Independently specified protocol calls for Playwright1.56.1, not learned from an observed trial. */
 import {apiSequence} from './phase7d-observation-plan.mjs';
-export function traceOperations(t) {
+export function traceOperations(t,names=apiSequence(t.case,t.group)) {
  const exhibit=t.case==='swipe'?'swipe-dismiss':'status-morph',stage=`#modern-exhibit-${exhibit}`;
  const root=stage+` >> internal:testid=[data-testid="${t.case==='swipe'?'swipe-to-dismiss':'status-morph'}"s]`;
  const card=stage+' >> internal:role=button[name="スワイプするカード"i]';
@@ -38,7 +38,7 @@ export function traceOperations(t) {
   'page.screenshot':()=>spec('screenshot',{timeout:9000}),
  };
  const prefixStates={'keyboard-prefix.getAttribute':'dismissed','undo-prefix.getAttribute':'idle','prefix-start.getAttribute':'Loading','cancel-prefix.getAttribute':'Cancelled','success-prefix.getAttribute':'Success'};
- return apiSequence(t.case,t.group).filter(name=>!['browser.launch','browser.newContext','context.tracing.start','context.tracing.stop','context.close','browser.close'].includes(name)).map(name=> {
+ return names.filter(name=>!['browser.launch','browser.newContext','context.tracing.start','context.tracing.stop','context.close','browser.close'].includes(name)).map(name=> {
   if(name.endsWith('.getAttribute'))return {...spec('getAttribute',{...locate(root),name:'data-state'},prefixStates[name]),name};
   if(name.endsWith('.clock.runFor'))return {...spec('clockRunFor',{ticksNumber:{'keyboard-prefix.clock.runFor':500,'css-return-prefix.clock.runFor':300,'cancel-prefix.clock.runFor':4000,'success-prefix.clock.runFor':3000,'target.clock.runFor':t.case==='swipe'?500:3000}[name]}),name};
   if(!mapping[name])throw Error('Unknown expected API '+name);return {...mapping[name](),name};

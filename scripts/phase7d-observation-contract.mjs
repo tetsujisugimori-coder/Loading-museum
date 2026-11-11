@@ -17,6 +17,10 @@ export function validateObservationTrial(t, planned) {
     assert.ok(a.hostStartMs>=previous&&a.hostEndMs>=a.hostStartMs,'host API order');previous=a.hostEndMs;
     assert.ok(a.status==='OK'||a.status==='ERROR');
   }
+  const lifecycle=['context.tracing.stop','context.close','browser.close'];
+  const execution=t.apis.filter(a=>!lifecycle.includes(a.name));
+  assert.deepEqual(execution.map(a=>a.name),apiSequence(t.case,t.group).filter(n=>!lifecycle.includes(n)).slice(0,execution.length),'unchanged complete or interrupted API prefix');
+  if(t.prefixFailure){const f=t.prefixFailure,a=t.apis[f.apiSeq-1];assert.equal(a.name,f.label+'.getAttribute');assert.equal(a.result,f.observed);assert.notEqual(f.observed,f.expected);assert.equal(t.diagnosticStatus,'INCOMPLETE');}
   const primary=t.apis.filter(a=>a.name==='primary.getAttribute');
   assert.ok(primary.length<=1,'one primary maximum');
   if(primary.length&&primary[0].status==='OK') {
@@ -64,16 +68,21 @@ export function validateObservationReport(r, expected) {
 export function validateObservationTrace(t, trace) {
   assert.equal(trace.hasAutomaticImages,false,'automatic screenshot observer');assert.equal(trace.hasSnapshots,false,'automatic DOM snapshots');
   const calls=trace.calls;
-  if(t.diagnosticStatus!=='COMPLETE')return {status:'INCOMPLETE',calls:calls.length};
-  assert.ok(calls.every(c=>c.after&&!c.after.error),'complete trace APIs');
-  assert.match(t.url,/^http:\/\/127\.0\.0\.1:\d+\/Loading-museum\/#modern-exhibit-(swipe-dismiss|status-morph)$/);
-  const spec=traceOperations(t);assert.equal(calls.length,spec.length,'raw full API count');
+  assert.ok(calls.every(c=>c.after),'recorded trace API completions');
+  if(t.diagnosticStatus==='COMPLETE')assert.ok(calls.every(c=>!c.after.error),'complete trace APIs');
+  if(calls.some(c=>c.before.method==='goto'))assert.match(t.url,/^http:\/\/127\.0\.0\.1:\d+\/Loading-museum\/#modern-exhibit-(swipe-dismiss|status-morph)$/);
+  const spec=traceOperations(t,t.apis.map(a=>a.name));assert.equal(calls.length,spec.length,'raw full API count');
   for(let i=0;i<spec.length;i++) {
     assert.equal(calls[i].before.method,spec[i].method,'raw input API '+spec[i].name);
     assert.deepEqual(calls[i].before.params,spec[i].params,'raw input parameters '+spec[i].name);
-    if(spec[i].result!==undefined)assert.equal(calls[i].after.result?.value,spec[i].result,'raw prefix result');
+    if(spec[i].method==='getAttribute') {
+      const sameName=t.apis.filter(a=>a.name===spec[i].name);const occurrence=spec.slice(0,i).filter(s=>s.name===spec[i].name).length;
+      if(sameName[occurrence].status==='OK')assert.equal(calls[i].after.result?.value,sameName[occurrence].result,'raw recorded DOM result');
+      if(t.diagnosticStatus==='COMPLETE'&&spec[i].result!==undefined)assert.equal(calls[i].after.result?.value,spec[i].result,'raw prefix expectation');
+    } else if(spec[i].result!==undefined&&t.diagnosticStatus==='COMPLETE')assert.equal(calls[i].after.result?.value,spec[i].result,'raw prefix result');
     if(spec[i].name==='clock.origin.evaluate')assert.equal(calls[i].after.result?.value?.n,t.clockOrigin.requestedPauseAtMs,'raw clock origin');
   }
+  if(t.diagnosticStatus!=='COMPLETE')return {status:'INCOMPLETE',calls:calls.length,rawPrefixVerified:true};
   const clocks=calls.filter(c=>c.before.method==='clockRunFor');
   assert.deepEqual(clocks.map(c=>c.before.params.ticksNumber),t.case==='swipe'?[500,300,500]:[4000,3000,3000],'raw virtual advances');
   const tail=calls.slice(calls.indexOf(clocks.at(-1))+1);

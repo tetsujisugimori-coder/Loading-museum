@@ -33,7 +33,7 @@ try {
     let browser,context,page,root,stage,traceStarted=false,virtualDate=null,png=null;
     const api=async(name,fn,extra={})=>{const a={seq:t.apis.length+1,name,hostStartMs:performance.now(),hostUtcStart:new Date().toISOString(),commandedVirtualDateMs:virtualDate,...extra};t.apis.push(a);try{const result=await fn();a.status='OK';if(result===null||['string','number','boolean'].includes(typeof result))a.result=result;return result;}catch(e){a.status='ERROR';a.error=String(e);throw e;}finally{a.hostEndMs=performance.now();a.hostUtcEnd=new Date().toISOString();}};
     const advance=async(ms,label)=>{const before=virtualDate;await api(`${label}.clock.runFor`,()=>page.clock.runFor(ms),{milliseconds:ms,virtualBeforeMs:before,virtualAfterMs:before+ms});virtualDate+=ms;};
-    const check=async(expected,label)=>assert.equal(await api(`${label}.getAttribute`,()=>root.getAttribute('data-state')),expected,label);
+    const check=async(expected,label)=>{const observed=await api(`${label}.getAttribute`,()=>root.getAttribute('data-state'));if(observed!==expected)t.prefixFailure={apiSeq:t.apis.length,label,expected,observed};assert.equal(observed,expected,label);};
     try {
       browser=await api('browser.launch',()=>pw[engine].launch({headless:true,...(engine==='webkit'&&process.env.WEBKIT_PATH?{executablePath:process.env.WEBKIT_PATH}:{})}));t.browserVersion=browser.version();
       context=await api('browser.newContext',()=>browser.newContext({viewport:t.viewport,reducedMotion:t.motion,hasTouch:true}));
