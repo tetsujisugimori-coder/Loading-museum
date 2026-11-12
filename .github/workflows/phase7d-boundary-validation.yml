@@ -28,6 +28,8 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - name: Prepare isolated CI temp directory
+        run: mkdir -p "$GITHUB_WORKSPACE/work/boundary-temp"
       - run: npm ci
       - name: Contract, instrument, runner, auditor and old120 regressions
         run: node --test tests/phase7d-boundary*.test.mjs tests/phase7d-api-contract.test.mjs tests/phase7d-diagnostic-instrument.test.mjs
@@ -35,7 +37,10 @@ jobs:
         env:
           BOUNDARY_GROUP: ${{ matrix.group }}
           BOUNDARY_COPY_DIR: work/boundary-build
-        run: node scripts/prepare-phase7d-boundary.mjs
+        run: |
+          export TMPDIR="$GITHUB_WORKSPACE/work/boundary-temp"
+          export TMP="$TMPDIR" TEMP="$TMPDIR"
+          node scripts/prepare-phase7d-boundary.mjs
       - name: Existing fixed browser tooling version
         run: |
           npm install --prefix "$RUNNER_TEMP/boundary-tools" --no-save playwright@1.56.1
@@ -50,6 +55,8 @@ jobs:
           BOUNDARY_VALIDATION_IDS: '["${{ matrix.browser }}-swipe-${{ matrix.group }}-1","${{ matrix.browser }}-status-${{ matrix.group }}-1"]'
         run: |
           export PLAYWRIGHT_MODULE="$RUNNER_TEMP/boundary-tools/node_modules/playwright"
+          export TMPDIR="$GITHUB_WORKSPACE/work/boundary-temp"
+          export TMP="$TMPDIR" TEMP="$TMPDIR"
           node scripts/diagnose-phase7d-boundary.mjs
       - name: Independent raw trace and actual build bytes audit
         if: always()

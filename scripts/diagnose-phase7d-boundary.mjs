@@ -9,6 +9,26 @@ import {once} from 'node:events';
 import {performance} from 'node:perf_hooks';
 import {boundaryContract,chooseValidationTrials,digest} from './phase7d-boundary-contract.mjs';
 import {boundaryInitScript} from './phase7d-boundary-instrument.mjs';
+/** Immutable retry binding includes every previous evidence file, not only its registration. */
+export async function captureBoundaryRetry(previous) {
+ const root=path.resolve(previous),inventory={};
+ assert.ok((await fs.lstat(root)).isDirectory(),'retry predecessor must be a directory');
+ async function walk(dir,prefix='') {
+  for(const name of (await fs.readdir(dir)).sort()) {
+   const absolute=path.join(dir,name),relative=prefix+name,stat=await fs.lstat(absolute);
+   assert.ok(!stat.isSymbolicLink(),'retry evidence symlink rejected: '+relative);
+   if(stat.isDirectory())await walk(absolute,relative+'/');
+   else {assert.ok(stat.isFile(),'retry evidence must be regular file: '+relative);inventory[relative]=digest(await fs.readFile(absolute));}
+  }
+ }
+ await walk(root);
+ assert.ok(inventory['registration.json'],'retry predecessor registration missing');
+ const registrationBytes=await fs.readFile(path.join(root,'registration.json'));assert.equal(digest(registrationBytes),inventory['registration.json'],'retry registration changed while snapshotting');
+ const registration=JSON.parse(registrationBytes);
+ assert.equal(registration.mode,'validation','retry predecessor mode');
+ assert.equal(registration.productionTrialsExecuted,0,'retry predecessor production forbidden');
+ return {path:root,registrationSha256:inventory['registration.json'],inventory,inventorySha256:digest(JSON.stringify(inventory))};
+}
 export function recoverBoundaryAttempts(dest) {
  if(!existsSync(dest))return [];
  return readdirSync(dest,{withFileTypes:true}).filter(e=>e.isDirectory()&&e.name.startsWith('attempt-')).map(e=>{
@@ -29,6 +49,7 @@ async function main(){
  const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
  const buildDir=path.resolve(process.env.BOUNDARY_BUILD_DIR),manifestPath=path.resolve(process.env.BOUNDARY_BUILD_MANIFEST);
  const dest=path.resolve(process.env.BOUNDARY_EVIDENCE_DIR);assert.ok(path.basename(dest).startsWith('validation-'),'explicit validation-* output required');
+ if(process.env.BOUNDARY_RETRY_OF){const prior=path.resolve(process.env.BOUNDARY_RETRY_OF);assert.ok(dest!==prior&&!dest.startsWith(prior+path.sep)&&!prior.startsWith(dest+path.sep),'retry output and predecessor must be separate non-nested directories');}
  await fs.mkdir(dest,{recursive:true});
  const manifestBytes=await fs.readFile(manifestPath),build=JSON.parse(manifestBytes),head=git('rev-parse','HEAD'),tree=git('rev-parse','HEAD^{tree}');
  assert.equal(build.group,group);assert.equal(build.head,head);assert.equal(build.tree,tree);assert.equal(build.success,true);assert.equal(build.originalSourcePreserved,true);
@@ -36,7 +57,7 @@ async function main(){
  for(const [file,hash] of Object.entries(build.sourceHashes??{}))assert.equal(digest(await fs.readFile(file)),hash,'source bytes: '+file);
  for(const [file,hash] of Object.entries(build.outputHashes))assert.equal(digest(await fs.readFile(path.join(buildDir,file))),hash,'build bytes: '+file);
  const sourceHashes={};for(const file of ['scripts/phase7d-boundary-plan.mjs','scripts/phase7d-boundary-contract.mjs','scripts/phase7d-boundary-instrument.mjs','scripts/diagnose-phase7d-boundary.mjs','scripts/phase7d-api-plan.mjs','scripts/phase7d-api-trace-spec.mjs','scripts/audit-phase7d-boundary.mjs','scripts/prepare-phase7d-boundary.mjs'])sourceHashes[file]=digest(await fs.readFile(file));
- const registration={schemaVersion:1,mode:'validation',head,tree,validationPlan:plan.map((p,i)=>({...p,validationId:`validation-${p.id}`,attempt:`attempt-${String(i+1).padStart(5,'0')}`})),expectedAttempts:plan.length,retryOf:process.env.BOUNDARY_RETRY_OF?{path:path.resolve(process.env.BOUNDARY_RETRY_OF),registrationSha256:digest(await fs.readFile(path.join(path.resolve(process.env.BOUNDARY_RETRY_OF),'registration.json')))}:null,contract:boundaryContract,contractSha256:digest(JSON.stringify(boundaryContract)),sourceHashes,buildManifestSha256:digest(manifestBytes),slots:boundaryContract.allocation.map(p=>({...p,status:'NOT_EXECUTED'})),productionTrialsExecuted:0};
+ const registration={schemaVersion:1,mode:'validation',head,tree,validationPlan:plan.map((p,i)=>({...p,validationId:`validation-${p.id}`,attempt:`attempt-${String(i+1).padStart(5,'0')}`})),expectedAttempts:plan.length,retryOf:process.env.BOUNDARY_RETRY_OF?await captureBoundaryRetry(process.env.BOUNDARY_RETRY_OF):null,contract:boundaryContract,contractSha256:digest(JSON.stringify(boundaryContract)),sourceHashes,buildManifestSha256:digest(manifestBytes),slots:boundaryContract.allocation.map(p=>({...p,status:'NOT_EXECUTED'})),productionTrialsExecuted:0};
  const regBytes=JSON.stringify(registration,null,2),regPath=path.join(dest,'registration.json');
  assert.ok(!existsSync(regPath),'existing registration cannot be rerun: recover existing evidence; retry uses a new validation output with BOUNDARY_RETRY_OF');writeFileSync(regPath,regBytes,{flag:'wx'});
  const reserved=plan.map((p,i)=>{const a=reserveBoundaryAttempt(dest,{mode:'validation',plannedId:p.id,validationId:`validation-${p.id}`,head,tree,registeredAt:new Date().toISOString(),contractSha256:registration.contractSha256,buildManifestSha256:registration.buildManifestSha256});assert.equal(a.name,registration.validationPlan[i].attempt);return a;});

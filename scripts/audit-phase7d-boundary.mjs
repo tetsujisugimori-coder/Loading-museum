@@ -102,7 +102,38 @@ export function validateAttemptJournal(t,journal,primary){
   const collect=journal.findIndex(e=>e.kind==='api-start'&&e.name==='boundary.collect');if(collect>=0)assert.ok(collect>at,'collection after persistence');
  }else assert.equal(primary,null,'missing primary');
 }
-export async function auditBoundaryDirectory(root,{sourceRoot,buildRoot,head,tree}){
+/** A retry never replaces the previous primary result. Caller supplies the authorized previous directory. */
+export async function verifyBoundaryRetry(root,registration,previousRoot){
+ if(!registration.retryOf)return {status:'NOT_APPLICABLE',priorPrimary:[]};
+ assert.ok(previousRoot,'retry requires explicit BOUNDARY_PREVIOUS_VALIDATION_DIR');
+ const current=await fs.realpath(root),previous=await fs.realpath(previousRoot);
+ assert.notEqual(current.toLowerCase(),previous.toLowerCase(),'retry requires separate output directory');
+ assert.ok(!current.toLowerCase().startsWith(previous.toLowerCase()+path.sep)&&!previous.toLowerCase().startsWith(current.toLowerCase()+path.sep),'retry directories must not be nested');
+ assert.equal(path.resolve(registration.retryOf.path).toLowerCase(),path.resolve(previousRoot).toLowerCase(),'retry previous path must match caller');
+ const bytes=await fs.readFile(path.join(previous,'registration.json'));assert.equal(digest(bytes),registration.retryOf.registrationSha256,'previous registration digest');
+ assert.ok(registration.retryOf.inventory&&Object.keys(registration.retryOf.inventory).length,'previous inventory snapshot required');
+ assert.equal(digest(JSON.stringify(registration.retryOf.inventory)),registration.retryOf.inventorySha256,'previous inventory commitment');
+ async function inventory(dir,prefix=''){const result={};for(const e of (await fs.readdir(dir,{withFileTypes:true})).sort((a,b)=>a.name.localeCompare(b.name))){const name=prefix+e.name;assert.ok(!e.isSymbolicLink(),'previous symlink not permitted');if(e.isDirectory())Object.assign(result,await inventory(path.join(dir,e.name),name+'/'));else{assert.ok(e.isFile(),'previous regular files');result[name]=digest(await fs.readFile(path.join(dir,e.name)));}}return result;}
+ const currentInventory=await inventory(previous);assert.deepEqual(currentInventory,registration.retryOf.inventory,'previous evidence snapshot changed');
+ const prior=JSON.parse(bytes);assert.equal(prior.mode,'validation','previous validation mode');assert.equal(prior.productionTrialsExecuted,0,'previous production exclusion');assert.ok(Array.isArray(prior.validationPlan),'previous selected plan');
+ for(const p of registration.validationPlan){const old=prior.validationPlan.find(x=>x.id===p.id);assert.ok(old,'retry selected ID absent previously');for(const k of ['id','case','engine','group','iteration'])assert.equal(p[k],old[k],'retry planned correspondence '+k);}
+ const actual=(await fs.readdir(previous,{withFileTypes:true})).filter(e=>e.isDirectory()&&e.name.startsWith('attempt-')).map(e=>e.name).sort();
+ assert.deepEqual(actual,prior.validationPlan.map(p=>p.attempt).sort(),'previous attempt inventory');
+ const priorPrimary=[];
+ for(const p of prior.validationPlan){
+  assert.match(p.attempt,/^attempt-[0-9]{5}$/,'safe previous attempt');const ar=path.join(previous,p.attempt);
+  const registrationBytes=await fs.readFile(path.join(ar,'attempt.json')),a=JSON.parse(registrationBytes);assert.equal(a.plannedId,p.id,'previous attempt ID');assert.equal(a.validationId,p.validationId);assert.equal(a.head,prior.head);assert.equal(a.tree,prior.tree);assert.equal(a.contractSha256,prior.contractSha256);
+  const manifestBytes=await fs.readFile(path.join(ar,'manifest.json')).catch(e=>{if(e.code==='ENOENT')return null;throw e;});
+  if(manifestBytes){const m=JSON.parse(manifestBytes);await verifyBoundaryBytes(ar,m.files);assert.deepEqual((await fs.readdir(ar)).filter(n=>n!=='manifest.json').sort(),Object.keys(m.files).sort(),'previous preserved inventory');}
+  const primaryBytes=await fs.readFile(path.join(ar,'primary.json')).catch(e=>{if(e.code==='ENOENT')return null;throw e;});let primary=null;
+  if(primaryBytes){const v=JSON.parse(primaryBytes);assert.equal(v.plannedId,p.id);assert.equal(v.id,p.validationId);assert.equal(v.attempt,p.attempt);assert.equal(v.head,prior.head);assert.equal(v.tree,prior.tree);assert.equal(v.contractSha256,prior.contractSha256);assert.equal(v.primary.verdict,v.primary.state===boundaryTargets[p.case].expected?'PASS':'FAIL','previous primary oracle');primary=v.primary;}
+  priorPrimary.push({attempt:p.attempt,plannedId:p.id,primary:primary?.verdict??'NOT_TESTED',state:primary?.state??null,primarySha256:primaryBytes?digest(primaryBytes):null,evidence:manifestBytes?'PRESERVED_CURRENT_MANIFEST':'INCOMPLETE',replacedByRetry:false});
+ }
+ assert.equal(digest(await fs.readFile(path.join(previous,'registration.json'))),digest(bytes),'previous unchanged during audit');
+ assert.deepEqual(await inventory(previous),currentInventory,'previous evidence changed during audit');
+ return {status:'PASS',priorPrimary,priorPrimaryFailures:priorPrimary.filter(p=>p.primary==='FAIL').length,retryReplacesPrevious:false,historicalPreservation:'PASS against retry-time byte inventory commitment. Original execution provenance before that snapshot and coordinated rewriting of the entire trust chain remain UNKNOWN.'};
+}
+export async function auditBoundaryDirectory(root,{sourceRoot,buildRoot,head,tree,previousRoot}){
  assert.ok(sourceRoot&&buildRoot&&head&&tree,'independent source/build roots and HEAD/tree required');
  const read=async n=>JSON.parse(await fs.readFile(path.join(root,n),'utf8'));
  const r=await read('registration.json');assert.equal(r.mode,'validation');assert.equal(r.head,head);assert.equal(r.tree,tree);assert.equal(r.productionTrialsExecuted,0);
@@ -119,6 +150,7 @@ export async function auditBoundaryDirectory(root,{sourceRoot,buildRoot,head,tre
  assert.ok(Array.isArray(r.validationPlan)&&r.validationPlan.length>0&&r.validationPlan.length<=12,'validation selection required');assert.equal(new Set(r.validationPlan.map(p=>p.id)).size,r.validationPlan.length,'validation unique');
  assert.equal(r.expectedAttempts,r.validationPlan.length,'registered attempt count');
  for(const [i,p]of r.validationPlan.entries())assert.deepEqual(p,{...boundaryPlan().find(x=>x.id===p.id),validationId:'validation-'+p.id,attempt:'attempt-'+String(i+1).padStart(5,'0')},'registered validation allocation');
+ const retry=await verifyBoundaryRetry(root,r,previousRoot);
  const entries=(await fs.readdir(root,{withFileTypes:true})).filter(e=>e.isDirectory()&&e.name.startsWith('attempt-')).map(e=>e.name).sort();assert.ok(entries.length,'no validation attempts');
  assert.ok(entries.length<=r.validationPlan.length,'unregistered attempts');
  const audits=[];
@@ -143,11 +175,14 @@ export async function auditBoundaryDirectory(root,{sourceRoot,buildRoot,head,tre
   audits.push({attempt:dir,...verdict,raw});
  }
  for(let i=entries.length;i<r.validationPlan.length;i++)audits.push({plannedId:r.validationPlan[i].id,status:'NOT_EXECUTED',evidence:'INCOMPLETE'});
- return {audit:audits.every(a=>a.evidence==='COMPLETE')?'PASS':'PARTIAL',head,tree,productionTrialsExecuted:0,attempts:audits,auditorSha256:digest(await fs.readFile(new URL(import.meta.url))),authenticity:'Separate supplied source/build bytes compared. This does not prove provenance against coordinated tampering or establish instrument neutrality.',cause:'UNKNOWN'};
+ return {audit:audits.every(a=>a.evidence==='COMPLETE')&&retry.status!=='PARTIAL'?'PASS':'PARTIAL',retry,head,tree,productionTrialsExecuted:0,attempts:audits,auditorSha256:digest(await fs.readFile(new URL(import.meta.url))),authenticity:'Separate supplied source/build bytes compared. This does not prove provenance against coordinated tampering or establish instrument neutrality.',cause:'UNKNOWN'};
 }
 if(process.argv[1]&&pathToFileURL(path.resolve(process.argv[1])).href===import.meta.url){
- try{const result=await auditBoundaryDirectory(path.resolve(process.argv[2]),{sourceRoot:process.env.BOUNDARY_SOURCE_ROOT,buildRoot:process.env.BOUNDARY_BUILD_DIR,head:process.env.EXPECTED_HEAD,tree:process.env.EXPECTED_TREE});console.log(JSON.stringify(result,null,2));if(result.audit!=='PASS')process.exitCode=1;}catch(e){console.error(JSON.stringify({audit:'FAIL',error:String(e.stack??e)}));process.exitCode=1;}
+ try{const result=await auditBoundaryDirectory(path.resolve(process.argv[2]),{sourceRoot:process.env.BOUNDARY_SOURCE_ROOT,buildRoot:process.env.BOUNDARY_BUILD_DIR,head:process.env.EXPECTED_HEAD,tree:process.env.EXPECTED_TREE,previousRoot:process.env.BOUNDARY_PREVIOUS_VALIDATION_DIR});console.log(JSON.stringify(result,null,2));if(result.audit!=='PASS')process.exitCode=1;}catch(e){console.error(JSON.stringify({audit:'FAIL',error:String(e.stack??e)}));process.exitCode=1;}
 }
+
+
+
 
 
 
