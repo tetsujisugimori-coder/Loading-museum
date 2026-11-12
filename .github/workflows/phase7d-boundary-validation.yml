@@ -1,0 +1,73 @@
+name: Validate Phase 7D Boundary Preparation
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/*phase7d*'
+      - 'tests/*phase7d*'
+      - '.github/workflows/phase7d-boundary-validation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [A, B, C]
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Contract, instrument, runner, auditor and old120 regressions
+        run: node --test tests/phase7d-boundary*.test.mjs tests/phase7d-api-contract.test.mjs tests/phase7d-diagnostic-instrument.test.mjs
+      - name: Isolated validation build; product source unchanged
+        env:
+          BOUNDARY_GROUP: ${{ matrix.group }}
+          BOUNDARY_COPY_DIR: work/boundary-build
+        run: node scripts/prepare-phase7d-boundary.mjs
+      - name: Existing fixed browser tooling version
+        run: |
+          npm install --prefix "$RUNNER_TEMP/boundary-tools" --no-save playwright@1.56.1
+          "$RUNNER_TEMP/boundary-tools/node_modules/.bin/playwright" install --with-deps ${{ matrix.browser }}
+      - name: Two validation records only; never production108
+        env:
+          BOUNDARY_MODE: validation
+          BOUNDARY_GROUP: ${{ matrix.group }}
+          BOUNDARY_BUILD_DIR: work/boundary-build/out
+          BOUNDARY_BUILD_MANIFEST: work/boundary-build/boundary-build.json
+          BOUNDARY_EVIDENCE_DIR: work/validation-${{ matrix.group }}-${{ matrix.browser }}
+          BOUNDARY_VALIDATION_IDS: '["${{ matrix.browser }}-swipe-${{ matrix.group }}-1","${{ matrix.browser }}-status-${{ matrix.group }}-1"]'
+        run: |
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/boundary-tools/node_modules/playwright"
+          node scripts/diagnose-phase7d-boundary.mjs
+      - name: Independent raw trace and actual build bytes audit
+        if: always()
+        env:
+          BOUNDARY_SOURCE_ROOT: ${{ github.workspace }}
+          BOUNDARY_BUILD_DIR: work/boundary-build/out
+        run: |
+          export EXPECTED_HEAD="$(git rev-parse HEAD)"
+          export EXPECTED_TREE="$(git rev-parse HEAD^{tree})"
+          node scripts/audit-phase7d-boundary.mjs work/validation-${{ matrix.group }}-${{ matrix.browser }} > work/boundary-audit.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: boundary-validation-${{ matrix.group }}-${{ matrix.browser }}-${{ github.event.pull_request.head.sha || github.sha }}
+          retention-days: 30
+          path: |
+            work/validation-*/
+            work/boundary-audit.json
+            work/boundary-build/boundary-build.json
+            work/boundary-build/build.log
+            work/boundary-build/out/
