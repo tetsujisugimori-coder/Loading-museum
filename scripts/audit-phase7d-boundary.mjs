@@ -34,6 +34,7 @@ export function validateBoundaryTrial(t,planned) {
  if(complete){assert.deepEqual(t.apis.map(a=>a.name),boundarySequence(t.case,t.group),'complete API sequence');assert.ok(t.apis.every(a=>a.status==='OK'),'complete API status');assert.ok(t.primary&&!t.error,'complete evidence');}
  if(t.primary?.verdict==='FAIL')assert.equal(t.productStatus,'FAIL','primary FAIL preserved');
  if(!t.primary)assert.notEqual(t.productStatus,'PASS','missing primary not success');
+ const product=t.pageErrors.length?'FAIL':t.primary?.verdict??'NOT_TESTED';assert.equal(t.productStatus,product,'product status consistency');
  const sink=t.boundary??t.instrumentation??t.internalLog;
  if(t.group!=='A'&&complete){assert.ok(sink?.installed,'instrumentation installed');assert.equal(sink.overflow,false,'overflow');assert.equal(sink.dropped,0,'dropped logs');assert.deepEqual(sink.errors,[],'instrument errors');assert.ok(Array.isArray(sink.events)&&sink.events.length,'missing logs');for(const [i,e]of sink.events.entries()){assert.equal(e.sequence,i+1,'event order');assert.equal(e.trialId,t.validationId??t.id,'event trial');assert.ok(Number.isFinite(e.virtualDateMs)&&Number.isFinite(e.browserPerformanceMs),'event clocks');}}
  return {primary:t.primary?.verdict??'NOT_TESTED',evidence:complete?'COMPLETE':'INCOMPLETE',cause:'UNKNOWN'};
@@ -147,6 +148,7 @@ export async function auditBoundaryDirectory(root,{sourceRoot,buildRoot,head,tre
 if(process.argv[1]&&pathToFileURL(path.resolve(process.argv[1])).href===import.meta.url){
  try{const result=await auditBoundaryDirectory(path.resolve(process.argv[2]),{sourceRoot:process.env.BOUNDARY_SOURCE_ROOT,buildRoot:process.env.BOUNDARY_BUILD_DIR,head:process.env.EXPECTED_HEAD,tree:process.env.EXPECTED_TREE});console.log(JSON.stringify(result,null,2));if(result.audit!=='PASS')process.exitCode=1;}catch(e){console.error(JSON.stringify({audit:'FAIL',error:String(e.stack??e)}));process.exitCode=1;}
 }
+
 
 
 
