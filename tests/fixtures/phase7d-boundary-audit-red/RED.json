@@ -1,0 +1,72 @@
+{
+  "head": "3c775369f32163ce9a59450de900728b70d48ee3",
+  "exactOriginalReproduction": "NOT_PROVEN",
+  "records": [
+    {
+      "id": "B-single-invalid",
+      "source": "baseline test fixture reconstructed from published categories; original counterexample bytes NOT_OBTAINED",
+      "expected": "REJECT",
+      "actual": {
+        "primary": "PASS",
+        "evidence": "COMPLETE",
+        "cause": "UNKNOWN"
+      },
+      "sha256": "8a1441be24c1f85e4feca896f429b3dc65dde7a00ba125c09a359bc28dce98b1"
+    },
+    {
+      "id": "B-clock-reversal",
+      "source": "baseline test fixture reconstructed from published categories; original counterexample bytes NOT_OBTAINED",
+      "expected": "REJECT",
+      "actual": {
+        "primary": "PASS",
+        "evidence": "COMPLETE",
+        "cause": "UNKNOWN"
+      },
+      "sha256": "efe5bd94eb580cf288782685c4dc976be2a264b9acf3a3fca50588afc6c666b5"
+    },
+    {
+      "id": "B-operation-id",
+      "source": "baseline test fixture reconstructed from published categories; original counterexample bytes NOT_OBTAINED",
+      "expected": "REJECT",
+      "actual": {
+        "primary": "PASS",
+        "evidence": "COMPLETE",
+        "cause": "UNKNOWN"
+      },
+      "sha256": "e123f610e3c46fe999755394adae4f5958c0a26e1779d1bbc09d34e8d86fe76a"
+    },
+    {
+      "id": "C-single-invalid",
+      "source": "baseline test fixture reconstructed from published categories; original counterexample bytes NOT_OBTAINED",
+      "expected": "REJECT",
+      "actual": {
+        "primary": "PASS",
+        "evidence": "COMPLETE",
+        "cause": "UNKNOWN"
+      },
+      "sha256": "e78b2fb7d952c4064fa5a3ec1f8aab01a5bc3477b76c31b0c99a93ac49e9505f"
+    },
+    {
+      "id": "C-clock-reversal",
+      "source": "baseline test fixture reconstructed from published categories; original counterexample bytes NOT_OBTAINED",
+      "expected": "REJECT",
+      "actual": {
+        "primary": "PASS",
+        "evidence": "COMPLETE",
+        "cause": "UNKNOWN"
+      },
+      "sha256": "5936072ae2bdf4c59a149ad5f07f9c7098ba4bccd96564afb223254afb4bf0e2"
+    },
+    {
+      "id": "C-operation-id",
+      "source": "baseline test fixture reconstructed from published categories; original counterexample bytes NOT_OBTAINED",
+      "expected": "REJECT",
+      "actual": {
+        "primary": "PASS",
+        "evidence": "COMPLETE",
+        "cause": "UNKNOWN"
+      },
+      "sha256": "2ec3d1b30615d58a42f69a565699edf3464afece56f7a2de25fe1f0750f61c91"
+    }
+  ]
+}

@@ -10,7 +10,8 @@ import {traceOperations} from './phase7d-api-trace-spec.mjs';
 import {boundaryInitScript} from './phase7d-boundary-instrument.mjs';
 export const collectExpression='()=>window.__phase7dBoundary';
 const lifecycle=['browser.launch','browser.newContext','context.tracing.start','context.tracing.stop','context.close','browser.close'];
-export function validateBoundaryTrial(t,planned) {
+export function validateBoundaryTrial(t,planned,{fault=null}={}) {
+ if(Object.hasOwn(t,'validationId'))assert.equal(t.validationId,t.id,'validation identity');
  assert.equal(t.plannedId,planned.id,'allocation id');assert.equal(t.id,'validation-'+planned.id,'validation namespace');
  for(const k of ['order','engine','case','group','iteration'])assert.equal(t[k],planned[k],'allocation '+k);
  const target=boundaryTargets[t.case]; assert.equal(t.expected,target.expected,'oracle expectation');
@@ -35,10 +36,97 @@ export function validateBoundaryTrial(t,planned) {
  if(t.primary?.verdict==='FAIL')assert.equal(t.productStatus,'FAIL','primary FAIL preserved');
  if(!t.primary)assert.notEqual(t.productStatus,'PASS','missing primary not success');
  const product=t.pageErrors.length?'FAIL':t.primary?.verdict??'NOT_TESTED';assert.equal(t.productStatus,product,'product status consistency');
- const sink=t.boundary??t.instrumentation??t.internalLog;
- if(t.group!=='A'&&complete){assert.ok(sink?.installed,'instrumentation installed');assert.equal(sink.overflow,false,'overflow');assert.equal(sink.dropped,0,'dropped logs');assert.deepEqual(sink.errors,[],'instrument errors');assert.ok(Array.isArray(sink.events)&&sink.events.length,'missing logs');for(const [i,e]of sink.events.entries()){assert.equal(e.sequence,i+1,'event order');assert.equal(e.trialId,t.validationId??t.id,'event trial');assert.ok(Number.isFinite(e.virtualDateMs)&&Number.isFinite(e.browserPerformanceMs),'event clocks');}}
+ for(const alias of ['boundary','internalLog'])if(Object.hasOwn(t,alias))assert.deepEqual(t[alias],t.instrumentation,'conflicting instrumentation alias');
+ const sink=t.instrumentation;
+ if(t.group!=='A')validateBoundaryEvents(t,sink,{fault});
  return {primary:t.primary?.verdict??'NOT_TESTED',evidence:complete?'COMPLETE':'INCOMPLETE',cause:'UNKNOWN'};
 }
+/** Structural/instrument contract checks, not a claim that all callbacks fired.
+ * Date and performance clocks are never compared to each other or host time.
+ * performance.now may change origin at clock.install before the first request.
+ */
+export function validateBoundaryEvents(t,sink,{fault=null}={}) {
+ const complete=t.evidenceStatus==='COMPLETE';
+ if(!sink){assert.ok(!complete,'missing instrumentation');return;}
+ assert.ok(sink&&typeof sink==='object'&&!Array.isArray(sink),'sink object');
+ assert.equal(sink.installed,true,'sink installed');
+ assert.deepEqual(Object.keys(sink).sort(),['schema','trialId','operationId','limit','events','overflow','dropped','errors','installed',...(Object.hasOwn(sink,'faultCallbackOrdinal')&&fault?['faultCallbackOrdinal']:[])].sort(),'sink fields');
+ if(Object.hasOwn(sink,'faultCallbackOrdinal'))assert.ok(Number.isSafeInteger(sink.faultCallbackOrdinal)&&sink.faultCallbackOrdinal>=0,'fault counter');
+ assert.equal(sink.schema,1,'sink schema');assert.equal(sink.trialId,t.validationId??t.id,'sink trial');assert.equal(sink.operationId,'whole-trial','sink operation');
+ assert.equal(sink.limit,4096,'sink limit');assert.ok(sink.events?.length<=sink.limit,'event limit');
+ assert.equal(typeof sink.overflow,'boolean','overflow type');
+ assert.ok(Number.isSafeInteger(sink.dropped)&&sink.dropped>=0,'dropped count');
+ assert.ok(Array.isArray(sink.errors)&&sink.errors.every(e=>typeof e==='string'),'sink errors');
+ assert.ok(Array.isArray(sink.events),'events array');
+ if(complete){assert.equal(sink.overflow,false,'overflow');assert.equal(sink.dropped,0,'dropped');assert.deepEqual(sink.errors,[],'instrument errors');assert.ok(sink.events.length,'missing logs');}
+ const states=t.case==='swipe'?['idle','dragging','dismissing','returning','dismissed','cancelled']:['Idle','Loading','Success','Error','Cancelled'];
+ const fields={commit:['generation','state'],'dom-reflection':['generation','state','domState'],'state-request':['generation','requested'],'timer-callback':['generation','token'],invalidate:['generation','timerId'],'operation-start':['generation','expected'],'timer-register':['generation','timerId','delay'],guard:['generation','token','accepted','rejection',...(t.case==='status'?['allowed']:[])],'cancel-request':['generation','timerId'],'cancel-processed':['generation','timerId'],handler:['generation','event',...(t.case==='status'?['allowed']:['pointerId'])],'fault-applied':['fault','targetCallbackOrdinal']};
+ const base=['work','phase','trialId','operationId','sequence','virtualDateMs','browserPerformanceMs'];
+ let date=-Infinity,performance=-Infinity,clockActive=false;
+ const operations=new Set(),timers=new Map();
+ for(const [i,e] of sink.events.entries()){
+  assert.ok(e&&typeof e==='object'&&!Array.isArray(e),'event object');
+  assert.ok(Object.hasOwn(fields,e.phase),'allowed phase');
+  assert.ok(t.group==='C'||['commit','dom-reflection','state-request','timer-callback','fault-applied'].includes(e.phase),'group phase');
+  const payload=[...fields[e.phase]];if(e.phase==='handler'&&e.event==='pointerup')payload.push('hasDrag');
+  assert.deepEqual(Object.keys(e).sort(),[...base,...payload].sort(),'event fields '+e.phase);
+  assert.equal(e.work,t.case,'event work');assert.equal(e.trialId,t.validationId??t.id,'event trial');assert.equal(e.sequence,i+1,'event sequence');
+  for(const k of ['virtualDateMs','browserPerformanceMs'])assert.ok(Number.isFinite(e[k])&&e[k]>=0,'event clock '+k);
+  assert.ok(e.virtualDateMs>=date,'virtual clock reversal');date=e.virtualDateMs;
+  if(clockActive)assert.ok(e.browserPerformanceMs>=performance,'performance clock reversal');
+  if(e.phase==='state-request'||e.phase==='operation-start')clockActive=true;
+  performance=e.browserPerformanceMs;
+  if('generation' in e)assert.ok(Number.isSafeInteger(e.generation)&&e.generation>=0,'generation');
+  if('token' in e)assert.ok(Number.isSafeInteger(e.token)&&e.token>=0,'token');
+  assert.equal(e.operationId,Number.isInteger(e.token??e.generation)?`${e.work}-${e.token??e.generation}`:'whole-trial','operationId');
+  for(const k of ['state','requested'])if(k in e)assert.ok(states.includes(e[k]),'state value');
+  if('domState' in e)assert.ok(e.domState===null||typeof e.domState==='string','DOM value');
+  if('timerId' in e)assert.ok(e.timerId===null||Number.isSafeInteger(e.timerId)&&e.timerId>=0,'timer ID');
+  if(e.phase==='handler'){
+   assert.ok(t.case==='status'?e.event==='run':['pointerdown','pointerup'].includes(e.event),'handler event');
+   if(t.case==='swipe')assert.ok(Number.isInteger(e.pointerId),'pointer ID');
+   if('hasDrag' in e)assert.equal(typeof e.hasDrag,'boolean','hasDrag');
+   if('allowed' in e)assert.equal(typeof e.allowed,'boolean','allowed');
+  }
+  const prev=sink.events[i-1];
+  if(e.phase==='dom-reflection')assert.ok(prev?.phase==='commit'&&prev.generation===e.generation&&prev.state===e.state,'DOM follows matching commit');
+  // Hook emits this pair synchronously. A truncated/overflow record may end at commit.
+  if(prev?.phase==='commit')assert.equal(e.phase,'dom-reflection','commit DOM pair');
+  if(e.phase==='operation-start'){
+   assert.ok((t.case==='swipe'?['dismissed','idle']:['Success','Error']).includes(e.expected),'operation expected');
+   assert.ok(!operations.has(e.operationId),'duplicate operation');operations.add(e.operationId);
+  }
+  if(e.phase==='timer-register'){
+   assert.ok(Number.isFinite(e.delay)&&e.delay>=0,'timer delay');assert.notEqual(e.timerId,null,'registered timer ID');
+   assert.ok(operations.has(e.operationId),'timer operation');assert.ok(!timers.has(e.operationId),'duplicate timer registration');timers.set(e.operationId,e.timerId);
+  }
+  if(e.phase==='timer-callback'&&t.group==='C')assert.ok(timers.has(e.operationId),'callback registered operation');
+  if(e.phase==='guard'){
+   assert.ok(prev?.phase==='timer-callback'||prev?.phase==='fault-applied','guard follows callback');
+   const callback=prev?.phase==='timer-callback'?prev:sink.events[i-2];
+   assert.ok(callback?.phase==='timer-callback'&&callback.token===e.token,'guard callback token');
+   if('allowed' in e)assert.equal(typeof e.allowed,'boolean','guard allowed');
+   const changed=prev?.phase==='fault-applied'&&prev.fault==='generation-mismatch';
+   assert.equal(e.generation,callback.generation+(changed?1:0),'guard callback generation');
+   const injected=prev?.phase==='fault-applied'&&prev.fault==='guard-suppression';
+   const accepted=!injected&&e.token===e.generation&&(t.case==='swipe'||e.allowed);
+   assert.equal(e.accepted,accepted,'guard acceptance');
+   assert.equal(e.rejection,injected?'injected-guard':e.token!==e.generation?'generation-mismatch':t.case==='status'&&!e.allowed?'not-allowed':null,'guard rejection');
+  }
+  if(prev?.phase==='guard'&&!prev.accepted&&e.phase==='state-request')assert.notEqual(e.generation,prev.generation,'rejected guard update');
+  if(t.group==='C'&&prev?.phase==='timer-callback')assert.ok(['guard','fault-applied'].includes(e.phase),'callback guard pair');
+  if(e.phase==='cancel-request'){assert.notEqual(e.timerId,null,'cancel timer must exist');assert.ok(prev?.phase==='invalidate'&&prev.timerId===e.timerId&&e.generation===prev.generation+1,'cancel invalidation');}
+  if(e.phase==='cancel-processed')assert.ok(prev?.phase==='cancel-request'&&prev.timerId===e.timerId&&prev.generation===e.generation,'cancel order');
+  if(prev?.phase==='cancel-request')assert.equal(e.phase,'cancel-processed','cancel pair');
+  if(e.phase==='fault-applied'){
+   assert.ok(fault&&fault.kind===t.case&&fault.fault===e.fault&&fault.validationOnly===true&&fault.targetCallbackOrdinal===2,'fault build binding');
+   assert.ok(['callback-delay','callback-suppression','update-omission','generation-mismatch','guard-suppression'].includes(e.fault),'fault name');assert.equal(e.targetCallbackOrdinal,2,'fault ordinal');
+  }
+ }
+ if(complete)assert.ok(!['commit','cancel-request',...(t.group==='C'?['timer-callback']:[])].includes(sink.events.at(-1)?.phase),'unfinished synchronous pair');
+ return {callbackPresence:sink.events.some(e=>e.phase==='timer-callback')?'RECORDED':'NOT_RECORDED',callbackAbsenceProven:false,hostOperationAttribution:'UNKNOWN',clockInstallBoundary:'performance comparison begins at first instrumented request/operation; pre-install epoch not independently identified'};
+}
+
 export function boundaryRawSpec(t) {
  const specs=[];
  for(const name of t.apis.map(a=>a.name)){
@@ -165,7 +253,7 @@ export async function auditBoundaryDirectory(root,{sourceRoot,buildRoot,head,tre
   assert.deepEqual((await fs.readdir(ar)).filter(n=>n!=='manifest.json').sort(),Object.keys(m.files).sort(),'attempt inventory');
   for(const n of ['attempt.json','trial.json','journal.jsonl'])assert.ok(m.files[n],'required evidence '+n);
   const t=JSON.parse(await fs.readFile(path.join(ar,'trial.json'),'utf8'));assert.equal(t.attempt,dir);assert.equal(t.head,head);assert.equal(t.tree,tree);assert.equal(t.contractSha256,r.contractSha256);assert.equal(t.buildSha256,r.buildManifestSha256);
-  const verdict=validateBoundaryTrial(t,planned),journal=(await fs.readFile(path.join(ar,'journal.jsonl'),'utf8')).trim().split('\n').map(JSON.parse);
+  const verdict=validateBoundaryTrial(t,planned,{fault:b.fault??null}),journal=(await fs.readFile(path.join(ar,'journal.jsonl'),'utf8')).trim().split('\n').map(JSON.parse);
   const primary=t.primary?JSON.parse(await fs.readFile(path.join(ar,'primary.json'),'utf8')):null;
   if(t.primary){assert.equal(t.primaryFile.name,'primary.json');assert.equal(t.primaryFile.sha256,m.files['primary.json']);}
   validateAttemptJournal(t,journal,primary);
