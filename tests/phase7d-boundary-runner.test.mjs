@@ -1,0 +1,31 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {spawnSync} from 'node:child_process';
+import {boundaryContract,chooseValidationTrials,boundarySequence} from '../scripts/phase7d-boundary-contract.mjs';
+import {reserveBoundaryAttempt,recoverBoundaryAttempts} from '../scripts/diagnose-phase7d-boundary.mjs';
+test('fixed full108 balanced allocation retained',()=>{const p=boundaryContract.allocation;assert.equal(p.length,108);assert.equal(new Set(p.map(x=>x.id)).size,108);for(const e of ['webkit','chromium'])for(const k of ['swipe','status'])for(const g of ['A','B','C'])assert.equal(p.filter(x=>x.engine===e&&x.case===k&&x.group===g).length,e==='webkit'?12:6);});
+test('production path rejects before browser import',()=>{const r=spawnSync(process.execPath,['scripts/diagnose-phase7d-boundary.mjs'],{env:{...process.env,BOUNDARY_MODE:'production'},encoding:'utf8'});assert.notEqual(r.status,0);assert.match(r.stderr,/Production108 disabled/);});
+test('validation IDs bounded, exact and unique',()=>{for(const ids of [[],['unknown'],['chromium-swipe-A-1','chromium-swipe-A-1'],Array(13).fill('x')])assert.throws(()=>chooseValidationTrials(ids,'A'));assert.throws(()=>chooseValidationTrials(['chromium-swipe-B-1'],'A'));assert.equal(chooseValidationTrials(['chromium-swipe-A-1'],'A').length,1);});
+test('primary follows exact target advance; instrumentation only collected after primary',()=>{for(const kind of ['swipe','status'])for(const group of ['A','B','C']){const s=boundarySequence(kind,group),i=s.indexOf('primary.getAttribute');assert.equal(s[i-1],'target.clock.runFor');assert.equal(s[i+1],group==='A'?'context.tracing.stop':'boundary.collect');assert.ok(!s.includes('followup.getAttribute'));assert.ok(!s.includes('page.screenshot'));}});
+test('attempts append and interruption cannot erase primary',()=>{const base=path.resolve('work/boundary-unit-tests');fs.mkdirSync(base,{recursive:true});const dest=fs.mkdtempSync(path.join(base,'validation-'));const first=reserveBoundaryAttempt(dest,{plannedId:'test'});fs.writeFileSync(path.join(first.dir,'primary.json'),JSON.stringify({primary:{verdict:'FAIL'}}),{flag:'wx'});const second=reserveBoundaryAttempt(dest,{plannedId:'test'});assert.notEqual(first.name,second.name);const state=recoverBoundaryAttempts(dest);assert.equal(state.length,2);assert.equal(state[0].status,'INTERRUPTED');assert.equal(state[0].primary.primary.verdict,'FAIL');assert.throws(()=>fs.writeFileSync(path.join(first.dir,'primary.json'),'PASS',{flag:'wx'}),/EEXIST/);});
+import {spawn} from 'node:child_process';
+import {once} from 'node:events';
+test('real terminated child retains first FAIL and creates distinct next attempt',async()=>{
+ const base=path.resolve('work/boundary-unit-tests');fs.mkdirSync(base,{recursive:true});const dest=fs.mkdtempSync(path.join(base,'validation-killed-'));
+ const child=spawn(process.execPath,['--input-type=module','-e',`import {reserveBoundaryAttempt} from './scripts/diagnose-phase7d-boundary.mjs';import fs from 'node:fs';import path from 'node:path';const a=reserveBoundaryAttempt(${JSON.stringify(dest)},{plannedId:'forced-stop'});fs.writeFileSync(path.join(a.dir,'primary.json'),JSON.stringify({primary:{verdict:'FAIL'}}),{flag:'wx'});console.log('persisted');setInterval(()=>{},1000);`],{stdio:['ignore','pipe','pipe'],windowsHide:true});
+ await Promise.race([once(child.stdout,'data'),once(child,'exit').then(()=>{throw Error('child exited before persist');})]);const exited=once(child,'exit');child.kill('SIGKILL');await exited;
+ const old=recoverBoundaryAttempts(dest);assert.equal(old.length,1);assert.equal(old[0].status,'INTERRUPTED');assert.equal(old[0].primary.primary.verdict,'FAIL');const next=reserveBoundaryAttempt(dest,{plannedId:'forced-stop'});assert.notEqual(next.name,old[0].attempt);assert.equal(recoverBoundaryAttempts(dest)[0].primary.primary.verdict,'FAIL');
+});
+import {captureBoundaryRetry} from '../scripts/diagnose-phase7d-boundary.mjs';
+test('retry inventory pins previous FAIL and trace independently of registration',async()=>{
+ const base=path.resolve('work/boundary-unit-tests');fs.mkdirSync(base,{recursive:true});const old=fs.mkdtempSync(path.join(base,'validation-retry-original-'));
+ fs.writeFileSync(path.join(old,'registration.json'),JSON.stringify({mode:'validation',productionTrialsExecuted:0}),{flag:'wx'});
+ const attempt=reserveBoundaryAttempt(old,{plannedId:'test-retry'});fs.writeFileSync(path.join(attempt.dir,'primary.json'),JSON.stringify({primary:{verdict:'FAIL'}}),{flag:'wx'});fs.writeFileSync(path.join(attempt.dir,'trace.zip'),'fixed synthetic unit fixture bytes',{flag:'wx'});
+ const pinned=await captureBoundaryRetry(old);assert.ok(pinned.inventory[attempt.name+'/primary.json']);assert.ok(pinned.inventory[attempt.name+'/trace.zip']);assert.ok(pinned.inventory[attempt.name+'/attempt.json']);
+ const same=await captureBoundaryRetry(old);assert.deepEqual(same,pinned);
+ // Mutation is applied to a disposable synthetic fixture, never to old real evidence.
+ fs.writeFileSync(path.join(attempt.dir,'primary.json'),JSON.stringify({primary:{verdict:'PASS'}}));
+ const changed=await captureBoundaryRetry(old);assert.equal(changed.registrationSha256,pinned.registrationSha256);assert.notEqual(changed.inventorySha256,pinned.inventorySha256);assert.notEqual(changed.inventory[attempt.name+'/primary.json'],pinned.inventory[attempt.name+'/primary.json']);
+});

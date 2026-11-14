@@ -11,7 +11,7 @@ afterEach(()=>{cleanup();vi.unstubAllGlobals();});
 const advance=(ms:number)=>act(()=>{for(let i=0;i<ms;i+=20){t+=20;const batch=[...frames.values()];frames.clear();batch.forEach(fn=>fn(t));}});
 const click=(name:string)=>fireEvent.click(screen.getByRole('button',{name}));
 describe('phase7b deterministic geometry and state',()=>{
- it('preserves registry and adds exactly six',()=>{expect(museumTotal).toBe(286);expect(museumRooms).toHaveLength(13);expect(museumCatalog.filter(x=>x.collection==='Small Motion Collection II')).toHaveLength(6);expect(new Set(museumCatalog.map(x=>x.key)).size).toBe(286);});
+ it('preserves registry and adds exactly six',()=>{expect(museumTotal).toBe(292);expect(museumRooms).toHaveLength(13);expect(museumCatalog.filter(x=>x.collection==='Small Motion Collection II')).toHaveLength(6);expect(new Set(museumCatalog.map(x=>x.key)).size).toBe(292);});
  it('uses exact rect endpoints and smooth interpolation',()=>{expect(cardRect(0,300)).toEqual({x:12,y:18,width:160,height:100});expect(cardRect(1,300)).toEqual({x:0,y:0,width:300,height:190});expect(ease(.5)).toBe(.5);expect(bounded(NaN)).toBe(0);});
  it('reorders without mutation and rejects invalid indices',()=>{const a=['A','B','C'];expect(reorder(a,0,2)).toEqual(['B','C','A']);expect(a).toEqual(['A','B','C']);expect(reorder(a,-1,2)).toEqual(a);});
  it('result boundary is independent of animation completion',()=>{expect(revealState(.649,'failure')).toBe('loading');expect(revealState(.65,'failure')).toBe('failure');expect(revealState(1,'failure')).not.toBe('success');});

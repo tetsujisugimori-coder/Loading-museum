@@ -1731,3 +1731,15 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - Keyboard edits use focused annotation identity, with canvas-only selection fallback; Tab alone remains non-mutating. Added three component regressions and expanded browser keyboard ownership checks.
 - Hardened image evidence validation and required successful fault-removal recovery. Added seven real-file negative/positive cases (29 contract tests total).
 - No dependencies, other exhibits, IDs, or publication settings changed. Final exact-head CI and independent reacceptance remain prerequisites; Draft and #44/#54 boundaries remain.
+
+## 2026-11-11 Phase 7D observation-effect diagnostic follow-up
+
+Preregister A1 single DOM / A2 four secondary DOM / A3 DOM-image-DOM after the unchanged common primary read. Fixed balanced90-trial matrix, API-only trace, separate commanded virtual-clock ledger, immutable primary FAIL, original evidence cross-check and negative controls. Product code and formal acceptance oracle unchanged. Original failure ZIP/JSON/trace/PNG independently reconciled; old and new failures must not be replaced by later success. See docs/phase7d/observation-diagnosis.md. Cause remains UNKNOWN; Draft and NO merge remain pending actual diagnostic/formal/regression results and independent review.
+
+### Phase 7D observation experiment1 and audited final checkpoint
+
+f7d1bb68 hosted run42937810064 retained all90 planned attempts:85 primary PASS,2 primary FAIL,3 prefix-INCOMPLETE,87 diagnostic COMPLETE. WebKit Swipe A3-6 changed from dismissing to dismissed in the DOM read BEFORE screenshot; A1-10 retained primary dismissing. Status prefixes twice retained Loading, and a Swipe keyboard prefix retained dismissing. No later result overwrites an original failure.39 new/46 retained diagnostic tests pass; independent audit checked90 original traces and rejected9 mutations of incomplete records. Product causes remain UNKNOWN and merge recommendation NO. Added all-trial derived SHA index, A–L report and independent evidence review. Final-checkpoint formal16/regression CI must be reported separately from experiment1 and from local894 tests on its original tree. No product modifications or arbitrary waits.
+
+## 2026-11-11 Phase 7D observation API isolation preregistration
+
+Baseline421f9506 retained, including82 primary PASS /4 primary FAIL /4 prefix INCOMPLETE and15 successful /2 failed workflows. Add N0/N1/D1/S1 fixed120-trial protocol with identical primary/followup selectors, fixed no-op, exclusive original primary snapshot, raw protocol/ZIP integrity controls and unchanged product/clock/deadlines.49 new contract tests plus85 retained tests. Archive inventory includes18 original ZIPs (428,220,510 bytes), all local hashes matched to current GitHub metadata; the two priority originals were freshly downloaded and hash checked. Private durable destination approval is not identified: ARCHIVE_BLOCKED, readback NOT_TESTED. No unapproved transfer or original/shared temporary-file cleanup. See docs/phase7d/api-isolation-plan.md and sanitized archive ledger. Final experiment, formal CI and independent review remain pending; causes UNKNOWN and product merge NO.
