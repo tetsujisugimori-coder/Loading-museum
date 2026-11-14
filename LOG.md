@@ -1743,3 +1743,9 @@ f7d1bb68 hosted run42937810064 retained all90 planned attempts:85 primary PASS,2
 ## 2026-11-11 Phase 7D observation API isolation preregistration
 
 Baseline421f9506 retained, including82 primary PASS /4 primary FAIL /4 prefix INCOMPLETE and15 successful /2 failed workflows. Add N0/N1/D1/S1 fixed120-trial protocol with identical primary/followup selectors, fixed no-op, exclusive original primary snapshot, raw protocol/ZIP integrity controls and unchanged product/clock/deadlines.49 new contract tests plus85 retained tests. Archive inventory includes18 original ZIPs (428,220,510 bytes), all local hashes matched to current GitHub metadata; the two priority originals were freshly downloaded and hash checked. Private durable destination approval is not identified: ARCHIVE_BLOCKED, readback NOT_TESTED. No unapproved transfer or original/shared temporary-file cleanup. See docs/phase7d/api-isolation-plan.md and sanitized archive ledger. Final experiment, formal CI and independent review remain pending; causes UNKNOWN and product merge NO.
+
+## PR88 safety infrastructure candidate (2026-11-15)
+
+Added isolated dummy108 safety ledger, explicit production refusal, Git/blob/source-to-fixture-build/HTTP audit, fixed eight browser model injection plan and separate workflow. Replaced the Windows-literal Phase7D glob with its exact four existing files. No product behavior, original allocation, original failure evidence or dependencies changed.
+
+Independent preflight counterexamples and repairs are recorded in the safety plan; full evidence will accompany the final PR report. Current overall verdict PARTIAL: model-level injection/provenance must not be interpreted as full product React/Next acceptance. Production108 NOT_EXECUTED; merge NO; Draft maintained; Swipe/Status root causes UNKNOWN. Initial default-temp use is disclosed in the plan and records retained.
