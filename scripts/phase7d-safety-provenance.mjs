@@ -6,7 +6,7 @@ import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {pathToFileURL} from 'node:url';
 export const sha256=b=>createHash('sha256').update(b).digest('hex');
-const git=(root,...args)=>execFileSync('git',['-C',root,...args]);
+const git=(root,...args)=>execFileSync('git',['-C',root,...args],{maxBuffer:8*1024*1024});
 export function inventory(root) {
  const result={};
  function walk(dir,prefix='') {for(const name of fs.readdirSync(dir).sort()){const p=path.join(dir,name),rel=prefix+name,s=fs.lstatSync(p);assert.ok(!s.isSymbolicLink(),'symlink rejected');if(s.isDirectory())walk(p,rel+'/');else{assert.ok(s.isFile(),'regular files only');const b=fs.readFileSync(p);result[rel]={size:b.length,sha256:sha256(b)};}}}
