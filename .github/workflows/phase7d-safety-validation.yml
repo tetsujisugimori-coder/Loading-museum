@@ -46,7 +46,10 @@ jobs:
         if: always()
         with:
           name: safety-contracts-${{ matrix.os }}-${{ github.event_name }}
-          path: work/safety/
+          path: |
+            work/safety/evidence/
+            work/safety/execution-source/
+          include-hidden-files: true
           retention-days: 30
   fixture:
     if: github.event_name == 'workflow_dispatch'
