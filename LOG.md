@@ -1,3 +1,7 @@
+## 2026-11-15 WAAPI Stage 2A independent offline diagnosis
+
+After API A2 freeze, independently inspected fixed run 43708599164 attempt 1. WebKit observation FAIL is width375 Menu mid-flight pause PARTIAL; four other suites PASS. First post-ready continuation already sees the endpoint. New offline protocol controls preserve the failure and reject missing/contradictory/rewritten evidence. No product, original test, plan or browser experiment changed. Cause UNKNOWN; overall PARTIAL; production108 NO; merge NO; Draft maintained. See docs/phase7d/waapi-offline-cause-review.md.
+
 ## 2026-11-15 / PR #88 Phase A independent offline API diagnosis
 
 Freeze run43708599257 attempt1 HEAD179234d: WebKit64PASS/3FAIL/5NOT_TESTED, Chromium48PASS. Pure offline archive/trace/source-claim checks and synthetic controls; no product/plan/oracle/timing changes or new browser. Callback/request/commit/DOM-event recorder absent; later PASS never replaces primary FAIL. H1-H7 remain candidates, cause UNKNOWN. Phase A records and judgment are fixed before independent WAAPI phase B. Overall PARTIAL; production108 NO; merge NO; Draft retained.

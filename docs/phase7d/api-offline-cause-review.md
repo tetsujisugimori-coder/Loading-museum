@@ -68,7 +68,7 @@ recorded absence of execution. Trace events in these originals are page-creation
 notifications, not product callbacks. Expected files missing would be MISSING_RECORD
 and rejected; prefix-unreached primary is NOT_REACHED. Cause remains INDETERMINATE.
 
-The three primary-to-followup host intervals are approximately129.50ms(S1),
+The three primary-API-end to followup-API-end host intervals are approximately 129.50ms(S1),
 6.50ms(N1),12.78ms(D1). Commanded virtual-date ledgers do not advance after primary.
 This is not a direct browser clock reading at either observation and not a
 conversion of host milliseconds into virtual time. The screenshot/no-op/DOM
