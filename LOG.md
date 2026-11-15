@@ -1,3 +1,7 @@
+## 2026-11-15 / PR #88 Boundary artifact preservation
+
+Boundary-only source/body and complete export preservation: fixed Git/raw input bodies, two staged TSX bodies as .bin, independent set/size/hash/blob/transform audit, hidden-inclusive upload. Dependencies are hash/lock identified, not package-body snapshots. Existing primary FAIL/INCOMPLETE/NOT_TESTED and old ZIP omissions remain historical. Overall PARTIAL; production108 NO; merge NO; Draft retained. Local and submitted-head CI/artifact results are reported separately in PR #88.
+
 ## 第7期C：Motion Composition Studio（Issue #85）
 
 既存280展示を保全し、時間・順序・位置・状態を組み合わせる6作品を追加。目標286展示・13室。[設計・検証と限界](docs/phase7c/README.md)。実装中、最終受入は未判定。以下の記録は各時点の状態として保全。

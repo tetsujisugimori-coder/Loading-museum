@@ -67,14 +67,20 @@ jobs:
           export EXPECTED_HEAD="$(git rev-parse HEAD)"
           export EXPECTED_TREE="$(git rev-parse HEAD^{tree})"
           node scripts/audit-phase7d-boundary.mjs work/validation-${{ matrix.group }}-${{ matrix.browser }} > work/boundary-audit.json
+      - name: Independent saved source and entire export audit (no browser)
+        if: always()
+        run: node scripts/phase7d-boundary-preservation.mjs audit "$PWD" "$(git rev-parse HEAD)" "$(git rev-parse HEAD^{tree})" work/boundary-build > work/boundary-preservation-audit.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: boundary-validation-${{ matrix.group }}-${{ matrix.browser }}-${{ github.event.pull_request.head.sha || github.sha }}
           retention-days: 30
+          include-hidden-files: true
           path: |
             work/validation-*/
             work/boundary-audit.json
+            work/boundary-preservation-audit.json
             work/boundary-build/boundary-build.json
             work/boundary-build/build.log
+            work/boundary-build/preservation/
             work/boundary-build/out/
