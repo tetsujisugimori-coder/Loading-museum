@@ -1784,3 +1784,7 @@ Independent pre-execution review cleared3corrected blockers; safety contracts106
 
 ### Correction after actual CI artifact readback
 06b safety4originalZIPs preserve bytes but omit22hidden declared source paths in raw/Git trees. Source artifact completenessFAIL despite pre-upload384PASS. Original4 preserved/readback; hidden-inclusive explicit evidence/source upload candidate and same-counterexample regression added, temp excluded. NewCI archiveGREEN pending. Do not treat016f report's source-local PASS as CI artifact-completenessPASS. Browser trials unchanged and notrerun.
+
+### Windows config-check CRLF correction
+5ca Windows safety107PASS/1FAIL versus Ubuntu108PASS: new config regex usedLF only. Recorded same YAML LFaccept/CRLFreject; structuraltest now tests both and acceptsCRLF without changing rawsourceaudit or expected paths/hidden inclusion. OldCIFAIL retained. Browser14notrerun; finalCI separate.
+5ca actual4artifact independent Libraryreadback confirms hidden22 restored/all384raw+Git bodies complete; hidden-loss closurePASS for5ca only. Windows381CRLF/3same vsLinux384rawsame remain separate. WindowscontractFAIL remains and subsequentHEAD needsnewCI.
