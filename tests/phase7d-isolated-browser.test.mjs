@@ -1,0 +1,35 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {isolatedPlan,isolatedSettings,validateIsolatedPlan,validateIsolatedResults,classifyControlledCase} from '../scripts/phase7d-isolated-browser-contract.mjs';
+const normal=p=>({...p,attempted:p.kind!=='unstarted',primary:p.kind==='unstarted'?null:{state:p.scope==='MODEL_REAL_BROWSER'?'Done':'Error',verdict:'PASS',expected:p.scope==='MODEL_REAL_BROWSER'?'Done':'Error',...(p.scope==='MODEL_REAL_BROWSER'?{observation:{committed:'Done',dom:'Done'}}:{})},evidence:p.kind==='unstarted'?'NOT_TESTED':'COMPLETE',operationError:null,cleanupErrors:[],persistenceErrors:[],pageErrors:[],http:[{path:'x.js'}],traceSaved:true,harSaved:true,productionTrialsExecuted:0});
+test('allocation14 fixed unique,12 actual maximum and two unstarted sentinels',()=>{assert.equal(isolatedPlan.length,14);assert.equal(new Set(isolatedPlan.map(p=>p.id)).size,14);assert.equal(isolatedPlan.filter(p=>p.kind==='unstarted').length,2);assert.equal(validateIsolatedResults(isolatedPlan.map(normal)).attempted,12);});
+test('normal actual-browser model control',()=>assert.equal(classifyControlledCase(normal(isolatedPlan[0])),'NORMAL_CONTROL_PASS'));
+test('same primary retained for controlled cleanup rejection',()=>{const r=normal(isolatedPlan[1]);r.evidence='INCOMPLETE';r.cleanupErrors=[{stage:'context.close',error:'CONTROLLED_CONTEXT_CLOSE_REJECTION'}];r.browserCloseAttempted=true;assert.equal(classifyControlledCase(r),'DETECTED');r.primary.verdict='FAIL';assert.equal(classifyControlledCase(r),'NOT_DETECTED');});
+test('actual write failure requires error not just INCOMPLETE',()=>{const r=normal(isolatedPlan[2]);r.evidence='INCOMPLETE';assert.equal(classifyControlledCase(r),'NOT_DETECTED');r.persistenceErrors=[{stage:'result.json'}];assert.equal(classifyControlledCase(r),'DETECTED');});
+test('controlled interruption no fabricated primary',()=>{const r=normal(isolatedPlan[3]);r.evidence='INCOMPLETE';r.operationError='CONTROLLED_PAGE_INTERRUPTION';assert.equal(classifyControlledCase(r),'NOT_DETECTED');r.primary=null;assert.equal(classifyControlledCase(r),'DETECTED');});
+test('Next React fault must preserve product FAIL and exact actual fault marker',()=>{const r=normal(isolatedPlan[11]);r.primary={state:'Loading',verdict:'FAIL',expected:'Error'};r.boundary={events:[]};assert.equal(classifyControlledCase(r),'NOT_DETECTED');r.boundary.events=[{phase:'fault-applied',work:'status',fault:'update-omission',targetCallbackOrdinal:2}];assert.equal(classifyControlledCase(r),'DETECTED');r.primary.verdict='PASS';assert.equal(classifyControlledCase(r),'NOT_DETECTED');});
+for(const [name,mutate]of [['missing',a=>a.pop()],['duplicate',a=>a[1]={...a[0]}],['wrong-order',a=>[a[0],a[1]]=[a[1],a[0]]],['missing-HAR',a=>a[0].harSaved=false],['hidden-cleanup',a=>a[0].cleanupErrors.push({stage:'x'})],['page-error',a=>a[0].pageErrors.push('error')],['fake-primary-unstarted',a=>a[4].primary={verdict:'PASS'}],['production',a=>a[0].productionTrialsExecuted=1]])test('reject '+name,()=>{const rows=isolatedPlan.map(normal);mutate(rows);assert.throws(()=>validateIsolatedResults(rows));});
+
+test('reject normal PASS with wrong state from review counterexample',()=>{const r=normal(isolatedPlan[0]);r.primary.state='WRONG';assert.equal(classifyControlledCase(r),'NOT_DETECTED');assert.throws(()=>validateIsolatedResults([r,...isolatedPlan.slice(1).map(normal)]));});
+for(const key of Object.keys(isolatedSettings))test('reject changed fixed setting '+key,()=>{const p={...structuredClone(isolatedSettings),plan:isolatedPlan};p[key]=null;assert.throws(()=>validateIsolatedPlan(p));});
+
+test('valid observed model mismatch remains primary FAIL, not evidence loss',()=>{const rows=isolatedPlan.map(normal);rows[0].primary.observation.committed='Loading';rows[0].primary.verdict='FAIL';assert.doesNotThrow(()=>validateIsolatedResults(rows));assert.equal(classifyControlledCase(rows[0]),'NORMAL_CONTROL_FAIL');});
+
+import fs from 'node:fs';import path from 'node:path';import os from 'node:os';import {execFileSync} from 'node:child_process';import {createHash} from 'node:crypto';
+import {auditIsolatedBuilds} from '../scripts/audit-phase7d-isolated-browser.mjs';
+test('independent Git actual source/build preflight normal and same coordinated mutations',()=>{
+ const sha=b=>createHash('sha256').update(b).digest('hex'),cwd=process.cwd();
+ const dir=fs.mkdtempSync(path.join(process.env.TMPDIR||os.tmpdir(),'isolated-source-audit-')),repo=path.join(dir,'repo'),copy=path.join(dir,'normal');fs.mkdirSync(repo);fs.mkdirSync(copy);
+ const git=(...a)=>execFileSync('git',['-C',repo,...a],{encoding:'utf8'}).trim();git('init','-q');git('config','user.name','test');git('config','user.email','test@example.invalid');fs.mkdirSync(path.join(repo,'app'));fs.writeFileSync(path.join(repo,'app/page.tsx'),'original\n');git('add','.');git('commit','-qm','fixture');const head=git('rev-parse','HEAD'),tree=git('rev-parse','HEAD^{tree}');
+ fs.mkdirSync(path.join(copy,'app'));fs.copyFileSync(path.join(repo,'app/page.tsx'),path.join(copy,'app/page.tsx'));fs.mkdirSync(path.join(copy,'out'));fs.writeFileSync(path.join(copy,'out/index.js'),'output');
+ const m={schema:1,mode:'validation-only',head,tree,group:'C',success:true,sourceHashes:{'app/page.tsx':sha('original\n')},transformedHashes:{},outputHashes:{'index.js':sha('output')}};
+ const p={head,tree,builds:{normal:{dir:copy,files:{'index.js':{size:6,sha256:sha('output')}}}}};
+ const save=()=>{fs.writeFileSync(path.join(copy,'boundary-build.json'),JSON.stringify(m));p.builds.normal.manifestSha256=sha(fs.readFileSync(path.join(copy,'boundary-build.json')));};save();
+ const fault=path.join(dir,'fault');fs.cpSync(copy,fault,{recursive:true});fs.writeFileSync(path.join(fault,'boundary-build.json'),JSON.stringify({...m,fault:{fault:'update-omission'}}));p.builds['update-omission']={...p.builds.normal,dir:fault,manifestSha256:sha(fs.readFileSync(path.join(fault,'boundary-build.json')))};
+ try{process.chdir(repo);assert.doesNotThrow(()=>auditIsolatedBuilds(p));
+  fs.writeFileSync(path.join(copy,'app/page.tsx'),'tampered\n');m.sourceHashes['app/page.tsx']=sha('tampered\n');save();assert.throws(()=>auditIsolatedBuilds(p),/manifest source hash vs Git actual blob/);
+  fs.writeFileSync(path.join(copy,'app/page.tsx'),'original\n');m.sourceHashes['app/page.tsx']=sha('original\n');save();assert.doesNotThrow(()=>auditIsolatedBuilds(p));
+  fs.writeFileSync(path.join(copy,'app/extra.tsx'),'injected');assert.throws(()=>auditIsolatedBuilds(p),/unregistered isolated source file/);fs.renameSync(path.join(copy,'app/extra.tsx'),path.join(dir,'extra-retained.tsx'));
+  m.outputHashes['index.js']=sha('wrong');save();assert.throws(()=>auditIsolatedBuilds(p),/manifest output hashes/);m.outputHashes['index.js']=sha('output');save();assert.doesNotThrow(()=>auditIsolatedBuilds(p));
+  for(const builds of [{},{normal:p.builds.normal},{...p.builds,extra:p.builds.normal}])assert.throws(()=>auditIsolatedBuilds({...p,builds}),/fixed two build conditions/);
+ }finally{process.chdir(cwd);}
+});
