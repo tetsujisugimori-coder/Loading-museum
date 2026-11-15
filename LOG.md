@@ -1,3 +1,7 @@
+## 2026-11-15 / PR #88 Phase A independent offline API diagnosis
+
+Freeze run43708599257 attempt1 HEAD179234d: WebKit64PASS/3FAIL/5NOT_TESTED, Chromium48PASS. Pure offline archive/trace/source-claim checks and synthetic controls; no product/plan/oracle/timing changes or new browser. Callback/request/commit/DOM-event recorder absent; later PASS never replaces primary FAIL. H1-H7 remain candidates, cause UNKNOWN. Phase A records and judgment are fixed before independent WAAPI phase B. Overall PARTIAL; production108 NO; merge NO; Draft retained.
+
 ## 2026-11-15 / PR #88 Boundary artifact preservation
 
 Boundary-only source/body and complete export preservation: fixed Git/raw input bodies, two staged TSX bodies as .bin, independent set/size/hash/blob/transform audit, hidden-inclusive upload. Dependencies are hash/lock identified, not package-body snapshots. Existing primary FAIL/INCOMPLETE/NOT_TESTED and old ZIP omissions remain historical. Overall PARTIAL; production108 NO; merge NO; Draft retained. Local and submitted-head CI/artifact results are reported separately in PR #88.
