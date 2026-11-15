@@ -1,0 +1,370 @@
+{
+  "id": "LM88-REGISTER",
+  "version": 2,
+  "sourceArchive": {
+    "bytes": 53550521,
+    "sha256": "5a37f8fc0f89304c455227e54df01e92087a68edad16a369a9f6077953ea1876",
+    "scope": "selected entries read, original fullZIP CRC not repeated"
+  },
+  "derivedSelectedBundle": {
+    "bytes": 201266,
+    "sha256": "7aa6cbcad32c997fce86dd9a1430fad88f030776924d3d875ea31f1d694aa336",
+    "readback": "actual Library bytes SHA and49entryCRC verified; derivative not originalZIP"
+  },
+  "entries": [
+    {
+      "id": "LM88-API-PREREGISTRATION",
+      "version": "original-current-v1",
+      "status": "UNAPPROVED_DESIGN",
+      "path": "original/API-PREREGISTRATION.md",
+      "privateEvidenceName": null,
+      "bytes": 12116,
+      "sha256": "c5dd02db0748c957aa87639857011b2cb6871a81c4778a6f00d57539291e1143",
+      "encoding": "UTF-8",
+      "bom": false,
+      "CRLF": 0,
+      "LF": 26,
+      "reason": "exact recovered bytes; no rewrite",
+      "references": [
+        "annex.md",
+        "approval-gates.json"
+      ]
+    },
+    {
+      "id": "LM88-WAAPI-PREREGISTRATION",
+      "version": "original-current-v1",
+      "status": "UNAPPROVED_DESIGN",
+      "path": "original/WAAPI-PREREGISTRATION.md",
+      "privateEvidenceName": null,
+      "bytes": 12903,
+      "sha256": "5e26a6290f9ba25260abbc88823a1534a9a2b877f7d43eae7d142c5d668ea79a",
+      "encoding": "UTF-8",
+      "bom": false,
+      "CRLF": 0,
+      "LF": 28,
+      "reason": "exact recovered bytes; no rewrite",
+      "references": [
+        "annex.md",
+        "approval-gates.json"
+      ]
+    },
+    {
+      "id": "LM88-API-CAUSE-LEDGER",
+      "version": "original-current-v1",
+      "status": "HISTORICAL_EVIDENCE",
+      "path": "original/api-cause-ledger.json",
+      "privateEvidenceName": null,
+      "bytes": 4870,
+      "sha256": "5de8d3dcb928ef636774660569569c1f98a9f3b18282d3fa7810c8b1cf895456",
+      "encoding": "UTF-8",
+      "bom": false,
+      "CRLF": 86,
+      "LF": 86,
+      "reason": "exact recovered bytes; no rewrite",
+      "references": [
+        "annex.md",
+        "approval-gates.json"
+      ]
+    },
+    {
+      "id": "LM88-API-PREREGISTRATION",
+      "version": "original-current-v1",
+      "status": "UNAPPROVED_DESIGN",
+      "path": "original/api-preregistration.json",
+      "privateEvidenceName": null,
+      "bytes": 7929,
+      "sha256": "9f86f113d8153210c55f6cd19eb2bde5767e6a6e6840c9b0446e4b0ac8a79490",
+      "encoding": "UTF-8",
+      "bom": false,
+      "CRLF": 0,
+      "LF": 308,
+      "reason": "exact recovered bytes; no rewrite",
+      "references": [
+        "annex.md",
+        "approval-gates.json"
+      ]
+    },
+    {
+      "id": "LM88-API-PRIMARY-LEDGER",
+      "version": "original-current-v1",
+      "status": "HISTORICAL_EVIDENCE",
+      "path": null,
+      "privateEvidenceName": "api-primary-ledger.json",
+      "bytes": 255020,
+      "sha256": "331a7f5e3a7709ab357ed76de73ef955550c0b33b391e441648dca23d9d837c7",
+      "encoding": "UTF-8",
+      "bom": false,
+      "CRLF": 8080,
+      "LF": 8080,
+      "reason": "exact recovered bytes; no rewrite",
+      "references": [
+        "annex.md",
+        "approval-gates.json"
+      ]
+    },
+    {
+      "id": "LM88-COMBINED-DESIGN-IDENTITIES",
+      "version": "original-current-v1",
+      "status": "HISTORICAL_EVIDENCE",
+      "path": null,
+      "privateEvidenceName": "combined-design-identities.json",
+      "bytes": 1244,
+      "sha256": "fba5d3d535da8c5f304119dbad3cdeac952a614f1035d8112e72a5f31812bff5",
+      "encoding": "UTF-8",
+      "bom": false,
+      "CRLF": 34,
+      "LF": 34,
+      "reason": "exact recovered bytes; no rewrite",
+      "references": [
+        "annex.md",
+        "approval-gates.json"
+      ]
+    },
+    {
+      "id": "LM88-REGISTRATION-IDENTITIES",
+      "version": "original-current-v1",
+      "status": "HISTORICAL_EVIDENCE",
+      "path": null,
+      "privateEvidenceName": "registration-identities.json",
+      "bytes": 362,
+      "sha256": "ac129cb248e8783c7efc12d9e57bc7688be923b42f64e7ed2306d3e02b9c1b3b",
+      "encoding": "UTF-8",
+      "bom": false,
+      "CRLF": 9,
+      "LF": 9,
+      "reason": "exact recovered bytes; no rewrite",
+      "references": [
+        "annex.md",
+        "approval-gates.json"
+      ]
+    },
+    {
+      "id": "LM88-WAAPI-CAUSE-LEDGER",
+      "version": "original-current-v1",
+      "status": "HISTORICAL_EVIDENCE",
+      "path": "original/waapi-cause-ledger.json",
+      "privateEvidenceName": null,
+      "bytes": 3494,
+      "sha256": "dc88b663a6b52eae4650b62a6c9d8282e563170a96d670cfbb396bfbafebebf7",
+      "encoding": "UTF-8",
+      "bom": false,
+      "CRLF": 64,
+      "LF": 64,
+      "reason": "exact recovered bytes; no rewrite",
+      "references": [
+        "annex.md",
+        "approval-gates.json"
+      ]
+    },
+    {
+      "id": "LM88-WAAPI-PREREGISTRATION",
+      "version": "original-current-v1",
+      "status": "UNAPPROVED_DESIGN",
+      "path": "original/waapi-preregistration.json",
+      "privateEvidenceName": null,
+      "bytes": 7348,
+      "sha256": "08c3ff126ee13f29190ddc3c8e077de53f65287af5fc9c15483bf35a67ce1b08",
+      "encoding": "UTF-8",
+      "bom": false,
+      "CRLF": 0,
+      "LF": 195,
+      "reason": "exact recovered bytes; no rewrite",
+      "references": [
+        "annex.md",
+        "approval-gates.json"
+      ]
+    },
+    {
+      "id": "LM88-WAAPI-PRIMARY-LEDGER",
+      "version": "original-current-v1",
+      "status": "HISTORICAL_EVIDENCE",
+      "path": null,
+      "privateEvidenceName": "waapi-primary-ledger.json",
+      "bytes": 12750,
+      "sha256": "f1a8adeb01e4dd85f3a7a108ead8ad8e213e08e19bc50657fc46c67801218224",
+      "encoding": "UTF-8",
+      "bom": false,
+      "CRLF": 343,
+      "LF": 343,
+      "reason": "exact recovered bytes; no rewrite",
+      "references": [
+        "annex.md",
+        "approval-gates.json"
+      ]
+    },
+    {
+      "id": "LM88-OLD-API-PREREGISTRATION",
+      "version": "review-before",
+      "status": "SUPERSEDED_RETAINED_PRIVATE",
+      "path": null,
+      "privateEvidenceName": "design-review-before/API-PREREGISTRATION.md",
+      "bytes": 10384,
+      "sha256": "51b2a2b8ca3ecce98077cb10df2e2ef8004981557ca3021e0daccd348ee24fb3",
+      "encoding": "UTF-8",
+      "bom": true,
+      "CRLF": 1,
+      "LF": 22,
+      "reason": "prior wording/limits amended; old identity retained"
+    },
+    {
+      "id": "LM88-OLD-WAAPI-PREREGISTRATION",
+      "version": "review-before",
+      "status": "SUPERSEDED_RETAINED_PRIVATE",
+      "path": null,
+      "privateEvidenceName": "design-review-before/WAAPI-PREREGISTRATION.md",
+      "bytes": 10861,
+      "sha256": "7d9c7ef1565dcae6ff388cd739b49775ff4777457c4eee3f78de528cd3a45fac",
+      "encoding": "UTF-8",
+      "bom": true,
+      "CRLF": 1,
+      "LF": 22,
+      "reason": "prior wording/limits amended; old identity retained"
+    },
+    {
+      "id": "LM88-OLD-API-PREREGISTRATION",
+      "version": "review-before",
+      "status": "SUPERSEDED_RETAINED_PRIVATE",
+      "path": null,
+      "privateEvidenceName": "design-review-before/api-preregistration.json",
+      "bytes": 8020,
+      "sha256": "799b11ba5b584b8f9372fdba6ecc06608331dc6c061774deaf1823e55cea4a8c",
+      "encoding": "UTF-8",
+      "bom": false,
+      "CRLF": 306,
+      "LF": 306,
+      "reason": "prior wording/limits amended; old identity retained"
+    },
+    {
+      "id": "LM88-OLD-WAAPI-PREREGISTRATION",
+      "version": "review-before",
+      "status": "SUPERSEDED_RETAINED_PRIVATE",
+      "path": null,
+      "privateEvidenceName": "design-review-before/waapi-preregistration.json",
+      "bytes": 7326,
+      "sha256": "45abffee9b145b5db762c2d884f748e84de5d2a71c53470fa246630d671607b3",
+      "encoding": "UTF-8",
+      "bom": false,
+      "CRLF": 193,
+      "LF": 193,
+      "reason": "prior wording/limits amended; old identity retained"
+    }
+  ],
+  "packageDocuments": [
+    {
+      "id": "LM88-README",
+      "version": 2,
+      "status": "DRAFT_A_ONLY",
+      "path": "README.md",
+      "bytes": 2572,
+      "sha256": "efaab22de756ea30db22b5280aab6ec4cd61e4df1d2efa7d2902841c8ec165b3",
+      "encoding": "UTF-8 no BOM LF",
+      "references": [
+        "original/api-preregistration.json",
+        "original/waapi-preregistration.json"
+      ],
+      "changeReason": "review5911239035: exact versioning and concrete gated annex"
+    },
+    {
+      "id": "LM88-ANNEX",
+      "version": 2,
+      "status": "DRAFT_A_ONLY",
+      "path": "annex.md",
+      "bytes": 16162,
+      "sha256": "f54f3f38bf55765742a8a472b8f827084a85e3c87a53d1f7bd066af10959d15a",
+      "encoding": "UTF-8 no BOM LF",
+      "references": [
+        "original/api-preregistration.json",
+        "original/waapi-preregistration.json"
+      ],
+      "changeReason": "review5911239035: exact versioning and concrete gated annex"
+    },
+    {
+      "id": "LM88-APPROVAL-GATES",
+      "version": 2,
+      "status": "DRAFT_A_ONLY",
+      "path": "approval-gates.json",
+      "bytes": 2077,
+      "sha256": "13cab137e18c8e995bad898b0ba116144cdaaf422dafa849aeb8482950fa0834",
+      "encoding": "UTF-8 no BOM LF",
+      "references": [
+        "original/api-preregistration.json",
+        "original/waapi-preregistration.json"
+      ],
+      "changeReason": "review5911239035: exact versioning and concrete gated annex"
+    },
+    {
+      "id": "LM88-SOURCE-INVENTORY",
+      "version": 2,
+      "status": "DRAFT_A_ONLY",
+      "path": "source-inventory.json",
+      "bytes": 801,
+      "sha256": "0f1efbdefb4ca00135457a3181d9f4779968c42f272b2a733db706364c03ae87",
+      "encoding": "UTF-8 no BOM LF",
+      "references": [
+        "original/api-preregistration.json",
+        "original/waapi-preregistration.json"
+      ],
+      "changeReason": "review5911239035: exact versioning and concrete gated annex"
+    },
+    {
+      "id": "LM88-PUBLICATION-COMPARISON",
+      "version": 2,
+      "status": "DRAFT_A_ONLY",
+      "path": "publication-comparison.json",
+      "bytes": 2755,
+      "sha256": "b0295a61ba8d271346ba5a6bae35241286dcfab75913aa5ff250ab89fb5e4ef8",
+      "encoding": "UTF-8 no BOM LF",
+      "references": [
+        "original/api-preregistration.json",
+        "original/waapi-preregistration.json"
+      ],
+      "changeReason": "review5911239035: exact versioning and concrete gated annex"
+    },
+    {
+      "id": "LM88-CHANGE-MAP",
+      "version": 2,
+      "status": "DRAFT_A_ONLY",
+      "path": "CHANGE-MAP.md",
+      "bytes": 2867,
+      "sha256": "66b916159b2078936a176b6bd5ac7cef16362ceaa5db9d4eece78bd6d8e72ba1",
+      "encoding": "UTF-8 no BOM LF",
+      "references": [
+        "original/api-preregistration.json",
+        "original/waapi-preregistration.json"
+      ],
+      "changeReason": "review5911239035: exact versioning and concrete gated annex"
+    },
+    {
+      "id": "LM88-VALIDATION",
+      "version": 2,
+      "status": "DRAFT_A_ONLY",
+      "path": "VALIDATION.md",
+      "bytes": 1902,
+      "sha256": "eae6e9edc3fc73d985352e3536c8d094ce6169ea2eb5bb72a99f862d48154353",
+      "encoding": "UTF-8 no BOM LF",
+      "references": [
+        "original/api-preregistration.json",
+        "original/waapi-preregistration.json"
+      ],
+      "changeReason": "review5911239035: exact versioning and concrete gated annex"
+    },
+    {
+      "id": "LM88-source-inventory-part1.json",
+      "version": 2,
+      "status": "DRAFT_A_ONLY",
+      "path": "source-inventory-part1.json",
+      "reason": "transport partition, no source change",
+      "bytes": 312555,
+      "sha256": "6c1f28dc6ff19f428fc57c86d63022c4c8a8c8455da7c6ebc169739c4f608092"
+    },
+    {
+      "id": "LM88-source-inventory-part2.json",
+      "version": 2,
+      "status": "DRAFT_A_ONLY",
+      "path": "source-inventory-part2.json",
+      "reason": "transport partition, no source change",
+      "bytes": 301167,
+      "sha256": "e7a17461263666a8753dd5fb496ba650cda3d2f8b99bec59a41d4ecab829ab1a"
+    }
+  ]
+}

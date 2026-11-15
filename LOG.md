@@ -1,3 +1,7 @@
+## 2026-11-15 / Loading-museum PR #88 approval-document v2
+
+A-only documentation and existing-byte reconciliation. Baseline5de4b08/tree89a8448; full original API/WAAPI proposal JSON and cause ledgers preserved, concrete annex and A/B/C gates added. B implementation and C experiments UNAPPROVED; actual browser causal trials0. No product/test/plan/launcher/workflow changes. Prior FAIL/NOT_TESTED, causeUNKNOWN, runtime bytesNOT_PROVEN, production108NO, mergeNO and Draft remain. Documentation checks, independent review and preservation status: docs/phase7d/approval-v2/. Documentation-push CI is not causal/product acceptance.
+
 ## 2026-11-15 WAAPI Stage 2A independent offline diagnosis
 
 After API A2 freeze, independently inspected fixed run 43708599164 attempt 1. WebKit observation FAIL is width375 Menu mid-flight pause PARTIAL; four other suites PASS. First post-ready continuation already sees the endpoint. New offline protocol controls preserve the failure and reject missing/contradictory/rewritten evidence. No product, original test, plan or browser experiment changed. Cause UNKNOWN; overall PARTIAL; production108 NO; merge NO; Draft maintained. See docs/phase7d/waapi-offline-cause-review.md.

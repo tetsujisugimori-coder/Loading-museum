@@ -1,0 +1,64 @@
+{
+  "id": "LM88-GATES",
+  "version": 2,
+  "executable": false,
+  "actualBrowserCausalTrials": 0,
+  "A": {
+    "status": "AUTHORIZED",
+    "approver": "repository owner, current request",
+    "scope": [
+      "documents",
+      "fixedJSON",
+      "read-only existing evidence",
+      "independent review",
+      "normal documentation commit/push",
+      "PR body/comment",
+      "private preservation"
+    ],
+    "excludes": [
+      "implementation",
+      "browser",
+      "dispatch",
+      "retry",
+      "production108",
+      "merge",
+      "publish"
+    ]
+  },
+  "B": {
+    "status": "UNAPPROVED",
+    "approver": null,
+    "approvalEvidence": null,
+    "scope": "isolated implementation and browser-free verification only after explicit owner approval",
+    "required": [
+      "reviewed A package exact byte manifest",
+      "source transforms and bounded capture proposal",
+      "unchanged originals"
+    ]
+  },
+  "C": {
+    "status": "UNAPPROVED",
+    "approver": null,
+    "approvalEvidence": null,
+    "required": [
+      "B isolated implementation immutable commit/tree/full source",
+      "actual build output and dependency manifests",
+      "environment and CPU exact pins",
+      "calibration implementation and nonbrowser review",
+      "response capture driver-call/order review and observer limits acceptance",
+      "shutdown grace",
+      "independent review and explicit exact-hash owner approval"
+    ],
+    "stop": [
+      "missing/mismatched approval or provenance",
+      "unexpected calibration/error/cleanup/persistence failure",
+      "capacity/deadline/overflow",
+      "resource substitution",
+      "ambiguous generation"
+    ],
+    "futureImplementationSha256": null,
+    "futureBuildManifestSha256": null,
+    "futureEnvironmentSha256": null
+  },
+  "reapproval": "Any changed content has new version/hash. Changes to slots/order/limits/source/probe/capture/environment/fixture/primary require independent re-review and renewed affected B/C approval. Editorial-only changes need mapped review; never silently reuse a byte-specific approval."
+}

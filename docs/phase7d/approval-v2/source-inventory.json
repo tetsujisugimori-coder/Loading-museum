@@ -1,0 +1,22 @@
+{
+  "baselineHead": "5de4b08a2dc881ad2afcbe805b0776cb944ff882",
+  "baselineTree": "89a84488c489161f167e06df34fbc25cca0a4c6e",
+  "meaning": "baseline Git objects, not executed body attestation",
+  "entriesCount": 2124,
+  "parts": [
+    {
+      "path": "source-inventory-part1.json",
+      "count": 1062,
+      "bytes": 312555,
+      "sha256": "6c1f28dc6ff19f428fc57c86d63022c4c8a8c8455da7c6ebc169739c4f608092"
+    },
+    {
+      "path": "source-inventory-part2.json",
+      "count": 1062,
+      "bytes": 301167,
+      "sha256": "e7a17461263666a8753dd5fb496ba650cda3d2f8b99bec59a41d4ecab829ab1a"
+    }
+  ],
+  "previousSingleFileSha256": "f50b95ae694d77e39665ff4f084925734b4f3da07cad7069a2495a9c6277f020",
+  "reason": "transport size limitation; identical concatenated entry values, not source change"
+}

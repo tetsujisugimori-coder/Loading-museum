@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "originalRun": 43708599164,
+  "attempt": 1,
+  "head": "179234d4351a988afcc7631795c7e162c8eb7882",
+  "matrix": [
+    {
+      "observedFact": "Old375Menu play-click-before4341\u2192ready continuation4714; before220finished",
+      "hypothesis": "W1 play handler/ready/continuation delay",
+      "supportingEvidence": "373ms exceeds220ms duration and first read endpoint",
+      "counterEvidence": "Interval includes sync click and scheduling; cannot isolate promise pending time",
+      "missingEvidence": "Handler/native request/ready/continuation split",
+      "responsibilityBoundary": "UNKNOWN",
+      "observationEffect": "Markers and then/listeners add work/microtasks",
+      "nextDiscriminator": "I0/I1/I2 same inherited per-width sequence",
+      "judgment": "UNKNOWN"
+    },
+    {
+      "observedFact": "Old before220finished then immediate/settled220paused",
+      "hypothesis": "W2 native/controller/DOM mismatch",
+      "supportingEvidence": "Potential native/controller boundary candidate",
+      "counterEvidence": "Captured endpoint values consistent; not a wrong mid-flight pause response",
+      "missingEvidence": "Creation/start/commit/DOM read timestamps by instance",
+      "responsibilityBoundary": "UNKNOWN",
+      "observationEffect": "Geometry/style reads already present",
+      "nextDiscriminator": "Actual animation generation and distinct snapshot sites",
+      "judgment": "UNKNOWN"
+    },
+    {
+      "observedFact": "fonts/rAF preflight and ready awaits are present",
+      "hypothesis": "W3 measurement load matters",
+      "supportingEvidence": "Timing sensitive and continuation late",
+      "counterEvidence": "Costs not isolated; differing widths/control durations confound",
+      "missingEvidence": "Observer cost and same-seed level contrasts",
+      "responsibilityBoundary": "UNKNOWN",
+      "observationEffect": "Listener/microtask effects not neutral by assertion",
+      "nextDiscriminator": "Compare fixed level count, retain all endpoints/context clustering",
+      "judgment": "UNKNOWN"
+    },
+    {
+      "observedFact": "Original script has no virtual-clock API",
+      "hypothesis": "W4 clock-domain issue",
+      "supportingEvidence": "Real document/native/host domains still differ",
+      "counterEvidence": "API virtual-clock reasoning cannot be transferred",
+      "missingEvidence": "Native timeline/performance/host mapping with bounds",
+      "responsibilityBoundary": "UNKNOWN",
+      "observationEffect": "Additional time sampling adds effects",
+      "nextDiscriminator": "Record real clock types; do not introduce virtual clock",
+      "judgment": "UNKNOWN"
+    },
+    {
+      "observedFact": "pathFailure/widthPARTIAL/process exit1 retained; other4 suites exit0",
+      "hypothesis": "W5 classification hides failure",
+      "supportingEvidence": "Multiple verdict levels require careful handling",
+      "counterEvidence": "Original levels are consistent; later successful cases do not erase path",
+      "missingEvidence": "Unexpected/missing record controls and full-body attestation",
+      "responsibilityBoundary": "UNKNOWN",
+      "observationEffect": "Post-sequence collection may affect teardown",
+      "nextDiscriminator": "Independent raw/log/predicate and immutable first failure",
+      "judgment": "UNKNOWN"
+    }
+  ],
+  "newHeadRun": "SEPARATE_NEW_HEAD_PRIMARY_LEDGER; never replace old record",
+  "commonCause": "NOT_ESTABLISHED"
+}
