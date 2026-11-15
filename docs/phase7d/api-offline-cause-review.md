@@ -105,6 +105,16 @@ No original auditor bug is claimed from these controls. Initial test-authoring
 errors (shared synthetic object references and assertion-message/sequence matching)
 are retained separately; correcting them does not relax a product oracle.
 
+Independent review then found a real omission in the **new offline wrapper**:
+five internally rebound synthetic registrations with foreign runner/version/build
+identity or a post-start registration timestamp were accepted. This was not an
+attack forging an official original ZIP digest and did not alter64/3/5. The old
+original auditor already contained those guards. The wrapper now retains them,
+also checking Node/OS identity; seven rebound registration controls are rejected.
+The first A1 technical verdict/commit/archive remains immutable and is superseded
+by a separate A2 verdict, commit and Vault stage before WAAPI begins. This new
+wrapper defect is not evidence that H7 caused the historical product failures.
+
 The API ZIPs do not preserve execution-source bodies or served build JS. Their
 2116 source hashes match fixed Git179 and runner identity, but this is not direct
 execution-byte attestation. Trace resources are absent and network records empty.
