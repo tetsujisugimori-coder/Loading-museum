@@ -36,7 +36,7 @@ jobs:
           export TMPDIR="$GITHUB_WORKSPACE/work/safety/temp" TMP="$GITHUB_WORKSPACE/work/safety/temp" TEMP="$GITHUB_WORKSPACE/work/safety/temp"
           node scripts/phase7d-safety-test-set.mjs > work/safety/evidence/test-set.json
           npm run check > work/safety/evidence/check.log 2>&1
-          node --test tests/phase7d-safety-dummy.test.mjs tests/phase7d-safety-provenance.test.mjs > work/safety/evidence/safety.tap
+          node --test tests/phase7d-safety-dummy.test.mjs tests/phase7d-safety-provenance.test.mjs tests/phase7d-safety-cleanup.test.mjs > work/safety/evidence/safety.tap
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -72,6 +72,7 @@ jobs:
       - name: Separate-process Git and captured bytes audit
         if: always()
         run: |
+          node scripts/audit-phase7d-safety-results.mjs work/safety/browser
           for trial in work/safety/browser/fixture-*; do
             node scripts/phase7d-safety-provenance.mjs "$PWD" "$(git rev-parse HEAD)" work/safety/browser/build work/safety/browser/build-manifest.json "$trial/http" "$trial/served.json" > "$trial/independent-bytes-audit.json" || exit 1
           done
