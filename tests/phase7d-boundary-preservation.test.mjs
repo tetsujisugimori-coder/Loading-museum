@@ -19,11 +19,11 @@ export function preservationFixture(group='C',{crlf=false}={}){
  for(const p of files){let b=fs.readFileSync(path.join(repo,p));if(crlf&&b.toString('utf8').includes('\n')){b=Buffer.from(b.toString('utf8').replaceAll('\r\n','\n').replaceAll('\n','\r\n'));fs.writeFileSync(path.join(repo,p),b);}m.sourceHashes[p]=hash(b);const stage=targets[p]?Buffer.from(instrumentBoundary(b.toString('utf8'),targets[p],group).source):b;fs.mkdirSync(path.dirname(path.join(parent,p)),{recursive:true});fs.writeFileSync(path.join(parent,p),stage);if(targets[p])m.transformedHashes[p]=hash(stage);}
  for(const p of ['scripts/phase7d-boundary-instrument.mjs','scripts/prepare-phase7d-boundary.mjs'])m.codeHashes[p]=m.sourceHashes[p];
  captureBoundaryInputs(repo,head,tree,group,parent,path.join(parent,'preservation'));
- fs.mkdirSync(path.join(parent,'out'));for(const [p,b]of [['.nojekyll',''],['index.html','synthetic page'],['bundle.js','synthetic output; not browser executed']]){fs.writeFileSync(path.join(parent,'out',p),b);m.outputHashes[p]=hash(b);}
+ fs.mkdirSync(path.join(parent,'out'));for(const [p,b]of [['.nojekyll',''],['index.html','synthetic page'],['bundle.js','synthetic output; not browser executed'],['404.html','synthetic flat 404'],['404/index.html','synthetic nested 404']]){fs.mkdirSync(path.dirname(path.join(parent,'out',p)),{recursive:true});fs.writeFileSync(path.join(parent,'out',p),b);m.outputHashes[p]=hash(b);}
  m.preservation=sealBoundaryOutputs(repo,head,tree,parent);m.originalSourcePreserved=true;m.success=true;fs.writeFileSync(path.join(parent,'boundary-build.json'),JSON.stringify(m));
  return {dir,repo,parent,head,tree,m,git,audit:()=>auditBoundaryPreservation(repo,head,tree,parent)};
 }
-for(const group of ['A','B','C'])test('synthetic complete source/transform/output normal '+group,()=>{const f=preservationFixture(group),r=f.audit();assert.equal(r.status,'PASS');assert.equal(r.outputBodies,3);assert.equal(r.dependencyBodiesSaved,false);assert.equal(r.sourceBodies,Object.keys(f.m.sourceHashes).length);});
+for(const group of ['A','B','C'])test('synthetic complete source/transform/output normal '+group,()=>{const f=preservationFixture(group),r=f.audit();assert.equal(r.status,'PASS');assert.equal(r.outputBodies,5);assert.equal(r.dependencyBodiesSaved,false);assert.equal(r.sourceBodies,Object.keys(f.m.sourceHashes).length);});
 for(const [label,mutate,reason]of [
  ['only .nojekyll missing',f=>fs.renameSync(path.join(f.parent,'out/.nojekyll'),path.join(f.dir,'retained-nojekyll')),/saved entire output inventory/],
  ['hash-only source',f=>fs.renameSync(path.join(f.parent,'preservation/execution-source'),path.join(f.dir,'retained-source-bodies')),/ENOENT/],
