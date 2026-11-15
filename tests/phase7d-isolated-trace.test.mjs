@@ -31,3 +31,21 @@ test('raw results missing or changed cannot evade summary audit',()=>{const f=di
 
 test('extra or reordered page creation is not a fixed single-page trial',()=>{const es=model();es.push({type:'before',callId:'extraPage',startTime:100,method:'newPage',params:{}},{type:'after',callId:'extraPage',endTime:101});assert.throws(()=>verifyTraceEvidence(pack(es),row),/one initial page/);const reordered=model();reordered.push(...reordered.splice(0,2));assert.throws(()=>verifyTraceEvidence(pack(reordered),row),/initial page|context|orphan/);});
 test('public synthetic partial React state contradiction rejected',()=>{const r={...row,scope:'NEXT_REACT_ISOLATED',primary:null};const es=[{type:'context-options',version:8,browserName:r.engine,contextId:'synthetic-react'}];let time=1;for(const[method,params]of [['newPage',{}],['goto',{url:`http://127.0.0.1/?__isolated_trial=${r.id}&__isolated_head=${r.head}&__isolated_tree=${r.tree}#modern-exhibit-status-morph`}],['click',{selector:'summary'}],['click',{selector:'仕組みを見る'}],['clockInstall',{}],['clockPauseAt',{}],['focus',{selector:'模擬処理を開始'}],['keyboardPress',{key:'Enter'}],['getAttribute',{name:'data-state',selector:'status-morph'}]]){const callId='call@'+time;es.push({type:'before',callId,startTime:time++,method,params},{type:'after',callId,endTime:time++,result:{value:method==='getAttribute'?'Loading':null}});}assert.equal(verifyTraceEvidence(pack(es),r).primary,'NOT_OBTAINED');es.at(-1).result.value='Wrong';assert.throws(()=>verifyTraceEvidence(pack(es),r),/partial state/);});
+
+// Fixed-plan membership is independent of row/trace mutual consistency.
+for (const state of ['COMPLETE', 'INCOMPLETE', 'NOT_TESTED']) {
+ for (const mutation of ['head', 'tree', 'both', 'missing-head', 'missing-tree', 'missing-both']) {
+  test(`fixed plan rejects ${mutation} membership for ${state}`, () => {
+   const f=directory(), r=f.rows[state==='NOT_TESTED'?1:0];
+   if(state==='INCOMPLETE'){r.evidence='INCOMPLETE';r.cleanupErrors=[{stage:'browser.close',error:'synthetic additional failure'}];}
+   f.save(); assert.equal(f.run().auditIntegrity,'PASS','unchanged membership control');
+   if(mutation==='head'||mutation==='both')r.head='c'.repeat(40);
+   if(mutation==='tree'||mutation==='both')r.tree='d'.repeat(40);
+   if(mutation==='missing-head'||mutation==='missing-both')delete r.head;
+   if(mutation==='missing-tree'||mutation==='missing-both')delete r.tree;
+   f.save(); if(r.attempted)fs.writeFileSync(f.trace,pack(model(r)));
+   if(process.env.MEMBERSHIP_EVIDENCE_INDEX)fs.appendFileSync(process.env.MEMBERSHIP_EVIDENCE_INDEX,JSON.stringify({state,mutation,base:f.base,repo:f.repo})+'\n');
+   assert.throws(f.run,/result row (HEAD|tree) (missing|differs from fixed plan)/);
+  });
+ }
+}

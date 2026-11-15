@@ -23,7 +23,14 @@ export function auditIsolatedDirectory(dest){
  const plan=read(path.join(dest,'plan.json')),summary=read(path.join(dest,'results.json'));assert.equal(summary.head,plan.head);assert.equal(summary.tree,plan.tree);assert.equal(summary.productionTrialsExecuted,0);validateIsolatedPlan(plan);const counts=validateIsolatedResults(summary.results);
  const raw=read(path.join(dest,'raw-results.json'));assert.equal(raw.head,plan.head,'raw results HEAD');assert.equal(raw.tree,plan.tree,'raw results tree');assert.equal(raw.productionTrialsExecuted,0);assert.deepEqual(raw.results,summary.results.map(({validation,assessment,...row})=>row),'raw results vs derived summary');
  auditIsolatedBuilds(plan);
- for(const r of summary.results){const dir=path.join(dest,r.id);assert.equal(r.validation,classifyControlledCase(r));assert.deepEqual(r.assessment,assessControlledCase(r),'independent assessment');
+ for(const r of summary.results){
+  // Bind every row to the fixed plan before inspecting trace/HAR or state labels.
+  // Row/trace agreement alone does not establish membership in this execution.
+  assert.equal(typeof r.head,'string','result row HEAD missing');
+  assert.equal(typeof r.tree,'string','result row tree missing');
+  assert.equal(r.head,plan.head,'result row HEAD differs from fixed plan');
+  assert.equal(r.tree,plan.tree,'result row tree differs from fixed plan');
+  const dir=path.join(dest,r.id);assert.equal(r.validation,classifyControlledCase(r));assert.deepEqual(r.assessment,assessControlledCase(r),'independent assessment');
   if(r.primary)assert.deepEqual(read(path.join(dir,'primary.json')),r.primary,'immutable primary differs');else assert.ok(!fs.existsSync(path.join(dir,'primary.json')),'unexpected primary');
   if(r.kind==='save-failure'&&r.attempted){assert.ok(r.persistenceErrors.length);assert.ok(fs.statSync(path.join(dir,'result.json')).isDirectory());}else{const saved=read(path.join(dir,'result.json'));const {validation,assessment,...expected}=r;void assessment;assert.deepEqual(saved,expected);}
   // Audit evidence that exists even when the producer labels the row INCOMPLETE.
