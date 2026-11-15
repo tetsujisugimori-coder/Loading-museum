@@ -1,6 +1,7 @@
 /** Read actual preserved bytes independently; no browser execution. */
 import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';import {execFileSync} from 'node:child_process';import {instrumentBoundary,applyBoundaryFault} from './phase7d-boundary-instrument.mjs';import {pathToFileURL} from 'node:url';
-import {validateIsolatedPlan,validateIsolatedResults,classifyControlledCase} from './phase7d-isolated-browser-contract.mjs';
+import {validateIsolatedPlan,validateIsolatedResults,classifyControlledCase,assessControlledCase,isolatedProcessExitCode} from './phase7d-isolated-browser-contract.mjs';
+import {verifyTraceEvidence} from './phase7d-trace-evidence.mjs';
 const read=p=>JSON.parse(fs.readFileSync(p)),sha=b=>createHash('sha256').update(b).digest('hex');
 const resource=url=>{let p=decodeURIComponent(new URL(url).pathname).replace(/^\/Loading-museum(?=\/)/,'').replace(/^\//,'');if(!p||p.endsWith('/'))p+='index.html';assert.ok(!p.split('/').includes('..'));return p;};
 export function auditIsolatedBuilds(plan){
@@ -20,19 +21,24 @@ export function auditIsolatedBuilds(plan){
 }
 export function auditIsolatedDirectory(dest){
  const plan=read(path.join(dest,'plan.json')),summary=read(path.join(dest,'results.json'));assert.equal(summary.head,plan.head);assert.equal(summary.tree,plan.tree);assert.equal(summary.productionTrialsExecuted,0);validateIsolatedPlan(plan);const counts=validateIsolatedResults(summary.results);
+ const raw=read(path.join(dest,'raw-results.json'));assert.equal(raw.head,plan.head,'raw results HEAD');assert.equal(raw.tree,plan.tree,'raw results tree');assert.equal(raw.productionTrialsExecuted,0);assert.deepEqual(raw.results,summary.results.map(({validation,assessment,...row})=>row),'raw results vs derived summary');
  auditIsolatedBuilds(plan);
- for(const r of summary.results){const dir=path.join(dest,r.id);assert.equal(r.validation,classifyControlledCase(r));
+ for(const r of summary.results){const dir=path.join(dest,r.id);assert.equal(r.validation,classifyControlledCase(r));assert.deepEqual(r.assessment,assessControlledCase(r),'independent assessment');
   if(r.primary)assert.deepEqual(read(path.join(dir,'primary.json')),r.primary,'immutable primary differs');else assert.ok(!fs.existsSync(path.join(dir,'primary.json')),'unexpected primary');
-  if(r.kind==='save-failure'&&r.attempted){assert.ok(r.persistenceErrors.length);assert.ok(fs.statSync(path.join(dir,'result.json')).isDirectory());}else{const saved=read(path.join(dir,'result.json'));const {validation,...expected}=r;assert.deepEqual(saved,expected);}
-  if(r.evidence!=='COMPLETE')continue;
+  if(r.kind==='save-failure'&&r.attempted){assert.ok(r.persistenceErrors.length);assert.ok(fs.statSync(path.join(dir,'result.json')).isDirectory());}else{const saved=read(path.join(dir,'result.json'));const {validation,assessment,...expected}=r;void assessment;assert.deepEqual(saved,expected);}
+  // Audit evidence that exists even when the producer labels the row INCOMPLETE.
+  const tracePath=path.join(dir,'trace.zip'),harPath=path.join(dir,'complete.har');
+  if(fs.existsSync(tracePath)){assert.equal(r.attempted,true,'trace for unstarted row');verifyTraceEvidence(fs.readFileSync(tracePath),r);}else assert.equal(r.traceSaved,false,'claimed trace missing');
+  if(!fs.existsSync(harPath)){assert.equal(r.harSaved,false,'claimed HAR missing');assert.equal(r.http.length,0,'HTTP manifest without HAR');continue;}
+  assert.equal(r.attempted,true,'HAR for unstarted row');
   const build=r.scope==='MODEL_REAL_BROWSER'?plan.fixture:plan.builds[r.kind].files;
   const har=read(path.join(dir,'complete.har'));assert.ok(har.log?.entries.length,'HAR missing');const found=new Map();
   for(const e of har.log.entries){assert.equal(e.response.status,200);const rel=resource(e.request.url);assert.ok(build[rel],'unexpected HAR resource');assert.equal(typeof e.response.content.text,'string');const bytes=Buffer.from(e.response.content.text,e.response.content.encoding==='base64'?'base64':'utf8');assert.deepEqual({size:bytes.length,sha256:sha(bytes)},build[rel]);const disk=fs.readFileSync(path.join(dir,'http',rel));assert.deepEqual(disk,bytes,'HAR/HTTP actual bytes mismatch');found.set(rel,sha(bytes));}
   const captured=new Set();for(const e of r.http){assert.equal(e.status,200);const b=fs.readFileSync(path.join(dir,'http',e.path));assert.deepEqual({size:b.length,sha256:sha(b)},build[e.path]);assert.equal(e.sha256,sha(b));assert.equal(found.get(e.path),e.sha256);captured.add(e.path);}
   assert.deepEqual([...captured].sort(),[...found.keys()].sort());assert.ok([...found.keys()].some(f=>f.endsWith('.js')),'missing JS bytes');
   const files=[];function walk(d,p=''){for(const n of fs.readdirSync(d)){const x=path.join(d,n);if(fs.statSync(x).isDirectory())walk(x,p+n+'/');else files.push(p+n);}}walk(path.join(dir,'http'));assert.deepEqual(files.sort(),[...found.keys()].sort(),'extra/missing HTTP bytes');
-  const trace=fs.readFileSync(path.join(dir,'trace.zip'));assert.ok(trace.length>22&&trace.subarray(0,4).equals(Buffer.from([80,75,3,4])),'trace not ZIP');
+
  }
- return {...counts,head:plan.head,tree:plan.tree,verdicts:summary.results.map(r=>({id:r.id,validation:r.validation,evidence:r.evidence,primary:r.primary?.verdict||'NOT_TESTED'})),scope:'requested HTTP resources and fixed controlled cases; native crash not claimed'};
+ return {...counts,auditIntegrity:'PASS',processExitCode:isolatedProcessExitCode(summary.results),head:plan.head,tree:plan.tree,verdicts:summary.results.map(r=>({id:r.id,validation:r.validation,evidence:r.evidence,primary:r.primary?.verdict||'NOT_TESTED'})),scope:'requested HTTP resources and fixed controlled cases; native crash not claimed'};
 }
-if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href){try{assert.equal(process.argv.length,3);console.log(JSON.stringify(auditIsolatedDirectory(path.resolve(process.argv[2])),null,2));}catch(e){console.error(e.stack||e);process.exitCode=1;}}
+if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href){try{assert.equal(process.argv.length,3);const result=auditIsolatedDirectory(path.resolve(process.argv[2]));console.log(JSON.stringify(result,null,2));process.exitCode=result.processExitCode;}catch(e){console.error(e.stack||e);process.exitCode=1;}}

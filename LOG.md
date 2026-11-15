@@ -1788,3 +1788,7 @@ Independent pre-execution review cleared3corrected blockers; safety contracts106
 ### Windows config-check CRLF correction
 5ca Windows safety107PASS/1FAIL versus Ubuntu108PASS: new config regex usedLF only. Recorded same YAML LFaccept/CRLFreject; structuraltest now tests both and acceptsCRLF without changing rawsourceaudit or expected paths/hidden inclusion. OldCIFAIL retained. Browser14notrerun; finalCI separate.
 5ca actual4artifact independent Libraryreadback confirms hidden22 restored/all384raw+Git bodies complete; hidden-loss closurePASS for5ca only. Windows381CRLF/3same vsLinux384rawsame remain separate. WindowscontractFAIL remains and subsequentHEAD needsnewCI.
+
+## PR88 P2-02 / P2-03 correction (2026-11-15)
+
+Baseline004489c reviewed against5908837572. Separate expected fault detection from evidence/cleanup/process outcome; preserve raw rows before validation; constrain injected save failure to actual directory target. Replace four-byte ZIP magic acceptance with bounded ZIP CRC/Playwright/trial/primary audit. Same original synthetic failures and fake23byte counterexample retained; actual historical4370byte trace positive control is explicitly not new browser evidence. Review-added extra-action/partial-state/raw-summary counterexamples fixed with same tests. Seven safety contract files174PASS locally; focused independent review89PASS. See docs/phase7d/P202-P203-PLAN.md and P202-P203-RESULT.md. Final candidate CI/review/preservation recorded separately; stopped14 not repeated, production108 NO, merge NO, Draft maintained, causesUNKNOWN.
