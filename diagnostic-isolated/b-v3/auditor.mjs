@@ -3,10 +3,12 @@ import {recorder,delta} from './recorder.mjs';
 export function audit(input, expected){
  const x=clone(input), reasons=[];const add=r=>{if(!reasons.includes(r))reasons.push(r);};
  exact(x,['schemaVersion','sourceIdentity','implementationSha256','policy','identity','events','firstLost','primary','primarySha256','bodies','evidenceSha256','timeDifferences','finalization']);
- exact(expected,['sourceIdentity','implementationSha256','primary','primarySha256','expectedBodyHashes','expectedFault','primaryObservations']);
+ exact(expected,['sourceIdentity','implementationSha256','primary','primarySha256','expectedBodyHashes','expectedFault','primaryObservations','policyMode']);
  insist(x.schemaVersion===1,'UNKNOWN_SCHEMA');
  exact(x.policy,['mode','strongImmediate','deferredBody']);
  insist(['A','C'].includes(x.policy.mode)&&typeof x.policy.strongImmediate==='boolean'&&typeof x.policy.deferredBody==='boolean','POLICY_INVALID');
+ insist(['A','C'].includes(expected.policyMode),'EXPECTED_POLICY_INVALID');
+ if(x.policy.mode!==expected.policyMode)add('POLICY_MODE_MISMATCH');
  if(x.policy.strongImmediate&&x.policy.deferredBody)add('INCOMPATIBLE_POLICY');
  if(JSON.stringify(x.sourceIdentity)!==JSON.stringify(expected.sourceIdentity))add('SOURCE_IDENTITY_MISMATCH');
  if(x.implementationSha256!==expected.implementationSha256)add('IMPLEMENTATION_MISMATCH');
@@ -26,7 +28,7 @@ export function audit(input, expected){
  const ev=snapshot.events;const of=k=>ev.filter(e=>e.kind===k);const one=k=>of(k).length===1?of(k)[0]:null;
  if(x.primary.reached&&!one('primaryFrozen'))add('MISSING_EVENT');
  for(const k of ['primaryFrozen','normalEnd','evidenceFrozen','stopRequested','stopCompleted','mismatchDetected','bodyCollected'])if(of(k).length>1)add('DUPLICATE_EVENT');
- if(x.policy.mode==='C'&&x.primary.reached){const order=['primaryFrozen','normalEnd','bodyCollected','evidenceFrozen'].map(one);
+ if(expected.policyMode==='C'&&x.primary.reached){const order=['primaryFrozen','normalEnd','bodyCollected','evidenceFrozen'].map(one);
  if(order.some(e=>!e))add('MISSING_EVENT');else if(order.some(e=>e.clockDomain!=='host')||order.some((e,i)=>i&&e.seq<=order[i-1].seq))add('ORDER_VIOLATION');
  // The trusted preregistered oracle names the observations *used* for primary.
  // Late auxiliary responses are not forced before primaryFrozen.
@@ -58,14 +60,16 @@ export function audit(input, expected){
  const active=new Set();for(const e of ev){if(e.kind==='operationStart'){if(request&&e.seq>request.seq)add('POST_STOP_OPERATION');if(active.has(e.operationId))add('OPERATION_DUPLICATE');active.add(e.operationId);}if(e.kind==='operationEnd'){if(!active.has(e.operationId))add('OPERATION_UNKNOWN');active.delete(e.operationId);}if(e.kind==='stopCompleted'&&active.size)add('STOP_INCOMPLETE');}
  if(complete&&active.size)add('STOP_INCOMPLETE');
  let bodyProven=true;const bodyIds=new Set();
- for(const b of x.bodies){try{exact(b,['requestId','responseId','url','status','encoding','expectedBuildEntry','body','actualSha256']);
+ if(!Array.isArray(x.bodies)){add('BODIES_INVALID');bodyProven=false;}
+ else for(const b of x.bodies){try{exact(b,['requestId','responseId','url','status','encoding','expectedBuildEntry','body','actualSha256']);
  insist(typeof b.requestId==='string'&&typeof b.responseId==='string'&&typeof b.url==='string'&&Number.isInteger(b.status)&&b.encoding==='utf8'&&typeof b.expectedBuildEntry==='string'&&(typeof b.body==='string'||b.body===null),'BODY_INVALID');
  if(bodyIds.has(b.responseId))add('BODY_INVALID');bodyIds.add(b.responseId);
  if(b.body===null){bodyProven=false;add('BODY_NOT_PROVEN');}else if(hash(b.body)!==b.actualSha256||expected.expectedBodyHashes[b.responseId]!==hash(b.body))add('BODY_HASH_MISMATCH');
  }catch{add('BODY_INVALID');}}
  if(Object.keys(expected.expectedBodyHashes).some(k=>!bodyIds.has(k))){bodyProven=false;add('BODY_NOT_PROVEN');}
  for(const e of of('mismatchDetected'))if(e.payload?.basis==='metadata'&&e.payload?.claim==='bodyMismatch')add('UNSUPPORTED_DETECTION');
- for(const pair of x.timeDifferences){try{insist(pair.length===2,'TIME_INVALID');const a=ev.find(e=>e.id===pair[0]),b=ev.find(e=>e.id===pair[1]);insist(a&&b,'TIME_INVALID');delta(a,b);}catch(e){add(e.message);}}
+ if(!Array.isArray(x.timeDifferences))add('TIME_DIFFERENCES_INVALID');
+ else for(const pair of x.timeDifferences){try{insist(pair.length===2,'TIME_INVALID');const a=ev.find(e=>e.id===pair[0]),b=ev.find(e=>e.id===pair[1]);insist(a&&b,'TIME_INVALID');delta(a,b);}catch(e){add(e.message);}}
  if(hash(bytes({events:x.events,firstLost:x.firstLost,primary:x.primary,bodies:x.bodies}))!==x.evidenceSha256)add('EVIDENCE_HASH_MISMATCH');
  exact(x.finalization,['exitCode','cleanup','persistence','unexpectedErrors']);
  insist(Number.isInteger(x.finalization.exitCode)&&['COMPLETE','INCOMPLETE','NOT_TESTED'].includes(x.finalization.cleanup)&&['COMPLETE','INCOMPLETE','NOT_TESTED'].includes(x.finalization.persistence)&&Array.isArray(x.finalization.unexpectedErrors),'FINALIZATION_INVALID');

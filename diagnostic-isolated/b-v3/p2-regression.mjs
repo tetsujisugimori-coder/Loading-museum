@@ -45,6 +45,50 @@ const checks = [
     assert(r.reasons.includes('PRIMARY_OBSERVATION_ORDER'),'late primary observations must be rejected');
     return {reason:r.reasons};
   }],
+  ['P2-BV3-02-bodies-nonarray', () => {
+    const x=base();
+    x.primary={reached:true,verdict:'FAIL',value:false};
+    x.primarySha256=hash(bytes(x.primary));
+    const trust=expected(x);
+    x.bodies={};seal(x);
+    const r=audit(x,trust);
+    assert.equal(r.productResult,'FAIL');
+    assert.deepEqual(r.primary,trust.primary);
+    assert.equal(r.primarySha256,trust.primarySha256);
+    assert.equal(r.auditResult,'FAIL');
+    assert.equal(r.evidence,'INCOMPLETE');
+    assert.equal(r.bodyBinding,'NOT_PROVEN');
+    assert(r.reasons.includes('BODIES_INVALID'));
+    return {result:r.productResult,reason:r.reasons};
+  }],
+  ['P2-BV3-02-time-nonarray', () => {
+    const x=base();
+    x.primary={reached:true,verdict:'FAIL',value:false};
+    x.primarySha256=hash(bytes(x.primary));
+    const trust=expected(x);
+    x.timeDifferences={};seal(x);
+    const r=audit(x,trust);
+    assert.equal(r.productResult,'FAIL');
+    assert.equal(r.primarySha256,trust.primarySha256);
+    assert.equal(r.auditResult,'FAIL');
+    assert.equal(r.evidence,'INCOMPLETE');
+    assert(r.reasons.includes('TIME_DIFFERENCES_INVALID'));
+    return {result:r.productResult,reason:r.reasons};
+  }],
+  ['P2-BV3-03-mode-bypass', () => {
+    const x=base(), trust=expected(x);
+    const frozen=x.events.find(e=>e.kind==='primaryFrozen');
+    const prim=x.events.filter(e=>['callback','stateUpdateRequested','reactCommit','dom'].includes(e.kind));
+    const remaining=x.events.filter(e=>e!==frozen&&!prim.includes(e));
+    x.events=[frozen,...prim,...remaining].map((e,i)=>({...clone(e),seq:i+1,monotonic:i+1}));
+    x.policy.mode='A';seal(x);
+    const r=audit(x,trust);
+    assert.equal(r.auditResult,'FAIL');
+    assert.equal(r.evidence,'INCOMPLETE');
+    assert(r.reasons.includes('POLICY_MODE_MISMATCH'));
+    assert(r.reasons.includes('PRIMARY_OBSERVATION_ORDER'));
+    return {mode:r.reasons};
+  }],
 ];
 let failed=0;
 for(const [id,run] of checks){
@@ -55,7 +99,7 @@ if(failed)process.exitCode=1;
 
 // Positive controls and the nonblocking adversarial controls from the review.
 const controls=[
- ['valid-stop',()=>{const x=base();x.policy.mode='A';x.events=[event(1,'primaryFrozen'),event(2,'stopRequested'),event(3,'stopCompleted'),event(4,'evidenceFrozen')];seal(x);const r=audit(x,expected(base()));assert.equal(r.auditResult,'PASS');assert.equal(r.stopCompleted,true);}],
+ ['valid-stop',()=>{const x=base();x.policy.mode='A';x.events=[event(1,'primaryFrozen'),event(2,'stopRequested'),event(3,'stopCompleted'),event(4,'evidenceFrozen')];seal(x);const r=audit(x,expected(x));assert.equal(r.auditResult,'PASS');assert.equal(r.stopCompleted,true);}],
  ['late-auxiliary',()=>{const x=base(),oracle=expected(x);x.events.splice(5,0,event(99,'callback',{phase:'deferred',payload:{auxiliary:true}}));x.events=x.events.map((e,i)=>({...clone(e),seq:i+1,monotonic:i+1}));seal(x);const r=audit(x,oracle);assert.equal(r.auditResult,'PASS');}],
  ['duplicate-stop-rejected',()=>{const x=base();x.policy.mode='A';x.events=[event(1,'primaryFrozen'),event(2,'stopRequested'),event(3,'stopCompleted'),event(4,'stopCompleted')];seal(x);const r=audit(x,expected(base()));assert.equal(r.stopCompleted,false);assert(r.reasons.includes('DUPLICATE_EVENT'));}],
  ['cleanup-primary-fail',()=>{const x=base();x.primary.verdict='FAIL';x.primarySha256=hash(bytes(x.primary));const oracle=expected(x);x.finalization.cleanup='INCOMPLETE';x.finalization.unexpectedErrors=['cleanup-fault'];seal(x);const r=audit(x,oracle);assert.equal(r.productResult,'FAIL');assert.equal(r.primarySha256,x.primarySha256);assert(r.reasons.includes('UNEXPECTED_ERROR'));}],
