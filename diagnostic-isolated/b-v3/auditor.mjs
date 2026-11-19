@@ -3,7 +3,7 @@ import {recorder,delta} from './recorder.mjs';
 export function audit(input, expected){
  const x=clone(input), reasons=[];const add=r=>{if(!reasons.includes(r))reasons.push(r);};
  exact(x,['schemaVersion','sourceIdentity','implementationSha256','policy','identity','events','firstLost','primary','primarySha256','bodies','evidenceSha256','timeDifferences','finalization']);
- exact(expected,['sourceIdentity','implementationSha256','primary','primarySha256','expectedBodyHashes','expectedFault']);
+ exact(expected,['sourceIdentity','implementationSha256','primary','primarySha256','expectedBodyHashes','expectedFault','primaryObservations']);
  insist(x.schemaVersion===1,'UNKNOWN_SCHEMA');
  exact(x.policy,['mode','strongImmediate','deferredBody']);
  insist(['A','C'].includes(x.policy.mode)&&typeof x.policy.strongImmediate==='boolean'&&typeof x.policy.deferredBody==='boolean','POLICY_INVALID');
@@ -15,13 +15,39 @@ export function audit(input, expected){
  insist(typeof x.primary.reached==='boolean'&&['PASS','FAIL','NOT_TESTED'].includes(x.primary.verdict),'PRIMARY_INVALID');
  if(!x.primary.reached&&(x.primary.verdict!=='NOT_TESTED'||x.primary.value!==null))add('UNREACHED_PRIMARY');
  const rec=recorder(x.identity);
- try {for(const e of x.events)rec.accept(e);}catch(e){add(e.message);}
- if(x.firstLost!==null||!rec.snapshot().complete)add('OVERFLOW');
- const ev=x.events;const of=k=>ev.filter(e=>e.kind===k);const one=k=>of(k).length===1?of(k)[0]:null;
+ let eventsValid=Array.isArray(x.events);
+ if(!eventsValid)add('EVENTS_INVALID');
+ else for(const e of x.events){
+  try {rec.accept(e);}catch(err){add(err.message||'EVENT_INVALID');eventsValid=false;break;}
+ }
+ const snapshot=rec.snapshot();
+ if(x.firstLost!==null||!snapshot.complete)add('OVERFLOW');
+ // Never derive stop success or evidence ordering from rejected, untrusted events.
+ const ev=snapshot.events;const of=k=>ev.filter(e=>e.kind===k);const one=k=>of(k).length===1?of(k)[0]:null;
  if(x.primary.reached&&!one('primaryFrozen'))add('MISSING_EVENT');
  for(const k of ['primaryFrozen','normalEnd','evidenceFrozen','stopRequested','stopCompleted','mismatchDetected','bodyCollected'])if(of(k).length>1)add('DUPLICATE_EVENT');
  if(x.policy.mode==='C'&&x.primary.reached){const order=['primaryFrozen','normalEnd','bodyCollected','evidenceFrozen'].map(one);
- if(order.some(e=>!e))add('MISSING_EVENT');else if(order.some(e=>e.clockDomain!=='host')||order.some((e,i)=>i&&e.seq<=order[i-1].seq))add('ORDER_VIOLATION');}
+ if(order.some(e=>!e))add('MISSING_EVENT');else if(order.some(e=>e.clockDomain!=='host')||order.some((e,i)=>i&&e.seq<=order[i-1].seq))add('ORDER_VIOLATION');
+ // The trusted preregistered oracle names the observations *used* for primary.
+ // Late auxiliary responses are not forced before primaryFrozen.
+ const observations=expected.primaryObservations;
+ if(!Array.isArray(observations)||!observations.length)add('PRIMARY_OBSERVATION_MISSING');
+ else {
+  const seen=new Set();
+  for(const fixed of observations){
+   if(!fixed||typeof fixed.id!=='string'||typeof fixed.sha256!=='string'||seen.has(fixed.id)){
+    add('PRIMARY_OBSERVATION_INVALID');continue;
+   }
+   seen.add(fixed.id);
+   const item=ev.find(e=>e.id===fixed.id);
+   if(!item||item.phase!=='primary'||!['callback','stateUpdateRequested','reactCommit','dom','guard','cancel'].includes(item.kind))add('PRIMARY_OBSERVATION_MISSING');
+   else {
+    if(hash(bytes(item))!==fixed.sha256)add('PRIMARY_OBSERVATION_MISMATCH');
+    if(order[0]&&item.seq>=order[0].seq)add('PRIMARY_OBSERVATION_ORDER');
+   }
+  }
+ }
+ }
  for(const e of ev){if(e.kind==='bodyCollected'&&e.phase!=='deferred')add('STREAM_VIOLATION');if(e.kind==='primaryFrozen'&&e.phase!=='primary')add('STREAM_VIOLATION');}
  const mismatch=one('mismatchDetected'),request=one('stopRequested'),complete=one('stopCompleted');
  if(mismatch&&!request)add('STOP_REQUEST_MISSING');
@@ -49,5 +75,5 @@ export function audit(input, expected){
  const integrity=reasons.length===0&&x.primary.reached?'COMPLETE':'INCOMPLETE';
  const onlyExpected=expectedDetected&&reasons.every(r=>r===expected.expectedFault)&&x.finalization.cleanup==='COMPLETE'&&x.finalization.persistence==='COMPLETE';
  if(x.finalization.exitCode===0&&((reasons.length&&!onlyExpected)||(!x.primary.reached&&!onlyExpected)))add('EXIT_CONTRADICTION');
- return freeze({productResult:expected.primary.verdict,primary:clone(expected.primary),primarySha256:expected.primarySha256,auditResult:reasons.length?'FAIL':'PASS',reasons,expectedFaultDetected:expectedDetected,technicalControl:onlyExpected?'PASS':reasons.length?'FAIL':'NOT_APPLICABLE',unexpectedErrors:clone(x.finalization.unexpectedErrors),processExit:x.finalization.exitCode,cleanup:x.finalization.cleanup,persistence:x.finalization.persistence,evidence:integrity,bodyBinding:bodyProven&&!reasons.includes('BODY_HASH_MISMATCH')&&!reasons.includes('BODY_INVALID')?'PROVEN':'NOT_PROVEN',stopRequested:!!request,stopCompleted:!!complete&&!!request&&request.seq<complete.seq&&(!mismatch||mismatch.seq<=request.seq)&&!reasons.some(r=>['STOP_INCOMPLETE','DUPLICATE_EVENT','ORDER_VIOLATION','POST_STOP_OPERATION'].includes(r))});
+ return freeze({productResult:expected.primary.verdict,primary:clone(expected.primary),primarySha256:expected.primarySha256,auditResult:reasons.length?'FAIL':'PASS',reasons,expectedFaultDetected:expectedDetected,technicalControl:onlyExpected?'PASS':reasons.length?'FAIL':'NOT_APPLICABLE',unexpectedErrors:clone(x.finalization.unexpectedErrors),processExit:x.finalization.exitCode,cleanup:x.finalization.cleanup,persistence:x.finalization.persistence,evidence:integrity,bodyBinding:bodyProven&&!reasons.includes('BODY_HASH_MISMATCH')&&!reasons.includes('BODY_INVALID')?'PROVEN':'NOT_PROVEN',stopRequested:!!request&&eventsValid,stopCompleted:eventsValid&&!!complete&&!!request&&request.seq<complete.seq&&(!mismatch||mismatch.seq<=request.seq)&&!reasons.some(r=>['STOP_INCOMPLETE','DUPLICATE_EVENT','ORDER_VIOLATION','POST_STOP_OPERATION'].includes(r))});
 }
