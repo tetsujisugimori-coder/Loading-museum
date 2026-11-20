@@ -1,0 +1,68 @@
+# Stage C static and synthetic checks only.
+# No registered WebKit trials, real build execution, or product acceptance are started here.
+name: Phase 7D Stage C isolated CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/phase7d-stage-c-ci.yml
+      - diagnostic-isolated/c-s1-10/**
+      - docs/phase7d/stage-c-api-s1-10/**
+      - scripts/phase7d-api-plan.mjs
+      - app/components/interactive-motion/GestureExhibits.tsx
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    name: Stage C synthetic contracts and HOLD guard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Require the unapproved Stage C registration to remain on HOLD
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import registration from './docs/phase7d/stage-c-api-s1-10/registration.json' with { type: 'json' };
+          assert.equal(registration.decision, 'HOLD');
+          assert.equal(registration.executable, false);
+          assert.equal(registration.executionAuthorization, false);
+          assert.equal(registration.actualBrowserCausalTrials, 0);
+          console.log('Stage C registered trials remain HOLD (0/10)');
+          NODE
+      - name: Run fixed synthetic and contract test set (no Playwright)
+        run: |
+          node --test \
+            diagnostic-isolated/c-s1-10/browser-runtime.test.mjs \
+            diagnostic-isolated/c-s1-10/i1.test.mjs \
+            diagnostic-isolated/c-s1-10/i2.test.mjs \
+            diagnostic-isolated/c-s1-10/offline-runner.test.mjs \
+            diagnostic-isolated/c-s1-10/package.test.mjs \
+            diagnostic-isolated/c-s1-10/s1-preparation.test.mjs \
+            diagnostic-isolated/c-s1-10/s1-read-proof.test.mjs
+
+  network-supervisor:
+    name: Stage C loopback network and synthetic PID stop
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test loopback HTTP, byte evidence, network stop and hold
+        run: node --test diagnostic-isolated/c-s1-10/stage-c-network-integration.test.mjs
+      - name: Test synthetic worker stop and hard deadline (no browser)
+        run: python3 -B diagnostic-isolated/c-s1-10/process-supervisor.test.py
