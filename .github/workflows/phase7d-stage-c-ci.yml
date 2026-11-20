@@ -224,6 +224,74 @@ jobs:
             diagnostic-isolated/c-s1-10/s1-preparation.test.mjs \
             diagnostic-isolated/c-s1-10/s1-read-proof.test.mjs
 
+      - name: Inspect Ubuntu 24.04 AppArmor / bwrap UID map denial (limited diagnostic)
+        shell: bash
+        run: |
+          set -uo pipefail
+          echo "uid_map_diag_begin=1"
+          . /etc/os-release
+          printf 'os=%s\n' "$PRETTY_NAME"
+          echo "kernel=$(uname -r)"
+          echo "process_apparmor=$(cat /proc/self/attr/current 2>/dev/null || echo UNKNOWN)"
+          for name in kernel.apparmor_restrict_unprivileged_userns kernel.unprivileged_userns_clone user.max_user_namespaces user.max_pid_namespaces; do
+            value=$(sysctl -n "$name" 2>/dev/null) || value=UNKNOWN
+            printf '%s=%s\n' "$name" "$value"
+          done
+          for file in /etc/apparmor.d/bwrap-userns-restrict /etc/apparmor.d/bwrap /etc/apparmor.d/usr.bin.bwrap /usr/share/apparmor/extra-profiles/bwrap-userns-restrict; do
+            if test -f "$file"; then
+              echo "profile_file_[object Object]=PRESENT"
+              grep -E '(^[[:space:]]*profile[[:space:]]|/usr/bin/bwrap|^[[:space:]]*userns[,; ]|unpriv_bwrap)' "$file" | head -20 || true
+            else
+              echo "profile_file_[object Object]=ABSENT"
+            fi
+          done
+          if profiles=$(sudo -n cat /sys/kernel/security/apparmor/profiles 2>&1); then
+            echo "loaded_profile_listing=READABLE"
+            selected=$(printf '%s\n' "$profiles" | grep -Ei '(^|[ /])bwrap|unprivileged_userns' || true)
+            if test -n "$selected"; then
+              printf '%s\n' "$selected" | head -30
+            else
+              echo "loaded_bwrap_profiles=NONE_MATCHING"
+            fi
+          else
+            echo "loaded_profile_listing=UNKNOWN"
+            printf '%s\n' "$profiles" | head -2
+          fi
+          if ! command -v /usr/bin/bwrap >/dev/null 2>&1; then
+            echo "bubblewrap_install=ATTEMPTING_PACKAGED_DEPENDENCY_ONLY"
+            if ! (sudo -n apt-get update -qq && sudo -n apt-get install -y --no-install-recommends bubblewrap >/dev/null); then
+              echo "bubblewrap_install=UNAVAILABLE; uid_map_probe=NOT_TESTED"
+            fi
+          fi
+          if test -x /usr/bin/bwrap; then
+            echo "bwrap_binary=$(readlink -f /usr/bin/bwrap)"
+            /usr/bin/bwrap --version
+            echo "uid_map_probe=STARTED_NO_WEBKIT"
+            audit_start=$(date -u '+%Y-%m-%d %H:%M:%S')
+            set +e
+            /usr/bin/bwrap --unshare-user --unshare-pid --die-with-parent --ro-bind / / --proc /proc --dev /dev -- /usr/bin/python3 -c \
+              'import pathlib; print("inside_bwrap_apparmor="+pathlib.Path("/proc/self/attr/current").read_text().strip(), flush=True)'
+            probe_exit=$?
+            set -e
+            echo "uid_map_probe_exit=$probe_exit"
+            if journal=$(sudo -n journalctl -k --since "$audit_start" --no-pager --output=short-iso 2>&1); then
+              matches=$(printf '%s\n' "$journal" | grep -Ei 'apparmor|bwrap|uid_map|capability|audit.*denied' || true)
+              if test -n "$matches"; then
+                echo "kernel_audit=VISIBLE_MATCHES"
+                printf '%s\n' "$matches" | tail -35
+              else
+                echo "kernel_audit=NO_MATCH_VISIBLE_NOT_PROOF_OF_ABSENCE"
+              fi
+            else
+              echo "kernel_audit=UNKNOWN_UNREADABLE"
+              printf '%s\n' "$journal" | head -2
+            fi
+          else
+            echo "uid_map_probe=NOT_TESTED_NO_BWRAP"
+            echo "kernel_audit=UNKNOWN_NO_PROBE"
+          fi
+          echo "uid_map_diag_end=1"
+
   network-supervisor:
     name: Stage C loopback network and synthetic PID stop
     # Use the Ubuntu image with a distribution-provided AppArmor profile for /usr/bin/bwrap.
