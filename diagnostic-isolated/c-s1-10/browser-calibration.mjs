@@ -78,8 +78,10 @@ export function createBrowserCalibration({ openPage, evidence }) {
       let raw;
       try {
         signal.throwIfAborted();
+        session.checkOperation?.("calibration init");
         await session.page.evaluate(i2RecorderInitSource(slot.id, streamId));
         signal.throwIfAborted();
+        session.checkOperation?.("calibration fixture");
         raw = await session.page.evaluate(runCalibrationPage, { fixture: slot.fixture, capacity });
         signal.throwIfAborted();
         if (session.errors.length) throw new Error("Calibration page error");

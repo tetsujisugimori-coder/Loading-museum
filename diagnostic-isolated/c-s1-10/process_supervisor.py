@@ -36,7 +36,7 @@ def _namespace_handle(pid, metadata):
 
 
 def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
-                   soft_seconds=1170, hard_seconds=1200):
+                   soft_seconds=1170, hard_seconds=1200, network_notice=None):
     """Request cleanup over stdin, then kill namespace PID 1 if needed."""
     if not 0 < soft_seconds < hard_seconds <= 1200 or soft_seconds > 1170:
         raise ValueError("Invalid Stage C deadlines")
@@ -58,11 +58,14 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
             argv.extend([option, str(Path(source).resolve()), target])
 
     stop_at = None
+    network_fault = None
+    stop_source = None
     kill_at = None
     root_exit = None
     namespace_exit = None
     # Leave time to observe exit before the contractual deadline.
     hard_dispatch = max(soft_seconds, hard_seconds - 0.1)
+    hard_limit = hard_seconds
     with (path / "worker.stdout").open("xb") as out, (path / "worker.stderr").open("xb") as err:
         read_end, write_end = os.pipe()
         proc = None
@@ -82,25 +85,39 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
                 os.write(proc.stdin.fileno(), b"G")
 
             while True:
+                if network_notice is not None and network_fault is None:
+                    try:
+                        network_fault = json.loads(Path(network_notice).read_bytes())
+                    except FileNotFoundError:
+                        pass
+                    else:
+                        detected = int(network_fault["mismatchDetectedAtNs"])
+                        if not start <= detected <= time.monotonic_ns():
+                            raise RuntimeError("Invalid Stage C network stop timestamp")
+                        hard_limit = min(hard_seconds, (detected - start) / 1e9 + 30)
+                        hard_dispatch = min(hard_dispatch, hard_limit - 0.1)
                 age = elapsed()
-                if select.select([handle], [], [], 0)[0]:
-                    namespace_exit = age
-                    break
-                if stop_at is None and age >= soft_seconds - min(0.05, soft_seconds / 10):
+                exited = bool(select.select([handle], [], [], 0)[0])
+                reached_soft = age >= soft_seconds - min(0.05, soft_seconds / 10)
+                if stop_at is None and (network_fault is not None or (reached_soft and not exited)):
                     stop_at = age
+                    stop_source = "NETWORK_MISMATCH" if network_fault is not None else "TIME_LIMIT"
                     try:
                         os.write(proc.stdin.fileno(), b"S")
                     except BrokenPipeError:
                         pass
+                if exited:
+                    namespace_exit = age
+                    break
                 if kill_at is None and age >= hard_dispatch:
                     kill_at = age
                     try:
                         signal.pidfd_send_signal(handle, signal.SIGKILL)
                     except ProcessLookupError:
                         pass
-                if age >= hard_seconds:
+                if age >= hard_limit:
                     break
-                time.sleep(min(0.005, hard_seconds - age))
+                time.sleep(min(0.005, hard_limit - age))
             root_exit = proc.poll()
         finally:
             if handle is not None:
@@ -115,7 +132,7 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
             if proc is not None:
                 proc.stdin.close()
                 try:
-                    proc.wait(timeout=max(0, hard_seconds - elapsed()))
+                    proc.wait(timeout=max(0, hard_limit - elapsed()))
                 except subprocess.TimeoutExpired:
                     proc.kill()
                     proc.poll()
@@ -128,7 +145,10 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
                 os.fsync(stream.fileno())
     result = {
         "softDeadlineSeconds": soft_seconds, "hardDeadlineSeconds": hard_seconds,
-        "stopRequestedSeconds": stop_at, "hardKillSeconds": kill_at,
+        "stopRequestedSeconds": stop_at, "stopSource": stop_source, "hardKillSeconds": kill_at,
+        "networkMismatchDetected": network_fault,
+        "withinNetworkStopGrace": None if network_fault is None else
+            namespace_exit is not None and namespace_exit <= hard_limit,
         "namespaceExitObservedSeconds": namespace_exit, "workerExit": root_exit,
         "withinHardDeadline": namespace_exit is not None and namespace_exit <= hard_seconds,
     }
@@ -161,8 +181,15 @@ def _verify_package(package, expected_sha, roots):
     if not re.fullmatch("[0-9a-f]{64}", expected_sha) or hashlib.sha256(contents).hexdigest() != expected_sha:
         raise RuntimeError("Approved Stage C manifest hash mismatch")
     manifest = json.loads(contents)
-    if not manifest.get("requests"):
-        raise RuntimeError("Independently fixed request plan is required")
+    if not manifest.get("requests") or not manifest.get("networkRules"):
+        raise RuntimeError("Independently fixed network and delivery plans are required")
+    runtime_paths = ("browser-calibration.mjs", "browser-runtime.mjs", "offline-runner.mjs",
+                     "process_supervisor.py", "resource-evidence.mjs", "s1-preparation.mjs",
+                     "stage-c-worker.mjs", "stage-c-network-adapter.mjs",
+                     "stage-c-network-ledger.mjs", "stage-c-network-policy.mjs",
+                     "stage-c-operation-gate.mjs")
+    if any(f"diagnostic-isolated/c-s1-10/{name}" not in manifest["runtimeFiles"]["repo"] for name in runtime_paths):
+        raise RuntimeError("Stage C network integration needs a newly bound runtime inventory")
     for label, root in roots.items():
         base = Path(root).resolve()
         if not manifest["runtimeFiles"][label]:
@@ -201,8 +228,10 @@ def main():
         writable=[(raw, "/var/tmp")],
         soft_seconds=registration["bounds"]["beginStopAndCleanupBySeconds"],
         hard_seconds=registration["bounds"]["absoluteCutoffSeconds"],
+        network_notice=raw / "evidence" / "network-stop.notice.json",
     )
-    sys.exit(0 if result["withinHardDeadline"] and result["workerExit"] == 0 else 1)
+    sys.exit(0 if result["withinHardDeadline"] and result["workerExit"] == 0
+             and result["networkMismatchDetected"] is None else 1)
 
 
 if __name__ == "__main__":

@@ -7,11 +7,12 @@ const primaryVerdicts = new Set(["PASS", "FAIL", "NOT_TESTED"]);
 const { overflowFixture } = registration.calibration;
 const stopAfterMs = registration.bounds.beginStopAndCleanupBySeconds * 1000;
 const cutOffAfterMs = registration.bounds.absoluteCutoffSeconds * 1000;
+const cleanupGraceMs = registration.bounds.cleanupGraceSecondsApproved * 1000;
 
 export class DeferredBodyAuditError extends Error {}
 
 // The clock is monotonic and schedules cancellable callbacks at absolute milliseconds.
-function supervise(clock, stopSignal) {
+function supervise(clock, stopSignal, networkStopSignal) {
   const start = clock.startedAt ?? clock.now();
   const work = new AbortController();
   const cleanup = new AbortController();
@@ -19,6 +20,8 @@ function supervise(clock, stopSignal) {
   const workStopped = Promise.withResolvers();
   const hardCutoff = Promise.withResolvers();
   const elapsed = () => clock.now() - start;
+  let networkCutoffMs = Infinity;
+  let cancelNetworkCutoff;
 
   function requestStop(reason, atMs) {
     if (stop.reason !== null) return;
@@ -38,7 +41,7 @@ function supervise(clock, stopSignal) {
 
   function checkDeadlines() {
     const age = elapsed();
-    if (age >= cutOffAfterMs) cutOff(age);
+    if (age >= Math.min(cutOffAfterMs, networkCutoffMs)) cutOff(age);
     else if (age >= stopAfterMs) requestStop("TIME_LIMIT", age);
     return age;
   }
@@ -46,6 +49,16 @@ function supervise(clock, stopSignal) {
   const cancelSoft = clock.scheduleAt(start + stopAfterMs, checkDeadlines);
   const cancelHard = clock.scheduleAt(start + cutOffAfterMs, checkDeadlines);
   const externalStop = () => requestStop("SUPERVISOR_STOP", checkDeadlines());
+  const networkStop = () => {
+    const now = checkDeadlines();
+    requestStop("NETWORK_MISMATCH", now);
+    networkCutoffMs = now + cleanupGraceMs;
+    if (networkCutoffMs < cutOffAfterMs) {
+      cancelNetworkCutoff = clock.scheduleAt(start + networkCutoffMs, checkDeadlines);
+    }
+  };
+  if (networkStopSignal?.aborted) networkStop();
+  else networkStopSignal?.addEventListener("abort", networkStop, { once: true });
   if (stopSignal?.aborted) externalStop();
   else stopSignal?.addEventListener("abort", externalStop, { once: true });
 
@@ -78,6 +91,8 @@ function supervise(clock, stopSignal) {
     close() {
       cancelSoft();
       cancelHard();
+      cancelNetworkCutoff?.();
+      networkStopSignal?.removeEventListener("abort", networkStop);
       stopSignal?.removeEventListener("abort", externalStop);
     },
   };
@@ -225,8 +240,8 @@ function failBodyAudit(record, supervisor, atMs) {
  * The hard cutoff ends this supervisor's wait and aborts cleanup. Adapter termination and
  * real evidence provenance require separate verification before a browser integration.
  */
-export async function runOfflineStageC({ clock, stopSignal, adapter, expectedBodies }) {
-  const supervisor = supervise(clock, stopSignal);
+export async function runOfflineStageC({ clock, stopSignal, networkStopSignal, adapter, expectedBodies }) {
+  const supervisor = supervise(clock, stopSignal, networkStopSignal);
   const records = slots.map(({ id }) => ({
     id, state: "NOT_STARTED", primaryVerdict: null, auditVerdict: null,
     calibrationVerdict: null, evidence: null, cause: null, mismatchDetectedAtMs: null,

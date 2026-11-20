@@ -54,17 +54,22 @@ export function auditDelivery(plan, served, received) {
   return check(received);
 }
 
-export async function startPinnedServer(plan, signal) {
+export async function startPinnedServer(plan, signal, onStop) {
   signal.throwIfAborted();
   const served = [];
   const counts = new Map();
   let error;
+  function fail(reason, message) {
+    if (error) return;
+    error = new Error(message);
+    onStop?.(reason);
+  }
   const server = createServer((request, response) => {
     const resource = request.url;
     const entry = plan.get(resource);
     const count = (counts.get(resource) ?? 0) + 1;
     if (!entry || request.method !== "GET" || count > entry.count) {
-      error ??= new Error("Unplanned request");
+      fail("UNPLANNED_SERVER_REQUEST", "Unplanned request");
       response.writeHead(404).end();
       return;
     }
@@ -72,7 +77,7 @@ export async function startPinnedServer(plan, signal) {
     const bytes = Buffer.from(entry.bytes);
     response.once("finish", () => served.push({ resource, bytes }));
     response.once("close", () => {
-      if (!response.writableFinished) error ??= new Error("Server response interrupted");
+      if (!response.writableFinished && !signal.aborted) fail("SERVER_RESPONSE_INTERRUPTED", "Server response interrupted");
     });
     response.writeHead(200, { "Content-Type": entry.contentType, "Content-Length": bytes.length });
     response.end(bytes);
@@ -89,12 +94,15 @@ export async function startPinnedServer(plan, signal) {
     check() { if (error) throw error; },
     served: () => served.slice(),
     close() {
-      return new Promise((resolve, reject) => server.close(error => error ? reject(error) : resolve()));
+      return new Promise((resolve, reject) => {
+        server.close(error => error ? reject(error) : resolve());
+        if (signal.aborted) server.closeAllConnections();
+      });
     },
   };
 }
 
-export function recordBrowserResponses(page, originUrl, plan) {
+export function recordBrowserResponses(page, originUrl, plan, onStop) {
   const origin = new URL(originUrl).origin;
   const pending = [], counts = new Map();
   let error;
@@ -105,9 +113,11 @@ export function recordBrowserResponses(page, originUrl, plan) {
       const resource = url.pathname + url.search;
       const entry = plan.get(resource);
       const count = (counts.get(resource) ?? 0) + 1;
-      if (collecting || url.origin !== origin || !entry || response.status() !== 200 || count > entry.count) {
+      if (url.origin !== origin || !entry || response.status() !== 200 || count > entry.count) {
+        onStop?.("UNPLANNED_RESPONSE_METADATA");
         throw new Error("Unplanned browser response metadata");
       }
+      if (collecting) throw new Error("Unplanned browser response metadata");
       counts.set(resource, count);
       pending.push({ resource, response });
     } catch (fault) {

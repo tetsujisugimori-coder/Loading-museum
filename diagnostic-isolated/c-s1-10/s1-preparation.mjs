@@ -42,6 +42,7 @@ async function sampleOriginalPrimary(session, slot, signal) {
   });
   const destination = sessionUrl(originUrl);
   signal.throwIfAborted();
+  session.checkOperation?.("setDefaultTimeout");
   page.setDefaultTimeout(9000);
   await call(() => page.addInitScript(stageCS1InitSource(slot, streamId)));
   await call(() => page.goto(destination));
@@ -86,7 +87,7 @@ async function sampleOriginalPrimary(session, slot, signal) {
  * in flight when aborted. writePrimary is a synchronous, exclusive host save.
  * The injected body collector supplies bytes for the independently fixed expectedBodies.
  */
-export function runS1Preparation({ clock, stopSignal, runtime, calibration, expectedBodies }) {
+export function runS1Preparation({ clock, stopSignal, networkStopSignal, runtime, calibration, expectedBodies }) {
   const active = new Map();
   const adapter = {
     runCalibration: (slot, signal) => calibration.runCalibration(slot, signal),
@@ -136,5 +137,5 @@ export function runS1Preparation({ clock, stopSignal, runtime, calibration, expe
       return runtime.cleanup(reason, signal);
     },
   };
-  return runOfflineStageC({ clock, stopSignal, adapter, expectedBodies });
+  return runOfflineStageC({ clock, stopSignal, networkStopSignal, adapter, expectedBodies });
 }

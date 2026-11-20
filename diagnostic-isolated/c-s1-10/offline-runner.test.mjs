@@ -416,3 +416,44 @@ test("cleanup result delivered across 1200 seconds cannot record PASS or stop co
   assert.equal(result.cleanup, "INCOMPLETE");
   assert.equal(result.persistence, "INCOMPLETE");
 });
+
+test("a network stop during post-primary work preserves FAIL and blocks later slots", async () => {
+  const setup = fixture();
+  const networkStop = new AbortController();
+  setup.adapter.observeFollowup = (slot, signal) => {
+    setup.clock.advanceTo(40);
+    networkStop.abort({ slotId: slot.id, reason: "UNKNOWN_REQUEST" });
+    assert.equal(signal.aborted, true);
+    return new Promise(() => {});
+  };
+  const result = await runOfflineStageC({ ...setup, networkStopSignal: networkStop.signal });
+  const [first, ...remaining] = productRows(result);
+  assert.equal(first.primaryVerdict, "FAIL");
+  assert.equal(first.evidence, "INCOMPLETE");
+  assert.ok(remaining.every(row => row.state === "NOT_STARTED"));
+  assert.ok(!setup.calls.some(([operation]) => operation === "body"));
+  assert.deepEqual(result.stop, {
+    reason: "NETWORK_MISMATCH", requestedAtMs: 40, completedAtMs: 40, cutoffAtMs: null,
+  });
+});
+
+test("a hung cleanup ends 30 seconds after an early network stop", async () => {
+  const setup = fixture();
+  const networkStop = new AbortController();
+  const cleaning = Promise.withResolvers();
+  setup.adapter.observeFollowup = () => networkStop.abort();
+  setup.adapter.cleanup = (_reason, signal) => {
+    cleaning.resolve(signal);
+    return new Promise(() => {});
+  };
+  const running = runOfflineStageC({ ...setup, networkStopSignal: networkStop.signal });
+  const cleanupSignal = await cleaning.promise;
+  setup.clock.advanceTo(29_999);
+  assert.equal(cleanupSignal.aborted, false);
+  setup.clock.advanceTo(30_000);
+  const result = await running;
+  assert.equal(cleanupSignal.aborted, true);
+  assert.equal(result.stop.cutoffAtMs, 30_000);
+  assert.equal(result.stop.completedAtMs, null);
+  assert.equal(result.cleanup, "INCOMPLETE");
+});

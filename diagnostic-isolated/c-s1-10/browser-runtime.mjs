@@ -11,6 +11,9 @@ import { createRawEvidence } from "./raw-evidence.mjs";
 import { auditDelivery, expectedDelivery, freezeResourcePlan, recordBrowserResponses, startPinnedServer } from "./resource-evidence.mjs";
 import { bindS1ReadMarkers } from "./s1-read-proof.mjs";
 import { runS1Preparation, stageCS1FinishMarks } from "./s1-preparation.mjs";
+import { attachStageCNetwork } from "./stage-c-network-adapter.mjs";
+import { bindStageCNetworkPolicy } from "./stage-c-network-policy.mjs";
+import { createNetworkOperationGate } from "./stage-c-operation-gate.mjs";
 import { s1TargetGeneration } from "./s1-trace-audit.mjs";
 
 const execute = promisify(execFile);
@@ -26,7 +29,7 @@ function assertAuthorized() {
 }
 
 // trustedResources is supplied independently of the browser or its trace.
-export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResources, evidenceDirectory }) {
+export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResources, networkRules, onNetworkStop, evidenceDirectory }) {
   const root = resolve(evidenceDirectory);
   const planBySlot = new Map();
   for (const slot of registration.slots.filter(slot => slot.originalProductTrial !== false)) {
@@ -39,8 +42,15 @@ export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResourc
     assertAuthorized();
     const evidence = createRawEvidence(root);
     const sessions = new Set();
+    const receipts = new Map();
     let cleanupFailed = false;
     let persistenceFailed = false;
+    const networkStop = new AbortController();
+    const gate = createNetworkOperationGate(fault => {
+      networkStop.abort(fault);
+      try { onNetworkStop?.(fault); }
+      catch { persistenceFailed = true; }
+    });
     const write = (name, bytes) => {
       try { evidence.write(name, bytes); }
       catch (error) { persistenceFailed = true; throw error; }
@@ -49,7 +59,8 @@ export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResourc
       try { return evidence.read(name); }
       catch (error) { persistenceFailed = true; throw error; }
     };
-    const openPage = async (slot, signal, prepare) => {
+    const openPage = async (slot, signal, plan) => {
+      gate.assertMayStart(`${slot.id}:open`);
       signal.throwIfAborted();
       const session = { errors: [] };
       let opening;
@@ -70,6 +81,12 @@ export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResourc
           if (session.server) {
             try { await session.server.close(); } catch (error) { failures.push(error); }
           }
+          if (session.network) {
+            const receipt = session.network.sealAndPersist(join(root, `${slot.id}.network.json`),
+              signal.aborted || failures.length > 0);
+            receipts.set(slot.id, receipt);
+            if (!receipt.saved) persistenceFailed = true;
+          }
           sessions.delete(session);
           if (failures.length) {
             cleanupFailed = true;
@@ -80,23 +97,54 @@ export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResourc
       };
       sessions.add(session);
       opening = (async () => {
+        session.checkOperation = label => {
+          gate.assertMayStart(`${slot.id}:${label}`);
+          signal.throwIfAborted();
+        };
+        if (plan) {
+          session.server = await startPinnedServer(plan, signal, reason => gate.requestStop({ slotId: slot.id, reason }));
+          session.originUrl = session.server.originUrl;
+        }
+        const policy = bindStageCNetworkPolicy(slot.id,
+          session.originUrl ? new URL(session.originUrl).origin : "http://127.0.0.1", networkRules.get(slot.id));
+        const policyName = `${slot.id}.network-policy.json`;
+        const policyBytes = json(policy);
+        write(policyName, policyBytes);
+        if (!read(policyName).equals(policyBytes)) {
+          persistenceFailed = true;
+          throw new Error("Network policy readback mismatch");
+        }
+        session.checkOperation("launch");
         session.browser = await webkit.launch({ headless: true });
         signal.throwIfAborted();
         if (session.browser.version() !== "26.0") throw new Error("Wrong WebKit version");
+        session.checkOperation("newContext");
         const { width, height, touch, reducedMotion } = registration.environment.viewport;
         session.context = await session.browser.newContext({ viewport: { width, height }, hasTouch: touch, reducedMotion });
         signal.throwIfAborted();
-        if (prepare) {
+        session.network = attachStageCNetwork(session.context, policy, gate);
+        if (plan) {
+          session.checkOperation("trace.start");
           session.tracePath = join(root, `${slot.id}.trace.zip`);
           await session.context.tracing.start(observationPolicy.trace);
           session.tracing = true;
           signal.throwIfAborted();
         }
+        session.checkOperation("newPage");
         session.page = await session.context.newPage();
         session.page.on("pageerror", error => session.errors.push(String(error)));
         signal.throwIfAborted();
-        if (prepare) await prepare(session);
-        signal.throwIfAborted();
+        if (plan) {
+          session.streamId = `${slot.id}:product`;
+          session.capture = recordBrowserResponses(session.page, session.originUrl, plan,
+            reason => gate.requestStop({ slotId: slot.id, reason }));
+          session.check = () => {
+            session.checkOperation("product command");
+            session.server.check();
+            session.capture.check();
+            if (session.errors.length) throw new Error("Page error");
+          };
+        }
       })();
       try {
         await opening;
@@ -110,18 +158,7 @@ export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResourc
     const originalPrimary = new Map();
     const runtime = {
       openSlot(slot, signal) {
-        const plan = planBySlot.get(slot.id);
-        return openPage(slot, signal, async session => {
-          session.server = await startPinnedServer(plan, signal);
-          session.originUrl = session.server.originUrl;
-          session.streamId = `${slot.id}:product`;
-          session.capture = recordBrowserResponses(session.page, session.originUrl, plan);
-          session.check = () => {
-            session.server.check();
-            session.capture.check();
-            if (session.errors.length) throw new Error("Page error");
-          };
-        });
+        return openPage(slot, signal, planBySlot.get(slot.id));
       },
       writePrimary(slot, bytes) {
         write(`${slot.id}.primary.json`, bytes);
@@ -135,6 +172,7 @@ export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResourc
         write(`${slot.id}.followup.json`, json({ state: followup.state }));
         if (slot.level !== "I0") {
           signal.throwIfAborted();
+          session.checkOperation("timing marks");
           session.marks = await session.page.evaluate(stageCS1FinishMarks);
           signal.throwIfAborted();
           write(`${slot.id}.marks.json`, json(session.marks ?? null));
@@ -193,6 +231,9 @@ export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResourc
         };
       },
     };
-    return runS1Preparation({ clock, stopSignal, runtime, calibration, expectedBodies });
+    const result = await runS1Preparation({ clock, stopSignal, networkStopSignal: networkStop.signal,
+      runtime, calibration, expectedBodies });
+    return { ...result, networkStop: gate.snapshot(),
+      networkReceipts: Object.fromEntries(receipts) };
   }
 }

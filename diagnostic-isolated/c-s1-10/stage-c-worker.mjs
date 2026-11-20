@@ -5,6 +5,8 @@ import { join } from "node:path";
 import registration from "../../docs/phase7d/stage-c-api-s1-10/registration.json" with { type: "json" };
 import { prepareBrowserStageC } from "./browser-runtime.mjs";
 import { bindStaticRequests, sha256 } from "./build-resources.mjs";
+import { publishNetworkStopNotice } from "./stage-c-network-adapter.mjs";
+import { preflightNetworkRules } from "./stage-c-network-policy.mjs";
 
 // A HOLD exits before reading build files, importing Playwright or opening evidence.
 if (registration.decision === "HOLD" || registration.executionAuthorization !== true || registration.executable !== true) {
@@ -17,7 +19,7 @@ assert.equal(sha256(manifestBytes), expectedManifestSha, "approved manifest hash
 const manifest = JSON.parse(manifestBytes);
 assert.equal(manifest.sourceHead, registration.source.experimentSourceHead);
 assert.equal(manifest.sourceTree, registration.source.experimentSourceTree);
-assert.ok(manifest.requests, "independently fixed request plan is required");
+const networkRules = preflightNetworkRules(manifest);
 
 const now = () => Number(process.hrtime.bigint() / 1_000_000n);
 const rawStart = process.env.STAGE_C_MONOTONIC_START_NS;
@@ -63,7 +65,9 @@ try {
   const requireDriver = createRequire(driverEntry);
   assert.equal(requireDriver("playwright/package.json").version, "1.56.1");
   const { webkit } = requireDriver("playwright");
-  const result = await prepareBrowserStageC({ webkit, clock, stopSignal: stop.signal, trustedResources, evidenceDirectory }).run();
+  const result = await prepareBrowserStageC({ webkit, clock, stopSignal: stop.signal, trustedResources,
+    networkRules, onNetworkStop: fault => publishNetworkStopNotice(evidenceDirectory, fault), evidenceDirectory }).run();
+  if (result.networkStop.firstReason) process.exitCode = 1;
   if (now() < start + registration.bounds.absoluteCutoffSeconds * 1000) console.log(JSON.stringify(result));
 } finally {
   process.stdin.off("data", command).off("end", disconnected).pause();
