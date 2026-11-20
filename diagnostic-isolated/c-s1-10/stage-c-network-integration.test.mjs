@@ -4,154 +4,246 @@ import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { get } from "node:http";
 import { join } from "node:path";
 import test from "node:test";
-import registration from "../../docs/phase7d/stage-c-api-s1-10/registration.json" with { type: "json" };
+import contract from "./NETWORK-CONTRACT-v1.json" with { type: "json" };
 import { sha256 } from "./build-resources.mjs";
+import { createRawEvidence } from "./raw-evidence.mjs";
 import { freezeResourcePlan, startPinnedServer } from "./resource-evidence.mjs";
 import { attachStageCNetwork, publishNetworkStopNotice } from "./stage-c-network-adapter.mjs";
 import { bindStageCNetworkPolicy, preflightNetworkRules } from "./stage-c-network-policy.mjs";
 import { createNetworkOperationGate } from "./stage-c-operation-gate.mjs";
 
 const resource = "/Loading-museum/";
-const optional = "/Loading-museum/optional.txt";
-const entry = { method: "GET", pathname: resource, resourceTypes: ["document"], queryKeys: [],
-  queryValues: {}, allowedStatuses: [200], min: 1, max: 1 };
-const optionalRule = { ...entry, pathname: optional, resourceTypes: ["fetch"], min: 0 };
+const bytes = Buffer.from("<main>synthetic</main>");
 const slotId = "AP-01-I0";
+const baseline = [resource, ...Array.from({ length: 8 }, (_, index) => resource + index)];
+const optional = resource + "optional";
+const entries = [...baseline, optional].map(resource =>
+  ({ resource, bytes, sha256: sha256(bytes), contentType: "text/html" }));
+const spec = {
+  allowlist: Object.fromEntries(entries.map(({ resource, sha256 }) => [resource, { sha256 }])),
+  baselinePathMultiset: Object.fromEntries(baseline.map(path => [path, 1])),
+  baselineRequestCount: 9,
+};
 
-test("preflight rejects missing slots, calibration traffic and incompatible exact delivery counts", () => {
-  const networkRules = {}, requests = {};
-  for (const slot of registration.slots) {
-    networkRules[slot.id] = slot.originalProductTrial === false ? [] : [entry, { ...optionalRule, max: 0 }];
-    if (slot.originalProductTrial !== false) requests[slot.id] = [{ resource, count: 1 }];
-  }
-  const inventory = { routes: [{ resource }, { resource: optional }] };
-  const manifest = { networkRules, requests, outputs: { I0: inventory, I1: inventory, I2: inventory } };
-  assert.equal(preflightNetworkRules(manifest).size, 10);
-  const badCalibration = structuredClone(manifest);
-  badCalibration.networkRules["AP-CAL-04"] = [entry];
-  assert.throws(() => preflightNetworkRules(badCalibration), /zero HTTP requests/);
-  const missingRoute = structuredClone(manifest);
-  missingRoute.networkRules[slotId].pop();
-  assert.throws(() => preflightNetworkRules(missingRoute), /must cover fixed routes exactly/);
-  const badCount = structuredClone(manifest);
-  badCount.requests[slotId][0].count = 2;
-  assert.throws(() => preflightNetworkRules(badCount), /must match the exact delivery plan/);
-  const supportedRepeat = structuredClone(manifest);
-  supportedRepeat.requests[slotId][0].count = 2;
-  supportedRepeat.networkRules[slotId][0] = { ...entry, min: 2, max: 2 };
-  assert.equal(preflightNetworkRules(supportedRepeat).size, 10);
-  supportedRepeat.networkRules[slotId][0].resourceTypes = ["document", "fetch"];
-  assert.throws(() => preflightNetworkRules(supportedRepeat), /entry route requires document requests/);
-  const unsupportedRange = structuredClone(manifest);
-  unsupportedRange.networkRules[slotId][1].max = 1;
-  assert.throws(() => preflightNetworkRules(unsupportedRange), /must match the exact delivery plan/);
+test("preflight binds the frozen route and byte inventory before any browser events", () => {
+  const outputs = Object.fromEntries(Object.entries(contract.product.levels).map(([level, spec]) => [
+    level, { files: Array(spec.buildFileCount), routes: Object.entries(spec.allowlist)
+      .map(([resource, { mappedBuildFile: path, sha256 }]) => ({ resource, path, sha256 })) },
+  ]));
+  assert.equal(preflightNetworkRules({ outputs }).size, 10);
+  assert.equal(preflightNetworkRules({ outputs }).get("AP-CAL-04"), null);
+  assert.equal(preflightNetworkRules({ outputs }).get(slotId).baselineRequestCount, 9);
+  outputs.I1.routes[0].sha256 = "0".repeat(64);
+  assert.throws(() => preflightNetworkRules({ outputs }), /contract routes and build bytes differ/);
 });
 
-function performRequest(context, origin, path) {
-  const url = origin + path;
-  const request = { url: () => url, method: () => "GET", resourceType: () => "document" };
-  context.emit("request", request);
-  return new Promise((resolve, reject) => {
-    get(url, response => {
-      context.emit("response", { request: () => request, status: () => response.statusCode });
-      const chunks = [];
-      response.on("data", chunk => chunks.push(chunk));
-      response.once("error", reject);
-      response.once("end", () => {
-        context.emit("requestfinished", request);
-        resolve({ status: response.statusCode, body: Buffer.concat(chunks) });
-      });
-    }).once("error", reject);
+async function fixture(t, { calibration = false } = {}) {
+  const directory = mkdtempSync("stage-c-network-test-");
+  t.after(() => rmSync(directory, { recursive: true, force: true }));
+  const evidence = createRawEvidence(join(directory, "receipts"));
+  const context = new EventEmitter();
+  const controller = new AbortController();
+  const id = calibration ? "AP-CAL-04" : slotId;
+  const gate = createNetworkOperationGate(fault => {
+    controller.abort(fault);
+    publishNetworkStopNotice(directory, fault);
+  });
+  const server = await startPinnedServer(freezeResourcePlan(entries), controller.signal,
+    reason => gate.requestStop({ slotId: id, reason }));
+  let closed = false;
+  const close = async () => {
+    if (closed) return;
+    closed = true;
+    await server.close();
+  };
+  t.after(close);
+  const origin = new URL(server.originUrl).origin;
+  const policy = bindStageCNetworkPolicy(id, origin, calibration ? null : spec);
+  let phase = "page.goto";
+  let reads = 0;
+  const audit = attachStageCNetwork(context, policy, gate, controller.signal, () => phase);
+
+  function begin(path, options = {}) {
+    const request = {
+      url: () => options.url ?? origin + path, method: () => options.method ?? "GET",
+      headers: () => {
+        if (options.headersThrow) throw new Error("synthetic unreadable headers");
+        return options.validator ? { "if-none-match": options.validator } : {};
+      },
+      redirectedFrom: () => options.redirectedFrom,
+      failure: () => ({ errorText: "synthetic cancellation" }),
+    };
+    context.emit("request", request);
+    return request;
+  }
+  function finish(request, body = bytes, status = 200, worker = false) {
+    context.emit("response", { request: () => request, status: () => status,
+      fromServiceWorker: () => worker, body: async () => { reads++; return body; } });
+    context.emit("requestfinished", request);
+  }
+  async function perform(path, options) {
+    const request = begin(path, options);
+    return new Promise((resolve, reject) => {
+      get(origin + path, response => {
+        const chunks = [];
+        response.on("data", chunk => chunks.push(chunk));
+        response.once("error", reject);
+        response.once("end", () => {
+          finish(request, Buffer.concat(chunks), response.statusCode);
+          resolve(response.statusCode);
+        });
+      }).once("error", reject);
+    });
+  }
+  function seal({ interrupted = controller.signal.aborted, originEvents = server.events(), store = evidence } = {}) {
+    audit.beginContextClose();
+    return audit.sealAndPersist(store, originEvents, interrupted);
+  }
+  return { id, evidence, directory, context, gate, controller, origin, begin, finish, perform, seal, close, audit,
+    setPhase: value => { phase = value; }, reads: () => reads };
+}
+
+for (const [name, paths, late, expected] of [
+  ["nine initial requests", baseline, [], "BASELINE_MATCH"],
+  ["extra known route", [...baseline, optional], [], "COUNT_DEVIATION"],
+  ["one fewer request", baseline.slice(0, -1), [], "COUNT_DEVIATION"],
+  ["duplicate allowed request", [...baseline, resource], [], "COUNT_DEVIATION"],
+  ["same nine across different phases", baseline.slice(0, -1), baseline.slice(-1), "COUNT_DEVIATION"],
+]) {
+  test(`live loopback and synthetic browser events classify ${name}`, async t => {
+    const f = await fixture(t);
+    for (const path of paths) assert.equal(await f.perform(path), 200);
+    f.setPhase("afterNavigation");
+    for (const path of late) assert.equal(await f.perform(path), 200);
+    assert.equal(f.reads(), 0, "body reads must stay deferred");
+    assert.equal(await f.audit.collectBodies(f.controller.signal), paths.length + late.length);
+    await f.close();
+    const receipt = f.seal();
+    assert.equal(receipt.classification, expected);
+    assert.equal(receipt.auditVerdict, "PASS");
+    assert.equal(receipt.evidenceStatus, "COMPLETE");
+    assert.equal(receipt.persistence, "PASS");
+    assert.equal(f.gate.snapshot().firstReason, null, "count deviation allows slot cleanup");
+    const original = f.evidence.read(receipt.saved.filename);
+    assert.equal(sha256(original), receipt.saved.sha256);
+    const raw = JSON.parse(original);
+    assert.equal(raw.associations.length, paths.length + late.length);
+    for (const row of [...raw.requests, ...raw.originEvents]) {
+      assert.equal(sha256(Buffer.from(row.bodyBase64, "base64")), row.bodySha256);
+    }
   });
 }
 
-test("real loopback HTTP with synthetic context events publishes stop and blocks the next operation", async t => {
-  const directory = mkdtempSync("stage-c-network-test-");
-  t.after(() => rmSync(directory, { recursive: true, force: true }));
-  const networkStop = new AbortController();
-  const gate = createNetworkOperationGate(fault => {
-    networkStop.abort(fault);
-    publishNetworkStopNotice(directory, fault);
+for (const [label, path, options, reason] of [
+  ["unknown route", resource + "unknown", {}, "UNKNOWN_REQUEST"],
+  ["external origin with unreadable headers", resource, { url: "https://example.invalid/", headersThrow: true }, "UNKNOWN_REQUEST"],
+  ["query", resource + "?unexpected=1", {}, "UNKNOWN_REQUEST"],
+  ["empty query delimiter", resource + "?", {}, "UNKNOWN_REQUEST"],
+  ["wrong method", resource, { method: "POST" }, "UNAPPROVED_METHOD"],
+  ["redirect chain", resource, { redirectedFrom: {} }, "UNAPPROVED_REDIRECT"],
+]) {
+  test(`detecting ${label} publishes stop and blocks the next command`, async t => {
+    const f = await fixture(t);
+    f.gate.assertMayStart("in-flight");
+    f.begin(path, options);
+    assert.equal(f.controller.signal.reason.reason, reason);
+    assert.throws(() => f.gate.assertMayStart("following operation"), /STAGE_C_STOP_REQUESTED/);
+    assert.deepEqual(JSON.parse(readFileSync(join(f.directory, "network-stop.notice.json"))), f.controller.signal.reason);
+    const receipt = f.seal();
+    assert.equal(receipt.classification, "NETWORK_AUDIT_FAIL");
+    assert.equal(receipt.evidenceStatus, "INCOMPLETE");
   });
-  const bytes = Buffer.from("<main>synthetic</main>");
-  const plan = freezeResourcePlan([{ resource, bytes, sha256: sha256(bytes), contentType: "text/html", count: 1 }]);
-  const server = await startPinnedServer(plan, networkStop.signal, reason => gate.requestStop({ slotId, reason }));
-  t.after(() => server.close());
-  const origin = new URL(server.originUrl).origin;
-  const context = new EventEmitter();
-  const observation = attachStageCNetwork(context, bindStageCNetworkPolicy(slotId, origin, [entry]), gate);
-  gate.assertMayStart("navigation");
-  assert.deepEqual(await performRequest(context, origin, resource), { status: 200, body: bytes });
+}
 
-  gate.assertMayStart("in-flight synthetic request");
-  assert.equal((await performRequest(context, origin, resource + "unknown")).status, 404);
-  assert.equal(networkStop.signal.reason.reason, "UNKNOWN_REQUEST");
-  assert.throws(() => gate.assertMayStart("following operation"), /STAGE_C_STOP_REQUESTED/);
-  const notice = JSON.parse(readFileSync(join(directory, "network-stop.notice.json")));
-  assert.deepEqual(notice, networkStop.signal.reason);
-  const receipt = observation.sealAndPersist(join(directory, "receipt.json"), true);
-  assert.equal(receipt.networkPolicyVerdict, "FAIL");
-  assert.equal(receipt.saved.sha256, sha256(readFileSync(join(directory, "receipt.json"))));
+test("HTTP 302 is refused even if no redirected request arrives", async t => {
+  const f = await fixture(t);
+  const request = f.begin(resource);
+  f.finish(request, Buffer.alloc(0), 302);
+  assert.equal(f.controller.signal.reason.reason, "UNEXPECTED_HTTP_STATUS");
+  assert.equal(f.seal().classification, "NETWORK_AUDIT_FAIL");
 });
 
-test("calibration context with no HTTP seals successfully and rejects any HTTP event", t => {
-  const directory = mkdtempSync("stage-c-network-test-");
-  t.after(() => rmSync(directory, { recursive: true, force: true }));
-  const origin = "http://127.0.0.1";
-  const policy = bindStageCNetworkPolicy("AP-CAL-04", origin, []);
-  const context = new EventEmitter();
-  const gate = createNetworkOperationGate();
-  const clean = attachStageCNetwork(context, policy, gate);
-  assert.equal(clean.sealAndPersist(join(directory, "clean.json"), false).networkPolicyVerdict, "PASS");
-  const observation = attachStageCNetwork(context, policy, gate);
-  context.emit("request", { url: () => origin + resource, method: () => "GET", resourceType: () => "document" });
-  assert.equal(gate.snapshot().firstReason.reason, "UNKNOWN_REQUEST");
-  assert.equal(observation.sealAndPersist(join(directory, "fault.json"), true).networkPolicyVerdict, "FAIL");
+test("deferred body mismatch stops after preserving the mismatching body and existing primary", async t => {
+  const f = await fixture(t);
+  const primary = Buffer.from('{"primary":{"verdict":"FAIL"}}');
+  f.evidence.write("primary.json", primary);
+  const request = f.begin(resource);
+  f.finish(request, Buffer.from("unexpected"));
+  assert.equal(f.controller.signal.aborted, false);
+  await f.audit.collectBodies(f.controller.signal);
+  assert.equal(f.controller.signal.reason.reason, "BODY_HASH_MISMATCH");
+  const receipt = f.seal();
+  assert.equal(receipt.classification, "NETWORK_AUDIT_FAIL");
+  assert.equal(Buffer.from(JSON.parse(f.evidence.read(receipt.saved.filename)).requests[0].bodyBase64, "base64").toString(), "unexpected");
+  assert.deepEqual(f.evidence.read("primary.json"), primary);
 });
 
-test("intentional context shutdown preserves failed events and leaves evidence incomplete", t => {
-  const directory = mkdtempSync("stage-c-network-test-");
-  t.after(() => rmSync(directory, { recursive: true, force: true }));
-  const origin = "http://127.0.0.1";
-  const policy = bindStageCNetworkPolicy(slotId, origin, [entry]);
-  const signal = new AbortController();
-  const gate = createNetworkOperationGate();
-  const context = new EventEmitter();
-  const observation = attachStageCNetwork(context, policy, gate, signal.signal);
-  const request = { url: () => origin + resource, method: () => "GET", resourceType: () => "document",
-    failure: () => ({ errorText: "Cancelled" }) };
-  context.emit("request", request);
-  signal.abort("SUPERVISOR_STOP");
-  observation.beginContextClose();
-  context.emit("requestfailed", request);
-  assert.equal(gate.snapshot().firstReason, null);
-  const receipt = observation.sealAndPersist(join(directory, "shutdown.json"), true);
-  assert.equal(receipt.networkPolicyVerdict, "INCOMPLETE");
-  assert.equal(receipt.evidenceStatus, "INCOMPLETE");
-  const raw = JSON.parse(readFileSync(join(directory, "shutdown.json")));
-  assert.equal(raw.requests[0].terminal, "SHUTDOWN_FAILURE");
-  assert.equal(raw.violations.length, 0);
+for (const [kind, originRows, expected] of [
+  ["verified 304", [{ status: 304, validator: '"fixture"', etag: '"fixture"' }], "COUNT_DEVIATION"],
+  ["unverified 304", [{ status: 304, validator: '"fixture"', etag: null }], "NETWORK_AUDIT_FAIL"],
+  ["unexplained cached body", [], "INCOMPLETE"],
+  ["unmatched 304 validator", [{ status: 304, validator: '"different"', etag: '"different"' }], "INCOMPLETE"],
+]) {
+  test(`classifies ${kind} with browser 200 and original bytes`, async t => {
+    const f = await fixture(t);
+    f.finish(f.begin(resource, { validator: '"fixture"' }));
+    await f.audit.collectBodies(f.controller.signal);
+    const originEvents = originRows.map(row => ({ id: 1, resource, method: "GET", terminal: "FINISHED", bodySha256: null, ...row }));
+    const receipt = f.seal({ originEvents });
+    assert.equal(receipt.classification, expected);
+    if (kind === "verified 304") {
+      const raw = JSON.parse(f.evidence.read(receipt.saved.filename));
+      assert.equal(raw.cacheRevalidated, true);
+      assert.deepEqual(raw.associations[0], { requestId: 1, originId: 1, statusBrowser: 200, statusServer: 304 });
+    }
+  });
+}
+
+test("unproven service worker and missing lifecycle records cannot complete", async t => {
+  const f = await fixture(t);
+  f.finish(f.begin(resource), bytes, 200, true);
+  await f.audit.collectBodies(f.controller.signal);
+  const receipt = f.seal();
+  assert.equal(receipt.classification, "INCOMPLETE");
+  assert.ok(receipt.missing.includes("UNVERIFIED_SERVICE_WORKER"));
+  assert.ok(receipt.missing.includes("UNEXPLAINED_BROWSER_ORIGIN_DIFFERENCE"));
 });
 
-test("interrupted capture stays incomplete even if the observed prefix meets the policy", t => {
-  const directory = mkdtempSync("stage-c-network-test-");
-  t.after(() => rmSync(directory, { recursive: true, force: true }));
-  const gate = createNetworkOperationGate();
-  const policy = bindStageCNetworkPolicy("AP-CAL-01", "http://127.0.0.1", []);
-  const observation = attachStageCNetwork(new EventEmitter(), policy, gate);
-  const receipt = observation.sealAndPersist(join(directory, "prefix.json"), true);
-  assert.equal(receipt.networkPolicyVerdict, "INCOMPLETE");
-  assert.equal(receipt.evidenceStatus, "INCOMPLETE");
-  assert.equal(gate.snapshot().firstReason, null);
+test("calibration allows zero HTTP and refuses a known product route", async t => {
+  const clean = await fixture(t, { calibration: true });
+  clean.finish(clean.begin(null, { url: "data:text/plain,A" }));
+  const receipt = clean.seal();
+  assert.equal(receipt.classification, "BASELINE_MATCH");
+  assert.equal(receipt.comparisonVerdict, "CALIBRATION_ZERO");
+  const fault = await fixture(t, { calibration: true });
+  fault.begin(resource);
+  assert.equal(fault.seal().classification, "NETWORK_AUDIT_FAIL");
 });
 
-test("interruption before navigation leaves the missing minimum inconclusive", t => {
-  const directory = mkdtempSync("stage-c-network-test-");
-  t.after(() => rmSync(directory, { recursive: true, force: true }));
-  const gate = createNetworkOperationGate();
-  const policy = bindStageCNetworkPolicy(slotId, "http://127.0.0.1", [entry]);
-  const observation = attachStageCNetwork(new EventEmitter(), policy, gate);
-  const receipt = observation.sealAndPersist(join(directory, "before-navigation.json"), true);
-  assert.equal(receipt.networkPolicyVerdict, "INCOMPLETE");
-  assert.equal(gate.snapshot().firstReason, null);
+test("intentional shutdown with a cancellation stays incomplete", async t => {
+  const f = await fixture(t);
+  const request = f.begin(resource);
+  f.controller.abort();
+  f.audit.beginContextClose();
+  f.context.emit("requestfailed", request);
+  const receipt = f.seal();
+  assert.equal(receipt.classification, "INCOMPLETE");
+  assert.equal(f.gate.snapshot().firstReason, null);
+  assert.equal(JSON.parse(f.evidence.read(receipt.saved.filename)).requests[0].terminal, "SHUTDOWN_FAILURE");
 });
+
+for (const kind of ["write", "readback"]) {
+  test(`network ${kind} failure cannot emit a complete receipt`, async t => {
+    const f = await fixture(t, { calibration: true });
+    const name = `${f.id}.network.json`;
+    if (kind === "write") f.evidence.write(name, bytes);
+    const receipt = f.seal({ store: {
+      write: f.evidence.write, read: kind === "readback" ? () => bytes : f.evidence.read,
+    } });
+    assert.equal(receipt.classification, "INCOMPLETE");
+    assert.equal(receipt.persistence, "FAIL");
+    assert.equal(receipt.evidenceStatus, "INCOMPLETE");
+    assert.ok(receipt.missing.includes("NETWORK_RECEIPT_FAILED"));
+    if (kind === "write") assert.deepEqual(f.evidence.read(name), bytes);
+  });
+}

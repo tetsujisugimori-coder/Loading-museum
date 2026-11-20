@@ -63,6 +63,8 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
     kill_at = None
     root_exit = None
     namespace_exit = None
+    supervisor_error = None
+    emergency_kill_at = None
     # Leave time to observe exit before the contractual deadline.
     hard_dispatch = max(soft_seconds, hard_seconds - 0.1)
     hard_limit = hard_seconds
@@ -87,13 +89,16 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
             while True:
                 if network_notice is not None and network_fault is None:
                     try:
-                        network_fault = json.loads(Path(network_notice).read_bytes())
+                        notice = json.loads(Path(network_notice).read_bytes())
                     except FileNotFoundError:
                         pass
                     else:
-                        detected = int(network_fault["mismatchDetectedAtNs"])
+                        if not isinstance(notice, dict) or not isinstance(notice.get("slotId"), str) or not isinstance(notice.get("reason"), str):
+                            raise RuntimeError("Invalid Stage C network stop notice")
+                        detected = int(notice["mismatchDetectedAtNs"])
                         if not start <= detected <= time.monotonic_ns():
                             raise RuntimeError("Invalid Stage C network stop timestamp")
+                        network_fault = notice
                         hard_limit = min(hard_seconds, (detected - start) / 1e9 + 30)
                         hard_dispatch = min(hard_dispatch, hard_limit - 0.1)
                 age = elapsed()
@@ -119,10 +124,21 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
                     break
                 time.sleep(min(0.005, hard_limit - age))
             root_exit = proc.poll()
+        except (OSError, ValueError, TypeError, KeyError, RuntimeError) as error:
+            supervisor_error = f"{type(error).__name__}: {error}"
+            if proc is not None and stop_at is None:
+                stop_at = elapsed()
+                stop_source = "SUPERVISOR_FAILURE"
+                try:
+                    os.write(proc.stdin.fileno(), b"S")
+                except OSError:
+                    pass
         finally:
             if handle is not None:
                 try:
                     if not select.select([handle], [], [], 0)[0]:
+                        if kill_at is None:
+                            emergency_kill_at = elapsed()
                         try:
                             signal.pidfd_send_signal(handle, signal.SIGKILL)
                         except ProcessLookupError:
@@ -131,6 +147,9 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
                     os.close(handle)
             if proc is not None:
                 proc.stdin.close()
+                if handle is None and supervisor_error and proc.poll() is None:
+                    proc.kill()
+                    emergency_kill_at = elapsed()
                 try:
                     proc.wait(timeout=max(0, hard_limit - elapsed()))
                 except subprocess.TimeoutExpired:
@@ -142,21 +161,49 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
                     os.close(fd)
             for stream in (out, err):
                 stream.flush()
-                os.fsync(stream.fileno())
+                try:
+                    os.fsync(stream.fileno())
+                except OSError as error:
+                    supervisor_error = f"{type(error).__name__}: {error}"
+    within_hard_deadline = namespace_exit is not None and namespace_exit <= hard_seconds
+    worker_result = {}
+    if within_hard_deadline and kill_at is None and emergency_kill_at is None and supervisor_error is None:
+        try:
+            candidate = json.loads((path / "worker.stdout").read_bytes())
+            if isinstance(candidate, dict):
+                worker_result = candidate
+        except (OSError, ValueError):
+            pass
+    worker_requested = worker_result.get("stopRequested") is True
+    worker_finalized = worker_result.get("cleanup") == worker_result.get("persistence") == "PASS"
+    worker_records = worker_result.get("records")
+    worker_completed = (
+        root_exit == 0 and worker_result.get("stopRequested") is False and worker_finalized and
+        isinstance(worker_records, list) and len(worker_records) == 10 and
+        all(isinstance(row, dict) and row.get("state") == "COMPLETED" for row in worker_records)
+    )
     result = {
         "softDeadlineSeconds": soft_seconds, "hardDeadlineSeconds": hard_seconds,
-        "stopRequestedSeconds": stop_at, "stopSource": stop_source, "hardKillSeconds": kill_at,
+        "stopRequested": stop_at is not None or worker_requested,
+        "stopCompleted": worker_requested and worker_result.get("stopCompleted") is True and worker_finalized and
+            namespace_exit is not None and namespace_exit <= hard_limit,
+        "stopRequestedSeconds": stop_at, "stopSource": stop_source,
+        "hardKillSeconds": kill_at if kill_at is not None else emergency_kill_at,
+        "supervisorError": supervisor_error,
         "networkMismatchDetected": network_fault,
         "withinNetworkStopGrace": None if network_fault is None else
             namespace_exit is not None and namespace_exit <= hard_limit,
         "namespaceExitObservedSeconds": namespace_exit, "workerExit": root_exit,
-        "withinHardDeadline": namespace_exit is not None and namespace_exit <= hard_seconds,
+        "withinHardDeadline": within_hard_deadline,
+        "workerResultStatus": "COMPLETE" if worker_completed else "INCOMPLETE",
     }
-    with (path / "supervisor.json").open("x", encoding="utf-8") as receipt:
-        json.dump(result, receipt, indent=2)
-        receipt.write("\n")
+    receipt_bytes = (json.dumps(result, indent=2) + "\n").encode("utf-8")
+    with (path / "supervisor.json").open("xb") as receipt:
+        receipt.write(receipt_bytes)
         receipt.flush()
         os.fsync(receipt.fileno())
+    if (path / "supervisor.json").read_bytes() != receipt_bytes:
+        raise RuntimeError("Stage C supervisor receipt readback mismatch")
     return result
 
 
@@ -181,13 +228,12 @@ def _verify_package(package, expected_sha, roots):
     if not re.fullmatch("[0-9a-f]{64}", expected_sha) or hashlib.sha256(contents).hexdigest() != expected_sha:
         raise RuntimeError("Approved Stage C manifest hash mismatch")
     manifest = json.loads(contents)
-    if not manifest.get("requests") or not manifest.get("networkRules"):
-        raise RuntimeError("Independently fixed network and delivery plans are required")
     runtime_paths = ("browser-calibration.mjs", "browser-runtime.mjs", "offline-runner.mjs",
                      "process_supervisor.py", "resource-evidence.mjs", "s1-preparation.mjs",
                      "stage-c-worker.mjs", "stage-c-network-adapter.mjs",
                      "stage-c-network-ledger.mjs", "stage-c-network-policy.mjs",
-                     "stage-c-operation-gate.mjs")
+                     "stage-c-operation-gate.mjs", "NETWORK-CONTRACT-v1.json", "build-resources.mjs",
+                     "raw-evidence.mjs", "s1-trace-audit.mjs")
     if any(f"diagnostic-isolated/c-s1-10/{name}" not in manifest["runtimeFiles"]["repo"] for name in runtime_paths):
         raise RuntimeError("Stage C network integration needs a newly bound runtime inventory")
     for label, root in roots.items():
@@ -230,8 +276,8 @@ def main():
         hard_seconds=registration["bounds"]["absoluteCutoffSeconds"],
         network_notice=raw / "evidence" / "network-stop.notice.json",
     )
-    sys.exit(0 if result["withinHardDeadline"] and result["workerExit"] == 0
-             and result["networkMismatchDetected"] is None else 1)
+    sys.exit(0 if result["workerResultStatus"] == "COMPLETE" and
+             not result["stopRequested"] and result["networkMismatchDetected"] is None else 1)
 
 
 if __name__ == "__main__":

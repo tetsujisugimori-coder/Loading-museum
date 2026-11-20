@@ -1,171 +1,212 @@
-/**
- * Stage C network observer. Additive, no routes, fetches, DOM reads, await or body calls.
- * This does NOT authorize Stage C browser experiments.
- */
-import assert from 'node:assert/strict';
-import {createHash} from 'node:crypto';
-import fs from 'node:fs';
+import { createHash } from "node:crypto";
 
-const sha256 = data => createHash('sha256').update(data).digest('hex');
-const allowedMethods = new Set(['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']);
-const allowedTypes = new Set(['document','stylesheet','image','media','font','script','texttrack','xhr','fetch','eventsource','websocket','manifest','other']);
+const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
+const key = (resource, validator) => JSON.stringify([resource, validator]);
+const own = (object, name) => Object.hasOwn(object, name) ? object[name] : null;
 
-/**
- * Expected policy is independent preflight input. Never produce it from observed requests.
- * A dynamic loopback port may be supplied only once, after server.listen, before browser launch.
- * A separate frozen preflight record must bind the actual loopback origin to the approved server.
- * Each rule has explicit min/max; no implicit allowances for unregistered paths or query keys.
- */
-export function validatePolicy(policy) {
-  assert.equal(policy?.schemaVersion, 1);
-  assert.match(policy.slotId, /^AP-(?:CAL-0[1-4]|0[12]-I[012])$/);
-  const origin = new URL(policy.origin);
-  assert.equal(origin.origin, policy.origin);
-  assert.equal(origin.protocol, 'http:');
-  assert.ok(['127.0.0.1', 'localhost', '[::1]'].includes(origin.hostname), 'loopback-only server');
-  assert.equal(policy.unknownRequestAction, 'STOP_NEW_OPERATIONS');
-  assert.equal(policy.redirectHandling, 'COUNT_EACH_HOP');
-  assert.equal(policy.cacheHandling, 'OBSERVE_UNDETERMINED');
-  assert.ok(Array.isArray(policy.rules) && (policy.rules.length || policy.slotId.startsWith('AP-CAL-')),
-    'explicit allowlist required for product slots');
-  const identities = new Set();
-  for (const rule of policy.rules) {
-    assert.ok(allowedMethods.has(rule.method));
-    assert.ok(typeof rule.pathname === 'string' && rule.pathname.startsWith('/') && !rule.pathname.includes('?'));
-    assert.deepEqual([...new Set(rule.queryKeys)].sort(), rule.queryKeys, 'sorted unique query keys');
-    assert.ok(rule.queryValues && Object.getPrototypeOf(rule.queryValues) === Object.prototype, 'explicit query values required');
-    assert.deepEqual(Object.keys(rule.queryValues).sort(), rule.queryKeys, 'every query value approved');
-    for (const key of rule.queryKeys) assert.equal(typeof rule.queryValues[key], 'string', 'literal query value');
-    assert.ok(Array.isArray(rule.resourceTypes) && rule.resourceTypes.length);
-    assert.deepEqual([...new Set(rule.resourceTypes)].sort(), rule.resourceTypes, 'sorted unique types');
-    for (const type of rule.resourceTypes) assert.ok(allowedTypes.has(type));
-    assert.ok(Number.isSafeInteger(rule.min) && rule.min >= 0);
-    assert.ok(Number.isSafeInteger(rule.max) && rule.max >= rule.min);
-    assert.ok(Array.isArray(rule.allowedStatuses) && rule.allowedStatuses.length);
-    for (const status of rule.allowedStatuses) assert.ok(Number.isInteger(status) && status >= 100 && status <= 599);
-    const key = JSON.stringify([rule.method, rule.pathname, rule.queryKeys, rule.queryValues, rule.resourceTypes]);
-    assert.ok(!identities.has(key), 'ambiguous identical rule');
-    identities.add(key);
+export function auditNetwork({ policy, requests, originEvents, violations, captureInterrupted }) {
+  const faults = violations.filter(finding => !finding.incomplete).map(finding => finding.code);
+  const missing = violations.filter(finding => finding.incomplete).map(finding => finding.code);
+  if (captureInterrupted) missing.push("CAPTURE_INTERRUPTED");
+  const buckets = new Map();
+  const byPath = Object.create(null);
+  const byPhase = Object.create(null);
+  const originByPath = Object.create(null);
+  const allowlist = policy.spec?.allowlist ?? {};
+  let cacheRevalidated = false;
+
+  for (const row of originEvents) {
+    const { resource, method, status, terminal, validator, etag, bodySha256 } = row;
+    const expected = own(allowlist, resource);
+    const validRequest = expected && method === "GET";
+    originByPath[resource] = (own(originByPath, resource) ?? 0) + 1;
+    if (!validRequest) faults.push("UNPLANNED_SERVER_REQUEST");
+    if (terminal !== "FINISHED") missing.push("ORIGIN_RESPONSE_INCOMPLETE");
+    if (validRequest && terminal === "FINISHED") {
+      if (status === 200 && bodySha256 !== expected.sha256) faults.push("ORIGIN_BODY_MISMATCH");
+      else if (status === 304 && (!validator || !etag || validator !== etag || bodySha256 !== null)) {
+        faults.push("UNVERIFIED_304");
+      } else if (status !== 200 && status !== 304) faults.push("UNEXPECTED_ORIGIN_STATUS");
+    }
+    const identity = key(resource, validator);
+    if (!buckets.has(identity)) buckets.set(identity, { browser: [], origin: [] });
+    buckets.get(identity).origin.push(row);
   }
-  return structuredClone(policy);
-}
-
-export function observeNetwork(context, sourcePolicy, {onStop, isStopping} = {}) {
-  const policy = validatePolicy(sourcePolicy);
-  const policySha256 = sha256(JSON.stringify(policy));
-  let sequence = 0, stopped = false, sealed = false, closing = false;
-  const byRequest = new WeakMap();
-  const requests = [], events = [], violations = [];
-  const ruleCounts = policy.rules.map(() => 0);
-  const now = () => process.hrtime.bigint().toString(); // lossless monotonic ns, process-local; NOT browser clock
-  const event = (kind, id, details = {}) => events.push({sequence:++sequence, atHostMonotonicNs:now(), kind, requestId:id, ...details});
-  function violation(code, id, details = {}) {
-    const v = {code, requestId:id, ...details};
-    violations.push(v);
-    event('policy_violation',id,{code});
-    if (!stopped) {
-      stopped = true;
-      try { onStop?.({slotId:policy.slotId, reason:code, requestId:id}); }
-      catch (err) { violations.push({code:'STOP_NOTIFICATION_FAILED', error:String(err), requestId:id}); }
+  for (const row of requests) {
+    const { resource, validator, phase, terminal, status, serviceWorker, bodySha256 } = row;
+    const expected = own(allowlist, resource);
+    if (resource) byPath[resource] = (own(byPath, resource) ?? 0) + 1;
+    byPhase[phase] = (own(byPhase, phase) ?? 0) + 1;
+    if (serviceWorker !== false) missing.push("UNVERIFIED_SERVICE_WORKER");
+    if (terminal !== "FINISHED" || status === null || bodySha256 === null) missing.push("BROWSER_RESPONSE_INCOMPLETE");
+    else if (expected && bodySha256 !== expected.sha256) faults.push("BODY_HASH_MISMATCH");
+    const identity = key(resource, validator);
+    if (!buckets.has(identity)) buckets.set(identity, { browser: [], origin: [] });
+    buckets.get(identity).browser.push(row);
+  }
+  const associations = [];
+  for (const { browser, origin } of buckets.values()) {
+    // Equal-bodies HTTP 200 repeats are equivalent. A mixed 200/304 bucket
+    // cannot be paired by guessing the order of concurrent requests.
+    if (browser.length !== origin.length || new Set(origin.map(row => row.status)).size > 1) {
+      missing.push("UNEXPLAINED_BROWSER_ORIGIN_DIFFERENCE");
+      continue;
+    }
+    for (const [index, row] of browser.entries()) {
+      const server = origin[index];
+      associations.push({ requestId: row.id, originId: server.id, statusBrowser: row.status, statusServer: server.status });
+      if (server.status === 304) cacheRevalidated = true;
     }
   }
-  function fromRequest(request) {
-    const row = byRequest.get(request);
-    if (!row) { violation('EVENT_WITHOUT_REQUEST',null); return null; }
+  const countDeviation = !policy.calibration && (
+    requests.length !== policy.spec.baselineRequestCount ||
+    Object.keys(byPath).length !== Object.keys(policy.spec.baselinePathMultiset).length ||
+    Object.entries(policy.spec.baselinePathMultiset).some(([path, count]) => byPath[path] !== count) ||
+    requests.some(row => row.phase !== "page.goto") || cacheRevalidated);
+  const classification = faults.length ? "NETWORK_AUDIT_FAIL" : missing.length ? "INCOMPLETE" :
+    countDeviation ? "COUNT_DEVIATION" : "BASELINE_MATCH";
+  return {
+    classification, auditVerdict: faults.length ? "FAIL" : missing.length ? "INCOMPLETE" : "PASS",
+    evidenceStatus: missing.length ? "INCOMPLETE" : "COMPLETE",
+    comparisonVerdict: faults.length ? "UNRELIABLE" : missing.length ? "UNKNOWN" :
+      policy.calibration ? "CALIBRATION_ZERO" : classification,
+    faults: [...new Set(faults)], missing: [...new Set(missing)], byPath, originByPath, byPhase, associations,
+    browserTotal: requests.length, originTotal: originEvents.length, cacheRevalidated,
+  };
+}
+
+export function observeNetwork(context, policy, { onStop, isStopping, phase }) {
+  const rows = new Map();
+  const ignored = new WeakSet();
+  const responses = new Map();
+  const events = [], violations = [];
+  let closing = false;
+  let sequence = 0;
+  let bodyCalls = 0;
+  let requestSequence = 0;
+  const event = (kind, row, fields = {}) => events.push({
+    sequence: ++sequence, atHostMonotonicNs: process.hrtime.bigint().toString(), kind,
+    requestId: row?.id ?? null, ...fields,
+  });
+  function finding(code, row, incomplete = false) {
+    violations.push({ code, requestId: row?.id ?? null, incomplete });
+    event("finding", row, { code, incomplete });
+    if (!incomplete) onStop({ slotId: policy.slotId, reason: code, requestId: row?.id ?? null });
+  }
+  function requestRow(request) {
+    const row = rows.get(request);
+    if (ignored.has(request)) return null;
+    if (!row) finding("EVENT_WITHOUT_REQUEST", null, true);
     return row;
   }
   const handlers = {
     request(request) {
-      if (sealed) { violation('EVENT_AFTER_SEAL',null); return; }
-      const id = `${policy.slotId}-net-${requests.length+1}`;
-      let url, method, resourceType, predecessor;
-      try {
-        url = request.url(); method = request.method(); resourceType = request.resourceType();
-        predecessor = request.redirectedFrom?.() ?? null;
-      } catch (err) { violation('REQUEST_METADATA_UNREADABLE',id,{error:String(err)}); return; }
-      const row = {id,slotId:policy.slotId,url,method,resourceType,redirectedFrom:null,responseStatus:null,
-        responseFromServiceWorker:'UNKNOWN',cacheDisposition:'UNDETERMINED',terminal:null,failure:null,ruleIndex:null};
-      requests.push(row); byRequest.set(request,row);
-      if (predecessor) {
-        row.redirectedFrom = byRequest.get(predecessor)?.id ?? 'PARENT_NOT_CAPTURED';
-        if (row.redirectedFrom === 'PARENT_NOT_CAPTURED') violation('REDIRECT_PARENT_NOT_CAPTURED',id);
+      const row = { id: ++requestSequence, phase: phase(), url: null, resource: null, method: null,
+        validator: null, redirectedFrom: null, status: null, serviceWorker: "UNKNOWN",
+        terminal: null, bodySha256: null, bodyBase64: null };
+      if (rows.has(request)) { finding("DUPLICATE_REQUEST_EVENT", rows.get(request), true); return; }
+      rows.set(request, row);
+      try { row.url = request.url(); }
+      catch { finding("REQUEST_URL_UNREADABLE", row, true); return; }
+      let url;
+      try { url = new URL(row.url); }
+      catch { finding("BAD_REQUEST_URL", row); return; }
+      if (policy.calibration && !["http:", "https:"].includes(url.protocol)) {
+        ignored.add(request);
+        rows.delete(request);
+        return;
       }
-      event('request',id,{url,method,resourceType});
-      let parsed;
-      try { parsed = new URL(url); }
-      catch { violation('BAD_REQUEST_URL',id); return; }
-      if (parsed.origin !== policy.origin) { violation('UNKNOWN_ORIGIN',id,{origin:parsed.origin}); return; }
-      const keys = [...parsed.searchParams.keys()].sort();
-      if (new Set(keys).size !== keys.length) { violation('DUPLICATE_QUERY_KEY',id); return; }
-      const matches = policy.rules.map((r,i)=>({r,i})).filter(({r})=>r.method===method && r.pathname===parsed.pathname &&
-        JSON.stringify(r.queryKeys)===JSON.stringify(keys) &&
-        keys.every(key=>parsed.searchParams.get(key)===r.queryValues[key]) && r.resourceTypes.includes(resourceType));
-      if (matches.length !== 1) { violation(matches.length?'AMBIGUOUS_ALLOWLIST':'UNKNOWN_REQUEST',id,{path:parsed.pathname,queryKeys:keys}); return; }
-      row.ruleIndex = matches[0].i;
-      ruleCounts[row.ruleIndex]++;
-      if (ruleCounts[row.ruleIndex] > matches[0].r.max) violation('REQUEST_COUNT_EXCEEDED',id,{ruleIndex:row.ruleIndex,count:ruleCounts[row.ruleIndex]});
+      event("request", row, { phase: row.phase });
+      row.resource = url.pathname;
+      if (policy.calibration || url.origin !== policy.origin || url.username || url.password ||
+          ![url.origin + url.pathname, url.origin + url.pathname + url.hash].includes(row.url) ||
+          !own(policy.spec.allowlist, row.resource)) finding("UNKNOWN_REQUEST", row);
+      try {
+        row.method = request.method();
+        if (row.method !== "GET") finding("UNAPPROVED_METHOD", row);
+      } catch {
+        finding("REQUEST_METHOD_UNREADABLE", row, true);
+      }
+      try {
+        row.validator = request.headers?.()["if-none-match"] ?? null;
+        const predecessor = request.redirectedFrom?.();
+        if (predecessor) {
+          row.redirectedFrom = rows.get(predecessor)?.id ?? "UNKNOWN";
+          finding("UNAPPROVED_REDIRECT", row);
+        }
+      } catch {
+        finding("REQUEST_METADATA_UNREADABLE", row, true);
+      }
     },
     response(response) {
       let row;
+      try { row = requestRow(response.request()); }
+      catch { finding("RESPONSE_REQUEST_UNREADABLE", null, true); return; }
+      if (!row) return;
+      if (responses.has(row)) { finding("DUPLICATE_RESPONSE", row, true); return; }
+      responses.set(row, response);
       try {
-        row = fromRequest(response.request());
-        if (!row) return;
-        row.responseStatus = response.status();
-        row.responseFromServiceWorker = typeof response.fromServiceWorker === 'function' ? response.fromServiceWorker() : 'UNKNOWN';
-        event('response',row.id,{status:row.responseStatus,fromServiceWorker:row.responseFromServiceWorker});
-        if (row.ruleIndex !== null && !policy.rules[row.ruleIndex].allowedStatuses.includes(row.responseStatus))
-          violation('UNEXPECTED_HTTP_STATUS',row.id,{status:row.responseStatus});
-      } catch (err) { violation('RESPONSE_METADATA_UNREADABLE',row?.id ?? null,{error:String(err)}); }
+        row.status = response.status();
+        row.serviceWorker = response.fromServiceWorker?.() ?? "UNKNOWN";
+        event("response", row, { status: row.status, serviceWorker: row.serviceWorker });
+        if (row.status !== 200) finding("UNEXPECTED_HTTP_STATUS", row);
+      } catch {
+        finding("RESPONSE_METADATA_UNREADABLE", row, true);
+      }
     },
     requestfinished(request) {
-      const row = fromRequest(request); if (!row) return;
-      if (row.terminal) { violation('DUPLICATE_TERMINAL',row.id); return; }
-      row.terminal = 'FINISHED'; event('requestfinished',row.id);
-      if (row.responseStatus === null) violation('FINISHED_WITHOUT_RESPONSE',row.id);
+      const row = requestRow(request);
+      if (!row) return;
+      if (row.terminal) { finding("DUPLICATE_TERMINAL", row, true); return; }
+      row.terminal = "FINISHED";
+      event("requestfinished", row);
     },
     requestfailed(request) {
-      const duringShutdown = closing || isStopping?.();
-      const row = duringShutdown ? byRequest.get(request) : fromRequest(request);
-      if (duringShutdown && (!row || row.terminal)) {
-        event('requestfailed',row?.id ?? null,{duringShutdown:true,unmatchedTerminal:true});
-        return;
-      }
+      const row = requestRow(request);
       if (!row) return;
-      if (row.terminal) { violation('DUPLICATE_TERMINAL',row.id); return; }
-      row.terminal = duringShutdown ? 'SHUTDOWN_FAILURE' : 'FAILED';
-      try { row.failure = request.failure()?.errorText || 'UNSPECIFIED_NETWORK_FAILURE'; }
-      catch { row.failure = 'FAILURE_METADATA_UNKNOWN'; }
-      event('requestfailed',row.id,{failure:row.failure,duringShutdown:!!duringShutdown});
-      if (!duringShutdown) violation('NETWORK_FAILURE',row.id);
-    }
+      if (row.terminal) { finding("DUPLICATE_TERMINAL", row, true); return; }
+      const shutdown = closing || isStopping();
+      row.terminal = shutdown ? "SHUTDOWN_FAILURE" : "FAILED";
+      try { row.failure = request.failure()?.errorText ?? null; }
+      catch { row.failure = null; }
+      event("requestfailed", row, { shutdown, failure: row.failure });
+      if (!shutdown) finding("NETWORK_FAILURE", row);
+    },
   };
-  for (const [name, fn] of Object.entries(handlers)) context.on(name,fn);
-  function finalise({interrupted=false} = {}) {
-    if (sealed) throw new Error('ledger already sealed');
-    sealed = true;
-    for (const [name, fn] of Object.entries(handlers)) context.off(name,fn);
-    const countProblems = policy.rules.flatMap((r,i)=>ruleCounts[i]<r.min?[{code:'BELOW_MINIMUM',ruleIndex:i,observed:ruleCounts[i],min:r.min}]:[]);
-    const incomplete = requests.filter(r=>r.terminal===null || r.terminal==='SHUTDOWN_FAILURE').map(r=>r.id);
-    const failed = violations.length || (!interrupted && countProblems.length);
-    const incompleteCapture = interrupted || incomplete.length || (!requests.length && policy.rules.length);
-    const verdict = failed ? 'FAIL' : incompleteCapture ? 'INCOMPLETE' : 'PASS';
-    const counts = policy.rules.map((rule,index)=>({ruleIndex:index,method:rule.method,pathname:rule.pathname,queryKeys:rule.queryKeys,queryValues:rule.queryValues,resourceTypes:rule.resourceTypes,expected:{min:rule.min,max:rule.max},observed:ruleCounts[index]}));
-    return {schemaVersion:1,kind:'STAGE_C_NETWORK_LEDGER',slotId:policy.slotId,policySha256,
-      evidenceStatus: verdict === 'PASS' ? 'COMPLETE' : 'INCOMPLETE',networkPolicyVerdict:verdict,captureInterrupted:interrupted,
-      note:'This is per-context Playwright-observed traffic, not proof of every physical network packet or cache hit.',
-      counts,requests,events,violations,countProblems,incompleteRequestIds:incomplete,
-      stopRequested:stopped,cacheGroundTruth:'UNKNOWN',rawResponseBytes:'NOT_CAPTURED_BY_THIS_MODULE'};
-  }
-  return {finalise,beginContextClose:()=>{closing=true;},shouldStop:()=>stopped,policySha256};
-}
-
-/** Exclusive, byte-verified local output. Call after the slot's primary has been captured. */
-export function saveNetworkLedger(filename, receipt) {
-  const bytes = Buffer.from(JSON.stringify(receipt,null,2)+'\n');
-  const fd = fs.openSync(filename,'wx',0o600);
-  try { fs.writeFileSync(fd,bytes); fs.fsyncSync(fd); }
-  finally { fs.closeSync(fd); }
-  const saved = fs.readFileSync(filename);
-  assert.deepEqual(saved,bytes, 'written network ledger must independently read back');
-  return {path:filename,bytes:saved.length,sha256:sha256(saved)};
+  for (const [name, listener] of Object.entries(handlers)) context.on(name, listener);
+  return {
+    beginContextClose() { closing = true; },
+    async collectBodies(signal) {
+      for (const [row, response] of responses) {
+        signal.throwIfAborted();
+        if (row.status !== 200 || row.bodySha256 !== null) continue;
+        const expected = own(policy.spec?.allowlist ?? {}, row.resource);
+        if (!expected) continue;
+        try {
+          bodyCalls++;
+          const bytes = Buffer.from(await response.body());
+          signal.throwIfAborted();
+          row.bodySha256 = sha256(bytes);
+          row.bodyBase64 = bytes.toString("base64");
+          event("response_body", row, { bytes: bytes.length, sha256: row.bodySha256 });
+          if (row.bodySha256 !== expected.sha256) finding("BODY_HASH_MISMATCH", row);
+        } catch (error) {
+          if (signal.aborted) throw error;
+          finding("BROWSER_BODY_UNREADABLE", row, true);
+        }
+      }
+      return bodyCalls;
+    },
+    finalise(originEvents, captureInterrupted) {
+      for (const [name, listener] of Object.entries(handlers)) context.off(name, listener);
+      const requests = [...rows.values()];
+      const adjudication = auditNetwork({ policy, requests, originEvents, violations, captureInterrupted });
+      return {
+        schemaVersion: 1, kind: "STAGE_C_NETWORK_LEDGER", slotId: policy.slotId, level: policy.level,
+        policySha256: sha256(JSON.stringify(policy)), fixedSourceHead: policy.fixedSourceHead,
+        fixedBuildBindingSha256: policy.fixedBuildBindingSha256, captureInterrupted,
+        requests, events, originEvents, violations, ...adjudication,
+      };
+    },
+  };
 }

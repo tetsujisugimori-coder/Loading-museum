@@ -1,6 +1,5 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { EventEmitter } from "node:events";
 import { mkdirSync, mkdtempSync, rmSync, symlinkSync } from "node:fs";
 import { join } from "node:path";
 import test from "node:test";
@@ -10,7 +9,7 @@ import { createBrowserCalibration, evaluateCalibrationReceipt, runCalibrationPag
 import { prepareBrowserStageC } from "./browser-runtime.mjs";
 import { i2RecorderInitSource } from "./i1-timing.mjs";
 import { createRawEvidence } from "./raw-evidence.mjs";
-import { auditDelivery, expectedDelivery, freezeResourcePlan, recordBrowserResponses } from "./resource-evidence.mjs";
+import { freezeResourcePlan } from "./resource-evidence.mjs";
 
 const signal = new AbortController().signal;
 const resource = "/Loading-museum/";
@@ -73,32 +72,10 @@ test("exclusive original and independent file handle reject overwrite and symlin
   assert.throws(() => store.read("substitute.json"), { code: "ELOOP" });
 });
 
-test("the byte audit requires both original sources and exactly the pinned resource occurrences", () => {
-  const plan = freezeResourcePlan([entry]);
-  const raw = [{ resource, bytes }];
-  assert.deepEqual(auditDelivery(plan, raw, raw), expectedDelivery(plan));
-  assert.throws(() => auditDelivery(plan, [], raw), /Resource count mismatch/);
-  assert.throws(() => auditDelivery(plan, raw, [...raw, ...raw]), /Resource count mismatch/);
-  assert.throws(() => auditDelivery(plan, raw, [{ resource, bytes: Buffer.from("different") }]), /Resource bytes mismatch/);
-  assert.throws(() => freezeResourcePlan([{ ...entry, sha256: "0".repeat(64) }]), /Invalid fixed resource/);
-});
-
-test("the browser handler checks metadata immediately and reads no body before collection", async () => {
-  const plan = freezeResourcePlan([entry]);
-  const page = new EventEmitter();
-  const origin = "http://127.0.0.1:7020";
-  let reads = 0;
-  const response = { url: () => origin + resource, status: () => 200, body: () => { reads++; return bytes; } };
-  const capture = recordBrowserResponses(page, origin, plan);
-  page.emit("response", response);
-  capture.check();
-  assert.equal(reads, 0);
-  assert.deepEqual(await capture.collect(signal), [{ resource, bytes }]);
-  assert.equal(reads, 1);
-  const wrong = recordBrowserResponses(page, origin, plan);
-  page.emit("response", { ...response, url: () => origin + resource + "unexpected" });
-  assert.throws(() => wrong.check(), /Unplanned browser response metadata/);
-  assert.throws(() => capture.check(), /Unplanned browser response metadata/);
-  await assert.rejects(wrong.collect(signal), /Unplanned browser response metadata/);
-  assert.equal(reads, 1);
+test("the fixed resource plan takes an independent byte snapshot and rejects changed bytes", () => {
+  const original = { ...entry, bytes: Buffer.from(bytes) };
+  const plan = freezeResourcePlan([original]);
+  original.bytes.fill(0);
+  assert.deepEqual(plan.get(resource).bytes, bytes);
+  assert.throws(() => freezeResourcePlan([original]), /Invalid fixed resource/);
 });

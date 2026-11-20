@@ -34,7 +34,7 @@ export function stageCS1InitSource(slot, streamId) {
 export const stageCS1PauseOrigin = ()=>Date.now()+1000;
 export const stageCS1FinishMarks = () => globalThis.__lm88StageCI1?.finish();
 
-async function sampleOriginalPrimary(session, slot, signal) {
+async function sampleOriginalPrimary(session, slot, signal, capture) {
   const { page, streamId, originUrl } = session;
   const call = operation => checked(signal, () => {
     session.check?.();
@@ -45,7 +45,9 @@ async function sampleOriginalPrimary(session, slot, signal) {
   session.checkOperation?.("setDefaultTimeout");
   page.setDefaultTimeout(9000);
   await call(() => page.addInitScript(stageCS1InitSource(slot, streamId)));
-  await call(() => page.goto(destination));
+  session.phase = "page.goto";
+  try { await call(() => page.goto(destination)); }
+  finally { session.phase = "afterNavigation"; }
   const stage = page.locator("#modern-exhibit-swipe-dismiss");
   const root = stage.getByTestId("swipe-to-dismiss");
   await call(() => root.waitFor());
@@ -76,19 +78,25 @@ async function sampleOriginalPrimary(session, slot, signal) {
   await call(() => page.mouse.move(x + 130, y, { steps: 8 }));
   await call(() => page.mouse.up());
   await call(() => page.clock.runFor(swipe.advance));
-  const state = await call(() => root.getAttribute("data-state"));
-  return { root, input: { destination, pauseAt, rectangle: rect },
-    primary: Object.freeze({ apiSeq: primarySeq, state, verdict: state === swipe.expected ? "PASS" : "FAIL" }) };
+  signal.throwIfAborted();
+  session.check?.();
+  // The command passed the gate. A stop during its execution does not erase
+  // the returned observation or authorize a second read.
+  return capture(root, { destination, pauseAt, rectangle: rect });
 }
 
 /**
  * Exercises the dedicated registration with injected sessions and synthetic calibration.
  * A session provider owns browser/context/trace setup and cleanup, including any still
  * in flight when aborted. writePrimary is a synchronous, exclusive host save.
- * The injected body collector supplies bytes for the independently fixed expectedBodies.
+ * Synthetic fixtures can supply fixed body bytes. The browser runtime instead
+ * returns the persisted network adjudication when finalizing the slot.
  */
 export function runS1Preparation({ clock, stopSignal, networkStopSignal, runtime, calibration, expectedBodies }) {
   const active = new Map();
+  const observed = new Map();
+  let pendingPrimary;
+  let cleanupEnded = false;
   const adapter = {
     runCalibration: (slot, signal) => calibration.runCalibration(slot, signal),
     readBackCalibration: (slot, signal) => calibration.readBackCalibration(slot, signal),
@@ -100,16 +108,24 @@ export function runS1Preparation({ clock, stopSignal, networkStopSignal, runtime
         return opened;
       });
       const row = active.get(slot.id);
-      const { root, input, primary } = await sampleOriginalPrimary(session, slot, signal);
-      row.root = root;
-      row.input = input;
-      const bytes = Buffer.from(JSON.stringify({ slotId: slot.id, streamId: session.streamId, primary }));
-      try {
-        assert.equal(runtime.writePrimary(slot, bytes), undefined, "primary save must finish synchronously");
-      } catch {
-        row.primaryWriteFailed = true;
-      }
-      return primary.verdict;
+      return sampleOriginalPrimary(session, slot, signal, (root, input) => {
+        pendingPrimary = (async () => {
+          const state = await root.getAttribute("data-state");
+          const primary = { apiSeq: primarySeq, state, verdict: state === swipe.expected ? "PASS" : "FAIL" };
+          if (cleanupEnded) return primary.verdict;
+          observed.set(slot.id, primary.verdict);
+          row.root = root;
+          row.input = input;
+          const bytes = Buffer.from(JSON.stringify({ slotId: slot.id, streamId: session.streamId, primary }));
+          try {
+            assert.equal(runtime.writePrimary(slot, bytes), undefined, "primary save must finish synchronously");
+          } catch {
+            row.primaryWriteFailed = true;
+          }
+          return primary.verdict;
+        })();
+        return pendingPrimary;
+      });
     },
     async observeFollowup(slot, signal) {
       const row = active.get(slot.id);
@@ -130,11 +146,23 @@ export function runS1Preparation({ clock, stopSignal, networkStopSignal, runtime
     },
     async finalizeProductSlot(slot, signal) {
       const { session } = active.get(slot.id);
-      await checked(signal, () => runtime.closeSlot(slot, session, signal));
+      const result = await checked(signal, () => runtime.closeSlot(slot, session, signal));
       active.delete(slot.id);
+      return result;
     },
-    cleanup(reason, signal) {
-      return runtime.cleanup(reason, signal);
+    async cleanup(reason, signal) {
+      const end = () => { cleanupEnded = true; };
+      signal.addEventListener("abort", end, { once: true });
+      try {
+        const result = await runtime.cleanup(reason, signal, async () => {
+          if (pendingPrimary) await Promise.allSettled([pendingPrimary]);
+          end();
+        });
+        return { ...result, observedPrimaryVerdicts: observed };
+      } finally {
+        end();
+        signal.removeEventListener("abort", end);
+      }
     },
   };
   return runOfflineStageC({ clock, stopSignal, networkStopSignal, adapter, expectedBodies });

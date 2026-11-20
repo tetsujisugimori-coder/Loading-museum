@@ -475,3 +475,47 @@ test("network stop racing primary return retains the independently read-back ver
   assert.ok(remaining.every(other => other.state === "NOT_STARTED"));
   assert.ok(!setup.calls.some(([operation]) => operation === "followup"));
 });
+
+for (const [classification, auditVerdict, evidenceStatus, cleanup, persistence, state] of [
+  ["COUNT_DEVIATION", "PASS", "COMPLETE", "PASS", "PASS", "COMPLETED"],
+  ["NETWORK_AUDIT_FAIL", "FAIL", "COMPLETE", "PASS", "PASS", "STARTED_INTERRUPTED"],
+  ["INCOMPLETE", "INCOMPLETE", "INCOMPLETE", "FAIL", "PASS", "STARTED_INTERRUPTED"],
+  ["INCOMPLETE", "INCOMPLETE", "INCOMPLETE", "PASS", "FAIL", "STARTED_INTERRUPTED"],
+]) {
+  test(`network contract finalization ${classification}/${cleanup}/${persistence} stops later slots and keeps the primary`, async () => {
+    const setup = fixture();
+    setup.adapter.finalizeProductSlot = slot => {
+      setup.calls.push(["finalize-product", slot.id]);
+      return { classification, auditVerdict, evidenceStatus, cleanup, persistence };
+    };
+    setup.adapter.cleanup = reason => {
+      setup.calls.push(["cleanup", reason]);
+      return { cleanup, persistence };
+    };
+    const result = await runOfflineStageC({ ...setup, expectedBodies: undefined });
+    const [first, ...rest] = productRows(result);
+    assert.equal(first.primaryVerdict, "FAIL");
+    assert.equal(first.networkClassification, classification);
+    assert.equal(first.auditVerdict, auditVerdict);
+    assert.equal(first.state, state);
+    assert.ok(rest.every(row => row.state === "NOT_STARTED"));
+    assert.deepEqual(setup.calls.slice(-2), [["finalize-product", first.id], ["cleanup", classification]]);
+    assert.equal(result.stopRequested, true);
+    assert.equal(result.stopCompleted, cleanup === "PASS" && persistence === "PASS");
+  });
+}
+
+test("only the saved baseline comparison permits another mock slot", async () => {
+  const setup = fixture();
+  const second = productIds[1];
+  setup.adapter.finalizeProductSlot = ({ id }) => ({
+    classification: id === second ? "COUNT_DEVIATION" : "BASELINE_MATCH",
+    auditVerdict: "PASS", evidenceStatus: "COMPLETE", cleanup: "PASS", persistence: "PASS",
+  });
+  const result = await runOfflineStageC({ ...setup, expectedBodies: undefined });
+  const [first, next, ...rest] = productRows(result);
+  assert.equal(first.networkClassification, "BASELINE_MATCH");
+  assert.equal(next.id, second);
+  assert.equal(next.networkClassification, "COUNT_DEVIATION");
+  assert.ok(rest.every(row => row.state === "NOT_STARTED"));
+});

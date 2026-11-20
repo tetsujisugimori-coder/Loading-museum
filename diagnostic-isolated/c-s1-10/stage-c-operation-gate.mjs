@@ -18,11 +18,6 @@ export function createNetworkOperationGate(onStop) {
         throw new Error("STAGE_C_STOP_REQUESTED: " + action);
       }
     },
-    acceptNetworkLedger(ledger) {
-      if (ledger.networkPolicyVerdict !== "PASS" || ledger.evidenceStatus !== "COMPLETE") {
-        this.requestStop({ slotId: ledger.slotId, reason: "NETWORK_LEDGER_NOT_PASS" });
-      }
-    },
     snapshot: () => ({ firstReason, deniedNewOperations: denied.slice() }),
   };
 }

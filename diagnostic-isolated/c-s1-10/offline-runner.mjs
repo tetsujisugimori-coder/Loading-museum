@@ -188,6 +188,26 @@ async function observeProduct(slot, record, adapter, expectedBody, supervisor) {
   const followup = await supervisor.work(signal => adapter.observeFollowup(slot, signal));
   if (followup === interrupted) return;
 
+  if (expectedBody === undefined) {
+    const collected = await supervisor.work(signal => adapter.collectBody(slot, signal));
+    if (collected === interrupted) return;
+    const receipt = await supervisor.work(signal => adapter.finalizeProductSlot(slot, signal));
+    if (receipt === interrupted) return;
+    supervisor.commitWork(atMs => {
+      applyNetworkReceipt(record, receipt);
+      if (receipt?.persistence === "PASS" && receipt.cleanup === "PASS" &&
+          ["BASELINE_MATCH", "COUNT_DEVIATION"].includes(receipt.classification) &&
+          receipt.auditVerdict === "PASS" && receipt.evidenceStatus === "COMPLETE") {
+        record.evidence = "COMPLETE";
+        record.state = "COMPLETED";
+      }
+      if (record.state !== "COMPLETED" || receipt.classification !== "BASELINE_MATCH") {
+        supervisor.requestStop(record.networkClassification ?? "NETWORK_RECEIPT_MISSING", atMs);
+      }
+    });
+    return;
+  }
+
   let body;
   try {
     body = await supervisor.work(signal => adapter.collectBody(slot, signal));
@@ -224,6 +244,14 @@ async function observeProduct(slot, record, adapter, expectedBody, supervisor) {
   }
 }
 
+function applyNetworkReceipt(record, receipt) {
+  if (!receipt) return;
+  record.networkClassification = receipt.classification;
+  record.networkEvidence = receipt.evidenceStatus;
+  record.networkComparison = receipt.comparisonVerdict;
+  if (record.primaryVerdict !== null) record.auditVerdict = receipt.auditVerdict;
+}
+
 function failBodyAudit(record, supervisor, atMs) {
   record.auditVerdict = "FAIL";
   record.evidence = "INCOMPLETE";
@@ -233,7 +261,7 @@ function failBodyAudit(record, supervisor, atMs) {
 }
 
 /**
- * Runs the registered sequence against synthetic adapters. Calibration production and
+ * Runs the registered sequence against a browser adapter or a synthetic fixture. Calibration production and
  * readback use separate adapter methods. finalizeCalibration verifies calibration cleanup
  * and persistence before product work. Expected body bytes are snapshotted from the fixture
  * plan before observation. All active work takes a stop signal.
@@ -251,7 +279,7 @@ export async function runOfflineStageC({ clock, stopSignal, networkStopSignal, a
   let persistence = "INCOMPLETE";
   try {
     const fixtureBodies = new Map();
-    for (const slot of slots.slice(registration.scope.calibrationSlots)) {
+    for (const slot of expectedBodies ? slots.slice(registration.scope.calibrationSlots) : []) {
       const bytes = expectedBodies.get(slot.id);
       if (!(bytes instanceof Uint8Array)) throw new TypeError(`Missing expected body: ${slot.id}`);
       fixtureBodies.set(slot.id, Buffer.from(bytes));
@@ -290,9 +318,12 @@ export async function runOfflineStageC({ clock, stopSignal, networkStopSignal, a
           cleanup = cleanupResult;
           persistence = persistenceResult;
           for (const record of records) {
+            applyNetworkReceipt(record, result?.networkReceipts?.get(record.id));
             const saved = result?.persistedPrimaryVerdicts?.get(record.id);
-            if (record.primaryVerdict === "NOT_TESTED" && (saved === "PASS" || saved === "FAIL")) {
-              record.primaryVerdict = saved;
+            const observed = result?.observedPrimaryVerdicts?.get(record.id);
+            if (record.primaryVerdict === "NOT_TESTED") {
+              if (saved === "PASS" || saved === "FAIL") record.primaryVerdict = saved;
+              else if (observed === "PASS" || observed === "FAIL") record.primaryVerdict = observed;
             }
           }
           if (cleanup !== "PASS" || persistence !== "PASS") supervisor.requestStop("FINALIZATION_FAILURE", atMs);
@@ -305,7 +336,9 @@ export async function runOfflineStageC({ clock, stopSignal, networkStopSignal, a
         supervisor.requestStop("FINALIZATION_FAILURE", atMs);
       });
     }
-    return { records, stop: supervisor.stop, calibrationFinalization, cleanup, persistence };
+    const { stop } = supervisor;
+    return { records, stop, stopRequested: stop.requestedAtMs !== null,
+      stopCompleted: stop.completedAtMs !== null, calibrationFinalization, cleanup, persistence };
   } finally {
     supervisor.close();
   }

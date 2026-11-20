@@ -1,32 +1,40 @@
-import { renameSync, writeFileSync } from "node:fs";
+import { linkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { observeNetwork, saveNetworkLedger } from "./stage-c-network-ledger.mjs";
+import { sha256 } from "./build-resources.mjs";
+import { observeNetwork } from "./stage-c-network-ledger.mjs";
 
-export function attachStageCNetwork(context, trustedPolicy, gate, signal) {
-  const { slotId } = trustedPolicy;
-  const ledger = observeNetwork(context, trustedPolicy, {
-    onStop: fault => gate.requestStop(fault), isStopping: () => signal?.aborted,
+export function attachStageCNetwork(context, policy, gate, signal, phase) {
+  const { slotId } = policy;
+  const ledger = observeNetwork(context, policy, {
+    onStop: fault => gate.requestStop(fault), isStopping: () => signal.aborted, phase,
   });
   return {
     beginContextClose: ledger.beginContextClose,
-    // Context closure must finish before sealing. On interruption this records partial evidence.
-    sealAndPersist(path, interrupted) {
+    collectBodies: ledger.collectBodies,
+    sealAndPersist(evidence, originEvents, interrupted) {
+      const record = ledger.finalise(originEvents, interrupted);
+      const filename = `${slotId}.network.json`;
+      const bytes = Buffer.from(JSON.stringify(record, null, 2) + "\n");
       try {
-        const record = ledger.finalise({ interrupted });
-        if (!interrupted) gate.acceptNetworkLedger(record);
-        const saved = saveNetworkLedger(path, record);
-        return { networkPolicyVerdict: record.networkPolicyVerdict, evidenceStatus: record.evidenceStatus, saved };
+        evidence.write(filename, bytes);
+        const saved = evidence.read(filename);
+        if (!saved.equals(bytes)) throw new Error("Network receipt readback mismatch");
+        const { classification, auditVerdict, comparisonVerdict, evidenceStatus, faults, missing } = record;
+        return { classification, auditVerdict, comparisonVerdict, evidenceStatus, faults, missing,
+          persistence: "PASS", saved: { filename, bytes: saved.length, sha256: sha256(saved) } };
       } catch (error) {
-        gate.requestStop({ slotId, reason: "NETWORK_RECEIPT_FAILED" });
-        return { networkPolicyVerdict: "INCOMPLETE", evidenceStatus: "INCOMPLETE", error: String(error) };
+        return { classification: record.classification === "NETWORK_AUDIT_FAIL" ? record.classification : "INCOMPLETE",
+          auditVerdict: record.auditVerdict === "FAIL" ? "FAIL" : "INCOMPLETE",
+          evidenceStatus: "INCOMPLETE", comparisonVerdict: record.auditVerdict === "FAIL" ? "UNRELIABLE" : "UNKNOWN",
+          persistence: "FAIL", missing: [...record.missing, "NETWORK_RECEIPT_FAILED"],
+          faults: record.faults, error: String(error) };
       }
     },
   };
 }
 
-// Publish atomically so the namespace-owning supervisor never reads a partial notice.
 export function publishNetworkStopNotice(directory, fault) {
   const pending = join(directory, "network-stop.pending");
   writeFileSync(pending, JSON.stringify(fault), { flag: "wx", mode: 0o400, flush: true });
-  renameSync(pending, join(directory, "network-stop.notice.json"));
+  linkSync(pending, join(directory, "network-stop.notice.json"));
 }

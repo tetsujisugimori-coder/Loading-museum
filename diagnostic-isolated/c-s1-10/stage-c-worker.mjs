@@ -4,9 +4,9 @@ import { createRequire } from "node:module";
 import { join } from "node:path";
 import registration from "../../docs/phase7d/stage-c-api-s1-10/registration.json" with { type: "json" };
 import { prepareBrowserStageC } from "./browser-runtime.mjs";
-import { bindStaticRequests, sha256 } from "./build-resources.mjs";
+import { sha256 } from "./build-resources.mjs";
 import { publishNetworkStopNotice } from "./stage-c-network-adapter.mjs";
-import { preflightNetworkRules } from "./stage-c-network-policy.mjs";
+import { bindContractBuild, preflightNetworkRules } from "./stage-c-network-policy.mjs";
 
 // A HOLD exits before reading build files, importing Playwright or opening evidence.
 if (registration.decision === "HOLD" || registration.executionAuthorization !== true || registration.executable !== true) {
@@ -59,7 +59,7 @@ try {
   stop.signal.throwIfAborted();
   const trustedResources = new Map();
   for (const slot of registration.slots.filter(slot => slot.originalProductTrial !== false)) {
-    trustedResources.set(slot.id, bindStaticRequests(join(root, slot.level), manifest.outputs[slot.level], manifest.requests[slot.id]));
+    trustedResources.set(slot.id, bindContractBuild(join(root, slot.level), manifest.outputs[slot.level]));
   }
   stop.signal.throwIfAborted();
   const requireDriver = createRequire(driverEntry);
@@ -67,7 +67,8 @@ try {
   const { webkit } = requireDriver("playwright");
   const result = await prepareBrowserStageC({ webkit, clock, stopSignal: stop.signal, trustedResources,
     networkRules, onNetworkStop: fault => publishNetworkStopNotice(evidenceDirectory, fault), evidenceDirectory }).run();
-  if (result.networkStop.firstReason) process.exitCode = 1;
+  if (result.stopRequested || result.cleanup !== "PASS" || result.persistence !== "PASS" ||
+      result.records.some(row => row.state !== "COMPLETED")) process.exitCode = 1;
   if (now() < start + registration.bounds.absoluteCutoffSeconds * 1000) console.log(JSON.stringify(result));
 } finally {
   process.stdin.off("data", command).off("end", disconnected).pause();

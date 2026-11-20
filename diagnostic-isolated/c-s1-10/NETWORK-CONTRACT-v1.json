@@ -1,0 +1,691 @@
+{
+  "schemaVersion": 1,
+  "documentId": "LM88-STAGE-C-NETWORK-CONTRACT-V1",
+  "status": "RULES_FIXED_REQUIRES_LOCAL_INTEGRATION_REVIEW_AND_SEPARATE_EXECUTION_AUTHORIZATION",
+  "scope": {
+    "repository": "tetsujisugimori-coder/Loading-museum",
+    "pullRequest": 88,
+    "localSourceHeadReported": "f4215a8bce9a74cb79a21156cd54b79b78450704",
+    "registeredSlots": [
+      "AP-CAL-01",
+      "AP-CAL-02",
+      "AP-CAL-03",
+      "AP-CAL-04",
+      "AP-01-I0",
+      "AP-01-I1",
+      "AP-01-I2",
+      "AP-02-I1",
+      "AP-02-I2",
+      "AP-02-I0"
+    ],
+    "registeredTrialAuthorization": false,
+    "production108Authorized": false
+  },
+  "trustedBuild": {
+    "zipName": "LM88-Stage-C-Builds-20261120.zip",
+    "zipSha256": "0a3994c4dca200c1b324bda8c0f2d4bd6048bcb809b554f5fc6ff0b06d91f394",
+    "bindingSha256": "2061ffa4afd2889b88a5935bd3e15e6ef219974ef79b32964693b5143de92b92"
+  },
+  "calibration": {
+    "levels": [
+      "I2",
+      "I2",
+      "I2",
+      "I2"
+    ],
+    "httpRequestCountExact": 0,
+    "anyRequest": "INTEGRITY_FAIL_STOP",
+    "scope": "about:blank fixture-generated requests only; other browser-internal traffic not positively proven"
+  },
+  "product": {
+    "levels": {
+      "I0": {
+        "routeInventoryCount": 39,
+        "buildFileCount": 36,
+        "baselineRequestCount": 9,
+        "baselinePathMultiset": {
+          "/Loading-museum/": 1,
+          "/Loading-museum/_next/static/chunks/04-~ubpu4a02a.js": 1,
+          "/Loading-museum/_next/static/chunks/0dbhjjzl8qfwv.js": 1,
+          "/Loading-museum/_next/static/chunks/0ez.8_52520pc.css": 1,
+          "/Loading-museum/_next/static/chunks/0ht900cau6_ur.js": 1,
+          "/Loading-museum/_next/static/chunks/0ujl8a_grwin5.css": 1,
+          "/Loading-museum/_next/static/chunks/0wb6jdvd3md34.js": 1,
+          "/Loading-museum/_next/static/chunks/10kedf-fhjleq.js": 1,
+          "/Loading-museum/_next/static/chunks/turbopack-0gr9hws.yp25p.js": 1
+        },
+        "allowlist": {
+          "/Loading-museum/.nojekyll": {
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "mappedBuildFile": ".nojekyll"
+          },
+          "/Loading-museum/404/index.html": {
+            "sha256": "78afa33ad75d49a08407c4c567c29025ba2f4e1397a5cb2520218138c8a347f4",
+            "mappedBuildFile": "404/index.html"
+          },
+          "/Loading-museum/404/": {
+            "sha256": "78afa33ad75d49a08407c4c567c29025ba2f4e1397a5cb2520218138c8a347f4",
+            "mappedBuildFile": "404/index.html"
+          },
+          "/Loading-museum/404.html": {
+            "sha256": "78afa33ad75d49a08407c4c567c29025ba2f4e1397a5cb2520218138c8a347f4",
+            "mappedBuildFile": "404.html"
+          },
+          "/Loading-museum/__next.__PAGE__.txt": {
+            "sha256": "03ec2f92c9bb43c1c8d140eb850093bc73263423cb50e969860ea8709b8d33e5",
+            "mappedBuildFile": "__next.__PAGE__.txt"
+          },
+          "/Loading-museum/__next._full.txt": {
+            "sha256": "d7a6ae83a6909e425792b058a7e5e78e80d8d846e3d2f3e717f5710b5c45e7f6",
+            "mappedBuildFile": "__next._full.txt"
+          },
+          "/Loading-museum/__next._head.txt": {
+            "sha256": "f4d9e07e376fc9bc99df63575895ac02d866ab2da3066181074c4b000df52845",
+            "mappedBuildFile": "__next._head.txt"
+          },
+          "/Loading-museum/__next._index.txt": {
+            "sha256": "763bc1d5fbc33be643435f62cdabe5c5acb7f7a0dde67ef37c2eff58b11b5a68",
+            "mappedBuildFile": "__next._index.txt"
+          },
+          "/Loading-museum/__next._tree.txt": {
+            "sha256": "3596ff0e7f81b21cb647dd3ce2712724a573a53bf09910739b961c2c3662c5be",
+            "mappedBuildFile": "__next._tree.txt"
+          },
+          "/Loading-museum/_next/static/cK0yqLgNv4VgPgnJ1DMeR/_buildManifest.js": {
+            "sha256": "9476e0afd3f9da68a64e6ec58631191fd3eaca62c9f5a377e7517fe9a89e59ea",
+            "mappedBuildFile": "_next/static/cK0yqLgNv4VgPgnJ1DMeR/_buildManifest.js"
+          },
+          "/Loading-museum/_next/static/cK0yqLgNv4VgPgnJ1DMeR/_clientMiddlewareManifest.js": {
+            "sha256": "5483e3295dc35dfe29ea932efc85341c916f10ff78ff5b0e965e003710893a4a",
+            "mappedBuildFile": "_next/static/cK0yqLgNv4VgPgnJ1DMeR/_clientMiddlewareManifest.js"
+          },
+          "/Loading-museum/_next/static/cK0yqLgNv4VgPgnJ1DMeR/_ssgManifest.js": {
+            "sha256": "678f6ce2cb80b1fe72fc67e7412be6e2ab6ada083111b64f7c40d35e3cba5e00",
+            "mappedBuildFile": "_next/static/cK0yqLgNv4VgPgnJ1DMeR/_ssgManifest.js"
+          },
+          "/Loading-museum/_next/static/chunks/03~yq9q893hmn.js": {
+            "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+            "mappedBuildFile": "_next/static/chunks/03~yq9q893hmn.js"
+          },
+          "/Loading-museum/_next/static/chunks/04-~ubpu4a02a.js": {
+            "sha256": "fcecba6d0a2277c2a97ff7a4e44e2083b2d4cdf6a6d14760744235f160c8b952",
+            "mappedBuildFile": "_next/static/chunks/04-~ubpu4a02a.js"
+          },
+          "/Loading-museum/_next/static/chunks/0dbhjjzl8qfwv.js": {
+            "sha256": "59d6d2186868625417737f3f33980e55f778eb3672cd03a10cf26b1259ca2314",
+            "mappedBuildFile": "_next/static/chunks/0dbhjjzl8qfwv.js"
+          },
+          "/Loading-museum/_next/static/chunks/0ez.8_52520pc.css": {
+            "sha256": "8b82c040b4b7c6f6478b02c57930a87e74cb64df87c1f0bd7dc184014b444469",
+            "mappedBuildFile": "_next/static/chunks/0ez.8_52520pc.css"
+          },
+          "/Loading-museum/_next/static/chunks/0ht900cau6_ur.js": {
+            "sha256": "b2b0fb9dbb3e38abc0110efd9dc4c5ec29e2e7c6cff449d61c95f354b4014f5b",
+            "mappedBuildFile": "_next/static/chunks/0ht900cau6_ur.js"
+          },
+          "/Loading-museum/_next/static/chunks/0ujl8a_grwin5.css": {
+            "sha256": "e1b400b079849ad5550cef75a03c362acd5ddfed4adafe057c6a5cebd4043178",
+            "mappedBuildFile": "_next/static/chunks/0ujl8a_grwin5.css"
+          },
+          "/Loading-museum/_next/static/chunks/0wb6jdvd3md34.js": {
+            "sha256": "0c5228fad20ee7dbaa175bcb3efa5e9ce2f3226846d8f29fb1f4762bfbdbd588",
+            "mappedBuildFile": "_next/static/chunks/0wb6jdvd3md34.js"
+          },
+          "/Loading-museum/_next/static/chunks/10kedf-fhjleq.js": {
+            "sha256": "2718721c6c41e9ec38be5f36472e65d7f20708aa7c36e4a69c81176d493be3a4",
+            "mappedBuildFile": "_next/static/chunks/10kedf-fhjleq.js"
+          },
+          "/Loading-museum/_next/static/chunks/turbopack-0gr9hws.yp25p.js": {
+            "sha256": "055e029166aa463aa1c05d86c2ec9163fada2ff7901d098eb560077ca7d2f66e",
+            "mappedBuildFile": "_next/static/chunks/turbopack-0gr9hws.yp25p.js"
+          },
+          "/Loading-museum/_not-found/__next._full.txt": {
+            "sha256": "e70caae3133354a573d13c74372b16eefe43e851c05845889b64c382894bd7f6",
+            "mappedBuildFile": "_not-found/__next._full.txt"
+          },
+          "/Loading-museum/_not-found/__next._head.txt": {
+            "sha256": "472c4956a96090de19b446963b400f25013ee31f0cb70877cbf61bb1b037a4aa",
+            "mappedBuildFile": "_not-found/__next._head.txt"
+          },
+          "/Loading-museum/_not-found/__next._index.txt": {
+            "sha256": "763bc1d5fbc33be643435f62cdabe5c5acb7f7a0dde67ef37c2eff58b11b5a68",
+            "mappedBuildFile": "_not-found/__next._index.txt"
+          },
+          "/Loading-museum/_not-found/__next._not-found.__PAGE__.txt": {
+            "sha256": "eaadab7cd3bbf6339a37ee3f4acac93524f461e4d9bd9cccdfca5bd04ded042d",
+            "mappedBuildFile": "_not-found/__next._not-found.__PAGE__.txt"
+          },
+          "/Loading-museum/_not-found/__next._not-found.txt": {
+            "sha256": "b20b682ef8df8c11ad707c6fb18b837f896d8086aba464938c9a0fa412dd3a09",
+            "mappedBuildFile": "_not-found/__next._not-found.txt"
+          },
+          "/Loading-museum/_not-found/__next._tree.txt": {
+            "sha256": "210992e33ddb86ac9d460796a9a413307ba1080c984ad88906a33236c425f011",
+            "mappedBuildFile": "_not-found/__next._tree.txt"
+          },
+          "/Loading-museum/_not-found/index.html": {
+            "sha256": "78afa33ad75d49a08407c4c567c29025ba2f4e1397a5cb2520218138c8a347f4",
+            "mappedBuildFile": "_not-found/index.html"
+          },
+          "/Loading-museum/_not-found/": {
+            "sha256": "78afa33ad75d49a08407c4c567c29025ba2f4e1397a5cb2520218138c8a347f4",
+            "mappedBuildFile": "_not-found/index.html"
+          },
+          "/Loading-museum/_not-found/index.txt": {
+            "sha256": "e70caae3133354a573d13c74372b16eefe43e851c05845889b64c382894bd7f6",
+            "mappedBuildFile": "_not-found/index.txt"
+          },
+          "/Loading-museum/annotation/machine.svg": {
+            "sha256": "6b956abedd25d56ce1fa1c361b3acb6250e57a17a47d8d26c492fa9f5557711a",
+            "mappedBuildFile": "annotation/machine.svg"
+          },
+          "/Loading-museum/annotation/map.svg": {
+            "sha256": "75c4c617f1ef8f54de54de3dc23fa08298e65adc6db0d2fe0980090a7f1be0cb",
+            "mappedBuildFile": "annotation/map.svg"
+          },
+          "/Loading-museum/compare/correction-after.svg": {
+            "sha256": "5a179c85e0833cff86e7a28bc13dca44eb514dca7b33dd29aebba27b443b6a82",
+            "mappedBuildFile": "compare/correction-after.svg"
+          },
+          "/Loading-museum/compare/correction-before.svg": {
+            "sha256": "50a302bf4100606c92ae76ca67923292e976795d3be2738c014c49be90912eb0",
+            "mappedBuildFile": "compare/correction-before.svg"
+          },
+          "/Loading-museum/compare/restoration-after.svg": {
+            "sha256": "fb0074d61549c386f923cd520e3dbbe4e8ed9173cac4eb0aabae476cd38f0ff1",
+            "mappedBuildFile": "compare/restoration-after.svg"
+          },
+          "/Loading-museum/compare/restoration-before.svg": {
+            "sha256": "0e7331d3ebe73bfab09fe89a55fac01ac695c79f772cc36cd3b77f361b83df8c",
+            "mappedBuildFile": "compare/restoration-before.svg"
+          },
+          "/Loading-museum/index.html": {
+            "sha256": "249d5e2a9d4418023993127a0c263d680ad6003230856c7831288202cd431499",
+            "mappedBuildFile": "index.html"
+          },
+          "/Loading-museum/": {
+            "sha256": "249d5e2a9d4418023993127a0c263d680ad6003230856c7831288202cd431499",
+            "mappedBuildFile": "index.html"
+          },
+          "/Loading-museum/index.txt": {
+            "sha256": "d7a6ae83a6909e425792b058a7e5e78e80d8d846e3d2f3e717f5710b5c45e7f6",
+            "mappedBuildFile": "index.txt"
+          }
+        },
+        "baselineBrowserVersion": "26.0",
+        "baselinePlaywrightVersion": "1.56.1",
+        "baselineTraceCallCount": 29,
+        "baselineDiagStatus": "ONE_OFF_DIAGNOSTIC_NOT_A_MAXIMUM"
+      },
+      "I1": {
+        "routeInventoryCount": 39,
+        "buildFileCount": 36,
+        "baselineRequestCount": 9,
+        "baselinePathMultiset": {
+          "/Loading-museum/": 1,
+          "/Loading-museum/_next/static/chunks/0dbhjjzl8qfwv.js": 1,
+          "/Loading-museum/_next/static/chunks/0ez.8_52520pc.css": 1,
+          "/Loading-museum/_next/static/chunks/0ht900cau6_ur.js": 1,
+          "/Loading-museum/_next/static/chunks/0ujl8a_grwin5.css": 1,
+          "/Loading-museum/_next/static/chunks/0wb6jdvd3md34.js": 1,
+          "/Loading-museum/_next/static/chunks/10kedf-fhjleq.js": 1,
+          "/Loading-museum/_next/static/chunks/13i63aolbb78b.js": 1,
+          "/Loading-museum/_next/static/chunks/turbopack-0gr9hws.yp25p.js": 1
+        },
+        "allowlist": {
+          "/Loading-museum/.nojekyll": {
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "mappedBuildFile": ".nojekyll"
+          },
+          "/Loading-museum/404/index.html": {
+            "sha256": "b4245920771b66856f6da3e57ad9f5601dbd6e69879c388c2cda6845dd72d570",
+            "mappedBuildFile": "404/index.html"
+          },
+          "/Loading-museum/404/": {
+            "sha256": "b4245920771b66856f6da3e57ad9f5601dbd6e69879c388c2cda6845dd72d570",
+            "mappedBuildFile": "404/index.html"
+          },
+          "/Loading-museum/404.html": {
+            "sha256": "b4245920771b66856f6da3e57ad9f5601dbd6e69879c388c2cda6845dd72d570",
+            "mappedBuildFile": "404.html"
+          },
+          "/Loading-museum/__next.__PAGE__.txt": {
+            "sha256": "c68c1bd80f2fc1cd62ff0605a09647a7af27604b85ddf3a5524c7f5acab95ace",
+            "mappedBuildFile": "__next.__PAGE__.txt"
+          },
+          "/Loading-museum/__next._full.txt": {
+            "sha256": "f356ae6ef3664924ace64bc7ae19a1aa21e7aaa14028ee0ead11066bb922114a",
+            "mappedBuildFile": "__next._full.txt"
+          },
+          "/Loading-museum/__next._head.txt": {
+            "sha256": "259cd441fef27992916cdea1df807eb53a1490dfc0db7c48f3f261658173fe7e",
+            "mappedBuildFile": "__next._head.txt"
+          },
+          "/Loading-museum/__next._index.txt": {
+            "sha256": "fe93071891fbf205cd7bcf03a06ad606f7d56979abbdfc1d09efa6f701053b0c",
+            "mappedBuildFile": "__next._index.txt"
+          },
+          "/Loading-museum/__next._tree.txt": {
+            "sha256": "5aee7369f30e97e05214c03157cb3c1cb098ad9def86baeb551ec4f0bfa60f20",
+            "mappedBuildFile": "__next._tree.txt"
+          },
+          "/Loading-museum/_next/static/BsEu7Dv7yMH24lL3NcEiG/_buildManifest.js": {
+            "sha256": "9476e0afd3f9da68a64e6ec58631191fd3eaca62c9f5a377e7517fe9a89e59ea",
+            "mappedBuildFile": "_next/static/BsEu7Dv7yMH24lL3NcEiG/_buildManifest.js"
+          },
+          "/Loading-museum/_next/static/BsEu7Dv7yMH24lL3NcEiG/_clientMiddlewareManifest.js": {
+            "sha256": "5483e3295dc35dfe29ea932efc85341c916f10ff78ff5b0e965e003710893a4a",
+            "mappedBuildFile": "_next/static/BsEu7Dv7yMH24lL3NcEiG/_clientMiddlewareManifest.js"
+          },
+          "/Loading-museum/_next/static/BsEu7Dv7yMH24lL3NcEiG/_ssgManifest.js": {
+            "sha256": "678f6ce2cb80b1fe72fc67e7412be6e2ab6ada083111b64f7c40d35e3cba5e00",
+            "mappedBuildFile": "_next/static/BsEu7Dv7yMH24lL3NcEiG/_ssgManifest.js"
+          },
+          "/Loading-museum/_next/static/chunks/03~yq9q893hmn.js": {
+            "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+            "mappedBuildFile": "_next/static/chunks/03~yq9q893hmn.js"
+          },
+          "/Loading-museum/_next/static/chunks/0dbhjjzl8qfwv.js": {
+            "sha256": "59d6d2186868625417737f3f33980e55f778eb3672cd03a10cf26b1259ca2314",
+            "mappedBuildFile": "_next/static/chunks/0dbhjjzl8qfwv.js"
+          },
+          "/Loading-museum/_next/static/chunks/0ez.8_52520pc.css": {
+            "sha256": "8b82c040b4b7c6f6478b02c57930a87e74cb64df87c1f0bd7dc184014b444469",
+            "mappedBuildFile": "_next/static/chunks/0ez.8_52520pc.css"
+          },
+          "/Loading-museum/_next/static/chunks/0ht900cau6_ur.js": {
+            "sha256": "b2b0fb9dbb3e38abc0110efd9dc4c5ec29e2e7c6cff449d61c95f354b4014f5b",
+            "mappedBuildFile": "_next/static/chunks/0ht900cau6_ur.js"
+          },
+          "/Loading-museum/_next/static/chunks/0ujl8a_grwin5.css": {
+            "sha256": "e1b400b079849ad5550cef75a03c362acd5ddfed4adafe057c6a5cebd4043178",
+            "mappedBuildFile": "_next/static/chunks/0ujl8a_grwin5.css"
+          },
+          "/Loading-museum/_next/static/chunks/0wb6jdvd3md34.js": {
+            "sha256": "0c5228fad20ee7dbaa175bcb3efa5e9ce2f3226846d8f29fb1f4762bfbdbd588",
+            "mappedBuildFile": "_next/static/chunks/0wb6jdvd3md34.js"
+          },
+          "/Loading-museum/_next/static/chunks/10kedf-fhjleq.js": {
+            "sha256": "2718721c6c41e9ec38be5f36472e65d7f20708aa7c36e4a69c81176d493be3a4",
+            "mappedBuildFile": "_next/static/chunks/10kedf-fhjleq.js"
+          },
+          "/Loading-museum/_next/static/chunks/13i63aolbb78b.js": {
+            "sha256": "cd4ec2826dcfdeab5a33850c07f2807dc18875f754016afb0f2d6c42c8d9238a",
+            "mappedBuildFile": "_next/static/chunks/13i63aolbb78b.js"
+          },
+          "/Loading-museum/_next/static/chunks/turbopack-0gr9hws.yp25p.js": {
+            "sha256": "055e029166aa463aa1c05d86c2ec9163fada2ff7901d098eb560077ca7d2f66e",
+            "mappedBuildFile": "_next/static/chunks/turbopack-0gr9hws.yp25p.js"
+          },
+          "/Loading-museum/_not-found/__next._full.txt": {
+            "sha256": "5a8b093893e2da95850d02297fc563eabf1d73d497a4e2356f6ab19def5ac110",
+            "mappedBuildFile": "_not-found/__next._full.txt"
+          },
+          "/Loading-museum/_not-found/__next._head.txt": {
+            "sha256": "9260727407db346c01022a1080c85f7a3756035212e0b437aa6f1c5794e68b2d",
+            "mappedBuildFile": "_not-found/__next._head.txt"
+          },
+          "/Loading-museum/_not-found/__next._index.txt": {
+            "sha256": "fe93071891fbf205cd7bcf03a06ad606f7d56979abbdfc1d09efa6f701053b0c",
+            "mappedBuildFile": "_not-found/__next._index.txt"
+          },
+          "/Loading-museum/_not-found/__next._not-found.__PAGE__.txt": {
+            "sha256": "9a1dee7d76ff4d80ac601ab59039f402721345720d5b72521e02eaf6774df99b",
+            "mappedBuildFile": "_not-found/__next._not-found.__PAGE__.txt"
+          },
+          "/Loading-museum/_not-found/__next._not-found.txt": {
+            "sha256": "25df8a82656427d54ad0d3d96671f9307815197f0f3006b2461d84f5fd0e5a40",
+            "mappedBuildFile": "_not-found/__next._not-found.txt"
+          },
+          "/Loading-museum/_not-found/__next._tree.txt": {
+            "sha256": "3ed464bdd53f94602cf45bfea53394f901e14c08b4b3d154f5ca530eb4c135b2",
+            "mappedBuildFile": "_not-found/__next._tree.txt"
+          },
+          "/Loading-museum/_not-found/index.html": {
+            "sha256": "b4245920771b66856f6da3e57ad9f5601dbd6e69879c388c2cda6845dd72d570",
+            "mappedBuildFile": "_not-found/index.html"
+          },
+          "/Loading-museum/_not-found/": {
+            "sha256": "b4245920771b66856f6da3e57ad9f5601dbd6e69879c388c2cda6845dd72d570",
+            "mappedBuildFile": "_not-found/index.html"
+          },
+          "/Loading-museum/_not-found/index.txt": {
+            "sha256": "5a8b093893e2da95850d02297fc563eabf1d73d497a4e2356f6ab19def5ac110",
+            "mappedBuildFile": "_not-found/index.txt"
+          },
+          "/Loading-museum/annotation/machine.svg": {
+            "sha256": "6b956abedd25d56ce1fa1c361b3acb6250e57a17a47d8d26c492fa9f5557711a",
+            "mappedBuildFile": "annotation/machine.svg"
+          },
+          "/Loading-museum/annotation/map.svg": {
+            "sha256": "75c4c617f1ef8f54de54de3dc23fa08298e65adc6db0d2fe0980090a7f1be0cb",
+            "mappedBuildFile": "annotation/map.svg"
+          },
+          "/Loading-museum/compare/correction-after.svg": {
+            "sha256": "5a179c85e0833cff86e7a28bc13dca44eb514dca7b33dd29aebba27b443b6a82",
+            "mappedBuildFile": "compare/correction-after.svg"
+          },
+          "/Loading-museum/compare/correction-before.svg": {
+            "sha256": "50a302bf4100606c92ae76ca67923292e976795d3be2738c014c49be90912eb0",
+            "mappedBuildFile": "compare/correction-before.svg"
+          },
+          "/Loading-museum/compare/restoration-after.svg": {
+            "sha256": "fb0074d61549c386f923cd520e3dbbe4e8ed9173cac4eb0aabae476cd38f0ff1",
+            "mappedBuildFile": "compare/restoration-after.svg"
+          },
+          "/Loading-museum/compare/restoration-before.svg": {
+            "sha256": "0e7331d3ebe73bfab09fe89a55fac01ac695c79f772cc36cd3b77f361b83df8c",
+            "mappedBuildFile": "compare/restoration-before.svg"
+          },
+          "/Loading-museum/index.html": {
+            "sha256": "f2fc899d8ad4096cd0d5db06cabfc7a7030961ce71a9197e21a83f3864365b7d",
+            "mappedBuildFile": "index.html"
+          },
+          "/Loading-museum/": {
+            "sha256": "f2fc899d8ad4096cd0d5db06cabfc7a7030961ce71a9197e21a83f3864365b7d",
+            "mappedBuildFile": "index.html"
+          },
+          "/Loading-museum/index.txt": {
+            "sha256": "f356ae6ef3664924ace64bc7ae19a1aa21e7aaa14028ee0ead11066bb922114a",
+            "mappedBuildFile": "index.txt"
+          }
+        },
+        "baselineBrowserVersion": "26.0",
+        "baselinePlaywrightVersion": "1.56.1",
+        "baselineTraceCallCount": 30,
+        "baselineDiagStatus": "ONE_OFF_DIAGNOSTIC_NOT_A_MAXIMUM"
+      },
+      "I2": {
+        "routeInventoryCount": 39,
+        "buildFileCount": 36,
+        "baselineRequestCount": 9,
+        "baselinePathMultiset": {
+          "/Loading-museum/": 1,
+          "/Loading-museum/_next/static/chunks/0d6fp-0-8yuw6.js": 1,
+          "/Loading-museum/_next/static/chunks/0dbhjjzl8qfwv.js": 1,
+          "/Loading-museum/_next/static/chunks/0ez.8_52520pc.css": 1,
+          "/Loading-museum/_next/static/chunks/0ht900cau6_ur.js": 1,
+          "/Loading-museum/_next/static/chunks/0ujl8a_grwin5.css": 1,
+          "/Loading-museum/_next/static/chunks/0wb6jdvd3md34.js": 1,
+          "/Loading-museum/_next/static/chunks/10kedf-fhjleq.js": 1,
+          "/Loading-museum/_next/static/chunks/turbopack-0gr9hws.yp25p.js": 1
+        },
+        "allowlist": {
+          "/Loading-museum/.nojekyll": {
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "mappedBuildFile": ".nojekyll"
+          },
+          "/Loading-museum/404/index.html": {
+            "sha256": "d840053613270e0c25f0ed40cbc62e93b2a1cd6d0ac9ddc3d0a549da13fe022d",
+            "mappedBuildFile": "404/index.html"
+          },
+          "/Loading-museum/404/": {
+            "sha256": "d840053613270e0c25f0ed40cbc62e93b2a1cd6d0ac9ddc3d0a549da13fe022d",
+            "mappedBuildFile": "404/index.html"
+          },
+          "/Loading-museum/404.html": {
+            "sha256": "d840053613270e0c25f0ed40cbc62e93b2a1cd6d0ac9ddc3d0a549da13fe022d",
+            "mappedBuildFile": "404.html"
+          },
+          "/Loading-museum/__next.__PAGE__.txt": {
+            "sha256": "e5fd9b77411c65df176886d7d8decaeee6b059f5db489bbca17340f74020880b",
+            "mappedBuildFile": "__next.__PAGE__.txt"
+          },
+          "/Loading-museum/__next._full.txt": {
+            "sha256": "a259d38e4fa4ad5be6a49352ee7017fe20e8ad8151949d49aa94c6b64a69d856",
+            "mappedBuildFile": "__next._full.txt"
+          },
+          "/Loading-museum/__next._head.txt": {
+            "sha256": "e6bff8dd6cb0f49f840568388a6eed54190db3a246aee4bfa7e67fca5a286465",
+            "mappedBuildFile": "__next._head.txt"
+          },
+          "/Loading-museum/__next._index.txt": {
+            "sha256": "da874d77f0197743598d8414da664a08929e7333d7a1c52385cbf0c4833de9d2",
+            "mappedBuildFile": "__next._index.txt"
+          },
+          "/Loading-museum/__next._tree.txt": {
+            "sha256": "667459746f295e1e391f3a1ce04c1f43dc8e2703fda68d22ac0f20571124e6ca",
+            "mappedBuildFile": "__next._tree.txt"
+          },
+          "/Loading-museum/_next/static/chunks/03~yq9q893hmn.js": {
+            "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+            "mappedBuildFile": "_next/static/chunks/03~yq9q893hmn.js"
+          },
+          "/Loading-museum/_next/static/chunks/0d6fp-0-8yuw6.js": {
+            "sha256": "8e8d01010e7aecac8658be0b21fed86bd111303d694165e77b1e065a6a193ec3",
+            "mappedBuildFile": "_next/static/chunks/0d6fp-0-8yuw6.js"
+          },
+          "/Loading-museum/_next/static/chunks/0dbhjjzl8qfwv.js": {
+            "sha256": "59d6d2186868625417737f3f33980e55f778eb3672cd03a10cf26b1259ca2314",
+            "mappedBuildFile": "_next/static/chunks/0dbhjjzl8qfwv.js"
+          },
+          "/Loading-museum/_next/static/chunks/0ez.8_52520pc.css": {
+            "sha256": "8b82c040b4b7c6f6478b02c57930a87e74cb64df87c1f0bd7dc184014b444469",
+            "mappedBuildFile": "_next/static/chunks/0ez.8_52520pc.css"
+          },
+          "/Loading-museum/_next/static/chunks/0ht900cau6_ur.js": {
+            "sha256": "b2b0fb9dbb3e38abc0110efd9dc4c5ec29e2e7c6cff449d61c95f354b4014f5b",
+            "mappedBuildFile": "_next/static/chunks/0ht900cau6_ur.js"
+          },
+          "/Loading-museum/_next/static/chunks/0ujl8a_grwin5.css": {
+            "sha256": "e1b400b079849ad5550cef75a03c362acd5ddfed4adafe057c6a5cebd4043178",
+            "mappedBuildFile": "_next/static/chunks/0ujl8a_grwin5.css"
+          },
+          "/Loading-museum/_next/static/chunks/0wb6jdvd3md34.js": {
+            "sha256": "0c5228fad20ee7dbaa175bcb3efa5e9ce2f3226846d8f29fb1f4762bfbdbd588",
+            "mappedBuildFile": "_next/static/chunks/0wb6jdvd3md34.js"
+          },
+          "/Loading-museum/_next/static/chunks/10kedf-fhjleq.js": {
+            "sha256": "2718721c6c41e9ec38be5f36472e65d7f20708aa7c36e4a69c81176d493be3a4",
+            "mappedBuildFile": "_next/static/chunks/10kedf-fhjleq.js"
+          },
+          "/Loading-museum/_next/static/chunks/turbopack-0gr9hws.yp25p.js": {
+            "sha256": "055e029166aa463aa1c05d86c2ec9163fada2ff7901d098eb560077ca7d2f66e",
+            "mappedBuildFile": "_next/static/chunks/turbopack-0gr9hws.yp25p.js"
+          },
+          "/Loading-museum/_next/static/vSraeqCkjLC7p-SBDltXX/_buildManifest.js": {
+            "sha256": "9476e0afd3f9da68a64e6ec58631191fd3eaca62c9f5a377e7517fe9a89e59ea",
+            "mappedBuildFile": "_next/static/vSraeqCkjLC7p-SBDltXX/_buildManifest.js"
+          },
+          "/Loading-museum/_next/static/vSraeqCkjLC7p-SBDltXX/_clientMiddlewareManifest.js": {
+            "sha256": "5483e3295dc35dfe29ea932efc85341c916f10ff78ff5b0e965e003710893a4a",
+            "mappedBuildFile": "_next/static/vSraeqCkjLC7p-SBDltXX/_clientMiddlewareManifest.js"
+          },
+          "/Loading-museum/_next/static/vSraeqCkjLC7p-SBDltXX/_ssgManifest.js": {
+            "sha256": "678f6ce2cb80b1fe72fc67e7412be6e2ab6ada083111b64f7c40d35e3cba5e00",
+            "mappedBuildFile": "_next/static/vSraeqCkjLC7p-SBDltXX/_ssgManifest.js"
+          },
+          "/Loading-museum/_not-found/__next._full.txt": {
+            "sha256": "00f21315a299c5f2c84dc3ff2d24769bddb9995f18b89a26df61d2100ff983ae",
+            "mappedBuildFile": "_not-found/__next._full.txt"
+          },
+          "/Loading-museum/_not-found/__next._head.txt": {
+            "sha256": "8d9c21b27bba32a981da5bf63e93a00b4c1526becd4f7afc1ab65b71d84441c0",
+            "mappedBuildFile": "_not-found/__next._head.txt"
+          },
+          "/Loading-museum/_not-found/__next._index.txt": {
+            "sha256": "da874d77f0197743598d8414da664a08929e7333d7a1c52385cbf0c4833de9d2",
+            "mappedBuildFile": "_not-found/__next._index.txt"
+          },
+          "/Loading-museum/_not-found/__next._not-found.__PAGE__.txt": {
+            "sha256": "ca80aa98387d4a93b6dbff119a07dbcdf4649723d60e787620a8a7ba45e6558b",
+            "mappedBuildFile": "_not-found/__next._not-found.__PAGE__.txt"
+          },
+          "/Loading-museum/_not-found/__next._not-found.txt": {
+            "sha256": "afbda8a34ebd4623f77aec4ec1671c7648ffa0f70ec33659152b8f6745167a02",
+            "mappedBuildFile": "_not-found/__next._not-found.txt"
+          },
+          "/Loading-museum/_not-found/__next._tree.txt": {
+            "sha256": "803b58dc9761766f2b3e675c6ee8c97769775baef586efd2fc8f97196f495b1e",
+            "mappedBuildFile": "_not-found/__next._tree.txt"
+          },
+          "/Loading-museum/_not-found/index.html": {
+            "sha256": "d840053613270e0c25f0ed40cbc62e93b2a1cd6d0ac9ddc3d0a549da13fe022d",
+            "mappedBuildFile": "_not-found/index.html"
+          },
+          "/Loading-museum/_not-found/": {
+            "sha256": "d840053613270e0c25f0ed40cbc62e93b2a1cd6d0ac9ddc3d0a549da13fe022d",
+            "mappedBuildFile": "_not-found/index.html"
+          },
+          "/Loading-museum/_not-found/index.txt": {
+            "sha256": "00f21315a299c5f2c84dc3ff2d24769bddb9995f18b89a26df61d2100ff983ae",
+            "mappedBuildFile": "_not-found/index.txt"
+          },
+          "/Loading-museum/annotation/machine.svg": {
+            "sha256": "6b956abedd25d56ce1fa1c361b3acb6250e57a17a47d8d26c492fa9f5557711a",
+            "mappedBuildFile": "annotation/machine.svg"
+          },
+          "/Loading-museum/annotation/map.svg": {
+            "sha256": "75c4c617f1ef8f54de54de3dc23fa08298e65adc6db0d2fe0980090a7f1be0cb",
+            "mappedBuildFile": "annotation/map.svg"
+          },
+          "/Loading-museum/compare/correction-after.svg": {
+            "sha256": "5a179c85e0833cff86e7a28bc13dca44eb514dca7b33dd29aebba27b443b6a82",
+            "mappedBuildFile": "compare/correction-after.svg"
+          },
+          "/Loading-museum/compare/correction-before.svg": {
+            "sha256": "50a302bf4100606c92ae76ca67923292e976795d3be2738c014c49be90912eb0",
+            "mappedBuildFile": "compare/correction-before.svg"
+          },
+          "/Loading-museum/compare/restoration-after.svg": {
+            "sha256": "fb0074d61549c386f923cd520e3dbbe4e8ed9173cac4eb0aabae476cd38f0ff1",
+            "mappedBuildFile": "compare/restoration-after.svg"
+          },
+          "/Loading-museum/compare/restoration-before.svg": {
+            "sha256": "0e7331d3ebe73bfab09fe89a55fac01ac695c79f772cc36cd3b77f361b83df8c",
+            "mappedBuildFile": "compare/restoration-before.svg"
+          },
+          "/Loading-museum/index.html": {
+            "sha256": "b77606317e5c45aba3f1b0407d577a561d74645bb0bc7348f4141af2161e3252",
+            "mappedBuildFile": "index.html"
+          },
+          "/Loading-museum/": {
+            "sha256": "b77606317e5c45aba3f1b0407d577a561d74645bb0bc7348f4141af2161e3252",
+            "mappedBuildFile": "index.html"
+          },
+          "/Loading-museum/index.txt": {
+            "sha256": "a259d38e4fa4ad5be6a49352ee7017fe20e8ad8151949d49aa94c6b64a69d856",
+            "mappedBuildFile": "index.txt"
+          }
+        },
+        "baselineBrowserVersion": "26.0",
+        "baselinePlaywrightVersion": "1.56.1",
+        "baselineTraceCallCount": 30,
+        "baselineDiagStatus": "ONE_OFF_DIAGNOSTIC_NOT_A_MAXIMUM"
+      }
+    },
+    "requestMethod": "GET",
+    "urlRule": "same approved loopback origin; exact pathname from level allowlist; no query, fragment ignored; no credentials or external host",
+    "defaultResponse": {
+      "status": 200,
+      "sha256": "exact allowlist hash of browser-received body"
+    },
+    "redirect": "NOT_APPROVED_STOP_ON_UNEXPECTED_REDIRECT",
+    "cache": "record browser response and origin status separately; justified 304 revalidation may be COUNT_DEVIATION, not automatically failure if actual body matches fixed bytes",
+    "serviceWorker": "UNKNOWN_OR_UNOBSERVED_IS_NOT_PASS; if body provenance cannot be established set INCOMPLETE",
+    "baseline": {
+      "requestCount": 9,
+      "postNavigationNewRequests": 0,
+      "meaning": "COMPARISON_ONLY_NOT_STRICT_MAX_OR_MIN"
+    },
+    "strictRequestCountMin": null,
+    "strictRequestCountMax": null,
+    "countDeviation": "MATCHED_ALLOWLIST_BUT_COUNT_OR_PHASE_OR_PATH_MULTISET_DIFFERS => COUNT_DEVIATION_STOP_NEXT_SLOTS_AFTER_CURRENT_SLOT_FINALIZATION; preserve original product outcome; not automatic product FAIL",
+    "integrityViolation": "unexpected scheme/host/path/query/method, unapproved redirect, mismatched 200 response body, unexpected failed request => NETWORK_AUDIT_FAIL, stop new operations immediately on detection; later body mismatch stops future slots; preserve primary outcome",
+    "evidenceIncomplete": "missing or ambiguous browser/server event trace, response body provenance, saving/readback, cleanup => INCOMPLETE_NO_GO; do not transform UNKNOWN to PASS"
+  },
+  "statuses": {
+    "MATCH": {
+      "audit": "PASS",
+      "comparison": "BASELINE_MATCH",
+      "nextSlot": "ALLOW_ONLY_IF_OTHER_GATES_PASS"
+    },
+    "COUNT_DEVIATION": {
+      "audit": "PASS_WHEN_ALL_BYTES_AND_RECORDS_VALID",
+      "comparison": "DEVIATION",
+      "nextSlot": "HOLD",
+      "product": "PRESERVE"
+    },
+    "INTEGRITY_FAIL": {
+      "audit": "FAIL",
+      "comparison": "UNRELIABLE",
+      "nextSlot": "STOP",
+      "product": "PRESERVE"
+    },
+    "INCOMPLETE": {
+      "audit": "INCOMPLETE",
+      "comparison": "UNKNOWN",
+      "nextSlot": "STOP",
+      "product": "PRESERVE"
+    }
+  },
+  "stop": {
+    "detectableAtRequest": "prevent new browser commands immediately; preserve already started work without claiming retroactive stop",
+    "detectableAfterBody": "record mismatchDetected, stopRequested, stopCompleted separately; current primary immutable, no later slot",
+    "calibrationToProductGate": "requires all 4 calibration original records read back + cleanup and persistence verified; AP-CAL-04 intentional overflow exception remains",
+    "softStopAtSeconds": 1170,
+    "hardStopAtSeconds": 1200,
+    "cleanupGraceWithinTotalSeconds": 30,
+    "maxTrials": 10,
+    "retryCount": 0,
+    "newNetworkRequestCap": null,
+    "capacity": "existing 4096 mark capacity and bounded supervisor, not an inferred 39 or 9 request upper bound"
+  },
+  "receiptFields": [
+    "slotId",
+    "level",
+    "fixedSourceHead",
+    "fixedBuildHash",
+    "policyHash",
+    "browserEvents",
+    "originEvents",
+    "browserByPath",
+    "originByPath",
+    "browserTotal",
+    "originTotal",
+    "byPhase",
+    "responseStatusBrowser",
+    "responseStatusServer",
+    "responseBodySha256",
+    "redirects",
+    "requestFailures",
+    "cacheRevalidation",
+    "serviceWorker",
+    "primaryImmutable",
+    "auditVerdict",
+    "comparisonVerdict",
+    "stopRequested",
+    "stopCompleted",
+    "cleanup",
+    "persistence"
+  ],
+  "constraints": [
+    "no new synchronous DOM reads",
+    "no change to 500ms clock or original API order",
+    "no new retries",
+    "only one Stage C registered experiment after explicit later owner approval",
+    "do not derive expected policy from collected suspect events"
+  ],
+  "sourceReceipts": {
+    "build": {
+      "name": "LM88-Stage-C-Builds-20261120.zip",
+      "bytes": 3066747,
+      "sha256": "0a3994c4dca200c1b324bda8c0f2d4bd6048bcb809b554f5fc6ff0b06d91f394"
+    },
+    "i0": {
+      "name": "LM88-Stage-C-Single-Diagnostic-20261120.zip",
+      "bytes": 1096255,
+      "sha256": "deb9a47c0ca8cf769ae5e9e4906057df7722ceb6632a1ffe9596d698b3f1ec89"
+    },
+    "i12": {
+      "name": "LM88-Stage-C-I1-I2-WebKit-Diagnostics-20261121.zip",
+      "bytes": 2163716,
+      "sha256": "52432d7f599a94d5998dfd845745d02a18d0b450208c8ebe17ec0e4faffa80c1"
+    },
+    "control": {
+      "name": "LM88-Stage-C-Network-Contract-Control-20261120.zip",
+      "bytes": 17828,
+      "sha256": "d150dac1e7b2df9dfcdb34b3154215cd851c18cdba397b778a135708eafeb929"
+    }
+  }
+}

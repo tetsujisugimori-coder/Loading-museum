@@ -11,7 +11,7 @@ const slots = registration.slots.slice(registration.scope.calibrationSlots);
 const stepNames = apiSequence("swipe", "S1");
 const saved = { cleanup: "PASS", persistence: "PASS" };
 
-function fixture({ onTargetAdvance = null } = {}) {
+function fixture({ onTargetAdvance = null, onPrimaryRead = null } = {}) {
   const raw = new Map(), products = new Map(), primary = new Map(), opened = [];
   const expectedBodies = new Map(slots.map(slot => [slot.id, Buffer.from(slot.id)]));
   const timers = new Map();
@@ -62,7 +62,8 @@ function fixture({ onTargetAdvance = null } = {}) {
             ["primary.getAttribute", "dismissing"],
             ["followup.getAttribute", "dismissed"],
           ][reads++];
-          return log(...read)();
+          const value = log(...read)();
+          return reads === 3 && onPrimaryRead ? onPrimaryRead() : value;
         },
       };
       const card = {
@@ -246,4 +247,32 @@ test("an outer stop request interrupts a pending operation before observing prim
   assert.equal(result.records[4].state, "STARTED_INTERRUPTED");
   assert.equal(result.records[4].primaryVerdict, "NOT_TESTED");
   assert.deepEqual(setup.opened, [slots[0].id]);
+});
+
+test("an already started primary settles before cleanup readback after an unknown request", async () => {
+  const pending = Promise.withResolvers();
+  const readStarted = Promise.withResolvers();
+  const cleanupStarted = Promise.withResolvers();
+  const networkStop = new AbortController();
+  const setup = fixture({ onPrimaryRead() { readStarted.resolve(); return pending.promise; } });
+  const { id } = slots[0];
+  setup.runtime.cleanup = async (reason, _signal, settlePrimary) => {
+    assert.equal(reason, "NETWORK_MISMATCH");
+    cleanupStarted.resolve();
+    await settlePrimary();
+    assert.equal(setup.primary.get(id)?.verdict, "FAIL", "readback has to see the saved original");
+    return { ...saved, persistedPrimaryVerdicts: new Map([[id, "FAIL"]]) };
+  };
+  const run = runS1Preparation({ ...setup, networkStopSignal: networkStop.signal });
+  await readStarted.promise;
+  networkStop.abort({ reason: "UNKNOWN_REQUEST" });
+  await cleanupStarted.promise;
+  assert.equal(setup.primary.size, 0);
+  pending.resolve("dismissing");
+  const result = await run;
+  assert.equal(result.records[4].primaryVerdict, "FAIL");
+  assert.equal(result.stopRequested, true);
+  assert.equal(result.stopCompleted, true);
+  assert.deepEqual(setup.opened, [id]);
+  assert.equal(setup.products.get(id).includes("page.screenshot"), false);
 });
