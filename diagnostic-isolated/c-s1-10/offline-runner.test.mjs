@@ -457,3 +457,21 @@ test("a hung cleanup ends 30 seconds after an early network stop", async () => {
   assert.equal(result.stop.completedAtMs, null);
   assert.equal(result.cleanup, "INCOMPLETE");
 });
+
+test("network stop racing primary return retains the independently read-back verdict", async () => {
+  const setup = fixture();
+  const networkStop = new AbortController();
+  const persistedPrimaryVerdicts = new Map();
+  setup.adapter.observePrimary = slot => {
+    persistedPrimaryVerdicts.set(slot.id, "FAIL");
+    queueMicrotask(() => networkStop.abort());
+    return "FAIL";
+  };
+  setup.adapter.cleanup = () => ({ cleanup: "PASS", persistence: "PASS", persistedPrimaryVerdicts });
+  const result = await runOfflineStageC({ ...setup, networkStopSignal: networkStop.signal });
+  const [row, ...remaining] = productRows(result);
+  assert.equal(row.primaryVerdict, "FAIL");
+  assert.equal(row.state, "STARTED_INTERRUPTED");
+  assert.ok(remaining.every(other => other.state === "NOT_STARTED"));
+  assert.ok(!setup.calls.some(([operation]) => operation === "followup"));
+});

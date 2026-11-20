@@ -21,7 +21,7 @@ const slotId = "AP-01-I0";
 test("preflight rejects missing slots, calibration traffic and incompatible exact delivery counts", () => {
   const networkRules = {}, requests = {};
   for (const slot of registration.slots) {
-    networkRules[slot.id] = slot.originalProductTrial === false ? [] : [entry, optionalRule];
+    networkRules[slot.id] = slot.originalProductTrial === false ? [] : [entry, { ...optionalRule, max: 0 }];
     if (slot.originalProductTrial !== false) requests[slot.id] = [{ resource, count: 1 }];
   }
   const inventory = { routes: [{ resource }, { resource: optional }] };
@@ -35,7 +35,10 @@ test("preflight rejects missing slots, calibration traffic and incompatible exac
   assert.throws(() => preflightNetworkRules(missingRoute), /must cover fixed routes exactly/);
   const badCount = structuredClone(manifest);
   badCount.requests[slotId][0].count = 2;
-  assert.throws(() => preflightNetworkRules(badCount), /conflicts with network bounds/);
+  assert.throws(() => preflightNetworkRules(badCount), /must match the exact delivery plan/);
+  const unsupportedRange = structuredClone(manifest);
+  unsupportedRange.networkRules[slotId][1].max = 1;
+  assert.throws(() => preflightNetworkRules(unsupportedRange), /must match the exact delivery plan/);
 });
 
 function performRequest(context, origin, path) {
@@ -98,4 +101,51 @@ test("calibration context with no HTTP seals successfully and rejects any HTTP e
   context.emit("request", { url: () => origin + resource, method: () => "GET", resourceType: () => "document" });
   assert.equal(gate.snapshot().firstReason.reason, "UNKNOWN_REQUEST");
   assert.equal(observation.sealAndPersist(join(directory, "fault.json"), true).networkPolicyVerdict, "FAIL");
+});
+
+test("intentional context shutdown preserves failed events and leaves evidence incomplete", t => {
+  const directory = mkdtempSync("stage-c-network-test-");
+  t.after(() => rmSync(directory, { recursive: true, force: true }));
+  const origin = "http://127.0.0.1";
+  const policy = bindStageCNetworkPolicy(slotId, origin, [entry]);
+  const signal = new AbortController();
+  const gate = createNetworkOperationGate();
+  const context = new EventEmitter();
+  const observation = attachStageCNetwork(context, policy, gate, signal.signal);
+  const request = { url: () => origin + resource, method: () => "GET", resourceType: () => "document",
+    failure: () => ({ errorText: "Cancelled" }) };
+  context.emit("request", request);
+  signal.abort("SUPERVISOR_STOP");
+  observation.beginContextClose();
+  context.emit("requestfailed", request);
+  assert.equal(gate.snapshot().firstReason, null);
+  const receipt = observation.sealAndPersist(join(directory, "shutdown.json"), true);
+  assert.equal(receipt.networkPolicyVerdict, "INCOMPLETE");
+  assert.equal(receipt.evidenceStatus, "INCOMPLETE");
+  const raw = JSON.parse(readFileSync(join(directory, "shutdown.json")));
+  assert.equal(raw.requests[0].terminal, "SHUTDOWN_FAILURE");
+  assert.equal(raw.violations.length, 0);
+});
+
+test("interrupted capture stays incomplete even if the observed prefix meets the policy", t => {
+  const directory = mkdtempSync("stage-c-network-test-");
+  t.after(() => rmSync(directory, { recursive: true, force: true }));
+  const gate = createNetworkOperationGate();
+  const policy = bindStageCNetworkPolicy("AP-CAL-01", "http://127.0.0.1", []);
+  const observation = attachStageCNetwork(new EventEmitter(), policy, gate);
+  const receipt = observation.sealAndPersist(join(directory, "prefix.json"), true);
+  assert.equal(receipt.networkPolicyVerdict, "INCOMPLETE");
+  assert.equal(receipt.evidenceStatus, "INCOMPLETE");
+  assert.equal(gate.snapshot().firstReason, null);
+});
+
+test("interruption before navigation leaves the missing minimum inconclusive", t => {
+  const directory = mkdtempSync("stage-c-network-test-");
+  t.after(() => rmSync(directory, { recursive: true, force: true }));
+  const gate = createNetworkOperationGate();
+  const policy = bindStageCNetworkPolicy(slotId, "http://127.0.0.1", [entry]);
+  const observation = attachStageCNetwork(new EventEmitter(), policy, gate);
+  const receipt = observation.sealAndPersist(join(directory, "before-navigation.json"), true);
+  assert.equal(receipt.networkPolicyVerdict, "INCOMPLETE");
+  assert.equal(gate.snapshot().firstReason, null);
 });

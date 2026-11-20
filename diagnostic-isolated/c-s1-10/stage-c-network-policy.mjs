@@ -36,9 +36,12 @@ export function preflightNetworkRules(manifest) {
         assert.deepEqual(rule.queryKeys, [], "pinned server only serves literal paths");
         assert.deepEqual(rule.allowedStatuses, [200]);
         const exact = counts.get(rule.pathname) ?? 0;
-        assert.ok(rule.min <= exact && exact <= rule.max, "delivery count conflicts with network bounds");
+        // The production server and the response-body audit currently use the same exact count.
+        // A broader observer allowance would promise traffic the server still rejects.
+        assert.deepEqual([rule.min, rule.max], [exact, exact],
+          "approved network counts must match the exact delivery plan");
         if (rule.pathname === entryPath) {
-          assert.deepEqual([rule.min, rule.max, exact], [1, 1, 1]);
+          assert.equal(exact, 1);
           assert.deepEqual(rule.resourceTypes, ["document"]);
         }
       }

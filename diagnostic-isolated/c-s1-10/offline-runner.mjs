@@ -289,6 +289,12 @@ export async function runOfflineStageC({ clock, stopSignal, networkStopSignal, a
         supervisor.commitCleanup(atMs => {
           cleanup = cleanupResult;
           persistence = persistenceResult;
+          for (const record of records) {
+            const saved = result?.persistedPrimaryVerdicts?.get(record.id);
+            if (record.primaryVerdict === "NOT_TESTED" && (saved === "PASS" || saved === "FAIL")) {
+              record.primaryVerdict = saved;
+            }
+          }
           if (cleanup !== "PASS" || persistence !== "PASS") supervisor.requestStop("FINALIZATION_FAILURE", atMs);
           else if (supervisor.stop.reason !== null) supervisor.stop.completedAtMs = atMs;
         });

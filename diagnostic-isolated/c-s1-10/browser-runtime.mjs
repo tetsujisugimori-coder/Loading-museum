@@ -72,6 +72,8 @@ export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResourc
           if (session.tracing) {
             try { await session.context.tracing.stop({ path: session.tracePath }); } catch (error) { failures.push(error); }
           }
+          session.contextClosing = true;
+          session.network?.beginContextClose();
           if (session.context) {
             try { await session.context.close(); } catch (error) { failures.push(error); }
           }
@@ -102,7 +104,8 @@ export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResourc
           signal.throwIfAborted();
         };
         if (plan) {
-          session.server = await startPinnedServer(plan, signal, reason => gate.requestStop({ slotId: slot.id, reason }));
+          session.server = await startPinnedServer(plan, signal,
+            reason => gate.requestStop({ slotId: slot.id, reason }), () => session.contextClosing);
           session.originUrl = session.server.originUrl;
         }
         const policy = bindStageCNetworkPolicy(slot.id,
@@ -122,7 +125,7 @@ export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResourc
         const { width, height, touch, reducedMotion } = registration.environment.viewport;
         session.context = await session.browser.newContext({ viewport: { width, height }, hasTouch: touch, reducedMotion });
         signal.throwIfAborted();
-        session.network = attachStageCNetwork(session.context, policy, gate);
+        session.network = attachStageCNetwork(session.context, policy, gate, signal);
         if (plan) {
           session.checkOperation("trace.start");
           session.tracePath = join(root, `${slot.id}.trace.zip`);
@@ -223,9 +226,21 @@ export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResourc
         write(`${slot.id}.timing.json`, json(timing));
         if (!timing.order) throw new Error("Unknown target generation or read order");
       },
-      async cleanup() {
+      async cleanup(_reason, signal) {
         const outcomes = await Promise.allSettled([...sessions].map(session => session.close()));
+        signal.throwIfAborted();
+        const persistedPrimaryVerdicts = new Map();
+        for (const [slotId, original] of originalPrimary) {
+          try {
+            const bytes = read(`${slotId}.primary.json`);
+            if (!bytes.equals(original)) throw new Error("Saved primary bytes mismatch");
+            persistedPrimaryVerdicts.set(slotId, JSON.parse(bytes).primary.verdict);
+          } catch {
+            persistenceFailed = true;
+          }
+        }
         return {
+          persistedPrimaryVerdicts,
           cleanup: !cleanupFailed && outcomes.every(outcome => outcome.status === "fulfilled") ? "PASS" : "FAIL",
           persistence: persistenceFailed ? "FAIL" : "PASS",
         };

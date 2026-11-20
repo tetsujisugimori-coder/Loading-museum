@@ -54,7 +54,7 @@ export function auditDelivery(plan, served, received) {
   return check(received);
 }
 
-export async function startPinnedServer(plan, signal, onStop) {
+export async function startPinnedServer(plan, signal, onStop, isClosing) {
   signal.throwIfAborted();
   const served = [];
   const counts = new Map();
@@ -77,7 +77,9 @@ export async function startPinnedServer(plan, signal, onStop) {
     const bytes = Buffer.from(entry.bytes);
     response.once("finish", () => served.push({ resource, bytes }));
     response.once("close", () => {
-      if (!response.writableFinished && !signal.aborted) fail("SERVER_RESPONSE_INTERRUPTED", "Server response interrupted");
+      if (!response.writableFinished && !signal.aborted && !isClosing?.()) {
+        fail("SERVER_RESPONSE_INTERRUPTED", "Server response interrupted");
+      }
     });
     response.writeHead(200, { "Content-Type": entry.contentType, "Content-Length": bytes.length });
     response.end(bytes);

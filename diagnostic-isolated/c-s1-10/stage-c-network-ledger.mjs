@@ -41,7 +41,6 @@ export function validatePolicy(policy) {
     for (const type of rule.resourceTypes) assert.ok(allowedTypes.has(type));
     assert.ok(Number.isSafeInteger(rule.min) && rule.min >= 0);
     assert.ok(Number.isSafeInteger(rule.max) && rule.max >= rule.min);
-    assert.ok(Number.isSafeInteger(rule.max) && rule.max > 0);
     assert.ok(Array.isArray(rule.allowedStatuses) && rule.allowedStatuses.length);
     for (const status of rule.allowedStatuses) assert.ok(Number.isInteger(status) && status >= 100 && status <= 599);
     const key = JSON.stringify([rule.method, rule.pathname, rule.queryKeys, rule.queryValues, rule.resourceTypes]);
@@ -51,10 +50,10 @@ export function validatePolicy(policy) {
   return structuredClone(policy);
 }
 
-export function observeNetwork(context, sourcePolicy, {onStop} = {}) {
+export function observeNetwork(context, sourcePolicy, {onStop, isStopping} = {}) {
   const policy = validatePolicy(sourcePolicy);
   const policySha256 = sha256(JSON.stringify(policy));
-  let sequence = 0, stopped = false, sealed = false;
+  let sequence = 0, stopped = false, sealed = false, closing = false;
   const byRequest = new WeakMap();
   const requests = [], events = [], violations = [];
   const ruleCounts = policy.rules.map(() => 0);
@@ -125,31 +124,39 @@ export function observeNetwork(context, sourcePolicy, {onStop} = {}) {
       if (row.responseStatus === null) violation('FINISHED_WITHOUT_RESPONSE',row.id);
     },
     requestfailed(request) {
-      const row = fromRequest(request); if (!row) return;
+      const duringShutdown = closing || isStopping?.();
+      const row = duringShutdown ? byRequest.get(request) : fromRequest(request);
+      if (duringShutdown && (!row || row.terminal)) {
+        event('requestfailed',row?.id ?? null,{duringShutdown:true,unmatchedTerminal:true});
+        return;
+      }
+      if (!row) return;
       if (row.terminal) { violation('DUPLICATE_TERMINAL',row.id); return; }
-      row.terminal = 'FAILED';
+      row.terminal = duringShutdown ? 'SHUTDOWN_FAILURE' : 'FAILED';
       try { row.failure = request.failure()?.errorText || 'UNSPECIFIED_NETWORK_FAILURE'; }
       catch { row.failure = 'FAILURE_METADATA_UNKNOWN'; }
-      event('requestfailed',row.id,{failure:row.failure});
-      violation('NETWORK_FAILURE',row.id);
+      event('requestfailed',row.id,{failure:row.failure,duringShutdown:!!duringShutdown});
+      if (!duringShutdown) violation('NETWORK_FAILURE',row.id);
     }
   };
   for (const [name, fn] of Object.entries(handlers)) context.on(name,fn);
-  function finalise() {
+  function finalise({interrupted=false} = {}) {
     if (sealed) throw new Error('ledger already sealed');
     sealed = true;
     for (const [name, fn] of Object.entries(handlers)) context.off(name,fn);
     const countProblems = policy.rules.flatMap((r,i)=>ruleCounts[i]<r.min?[{code:'BELOW_MINIMUM',ruleIndex:i,observed:ruleCounts[i],min:r.min}]:[]);
-    const incomplete = requests.filter(r=>r.terminal===null).map(r=>r.id);
-    const verdict = violations.length || countProblems.length ? 'FAIL' : incomplete.length || (!requests.length && policy.rules.length) ? 'INCOMPLETE':'PASS';
+    const incomplete = requests.filter(r=>r.terminal===null || r.terminal==='SHUTDOWN_FAILURE').map(r=>r.id);
+    const failed = violations.length || (!interrupted && countProblems.length);
+    const incompleteCapture = interrupted || incomplete.length || (!requests.length && policy.rules.length);
+    const verdict = failed ? 'FAIL' : incompleteCapture ? 'INCOMPLETE' : 'PASS';
     const counts = policy.rules.map((rule,index)=>({ruleIndex:index,method:rule.method,pathname:rule.pathname,queryKeys:rule.queryKeys,queryValues:rule.queryValues,resourceTypes:rule.resourceTypes,expected:{min:rule.min,max:rule.max},observed:ruleCounts[index]}));
     return {schemaVersion:1,kind:'STAGE_C_NETWORK_LEDGER',slotId:policy.slotId,policySha256,
-      evidenceStatus: verdict === 'PASS' ? 'COMPLETE' : 'INCOMPLETE',networkPolicyVerdict:verdict,
+      evidenceStatus: verdict === 'PASS' ? 'COMPLETE' : 'INCOMPLETE',networkPolicyVerdict:verdict,captureInterrupted:interrupted,
       note:'This is per-context Playwright-observed traffic, not proof of every physical network packet or cache hit.',
       counts,requests,events,violations,countProblems,incompleteRequestIds:incomplete,
       stopRequested:stopped,cacheGroundTruth:'UNKNOWN',rawResponseBytes:'NOT_CAPTURED_BY_THIS_MODULE'};
   }
-  return {finalise,shouldStop:()=>stopped,policySha256};
+  return {finalise,beginContextClose:()=>{closing=true;},shouldStop:()=>stopped,policySha256};
 }
 
 /** Exclusive, byte-verified local output. Call after the slot's primary has been captured. */
