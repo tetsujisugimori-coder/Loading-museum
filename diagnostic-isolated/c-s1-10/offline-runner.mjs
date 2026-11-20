@@ -175,15 +175,30 @@ async function observeProduct(slot, record, adapter, expectedBody, supervisor) {
   }
   if (body === interrupted) return;
   const matches = bytesMatch(expectedBody, body);
-  supervisor.commitWork(atMs => {
+  const finalizeSlot = typeof adapter.finalizeProductSlot === "function";
+  const committed = supervisor.commitWork(atMs => {
     record.auditVerdict = matches ? "PASS" : "FAIL";
-    record.evidence = matches ? "COMPLETE" : "INCOMPLETE";
-    record.state = "COMPLETED";
     if (!matches) {
+      record.evidence = "INCOMPLETE";
+      record.state = "COMPLETED";
       record.mismatchDetectedAtMs = atMs;
       supervisor.requestStop("DEFERRED_BODY", atMs);
+    } else if (!finalizeSlot) {
+      record.evidence = "COMPLETE";
+      record.state = "COMPLETED";
     }
   });
+  if (committed === interrupted || !matches || !finalizeSlot) return;
+  try {
+    const result = await supervisor.work(signal => adapter.finalizeProductSlot(slot, signal));
+    if (result === interrupted) return;
+    supervisor.commitWork(() => {
+      record.evidence = "COMPLETE";
+      record.state = "COMPLETED";
+    });
+  } catch {
+    supervisor.commitWork(atMs => supervisor.requestStop("PRODUCT_FINALIZATION_FAILURE", atMs));
+  }
 }
 
 /**
