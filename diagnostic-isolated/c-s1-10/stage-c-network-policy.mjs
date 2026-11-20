@@ -42,7 +42,7 @@ export function preflightNetworkRules(manifest) {
           "approved network counts must match the exact delivery plan");
         if (rule.pathname === entryPath) {
           assert.ok(exact >= 1, "initial document must occur");
-          assert.ok(rule.resourceTypes.includes("document"), "initial navigation must be allowed as a document");
+          assert.deepEqual(rule.resourceTypes, ["document"], "entry route requires document requests");
         }
       }
     }
