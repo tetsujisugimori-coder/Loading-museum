@@ -69,7 +69,8 @@ def main():
         receipt.get("workerResultStatus") == "INCOMPLETE"
     )
     report = {
-        "scope": "real WebKit one-shot stop only; not registered Stage C trials",\n        "runtimeCompatibility": "Playwright 1.61.0 on Ubuntu 26.04; not equivalent to Stage C pinned 1.56.1",
+        "scope": "real WebKit one-shot stop only; not registered Stage C trials",
+        "runtimeCompatibility": "Playwright 1.61.0 on Ubuntu 26.04; not equivalent to Stage C pinned 1.56.1",
         "registeredTrialCount": 0,
         "stopDiagnostic": "PASS" if success else "INCOMPLETE",
         "realWebkitObserved": bool(proof and proof.get("browserType") == "webkit"),
