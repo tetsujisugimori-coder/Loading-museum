@@ -36,6 +36,10 @@ test("preflight rejects missing slots, calibration traffic and incompatible exac
   const badCount = structuredClone(manifest);
   badCount.requests[slotId][0].count = 2;
   assert.throws(() => preflightNetworkRules(badCount), /must match the exact delivery plan/);
+  const supportedRepeat = structuredClone(manifest);
+  supportedRepeat.requests[slotId][0].count = 2;
+  supportedRepeat.networkRules[slotId][0] = { ...entry, min: 2, max: 2 };
+  assert.equal(preflightNetworkRules(supportedRepeat).size, 10);
   const unsupportedRange = structuredClone(manifest);
   unsupportedRange.networkRules[slotId][1].max = 1;
   assert.throws(() => preflightNetworkRules(unsupportedRange), /must match the exact delivery plan/);
