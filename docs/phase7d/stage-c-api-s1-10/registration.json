@@ -189,7 +189,8 @@
       "allowNextSlotsOnlyIf": [
         "all four calibration inputs and expected results match their preregistered fixtures",
         "the intentional firstLost 4097 is explicitly detected and recorded as INCOMPLETE/UNKNOWN",
-        "original calibration raw records are saved and independently readable",
+        "the original raw records for all four calibrations are saved, actually read back through an independent path, and verified byte-for-byte against the corresponding saved originals",
+        "all six product slots remain NOT_STARTED while any of the four independent read-backs is pending, missing, unsuccessful, or mismatched",
         "calibration stdout/stderr/exit/cleanup/persistence and any other integrity checks satisfy their designated contract",
         "no other unplanned overflow, missing record, error, substitution, or ambiguous generation",
         "owner policy approval recorded on PR #88; executable calibration gate and evidence reviewed separately; exact run requires new owner authorization"
