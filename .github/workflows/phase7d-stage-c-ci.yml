@@ -21,6 +21,180 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
+      - &stage_c_cpu_diagnostic
+        name: Record job CPU quota, cpuset and affinity (read only)
+        continue-on-error: true
+        run: |
+          python3 -B - <<'PY'
+          import json
+          import os
+          import re
+          from pathlib import Path
+
+          UNKNOWN = "UNKNOWN"
+          UNLIMITED = "UNLIMITED"
+
+
+          def read(path):
+              try:
+                  return Path(path).read_text(errors="surrogateescape").strip()
+              except FileNotFoundError:
+                  return None
+              except OSError:
+                  return UNKNOWN
+
+
+          def cgroup_memberships(source):
+              memberships = {}
+              for line in source.splitlines():
+                  fields = line.split(":", 2)
+                  if len(fields) != 3:
+                      continue
+                  _, controllers, group = fields
+                  path = Path(group)
+                  if path.is_absolute() and ".." not in path.parts:
+                      for controller in controllers.split(","):
+                          memberships[controller] = path
+              return memberships
+
+
+          def cgroup_mounts(source):
+              mounts = []
+              for line in source.splitlines():
+                  before, separator, after = line.partition(" - ")
+                  if not separator:
+                      continue
+                  mount = before.split()
+                  filesystem = after.split()
+                  if len(mount) < 6 or len(filesystem) < 3 or filesystem[0] not in ("cgroup", "cgroup2"):
+                      continue
+                  root, point = (
+                      Path(re.sub(r"\\([0-7]{3})", lambda match: chr(int(match[1], 8)), field))
+                      for field in mount[3:5]
+                  )
+                  mounts.append((filesystem[0], filesystem[2].split(","), root, point))
+              return mounts
+
+
+          def locate(controller, memberships, mounts):
+              version = "v1" if controller in memberships else "v2"
+              group = memberships.get(controller if version == "v1" else "")
+              if group is None:
+                  return {"version": UNKNOWN, "membership": UNKNOWN, "mount_root": UNKNOWN}, None, None
+
+              report = {"version": version, "membership": str(group), "mount_root": UNKNOWN}
+              candidates = []
+              for filesystem, controllers, root, point in mounts:
+                  matches = filesystem == "cgroup2" if version == "v2" else (
+                      filesystem == "cgroup" and controller in controllers
+                  )
+                  if matches and group.is_relative_to(root):
+                      candidates.append((root, point))
+              # Prefer the mount that exposes the most ancestors. A subtree mount can hide limits.
+              for root, point in sorted(candidates, key=lambda mount: len(mount[0].parts)):
+                  leaf = point / group.relative_to(root)
+                  try:
+                      if leaf.is_dir():
+                          report["mount_root"] = str(root)
+                          return report, leaf, point
+                  except OSError:
+                      continue
+              return report, None, None
+
+
+          def is_hierarchy_root(version, path):
+              if version == "v1":
+                  try:
+                      return (path / "release_agent").is_file()
+                  except OSError:
+                      return False
+              # In v2, cgroup.events exists on non-root groups, even in a namespace.
+              return read(path / "cgroup.controllers") not in (None, UNKNOWN) and (
+                  read(path / "cgroup.events") is None
+              )
+
+
+          def quota_at(version, path, is_root):
+              if version == "v2":
+                  raw = read(path / "cpu.max")
+                  values = {"cpu.max": raw or UNKNOWN}
+                  fields = (raw or "").split()
+                  quota, period = fields if len(fields) == 2 else ("", "")
+                  unlimited = quota == "max"
+                  if raw is None and is_root:
+                      return values, UNLIMITED
+              else:
+                  quota = read(path / "cpu.cfs_quota_us")
+                  period = read(path / "cpu.cfs_period_us")
+                  values = {"cpu.cfs_quota_us": quota or UNKNOWN, "cpu.cfs_period_us": period or UNKNOWN}
+                  unlimited = quota == "-1"
+                  if quota is None and period is None and is_root:
+                      return values, UNLIMITED
+
+              if period and period.isdecimal() and int(period) > 0:
+                  if unlimited:
+                      return values, UNLIMITED
+                  if quota and quota.isdecimal() and int(quota) > 0:
+                      return values, int(quota) / int(period)
+              return values, UNKNOWN
+
+
+          def cpu_quota(report, leaf, point):
+              report.update({"ancestors_complete": UNKNOWN, "levels": [], "effective_quota_cpus": UNKNOWN})
+              if leaf is None:
+                  return
+              version = report["version"]
+              complete = report["mount_root"] == "/" and is_hierarchy_root(version, point)
+              report["ancestors_complete"] = complete
+              level = leaf
+              while True:
+                  relative = level.relative_to(point)
+                  group = Path(report["mount_root"]) / relative
+                  values, quota = quota_at(version, level, complete and level == point)
+                  report["levels"].append({"cgroup": str(group), **values, "quota_cpus": quota})
+                  if level == point:
+                      break
+                  level = level.parent
+
+              ratios = [entry["quota_cpus"] for entry in report["levels"]]
+              if complete and UNKNOWN not in ratios:
+                  report["effective_quota_cpus"] = min(
+                      (ratio for ratio in ratios if ratio != UNLIMITED), default=UNLIMITED
+                  )
+
+
+          def diagnose():
+              memberships = cgroup_memberships(read("/proc/self/cgroup") or "")
+              mounts = cgroup_mounts(read("/proc/self/mountinfo") or "")
+              v1 = any(memberships)
+              v2 = "" in memberships
+              version = "hybrid" if v1 and v2 else "v1" if v1 else "v2" if v2 else UNKNOWN
+
+              cpu, leaf, point = locate("cpu", memberships, mounts)
+              cpu_quota(cpu, leaf, point)
+              cpuset, leaf, _ = locate("cpuset", memberships, mounts)
+              cpuset["effective_cpus"] = UNKNOWN
+              if leaf is not None:
+                  filename = "cpuset.effective_cpus" if cpuset["version"] == "v1" else "cpuset.cpus.effective"
+                  cpuset["effective_cpus"] = read(leaf / filename) or UNKNOWN
+
+              try:
+                  affinity = sorted(os.sched_getaffinity(0))
+                  logical_cpus = len(affinity)
+              except OSError:
+                  affinity, logical_cpus = UNKNOWN, UNKNOWN
+              return {
+                  "cgroup_version": version,
+                  "cpu": cpu,
+                  "cpuset": cpuset,
+                  "affinity_cpus": affinity,
+                  "usable_logical_cpu_count": logical_cpus,
+              }
+
+
+          if __name__ == "__main__":
+              print("stage_c_cpu_diagnostic=" + json.dumps(diagnose(), sort_keys=True))
+          PY
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
@@ -55,6 +229,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
+      - *stage_c_cpu_diagnostic
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
