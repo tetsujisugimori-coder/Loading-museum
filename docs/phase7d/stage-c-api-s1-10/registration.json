@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "documentId": "LM88-STAGE-C-API-S1-10",
-  "version": "0.1.0-DRAFT",
-  "status": "DESIGN_ONLY_UNAPPROVED",
+  "version": "0.2.0-DRAFT",
+  "status": "DESIGN_ONLY_POLICY_DECISIONS_APPROVED_EXECUTION_HOLD",
   "decision": "HOLD",
   "executable": false,
   "executionAuthorization": false,
@@ -183,7 +183,7 @@
       "doNotRelabelIncompleteAsComplete": true
     },
     "proposedException": {
-      "status": "PROPOSED_NOT_APPROVED",
+      "status": "OWNER_APPROVED_POLICY_ONLY_EXECUTION_HOLD",
       "name": "EXPECTED_CALIBRATION_OVERFLOW_ONLY",
       "appliesOnlyTo": "AP-CAL-04",
       "allowNextSlotsOnlyIf": [
@@ -192,12 +192,12 @@
         "original calibration raw records are saved and independently readable",
         "calibration stdout/stderr/exit/cleanup/persistence and any other integrity checks satisfy their designated contract",
         "no other unplanned overflow, missing record, error, substitution, or ambiguous generation",
-        "separate independent review and explicit owner approval of this exact exception"
+        "owner policy approval recorded on PR #88; executable calibration gate and evidence reviewed separately; exact run requires new owner authorization"
       ],
-      "withoutApproval": "STOP_AFTER_AP-CAL-04_WITH_REMAINING_SLOTS_NOT_STARTED",
+      "withoutApproval": "HISTORICAL_PRE_APPROVAL_RULE_STOP_AFTER_AP_CAL_04; CURRENT_APPROVED_EXCEPTION_ONLY_IF_ALL_PRECONDITIONS_MET_AND_RUN_SEPARATELY_AUTHORIZED",
       "unplannedOverflowOrMissingRecord": "STOP"
     },
-    "productContinuationDecision": "HOLD_UNTIL_EXCEPTION_REVIEWED_AND_OWNER_APPROVED"
+    "productContinuationDecision": "CONDITIONAL_POLICY_APPROVED_NO_EXECUTION_PERMISSION"
   },
   "expectedVersusObserved": {
     "preflightTrustAnchor": "independent authorized original/registration, not the envelope under audit",
@@ -231,8 +231,8 @@
       "consequence": "HOLD_NO_BROWSER_EXECUTION"
     },
     "optionB": {
-      "name": "PROPOSED_STOP_NEXT_SLOTS_AFTER_BODY_DETECTION",
-      "status": "DIFFERENT_CONTRACT_REQUIRES_INDEPENDENT_REVIEW_AND_EXPLICIT_OWNER_APPROVAL",
+      "name": "STOP_NEXT_SLOTS_AFTER_DEFERRED_BODY_DETECTION",
+      "status": "OWNER_APPROVED_CONTRACT_ONLY_PENDING_IMPLEMENTATION_REVIEW",
       "atDetection": [
         "mark affected slot audit FAIL, preserve product primary PASS/FAIL/NOT_TESTED independently",
         "prevent any later slot from starting",
@@ -248,8 +248,9 @@
       ],
       "notProofOfNeutrality": true
     },
-    "selectedForExecution": "NONE_UNAPPROVED",
-    "bodyMismatchNewPolicyAccepted": false
+    "selectedForExecution": "NONE_C_EXECUTION_NOT_AUTHORIZED",
+    "bodyMismatchNewPolicyAccepted": true,
+    "selectedPolicyForFutureImplementation": "optionB"
   },
   "bounds": {
     "outerWallSecondsMaximum": 1200,
@@ -263,14 +264,17 @@
       "cleanup and shutdown grace"
     ],
     "cleanupGraceSecondsProposed": 30,
-    "cleanupGraceSecondsApproved": null,
+    "cleanupGraceSecondsApproved": 30,
     "cleanupGraceIsAdditionalTime": false,
     "perSlotMarkCapacity": 4096,
     "trialRetries": 0,
     "slotReplacement": 0,
     "timeoutPolicy": "original numeric product and API timeouts unchanged",
-    "deadlineAction": "stop future slot starts; record in-flight as STARTED_INTERRUPTED; distinguish process cleanup and incomplete evidence; no automatic resume",
-    "diskPolicy": "existing owner-approved new project-specific location; no shared /tmp; original source/records immutable; no unapproved delete/move/overwrite"
+    "deadlineAction": "By 1170s prevent new trial/operation starts and request bounded stop/cleanup; by 1200s hard terminate if needed. Retain STARTED_INTERRUPTED/INCOMPLETE and separate cleanup/persistence results; no resume/retry.",
+    "diskPolicy": "existing owner-approved new project-specific location; no shared /tmp; original source/records immutable; no unapproved delete/move/overwrite",
+    "noNewTrialOrOperationStartAfterSeconds": 1170,
+    "beginStopAndCleanupBySeconds": 1170,
+    "absoluteCutoffSeconds": 1200
   },
   "environment": {
     "plannedPlatform": "Ubuntu 24.04",
@@ -304,15 +308,15 @@
     "status": "NOT_PINNED_HOLD"
   },
   "decisionsRequiredBeforeExecution": [
-    "approve expected-calibration-overflow exception or halt after calibration",
-    "approve reconciliation/contract change for delayed body and strong immediate stop",
-    "independently validate oracle/raw-primary proof and browser/source/build/served byte identity",
-    "approve exact environment and shutdown grace values with evidence",
-    "independently approve revised 10-slot registration and owner approve exact version/hash"
+    "independently review the owner-approved calibration-exception and deferred-body stop contract delta as recorded in this revision",
+    "implement and verify the conditional AP-CAL-04 gate, trusted oracle/raw primary evidence and independent provenance",
+    "verify executable 1170s stop/1200s hard cap, cleanup completeness and zero retry/replacement",
+    "independently validate browser/source/build/served and received bytes, pinned runtime/OS/browser/driver/dependencies, and test interposition",
+    "owner separately approve exact completed C execution package and hashes before any browser/CI dispatch"
   ],
   "permissions": {
     "documentPreparation": "AUTHORIZED_THIS_REQUEST",
-    "independentDesignReview": "REQUESTED_NOT_COMPLETED",
+    "independentDesignReview": "PREVIOUS_DOCUMENT_DESIGN_PASS_AT_C68470; CHANGED_POLICY_DELTA_REVIEW_PENDING",
     "CImplementation": "NOT_AUTHORIZED_BY_THIS_DOCUMENT",
     "CBrowserExecution": "NOT_AUTHORIZED",
     "CIManualDispatch": "NOT_AUTHORIZED",
@@ -320,5 +324,18 @@
     "readyForReview": false,
     "merge": "NO",
     "deployment": "NO"
+  },
+  "ownerPolicyApproval": {
+    "dateJST": "2026-11-20",
+    "recordedAt": "https://github.com/tetsujisugimori-coder/Loading-museum/pull/88#issuecomment-7036911445",
+    "basis": "Owner explicitly approved all three changes proposed in the preceding conversation",
+    "approvedScope": [
+      "AP-CAL-04 intentional 4097-mark overflow may allow continuing to 6 product slots only after all listed calibration success, raw evidence readback, cleanup and anomaly checks",
+      "deferred-body discrepancy fails affected slot audit and prevents later slot starts, never retroactively cancelling earlier operations",
+      "30-second shutdown grace is strictly inside the 1200-second outer wall cap, with no-new-start/stop request by second 1170"
+    ],
+    "CBrowserExecutionApproved": false,
+    "newExecutableImplementationApproved": false,
+    "futureOwnerRunApprovalRequired": true
   }
 }
