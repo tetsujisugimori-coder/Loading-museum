@@ -5,7 +5,6 @@ import { i1RecorderInitSource, i2RecorderInitSource } from "./i1-timing.mjs";
 import { runOfflineStageC } from "./offline-runner.mjs";
 
 const primarySeq = apiSequence("swipe", "S1").indexOf("primary.getAttribute") + 1;
-const initialize = () => sessionStorage.setItem("digital-motion-archive-title-seen-v1", "seen");
 const swipe = targets.swipe;
 
 async function checked(signal, operation) {
@@ -25,11 +24,15 @@ function sessionUrl(originUrl) {
   return url.href;
 }
 
-function setupScript(slot, streamId) {
+export function stageCS1InitSource(slot, streamId) {
+  const initialize = "(()=>sessionStorage.setItem('digital-motion-archive-title-seen-v1','seen'))(undefined)";
   if (slot.level === "I0") return initialize;
   const init = slot.level === "I1" ? i1RecorderInitSource : i2RecorderInitSource;
-  return `(${initialize.toString()})();\n${init(slot.id, streamId)}`;
+  return `${initialize};\n${init(slot.id, streamId)}`;
 }
+
+export const stageCS1PauseOrigin = ()=>Date.now()+1000;
+export const stageCS1FinishMarks = () => globalThis.__lm88StageCI1?.finish();
 
 async function sampleOriginalPrimary(session, slot, signal) {
   const { page, streamId, originUrl } = session;
@@ -40,7 +43,7 @@ async function sampleOriginalPrimary(session, slot, signal) {
   const destination = sessionUrl(originUrl);
   signal.throwIfAborted();
   page.setDefaultTimeout(9000);
-  await call(() => page.addInitScript(setupScript(slot, streamId)));
+  await call(() => page.addInitScript(stageCS1InitSource(slot, streamId)));
   await call(() => page.goto(destination));
   const stage = page.locator("#modern-exhibit-swipe-dismiss");
   const root = stage.getByTestId("swipe-to-dismiss");
@@ -52,7 +55,7 @@ async function sampleOriginalPrimary(session, slot, signal) {
   assert.equal(await call(() => stage.locator("details[open]").count()), 2);
 
   await call(() => page.clock.install());
-  const pauseAt = await call(() => page.evaluate(() => Date.now() + 1000));
+  const pauseAt = await call(() => page.evaluate(stageCS1PauseOrigin));
   await call(() => page.clock.pauseAt(pauseAt));
   const button = name => stage.getByRole("button", { name, exact: true });
   const card = stage.getByRole("button", { name: "スワイプするカード" });
@@ -73,7 +76,8 @@ async function sampleOriginalPrimary(session, slot, signal) {
   await call(() => page.mouse.up());
   await call(() => page.clock.runFor(swipe.advance));
   const state = await call(() => root.getAttribute("data-state"));
-  return { root, primary: Object.freeze({ apiSeq: primarySeq, state, verdict: state === swipe.expected ? "PASS" : "FAIL" }) };
+  return { root, input: { destination, pauseAt, rectangle: rect },
+    primary: Object.freeze({ apiSeq: primarySeq, state, verdict: state === swipe.expected ? "PASS" : "FAIL" }) };
 }
 
 /**
@@ -82,7 +86,7 @@ async function sampleOriginalPrimary(session, slot, signal) {
  * in flight when aborted. writePrimary is a synchronous, exclusive host save.
  * The injected body collector supplies bytes for the independently fixed expectedBodies.
  */
-export function runS1Preparation({ clock, runtime, calibration, expectedBodies }) {
+export function runS1Preparation({ clock, stopSignal, runtime, calibration, expectedBodies }) {
   const active = new Map();
   const adapter = {
     runCalibration: (slot, signal) => calibration.runCalibration(slot, signal),
@@ -95,8 +99,9 @@ export function runS1Preparation({ clock, runtime, calibration, expectedBodies }
         return opened;
       });
       const row = active.get(slot.id);
-      const { root, primary } = await sampleOriginalPrimary(session, slot, signal);
+      const { root, input, primary } = await sampleOriginalPrimary(session, slot, signal);
       row.root = root;
+      row.input = input;
       const bytes = Buffer.from(JSON.stringify({ slotId: slot.id, streamId: session.streamId, primary }));
       try {
         assert.equal(runtime.writePrimary(slot, bytes), undefined, "primary save must finish synchronously");
@@ -119,8 +124,8 @@ export function runS1Preparation({ clock, runtime, calibration, expectedBodies }
       row.followup = { screenshot, state };
     },
     async collectBody(slot, signal) {
-      const { session, followup } = active.get(slot.id);
-      return checked(signal, () => runtime.collectBody(slot, session, followup, signal));
+      const { session, followup, input } = active.get(slot.id);
+      return checked(signal, () => runtime.collectBody(slot, session, followup, signal, input));
     },
     async finalizeProductSlot(slot, signal) {
       const { session } = active.get(slot.id);
@@ -131,5 +136,5 @@ export function runS1Preparation({ clock, runtime, calibration, expectedBodies }
       return runtime.cleanup(reason, signal);
     },
   };
-  return runOfflineStageC({ clock, adapter, expectedBodies });
+  return runOfflineStageC({ clock, stopSignal, adapter, expectedBodies });
 }

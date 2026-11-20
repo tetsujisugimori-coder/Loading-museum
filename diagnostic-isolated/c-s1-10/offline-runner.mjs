@@ -11,8 +11,8 @@ const cutOffAfterMs = registration.bounds.absoluteCutoffSeconds * 1000;
 export class DeferredBodyAuditError extends Error {}
 
 // The clock is monotonic and schedules cancellable callbacks at absolute milliseconds.
-function supervise(clock) {
-  const start = clock.now();
+function supervise(clock, stopSignal) {
+  const start = clock.startedAt ?? clock.now();
   const work = new AbortController();
   const cleanup = new AbortController();
   const stop = { reason: null, requestedAtMs: null, completedAtMs: null, cutoffAtMs: null };
@@ -45,6 +45,9 @@ function supervise(clock) {
 
   const cancelSoft = clock.scheduleAt(start + stopAfterMs, checkDeadlines);
   const cancelHard = clock.scheduleAt(start + cutOffAfterMs, checkDeadlines);
+  const externalStop = () => requestStop("SUPERVISOR_STOP", checkDeadlines());
+  if (stopSignal?.aborted) externalStop();
+  else stopSignal?.addEventListener("abort", externalStop, { once: true });
 
   async function bounded(operation, signal, limit) {
     checkDeadlines();
@@ -75,6 +78,7 @@ function supervise(clock) {
     close() {
       cancelSoft();
       cancelHard();
+      stopSignal?.removeEventListener("abort", externalStop);
     },
   };
 }
@@ -221,8 +225,8 @@ function failBodyAudit(record, supervisor, atMs) {
  * The hard cutoff ends this supervisor's wait and aborts cleanup. Adapter termination and
  * real evidence provenance require separate verification before a browser integration.
  */
-export async function runOfflineStageC({ clock, adapter, expectedBodies }) {
-  const supervisor = supervise(clock);
+export async function runOfflineStageC({ clock, stopSignal, adapter, expectedBodies }) {
+  const supervisor = supervise(clock, stopSignal);
   const records = slots.map(({ id }) => ({
     id, state: "NOT_STARTED", primaryVerdict: null, auditVerdict: null,
     calibrationVerdict: null, evidence: null, cause: null, mismatchDetectedAtMs: null,

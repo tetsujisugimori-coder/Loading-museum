@@ -91,7 +91,7 @@ function fixture({ onTargetAdvance = null } = {}) {
       const page = {
         setDefaultTimeout(ms) { assert.equal(ms, 9000); },
         addInitScript(source) {
-          if (slot.level === "I0") assert.equal(typeof source, "function");
+          if (slot.level === "I0") assert.equal(source, "(()=>sessionStorage.setItem('digital-motion-archive-title-seen-v1','seen'))(undefined)");
           else assert.match(source, /__lm88StageCI1/);
           calls.push("page.addInitScript");
         },
@@ -229,5 +229,21 @@ test("settling the in-flight target clock after the soft deadline cannot read pr
   assert.equal(result.records[4].state, "STARTED_INTERRUPTED");
   assert.equal(result.records[4].primaryVerdict, "NOT_TESTED");
   assert.equal(setup.products.get(slots[0].id).includes("primary.getAttribute"), false);
+  assert.deepEqual(setup.opened, [slots[0].id]);
+});
+
+test("an outer stop request interrupts a pending operation before observing primary", async () => {
+  const reached = Promise.withResolvers(), pending = Promise.withResolvers();
+  const setup = fixture({ onTargetAdvance() { reached.resolve(); return pending.promise; } });
+  const controller = new AbortController();
+  const running = runS1Preparation({ ...setup, stopSignal: controller.signal });
+  await reached.promise;
+  controller.abort();
+  const result = await running;
+  pending.resolve();
+  await setImmediate();
+  assert.equal(result.stop.reason, "SUPERVISOR_STOP");
+  assert.equal(result.records[4].state, "STARTED_INTERRUPTED");
+  assert.equal(result.records[4].primaryVerdict, "NOT_TESTED");
   assert.deepEqual(setup.opened, [slots[0].id]);
 });

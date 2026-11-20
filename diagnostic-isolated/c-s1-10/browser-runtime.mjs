@@ -1,5 +1,8 @@
 import { Buffer } from "node:buffer";
+import { execFile } from "node:child_process";
 import { join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { promisify } from "node:util";
 import registration from "../../docs/phase7d/stage-c-api-s1-10/registration.json" with { type: "json" };
 import { observationPolicy } from "../../scripts/phase7d-api-plan.mjs";
 import { createBrowserCalibration } from "./browser-calibration.mjs";
@@ -7,21 +10,23 @@ import { DeferredBodyAuditError } from "./offline-runner.mjs";
 import { createRawEvidence } from "./raw-evidence.mjs";
 import { auditDelivery, expectedDelivery, freezeResourcePlan, recordBrowserResponses, startPinnedServer } from "./resource-evidence.mjs";
 import { bindS1ReadMarkers } from "./s1-read-proof.mjs";
-import { runS1Preparation } from "./s1-preparation.mjs";
+import { runS1Preparation, stageCS1FinishMarks } from "./s1-preparation.mjs";
+import { s1TargetGeneration } from "./s1-trace-audit.mjs";
 
+const execute = promisify(execFile);
+const auditor = fileURLToPath(new URL("./s1-trace-audit.mjs", import.meta.url));
 function json(value) {
   return Buffer.from(JSON.stringify(value));
 }
 
 function assertAuthorized() {
-  if (registration.decision === "HOLD" || registration.executionAuthorization !== true) {
+  if (registration.decision === "HOLD" || registration.executionAuthorization !== true || registration.executable !== true) {
     throw new Error("Stage C browser execution is on HOLD");
   }
 }
 
-// trustedResources is supplied independently of the browser or its trace. The
-// OS-level supervisor and independent trace decoder are supplied by the caller.
-export function prepareBrowserStageC({ webkit, clock, trustedResources, evidenceDirectory, readTrace, targetGeneration }) {
+// trustedResources is supplied independently of the browser or its trace.
+export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResources, evidenceDirectory }) {
   const root = resolve(evidenceDirectory);
   const planBySlot = new Map();
   for (const slot of registration.slots.filter(slot => slot.originalProductTrial !== false)) {
@@ -122,17 +127,18 @@ export function prepareBrowserStageC({ webkit, clock, trustedResources, evidence
         write(`${slot.id}.primary.json`, bytes);
         originalPrimary.set(slot.id, Buffer.from(bytes));
       },
-      async collectBody(slot, session, followup, signal) {
+      async collectBody(slot, session, followup, signal, input) {
         session.check();
+        session.input = input;
         session.followupState = followup.state;
         write(`${slot.id}.followup.png`, followup.screenshot);
         write(`${slot.id}.followup.json`, json({ state: followup.state }));
         if (slot.level !== "I0") {
           signal.throwIfAborted();
-          session.marks = await session.page.evaluate(() => globalThis.__lm88StageCI1?.finish());
+          session.marks = await session.page.evaluate(stageCS1FinishMarks);
           signal.throwIfAborted();
+          write(`${slot.id}.marks.json`, json(session.marks ?? null));
           if (!session.marks?.complete) throw new Error("Incomplete timing marks");
-          write(`${slot.id}.marks.json`, json(session.marks));
         }
         const received = await session.capture.collect(signal);
         const served = session.server.served();
@@ -158,14 +164,26 @@ export function prepareBrowserStageC({ webkit, clock, trustedResources, evidence
           persistenceFailed = true;
           throw new Error("Saved primary bytes mismatch");
         }
-        if (slot.level === "I0") return;
-        const trace = await readTrace(session.tracePath, signal);
-        signal.throwIfAborted();
         const primaryReceipt = JSON.parse(primaryBytes);
-        const generation = targetGeneration(trace, session.marks, slot);
+        const oracle = {
+          slot, streamId: session.streamId, input: session.input,
+          primaryState: primaryReceipt.primary.state, followupState: session.followupState,
+          resourceCount: [...planBySlot.get(slot.id).values()].reduce((sum, entry) => sum + entry.count, 0),
+        };
+        const oracleName = `${slot.id}.trace-input.json`;
+        write(oracleName, json(oracle));
+        signal.throwIfAborted();
+        const { stdout } = await execute(process.execPath, [auditor, session.tracePath, join(root, oracleName)],
+          { signal, maxBuffer: 8 * 1024 * 1024 });
+        signal.throwIfAborted();
+        const trace = JSON.parse(stdout);
+        write(`${slot.id}.trace-audit.json`, json({ sha256: trace.sha256, calls: trace.calls.length }));
+        if (slot.level === "I0") return;
+        const generation = s1TargetGeneration(trace, session.marks);
         const timing = bindS1ReadMarkers({ primaryReceipt, followupState: session.followupState,
           generation, trace, marks: session.marks });
         write(`${slot.id}.timing.json`, json(timing));
+        if (!timing.order) throw new Error("Unknown target generation or read order");
       },
       async cleanup() {
         const outcomes = await Promise.allSettled([...sessions].map(session => session.close()));
@@ -175,6 +193,6 @@ export function prepareBrowserStageC({ webkit, clock, trustedResources, evidence
         };
       },
     };
-    return runS1Preparation({ clock, runtime, calibration, expectedBodies });
+    return runS1Preparation({ clock, stopSignal, runtime, calibration, expectedBodies });
   }
 }
