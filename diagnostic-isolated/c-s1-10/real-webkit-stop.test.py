@@ -32,7 +32,7 @@ def main():
     try:
         receipt = run_supervised(
             "/", [node, str(worker), str(module), "/var/tmp/webkit-stop-proof.json"],
-            destination, readonly=[(browsers, "/ms-playwright")],
+            destination, readonly=[(browsers, "/tmp/runtime/ms-playwright")],
             writable=[(raw, "/var/tmp")], soft_seconds=20, hard_seconds=50,
         )
     except Exception as exc:
@@ -70,7 +70,7 @@ def main():
     )
     report = {
         "scope": "real WebKit one-shot stop only; not registered Stage C trials",
-        "runtimeCompatibility": "Playwright 1.61.0 on Ubuntu 26.04; not equivalent to Stage C pinned 1.56.1",
+        "runtimeCompatibility": "Playwright 1.61.0 on Ubuntu 26.04; not equivalent to Stage C pinned 1.56.1 or production browser path",
         "registeredTrialCount": 0,
         "stopDiagnostic": "PASS" if success else "INCOMPLETE",
         "realWebkitObserved": bool(proof and proof.get("browserType") == "webkit"),

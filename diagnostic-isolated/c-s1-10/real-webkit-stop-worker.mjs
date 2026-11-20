@@ -7,6 +7,8 @@ const [modulePath, proofPath] = process.argv.slice(2);
 if (!modulePath?.startsWith('/') || proofPath !== '/var/tmp/webkit-stop-proof.json') {
   throw new Error('Invalid isolated WebKit stop fixture arguments');
 }
+// A diagnostic-only mount inside the already writable private /tmp; production configuration is unchanged.
+process.env.PLAYWRIGHT_BROWSERS_PATH = '/tmp/runtime/ms-playwright';
 const require = createRequire(import.meta.url);
 const { webkit } = require(modulePath);
 if (require(modulePath + '/package.json').version !== '1.61.0') {
