@@ -178,7 +178,8 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
     worker_finalized = worker_result.get("cleanup") == worker_result.get("persistence") == "PASS"
     worker_records = worker_result.get("records")
     worker_completed = (
-        root_exit == 0 and worker_result.get("stopRequested") is False and worker_finalized and
+        stop_at is None and network_fault is None and root_exit == 0 and
+        worker_result.get("stopRequested") is False and worker_finalized and
         isinstance(worker_records, list) and len(worker_records) == 10 and
         all(isinstance(row, dict) and row.get("state") == "COMPLETED" for row in worker_records)
     )

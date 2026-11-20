@@ -53,6 +53,17 @@ class ProcessSupervisorTest(unittest.TestCase):
                 self.assertFalse(result["stopCompleted"])
                 self.assertEqual(result["workerResultStatus"], "INCOMPLETE")
 
+    def test_worker_cannot_claim_completion_after_ignoring_the_stop_command(self):
+        result = self.worker(
+            "import json,sys; assert sys.stdin.buffer.read(2) == b'GS'; "
+            "print(json.dumps(dict(stopRequested=False, stopCompleted=False, cleanup='PASS', "
+            "persistence='PASS', records=[dict(state='COMPLETED')]*10)))"
+        )
+        self.assertTrue(result["stopRequested"])
+        self.assertFalse(result["stopCompleted"])
+        self.assertEqual(result["workerExit"], 0)
+        self.assertEqual(result["workerResultStatus"], "INCOMPLETE")
+
     def test_zero_exit_without_worker_evidence_is_incomplete(self):
         result = self.worker("pass")
         self.assertEqual(result["workerExit"], 0)
