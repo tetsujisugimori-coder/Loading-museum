@@ -56,6 +56,8 @@ def main():
         proof.get("kind") == "STAGE_C_REAL_WEBKIT_STOP_ONLY" and
         proof.get("registeredTrials") == 0 and
         proof.get("browserType") == "webkit" and
+        proof.get("playwrightVersion") == "1.56.1" and
+        str(proof.get("webkitVersion", "")).startswith("26.0") and
         proof.get("observedWebkitProcesses") and
         proof.get("cleanup") == proof.get("persistence") == "PASS" and
         receipt.get("stopSource") == "TIME_LIMIT" and
@@ -70,7 +72,7 @@ def main():
     )
     report = {
         "scope": "real WebKit one-shot stop only; not registered Stage C trials",
-        "runtimeCompatibility": "Playwright 1.61.0 on Ubuntu 26.04; not equivalent to Stage C pinned 1.56.1 or production browser path",
+        "runtimeCompatibility": "Playwright 1.56.1 / WebKit 26.0 on Ubuntu 24.04; stop-only fixture; not equivalent to Stage C product runtime, browser mount, or served bytes",
         "registeredTrialCount": 0,
         "stopDiagnostic": "PASS" if success else "INCOMPLETE",
         "realWebkitObserved": bool(proof and proof.get("browserType") == "webkit"),

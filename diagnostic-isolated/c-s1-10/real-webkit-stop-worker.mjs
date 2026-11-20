@@ -11,7 +11,7 @@ if (!modulePath?.startsWith('/') || proofPath !== '/var/tmp/webkit-stop-proof.js
 process.env.PLAYWRIGHT_BROWSERS_PATH = '/tmp/runtime/ms-playwright';
 const require = createRequire(import.meta.url);
 const { webkit } = require(modulePath);
-if (require(modulePath + '/package.json').version !== '1.61.0') {
+if (require(modulePath + '/package.json').version !== '1.56.1') {
   throw new Error('Playwright version mismatch');
 }
 let readyResolve;
@@ -62,6 +62,7 @@ try {
   await page.setContent('<!doctype html><title>stage-c-webkit-stop-fixture</title>');
   if (await page.title() !== 'stage-c-webkit-stop-fixture') throw new Error('WebKit page was not loaded');
   const version = browser.version();
+  if (!/^26\.0(?:$|[\s.])/.test(version)) throw new Error('WebKit 26.0 was not launched');
   const observed = snapshot();
   const webkitProcesses = observed.processes.filter(row =>
     row.pid !== process.pid && /webkit|mini.?browser|webprocess|networkprocess|pw_run/i.test(row.name + ' ' + row.cmdline));
@@ -76,7 +77,7 @@ try {
   browser = undefined;
   const proof = {
     kind: 'STAGE_C_REAL_WEBKIT_STOP_ONLY', registeredTrials: 0,
-    playwrightVersion: '1.61.0', browserType: webkit.name(), webkitVersion: version,
+    playwrightVersion: '1.56.1', browserType: webkit.name(), webkitVersion: version,
     pageTitle: 'stage-c-webkit-stop-fixture', workerNamespace: observed.namespace,
     observedWebkitProcesses: webkitProcesses, stopCommand: 'S',
     cleanup: 'PASS', persistence: 'PASS'

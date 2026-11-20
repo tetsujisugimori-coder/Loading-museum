@@ -15,7 +15,7 @@ permissions:
 jobs:
   real-webkit-stop-only:
     name: Observe a single real WebKit launch and supervised stop
-    runs-on: ubuntu-26.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: '22'
       - name: Install packaged bubblewrap (keep stock AppArmor profile)
         shell: bash
         run: |
@@ -35,11 +35,11 @@ jobs:
           fi
           test -x /usr/bin/bwrap
           /usr/bin/bwrap --version
-      - name: Install native Ubuntu 26.04 WebKit via Playwright 1.61.0
+      - name: Install pinned Ubuntu 24.04 WebKit via Playwright 1.56.1
         shell: bash
         run: |
           set -euo pipefail
-          npm install --prefix "$RUNNER_TEMP/stage-c-webkit-stop-tools" --no-save playwright@1.61.0
+          npm install --prefix "$RUNNER_TEMP/stage-c-webkit-stop-tools" --no-save playwright@1.56.1
           PLAYWRIGHT_BROWSERS_PATH="$RUNNER_TEMP/stage-c-webkit-stop-browsers" \
             "$RUNNER_TEMP/stage-c-webkit-stop-tools/node_modules/.bin/playwright" install --with-deps webkit
       - name: Observe WebKit PID namespace and bounded stop (no product trial)
