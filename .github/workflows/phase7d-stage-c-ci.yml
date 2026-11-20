@@ -72,5 +72,18 @@ jobs:
           fi
           test -x /usr/bin/bwrap
           /usr/bin/bwrap --version
+      - name: Diagnose isolated PID namespace support (no privilege changes)
+        shell: bash
+        run: |
+          echo "outer_pid_namespace=$(readlink /proc/self/ns/pid)"
+          set +e
+          /usr/bin/bwrap --unshare-user --unshare-pid --die-with-parent \
+            --ro-bind / / --proc /proc --dev /dev --tmpfs /tmp \
+            --dir /tmp/runtime --setenv XDG_RUNTIME_DIR /tmp/runtime \
+            -- /usr/bin/python3 -c 'import os; print("child_pid="+str(os.getpid()), flush=True); print("inner_pid_namespace="+os.readlink("/proc/self/ns/pid"), flush=True)'
+          result=$?
+          set -e
+          echo "isolated_pid_probe_exit=$result"
+          # This is a diagnostic only; the unmodified supervisor tests retain the acceptance gate.
       - name: Test synthetic worker stop and hard deadline (no browser)
         run: python3 -B diagnostic-isolated/c-s1-10/process-supervisor.test.py
