@@ -17,9 +17,6 @@ jobs:
     name: Observe a single real WebKit launch and supervised stop
     runs-on: ubuntu-26.04
     timeout-minutes: 15
-    # Playwright 1.56.1 predates native Ubuntu 26.04 browser packages. Use its pinned 24.04 WebKit build.
-    env:
-      PLAYWRIGHT_HOST_PLATFORM_OVERRIDE: ubuntu24.04-x64
     steps:
       - uses: actions/checkout@v4
         with:
@@ -38,11 +35,11 @@ jobs:
           fi
           test -x /usr/bin/bwrap
           /usr/bin/bwrap --version
-      - name: Install pinned real WebKit 26.0 via Playwright 1.56.1
+      - name: Install native Ubuntu 26.04 WebKit via Playwright 1.61.0
         shell: bash
         run: |
           set -euo pipefail
-          npm install --prefix "$RUNNER_TEMP/stage-c-webkit-stop-tools" --no-save playwright@1.56.1
+          npm install --prefix "$RUNNER_TEMP/stage-c-webkit-stop-tools" --no-save playwright@1.61.0
           PLAYWRIGHT_BROWSERS_PATH="$RUNNER_TEMP/stage-c-webkit-stop-browsers" \
             "$RUNNER_TEMP/stage-c-webkit-stop-tools/node_modules/.bin/playwright" install --with-deps webkit
       - name: Observe WebKit PID namespace and bounded stop (no product trial)

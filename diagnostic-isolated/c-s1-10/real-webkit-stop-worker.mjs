@@ -9,7 +9,7 @@ if (!modulePath?.startsWith('/') || proofPath !== '/var/tmp/webkit-stop-proof.js
 }
 const require = createRequire(import.meta.url);
 const { webkit } = require(modulePath);
-if (require(modulePath + '/package.json').version !== '1.56.1') {
+if (require(modulePath + '/package.json').version !== '1.61.0') {
   throw new Error('Playwright version mismatch');
 }
 let readyResolve;
@@ -74,7 +74,7 @@ try {
   browser = undefined;
   const proof = {
     kind: 'STAGE_C_REAL_WEBKIT_STOP_ONLY', registeredTrials: 0,
-    playwrightVersion: '1.56.1', browserType: webkit.name(), webkitVersion: version,
+    playwrightVersion: '1.61.0', browserType: webkit.name(), webkitVersion: version,
     pageTitle: 'stage-c-webkit-stop-fixture', workerNamespace: observed.namespace,
     observedWebkitProcesses: webkitProcesses, stopCommand: 'S',
     cleanup: 'PASS', persistence: 'PASS'
