@@ -4,6 +4,7 @@ import { setImmediate } from "node:timers/promises";
 import test from "node:test";
 import registration from "../../docs/phase7d/stage-c-api-s1-10/registration.json" with { type: "json" };
 import { apiSequence } from "../../scripts/phase7d-api-plan.mjs";
+import { DeferredBodyAuditError } from "./offline-runner.mjs";
 import { runS1Preparation } from "./s1-preparation.mjs";
 
 const slots = registration.slots.slice(registration.scope.calibrationSlots);
@@ -191,6 +192,17 @@ test("product cleanup failure keeps the primary and byte audit, and stops later 
   assert.equal(result.records[4].auditVerdict, "PASS");
   assert.equal(result.records[4].evidence, "INCOMPLETE");
   assert.equal(result.records[4].state, "STARTED_INTERRUPTED");
+  assert.deepEqual(setup.opened, [slots[0].id]);
+});
+
+test("an unexpected response during cleanup fails the byte audit without replacing the primary", async () => {
+  const setup = fixture();
+  setup.runtime.closeSlot = () => { throw new DeferredBodyAuditError("unexpected response"); };
+  const result = await runS1Preparation(setup);
+  assert.equal(result.stop.reason, "DEFERRED_BODY");
+  assert.equal(result.records[4].primaryVerdict, "FAIL");
+  assert.equal(result.records[4].auditVerdict, "FAIL");
+  assert.equal(result.records[4].evidence, "INCOMPLETE");
   assert.deepEqual(setup.opened, [slots[0].id]);
 });
 

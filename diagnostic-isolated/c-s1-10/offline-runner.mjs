@@ -8,6 +8,8 @@ const { overflowFixture } = registration.calibration;
 const stopAfterMs = registration.bounds.beginStopAndCleanupBySeconds * 1000;
 const cutOffAfterMs = registration.bounds.absoluteCutoffSeconds * 1000;
 
+export class DeferredBodyAuditError extends Error {}
+
 // The clock is monotonic and schedules cancellable callbacks at absolute milliseconds.
 function supervise(clock) {
   const start = clock.now();
@@ -177,13 +179,12 @@ async function observeProduct(slot, record, adapter, expectedBody, supervisor) {
   const matches = bytesMatch(expectedBody, body);
   const finalizeSlot = typeof adapter.finalizeProductSlot === "function";
   const committed = supervisor.commitWork(atMs => {
-    record.auditVerdict = matches ? "PASS" : "FAIL";
     if (!matches) {
-      record.evidence = "INCOMPLETE";
-      record.state = "COMPLETED";
-      record.mismatchDetectedAtMs = atMs;
-      supervisor.requestStop("DEFERRED_BODY", atMs);
-    } else if (!finalizeSlot) {
+      failBodyAudit(record, supervisor, atMs);
+      return;
+    }
+    record.auditVerdict = "PASS";
+    if (!finalizeSlot) {
       record.evidence = "COMPLETE";
       record.state = "COMPLETED";
     }
@@ -196,9 +197,20 @@ async function observeProduct(slot, record, adapter, expectedBody, supervisor) {
       record.evidence = "COMPLETE";
       record.state = "COMPLETED";
     });
-  } catch {
-    supervisor.commitWork(atMs => supervisor.requestStop("PRODUCT_FINALIZATION_FAILURE", atMs));
+  } catch (error) {
+    supervisor.commitWork(atMs => {
+      if (error instanceof DeferredBodyAuditError) failBodyAudit(record, supervisor, atMs);
+      else supervisor.requestStop("PRODUCT_FINALIZATION_FAILURE", atMs);
+    });
   }
+}
+
+function failBodyAudit(record, supervisor, atMs) {
+  record.auditVerdict = "FAIL";
+  record.evidence = "INCOMPLETE";
+  record.state = "COMPLETED";
+  record.mismatchDetectedAtMs = atMs;
+  supervisor.requestStop("DEFERRED_BODY", atMs);
 }
 
 /**

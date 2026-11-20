@@ -33,7 +33,10 @@ function setupScript(slot, streamId) {
 
 async function sampleOriginalPrimary(session, slot, signal) {
   const { page, streamId, originUrl } = session;
-  const call = operation => checked(signal, operation);
+  const call = operation => checked(signal, () => {
+    session.check?.();
+    return operation();
+  });
   const destination = sessionUrl(originUrl);
   signal.throwIfAborted();
   page.setDefaultTimeout(9000);
@@ -105,8 +108,14 @@ export function runS1Preparation({ clock, runtime, calibration, expectedBodies }
     async observeFollowup(slot, signal) {
       const row = active.get(slot.id);
       if (row.primaryWriteFailed) throw new Error("S1 primary record could not be saved");
-      const screenshot = await checked(signal, () => row.session.page.screenshot());
-      const state = await checked(signal, () => row.root.getAttribute("data-state"));
+      const screenshot = await checked(signal, () => {
+        row.session.check?.();
+        return row.session.page.screenshot();
+      });
+      const state = await checked(signal, () => {
+        row.session.check?.();
+        return row.root.getAttribute("data-state");
+      });
       row.followup = { screenshot, state };
     },
     async collectBody(slot, signal) {

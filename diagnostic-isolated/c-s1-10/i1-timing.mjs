@@ -3,12 +3,14 @@ import registration from "../../docs/phase7d/stage-c-api-s1-10/registration.json
 const markCapacity = registration.bounds.perSlotMarkCapacity;
 const kinds = ["timerRegistered", "callbackStarted", "updateRequested", "reactCommitted"];
 const i1Kinds = [...kinds, "driverTargetMarked"];
-const i2Kinds = [...i1Kinds, "domStateAtCommit", "domMutationDelivered", "transitionDelivered", "observerUnavailable"];
+const i2Kinds = [...i1Kinds, "domStateAtCommit", "domMutationDelivered", "transitionDelivered", "observerUnavailable",
+  "timerCancelled", "callbackEnded"];
 
 function validMark(mark, kinds) {
   if (!kinds.includes(mark?.kind) || !Number.isSafeInteger(mark.generation) || mark.generation < 0 ||
       !Number.isSafeInteger(mark.activeGeneration) || mark.activeGeneration < mark.generation ||
-      (mark.kind !== "callbackStarted" && mark.activeGeneration !== mark.generation)) return false;
+      (!["callbackStarted", "timerCancelled"].includes(mark.kind) && mark.activeGeneration !== mark.generation) ||
+      (mark.kind === "timerCancelled" && mark.activeGeneration <= mark.generation)) return false;
   const { kind, state, detail } = mark;
   if (kind === "driverTargetMarked") return state === null && typeof detail === "string" && detail.length > 0;
   if (kind === "observerUnavailable") return state === null && ["target", "MutationObserver"].includes(detail);
