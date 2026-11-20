@@ -226,7 +226,8 @@ jobs:
 
   network-supervisor:
     name: Stage C loopback network and synthetic PID stop
-    runs-on: ubuntu-24.04
+    # Use the Ubuntu image with a distribution-provided AppArmor profile for /usr/bin/bwrap.
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     steps:
       - *stage_c_cpu_diagnostic
@@ -250,12 +251,29 @@ jobs:
       - name: Diagnose isolated PID namespace support (no privilege changes)
         shell: bash
         run: |
+          for setting in kernel.apparmor_restrict_unprivileged_userns kernel.unprivileged_userns_clone user.max_user_namespaces user.max_pid_namespaces; do
+            value=$(sysctl -n "$setting" 2>/dev/null) || value=UNKNOWN
+            printf '%s=%s\n' "$setting" "$value"
+          done
+          echo "outer_user_namespace=$(readlink /proc/self/ns/user)"
           echo "outer_pid_namespace=$(readlink /proc/self/ns/pid)"
           set +e
           /usr/bin/bwrap --unshare-user --unshare-pid --die-with-parent \
             --ro-bind / / --proc /proc --dev /dev --tmpfs /tmp \
             --dir /tmp/runtime --setenv XDG_RUNTIME_DIR /tmp/runtime \
-            -- /usr/bin/python3 -c 'import os; print("child_pid="+str(os.getpid()), flush=True); print("inner_pid_namespace="+os.readlink("/proc/self/ns/pid"), flush=True)'
+            -- /usr/bin/python3 - <<'PY'
+          import os
+          from pathlib import Path
+
+          print(f"child_pid={os.getpid()}", flush=True)
+          for namespace in ("user", "pid"):
+              print(f"inner_{namespace}_namespace={os.readlink(f'/proc/self/ns/{namespace}')}", flush=True)
+          try:
+              profile = Path("/proc/self/attr/apparmor/current").read_text().strip()
+          except OSError:
+              profile = "UNKNOWN"
+          print(f"inner_apparmor_profile={profile}", flush=True)
+          PY
           result=$?
           set -e
           echo "isolated_pid_probe_exit=$result"
