@@ -128,15 +128,16 @@ export function observeNetwork(context, policy, { onStop, isStopping, phase }) {
         finding("REQUEST_METHOD_UNREADABLE", row, true);
       }
       try {
-        row.validator = request.headers?.()["if-none-match"] ?? null;
         const predecessor = request.redirectedFrom?.();
         if (predecessor) {
           row.redirectedFrom = rows.get(predecessor)?.id ?? "UNKNOWN";
           finding("UNAPPROVED_REDIRECT", row);
         }
       } catch {
-        finding("REQUEST_METADATA_UNREADABLE", row, true);
+        finding("REDIRECT_METADATA_UNREADABLE", row, true);
       }
+      try { row.validator = request.headers?.()["if-none-match"] ?? null; }
+      catch { finding("VALIDATOR_METADATA_UNREADABLE", row, true); }
     },
     response(response) {
       let row;
@@ -147,12 +148,13 @@ export function observeNetwork(context, policy, { onStop, isStopping, phase }) {
       responses.set(row, response);
       try {
         row.status = response.status();
-        row.serviceWorker = response.fromServiceWorker?.() ?? "UNKNOWN";
-        event("response", row, { status: row.status, serviceWorker: row.serviceWorker });
         if (row.status !== 200) finding("UNEXPECTED_HTTP_STATUS", row);
       } catch {
-        finding("RESPONSE_METADATA_UNREADABLE", row, true);
+        finding("RESPONSE_STATUS_UNREADABLE", row, true);
       }
+      try { row.serviceWorker = response.fromServiceWorker?.() ?? "UNKNOWN"; }
+      catch { finding("SERVICE_WORKER_METADATA_UNREADABLE", row, true); }
+      event("response", row, { status: row.status, serviceWorker: row.serviceWorker });
     },
     requestfinished(request) {
       const row = requestRow(request);

@@ -78,7 +78,10 @@ async function fixture(t, { calibration = false } = {}) {
   }
   function finish(request, body = bytes, status = 200, worker = false) {
     context.emit("response", { request: () => request, status: () => status,
-      fromServiceWorker: () => worker, body: async () => { reads++; return body; } });
+      fromServiceWorker: () => {
+        if (worker instanceof Error) throw worker;
+        return worker;
+      }, body: async () => { reads++; return body; } });
     context.emit("requestfinished", request);
   }
   async function perform(path, options) {
@@ -140,7 +143,7 @@ for (const [label, path, options, reason] of [
   ["query", resource + "?unexpected=1", {}, "UNKNOWN_REQUEST"],
   ["empty query delimiter", resource + "?", {}, "UNKNOWN_REQUEST"],
   ["wrong method", resource, { method: "POST" }, "UNAPPROVED_METHOD"],
-  ["redirect chain", resource, { redirectedFrom: {} }, "UNAPPROVED_REDIRECT"],
+  ["redirect chain with unreadable headers", resource, { redirectedFrom: {}, headersThrow: true }, "UNAPPROVED_REDIRECT"],
 ]) {
   test(`detecting ${label} publishes stop and blocks the next command`, async t => {
     const f = await fixture(t);
@@ -155,10 +158,10 @@ for (const [label, path, options, reason] of [
   });
 }
 
-test("HTTP 302 is refused even if no redirected request arrives", async t => {
+test("HTTP 302 is refused with unreadable Service Worker metadata and no redirected request", async t => {
   const f = await fixture(t);
   const request = f.begin(resource);
-  f.finish(request, Buffer.alloc(0), 302);
+  f.finish(request, Buffer.alloc(0), 302, new Error("synthetic unreadable Service Worker metadata"));
   assert.equal(f.controller.signal.reason.reason, "UNEXPECTED_HTTP_STATUS");
   assert.equal(f.seal().classification, "NETWORK_AUDIT_FAIL");
 });
