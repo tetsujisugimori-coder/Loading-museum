@@ -3,6 +3,7 @@ name: Phase 7D Stage C real WebKit stop-only diagnostic
 
 on:
   pull_request:
+    types: [synchronize]
     branches: [main]
     paths:
       - .github/workflows/phase7d-stage-c-webkit-stop.yml
@@ -14,6 +15,7 @@ permissions:
 
 jobs:
   real-webkit-stop-only:
+    if: github.run_attempt == 1 && github.event.pull_request.head.repo.full_name == github.repository
     name: Observe a single real WebKit launch and supervised stop
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -21,36 +23,187 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 2
           persist-credentials: false
+      - name: Check whether this update changes the stop diagnostic
+        id: scope
+        shell: bash
+        env:
+          PREVIOUS_HEAD: ${{ github.event.before }}
+        run: |
+          set -euo pipefail
+          if [[ $(git rev-parse HEAD^) == "$PREVIOUS_HEAD" ]] && [[ -n $(git diff --name-only HEAD^ HEAD -- \
+            .github/workflows/phase7d-stage-c-webkit-stop.yml \
+            diagnostic-isolated/c-s1-10/real-webkit-stop.test.py \
+            diagnostic-isolated/c-s1-10/real-webkit-stop-worker.mjs) ]]; then
+            echo 'run=true' >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/setup-node@v4
+        if: steps.scope.outputs.run == 'true'
         with:
           node-version: '22'
-      - name: Install packaged bubblewrap (keep stock AppArmor profile)
+      - name: Apply the Ubuntu AppArmor profile and verify unprivileged isolation
+        if: steps.scope.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          if ! command -v bwrap >/dev/null 2>&1; then
-            sudo apt-get update -qq
-            sudo apt-get install -y --no-install-recommends bubblewrap
+          evidence="$RUNNER_TEMP/stage-c-webkit-stop-evidence"
+          mkdir -m 700 "$evidence"
+          exec > >(tee "$evidence/apparmor-preflight.txt") 2>&1
+          trap 'status=$?; if (( status != 0 )); then echo "preflight=BLOCKED (exit $status)"; fi' EXIT
+
+          . /etc/os-release
+          printf 'os=%s kernel=%s\n' "$PRETTY_NAME" "$(uname -r)"
+          [[ "$ID:$VERSION_ID" == ubuntu:24.04 ]]
+          [[ $(sysctl -n kernel.apparmor_restrict_unprivileged_userns) == 1 ]]
+          echo 'kernel.apparmor_restrict_unprivileged_userns=1'
+
+          stage=$(mktemp -d "$RUNNER_TEMP/stage-c-apparmor.XXXXXX")
+          cd "$stage"
+          sudo -n apt-get update -qq
+          if [[ ! -x /usr/bin/bwrap ]]; then
+            sudo -n apt-get install -y --no-install-recommends bubblewrap
           fi
-          test -x /usr/bin/bwrap
+          dpkg-query -W bubblewrap apparmor
           /usr/bin/bwrap --version
+          # Extract only the optional policy, without installing unrelated profiles.
+          apt-get download apparmor-profiles
+          package=(apparmor-profiles_*.deb)
+          [[ ${#package[@]} == 1 && $(dpkg-deb -f "${package[0]}" Package) == apparmor-profiles ]]
+          dpkg-deb -f "${package[0]}" Package Version
+          dpkg-deb -x "${package[0]}" package
+          source=package/usr/share/apparmor/extra-profiles/bwrap-userns-restrict
+          target=/etc/apparmor.d/bwrap-userns-restrict
+          sha256sum "$source"
+          [[ $(sudo -n apparmor_parser -N "$source" | sort) == $'bwrap\nunpriv_bwrap' ]]
+
+          for override in /etc/apparmor.d/{disable,force-complain}/bwrap-userns-restrict \
+            /etc/apparmor.d/local/{bwrap-userns-restrict,unpriv_bwrap}; do
+            if [[ -e "$override" || -L "$override" ]]; then
+              echo "Conflicting AppArmor override: $override"
+              exit 1
+            fi
+          done
+          for policy in /etc/apparmor.d/*; do
+            if [[ -f "$policy" && "$policy" != "$target" ]] && \
+              grep -Eq '^[[:space:]]*(profile[[:space:]]+"?(bwrap|unpriv_bwrap)"?([[:space:]]|[{])|(profile[[:space:]]+[^[:space:]]+[[:space:]]+)?"?/usr/bin/bwrap"?[[:space:]]+)' "$policy"; then
+              echo "Conflicting AppArmor policy: $policy"
+              exit 1
+            fi
+          done
+          profiles=/sys/kernel/security/apparmor/profiles
+          before=$(sudo -n cat "$profiles")
+          matching=$(grep -Ei '(^|[/ ])bwrap([ /]|$)|^unpriv_bwrap ' <<< "$before" | sort || true)
+          expected=$'bwrap (enforce)\nunpriv_bwrap (enforce)'
+          printf 'loaded_before=%s\n' "${matching:-NONE}"
+          if [[ -e "$target" || -L "$target" ]]; then
+            [[ -f "$target" && ! -L "$target" ]]
+            cmp "$source" "$target"
+          else
+            [[ -z "$matching" ]]
+            sudo -n install -m 0644 "$source" "$target"
+          fi
+          if [[ -z "$matching" ]]; then
+            sudo -n apparmor_parser --add --skip-cache "$target"
+            echo 'profile_action=LOADED_OFFICIAL_PROFILE'
+          else
+            [[ "$matching" == "$expected" ]]
+            echo 'profile_action=ALREADY_LOADED'
+          fi
+          loaded=$(sudo -n cat "$profiles" | grep -Ei '(^|[/ ])bwrap([ /]|$)|^unpriv_bwrap ' | sort)
+          printf 'loaded_after=%s\n' "$loaded"
+          [[ "$loaded" == "$expected" ]]
+          echo 'apparmor_loading=PASS'
+
+          audit_start=$(date -u '+%Y-%m-%d %H:%M:%S')
+          probe_exit=0
+          timeout 10s /usr/bin/bwrap --unshare-user --unshare-pid --die-with-parent \
+            --ro-bind / / --proc /proc --dev /dev -- /usr/bin/python3 -B - \
+            "$(readlink /proc/self/ns/user)" "$(readlink /proc/self/ns/pid)" "$(id -u)" <<'PY' || probe_exit=$?
+          import os
+          from pathlib import Path
+          import sys
+
+          outer_user, outer_pid, outer_uid = sys.argv[1:]
+          label = Path('/proc/self/attr/current').read_text().strip()
+          user_ns = os.readlink('/proc/self/ns/user')
+          pid_ns = os.readlink('/proc/self/ns/pid')
+          uid_map = Path('/proc/self/uid_map').read_text().split()
+          print(f'child_profile={label} user_ns={outer_user}->{user_ns} pid_ns={outer_pid}->{pid_ns}')
+          print(f'uid_map={" ".join(uid_map)}')
+          assert label == 'bwrap//&unpriv_bwrap (enforce)', label
+          assert user_ns != outer_user and pid_ns != outer_pid, 'namespace did not change'
+          assert uid_map == [str(os.getuid()), outer_uid, '1'], uid_map
+          PY
+          printf 'uid_map_probe_exit=%s\n' "$probe_exit"
+          if journal=$(sudo -n journalctl -k --since "$audit_start" --no-pager -o cat); then
+            grep -E 'apparmor="DENIED".*(bwrap|uid_map|capname="setpcap")' <<< "$journal" || true
+          else
+            echo 'kernel_audit=UNKNOWN'
+          fi
+          [[ "$probe_exit" == 0 ]]
+          [[ $(sysctl -n kernel.apparmor_restrict_unprivileged_userns) == 1 ]]
+          echo 'uid_map_and_pid_isolation=PASS'
+          echo 'preflight=PASS'
       - name: Install pinned Ubuntu 24.04 WebKit via Playwright 1.56.1
+        if: steps.scope.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          npm install --prefix "$RUNNER_TEMP/stage-c-webkit-stop-tools" --no-save playwright@1.56.1
-          PLAYWRIGHT_BROWSERS_PATH="$RUNNER_TEMP/stage-c-webkit-stop-browsers" \
-            "$RUNNER_TEMP/stage-c-webkit-stop-tools/node_modules/.bin/playwright" install --with-deps webkit
+          prefix="$RUNNER_TEMP/stage-c-webkit-stop-tools"
+          export PLAYWRIGHT_BROWSERS_PATH="$RUNNER_TEMP/stage-c-webkit-stop-browsers"
+          npm install --prefix "$prefix" --no-save playwright@1.56.1
+          "$prefix/node_modules/.bin/playwright" install --with-deps webkit
+          node - "$prefix/node_modules" <<'JS' | tee "$RUNNER_TEMP/stage-c-webkit-stop-evidence/browser-build.json"
+          const assert = require('node:assert/strict');
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const modules = process.argv[2];
+          const version = require(`${modules}/playwright/package.json`).version;
+          const { webkit } = require(`${modules}/playwright`);
+          const descriptor = require(`${modules}/playwright-core/browsers.json`).browsers.find(browser => browser.name === 'webkit');
+          assert.equal(version, '1.56.1');
+          assert.equal(descriptor.browserVersion, '26.0');
+          assert.equal(descriptor.revision, '2215');
+          const executable = webkit.executablePath();
+          assert.equal(path.dirname(executable), path.join(process.env.PLAYWRIGHT_BROWSERS_PATH, 'webkit-2215'));
+          fs.accessSync(executable, fs.constants.X_OK);
+          console.log(JSON.stringify({ playwright: version, webkit: descriptor.browserVersion, build: descriptor.revision, executable }));
+          JS
       - name: Observe WebKit PID namespace and bounded stop (no product trial)
+        if: steps.scope.outputs.run == 'true'
         shell: bash
+        env:
+          DEBUG: pw:browser
+          DEBUG_COLORS: '0'
         run: |
           set -euo pipefail
           python3 -B diagnostic-isolated/c-s1-10/real-webkit-stop.test.py \
             "$RUNNER_TEMP/stage-c-webkit-stop-tools/node_modules/playwright" \
             "$RUNNER_TEMP/stage-c-webkit-stop-browsers"
+          evidence="$RUNNER_TEMP/stage-c-webkit-stop-evidence"
+          python3 -B - "$evidence" <<'PY' | tee "$evidence/browser-lifecycle.txt"
+          import json
+          import re
+          from pathlib import Path
+          import sys
+
+          root = Path(sys.argv[1])
+          log = (root / 'supervisor/worker.stderr').read_text(errors='replace')
+          launches = re.findall(r'pw:browser <launched> pid=(\d+)', log)
+          assert len(launches) == 1, f'Expected one WebKit launch, got {launches}'
+          proof = json.loads((root / 'raw/webkit-stop-proof.json').read_bytes())
+          rows = proof['observedWebkitProcesses']
+          assert any(row['pid'] == int(launches[0]) for row in rows), 'Launched PID missing from namespace proof'
+          assert any(re.search(r'WebKit(Web|Network)Process', row['cmdline']) for row in rows), 'No WebKit child in namespace proof'
+          events = re.findall(rf'pw:browser \[pid={launches[0]}\] (<[^>]+>)', log)
+          print(f'webkit_pid={launches[0]} events={events}')
+          assert events == ['<gracefully close start>', '<process did exit: exitCode=0, signal=null>',
+                            '<gracefully close end>'], 'Clean WebKit process exit was not observed'
+          print('browser_lifecycle=PASS')
+          PY
       - name: Preserve isolated observation receipts
-        if: always()
+        if: always() && steps.scope.outputs.run == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: stage-c-real-webkit-stop-${{ github.run_id }}
