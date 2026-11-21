@@ -9,6 +9,7 @@ import select
 import re
 import signal
 import socket
+import stat
 import struct
 import subprocess
 import sys
@@ -223,6 +224,98 @@ def _enable_private_loopback(outer_namespace):
         check.bind(("127.0.0.1", 0))
 
 
+
+# Rootfs provenance is anchored to the externally approved binding.json SHA-256.
+# This preflight is not itself an execution authorization.
+def _rootfs_inventory(root):
+    """Recompute the CI inventory, including permissions, owners and symlinks."""
+    root = Path(root).resolve(strict=True)
+    if not root.is_dir():
+        raise RuntimeError("Stage C rootfs directory missing")
+    digest = hashlib.sha256()
+    counts = {"file": 0, "directory": 0, "symlink": 0, "special": 0}
+    stack = [(root, "")]
+    while stack:
+        parent, prefix = stack.pop()
+        with os.scandir(parent) as directory:
+            entries = sorted(directory, key=lambda entry: entry.name, reverse=True)
+        for entry in entries:
+            relative = (prefix + "/" + entry.name).lstrip("/")
+            info = entry.stat(follow_symlinks=False)
+            row = {"path": relative, "mode": stat.S_IMODE(info.st_mode),
+                   "uid": info.st_uid, "gid": info.st_gid}
+            if stat.S_ISDIR(info.st_mode):
+                row["kind"] = "directory"
+                stack.append((Path(entry.path), relative))
+            elif stat.S_ISLNK(info.st_mode):
+                row.update(kind="symlink", target=os.readlink(entry.path))
+            elif stat.S_ISREG(info.st_mode):
+                file_hash = hashlib.sha256()
+                with open(entry.path, "rb") as stream:
+                    for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+                        file_hash.update(chunk)
+                row.update(kind="file", bytes=info.st_size, sha256=file_hash.hexdigest())
+            else:
+                row.update(kind="special", type=stat.S_IFMT(info.st_mode))
+            counts[row["kind"]] += 1
+            digest.update((json.dumps(row, sort_keys=True, separators=(",", ":"),
+                                      ensure_ascii=False) + "\n").encode("utf-8"))
+    return digest.hexdigest(), counts
+
+
+def _verify_rootfs_lock(rootfs, package, manifest):
+    """Reject unbound OCI provenance or rootfs bytes before launching bwrap."""
+    lock = manifest.get("rootfsLock")
+    if not isinstance(lock, dict) or lock.get("schemaVersion") != 1:
+        raise RuntimeError("Missing approved Stage C rootfs lock")
+    required = ("ociManifestSha256", "ociConfigSha256", "inventorySha256",
+                "receiptSha256", "imageInspectSha256")
+    if any(not isinstance(lock.get(key), str) or
+           not re.fullmatch(r"[a-f0-9]{64}", lock[key]) for key in required):
+        raise RuntimeError("Incomplete Stage C rootfs digest lock")
+    expected_counts = lock.get("entryCounts")
+    if (not isinstance(expected_counts, dict) or
+        set(expected_counts) != {"file", "directory", "symlink", "special"} or
+        any(type(value) is not int or value < 0 for value in expected_counts.values())):
+        raise RuntimeError("Invalid Stage C rootfs count lock")
+    package_root = Path(package).resolve(strict=True)
+    if not package_root.is_dir():
+        raise RuntimeError("Stage C package directory missing")
+
+    def read_anchor(name, expected_sha):
+        file = package_root / name
+        if file.is_symlink() or not file.is_file() or not file.resolve(strict=True).is_relative_to(package_root):
+            raise RuntimeError("Missing fixed rootfs provenance: " + name)
+        body = file.read_bytes()
+        if hashlib.sha256(body).hexdigest() != expected_sha:
+            raise RuntimeError("Stage C rootfs provenance hash mismatch: " + name)
+        return json.loads(body)
+
+    receipt = read_anchor("rootfs-receipt.json", lock["receiptSha256"])
+    inspect = read_anchor("image-inspect.json", lock["imageInspectSha256"])
+    if (not isinstance(inspect, list) or len(inspect) != 1 or
+        not isinstance(inspect[0], dict) or
+        inspect[0].get("Id") != "sha256:" + lock["ociConfigSha256"] or
+        inspect[0].get("Os") != "linux" or inspect[0].get("Architecture") != "amd64" or
+        not isinstance(inspect[0].get("RepoDigests"), list) or
+        "mcr.microsoft.com/playwright@sha256:" + lock["ociManifestSha256"]
+            not in inspect[0]["RepoDigests"]):
+        raise RuntimeError("Fixed OCI image provenance mismatch")
+    if (not isinstance(receipt, dict) or
+        any(receipt.get(field) != lock[field] for field in
+            ("ociManifestSha256", "ociConfigSha256", "inventorySha256")) or
+        receipt.get("entryCounts") != expected_counts or
+        receipt.get("mount") != "PASS" or receipt.get("dependencyClosure") != "PASS" or
+        receipt.get("executionAuthorized") is not False or
+        receipt.get("registeredTrials") != 0):
+        raise RuntimeError("Fixed OCI rootfs receipt mismatch")
+    actual_hash, actual_counts = _rootfs_inventory(rootfs)
+    if actual_hash != lock["inventorySha256"] or actual_counts != expected_counts:
+        raise RuntimeError("Actual Stage C rootfs differs from approved inventory")
+    return {"rootfsInventorySha256": actual_hash, "entryCounts": actual_counts,
+            "ociManifestSha256": lock["ociManifestSha256"]}
+
+
 def _verify_package(package, expected_sha, roots):
     manifest_file = Path(package) / "binding.json"
     contents = manifest_file.read_bytes()
@@ -248,6 +341,7 @@ def _verify_package(package, expected_sha, roots):
             with file.open("rb") as stream:
                 if hashlib.file_digest(stream, "sha256").hexdigest() != sha:
                     raise RuntimeError(f"Stage C runtime file changed: {label}/{path}")
+    _verify_rootfs_lock(roots["rootfs"], package, manifest)
 
 
 def main():
@@ -264,6 +358,8 @@ def main():
     if len(args) != 6:
         sys.exit("Expected rootfs, Playwright driver directory, package directory, approved manifest SHA-256 and receipt directory")
     rootfs, driver, package, expected_sha, destination, outer_namespace = args
+    # Use the same resolved directory for both the preflight and bwrap mount.
+    rootfs = str(Path(rootfs).resolve(strict=True))
     _enable_private_loopback(outer_namespace)
     _verify_package(package, expected_sha, {"rootfs": rootfs, "driver": driver, "repo": repo})
     raw = Path(destination).with_name(Path(destination).name + "-evidence")

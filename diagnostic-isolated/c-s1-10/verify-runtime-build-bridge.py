@@ -122,6 +122,7 @@ def main():
         candidate["implementationTree"] = bridge["runtimeSource"]["tree"]
         # Never carry historical driver/rootfs hashes into a newer runtime.
         candidate["runtimeFiles"] = {"repo": hashes, "rootfs": {}, "driver": {}}
+        candidate["rootfsLock"] = copy.deepcopy(bridge["rootfsLock"])
         candidate["runtimeBindingContext"] = {
             "historicalBuildZipSha256": bridge["historicalBuild"]["zipSha256"],
             "currentDriverAndRootfs": "NOT_PROVEN",
