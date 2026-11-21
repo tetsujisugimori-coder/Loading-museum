@@ -165,7 +165,7 @@ jobs:
           for name in ("MiniBrowser","WPEWebProcess","WPENetworkProcess"):
               base="/ms-playwright/webkit-2215/minibrowser-wpe/"
               env=os.environ.copy()
-              env["LD_LIBRARY_PATH"]=base+"lib"
+              env["LD_LIBRARY_PATH"]=base+"lib:"+base+"sys/lib"
               r=subprocess.run(["/usr/bin/ldd",base+"bin/"+name],env=env,capture_output=True,text=True)
               details[name]={"exitCode":r.returncode,
                   "missing":[x.strip() for x in r.stdout.splitlines() if "not found" in x],
@@ -173,7 +173,7 @@ jobs:
           print(json.dumps({"mount":"PASS","uidMap":Path("/proc/self/uid_map").read_text().strip(),
                 "pidNs":os.readlink("/proc/self/ns/pid"),"dependencies":details},sort_keys=True))
           PY
-          python3 - <<'PY'
+          sudo -n env EVIDENCE_DIR="$EVIDENCE_DIR" python3 - <<'PY'
           import json,os
           from pathlib import Path
           root=Path(os.environ["EVIDENCE_DIR"])
