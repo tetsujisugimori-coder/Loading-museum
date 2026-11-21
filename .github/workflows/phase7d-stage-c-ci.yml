@@ -348,3 +348,119 @@ jobs:
           # This is a diagnostic only; the unmodified supervisor tests retain the acceptance gate.
       - name: Test synthetic worker stop and hard deadline (no browser)
         run: python3 -B diagnostic-isolated/c-s1-10/process-supervisor.test.py
+
+
+  runtime-binding:
+    name: Fixed checkout and real driver/WebKit hashes (no browser launch)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    if: github.run_attempt == 1 && github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Check bridge observation scope
+        id: scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! git diff --quiet HEAD^ HEAD -- .github/workflows/phase7d-stage-c-ci.yml diagnostic-isolated/c-s1-10/runtime-build-bridge.candidate.json; then
+            echo 'run=true' >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.scope.outputs.run == 'true'
+        with:
+          node-version: '22.20.0'
+      - name: Install pinned driver/WebKit distribution, WITHOUT browser launch
+        if: steps.scope.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "STAGE_C_DRIVER_ROOT=$RUNNER_TEMP/stage-c-bridge-driver" >> "$GITHUB_ENV"
+          echo "STAGE_C_BROWSER_ROOT=$RUNNER_TEMP/stage-c-bridge-browser" >> "$GITHUB_ENV"
+          npm install --prefix "$RUNNER_TEMP/stage-c-bridge-driver" --no-save --ignore-scripts --no-audit --no-fund playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH="$RUNNER_TEMP/stage-c-bridge-browser" "$RUNNER_TEMP/stage-c-bridge-driver/node_modules/.bin/playwright" install webkit
+      - name: Verify fixed Git checkout and inventory actual runtime bytes
+        if: steps.scope.outputs.run == 'true'
+        shell: bash
+        env:
+          PINNED_PR_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY'
+          import hashlib, json, os, shutil, subprocess
+          from pathlib import Path
+          def h(data): return hashlib.sha256(data).hexdigest()
+          def cmd(*args): return subprocess.check_output(args, text=True, stderr=subprocess.PIPE).strip()
+          def check(value, reason):
+              if not value: raise ValueError(reason)
+          def collect(root, prefixes):
+              entries = {}
+              base = root.resolve(strict=True)
+              for prefix in prefixes:
+                  directory = root / prefix
+                  check(directory.is_dir() and not directory.is_symlink(), "Missing runtime dir " + prefix)
+                  for file in directory.rglob("*"):
+                      if file.is_dir():
+                          check(not file.is_symlink(), "Linked directory " + str(file))
+                          continue
+                      check(file.is_file() and file.resolve(strict=True).is_relative_to(base), "Invalid runtime file " + str(file))
+                      entries[file.relative_to(root).as_posix()] = h(file.read_bytes())
+              return dict(sorted(entries.items()))
+          def aggregate(entries):
+              return h("".join(f"{p}\t{s}\n" for p,s in sorted(entries.items())).encode())
+          b = json.loads(Path("diagnostic-isolated/c-s1-10/runtime-build-bridge.candidate.json").read_bytes())
+          r = json.loads(Path("docs/phase7d/stage-c-api-s1-10/registration.json").read_bytes())
+          check(b["status"] == "NON_EXECUTABLE_HOLD" and b["executionAuthorized"] is False, "Bridge not HOLD")
+          check(r["decision"] == "HOLD" and r["executable"] is False and r["executionAuthorization"] is False and r["actualBrowserCausalTrials"] == 0, "Registration not HOLD")
+          check(cmd("git","rev-parse","HEAD") == os.environ["PINNED_PR_HEAD"], "Unexpected checked out HEAD")
+          source = b["runtimeSource"]
+          check(cmd("git","rev-parse",source["head"]+"^{tree}") == source["tree"], "Pinned source tree mismatch")
+          repo_hashes = {}
+          for path, entry in sorted(source["repoBlobs"].items()):
+              blob = cmd("git","rev-parse",source["head"]+":"+path)
+              file = Path(path)
+              check(blob == entry["blobSha1"] and file.is_file() and not file.is_symlink(), "Pinned runtime missing " + path)
+              contents = file.read_bytes()
+              check(len(contents) == entry["bytes"] and cmd("git","hash-object",path) == blob, "Runtime content differs " + path)
+              repo_hashes[path] = h(contents)
+          check(len(repo_hashes) == 49 and set(source["requiredForSupervisor"]) <= set(repo_hashes), "Runtime inventory incomplete")
+          driver_root = Path(os.environ["STAGE_C_DRIVER_ROOT"])
+          browser_root = Path(os.environ["STAGE_C_BROWSER_ROOT"])
+          package = json.loads((driver_root/"node_modules/playwright/package.json").read_bytes())
+          browser_spec = json.loads((driver_root/"node_modules/playwright-core/browsers.json").read_bytes())
+          webkit = next(x for x in browser_spec["browsers"] if x["name"] == "webkit")
+          check(package["version"] == "1.56.1" and webkit["revision"] == "2215" and webkit["browserVersion"] == "26.0", "Driver/browser not pinned")
+          driver = collect(driver_root, ["node_modules/playwright","node_modules/playwright-core"])
+          browser = {"ms-playwright/"+key: digest for key,digest in collect(browser_root, ["webkit-2215"]).items()}
+          check(all(k in browser for k in ("ms-playwright/webkit-2215/pw_run.sh","ms-playwright/webkit-2215/minibrowser-wpe/bin/WPEWebProcess","ms-playwright/webkit-2215/minibrowser-wpe/bin/WPENetworkProcess")), "Missing WPE binaries")
+          node = Path(shutil.which("node")).resolve(strict=True)
+          os_release = Path("/usr/lib/os-release").read_bytes()
+          check(cmd(str(node),"--version") == "v22.20.0" and b"Ubuntu" in os_release and b"24.04" in os_release, "Runner environment mismatch")
+          old_driver = "2e853832417b67e6587ab52fc10dd37774b6f2821b3803cf4c9d23511c1c37e5"
+          old_browser = "f4440e049f7c3155168af4f90c83c1426aaaee09ec1f114df51e8e4a0717ac81"
+          report = {"schemaVersion":1, "status":"PARTIAL_ROOTFS_NOT_BOUND", "executionAuthorized":False, "registeredTrialsRun":0,
+              "checkout":{"head":os.environ["PINNED_PR_HEAD"],"sourceHead":source["head"],"sourceTree":source["tree"],"files":repo_hashes,"inventorySha256":aggregate(repo_hashes)},
+              "driver":{"version":"1.56.1","files":driver,"inventorySha256":aggregate(driver),"historicalSha256":old_driver,"historicalMatch":len(driver)==510 and aggregate(driver)==old_driver},
+              "webkit":{"version":"26.0","build":"2215","files":browser,"inventorySha256":aggregate(browser),"historicalSha256":old_browser,"historicalMatch":len(browser)==56 and aggregate(browser)==old_browser},
+              "host":{"nodeVersion":"22.20.0","nodeBinarySha256":h(node.read_bytes()),"osReleaseSha256":h(os_release)},
+              "rootfs":{"status":"NOT_PROVEN","reason":"Complete runnable bwrap rootfs not assembled or mounted; WebKit distribution bytes observed separately"},
+              "historicalBuildZipSha256":b["historicalBuild"]["zipSha256"],"currentProductReceivedBytes":"NOT_TESTED"}
+          evidence = Path(os.environ["RUNNER_TEMP"])/"stage-c-runtime-binding-evidence"
+          evidence.mkdir(mode=0o700, exist_ok=True)
+          with (evidence/"runtime-observation.json").open("x") as stream:
+              json.dump(report, stream, sort_keys=True, indent=2)
+              stream.write("\n")
+          print(json.dumps({"status":report["status"],"repoFiles":len(repo_hashes),"driverFiles":len(driver),"browserFiles":len(browser),"historicalDriverMatch":report["driver"]["historicalMatch"],"historicalWebKitMatch":report["webkit"]["historicalMatch"]}))
+          PY
+          sha256sum "$RUNNER_TEMP/stage-c-runtime-binding-evidence/runtime-observation.json" | tee "$RUNNER_TEMP/stage-c-runtime-binding-evidence/SHA256SUMS"
+      - name: Preserve source and runtime hash receipt
+        if: always() && steps.scope.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage-c-runtime-binding-${{ github.run_id }}
+          path: ${{ runner.temp }}/stage-c-runtime-binding-evidence
+          if-no-files-found: warn
+          retention-days: 30
