@@ -124,6 +124,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # bubblewrap is not preinstalled on this Ubuntu 24.04 runner image.
+          if [[ ! -x /usr/bin/bwrap ]]; then
+            sudo -n apt-get update -qq
+            sudo -n apt-get install -y --no-install-recommends bubblewrap
+          fi
+          test -x /usr/bin/bwrap
+          /usr/bin/bwrap --version
           test "$(sysctl -n kernel.apparmor_restrict_unprivileged_userns)" = "1"
           cd "$RUNNER_TEMP"
           apt-get download apparmor-profiles
