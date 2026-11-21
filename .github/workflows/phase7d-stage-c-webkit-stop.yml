@@ -133,7 +133,9 @@ jobs:
           print(f'uid_map={" ".join(uid_map)}')
           assert label == 'bwrap//&unpriv_bwrap (enforce)', label
           assert user_ns != outer_user and pid_ns != outer_pid, 'namespace did not change'
-          assert uid_map == [str(os.getuid()), outer_uid, '1'], uid_map
+          # /proc/self/uid_map maps the child UID to its immediate parent user namespace,
+          # where this bwrap fixture maps the caller to UID 0; outer_uid is the host UID.
+          assert uid_map == [str(os.getuid()), '0', '1'], uid_map
           PY
           printf 'uid_map_probe_exit=%s\n' "$probe_exit"
           if journal=$(sudo -n journalctl -k --since "$audit_start" --no-pager -o cat); then
