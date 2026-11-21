@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 1,
+  "kind": "LM88_STAGE_C_RUNTIME_BUILD_BRIDGE",
+  "status": "NON_EXECUTABLE_HOLD",
+  "purpose": "Bind the archived, already observed I0/I1/I2 bytes to the Git-pinned Stage C runtime source without granting product execution.",
+  "source": {
+    "head": "5de4b08a2dc881ad2afcbe805b0776cb944ff882",
+    "tree": "89a84488c489161f167e06df34fbc25cca0a4c6e"
+  },
+  "historicalBuild": {
+    "fileName": "LM88-Stage-C-Builds-20261120.zip",
+    "bytes": 3066747,
+    "zipSha256": "0a3994c4dca200c1b324bda8c0f2d4bd6048bcb809b554f5fc6ff0b06d91f394",
+    "bindingSha256": "2061ffa4afd2889b88a5935bd3e15e6ef219974ef79b32964693b5143de92b92",
+    "implementationHead": "f6ab3898597b468b3f47efca7459ba80c37041a3"
+  },
+  "levels": {
+    "I0": {
+      "files": 36,
+      "routes": 39,
+      "outputInventorySha256": "623c5f9402fd352896d2543f106e50f473700dedab2759e6e5e499c91c7fe35c"
+    },
+    "I1": {
+      "files": 36,
+      "routes": 39,
+      "outputInventorySha256": "2d89da38258e7d6ee836bb318bffb95b384cb33404bd16038cd33f353c932fba"
+    },
+    "I2": {
+      "files": 36,
+      "routes": 39,
+      "outputInventorySha256": "1379ee07089b59e89a4cf0856602f2a0a33e6906cf5a813de8c199333e3a4930"
+    }
+  },
+  "runtimeSource": {
+    "head": "f19b28b16c355b63412f06e764a40dc617e11bc9",
+    "tree": "615115fa28d73f13f69525554d735c220013057c",
+    "repoBlobs": {
+      "diagnostic-isolated/c-s1-10/NETWORK-CONTRACT-v1.json": {
+        "blobSha1": "fcdd344711e76b4447534f4ebbeeb911d5dcfb94",
+        "bytes": 34766
+      },
+      "diagnostic-isolated/c-s1-10/browser-calibration.mjs": {
+        "blobSha1": "76df101af7abc80f7fb5785d190d6ea866590b85",
+        "bytes": 5264
+      },
+      "diagnostic-isolated/c-s1-10/browser-runtime.mjs": {
+        "blobSha1": "8fea89294633b3a4477d2071e00ee3402072cec0",
+        "bytes": 12188
+      },
+      "diagnostic-isolated/c-s1-10/browser-runtime.test.mjs": {
+        "blobSha1": "8eee56f76666d8ec62cc928f38770127c931ca19",
+        "bytes": 4075
+      },
+      "diagnostic-isolated/c-s1-10/build-resources.mjs": {
+        "blobSha1": "21490f904f888a1dae2fefc088ba1e4ae8185e31",
+        "bytes": 2886
+      },
+      "diagnostic-isolated/c-s1-10/i1-probe.mjs": {
+        "blobSha1": "524f676e777afed7188d427827776aa2203d3f3e",
+        "bytes": 5144
+      },
+      "diagnostic-isolated/c-s1-10/i1-timing.mjs": {
+        "blobSha1": "befdbaac7f8a1de3123f24441cbb73e7a5d24ff4",
+        "bytes": 8670
+      },
+      "diagnostic-isolated/c-s1-10/i1.test.mjs": {
+        "blobSha1": "70b6e9f1a1f5add97ee60d1b526e1af05b783160",
+        "bytes": 7933
+      },
+      "diagnostic-isolated/c-s1-10/i2.test.mjs": {
+        "blobSha1": "306f78fbc3800faa27736b6af40bbb9fb9a22455",
+        "bytes": 6770
+      },
+      "diagnostic-isolated/c-s1-10/offline-runner.mjs": {
+        "blobSha1": "eba79cb22c414ca47c0be9da3893c09636237ed9",
+        "bytes": 13797
+      },
+      "diagnostic-isolated/c-s1-10/offline-runner.test.mjs": {
+        "blobSha1": "bb30d3509b0ab464478a7358285bb29bab210691",
+        "bytes": 22700
+      },
+      "diagnostic-isolated/c-s1-10/package.test.mjs": {
+        "blobSha1": "8cf048f2386c0a8545b48c933b237ec72812d2c1",
+        "bytes": 2902
+      },
+      "diagnostic-isolated/c-s1-10/process_supervisor.py": {
+        "blobSha1": "d284d03156db86f66ef18b68d67da20f835bb3d1",
+        "bytes": 14148
+      },
+      "diagnostic-isolated/c-s1-10/raw-evidence.mjs": {
+        "blobSha1": "c88db47a8951b0e6d685c25c5c9206f4720251d6",
+        "bytes": 1194
+      },
+      "diagnostic-isolated/c-s1-10/resource-evidence.mjs": {
+        "blobSha1": "9bd4e84b0290e6f18d9f1c904d1b4063fb375b89",
+        "bytes": 2809
+      },
+      "diagnostic-isolated/c-s1-10/s1-preparation.mjs": {
+        "blobSha1": "94678d64e7caf5083314d246ab2ac0f3591a804c",
+        "bytes": 7551
+      },
+      "diagnostic-isolated/c-s1-10/s1-preparation.test.mjs": {
+        "blobSha1": "a47743336547dbd677aa69c5ac993537c73c2499",
+        "bytes": 12886
+      },
+      "diagnostic-isolated/c-s1-10/s1-read-proof.mjs": {
+        "blobSha1": "7855f9088aeae8f120a1fb16a32027895251fd10",
+        "bytes": 4488
+      },
+      "diagnostic-isolated/c-s1-10/s1-read-proof.test.mjs": {
+        "blobSha1": "2a9f128274e5e01f3f4f8d669097c93dbb1fb63a",
+        "bytes": 3996
+      },
+      "diagnostic-isolated/c-s1-10/s1-trace-audit.mjs": {
+        "blobSha1": "043225310bd2c2461595b52d1f71123bdbfcbea9",
+        "bytes": 6460
+      },
+      "diagnostic-isolated/c-s1-10/stage-c-network-adapter.mjs": {
+        "blobSha1": "15a6e821b7ce092427e302d3b51064cf82d26fe7",
+        "bytes": 2074
+      },
+      "diagnostic-isolated/c-s1-10/stage-c-network-ledger.mjs": {
+        "blobSha1": "a4955abcb8ba69446c1b16014f29140f0107c967",
+        "bytes": 10397
+      },
+      "diagnostic-isolated/c-s1-10/stage-c-network-policy.mjs": {
+        "blobSha1": "0a5afbeddd93023ea5e3872f6e8affbcac21e298",
+        "bytes": 2138
+      },
+      "diagnostic-isolated/c-s1-10/stage-c-operation-gate.mjs": {
+        "blobSha1": "e2fb01cbbad506ba51740fa63d2cab46c6793b1d",
+        "bytes": 769
+      },
+      "diagnostic-isolated/c-s1-10/stage-c-worker.mjs": {
+        "blobSha1": "a5cbd6fc3198bb7a1cf3e48a369508250224ae7e",
+        "bytes": 3514
+      },
+      "docs/phase7d/stage-c-api-s1-10/registration.json": {
+        "blobSha1": "a52676168b64de8cd054b33952b55a67ef2dd1e2",
+        "bytes": 14042
+      },
+      "scripts/phase7d-api-contract.mjs": {
+        "blobSha1": "146e0041ffef34e2cff8d9b60e83aa84ddb555a7",
+        "bytes": 10072
+      },
+      "scripts/phase7d-api-offline-diagnosis.mjs": {
+        "blobSha1": "bea5dc4c07d41fb4ede4e3347b2f8cc8f9e34550",
+        "bytes": 12547
+      },
+      "scripts/phase7d-api-plan.mjs": {
+        "blobSha1": "7a27307272acb12902ae75a76032cdcab8bd53cc",
+        "bytes": 3713
+      },
+      "scripts/phase7d-api-trace-spec.mjs": {
+        "blobSha1": "dd6b8b57c3bb7e3a998753aee4d5afe310448969",
+        "bytes": 4310
+      },
+      "scripts/phase7d-boundary-contract.mjs": {
+        "blobSha1": "a5207a44304d4d5dfd4de3af80ca321c90e7678c",
+        "bytes": 4421
+      },
+      "scripts/phase7d-boundary-instrument.mjs": {
+        "blobSha1": "e66410feae2d55af856132b128d77f07967d0d21",
+        "bytes": 7496
+      },
+      "scripts/phase7d-boundary-plan.mjs": {
+        "blobSha1": "38d295c271a8b61871bf16d58778af64729f25ab",
+        "bytes": 1469
+      },
+      "scripts/phase7d-boundary-preservation.mjs": {
+        "blobSha1": "1bec544b1c8bc4b65c59f0f4afa55bbba259f03c",
+        "bytes": 12160
+      },
+      "scripts/phase7d-causal-contract.mjs": {
+        "blobSha1": "7e15caf919baf07df6ef5d319df1727e1de13e87",
+        "bytes": 6583
+      },
+      "scripts/phase7d-diagnostic-instrument.mjs": {
+        "blobSha1": "0713c23dd7b8b90e799bffc006a448cf35a29f84",
+        "bytes": 6376
+      },
+      "scripts/phase7d-execution-source.mjs": {
+        "blobSha1": "7d54ea3193cb2ce1d585ebfc1c2408f78f5c6df4",
+        "bytes": 6814
+      },
+      "scripts/phase7d-isolated-browser-contract.mjs": {
+        "blobSha1": "17463449ffcdadccbd729b0d73e61918761e6675",
+        "bytes": 6760
+      },
+      "scripts/phase7d-isolated-browser.mjs": {
+        "blobSha1": "51f525f9e453f80c9a7dfd46d37e01f492ed095d",
+        "bytes": 14306
+      },
+      "scripts/phase7d-observation-contract.mjs": {
+        "blobSha1": "26be333362c03079abac845fb7036549e3177c04",
+        "bytes": 8989
+      },
+      "scripts/phase7d-observation-plan.mjs": {
+        "blobSha1": "9eb7595fa81649b7e396b0103c4dafa410105606",
+        "bytes": 3184
+      },
+      "scripts/phase7d-observation-trace-spec.mjs": {
+        "blobSha1": "2a4bc5562069b0ee59f839865b12c75307f348c3",
+        "bytes": 4176
+      },
+      "scripts/phase7d-result-contract.mjs": {
+        "blobSha1": "90654ae769b3476d6c0b5c8645a6356edac042cc",
+        "bytes": 1744
+      },
+      "scripts/phase7d-safety-browser.mjs": {
+        "blobSha1": "df7b00617daa47a0baccdc8a805c05790ce23623",
+        "bytes": 12424
+      },
+      "scripts/phase7d-safety-dummy.mjs": {
+        "blobSha1": "d969f8cc4035f7e50dd69d91cc226052754d36c8",
+        "bytes": 9094
+      },
+      "scripts/phase7d-safety-provenance.mjs": {
+        "blobSha1": "aa0bf297783b28943f6157a3aa4fd503203631f3",
+        "bytes": 5311
+      },
+      "scripts/phase7d-safety-result-contract.mjs": {
+        "blobSha1": "9f64149395dcdcb58362855511eeaa61b795f18f",
+        "bytes": 3044
+      },
+      "scripts/phase7d-safety-test-set.mjs": {
+        "blobSha1": "4d9434655b03eaa1a5e59a42376bfbc750ae0868",
+        "bytes": 657
+      },
+      "scripts/phase7d-trace-evidence.mjs": {
+        "blobSha1": "64c14cd40798d4e8798320264c52bb821d062f7e",
+        "bytes": 12003
+      }
+    },
+    "requiredForSupervisor": [
+      "diagnostic-isolated/c-s1-10/browser-calibration.mjs",
+      "diagnostic-isolated/c-s1-10/browser-runtime.mjs",
+      "diagnostic-isolated/c-s1-10/offline-runner.mjs",
+      "diagnostic-isolated/c-s1-10/process_supervisor.py",
+      "diagnostic-isolated/c-s1-10/resource-evidence.mjs",
+      "diagnostic-isolated/c-s1-10/s1-preparation.mjs",
+      "diagnostic-isolated/c-s1-10/stage-c-worker.mjs",
+      "diagnostic-isolated/c-s1-10/stage-c-network-adapter.mjs",
+      "diagnostic-isolated/c-s1-10/stage-c-network-ledger.mjs",
+      "diagnostic-isolated/c-s1-10/stage-c-network-policy.mjs",
+      "diagnostic-isolated/c-s1-10/stage-c-operation-gate.mjs",
+      "diagnostic-isolated/c-s1-10/NETWORK-CONTRACT-v1.json",
+      "diagnostic-isolated/c-s1-10/build-resources.mjs",
+      "diagnostic-isolated/c-s1-10/raw-evidence.mjs",
+      "diagnostic-isolated/c-s1-10/s1-trace-audit.mjs"
+    ]
+  },
+  "historicalBrowserEvidence": {
+    "scope": "Historical one-shot WebKit observations only, not Stage C registered trials",
+    "I0": "LM88-Stage-C-Single-Diagnostic-20261120.zip",
+    "I1I2": "LM88-Stage-C-I1-I2-WebKit-Diagnostics-20261121.zip",
+    "reportedAndPreviouslyRecheckedBodies": {
+      "I0": 9,
+      "I1": 9,
+      "I2": 9
+    },
+    "currentRunnerReceivedBodies": "NOT_TESTED"
+  },
+  "unproven": {
+    "currentRepoSha256UntilLocalReadback": true,
+    "rootfsRuntimeSha256": true,
+    "playwrightDriverSha256": true,
+    "exactRuntimeImage": true,
+    "currentProductReceivedResponseHashes": true,
+    "finalExecutableBinding": true
+  },
+  "executionAuthorized": false,
+  "registeredTrialsRun": 0,
+  "registrationDecision": "HOLD"
+}
