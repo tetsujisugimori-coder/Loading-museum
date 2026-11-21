@@ -37,10 +37,12 @@ def _namespace_handle(pid, metadata):
 
 
 def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
-                   soft_seconds=1170, hard_seconds=1200, network_notice=None):
+                   soft_seconds=1170, hard_seconds=1200, network_notice=None, ready_check=None):
     """Request cleanup over stdin, then kill namespace PID 1 if needed."""
     if not 0 < soft_seconds < hard_seconds <= 1200 or soft_seconds > 1170:
         raise ValueError("Invalid Stage C deadlines")
+    if ready_check is not None and network_notice is not None:
+        raise ValueError("READY diagnostics and product network stops are mutually exclusive")
     start = time.monotonic_ns()
 
     def elapsed():
@@ -66,6 +68,9 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
     namespace_exit = None
     supervisor_error = None
     emergency_kill_at = None
+    ready_at = None
+    ready_sha = None
+    ready_error = None
     # Leave time to observe exit before the contractual deadline.
     hard_dispatch = max(soft_seconds, hard_seconds - 0.1)
     hard_limit = hard_seconds
@@ -83,7 +88,8 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
                 read_end = None
                 if not select.select([info], [], [], min(5, hard_dispatch))[0]:
                     raise RuntimeError("No PID namespace receipt before startup deadline")
-                handle = _namespace_handle(proc.pid, json.loads(info.read(4096)))
+                metadata = json.loads(info.read(4096))
+                handle = _namespace_handle(proc.pid, metadata)
             if elapsed() < soft_seconds - min(0.05, soft_seconds / 10):
                 os.write(proc.stdin.fileno(), b"G")
 
@@ -105,9 +111,23 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
                 age = elapsed()
                 exited = bool(select.select([handle], [], [], 0)[0])
                 reached_soft = age >= soft_seconds - min(0.05, soft_seconds / 10)
-                if stop_at is None and (network_fault is not None or (reached_soft and not exited)):
-                    stop_at = age
-                    stop_source = "NETWORK_MISMATCH" if network_fault is not None else "TIME_LIMIT"
+                if ready_check is not None and stop_at is None and ready_error is None and not reached_soft and not exited:
+                    try:
+                        digest = ready_check(f"pid:[{metadata['pid-namespace']}]")
+                    except (OSError, ValueError) as error:
+                        ready_error = f"{type(error).__name__}: {error}"
+                    else:
+                        age = elapsed()
+                        exited = bool(select.select([handle], [], [], 0)[0])
+                        reached_soft = age >= soft_seconds - min(0.05, soft_seconds / 10)
+                        if digest is not None and not reached_soft and not exited:
+                            ready_at, ready_sha = age, digest
+                if stop_at is None and (network_fault is not None or (not exited and (reached_soft or ready_at is not None))):
+                    stop_at = elapsed() if ready_at is not None else age
+                    if ready_check is not None:
+                        stop_source = "READY" if ready_at is not None else "READY_TIMEOUT"
+                    else:
+                        stop_source = "NETWORK_MISMATCH" if network_fault is not None else "TIME_LIMIT"
                     try:
                         os.write(proc.stdin.fileno(), b"S")
                     except BrokenPipeError:
@@ -188,7 +208,8 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
         "softDeadlineSeconds": soft_seconds, "hardDeadlineSeconds": hard_seconds,
         "stopRequested": stop_at is not None or worker_requested,
         "stopCompleted": worker_requested and worker_result.get("stopCompleted") is True and worker_finalized and
-            namespace_exit is not None and namespace_exit <= hard_limit,
+            namespace_exit is not None and namespace_exit <= hard_limit and
+            (ready_check is None or stop_source == "READY"),
         "stopRequestedSeconds": stop_at, "stopSource": stop_source,
         "hardKillSeconds": kill_at if kill_at is not None else emergency_kill_at,
         "supervisorError": supervisor_error,
@@ -199,6 +220,9 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
         "withinHardDeadline": within_hard_deadline,
         "workerResultStatus": "COMPLETE" if worker_completed else "INCOMPLETE",
     }
+    if ready_check is not None:
+        result.update(monotonicStartNs=start, readyObservedSeconds=ready_at,
+                      readySha256=ready_sha, readyError=ready_error)
     receipt_bytes = (json.dumps(result, indent=2) + "\n").encode("utf-8")
     with (path / "supervisor.json").open("xb") as receipt:
         receipt.write(receipt_bytes)
