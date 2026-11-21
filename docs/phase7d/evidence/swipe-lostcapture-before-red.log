@@ -1,0 +1,35 @@
+
+ RUN  v3.2.4 /workspace/scratch/e622c1e9421e/phase7d-swipe-red-UThfIA
+
+ ❯ tests/phase7d-independent.test.tsx (10 tests | 1 failed | 9 skipped) 134ms
+   × normal horizontal release survives the browser lost-capture event 133ms
+     → expected 'cancelled' to be 'dismissed' // Object.is equality
+   ↓ held confirmation cannot be resurrected by a queued frame after cancellation
+   ↓ reduced motion does not confirm before the threshold, including key release
+   ↓ press restoration callback cannot overwrite a subsequent press
+   ↓ magnetic observed geometry is not substituted with its computed transform
+   ↓ halo geometry resize never takes keyboard focus from its actual target
+   ↓ status cancelled callback remains inert even if cancellation cannot dequeue it
+   ↓ active hold is cancelled across hidden-return and cannot revive, reduced=false
+   ↓ active hold is cancelled across hidden-return and cannot revive, reduced=true
+   ↓ withdrawn active permission prevents timer completion and deliberate restart
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/phase7d-independent.test.tsx > normal horizontal release survives the browser lost-capture event
+AssertionError: expected 'cancelled' to be 'dismissed' // Object.is equality
+
+Expected: "dismissed"
+Received: "cancelled"
+
+ ❯ tests/phase7d-independent.test.tsx:10:459
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 skipped (10)
+   Start at  05:04:55
+   Duration  1.05s (transform 239ms, setup 0ms, collect 349ms, tests 134ms, environment 327ms, prepare 79ms)
+

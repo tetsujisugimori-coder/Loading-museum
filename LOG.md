@@ -1,3 +1,19 @@
+## 2026-11-15 / Loading-museum PR #88 approval-document v2
+
+A-only documentation and existing-byte reconciliation. Baseline5de4b08/tree89a8448; full original API/WAAPI proposal JSON and cause ledgers preserved, concrete annex and A/B/C gates added. B implementation and C experiments UNAPPROVED; actual browser causal trials0. No product/test/plan/launcher/workflow changes. Prior FAIL/NOT_TESTED, causeUNKNOWN, runtime bytesNOT_PROVEN, production108NO, mergeNO and Draft remain. Documentation checks, independent review and preservation status: docs/phase7d/approval-v2/. Documentation-push CI is not causal/product acceptance.
+
+## 2026-11-15 WAAPI Stage 2A independent offline diagnosis
+
+After API A2 freeze, independently inspected fixed run 43708599164 attempt 1. WebKit observation FAIL is width375 Menu mid-flight pause PARTIAL; four other suites PASS. First post-ready continuation already sees the endpoint. New offline protocol controls preserve the failure and reject missing/contradictory/rewritten evidence. No product, original test, plan or browser experiment changed. Cause UNKNOWN; overall PARTIAL; production108 NO; merge NO; Draft maintained. See docs/phase7d/waapi-offline-cause-review.md.
+
+## 2026-11-15 / PR #88 Phase A independent offline API diagnosis
+
+Freeze run43708599257 attempt1 HEAD179234d: WebKit64PASS/3FAIL/5NOT_TESTED, Chromium48PASS. Pure offline archive/trace/source-claim checks and synthetic controls; no product/plan/oracle/timing changes or new browser. Callback/request/commit/DOM-event recorder absent; later PASS never replaces primary FAIL. H1-H7 remain candidates, cause UNKNOWN. Phase A records and judgment are fixed before independent WAAPI phase B. Overall PARTIAL; production108 NO; merge NO; Draft retained.
+
+## 2026-11-15 / PR #88 Boundary artifact preservation
+
+Boundary-only source/body and complete export preservation: fixed Git/raw input bodies, two staged TSX bodies as .bin, independent set/size/hash/blob/transform audit, hidden-inclusive upload. Dependencies are hash/lock identified, not package-body snapshots. Existing primary FAIL/INCOMPLETE/NOT_TESTED and old ZIP omissions remain historical. Overall PARTIAL; production108 NO; merge NO; Draft retained. Local and submitted-head CI/artifact results are reported separately in PR #88.
+
 ## 第7期C：Motion Composition Studio（Issue #85）
 
 既存280展示を保全し、時間・順序・位置・状態を組み合わせる6作品を追加。目標286展示・13室。[設計・検証と限界](docs/phase7c/README.md)。実装中、最終受入は未判定。以下の記録は各時点の状態として保全。
@@ -1731,3 +1747,68 @@ Aリモートcheckpoint 50c15a6をfetch一致確認後、長押し・弾性・�
 - Keyboard edits use focused annotation identity, with canvas-only selection fallback; Tab alone remains non-mutating. Added three component regressions and expanded browser keyboard ownership checks.
 - Hardened image evidence validation and required successful fault-removal recovery. Added seven real-file negative/positive cases (29 contract tests total).
 - No dependencies, other exhibits, IDs, or publication settings changed. Final exact-head CI and independent reacceptance remain prerequisites; Draft and #44/#54 boundaries remain.
+
+## 2026-11-11 Phase 7D observation-effect diagnostic follow-up
+
+Preregister A1 single DOM / A2 four secondary DOM / A3 DOM-image-DOM after the unchanged common primary read. Fixed balanced90-trial matrix, API-only trace, separate commanded virtual-clock ledger, immutable primary FAIL, original evidence cross-check and negative controls. Product code and formal acceptance oracle unchanged. Original failure ZIP/JSON/trace/PNG independently reconciled; old and new failures must not be replaced by later success. See docs/phase7d/observation-diagnosis.md. Cause remains UNKNOWN; Draft and NO merge remain pending actual diagnostic/formal/regression results and independent review.
+
+### Phase 7D observation experiment1 and audited final checkpoint
+
+f7d1bb68 hosted run42937810064 retained all90 planned attempts:85 primary PASS,2 primary FAIL,3 prefix-INCOMPLETE,87 diagnostic COMPLETE. WebKit Swipe A3-6 changed from dismissing to dismissed in the DOM read BEFORE screenshot; A1-10 retained primary dismissing. Status prefixes twice retained Loading, and a Swipe keyboard prefix retained dismissing. No later result overwrites an original failure.39 new/46 retained diagnostic tests pass; independent audit checked90 original traces and rejected9 mutations of incomplete records. Product causes remain UNKNOWN and merge recommendation NO. Added all-trial derived SHA index, A–L report and independent evidence review. Final-checkpoint formal16/regression CI must be reported separately from experiment1 and from local894 tests on its original tree. No product modifications or arbitrary waits.
+
+## 2026-11-11 Phase 7D observation API isolation preregistration
+
+Baseline421f9506 retained, including82 primary PASS /4 primary FAIL /4 prefix INCOMPLETE and15 successful /2 failed workflows. Add N0/N1/D1/S1 fixed120-trial protocol with identical primary/followup selectors, fixed no-op, exclusive original primary snapshot, raw protocol/ZIP integrity controls and unchanged product/clock/deadlines.49 new contract tests plus85 retained tests. Archive inventory includes18 original ZIPs (428,220,510 bytes), all local hashes matched to current GitHub metadata; the two priority originals were freshly downloaded and hash checked. Private durable destination approval is not identified: ARCHIVE_BLOCKED, readback NOT_TESTED. No unapproved transfer or original/shared temporary-file cleanup. See docs/phase7d/api-isolation-plan.md and sanitized archive ledger. Final experiment, formal CI and independent review remain pending; causes UNKNOWN and product merge NO.
+
+## PR88 safety infrastructure candidate (2026-11-15)
+
+Added isolated dummy108 safety ledger, explicit production refusal, Git/blob/source-to-fixture-build/HTTP audit, fixed eight browser model injection plan and separate workflow. Replaced the Windows-literal Phase7D glob with its exact four existing files. No product behavior, original allocation, original failure evidence or dependencies changed.
+
+Independent preflight counterexamples and repairs are recorded in the safety plan; full evidence will accompany the final PR report. Current overall verdict PARTIAL: model-level injection/provenance must not be interpreted as full product React/Next acceptance. Production108 NOT_EXECUTED; merge NO; Draft maintained; Swipe/Status root causes UNKNOWN. Initial default-temp use is disclosed in the plan and records retained.
+
+Safety follow-up: Windows demonstrated the generated-fault-copy lint contamination; test default now uses an external dedicated sibling directory. Added original-reservation execution binding after a RED abrupt-resume/history-deletion counterexample. Initial c82dfc4 results are retained separately; only final submitted HEAD results can satisfy the final check. Overall PARTIAL and no production remain.
+
+Additional safety fix: bind dummy CLI working sources to the fixed Git HEAD before any slot reservation; distinguish contract file bytes from canonical JSON digest. The complete-source dirty-contract counterexample was RED then GREEN; an earlier missing-import attempt remains NON_COMPARABLE. Preliminary fb4 results/reports remain historical; new final candidate CI is required. Production108 remains disabled, overall PARTIAL.
+
+Real-repo preflight correction: default Git stdout buffer over-rejected existing >1MiB blobs; explicit8MiB bound plus2MiB byte-tamper regression added. Test fixture repositories now explicitly preserve newline bytes to eliminate Windows Git autocrlf over-rejection without weakening audit comparisons. Previous4f006 Windows40/41 and ENOBUFS FAILs remain; latest candidate requires fresh checks. Existing eight-model dispatch remains anchored to fb4, with no additional dispatch.
+
+## PR #88 P2-01 cleanup evidence preservation (2026-11-15, candidate)
+- Fixed plan: `docs/phase7d/PLAN-P2-01-cleanup.md`. The first failure stops subsequent browser launches, but all eight planned slots remain recorded. Primary observations and the first operation error are separate from cleanup/evidence failures.
+- Baseline b796: independent Playwright substitute, first context.close rejection: exit 1, zero aggregate/individual results despite eight planned slots. Synthetic normal control separately retained; not a real-browser claim.
+- Individual trace/context/browser/capture cleanup and exclusive persistence now continue after exceptions. Incomplete evidence and unstarted slots remain INCOMPLETE and NOT_TESTED, not PASS. Independent aggregate audit rejects absent, short, duplicate and contradictory results.
+- Independent review found an additional late pageerror false acceptance; fixed with post-cleanup error checks and final response draining, same counterexample retained.
+- Existing safety contracts 42/42 plus cleanup regression 25/25 pass locally. Full Linux/Windows checks and final review/CI remain pending at this candidate record.
+- Historical fb4 workflow 43651015237: Windows/Linux contracts succeeded, browser fixture failed during source capture with ENOBUFS before any browser trial; the subsequent missing-directory audit failed. This is distinct from P2-01. Three original artifacts preserved and independently checked on Windows.
+- Production 108 remains disabled; no manual workflow dispatch, product fix, merge, Draft release or publication. Next product bytes and React boundary fault injection remain outside this fix. Swipe/Status Morph causes UNKNOWN.
+
+### P2-01 final local/Windows evidence update
+Implementation1b2d81c/treea5977e2: independent CLI normal8PASS, same close-failure1INCOMPLETE+7NOT_TESTED with eight retained records. Linux and Windows standardcheck PASS; Linux729Vitest+218Node. Both platforms safety67PASS and real-repository dummy108 complete, first syntheticFAIL1 preserved, production0. Declared test-set/source hashes agree across OS. Core evidence ZIP Library readback on Windows independently verifies size/SHA/CRC/all956manifest entries. Initial local symlink/Turbopack failure retained, fixed by local dependency files only. Independent review5908039058 posted/read back. Documentation commit is separate from tested implementation; finalHEAD CI must be observed independently. Overall PARTIAL, product/production108/merge NO; real-browser follow-up NOT_TESTED, no manualdispatch.
+
+## PR88 final-CI review follow-up: execution source bodies and isolated validation
+Starting reviewed implementation4aeaa46 has17successful/3failed workflows; review-only startingHEAD90e91ad/tree92c6274 does not inherit those CI results. PR introduction now separates current progress from the full untouched historical body. API originalWebKit artifact14139577751 was reacquired and recounted:72slots,64COMPLETE/8INCOMPLETE; product60PASS/4FAIL/8NOT_TESTED.
+
+Execution-source capture now saves raw checkout bodies and original Git blob bodies with fixed execution target paths, sizes, hashes and explicit LF/CRLF mapping, before workflow commands; independent post-execution audit rejects missing/modified/extra bodies and changed checkout. Existing42+cleanup25+source15 unit checks locally passed at worktree stage. Independent review corrected an invalid-schema negative control into a valid-manifest/missing-body case and strengthened a coordinated bytes/hash mutation; old preliminary logs remain preserved.
+
+Isolated real-browser/NextReact plan and implementation undergo independent pre-execution review before commit fixation/launch. Actual results are not yet claimed here. Production108 disabled; normalCI and controlled validation remain distinct. Browser-native crashes, product root causes, physicalSafari/touch/VoiceOver remain unproven.
+
+Artifact selection: baseline81, prior10 preserved; remaining71 assessed. BoundaryPreparation6 originals are direct evidence for allocation/contract and expire2026-12-15; acquired for additional preservation. Other65successful unrelated-regression artifacts expire2027-02-13 and remain unpreserved with explicit deferral, not claimed archived. Windows offline; Library alternative does not mean Windows transfer complete. No old evidence overwritten/deleted.
+
+Independent historical artifact audit: six added Boundary originals (16,339,266 bytes) passed Library actual readback, official digest, outer CRC and12nested traces. Their primary11PASS/1FAIL and evidence12COMPLETE remain distinct; all six build archives lack declared .nojekyll and source/dependency bodies, so full build/source preservation is not claimed. Baseline now16/81 preserved,65 not preserved; Windows new transfer NOT_TRANSFERRED.
+
+### Fixed06b1017 execution and preservation outcome
+Independent pre-execution review cleared3corrected blockers; safety contracts106PASS. Fixed14 browser slots stopped at first Chromium socketEPERM/SIGABRT beforecontext/page: attempt1/successful0/primary0,1INCOMPLETE+13NOT_TESTED, exit1. No retries. Both Next builds and source384/copy-transform/build-byte audits PASS, not product executionPASS. New126027933byte originalZIP independently reobtained from Library: SHA5240f9fd386018d08e39b1f2d3153d506692fcec1b4725549fb49a200f6e5678,CRC5869entries/manifest5868PASS. Preliminary npmcheck failed6injected-copy cases due work-copy discovery; retained. Separate clean canonical fixedHEAD check passed729Vitest+218Node/lint/type/build with pre/post source capture. Dummy108unique/onefirstFAIL/production0. OverallPARTIAL/browserBLOCKED/mergeNO. Final documentationHEAD CI and Windows transfer remain pending.
+
+### Correction after actual CI artifact readback
+06b safety4originalZIPs preserve bytes but omit22hidden declared source paths in raw/Git trees. Source artifact completenessFAIL despite pre-upload384PASS. Original4 preserved/readback; hidden-inclusive explicit evidence/source upload candidate and same-counterexample regression added, temp excluded. NewCI archiveGREEN pending. Do not treat016f report's source-local PASS as CI artifact-completenessPASS. Browser trials unchanged and notrerun.
+
+### Windows config-check CRLF correction
+5ca Windows safety107PASS/1FAIL versus Ubuntu108PASS: new config regex usedLF only. Recorded same YAML LFaccept/CRLFreject; structuraltest now tests both and acceptsCRLF without changing rawsourceaudit or expected paths/hidden inclusion. OldCIFAIL retained. Browser14notrerun; finalCI separate.
+5ca actual4artifact independent Libraryreadback confirms hidden22 restored/all384raw+Git bodies complete; hidden-loss closurePASS for5ca only. Windows381CRLF/3same vsLinux384rawsame remain separate. WindowscontractFAIL remains and subsequentHEAD needsnewCI.
+
+## PR88 P2-02 / P2-03 correction (2026-11-15)
+
+Baseline004489c reviewed against5908837572. Separate expected fault detection from evidence/cleanup/process outcome; preserve raw rows before validation; constrain injected save failure to actual directory target. Replace four-byte ZIP magic acceptance with bounded ZIP CRC/Playwright/trial/primary audit. Same original synthetic failures and fake23byte counterexample retained; actual historical4370byte trace positive control is explicitly not new browser evidence. Review-added extra-action/partial-state/raw-summary counterexamples fixed with same tests. Seven safety contract files174PASS locally; focused independent review89PASS. See docs/phase7d/P202-P203-PLAN.md and P202-P203-RESULT.md. Final candidate CI/review/preservation recorded separately; stopped14 not repeated, production108 NO, merge NO, Draft maintained, causesUNKNOWN.
+
+## PR88 fixed-plan membership correction (2026-11-15)
+
+Additional review5909931999: baseline57dcdf3 accepted mutually consistent foreign row/trace identities. Added unconditional per-row HEAD/tree equality with fixed plan before evidence inspection. Reconstructed synthetic HEAD/tree/both/missing mutations across COMPLETE/INCOMPLETE/NOT_TESTED:12 old misacceptances plus6 old trace-level rejections; exact saved input bytes18 rejected at plan membership after correction. Unchanged controls remain accepted; auditIntegrity and engineering exit1 from13unstarted slots stay distinct. Focused105PASS/3NOT_TESTED of108; no new browser. See docs/phase7d/PLAN-MEMBERSHIP-RESULT.md. Final CI/source readback/independent preservation are separate checks, not baseline-success reuse. Product causesUNKNOWN, production108NO, mergeNO, Draft maintained.

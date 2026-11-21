@@ -1,3 +1,4 @@
+import {interactiveMotionExhibits} from './interactiveMotionExhibits';
 import {motionCompositionExhibits} from './motionCompositionExhibits';
 import {smallMotionIIExhibits} from './smallMotionIIExhibits';
 import {exhibitRooms} from './exhibitRooms';
@@ -46,6 +47,7 @@ export const museumCatalog:CatalogRecord[]=[
   ...smallMotionExhibits.map(x=>record('modern-animation',x.id,x.title,['modern'],'Small Motion Collection',x.tags,`#modern-exhibit-${x.id}`)),
   ...smallMotionIIExhibits.map(x=>record('modern-animation',x.id,x.title,['modern'],'Small Motion Collection II',x.tags,`#modern-exhibit-${x.id}`)),
   ...motionCompositionExhibits.map(x=>record('modern-animation',x.id,x.title,['modern'],'Motion Composition Studio',x.tags,`#modern-exhibit-${x.id}`)),
+  ...interactiveMotionExhibits.map(x=>record('modern-animation',x.id,x.title,['modern'],'Interactive Motion Lab',x.tags,`#modern-exhibit-${x.id}`)),
   ...modern('experiments',[...phase2Studies,...phase2BStudies]),
   ...modern('practical',practicalExhibits),
   ...modern('practical-advanced',[...phase4aExhibits,...phase4bExhibits,...phase5aExhibits,...phase5bExhibits,...phase6aExhibits]),

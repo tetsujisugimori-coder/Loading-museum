@@ -1,0 +1,25 @@
+name: Phase 7D offline diagnosis controls
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  offline-controls:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: API synthetic and contract controls, no browser
+        run: node --test tests/phase7d-api-offline-diagnosis.test.mjs tests/phase7d-api-contract.test.mjs tests/phase7d-observation-contract.test.mjs tests/phase7d-causal-contract.test.mjs
+      - name: WAAPI synthetic recorded-protocol controls, no browser
+        run: python -B tests/phase7d-waapi-offline-diagnosis.test.py

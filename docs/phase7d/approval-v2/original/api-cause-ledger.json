@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "originalRun": 43708599257,
+  "attempt": 1,
+  "head": "179234d4351a988afcc7631795c7e162c8eb7882",
+  "matrix": [
+    {
+      "observedFact": "API old3 primary dismissing then later dismissed",
+      "hypothesis": "H1 callback start/completion",
+      "supportingEvidence": "Compatible with delayed callback work",
+      "counterEvidence": "Later terminal observations oppose permanent failure in those three, but no callback probe",
+      "missingEvidence": "Callback entry/exit and generation",
+      "responsibilityBoundary": "UNKNOWN product/harness/native",
+      "observationEffect": "Probe append/time sampling can affect scheduling",
+      "nextDiscriminator": "Same-generation callback mark without blocking",
+      "judgment": "UNKNOWN"
+    },
+    {
+      "observedFact": "Old primary DOM value differs from later read",
+      "hypothesis": "H2 update request to React commit delay",
+      "supportingEvidence": "Compatible with queued update/commit",
+      "counterEvidence": "No update request/commit timestamp; H1/H3/H4/H5 alternatives remain",
+      "missingEvidence": "Request+layout-effect commit paired tokens",
+      "responsibilityBoundary": "UNKNOWN",
+      "observationEffect": "Commit probe can influence scheduling",
+      "nextDiscriminator": "Paired request/commit sequence with I0/I1/I2 control",
+      "judgment": "UNKNOWN"
+    },
+    {
+      "observedFact": "Sampled DOM values differ across API boundary",
+      "hypothesis": "H3 commit to DOM reflection boundary",
+      "supportingEvidence": "Reads capture different states",
+      "counterEvidence": "Reads are not commit/DOM mutation timestamps",
+      "missingEvidence": "Commit marker/node identity/DOM sample",
+      "responsibilityBoundary": "UNKNOWN",
+      "observationEffect": "Extra DOM read and MutationObserver delivery are observers",
+      "nextDiscriminator": "Same-generation commit-site read and separately timed MO delivery",
+      "judgment": "UNKNOWN"
+    },
+    {
+      "observedFact": "All assigned N1/D1/S1 intermediates after primary persistence",
+      "hypothesis": "H4 measurement affects observed timing",
+      "supportingEvidence": "Post-primary read/no-op/image costs precede followup",
+      "counterEvidence": "Cannot cause own earlier primary; group rates confounded by order/load",
+      "missingEvidence": "Uninstrumented versus instrumented timing and recorder costs",
+      "responsibilityBoundary": "UNKNOWN",
+      "observationEffect": "Common trace/read/host persistence already observers in N0",
+      "nextDiscriminator": "Hold originalGroup and input fixed, compare I0/I1/I2 without equalizing waits",
+      "judgment": "UNKNOWN"
+    },
+    {
+      "observedFact": "Commanded virtual ledger not advanced after primary",
+      "hypothesis": "H5 virtual/host progression differs",
+      "supportingEvidence": "Virtual command duration and host duration are distinct",
+      "counterEvidence": "No browser clock sampled at primary/followup; no exact clock conversion",
+      "missingEvidence": "Paired browser/host interval and virtual timeline",
+      "responsibilityBoundary": "UNKNOWN",
+      "observationEffect": "Clock reads themselves observers",
+      "nextDiscriminator": "Mark clock domains explicitly and retain uncertainty bounds",
+      "judgment": "UNKNOWN"
+    },
+    {
+      "observedFact": "Source contains generation/guard/cancel concepts; runtime tokens not recorded",
+      "hypothesis": "H6 obsolete callback/guard/cancel race",
+      "supportingEvidence": "Prefix has Undo/cancel history",
+      "counterEvidence": "No runtime guard reject/cancel event evidence",
+      "missingEvidence": "Scheduled/active generation and actual guard outcome",
+      "responsibilityBoundary": "UNKNOWN",
+      "observationEffect": "Adding guard/log code could change callback identity",
+      "nextDiscriminator": "Read-only marks at existing sites, no new guard",
+      "judgment": "UNKNOWN"
+    },
+    {
+      "observedFact": "Original raw/primary/report reconcile64/3/5;5 prefixes do not reach primary",
+      "hypothesis": "H7 collection/classification boundary",
+      "supportingEvidence": "Unreached primary and transient samples need separate categories",
+      "counterEvidence": "No demonstrated historical misclassification; new-wrapper guard defects are separate",
+      "missingEvidence": "Internal boundary distinction and complete byte provenance",
+      "responsibilityBoundary": "UNKNOWN",
+      "observationEffect": "Collection after primary can influence later state only",
+      "nextDiscriminator": "Independent raw/summary/source/body check and immutable primary",
+      "judgment": "UNKNOWN"
+    }
+  ],
+  "newHeadRun": "SEPARATE_NEW_HEAD_PRIMARY_LEDGER; never replace old record",
+  "commonCause": "NOT_ESTABLISHED"
+}

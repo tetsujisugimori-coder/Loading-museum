@@ -1,0 +1,115 @@
+{
+  "role": "Independent reviewer, not document author",
+  "timeUtc": "2026-11-15T14:41:25.742002+00:00",
+  "baselineHead": "5de4b08a2dc881ad2afcbe805b0776cb944ff882",
+  "baselineTree": "89a84488c489161f167e06df34fbc25cca0a4c6e",
+  "reviewedFiles": {
+    "CHANGE-MAP.md": {
+      "bytes": 2867,
+      "sha256": "66b916159b2078936a176b6bd5ac7cef16362ceaa5db9d4eece78bd6d8e72ba1"
+    },
+    "README.md": {
+      "bytes": 2572,
+      "sha256": "efaab22de756ea30db22b5280aab6ec4cd61e4df1d2efa7d2902841c8ec165b3"
+    },
+    "VALIDATION.md": {
+      "bytes": 1158,
+      "sha256": "3c0a9628d545be9fa48ea69e2ade37f9d5a12746543871636913690b688634c8"
+    },
+    "annex.md": {
+      "bytes": 16162,
+      "sha256": "f54f3f38bf55765742a8a472b8f827084a85e3c87a53d1f7bd066af10959d15a"
+    },
+    "approval-gates.json": {
+      "bytes": 2077,
+      "sha256": "13cab137e18c8e995bad898b0ba116144cdaaf422dafa849aeb8482950fa0834"
+    },
+    "document-register.json": {
+      "bytes": 11209,
+      "sha256": "ad82f67417a973ec5bf7250d3428cf6666230ece985271c3a921ab9d82e312f9"
+    },
+    "original/API-PREREGISTRATION.md": {
+      "bytes": 12116,
+      "sha256": "c5dd02db0748c957aa87639857011b2cb6871a81c4778a6f00d57539291e1143"
+    },
+    "original/WAAPI-PREREGISTRATION.md": {
+      "bytes": 12903,
+      "sha256": "5e26a6290f9ba25260abbc88823a1534a9a2b877f7d43eae7d142c5d668ea79a"
+    },
+    "original/api-cause-ledger.json": {
+      "bytes": 4870,
+      "sha256": "5de8d3dcb928ef636774660569569c1f98a9f3b18282d3fa7810c8b1cf895456"
+    },
+    "original/api-preregistration.json": {
+      "bytes": 7929,
+      "sha256": "9f86f113d8153210c55f6cd19eb2bde5767e6a6e6840c9b0446e4b0ac8a79490"
+    },
+    "original/waapi-cause-ledger.json": {
+      "bytes": 3494,
+      "sha256": "dc88b663a6b52eae4650b62a6c9d8282e563170a96d670cfbb396bfbafebebf7"
+    },
+    "original/waapi-preregistration.json": {
+      "bytes": 7348,
+      "sha256": "08c3ff126ee13f29190ddc3c8e077de53f65287af5fc9c15483bf35a67ce1b08"
+    },
+    "publication-comparison.json": {
+      "bytes": 2755,
+      "sha256": "b0295a61ba8d271346ba5a6bae35241286dcfab75913aa5ff250ab89fb5e4ef8"
+    },
+    "source-inventory.json": {
+      "bytes": 647914,
+      "sha256": "f50b95ae694d77e39665ff4f084925734b4f3da07cad7069a2495a9c6277f020"
+    }
+  },
+  "checks": {
+    "exactOriginalPublic6": "PASS allbytes vs recovered original",
+    "versionRegister14": "PASS raw size SHA",
+    "GitSourceInventory": "PASS all2124 entries;25 hidden paths; mode/type/blob/size/SHA independently recomputed",
+    "githubPosting": "PASS exact UTF8 posting bytes and MD inclusion; ordered table equals fullJSON",
+    "apiSlots": "PASS 22=4+6x3,unique ordered IDs,1200cap",
+    "waapiSlots": "PASS 13=4+3x3;9contexts/18correlated endpoints;6contexts375+3contexts390",
+    "primaryLedger": "PASS old API64/3/5 retains laterPASS separately; WAAPI375MenuFAIL retains373ms scope",
+    "causeLedgers": "PASS H1-H7/W1-W5 nine fields,UNKNOWN",
+    "approval": "PASS A only; B/CUNAPPROVED; code/build/environment hashes uncreated",
+    "sourcePreservation": "read-only inspection, no browser or tests executed",
+    "selectedBundle": "PASS49CRC and10design entries exactbytes against materialized bundle; no independent Library retrieval yet"
+  },
+  "findings": [
+    {
+      "id": "IR1",
+      "severity": "P2-document-fact",
+      "initial": "Claimed original WAAPI U+FFFD characters do not exist; source contains proper arrow",
+      "status": "CLOSED",
+      "verification": "CHANGE-MAP acknowledges display misread; actual原file unchanged, U+FFFD count0"
+    },
+    {
+      "id": "IR2",
+      "severity": "execution-blocker",
+      "initial": "Deferred full-sequence body retrieval cannot satisfy original immediate same-slot stop on body mismatch",
+      "status": "REMAINS_C_BLOCKED_DISCLOSED",
+      "verification": "annex explicit Unresolved immediate-stop conflict; not falsely marked solved"
+    },
+    {
+      "id": "IR3",
+      "severity": "P2-document-identity",
+      "initial": "New annex/gates document byte IDs omitted from initial register",
+      "status": "CLOSED_PENDING_FINAL_FREEZE",
+      "verification": "packageDocuments added; final changed files require refreshed hashes"
+    }
+  ],
+  "verdict": {
+    "documentationScope": "LIMITED_PASS after final package hash freeze",
+    "executionReadiness": "HOLD",
+    "overall": "PARTIAL",
+    "mergeRecommendation": "NO",
+    "browserCausalTrials": 0
+  },
+  "notReviewed": [
+    "final submitted commit/remote readback",
+    "documentation-head automaticCI",
+    "final deliverable Library actual independent retrieval",
+    "old81artifacts+21logZIP fullbytes",
+    "future implementation/build/capture/browser environment",
+    "causal runtime neutrality"
+  ]
+}

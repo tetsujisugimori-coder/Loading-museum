@@ -1,0 +1,65 @@
+name: Diagnose Phase 7D API isolation
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node --test tests/phase7d-*diagnostic*.test.mjs tests/phase7d-causal-contract.test.mjs tests/phase7d-observation-contract.test.mjs tests/phase7d-api-contract.test.mjs
+      - name: Build one uninstrumented source for every observation group
+        env:
+          DIAGNOSTIC_GROUP: A
+          DIAGNOSTIC_COPY_DIR: work/observation-copy
+        run: node scripts/prepare-phase7d-diagnostic.mjs
+      - name: Browser tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/observation-tools" --no-save playwright@1.56.1
+          "$RUNNER_TEMP/observation-tools/node_modules/.bin/playwright" install --with-deps ${{ matrix.browser }}
+      - name: Fixed preregistered N0 N1 D1 S1 trials on the same runner
+        env:
+          BROWSERS: ${{ matrix.browser }}
+          DIAGNOSTIC_BUILD_DIR: work/observation-copy/out
+          DIAGNOSTIC_BUILD_MANIFEST: work/observation-copy/diagnostic-build.json
+          EVIDENCE_DIR: work/phase7d-api
+        run: |
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/observation-tools/node_modules/playwright"
+          mkdir -p "$GITHUB_WORKSPACE/work/observation-tmp"
+          export TMPDIR="$GITHUB_WORKSPACE/work/observation-tmp"
+          node scripts/diagnose-phase7d-api.mjs
+      - name: Audit immutable primary results and original traces
+        if: always()
+        env:
+          DIAGNOSTIC_BUILD_DIR: work/observation-copy/out
+          BROWSERS: ${{ matrix.browser }}
+        run: |
+          export EXPECTED_HEAD="$(git rev-parse HEAD)"
+          export EXPECTED_TREE="$(git rev-parse HEAD^{tree})"
+          for report in work/phase7d-api/*/report.json; do
+            node scripts/audit-phase7d-api.mjs "$(dirname "$report")"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: phase7d-api-${{ matrix.browser }}-${{ github.event.pull_request.head.sha }}
+          retention-days: 30
+          path: |
+            work/phase7d-api/
+            work/observation-copy/diagnostic-build.json

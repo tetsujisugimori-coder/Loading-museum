@@ -1,0 +1,705 @@
+{
+  "original": {
+    "order": 2,
+    "id": "validation-webkit-swipe-B-1",
+    "engine": "webkit",
+    "case": "swipe",
+    "group": "B",
+    "iteration": 1,
+    "plannedId": "webkit-swipe-B-1",
+    "attempt": "attempt-00001",
+    "head": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "tree": "cccccccccccccccccccccccccccccccccccccccc",
+    "contractSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "expected": "dismissed",
+    "viewport": {
+      "width": 765,
+      "height": 1000
+    },
+    "motion": "no-preference",
+    "apis": [
+      {
+        "seq": 1,
+        "name": "browser.launch",
+        "hostStartMs": 0,
+        "hostEndMs": 1,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 2,
+        "name": "browser.newContext",
+        "hostStartMs": 10,
+        "hostEndMs": 11,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 3,
+        "name": "context.tracing.start",
+        "hostStartMs": 20,
+        "hostEndMs": 21,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 4,
+        "name": "context.newPage",
+        "hostStartMs": 30,
+        "hostEndMs": 31,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 5,
+        "name": "page.addInitScript",
+        "hostStartMs": 40,
+        "hostEndMs": 41,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 6,
+        "name": "boundary.addInitScript",
+        "hostStartMs": 50,
+        "hostEndMs": 51,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 7,
+        "name": "page.goto",
+        "hostStartMs": 60,
+        "hostEndMs": 61,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 8,
+        "name": "root.waitFor",
+        "hostStartMs": 70,
+        "hostEndMs": 71,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 9,
+        "name": "root.scrollIntoViewIfNeeded",
+        "hostStartMs": 80,
+        "hostEndMs": 81,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 10,
+        "name": "details.closed.count",
+        "hostStartMs": 90,
+        "hostEndMs": 91,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000,
+        "result": 0
+      },
+      {
+        "seq": 11,
+        "name": "summary.click",
+        "hostStartMs": 100,
+        "hostEndMs": 101,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 12,
+        "name": "mechanism.click",
+        "hostStartMs": 110,
+        "hostEndMs": 111,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 13,
+        "name": "details.open.count",
+        "hostStartMs": 120,
+        "hostEndMs": 121,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000,
+        "result": 2
+      },
+      {
+        "seq": 14,
+        "name": "clock.install",
+        "hostStartMs": 130,
+        "hostEndMs": 131,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 15,
+        "name": "clock.origin.evaluate",
+        "hostStartMs": 140,
+        "hostEndMs": 141,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 16,
+        "name": "clock.pauseAt",
+        "hostStartMs": 150,
+        "hostEndMs": 151,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 17,
+        "name": "prefix.card.focus",
+        "hostStartMs": 160,
+        "hostEndMs": 161,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 18,
+        "name": "prefix.keyboard.ArrowRight",
+        "hostStartMs": 170,
+        "hostEndMs": 171,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 19,
+        "name": "keyboard-prefix.clock.runFor",
+        "hostStartMs": 180,
+        "hostEndMs": 181,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 20,
+        "name": "keyboard-prefix.getAttribute",
+        "hostStartMs": 190,
+        "hostEndMs": 191,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000,
+        "result": "dismissed"
+      },
+      {
+        "seq": 21,
+        "name": "prefix.Undo.click",
+        "hostStartMs": 200,
+        "hostEndMs": 201,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 22,
+        "name": "undo-prefix.getAttribute",
+        "hostStartMs": 210,
+        "hostEndMs": 211,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000,
+        "result": "idle"
+      },
+      {
+        "seq": 23,
+        "name": "css-return-prefix.clock.runFor",
+        "hostStartMs": 220,
+        "hostEndMs": 221,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 24,
+        "name": "prefix.card.scrollIntoViewIfNeeded",
+        "hostStartMs": 230,
+        "hostEndMs": 231,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 25,
+        "name": "target.card.boundingBox",
+        "hostStartMs": 240,
+        "hostEndMs": 241,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 26,
+        "name": "target.mouse.move.start",
+        "hostStartMs": 250,
+        "hostEndMs": 251,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 27,
+        "name": "target.mouse.down",
+        "hostStartMs": 260,
+        "hostEndMs": 261,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 28,
+        "name": "target.mouse.move.drag",
+        "hostStartMs": 270,
+        "hostEndMs": 271,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 29,
+        "name": "target.mouse.up",
+        "hostStartMs": 280,
+        "hostEndMs": 281,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 30,
+        "name": "target.clock.runFor",
+        "hostStartMs": 290,
+        "hostEndMs": 291,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000,
+        "milliseconds": 500,
+        "virtualBeforeMs": 9500,
+        "virtualAfterMs": 10000
+      },
+      {
+        "seq": 31,
+        "name": "primary.getAttribute",
+        "hostStartMs": 300,
+        "hostEndMs": 301,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000,
+        "result": "dismissed"
+      },
+      {
+        "seq": 32,
+        "name": "boundary.collect",
+        "hostStartMs": 310,
+        "hostEndMs": 311,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 33,
+        "name": "context.tracing.stop",
+        "hostStartMs": 320,
+        "hostEndMs": 321,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 34,
+        "name": "context.close",
+        "hostStartMs": 330,
+        "hostEndMs": 331,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 35,
+        "name": "browser.close",
+        "hostStartMs": 340,
+        "hostEndMs": 341,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      }
+    ],
+    "pageErrors": [],
+    "primary": {
+      "apiSeq": 31,
+      "state": "dismissed",
+      "verdict": "PASS"
+    },
+    "primaryFile": {
+      "name": "primary.json",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "diagnosticStatus": "COMPLETE",
+    "evidenceStatus": "COMPLETE",
+    "productStatus": "PASS",
+    "url": "http://127.0.0.1:1234/Loading-museum/#modern-exhibit-swipe-dismiss",
+    "clockOrigin": {
+      "requestedPauseAtMs": 1000
+    },
+    "inputRectangle": {
+      "x": 0,
+      "y": 0,
+      "width": 100,
+      "height": 100
+    },
+    "instrumentation": {
+      "installed": true,
+      "overflow": false,
+      "dropped": 0,
+      "errors": [],
+      "events": [
+        {
+          "sequence": 1,
+          "trialId": "validation-webkit-swipe-B-1",
+          "virtualDateMs": 1000,
+          "browserPerformanceMs": 100,
+          "phase": "commit"
+        }
+      ]
+    }
+  },
+  "t": {
+    "order": 2,
+    "id": "validation-webkit-swipe-B-1",
+    "engine": "webkit",
+    "case": "swipe",
+    "group": "B",
+    "iteration": 1,
+    "plannedId": "webkit-swipe-B-1",
+    "attempt": "attempt-00001",
+    "head": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "tree": "cccccccccccccccccccccccccccccccccccccccc",
+    "contractSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "expected": "dismissed",
+    "viewport": {
+      "width": 765,
+      "height": 1000
+    },
+    "motion": "no-preference",
+    "apis": [
+      {
+        "seq": 1,
+        "name": "browser.launch",
+        "hostStartMs": 0,
+        "hostEndMs": 1,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 2,
+        "name": "browser.newContext",
+        "hostStartMs": 10,
+        "hostEndMs": 11,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 3,
+        "name": "context.tracing.start",
+        "hostStartMs": 20,
+        "hostEndMs": 21,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 4,
+        "name": "context.newPage",
+        "hostStartMs": 30,
+        "hostEndMs": 31,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 5,
+        "name": "page.addInitScript",
+        "hostStartMs": 40,
+        "hostEndMs": 41,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 6,
+        "name": "boundary.addInitScript",
+        "hostStartMs": 50,
+        "hostEndMs": 51,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 7,
+        "name": "page.goto",
+        "hostStartMs": 60,
+        "hostEndMs": 61,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 8,
+        "name": "root.waitFor",
+        "hostStartMs": 70,
+        "hostEndMs": 71,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 9,
+        "name": "root.scrollIntoViewIfNeeded",
+        "hostStartMs": 80,
+        "hostEndMs": 81,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 10,
+        "name": "details.closed.count",
+        "hostStartMs": 90,
+        "hostEndMs": 91,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000,
+        "result": 0
+      },
+      {
+        "seq": 11,
+        "name": "summary.click",
+        "hostStartMs": 100,
+        "hostEndMs": 101,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 12,
+        "name": "mechanism.click",
+        "hostStartMs": 110,
+        "hostEndMs": 111,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 13,
+        "name": "details.open.count",
+        "hostStartMs": 120,
+        "hostEndMs": 121,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000,
+        "result": 2
+      },
+      {
+        "seq": 14,
+        "name": "clock.install",
+        "hostStartMs": 130,
+        "hostEndMs": 131,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 15,
+        "name": "clock.origin.evaluate",
+        "hostStartMs": 140,
+        "hostEndMs": 141,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 16,
+        "name": "clock.pauseAt",
+        "hostStartMs": 150,
+        "hostEndMs": 151,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 17,
+        "name": "prefix.card.focus",
+        "hostStartMs": 160,
+        "hostEndMs": 161,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 18,
+        "name": "prefix.keyboard.ArrowRight",
+        "hostStartMs": 170,
+        "hostEndMs": 171,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 19,
+        "name": "keyboard-prefix.clock.runFor",
+        "hostStartMs": 180,
+        "hostEndMs": 181,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 20,
+        "name": "keyboard-prefix.getAttribute",
+        "hostStartMs": 190,
+        "hostEndMs": 191,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000,
+        "result": "dismissed"
+      },
+      {
+        "seq": 21,
+        "name": "prefix.Undo.click",
+        "hostStartMs": 200,
+        "hostEndMs": 201,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 22,
+        "name": "undo-prefix.getAttribute",
+        "hostStartMs": 210,
+        "hostEndMs": 211,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000,
+        "result": "idle"
+      },
+      {
+        "seq": 23,
+        "name": "css-return-prefix.clock.runFor",
+        "hostStartMs": 220,
+        "hostEndMs": 221,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 24,
+        "name": "prefix.card.scrollIntoViewIfNeeded",
+        "hostStartMs": 230,
+        "hostEndMs": 231,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 25,
+        "name": "target.card.boundingBox",
+        "hostStartMs": 240,
+        "hostEndMs": 241,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 26,
+        "name": "target.mouse.move.start",
+        "hostStartMs": 250,
+        "hostEndMs": 251,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 27,
+        "name": "target.mouse.down",
+        "hostStartMs": 260,
+        "hostEndMs": 261,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 28,
+        "name": "target.mouse.move.drag",
+        "hostStartMs": 270,
+        "hostEndMs": 271,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 29,
+        "name": "target.mouse.up",
+        "hostStartMs": 280,
+        "hostEndMs": 281,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 30,
+        "name": "target.clock.runFor",
+        "hostStartMs": 290,
+        "hostEndMs": 291,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000,
+        "milliseconds": 500,
+        "virtualBeforeMs": 9500,
+        "virtualAfterMs": 10000
+      },
+      {
+        "seq": 31,
+        "name": "primary.getAttribute",
+        "hostStartMs": 300,
+        "hostEndMs": 301,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000,
+        "result": "dismissed"
+      },
+      {
+        "seq": 32,
+        "name": "boundary.collect",
+        "hostStartMs": 310,
+        "hostEndMs": 311,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 33,
+        "name": "context.tracing.stop",
+        "hostStartMs": 320,
+        "hostEndMs": 321,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 34,
+        "name": "context.close",
+        "hostStartMs": 330,
+        "hostEndMs": 331,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      },
+      {
+        "seq": 35,
+        "name": "browser.close",
+        "hostStartMs": 340,
+        "hostEndMs": 341,
+        "status": "OK",
+        "commandedVirtualDateMs": 10000
+      }
+    ],
+    "pageErrors": [],
+    "primary": {
+      "apiSeq": 31,
+      "state": "dismissed",
+      "verdict": "PASS"
+    },
+    "primaryFile": {
+      "name": "primary.json",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "diagnosticStatus": "COMPLETE",
+    "evidenceStatus": "COMPLETE",
+    "productStatus": "PASS",
+    "url": "http://127.0.0.1:1234/Loading-museum/#modern-exhibit-swipe-dismiss",
+    "clockOrigin": {
+      "requestedPauseAtMs": 1000
+    },
+    "inputRectangle": {
+      "x": 0,
+      "y": 0,
+      "width": 100,
+      "height": 100
+    },
+    "instrumentation": {
+      "installed": true,
+      "overflow": false,
+      "dropped": 0,
+      "errors": [],
+      "events": [
+        {
+          "sequence": 1,
+          "trialId": "validation-webkit-swipe-B-1",
+          "virtualDateMs": 1000,
+          "browserPerformanceMs": 100,
+          "phase": "commit",
+          "operationId": "forged-operation"
+        }
+      ]
+    }
+  },
+  "p": {
+    "order": 2,
+    "id": "webkit-swipe-B-1",
+    "engine": "webkit",
+    "case": "swipe",
+    "group": "B",
+    "iteration": 1
+  }
+}
