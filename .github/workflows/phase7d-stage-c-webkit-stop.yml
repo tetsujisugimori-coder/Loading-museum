@@ -197,7 +197,7 @@ jobs:
           proof = json.loads((root / 'raw/webkit-stop-proof.json').read_bytes())
           rows = proof['observedWebkitProcesses']
           assert any(row['pid'] == int(launches[0]) for row in rows), 'Launched PID missing from namespace proof'
-          assert any(re.search(r'WebKit(Web|Network)Process', row['cmdline']) for row in rows), 'No WebKit child in namespace proof'
+          assert any(re.search(r'WPE(?:Web|Network)Process', row['cmdline']) for row in rows), 'No WebKit child in namespace proof'
           events = re.findall(rf'pw:browser \[pid={launches[0]}\] (<[^>]+>)', log)
           print(f'webkit_pid={launches[0]} events={events}')
           assert events == ['<gracefully close start>', '<process did exit: exitCode=0, signal=null>',
