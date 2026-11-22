@@ -1,10 +1,15 @@
 """Exercise the PID supervisor with stand-alone processes, without a browser."""
 
+import errno
 import hashlib
 import json
+import os
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from process_supervisor import run_supervised, _rootfs_inventory, _verify_package, _kill_dispatch_deadline
 
@@ -50,6 +55,61 @@ class ProcessSupervisorTest(unittest.TestCase):
         self.assertIsNotNone(result["pidfdReadyObservedNs"])
         self.assertIsNotNone(result["namespaceExitObservedNs"])
         self.assertIsNone(result["kernelExitActualNs"])
+
+    def test_sigkill_error_does_not_prevent_reaping_or_incomplete_receipt(self):
+        # No bwrap or browser: simulate the supervisor's namespace PID 1 with a local process.
+        original_popen = subprocess.Popen
+        for failure_point in ("HARD_DISPATCH", "FINALIZER"):
+            with self.subTest(failure_point=failure_point):
+                children = []
+                sends = []
+
+                def launch(_command, *, pass_fds, stdin, stdout, stderr, start_new_session):
+                    proc = original_popen(
+                        [sys.executable, "-c", "import time; time.sleep(5)"],
+                        stdin=subprocess.PIPE, stdout=stdout, stderr=stderr,
+                        start_new_session=True,
+                    )
+                    children.append(proc)
+                    os.write(pass_fds[0], json.dumps({"child-pid": proc.pid}).encode())
+                    return proc
+
+                def injected_sigkill(_pidfd, _signal):
+                    sends.append(_signal)
+                    if failure_point == "HARD_DISPATCH" or len(sends) == 2:
+                        raise PermissionError(errno.EPERM, "synthetic SIGKILL denial")
+                    # Deliberately do not send a signal: force the FINALIZER path.
+
+                try:
+                    with tempfile.TemporaryDirectory(prefix="stage-c-sigkill-error-") as directory:
+                        receipt_path = Path(directory) / "evidence" / "supervisor.json"
+                        with (patch("process_supervisor.subprocess.Popen", side_effect=launch),
+                              patch("process_supervisor._namespace_handle",
+                                    side_effect=lambda pid, metadata: os.pidfd_open(pid)),
+                              patch("process_supervisor.signal.pidfd_send_signal",
+                                    side_effect=injected_sigkill)):
+                            result = run_supervised(
+                                "/", [sys.executable, "-c", "pass"], receipt_path.parent,
+                                soft_seconds=0.1, hard_seconds=0.35,
+                            )
+                        self.assertEqual(json.loads(receipt_path.read_bytes()), result)
+                        self.assertIn("PermissionError", result["supervisorError"])
+                        self.assertEqual(result["workerResultStatus"], "INCOMPLETE")
+                        self.assertFalse(result["stopCompleted"])
+                        self.assertFalse(result["withinHardDeadline"])
+                        attempts = result["sigkillAttempts"]
+                        self.assertEqual([row["cause"] for row in attempts],
+                                         ["HARD_DISPATCH", "FINALIZER"])
+                        self.assertEqual(attempts[-1]["outcome"], "ERROR:PermissionError:1")
+                        if failure_point == "HARD_DISPATCH":
+                            self.assertEqual(attempts[0]["outcome"], "ERROR:PermissionError:1")
+                        else:
+                            self.assertEqual(attempts[0]["outcome"], "RETURNED")
+                finally:
+                    for child in children:
+                        if child.poll() is None:
+                            child.kill()
+                        child.wait(timeout=5)
 
     def test_bad_stop_notice_records_error_and_incomplete_shutdown(self):
         for notice in (b"{", b"[]", b'{"slotId":"fixture","reason":"TEST","mismatchDetectedAtNs":null}'):
