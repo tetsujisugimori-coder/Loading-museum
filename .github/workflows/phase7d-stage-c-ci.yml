@@ -368,6 +368,7 @@ jobs:
         run: |
           python3 -B diagnostic-isolated/c-s1-10/stage-c-outer-observer.test.py
           python3 -B diagnostic-isolated/c-s1-10/stage-c-outer-integration.test.py
+          python3 -B diagnostic-isolated/c-s1-10/p2-03-adopted-separate-group.test.py
 
 
   runtime-binding:
