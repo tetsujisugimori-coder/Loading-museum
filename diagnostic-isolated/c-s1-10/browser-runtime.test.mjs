@@ -83,6 +83,7 @@ test("the fixed resource plan takes an independent byte snapshot and rejects cha
 
 test("diagnostic failure stores incomplete evidence and cannot reopen an existing result", async t => {
   const evidenceDirectory = join(directory(t), "diagnostic");
+  const stop = new AbortController();
   const closed = [];
   const context = new EventEmitter();
   context.tracing = {
@@ -92,7 +93,11 @@ test("diagnostic failure stores incomplete evidence and cannot reopen an existin
   context.newPage = async () => Object.assign(new EventEmitter(), {
     async goto() { throw new Error("intentional incomplete navigation"); },
   });
-  context.close = async () => { closed.push("context"); };
+  context.close = async () => {
+    closed.push("context");
+    // Simulate the supervisor's S arriving during cleanup, after the network failure.
+    stop.abort();
+  };
   let launches = 0;
   const webkit = { async launch() {
     launches++;
@@ -100,12 +105,15 @@ test("diagnostic failure stores incomplete evidence and cannot reopen an existin
       async close() { closed.push("browser"); } };
   } };
   const options = {
-    webkit, stopSignal: signal, evidenceDirectory, trustedResources: [entry],
+    webkit, stopSignal: stop.signal, stopCommandReceivedNs: () => "123456789",
+    evidenceDirectory, trustedResources: [entry],
     networkRules: new Map([["AP-01-I0", { allowlist: { [resource]: { sha256: hash } },
       baselineRequestCount: 1, baselinePathMultiset: { [resource]: 1 } }]]),
   };
   const result = await runBrowserStageCDiagnostic(options);
   assert.equal(result.status, "INCOMPLETE");
+  assert.equal(result.stopRequested, true);
+  assert.equal(result.supervisorStopCommandReceivedNs, "123456789");
   assert.equal(result.stopCompleted, false);
   assert.equal(result.registeredTrialsStarted, 0);
   assert.match(result.error, /intentional incomplete navigation/);
