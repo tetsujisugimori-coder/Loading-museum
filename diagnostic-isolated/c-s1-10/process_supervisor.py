@@ -37,12 +37,15 @@ def _namespace_handle(pid, metadata):
 
 
 def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
-                   soft_seconds=1170, hard_seconds=1200, network_notice=None, ready_check=None):
+                   soft_seconds=1170, hard_seconds=1200, network_notice=None, ready_check=None,
+                   private_network=False):
     """Request cleanup over stdin, then kill namespace PID 1 if needed."""
     if not 0 < soft_seconds < hard_seconds <= 1200 or soft_seconds > 1170:
         raise ValueError("Invalid Stage C deadlines")
     if ready_check is not None and network_notice is not None:
         raise ValueError("READY diagnostics and product network stops are mutually exclusive")
+    if private_network and os.geteuid() == 0:
+        raise ValueError("Stage C private network requires a non-root launcher")
     start = time.monotonic_ns()
 
     def elapsed():
@@ -59,6 +62,14 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
     for option, pairs in (("--ro-bind", readonly), ("--bind", writable)):
         for source, target in pairs:
             argv.extend([option, str(Path(source).resolve()), target])
+    if private_network:
+        verifier = "/tmp/stage-c-process-supervisor.py"
+        argv.extend(["--unshare-net", "--cap-drop", "ALL",
+                     "--ro-bind", str(Path(__file__).resolve()), verifier])
+        # Drop host verifier capabilities before execing the AppArmor-profiled bwrap.
+        argv = ["/usr/bin/setpriv", "--inh-caps=-all", "--ambient-caps=-all", "--no-new-privs", "--", *argv]
+        command = ["/usr/bin/python3", "-IB", verifier, "--check-network-and-exec",
+                   os.readlink("/proc/self/ns/user"), os.readlink("/proc/self/ns/net"), *command]
 
     stop_at = None
     network_fault = None
@@ -378,15 +389,11 @@ def main():
         sys.exit("Stage C browser execution is on HOLD")
 
     args = sys.argv[1:]
-    if len(args) == 5:
-        os.execv("/usr/bin/unshare", ["/usr/bin/unshare", "--user", "--map-root-user", "--net", "--",
-                 sys.executable, "-IB", __file__, *args, os.readlink("/proc/self/ns/net")])
-    if len(args) != 6:
+    if len(args) != 5:
         sys.exit("Expected rootfs, Playwright driver directory, package directory, approved manifest SHA-256 and receipt directory")
-    rootfs, driver, package, expected_sha, destination, outer_namespace = args
+    rootfs, driver, package, expected_sha, destination = args
     # Use the same resolved directory for both the preflight and bwrap mount.
     rootfs = str(Path(rootfs).resolve(strict=True))
-    _enable_private_loopback(outer_namespace)
     _verify_package(package, expected_sha, {"rootfs": rootfs, "driver": driver, "repo": repo})
     raw = Path(destination).with_name(Path(destination).name + "-evidence")
     raw.mkdir(mode=0o700)
@@ -398,10 +405,18 @@ def main():
         soft_seconds=registration["bounds"]["beginStopAndCleanupBySeconds"],
         hard_seconds=registration["bounds"]["absoluteCutoffSeconds"],
         network_notice=raw / "evidence" / "network-stop.notice.json",
+        private_network=True,
     )
     sys.exit(0 if result["workerResultStatus"] == "COMPLETE" and
              not result["stopRequested"] and result["networkMismatchDetected"] is None else 1)
 
 
 if __name__ == "__main__":
-    main()
+    if sys.argv[1:2] == ["--check-network-and-exec"]:
+        outer_user, outer_network, *worker = sys.argv[2:]
+        if os.readlink("/proc/self/ns/user") == outer_user:
+            raise RuntimeError("The worker must have an isolated user namespace")
+        _enable_private_loopback(outer_network)
+        os.execv(worker[0], worker)
+    else:
+        main()
