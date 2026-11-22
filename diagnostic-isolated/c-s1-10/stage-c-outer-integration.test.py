@@ -6,10 +6,11 @@ import socket
 import subprocess
 import sys
 import tempfile
+import time
 import unittest
 from unittest.mock import patch
 from stage_c_launch import create_run, paths, sha, subreaper, load_approval, REGISTRATION, EVIDENCE
-from stage_c_outer_observer import observe, _complete_run_paths
+from stage_c_outer_observer import observe, _complete_run_paths, _readback
 
 FAKE = '''import json, os, pathlib, sys, time
 r = pathlib.Path(sys.argv[1]); r.mkdir()
@@ -155,6 +156,36 @@ class ProductLaunchTests(unittest.TestCase):
             self.assertEqual(outcome["auditStorageStatus"], "PASS")
             self.assertEqual(outcome["completeRunEvidenceStatus"], "PASS")
             self.assertEqual(len(outcome["requiredEvidence"]), 71)
+            data = (Path(d) / "fixture" / "audit.json").read_bytes()
+            body = json.loads(data)
+            for key in ("auditStorageStatus", "auditFileSha256", "auditFileBytes"):
+                self.assertNotIn(key, body)
+            self.assertEqual(outcome["auditFileSha256"], sha(data))
+            self.assertEqual(outcome["auditFileBytes"], len(data))
+
+    def test_terminal_audit_readback_failures_do_not_create_storage_receipt(self):
+        for fault, expected in (("timeout", "TimeoutError"), ("mismatch", "RuntimeError")):
+            with self.subTest(fault=fault), tempfile.TemporaryDirectory() as d:
+                def faulted_readback(path, **kwargs):
+                    if Path(path).name == "audit.json":
+                        if fault == "timeout":
+                            time.sleep(15)
+                        else:
+                            return b"mismatched terminal bytes"
+                    return _readback(path, **kwargs)
+
+                with patch("stage_c_outer_observer._readback", side_effect=faulted_readback):
+                    outcome = self.supervise_fixture(Path(d), "normal", 4)
+                body = json.loads((Path(d) / "fixture" / "audit.json").read_bytes())
+                self.assertEqual(body["totalWallVerdict"], "WITHIN_LIMIT")
+                self.assertEqual(body["completeRunEvidenceStatus"], "PASS")
+                self.assertEqual(len(body["requiredEvidence"]), 71)
+                self.assertEqual(outcome["auditStorageStatus"], "INCOMPLETE")
+                self.assertEqual(outcome["auditStorageError"], expected)
+                for key in ("auditStorageStatus", "auditFileSha256", "auditFileBytes"):
+                    self.assertNotIn(key, body)
+                self.assertNotIn("auditFileSha256", outcome)
+                self.assertNotIn("auditFileBytes", outcome)
 
     def test_other_run_receipt_cannot_claim_time_success(self):
         with tempfile.TemporaryDirectory() as d:

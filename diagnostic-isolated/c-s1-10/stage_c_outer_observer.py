@@ -84,8 +84,10 @@ def _save_audit(path, report):
         os.fsync(parent_fd)
     finally:
         os.close(parent_fd)
-    if _readback(path) != payload:
+    observed = _readback(path)
+    if observed != payload:
         raise RuntimeError("Outer observer audit readback mismatch")
+    return {"auditFileSha256": hashlib.sha256(observed).hexdigest(), "auditFileBytes": len(observed)}
 
 
 def _complete_run_paths(contract_path, evidence_root):
@@ -312,12 +314,18 @@ def observe(command, receipts, audit_path, *, required_evidence=(), evidence_con
     if control is None:
         _save_audit(audit_path, report)
     else:
-        report.update(productRunId=run_id, ownerApprovalSha256=approval_sha, outerRecovery=recovery,
-                      auditStorageStatus="PASS")
+        # The stored body is an observation. The caller receives its storage
+        # receipt only after synchronization and independent readback succeed.
+        report.update(productRunId=run_id, ownerApprovalSha256=approval_sha, outerRecovery=recovery)
+        audit_deadline_ns = time.monotonic_ns() + 2_000_000_000
         try:
-            _bounded_io(lambda: _save_audit(audit_path, report), time.monotonic_ns() + 2_000_000_000)
+            receipt = _bounded_io(lambda: _save_audit(audit_path, report), audit_deadline_ns)
+            if time.monotonic_ns() >= audit_deadline_ns:
+                raise TimeoutError("Stage C audit receipt arrived after its storage deadline")
         except (OSError, RuntimeError, ValueError) as error:
             report.update(auditStorageStatus="INCOMPLETE", auditStorageError=type(error).__name__)
+        else:
+            report.update(receipt, auditStorageStatus="PASS")
     return report
 
 
