@@ -6,7 +6,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from process_supervisor import run_supervised, _rootfs_inventory, _verify_package
+from process_supervisor import run_supervised, _rootfs_inventory, _verify_package, _kill_dispatch_deadline
 
 
 class ProcessSupervisorTest(unittest.TestCase):
@@ -43,6 +43,13 @@ class ProcessSupervisorTest(unittest.TestCase):
         self.assertIsNotNone(result["hardKillSeconds"])
         self.assertTrue(result["withinHardDeadline"])
         self.assertEqual(result["workerResultStatus"], "INCOMPLETE")
+        self.assertEqual(result["sigkillAttempts"][0]["outcome"], "RETURNED")
+        self.assertEqual(result["sigkillAttempts"][0]["cause"], "HARD_DISPATCH")
+        self.assertLessEqual(result["sigkillAttempts"][0]["attemptNs"],
+                             result["sigkillAttempts"][0]["returnNs"])
+        self.assertIsNotNone(result["pidfdReadyObservedNs"])
+        self.assertIsNotNone(result["namespaceExitObservedNs"])
+        self.assertIsNone(result["kernelExitActualNs"])
 
     def test_bad_stop_notice_records_error_and_incomplete_shutdown(self):
         for notice in (b"{", b"[]", b'{"slotId":"fixture","reason":"TEST","mismatchDetectedAtNs":null}'):
@@ -69,6 +76,14 @@ class ProcessSupervisorTest(unittest.TestCase):
         result = self.worker("pass")
         self.assertEqual(result["workerExit"], 0)
         self.assertEqual(result["workerResultStatus"], "INCOMPLETE")
+
+
+class KillDispatchTimingTest(unittest.TestCase):
+    def test_preserves_contract_cutoff_with_observation_margin(self):
+        self.assertEqual(_kill_dispatch_deadline(105, 75), 100)
+        self.assertEqual(_kill_dispatch_deadline(1200, 1170), 1195)
+        self.assertAlmostEqual(_kill_dispatch_deadline(1.1, 0.65), 0.875)
+        self.assertEqual(_kill_dispatch_deadline(56, 26), 51)
 
 
 class RootfsLockPreflightTest(unittest.TestCase):
