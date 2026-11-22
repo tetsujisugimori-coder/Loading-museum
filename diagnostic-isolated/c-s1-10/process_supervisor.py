@@ -95,6 +95,7 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
     hard_limit = hard_seconds
 
     def send_sigkill(pidfd, cause):
+        nonlocal supervisor_error
         entry = {"cause": cause, "attemptNs": time.monotonic_ns(), "returnNs": None,
                  "outcome": "UNKNOWN"}
         sigkill_attempts.append(entry)
@@ -104,7 +105,8 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
             entry["outcome"] = "ESRCH"
         except OSError as error:
             entry["outcome"] = f"ERROR:{type(error).__name__}:{error.errno}"
-            raise
+            # Preserve the failure, but never skip the finalizer's wait and receipt.
+            supervisor_error = supervisor_error or f"{type(error).__name__}: {error}"
         else:
             entry["outcome"] = "RETURNED"
         finally:
