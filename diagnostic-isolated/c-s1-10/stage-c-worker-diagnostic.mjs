@@ -22,7 +22,7 @@ function children() {
 const args = process.argv.slice(2);
 assert.equal(args.length, 5, "Expected Stage C diagnostic inputs");
 await withStageCWorkerInputs(args, async ({
-  manifest, root, networkRules, stopSignal, evidenceDirectory, loadWebKit,
+  manifest, root, networkRules, stopSignal, stopCommandReceivedNs, evidenceDirectory, loadWebKit,
 }) => {
   const interfaces = readFileSync("/proc/net/dev", "utf8").trimEnd().split("\n").slice(2)
     .map(line => line.split(":")[0].trim());
@@ -38,7 +38,7 @@ await withStageCWorkerInputs(args, async ({
   const namespaces = Object.fromEntries(["user", "pid", "net"].map(name => [name, readlinkSync("/proc/self/ns/" + name)]));
   const trustedResources = bindContractBuild(join(root, "I0"), manifest.outputs.I0);
   const result = await runBrowserStageCDiagnostic({
-    webkit: loadWebKit(), stopSignal, trustedResources, networkRules, evidenceDirectory,
+    webkit: loadWebKit(), stopSignal, stopCommandReceivedNs, trustedResources, networkRules, evidenceDirectory,
     onNetworkStop: fault => publishNetworkStopNotice(evidenceDirectory, fault),
     observe: children,
   });
