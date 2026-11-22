@@ -16,15 +16,15 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 15
     env:
-      TARGET_SHA: db1360fe92e1877715ebf6975f1794a54573f106
-      TARGET_TREE: db3617ea3bf12cee60f3cca553dce1aed3b26a03
-      EXPECTED_BEFORE: 2c9bc5ea84a4dd45ff249c99af788e036d35166e
+      TARGET_SHA: e381baf55bdb75b5d3bdf29173cff413d75e1700
+      TARGET_TREE: a42223eee7f667cc283ad046fb49098479fee00c
+      EXPECTED_BEFORE: 5cf983d7accff6dfbdefd5054158c2e2bdae82a6
       ACTUAL_BEFORE: ${{ github.event.before }}
       EVIDENCE: ${{ github.workspace }}/work/stage-c-synthetic-only
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: db1360fe92e1877715ebf6975f1794a54573f106
+          ref: e381baf55bdb75b5d3bdf29173cff413d75e1700
           persist-credentials: false
           fetch-depth: 1
       - name: Verify immutable PR #88 checkout and one-shot event
@@ -54,6 +54,30 @@ jobs:
           assert.equal(r.actualBrowserCausalTrials, 0);
           console.log('HOLD_GUARD_PASS; registered_trials=0');
           NODE
+      - name: Verify fixed Stage C runtime 52 Git objects and HOLD
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY' | tee "$EVIDENCE/runtime52.log"
+          import hashlib, json, subprocess
+          from pathlib import Path
+          path = Path("diagnostic-isolated/c-s1-10/runtime-build-bridge.candidate.json")
+          raw = path.read_bytes()
+          assert hashlib.sha256(raw).hexdigest() == "91a086e75340f6ab33b4b196b07f23f54239fd43b5d467d71ad30101c61a5fa6"
+          bridge = json.loads(raw)
+          assert bridge["status"] == "NON_EXECUTABLE_HOLD"
+          assert bridge["executionAuthorized"] is False
+          assert bridge["registeredTrialsRun"] == 0
+          assert bridge["runtimeSource"]["head"] == "8f6e1a951e91d00f2d05bb7ac6960ec293b26b64"
+          assert bridge["runtimeSource"]["tree"] == "14bcf4343e5f2d3d19f38ece87ca6e588cbcc685"
+          blobs = bridge["runtimeSource"]["repoBlobs"]
+          assert len(blobs) == 52
+          for name, pinned in blobs.items():
+              data = Path(name).read_bytes()
+              git_sha = subprocess.check_output(["git", "hash-object", "--", name], text=True).strip()
+              assert git_sha == pinned["blobSha1"] and len(data) == pinned["bytes"], name
+          print("STAGE_C_RUNTIME_52_PASS; registered_trials=0")
+          PY
       - name: Run existing Stage C Node synthetic tests (no browser)
         shell: bash
         timeout-minutes: 7
