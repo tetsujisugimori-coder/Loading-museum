@@ -243,7 +243,9 @@ def _enable_private_loopback(outer_namespace):
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as control:
         query = struct.pack("16sh22x", b"lo", 0)
         flags = struct.unpack("16sh22x", fcntl.ioctl(control, 0x8913, query))[1]
-        fcntl.ioctl(control, 0x8914, struct.pack("16sh22x", b"lo", flags | 1))
+        # bwrap initializes lo; verify its state without requiring CAP_NET_ADMIN.
+        if not flags & 0x1:
+            raise RuntimeError("Stage C loopback interface is down")
     with socket.socket() as check:
         check.bind(("127.0.0.1", 0))
 
