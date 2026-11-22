@@ -246,17 +246,64 @@ def recover(proc, handles, seconds):
     except OSError as error:
         errors.append(f"OUTER_KILL_ERROR:{type(error).__name__}")
 
+    adopted_pending = False
     while True:
         supervisor_exited = proc.poll() is not None
         if supervisor_exited:
-            try:
-                while (pid := os.waitpid(-proc.pid, os.WNOHANG)[0]) > 0:
+            if handles:
+                # The product launcher is a dedicated subreaper. Descendants may
+                # enter other process groups, so group-filtered waitpid is unsafe.
+                while True:
+                    try:
+                        pid = os.waitpid(-1, os.WNOHANG)[0]
+                    except ChildProcessError:
+                        adopted_pending = False  # No direct children remain.
+                        break
+                    if pid == 0:
+                        adopted_pending = True  # One or more live adopted children.
+                        break
                     reaped.append(pid)
-            except ChildProcessError:
-                pass
+                if adopted_pending:
+                    # Only the dedicated product observer scans/kills adopted
+                    # children. Generic diagnostics retain the old group scope.
+                    try:
+                        with os.scandir("/proc") as processes:
+                            for entry in processes:
+                                if not entry.name.isdecimal():
+                                    continue
+                                pid = int(entry.name)
+                                try:
+                                    with open(f"/proc/{pid}/status", encoding="utf-8", errors="replace") as status:
+                                        for line in status:
+                                            if line.startswith("PPid:"):
+                                                if int(line.partition(":")[2]) == os.getpid():
+                                                    fd = os.pidfd_open(pid)
+                                                    try:
+                                                        if not ready(fd):
+                                                            signal.pidfd_send_signal(fd, signal.SIGKILL)
+                                                    finally:
+                                                        os.close(fd)
+                                                break
+                                except (ProcessLookupError, FileNotFoundError, PermissionError):
+                                    pass  # Exited/reaped between discovery and pidfd open.
+                                except OSError as error:
+                                    detail = f"OUTER_ADOPTED_KILL_ERROR:{type(error).__name__}"
+                                    if detail not in errors:
+                                        errors.append(detail)
+                    except OSError as error:
+                        detail = f"OUTER_ADOPTED_SCAN_ERROR:{type(error).__name__}"
+                        if detail not in errors:
+                            errors.append(detail)
+            else:
+                # Generic/diagnostic calls do not own all direct children.
+                try:
+                    while (pid := os.waitpid(-proc.pid, os.WNOHANG)[0]) > 0:
+                        reaped.append(pid)
+                except ChildProcessError:
+                    pass
         group_empty = not _group_exists(proc.pid)
         observed = tuple(ready(fd) for fd in handles)
-        if supervisor_exited and group_empty and all(observed):
+        if supervisor_exited and group_empty and all(observed) and not adopted_pending:
             break
         delay = remaining(deadline)
         if delay == 0:
@@ -267,7 +314,9 @@ def recover(proc, handles, seconds):
         "bwrapExitObserved": observed[0] if observed else None,
         "namespaceExitObserved": observed[1] if observed else None,
         "adoptedChildrenReaped": reaped,
+        "adoptedChildrenPending": adopted_pending,
         "processGroupEmpty": group_empty,
-        "complete": supervisor_exited and group_empty and observed == (True, True),
+        "complete": supervisor_exited and group_empty and observed == (True, True)
+                    and not adopted_pending and not errors,
         "errors": errors,
     }
