@@ -364,6 +364,10 @@ jobs:
           # This is a diagnostic only; the unmodified supervisor tests retain the acceptance gate.
       - name: Test synthetic worker stop and hard deadline (no browser)
         run: python3 -B diagnostic-isolated/c-s1-10/process-supervisor.test.py
+      - name: Test outer launch and receipt verification (no browser)
+        run: |
+          python3 -B diagnostic-isolated/c-s1-10/stage-c-outer-observer.test.py
+          python3 -B diagnostic-isolated/c-s1-10/stage-c-outer-integration.test.py
 
 
   runtime-binding:
@@ -443,7 +447,7 @@ jobs:
               contents = file.read_bytes()
               check(len(contents) == entry["bytes"] and cmd("git","hash-object",path) == blob, "Runtime content differs " + path)
               repo_hashes[path] = h(contents)
-          check(len(repo_hashes) == 56 and set(source["requiredForSupervisor"]) <= set(repo_hashes), "Runtime inventory incomplete")
+          check(len(repo_hashes) == 57 and set(source["requiredForSupervisor"]) <= set(repo_hashes), "Runtime inventory incomplete")
           driver_root = Path(os.environ["STAGE_C_DRIVER_ROOT"])
           browser_root = Path(os.environ["STAGE_C_BROWSER_ROOT"])
           package = json.loads((driver_root/"node_modules/playwright/package.json").read_bytes())

@@ -43,12 +43,14 @@ def _kill_dispatch_deadline(limit_seconds, stop_window_start):
 
 def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
                    soft_seconds=1170, hard_seconds=1200, network_notice=None, ready_check=None,
-                   private_network=False, outer_start_ns=None):
+                   private_network=False, outer_start_ns=None, product=None):
     """Request cleanup over stdin, then kill namespace PID 1 if needed."""
     if not 0 < soft_seconds < hard_seconds <= 1200 or soft_seconds > 1170:
         raise ValueError("Invalid Stage C deadlines")
     if ready_check is not None and network_notice is not None:
         raise ValueError("READY diagnostics and product network stops are mutually exclusive")
+    if product is not None and (outer_start_ns is None or not private_network):
+        raise ValueError("Stage C product execution requires the outer clock and private network")
     if private_network and os.geteuid() == 0:
         raise ValueError("Stage C private network requires a non-root launcher")
     now_ns = time.monotonic_ns()
@@ -72,6 +74,11 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
             "--setenv", "XDG_RUNTIME_DIR", "/tmp/runtime", "--unsetenv", "NODE_EXTRA_CA_CERTS",
             "--setenv", "PLAYWRIGHT_BROWSERS_PATH", "/ms-playwright",
             "--setenv", "STAGE_C_MONOTONIC_START_NS", str(start)]
+    if product is not None:
+        from stage_c_launch import APPROVAL, receive, remaining, send
+        product_channel, claim, owner_stream, sandbox_stream = product
+        argv.extend(["--setenv", "STAGE_C_PRODUCT_TICKET", claim["ticket"],
+                     "--ro-bind", str(APPROVAL), "/tmp/stage-c-owner-approval.json"])
     for option, pairs in (("--ro-bind", readonly), ("--bind", writable)):
         for source, target in pairs:
             argv.extend([option, str(Path(source).resolve()), target])
@@ -125,8 +132,11 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
         handle = None
         try:
             proc = subprocess.Popen([*argv, "--info-fd", str(write_end), "--", *command],
-                                    pass_fds=(write_end,), start_new_session=True,
-                                    stdin=subprocess.PIPE, stdout=out, stderr=err)
+                                    pass_fds=(write_end,), start_new_session=product is None,
+                                    stdin=sandbox_stream if product is not None else subprocess.PIPE, stdout=out, stderr=err)
+            if product is not None:
+                sandbox_stream.close()
+                proc.stdin = owner_stream.makefile("wb", buffering=0)
             os.close(write_end)
             write_end = None
             with os.fdopen(read_end, "rb", buffering=0) as info:
@@ -135,7 +145,21 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
                     raise RuntimeError("No PID namespace receipt before startup deadline")
                 metadata = json.loads(info.read(4096))
                 handle = _namespace_handle(proc.pid, metadata)
-            if elapsed() < soft_seconds - min(0.05, soft_seconds / 10):
+            if product is not None:
+                # The outer process must hold both stable handles before any
+                # product GO. Sharing its supervised process group also covers
+                # startup failures before the namespace handle is available.
+                with_pid = os.pidfd_open(proc.pid)
+                try:
+                    product_channel.settimeout(remaining(start + round(hard_seconds * 1e9)))
+                    send(product_channel, {"state": "AWAITING_GO", "runId": claim["runId"],
+                                           "pidNamespace": f"pid:[{metadata['pid-namespace']}]"}, (with_pid, handle))
+                    ack, _ = receive(product_channel)
+                finally:
+                    os.close(with_pid)
+                if ack != {"state": "MONITORED", "runId": claim["runId"]}:
+                    raise RuntimeError("Stage C product namespace was not accepted by the outer monitor")
+            if product is None and elapsed() < soft_seconds - min(0.05, soft_seconds / 10):
                 os.write(proc.stdin.fileno(), b"G")
 
             while True:
@@ -290,6 +314,8 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
         "withinHardDeadline": within_hard_deadline,
         "workerResultStatus": "COMPLETE" if worker_completed else "INCOMPLETE",
     }
+    if product is not None:
+        result["productRunId"] = claim["runId"]
     if ready_check is not None:
         result.update(monotonicStartNs=start, readyObservedSeconds=ready_at,
                       readySha256=ready_sha, readyError=ready_error)
@@ -442,41 +468,60 @@ def _verify_package(package, expected_sha, roots):
 
 
 def main():
-    repo = Path(__file__).resolve().parents[2]
-    registration = json.loads((repo / "docs/phase7d/stage-c-api-s1-10/registration.json").read_bytes())
-    if (registration["decision"] == "HOLD" or registration["executionAuthorization"] is not True or
-            registration["executable"] is not True):
-        sys.exit("Stage C browser execution is on HOLD")
+    if sys.flags.isolated:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from stage_c_launch import checked_registration, load_approval, paths, supervisor_channel
 
-    args = sys.argv[1:]
-    if len(args) != 5:
-        sys.exit("Expected rootfs, Playwright driver directory, package directory, approved manifest SHA-256 and receipt directory")
-    rootfs, driver, package, expected_sha, destination = args
-    raw_start = os.environ.get("STAGE_C_OUTER_MONOTONIC_START_NS")
-    if raw_start is None or not re.fullmatch(r"[0-9]{1,20}", raw_start):
-        sys.exit("Stage C outer observer start is required for product execution")
-    outer_start_ns = int(raw_start)
-    # Use the same resolved directory for both the preflight and bwrap mount.
-    rootfs = str(Path(rootfs).resolve(strict=True))
-    _verify_package(package, expected_sha, {"rootfs": rootfs, "driver": driver, "repo": repo})
-    raw = Path(destination).with_name(Path(destination).name + "-evidence")
-    raw.mkdir(mode=0o700)
-    result = run_supervised(
-        rootfs, ["/usr/bin/node", "/mnt/diagnostic-isolated/c-s1-10/stage-c-worker.mjs",
-                 "/media/binding.json", expected_sha, "/media/outputs", "/srv/entry.js", "/var/tmp/evidence"],
-        destination, readonly=[(repo, "/mnt"), (driver, "/srv"), (package, "/media")],
-        writable=[(raw, "/var/tmp")],
-        soft_seconds=registration["bounds"]["beginStopAndCleanupBySeconds"],
-        hard_seconds=registration["bounds"]["absoluteCutoffSeconds"],
-        network_notice=raw / "evidence" / "network-stop.notice.json",
-        private_network=True, outer_start_ns=outer_start_ns,
-    )
+    repo = Path(__file__).resolve().parents[2]
+    try:
+        _, registration = checked_registration(repo)
+        if len(sys.argv) != 3 or sys.argv[1] != "--product-channel":
+            raise RuntimeError("Stage C product execution requires the outer launcher")
+        channel, claim, fds = supervisor_channel(int(sys.argv[2]), repo)
+        with channel, socket.socket(fileno=fds[0]) as owner_stream, socket.socket(fileno=fds[1]) as sandbox_stream:
+            approval, approval_sha = load_approval(repo)
+            if (claim.get("approvalSha256") != approval_sha or claim.get("runId") != approval["runId"] or
+                type(claim.get("startNs")) is not int or
+                not isinstance(claim.get("ticket"), str) or not re.fullmatch("[a-f0-9]{64}", claim["ticket"])):
+                raise RuntimeError("Stage C outer launch claim does not match owner approval")
+            run, destination, _ = paths(approval)
+            rootfs, driver, package = (Path(approval[k]) for k in ("rootfs", "driver", "package"))
+            expected_sha = approval["bindingSha256"]
+            _verify_package(package, expected_sha, {"rootfs": rootfs, "driver": driver, "repo": repo})
+            raw = destination.with_name(destination.name + "-evidence")
+            if not run.is_dir():
+                raise RuntimeError("Stage C launcher did not create the run directory")
+            raw.mkdir(mode=0o700)
+            result = run_supervised(
+                rootfs, ["/usr/bin/node", "/mnt/diagnostic-isolated/c-s1-10/stage-c-worker.mjs",
+                         "/media/binding.json", expected_sha, "/media/outputs", "/srv/entry.js", "/var/tmp/evidence"],
+                destination, readonly=[(repo, "/mnt"), (driver, "/srv"), (package, "/media")],
+                writable=[(raw, "/var/tmp")],
+                soft_seconds=registration["bounds"]["beginStopAndCleanupBySeconds"],
+                hard_seconds=registration["bounds"]["absoluteCutoffSeconds"],
+                network_notice=raw / "evidence" / "network-stop.notice.json",
+                private_network=True, outer_start_ns=claim["startNs"],
+                product=(channel, claim, owner_stream, sandbox_stream),
+            )
+    except (OSError, RuntimeError, ValueError, TypeError, KeyError) as error:
+        sys.exit(str(error))
     sys.exit(0 if result["workerResultStatus"] == "COMPLETE" and
              not result["stopRequested"] and result["networkMismatchDetected"] is None else 1)
 
 
+def _check_product_peer():
+    # A peer created by the outer launcher is outside the worker's PID
+    # namespace. Linux reports PID 0 to this side of the inherited socket.
+    with socket.socket(fileno=os.dup(0)) as channel:
+        peer_pid, _, _ = struct.unpack("3i", channel.getsockopt(socket.SOL_SOCKET, socket.SO_PEERCRED, 12))
+        if channel.family != socket.AF_UNIX or channel.type != socket.SOCK_STREAM or peer_pid != 0:
+            raise RuntimeError("Stage C product stream has no external launcher peer")
+
+
 if __name__ == "__main__":
-    if sys.argv[1:2] == ["--check-network-and-exec"]:
+    if sys.argv[1:] == ["--check-product-peer"]:
+        _check_product_peer()
+    elif sys.argv[1:2] == ["--check-network-and-exec"]:
         outer_user, outer_network, *worker = sys.argv[2:]
         if os.readlink("/proc/self/ns/user") == outer_user:
             raise RuntimeError("The worker must have an isolated user namespace")

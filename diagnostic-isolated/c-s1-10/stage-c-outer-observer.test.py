@@ -63,13 +63,18 @@ class TerminalObserverTests(unittest.TestCase):
             from stage_c_outer_observer import _readback
             def slow_readback(path):
                 if Path(path).name == "worker.stderr":
-                    time.sleep(5.2)
+                    time.sleep(30)
                 return _readback(path)
+            start = time.monotonic()
             with patch("stage_c_outer_observer._readback", side_effect=slow_readback):
                 outcome = observe([sys.executable, "-c", FAKE, str(receipts), "0"],
-                                  receipts, audit, limit_seconds=5)
+                                  receipts, audit, limit_seconds=0.7)
+            self.assertLess(time.monotonic() - start, 3)
             self.assertIsNotNone(outcome["supervisorExitObservedNs"])
             self.assertEqual(outcome["totalWallVerdict"], "OVER_LIMIT")
+            self.assertIn("OUTER_EVIDENCE_DEADLINE", outcome["errors"])
+            self.assertGreaterEqual(outcome["deadlineExceededObservedNs"], outcome["hardDeadlineNs"])
+            self.assertEqual(outcome, json.loads(audit.read_bytes()))
 
     def test_required_raw_evidence_cannot_be_omitted(self):
         with tempfile.TemporaryDirectory() as root:

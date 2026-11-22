@@ -17,3 +17,17 @@ python3 diagnostic-isolated/c-s1-10/verify-runtime-build-bridge.py \
 実行時の候補出力は`runtimeFiles.repo`のSHA-256を構築するが、`runtimeFiles.rootfs`と`runtimeFiles.driver`は空で**意図的に実行不可**。旧ZIPのruntime/environment SHAを最新版と主張しない。ブラウザ実受信27本文の過去照合は別の原票に帰属する。最新製品runnerでの受信とサーバー終了、通信異常30秒、1170/1200秒の実製品停止は未検証で、既存の限定WebKit停止PASSを流用しない。
 
 後工程は、同じ実行境界で実際のrootfs・driverのSHA-256を採取し、製品用の原料source/build/served/received-byte対応と独立検査を行い、**別途所有者が登録10枠の開始を判断**すること。この文書とmanifestは承認でも実行手順の起動許可でもない。
+
+## Stage C登録枠の製品起動契約
+
+製品の入口は `stage_c_outer_observer.py --product`。登録票による既存のHOLDと、所有者が管理するホスト上の承認記録の両方を検証する。承認記録は `/etc/loading-museum/stage-c-approval.json` に置き、ファイルと親ディレクトリをroot所有・group/other書込不可とする。運用の登録票・承認記録・実行用bindingは、登録枠の実行を所有者が明示承認するときに確定する。
+
+承認記録は以下の値を固定する。
+
+- `schemaVersion=1`、`executionAuthorized=true`、専用の非root `launcherUid`、実行ごとに一意の `runId`
+- `runtimeHead`、`runtimeTree`、`registrationSha256`、`bindingSha256`、`evidenceContractSha256`
+- 読み取り専用でマウントした `repo`、`package`、`driver`、`rootfs` と、ランチャー専用の出力親ディレクトリ `runs`（モード0700）
+
+外側監視者は今回専用の出力ディレクトリを排他的に作り、監督とPID名前空間の監視を確立してからworkerへ開始を通知する。起動通信には継承ソケットを使用する。この保証は承認記録の管理者と指定の専用アカウントを信頼するLinux運用が前提となる。既存の診断・合成入口は個別用途で使う。
+
+1200秒到達時は期限違反を先に記録する。期限後の回収と監査保存には個別の結果を残す。製品入口の終了コード0は、時間内完了、監督の正常終了、68原票の読戻し、監査記録の保存がそろった場合に限る。

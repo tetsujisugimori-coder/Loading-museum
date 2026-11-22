@@ -21,4 +21,4 @@ await withStageCWorkerInputs(process.argv.slice(2), async ({
   if (result.stopRequested || result.cleanup !== "PASS" || result.persistence !== "PASS" ||
       result.records.some(row => row.state !== "COMPLETED")) process.exitCode = 1;
   if (clock.now() < clock.startedAt + registration.bounds.absoluteCutoffSeconds * 1000) console.log(JSON.stringify(result));
-});
+}, { product: true });
