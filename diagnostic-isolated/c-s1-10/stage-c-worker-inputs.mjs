@@ -29,11 +29,13 @@ export async function withStageCWorkerInputs(args, run) {
   };
 
   const stop = new AbortController();
+  let stopCommandReceivedNs = null;
   const ready = Promise.withResolvers();
   function command(chunk) {
     for (const char of chunk.toString("ascii")) {
       if (char === "G") ready.resolve();
       else if (char === "S") {
+        stopCommandReceivedNs ??= process.hrtime.bigint().toString();
         stop.abort();
         ready.resolve();
       } else {
@@ -53,6 +55,7 @@ export async function withStageCWorkerInputs(args, run) {
     stop.signal.throwIfAborted();
     return await run({
       manifest, root, networkRules, clock, stopSignal: stop.signal, evidenceDirectory,
+      stopCommandReceivedNs: () => stopCommandReceivedNs,
       loadWebKit() {
         stop.signal.throwIfAborted();
         const requireDriver = createRequire(driverEntry);
