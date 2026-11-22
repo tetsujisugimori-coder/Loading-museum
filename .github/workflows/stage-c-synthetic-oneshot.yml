@@ -1,0 +1,95 @@
+# One-shot synthetic-only CI for PR #88 fixed HEAD. Not merged or deployed.
+# No Playwright/WebKit installation, browser process, product worker or registered trial.
+name: Stage C synthetic-only one-shot PR88
+on:
+  push:
+    branches:
+      - ci/stage-c-synthetic-db1360fe-20261122
+    paths:
+      - '.github/workflows/stage-c-synthetic-oneshot.yml'
+permissions:
+  contents: read
+jobs:
+  synthetic-only:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/ci/stage-c-synthetic-db1360fe-20261122' && github.run_attempt == 1 }}
+    name: Stage C HOLD, contracts, loopback and synthetic PID stop
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    env:
+      TARGET_SHA: db1360fe92e1877715ebf6975f1794a54573f106
+      TARGET_TREE: db3617ea3bf12cee60f3cca553dce1aed3b26a03
+      EXPECTED_BEFORE: ${{ github.event.before }}
+      EVIDENCE: ${{ runner.temp }}/stage-c-synthetic-only
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: db1360fe92e1877715ebf6975f1794a54573f106
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Verify immutable PR #88 checkout and one-shot event
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$EVIDENCE"
+          test "$EXPECTED_BEFORE" = "$TARGET_SHA"
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+          test "$(git rev-parse HEAD^{tree})" = "$TARGET_TREE"
+          test -z "$(git status --porcelain)"
+          printf 'target_sha=%s\ntarget_tree=%s\ntrigger_before=%s\nsource=PR88\n' "$TARGET_SHA" "$TARGET_TREE" "$EXPECTED_BEFORE" | tee "$EVIDENCE/provenance.txt"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Assert Stage C registration is HOLD without launching product
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE' | tee "$EVIDENCE/hold.log"
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          const r = JSON.parse(fs.readFileSync('docs/phase7d/stage-c-api-s1-10/registration.json', 'utf8'));
+          assert.equal(r.decision, 'HOLD');
+          assert.equal(r.executable, false);
+          assert.equal(r.executionAuthorization, false);
+          assert.equal(r.actualBrowserCausalTrials, 0);
+          console.log('HOLD_GUARD_PASS; registered_trials=0');
+          NODE
+      - name: Run existing Stage C Node synthetic tests (no browser)
+        shell: bash
+        timeout-minutes: 7
+        run: |
+          set -euo pipefail
+          node --test \
+            diagnostic-isolated/c-s1-10/browser-runtime.test.mjs \
+            diagnostic-isolated/c-s1-10/i1.test.mjs \
+            diagnostic-isolated/c-s1-10/i2.test.mjs \
+            diagnostic-isolated/c-s1-10/offline-runner.test.mjs \
+            diagnostic-isolated/c-s1-10/package.test.mjs \
+            diagnostic-isolated/c-s1-10/s1-preparation.test.mjs \
+            diagnostic-isolated/c-s1-10/s1-read-proof.test.mjs \
+            diagnostic-isolated/c-s1-10/stage-c-network-integration.test.mjs \
+            2>&1 | tee "$EVIDENCE/node-synthetic.tap"
+      - name: Prepare packaged bubblewrap for synthetic PID supervision
+        shell: bash
+        timeout-minutes: 3
+        run: |
+          set -euo pipefail
+          if ! test -x /usr/bin/bwrap; then
+            sudo apt-get update -qq
+            sudo apt-get install -y --no-install-recommends bubblewrap
+          fi
+          test -x /usr/bin/bwrap
+          /usr/bin/bwrap --version | tee "$EVIDENCE/bwrap-version.txt"
+      - name: Run existing synthetic PID stop tests (no WebKit)
+        shell: bash
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          python3 -B diagnostic-isolated/c-s1-10/process-supervisor.test.py 2>&1 | tee "$EVIDENCE/pid-synthetic.log"
+      - name: Preserve synthetic-only receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage-c-synthetic-only-${{ github.run_id }}
+          path: ${{ runner.temp }}/stage-c-synthetic-only
+          if-no-files-found: warn
+          retention-days: 14
