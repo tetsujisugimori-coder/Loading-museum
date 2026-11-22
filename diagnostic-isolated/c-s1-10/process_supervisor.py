@@ -43,7 +43,7 @@ def _kill_dispatch_deadline(limit_seconds, stop_window_start):
 
 def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
                    soft_seconds=1170, hard_seconds=1200, network_notice=None, ready_check=None,
-                   private_network=False):
+                   private_network=False, outer_start_ns=None):
     """Request cleanup over stdin, then kill namespace PID 1 if needed."""
     if not 0 < soft_seconds < hard_seconds <= 1200 or soft_seconds > 1170:
         raise ValueError("Invalid Stage C deadlines")
@@ -51,7 +51,15 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
         raise ValueError("READY diagnostics and product network stops are mutually exclusive")
     if private_network and os.geteuid() == 0:
         raise ValueError("Stage C private network requires a non-root launcher")
-    start = time.monotonic_ns()
+    now_ns = time.monotonic_ns()
+    if outer_start_ns is None:
+        start = now_ns  # Standalone synthetic and separately authorized diagnostics.
+    else:
+        if (type(outer_start_ns) is not int or outer_start_ns <= 0 or outer_start_ns > now_ns):
+            raise ValueError("Invalid outer Stage C monotonic start")
+        start = outer_start_ns
+        if now_ns - start >= round(hard_seconds * 1_000_000_000):
+            raise RuntimeError("Outer Stage C hard deadline expired before worker launch")
 
     def elapsed():
         return (time.monotonic_ns() - start) / 1_000_000_000
@@ -263,6 +271,7 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
     )
     result = {
         "softDeadlineSeconds": soft_seconds, "hardDeadlineSeconds": hard_seconds,
+        "monotonicStartNs": start,
         "stopRequested": stop_at is not None or worker_requested,
         "stopCompleted": worker_requested and worker_result.get("stopCompleted") is True and worker_finalized and
             namespace_exit is not None and namespace_exit <= hard_limit and
@@ -414,7 +423,8 @@ def _verify_package(package, expected_sha, roots):
                      "stage-c-worker.mjs", "stage-c-network-adapter.mjs",
                      "stage-c-network-ledger.mjs", "stage-c-network-policy.mjs",
                      "stage-c-operation-gate.mjs", "NETWORK-CONTRACT-v1.json", "build-resources.mjs",
-                     "raw-evidence.mjs", "s1-trace-audit.mjs")
+                     "raw-evidence.mjs", "s1-trace-audit.mjs", "stage_c_outer_observer.py",
+                     "stage-c-required-evidence.json")
     if any(f"diagnostic-isolated/c-s1-10/{name}" not in manifest["runtimeFiles"]["repo"] for name in runtime_paths):
         raise RuntimeError("Stage C network integration needs a newly bound runtime inventory")
     for label, root in roots.items():
@@ -442,6 +452,10 @@ def main():
     if len(args) != 5:
         sys.exit("Expected rootfs, Playwright driver directory, package directory, approved manifest SHA-256 and receipt directory")
     rootfs, driver, package, expected_sha, destination = args
+    raw_start = os.environ.get("STAGE_C_OUTER_MONOTONIC_START_NS")
+    if raw_start is None or not re.fullmatch(r"[0-9]{1,20}", raw_start):
+        sys.exit("Stage C outer observer start is required for product execution")
+    outer_start_ns = int(raw_start)
     # Use the same resolved directory for both the preflight and bwrap mount.
     rootfs = str(Path(rootfs).resolve(strict=True))
     _verify_package(package, expected_sha, {"rootfs": rootfs, "driver": driver, "repo": repo})
@@ -455,7 +469,7 @@ def main():
         soft_seconds=registration["bounds"]["beginStopAndCleanupBySeconds"],
         hard_seconds=registration["bounds"]["absoluteCutoffSeconds"],
         network_notice=raw / "evidence" / "network-stop.notice.json",
-        private_network=True,
+        private_network=True, outer_start_ns=outer_start_ns,
     )
     sys.exit(0 if result["workerResultStatus"] == "COMPLETE" and
              not result["stopRequested"] and result["networkMismatchDetected"] is None else 1)

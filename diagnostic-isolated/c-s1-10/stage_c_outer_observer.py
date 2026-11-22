@@ -10,6 +10,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import signal
 import stat
@@ -34,6 +35,7 @@ def _readback(path):
         try:
             if not stat.S_ISREG(os.fstat(fd).st_mode):
                 raise ValueError("Evidence is not a regular file")
+            os.fsync(fd)
             with os.fdopen(fd, "rb", closefd=False) as stream:
                 return stream.read()
         finally:
@@ -75,7 +77,23 @@ def _save_audit(path, report):
         raise RuntimeError("Outer observer audit readback mismatch")
 
 
-def observe(command, receipts, audit_path, *, required_evidence=(), limit_seconds=1200,
+def _complete_run_paths(contract_path, evidence_root):
+    """Freeze exact full-run evidence names; do not infer success from worker data."""
+    raw = _readback(contract_path)
+    plan = json.loads(raw)
+    names = plan.get("fullCompletionEvidenceFiles")
+    ids = plan.get("slotIdsInOrder")
+    if (plan.get("schemaVersion") != 1 or plan.get("kind") != "LM88_STAGE_C_COMPLETE_RUN_EVIDENCE" or
+            plan.get("status") != "NON_EXECUTABLE_HOLD" or plan.get("registeredTrials") != 0 or
+            not isinstance(ids, list) or len(ids) != 10 or len(set(ids)) != 10 or
+            not isinstance(names, list) or len(names) != 68 or len(set(names)) != len(names) or
+            any(not isinstance(n, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*", n) for n in names)):
+        raise ValueError("Invalid fixed Stage C evidence contract")
+    return [Path(evidence_root).resolve() / n for n in names], hashlib.sha256(raw).hexdigest()
+
+
+def observe(command, receipts, audit_path, *, required_evidence=(), evidence_contract=None,
+            evidence_root=None, expected_contract_sha256=None, limit_seconds=1200,
             recovery_wait_seconds=0.2):
     """Monitor an inner supervisor as a distinct OS process, without WebKit.
 
@@ -91,6 +109,15 @@ def observe(command, receipts, audit_path, *, required_evidence=(), limit_second
         raise ValueError("Duplicate evidence or audit path in required evidence")
     if audit_path.exists():
         raise FileExistsError(audit_path)
+    if (evidence_contract is None) != (evidence_root is None):
+        raise ValueError("Evidence contract and root must be provided together")
+    full_paths, contract_sha = ([], None)
+    if evidence_contract is not None:
+        full_paths, contract_sha = _complete_run_paths(evidence_contract, evidence_root)
+        if expected_contract_sha256 is not None and contract_sha != expected_contract_sha256:
+            raise ValueError("Evidence contract SHA-256 mismatch")
+        if len(set([*evidence, *full_paths])) != len(evidence) + len(full_paths):
+            raise ValueError("Duplicate paths in fixed evidence contract")
 
     start_ns = time.monotonic_ns()  # Authoritative clock; setup and subprocess launch count.
     hard_ns = start_ns + round(limit_seconds * 1_000_000_000)
@@ -101,6 +128,7 @@ def observe(command, receipts, audit_path, *, required_evidence=(), limit_second
     errors = []
     hashes = {}
     inner = None
+    full_evidence_status = "NOT_CHECKED"
     try:
         proc = subprocess.Popen(command, env=env, start_new_session=True,
                                 stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,
@@ -136,6 +164,22 @@ def observe(command, receipts, audit_path, *, required_evidence=(), limit_second
         if not isinstance(inner, dict):
             errors.append("MISSING_SUPERVISOR_RECEIPT")
         else:
+            if evidence_contract is not None and inner.get("monotonicStartNs") != start_ns:
+                errors.append("OUTER_INNER_CLOCK_MISMATCH")
+            if inner.get("workerResultStatus") == "COMPLETE":
+                if evidence_contract is None:
+                    errors.append("COMPLETE_RUN_WITHOUT_EVIDENCE_CONTRACT")
+                else:
+                    full_evidence_status = "PASS"
+                    for path in full_paths:
+                        try:
+                            content = _readback(path)
+                            hashes[str(path)] = {"sha256": hashlib.sha256(content).hexdigest(), "bytes": len(content)}
+                        except (OSError, ValueError) as error:
+                            errors.append(f"FULL_RUN_EVIDENCE_ERROR:{path.name}:{type(error).__name__}")
+                            full_evidence_status = "INCOMPLETE"
+            else:
+                full_evidence_status = "NOT_APPLICABLE_INCOMPLETE_WORKER"
             ns_exit = inner.get("namespaceExitObservedNs")
             if (not isinstance(ns_exit, int) or ns_exit < start_ns or ns_exit > exit_ns or
                     not isinstance(inner.get("workerExit"), int) or inner.get("supervisorError") is not None):
@@ -154,6 +198,8 @@ def observe(command, receipts, audit_path, *, required_evidence=(), limit_second
         "innerWorkerResultStatus": inner.get("workerResultStatus") if isinstance(inner, dict) else None,
         "innerWithinHardDeadline": inner.get("withinHardDeadline") if isinstance(inner, dict) else None,
         "requiredEvidence": hashes, "errors": errors,
+        "completeRunEvidenceStatus": full_evidence_status,
+        "evidenceContractSha256": contract_sha,
         "auditRole": "POST_VERDICT_RECORD_NOT_PRODUCT_PRIMARY_EVIDENCE",
     }
     _save_audit(audit_path, report)
@@ -166,11 +212,16 @@ def main():
     parser.add_argument("--audit", type=Path, required=True)
     parser.add_argument("--required-evidence", action="append", default=[], type=Path)
     parser.add_argument("--limit-seconds", type=float, default=1200)
+    parser.add_argument("--evidence-contract", type=Path, required=True)
+    parser.add_argument("--evidence-root", type=Path, required=True)
+    parser.add_argument("--evidence-contract-sha256", required=True)
     parser.add_argument("command", nargs=argparse.REMAINDER)
     args = parser.parse_args()
     command = args.command[1:] if args.command[:1] == ["--"] else args.command
     result = observe(command, args.receipts, args.audit,
-                     required_evidence=args.required_evidence, limit_seconds=args.limit_seconds)
+                     required_evidence=args.required_evidence, evidence_contract=args.evidence_contract,
+                     evidence_root=args.evidence_root, expected_contract_sha256=args.evidence_contract_sha256,
+                     limit_seconds=args.limit_seconds)
     print(json.dumps({"totalWallVerdict": result["totalWallVerdict"],
                       "terminalCompletionObservedNs": result["terminalCompletionObservedNs"]}))
     return 0 if result["totalWallVerdict"] == "WITHIN_LIMIT" else 1
