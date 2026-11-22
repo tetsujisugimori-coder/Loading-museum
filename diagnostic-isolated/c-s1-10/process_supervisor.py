@@ -215,9 +215,24 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
                     emergency_kill_at = elapsed()
                 try:
                     proc.wait(timeout=max(0, hard_limit - elapsed()))
-                except subprocess.TimeoutExpired:
-                    proc.kill()
-                    proc.poll()
+                except (subprocess.TimeoutExpired, OSError) as error:
+                    if isinstance(error, OSError):
+                        detail = f"{type(error).__name__}: {error}"
+                        supervisor_error = f"{supervisor_error}; {detail}" if supervisor_error else detail
+                    try:
+                        proc.kill()
+                    except ProcessLookupError:
+                        pass
+                    except OSError as kill_error:
+                        detail = f"{type(kill_error).__name__}: {kill_error}"
+                        supervisor_error = f"{supervisor_error}; {detail}" if supervisor_error else detail
+                    # Reap after kill. This bounded cleanup does not extend the hard cutoff
+                    # or prove the namespace exited before its deadline.
+                    try:
+                        proc.wait(timeout=1.0)
+                    except (subprocess.TimeoutExpired, OSError) as reap_error:
+                        detail = f"{type(reap_error).__name__}: {reap_error}"
+                        supervisor_error = f"{supervisor_error}; {detail}" if supervisor_error else detail
                 root_exit = proc.returncode
             for fd in (read_end, write_end):
                 if fd is not None:
