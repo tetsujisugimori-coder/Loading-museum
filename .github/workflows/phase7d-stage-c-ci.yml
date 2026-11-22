@@ -443,7 +443,7 @@ jobs:
               contents = file.read_bytes()
               check(len(contents) == entry["bytes"] and cmd("git","hash-object",path) == blob, "Runtime content differs " + path)
               repo_hashes[path] = h(contents)
-          check(len(repo_hashes) == 49 and set(source["requiredForSupervisor"]) <= set(repo_hashes), "Runtime inventory incomplete")
+          check(len(repo_hashes) == 52 and set(source["requiredForSupervisor"]) <= set(repo_hashes), "Runtime inventory incomplete")
           driver_root = Path(os.environ["STAGE_C_DRIVER_ROOT"])
           browser_root = Path(os.environ["STAGE_C_BROWSER_ROOT"])
           package = json.loads((driver_root/"node_modules/playwright/package.json").read_bytes())

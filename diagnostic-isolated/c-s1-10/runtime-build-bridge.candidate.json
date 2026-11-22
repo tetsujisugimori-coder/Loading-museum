@@ -32,8 +32,8 @@
     }
   },
   "runtimeSource": {
-    "head": "de8027e53114eb5d2af9e95583b8ef7cae79bfef",
-    "tree": "16471b95dcd798ab7f139a4c103b57c2773c12a2",
+    "head": "198ad138f89353ff3182e8e270708311af66b991",
+    "tree": "d5b89d4e8c22aefd484825600b3e8d57ed9a4397",
     "repoBlobs": {
       "diagnostic-isolated/c-s1-10/NETWORK-CONTRACT-v1.json": {
         "blobSha1": "fcdd344711e76b4447534f4ebbeeb911d5dcfb94",
@@ -44,12 +44,12 @@
         "bytes": 5264
       },
       "diagnostic-isolated/c-s1-10/browser-runtime.mjs": {
-        "blobSha1": "8fea89294633b3a4477d2071e00ee3402072cec0",
-        "bytes": 12188
+        "blobSha1": "c59dda486c91efbe4ef32e20aac966f5b66e10d0",
+        "bytes": 16004
       },
       "diagnostic-isolated/c-s1-10/browser-runtime.test.mjs": {
-        "blobSha1": "8eee56f76666d8ec62cc928f38770127c931ca19",
-        "bytes": 4075
+        "blobSha1": "bbb4ffdc3c5fb63d57a3a049b19695875cceec52",
+        "bytes": 5653
       },
       "diagnostic-isolated/c-s1-10/build-resources.mjs": {
         "blobSha1": "21490f904f888a1dae2fefc088ba1e4ae8185e31",
@@ -131,9 +131,21 @@
         "blobSha1": "e2fb01cbbad506ba51740fa63d2cab46c6793b1d",
         "bytes": 769
       },
+      "diagnostic-isolated/c-s1-10/stage-c-worker-diagnostic.mjs": {
+        "blobSha1": "ecc5b9cc8fec7690e09195962ff4085651259c7c",
+        "bytes": 2502
+      },
+      "diagnostic-isolated/c-s1-10/stage-c-worker-inputs.mjs": {
+        "blobSha1": "32c78270214538146c0809b45eafa8ed5d964742",
+        "bytes": 2601
+      },
       "diagnostic-isolated/c-s1-10/stage-c-worker.mjs": {
-        "blobSha1": "a5cbd6fc3198bb7a1cf3e48a369508250224ae7e",
-        "bytes": 3514
+        "blobSha1": "d922e4e9a04cfd9b7c4cee3973c6805bb52db6d3",
+        "bytes": 1610
+      },
+      "diagnostic-isolated/c-s1-10/stage_c_diagnostic.py": {
+        "blobSha1": "65a5e6f572eff22a9d287fa124978517b59c7f16",
+        "bytes": 2532
       },
       "docs/phase7d/stage-c-api-s1-10/registration.json": {
         "blobSha1": "a52676168b64de8cd054b33952b55a67ef2dd1e2",
@@ -247,7 +259,8 @@
       "diagnostic-isolated/c-s1-10/NETWORK-CONTRACT-v1.json",
       "diagnostic-isolated/c-s1-10/build-resources.mjs",
       "diagnostic-isolated/c-s1-10/raw-evidence.mjs",
-      "diagnostic-isolated/c-s1-10/s1-trace-audit.mjs"
+      "diagnostic-isolated/c-s1-10/s1-trace-audit.mjs",
+      "diagnostic-isolated/c-s1-10/stage-c-worker-inputs.mjs"
     ]
   },
   "historicalBrowserEvidence": {
