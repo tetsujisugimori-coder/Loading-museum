@@ -18,8 +18,9 @@ jobs:
     env:
       TARGET_SHA: db1360fe92e1877715ebf6975f1794a54573f106
       TARGET_TREE: db3617ea3bf12cee60f3cca553dce1aed3b26a03
-      EXPECTED_BEFORE: ${{ github.event.before }}
-      EVIDENCE: ${{ runner.temp }}/stage-c-synthetic-only
+      EXPECTED_BEFORE: 2c9bc5ea84a4dd45ff249c99af788e036d35166e
+      ACTUAL_BEFORE: ${{ github.event.before }}
+      EVIDENCE: ${{ github.workspace }}/work/stage-c-synthetic-only
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,11 +32,11 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$EVIDENCE"
-          test "$EXPECTED_BEFORE" = "$TARGET_SHA"
+          test "$ACTUAL_BEFORE" = "$EXPECTED_BEFORE"
           test "$(git rev-parse HEAD)" = "$TARGET_SHA"
           test "$(git rev-parse HEAD^{tree})" = "$TARGET_TREE"
           test -z "$(git status --porcelain)"
-          printf 'target_sha=%s\ntarget_tree=%s\ntrigger_before=%s\nsource=PR88\n' "$TARGET_SHA" "$TARGET_TREE" "$EXPECTED_BEFORE" | tee "$EVIDENCE/provenance.txt"
+          printf 'target_sha=%s\ntarget_tree=%s\ntrigger_before=%s\nsource=PR88\n' "$TARGET_SHA" "$TARGET_TREE" "$ACTUAL_BEFORE" | tee "$EVIDENCE/provenance.txt"
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -90,6 +91,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: stage-c-synthetic-only-${{ github.run_id }}
-          path: ${{ runner.temp }}/stage-c-synthetic-only
+          path: ${{ github.workspace }}/work/stage-c-synthetic-only
           if-no-files-found: warn
           retention-days: 14
