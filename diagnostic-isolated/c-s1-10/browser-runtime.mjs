@@ -286,7 +286,8 @@ export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResourc
 // This entry runs a single navigation using the fixed I0 policy key. It does not
 // select registered trials or expose the product runner.
 export async function runBrowserStageCDiagnostic({ webkit, stopSignal, trustedResources, networkRules,
-  onNetworkStop, evidenceDirectory, observe = () => undefined }) {
+  onNetworkStop, evidenceDirectory, observe = () => undefined,
+  stopCommandReceivedNs = () => null }) {
   const slot = { id: "AP-01-I0" };
   const mark = () => process.hrtime.bigint().toString();
   const times = { started: mark() };
@@ -321,7 +322,7 @@ export async function runBrowserStageCDiagnostic({ webkit, stopSignal, trustedRe
   } catch (failure) {
     error = String(failure);
   } finally {
-    stopSignal.removeEventListener("abort", stopped);
+    // Keep the stop listener through cleanup; the supervisor's S can arrive during close().
     const session = sessions.get(slot.id);
     if (session) {
       session.phase = "cleanup";
@@ -337,12 +338,21 @@ export async function runBrowserStageCDiagnostic({ webkit, stopSignal, trustedRe
   const readyUnchanged = !!ready && read("diagnostic-ready.json").equals(ready);
   const cleanup = receipt?.cleanup ?? "INCOMPLETE";
   const persistence = persistenceStatus();
-  const stopCompleted = !!times.stopRequested && cleanup === "PASS" && persistence === "PASS";
-  const status = !error && stopCompleted && lateOperationRejected && readyUnchanged &&
-    receipt?.auditVerdict === "PASS" && receipt.evidenceStatus === "COMPLETE" ? "PASS" : "INCOMPLETE";
+  const supervisorStopCommandReceivedNs = stopCommandReceivedNs();
+  // An S receipt is not a completed stop, especially after a network mismatch.
+  const stopCompleted = !!times.stopRequested && supervisorStopCommandReceivedNs !== null &&
+    !error && !networkStopSignal.aborted && cleanup === "PASS" && persistence === "PASS" &&
+    lateOperationRejected && readyUnchanged;
+  const status = stopCompleted && receipt?.auditVerdict === "PASS" &&
+    receipt.evidenceStatus === "COMPLETE" ? "PASS" : "INCOMPLETE";
   const result = { kind: "STAGE_C_WORKER_DIAGNOSTIC", registeredTrialsStarted: 0, status, error,
-    stopRequested: !!times.stopRequested, stopCompleted, cleanup, persistence, receipt, times,
+    stopRequested: !!times.stopRequested, supervisorStopCommandReceivedNs, stopCompleted,
+    cleanup, persistence, receipt, times,
     lateOperationRejected, readyUnchanged, closed, beforeStop, afterClose, networkStop: gate.snapshot() };
-  save("diagnostic-result.json", json(result));
+  try {
+    save("diagnostic-result.json", json(result));
+  } finally {
+    stopSignal.removeEventListener("abort", stopped);
+  }
   return result;
 }
