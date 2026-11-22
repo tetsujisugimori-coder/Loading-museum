@@ -32,9 +32,13 @@
     }
   },
   "runtimeSource": {
-    "head": "341ded833d0a5fa47f3016e20ac59929cf8935b2",
-    "tree": "7239e973c0d3fe6972162e4b43ebae78bff3ea20",
+    "head": "51a44cd308aa062d706abf94b6e494ce34f8326a",
+    "tree": "199b35f9df95c4cacbd0038b5b6f6abb68e518b7",
     "repoBlobs": {
+      "diagnostic-isolated/c-s1-10/NETWORK-CONTRACT-v1.json": {
+        "blobSha1": "fcdd344711e76b4447534f4ebbeeb911d5dcfb94",
+        "bytes": 34766
+      },
       "diagnostic-isolated/c-s1-10/browser-calibration.mjs": {
         "blobSha1": "76df101af7abc80f7fb5785d190d6ea866590b85",
         "bytes": 5264
@@ -67,10 +71,6 @@
         "blobSha1": "306f78fbc3800faa27736b6af40bbb9fb9a22455",
         "bytes": 6770
       },
-      "diagnostic-isolated/c-s1-10/NETWORK-CONTRACT-v1.json": {
-        "blobSha1": "fcdd344711e76b4447534f4ebbeeb911d5dcfb94",
-        "bytes": 34766
-      },
       "diagnostic-isolated/c-s1-10/offline-runner.mjs": {
         "blobSha1": "eba79cb22c414ca47c0be9da3893c09636237ed9",
         "bytes": 13797
@@ -84,8 +84,8 @@
         "bytes": 2902
       },
       "diagnostic-isolated/c-s1-10/process_supervisor.py": {
-        "blobSha1": "4e9a9a25eec50be4720810705dec6f45ffe0cbfa",
-        "bytes": 25830
+        "blobSha1": "1e71d419a51d69d572225983abb793cd28b93427",
+        "bytes": 28868
       },
       "diagnostic-isolated/c-s1-10/raw-evidence.mjs": {
         "blobSha1": "c88db47a8951b0e6d685c25c5c9206f4720251d6",
@@ -115,14 +115,6 @@
         "blobSha1": "043225310bd2c2461595b52d1f71123bdbfcbea9",
         "bytes": 6460
       },
-      "diagnostic-isolated/c-s1-10/stage_c_diagnostic.py": {
-        "blobSha1": "65a5e6f572eff22a9d287fa124978517b59c7f16",
-        "bytes": 2532
-      },
-      "diagnostic-isolated/c-s1-10/stage_c_outer_observer.py": {
-        "blobSha1": "47ebe40d57bf37c51c56f79ca93ade02ae37d281",
-        "bytes": 10990
-      },
       "diagnostic-isolated/c-s1-10/stage-c-network-adapter.mjs": {
         "blobSha1": "15a6e821b7ce092427e302d3b51064cf82d26fe7",
         "bytes": 2074
@@ -140,12 +132,12 @@
         "bytes": 769
       },
       "diagnostic-isolated/c-s1-10/stage-c-outer-integration.test.py": {
-        "blobSha1": "092dc5016405aec6656d2baf5e3de7ae6c1c9a71",
-        "bytes": 4553
+        "blobSha1": "0ac8b93dbbcc98d24485a40b2208771737a1f5e0",
+        "bytes": 14243
       },
       "diagnostic-isolated/c-s1-10/stage-c-outer-observer.test.py": {
-        "blobSha1": "6db786f20fef80148ff414f88b4ecbf2afe9a1bd",
-        "bytes": 5474
+        "blobSha1": "4e7357ed696314de51392fa971275f15274bec2c",
+        "bytes": 5813
       },
       "diagnostic-isolated/c-s1-10/stage-c-required-evidence.json": {
         "blobSha1": "ad59d4249114f4f81b3f8a78ac0dc28136330ee5",
@@ -156,12 +148,24 @@
         "bytes": 2548
       },
       "diagnostic-isolated/c-s1-10/stage-c-worker-inputs.mjs": {
-        "blobSha1": "6884800a9a35a1002b68027d0b0f4a22533c39d4",
-        "bytes": 2765
+        "blobSha1": "5a33aecb46b019d0e2930068c180c63ba2e6c890",
+        "bytes": 5540
       },
       "diagnostic-isolated/c-s1-10/stage-c-worker.mjs": {
-        "blobSha1": "d922e4e9a04cfd9b7c4cee3973c6805bb52db6d3",
-        "bytes": 1610
+        "blobSha1": "99c53039630cc94a41a537b9458396c0c3b4054e",
+        "bytes": 1629
+      },
+      "diagnostic-isolated/c-s1-10/stage_c_diagnostic.py": {
+        "blobSha1": "65a5e6f572eff22a9d287fa124978517b59c7f16",
+        "bytes": 2532
+      },
+      "diagnostic-isolated/c-s1-10/stage_c_launch.py": {
+        "blobSha1": "873ea199a61692f95c21ea2ab03d0e3bdb83e47b",
+        "bytes": 11957
+      },
+      "diagnostic-isolated/c-s1-10/stage_c_outer_observer.py": {
+        "blobSha1": "afef1a2c63ca60850c8c1a740b2919525653a74d",
+        "bytes": 18100
       },
       "docs/phase7d/stage-c-api-s1-10/registration.json": {
         "blobSha1": "a52676168b64de8cd054b33952b55a67ef2dd1e2",
@@ -278,7 +282,8 @@
       "diagnostic-isolated/c-s1-10/stage-c-required-evidence.json",
       "diagnostic-isolated/c-s1-10/stage-c-worker-inputs.mjs",
       "diagnostic-isolated/c-s1-10/stage-c-worker.mjs",
-      "diagnostic-isolated/c-s1-10/stage_c_outer_observer.py"
+      "diagnostic-isolated/c-s1-10/stage_c_outer_observer.py",
+      "diagnostic-isolated/c-s1-10/stage_c_launch.py"
     ]
   },
   "historicalBrowserEvidence": {

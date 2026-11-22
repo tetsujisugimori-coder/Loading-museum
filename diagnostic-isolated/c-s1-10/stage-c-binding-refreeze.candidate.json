@@ -5,9 +5,9 @@
   "executionAuthorized": false,
   "registeredTrialsRun": 0,
   "runtimeSource": {
-    "head": "341ded833d0a5fa47f3016e20ac59929cf8935b2",
-    "tree": "7239e973c0d3fe6972162e4b43ebae78bff3ea20",
-    "repoFileCount": 56
+    "head": "51a44cd308aa062d706abf94b6e494ce34f8326a",
+    "tree": "199b35f9df95c4cacbd0038b5b6f6abb68e518b7",
+    "repoFileCount": 57
   },
   "mandatoryEvidence": {
     "source": "diagnostic-isolated/c-s1-10/stage-c-required-evidence.json",
@@ -16,14 +16,16 @@
     "completeRunOnly": true
   },
   "clockContract": {
-    "hostOuterStartEnvironment": "STAGE_C_OUTER_MONOTONIC_START_NS",
     "innerWorkerEnvironment": "STAGE_C_MONOTONIC_START_NS",
     "softSeconds": 1170,
     "hardSeconds": 1200,
-    "graceIsInsideHardLimit": true
+    "graceIsInsideHardLimit": true,
+    "hostOuterStartTransport": "PRIVATE_SUPERVISOR_SEQPACKET",
+    "productWorkerStartTransport": "INHERITED_LAUNCHER_UNIX_SOCKET"
   },
   "runtimeFiles": {
     "repo": {
+      "diagnostic-isolated/c-s1-10/NETWORK-CONTRACT-v1.json": "f2e63adb712534453437c20f83a570f46340298300c31e710034930e286d0569",
       "diagnostic-isolated/c-s1-10/browser-calibration.mjs": "53e24177819afa0be16fd91c915489f1f2590ed82a84527c538646fd764ff7f1",
       "diagnostic-isolated/c-s1-10/browser-runtime.mjs": "9b78540a2fc6859470c6234660110c32e1398cc149b886c428b94e4f22828d02",
       "diagnostic-isolated/c-s1-10/browser-runtime.test.mjs": "18797fd20b7c4c1c5bbddefc15f5fc301f7998cd06169323c687240220f0a70c",
@@ -32,11 +34,10 @@
       "diagnostic-isolated/c-s1-10/i1-timing.mjs": "cbbba79f96f4961a0df7ff92658b76d5f50d5ff1cf879a9e04d629c03291248e",
       "diagnostic-isolated/c-s1-10/i1.test.mjs": "33f63def23957247559758efa8d4ae3269504536beac6805439530c00ec5fa72",
       "diagnostic-isolated/c-s1-10/i2.test.mjs": "2f345ec90e6760406ad48b834d8e308a91310f778142c822eafdf04c6ee55f3d",
-      "diagnostic-isolated/c-s1-10/NETWORK-CONTRACT-v1.json": "f2e63adb712534453437c20f83a570f46340298300c31e710034930e286d0569",
       "diagnostic-isolated/c-s1-10/offline-runner.mjs": "d1c8c8f770f6242f2a3d671413733379196628a6bb2bfd75f33b1ba4e5b6562f",
       "diagnostic-isolated/c-s1-10/offline-runner.test.mjs": "8da61c859c870424d3409c057859e464bb505fd2775047fce06986f4d523aa8c",
       "diagnostic-isolated/c-s1-10/package.test.mjs": "ca61f3486116d54c025193b146586355e803de451a3b7ccdbef1f0242af425b6",
-      "diagnostic-isolated/c-s1-10/process_supervisor.py": "aaa4e33f0ca3a9b2178d0d408c3d39b69c973d89b032b445fdce6c19088ddfb9",
+      "diagnostic-isolated/c-s1-10/process_supervisor.py": "518e3c416037bb6411bc626371e79efa0b021120b02ff7fc3c30abfda0addbdd",
       "diagnostic-isolated/c-s1-10/raw-evidence.mjs": "9266db7360bcc4b80a9cff5e55a0069fbfe4576c4a86adde5f579d7649d43499",
       "diagnostic-isolated/c-s1-10/resource-evidence.mjs": "c0cdf0e0e8008154fc0d2a1bf27747e475f0df1ff21e64a03a4ba1932900b653",
       "diagnostic-isolated/c-s1-10/s1-preparation.mjs": "4e9472789a726f5ecfa5f81cd4965e61c25d3249bc849f778b20dbb6777a3e74",
@@ -44,18 +45,19 @@
       "diagnostic-isolated/c-s1-10/s1-read-proof.mjs": "ffb94c17e5a60c6f985631995161425095d14ac5037cee42eac6d0f5b840e7cf",
       "diagnostic-isolated/c-s1-10/s1-read-proof.test.mjs": "80daffb1e16f7087b7c68d7ac87aa75a99b84ac774c963d9879c5c09d455f285",
       "diagnostic-isolated/c-s1-10/s1-trace-audit.mjs": "a098d38126b7bf6bc1eae1c7a351356e3ddd953dc20cf4af7595cedcd273f7c6",
-      "diagnostic-isolated/c-s1-10/stage_c_diagnostic.py": "78e026a51e95d84735d690477448bf41dffa5a9f7d3fd98f5aeb0efab49034b7",
-      "diagnostic-isolated/c-s1-10/stage_c_outer_observer.py": "09cfb811c028287fcf8c357051a888b706d6b23acd7956a2fb10b06b41981f73",
       "diagnostic-isolated/c-s1-10/stage-c-network-adapter.mjs": "803c78a03b5e56151612abb105b56989d60c2630f7466d7a64912e3875ae0b87",
       "diagnostic-isolated/c-s1-10/stage-c-network-ledger.mjs": "9e7a7141abb07fd22b5f5f13490a66b17e8876abca68f72cdb75267a7754b4b2",
       "diagnostic-isolated/c-s1-10/stage-c-network-policy.mjs": "3a072c193d7fe94e91063cd677adc748089a9087ae378d807b0e3e9f814bf40e",
       "diagnostic-isolated/c-s1-10/stage-c-operation-gate.mjs": "4d664d2dff854aa0fd47b0a8556d6f9318b919c2c0b68d6516e1ef99ceebc941",
-      "diagnostic-isolated/c-s1-10/stage-c-outer-integration.test.py": "26efe8ed3ca0ddbee5e0c4673412679eceffc5620fc84516b627160a0f42def9",
-      "diagnostic-isolated/c-s1-10/stage-c-outer-observer.test.py": "8db8230d91ca1fe7b07a8bd447b5b3861426b50c5ca29a67ed62b778dadfe575",
+      "diagnostic-isolated/c-s1-10/stage-c-outer-integration.test.py": "faab9c0db314bf75665774119c92cd3d062ebef9e62ed616b53baead12d68f69",
+      "diagnostic-isolated/c-s1-10/stage-c-outer-observer.test.py": "53c63b76a1af6541e125acce664ad5331fea11bb5125a07e7ee7315ec14c8ac5",
       "diagnostic-isolated/c-s1-10/stage-c-required-evidence.json": "1fb3f71cafeb0bdad9c0d8958dc84ea8d06d3cf66b2e083e4dbe3a1c77904665",
       "diagnostic-isolated/c-s1-10/stage-c-worker-diagnostic.mjs": "da5e4115c434ebd79006a467c1ae88f1d153b9d4ff301df82e82d691100ef8e3",
-      "diagnostic-isolated/c-s1-10/stage-c-worker-inputs.mjs": "3534fb432a4f5573c9d6affbb48b9cac69c63b9abbde223ac065086ee4a9bf9b",
-      "diagnostic-isolated/c-s1-10/stage-c-worker.mjs": "9951195f36fcd6d2ea40e914852f62b83fa633a6ab3e75dc159a4c490e8e5612",
+      "diagnostic-isolated/c-s1-10/stage-c-worker-inputs.mjs": "6268bf388778a6d34120005e0d60d1c970dfc0ae23c8d14be15e9c20ed6a6602",
+      "diagnostic-isolated/c-s1-10/stage-c-worker.mjs": "c09d2b093f816bc173bba1c1ed28830b4d993dbceaff9c18a00248af78ea0c51",
+      "diagnostic-isolated/c-s1-10/stage_c_diagnostic.py": "78e026a51e95d84735d690477448bf41dffa5a9f7d3fd98f5aeb0efab49034b7",
+      "diagnostic-isolated/c-s1-10/stage_c_launch.py": "5f755d89bbb3bd45d84982b7a17d0a289c01414e83e34e8f31cd22f90bb62d29",
+      "diagnostic-isolated/c-s1-10/stage_c_outer_observer.py": "3359667b6d368739350ad880831958d87c0b2f623f7edeb0e03c6d2373c50dd8",
       "docs/phase7d/stage-c-api-s1-10/registration.json": "4bf1b9b055ace5ebef427e31310ca52102aa8878934e85e9e7b7afc12d7b3861",
       "scripts/phase7d-api-contract.mjs": "987125117763e780f6d6c2517829773cbad9b5dfd0dcbacaa4640b136b13fce1",
       "scripts/phase7d-api-offline-diagnosis.mjs": "cd7e1bb054a1342ad20fd17610c4d380f656cc8752323cc13b8e568b6c8698b7",
@@ -84,7 +86,7 @@
     "driver": {},
     "rootfs": {}
   },
-  "previousFullBindingSha256": "ad9b8f67db2402cf2a543de6795459aa89d1b10c60eacc42583962300b4bc1b6",
+  "previousFullBindingSha256": "3753d132c08050ac6e340fad1c3ca828c2cefa85e594b6e14edab303ed81ffd8",
   "rootfsLock": {
     "schemaVersion": 1,
     "kind": "PINNED_OCI_ROOTFS_LOCK_REVIEW_CANDIDATE",
@@ -111,9 +113,9 @@
     "independentProductExecution": "NOT_TESTED"
   },
   "remainingVerification": [
-    "Retrieve real VM driver/rootfs and recheck each file SHA-256; no inherited executable binding",
-    "Recheck final package and new outer observer with fixed manifest",
-    "Owner separately decides execution of ten registered slots"
+    "Independently review the fixed product launch, owner approval, and outer deadline recovery paths",
+    "Recheck the mounted driver/rootfs and issue a new non-executable complete binding for this runtime",
+    "Owner separately decides execution of ten registered slots against the exact authorized package"
   ],
   "executableBindingReissued": false
 }
