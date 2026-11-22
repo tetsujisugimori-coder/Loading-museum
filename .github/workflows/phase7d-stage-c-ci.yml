@@ -4,6 +4,9 @@ name: Phase 7D Stage C isolated CI
 
 on:
   pull_request:
+    # "labeled" is a deliberate synthetic-only lane on PR #88.
+    # It is distinct from the default opened/reopened/synchronize lane.
+    types: [opened, reopened, synchronize, labeled]
     branches: [main]
     paths:
       - .github/workflows/phase7d-stage-c-ci.yml
@@ -17,6 +20,13 @@ permissions:
 
 jobs:
   contracts:
+    # On label events run ONLY the existing synthetic/HOLD controls for PR #88.
+    if: >-
+      github.event.action != 'labeled' ||
+      (github.event.label.name == 'stage-c-synthetic-only' &&
+       github.event.pull_request.number == 88 &&
+       github.event.pull_request.head.repo.full_name == github.repository &&
+       github.run_attempt == 1)
     name: Stage C synthetic contracts and HOLD guard
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -293,6 +303,12 @@ jobs:
           echo "uid_map_diag_end=1"
 
   network-supervisor:
+    if: >-
+      github.event.action != 'labeled' ||
+      (github.event.label.name == 'stage-c-synthetic-only' &&
+       github.event.pull_request.number == 88 &&
+       github.event.pull_request.head.repo.full_name == github.repository &&
+       github.run_attempt == 1)
     name: Stage C loopback network and synthetic PID stop
     # Use the Ubuntu image with a distribution-provided AppArmor profile for /usr/bin/bwrap.
     runs-on: ubuntu-26.04
@@ -354,7 +370,8 @@ jobs:
     name: Fixed checkout and real driver/WebKit hashes (no browser launch)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
-    if: github.run_attempt == 1 && github.event.pull_request.head.repo.full_name == github.repository
+    # Never download the driver/WebKit distribution on a synthetic-only label event.
+    if: github.event.action != 'labeled' && github.run_attempt == 1 && github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - uses: actions/checkout@v4
         with:
