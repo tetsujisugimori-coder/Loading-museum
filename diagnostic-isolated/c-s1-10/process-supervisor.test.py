@@ -4,6 +4,7 @@ import errno
 import hashlib
 import json
 import os
+import signal
 from pathlib import Path
 import subprocess
 import sys
@@ -105,11 +106,70 @@ class ProcessSupervisorTest(unittest.TestCase):
                             self.assertEqual(attempts[0]["outcome"], "ERROR:PermissionError:1")
                         else:
                             self.assertEqual(attempts[0]["outcome"], "RETURNED")
+                        # Must be reaped by run_supervised, BEFORE this test's finally.
+                        self.assertEqual(result["workerExit"], -signal.SIGKILL)
+                        for child in children:
+                            self.assertEqual(child.returncode, -signal.SIGKILL)
                 finally:
                     for child in children:
                         if child.poll() is None:
                             child.kill()
                         child.wait(timeout=5)
+
+    def test_failed_post_kill_wait_is_recorded_and_receipt_is_preserved(self):
+        original_popen = subprocess.Popen
+        for failure in ("TIMEOUT", "OSERROR"):
+            with self.subTest(failure=failure):
+                children = []
+                original_waits = []
+
+                def launch(_command, *, pass_fds, stdin, stdout, stderr, start_new_session):
+                    proc = original_popen(
+                        [sys.executable, "-c", "import time; time.sleep(5)"],
+                        stdin=subprocess.PIPE, stdout=stdout, stderr=stderr,
+                        start_new_session=True,
+                    )
+                    original_wait = proc.wait
+                    wait_calls = 0
+
+                    def injected_wait(timeout=None):
+                        nonlocal wait_calls
+                        wait_calls += 1
+                        if wait_calls == 2:
+                            if failure == "TIMEOUT":
+                                raise subprocess.TimeoutExpired(proc.args, timeout)
+                            raise OSError(errno.EIO, "synthetic post-kill wait failure")
+                        return original_wait(timeout=timeout)
+
+                    proc.wait = injected_wait
+                    children.append(proc)
+                    original_waits.append(original_wait)
+                    os.write(pass_fds[0], json.dumps({"child-pid": proc.pid}).encode())
+                    return proc
+
+                try:
+                    with tempfile.TemporaryDirectory(prefix="stage-c-reap-error-") as directory:
+                        receipt_path = Path(directory) / "evidence" / "supervisor.json"
+                        with (patch("process_supervisor.subprocess.Popen", side_effect=launch),
+                              patch("process_supervisor._namespace_handle",
+                                    side_effect=lambda pid, metadata: os.pidfd_open(pid)),
+                              patch("process_supervisor.signal.pidfd_send_signal",
+                                    return_value=None)):
+                            result = run_supervised(
+                                "/", [sys.executable, "-c", "pass"], receipt_path.parent,
+                                soft_seconds=0.1, hard_seconds=0.35,
+                            )
+                        self.assertEqual(json.loads(receipt_path.read_bytes()), result)
+                        self.assertIn("TimeoutExpired" if failure == "TIMEOUT" else "OSError",
+                                      result["supervisorError"])
+                        self.assertEqual(result["workerResultStatus"], "INCOMPLETE")
+                        self.assertFalse(result["stopCompleted"])
+                        self.assertFalse(result["withinHardDeadline"])
+                finally:
+                    for child, original_wait in zip(children, original_waits):
+                        if child.poll() is None:
+                            child.kill()
+                        original_wait(timeout=5)
 
     def test_bad_stop_notice_records_error_and_incomplete_shutdown(self):
         for notice in (b"{", b"[]", b'{"slotId":"fixture","reason":"TEST","mismatchDetectedAtNs":null}'):
