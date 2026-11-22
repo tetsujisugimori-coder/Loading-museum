@@ -36,6 +36,11 @@ def _namespace_handle(pid, metadata):
     return handle
 
 
+def _kill_dispatch_deadline(limit_seconds, stop_window_start):
+    """Reserve up to five seconds for pidfd exit observation before the unchanged deadline."""
+    return limit_seconds - min(5.0, max(0.0, (limit_seconds - stop_window_start) / 2))
+
+
 def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
                    soft_seconds=1170, hard_seconds=1200, network_notice=None, ready_check=None,
                    private_network=False):
@@ -75,6 +80,9 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
     network_fault = None
     stop_source = None
     kill_at = None
+    sigkill_attempts = []
+    pidfd_ready_observed_ns = None
+    namespace_exit_observed_ns = None
     root_exit = None
     namespace_exit = None
     supervisor_error = None
@@ -82,9 +90,25 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
     ready_at = None
     ready_sha = None
     ready_error = None
-    # Leave time to observe exit before the contractual deadline.
-    hard_dispatch = max(soft_seconds, hard_seconds - 0.1)
+    # SIGKILL is dispatched early enough to observe pidfd readiness before the unchanged hard cutoff.
+    hard_dispatch = _kill_dispatch_deadline(hard_seconds, soft_seconds)
     hard_limit = hard_seconds
+
+    def send_sigkill(pidfd, cause):
+        entry = {"cause": cause, "attemptNs": time.monotonic_ns(), "returnNs": None,
+                 "outcome": "UNKNOWN"}
+        sigkill_attempts.append(entry)
+        try:
+            signal.pidfd_send_signal(pidfd, signal.SIGKILL)
+        except ProcessLookupError:
+            entry["outcome"] = "ESRCH"
+        except OSError as error:
+            entry["outcome"] = f"ERROR:{type(error).__name__}:{error.errno}"
+            raise
+        else:
+            entry["outcome"] = "RETURNED"
+        finally:
+            entry["returnNs"] = time.monotonic_ns()
     with (path / "worker.stdout").open("xb") as out, (path / "worker.stderr").open("xb") as err:
         read_end, write_end = os.pipe()
         proc = None
@@ -118,9 +142,11 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
                             raise RuntimeError("Invalid Stage C network stop timestamp")
                         network_fault = notice
                         hard_limit = min(hard_seconds, (detected - start) / 1e9 + 30)
-                        hard_dispatch = min(hard_dispatch, hard_limit - 0.1)
+                        hard_dispatch = min(hard_dispatch, _kill_dispatch_deadline(hard_limit, elapsed()))
                 age = elapsed()
                 exited = bool(select.select([handle], [], [], 0)[0])
+                if exited and pidfd_ready_observed_ns is None:
+                    pidfd_ready_observed_ns = time.monotonic_ns()
                 reached_soft = age >= soft_seconds - min(0.05, soft_seconds / 10)
                 if ready_check is not None and stop_at is None and ready_error is None and not reached_soft and not exited:
                     try:
@@ -130,6 +156,8 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
                     else:
                         age = elapsed()
                         exited = bool(select.select([handle], [], [], 0)[0])
+                        if exited and pidfd_ready_observed_ns is None:
+                            pidfd_ready_observed_ns = time.monotonic_ns()
                         reached_soft = age >= soft_seconds - min(0.05, soft_seconds / 10)
                         if digest is not None and not reached_soft and not exited:
                             ready_at, ready_sha = age, digest
@@ -144,14 +172,12 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
                     except BrokenPipeError:
                         pass
                 if exited:
-                    namespace_exit = age
+                    namespace_exit_observed_ns = time.monotonic_ns()
+                    namespace_exit = (namespace_exit_observed_ns - start) / 1_000_000_000
                     break
                 if kill_at is None and age >= hard_dispatch:
-                    kill_at = age
-                    try:
-                        signal.pidfd_send_signal(handle, signal.SIGKILL)
-                    except ProcessLookupError:
-                        pass
+                    kill_at = elapsed()
+                    send_sigkill(handle, "HARD_DISPATCH")
                 if age >= hard_limit:
                     break
                 time.sleep(min(0.005, hard_limit - age))
@@ -171,10 +197,13 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
                     if not select.select([handle], [], [], 0)[0]:
                         if kill_at is None:
                             emergency_kill_at = elapsed()
-                        try:
-                            signal.pidfd_send_signal(handle, signal.SIGKILL)
-                        except ProcessLookupError:
-                            pass
+                        send_sigkill(handle, "FINALIZER")
+                    else:
+                        if pidfd_ready_observed_ns is None:
+                            pidfd_ready_observed_ns = time.monotonic_ns()
+                        if namespace_exit_observed_ns is None:
+                            namespace_exit_observed_ns = time.monotonic_ns()
+                            namespace_exit = (namespace_exit_observed_ns - start) / 1_000_000_000
                 finally:
                     os.close(handle)
             if proc is not None:
@@ -223,6 +252,10 @@ def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
             (ready_check is None or stop_source == "READY"),
         "stopRequestedSeconds": stop_at, "stopSource": stop_source,
         "hardKillSeconds": kill_at if kill_at is not None else emergency_kill_at,
+        "sigkillAttempts": sigkill_attempts,
+        "pidfdReadyObservedNs": pidfd_ready_observed_ns,
+        "namespaceExitObservedNs": namespace_exit_observed_ns,
+        "kernelExitActualNs": None,  # pidfd readiness cannot timestamp kernel exit itself
         "supervisorError": supervisor_error,
         "networkMismatchDetected": network_fault,
         "withinNetworkStopGrace": None if network_fault is None else
