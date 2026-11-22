@@ -1,12 +1,13 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
+import { EventEmitter } from "node:events";
 import { mkdirSync, mkdtempSync, rmSync, symlinkSync } from "node:fs";
 import { join } from "node:path";
 import test from "node:test";
 import vm from "node:vm";
 import registration from "../../docs/phase7d/stage-c-api-s1-10/registration.json" with { type: "json" };
 import { createBrowserCalibration, evaluateCalibrationReceipt, runCalibrationPage } from "./browser-calibration.mjs";
-import { prepareBrowserStageC } from "./browser-runtime.mjs";
+import { prepareBrowserStageC, runBrowserStageCDiagnostic } from "./browser-runtime.mjs";
 import { i2RecorderInitSource } from "./i1-timing.mjs";
 import { createRawEvidence } from "./raw-evidence.mjs";
 import { freezeResourcePlan } from "./resource-evidence.mjs";
@@ -78,4 +79,38 @@ test("the fixed resource plan takes an independent byte snapshot and rejects cha
   original.bytes.fill(0);
   assert.deepEqual(plan.get(resource).bytes, bytes);
   assert.throws(() => freezeResourcePlan([original]), /Invalid fixed resource/);
+});
+
+test("diagnostic failure stores incomplete evidence and cannot reopen an existing result", async t => {
+  const evidenceDirectory = join(directory(t), "diagnostic");
+  const closed = [];
+  const context = new EventEmitter();
+  context.tracing = {
+    async start() {},
+    async stop() { closed.push("trace"); },
+  };
+  context.newPage = async () => Object.assign(new EventEmitter(), {
+    async goto() { throw new Error("intentional incomplete navigation"); },
+  });
+  context.close = async () => { closed.push("context"); };
+  let launches = 0;
+  const webkit = { async launch() {
+    launches++;
+    return { version: () => "26.0", newContext: async () => context,
+      async close() { closed.push("browser"); } };
+  } };
+  const options = {
+    webkit, stopSignal: signal, evidenceDirectory, trustedResources: [entry],
+    networkRules: new Map([["AP-01-I0", { allowlist: { [resource]: { sha256: hash } },
+      baselineRequestCount: 1, baselinePathMultiset: { [resource]: 1 } }]]),
+  };
+  const result = await runBrowserStageCDiagnostic(options);
+  assert.equal(result.status, "INCOMPLETE");
+  assert.equal(result.stopCompleted, false);
+  assert.equal(result.registeredTrialsStarted, 0);
+  assert.match(result.error, /intentional incomplete navigation/);
+  assert.deepEqual(closed, ["trace", "context", "browser"]);
+  assert.deepEqual(result.closed, ["context", "browser", "server"]);
+  await assert.rejects(runBrowserStageCDiagnostic(options), { code: "EEXIST" });
+  assert.equal(launches, 1);
 });

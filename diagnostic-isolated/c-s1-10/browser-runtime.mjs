@@ -27,6 +27,137 @@ function assertAuthorized() {
   }
 }
 
+function createSessionRuntime({ webkit, networkRules, onNetworkStop, root }) {
+  const evidence = createRawEvidence(root);
+  const sessions = new Map();
+  const receipts = new Map();
+  let cleanupFailed = false;
+  let persistenceFailed = false;
+  const networkStop = new AbortController();
+  const gate = createNetworkOperationGate(fault => {
+    networkStop.abort(fault);
+    try { onNetworkStop?.(fault); }
+    catch { persistenceFailed = true; }
+  });
+  const write = (name, bytes) => {
+    try { evidence.write(name, bytes); }
+    catch (error) { persistenceFailed = true; throw error; }
+  };
+  const read = name => {
+    try { return evidence.read(name); }
+    catch (error) { persistenceFailed = true; throw error; }
+  };
+  const save = (name, bytes) => {
+    write(name, bytes);
+    if (!read(name).equals(bytes)) {
+      persistenceFailed = true;
+      throw new Error(`Evidence readback mismatch: ${name}`);
+    }
+  };
+  function persistNetwork(session, interrupted) {
+    const { slotId } = session;
+    const cleanup = session.closeStatus ?? "INCOMPLETE";
+    const receipt = session.network?.sealAndPersist(evidence,
+      session.server?.events() ?? [], interrupted || cleanup !== "PASS") ??
+      { classification: "INCOMPLETE", auditVerdict: "INCOMPLETE", comparisonVerdict: "UNKNOWN",
+        evidenceStatus: "INCOMPLETE", persistence: "INCOMPLETE", missing: ["NETWORK_CAPTURE_NOT_OPENED"] };
+    receipts.set(slotId, { ...receipt, cleanup });
+    sessions.delete(slotId);
+    if (receipt.persistence !== "PASS") persistenceFailed = true;
+    return receipts.get(slotId);
+  }
+  const openPage = async (slot, signal, plan) => {
+    gate.assertMayStart(`${slot.id}:open`);
+    signal.throwIfAborted();
+    const session = { slotId: slot.id, errors: [], closed: [], phase: "beforeNavigation" };
+    let opening;
+    let closing;
+    session.close = () => {
+      closing ??= (async () => {
+        await opening?.catch(() => {});
+        const failures = [];
+        if (session.tracing) {
+          try { await session.context.tracing.stop({ path: session.tracePath }); } catch (error) { failures.push(error); }
+        }
+        session.network?.beginContextClose();
+        if (session.context) {
+          try { await session.context.close(); session.closed.push("context"); } catch (error) { failures.push(error); }
+        }
+        if (session.browser) {
+          try { await session.browser.close(); session.closed.push("browser"); } catch (error) { failures.push(error); }
+        }
+        if (session.server) {
+          try { await session.server.close(); session.closed.push("server"); } catch (error) { failures.push(error); }
+        }
+        session.closeStatus = failures.length ? "FAIL" : "PASS";
+        if (failures.length) {
+          cleanupFailed = true;
+          throw new AggregateError(failures, "Stage C session cleanup failed");
+        }
+      })();
+      return closing;
+    };
+    sessions.set(slot.id, session);
+    opening = (async () => {
+      session.checkOperation = label => {
+        gate.assertMayStart(`${slot.id}:${label}`);
+        signal.throwIfAborted();
+      };
+      if (plan) {
+        session.server = await startPinnedServer(plan, signal,
+          reason => gate.requestStop({ slotId: slot.id, reason }));
+        session.originUrl = session.server.originUrl;
+      }
+      const policy = bindStageCNetworkPolicy(slot.id,
+        session.originUrl ? new URL(session.originUrl).origin : "http://127.0.0.1", networkRules.get(slot.id));
+      const policyName = `${slot.id}.network-policy.json`;
+      save(policyName, json(policy));
+      session.checkOperation("launch");
+      session.browser = await webkit.launch({ headless: true });
+      signal.throwIfAborted();
+      if (session.browser.version() !== "26.0") throw new Error("Wrong WebKit version");
+      session.checkOperation("newContext");
+      const { width, height, touch, reducedMotion } = registration.environment.viewport;
+      session.context = await session.browser.newContext({ viewport: { width, height }, hasTouch: touch, reducedMotion });
+      signal.throwIfAborted();
+      session.network = attachStageCNetwork(session.context, policy, gate, signal, () => session.phase);
+      if (plan) {
+        session.checkOperation("trace.start");
+        session.tracePath = join(root, `${slot.id}.trace.zip`);
+        await session.context.tracing.start(observationPolicy.trace);
+        session.tracing = true;
+        signal.throwIfAborted();
+      }
+      session.checkOperation("newPage");
+      session.page = await session.context.newPage();
+      session.page.on("pageerror", error => session.errors.push(String(error)));
+      signal.throwIfAborted();
+      if (plan) {
+        session.streamId = `${slot.id}:product`;
+        session.check = () => {
+          session.checkOperation("product command");
+          if (session.errors.length) throw new Error("Page error");
+        };
+      }
+    })();
+    try {
+      await opening;
+      return session;
+    } catch (error) {
+      await session.close();
+      throw error;
+    }
+  };
+  return {
+    write, read, save, persistNetwork, openPage, sessions, receipts, gate, networkStopSignal: networkStop.signal,
+    markPersistenceFailed() { persistenceFailed = true; },
+    cleanupStatus(outcomes) {
+      return !cleanupFailed && outcomes.every(outcome => outcome.status === "fulfilled") ? "PASS" : "FAIL";
+    },
+    persistenceStatus() { return persistenceFailed ? "FAIL" : "PASS"; },
+  };
+}
+
 // trustedResources is supplied independently of the browser or its trace.
 export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResources, networkRules, onNetworkStop, evidenceDirectory }) {
   const root = resolve(evidenceDirectory);
@@ -38,126 +169,9 @@ export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResourc
 
   async function run() {
     assertAuthorized();
-    const evidence = createRawEvidence(root);
-    const sessions = new Map();
-    const receipts = new Map();
-    let cleanupFailed = false;
-    let persistenceFailed = false;
-    const networkStop = new AbortController();
-    const gate = createNetworkOperationGate(fault => {
-      networkStop.abort(fault);
-      try { onNetworkStop?.(fault); }
-      catch { persistenceFailed = true; }
-    });
-    const write = (name, bytes) => {
-      try { evidence.write(name, bytes); }
-      catch (error) { persistenceFailed = true; throw error; }
-    };
-    const read = name => {
-      try { return evidence.read(name); }
-      catch (error) { persistenceFailed = true; throw error; }
-    };
-    const save = (name, bytes) => {
-      write(name, bytes);
-      if (!read(name).equals(bytes)) {
-        persistenceFailed = true;
-        throw new Error(`Evidence readback mismatch: ${name}`);
-      }
-    };
-    function persistNetwork(session, interrupted) {
-      const { slotId } = session;
-      const cleanup = session.closeStatus ?? "INCOMPLETE";
-      const receipt = session.network?.sealAndPersist(evidence,
-        session.server?.events() ?? [], interrupted || cleanup !== "PASS") ??
-        { classification: "INCOMPLETE", auditVerdict: "INCOMPLETE", comparisonVerdict: "UNKNOWN",
-          evidenceStatus: "INCOMPLETE", persistence: "INCOMPLETE", missing: ["NETWORK_CAPTURE_NOT_OPENED"] };
-      receipts.set(slotId, { ...receipt, cleanup });
-      sessions.delete(slotId);
-      if (receipt.persistence !== "PASS") persistenceFailed = true;
-      return receipts.get(slotId);
-    }
-    const openPage = async (slot, signal, plan) => {
-      gate.assertMayStart(`${slot.id}:open`);
-      signal.throwIfAborted();
-      const session = { slotId: slot.id, errors: [], phase: "beforeNavigation" };
-      let opening;
-      let closing;
-      session.close = () => {
-        closing ??= (async () => {
-          await opening?.catch(() => {});
-          const failures = [];
-          if (session.tracing) {
-            try { await session.context.tracing.stop({ path: session.tracePath }); } catch (error) { failures.push(error); }
-          }
-          session.network?.beginContextClose();
-          if (session.context) {
-            try { await session.context.close(); } catch (error) { failures.push(error); }
-          }
-          if (session.browser) {
-            try { await session.browser.close(); } catch (error) { failures.push(error); }
-          }
-          if (session.server) {
-            try { await session.server.close(); } catch (error) { failures.push(error); }
-          }
-          session.closeStatus = failures.length ? "FAIL" : "PASS";
-          if (failures.length) {
-            cleanupFailed = true;
-            throw new AggregateError(failures, "Stage C session cleanup failed");
-          }
-        })();
-        return closing;
-      };
-      sessions.set(slot.id, session);
-      opening = (async () => {
-        session.checkOperation = label => {
-          gate.assertMayStart(`${slot.id}:${label}`);
-          signal.throwIfAborted();
-        };
-        if (plan) {
-          session.server = await startPinnedServer(plan, signal,
-            reason => gate.requestStop({ slotId: slot.id, reason }));
-          session.originUrl = session.server.originUrl;
-        }
-        const policy = bindStageCNetworkPolicy(slot.id,
-          session.originUrl ? new URL(session.originUrl).origin : "http://127.0.0.1", networkRules.get(slot.id));
-        const policyName = `${slot.id}.network-policy.json`;
-        save(policyName, json(policy));
-        session.checkOperation("launch");
-        session.browser = await webkit.launch({ headless: true });
-        signal.throwIfAborted();
-        if (session.browser.version() !== "26.0") throw new Error("Wrong WebKit version");
-        session.checkOperation("newContext");
-        const { width, height, touch, reducedMotion } = registration.environment.viewport;
-        session.context = await session.browser.newContext({ viewport: { width, height }, hasTouch: touch, reducedMotion });
-        signal.throwIfAborted();
-        session.network = attachStageCNetwork(session.context, policy, gate, signal, () => session.phase);
-        if (plan) {
-          session.checkOperation("trace.start");
-          session.tracePath = join(root, `${slot.id}.trace.zip`);
-          await session.context.tracing.start(observationPolicy.trace);
-          session.tracing = true;
-          signal.throwIfAborted();
-        }
-        session.checkOperation("newPage");
-        session.page = await session.context.newPage();
-        session.page.on("pageerror", error => session.errors.push(String(error)));
-        signal.throwIfAborted();
-        if (plan) {
-          session.streamId = `${slot.id}:product`;
-          session.check = () => {
-            session.checkOperation("product command");
-            if (session.errors.length) throw new Error("Page error");
-          };
-        }
-      })();
-      try {
-        await opening;
-        return session;
-      } catch (error) {
-        await session.close();
-        throw error;
-      }
-    };
+    const { write, read, save, persistNetwork, openPage, sessions, receipts, gate,
+      networkStopSignal, markPersistenceFailed, cleanupStatus, persistenceStatus } =
+      createSessionRuntime({ webkit, networkRules, onNetworkStop, root });
     const calibrationRuntime = createBrowserCalibration({ openPage, evidence: { write, read } });
     const calibrationBytes = new Map();
     const calibration = {
@@ -170,7 +184,7 @@ export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResourc
       readBackCalibration(slot, signal) {
         const bytes = calibrationRuntime.readBackCalibration(slot, signal);
         const matches = bytes.equals(calibrationBytes.get(slot.id));
-        if (!matches) persistenceFailed = true;
+        if (!matches) markPersistenceFailed();
         const receipt = persistNetwork(sessions.get(slot.id), !matches);
         if (receipt.classification !== "BASELINE_MATCH") throw new Error("Calibration network evidence incomplete");
         return bytes;
@@ -209,7 +223,7 @@ export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResourc
         if (session.errors.length) throw new Error("Page error");
         const primaryBytes = read(`${slot.id}.primary.json`);
         if (!primaryBytes.equals(originalPrimary.get(slot.id))) {
-          persistenceFailed = true;
+          markPersistenceFailed();
           throw new Error("Saved primary bytes mismatch");
         }
         const primaryReceipt = JSON.parse(primaryBytes);
@@ -252,19 +266,83 @@ export function prepareBrowserStageC({ webkit, clock, stopSignal, trustedResourc
             if (!bytes.equals(original)) throw new Error("Saved primary bytes mismatch");
             persistedPrimaryVerdicts.set(slotId, JSON.parse(bytes).primary.verdict);
           } catch {
-            persistenceFailed = true;
+            markPersistenceFailed();
           }
         }
         return {
           persistedPrimaryVerdicts, networkReceipts: receipts,
-          cleanup: !cleanupFailed && outcomes.every(outcome => outcome.status === "fulfilled") ? "PASS" : "FAIL",
-          persistence: persistenceFailed ? "FAIL" : "PASS",
+          cleanup: cleanupStatus(outcomes),
+          persistence: persistenceStatus(),
         };
       },
     };
-    const result = await runS1Preparation({ clock, stopSignal, networkStopSignal: networkStop.signal,
+    const result = await runS1Preparation({ clock, stopSignal, networkStopSignal,
       runtime, calibration });
     return { ...result, networkStop: gate.snapshot(),
       networkReceipts: Object.fromEntries(receipts) };
   }
+}
+
+// This entry runs a single navigation using the fixed I0 policy key. It does not
+// select registered trials or expose the product runner.
+export async function runBrowserStageCDiagnostic({ webkit, stopSignal, trustedResources, networkRules,
+  onNetworkStop, evidenceDirectory, observe = () => undefined }) {
+  const slot = { id: "AP-01-I0" };
+  const mark = () => process.hrtime.bigint().toString();
+  const times = { started: mark() };
+  const plan = freezeResourcePlan(trustedResources);
+  const { save, read, persistNetwork, openPage, sessions, gate, networkStopSignal, persistenceStatus } =
+    createSessionRuntime({ webkit, networkRules, onNetworkStop, root: resolve(evidenceDirectory) });
+  const signal = AbortSignal.any([stopSignal, networkStopSignal]);
+  function stopped() { times.stopRequested ??= mark(); }
+  stopSignal.addEventListener("abort", stopped, { once: true });
+  if (stopSignal.aborted) stopped();
+  let ready, error, receipt, beforeStop, afterClose, closed;
+  let lateOperationRejected = false;
+  try {
+    const session = await openPage(slot, signal, plan);
+    session.phase = "page.goto";
+    session.checkOperation("page.goto");
+    const response = await session.page.goto(session.originUrl, { waitUntil: "networkidle", timeout: 45_000 });
+    if (response?.status() !== 200) throw new Error("Diagnostic navigation did not receive HTTP 200");
+    const bodies = await session.network.collectBodies(signal);
+    session.check();
+    beforeStop = observe();
+    ready = json({ kind: "STAGE_C_WORKER_DIAGNOSTIC_READY", registeredTrialsStarted: 0,
+      bodies, atNs: mark(), origin: session.originUrl });
+    save("diagnostic-ready.json", ready);
+    if (!signal.aborted) await new Promise(done => signal.addEventListener("abort", done, { once: true }));
+    try {
+      session.checkOperation("diagnostic:after-stop");
+    } catch (error) {
+      if (!signal.aborted) throw error;
+      lateOperationRejected = true;
+    }
+  } catch (failure) {
+    error = String(failure);
+  } finally {
+    stopSignal.removeEventListener("abort", stopped);
+    const session = sessions.get(slot.id);
+    if (session) {
+      session.phase = "cleanup";
+      try { await session.close(); }
+      catch (failure) { error ??= String(failure); }
+      closed = session.closed;
+      times.cleanupFinished = mark();
+      afterClose = observe();
+      receipt = persistNetwork(session, !ready || !!error || networkStopSignal.aborted);
+      times.networkEvidenceSaved = mark();
+    }
+  }
+  const readyUnchanged = !!ready && read("diagnostic-ready.json").equals(ready);
+  const cleanup = receipt?.cleanup ?? "INCOMPLETE";
+  const persistence = persistenceStatus();
+  const stopCompleted = !!times.stopRequested && cleanup === "PASS" && persistence === "PASS";
+  const status = !error && stopCompleted && lateOperationRejected && readyUnchanged &&
+    receipt?.auditVerdict === "PASS" && receipt.evidenceStatus === "COMPLETE" ? "PASS" : "INCOMPLETE";
+  const result = { kind: "STAGE_C_WORKER_DIAGNOSTIC", registeredTrialsStarted: 0, status, error,
+    stopRequested: !!times.stopRequested, stopCompleted, cleanup, persistence, receipt, times,
+    lateOperationRejected, readyUnchanged, closed, beforeStop, afterClose, networkStop: gate.snapshot() };
+  save("diagnostic-result.json", json(result));
+  return result;
 }
