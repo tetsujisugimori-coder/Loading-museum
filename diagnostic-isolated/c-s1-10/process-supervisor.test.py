@@ -229,7 +229,8 @@ class RootfsLockPreflightTest(unittest.TestCase):
             "stage-c-worker.mjs", "stage-c-network-adapter.mjs",
             "stage-c-network-ledger.mjs", "stage-c-network-policy.mjs",
             "stage-c-operation-gate.mjs", "NETWORK-CONTRACT-v1.json", "build-resources.mjs",
-            "raw-evidence.mjs", "s1-trace-audit.mjs")
+            "raw-evidence.mjs", "s1-trace-audit.mjs", "stage_c_outer_observer.py",
+            "stage-c-required-evidence.json")
         repo_hashes = {}
         for name in runtime_paths:
             relative = "diagnostic-isolated/c-s1-10/" + name
