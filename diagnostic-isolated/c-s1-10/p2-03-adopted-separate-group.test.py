@@ -17,7 +17,7 @@ import unittest
 from stage_c_launch import recover, subreaper
 
 SPAWNER = r'''
-import json, pathlib, subprocess, sys, time
+import json, os, pathlib, subprocess, sys, time
 record = pathlib.Path(sys.argv[1])
 children = []
 for independent_group in (False, False, True):
@@ -27,7 +27,9 @@ for independent_group in (False, False, True):
         stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     )
     children.append(child.pid)
-record.write_text(json.dumps(children))
+pending_record = record.with_suffix('.tmp')
+pending_record.write_text(json.dumps(children))
+os.replace(pending_record, record)
 time.sleep(0.25)
 '''
 
