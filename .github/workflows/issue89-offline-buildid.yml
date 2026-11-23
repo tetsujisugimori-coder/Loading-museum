@@ -1,0 +1,79 @@
+name: Issue89 OFFLINE r2215 ELF symbols only (no browser)
+on:
+  push:
+    branches: [ci/issue89-offline-buildid-20261123]
+    paths:
+      - .github/workflows/issue89-offline-buildid.yml
+permissions:
+  contents: read
+jobs:
+  offline-webkit-elf-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Download archived Playwright r2215 binary, never execute it
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p work/issue89-offline
+          cd work/issue89-offline
+          curl -fSL --retry 1 --connect-timeout 12 --max-time 240 -o original.zip https://cdn.playwright.dev/dbazure/download/playwright/builds/webkit/2215/webkit-ubuntu-24.04.zip
+          unzip -Z -1 original.zip > zip-entries.txt
+          NAME=$(grep -E '(^|/)libWPEWebKit-2[.]0[.]so[.]1[.]7[.]0$' zip-entries.txt | head -1)
+          test -n "$NAME"
+          unzip -p original.zip "$NAME" > libWPEWebKit.so
+          printf 'ZIP_ENTRY=%s\n' "$NAME" > identity.txt
+          sha256sum original.zip libWPEWebKit.so >> identity.txt
+          readelf -n libWPEWebKit.so > notes.txt
+          readelf -SW libWPEWebKit.so > sections.txt
+          readelf -lW libWPEWebKit.so > segments.txt
+          grep -i 'Build ID:' notes.txt >> identity.txt
+          if ! grep -q '8faf9134c0557d2d09f3d680f9c8b780498cf59b' notes.txt; then
+            echo 'MISMATCH_BUILD_ID' >> identity.txt; exit 3
+          fi
+          if [ "$(sha256sum libWPEWebKit.so | cut -d' ' -f1)" != "daa10258a2161710c7c1d6a3e3f7abe0a100a6f269c00f5843dcd0f7df46ec29" ]; then
+            echo 'MISMATCH_ELF_SHA256' >> identity.txt; exit 3
+          fi
+          printf 'MATCH_BOTH_BUILDID_AND_SHA256\n' >> identity.txt
+          for spec in '587a4c0:587a840:font' '587c920:587ce20:font-wrapper' '2a42a80:2a42db0:mesa'; do
+            IFS=: read -r a b n <<< "$spec"
+            objdump -d -M intel --start-address="0x$a" --stop-address="0x$b" libWPEWebKit.so > "disasm-$n.txt"
+          done
+          for a in 0x587a4c0 0x587a54e 0x587a6a1 0x587c920 0x587ccaf 0x2a42c1f; do
+            printf '%s\t' "$a"
+            addr2line -f -C -e libWPEWebKit.so "$a" | tr '\n' ' '
+            printf '\n'
+          done > addr2line-before-debuginfo.txt
+          if readelf -SW libWPEWebKit.so | grep -Eq '[.]debug_info|[.]symtab'; then
+            echo 'DEBUG_SECTIONS_PRESENT' >> identity.txt
+          else echo 'DEBUG_SECTIONS_ABSENT' >> identity.txt; fi
+      - name: Exact build-id debuginfod discovery (HEAD only; no browser)
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p work/issue89-offline
+          cd work/issue89-offline
+          for server in debuginfod.ubuntu.com debuginfod.debian.net debuginfod.fedoraproject.org debuginfod.elfutils.org; do
+            url="https://$server/buildid/8faf9134c0557d2d09f3d680f9c8b780498cf59b/debuginfo"
+            code=$(curl --head -sSL --connect-timeout 7 --max-time 14 -o /dev/null -w '%{http_code}' "$url" 2>/dev/null) || code="ERROR-$code"
+            printf '%s\t%s\n' "$server" "$code" >> debuginfod-head.tsv
+          done
+          cat debuginfod-head.tsv
+      - name: Upload static proof only (no binary, no WebKit launch)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue89-buildid-offline-static
+          path: |
+            work/issue89-offline/identity.txt
+            work/issue89-offline/notes.txt
+            work/issue89-offline/sections.txt
+            work/issue89-offline/segments.txt
+            work/issue89-offline/disasm-*.txt
+            work/issue89-offline/addr2line-before-debuginfo.txt
+            work/issue89-offline/debuginfod-head.tsv
+          retention-days: 30
+          if-no-files-found: warn
