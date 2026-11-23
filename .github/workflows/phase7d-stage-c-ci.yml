@@ -3,6 +3,8 @@
 name: Phase 7D Stage C isolated CI
 
 on:
+  push:
+    branches: [ci/lm88-p203-synthetic-07c0c479]
   pull_request:
     # "labeled" is a deliberate synthetic-only lane on PR #88.
     # It is distinct from the default opened/reopened/synchronize lane.
@@ -207,7 +209,7 @@ jobs:
           PY
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: 07c0c479720b6f061ade00403b1240816037d8f7
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
@@ -317,7 +319,7 @@ jobs:
       - *stage_c_cpu_diagnostic
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: 07c0c479720b6f061ade00403b1240816037d8f7
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
@@ -376,7 +378,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     # Never download the driver/WebKit distribution on a synthetic-only label event.
-    if: github.event.action != 'labeled' && github.run_attempt == 1 && github.event.pull_request.head.repo.full_name == github.repository
+    if: github.event_name == 'pull_request' && github.event.action != 'labeled' && github.run_attempt == 1 && github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - uses: actions/checkout@v4
         with:
