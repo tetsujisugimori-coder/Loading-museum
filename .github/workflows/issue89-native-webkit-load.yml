@@ -1,0 +1,50 @@
+name: Issue89 native WebKit one-navigation diagnostic (NONREGISTERED)
+on:
+  push:
+    branches: [ci/issue89-native-webkit-load-20261123]
+    paths:
+      - .github/workflows/issue89-native-webkit-load.yml
+      - diagnostic-isolated/issue89/**
+permissions:
+  contents: read
+jobs:
+  one-webkit-navigation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - name: Checkout isolated diagnostic branch
+        uses: actions/checkout@v4
+        with:
+          path: diagnostic
+          persist-credentials: false
+      - name: Checkout original fixed experiment source (not a registered runtime)
+        uses: actions/checkout@v4
+        with:
+          ref: f4215a8bce9a74cb79a21156cd54b79b78450704
+          path: source
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build source-derived static export, no product worker
+        working-directory: source
+        run: |
+          npm ci
+          NODE_ENV=production npm run build
+      - name: Install fixed Playwright 1.56.1 WebKit only
+        run: |
+          npm install --prefix "$RUNNER_TEMP/issue89-tools" --no-save playwright@1.56.1
+          "$RUNNER_TEMP/issue89-tools/node_modules/.bin/playwright" install --with-deps webkit
+      - name: One goto(load) with concurrent lifecycle/crash/error/CPU and HTTP capture
+        working-directory: source
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/issue89-tools/node_modules/playwright
+        run: node ../diagnostic/diagnostic-isolated/issue89/single-load-observation.cjs
+      - name: Retain observation JSON whether success or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue89-native-webkit-lifecycle-observation
+          path: source/work/issue89-native-webkit/
+          if-no-files-found: warn
+          retention-days: 30
