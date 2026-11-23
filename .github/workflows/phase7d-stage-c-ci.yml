@@ -209,7 +209,7 @@ jobs:
           PY
       - uses: actions/checkout@v4
         with:
-          ref: 07c0c479720b6f061ade00403b1240816037d8f7
+          ref: a55e25ebc12e28fcfe48d8ff9c393b64a01f5d28
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
@@ -319,7 +319,7 @@ jobs:
       - *stage_c_cpu_diagnostic
       - uses: actions/checkout@v4
         with:
-          ref: 07c0c479720b6f061ade00403b1240816037d8f7
+          ref: a55e25ebc12e28fcfe48d8ff9c393b64a01f5d28
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
