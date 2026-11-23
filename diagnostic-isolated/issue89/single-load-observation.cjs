@@ -58,7 +58,7 @@ function serve(req,res){
   const file=path.resolve(root,rel);
   try{if(file.startsWith(root+path.sep)&&fs.statSync(file).isFile()){data=fs.readFileSync(file);status=200;}}catch{}
  }
- res.writeHead(status,{'Content-Type':mimetype(reqPath),'Content-Length':data.length,'Cache-Control':'no-store'});
+ res.writeHead(status,{'Content-Type':mimetype(reqPath.endsWith('/')?'index.html':reqPath),'Content-Length':data.length,'Cache-Control':'no-store'});
  res.end(data);report.http.push({atMs:millis(),path:reqPath,status,size:data.length,sha256:sha(data)});
 }
 async function run(){
