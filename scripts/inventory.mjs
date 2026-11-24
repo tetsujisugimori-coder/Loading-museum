@@ -44,4 +44,8 @@ let hasPhase6a=false;try{read('app/data/phase6aExhibits.ts');hasPhase6a=true;}ca
 if(hasPhase6a) counts.phase6a=data('phase6aExhibits').phase6aExhibits.length;
 let hasSmallMotion=false;try{read('app/data/smallMotionExhibits.ts');hasSmallMotion=true;}catch{}
 if(hasSmallMotion) counts.smallMotion=data('smallMotionExhibits').smallMotionExhibits.length;
+for(const [name,key] of [['smallMotionIIExhibits','smallMotionII'],['motionCompositionExhibits','motionComposition'],['dialupBbsExhibits','dialupBbs']]){
+ let exists=true;try{read('app/data/'+name+'.ts');}catch{exists=false;}
+ if(exists)counts[key]=data(name)[name].length;
+}
 console.log(JSON.stringify({ref:ref||'working-tree',counts,total:Object.values(counts).reduce((a,b)=>a+b,0)},null,2));
