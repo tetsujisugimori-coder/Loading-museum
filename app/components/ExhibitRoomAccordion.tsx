@@ -469,6 +469,13 @@ export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
               )
             )}
           </div>
+          {room.roomId === "ms-dos-pc-command-line" && (
+            <section aria-labelledby="dialup-bbs-preview-title" id="dialup-bbs-preview">
+              <h3 id="dialup-bbs-preview-title">パソコン通信とBBSの時代</h3>
+              <p>第1便・体験試作3作品（正式登録・独立審査前）。低速文字、日本語通信、連続スクロール。</p>
+              <a href="./dialup-bbs/index.html">BBS体験展示を開く</a>
+            </section>
+          )}
           <div className="roomCloseRow">
             <button className="roomCloseButton" type="button" onClick={closeRoom}>
               展示室を閉じる
