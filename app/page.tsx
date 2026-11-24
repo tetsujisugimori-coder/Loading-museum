@@ -1,3 +1,4 @@
+import {dialupBbsExhibits} from './data/dialupBbsExhibits';
 import {motionCompositionExhibits} from './data/motionCompositionExhibits';
 import {smallMotionIIExhibits} from './data/smallMotionIIExhibits';
 import MuseumNavigation from "./components/MuseumNavigation";
@@ -37,7 +38,7 @@ const periodExhibitCount = exhibitRooms.reduce(
     ),
     0,
   ),
-  cursorExhibits.length + appleEarlyExhibitCount + macintoshBirthExhibitCount,
+  cursorExhibits.length + appleEarlyExhibitCount + macintoshBirthExhibitCount + dialupBbsExhibits.length,
 );
 const totalExhibitCount = permanentExhibitCount + periodExhibitCount + flashExhibitCount + 17 + waapiSampleCount;
 

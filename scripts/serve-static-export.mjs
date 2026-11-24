@@ -4,7 +4,7 @@ import {createServer} from 'node:http';
 import {readFile, realpath} from 'node:fs/promises';
 import path from 'node:path';
 const root = await realpath(process.argv[2] || 'out');
-const types = {'.js':'text/javascript', '.css':'text/css', '.html':'text/html',
+const types = {'.js':'text/javascript', '.mjs':'text/javascript', '.css':'text/css', '.html':'text/html',
   '.json':'application/json', '.png':'image/png', '.svg':'image/svg+xml',
   '.woff2':'font/woff2', '.ico':'image/x-icon'};
 const server = createServer(async (request, response) => {

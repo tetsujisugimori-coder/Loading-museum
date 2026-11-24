@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import {dialupBbsCollection,dialupBbsExhibits,dialupBbsHref,dialupBbsRoom} from "../data/dialupBbsExhibits";
 import type {
   AnimationType,
   DosRoomExhibit,
@@ -427,7 +428,7 @@ export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
         <span className="roomDescription">{room.description}</span>
         <span className="roomMeta">
           <span>{room.period}</span>
-          <span>{room.exhibits.length} EXHIBITS</span>
+          <span>{room.exhibits.length + (room.roomId === dialupBbsRoom ? dialupBbsExhibits.length : 0)} EXHIBITS</span>
         </span>
         <span className="roomArrow" aria-hidden="true">
           ↓
@@ -469,11 +470,16 @@ export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
               )
             )}
           </div>
-          {room.roomId === "ms-dos-pc-command-line" && (
+          {room.roomId === dialupBbsRoom && (
             <section aria-labelledby="dialup-bbs-preview-title" id="dialup-bbs-preview">
-              <h3 id="dialup-bbs-preview-title">パソコン通信とBBSの時代</h3>
-              <p>第1便・体験試作3作品（正式登録・独立審査前）。低速文字、日本語通信、連続スクロール。</p>
+              <h3 id="dialup-bbs-preview-title">{dialupBbsCollection}</h3>
+              <p>第1便・歴史資料に着想を得た再構成。実機や実際の通信記録の完全再現ではありません。</p>
               <a href="./dialup-bbs/index.html">BBS体験展示を開く</a>
+              <ul>{dialupBbsExhibits.map(work => (
+                <li className="dialupBbsExhibit" key={work.id}>
+                  <a data-museum-id={work.id} href={dialupBbsHref(work.id)}>{work.candidate} {work.title}</a>
+                </li>
+              ))}</ul>
             </section>
           )}
           <div className="roomCloseRow">
