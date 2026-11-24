@@ -70,3 +70,13 @@
 - accessStatus / inspectedSection / originalImageStatus / rawBytesStatus / rightsStatus / personalDataReview
 - acquiredAt / sha256（実ファイル取得時だけ）/ preservationStatus / linkedCandidateIds / gaps
 初期12候補以外の発見は新規candidateIdで蓄積。説明だけの資料から「その速度・表示が当時のその機種で使われた」と断定しない。歴史的な内容・機器の仕様・現代の動きの演出を別々に評価する。
+
+ 
+## 2026-11-24 再照合（第1便最小試作）
+- S01：目次で Bulletin Boards の開始頁148を確認。PDF直取得403。原画像は未照合。
+- S02：p.16の抽出本文でsmooth scroll最大6行/秒、ホストとAuto XON/XOFFの必要性を再確認。PDF直取得403、別ミラーのファイルも500。原画像未照合。HTML転記 https://oldmanprogrammer.net/webapps/vt100/doc/vt100-ug/chapter3.html のDECSCLMも6行/秒。
+- S03：4.7.6 p.4-95の抽出本文で60Hz時に走査線単位、6行/秒、2フレーム遅延の記述を確認。画像未照合。試作は表示時間のみで実機の走査線・フロー制御は再現しない。
+- S04：直取得はサイズ上限エラー。原画像未照合。
+- S05：当事者のHTML再掲載を直接読取り。全角英字、半角カナ、手動改行および本人投稿のみ公開した経緯を確認。生バイト、端末、転載権利は未確認。
+- S07：RFC Editorの公式原文 https://www.rfc-editor.org/rfc/rfc1468.txt を直接閲覧。pp.1–2と4のESC $ B、ESC ( B、2バイト・2表示列、行末までのASCII/Roman復帰条件を確認。日本の商用BBSの符号化方式はUNKNOWN。試作のISO-2022-JP/Shift_JISは教材用でありRFC全体の適合試験でもない。
+- PDF screenshotは取得エラー後に再試行したがPDFとして解決できず失敗。元ファイル取得・ハッシュ・承認済み保存先からの独立再取得は未実施。原画像0件、原通信0件、保全0件のまま。史料は本文確認と原物照合を分離し総合PARTIAL。
