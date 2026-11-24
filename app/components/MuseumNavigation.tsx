@@ -1,6 +1,7 @@
 "use client";
 import {useEffect,useState} from 'react';
 import {categorySummary,museumCatalog,museumRooms,museumTotal,type MotionCategory} from '../data/museumClassification';
+import {historicalCollectionSummary, resolveHistoricalMotionCollections} from '../data/historicalMotionCollections';
 import './museum-navigation.css';
 
 // Opening a room commits asynchronously, and content-visibility may retain a skipped
@@ -68,11 +69,22 @@ export default function MuseumNavigation(){
   },[]);
   const records=museumCatalog.filter(x=>(!category||x.categories.includes(category))&&`${x.title} ${x.collection} ${x.tags.join(' ')} ${museumRooms.find(r=>r.id===x.room)?.title??''}`.toLowerCase().includes(query.trim().toLowerCase()));
   const rooms=museumRooms.filter(r=>records.some(x=>x.room===r.id));
+  const curated=resolveHistoricalMotionCollections();
+  const curatedSummary=historicalCollectionSummary();
   return <nav onClick={e=>{const anchor=(e.target as HTMLElement).closest('a');if(anchor?.hash===location.hash)window.dispatchEvent(new Event('hashchange'));}} className="museumNavigation" aria-label="歴史と現代から展示を探す">
     <p className="navEyebrow">FIND YOUR MOTION</p><h2>時代をたどる。今の動きに触れる。</h2><p>{museumRooms.length}展示室・{museumTotal}展示。主題から選ぶ2つの入口です。</p>
     <div className="motionEntrances">{([['historical','歴史','Historical Motion','コンピューター、OS、Web、Flashの画面表現。'],['modern','現代','Modern Motion','現在のWeb技術で触れる動き、UI、表現実験。']] as const).map(([id,label,en,note])=>{const count=categorySummary(id);return <button key={id} aria-pressed={category===id} aria-controls="motion-directory" onClick={()=>{setCategory(id);setQuery('');}}><span>{en}</span><strong>{label}</strong><span>{note}</span><small>{count.rooms}展示室への参照 / {count.objects}展示</small></button>;})}</div>
     <div className="navTools"><button aria-pressed={category===null} onClick={()=>{setCategory(null);setQuery('');}}>全館を見る</button><label>全館の作品・展示室・タグで検索<input type="search" value={query} onChange={e=>setQuery(e.target.value)}/></label></div>
     <p className="navNote">歴史と現代を横断する作品は両方の入口に登場します。作品本体と全館件数は重複させません。ローディング常設ギャラリーは展示室13室とは別の入口です。</p>
+    {category!=='modern'&&<section className="historicalCollectionShelf" aria-labelledby="historical-collections-title">
+      <h3 id="historical-collections-title">歴史の動き・横断コレクション</h3>
+      <p>GUI・CUIをまたいで動きをたどる、編集上のテーマ別索引です。<strong>{curatedSummary.placements}掲載 / {curatedSummary.distinctWorks}固有作品</strong>。同じ作品を別テーマからも開けます。</p>
+      <div className="historicalCollectionGrid">{curated.map(group=><section key={group.id} aria-labelledby={'history-group-'+group.id}>
+        <h4 id={'history-group-'+group.id}>{group.title}</h4><p>{group.description}</p>
+        <ul>{group.exhibits.map(entry=><li key={entry.key}><a href={entry.record.href}>{entry.record.title}</a><small>{entry.medium.toUpperCase()} / {entry.platform} / 史料未照合</small></li>)}</ul>
+      </section>)}</div>
+      <p className="navNote">掲載テーマによる重複を許容します。史料未照合は横断企画での確認状況を表し、既存展示の史実認定を更新するものではありません。</p>
+    </section>}
     <div id="motion-directory"><p role="status">{category==='historical'?'歴史':category==='modern'?'現代':'全館'}：{rooms.length}展示室 / {records.length}展示</p><ul className="roomDirectory">{rooms.map(room=>{const items=records.filter(x=>x.room===room.id);const collections=[...new Set(items.map(x=>x.collection).filter(Boolean))];return <li key={room.id}><span className="directoryKind">展示室</span><a href={`#browse-${room.id}`}>{room.title}</a><span>{items.length} / {museumCatalog.filter(x=>x.room===room.id).length}展示</span>{collections.length>0&&<ul className="collectionDirectory">{collections.map(c=><li key={c}><span>コレクション</span> {c} <small>{items.filter(x=>x.collection===c).length}展示</small>{c==='Motion Composition Studio'&&<a href="#motion-composition-studio">作品を選ぶ</a>}{c==='Small Motion Collection II'&&<a href="#small-motion-collection-ii">作品を選ぶ</a>}{c==='Small Motion Collection'&&<a href="#small-motion-collection">作品を選ぶ</a>}</li>)}</ul>}</li>;})}</ul>
       {records.some(x=>x.room==='loading-gallery')&&<p><a href="#loading-gallery">ローディング常設ギャラリー</a> · {records.filter(x=>x.room==='loading-gallery').length} / 9展示</p>}
       {(query||category)&&<details className="catalogResults" open={Boolean(query)}><summary>作品索引（{records.length}展示）</summary><ul>{records.map(item=><li key={item.key}><a href={item.href}>{item.title}</a><small>{item.categories.length>1?'歴史・現代を横断':item.categories[0]==='historical'?'歴史':'現代'} / {item.collection||museumRooms.find(r=>r.id===item.room)?.title}</small></li>)}</ul></details>}
