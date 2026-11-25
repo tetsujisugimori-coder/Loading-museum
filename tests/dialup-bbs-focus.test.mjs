@@ -5,7 +5,8 @@ function fixture(){
  let active;
  const make=(name,initial=false)=>{
    let disabled=initial;
-   return {name,get disabled(){return disabled;},set disabled(v){disabled=v;if(v&&active===this)active=null;},focus(){assert.equal(disabled,false,'must enable destination first');active=this;}};
+   const control={name,get disabled(){return disabled;},set disabled(v){disabled=v;if(v&&active===control)active=null;},focus(){assert.equal(disabled,false,'must enable destination first');active=control;}};
+   return control;
  };
  const play=make('play'),pause=make('pause',true),reset=make('reset'),other=make('other');
  const sync=(playing,reduced=false)=>syncPlaybackControls({play,pause,reset,active,playing,reduced});
