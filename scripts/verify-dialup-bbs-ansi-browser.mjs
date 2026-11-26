@@ -27,6 +27,16 @@ try{
   const check=(name,value)=>{assert.ok(value,name);c.checks.push(name);};
   const state=()=>page.locator('#work-title').getAttribute('data-observation').then(JSON.parse);
   const click=sel=>page.locator(sel).click();
+  const documentLink=async(link,target)=>{
+    assert.equal(await link.evaluate(el=>el.href),target.href);
+    // Track the actual navigation rather than the action's implicit navigation wait.
+    // The app-level readiness assertions below still have to succeed.
+    await Promise.all([
+      page.waitForURL(target.href,{waitUntil:'commit'}),
+      link.click({noWaitAfter:true}),
+    ]);
+    assert.equal(new URL(page.url()).href,target.href);
+  };
   const press=async(id,key='Enter')=>{await page.locator('#'+id).focus();await page.keyboard.press(key);};
   const focused=id=>page.evaluate(id=>document.activeElement?.id===id,id);
   const noOverflow=()=>page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1);
@@ -99,10 +109,10 @@ try{
   }else check('no blink in reduced mode',await page.locator('#play').isDisabled()&&!(await state()).state.dim);
   check('08 no overflow',await noOverflow());if(width===390)await screenshot('attributes');
   await page.goBack();await ready('07');check('history restores selected work',new URL(page.url()).hash==='#bbs-07');
-  await page.getByRole('link',{name:/ミュージアムの展示室へ戻る/}).click();await page.waitForURL('**/#browse-ms-dos-pc-command-line');
+  await documentLink(page.getByRole('link',{name:/ミュージアムの展示室へ戻る/}),new URL('#browse-ms-dos-pc-command-line',base));
   await page.waitForFunction(()=>document.querySelector('#ms-dos-pc-command-line-toggle')?.getAttribute('aria-expanded')==='true');
   check('6 indexed BBS works in existing room',await page.locator('#dialup-bbs-preview .dialupBbsExhibit').count()===6);
-  await click('#dialup-bbs-preview [data-museum-id="bbs-08"]');await page.waitForURL('**/dialup-bbs/ansi.html#bbs-08');await ready('08');
+  await documentLink(page.locator('#dialup-bbs-preview [data-museum-id="bbs-08"]'),new URL('dialup-bbs/ansi.html#bbs-08',base));await ready('08');
   check('direct room entry selects 08',(await state()).work==='08');
   check('no page errors',errors.length===0);
   c.observation={slow,fast,frames:full.map((f,i)=>({fullBytes:f.state.bytes,diffBytes:diff[i].state.bytes,fullWrites:f.state.writes,diffWrites:diff[i].state.writes,fullMs:f.time,diffMs:diff[i].time})),blink,bright};
