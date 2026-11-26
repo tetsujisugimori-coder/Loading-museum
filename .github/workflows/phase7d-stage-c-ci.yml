@@ -1,0 +1,488 @@
+# Stage C static and synthetic checks only.
+# No registered WebKit trials, real build execution, or product acceptance are started here.
+name: Phase 7D Stage C isolated CI
+
+on:
+  pull_request:
+    # "labeled" is a deliberate synthetic-only lane on PR #88.
+    # It is distinct from the default opened/reopened/synchronize lane.
+    types: [opened, reopened, synchronize, labeled]
+    branches: [main]
+    paths:
+      - .github/workflows/phase7d-stage-c-ci.yml
+      - diagnostic-isolated/c-s1-10/**
+      - docs/phase7d/stage-c-api-s1-10/**
+      - scripts/phase7d-api-plan.mjs
+      - app/components/interactive-motion/GestureExhibits.tsx
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    # On label events run ONLY the existing synthetic/HOLD controls for PR #88.
+    if: >-
+      github.event.action != 'labeled' ||
+      (github.event.label.name == 'stage-c-synthetic-only' &&
+       github.event.pull_request.number == 88 &&
+       github.event.pull_request.head.repo.full_name == github.repository &&
+       github.run_attempt == 1)
+    name: Stage C synthetic contracts and HOLD guard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - &stage_c_cpu_diagnostic
+        name: Record job CPU quota, cpuset and affinity (read only)
+        continue-on-error: true
+        run: |
+          python3 -B - <<'PY'
+          import json
+          import os
+          import re
+          from pathlib import Path
+
+          UNKNOWN = "UNKNOWN"
+          UNLIMITED = "UNLIMITED"
+
+
+          def read(path):
+              try:
+                  return Path(path).read_text(errors="surrogateescape").strip()
+              except FileNotFoundError:
+                  return None
+              except OSError:
+                  return UNKNOWN
+
+
+          def cgroup_memberships(source):
+              memberships = {}
+              for line in source.splitlines():
+                  fields = line.split(":", 2)
+                  if len(fields) != 3:
+                      continue
+                  _, controllers, group = fields
+                  path = Path(group)
+                  if path.is_absolute() and ".." not in path.parts:
+                      for controller in controllers.split(","):
+                          memberships[controller] = path
+              return memberships
+
+
+          def cgroup_mounts(source):
+              mounts = []
+              for line in source.splitlines():
+                  before, separator, after = line.partition(" - ")
+                  if not separator:
+                      continue
+                  mount = before.split()
+                  filesystem = after.split()
+                  if len(mount) < 6 or len(filesystem) < 3 or filesystem[0] not in ("cgroup", "cgroup2"):
+                      continue
+                  root, point = (
+                      Path(re.sub(r"\\([0-7]{3})", lambda match: chr(int(match[1], 8)), field))
+                      for field in mount[3:5]
+                  )
+                  mounts.append((filesystem[0], filesystem[2].split(","), root, point))
+              return mounts
+
+
+          def locate(controller, memberships, mounts):
+              version = "v1" if controller in memberships else "v2"
+              group = memberships.get(controller if version == "v1" else "")
+              if group is None:
+                  return {"version": UNKNOWN, "membership": UNKNOWN, "mount_root": UNKNOWN}, None, None
+
+              report = {"version": version, "membership": str(group), "mount_root": UNKNOWN}
+              candidates = []
+              for filesystem, controllers, root, point in mounts:
+                  matches = filesystem == "cgroup2" if version == "v2" else (
+                      filesystem == "cgroup" and controller in controllers
+                  )
+                  if matches and group.is_relative_to(root):
+                      candidates.append((root, point))
+              # Prefer the mount that exposes the most ancestors. A subtree mount can hide limits.
+              for root, point in sorted(candidates, key=lambda mount: len(mount[0].parts)):
+                  leaf = point / group.relative_to(root)
+                  try:
+                      if leaf.is_dir():
+                          report["mount_root"] = str(root)
+                          return report, leaf, point
+                  except OSError:
+                      continue
+              return report, None, None
+
+
+          def is_hierarchy_root(version, path):
+              if version == "v1":
+                  try:
+                      return (path / "release_agent").is_file()
+                  except OSError:
+                      return False
+              # In v2, cgroup.events exists on non-root groups, even in a namespace.
+              return read(path / "cgroup.controllers") not in (None, UNKNOWN) and (
+                  read(path / "cgroup.events") is None
+              )
+
+
+          def quota_at(version, path, is_root):
+              if version == "v2":
+                  raw = read(path / "cpu.max")
+                  values = {"cpu.max": raw or UNKNOWN}
+                  fields = (raw or "").split()
+                  quota, period = fields if len(fields) == 2 else ("", "")
+                  unlimited = quota == "max"
+                  if raw is None and is_root:
+                      return values, UNLIMITED
+              else:
+                  quota = read(path / "cpu.cfs_quota_us")
+                  period = read(path / "cpu.cfs_period_us")
+                  values = {"cpu.cfs_quota_us": quota or UNKNOWN, "cpu.cfs_period_us": period or UNKNOWN}
+                  unlimited = quota == "-1"
+                  if quota is None and period is None and is_root:
+                      return values, UNLIMITED
+
+              if period and period.isdecimal() and int(period) > 0:
+                  if unlimited:
+                      return values, UNLIMITED
+                  if quota and quota.isdecimal() and int(quota) > 0:
+                      return values, int(quota) / int(period)
+              return values, UNKNOWN
+
+
+          def cpu_quota(report, leaf, point):
+              report.update({"ancestors_complete": UNKNOWN, "levels": [], "effective_quota_cpus": UNKNOWN})
+              if leaf is None:
+                  return
+              version = report["version"]
+              complete = report["mount_root"] == "/" and is_hierarchy_root(version, point)
+              report["ancestors_complete"] = complete
+              level = leaf
+              while True:
+                  relative = level.relative_to(point)
+                  group = Path(report["mount_root"]) / relative
+                  values, quota = quota_at(version, level, complete and level == point)
+                  report["levels"].append({"cgroup": str(group), **values, "quota_cpus": quota})
+                  if level == point:
+                      break
+                  level = level.parent
+
+              ratios = [entry["quota_cpus"] for entry in report["levels"]]
+              if complete and UNKNOWN not in ratios:
+                  report["effective_quota_cpus"] = min(
+                      (ratio for ratio in ratios if ratio != UNLIMITED), default=UNLIMITED
+                  )
+
+
+          def diagnose():
+              memberships = cgroup_memberships(read("/proc/self/cgroup") or "")
+              mounts = cgroup_mounts(read("/proc/self/mountinfo") or "")
+              v1 = any(memberships)
+              v2 = "" in memberships
+              version = "hybrid" if v1 and v2 else "v1" if v1 else "v2" if v2 else UNKNOWN
+
+              cpu, leaf, point = locate("cpu", memberships, mounts)
+              cpu_quota(cpu, leaf, point)
+              cpuset, leaf, _ = locate("cpuset", memberships, mounts)
+              cpuset["effective_cpus"] = UNKNOWN
+              if leaf is not None:
+                  filename = "cpuset.effective_cpus" if cpuset["version"] == "v1" else "cpuset.cpus.effective"
+                  cpuset["effective_cpus"] = read(leaf / filename) or UNKNOWN
+
+              try:
+                  affinity = sorted(os.sched_getaffinity(0))
+                  logical_cpus = len(affinity)
+              except OSError:
+                  affinity, logical_cpus = UNKNOWN, UNKNOWN
+              return {
+                  "cgroup_version": version,
+                  "cpu": cpu,
+                  "cpuset": cpuset,
+                  "affinity_cpus": affinity,
+                  "usable_logical_cpu_count": logical_cpus,
+              }
+
+
+          if __name__ == "__main__":
+              print("stage_c_cpu_diagnostic=" + json.dumps(diagnose(), sort_keys=True))
+          PY
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Require the unapproved Stage C registration to remain on HOLD
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import registration from './docs/phase7d/stage-c-api-s1-10/registration.json' with { type: 'json' };
+          assert.equal(registration.decision, 'HOLD');
+          assert.equal(registration.executable, false);
+          assert.equal(registration.executionAuthorization, false);
+          assert.equal(registration.actualBrowserCausalTrials, 0);
+          console.log('Stage C registered trials remain HOLD (0/10)');
+          NODE
+      - name: Run fixed synthetic and contract test set (no Playwright)
+        run: |
+          node --test \
+            diagnostic-isolated/c-s1-10/browser-runtime.test.mjs \
+            diagnostic-isolated/c-s1-10/i1.test.mjs \
+            diagnostic-isolated/c-s1-10/i2.test.mjs \
+            diagnostic-isolated/c-s1-10/offline-runner.test.mjs \
+            diagnostic-isolated/c-s1-10/package.test.mjs \
+            diagnostic-isolated/c-s1-10/s1-preparation.test.mjs \
+            diagnostic-isolated/c-s1-10/s1-read-proof.test.mjs
+
+      - name: Inspect Ubuntu 24.04 AppArmor / bwrap UID map denial (limited diagnostic)
+        shell: bash
+        run: |
+          set -uo pipefail
+          echo "uid_map_diag_begin=1"
+          . /etc/os-release
+          printf 'os=%s\n' "$PRETTY_NAME"
+          echo "kernel=$(uname -r)"
+          echo "process_apparmor=$(cat /proc/self/attr/current 2>/dev/null || echo UNKNOWN)"
+          for name in kernel.apparmor_restrict_unprivileged_userns kernel.unprivileged_userns_clone user.max_user_namespaces user.max_pid_namespaces; do
+            value=$(sysctl -n "$name" 2>/dev/null) || value=UNKNOWN
+            printf '%s=%s\n' "$name" "$value"
+          done
+          for file in /etc/apparmor.d/bwrap-userns-restrict /etc/apparmor.d/bwrap /etc/apparmor.d/usr.bin.bwrap /usr/share/apparmor/extra-profiles/bwrap-userns-restrict; do
+            if test -f "$file"; then
+              echo "profile_file_[object Object]=PRESENT"
+              grep -E '(^[[:space:]]*profile[[:space:]]|/usr/bin/bwrap|^[[:space:]]*userns[,; ]|unpriv_bwrap)' "$file" | head -20 || true
+            else
+              echo "profile_file_[object Object]=ABSENT"
+            fi
+          done
+          if profiles=$(sudo -n cat /sys/kernel/security/apparmor/profiles 2>&1); then
+            echo "loaded_profile_listing=READABLE"
+            selected=$(printf '%s\n' "$profiles" | grep -Ei '(^|[ /])bwrap|unprivileged_userns' || true)
+            if test -n "$selected"; then
+              printf '%s\n' "$selected" | head -30
+            else
+              echo "loaded_bwrap_profiles=NONE_MATCHING"
+            fi
+          else
+            echo "loaded_profile_listing=UNKNOWN"
+            printf '%s\n' "$profiles" | head -2
+          fi
+          if ! command -v /usr/bin/bwrap >/dev/null 2>&1; then
+            echo "bubblewrap_install=ATTEMPTING_PACKAGED_DEPENDENCY_ONLY"
+            if ! (sudo -n apt-get update -qq && sudo -n apt-get install -y --no-install-recommends bubblewrap >/dev/null); then
+              echo "bubblewrap_install=UNAVAILABLE; uid_map_probe=NOT_TESTED"
+            fi
+          fi
+          if test -x /usr/bin/bwrap; then
+            echo "bwrap_binary=$(readlink -f /usr/bin/bwrap)"
+            /usr/bin/bwrap --version
+            echo "uid_map_probe=STARTED_NO_WEBKIT"
+            audit_start=$(date -u '+%Y-%m-%d %H:%M:%S')
+            set +e
+            /usr/bin/bwrap --unshare-user --unshare-pid --die-with-parent --ro-bind / / --proc /proc --dev /dev -- /usr/bin/python3 -c \
+              'import pathlib; print("inside_bwrap_apparmor="+pathlib.Path("/proc/self/attr/current").read_text().strip(), flush=True)'
+            probe_exit=$?
+            set -e
+            echo "uid_map_probe_exit=$probe_exit"
+            if journal=$(sudo -n journalctl -k --since "$audit_start" --no-pager --output=short-iso 2>&1); then
+              matches=$(printf '%s\n' "$journal" | grep -Ei 'apparmor|bwrap|uid_map|capability|audit.*denied' || true)
+              if test -n "$matches"; then
+                echo "kernel_audit=VISIBLE_MATCHES"
+                printf '%s\n' "$matches" | tail -35
+              else
+                echo "kernel_audit=NO_MATCH_VISIBLE_NOT_PROOF_OF_ABSENCE"
+              fi
+            else
+              echo "kernel_audit=UNKNOWN_UNREADABLE"
+              printf '%s\n' "$journal" | head -2
+            fi
+          else
+            echo "uid_map_probe=NOT_TESTED_NO_BWRAP"
+            echo "kernel_audit=UNKNOWN_NO_PROBE"
+          fi
+          echo "uid_map_diag_end=1"
+
+  network-supervisor:
+    if: >-
+      github.event.action != 'labeled' ||
+      (github.event.label.name == 'stage-c-synthetic-only' &&
+       github.event.pull_request.number == 88 &&
+       github.event.pull_request.head.repo.full_name == github.repository &&
+       github.run_attempt == 1)
+    name: Stage C loopback network and synthetic PID stop
+    # Use the Ubuntu image with a distribution-provided AppArmor profile for /usr/bin/bwrap.
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    steps:
+      - *stage_c_cpu_diagnostic
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test loopback HTTP, byte evidence, network stop and hold
+        run: node --test diagnostic-isolated/c-s1-10/stage-c-network-integration.test.mjs
+      - name: Prepare PID namespace test dependency
+        run: |
+          if ! command -v bwrap >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y --no-install-recommends bubblewrap
+          fi
+          test -x /usr/bin/bwrap
+          /usr/bin/bwrap --version
+      - name: Diagnose isolated PID namespace support (no privilege changes)
+        shell: bash
+        run: |
+          for setting in kernel.apparmor_restrict_unprivileged_userns kernel.unprivileged_userns_clone user.max_user_namespaces user.max_pid_namespaces; do
+            value=$(sysctl -n "$setting" 2>/dev/null) || value=UNKNOWN
+            printf '%s=%s\n' "$setting" "$value"
+          done
+          echo "outer_user_namespace=$(readlink /proc/self/ns/user)"
+          echo "outer_pid_namespace=$(readlink /proc/self/ns/pid)"
+          set +e
+          /usr/bin/bwrap --unshare-user --unshare-pid --die-with-parent \
+            --ro-bind / / --proc /proc --dev /dev --tmpfs /tmp \
+            --dir /tmp/runtime --setenv XDG_RUNTIME_DIR /tmp/runtime \
+            -- /usr/bin/python3 - <<'PY'
+          import os
+          from pathlib import Path
+
+          print(f"child_pid={os.getpid()}", flush=True)
+          for namespace in ("user", "pid"):
+              print(f"inner_{namespace}_namespace={os.readlink(f'/proc/self/ns/{namespace}')}", flush=True)
+          try:
+              profile = Path("/proc/self/attr/apparmor/current").read_text().strip()
+          except OSError:
+              profile = "UNKNOWN"
+          print(f"inner_apparmor_profile={profile}", flush=True)
+          PY
+          result=$?
+          set -e
+          echo "isolated_pid_probe_exit=$result"
+          # This is a diagnostic only; the unmodified supervisor tests retain the acceptance gate.
+      - name: Test synthetic worker stop and hard deadline (no browser)
+        run: python3 -B diagnostic-isolated/c-s1-10/process-supervisor.test.py
+      - name: Test outer launch and receipt verification (no browser)
+        run: |
+          python3 -B diagnostic-isolated/c-s1-10/stage-c-outer-observer.test.py
+          python3 -B diagnostic-isolated/c-s1-10/stage-c-outer-integration.test.py
+          python3 -B diagnostic-isolated/c-s1-10/p2-03-adopted-separate-group.test.py
+
+
+  runtime-binding:
+    name: Fixed checkout and real driver/WebKit hashes (no browser launch)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    # Never download the driver/WebKit distribution on a synthetic-only label event.
+    if: github.event.action != 'labeled' && github.run_attempt == 1 && github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Check bridge observation scope
+        id: scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! git diff --quiet HEAD^ HEAD -- .github/workflows/phase7d-stage-c-ci.yml diagnostic-isolated/c-s1-10/runtime-build-bridge.candidate.json; then
+            echo 'run=true' >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.scope.outputs.run == 'true'
+        with:
+          node-version: '22.20.0'
+      - name: Install pinned driver/WebKit distribution, WITHOUT browser launch
+        if: steps.scope.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "STAGE_C_DRIVER_ROOT=$RUNNER_TEMP/stage-c-bridge-driver" >> "$GITHUB_ENV"
+          echo "STAGE_C_BROWSER_ROOT=$RUNNER_TEMP/stage-c-bridge-browser" >> "$GITHUB_ENV"
+          npm install --prefix "$RUNNER_TEMP/stage-c-bridge-driver" --no-save --ignore-scripts --no-audit --no-fund playwright@1.56.1
+          PLAYWRIGHT_BROWSERS_PATH="$RUNNER_TEMP/stage-c-bridge-browser" "$RUNNER_TEMP/stage-c-bridge-driver/node_modules/.bin/playwright" install webkit
+      - name: Verify fixed Git checkout and inventory actual runtime bytes
+        if: steps.scope.outputs.run == 'true'
+        shell: bash
+        env:
+          PINNED_PR_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY'
+          import hashlib, json, os, shutil, subprocess
+          from pathlib import Path
+          def h(data): return hashlib.sha256(data).hexdigest()
+          def cmd(*args): return subprocess.check_output(args, text=True, stderr=subprocess.PIPE).strip()
+          def check(value, reason):
+              if not value: raise ValueError(reason)
+          def collect(root, prefixes):
+              entries = {}
+              base = root.resolve(strict=True)
+              for prefix in prefixes:
+                  directory = root / prefix
+                  check(directory.is_dir() and not directory.is_symlink(), "Missing runtime dir " + prefix)
+                  for file in directory.rglob("*"):
+                      if file.is_dir():
+                          check(not file.is_symlink(), "Linked directory " + str(file))
+                          continue
+                      check(file.is_file() and file.resolve(strict=True).is_relative_to(base), "Invalid runtime file " + str(file))
+                      entries[file.relative_to(root).as_posix()] = h(file.read_bytes())
+              return dict(sorted(entries.items()))
+          def aggregate(entries):
+              return h("".join(f"{p}\t{s}\n" for p,s in sorted(entries.items())).encode())
+          b = json.loads(Path("diagnostic-isolated/c-s1-10/runtime-build-bridge.candidate.json").read_bytes())
+          r = json.loads(Path("docs/phase7d/stage-c-api-s1-10/registration.json").read_bytes())
+          check(b["status"] == "NON_EXECUTABLE_HOLD" and b["executionAuthorized"] is False, "Bridge not HOLD")
+          check(r["decision"] == "HOLD" and r["executable"] is False and r["executionAuthorization"] is False and r["actualBrowserCausalTrials"] == 0, "Registration not HOLD")
+          check(cmd("git","rev-parse","HEAD") == os.environ["PINNED_PR_HEAD"], "Unexpected checked out HEAD")
+          source = b["runtimeSource"]
+          check(cmd("git","rev-parse",source["head"]+"^{tree}") == source["tree"], "Pinned source tree mismatch")
+          repo_hashes = {}
+          for path, entry in sorted(source["repoBlobs"].items()):
+              blob = cmd("git","rev-parse",source["head"]+":"+path)
+              file = Path(path)
+              check(blob == entry["blobSha1"] and file.is_file() and not file.is_symlink(), "Pinned runtime missing " + path)
+              contents = file.read_bytes()
+              check(len(contents) == entry["bytes"] and cmd("git","hash-object",path) == blob, "Runtime content differs " + path)
+              repo_hashes[path] = h(contents)
+          check(len(repo_hashes) == 57 and set(source["requiredForSupervisor"]) <= set(repo_hashes), "Runtime inventory incomplete")
+          driver_root = Path(os.environ["STAGE_C_DRIVER_ROOT"])
+          browser_root = Path(os.environ["STAGE_C_BROWSER_ROOT"])
+          package = json.loads((driver_root/"node_modules/playwright/package.json").read_bytes())
+          browser_spec = json.loads((driver_root/"node_modules/playwright-core/browsers.json").read_bytes())
+          webkit = next(x for x in browser_spec["browsers"] if x["name"] == "webkit")
+          check(package["version"] == "1.56.1" and webkit["revision"] == "2215" and webkit["browserVersion"] == "26.0", "Driver/browser not pinned")
+          driver = collect(driver_root, ["node_modules/playwright","node_modules/playwright-core"])
+          browser = {"ms-playwright/"+key: digest for key,digest in collect(browser_root, ["webkit-2215"]).items()}
+          check(all(k in browser for k in ("ms-playwright/webkit-2215/pw_run.sh","ms-playwright/webkit-2215/minibrowser-wpe/bin/WPEWebProcess","ms-playwright/webkit-2215/minibrowser-wpe/bin/WPENetworkProcess")), "Missing WPE binaries")
+          node = Path(shutil.which("node")).resolve(strict=True)
+          os_release = Path("/usr/lib/os-release").read_bytes()
+          check(cmd(str(node),"--version") == "v22.20.0" and b"Ubuntu" in os_release and b"24.04" in os_release, "Runner environment mismatch")
+          old_driver = "2e853832417b67e6587ab52fc10dd37774b6f2821b3803cf4c9d23511c1c37e5"
+          old_browser = "f4440e049f7c3155168af4f90c83c1426aaaee09ec1f114df51e8e4a0717ac81"
+          report = {"schemaVersion":1, "status":"PARTIAL_ROOTFS_NOT_BOUND", "executionAuthorized":False, "registeredTrialsRun":0,
+              "checkout":{"head":os.environ["PINNED_PR_HEAD"],"sourceHead":source["head"],"sourceTree":source["tree"],"files":repo_hashes,"inventorySha256":aggregate(repo_hashes)},
+              "driver":{"version":"1.56.1","files":driver,"inventorySha256":aggregate(driver),"historicalSha256":old_driver,"historicalMatch":len(driver)==510 and aggregate(driver)==old_driver},
+              "webkit":{"version":"26.0","build":"2215","files":browser,"inventorySha256":aggregate(browser),"historicalSha256":old_browser,"historicalMatch":len(browser)==56 and aggregate(browser)==old_browser},
+              "host":{"nodeVersion":"22.20.0","nodeBinarySha256":h(node.read_bytes()),"osReleaseSha256":h(os_release)},
+              "rootfs":{"status":"NOT_PROVEN","reason":"Complete runnable bwrap rootfs not assembled or mounted; WebKit distribution bytes observed separately"},
+              "historicalBuildZipSha256":b["historicalBuild"]["zipSha256"],"currentProductReceivedBytes":"NOT_TESTED"}
+          evidence = Path(os.environ["RUNNER_TEMP"])/"stage-c-runtime-binding-evidence"
+          evidence.mkdir(mode=0o700, exist_ok=True)
+          with (evidence/"runtime-observation.json").open("x") as stream:
+              json.dump(report, stream, sort_keys=True, indent=2)
+              stream.write("\n")
+          print(json.dumps({"status":report["status"],"repoFiles":len(repo_hashes),"driverFiles":len(driver),"browserFiles":len(browser),"historicalDriverMatch":report["driver"]["historicalMatch"],"historicalWebKitMatch":report["webkit"]["historicalMatch"]}))
+          PY
+          sha256sum "$RUNNER_TEMP/stage-c-runtime-binding-evidence/runtime-observation.json" | tee "$RUNNER_TEMP/stage-c-runtime-binding-evidence/SHA256SUMS"
+      - name: Preserve source and runtime hash receipt
+        if: always() && steps.scope.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage-c-runtime-binding-${{ github.run_id }}
+          path: ${{ runner.temp }}/stage-c-runtime-binding-evidence
+          if-no-files-found: warn
+          retention-days: 30

@@ -1,0 +1,28 @@
+# PR88 P2-02 / P2-03 correction record
+
+Baseline: 004489c8ee0f693290dd41e07b29c85fa29d1f50 / tree 867c62099e3b650f71a6d5337717ff258c1aa491. This document does not reuse baseline CI as the corrected candidate's CI.
+
+## P2-02
+The two original synthetic rows were retained: expected context.close rejection plus unrelated browser.close error and missing trace/HAR; expected result-save failure plus unrelated trace.stop error and missing evidence. Old classifier accepted DETECTED; corrected contract rejects unexpected errors and incomplete evidence with nonzero process status without rewriting primary. Fault detection, evidence completeness, cleanup attempted/succeeded and process status are independent fields. Expected errors are constrained by kind, stage and exact exception identity; real exclusive-write directory failures EEXIST/EISDIR additionally require the recorded injected directory target. Complete evidence accompanying a product FAIL remains COMPLETE.
+
+Cleanup runs independently. Raw all-slot results are exclusively saved before aggregate validation; invalid aggregation writes a separate validation-error record and exits nonzero. An original save failure is not overwritten by later failures. The independent auditor requires raw/summary identity and separately recomputes assessments and process status.
+
+## P2-03
+The exact23-byte fake ZIP (SHA256 6d9f59ec9110e6187bd2e500bd350fe3d2cd04b1cc8d77710c672cea2b9f8f52) accepted by the old auditor is now rejected for absent end directory. ZIP structure, local/central correspondence, entry bounds, all-entry CRC, required Playwright v8 records, call completion, trial/head/tree identity, selected operations and primary are inspected. Present evidence is inspected even on INCOMPLETE rows.
+
+An unmodified 4370-byte original WebKit trace from artifact14143158810 / run43669210029 attempt1 / historical5ca7736 is the genuine positive parser control. Its provenance is under tests/fixtures/phase7d-real-trace; raw original stays in Library/private evidence, not in the public repository. It is not a new browser trial or retrospective completion of the stopped isolated run. Synthetic ZIP/call mutations remain synthetic evidence.
+
+Independent review identified extra unregistered mutating calls, contradictory known-state observations in partial traces and missing raw/summary auditing. The same additional three tests recorded17PASS/3FAIL before correction and20PASS afterward. Unknown methods/evaluation code fail closed; known completed Loading/Cancelled/Success observations are checked even without final primary. A further independent counterexample appended newPage after primary; old audit accepted it. Fixed initial-position/single-page cardinality rejects the same counterexample, with the historical normal trace still accepted. Raw records are mandatory for this new-format audit; older absent raw evidence is not silently upgraded.
+
+## Local results and limits
+Combined seven safety contract test files before private/public trace split:174PASS,0FAIL,0skip. P2-02 error regressions plus prior isolated contracts:68PASS. Trace tests after split:22PASS with private original; public CI excludes3 original-dependent controls as NOT_TESTED and includes the synthetic partial-state regression including historical original positive and synthetic negatives. Linux npm run check exit0: lint/typecheck/build,729 Vitest tests and218 Node tests passed. Independent focused review:89/89PASS, no blocking P1/P2 in reviewed correction scope. Final candidate CI/artifact audit remains separate. Local source snapshots made after testing are supplementary, not execution-time capture; final CI preserves actual execution source under its own HEAD/run/attempt.
+
+No browser was launched. Stopped14 slots were not retried. No production108, manual dispatch, Draft release, merge, main update or publication. Strict trace support is bounded non-ZIP64 Playwright v8; unrecognized formats fail closed. Selected-operation checking does not establish absolute-clock or all timing equivalence. Newly allowlisted isolated trace serialization has not been exercised by a new browser run, which is forbidden in this request.
+
+## Baseline004 CI, distinct from corrected candidate
+20 completed workflows:18 success /2 failure. Formal7D43671178275:Chromium8PASS/WebKit8PASS. API43671178464:WebKit72 slots,60PASS/5FAIL/7NOT_TESTED and65COMPLETE/7INCOMPLETE. WAAPI43671178364:375 observation failure;390/765PASS; causeUNKNOWN. SafetyPR43671178372/push43671174714:Windows/Linux contracts109PASS each, fixtureSKIPPED.
+
+Four baseline safety original ZIPs and four necessary formal originals were saved to Library, actually re-fetched and independently read byte-for-byte, SHA256 and ZIP/nested CRC checked. Formal four total298589342bytes,184nestedZIP and534internal hash checks. Updated known-original ledger35ZIPs =16 of old81 +19 from later HEADs; old81 remainder65 is not relabeled preserved. Windows remains NOT_TRANSFERRED because the computer is offline. Library access scope and retention UNKNOWN, separate from byte integrity.
+
+## Judgment
+Overall PARTIAL pending final candidate CI and preservation. Raw trace publication was rejected by the permission check because it may contain internal URLs/execution information. No retry or indirect publication was attempted. Private original controls are independently verified; public CI cannot claim those controls ran. Product causes Swipe/Status Morph UNKNOWN. Production108 NO; merge NO; Draft maintained. This correction is not product acceptance and does not complete Next/React boundary browser validation.

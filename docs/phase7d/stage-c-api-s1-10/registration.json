@@ -1,0 +1,342 @@
+{
+  "schemaVersion": 1,
+  "documentId": "LM88-STAGE-C-API-S1-10",
+  "version": "0.2.0-DRAFT",
+  "status": "DESIGN_ONLY_POLICY_DECISIONS_APPROVED_EXECUTION_HOLD",
+  "decision": "HOLD",
+  "executable": false,
+  "executionAuthorization": false,
+  "actualBrowserCausalTrials": 0,
+  "source": {
+    "repository": "tetsujisugimori-coder/Loading-museum",
+    "pr": 88,
+    "designBaseHead": "91b6ed7c234053ce38f39965a6ee6de68de8dcab",
+    "designBaseTree": "19f0d504cba1a584ac303135284a2619f6c998d9",
+    "experimentSourceHead": "5de4b08a2dc881ad2afcbe805b0776cb944ff882",
+    "experimentSourceTree": "89a84488c489161f167e06df34fbc25cca0a4c6e",
+    "originalRegistrationPath": "docs/phase7d/approval-v2/original/api-preregistration.json",
+    "originalRegistrationGitBlob": "e397bd1b1805a6cea85415009967314cbcfdfe06",
+    "originalCap": 22,
+    "originalRegistrationRetainedUnchanged": true,
+    "selection": "exact first 10 slots in original order",
+    "changeType": "NEW_DISTINCT_PROPOSAL_NOT_AN_AMENDMENT_OR_AUTOMATIC_APPROVAL"
+  },
+  "scope": {
+    "name": "WebKit Swipe S1 comparison only",
+    "target": "Swipe to Dismiss",
+    "historicalFailure": "webkit-swipe-S1-1",
+    "historicalPass": "webkit-swipe-S1-2",
+    "historicalLabelsAreNotFutureResultExpectations": true,
+    "calibrationSlots": 4,
+    "productSlots": 6,
+    "trialCap": 10,
+    "repetitionsPerProductSlot": 1,
+    "retries": 0,
+    "replacementSlots": 0,
+    "ifStoppedRemaining": "NOT_STARTED",
+    "claimsExcluded": [
+      "API N1/D1",
+      "Status Morph",
+      "WAAPI",
+      "Boundary",
+      "all WebKit faults",
+      "causal identification from trial rates",
+      "production108"
+    ]
+  },
+  "slots": [
+    {
+      "order": 1,
+      "id": "AP-CAL-01",
+      "fixture": "normal-1",
+      "level": "I2",
+      "originalProductTrial": false
+    },
+    {
+      "order": 2,
+      "id": "AP-CAL-02",
+      "fixture": "cancelled-callback-fault",
+      "level": "I2",
+      "originalProductTrial": false
+    },
+    {
+      "order": 3,
+      "id": "AP-CAL-03",
+      "fixture": "normal-2",
+      "level": "I2",
+      "originalProductTrial": false
+    },
+    {
+      "order": 4,
+      "id": "AP-CAL-04",
+      "fixture": "overflow-fault",
+      "level": "I2",
+      "originalProductTrial": false
+    },
+    {
+      "order": 5,
+      "id": "AP-01-I0",
+      "historicalSeedTrialId": "webkit-swipe-S1-1",
+      "historicalVerdict": "FAIL",
+      "level": "I0",
+      "engine": "webkit",
+      "width": 765,
+      "height": 1000,
+      "motion": "no-preference",
+      "touch": true,
+      "originalGroup": "S1",
+      "repetitions": 1
+    },
+    {
+      "order": 6,
+      "id": "AP-01-I1",
+      "historicalSeedTrialId": "webkit-swipe-S1-1",
+      "historicalVerdict": "FAIL",
+      "level": "I1",
+      "engine": "webkit",
+      "width": 765,
+      "height": 1000,
+      "motion": "no-preference",
+      "touch": true,
+      "originalGroup": "S1",
+      "repetitions": 1
+    },
+    {
+      "order": 7,
+      "id": "AP-01-I2",
+      "historicalSeedTrialId": "webkit-swipe-S1-1",
+      "historicalVerdict": "FAIL",
+      "level": "I2",
+      "engine": "webkit",
+      "width": 765,
+      "height": 1000,
+      "motion": "no-preference",
+      "touch": true,
+      "originalGroup": "S1",
+      "repetitions": 1
+    },
+    {
+      "order": 8,
+      "id": "AP-02-I1",
+      "historicalSeedTrialId": "webkit-swipe-S1-2",
+      "historicalVerdict": "PASS",
+      "level": "I1",
+      "engine": "webkit",
+      "width": 765,
+      "height": 1000,
+      "motion": "no-preference",
+      "touch": true,
+      "originalGroup": "S1",
+      "repetitions": 1
+    },
+    {
+      "order": 9,
+      "id": "AP-02-I2",
+      "historicalSeedTrialId": "webkit-swipe-S1-2",
+      "historicalVerdict": "PASS",
+      "level": "I2",
+      "engine": "webkit",
+      "width": 765,
+      "height": 1000,
+      "motion": "no-preference",
+      "touch": true,
+      "originalGroup": "S1",
+      "repetitions": 1
+    },
+    {
+      "order": 10,
+      "id": "AP-02-I0",
+      "historicalSeedTrialId": "webkit-swipe-S1-2",
+      "historicalVerdict": "PASS",
+      "level": "I0",
+      "engine": "webkit",
+      "width": 765,
+      "height": 1000,
+      "motion": "no-preference",
+      "touch": true,
+      "originalGroup": "S1",
+      "repetitions": 1
+    }
+  ],
+  "calibration": {
+    "order": [
+      "AP-CAL-01",
+      "AP-CAL-02",
+      "AP-CAL-03",
+      "AP-CAL-04"
+    ],
+    "expectedTypes": [
+      "normal-1",
+      "cancelled-callback-fault",
+      "normal-2",
+      "overflow-fault"
+    ],
+    "overflowFixture": {
+      "slotId": "AP-CAL-04",
+      "maxMarks": 4096,
+      "expectedFirstLost": 4097,
+      "expectedEvidence": "INCOMPLETE",
+      "cause": "UNKNOWN",
+      "technicalDetectionMayPass": true,
+      "productPass": false,
+      "unexpectedOverflowOrMarkerMismatch": "STOP",
+      "doNotRelabelIncompleteAsComplete": true
+    },
+    "proposedException": {
+      "status": "OWNER_APPROVED_POLICY_ONLY_EXECUTION_HOLD",
+      "name": "EXPECTED_CALIBRATION_OVERFLOW_ONLY",
+      "appliesOnlyTo": "AP-CAL-04",
+      "allowNextSlotsOnlyIf": [
+        "all four calibration inputs and expected results match their preregistered fixtures",
+        "the intentional firstLost 4097 is explicitly detected and recorded as INCOMPLETE/UNKNOWN",
+        "the original raw records for all four calibrations are saved, actually read back through an independent path, and verified byte-for-byte against the corresponding saved originals",
+        "all six product slots remain NOT_STARTED while any of the four independent read-backs is pending, missing, unsuccessful, or mismatched",
+        "calibration stdout/stderr/exit/cleanup/persistence and any other integrity checks satisfy their designated contract",
+        "no other unplanned overflow, missing record, error, substitution, or ambiguous generation",
+        "owner policy approval recorded on PR #88; executable calibration gate and evidence reviewed separately; exact run requires new owner authorization"
+      ],
+      "withoutApproval": "HISTORICAL_PRE_APPROVAL_RULE_STOP_AFTER_AP_CAL_04; CURRENT_APPROVED_EXCEPTION_ONLY_IF_ALL_PRECONDITIONS_MET_AND_RUN_SEPARATELY_AUTHORIZED",
+      "unplannedOverflowOrMissingRecord": "STOP"
+    },
+    "productContinuationDecision": "CONDITIONAL_POLICY_APPROVED_NO_EXECUTION_PERMISSION"
+  },
+  "expectedVersusObserved": {
+    "preflightTrustAnchor": "independent authorized original/registration, not the envelope under audit",
+    "preFreeze": [
+      "registration slot IDs/order/groups and classification rules",
+      "expected policy mode per slot",
+      "source/Git blob/transform and required instrumentation identity",
+      "required observation event kinds/phase/order/generation rather than future timestamp or event-byte hash",
+      "full expected build manifest and served resource mapping after build, before experimental launch",
+      "maximum cap and stop policy"
+    ],
+    "neverPrecompute": [
+      "future primary PASS/FAIL observed value",
+      "runtime timestamps or timing intervals",
+      "runtime event IDs or hashes of events not yet generated",
+      "runtime response bodies not yet served/received"
+    ],
+    "measurementProof": "capture immutable primary bytes at original primary boundary via independent exclusive raw record, then attach observed SHA without replacing raw or upgrading product result",
+    "provenanceAudit": "independent reader verifies trusted plan/probe source, raw primary hash/bytes and observed event stream against separately frozen expected rules; generated oracle must never be derived from received suspect envelope",
+    "instrumentI0": "retain original primary getAttribute and exclusive save; no audit-only added mark",
+    "instrumentI1": "append-only bounded callback/update/commit/generation markers, no extra synchronous DOM reads or awaited probe",
+    "instrumentI2": "listed additional target DOM/transition/MutationObserver markers; delivery time is not mutation time",
+    "bodyBinding": "server-written bytes distinct from browser-received bytes; no re-fetch substitute for historic response",
+    "status": "ADAPTER_AND_ORACLE_PROVENANCE_NOT_IMPLEMENTED"
+  },
+  "stopPolicy": {
+    "original": "DETECT_BODY_MISSING_OR_MISMATCH_IN_SLOT_AND_STOP_REMAINING_OPERATIONS",
+    "conflict": "deferred response.body after common followup cannot retrospectively stop earlier commands within the same slot",
+    "optionA": {
+      "name": "KEEP_ORIGINAL_STRONG_STOP",
+      "consequence": "HOLD_NO_BROWSER_EXECUTION"
+    },
+    "optionB": {
+      "name": "STOP_NEXT_SLOTS_AFTER_DEFERRED_BODY_DETECTION",
+      "status": "OWNER_APPROVED_CONTRACT_ONLY_PENDING_IMPLEMENTATION_REVIEW",
+      "atDetection": [
+        "mark affected slot audit FAIL, preserve product primary PASS/FAIL/NOT_TESTED independently",
+        "prevent any later slot from starting",
+        "record mismatchDetected, stopRequested, stopCompleted separately",
+        "allow already in-flight operations to terminate or be boundedly stopped; never assert retroactive cancellation"
+      ],
+      "stillStopImmediatelyOnDetectable": [
+        "unexpected metadata/URL",
+        "unexpected process error",
+        "evidence capacity overflow except separately approved synthetic calibration fixture",
+        "resource mismatch and ambiguous generation",
+        "unexpected cleanup/persistence failure"
+      ],
+      "notProofOfNeutrality": true
+    },
+    "selectedForExecution": "NONE_C_EXECUTION_NOT_AUTHORIZED",
+    "bodyMismatchNewPolicyAccepted": true,
+    "selectedPolicyForFutureImplementation": "optionB"
+  },
+  "bounds": {
+    "outerWallSecondsMaximum": 1200,
+    "clock": "supervisor host monotonic",
+    "starts": "immediately before first calibration launch",
+    "includes": [
+      "setup",
+      "ten-or-fewer slots",
+      "original body collection",
+      "evidence flush",
+      "cleanup and shutdown grace"
+    ],
+    "cleanupGraceSecondsProposed": 30,
+    "cleanupGraceSecondsApproved": 30,
+    "cleanupGraceIsAdditionalTime": false,
+    "perSlotMarkCapacity": 4096,
+    "trialRetries": 0,
+    "slotReplacement": 0,
+    "timeoutPolicy": "original numeric product and API timeouts unchanged",
+    "deadlineAction": "By 1170s prevent new trial/operation starts and request bounded stop/cleanup; by 1200s hard terminate if needed. Retain STARTED_INTERRUPTED/INCOMPLETE and separate cleanup/persistence results; no resume/retry.",
+    "diskPolicy": "existing owner-approved new project-specific location; no shared /tmp; original source/records immutable; no unapproved delete/move/overwrite",
+    "noNewTrialOrOperationStartAfterSeconds": 1170,
+    "beginStopAndCleanupBySeconds": 1170,
+    "absoluteCutoffSeconds": 1200
+  },
+  "environment": {
+    "plannedPlatform": "Ubuntu 24.04",
+    "plannedBrowser": "WebKit 26.0",
+    "plannedDriver": "Playwright Node 1.56.1",
+    "viewport": {
+      "width": 765,
+      "height": 1000,
+      "touch": true,
+      "reducedMotion": "no-preference"
+    },
+    "historicalInput": "unchanged S1 Swipe plan, runFor500 and same immediate primary getAttribute, original screenshot only after primary, one common followup",
+    "exactImageDigest": null,
+    "exactBrowserBinarySha256": null,
+    "exactDriverSha256": null,
+    "exactNodeVersion": null,
+    "exactCpuModelAndQuota": null,
+    "exactDependencyClosureSha256": null,
+    "diagnosticImplementationCommit": null,
+    "diagnosticTransformSha256": null,
+    "diagnosticRunnerSha256": null,
+    "diagnosticProbeSha256": null,
+    "buildManifestSha256ByLevel": {
+      "I0": null,
+      "I1": null,
+      "I2": null
+    },
+    "expectedServedResourceManifestSha256": null,
+    "actualBrowserReceivedResponseHashes": null,
+    "pinMethod": "isolate copy, exact source+transitive dependency inventory, instrument as reviewed, build separately by level, enumerate hidden output files and hash all bytes; compare planned manifest to actual served and captured browser resources; record environment/binary digests before execution",
+    "status": "NOT_PINNED_HOLD"
+  },
+  "decisionsRequiredBeforeExecution": [
+    "independently review the owner-approved calibration-exception and deferred-body stop contract delta as recorded in this revision",
+    "implement and verify the conditional AP-CAL-04 gate, trusted oracle/raw primary evidence and independent provenance",
+    "verify executable 1170s stop/1200s hard cap, cleanup completeness and zero retry/replacement",
+    "independently validate browser/source/build/served and received bytes, pinned runtime/OS/browser/driver/dependencies, and test interposition",
+    "owner separately approve exact completed C execution package and hashes before any browser/CI dispatch"
+  ],
+  "permissions": {
+    "documentPreparation": "AUTHORIZED_THIS_REQUEST",
+    "independentDesignReview": "PREVIOUS_DOCUMENT_DESIGN_PASS_AT_C68470; CHANGED_POLICY_DELTA_REVIEW_PENDING",
+    "CImplementation": "NOT_AUTHORIZED_BY_THIS_DOCUMENT",
+    "CBrowserExecution": "NOT_AUTHORIZED",
+    "CIManualDispatch": "NOT_AUTHORIZED",
+    "production108": "NO",
+    "readyForReview": false,
+    "merge": "NO",
+    "deployment": "NO"
+  },
+  "ownerPolicyApproval": {
+    "dateJST": "2026-11-20",
+    "recordedAt": "https://github.com/tetsujisugimori-coder/Loading-museum/pull/88#issuecomment-7036911445",
+    "basis": "Owner explicitly approved all three changes proposed in the preceding conversation",
+    "approvedScope": [
+      "AP-CAL-04 intentional 4097-mark overflow may allow continuing to 6 product slots only after all listed calibration success, raw evidence readback, cleanup and anomaly checks",
+      "deferred-body discrepancy fails affected slot audit and prevents later slot starts, never retroactively cancelling earlier operations",
+      "30-second shutdown grace is strictly inside the 1200-second outer wall cap, with no-new-start/stop request by second 1170"
+    ],
+    "CBrowserExecutionApproved": false,
+    "newExecutableImplementationApproved": false,
+    "futureOwnerRunApprovalRequired": true
+  }
+}

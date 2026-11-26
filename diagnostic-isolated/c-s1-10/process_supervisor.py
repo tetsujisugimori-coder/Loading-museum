@@ -1,0 +1,531 @@
+"""Own the Linux PID namespace for the bounded Stage C worker."""
+
+import json
+import fcntl
+import hashlib
+import os
+from pathlib import Path
+import select
+import re
+import signal
+import socket
+import stat
+import struct
+import subprocess
+import sys
+import time
+
+
+def _namespace_handle(pid, metadata):
+    namespace = metadata["pid-namespace"]
+    init = metadata["child-pid"]
+    handle = os.pidfd_open(init)
+    try:
+        with open(f"/proc/{init}/status", encoding="utf-8") as status:
+            fields = dict(line.rstrip().split(":", 1) for line in status if ":" in line)
+        if (
+            int(fields["PPid"]) != pid or fields["NSpid"].split()[-1] != "1" or
+            os.readlink(f"/proc/{init}/ns/pid") != f"pid:[{namespace}]" or
+            os.readlink("/proc/self/ns/pid") == f"pid:[{namespace}]" or
+            select.select([handle], [], [], 0)[0]
+        ):
+            raise RuntimeError("The worker lacks an independently owned PID namespace")
+    except BaseException:
+        os.close(handle)
+        raise
+    return handle
+
+
+def _kill_dispatch_deadline(limit_seconds, stop_window_start):
+    """Reserve up to five seconds for pidfd exit observation before the unchanged deadline."""
+    return limit_seconds - min(5.0, max(0.0, (limit_seconds - stop_window_start) / 2))
+
+
+def run_supervised(rootfs, command, destination, *, readonly=(), writable=(),
+                   soft_seconds=1170, hard_seconds=1200, network_notice=None, ready_check=None,
+                   private_network=False, outer_start_ns=None, product=None):
+    """Request cleanup over stdin, then kill namespace PID 1 if needed."""
+    if not 0 < soft_seconds < hard_seconds <= 1200 or soft_seconds > 1170:
+        raise ValueError("Invalid Stage C deadlines")
+    if ready_check is not None and network_notice is not None:
+        raise ValueError("READY diagnostics and product network stops are mutually exclusive")
+    if product is not None and (outer_start_ns is None or not private_network):
+        raise ValueError("Stage C product execution requires the outer clock and private network")
+    if private_network and os.geteuid() == 0:
+        raise ValueError("Stage C private network requires a non-root launcher")
+    now_ns = time.monotonic_ns()
+    if outer_start_ns is None:
+        start = now_ns  # Standalone synthetic and separately authorized diagnostics.
+    else:
+        if (type(outer_start_ns) is not int or outer_start_ns <= 0 or outer_start_ns > now_ns):
+            raise ValueError("Invalid outer Stage C monotonic start")
+        start = outer_start_ns
+        if now_ns - start >= round(hard_seconds * 1_000_000_000):
+            raise RuntimeError("Outer Stage C hard deadline expired before worker launch")
+
+    def elapsed():
+        return (time.monotonic_ns() - start) / 1_000_000_000
+
+    path = Path(destination)
+    path.mkdir(mode=0o700)
+    argv = ["/usr/bin/bwrap", "--unshare-user", "--unshare-pid", "--die-with-parent",
+            "--ro-bind", str(Path(rootfs).resolve()), "/", "--proc", "/proc", "--dev", "/dev",
+            "--tmpfs", "/tmp", "--tmpfs", "/dev/shm", "--dir", "/tmp/runtime",
+            "--setenv", "XDG_RUNTIME_DIR", "/tmp/runtime", "--unsetenv", "NODE_EXTRA_CA_CERTS",
+            "--setenv", "PLAYWRIGHT_BROWSERS_PATH", "/ms-playwright",
+            "--setenv", "STAGE_C_MONOTONIC_START_NS", str(start)]
+    if product is not None:
+        from stage_c_launch import APPROVAL, receive, remaining, send
+        product_channel, claim, owner_stream, sandbox_stream = product
+        argv.extend(["--setenv", "STAGE_C_PRODUCT_TICKET", claim["ticket"],
+                     "--ro-bind", str(APPROVAL), "/tmp/stage-c-owner-approval.json"])
+    for option, pairs in (("--ro-bind", readonly), ("--bind", writable)):
+        for source, target in pairs:
+            argv.extend([option, str(Path(source).resolve()), target])
+    if private_network:
+        verifier = "/tmp/stage-c-process-supervisor.py"
+        argv.extend(["--unshare-net", "--cap-drop", "ALL",
+                     "--ro-bind", str(Path(__file__).resolve()), verifier])
+        # Drop host verifier capabilities before execing the AppArmor-profiled bwrap.
+        argv = ["/usr/bin/setpriv", "--inh-caps=-all", "--ambient-caps=-all", "--no-new-privs", "--", *argv]
+        command = ["/usr/bin/python3", "-IB", verifier, "--check-network-and-exec",
+                   os.readlink("/proc/self/ns/user"), os.readlink("/proc/self/ns/net"), *command]
+
+    stop_at = None
+    network_fault = None
+    stop_source = None
+    kill_at = None
+    sigkill_attempts = []
+    pidfd_ready_observed_ns = None
+    namespace_exit_observed_ns = None
+    root_exit = None
+    namespace_exit = None
+    supervisor_error = None
+    emergency_kill_at = None
+    ready_at = None
+    ready_sha = None
+    ready_error = None
+    # SIGKILL is dispatched early enough to observe pidfd readiness before the unchanged hard cutoff.
+    hard_dispatch = _kill_dispatch_deadline(hard_seconds, soft_seconds)
+    hard_limit = hard_seconds
+
+    def send_sigkill(pidfd, cause):
+        nonlocal supervisor_error
+        entry = {"cause": cause, "attemptNs": time.monotonic_ns(), "returnNs": None,
+                 "outcome": "UNKNOWN"}
+        sigkill_attempts.append(entry)
+        try:
+            signal.pidfd_send_signal(pidfd, signal.SIGKILL)
+        except ProcessLookupError:
+            entry["outcome"] = "ESRCH"
+        except OSError as error:
+            entry["outcome"] = f"ERROR:{type(error).__name__}:{error.errno}"
+            # Preserve the failure, but never skip the finalizer's wait and receipt.
+            supervisor_error = supervisor_error or f"{type(error).__name__}: {error}"
+        else:
+            entry["outcome"] = "RETURNED"
+        finally:
+            entry["returnNs"] = time.monotonic_ns()
+    with (path / "worker.stdout").open("xb") as out, (path / "worker.stderr").open("xb") as err:
+        read_end, write_end = os.pipe()
+        proc = None
+        handle = None
+        try:
+            proc = subprocess.Popen([*argv, "--info-fd", str(write_end), "--", *command],
+                                    pass_fds=(write_end,), start_new_session=product is None,
+                                    stdin=sandbox_stream if product is not None else subprocess.PIPE, stdout=out, stderr=err)
+            if product is not None:
+                sandbox_stream.close()
+                proc.stdin = owner_stream.makefile("wb", buffering=0)
+            os.close(write_end)
+            write_end = None
+            with os.fdopen(read_end, "rb", buffering=0) as info:
+                read_end = None
+                if not select.select([info], [], [], min(5, hard_dispatch))[0]:
+                    raise RuntimeError("No PID namespace receipt before startup deadline")
+                metadata = json.loads(info.read(4096))
+                handle = _namespace_handle(proc.pid, metadata)
+            if product is not None:
+                # The outer process must hold both stable handles before any
+                # product GO. Sharing its supervised process group also covers
+                # startup failures before the namespace handle is available.
+                with_pid = os.pidfd_open(proc.pid)
+                try:
+                    product_channel.settimeout(remaining(start + round(hard_seconds * 1e9)))
+                    send(product_channel, {"state": "AWAITING_GO", "runId": claim["runId"],
+                                           "pidNamespace": f"pid:[{metadata['pid-namespace']}]"}, (with_pid, handle))
+                    ack, _ = receive(product_channel)
+                finally:
+                    os.close(with_pid)
+                if ack != {"state": "MONITORED", "runId": claim["runId"]}:
+                    raise RuntimeError("Stage C product namespace was not accepted by the outer monitor")
+            if product is None and elapsed() < soft_seconds - min(0.05, soft_seconds / 10):
+                os.write(proc.stdin.fileno(), b"G")
+
+            while True:
+                if network_notice is not None and network_fault is None:
+                    try:
+                        notice = json.loads(Path(network_notice).read_bytes())
+                    except FileNotFoundError:
+                        pass
+                    else:
+                        if not isinstance(notice, dict) or not isinstance(notice.get("slotId"), str) or not isinstance(notice.get("reason"), str):
+                            raise RuntimeError("Invalid Stage C network stop notice")
+                        detected = int(notice["mismatchDetectedAtNs"])
+                        if not start <= detected <= time.monotonic_ns():
+                            raise RuntimeError("Invalid Stage C network stop timestamp")
+                        network_fault = notice
+                        hard_limit = min(hard_seconds, (detected - start) / 1e9 + 30)
+                        hard_dispatch = min(hard_dispatch, _kill_dispatch_deadline(hard_limit, elapsed()))
+                age = elapsed()
+                exited = bool(select.select([handle], [], [], 0)[0])
+                if exited and pidfd_ready_observed_ns is None:
+                    pidfd_ready_observed_ns = time.monotonic_ns()
+                reached_soft = age >= soft_seconds - min(0.05, soft_seconds / 10)
+                if ready_check is not None and stop_at is None and ready_error is None and not reached_soft and not exited:
+                    try:
+                        digest = ready_check(f"pid:[{metadata['pid-namespace']}]")
+                    except (OSError, ValueError) as error:
+                        ready_error = f"{type(error).__name__}: {error}"
+                    else:
+                        age = elapsed()
+                        exited = bool(select.select([handle], [], [], 0)[0])
+                        if exited and pidfd_ready_observed_ns is None:
+                            pidfd_ready_observed_ns = time.monotonic_ns()
+                        reached_soft = age >= soft_seconds - min(0.05, soft_seconds / 10)
+                        if digest is not None and not reached_soft and not exited:
+                            ready_at, ready_sha = age, digest
+                if stop_at is None and (network_fault is not None or (not exited and (reached_soft or ready_at is not None))):
+                    stop_at = elapsed() if ready_at is not None else age
+                    if ready_check is not None:
+                        stop_source = "READY" if ready_at is not None else "READY_TIMEOUT"
+                    else:
+                        stop_source = "NETWORK_MISMATCH" if network_fault is not None else "TIME_LIMIT"
+                    try:
+                        os.write(proc.stdin.fileno(), b"S")
+                    except BrokenPipeError:
+                        pass
+                if exited:
+                    namespace_exit_observed_ns = time.monotonic_ns()
+                    namespace_exit = (namespace_exit_observed_ns - start) / 1_000_000_000
+                    break
+                if kill_at is None and age >= hard_dispatch:
+                    kill_at = elapsed()
+                    send_sigkill(handle, "HARD_DISPATCH")
+                if age >= hard_limit:
+                    break
+                time.sleep(min(0.005, hard_limit - age))
+            root_exit = proc.poll()
+        except (OSError, ValueError, TypeError, KeyError, RuntimeError) as error:
+            supervisor_error = f"{type(error).__name__}: {error}"
+            if proc is not None and stop_at is None:
+                stop_at = elapsed()
+                stop_source = "SUPERVISOR_FAILURE"
+                try:
+                    os.write(proc.stdin.fileno(), b"S")
+                except OSError:
+                    pass
+        finally:
+            if handle is not None:
+                try:
+                    if not select.select([handle], [], [], 0)[0]:
+                        if kill_at is None:
+                            emergency_kill_at = elapsed()
+                        send_sigkill(handle, "FINALIZER")
+                    else:
+                        if pidfd_ready_observed_ns is None:
+                            pidfd_ready_observed_ns = time.monotonic_ns()
+                        if namespace_exit_observed_ns is None:
+                            namespace_exit_observed_ns = time.monotonic_ns()
+                            namespace_exit = (namespace_exit_observed_ns - start) / 1_000_000_000
+                finally:
+                    os.close(handle)
+            if proc is not None:
+                proc.stdin.close()
+                if handle is None and supervisor_error and proc.poll() is None:
+                    proc.kill()
+                    emergency_kill_at = elapsed()
+                try:
+                    proc.wait(timeout=max(0, hard_limit - elapsed()))
+                except (subprocess.TimeoutExpired, OSError) as error:
+                    if isinstance(error, OSError):
+                        detail = f"{type(error).__name__}: {error}"
+                        supervisor_error = f"{supervisor_error}; {detail}" if supervisor_error else detail
+                    try:
+                        proc.kill()
+                    except ProcessLookupError:
+                        pass
+                    except OSError as kill_error:
+                        detail = f"{type(kill_error).__name__}: {kill_error}"
+                        supervisor_error = f"{supervisor_error}; {detail}" if supervisor_error else detail
+                    # Reap after kill. This bounded cleanup does not extend the hard cutoff
+                    # or prove the namespace exited before its deadline.
+                    try:
+                        proc.wait(timeout=1.0)
+                    except (subprocess.TimeoutExpired, OSError) as reap_error:
+                        detail = f"{type(reap_error).__name__}: {reap_error}"
+                        supervisor_error = f"{supervisor_error}; {detail}" if supervisor_error else detail
+                root_exit = proc.returncode
+            for fd in (read_end, write_end):
+                if fd is not None:
+                    os.close(fd)
+            for stream in (out, err):
+                stream.flush()
+                try:
+                    os.fsync(stream.fileno())
+                except OSError as error:
+                    supervisor_error = f"{type(error).__name__}: {error}"
+    within_hard_deadline = namespace_exit is not None and namespace_exit <= hard_seconds
+    worker_result = {}
+    if within_hard_deadline and kill_at is None and emergency_kill_at is None and supervisor_error is None:
+        try:
+            candidate = json.loads((path / "worker.stdout").read_bytes())
+            if isinstance(candidate, dict):
+                worker_result = candidate
+        except (OSError, ValueError):
+            pass
+    worker_requested = worker_result.get("stopRequested") is True
+    worker_finalized = worker_result.get("cleanup") == worker_result.get("persistence") == "PASS"
+    worker_records = worker_result.get("records")
+    worker_completed = (
+        stop_at is None and network_fault is None and root_exit == 0 and
+        worker_result.get("stopRequested") is False and worker_finalized and
+        isinstance(worker_records, list) and len(worker_records) == 10 and
+        all(isinstance(row, dict) and row.get("state") == "COMPLETED" for row in worker_records)
+    )
+    result = {
+        "softDeadlineSeconds": soft_seconds, "hardDeadlineSeconds": hard_seconds,
+        "monotonicStartNs": start,
+        "stopRequested": stop_at is not None or worker_requested,
+        "stopCompleted": worker_requested and worker_result.get("stopCompleted") is True and worker_finalized and
+            namespace_exit is not None and namespace_exit <= hard_limit and
+            (ready_check is None or stop_source == "READY"),
+        "stopRequestedSeconds": stop_at, "stopSource": stop_source,
+        "hardKillSeconds": kill_at if kill_at is not None else emergency_kill_at,
+        "sigkillAttempts": sigkill_attempts,
+        "pidfdReadyObservedNs": pidfd_ready_observed_ns,
+        "namespaceExitObservedNs": namespace_exit_observed_ns,
+        "kernelExitActualNs": None,  # pidfd readiness cannot timestamp kernel exit itself
+        "supervisorError": supervisor_error,
+        "networkMismatchDetected": network_fault,
+        "withinNetworkStopGrace": None if network_fault is None else
+            namespace_exit is not None and namespace_exit <= hard_limit,
+        "namespaceExitObservedSeconds": namespace_exit, "workerExit": root_exit,
+        "withinHardDeadline": within_hard_deadline,
+        "workerResultStatus": "COMPLETE" if worker_completed else "INCOMPLETE",
+    }
+    if product is not None:
+        result["productRunId"] = claim["runId"]
+    if ready_check is not None:
+        result.update(monotonicStartNs=start, readyObservedSeconds=ready_at,
+                      readySha256=ready_sha, readyError=ready_error)
+    receipt_bytes = (json.dumps(result, indent=2) + "\n").encode("utf-8")
+    with (path / "supervisor.json").open("xb") as receipt:
+        receipt.write(receipt_bytes)
+        receipt.flush()
+        os.fsync(receipt.fileno())
+    if (path / "supervisor.json").read_bytes() != receipt_bytes:
+        raise RuntimeError("Stage C supervisor receipt readback mismatch")
+    return result
+
+
+def _enable_private_loopback(outer_namespace):
+    if os.readlink("/proc/self/ns/net") == outer_namespace:
+        raise RuntimeError("The worker must have an isolated network")
+    interfaces = [line.partition(":")[0].strip()
+                  for line in Path("/proc/net/dev").read_text().splitlines()[2:]]
+    if interfaces != ["lo"]:
+        raise RuntimeError("Unexpected interface in Stage C network")
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as control:
+        query = struct.pack("16sh22x", b"lo", 0)
+        flags = struct.unpack("16sh22x", fcntl.ioctl(control, 0x8913, query))[1]
+        # bwrap initializes lo; verify its state without requiring CAP_NET_ADMIN.
+        if not flags & 0x1:
+            raise RuntimeError("Stage C loopback interface is down")
+    with socket.socket() as check:
+        check.bind(("127.0.0.1", 0))
+
+
+
+# Rootfs provenance is anchored to the externally approved binding.json SHA-256.
+# This preflight is not itself an execution authorization.
+def _rootfs_inventory(root):
+    """Recompute the CI inventory, including permissions, owners and symlinks."""
+    root = Path(root).resolve(strict=True)
+    if not root.is_dir():
+        raise RuntimeError("Stage C rootfs directory missing")
+    digest = hashlib.sha256()
+    counts = {"file": 0, "directory": 0, "symlink": 0, "special": 0}
+    stack = [(root, "")]
+    while stack:
+        parent, prefix = stack.pop()
+        with os.scandir(parent) as directory:
+            entries = sorted(directory, key=lambda entry: entry.name, reverse=True)
+        for entry in entries:
+            relative = (prefix + "/" + entry.name).lstrip("/")
+            info = entry.stat(follow_symlinks=False)
+            row = {"path": relative, "mode": stat.S_IMODE(info.st_mode),
+                   "uid": info.st_uid, "gid": info.st_gid}
+            if stat.S_ISDIR(info.st_mode):
+                row["kind"] = "directory"
+                stack.append((Path(entry.path), relative))
+            elif stat.S_ISLNK(info.st_mode):
+                row.update(kind="symlink", target=os.readlink(entry.path))
+            elif stat.S_ISREG(info.st_mode):
+                file_hash = hashlib.sha256()
+                with open(entry.path, "rb") as stream:
+                    for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+                        file_hash.update(chunk)
+                row.update(kind="file", bytes=info.st_size, sha256=file_hash.hexdigest())
+            else:
+                row.update(kind="special", type=stat.S_IFMT(info.st_mode))
+            counts[row["kind"]] += 1
+            digest.update((json.dumps(row, sort_keys=True, separators=(",", ":"),
+                                      ensure_ascii=False) + "\n").encode("utf-8"))
+    return digest.hexdigest(), counts
+
+
+def _verify_rootfs_lock(rootfs, package, manifest):
+    """Reject unbound OCI provenance or rootfs bytes before launching bwrap."""
+    lock = manifest.get("rootfsLock")
+    if not isinstance(lock, dict) or lock.get("schemaVersion") != 1:
+        raise RuntimeError("Missing approved Stage C rootfs lock")
+    required = ("ociManifestSha256", "ociConfigSha256", "inventorySha256",
+                "receiptSha256", "imageInspectSha256")
+    if any(not isinstance(lock.get(key), str) or
+           not re.fullmatch(r"[a-f0-9]{64}", lock[key]) for key in required):
+        raise RuntimeError("Incomplete Stage C rootfs digest lock")
+    expected_counts = lock.get("entryCounts")
+    if (not isinstance(expected_counts, dict) or
+        set(expected_counts) != {"file", "directory", "symlink", "special"} or
+        any(type(value) is not int or value < 0 for value in expected_counts.values())):
+        raise RuntimeError("Invalid Stage C rootfs count lock")
+    package_root = Path(package).resolve(strict=True)
+    if not package_root.is_dir():
+        raise RuntimeError("Stage C package directory missing")
+
+    def read_anchor(name, expected_sha):
+        file = package_root / name
+        if file.is_symlink() or not file.is_file() or not file.resolve(strict=True).is_relative_to(package_root):
+            raise RuntimeError("Missing fixed rootfs provenance: " + name)
+        body = file.read_bytes()
+        if hashlib.sha256(body).hexdigest() != expected_sha:
+            raise RuntimeError("Stage C rootfs provenance hash mismatch: " + name)
+        return json.loads(body)
+
+    receipt = read_anchor("rootfs-receipt.json", lock["receiptSha256"])
+    inspect = read_anchor("image-inspect.json", lock["imageInspectSha256"])
+    if (not isinstance(inspect, list) or len(inspect) != 1 or
+        not isinstance(inspect[0], dict) or
+        inspect[0].get("Id") != "sha256:" + lock["ociConfigSha256"] or
+        inspect[0].get("Os") != "linux" or inspect[0].get("Architecture") != "amd64" or
+        not isinstance(inspect[0].get("RepoDigests"), list) or
+        "mcr.microsoft.com/playwright@sha256:" + lock["ociManifestSha256"]
+            not in inspect[0]["RepoDigests"]):
+        raise RuntimeError("Fixed OCI image provenance mismatch")
+    if (not isinstance(receipt, dict) or
+        any(receipt.get(field) != lock[field] for field in
+            ("ociManifestSha256", "ociConfigSha256", "inventorySha256")) or
+        receipt.get("entryCounts") != expected_counts or
+        receipt.get("mount") != "PASS" or receipt.get("dependencyClosure") != "PASS" or
+        receipt.get("executionAuthorized") is not False or
+        receipt.get("registeredTrials") != 0):
+        raise RuntimeError("Fixed OCI rootfs receipt mismatch")
+    actual_hash, actual_counts = _rootfs_inventory(rootfs)
+    if actual_hash != lock["inventorySha256"] or actual_counts != expected_counts:
+        raise RuntimeError("Actual Stage C rootfs differs from approved inventory")
+    return {"rootfsInventorySha256": actual_hash, "entryCounts": actual_counts,
+            "ociManifestSha256": lock["ociManifestSha256"]}
+
+
+def _verify_package(package, expected_sha, roots):
+    manifest_file = Path(package) / "binding.json"
+    contents = manifest_file.read_bytes()
+    if not re.fullmatch("[0-9a-f]{64}", expected_sha) or hashlib.sha256(contents).hexdigest() != expected_sha:
+        raise RuntimeError("Approved Stage C manifest hash mismatch")
+    manifest = json.loads(contents)
+    runtime_paths = ("browser-calibration.mjs", "browser-runtime.mjs", "offline-runner.mjs",
+                     "process_supervisor.py", "resource-evidence.mjs", "s1-preparation.mjs",
+                     "stage-c-worker.mjs", "stage-c-network-adapter.mjs",
+                     "stage-c-network-ledger.mjs", "stage-c-network-policy.mjs",
+                     "stage-c-operation-gate.mjs", "NETWORK-CONTRACT-v1.json", "build-resources.mjs",
+                     "raw-evidence.mjs", "s1-trace-audit.mjs", "stage_c_outer_observer.py",
+                     "stage-c-required-evidence.json")
+    if any(f"diagnostic-isolated/c-s1-10/{name}" not in manifest["runtimeFiles"]["repo"] for name in runtime_paths):
+        raise RuntimeError("Stage C network integration needs a newly bound runtime inventory")
+    for label, root in roots.items():
+        base = Path(root).resolve()
+        if not manifest["runtimeFiles"][label]:
+            raise RuntimeError("Missing Stage C runtime inventory")
+        for path, sha in manifest["runtimeFiles"][label].items():
+            file = (base / path).resolve(strict=True)
+            if not file.is_relative_to(base) or not file.is_file():
+                raise RuntimeError("Stage C runtime file escaped its fixed root")
+            with file.open("rb") as stream:
+                if hashlib.file_digest(stream, "sha256").hexdigest() != sha:
+                    raise RuntimeError(f"Stage C runtime file changed: {label}/{path}")
+    _verify_rootfs_lock(roots["rootfs"], package, manifest)
+
+
+def main():
+    if sys.flags.isolated:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from stage_c_launch import checked_registration, load_approval, paths, supervisor_channel
+
+    repo = Path(__file__).resolve().parents[2]
+    try:
+        _, registration = checked_registration(repo)
+        if len(sys.argv) != 3 or sys.argv[1] != "--product-channel":
+            raise RuntimeError("Stage C product execution requires the outer launcher")
+        channel, claim, fds = supervisor_channel(int(sys.argv[2]), repo)
+        with channel, socket.socket(fileno=fds[0]) as owner_stream, socket.socket(fileno=fds[1]) as sandbox_stream:
+            approval, approval_sha = load_approval(repo)
+            if (claim.get("approvalSha256") != approval_sha or claim.get("runId") != approval["runId"] or
+                type(claim.get("startNs")) is not int or
+                not isinstance(claim.get("ticket"), str) or not re.fullmatch("[a-f0-9]{64}", claim["ticket"])):
+                raise RuntimeError("Stage C outer launch claim does not match owner approval")
+            run, destination, _ = paths(approval)
+            rootfs, driver, package = (Path(approval[k]) for k in ("rootfs", "driver", "package"))
+            expected_sha = approval["bindingSha256"]
+            _verify_package(package, expected_sha, {"rootfs": rootfs, "driver": driver, "repo": repo})
+            raw = destination.with_name(destination.name + "-evidence")
+            if not run.is_dir():
+                raise RuntimeError("Stage C launcher did not create the run directory")
+            raw.mkdir(mode=0o700)
+            result = run_supervised(
+                rootfs, ["/usr/bin/node", "/mnt/diagnostic-isolated/c-s1-10/stage-c-worker.mjs",
+                         "/media/binding.json", expected_sha, "/media/outputs", "/srv/entry.js", "/var/tmp/evidence"],
+                destination, readonly=[(repo, "/mnt"), (driver, "/srv"), (package, "/media")],
+                writable=[(raw, "/var/tmp")],
+                soft_seconds=registration["bounds"]["beginStopAndCleanupBySeconds"],
+                hard_seconds=registration["bounds"]["absoluteCutoffSeconds"],
+                network_notice=raw / "evidence" / "network-stop.notice.json",
+                private_network=True, outer_start_ns=claim["startNs"],
+                product=(channel, claim, owner_stream, sandbox_stream),
+            )
+    except (OSError, RuntimeError, ValueError, TypeError, KeyError) as error:
+        sys.exit(str(error))
+    sys.exit(0 if result["workerResultStatus"] == "COMPLETE" and
+             not result["stopRequested"] and result["networkMismatchDetected"] is None else 1)
+
+
+def _check_product_peer():
+    # A peer created by the outer launcher is outside the worker's PID
+    # namespace. Linux reports PID 0 to this side of the inherited socket.
+    with socket.socket(fileno=os.dup(0)) as channel:
+        peer_pid, _, _ = struct.unpack("3i", channel.getsockopt(socket.SOL_SOCKET, socket.SO_PEERCRED, 12))
+        if channel.family != socket.AF_UNIX or channel.type != socket.SOCK_STREAM or peer_pid != 0:
+            raise RuntimeError("Stage C product stream has no external launcher peer")
+
+
+if __name__ == "__main__":
+    if sys.argv[1:] == ["--check-product-peer"]:
+        _check_product_peer()
+    elif sys.argv[1:2] == ["--check-network-and-exec"]:
+        outer_user, outer_network, *worker = sys.argv[2:]
+        if os.readlink("/proc/self/ns/user") == outer_user:
+            raise RuntimeError("The worker must have an isolated user namespace")
+        _enable_private_loopback(outer_network)
+        os.execv(worker[0], worker)
+    else:
+        main()

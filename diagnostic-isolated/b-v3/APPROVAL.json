@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "status": "APPROVED_B_ONLY",
+  "approver": "authenticated repository owner tetsujisugimori-coder",
+  "userMessageTimestamp": null,
+  "timestampLimitation": "exact submission timestamp unavailable in inherited delivery context",
+  "recordedAt": "2026-11-15T22:45:52.764315+00:00",
+  "documentId": "LM88-B-SCOPE",
+  "version": "v3",
+  "sha256": "4aa0f5d615e3d7d3d99bbb58d5c767775447aef3a34f35946b951d608dd24067",
+  "bytes": 11340,
+  "encoding": "UTF-8/LF",
+  "head": "2d19a0f0db11b65db4eee56421c0d357558e70af",
+  "tree": "47edfb244c9adbdcec2a823e04ef0619cca17f2c",
+  "modules": [
+    "B-1",
+    "B-2",
+    "B-3",
+    "B-4"
+  ],
+  "verificationMethods": [
+    "browser-free contracts",
+    "synthetic fixtures",
+    "independent review",
+    "evidence readback"
+  ],
+  "exclusions": [
+    "browser import/launch",
+    "network probe",
+    "product connection",
+    "existing workflow change",
+    "C experiment",
+    "108 production",
+    "merge",
+    "deploy"
+  ],
+  "acceptance": [
+    "fixed normal classification",
+    "F01-F17 expected reason",
+    "F18 accepted",
+    "immutable input/primary",
+    "independent review without blocking finding"
+  ],
+  "stopPolicy": "strong immediate plus deferred capture rejected before any execution; stop request and completion separate; no implicit C authorization"
+}

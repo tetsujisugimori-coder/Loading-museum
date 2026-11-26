@@ -1,0 +1,320 @@
+# No WebKit launches or registered Stage C trials. Pin and examine image rootfs only.
+name: Phase 7D Stage C Ubuntu rootfs lock
+on:
+  pull_request:
+    types: [synchronize]
+    branches: [main]
+    paths:
+      - .github/workflows/phase7d-stage-c-rootfs-lock.yml
+permissions:
+  contents: read
+  actions: read
+jobs:
+  rootfs-lock:
+    if: github.run_attempt == 1 && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+          fetch-depth: 2
+      - name: Limit this run to the rootfs workflow diff
+        id: scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$(git diff --name-only HEAD^ HEAD)" == ".github/workflows/phase7d-stage-c-rootfs-lock.yml" ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Retrieve pinned OCI manifest and export merged rootfs (no process launch)
+        if: steps.scope.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          image="mcr.microsoft.com/playwright@sha256:42f02d323c310069b4d54c94bd91a608966a486c3492c48ae0b1cea747ec5ca2"
+          sudo -n true
+          test "$(id -u)" -ne 0
+          mkdir -p "$RUNNER_TEMP/stage-c-rootfs-evidence" "$RUNNER_TEMP/stage-c-rootfs"
+          echo "numeric_ownership_restore=sudo_tar_root"
+          echo "ROOTFS_DIR=$RUNNER_TEMP/stage-c-rootfs" >> "$GITHUB_ENV"
+          echo "EVIDENCE_DIR=$RUNNER_TEMP/stage-c-rootfs-evidence" >> "$GITHUB_ENV"
+          docker pull "$image"
+          docker image inspect "$image" > "$RUNNER_TEMP/stage-c-rootfs-evidence/image-inspect.json"
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          v=json.loads((Path(os.environ["RUNNER_TEMP"])/"stage-c-rootfs-evidence/image-inspect.json").read_bytes())[0]
+          assert v["Id"]=="sha256:4967572bb0de50a2eab9cbfd8dbc573933f9eea87fa1ca11eeb746322225aed5"
+          assert any(x.endswith("@sha256:42f02d323c310069b4d54c94bd91a608966a486c3492c48ae0b1cea747ec5ca2") for x in v["RepoDigests"])
+          print("oci_digest_pin=PASS")
+          PY
+          container=$(docker create "$image" /bin/true)
+          trap 'docker rm -f "$container" >/dev/null 2>&1 || true' EXIT
+          docker export "$container" | sudo -n tar --numeric-owner --same-owner -xpf - -C "$RUNNER_TEMP/stage-c-rootfs"
+          test -x "$RUNNER_TEMP/stage-c-rootfs/usr/bin/node"
+          test -x "$RUNNER_TEMP/stage-c-rootfs/usr/bin/python3"
+          test -f "$RUNNER_TEMP/stage-c-rootfs/ms-playwright/webkit-2215/pw_run.sh"
+      - name: Compare numeric UID/GID against approved rootfs evidence before full hash
+        if: steps.scope.outputs.run == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          reference="$RUNNER_TEMP/stage-c-reference"
+          mkdir -p "$reference"
+          gh run download 44863707106 --repo "$GITHUB_REPOSITORY" --name stage-c-rootfs-lock-44863707106 --dir "$reference"
+          echo "REFERENCE_DIR=$reference" >> "$GITHUB_ENV"
+          sudo -n env ROOTFS_DIR="$ROOTFS_DIR" REFERENCE_DIR="$reference" python3 -B - <<'PY'
+          import gzip,hashlib,json,os,stat
+          from pathlib import Path
+          reference=Path(os.environ["REFERENCE_DIR"])
+          root=Path(os.environ["ROOTFS_DIR"])
+          receipt_bytes=(reference/"rootfs-receipt.json").read_bytes()
+          image_bytes=(reference/"image-inspect.json").read_bytes()
+          assert hashlib.sha256(receipt_bytes).hexdigest()=="87dac12d24d925496cc09f69caa676546a694244e13a92582360c7e841e633e2"
+          assert hashlib.sha256(image_bytes).hexdigest()=="574a667a748d08d7bd962b9201defe7d765791d4bdf32b008dd4d228fe4a68cd"
+          receipt=json.loads(receipt_bytes)
+          assert receipt["inventorySha256"]=="689e18b2e2355d524119e72ba9069f6499c073621e0264c5ae5f91ee5b611e62"
+          data=(reference/"rootfs-files.jsonl.gz").read_bytes()
+          assert hashlib.sha256(data).hexdigest()==receipt["manifestGzipSha256"]
+          expected={}
+          with gzip.open(reference/"rootfs-files.jsonl.gz","rt",encoding="utf-8") as reader:
+              for line in reader:
+                  row=json.loads(line)
+                  name=row["path"]
+                  assert name not in expected
+                  expected[name]=(row["uid"],row["gid"],row["kind"])
+          assert len(expected)==36136
+          mismatched=[]
+          observed=set()
+          stack=[(root,"")]
+          while stack:
+              parent,prefix=stack.pop()
+              with os.scandir(parent) as directory:
+                  entries=sorted(directory,key=lambda x:x.name,reverse=True)
+              for item in entries:
+                  name=(prefix+"/"+item.name).lstrip("/")
+                  info=item.stat(follow_symlinks=False)
+                  kind="directory" if stat.S_ISDIR(info.st_mode) else "symlink" if stat.S_ISLNK(info.st_mode) else "file" if stat.S_ISREG(info.st_mode) else "special"
+                  observed.add(name)
+                  if kind=="directory":
+                      stack.append((Path(item.path),name))
+                  want=expected.get(name)
+                  if want!=(info.st_uid,info.st_gid,kind):
+                      mismatched.append({"path":name,"expected":want,"actual":[info.st_uid,info.st_gid,kind]})
+          if observed!=set(expected):
+              raise RuntimeError("Rootfs file set differs from fixed evidence")
+          print(json.dumps({"ownershipEntries":len(expected),"ownerMismatchCount":len(mismatched),
+              "ownerMismatchSample":mismatched[:32]},sort_keys=True))
+          if mismatched:
+              raise RuntimeError("Numerical UID/GID owner mapping mismatch")
+          print("numeric_ownership=PASS")
+          PY
+      - name: Hash every actual rootfs entry and compare historical runtime bytes
+        if: steps.scope.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo -n env ROOTFS_DIR="$ROOTFS_DIR" EVIDENCE_DIR="$EVIDENCE_DIR" python3 -B - <<'PY'
+          import os,json,stat,hashlib,gzip
+          from pathlib import Path
+          root=Path(os.environ["ROOTFS_DIR"])
+          evidence=Path(os.environ["EVIDENCE_DIR"])
+          count={"file":0,"directory":0,"symlink":0,"special":0}
+          aggregate=hashlib.sha256()
+          with gzip.GzipFile(filename=str(evidence/"rootfs-files.jsonl.gz"),mode="wb",mtime=0) as writer:
+              stack=[(root,"")]
+              while stack:
+                  parent,prefix=stack.pop()
+                  with os.scandir(parent) as it:
+                      entries=sorted(it,key=lambda x:x.name,reverse=True)
+                  for item in entries:
+                      path=(prefix+"/"+item.name).lstrip("/")
+                      st=item.stat(follow_symlinks=False)
+                      row={"path":path,"mode":stat.S_IMODE(st.st_mode),"uid":st.st_uid,"gid":st.st_gid}
+                      if stat.S_ISDIR(st.st_mode):
+                          row["kind"]="directory"
+                          stack.append((Path(item.path),path))
+                      elif stat.S_ISLNK(st.st_mode):
+                          row["kind"]="symlink"
+                          row["target"]=os.readlink(item.path)
+                      elif stat.S_ISREG(st.st_mode):
+                          row["kind"]="file"
+                          row["bytes"]=st.st_size
+                          hashed=hashlib.sha256()
+                          with open(item.path,"rb") as stream:
+                              while True:
+                                  data=stream.read(1048576)
+                                  if not data: break
+                                  hashed.update(data)
+                          row["sha256"]=hashed.hexdigest()
+                      else:
+                          row["kind"]="special"
+                          row["type"]=stat.S_IFMT(st.st_mode)
+                      count[row["kind"]]+=1
+                      record=(json.dumps(row,sort_keys=True,separators=(",",":"),ensure_ascii=False)+"\n").encode()
+                      writer.write(record)
+                      aggregate.update(record)
+          def hashed(path):
+              digest=hashlib.sha256()
+              with open(path,"rb") as f:
+                  for block in iter(lambda:f.read(1048576),b""): digest.update(block)
+              return digest.hexdigest()
+          assert count=={"file":24343,"directory":4066,"symlink":7727,"special":0}, "rootfs entry count mismatch"
+          assert aggregate.hexdigest()=="689e18b2e2355d524119e72ba9069f6499c073621e0264c5ae5f91ee5b611e62", "rootfs SHA mismatch"
+          node=hashed(root/"usr/bin/node")
+          check_node="b1cbec894e45a5814b6ab756e1e14f8a76516273197e67e0412b57c1e10d0d9f"
+          actual_os=hashed(root/"usr/lib/os-release")
+          receipt={"schemaVersion":1,"status":"ROOTFS_BYTES_INVENTORIED_MOUNT_PENDING","scope":"PINNED_OCI_ROOTFS_NOT_PRODUCT_EXECUTION",
+             "ociManifestSha256":"42f02d323c310069b4d54c94bd91a608966a486c3492c48ae0b1cea747ec5ca2",
+             "ociConfigSha256":"4967572bb0de50a2eab9cbfd8dbc573933f9eea87fa1ca11eeb746322225aed5",
+             "inventorySha256":aggregate.hexdigest(),"entryCounts":count,
+             "manifestGzipSha256":hashed(evidence/"rootfs-files.jsonl.gz"),
+             "nodeSha256":node,"historicalNodeMatch":node==check_node,"osReleaseSha256":actual_os,
+             "historicalRootfsOsReleaseSha256":"3e5851448bae5b36f351becde037a8b13b77307279f484eda808f8177d9a4293",
+             "historicalDriverInventorySha256":"2e853832417b67e6587ab52fc10dd37774b6f2821b3803cf4c9d23511c1c37e5",
+             "observedWebKitInventorySha256":"05c36a6d813fce1d81242e3e968360617818ec5d9f42f57464f4b904eea7878b",
+             "historicalBuildZipSha256":"0a3994c4dca200c1b324bda8c0f2d4bd6048bcb809b554f5fc6ff0b06d91f394",
+             "mount":"NOT_TESTED","dependencyClosure":"NOT_TESTED","executionAuthorized":False,"registeredTrials":0}
+          with (evidence/"rootfs-receipt.json").open("x") as f: json.dump(receipt,f,sort_keys=True,indent=2);f.write("\n")
+          print(json.dumps({"rootfs_entries":count,"inventorySha256":receipt["inventorySha256"],"historicalNodeMatch":receipt["historicalNodeMatch"]}))
+          PY
+      - name: Verify existing product preflight on pinned rootfs and driver without browser (fixture only)
+        if: steps.scope.outputs.run == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          driver="$RUNNER_TEMP/stage-c-preflight-driver"
+          ref="$RUNNER_TEMP/stage-c-driver-reference"
+          mkdir -p "$ref"
+          npm install --prefix "$driver" --no-save --ignore-scripts --no-audit --no-fund playwright@1.56.1
+          gh run download 44865481720 --repo "$GITHUB_REPOSITORY" --name stage-c-runtime-binding-44865481720 --dir "$ref"
+          sudo -n env ROOTFS_DIR="$ROOTFS_DIR" REFERENCE_DIR="$REFERENCE_DIR" EVIDENCE_DIR="$EVIDENCE_DIR" DRIVER_DIR="$driver" DRIVER_REFERENCE="$ref" python3 -B - <<'PY'
+          import hashlib,importlib.util,json,os,shutil
+          from pathlib import Path
+          repo=Path.cwd()
+          root=Path(os.environ["ROOTFS_DIR"])
+          ref=Path(os.environ["REFERENCE_DIR"])
+          driver=Path(os.environ["DRIVER_DIR"])
+          reference=Path(os.environ["DRIVER_REFERENCE"])
+          evidence=Path(os.environ["EVIDENCE_DIR"])
+          historical=(reference/"runtime-observation.json").read_bytes()
+          expected_sha=(reference/"SHA256SUMS").read_text().split()[0]
+          assert hashlib.sha256(historical).hexdigest()==expected_sha
+          runtime=json.loads(historical)
+          assert runtime["driver"]["historicalMatch"] is True and len(runtime["driver"]["files"])==510
+          assert len(runtime["checkout"]["files"])==49
+          binding={
+              "status":"SYNTHETIC_PREFLIGHT_ONLY_NOT_PRODUCT_PACKAGE",
+              "executionAuthorized":False,
+              "runtimeFiles":{
+                  "repo":runtime["checkout"]["files"],
+                  "driver":runtime["driver"]["files"],
+                  "rootfs":{"usr/bin/node":hashlib.sha256((root/"usr/bin/node").read_bytes()).hexdigest()}},
+              "rootfsLock":json.loads((repo/"diagnostic-isolated/c-s1-10/runtime-build-bridge.candidate.json").read_bytes())["rootfsLock"]
+          }
+          pkg=Path(os.environ["RUNNER_TEMP"]) if "RUNNER_TEMP" in os.environ else evidence
+          pkg=evidence/"synthetic-preflight"
+          pkg.mkdir(exist_ok=False)
+          for name in ("image-inspect.json","rootfs-receipt.json"):
+              shutil.copyfile(ref/name,pkg/name)
+          data=(json.dumps(binding,sort_keys=True,indent=2)+"\n").encode()
+          (pkg/"binding.json").write_bytes(data)
+          module=repo/"diagnostic-isolated/c-s1-10/process_supervisor.py"
+          spec=importlib.util.spec_from_file_location("stage_c_actual_supervisor",module)
+          imp=importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(imp)
+          args=(pkg,hashlib.sha256(data).hexdigest(),{"repo":repo,"rootfs":root,"driver":driver})
+          imp._verify_package(*args)
+          print(json.dumps({"existingPreflight":"PASS","fixtureOnly":True,"originalProductBuildIncluded":False,
+              "repoFiles":49,"driverFiles":510,"rootfsInventoryEntries":36136}))
+          # Test fail-closed on the same real rootfs without mutating it.
+          bad=json.loads(data)
+          bad["rootfsLock"]["inventorySha256"]="0"*64
+          invalid=(json.dumps(bad,sort_keys=True,indent=2)+"\n").encode()
+          (pkg/"binding.json").write_bytes(invalid)
+          try:
+              imp._verify_package(pkg,hashlib.sha256(invalid).hexdigest(),args[2])
+          except RuntimeError:
+              print("real_rootfs_lock_mismatch_rejected=PASS")
+          else:
+              raise AssertionError("Rootfs lock mismatch was accepted")
+          PY
+      - name: Enable narrowly scoped official bwrap AppArmor policy for mount probe
+        if: steps.scope.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          # bubblewrap is not preinstalled on this Ubuntu 24.04 runner image.
+          if [[ ! -x /usr/bin/bwrap ]]; then
+            sudo -n apt-get update -qq
+            sudo -n apt-get install -y --no-install-recommends bubblewrap
+          fi
+          test -x /usr/bin/bwrap
+          /usr/bin/bwrap --version
+          test "$(sysctl -n kernel.apparmor_restrict_unprivileged_userns)" = "1"
+          cd "$RUNNER_TEMP"
+          apt-get download apparmor-profiles
+          package=$(find "$RUNNER_TEMP" -maxdepth 1 -name 'apparmor-profiles_*.deb' -print -quit)
+          test -n "$package"
+          dpkg-deb -x "$package" "$RUNNER_TEMP/aa-policy"
+          source="$RUNNER_TEMP/aa-policy/usr/share/apparmor/extra-profiles/bwrap-userns-restrict"
+          test "$(sha256sum "$source" | cut -d' ' -f1)" = "11d39094f044f0cda0febb3ad517b830301da6b2ce929664af09ee9e4dd264f9"
+          if test -f /etc/apparmor.d/bwrap-userns-restrict; then
+            cmp "$source" /etc/apparmor.d/bwrap-userns-restrict
+          else
+            sudo -n install -m 0644 "$source" /etc/apparmor.d/bwrap-userns-restrict
+          fi
+          sudo -n apparmor_parser --add --skip-cache /etc/apparmor.d/bwrap-userns-restrict
+          sudo -n cat /sys/kernel/security/apparmor/profiles | grep -F 'unpriv_bwrap (enforce)'
+      - name: Probe read-only bwrap mount and inspect dynamic dependencies without WebKit launch
+        if: steps.scope.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 20s /usr/bin/bwrap --unshare-user --unshare-pid --die-with-parent \
+            --ro-bind "$ROOTFS_DIR" / --proc /proc --dev /dev --tmpfs /tmp --tmpfs /dev/shm \
+            --dir /tmp/runtime --setenv XDG_RUNTIME_DIR /tmp/runtime \
+            -- /usr/bin/python3 -B - <<'PY' | tee "$EVIDENCE_DIR/rootfs-mount-probe.json"
+          import json,os,subprocess
+          from pathlib import Path
+          assert 'VERSION_ID="24.04"' in Path("/etc/os-release").read_text()
+          assert subprocess.check_output(["/usr/bin/node","--version"],text=True).strip()=="v22.20.0"
+          assert Path("/proc/self/attr/current").read_text().strip()=="bwrap//&unpriv_bwrap (enforce)"
+          assert Path("/ms-playwright/webkit-2215/pw_run.sh").is_file()
+          details={}
+          for name in ("MiniBrowser","WPEWebProcess","WPENetworkProcess"):
+              base="/ms-playwright/webkit-2215/minibrowser-wpe/"
+              env=os.environ.copy()
+              env["LD_LIBRARY_PATH"]=base+"lib:"+base+"sys/lib"
+              r=subprocess.run(["/usr/bin/ldd",base+"bin/"+name],env=env,capture_output=True,text=True)
+              details[name]={"exitCode":r.returncode,
+                  "missing":[x.strip() for x in r.stdout.splitlines() if "not found" in x],
+                  "lines":r.stdout.splitlines()}
+          print(json.dumps({"mount":"PASS","uidMap":Path("/proc/self/uid_map").read_text().strip(),
+                "pidNs":os.readlink("/proc/self/ns/pid"),"dependencies":details},sort_keys=True))
+          PY
+          sudo -n env EVIDENCE_DIR="$EVIDENCE_DIR" python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          root=Path(os.environ["EVIDENCE_DIR"])
+          proof=json.loads((root/"rootfs-mount-probe.json").read_bytes())
+          receipt=json.loads((root/"rootfs-receipt.json").read_bytes())
+          receipt["mount"]=proof["mount"]
+          receipt["dependencyClosure"]="PASS" if all(x["exitCode"]==0 and not x["missing"] for x in proof["dependencies"].values()) else "INCOMPLETE"
+          with (root/"rootfs-receipt.json").open("w") as f: json.dump(receipt,f,sort_keys=True,indent=2);f.write("\n")
+          print("mount=",receipt["mount"],"dependencyClosure=",receipt["dependencyClosure"])
+          PY
+      - name: Upload immutable rootfs observation
+        if: always() && steps.scope.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage-c-rootfs-lock-${{ github.run_id }}
+          path: ${{ runner.temp }}/stage-c-rootfs-evidence
+          if-no-files-found: warn
+          retention-days: 30
