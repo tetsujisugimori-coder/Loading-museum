@@ -473,8 +473,9 @@ export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
           {room.roomId === dialupBbsRoom && (
             <section aria-labelledby="dialup-bbs-preview-title" id="dialup-bbs-preview">
               <h3 id="dialup-bbs-preview-title">{dialupBbsCollection}</h3>
-              <p>第1便・歴史資料に着想を得た再構成。実機や実際の通信記録の完全再現ではありません。</p>
+              <p>第1・第2便。歴史資料に着想を得た再構成。実機や実際の通信記録の完全再現ではありません。</p>
               <a href="./dialup-bbs/index.html">BBS体験展示を開く</a>
+              <p><a href="./dialup-bbs/ansi.html#bbs-06">第2便・ANSI表現を開く</a></p>
               <ul>{dialupBbsExhibits.map(work => (
                 <li className="dialupBbsExhibit" key={work.id}>
                   <a data-museum-id={work.id} href={dialupBbsHref(work.id)}>{work.candidate} {work.title}</a>

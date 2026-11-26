@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ANSI表現 | パソコン通信とBBSの時代</title>
+<link rel="stylesheet" href="./gallery.css">
+<link rel="stylesheet" href="./ansi.css">
+<script type="module" src="./ansi-gallery.mjs"></script>
+</head>
+<body><main>
+<a href="../#browse-ms-dos-pc-command-line">← ミュージアムの展示室へ戻る</a>
+<header>
+<p class="eyebrow">DIGITAL MOTION ARCHIVE / HISTORICAL MOTION / WAVE 02</p>
+<h1>文字端末に描く</h1>
+<p>パソコン通信とBBSの時代・第2便。受信したバイト、画面を書き換える命令、文字の色を決めるビットを観察できます。</p>
+</header>
+<nav id="ansi-works" aria-label="第2便の作品">
+<button data-work="06" type="button">06 ANSIアートが届くまで</button>
+<button data-work="07" type="button">07 文字端末の中で動く絵</button>
+<button data-work="08" type="button">08 同じ1ビット、異なる表現</button>
+<a href="./index.html#bbs-03">第1便の作品</a>
+</nav>
+<section aria-labelledby="work-title">
+<h2 id="work-title">06 ANSIアートが届くまで</h2>
+<p id="explanation"></p>
+<div id="wire-panel">
+<div class="controls">
+<label>モデル回線速度 <select id="bps">
+<option>2400</option><option>9600</option><option>14400</option><option>28800</option>
+</select> bps</label>
+<label id="frame-mode-label" hidden>更新方式 <select id="frame-mode"><option value="full">全面再描画</option><option value="diff" selected>差分更新</option></select></label>
+</div>
+<div class="terminal ansi-terminal"><div class="terminal-head"><span>OFFLINE / ANSI MODEL</span><span id="mode"></span></div><div id="screen" class="ansi-grid" aria-hidden="true"></div></div>
+<dl class="metrics">
+<div><dt>受信バイト</dt><dd id="received"></dd></div>
+<div><dt>経過／総仮想時間</dt><dd id="time"></dd></div>
+<div><dt>書込文字数</dt><dd id="writes"></dd></div>
+<div id="frame-metric" hidden><dt>処理中のフレーム</dt><dd id="frame-number"></dd></div>
+</dl>
+<p id="traffic"></p>
+<details><summary>論理画面と制御命令を見る</summary><p>画面バッファの現在内容（自動読み上げなし）</p><pre id="logical"></pre><p>直近の命令（完了時点で表示）</p><pre id="commands"></pre></details>
+</div>
+<div id="attr-panel" hidden>
+<p>同じ画面メモリの内容を両方に表示します。モードを選ぶと、下の説明がその解釈に切り替わります。</p>
+<div class="controls" id="attr-modes" role="group" aria-label="属性説明の対象">
+<button id="blink-mode" data-mode="blink" type="button">点滅モード</button>
+<button id="bright-mode" data-mode="bright" type="button">高輝度背景モード</button>
+</div>
+<div class="attr-comparison">
+<div class="terminal" id="blink-card" data-mode="blink"><h3>点滅</h3><div id="blink-screen" class="sample"></div></div>
+<div class="terminal" id="bright-card" data-mode="bright"><h3>高輝度背景</h3><div id="bright-screen" class="sample"></div></div>
+</div>
+<div id="bits" aria-label="属性0x9Fの8ビット"></div>
+<p id="bit-meaning"></p>
+<p>点滅は開始操作後だけ、周期1.6秒・短い消灯側0.4秒（展示用）。安全のため消灯側でも文字は薄く残し、動き軽減では静止します。点滅を止めてもビットと配色の静止比較ができます。</p>
+</div>
+<p id="status" role="status"></p>
+<div class="controls" id="playback">
+<button id="play" type="button">再生・再開</button><button id="pause" type="button">停止</button>
+<button id="reset" type="button">Reset</button><button id="step" type="button">1バイト進む</button><button id="instant" type="button">即時表示</button>
+</div>
+<details><summary>歴史資料・再現範囲</summary>
+<ul><li><a href="https://16colo.rs/pack/acdu0694/ACIDVIEW.NFO">ACiD View 2.02（1994年）</a>：速度を変えて見る機能とモデム模擬。素材、実測時間、固定FPSは引用しません。</li>
+<li><a href="https://ecma-international.org/wp-content/uploads/ECMA-48_5th_edition_june_1991.pdf">ECMA-48 第5版（1991年）</a>：CSIと色・カーソル命令の一部。特定BBSのANSI互換性は未確認。</li>
+<li><a href="https://www.itu.int/rec/T-REC-V/en">ITU-T V系列</a>：速度候補の時代背景。教材は1開始＋8データ＋1停止ビット、1バイト10ビット。制御命令も含む。実回線・モデム間／端末側速度・圧縮を測る展示ではありません。</li>
+<li><a href="https://dokumen.pub/84f9735-ibm-personal-system-2-hardware-interface-technical-reference-common-interfaces-1.html">IBM PS/2 VGA 技術資料（1991年版）</a>：テキスト属性ビット7の解釈。ANSI命令とは別の画面メモリ層です。</li>
+<li><a href="https://www.acid.org/info/sauce/sauce.htm#ANSiFlags">ACiD SAUCE 00.5（2013年改訂）</a>：非点滅指定は後年のファイルメタデータで、ANSI命令・すべての端末に共通の機能ではありません。</li></ul>
+<p>絵・文字列はすべてこの展示のために作成しました。速度とフレーム間の間隔、配色、点滅周期は教材の選択です。実通信や当時の端末・画面の完全復元ではありません。</p>
+</details>
+</section><noscript>この体験にはJavaScriptが必要です。歴史資料の説明は閲覧できます。</noscript>
+</main></body></html>
