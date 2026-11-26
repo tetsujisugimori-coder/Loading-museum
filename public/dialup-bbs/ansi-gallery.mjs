@@ -41,8 +41,11 @@ function paintWire(){
     renderCount++;
   }
   $('time').textContent=ms(time)+' / '+ms(timeline.duration);
-  $('step').disabled=time>=timeline.duration;
-  $('instant').disabled=time>=timeline.duration;
+  const complete=time>=timeline.duration;
+  const focused=document.activeElement;
+  if(complete&&(focused===$('step')||focused===$('instant')))$('reset').focus({preventScroll:true});
+  $('step').disabled=complete;
+  $('instant').disabled=complete;
   return state;
 }
 function paintAttr(){

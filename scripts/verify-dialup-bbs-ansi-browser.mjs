@@ -62,7 +62,8 @@ try{
     await click('#instant');
   }
   const slow=await state();check('art finished with recorded controls',slow.state.bytes>slow.state.writes&&slow.state.commands.length>10&&slow.state.diagnostics.length===0);
-  await page.locator('#bps').selectOption('28800');await click('#instant');
+  await page.locator('#bps').selectOption('28800');await press('instant','Space');
+  check('instant completion moves focused control to reset',await focused('reset'));
   const fast=await state();
   check('identical art by speed',JSON.stringify(fast.state.cells)===JSON.stringify(slow.state.cells));
   check('8N1 wire deadline includes CSI',fast.time===fast.state.bytes*10000/28800&&slow.time===slow.state.bytes*10000/2400);
@@ -74,6 +75,7 @@ try{
   };
   const diff=await replay();await page.locator('#frame-mode').selectOption('full');
   const full=await replay();
+  check('last frame moves focused step to reset',await focused('reset'));
   check('6 complete frame numbers',full.map(f=>f.state.cells[3].findIndex(x=>x.char==='<')).join(',')==='1,4,7,10,13,16');
   check('equal pixels and attributes per frame',full.every((f,i)=>JSON.stringify(f.state.cells)===JSON.stringify(diff[i].state.cells)));
   check('different frame traffic',full.at(-1).state.bytes>diff.at(-1).state.bytes&&full.at(-1).state.writes>diff.at(-1).state.writes&&full.at(-1).time>diff.at(-1).time);
