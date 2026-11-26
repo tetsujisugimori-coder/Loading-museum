@@ -1,3 +1,4 @@
+import {dialupBbsCollection,dialupBbsExhibits,dialupBbsHref,dialupBbsRoom} from './dialupBbsExhibits';
 import {motionCompositionExhibits} from './motionCompositionExhibits';
 import {smallMotionIIExhibits} from './smallMotionIIExhibits';
 import {exhibitRooms} from './exhibitRooms';
@@ -36,6 +37,7 @@ const modern=(room:string,items:readonly {id:string;title:string;tags:readonly s
 export const museumCatalog:CatalogRecord[]=[
   ...['CUIの回転文字','点が増える表示','Windows風の砂時計','初期WebのGIF風スピナー','Apple風の点が巡るスピナー','Windows Vista風の青い光','CSSの円弧スピナー','プログレスバー','スケルトンスクリーン'].map((title,i)=>record('loading-gallery',`loading-${i+1}`,title,[i<6?'historical':'modern'],'ローディング常設ギャラリー',[], '#loading-gallery')),
   ...exhibitRooms.flatMap(r=>r.exhibits.flatMap(e=>e.kind==='vanished-os'?e.loadingExhibits.map(x=>record(r.roomId,x.demoId,`${e.title} / ${x.title}`,['historical'])):[record(r.roomId,e.exhibitId,e.title,['historical'])])),
+  ...dialupBbsExhibits.map(x=>record(dialupBbsRoom,x.id,x.title,['historical'],dialupBbsCollection,x.tags,dialupBbsHref(x.id))),
   ...appleEarlyExhibits.map(x=>record('apple',x.id,x.name,['historical'])),
   ...macintoshBirthExhibits.map(x=>record('macintosh',x.id,x.title,['historical'])),
   ...cursorExhibits.map(x=>record('cursor',x.id,x.name,['historical','modern'],'歴史から現在へ続くポインター',x.technologies)),

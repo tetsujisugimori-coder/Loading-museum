@@ -104,14 +104,14 @@ test("正式名称のタイトル導入、年代テーマ、確定演出、軽�
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.museumTitleSignalNoise/);
 });
 
-test("既存9展示の下へ閉じたMS-DOS展示室と8種類の展示を書き出す", async () => {
+test("既存9展示の下へ閉じたMS-DOS展示室と既存8種類・BBS3作品を書き出す", async () => {
   const html = await readFile(new URL("index.html", outputRoot), "utf8");
 
   assert.match(html, /時代別展示室/);
   assert.match(html, /MS-DOS・PCコマンドライン展示室/);
   assert.match(html, /1980年代〜1990年代/);
   assert.match(html, /文字だけで待機や進捗を表現した時代/);
-  assert.match(html, /8(?:<!-- -->)? EXHIBITS/);
+  assert.match(html, /11(?:<!-- -->)? EXHIBITS/);
   assert.match(html, /aria-expanded="false"/);
   assert.match(
     html,
@@ -251,7 +251,7 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
   ]);
   const normalizedHtml = html.replaceAll("<!-- -->", "");
 
-  assert.match(normalizedHtml, /13 ROOMS \/ 286 OBJECTS/);
+  assert.match(normalizedHtml, /13 ROOMS \/ 289 OBJECTS/);
   assert.doesNotMatch(normalizedHtml, /3 ROOMS \/ 30 OBJECTS/);
   assert.equal((html.match(/class="roomCard(?: |")/g) ?? []).length, 7);
   assert.ok((html.match(/aria-expanded="false"/g) ?? []).length >= 8);
@@ -263,8 +263,9 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
       + (html.match(/class="cursorExhibit"/g) ?? []).length
       + (html.match(/class="appleEarlyExhibit"/g) ?? []).length
       + (html.match(/class="macExhibit"/g) ?? []).length
-      + (html.match(/class="domOperation"/g) ?? []).length,
-      96,
+      + (html.match(/class="domOperation"/g) ?? []).length
+      + (html.match(/class="dialupBbsExhibit"/g) ?? []).length,
+      99,
   );
   assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 6/);
   assert.match(page, /const totalExhibitCount = permanentExhibitCount \+ periodExhibitCount \+ flashExhibitCount \+ 17 \+ waapiSampleCount/);
@@ -1250,4 +1251,16 @@ test("既存ローディング標本の直下に、遅延生成するWAAPI標本
   assert.match(css, /\.waapiSampleGrid/);
   assert.match(css, /@media \(max-width: 340px\)/);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
+});
+
+test("BBS registered entries and stable fragment links exist in static export", async()=>{
+ const html=await readFile(new URL("index.html",outputRoot),"utf8");
+ const gallery=await readFile(new URL("dialup-bbs/index.html",outputRoot),"utf8");
+ for(const id of ['03','04','05']){
+   assert.equal((html.match(new RegExp('data-museum-id="bbs-'+id+'"','g'))??[]).length,1);
+   assert.ok(html.includes('href="./dialup-bbs/index.html#bbs-'+id+'"'));
+   assert.equal((gallery.match(new RegExp('data-work="'+id+'"','g'))??[]).length,1);
+ }
+ assert.match(gallery,/史料に着想を得た架空の教材/);
+ assert.equal((html.match(/class="dialupBbsExhibit"/g)??[]).length,3);
 });

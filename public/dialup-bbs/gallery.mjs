@@ -1,4 +1,5 @@
 import {arrivals,snapshot,scrollTimeline} from './terminal.mjs';
+import {syncPlaybackControls} from './playback-controls.mjs';
 const $=id=>document.getElementById(id);
 const ascii=s=>Array.from(s,c=>c.charCodeAt(0));
 const fixtures={
@@ -11,10 +12,14 @@ const jp={
  shift_jis:[...ascii('BBS> '),0x93,0xfa,0x96,0x7b,...ascii('\r\n'),0x93,0xfa,0x96,0x7b,...ascii(' / END')],
 };
 const media=matchMedia('(prefers-reduced-motion: reduce)');
-let work='03', scenario, wire, end, scrolls, timeline, duration=0, time=0, frame=0, generation=0, running=false, last=null;
+const workFromHash=()=>/^#bbs-(03|04|05)$/.exec(location.hash)?.[1]??'03';
+let work=workFromHash(), scenario, wire, end, scrolls, timeline, duration=0, time=0, frame=0, generation=0, running=false, last=null;
+function updateControls(){
+ syncPlaybackControls({play:$('play'),pause:$('pause'),reset:$('reset'),active:document.activeElement,playing:running,reduced:media.matches});
+}
 function stop(status){
  generation++;cancelAnimationFrame(frame);frame=0;running=false;last=null;
- $('status').textContent=status;$('pause').disabled=true;$('play').disabled=media.matches;
+ $('status').textContent=status;updateControls();
 }
 function prepare(){
  stop('待機');const f=fixtures[work];const encoding=work==='04'?$('encoding').value:f.encoding;
@@ -65,7 +70,7 @@ function go(value,status){stop(status);time=Math.max(0,Math.min(duration,value))
 function play(){
  if(media.matches||document.hidden||running)return;
  if(time>=duration)time=0;
- running=true;last=null;$('status').textContent='再生中';$('play').disabled=true;$('pause').disabled=false;
+ running=true;last=null;$('status').textContent='再生中';updateControls();
  const token=++generation;
  function tick(now){
    if(token!==generation||!running)return;
@@ -76,7 +81,18 @@ function play(){
  }
  frame=requestAnimationFrame(tick);
 }
-$('works').addEventListener('click',e=>{const button=e.target.closest('button[data-work]');if(!button||button.dataset.work===work)return;work=button.dataset.work;prepare();});
+function selectWork(id){
+ if(!Object.hasOwn(fixtures,id)||id===work)return;
+ work=id;prepare();
+}
+$('works').addEventListener('click',e=>{
+ const button=e.target.closest('button[data-work]');
+ if(!button||!Object.hasOwn(fixtures,button.dataset.work))return;
+ const id=button.dataset.work;
+ if(location.hash!=='#bbs-'+id)history.pushState(null,'','#bbs-'+id);
+ selectWork(id);
+});
+window.addEventListener('hashchange',()=>selectWork(workFromHash()));
 for(const id of ['bps','encoding','scroll'])$(id).addEventListener('change',prepare);
 $('rate').addEventListener('change',()=>{if(running)last=null;});
 $('play').addEventListener('click',play);$('pause').addEventListener('click',()=>stop('停止'));
