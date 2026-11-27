@@ -11,7 +11,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        browser: [chromium, webkit]
+        include:
+          - browser: chromium
+            playwright: "1.56.1"
+          # WebKit r2215 crashes when crossing documents after same-document history traversal.
+          - browser: webkit
+            playwright: "1.57.0"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,12 +29,13 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx vitest run --maxWorkers=2 tests/dialup-bbs-registration.test.ts
-      - run: node --test tests/dialup-bbs-focus.test.mjs docs/dialup-bbs/prototype/terminal.test.mjs
+      - run: node --test tests/dialup-bbs-focus.test.mjs tests/dialup-bbs-ansi.test.mjs docs/dialup-bbs/prototype/terminal.test.mjs
+      - run: node scripts/verify-dialup-bbs-ansi-negative.mjs
       - run: AUDIT_OUTPUT=work/dialup-bbs/inventory.json node scripts/audit-dialup-bbs.mjs
       - run: node scripts/build-layer-composer.mjs
       - name: Browser tools
         run: |
-          npm install --prefix "$RUNNER_TEMP/bbs-tools" --no-save playwright@1.56.1
+          npm install --prefix "$RUNNER_TEMP/bbs-tools" --no-save "playwright@${{ matrix.playwright }}"
           "$RUNNER_TEMP/bbs-tools/node_modules/.bin/playwright" install --with-deps ${{ matrix.browser }}
       - name: Real HTTP and keyboard tests
         env:
@@ -37,6 +43,14 @@ jobs:
         run: |
           export PLAYWRIGHT_MODULE="$RUNNER_TEMP/bbs-tools/node_modules/playwright"
           node scripts/verify-dialup-bbs-browser.mjs
+          node scripts/verify-dialup-bbs-ansi-browser.mjs
+      - name: Record case file digests
+        if: always()
+        run: |
+          if [ -d work/dialup-bbs ]; then
+            cd work/dialup-bbs
+            find . -maxdepth 1 -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 -r sha256sum > SHA256SUMS
+          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
