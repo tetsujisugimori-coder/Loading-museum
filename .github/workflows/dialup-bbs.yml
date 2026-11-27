@@ -11,7 +11,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        browser: [chromium, webkit]
+        include:
+          - browser: chromium
+            playwright: "1.56.1"
+          # WebKit r2215 crashes when crossing documents after same-document history traversal.
+          - browser: webkit
+            playwright: "1.57.0"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -30,7 +35,7 @@ jobs:
       - run: node scripts/build-layer-composer.mjs
       - name: Browser tools
         run: |
-          npm install --prefix "$RUNNER_TEMP/bbs-tools" --no-save playwright@1.56.1
+          npm install --prefix "$RUNNER_TEMP/bbs-tools" --no-save "playwright@${{ matrix.playwright }}"
           "$RUNNER_TEMP/bbs-tools/node_modules/.bin/playwright" install --with-deps ${{ matrix.browser }}
       - name: Real HTTP and keyboard tests
         env:
