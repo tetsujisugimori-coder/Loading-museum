@@ -29,8 +29,13 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx vitest run --maxWorkers=2 tests/dialup-bbs-registration.test.ts
-      - run: node --test tests/dialup-bbs-focus.test.mjs tests/dialup-bbs-ansi.test.mjs docs/dialup-bbs/prototype/terminal.test.mjs
+      - name: Unit and compatibility contracts with original stdout
+        run: |
+          mkdir -p work/dialup-bbs
+          set -o pipefail
+          node --test tests/dialup-bbs-focus.test.mjs tests/dialup-bbs-ansi.test.mjs tests/dialup-bbs-communications.test.mjs docs/dialup-bbs/prototype/terminal.test.mjs | tee work/dialup-bbs/unit-tests.log
       - run: node scripts/verify-dialup-bbs-ansi-negative.mjs
+      - run: node scripts/verify-dialup-bbs-communications-negative.mjs
       - run: AUDIT_OUTPUT=work/dialup-bbs/inventory.json node scripts/audit-dialup-bbs.mjs
       - run: node scripts/build-layer-composer.mjs
       - name: Browser tools
@@ -44,6 +49,7 @@ jobs:
           export PLAYWRIGHT_MODULE="$RUNNER_TEMP/bbs-tools/node_modules/playwright"
           node scripts/verify-dialup-bbs-browser.mjs
           node scripts/verify-dialup-bbs-ansi-browser.mjs
+          node scripts/verify-dialup-bbs-communications-browser.mjs
       - name: Record case file digests
         if: always()
         run: |
