@@ -15,7 +15,7 @@ const facts={
  '09':['モデムのランプは何を語るか','通信の段階を進めると、DTR・キャリア・送受信データを示すランプが変わります。','1996年の実機資料による7灯の抜粋です。送受信は該当イベントの状態を次のイベントまで保持し、点灯条件を観察できるようにしました。実機のパルス周期や図表間で不明な灯は再現していません。',[usr]],
  '10':['電話回線の向こうへ','AT応答から回線状態、キャリア交渉、CONNECT、DTRによる切断まで、端末の表示と内部処理を比較します。','ATの結果コードは資料に対応。ATD[DEMO]は架空の宛先を表す画面上の記号です。接続結果の28800は規格にある速度例で、選んだ端末側bpsとは別です。段階の長さと、波形を扱わない交渉表示は現代の展示モデルです。',[at,['ITU-T V.8（1994年9月）','https://www.itu.int/rec/T-REC-V.8-199409-S'],['ITU-T V.34（1994年9月）','https://www.itu.int/ITU-T/recommendations/rec.aspx?rec=2756']]],
  '11':['ファイルが届くまで','同じブロックの再送で回線使用量が増えても、受信確定済みのファイルは二重に増えません。','チェックサム版XMODEMの128バイトブロックをモデル化しました。3回で停止する上限は展示用です。失敗後は最初から再試行し、中断箇所からの永続再開はしません。YMODEM・ZMODEMの機能は実装していません。',[['XMODEM/YMODEM Protocol Reference（1988年6月18日、§7）','https://www.classic-computing.de/hellwie/pdf/XMODEM_YMODEM%20Protocol%20Reference.pdf#page=20'],['RFC 916（1984年、§II.2）','https://www.rfc-editor.org/rfc/rfc916.html#section-2']]],
- '12':['通信を自動で巡回する','架空の掲示板を接続中に巡回し、保存したログは切断後に読めます。自動では操作がまとまり、手動では段階ごとに進めます。','ログ取得・整理を助ける当時の自動巡回を、独自の架空サービスで再構成しました。料金・操作時間・具体的なサービスのコマンドは復元していません。自動巡回はルールに沿う処理であり、AIエージェントではありません。',[['NIFMCR3 3.20 作者の配布説明（1997年）','https://www.vector.co.jp/soft/dos/net/se022371.html'],['オウチャクン29.0 作者の配布説明（1998年）','https://www.vector.co.jp/soft/dos/net/se013063.html'],['窓の杜：AirCraft97（同時代紹介、1997年）','https://forest.watch.impress.co.jp/obsolete/rev/aircraft.html'],['@nifty：NIFTY-Serveの時間制コース資料','https://faq.support.nifty.com/3926']]],
+ '12':['通信を自動で巡回する','架空の掲示板を接続中に巡回し、保存したログは切断後に読めます。自動では操作がまとまり、手動では段階ごとに進めます。','ログ取得・整理を助ける当時の自動巡回を、独自の架空サービスで再構成しました。時間課金のコースでは、一括取得して切断後に読めば接続時間を抑えられる場合があります。個別料金・効果・具体的なサービスのコマンドは復元していません。自動巡回はルールに沿う処理であり、AIエージェントではありません。',[['NIFMCR3 3.20 作者の配布説明（1997年）','https://www.vector.co.jp/soft/dos/net/se022371.html'],['オウチャクン29.0 作者の配布説明（1998年）','https://www.vector.co.jp/soft/dos/net/se013063.html'],['窓の杜：AirCraft97（同時代紹介、1997年）','https://forest.watch.impress.co.jp/obsolete/rev/aircraft.html'],['@nifty：NIFTY-Serveの時間制コース資料','https://faq.support.nifty.com/3926']]],
 };
 let controller, work, compare='';
 const clock=eventClock();
@@ -75,7 +75,7 @@ function rebuild(){
   stopClock();const opts=options();
   if(opts.boards.length===0&&work==='12'){
     $('status').textContent='巡回先を1件以上選んでください。';
-    controller=null;document.body.dataset.ready='false';
+    controller=null;Object.assign(document.body.dataset,{work,phase:'invalid',steps:'0',playing:'false',ready:'false'});
     for(const id of ['play','pause','step','stop','retry']) $(id).disabled=true;
     $('events').replaceChildren();$('offline-log').replaceChildren();$('terminal').textContent='';$('phase').textContent='入力待ち';$('count').textContent='0';$('elapsed').textContent='0 ms';$('wire').textContent='0 B';$('patrol-progress').textContent='選択 0 件';
     return;

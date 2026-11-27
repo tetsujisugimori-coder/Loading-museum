@@ -37,7 +37,7 @@ try{
   await nav.getByRole('button',{name:/Historical Motion/}).click();
   const search=nav.getByLabel('全館の作品・展示室・タグで検索');
   await search.fill('BBS');
-  check('six historical records',await nav.locator('.catalogResults li').count()===6);
+  check('ten historical records',await nav.locator('.catalogResults li').count()===10);
   await nav.getByRole('button',{name:/Modern Motion/}).click();await search.fill('BBS');
   check('not modern records',await nav.locator('.catalogResults li').count()===0);
   await nav.getByRole('button',{name:/Historical Motion/}).click();await search.fill('日本語パソコン通信');

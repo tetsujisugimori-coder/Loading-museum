@@ -26,7 +26,11 @@ try{
   const page=await context.newPage();page.setDefaultTimeout(15000);
   page.on('pageerror',e=>c.errors.push(String(e)));
   page.on('crash',()=>c.errors.push('CRASH: '+page.url()));
-  await page.exposeFunction('recordBbsTrustedClick',value=>{c.clicks??=[];c.clicks.push(value);});
+  let activeNavigation;
+  await page.exposeFunction('recordBbsTrustedClick',value=>{
+    c.clicks??=[];c.clicks.push(value);
+    if(activeNavigation&&value.href===activeNavigation.target&&value.isTrusted) activeNavigation.trusted=true;
+  });
   await page.addInitScript(()=>{
    sessionStorage.setItem('digital-motion-archive-title-seen-v1','seen');
    window.addEventListener('click',event=>{
@@ -48,21 +52,24 @@ try{
     return toggle?.getAttribute('aria-expanded')==='true'&&panel?.dataset.open==='true'&&panel.getAnimations().every(a=>a.playState==='finished'||a.playState==='idle');
    });
   };
-  const documentLink=async(link,target,appReady,operation)=>{
+  const documentLink=async(link,target,appReady,operation,observations=c.navigations,timeout=15000)=>{
     const d={target:target.href,from:page.url(),trusted:false,request:null,response:null,committed:false,actual:null,initialized:false,operation:false};
-    c.navigations.push(d);
+    observations.push(d);
     try{
       assert.equal(await link.evaluate(x=>x.href),target.href);
-      const n=(c.clicks??[]).length;
+      activeNavigation=d;
       const expected=target.origin+target.pathname+target.search;
-      const request=page.waitForRequest(r=>r.isNavigationRequest()&&r.url()===expected);
-      const response=page.waitForResponse(r=>r.request().isNavigationRequest()&&r.url()===expected);
-      const committed=page.waitForURL(target.href,{waitUntil:'commit'});
-      const [req,res]=await Promise.all([request.then(r=>(d.request=r.url(),r)),response.then(r=>(d.response=r.status(),r)),committed.then(()=>{d.committed=true;}),link.click({noWaitAfter:true})]);
-      d.trusted=(c.clicks??[]).slice(n).some(e=>e.href===target.href&&e.isTrusted);d.actual=page.url();
+      const request=page.waitForRequest(r=>r.isNavigationRequest()&&r.url()===expected,{timeout});
+      const response=page.waitForResponse(r=>r.request().isNavigationRequest()&&r.url()===expected,{timeout});
+      const committed=page.waitForURL(target.href,{waitUntil:'commit',timeout});
+      const settled=await Promise.allSettled([request.then(r=>(d.request=r.url(),r)),response.then(r=>(d.response=r.status(),r)),committed.then(()=>{d.committed=true;}),link.click({noWaitAfter:true,timeout})]);
+      d.actual=page.url();
+      const failed=settled.find(result=>result.status==='rejected');
+      if(failed) throw failed.reason;
+      const [req,res]=settled.map(result=>result.value);
       assert.ok(d.trusted,'trusted click capture');assert.ok(req.isNavigationRequest());assert.equal(res.status(),200);assert.equal(d.actual,target.href);
       await appReady();d.initialized=true;await operation();d.operation=true;
-    }finally{d.actual=page.url();}
+    }catch(error){d.error=String(error);throw error;}finally{d.actual=page.url();activeNavigation=null;}
   };
   const step=async (id='step')=>{await button(id).focus();await page.keyboard.press('Enter');};
   const count=async()=>Number((await body()).steps);
@@ -115,6 +122,10 @@ try{
   ok('retry saves missing logs only and opens offline viewer',await page.locator('#offline-log li').count()===3&&(await txt('patrol-progress')).includes('オフライン'));
   if(width===390&&motion==='no-preference')await screenshot('12');
   await step('reset');ok('reset clears all logged events',await count()===0&&await page.locator('#events li').count()===0);
+  for(const check of await page.locator('#boards input').all()) await check.uncheck();
+  const invalid=await body();
+  ok('zero selected boards is a clean inactive state',invalid.work==='12'&&invalid.phase==='invalid'&&invalid.steps==='0'&&invalid.playing==='false'&&invalid.ready==='false'&&await button('step').isDisabled());
+  await page.locator('#boards input').first().check();await ready('12');ok('reselecting a board restores idle execution',await count()===0&&!(await button('step').isDisabled()));
   ok('layout fits viewport',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   if(motion==='no-preference')await step('play');
   // This is a real user link across documents, without a virtual clock.
@@ -132,6 +143,18 @@ try{
     await step();ok('re-entry can actually run work',await count()===1&&(await txt('events')).includes('NAK'));
   });
   ok('three traversals prove trusted click, request, status, commit, destination, ready and actual operation',c.navigations.length===3&&c.navigations.every(d=>d.trusted&&d.request&&d.response===200&&d.committed&&d.actual===d.target&&d.initialized&&d.operation));
+  if(width===375&&motion==='reduce'){
+    const negative=[];
+    const room=new URL('#browse-ms-dos-pc-command-line',base);
+    await page.route(room.origin+room.pathname,route=>route.fulfill({status:200,contentType:'text/html',headers:{'Content-Disposition':'attachment; filename="negative.html"'},body:'<!doctype html><title>Injected download, not a document commit</title>'}));
+    const initializedRoom=()=>page.waitForFunction(()=>document.querySelector('#dialup-bbs-preview')!==null,undefined,{timeout:1200});
+    await assert.rejects(documentLink(page.locator('#room-link'),room,initializedRoom,async()=>{},negative,1800),/Timeout|ERR_ABORTED|interrupted|cancelled/i);
+    const d=negative[0];c.failureControl=d;
+    ok('HTTP 200 is insufficient: preserve trusted click, request and response but reject failed initialization',negative.length===1&&d.trusted&&d.request&&d.response===200&&!d.initialized&&!d.operation);
+    // Chromium treats the attachment as a download. WebKit route fulfillment may commit its body;
+    // in both cases the observation must retain the actual matching URL and lack of app readiness.
+    ok('HTTP 200 negative retains exact commit and URL distinction',engine==='chromium'?!d.committed&&d.actual===d.from:d.actual===(d.committed?room.href:d.from));
+  }
   ok('no browser exceptions or crashes',c.errors.length===0);
   c.status='PASS';
   await context.tracing.stop();

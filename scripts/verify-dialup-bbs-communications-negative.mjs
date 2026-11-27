@@ -8,6 +8,7 @@ await mkdir(dest,{recursive:true});
 const root=await mkdtemp(path.join(dest,'communications-mutants-'));
 const mutations=[
  ['unconnected-success','communications.mjs','if(e.state && !legal',"if(snapshot.state!=='idle' && e.state && !legal",'deny illegal'],
+ ['effect-in-initialization','communications.mjs','if(!allowed) throw','if(!allowed&&snapshot.state!=="initializing") throw','protocol effects'],
  ['wrong-led','communications.mjs','RD:signal.rx','RD:signal.tx','Courier seven lamps'],
  ['failure-advances','communications.mjs',"response('BUSY','failed'","response('BUSY','online'",'AT connection'],
  ['checksum-ignored','communications.mjs','&& frame[131]===sum(frame.slice(3,131))','','checksum byte'],

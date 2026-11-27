@@ -74,7 +74,7 @@ function patrol({patrolMode,boards,patrolFault},initial) {
   if(failure>=0) return result.slice(0,failure+1);
   return [...result,...hangup(),event('切断後のオフライン閲覧へ',{state:'done',ms:450})];
 }
-const initial=()=>({state:'idle',elapsed:0,tx:0,rx:0,sentUseful:0,accepted:[],confirmed:[],retries:0,attempts:0,saved:[],log:[],terminal:'',signal:{tx:false,rx:false},highSpeed:false});
+const initial=()=>({state:'idle',elapsed:0,tx:0,rx:0,sentUseful:0,accepted:[],confirmed:[],retries:0,attempts:0,saved:[],log:[],terminal:'',signal:{tx:false,rx:false},highSpeed:false,pendingFrame:null,sentEnd:false});
 export function ledState(snapshot) {
   const {state,signal}=snapshot;
   return {HS:snapshot.highSpeed,AA:false,CD:['online','disconnecting'].includes(state),RD:signal.rx,SD:signal.tx,TR:!['disconnecting','offline','done','cancelled'].includes(state),MR:true};
@@ -95,15 +95,27 @@ export function plan(work, options, snapshot=initial()) {
   });
 }
 export function applyEvent(snapshot,e) {
+  const effect=e.effect,pending=snapshot.pendingFrame;
+  if(effect){
+    const blockValid=Number.isInteger(effect.block)&&effect.block>=1&&effect.block<=3;
+    const allowed=
+      (effect.type==='attempt' && ['waiting','transfer'].includes(snapshot.state) && e.state==='transfer' && blockValid && effect.block===snapshot.confirmed.length+1 && pending===null && e.tx.length===132) ||
+      (effect.type==='retry' && snapshot.state==='transfer' && e.state===undefined && e.rx.length===1 && e.rx[0]===CONTROLS.NAK && pending!==null && !validPacket(pending.wire,pending.block)) ||
+      (effect.type==='confirm' && snapshot.state==='transfer' && e.state===undefined && blockValid && e.rx.length===1 && e.rx[0]===CONTROLS.ACK && Array.isArray(effect.data) && effect.data.length===128 && effect.data.every(checkByte) && (snapshot.confirmed.includes(effect.block) || (pending?.block===effect.block && validPacket(pending.wire,effect.block) && effect.data.every((b,i)=>b===pending.wire[i+3])))) ||
+      (effect.type==='save' && snapshot.state==='online' && e.state===undefined && Number.isInteger(effect.entry?.id) && effect.entry.id>=0 && effect.entry.id<BOARDS.length);
+    if(!allowed) throw new Error('Illegal effect for stage: '+effect.type+' / '+snapshot.state);
+  }
+  if(snapshot.state==='transfer' && e.state==='done' && (!snapshot.sentEnd || e.rx.length!==1 || e.rx[0]!==CONTROLS.ACK)) throw new Error('XMODEM cannot complete before EOT acknowledgment');
   if(e.state && !legal[snapshot.state]?.includes(e.state)) throw new Error('Illegal transition: '+snapshot.state+' → '+e.state);
   if(!e.state && !['initializing','ready','dialing','calling','negotiating','online','transfer','disconnecting','offline'].includes(snapshot.state)) throw new Error('Event without active stage');
   const s={...snapshot,state:e.state??snapshot.state,elapsed:e.at,tx:snapshot.tx+e.tx.length,rx:snapshot.rx+e.rx.length,
     log:[...snapshot.log,{label:e.label,at:e.at,tx:e.tx.length,rx:e.rx.length}],terminal:snapshot.terminal+e.terminal,
     highSpeed:snapshot.highSpeed||e.state==='online',signal:{tx:e.tx.length>0,rx:e.rx.length>0}};
-  if(e.effect?.type==='attempt'){s.attempts++;s.sentUseful+=Math.min(128,file.length-(e.effect.block-1)*128);}
-  if(e.effect?.type==='retry') s.retries++;
+  if(e.effect?.type==='attempt'){s.attempts++;s.sentUseful+=128;s.pendingFrame={block:e.effect.block,wire:e.tx.slice()};}
+  if(snapshot.state==='transfer'&&snapshot.confirmed.length===3&&e.tx.length===1&&e.tx[0]===CONTROLS.EOT) s.sentEnd=true;
+  if(e.effect?.type==='retry'){s.retries++;s.pendingFrame=null;}
   if(e.effect?.type==='confirm' && !s.confirmed.includes(e.effect.block)){
-    s.confirmed=[...s.confirmed,e.effect.block];s.accepted=[...s.accepted,...e.effect.data];
+    s.confirmed=[...s.confirmed,e.effect.block];s.accepted=[...s.accepted,...e.effect.data];s.pendingFrame=null;
   }
   if(e.effect?.type==='save' && !s.saved.some(x=>x.id===e.effect.entry.id)) s.saved=[...s.saved,e.effect.entry];
   return s;

@@ -11,6 +11,20 @@ test('deny illegal and unconnected success',()=>{
  assert.throws(()=>plan('10',opts({outcome:'forged'})),RangeError);
  assert.throws(()=>plan('10',opts({rate:0})),RangeError);
 });
+test('protocol effects cannot commit in the wrong phase',()=>{
+ const s=simulator('10',opts());s.step();const connection=s.snapshot();
+ const transfer=plan('11',opts());
+ assert.throws(()=>applyEvent(connection,transfer[2]),/Illegal effect for stage: confirm \/ initializing/);
+ const patrol=plan('12',opts()).find(e=>e.effect?.type==='save');
+ assert.throws(()=>applyEvent(connection,patrol),/Illegal effect for stage: save \/ initializing/);
+ const t=simulator('11',opts());t.step();t.step();
+ assert.throws(()=>applyEvent(t.snapshot(),{...transfer[2],rx:[21]}),/Illegal effect for stage: confirm \/ transfer/);
+ assert.equal(t.snapshot().accepted.length,0);
+ const corrupted=simulator('11',opts({fault:'once'}));for(let i=0;i<4;i++)corrupted.step();
+ assert.throws(()=>applyEvent(corrupted.snapshot(),transfer[4]),/Illegal effect for stage: confirm \/ transfer/);
+ assert.equal(corrupted.snapshot().accepted.length,128);
+ assert.throws(()=>applyEvent(t.snapshot(),transfer.at(-1)),/cannot complete before EOT/);
+});
 test('Courier seven lamps and data signals follow the event',()=>{
  const s=simulator('09',opts()), initial=ledState(s.snapshot());
  assert.deepEqual(initial,{HS:false,AA:false,CD:false,RD:false,SD:false,TR:true,MR:true});
