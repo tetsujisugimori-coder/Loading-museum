@@ -49,7 +49,7 @@ try{
  const file=path.join(scratch,'app/data/dialupBbsExhibits.ts'),original=await readFile(file,'utf8');
  for(const [name,mutant] of [
   ['lose-exhibit',original.split('\n').filter(s=>!s.includes("{id:'bbs-06'")).join('\n')],
-  ['change-permanent-id',original.replace("{id:'bbs-06'","{id:'bbs-09'")],
+  ['change-permanent-id',original.replace("{id:'bbs-06'","{id:'bbs-99'")],
  ]){
   assert.notEqual(mutant,original,name);await writeFile(file,mutant);
   requireRejection(name,runRegistration(),'exactly six historical');

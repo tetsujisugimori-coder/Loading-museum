@@ -31,7 +31,7 @@ try{
   const read=async id=>(await page.locator('#'+id).textContent())??'';
   const end=async()=>{await page.locator('#instant').click();return read('logical');};
   await page.goto(url);
-  check('header count',/13 ROOMS \/ 292 OBJECTS/.test(await page.locator('.archiveMeta').innerText()));
+  check('header count',/13 ROOMS \/ 296 OBJECTS/.test(await page.locator('.archiveMeta').innerText()));
   check('13 rooms',await page.locator('.roomDirectory > li').count()===13);
   const nav=page.getByRole('navigation',{name:'歴史と現代から展示を探す'});
   await nav.getByRole('button',{name:/Historical Motion/}).click();
@@ -86,8 +86,8 @@ try{
   check('gallery no horizontal overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   await page.getByRole('link',{name:/ミュージアムの展示室へ戻る/}).click();await page.waitForURL('**/#browse-ms-dos-pc-command-line');
   await page.waitForFunction(()=>document.querySelector('#ms-dos-pc-command-line-toggle')?.getAttribute('aria-expanded')==='true');
-  check('room count',/14 EXHIBITS/.test(await page.locator('#ms-dos-pc-command-line-toggle').innerText()));
-  check('six room entries',await page.locator('#dialup-bbs-preview .dialupBbsExhibit').count()===6);
+  check('room count',/18 EXHIBITS/.test(await page.locator('#ms-dos-pc-command-line-toggle').innerText()));
+  check('ten room entries',await page.locator('#dialup-bbs-preview .dialupBbsExhibit').count()===10);
   await page.locator('#dialup-bbs-preview [data-museum-id="bbs-05"]').click();await page.waitForURL('**/dialup-bbs/index.html#bbs-05');await ready('05');
   check('room individual link selects work',await read('work-title')==='05 掲示板連続スクロール');
   check('no page errors',errors.length===0);c.errors=errors;c.status='PASS';

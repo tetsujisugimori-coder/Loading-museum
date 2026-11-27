@@ -1,0 +1,15 @@
+#communication-works a{padding:6px 10px;min-height:44px;display:inline-flex;align-items:center;border-radius:6px;border:1px solid #58716b}
+#communication-works a[aria-current]{background:#a1e6b0;color:#102019}
+#modem{background:#202728;border:2px solid #52635e;border-radius:10px;padding:12px;margin:12px 0;box-shadow:0 4px 10px #080c0c}
+.modem-title{font:700 .85rem/1.55 ui-monospace,monospace;color:#c1d1cd;letter-spacing:.04em}
+.leds{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,120px),1fr));gap:8px;list-style:none;padding:0;margin:0}
+.leds li{background:#131a1b;border:1px solid #4b5d59;border-radius:6px;padding:7px}
+.led-dot{display:inline-block;width:12px;height:12px;border:2px solid #788681;border-radius:50%;margin-right:7px;background:#23302d}
+[data-on="true"] .led-dot{background:#75c486;border-color:#9ce8a5;box-shadow:0 0 5px #5eb479}
+.led-note{display:block;color:#c4cec9;font-size:.78rem}
+fieldset{display:flex;gap:10px 16px;flex-wrap:wrap;border:1px solid #52635e;border-radius:8px;margin:12px 0}
+#events{padding-inline-start:1.55em;max-block-size:20em;overflow:auto;overflow-wrap:anywhere}
+#terminal{min-block-size:4.5em;max-block-size:13em;overflow:auto}
+progress{max-width:100%;width:100%;height:1.25em;accent-color:#a1e6b0}
+#status{color:#a1e6b0}.metrics{gap:10px 24px}.metrics dd{overflow-wrap:anywhere}
+@media(prefers-reduced-motion:reduce){[data-on="true"] .led-dot{box-shadow:none}}
