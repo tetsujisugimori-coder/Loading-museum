@@ -104,14 +104,14 @@ test("正式名称のタイトル導入、年代テーマ、確定演出、軽�
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.museumTitleSignalNoise/);
 });
 
-test("既存9展示の下へ閉じたMS-DOS展示室と既存8種類・BBS6作品を書き出す", async () => {
+test("既存9展示の下へ閉じたMS-DOS展示室と既存8種類・BBS10作品を書き出す", async () => {
   const html = await readFile(new URL("index.html", outputRoot), "utf8");
 
   assert.match(html, /時代別展示室/);
   assert.match(html, /MS-DOS・PCコマンドライン展示室/);
   assert.match(html, /1980年代〜1990年代/);
   assert.match(html, /文字だけで待機や進捗を表現した時代/);
-  assert.match(html, /14(?:<!-- -->)? EXHIBITS/);
+  assert.match(html, /18(?:<!-- -->)? EXHIBITS/);
   assert.match(html, /aria-expanded="false"/);
   assert.match(
     html,
@@ -265,7 +265,7 @@ test("Macintosh誕生展示室を加えた展示室・展示件数を表示す�
       + (html.match(/class="macExhibit"/g) ?? []).length
       + (html.match(/class="domOperation"/g) ?? []).length
       + (html.match(/class="dialupBbsExhibit"/g) ?? []).length,
-      102,
+      106,
   );
   assert.match(page, /const periodRoomCount = exhibitRooms\.length \+ 6/);
   assert.match(page, /const totalExhibitCount = permanentExhibitCount \+ periodExhibitCount \+ flashExhibitCount \+ 17 \+ waapiSampleCount/);
@@ -1268,5 +1268,11 @@ test("BBS registered entries and stable fragment links exist in static export", 
    assert.ok(html.includes('href="./dialup-bbs/ansi.html#bbs-'+id+'"'));
    assert.equal((ansi.match(new RegExp('data-work="'+id+'"','g'))??[]).length,1);
  }
- assert.equal((html.match(/class="dialupBbsExhibit"/g)??[]).length,6);
+ const communications=await readFile(new URL("dialup-bbs/communications.html",outputRoot),"utf8");
+ for(const id of ['09','10','11','12']){
+   assert.equal((html.match(new RegExp('data-museum-id="bbs-'+id+'"','g'))??[]).length,1);
+   assert.ok(html.includes('href="./dialup-bbs/communications.html#bbs-'+id+'"'));
+   assert.equal((communications.match(new RegExp('data-work="'+id+'"','g'))??[]).length,1);
+ }
+ assert.equal((html.match(/class="dialupBbsExhibit"/g)??[]).length,10);
 });
