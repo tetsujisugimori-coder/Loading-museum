@@ -57,7 +57,7 @@ try{
    const panel=document.querySelector('#dialup-bbs-preview')?.closest('.roomPanel');
    return toggle?.getAttribute('aria-expanded')==='true'&&panel?.dataset.open==='true'&&panel.getAnimations().every(a=>['finished','idle'].includes(a.playState));
   });
-   const link=page.locator('#dialup-bbs-preview a[href$="door-game.html#bbs-14"]');
+   const link=page.locator('#dialup-bbs-preview a[href$="door-game.html#bbs-14"]').filter({hasText:'第4便・BBSゲームを開く'});
    // In WebKit an offscreen content-visibility descendant can briefly alternate
    // visibility until its own region, not just the room header, is revealed.
    await link.scrollIntoViewIfNeeded();
