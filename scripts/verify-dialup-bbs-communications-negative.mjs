@@ -49,7 +49,7 @@ try{
   ['mutated-fixed-ID',original.replace("{id:'bbs-12'","{id:'bbs-99'")],
  ]){
   assert.notEqual(v,original,name);await writeFile(target,v);
-  requireRejected(name,checkRegistration(),'preserves exactly six historical');
+  requireRejected(name,checkRegistration(),'preserves ten historical BBS IDs');
  }
  await writeFile(path.join(dest,'communications-negative.json'),JSON.stringify({status:'PASS',cases},null,2)+'\n');
  console.log(cases.map(c=>c.name+': '+c.status).join('\n'));

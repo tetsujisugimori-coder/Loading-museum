@@ -44,7 +44,7 @@ try{
   const ready=id=>page.waitForFunction(id=>JSON.parse(document.querySelector('#work-title')?.dataset.observation??'{}').work===id,id);
   const screenshot=name=>page.locator('section[aria-labelledby=work-title]').screenshot({path:path.join(dest,[engine,width,motion,name].join('-')+'.png')});
   await page.goto(base);
-  check('inventory count',/13 ROOMS \/ 296 OBJECTS/.test(await page.locator('.archiveMeta').innerText()));
+  check('inventory count',/13 ROOMS \/ 298 OBJECTS/.test(await page.locator('.archiveMeta').innerText()));
   const nav=page.getByRole('navigation',{name:'歴史と現代から展示を探す'});
   await nav.getByRole('button',{name:/Historical Motion/}).click();await nav.getByLabel('全館の作品・展示室・タグで検索').fill('ANSI');
   const matchingLinks=await nav.locator('.catalogResults a[href*="/ansi.html#"]').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('href')).sort());

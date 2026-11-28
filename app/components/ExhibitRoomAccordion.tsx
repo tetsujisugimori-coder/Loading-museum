@@ -477,6 +477,7 @@ export function ExhibitRoomAccordion({ room }: { room: ExhibitRoom }) {
               <a href="./dialup-bbs/index.html">BBS体験展示を開く</a>
               <p><a href="./dialup-bbs/ansi.html#bbs-06">第2便・ANSI表現を開く</a></p>
               <p><a href="./dialup-bbs/communications.html#bbs-09">第3便・モデムと通信処理を開く</a></p>
+              <p><a href="./dialup-bbs/ripscrip.html#bbs-13">第4便・RIPscripを開く</a> ／ <a href="./dialup-bbs/door-game.html#bbs-14">第4便・BBSゲームを開く</a></p>
               <ul>{dialupBbsExhibits.map(work => (
                 <li className="dialupBbsExhibit" key={work.id}>
                   <a data-museum-id={work.id} href={dialupBbsHref(work.id)}>{work.candidate} {work.title}</a>

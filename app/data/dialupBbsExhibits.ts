@@ -12,5 +12,7 @@ export const dialupBbsExhibits = [
   {id:'bbs-10',candidate:'10',title:'電話回線の向こうへ',tags:['BBS','モデム','通信','接続','ATコマンド','ダイヤル'],sourceIds:['C01','C02','C03','C04'],provenance:'conceptual-reconstruction'},
   {id:'bbs-11',candidate:'11',title:'ファイルが届くまで',tags:['BBS','通信','XMODEM','チェックサム','再送','転送'],sourceIds:['C05','C06'],provenance:'conceptual-reconstruction'},
   {id:'bbs-12',candidate:'12',title:'通信を自動で巡回する',tags:['BBS','通信','自動巡回','オフラインリーダー','掲示板','ログ'],sourceIds:['C08','C09','C10','C11'],provenance:'conceptual-reconstruction'},
+  {id:'bbs-13',candidate:'13',title:'RIPscripによるグラフィック表現',tags:['BBS','RIPscrip','RIPterm','ANSI','座標描画','マウス'],sourceIds:['W401','W402','W403'],provenance:'conceptual-reconstruction'},
+  {id:'bbs-14',candidate:'14',title:'BBSゲーム',tags:['BBS','Door Game','RPG','パソコン通信','ターン制','ランキング'],sourceIds:['W405','W406','W407','W408'],provenance:'conceptual-reconstruction'},
 ] as const;
-export const dialupBbsHref = (id: typeof dialupBbsExhibits[number]['id']) => './dialup-bbs/'+(id<'bbs-06'?'index.html':id<'bbs-09'?'ansi.html':'communications.html')+'#'+id;
+export const dialupBbsHref = (id: typeof dialupBbsExhibits[number]['id']) => './dialup-bbs/'+(id<'bbs-06'?'index.html':id<'bbs-09'?'ansi.html':id<'bbs-13'?'communications.html':id==='bbs-13'?'ripscrip.html':'door-game.html')+'#'+id;
