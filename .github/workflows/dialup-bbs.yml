@@ -33,9 +33,10 @@ jobs:
         run: |
           mkdir -p work/dialup-bbs
           set -o pipefail
-          node --test tests/dialup-bbs-focus.test.mjs tests/dialup-bbs-ansi.test.mjs tests/dialup-bbs-communications.test.mjs docs/dialup-bbs/prototype/terminal.test.mjs | tee work/dialup-bbs/unit-tests.log
+          node --test tests/dialup-bbs-focus.test.mjs tests/dialup-bbs-ansi.test.mjs tests/dialup-bbs-communications.test.mjs tests/dialup-bbs-ripscrip.test.mjs tests/dialup-bbs-door-game.test.mjs docs/dialup-bbs/prototype/terminal.test.mjs | tee work/dialup-bbs/unit-tests.log
       - run: node scripts/verify-dialup-bbs-ansi-negative.mjs
       - run: node scripts/verify-dialup-bbs-communications-negative.mjs
+      - run: node scripts/verify-dialup-bbs-wave4-negative.mjs
       - run: AUDIT_OUTPUT=work/dialup-bbs/inventory.json node scripts/audit-dialup-bbs.mjs
       - run: node scripts/build-layer-composer.mjs
       - name: Browser tools
@@ -50,6 +51,7 @@ jobs:
           node scripts/verify-dialup-bbs-browser.mjs
           node scripts/verify-dialup-bbs-ansi-browser.mjs
           node scripts/verify-dialup-bbs-communications-browser.mjs
+          node scripts/verify-dialup-bbs-wave4-browser.mjs
       - name: Record case file digests
         if: always()
         run: |

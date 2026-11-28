@@ -52,7 +52,7 @@ try{
   ['change-permanent-id',original.replace("{id:'bbs-06'","{id:'bbs-99'")],
  ]){
   assert.notEqual(mutant,original,name);await writeFile(file,mutant);
-  requireRejection(name,runRegistration(),'exactly six historical');
+  requireRejection(name,runRegistration(),'ten historical BBS IDs');
  }
  assert.equal(out.length,10);
  await writeFile(path.join(dest,'ansi-negative.json'),JSON.stringify({status:'PASS',cases:out},null,2)+'\n');

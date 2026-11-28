@@ -1,0 +1,11 @@
+.rip-panes {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.rip-pane {min-width:0;border:1px solid #42526d;border-radius:12px;padding:.85rem;background:#0b1221}
+#rip-canvas {display:block;width:100%;height:auto;aspect-ratio:640/350;background:#000;image-rendering:pixelated}
+#rip-ansi-screen {min-height:13em;font-size:clamp(.43rem,1.1vw,.84rem);line-height:1.25;background:#000;color:#fff;white-space:pre;overflow:auto;padding:.5em}
+#rip-wire {overflow-wrap:anywhere;white-space:pre-wrap;min-height:3em}
+.rip-pane progress {width:100%;accent-color:#61e5ef}
+#rip-regions,#rip-keys {gap:.4rem}
+#rip-events {font-family:monospace;overflow-wrap:anywhere}
+#rip-status,#rip-response {min-height:1.6em}
+@media (max-width:765px) {.rip-panes {grid-template-columns:1fr} #rip-ansi-screen {font-size:clamp(.55rem,2.15vw,.8rem)}}
+@media (prefers-reduced-motion:reduce) {#bbs-13 *,#bbs-13 *::before,#bbs-13 *::after {animation:none!important;transition:none!important}}

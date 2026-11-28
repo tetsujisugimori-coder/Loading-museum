@@ -76,7 +76,7 @@ try{
   const finish=async()=>{for(let i=0;i<30&&!await button('step').isDisabled();i++) await step();};
   const screenshot=name=>page.screenshot({path:path.join(dest,[engine,width,motion,'wave3',name].join('-')+'.png')});
   await page.goto(base);
-  ok('global inventory 296, 13 rooms',/13 ROOMS \/ 296 OBJECTS/.test(await page.locator('.archiveMeta').innerText()));
+  ok('global inventory 298, 13 rooms',/13 ROOMS \/ 298 OBJECTS/.test(await page.locator('.archiveMeta').innerText()));
   const nav=page.getByRole('navigation',{name:'歴史と現代から展示を探す'});
   await nav.getByRole('button',{name:/Historical Motion/}).click();
   await nav.getByLabel('全館の作品・展示室・タグで検索').fill('通信');
@@ -130,7 +130,7 @@ try{
   if(motion==='no-preference')await step('play');
   // This is a real user link across documents, without a virtual clock.
   await documentLink(page.locator('#room-link'),new URL('#browse-ms-dos-pc-command-line',base),roomReady,async()=>{
-    ok('room initializes 10 indexed exhibits',await page.locator('#dialup-bbs-preview .dialupBbsExhibit').count()===10);
+    ok('room initializes 12 indexed exhibits',await page.locator('#dialup-bbs-preview .dialupBbsExhibit').count()===12);
   });
   const roomLink=page.locator('#dialup-bbs-preview [data-museum-id="bbs-11"]');
   await roomLink.scrollIntoViewIfNeeded();

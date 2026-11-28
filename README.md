@@ -1,3 +1,7 @@
+## BBS第4便：RIPscripとBBSゲーム
+
+既存MS-DOS室に座標描画のRIPscrip展示 `bbs-13` と、架空のDoor Game「The Lost Frontier」`bbs-14` を追加する候補です。[出典と再現範囲](docs/dialup-bbs/wave4-sources.md)・[受入契約](docs/dialup-bbs/wave4-acceptance.md)。13室・298固有展示、BBS12作品。12作品はコレクションの上限ではありません。
+
 ## パソコン通信とBBSの時代 第2便（Issue #92）
 
 既存MS-DOS室でANSI逐次描画、画面上書きと差分更新、属性ビット7の点滅／高輝度背景を比較。永久ID bbs-06〜08。[出典・再構成・試験契約](docs/dialup-bbs/ansi-wave2.md)。
