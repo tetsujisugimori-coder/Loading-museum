@@ -37,7 +37,7 @@ try{
   await nav.getByRole('button',{name:/Historical Motion/}).click();
   const search=nav.getByLabel('全館の作品・展示室・タグで検索');
   await search.fill('BBS');
-  check('ten historical records',await nav.locator('.catalogResults li').count()===10);
+  check('twelve historical records',await nav.locator('.catalogResults li').count()===12);
   await nav.getByRole('button',{name:/Modern Motion/}).click();await search.fill('BBS');
   check('not modern records',await nav.locator('.catalogResults li').count()===0);
   await nav.getByRole('button',{name:/Historical Motion/}).click();await search.fill('日本語パソコン通信');
@@ -87,7 +87,7 @@ try{
   await page.getByRole('link',{name:/ミュージアムの展示室へ戻る/}).click();await page.waitForURL('**/#browse-ms-dos-pc-command-line');
   await page.waitForFunction(()=>document.querySelector('#ms-dos-pc-command-line-toggle')?.getAttribute('aria-expanded')==='true');
   check('room count',/20 EXHIBITS/.test(await page.locator('#ms-dos-pc-command-line-toggle').innerText()));
-  check('ten room entries',await page.locator('#dialup-bbs-preview .dialupBbsExhibit').count()===10);
+  check('twelve room entries',await page.locator('#dialup-bbs-preview .dialupBbsExhibit').count()===12);
   await page.locator('#dialup-bbs-preview [data-museum-id="bbs-05"]').click();await page.waitForURL('**/dialup-bbs/index.html#bbs-05');await ready('05');
   check('room individual link selects work',await read('work-title')==='05 掲示板連続スクロール');
   check('no page errors',errors.length===0);c.errors=errors;c.status='PASS';

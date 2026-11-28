@@ -124,7 +124,7 @@ try{
   await page.goBack();await ready('07');check('history restores selected work',new URL(page.url()).hash==='#bbs-07');
   await documentLink(page.getByRole('link',{name:/ミュージアムの展示室へ戻る/}),new URL('#browse-ms-dos-pc-command-line',base));
   await page.waitForFunction(()=>document.querySelector('#ms-dos-pc-command-line-toggle')?.getAttribute('aria-expanded')==='true');
-  check('10 indexed BBS works in existing room',await page.locator('#dialup-bbs-preview .dialupBbsExhibit').count()===10);
+  check('12 indexed BBS works in existing room',await page.locator('#dialup-bbs-preview .dialupBbsExhibit').count()===12);
   // aria-expanded changes before the existing accordion stops clipping its links.
   await page.waitForFunction(()=>{
     const panel=document.querySelector('#dialup-bbs-preview')?.closest('.roomPanel');

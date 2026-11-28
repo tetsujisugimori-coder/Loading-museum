@@ -57,7 +57,12 @@ try{
    const panel=document.querySelector('#dialup-bbs-preview')?.closest('.roomPanel');
    return toggle?.getAttribute('aria-expanded')==='true'&&panel?.dataset.open==='true'&&panel.getAnimations().every(a=>['finished','idle'].includes(a.playState));
   });
-   await page.locator('#dialup-bbs-preview').getByRole('link',{name:'第4便・BBSゲームを開く'}).waitFor({state:'visible'});};
+   const link=page.locator('#dialup-bbs-preview a[href$="door-game.html#bbs-14"]');
+   // In WebKit an offscreen content-visibility descendant can briefly alternate
+   // visibility until its own region, not just the room header, is revealed.
+   await link.scrollIntoViewIfNeeded();
+   await link.waitFor({state:'visible'});
+  };
   const ripTarget=new URL('dialup-bbs/ripscrip.html#bbs-13',base),doorTarget=new URL('dialup-bbs/door-game.html#bbs-14',base);
   const ripReady=()=>page.locator('html[data-ripscrip-ready="true"] #rip-canvas').waitFor({state:'visible'});
   const doorReady=()=>page.locator('#bbs-14[data-ready="true"]').waitFor({state:'visible'});
@@ -65,7 +70,7 @@ try{
   const ripStep=()=>by('rip-step').press('Enter');
   const phase=()=>by('bbs-14').getAttribute('data-phase');
   const doorDo=async(id)=>{await by('door-'+id).click();if(await by('door-instant').getAttribute('aria-disabled')==='false')await by('door-instant').click();};
-  const roomLink=target=>page.locator('#dialup-bbs-preview').getByRole('link').filter({hasText:target});
+  const roomLink=target=>page.locator('#dialup-bbs-preview a').filter({hasText:target});
   await page.goto(base);
   check('global 13 rooms / 298 exhibits',/13 ROOMS \/ 298 OBJECTS/.test(await page.locator('.archiveMeta').innerText()));
   const search=page.getByRole('navigation',{name:'歴史と現代から展示を探す'});
@@ -95,9 +100,9 @@ try{
   check('logical region has input handling',(await txt('rip-response')).includes('F <CR>'));
   check('RIP no horizontal overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   if(width===390&&motion==='no-preference')await shot('ripscrip');
-  await go(by('room-link'),roomTarget,roomReady,async()=>check('room shows both new exhibits',await roomLink('第4便・BBSゲーム').isVisible()));
+  await go(by('room-link'),roomTarget,roomReady,async()=>{await roomLink('第4便・BBSゲーム').waitFor({state:'visible'});check('room shows both new exhibits',await roomLink('第4便・RIPscrip').count()===1);});
   await go(roomLink('第4便・RIPscrip'),ripTarget,ripReady,async()=>{check('re-entry abandons old receive state',(await ripBytes())[0]===0);await ripStep();check('re-entry really operates',(await ripBytes())[0]===1);});
-  await go(by('room-link'),roomTarget,roomReady,async()=>check('room BBS group visible',await roomLink('第4便・BBSゲーム').isVisible()));
+  await go(by('room-link'),roomTarget,roomReady,async()=>{await roomLink('第4便・BBSゲーム').waitFor({state:'visible'});check('room BBS group has both permanent links',await roomLink('第4便・RIPscrip').count()===1);});
   await go(roomLink('第4便・BBSゲーム'),doorTarget,doorReady,async()=>{await doorDo('enter');check('Door enters registration',await phase()==='registration');});
   await doorDo('register');check('registration starts from six turns',await phase()==='game'&&(await txt('door-turns'))==='6');
   await by('door-speed').selectOption('300');
@@ -112,10 +117,10 @@ try{
   if(width===390&&motion==='no-preference')await shot('door');
   await doorDo('exit');check('returns to simulated BBS',await phase()==='bbs');
   const saved=[await txt('door-turns'),await txt('door-hp'),await txt('door-gold'),await txt('door-xp')];
-  await go(by('room-link'),roomTarget,roomReady,async()=>check('room return interactive',await roomLink('第4便・BBSゲーム').isVisible()));
+  await go(by('room-link'),roomTarget,roomReady,async()=>{await roomLink('第4便・BBSゲーム').waitFor({state:'visible'});check('room retains Door link',await roomLink('第4便・BBSゲーム').count()===1);});
   await go(roomLink('第4便・BBSゲーム'),doorTarget,doorReady,async()=>{await doorDo('enter');check('real re-entry restores same state',await phase()==='game'&&JSON.stringify([await txt('door-turns'),await txt('door-hp'),await txt('door-gold'),await txt('door-xp')])===JSON.stringify(saved));});
   if(width===375&&motion==='no-preference'){
-   await go(by('room-link'),roomTarget,roomReady,async()=>check('negative control room ready',await roomLink('第4便・RIPscrip').isVisible()));
+   await go(by('room-link'),roomTarget,roomReady,async()=>{await roomLink('第4便・RIPscrip').waitFor({state:'visible'});check('negative control room ready',await roomLink('第4便・RIPscrip').count()===1);});
    await page.route('**/ripscrip-gallery.mjs',route=>route.abort());
    await assert.rejects(go(roomLink('第4便・RIPscrip'),ripTarget,
      ()=>page.locator('html[data-ripscrip-ready="true"]').waitFor({state:'attached',timeout:1800}),async()=>{},6000),/Timeout/);

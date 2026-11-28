@@ -130,7 +130,7 @@ try{
   if(motion==='no-preference')await step('play');
   // This is a real user link across documents, without a virtual clock.
   await documentLink(page.locator('#room-link'),new URL('#browse-ms-dos-pc-command-line',base),roomReady,async()=>{
-    ok('room initializes 10 indexed exhibits',await page.locator('#dialup-bbs-preview .dialupBbsExhibit').count()===10);
+    ok('room initializes 12 indexed exhibits',await page.locator('#dialup-bbs-preview .dialupBbsExhibit').count()===12);
   });
   const roomLink=page.locator('#dialup-bbs-preview [data-museum-id="bbs-11"]');
   await roomLink.scrollIntoViewIfNeeded();

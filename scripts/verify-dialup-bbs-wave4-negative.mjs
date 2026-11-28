@@ -26,7 +26,7 @@ try{
   await fs.writeFile(p,old.replace(needle,change));
   const r=run(test,filter);
   const log=r.stdout+'\n'+r.stderr;
-  assert.equal(r.status,1,name+' '+log);assert.match(log,name==='no-turn-cost'?/TypeError .*invalid game state/:/AssertionError/);assert.ok(log.includes(filter));
+  assert.equal(r.status,1,name+' '+log);assert.match(log,name==='no-turn-cost'?/TypeError[^\n]*invalid game state/:/AssertionError/);assert.ok(log.includes(filter));
   evidence.results.push({name,exitCode:r.status,status:'REJECTED',log});
   await fs.writeFile(p,old);
  }
