@@ -13,7 +13,7 @@ const vars=[
  ['double-request','door-game-model.mjs',"if (pending) return {accepted:false,code:'busy'};","if (false) return {accepted:false,code:'busy'};",door,'rejects duplicates'],
  ['no-turn-cost','door-game-model.mjs','turns:s.turns-1','turns:s.turns',door,'exact hand-calculated'],
 ];
-const run=(test,name)=>spawnSync(process.execPath,['--test',...(name?['--test-name-pattern='+name]:[]),test],{cwd:root,encoding:'utf8',timeout:20000});
+const run=(test,name)=>spawnSync(process.execPath,['--test','--test-reporter=tap',...(name?['--test-name-pattern='+name]:[]),test],{cwd:root,encoding:'utf8',timeout:20000});
 const evidence={results:[],status:'FAIL'};
 try{
  await fs.mkdir(path.join(root,'public'),{recursive:true});
@@ -26,7 +26,9 @@ try{
   await fs.writeFile(p,old.replace(needle,change));
   const r=run(test,filter);
   const log=r.stdout+'\n'+r.stderr;
-  assert.equal(r.status,1,name+' '+log);assert.match(log,name==='no-turn-cost'?/TypeError[^\n]*invalid game state/:/AssertionError/);assert.ok(log.includes(filter));
+  assert.equal(r.status,1,name+' '+log);assert.match(log,/^not ok 1 - /m);assert.ok(log.includes(filter));
+  if(name==='no-turn-cost'){assert.match(log,/name: 'TypeError'/);assert.match(log,/error: 'invalid game state'/);}
+  else assert.match(log,/AssertionError/);
   evidence.results.push({name,exitCode:r.status,status:'REJECTED',log});
   await fs.writeFile(p,old);
  }

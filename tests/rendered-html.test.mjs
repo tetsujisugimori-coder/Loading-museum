@@ -1278,6 +1278,7 @@ test("BBS registered entries and stable fragment links exist in static export", 
    assert.equal((html.match(new RegExp('data-museum-id="bbs-'+id+'"','g'))??[]).length,1);
    assert.ok(html.includes('href="./dialup-bbs/'+file+'#bbs-'+id+'"'));
    const exhibit=await readFile(new URL('dialup-bbs/'+file,outputRoot),'utf8');
+   assert.ok(exhibit.includes(id==='13'?'RIPscrip Graphical BBS':'BBS Door Games'));
    assert.match(exhibit,new RegExp('id="bbs-'+id+'"'));
  }
  assert.equal((html.match(/class="dialupBbsExhibit"/g)??[]).length,12);
